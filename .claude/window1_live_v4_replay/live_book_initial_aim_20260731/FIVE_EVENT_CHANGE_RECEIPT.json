@@ -1,0 +1,651 @@
+{
+  "schema_version": "WINDOW1_FIVE_EVENT_LIVE_BOOK_INITIAL_AIM_CHANGE_V1",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "leg_id": "BIG",
+      "orientation": "RISER",
+      "current_entry_cents": null,
+      "corrected_entry_cents": null,
+      "entry_change_cents": null,
+      "current_initial_decision": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "category": "ATP_CHALL",
+        "leg_id": "BIG",
+        "ts": 1784476800,
+        "tminus_scheduled_minutes": 390,
+        "tminus_bell_minutes": 480,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 54,
+        "after": 53,
+        "arithmetic": "54->53",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPCHALLENGERMATCH-26JUL19HURBIG/BIG"
+      },
+      "corrected_initial_decision": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "category": "ATP_CHALL",
+        "leg_id": "BIG",
+        "ts": 1784476800,
+        "tminus_scheduled_minutes": 390,
+        "tminus_bell_minutes": 480,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 54,
+        "after": 53,
+        "arithmetic": "54->53",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPCHALLENGERMATCH-26JUL19HURBIG/BIG"
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "FIRED",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "DID_NOTHING",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "DID_NOTHING",
+        "live_book_initial_aim": "DID_NOTHING",
+        "bid_only_reanchor_suppressed": "DID_NOTHING",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "leg_id": "HUR",
+      "orientation": "FALLER",
+      "current_entry_cents": 41,
+      "corrected_entry_cents": 47,
+      "entry_change_cents": 6,
+      "current_initial_decision": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "category": "ATP_CHALL",
+        "leg_id": "HUR",
+        "ts": 1784476773,
+        "tminus_scheduled_minutes": 390.45,
+        "tminus_bell_minutes": 480.45,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 47,
+        "after": 41,
+        "arithmetic": "47->41",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPCHALLENGERMATCH-26JUL19HURBIG/HUR"
+      },
+      "corrected_initial_decision": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "category": "ATP_CHALL",
+        "leg_id": "HUR",
+        "ts": 1784476773,
+        "tminus_scheduled_minutes": 390.45,
+        "tminus_bell_minutes": 480.45,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 47,
+        "after": 47,
+        "arithmetic": "min(existing ceiling, orientation aim 47, ask-1 47)=47",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPCHALLENGERMATCH-26JUL19HURBIG/HUR"
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "FIRED",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "DID_NOTHING",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "FIRED",
+        "live_book_initial_aim": "FIRED",
+        "bid_only_reanchor_suppressed": "FIRED",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "leg_id": "NIK",
+      "orientation": "FALLER",
+      "current_entry_cents": 18,
+      "corrected_entry_cents": 18,
+      "entry_change_cents": 0,
+      "current_initial_decision": {
+        "scenario": "ask_dwell",
+        "sequence": 8,
+        "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+        "tminus_scheduled": "T-361.917",
+        "tminus_bell": "T-366.917",
+        "trigger": "BBO_VRB",
+        "joint_observation": {
+          "NIK": {
+            "bid": 23,
+            "ask": 33,
+            "last": 33,
+            "spread": 10,
+            "dwell_seconds": 4,
+            "bid_dwell_seconds": 4,
+            "ask_dwell_seconds": 4,
+            "last_trade_provenance": {
+              "state": "CARRIED_VERIFIED_EXECUTION",
+              "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+              "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+              "price": 33
+            }
+          },
+          "VRB": {
+            "bid": 67,
+            "ask": 77,
+            "last": null,
+            "ask_size": 500,
+            "ask_capacity_at_top": 500,
+            "ask_capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-4",
+            "spread": 10,
+            "dwell_seconds": 0,
+            "bid_dwell_seconds": 0,
+            "ask_dwell_seconds": 0,
+            "last_trade_provenance": {
+              "state": "UNAVAILABLE",
+              "receipt": null
+            }
+          },
+          "pair_bid_sum": 90,
+          "pair_ask_sum": 110
+        },
+        "shapes": {
+          "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+          "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+        },
+        "active_orders_after": {
+          "NIK": 26,
+          "VRB": null
+        },
+        "target_ceilings_after": {
+          "NIK": 26,
+          "VRB": null
+        },
+        "material": true,
+        "organ": "INITIAL_ENTRY_TREE",
+        "organ_returns": {
+          "fresh_print_anchor": "last_traded:33",
+          "orientation": "VRB_RISER conviction=1",
+          "atlas": "29 (p50); p75=7",
+          "cohort": "dip_p50=4",
+          "contention": "TRADE-AT-PATH:26.1%",
+          "pair": "PAIR-COMPOSED:93",
+          "flow": "quiet; prints30m=1"
+        },
+        "door_opened": "FALLER_DEEP_CAST",
+        "signer": "ORIENTATION_FALLER_DEEP",
+        "action": "PLACE_NIK_26",
+        "arithmetic": "min(organ 26, ceiling 26, ask-1 32)=26",
+        "declined": "ATLAS p50 29",
+        "code_path": "buildConsultations -> ColdReplay._place",
+        "english": "NIK's verified anchor was 33. Orientation called VRB the riser, which made NIK the deep-cast faller. ORIENTATION_FALLER_DEEP signed 26; the replay placed 26 and declined the competing ATLAS price."
+      },
+      "corrected_initial_decision": {
+        "scenario": "live_book_initial_aim",
+        "sequence": 8,
+        "timestamp_et": "2026-07-19T06:28:05.000000-04:00",
+        "tminus_scheduled": "T-361.917",
+        "tminus_bell": "T-366.917",
+        "trigger": "BBO_VRB",
+        "joint_observation": {
+          "NIK": {
+            "bid": 23,
+            "ask": 33,
+            "last": 33,
+            "spread": 10,
+            "dwell_seconds": 4,
+            "bid_dwell_seconds": 4,
+            "ask_dwell_seconds": 4,
+            "last_trade_provenance": {
+              "state": "CARRIED_VERIFIED_EXECUTION",
+              "receipt": "b17542ca-924e-4214-e91f-a96dc81ad7f6",
+              "timestamp_et": "2026-07-19T06:28:01.765768-04:00",
+              "price": 33
+            }
+          },
+          "VRB": {
+            "bid": 67,
+            "ask": 77,
+            "last": null,
+            "ask_size": 500,
+            "ask_capacity_at_top": 500,
+            "ask_capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-4",
+            "spread": 10,
+            "dwell_seconds": 0,
+            "bid_dwell_seconds": 0,
+            "ask_dwell_seconds": 0,
+            "last_trade_provenance": {
+              "state": "UNAVAILABLE",
+              "receipt": null
+            }
+          },
+          "pair_bid_sum": 90,
+          "pair_ask_sum": 110
+        },
+        "shapes": {
+          "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+          "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+        },
+        "active_orders_after": {
+          "NIK": 23,
+          "VRB": null
+        },
+        "target_ceilings_after": {
+          "NIK": 23,
+          "VRB": null
+        },
+        "material": true,
+        "organ": "INITIAL_ENTRY_TREE",
+        "organ_returns": {
+          "fresh_print_anchor": "last_traded:33",
+          "orientation": "VRB_RISER conviction=1",
+          "atlas": "29 (p50); p75=7",
+          "cohort": "dip_p50=4",
+          "contention": "TRADE-AT-PATH:26.1%",
+          "pair": "PAIR-COMPOSED:93",
+          "flow": "quiet; prints30m=1"
+        },
+        "door_opened": "FALLER_DEEP_CAST",
+        "signer": "LIVE_EXTERNAL_BBO_INITIAL_AIM",
+        "action": "PLACE_NIK_23",
+        "arithmetic": "min(organ 23, ceiling 23, ask-1 32)=23",
+        "declined": "ATLAS p50 29",
+        "code_path": "buildConsultations -> ColdReplay._place",
+        "english": "NIK's verified anchor was 33. Orientation called VRB the riser, which made NIK the deep-cast faller. LIVE_EXTERNAL_BBO_INITIAL_AIM signed 23; the replay placed 23 and declined the competing ATLAS price."
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "DID_NOTHING",
+        "quiet_book_anchor": "DID_NOTHING",
+        "per_tick_ask_breathing": "DID_NOTHING",
+        "sibling_conditioned_faller_patience": "FIRED",
+        "ask_only_dwell_reachability": "FIRED",
+        "live_book_initial_aim": "FIRED",
+        "bid_only_reanchor_suppressed": "FIRED",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "leg_id": "VRB",
+      "orientation": "RISER",
+      "current_entry_cents": 68,
+      "corrected_entry_cents": 68,
+      "entry_change_cents": 0,
+      "current_initial_decision": {
+        "scenario": "ask_dwell",
+        "sequence": 296,
+        "timestamp_et": "2026-07-19T07:13:58.000000-04:00",
+        "tminus_scheduled": "T-316.033",
+        "tminus_bell": "T-321.033",
+        "trigger": "BBO_VRB",
+        "joint_observation": {
+          "NIK": {
+            "bid": 28,
+            "ask": 29,
+            "last": 32,
+            "spread": 1,
+            "dwell_seconds": 370,
+            "bid_dwell_seconds": 370,
+            "ask_dwell_seconds": 371,
+            "last_trade_provenance": {
+              "state": "CARRIED_VERIFIED_EXECUTION",
+              "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+              "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+              "price": 32
+            }
+          },
+          "VRB": {
+            "bid": 69,
+            "ask": 70,
+            "last": 70,
+            "ask_size": 110,
+            "ask_capacity_at_top": 110,
+            "ask_capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-210",
+            "spread": 1,
+            "dwell_seconds": 21,
+            "bid_dwell_seconds": 21,
+            "ask_dwell_seconds": 21,
+            "last_trade_provenance": {
+              "state": "CARRIED_VERIFIED_EXECUTION",
+              "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+              "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+              "price": 70
+            }
+          },
+          "pair_bid_sum": 97,
+          "pair_ask_sum": 99
+        },
+        "shapes": {
+          "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+          "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+        },
+        "active_orders_after": {
+          "NIK": 23,
+          "VRB": 68
+        },
+        "target_ceilings_after": {
+          "NIK": 23,
+          "VRB": 68
+        },
+        "material": true,
+        "organ": "INITIAL_ENTRY_TREE",
+        "organ_returns": {
+          "fresh_print_anchor": "last_traded:70",
+          "orientation": "VRB_RISER conviction=1",
+          "atlas": "67 (p50); p75=6",
+          "cohort": "dip_p50=4",
+          "contention": "DROP:-6.5%",
+          "pair": "PAIR-COMPOSED:93",
+          "flow": "quiet; prints30m=1"
+        },
+        "door_opened": "RISER_NEAR_NOW",
+        "signer": "LIVE_BOOK_ANCHOR_CEILING",
+        "action": "HOLD_VRB_68",
+        "arithmetic": "min(organ 69, ceiling 68, ask-1 69)=68",
+        "declined": "ATLAS 67",
+        "code_path": "buildConsultations -> ColdReplay._place",
+        "english": "VRB's verified anchor was 70. Orientation called VRB the riser, which made VRB the near-now riser. LIVE_BOOK_ANCHOR_CEILING signed 68; the replay held 68 and declined the competing ATLAS price."
+      },
+      "corrected_initial_decision": {
+        "scenario": "live_book_initial_aim",
+        "sequence": 296,
+        "timestamp_et": "2026-07-19T07:13:58.000000-04:00",
+        "tminus_scheduled": "T-316.033",
+        "tminus_bell": "T-321.033",
+        "trigger": "BBO_VRB",
+        "joint_observation": {
+          "NIK": {
+            "bid": 28,
+            "ask": 29,
+            "last": 32,
+            "spread": 1,
+            "dwell_seconds": 370,
+            "bid_dwell_seconds": 370,
+            "ask_dwell_seconds": 371,
+            "last_trade_provenance": {
+              "state": "CARRIED_VERIFIED_EXECUTION",
+              "receipt": "4f0cb905-8d46-738b-9e92-d289772e5c4b",
+              "timestamp_et": "2026-07-19T06:55:10.354831-04:00",
+              "price": 32
+            }
+          },
+          "VRB": {
+            "bid": 69,
+            "ask": 70,
+            "last": 70,
+            "ask_size": 110,
+            "ask_capacity_at_top": 110,
+            "ask_capacity_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-210",
+            "spread": 1,
+            "dwell_seconds": 21,
+            "bid_dwell_seconds": 21,
+            "ask_dwell_seconds": 21,
+            "last_trade_provenance": {
+              "state": "CARRIED_VERIFIED_EXECUTION",
+              "receipt": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+              "timestamp_et": "2026-07-19T07:13:56.179481-04:00",
+              "price": 70
+            }
+          },
+          "pair_bid_sum": 97,
+          "pair_ask_sum": 99
+        },
+        "shapes": {
+          "VRB": "RISER__CLIMB_WITH_PULSES_EXPECTED_BEFORE_T2",
+          "NIK": "FALLER__INVERSE_SLIDE_EXPECTED_IN_T2"
+        },
+        "active_orders_after": {
+          "NIK": 23,
+          "VRB": 68
+        },
+        "target_ceilings_after": {
+          "NIK": 23,
+          "VRB": 68
+        },
+        "material": true,
+        "organ": "INITIAL_ENTRY_TREE",
+        "organ_returns": {
+          "fresh_print_anchor": "last_traded:70",
+          "orientation": "VRB_RISER conviction=1",
+          "atlas": "67 (p50); p75=6",
+          "cohort": "dip_p50=4",
+          "contention": "DROP:-6.5%",
+          "pair": "PAIR-COMPOSED:93",
+          "flow": "quiet; prints30m=1"
+        },
+        "door_opened": "RISER_NEAR_NOW",
+        "signer": "LIVE_BOOK_ANCHOR_CEILING",
+        "action": "HOLD_VRB_68",
+        "arithmetic": "min(organ 69, ceiling 68, ask-1 69)=68",
+        "declined": "ATLAS 67",
+        "code_path": "buildConsultations -> ColdReplay._place",
+        "english": "VRB's verified anchor was 70. Orientation called VRB the riser, which made VRB the near-now riser. LIVE_BOOK_ANCHOR_CEILING signed 68; the replay held 68 and declined the competing ATLAS price."
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "DID_NOTHING",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "FIRED",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "FIRED",
+        "live_book_initial_aim": "DID_NOTHING",
+        "bid_only_reanchor_suppressed": "DID_NOTHING",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "leg_id": "LAJ",
+      "orientation": "FALLER",
+      "current_entry_cents": 50,
+      "corrected_entry_cents": 50,
+      "entry_change_cents": 0,
+      "current_initial_decision": null,
+      "corrected_initial_decision": null,
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "DID_NOTHING",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "FIRED",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "FIRED",
+        "live_book_initial_aim": "FIRED",
+        "bid_only_reanchor_suppressed": "FIRED",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "leg_id": "VAN",
+      "orientation": "RISER",
+      "current_entry_cents": null,
+      "corrected_entry_cents": null,
+      "entry_change_cents": null,
+      "current_initial_decision": {
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "category": "ATP_MAIN",
+        "leg_id": "VAN",
+        "ts": 1783850502,
+        "tminus_scheduled_minutes": 478.3,
+        "tminus_bell_minutes": 1798.3,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": null,
+        "after": 49,
+        "arithmetic": "EMPTY->49",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPMATCH-26JUL12LAJVAN/VAN"
+      },
+      "corrected_initial_decision": {
+        "event_id": "KXATPMATCH-26JUL12LAJVAN",
+        "category": "ATP_MAIN",
+        "leg_id": "VAN",
+        "ts": 1783850502,
+        "tminus_scheduled_minutes": 478.3,
+        "tminus_bell_minutes": 1798.3,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": null,
+        "after": 49,
+        "arithmetic": "EMPTY->49",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXATPMATCH-26JUL12LAJVAN/VAN"
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "FIRED",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "FIRED",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "DID_NOTHING",
+        "live_book_initial_aim": "DID_NOTHING",
+        "bid_only_reanchor_suppressed": "DID_NOTHING",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "leg_id": "BRA",
+      "orientation": "FALLER",
+      "current_entry_cents": null,
+      "corrected_entry_cents": null,
+      "entry_change_cents": null,
+      "current_initial_decision": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "leg_id": "BRA",
+        "ts": 1784218828,
+        "tminus_scheduled_minutes": 179.53333333333333,
+        "tminus_bell_minutes": 229.53333333333333,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 39,
+        "after": 33,
+        "arithmetic": "39->33",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTACHALLENGERMATCH-26JUL16BRAVED/BRA"
+      },
+      "corrected_initial_decision": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "leg_id": "BRA",
+        "ts": 1784218828,
+        "tminus_scheduled_minutes": 179.53333333333333,
+        "tminus_bell_minutes": 229.53333333333333,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 39,
+        "after": 39,
+        "arithmetic": "min(existing ceiling, orientation aim 39, ask-1 39)=39",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTACHALLENGERMATCH-26JUL16BRAVED/BRA"
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "FIRED",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "DID_NOTHING",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "DID_NOTHING",
+        "live_book_initial_aim": "FIRED",
+        "bid_only_reanchor_suppressed": "FIRED",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "leg_id": "VED",
+      "orientation": "RISER",
+      "current_entry_cents": 60,
+      "corrected_entry_cents": 60,
+      "entry_change_cents": 0,
+      "current_initial_decision": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "leg_id": "VED",
+        "ts": 1784218829,
+        "tminus_scheduled_minutes": 179.51666666666668,
+        "tminus_bell_minutes": 229.51666666666668,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 60,
+        "after": 60,
+        "arithmetic": "min(existing ceiling, orientation aim 60, ask-1 60)=60",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTACHALLENGERMATCH-26JUL16BRAVED/VED"
+      },
+      "corrected_initial_decision": {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "leg_id": "VED",
+        "ts": 1784218829,
+        "tminus_scheduled_minutes": 179.51666666666668,
+        "tminus_bell_minutes": 229.51666666666668,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 60,
+        "after": 60,
+        "arithmetic": "min(existing ceiling, orientation aim 60, ask-1 60)=60",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTACHALLENGERMATCH-26JUL16BRAVED/VED"
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "FIRED",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "FIRED",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "FIRED",
+        "live_book_initial_aim": "DID_NOTHING",
+        "bid_only_reanchor_suppressed": "DID_NOTHING",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "leg_id": "JIM",
+      "orientation": "FALLER",
+      "current_entry_cents": 39,
+      "corrected_entry_cents": 39,
+      "entry_change_cents": 0,
+      "current_initial_decision": null,
+      "corrected_initial_decision": null,
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "DID_NOTHING",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "DID_NOTHING",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "FIRED",
+        "live_book_initial_aim": "FIRED",
+        "bid_only_reanchor_suppressed": "FIRED",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "leg_id": "KOR",
+      "orientation": "RISER",
+      "current_entry_cents": null,
+      "corrected_entry_cents": null,
+      "entry_change_cents": null,
+      "current_initial_decision": {
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "category": "WTA_MAIN",
+        "leg_id": "KOR",
+        "ts": 1784542020,
+        "tminus_scheduled_minutes": 53,
+        "tminus_bell_minutes": 1633,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 60,
+        "after": 57,
+        "arithmetic": "60->57",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTAMATCH-26JUL20KORJIM/KOR"
+      },
+      "corrected_initial_decision": {
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "category": "WTA_MAIN",
+        "leg_id": "KOR",
+        "ts": 1784542020,
+        "tminus_scheduled_minutes": 53,
+        "tminus_bell_minutes": 1633,
+        "rule": "ORIENTATION_CONDITIONED_INITIAL_TREE",
+        "before": 60,
+        "after": 57,
+        "arithmetic": "60->57",
+        "source": ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json#KXWTAMATCH-26JUL20KORJIM/KOR"
+      },
+      "five_stack_switches": {
+        "orientation_conditioned_initial_tree": "FIRED",
+        "quiet_book_anchor": "FIRED",
+        "per_tick_ask_breathing": "FIRED",
+        "sibling_conditioned_faller_patience": "DID_NOTHING",
+        "ask_only_dwell_reachability": "DID_NOTHING",
+        "live_book_initial_aim": "DID_NOTHING",
+        "bid_only_reanchor_suppressed": "DID_NOTHING",
+        "stale_non_maker_order_cancelled": "DID_NOTHING"
+      }
+    }
+  ]
+}

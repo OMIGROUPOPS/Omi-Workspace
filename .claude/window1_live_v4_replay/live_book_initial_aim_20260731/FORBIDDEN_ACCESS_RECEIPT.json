@@ -1,0 +1,12 @@
+{
+  "scorer_imported": false,
+  "scorer_invoked": false,
+  "holdout_access": false,
+  "live_access": false,
+  "network_access": false,
+  "order_access": false,
+  "position_access": false,
+  "exit_access": false,
+  "settlement_access": false,
+  "dca_access": false
+}

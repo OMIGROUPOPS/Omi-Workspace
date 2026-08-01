@@ -1,0 +1,61 @@
+{
+  "committed": {
+    "arb-executor/analysis/build_window1_live_book_initial_aim_replay.js": {
+      "bytes": 40900,
+      "sha256": "9eb20457ade69d8a22bc916321db08ad121eb9589786d8f5c892146ee66d757b"
+    },
+    "arb-executor/analysis/build_window1_ask_capacity_floor.js": {
+      "bytes": 6735,
+      "sha256": "0cfbbff4c8efe813a028b1ca4adb1b1b3f27fbed1437aab2bcd3738bb55451fe"
+    },
+    ".claude/window1_live_v4_replay/delta_objective_20260729/FIVE_GAME_SELECTION.json": {
+      "bytes": 3370,
+      "sha256": "20e12f74d9f018172619b398c3fc123f26489fff228545241397712bc2d9887c"
+    },
+    ".claude/window1_live_v4_replay/orientation_initial_20260730/ORIENTATION_INITIAL_REPLAY.json": {
+      "bytes": 7483,
+      "sha256": "d6d761962afdab4030efc47d456e453c87bca8d9d5f67067200b5b7648509d56"
+    },
+    ".claude/window1_live_v4_replay/delta_objective_20260729/FIVE_GAME_DELTA_REPLAYS.json": {
+      "bytes": 27547,
+      "sha256": "2e09cdcc98bb0b4c3e6fa42fae97c736d4df1152e2e883ae160f2c06c30f9372"
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_CENSUS.json": {
+      "bytes": 5621994,
+      "sha256": "fd205926fed1a727e9029d02155f9eb718717af9f218713ecc4d16802e6027bc"
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "bytes": 2479552,
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b"
+    },
+    ".claude/window1_live_v4_replay/nikvrb_coupling_20260730/NIKVRB_DUAL_BOOK_CLOCK.csv": {
+      "bytes": 1614324,
+      "sha256": "9ec9ef0fab27cd750a7d3fba1407bc6c6a8955104071f27b67dac6bd7f8965e5"
+    },
+    ".claude/window1_live_v4_replay/one_game_nikvrb_20260730/NIKVRB_DECISION_TRACE.json": {
+      "bytes": 8967,
+      "sha256": "cf3ecdafc43ff0305ae95addd5a98fc1d53695dbbeae6c7080ad79de0fae1b42"
+    },
+    ".claude/window1_live_v4_replay/quote_touch_os_rescore_rebalanced_20260731/WINDOW1_QUOTE_TOUCH_OS_RESCORE.json": {
+      "bytes": 74855523,
+      "sha256": "3fd04e63033b7e9898511c651581e4c2f1660fc386c08d4fcd55db09f5e04fb4"
+    },
+    ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json": {
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    }
+  },
+  "private_development_prints": {
+    "file": "prints.jsonl",
+    "bytes": 1766090446,
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "private_tick_files": {
+    "count": 1608,
+    "manifest_sha256": "c7cbda19a3a4edbdb9973d9e484070985741fc5dc2c3a119f9618b4888242a75"
+  }
+}

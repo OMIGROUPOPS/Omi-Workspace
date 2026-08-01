@@ -1,0 +1,59 @@
+{
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/REPLAY_AND_REFERENCE_PANEL.json",
+      "bytes": 31065,
+      "sha256": "e811abce6b778fea3e4d3101239c225543cfe1a6cafafd481730bebfe603d898"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/FIVE_EVENT_CHANGE_RECEIPT.json",
+      "bytes": 24814,
+      "sha256": "0d3d71fcc5fe0c7169064816c2ee6d35e9a0126aefb255db3971b75722d94940"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/INITIAL_AIM_FILL_SUPPRESSION_CENSUS.json",
+      "bytes": 745622,
+      "sha256": "4daa3afa94f3c917788484e672a91c3695c0a95858457fd25dd2d382bb19c3bc"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/ASK_10S_FIVE_CONTRACT_CEILING.json",
+      "bytes": 1878957,
+      "sha256": "3ee6310ecc55d038158d9356e1efd291771e73dcc1cbd7041ca8f89d5e13419e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/LEGACY_CAPACITY_INVALIDATION_RECEIPT.json",
+      "bytes": 456,
+      "sha256": "4d32a1aaff40254bd6dd875f7e47b7500b4a69096ab27d1ee3f5973953934a0b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/PRIVATE_TICK_SOURCE_MANIFEST.json",
+      "bytes": 348437,
+      "sha256": "70b66031354ec93efa41c9c616ba80904792fed224925dad8df6f1727b6b807a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json",
+      "bytes": 1737135,
+      "sha256": "f92aa4a9eaebd9aa15da198da0c1351bf7398d3acaeb893d718d16fe63cfcd88"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/SOURCE_HASH_MANIFEST.json",
+      "bytes": 2834,
+      "sha256": "4512f5de3b51584f5afa93fcc046827430d9dc53ef51080b569e0e3f7dbab4fa"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 266,
+      "sha256": "daf8dd0793c8a20fdf057ff34f75127e4c102ef8e468a3c75601ab9fc4d1d187"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/DETERMINISM_RECEIPT.json",
+      "bytes": 340,
+      "sha256": "a40f2b9076c0627c51f0f40b41fe8fe4f2f172160d70661b2ed2ff0a298fe3d0"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/WINDOW1_LIVE_BOOK_INITIAL_AIM_REPLAY.md",
+      "bytes": 5485,
+      "sha256": "5d3b2d05d5c026f615463b92681f1c907832b746e60669c0ab4a171f56b41be2"
+    }
+  ]
+}

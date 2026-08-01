@@ -1,0 +1,8 @@
+{
+  "complete_package_builds": 2,
+  "package_builds_byte_identical": true,
+  "complete_raw_capacity_scans": 2,
+  "raw_capacity_scans_byte_identical": true,
+  "raw_capacity_scan_sha256": "f92aa4a9eaebd9aa15da198da0c1351bf7398d3acaeb893d718d16fe63cfcd88",
+  "core_sha256": "ca71427b7417b38c6a1f6eeb5d3f9f3082ba3bc5bf751860fb22bb188cd540d9"
+}

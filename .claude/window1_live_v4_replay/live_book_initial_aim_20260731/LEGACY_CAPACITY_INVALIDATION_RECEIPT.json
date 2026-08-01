@@ -1,0 +1,9 @@
+{
+  "schema_version": "WINDOW1_LEGACY_CAPACITY_INVALIDATION_V1",
+  "legacy_fill_assignments": 217,
+  "legacy_pair_completions": 49,
+  "assignments_with_bound_five_contract_capacity_identity": 0,
+  "creditable_assignments_under_current_law": 0,
+  "creditable_pair_completions_under_current_law": 0,
+  "distinction": "The 532 ask-only opportunity ceiling is recomputed separately from top-five books; it is not reduced by subtracting 217 leg assignments."
+}

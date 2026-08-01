@@ -1,0 +1,21 @@
+{
+  "hur_tick": {
+    "file": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz",
+    "bytes": 806437,
+    "sha256": "27383bc516c05a0857fa95cf456e4edb332f707a1136f03e8aca28fec09750ea"
+  },
+  "sibling_tick": {
+    "file": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz",
+    "bytes": 870974,
+    "sha256": "d0d32f6a1ea6191fb92802f85d1674a29f58629ca1f4af2daa85fffb1f4095b9"
+  },
+  "private_development_prints": {
+    "file": "prints.jsonl",
+    "bytes": 1766090446,
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "inherited_source_manifest": {
+    "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/SOURCE_HASH_MANIFEST.json",
+    "sha256": "4512f5de3b51584f5afa93fcc046827430d9dc53ef51080b569e0e3f7dbab4fa"
+  }
+}

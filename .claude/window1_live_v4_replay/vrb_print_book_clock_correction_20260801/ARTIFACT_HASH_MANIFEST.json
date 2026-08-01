@@ -1,0 +1,25 @@
+{
+  "schema_version": "WINDOW1_VRB_PRINT_BOOK_CLOCK_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_print_book_clock_correction_20260801/PRINT_BOOK_CLOCK_RECEIPT.json",
+      "bytes": 11730,
+      "sha256": "b95bfdbd8066ade01a27e9770462b03f1447d602d070e8a7af885b2c3b7dcd81"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_print_book_clock_correction_20260801/NINE_VISIT_PRINT_INTERSECTION.json",
+      "bytes": 8033,
+      "sha256": "948328d6ffd72f8927a50c6e1456e71fcadb4ccadc23c646f2a4732eeacd2d63"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_print_book_clock_correction_20260801/REPORT.md",
+      "bytes": 1632,
+      "sha256": "a15f2d3bc3e34ccf1877c2bcebdc11eaa871c08b561ae132be4f86670c10eb74"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/vrb_print_book_clock_correction_20260801/SOURCE_HASH_MANIFEST.json",
+      "bytes": 1318,
+      "sha256": "d56f7904a8f1496770f47dc90875ee998ec90322479616b7a140e2fe4c9ccf57"
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "schema_version": "WINDOW1_VRB_NINE_VISIT_PRINT_INTERSECTION_V1",
+  "visits": [
+    {
+      "visit": 1,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784459531,
+        "t_minus_scheduled_seconds": 19069,
+        "t_minus_actual_bell_seconds": 19369,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-176"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784459543,
+        "t_minus_scheduled_seconds": 19057,
+        "t_minus_actual_bell_seconds": 19357
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784459543,
+        "t_minus_scheduled_seconds": 19057,
+        "t_minus_actual_bell_seconds": 19357,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-181"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 12,
+      "book_receipt_count": 6,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 2,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784459722,
+        "t_minus_scheduled_seconds": 18878,
+        "t_minus_actual_bell_seconds": 19178,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-232"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784459781,
+        "t_minus_scheduled_seconds": 18819,
+        "t_minus_actual_bell_seconds": 19119
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784459781,
+        "t_minus_scheduled_seconds": 18819,
+        "t_minus_actual_bell_seconds": 19119,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-235"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 59,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 3,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460072,
+        "t_minus_scheduled_seconds": 18528,
+        "t_minus_actual_bell_seconds": 18828,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-301"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460080,
+        "t_minus_scheduled_seconds": 18520,
+        "t_minus_actual_bell_seconds": 18820
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460080,
+        "t_minus_scheduled_seconds": 18520,
+        "t_minus_actual_bell_seconds": 18820,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-306"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 8,
+      "book_receipt_count": 6,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 4,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460132,
+        "t_minus_scheduled_seconds": 18468,
+        "t_minus_actual_bell_seconds": 18768,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-333"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460140,
+        "t_minus_scheduled_seconds": 18460,
+        "t_minus_actual_bell_seconds": 18760
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460140,
+        "t_minus_scheduled_seconds": 18460,
+        "t_minus_actual_bell_seconds": 18760,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-336"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 8,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 5,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460195,
+        "t_minus_scheduled_seconds": 18405,
+        "t_minus_actual_bell_seconds": 18705,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-360"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460200,
+        "t_minus_scheduled_seconds": 18400,
+        "t_minus_actual_bell_seconds": 18700
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460200,
+        "t_minus_scheduled_seconds": 18400,
+        "t_minus_actual_bell_seconds": 18700,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-363"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 5,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 6,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460253,
+        "t_minus_scheduled_seconds": 18347,
+        "t_minus_actual_bell_seconds": 18647,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-387"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460260,
+        "t_minus_scheduled_seconds": 18340,
+        "t_minus_actual_bell_seconds": 18640
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460260,
+        "t_minus_scheduled_seconds": 18340,
+        "t_minus_actual_bell_seconds": 18640,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-391"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 7,
+      "book_receipt_count": 5,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 7,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460490,
+        "t_minus_scheduled_seconds": 18110,
+        "t_minus_actual_bell_seconds": 18410,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-430"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460500,
+        "t_minus_scheduled_seconds": 18100,
+        "t_minus_actual_bell_seconds": 18400
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460500,
+        "t_minus_scheduled_seconds": 18100,
+        "t_minus_actual_bell_seconds": 18400,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-433"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 10,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 8,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460551,
+        "t_minus_scheduled_seconds": 18049,
+        "t_minus_actual_bell_seconds": 18349,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-457"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460560,
+        "t_minus_scheduled_seconds": 18040,
+        "t_minus_actual_bell_seconds": 18340
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460560,
+        "t_minus_scheduled_seconds": 18040,
+        "t_minus_actual_bell_seconds": 18340,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-465"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 9,
+      "book_receipt_count": 9,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 9,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460617,
+        "t_minus_scheduled_seconds": 17983,
+        "t_minus_actual_bell_seconds": 18283,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-490"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784461140,
+        "t_minus_scheduled_seconds": 17460,
+        "t_minus_actual_bell_seconds": 17760
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784461140,
+        "t_minus_scheduled_seconds": 17460,
+        "t_minus_actual_bell_seconds": 17760,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-507"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 523,
+      "book_receipt_count": 18,
+      "print_count": 0,
+      "prints": []
+    }
+  ]
+}

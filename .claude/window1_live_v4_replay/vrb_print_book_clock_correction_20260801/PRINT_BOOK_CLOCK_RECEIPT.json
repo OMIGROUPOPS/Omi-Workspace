@@ -1,0 +1,359 @@
+{
+  "schema_version": "WINDOW1_VRB_PRINT_BOOK_CLOCK_CORRECTION_V1",
+  "score_free": true,
+  "correction": {
+    "prior_statement": "One true print occurred from the first valid book through the end of the 1,128-second bid-67 episode.",
+    "status": "TRUE_BUT_MISLEADING_SCOPE",
+    "corrected_statement": "That print occurred between the first and second 67/68 visits while the contemporaneous book was 69/70. No true print occurred inside any of the nine 67/68 intervals."
+  },
+  "print": {
+    "timestamp_epoch": 1784459636.179481,
+    "t_minus_scheduled_seconds": 18963.82051897049,
+    "t_minus_actual_bell_seconds": 19263.82051897049,
+    "price": 70,
+    "size": 0.06,
+    "taker_side": "yes",
+    "aggressor_side": "BUY",
+    "trade_id": "5d023a38-6785-6ff4-9f45-a675798f1b9c",
+    "timestamp_et": "2026-07-19 07:13:56.179481 AM EDT",
+    "containing_67x68_visit": null,
+    "seconds_after_prior_visit_end": 93.179481,
+    "seconds_before_next_visit_start": 85.820519,
+    "latest_distinct_prior_second_book": {
+      "timestamp_epoch": 1784459632,
+      "t_minus_scheduled_seconds": 18968,
+      "t_minus_actual_bell_seconds": 19268,
+      "source_ordinal": 207,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-207",
+      "source_ts_et": "2026-07-19 07:13:52 AM",
+      "bid": 69,
+      "bid_size": 19,
+      "ask": 70,
+      "ask_size": 110,
+      "last_traded_carried": null,
+      "spread": 1
+    },
+    "same_second_book_rows": [
+      {
+        "timestamp_epoch": 1784459636,
+        "t_minus_scheduled_seconds": 18964,
+        "t_minus_actual_bell_seconds": 19264,
+        "source_ordinal": 208,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-208",
+        "source_ts_et": "2026-07-19 07:13:56 AM",
+        "bid": 69,
+        "bid_size": 19,
+        "ask": 70,
+        "ask_size": 110,
+        "last_traded_carried": 70,
+        "spread": 1
+      },
+      {
+        "timestamp_epoch": 1784459636,
+        "t_minus_scheduled_seconds": 18964,
+        "t_minus_actual_bell_seconds": 19264,
+        "source_ordinal": 209,
+        "source_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-209",
+        "source_ts_et": "2026-07-19 07:13:56 AM",
+        "bid": 69,
+        "bid_size": 19,
+        "ask": 70,
+        "ask_size": 110,
+        "last_traded_carried": 70,
+        "spread": 1
+      }
+    ],
+    "latest_book_at_or_before_print": {
+      "timestamp_epoch": 1784459636,
+      "t_minus_scheduled_seconds": 18964,
+      "t_minus_actual_bell_seconds": 19264,
+      "source_ordinal": 209,
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-209",
+      "source_ts_et": "2026-07-19 07:13:56 AM",
+      "bid": 69,
+      "bid_size": 19,
+      "ask": 70,
+      "ask_size": 110,
+      "last_traded_carried": 70,
+      "spread": 1
+    },
+    "ask_at_print_cents": 70,
+    "ask_at_print_established_despite_cross_stream_subsecond_ambiguity": true
+  },
+  "visits": [
+    {
+      "visit": 1,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784459531,
+        "t_minus_scheduled_seconds": 19069,
+        "t_minus_actual_bell_seconds": 19369,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-176"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784459543,
+        "t_minus_scheduled_seconds": 19057,
+        "t_minus_actual_bell_seconds": 19357
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784459543,
+        "t_minus_scheduled_seconds": 19057,
+        "t_minus_actual_bell_seconds": 19357,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-181"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 12,
+      "book_receipt_count": 6,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 2,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784459722,
+        "t_minus_scheduled_seconds": 18878,
+        "t_minus_actual_bell_seconds": 19178,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-232"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784459781,
+        "t_minus_scheduled_seconds": 18819,
+        "t_minus_actual_bell_seconds": 19119
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784459781,
+        "t_minus_scheduled_seconds": 18819,
+        "t_minus_actual_bell_seconds": 19119,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-235"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 59,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 3,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460072,
+        "t_minus_scheduled_seconds": 18528,
+        "t_minus_actual_bell_seconds": 18828,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-301"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460080,
+        "t_minus_scheduled_seconds": 18520,
+        "t_minus_actual_bell_seconds": 18820
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460080,
+        "t_minus_scheduled_seconds": 18520,
+        "t_minus_actual_bell_seconds": 18820,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-306"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 8,
+      "book_receipt_count": 6,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 4,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460132,
+        "t_minus_scheduled_seconds": 18468,
+        "t_minus_actual_bell_seconds": 18768,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-333"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460140,
+        "t_minus_scheduled_seconds": 18460,
+        "t_minus_actual_bell_seconds": 18760
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460140,
+        "t_minus_scheduled_seconds": 18460,
+        "t_minus_actual_bell_seconds": 18760,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-336"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 8,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 5,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460195,
+        "t_minus_scheduled_seconds": 18405,
+        "t_minus_actual_bell_seconds": 18705,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-360"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460200,
+        "t_minus_scheduled_seconds": 18400,
+        "t_minus_actual_bell_seconds": 18700
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460200,
+        "t_minus_scheduled_seconds": 18400,
+        "t_minus_actual_bell_seconds": 18700,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-363"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 5,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 6,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460253,
+        "t_minus_scheduled_seconds": 18347,
+        "t_minus_actual_bell_seconds": 18647,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-387"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460260,
+        "t_minus_scheduled_seconds": 18340,
+        "t_minus_actual_bell_seconds": 18640
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460260,
+        "t_minus_scheduled_seconds": 18340,
+        "t_minus_actual_bell_seconds": 18640,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-391"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 7,
+      "book_receipt_count": 5,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 7,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460490,
+        "t_minus_scheduled_seconds": 18110,
+        "t_minus_actual_bell_seconds": 18410,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-430"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460500,
+        "t_minus_scheduled_seconds": 18100,
+        "t_minus_actual_bell_seconds": 18400
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460500,
+        "t_minus_scheduled_seconds": 18100,
+        "t_minus_actual_bell_seconds": 18400,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-433"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 10,
+      "book_receipt_count": 4,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 8,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460551,
+        "t_minus_scheduled_seconds": 18049,
+        "t_minus_actual_bell_seconds": 18349,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-457"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784460560,
+        "t_minus_scheduled_seconds": 18040,
+        "t_minus_actual_bell_seconds": 18340
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784460560,
+        "t_minus_scheduled_seconds": 18040,
+        "t_minus_actual_bell_seconds": 18340,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-465"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 9,
+      "book_receipt_count": 9,
+      "print_count": 0,
+      "prints": []
+    },
+    {
+      "visit": 9,
+      "interval_semantics": "[start_ts,end_ts_exclusive)",
+      "start": {
+        "timestamp_epoch": 1784460617,
+        "t_minus_scheduled_seconds": 17983,
+        "t_minus_actual_bell_seconds": 18283,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-490"
+      },
+      "end_exclusive": {
+        "timestamp_epoch": 1784461140,
+        "t_minus_scheduled_seconds": 17460,
+        "t_minus_actual_bell_seconds": 17760
+      },
+      "last_observed": {
+        "timestamp_epoch": 1784461140,
+        "t_minus_scheduled_seconds": 17460,
+        "t_minus_actual_bell_seconds": 17760,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-507"
+      },
+      "book": {
+        "bid": 67,
+        "ask": 68
+      },
+      "state_seconds": 523,
+      "book_receipt_count": 18,
+      "print_count": 0,
+      "prints": []
+    }
+  ],
+  "conservation": {
+    "visit_count": 9,
+    "prints_inside_visits": 0,
+    "all_nine_print_empty": true
+  },
+  "clock_binding": {
+    "print_clock": "Guarded-cache true-print Unix epoch seconds with microsecond precision; source UTC normalized.",
+    "book_clock": "Tick CSV America/New_York timestamp converted to Unix epoch seconds; source precision is one second; equal-second book rows ordered by preserved source ordinal.",
+    "same_epoch_basis": true,
+    "directly_comparable_across_distinct_seconds": true,
+    "authoritative_cross_stream_order_within_same_second": false,
+    "conclusion_reliability_here": "RELIABLE: the latest distinct-prior-second book and every same-second book row all agree on 69/70, so unavailable subsecond cross-stream ordering cannot change the ask-at-print conclusion."
+  }
+}

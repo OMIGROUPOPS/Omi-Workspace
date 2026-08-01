@@ -1,0 +1,31 @@
+{
+  "schema_version": "WINDOW1_VRB_PRINT_BOOK_CLOCK_SOURCE_MANIFEST_V1",
+  "committed": {
+    ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/MAKER_TOUCH_EXECUTION_RECEIPT.json": {
+      "bytes": 25783,
+      "sha256": "ec294b29e6e0b7fc09924b0fb7c3efb284c7fe5d190db6143d5509b0c57ee844"
+    },
+    ".claude/window1_live_v4_replay/vrb_big_maker_touch_chain_20260801/REPORT.md": {
+      "bytes": 3334,
+      "sha256": "c2cff1988b3da39d5aa574f3b47339d4d063bfd0e8777c7e1fc59defd063c3b5"
+    },
+    "arb-executor/analysis/build_window1_vrb_print_book_clock_correction_v1.js": {
+      "bytes": 12056,
+      "sha256": "7b2e3dc4240737936af3f4e72dc0bc3aaa4036a5fab13eee384d13cac3503a0b"
+    }
+  },
+  "private": {
+    "tick_csv_gz": {
+      "path": "fit-local/ticks/KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz",
+      "bytes": 1403319,
+      "sha256": "1e2fff31e866c9888ec631f881a128f805a50d0e01de291b52c78eccebfa57ee"
+    },
+    "guarded_cache_gz": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19NIKVRB.json.gz",
+      "bytes": 110963,
+      "sha256": "53312bd82ca55d71c32915b8ec2c8a33ea5220424f5e659d476cd5c776728e89",
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3"
+    }
+  }
+}

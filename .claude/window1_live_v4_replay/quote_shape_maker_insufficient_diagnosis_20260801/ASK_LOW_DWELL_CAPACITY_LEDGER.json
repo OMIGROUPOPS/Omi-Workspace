@@ -1,0 +1,308 @@
+{
+  "schema_version": "WINDOW1_THREE_INSUFFICIENT_EVENTS_ASK_LOW_DWELL_CAPACITY_V1",
+  "side": "ASK_ONLY",
+  "dwell_seconds": 10,
+  "required_displayed_contracts": 5,
+  "row_count": 6,
+  "rows": [
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "leg_id": "LAJ",
+      "ticker": "KXATPMATCH-26JUL12LAJVAN-LAJ",
+      "own_window1_close_cents": 45,
+      "ask_reachable_low_cents": 45,
+      "signed_low_minus_close_cents": 0,
+      "discount_left_unharvested_cents": 0,
+      "proof": {
+        "limit_cents": 45,
+        "timestamp_epoch": 1783901037,
+        "t_minus_scheduled_seconds": -21837,
+        "t_minus_actual_bell_seconds": 57363,
+        "dwell_seconds_at_first_proof": 114,
+        "displayed_capacity_at_or_below_limit": 883,
+        "best_ask_at_proof": 45,
+        "best_bid_at_proof": 45,
+        "carried_last_at_proof": 46,
+        "spread_at_proof": 0,
+        "top_five_asks": [
+          [
+            45,
+            883
+          ],
+          [
+            46,
+            291
+          ],
+          [
+            47,
+            2036
+          ],
+          [
+            48,
+            1317
+          ],
+          [
+            49,
+            1686
+          ]
+        ],
+        "source_receipt": "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz#row-6340"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "leg_id": "VAN",
+      "ticker": "KXATPMATCH-26JUL12LAJVAN-VAN",
+      "own_window1_close_cents": 57,
+      "ask_reachable_low_cents": 50,
+      "signed_low_minus_close_cents": -7,
+      "discount_left_unharvested_cents": 7,
+      "proof": {
+        "limit_cents": 50,
+        "timestamp_epoch": 1783850990,
+        "t_minus_scheduled_seconds": 28210,
+        "t_minus_actual_bell_seconds": 107410,
+        "dwell_seconds_at_first_proof": 25,
+        "displayed_capacity_at_or_below_limit": 351,
+        "best_ask_at_proof": 50,
+        "best_bid_at_proof": 49,
+        "carried_last_at_proof": 51,
+        "spread_at_proof": 1,
+        "top_five_asks": [
+          [
+            50,
+            351
+          ],
+          [
+            51,
+            1000
+          ],
+          [
+            52,
+            1329
+          ],
+          [
+            53,
+            9
+          ],
+          [
+            55,
+            48
+          ]
+        ],
+        "source_receipt": "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz#row-12037"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "leg_id": "BRA",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA",
+      "own_window1_close_cents": 44,
+      "ask_reachable_low_cents": 40,
+      "signed_low_minus_close_cents": -4,
+      "discount_left_unharvested_cents": 4,
+      "proof": {
+        "limit_cents": 40,
+        "timestamp_epoch": 1784200818,
+        "t_minus_scheduled_seconds": 28782,
+        "t_minus_actual_bell_seconds": 31782,
+        "dwell_seconds_at_first_proof": 10,
+        "displayed_capacity_at_or_below_limit": 2180,
+        "best_ask_at_proof": 40,
+        "best_bid_at_proof": 39,
+        "carried_last_at_proof": 40,
+        "spread_at_proof": 1,
+        "top_five_asks": [
+          [
+            40,
+            2180
+          ],
+          [
+            41,
+            38
+          ],
+          [
+            42,
+            3683
+          ],
+          [
+            43,
+            492
+          ],
+          [
+            44,
+            2116
+          ]
+        ],
+        "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz#row-1190"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "leg_id": "VED",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED",
+      "own_window1_close_cents": 57,
+      "ask_reachable_low_cents": 57,
+      "signed_low_minus_close_cents": 0,
+      "discount_left_unharvested_cents": 0,
+      "proof": {
+        "limit_cents": 57,
+        "timestamp_epoch": 1784228971,
+        "t_minus_scheduled_seconds": 629,
+        "t_minus_actual_bell_seconds": 3629,
+        "dwell_seconds_at_first_proof": 13,
+        "displayed_capacity_at_or_below_limit": 4886,
+        "best_ask_at_proof": 57,
+        "best_bid_at_proof": 56,
+        "carried_last_at_proof": 57,
+        "spread_at_proof": 1,
+        "top_five_asks": [
+          [
+            57,
+            4886
+          ],
+          [
+            58,
+            7865
+          ],
+          [
+            61,
+            64
+          ],
+          [
+            63,
+            746
+          ],
+          [
+            64,
+            1399
+          ]
+        ],
+        "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-5125"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "leg_id": "JIM",
+      "ticker": "KXWTAMATCH-26JUL20KORJIM-JIM",
+      "own_window1_close_cents": 32,
+      "ask_reachable_low_cents": 30,
+      "signed_low_minus_close_cents": -2,
+      "discount_left_unharvested_cents": 2,
+      "proof": {
+        "limit_cents": 30,
+        "timestamp_epoch": 1784610324,
+        "t_minus_scheduled_seconds": -65124,
+        "t_minus_actual_bell_seconds": 29676,
+        "dwell_seconds_at_first_proof": 10,
+        "displayed_capacity_at_or_below_limit": 380,
+        "best_ask_at_proof": 30,
+        "best_bid_at_proof": 29,
+        "carried_last_at_proof": 31,
+        "spread_at_proof": 1,
+        "top_five_asks": [
+          [
+            30,
+            380
+          ],
+          [
+            31,
+            3872
+          ],
+          [
+            32,
+            21247
+          ],
+          [
+            33,
+            13157
+          ],
+          [
+            34,
+            7534
+          ]
+        ],
+        "source_receipt": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-5561"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "leg_id": "KOR",
+      "ticker": "KXWTAMATCH-26JUL20KORJIM-KOR",
+      "own_window1_close_cents": 70,
+      "ask_reachable_low_cents": 60,
+      "signed_low_minus_close_cents": -10,
+      "discount_left_unharvested_cents": 10,
+      "proof": {
+        "limit_cents": 60,
+        "timestamp_epoch": 1784516895,
+        "t_minus_scheduled_seconds": 28305,
+        "t_minus_actual_bell_seconds": 123105,
+        "dwell_seconds_at_first_proof": 13,
+        "displayed_capacity_at_or_below_limit": 394,
+        "best_ask_at_proof": 60,
+        "best_bid_at_proof": 58,
+        "carried_last_at_proof": 60,
+        "spread_at_proof": 2,
+        "top_five_asks": [
+          [
+            60,
+            394
+          ],
+          [
+            61,
+            1139
+          ],
+          [
+            62,
+            2719
+          ],
+          [
+            63,
+            7022
+          ],
+          [
+            64,
+            6626
+          ]
+        ],
+        "source_receipt": "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz#row-3829"
+      }
+    }
+  ],
+  "event_pairs": [
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "capacity_proven_ask_floor_sum_cents": 95,
+      "own_window1_close_sum_cents": 102,
+      "signed_floor_sum_minus_close_sum_cents": -7,
+      "discount_left_unharvested_cents": 7
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "capacity_proven_ask_floor_sum_cents": 97,
+      "own_window1_close_sum_cents": 101,
+      "signed_floor_sum_minus_close_sum_cents": -4,
+      "discount_left_unharvested_cents": 4
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "capacity_proven_ask_floor_sum_cents": 90,
+      "own_window1_close_sum_cents": 102,
+      "signed_floor_sum_minus_close_sum_cents": -12,
+      "discount_left_unharvested_cents": 12
+    }
+  ]
+}

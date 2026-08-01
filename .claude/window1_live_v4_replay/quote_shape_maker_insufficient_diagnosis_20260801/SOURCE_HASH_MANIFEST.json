@@ -1,0 +1,87 @@
+{
+  "schema_version": "WINDOW1_MAKER_INSUFFICIENT_SOURCE_HASH_MANIFEST_V1",
+  "committed": {
+    ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/FIVE_GAME_REPLAY.json": {
+      "bytes": 1970533,
+      "sha256": "667b927bcc5bafbcdbfcaed80985851081c673a83dbe20e7698019296bc5df9a"
+    },
+    ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/FIVE_GAME_SUMMARY.json": {
+      "bytes": 15523,
+      "sha256": "9bfd2138b426dd9f808807df1ae2deabb99a78ee4b8737629a10117319f91f8b"
+    },
+    ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT.json": {
+      "bytes": 17292937,
+      "sha256": "8fbcb59c1a747aed5580d579d1234069cfaebf3a951af5718f227f5bae329e87"
+    },
+    ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json": {
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    "arb-executor/analysis/window1_full_lawful_ceiling.py": {
+      "bytes": 41637,
+      "sha256": "faaec4dbce6e1f124ab2cba85b5f387fc833054d8a4fa1b1d9e9a15d12994f89"
+    },
+    "arb-executor/analysis/completion_census.py": {
+      "bytes": 6705,
+      "sha256": "e3249488c1b85f6b50adc0986d999baeb86e43027acbd5eca1e46ff8078e6c4d"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "bytes": 26695,
+      "sha256": "f2d902951d07b85232c90915134335b60f5b1fb4ac674f34e0574ecf76f9f374"
+    },
+    "arb-executor/analysis/window1_quote_shape_micro_position_v2.js": {
+      "bytes": 1830,
+      "sha256": "0d56dc04f5d0b17308b30c44477c52ced66419fa1f3a94541fe960faff040ce2"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_maker_insufficient_diagnosis_v1.js": {
+      "bytes": 39307,
+      "sha256": "e3b7d258b90a32e87b44f1bd622f997baa84350a220888ffde33432b8b67c2fd"
+    }
+  },
+  "private_tick_files": {
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz": {
+      "bytes": 870974,
+      "sha256": "d0d32f6a1ea6191fb92802f85d1674a29f58629ca1f4af2daa85fffb1f4095b9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz": {
+      "bytes": 806437,
+      "sha256": "27383bc516c05a0857fa95cf456e4edb332f707a1136f03e8aca28fec09750ea"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz": {
+      "bytes": 1336372,
+      "sha256": "41ac9a7102cd7cd701a60c4051771d6cbc66885d4eb428660b48e0b82d9b07ce"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz": {
+      "bytes": 1403319,
+      "sha256": "1e2fff31e866c9888ec631f881a128f805a50d0e01de291b52c78eccebfa57ee"
+    },
+    "KXATPMATCH-26JUL12LAJVAN-LAJ.csv.gz": {
+      "bytes": 997665,
+      "sha256": "3b1ba81645882ba60da26492a7c48ac6c51350274f79cfcdc6ad4a26d0e0b0cd"
+    },
+    "KXATPMATCH-26JUL12LAJVAN-VAN.csv.gz": {
+      "bytes": 990960,
+      "sha256": "fef54cb1411e159d31874c4e127355c4d84debef8745544e30e4e35ece9e333d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz": {
+      "bytes": 383262,
+      "sha256": "666be458c21ab41fab2a80f173cca63da60b326d46e2b17ae204e5f06a8baf18"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz": {
+      "bytes": 623649,
+      "sha256": "e3b27f99bdcfc72702c815c0388bf7bc4274767fe1e77a39b42cdb2109b30451"
+    },
+    "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz": {
+      "bytes": 408984,
+      "sha256": "4af1bcde86d2bae26d267f845a8b85767371d3892bb8cd15b8a46ca6dfd88d45"
+    },
+    "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz": {
+      "bytes": 417618,
+      "sha256": "153b70497420931532f2495bda90e300a27d7adfa454fdb2385ce79d3efbfb39"
+    }
+  }
+}

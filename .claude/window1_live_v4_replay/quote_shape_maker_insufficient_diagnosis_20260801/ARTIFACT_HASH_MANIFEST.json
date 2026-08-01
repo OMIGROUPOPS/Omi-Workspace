@@ -1,0 +1,35 @@
+{
+  "schema_version": "WINDOW1_MAKER_INSUFFICIENT_ARTIFACT_HASH_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/MAKER_TAKER_FILL_AUDIT.json",
+      "bytes": 8863,
+      "sha256": "c48ae1576313755a00cf3b7efeb50e37be386974d2c753bb80967c7a3d179df5"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/INSUFFICIENT_PREDICATE_DIAGNOSIS.json",
+      "bytes": 238760,
+      "sha256": "6dfe5bb8f197936174fb5dcfe11ea307c7f28552b458ffd0ebf037e095f23274"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/ASK_LOW_DWELL_CAPACITY_LEDGER.json",
+      "bytes": 7997,
+      "sha256": "7016b3620f25622caba4c49bb3dd3eb7a387798ae27d80653e81cc0ff4027d72"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/PER_TICK_INSUFFICIENCY_TRACE.jsonl.gz",
+      "bytes": 911892,
+      "sha256": "acf024dd514f6ac2da022a2a7fd9fb0f45ae4255155fe3907871a1b2fbc5a2f9"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/SOURCE_HASH_MANIFEST.json",
+      "bytes": 3773,
+      "sha256": "90785b5136aaedd480bebd9270f0f223af4b55471893db04fa861feac234cf18"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/REPORT.md",
+      "bytes": 4784,
+      "sha256": "8e9be854a4f61b8ada34670cb43273547fd3a53b22e7ffd779f3598a2a9de500"
+    }
+  ]
+}

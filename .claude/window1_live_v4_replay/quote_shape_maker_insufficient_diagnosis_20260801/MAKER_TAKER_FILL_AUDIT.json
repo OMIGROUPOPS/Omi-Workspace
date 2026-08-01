@@ -1,0 +1,213 @@
+{
+  "schema_version": "WINDOW1_FIVE_GAME_MAKER_TAKER_FILL_AUDIT_V1",
+  "score_free": true,
+  "quantity": 5,
+  "doctrine": "ENTRY_BUYS_ARE_MAKER_ONLY_POST_ONLY",
+  "fee_law": {
+    "maker": "ceil(1.75% * quantity * p * (1-p)) dollars, expressed here as ceil(7*q*price*(100-price)/40000) cents",
+    "taker": "ceil(7% * quantity * p * (1-p)) dollars, expressed here as ceil(7*q*price*(100-price)/10000) cents",
+    "underlying_rate_multiple": 4
+  },
+  "credited_fill_count": 4,
+  "placement_relation_counts": {
+    "SITTING_AT_ASK_MARKETABLE_BUY": 4
+  },
+  "maker_only_creditable_fill_count": 0,
+  "taker_or_marketable_fill_count": 4,
+  "fills": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "leg_id": "BIG",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG",
+      "action_clock": {
+        "timestamp_epoch": 1784484949,
+        "t_minus_scheduled_seconds": 15251,
+        "t_minus_actual_bell_seconds": 20651
+      },
+      "action_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777",
+      "action_book": {
+        "bid": 54,
+        "ask": 55,
+        "carried_last": 55,
+        "spread": 1,
+        "ask_dwell_seconds": 13459,
+        "top_ask_size": 817,
+        "top5_ask_depth": 4997
+      },
+      "order_price_cents": 55,
+      "placement_relation": "SITTING_AT_ASK_MARKETABLE_BUY",
+      "execution_role": "TAKER",
+      "maker_only_live_chokepoint_price_cents": 54,
+      "maker_only_live_chokepoint_relation": "JOINING_BID",
+      "maker_only_post_outcome": "LIVE_NEVER_MARKETABLE_CHOKEPOINT_CLAMPS_TO_ASK_MINUS_ONE_BEFORE_POST_ONLY_SUBMISSION",
+      "original_fill_receipt_reaches_clamped_maker_price": false,
+      "delayed_fill_receipt_does_not_change_action_role": true,
+      "fill_evidence_clock": {
+        "timestamp_epoch": 1784484954,
+        "t_minus_scheduled_seconds": 15246,
+        "t_minus_actual_bell_seconds": 20646
+      },
+      "fill_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1781",
+      "fill_evidence_ask_cents": 55,
+      "fill_evidence_capacity": 817,
+      "quantity": 5,
+      "maker_fee_total_cents_for_five_contract_order": 3,
+      "taker_fee_total_cents_for_five_contract_order": 9,
+      "replay_fee_treatment": "NO_FEE_APPLIED_PRICE_ONLY_DIAGNOSTIC"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "leg_id": "HUR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR",
+      "action_clock": {
+        "timestamp_epoch": 1784494286,
+        "t_minus_scheduled_seconds": 5914,
+        "t_minus_actual_bell_seconds": 11314
+      },
+      "action_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2584",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4284",
+      "action_book": {
+        "bid": 37,
+        "ask": 38,
+        "carried_last": 38,
+        "spread": 1,
+        "ask_dwell_seconds": 489,
+        "top_ask_size": 10113,
+        "top5_ask_depth": 15133
+      },
+      "order_price_cents": 38,
+      "placement_relation": "SITTING_AT_ASK_MARKETABLE_BUY",
+      "execution_role": "TAKER",
+      "maker_only_live_chokepoint_price_cents": 37,
+      "maker_only_live_chokepoint_relation": "JOINING_BID",
+      "maker_only_post_outcome": "LIVE_NEVER_MARKETABLE_CHOKEPOINT_CLAMPS_TO_ASK_MINUS_ONE_BEFORE_POST_ONLY_SUBMISSION",
+      "original_fill_receipt_reaches_clamped_maker_price": false,
+      "delayed_fill_receipt_does_not_change_action_role": true,
+      "fill_evidence_clock": {
+        "timestamp_epoch": 1784494287,
+        "t_minus_scheduled_seconds": 5913,
+        "t_minus_actual_bell_seconds": 11313
+      },
+      "fill_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4285",
+      "fill_evidence_ask_cents": 38,
+      "fill_evidence_capacity": 10113,
+      "quantity": 5,
+      "maker_fee_total_cents_for_five_contract_order": 3,
+      "taker_fee_total_cents_for_five_contract_order": 9,
+      "replay_fee_treatment": "NO_FEE_APPLIED_PRICE_ONLY_DIAGNOSTIC"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "leg_id": "NIK",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK",
+      "action_clock": {
+        "timestamp_epoch": 1784476318,
+        "t_minus_scheduled_seconds": 2282,
+        "t_minus_actual_bell_seconds": 2582
+      },
+      "action_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946",
+      "action_book": {
+        "bid": 17,
+        "ask": 18,
+        "carried_last": 18,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 1201,
+        "top5_ask_depth": 7559
+      },
+      "order_price_cents": 18,
+      "placement_relation": "SITTING_AT_ASK_MARKETABLE_BUY",
+      "execution_role": "TAKER",
+      "maker_only_live_chokepoint_price_cents": 17,
+      "maker_only_live_chokepoint_relation": "JOINING_BID",
+      "maker_only_post_outcome": "LIVE_NEVER_MARKETABLE_CHOKEPOINT_CLAMPS_TO_ASK_MINUS_ONE_BEFORE_POST_ONLY_SUBMISSION",
+      "original_fill_receipt_reaches_clamped_maker_price": false,
+      "delayed_fill_receipt_does_not_change_action_role": true,
+      "fill_evidence_clock": {
+        "timestamp_epoch": 1784476319,
+        "t_minus_scheduled_seconds": 2281,
+        "t_minus_actual_bell_seconds": 2581
+      },
+      "fill_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2952",
+      "fill_evidence_ask_cents": 18,
+      "fill_evidence_capacity": 1201,
+      "quantity": 5,
+      "maker_fee_total_cents_for_five_contract_order": 2,
+      "taker_fee_total_cents_for_five_contract_order": 6,
+      "replay_fee_treatment": "NO_FEE_APPLIED_PRICE_ONLY_DIAGNOSTIC"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "leg_id": "VRB",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB",
+      "action_clock": {
+        "timestamp_epoch": 1784459754,
+        "t_minus_scheduled_seconds": 18846,
+        "t_minus_actual_bell_seconds": 19146
+      },
+      "action_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+      "action_book": {
+        "bid": 67,
+        "ask": 68,
+        "carried_last": 70,
+        "spread": 1,
+        "ask_dwell_seconds": 32,
+        "top_ask_size": 110,
+        "top5_ask_depth": 1084
+      },
+      "order_price_cents": 68,
+      "placement_relation": "SITTING_AT_ASK_MARKETABLE_BUY",
+      "execution_role": "TAKER",
+      "maker_only_live_chokepoint_price_cents": 67,
+      "maker_only_live_chokepoint_relation": "JOINING_BID",
+      "maker_only_post_outcome": "LIVE_NEVER_MARKETABLE_CHOKEPOINT_CLAMPS_TO_ASK_MINUS_ONE_BEFORE_POST_ONLY_SUBMISSION",
+      "original_fill_receipt_reaches_clamped_maker_price": false,
+      "delayed_fill_receipt_does_not_change_action_role": true,
+      "fill_evidence_clock": {
+        "timestamp_epoch": 1784460635,
+        "t_minus_scheduled_seconds": 17965,
+        "t_minus_actual_bell_seconds": 18265
+      },
+      "fill_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-495",
+      "fill_evidence_ask_cents": 68,
+      "fill_evidence_capacity": 110,
+      "quantity": 5,
+      "maker_fee_total_cents_for_five_contract_order": 2,
+      "taker_fee_total_cents_for_five_contract_order": 8,
+      "replay_fee_treatment": "NO_FEE_APPLIED_PRICE_ONLY_DIAGNOSTIC"
+    }
+  ],
+  "completed_pairs": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "price_only_combined_delta_to_own_closes_cents_per_contract": -9,
+      "maker_fee_total_cents_for_five_contract_pair": 6,
+      "taker_fee_total_cents_for_five_contract_pair": 18,
+      "maker_fee_adjusted_delta_cents_per_contract": -7.8,
+      "taker_fee_adjusted_delta_cents_per_contract": -5.4,
+      "maker_only_completion_valid": false,
+      "ruling": "PRICE_DELTA_IS_OBSERVED_COUNTERFACTUAL_ARITHMETIC_BUT_NOT_A_MAKER_ONLY_COMPLETION"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "price_only_combined_delta_to_own_closes_cents_per_contract": -16,
+      "maker_fee_total_cents_for_five_contract_pair": 4,
+      "taker_fee_total_cents_for_five_contract_pair": 14,
+      "maker_fee_adjusted_delta_cents_per_contract": -15.2,
+      "taker_fee_adjusted_delta_cents_per_contract": -13.2,
+      "maker_only_completion_valid": false,
+      "ruling": "PRICE_DELTA_IS_OBSERVED_COUNTERFACTUAL_ARITHMETIC_BUT_NOT_A_MAKER_ONLY_COMPLETION"
+    }
+  ]
+}

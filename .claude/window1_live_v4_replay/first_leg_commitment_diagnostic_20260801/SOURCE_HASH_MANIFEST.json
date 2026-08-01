@@ -1,0 +1,30 @@
+{
+  "schema_version": "WINDOW1_FIRST_LEG_COMMITMENT_SOURCE_HASH_MANIFEST_V1",
+  "committed": {
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json": {
+      "bytes": 1737135,
+      "sha256": "f92aa4a9eaebd9aa15da198da0c1351bf7398d3acaeb893d718d16fe63cfcd88"
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "bytes": 2479552,
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b"
+    },
+    "arb-executor/analysis/build_window1_first_leg_commitment_diagnostic_v1.js": {
+      "bytes": 28279,
+      "sha256": "3da40f21925d68e01fd461bc8a5991f105c969dfd5adfa7c3009866f35a4d934"
+    }
+  },
+  "private_development_tick_files": {
+    "count": 1608,
+    "aggregate_manifest_sha256": "c7cbda19a3a4edbdb9973d9e484070985741fc5dc2c3a119f9618b4888242a75"
+  },
+  "forbidden": {
+    "holdout_july_24_26": false,
+    "scorer": false,
+    "live_network_trading": false
+  }
+}

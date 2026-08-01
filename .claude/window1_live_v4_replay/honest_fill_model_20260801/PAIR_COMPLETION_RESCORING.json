@@ -1,0 +1,56 @@
+{
+  "schema_version": "WINDOW1_TWO_PAIR_HONEST_COMPLETION_RESCORING_V1",
+  "score_free": true,
+  "event_count": 2,
+  "completed_pair_count_under_honest_model": 1,
+  "incomplete_pair_count_under_honest_model": 1,
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "legs": [
+        {
+          "leg_id": "BIG",
+          "price_region": "51_75",
+          "replay_x_cents": 55,
+          "fill_class": "PROVEN_TAKER",
+          "credited": true
+        },
+        {
+          "leg_id": "HUR",
+          "price_region": "26_50",
+          "replay_x_cents": 38,
+          "fill_class": "UNPROVEN",
+          "credited": false
+        }
+      ],
+      "credited_leg_count": 1,
+      "completed_pair_under_honest_model": false,
+      "pair_fee_class": "INCOMPLETE_OR_MIXED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "legs": [
+        {
+          "leg_id": "NIK",
+          "price_region": "26_50",
+          "replay_x_cents": 18,
+          "fill_class": "PROVEN_TAKER",
+          "credited": true
+        },
+        {
+          "leg_id": "VRB",
+          "price_region": "51_75",
+          "replay_x_cents": 68,
+          "fill_class": "PROVEN_TAKER",
+          "credited": true
+        }
+      ],
+      "credited_leg_count": 2,
+      "completed_pair_under_honest_model": true,
+      "pair_fee_class": "TWO_TAKER_LEGS_FEE_ARITHMETIC_REQUIRED"
+    }
+  ],
+  "performance_metrics": null
+}

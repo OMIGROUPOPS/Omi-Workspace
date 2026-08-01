@@ -1,0 +1,25 @@
+{
+  "schema_version": "WINDOW1_AGGRESSOR_CEILING_ARTIFACT_MANIFEST_V1",
+  "artifacts": {
+    "AGGRESSOR_SPLIT.json": {
+      "bytes": 165748,
+      "sha256": "d647877c4a42c7ca58f18fdda1578b7b78ad153550c67252ec72ab4cfbb6fef8"
+    },
+    "CEILING_CENSUS.json": {
+      "bytes": 1208000,
+      "sha256": "b3aa41c3876db42fc36420d8dd77090c16d8789d37afb0aaeb7209633e44de73"
+    },
+    "PER_LEG_AGGRESSOR_CENSUS.jsonl.gz": {
+      "bytes": 322562,
+      "sha256": "0c1ea5cecbda53955900d1293441bb27db914a4ab5eb5fb0ca02bbb41cfa535a"
+    },
+    "REPORT.md": {
+      "bytes": 2114,
+      "sha256": "fdabf7c4dad7ead1e6e437b6f1579111d86324d05efb3011c4895ab2c501feb2"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 261487,
+      "sha256": "eb40ccce7c2d2cb8156bf49833ae8807940800d12331e4ab6795706bcea18f46"
+    }
+  }
+}

@@ -1,0 +1,215 @@
+{
+  "schema_version": "WINDOW1_PAIR_WIRING_CORRECTION_RECEIPT_V3",
+  "score_free": true,
+  "replay_executed": false,
+  "population_run_executed": false,
+  "defect_one": {
+    "affected_candidate_rows": 4,
+    "law_before": "Sibling direction had to be independently signed from a nonzero/zero own ask-net after an ask transition, even after the pair constraint had one inverse tuple left and both legs had own micro receipts.",
+    "law_after": "One inverse pair tuple may satisfy the sibling proof only if the sibling shape remains alive and the sibling has its own ask transition or stable-same-price micro receipt.",
+    "rows": [
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "price_region": "26_50",
+        "leg_id": "BRA",
+        "timestamp_epoch": 1784232528,
+        "t_minus_scheduled_seconds": -2928,
+        "t_minus_actual_bell_seconds": 72,
+        "surviving_pair_tuple_count": 1,
+        "surviving_shape": "WTA_CHALL_26_50_DOWN_CONTINUATION",
+        "own_micro_position_observed": true,
+        "own_micro_position_evidence_type": "ASK_PRICE_TRANSITION",
+        "old_inverse_sibling_resolved": false,
+        "v3_inverse_sibling_proof_available": true,
+        "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA.csv.gz#row-6673"
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+        "category": "WTA_CHALL",
+        "price_region": "51_75",
+        "leg_id": "VED",
+        "timestamp_epoch": 1784232528,
+        "t_minus_scheduled_seconds": -2928,
+        "t_minus_actual_bell_seconds": 72,
+        "surviving_pair_tuple_count": 1,
+        "surviving_shape": "WTA_CHALL_51_75_UP_CONTINUATION",
+        "own_micro_position_observed": true,
+        "own_micro_position_evidence_type": "ASK_PRICE_TRANSITION",
+        "old_inverse_sibling_resolved": false,
+        "v3_inverse_sibling_proof_available": true,
+        "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-10119"
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "category": "WTA_MAIN",
+        "price_region": "26_50",
+        "leg_id": "JIM",
+        "timestamp_epoch": 1784639899,
+        "t_minus_scheduled_seconds": -94699,
+        "t_minus_actual_bell_seconds": 101,
+        "surviving_pair_tuple_count": 1,
+        "surviving_shape": "WTA_MAIN_26_50_FLAT_UNMOVED",
+        "own_micro_position_observed": true,
+        "own_micro_position_evidence_type": "ASK_PRICE_TRANSITION",
+        "old_inverse_sibling_resolved": false,
+        "v3_inverse_sibling_proof_available": true,
+        "source_receipt": "KXWTAMATCH-26JUL20KORJIM-JIM.csv.gz#row-6254"
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL20KORJIM",
+        "category": "WTA_MAIN",
+        "price_region": "51_75",
+        "leg_id": "KOR",
+        "timestamp_epoch": 1784639899,
+        "t_minus_scheduled_seconds": -94699,
+        "t_minus_actual_bell_seconds": 101,
+        "surviving_pair_tuple_count": 1,
+        "surviving_shape": "WTA_MAIN_51_75_FLAT_UNMOVED",
+        "own_micro_position_observed": true,
+        "own_micro_position_evidence_type": "ASK_PRICE_TRANSITION",
+        "old_inverse_sibling_resolved": false,
+        "v3_inverse_sibling_proof_available": true,
+        "source_receipt": "KXWTAMATCH-26JUL20KORJIM-KOR.csv.gz#row-8703"
+      }
+    ]
+  },
+  "defect_two": {
+    "event_id": "KXATPMATCH-26JUL12LAJVAN",
+    "pair_key": "ATP_MAIN|26_50|26_50",
+    "observed_tuple_count": 2,
+    "missing_terminal_tuple": "ATP_MAIN_26_50_FLAT_UNMOVED|ATP_MAIN_26_50_FLAT_UNMOVED",
+    "old_terminal_tuple_count": 0,
+    "completed_library_contains_tuple": true,
+    "tuple_support_class": "STRUCTURAL_INVERSE_CLOSURE",
+    "tuple_empirical_count": 0,
+    "constraint": "Only inverse-compatible marginal shapes are added; observed tuples are retained unchanged and generated tuples never receive empirical n.",
+    "caveat": "This repairs sparse pair-denominator coverage. It is not validation that LAJ/VAN should be traded or that FLAT/FLAT predicts a floor."
+  },
+  "closure_by_category_and_price_region_pair": {
+    "ATP_MAIN|26_50|26_50": {
+      "observed_count": 2,
+      "completed_count": 13,
+      "structural_rows": [
+        {
+          "highShape": "ATP_MAIN_26_50_DOWN_CONTINUATION",
+          "lowShape": "ATP_MAIN_26_50_UP_AFTER_DIP",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_DOWN_CONTINUATION",
+          "lowShape": "ATP_MAIN_26_50_UP_CONTINUATION",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_DOWN_REBOUND",
+          "lowShape": "ATP_MAIN_26_50_UP_AFTER_DIP",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_DOWN_REBOUND",
+          "lowShape": "ATP_MAIN_26_50_UP_CONTINUATION",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_FLAT_RECOVERED",
+          "lowShape": "ATP_MAIN_26_50_FLAT_RECOVERED",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_FLAT_RECOVERED",
+          "lowShape": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "lowShape": "ATP_MAIN_26_50_FLAT_RECOVERED",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "lowShape": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_UP_AFTER_DIP",
+          "lowShape": "ATP_MAIN_26_50_DOWN_CONTINUATION",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_UP_AFTER_DIP",
+          "lowShape": "ATP_MAIN_26_50_DOWN_REBOUND",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "ATP_MAIN_26_50_UP_CONTINUATION",
+          "lowShape": "ATP_MAIN_26_50_DOWN_REBOUND",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        }
+      ]
+    },
+    "WTA_CHALL|51_75|26_50": {
+      "observed_count": 20,
+      "completed_count": 23,
+      "structural_rows": [
+        {
+          "highShape": "WTA_CHALL_51_75_DOWN_REBOUND",
+          "lowShape": "WTA_CHALL_26_50_UP_AFTER_DIP",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "WTA_CHALL_51_75_FLAT_RECOVERED",
+          "lowShape": "WTA_CHALL_26_50_FLAT_RECOVERED",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "WTA_CHALL_51_75_UP_AFTER_DIP",
+          "lowShape": "WTA_CHALL_26_50_DOWN_REBOUND",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        }
+      ]
+    },
+    "WTA_MAIN|51_75|26_50": {
+      "observed_count": 18,
+      "completed_count": 20,
+      "structural_rows": [
+        {
+          "highShape": "WTA_MAIN_51_75_DOWN_CONTINUATION",
+          "lowShape": "WTA_MAIN_26_50_UP_AFTER_DIP",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        },
+        {
+          "highShape": "WTA_MAIN_51_75_UP_AFTER_DIP",
+          "lowShape": "WTA_MAIN_26_50_DOWN_CONTINUATION",
+          "n": 0,
+          "support_class": "STRUCTURAL_INVERSE_CLOSURE"
+        }
+      ]
+    }
+  },
+  "sources": {
+    "diagnosis": {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/INSUFFICIENT_PREDICATE_DIAGNOSIS.json",
+      "sha256": "6dfe5bb8f197936174fb5dcfe11ea307c7f28552b458ffd0ebf037e095f23274"
+    },
+    "leave_five_out_library": {
+      "path": ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT.json",
+      "sha256": "8fbcb59c1a747aed5580d579d1234069cfaebf3a951af5718f227f5bae329e87"
+    }
+  }
+}

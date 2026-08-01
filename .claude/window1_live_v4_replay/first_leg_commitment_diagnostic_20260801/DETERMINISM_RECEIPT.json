@@ -1,0 +1,7 @@
+{
+  "schema_version": "WINDOW1_FIRST_LEG_COMMITMENT_DETERMINISM_RECEIPT_V1",
+  "canonical_json": true,
+  "gzip_mtime": 0,
+  "artifact_manifest_sha256": "d973f3ed43702db8a7a4acbf038a99dcde6c248a29196bfe665ecf67e9dcf9ea",
+  "clean_build_comparison": "VERIFIED_BY_FOCUSED_TEST"
+}

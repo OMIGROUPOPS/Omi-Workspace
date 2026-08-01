@@ -1,0 +1,29 @@
+{
+  "schema_version": "WINDOW1_HONEST_FILL_MODEL_CONTRACT_V1",
+  "score_free": true,
+  "quantity_contracts": 5,
+  "precedence": [
+    "PROVEN_TAKER",
+    "PROVEN_MAKER",
+    "UNPROVEN"
+  ],
+  "classes": {
+    "PROVEN_MAKER": "Our nonmarketable resting price is proven on the exact action book before a strictly later positive-size SELL-aggressor true print trades at or through it during the action-to-credit interval.",
+    "PROVEN_TAKER": "At the exact submission timestamp, the authoritative own-leg BBO displays at least five opposing contracts at or below X, so an unchanged buy would cross.",
+    "UNPROVEN": "Every other replay credit, including carried/stale action books and later BBO-only simulator credits."
+  },
+  "exclusions": {
+    "later_book_receipt_alone": "Never proves maker execution.",
+    "carried_last_trade": "Never a true-print execution receipt.",
+    "ask_visit_without_sell_print": "Never proves a seller hit a resting bid.",
+    "stale_or_carried_action_book": "Cannot prove opposing size at the submission timestamp."
+  },
+  "unproven_credit_law": "UNPROVEN rows are not completions.",
+  "source_clock_binding": {
+    "books": "ET text normalized to Unix epoch seconds; preserved raw row ordinal resolves book rows at equal seconds.",
+    "prints": "Exchange UTC epoch with fractional-second precision and trade_id identity.",
+    "same_epoch_basis": true,
+    "directly_comparable_across_distinct_seconds": true,
+    "authoritative_cross_stream_order_within_same_second": false
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "WINDOW1_FEE_AWARE_TAKE_SOURCE_MANIFEST_V1",
+  "sources": {
+    "floor_scan": {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json",
+      "sha256": "f92aa4a9eaebd9aa15da198da0c1351bf7398d3acaeb893d718d16fe63cfcd88"
+    },
+    "ceiling": {
+      "path": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/ASK_10S_FIVE_CONTRACT_CEILING.json",
+      "sha256": "3ee6310ecc55d038158d9356e1efd291771e73dcc1cbd7041ca8f89d5e13419e"
+    }
+  }
+}

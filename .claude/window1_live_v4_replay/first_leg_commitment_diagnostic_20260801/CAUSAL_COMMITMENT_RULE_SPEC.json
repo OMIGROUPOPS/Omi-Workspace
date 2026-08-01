@@ -1,0 +1,46 @@
+{
+  "schema_version": "WINDOW1_CAUSAL_FIRST_LEG_COMMITMENT_RULE_SPEC_V1",
+  "status": "SPEC_ONLY_UNVALIDATED",
+  "score_free": true,
+  "smallest_honest_rule": [
+    "Observe the first leg as a joint BBO/ask-dwell/displayed-capacity receipt; do not use its ex-post floor label at decision time.",
+    "Compute a sibling maximum from an independently BOUND pair-value reference and exact bound fees: sibling_max=floor(pair_value-X1-fee1-fee2-smallest_strict_unit).",
+    "If the sibling currently has lawful ten-second/five-contract ask capacity at or below sibling_max, both legs are coverable and the first commitment is permitted subject to the existing order law.",
+    "If the sibling is not presently coverable, a naked first-leg commitment requires a separately validated category/starting-region conditional tail probability, risk tolerance, and maximum hold duration. None is bound here; emit INSUFFICIENT_COMMITMENT_EVIDENCE."
+  ],
+  "provenance": {
+    "ask_dwell_seconds": {
+      "value": 10,
+      "source": ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json",
+      "status": "INHERITED_NOT_RETUNED"
+    },
+    "displayed_capacity_contracts": {
+      "value": 5,
+      "source": "arb-executor/analysis/build_window1_ask_capacity_floor.js",
+      "status": "INHERITED_EXACT_FIVE_ACCOUNTING"
+    },
+    "strict_pair_inequality_unit_cents": {
+      "value": 1,
+      "source": "existing integer-cent strict-combined law",
+      "status": "INHERITED"
+    },
+    "independent_pair_value_reference": {
+      "value": "NOT_BOUND",
+      "source": ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/FIVE_GAME_REPLAY.json",
+      "status": "BLOCKS_VALUE_BASED_COMMITMENT"
+    },
+    "fee_function": {
+      "value": "NOT_BOUND_IN_THIS_DIAGNOSTIC",
+      "status": "BLOCKS_FEE_AWARE_COMMITMENT"
+    },
+    "naked_risk_probability_threshold": {
+      "value": null,
+      "status": "ABSENT_NOT_INVENTED"
+    },
+    "maximum_naked_hold_seconds": {
+      "value": null,
+      "status": "ABSENT_NOT_INVENTED"
+    }
+  },
+  "validation": "UNVALIDATED; development description only; no policy replay and no holdout access"
+}

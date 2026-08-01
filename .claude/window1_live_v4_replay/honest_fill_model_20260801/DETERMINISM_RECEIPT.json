@@ -1,0 +1,16 @@
+{
+  "schema_version": "WINDOW1_HONEST_FILL_DETERMINISM_RECEIPT_V1",
+  "builder": "arb-executor/analysis/build_window1_honest_fill_model_v1.js",
+  "canonical_json": "JSON.stringify(value, null, 2) plus one LF",
+  "output_ordering": "event_id then leg_id; category then price_region",
+  "gzip_output": false,
+  "volatile_fields": [],
+  "expected_core_artifact_hashes": {
+    "HONEST_FILL_MODEL_CONTRACT.json": "206176fb50f11493e7df5d28fa88411bea7feeef467cec2bd5239b070f75b93e",
+    "FOUR_FILL_CLASSIFICATION.json": "bd6770a9de3e9526b7b1c0d6e6cdeb8e96d4d246b632a87e233e5fd06c39cc5b",
+    "PAIR_COMPLETION_RESCORING.json": "1e16fba1889f88ee23981d40b0a76a5869345cde4a54c147491ffc709d3bbe70",
+    "SOURCE_HASH_MANIFEST.json": "ca504ae9cdc45f98063cfbeda7227faf46dcdff528488d797d6699ad02cc81ae",
+    "REPORT.md": "9391aaa128f926f3ec20afc026752d2e1561a1124292c50410ab59ce6f184f31"
+  },
+  "verification": "Run the builder twice from the same source hashes and compare every emitted byte."
+}

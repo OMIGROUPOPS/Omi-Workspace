@@ -1,0 +1,20 @@
+{
+  "schema_version": "WINDOW1_ENTRY_HONESTY_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": "DECISION_GATE_RECEIPT.json",
+      "bytes": 768,
+      "sha256": "d0e37b277e0f97927c722661eb4bf2262d6ae8e411a813c10ac34bd7a5e535b1"
+    },
+    {
+      "path": "DEPENDENCY_REPORT.md",
+      "bytes": 3681,
+      "sha256": "c2539106c3402bf702973c28c1a97b67f7e963185ca6c2cb94421d204b288f7d"
+    },
+    {
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "bytes": 1823,
+      "sha256": "39d77464a2b485f22fe135daee9826d2bee0e143a588733b1f2167a09831140f"
+    }
+  ]
+}

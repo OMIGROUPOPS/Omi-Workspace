@@ -1,0 +1,59 @@
+{
+  "schema_version": "WINDOW1_HONEST_FILL_SOURCE_MANIFEST_V1",
+  "committed": {
+    ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/MAKER_ROLE_RECEIPT_AUDIT.json": {
+      "bytes": 13363,
+      "sha256": "ad91f2be81804b1c723c239536b73cc8d63adb79ca8fa1d808c200c4a98ef392"
+    },
+    ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json": {
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    },
+    ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/EXACT_ACTION_TO_CREDIT_SEQUENCE.json": {
+      "bytes": 173730,
+      "sha256": "a2703647ac97806100c6c7fd3ec0bff274750ca397d62bf453dd856f26086402"
+    },
+    ".claude/window1_live_v4_replay/vrb_print_book_clock_correction_20260801/PRINT_BOOK_CLOCK_RECEIPT.json": {
+      "bytes": 11730,
+      "sha256": "b95bfdbd8066ade01a27e9770462b03f1447d602d070e8a7af885b2c3b7dcd81"
+    },
+    ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/MAKER_TAKER_FILL_AUDIT.json": {
+      "bytes": 8863,
+      "sha256": "c48ae1576313755a00cf3b7efeb50e37be386974d2c753bb80967c7a3d179df5"
+    },
+    "arb-executor/analysis/build_window1_honest_fill_model_v1.js": {
+      "bytes": 19460,
+      "sha256": "6b6a89363d9dd2eb7b43d3c17e2d7686821dfb2c5ea1c8c1bfb105f18934e861"
+    }
+  },
+  "private_guarded_prints": {
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG|BIG": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz",
+      "bytes": 85232,
+      "sha256": "8f1a7d6e7625d90487523ef95264533360ce462ceaf6f1ed767451594f8aae18",
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG|HUR": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz",
+      "bytes": 85232,
+      "sha256": "8f1a7d6e7625d90487523ef95264533360ce462ceaf6f1ed767451594f8aae18",
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB|NIK": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19NIKVRB.json.gz",
+      "bytes": 110963,
+      "sha256": "53312bd82ca55d71c32915b8ec2c8a33ea5220424f5e659d476cd5c776728e89",
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB|VRB": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19NIKVRB.json.gz",
+      "bytes": 110963,
+      "sha256": "53312bd82ca55d71c32915b8ec2c8a33ea5220424f5e659d476cd5c776728e89",
+      "cache_key": "b85371c8eb52996f66ac25d9b60f0b41f6fbbba4afe883b135962782ae491b0b",
+      "cache_version": "window1-guarded-event-market-cache-v3"
+    }
+  }
+}

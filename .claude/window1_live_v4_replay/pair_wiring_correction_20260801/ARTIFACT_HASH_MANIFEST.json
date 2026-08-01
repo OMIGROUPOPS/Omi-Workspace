@@ -1,0 +1,25 @@
+{
+  "schema_version": "WINDOW1_PAIR_WIRING_ARTIFACT_MANIFEST_V3",
+  "artifacts": [
+    {
+      "path": "DETERMINISM_RECEIPT.json",
+      "bytes": 235,
+      "sha256": "97c58e6b4a14af6d8c9ad46bda189516de24f2944433c4aace069448ad7ba274"
+    },
+    {
+      "path": "PAIR_WIRING_CORRECTION_RECEIPT.json",
+      "bytes": 8295,
+      "sha256": "cafe79cda01af7e0031a3c7f38994f480d51ed9c666e3904bf0e92f9a926cc61"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 846,
+      "sha256": "424bf44edf7c532b9d7a28e62ddbf776db447acfc67b64580ee57a64faa16b8a"
+    },
+    {
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "bytes": 571,
+      "sha256": "3b0f3ada0860f3fc8d2f2a53a8dd73b250699488b686674b5e8725d19af9c25a"
+    }
+  ]
+}

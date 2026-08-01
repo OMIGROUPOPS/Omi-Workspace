@@ -1,0 +1,35 @@
+{
+  "schema_version": "WINDOW1_HONEST_FILL_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json",
+      "bytes": 1515,
+      "sha256": "206176fb50f11493e7df5d28fa88411bea7feeef467cec2bd5239b070f75b93e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/FOUR_FILL_CLASSIFICATION.json",
+      "bytes": 13502,
+      "sha256": "bd6770a9de3e9526b7b1c0d6e6cdeb8e96d4d246b632a87e233e5fd06c39cc5b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/PAIR_COMPLETION_RESCORING.json",
+      "bytes": 1505,
+      "sha256": "1e16fba1889f88ee23981d40b0a76a5869345cde4a54c147491ffc709d3bbe70"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/SOURCE_HASH_MANIFEST.json",
+      "bytes": 3027,
+      "sha256": "ca504ae9cdc45f98063cfbeda7227faf46dcdff528488d797d6699ad02cc81ae"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/REPORT.md",
+      "bytes": 1904,
+      "sha256": "9391aaa128f926f3ec20afc026752d2e1561a1124292c50410ab59ce6f184f31"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/DETERMINISM_RECEIPT.json",
+      "bytes": 981,
+      "sha256": "c2c3736adc423c658166cf1acdcb5d6ba7ce3457bb18b03308b1b8fbed44804e"
+    }
+  ]
+}

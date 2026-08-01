@@ -1,0 +1,18 @@
+{
+  "schema_version": "WINDOW1_ENTRY_HONESTY_DEPENDENCY_GATE_V1",
+  "score_free": true,
+  "dependencies": {
+    "honest_fill_model": "LANDED",
+    "aggressor_split": "LANDED_DESCRIPTIVE",
+    "fee_aware_take_rule": "BLOCKED_EXPECTED_CLOSE_NOT_BOUND",
+    "first_leg_commitment_measurement": "LANDED_DESCRIPTIVE_RULE_REMAINS_INSUFFICIENT_EVIDENCE",
+    "pair_wiring_correction": "SPECIFIED_AND_SYNTHETICALLY_TESTED_NOT_FIVE_GAME_VALIDATED"
+  },
+  "five_game_replay_run": false,
+  "five_game_gate_passed": false,
+  "five_game_blocker": "No independently bound decision-time expected-close input exists for the fee-aware take authority.",
+  "population_804_policy_run": false,
+  "population_gate_passed": false,
+  "scorer_invocations": 0,
+  "performance_metrics": null
+}

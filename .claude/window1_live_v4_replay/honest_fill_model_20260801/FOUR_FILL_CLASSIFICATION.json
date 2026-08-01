@@ -1,0 +1,305 @@
+{
+  "schema_version": "WINDOW1_FOUR_FILL_HONEST_CLASSIFICATION_V1",
+  "score_free": true,
+  "replay_credit_rows": 4,
+  "PROVEN_MAKER": 0,
+  "PROVEN_TAKER": 3,
+  "UNPROVEN": 1,
+  "credited_leg_rows_under_honest_model": 3,
+  "category_price_region_partitions": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "leg_count": 2,
+      "legs": [
+        "KXATPCHALLENGERMATCH-26JUL19HURBIG|HUR",
+        "KXATPCHALLENGERMATCH-26JUL19NIKVRB|NIK"
+      ],
+      "PROVEN_MAKER": 0,
+      "PROVEN_TAKER": 1,
+      "UNPROVEN": 1,
+      "credited_under_honest_model": 1
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "leg_count": 2,
+      "legs": [
+        "KXATPCHALLENGERMATCH-26JUL19HURBIG|BIG",
+        "KXATPCHALLENGERMATCH-26JUL19NIKVRB|VRB"
+      ],
+      "PROVEN_MAKER": 0,
+      "PROVEN_TAKER": 2,
+      "UNPROVEN": 0,
+      "credited_under_honest_model": 2
+    }
+  ],
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "price_region_source": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/MAKER_TAKER_FILL_AUDIT.json#fills[KXATPCHALLENGERMATCH-26JUL19HURBIG/BIG]; formed action book 54/55; KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777",
+      "leg_id": "BIG",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG",
+      "replay_x_cents": 55,
+      "requested_quantity_contracts": 5,
+      "action_clock": {
+        "timestamp_epoch": 1784484949,
+        "t_minus_scheduled_seconds": 15251,
+        "t_minus_actual_bell_seconds": 20651
+      },
+      "action_trigger_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777",
+      "own_book_receipt_age_at_action_seconds": 0,
+      "exact_timestamp_own_book_snapshot_at_action": true,
+      "action_joint_observation": {
+        "bid_cents": 54,
+        "ask_cents": 55,
+        "last_traded_cents": 55,
+        "spread_cents": 1,
+        "ask_dwell_seconds": 13459,
+        "displayed_ask_size_at_x": 817,
+        "displayed_ask_capacity_at_or_below_x": 817,
+        "top_five_ask_depth": 4997
+      },
+      "replay_credit_clock": {
+        "timestamp_epoch": 1784484954,
+        "t_minus_scheduled_seconds": 15246,
+        "t_minus_actual_bell_seconds": 20646
+      },
+      "replay_credit_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1781",
+      "replay_same_receipt_credit": false,
+      "action_to_replay_credit_seconds": 5,
+      "action_to_replay_credit_book_receipt_count": 5,
+      "seller_aggressed_prints_at_or_through_x_during_action_to_credit": [],
+      "seller_aggressed_print_proof_count": 0,
+      "proven_taker_predicates": {
+        "exact_timestamp_own_book_snapshot": true,
+        "displayed_best_ask_at_or_below_x": true,
+        "displayed_capacity_at_or_below_x_at_least_five": true,
+        "all_required": true
+      },
+      "proven_maker_predicates": {
+        "exact_timestamp_own_book_snapshot": true,
+        "x_strictly_below_ask_at_action": false,
+        "seller_aggressed_print_strictly_later_at_or_through_x_before_replay_credit": false,
+        "all_required": false
+      },
+      "fill_class": "PROVEN_TAKER",
+      "credited_under_honest_model": true,
+      "credited_quantity_contracts_under_honest_model": 5,
+      "honest_fill_price_cents": 55,
+      "honest_credit_clock": {
+        "timestamp_epoch": 1784484949,
+        "t_minus_scheduled_seconds": 15251,
+        "t_minus_actual_bell_seconds": 20651
+      },
+      "honest_credit_evidence_type": "DISPLAYED_OPPOSING_ASK_CAPACITY_AT_SUBMISSION",
+      "honest_credit_receipts": [
+        "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777"
+      ],
+      "replay_later_receipt_used_as_honest_credit_evidence": false,
+      "applicable_fee_class": "TAKER_FEE_REQUIRED_VALUE_NOT_COMPUTED_HERE",
+      "classification_reason": "At submission timestamp, the authoritative own-leg BBO displayed at least five opposing contracts at or below X; an unchanged buy would cross."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "price_region_source": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/MAKER_TAKER_FILL_AUDIT.json#fills[KXATPCHALLENGERMATCH-26JUL19HURBIG/HUR]; formed action book 37/38; KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2584",
+      "leg_id": "HUR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR",
+      "replay_x_cents": 38,
+      "requested_quantity_contracts": 5,
+      "action_clock": {
+        "timestamp_epoch": 1784494286,
+        "t_minus_scheduled_seconds": 5914,
+        "t_minus_actual_bell_seconds": 11314
+      },
+      "action_trigger_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2584",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4284",
+      "own_book_receipt_age_at_action_seconds": 43,
+      "exact_timestamp_own_book_snapshot_at_action": false,
+      "action_joint_observation": {
+        "bid_cents": 37,
+        "ask_cents": 38,
+        "last_traded_cents": 38,
+        "spread_cents": 1,
+        "ask_dwell_seconds": 446,
+        "displayed_ask_size_at_x": 10113,
+        "displayed_ask_capacity_at_or_below_x": 10113,
+        "top_five_ask_depth": 15133
+      },
+      "replay_credit_clock": {
+        "timestamp_epoch": 1784494287,
+        "t_minus_scheduled_seconds": 5913,
+        "t_minus_actual_bell_seconds": 11313
+      },
+      "replay_credit_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-4285",
+      "replay_same_receipt_credit": false,
+      "action_to_replay_credit_seconds": 1,
+      "action_to_replay_credit_book_receipt_count": 2,
+      "seller_aggressed_prints_at_or_through_x_during_action_to_credit": [],
+      "seller_aggressed_print_proof_count": 0,
+      "proven_taker_predicates": {
+        "exact_timestamp_own_book_snapshot": false,
+        "displayed_best_ask_at_or_below_x": true,
+        "displayed_capacity_at_or_below_x_at_least_five": true,
+        "all_required": false
+      },
+      "proven_maker_predicates": {
+        "exact_timestamp_own_book_snapshot": false,
+        "x_strictly_below_ask_at_action": false,
+        "seller_aggressed_print_strictly_later_at_or_through_x_before_replay_credit": false,
+        "all_required": false
+      },
+      "fill_class": "UNPROVEN",
+      "credited_under_honest_model": false,
+      "credited_quantity_contracts_under_honest_model": null,
+      "honest_fill_price_cents": null,
+      "honest_credit_clock": null,
+      "honest_credit_evidence_type": null,
+      "honest_credit_receipts": [],
+      "replay_later_receipt_used_as_honest_credit_evidence": false,
+      "applicable_fee_class": "NOT_APPLICABLE_UNPROVEN",
+      "classification_reason": "No exact-timestamp opposing-size proof and no receipt-proven resting maker price followed by a seller-aggressed print at or through X."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "price_region_source": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/MAKER_TAKER_FILL_AUDIT.json#fills[KXATPCHALLENGERMATCH-26JUL19NIKVRB/NIK]; formed action book 17/18; KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946",
+      "leg_id": "NIK",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK",
+      "replay_x_cents": 18,
+      "requested_quantity_contracts": 5,
+      "action_clock": {
+        "timestamp_epoch": 1784476318,
+        "t_minus_scheduled_seconds": 2282,
+        "t_minus_actual_bell_seconds": 2582
+      },
+      "action_trigger_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946",
+      "own_book_receipt_age_at_action_seconds": 0,
+      "exact_timestamp_own_book_snapshot_at_action": true,
+      "action_joint_observation": {
+        "bid_cents": 17,
+        "ask_cents": 18,
+        "last_traded_cents": 18,
+        "spread_cents": 1,
+        "ask_dwell_seconds": 12,
+        "displayed_ask_size_at_x": 1201,
+        "displayed_ask_capacity_at_or_below_x": 1201,
+        "top_five_ask_depth": 7559
+      },
+      "replay_credit_clock": {
+        "timestamp_epoch": 1784476319,
+        "t_minus_scheduled_seconds": 2281,
+        "t_minus_actual_bell_seconds": 2581
+      },
+      "replay_credit_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2952",
+      "replay_same_receipt_credit": false,
+      "action_to_replay_credit_seconds": 1,
+      "action_to_replay_credit_book_receipt_count": 7,
+      "seller_aggressed_prints_at_or_through_x_during_action_to_credit": [],
+      "seller_aggressed_print_proof_count": 0,
+      "proven_taker_predicates": {
+        "exact_timestamp_own_book_snapshot": true,
+        "displayed_best_ask_at_or_below_x": true,
+        "displayed_capacity_at_or_below_x_at_least_five": true,
+        "all_required": true
+      },
+      "proven_maker_predicates": {
+        "exact_timestamp_own_book_snapshot": true,
+        "x_strictly_below_ask_at_action": false,
+        "seller_aggressed_print_strictly_later_at_or_through_x_before_replay_credit": false,
+        "all_required": false
+      },
+      "fill_class": "PROVEN_TAKER",
+      "credited_under_honest_model": true,
+      "credited_quantity_contracts_under_honest_model": 5,
+      "honest_fill_price_cents": 18,
+      "honest_credit_clock": {
+        "timestamp_epoch": 1784476318,
+        "t_minus_scheduled_seconds": 2282,
+        "t_minus_actual_bell_seconds": 2582
+      },
+      "honest_credit_evidence_type": "DISPLAYED_OPPOSING_ASK_CAPACITY_AT_SUBMISSION",
+      "honest_credit_receipts": [
+        "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz#row-2946"
+      ],
+      "replay_later_receipt_used_as_honest_credit_evidence": false,
+      "applicable_fee_class": "TAKER_FEE_REQUIRED_VALUE_NOT_COMPUTED_HERE",
+      "classification_reason": "At submission timestamp, the authoritative own-leg BBO displayed at least five opposing contracts at or below X; an unchanged buy would cross."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "price_region_source": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/MAKER_TAKER_FILL_AUDIT.json#fills[KXATPCHALLENGERMATCH-26JUL19NIKVRB/VRB]; formed action book 67/68; KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+      "leg_id": "VRB",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB",
+      "replay_x_cents": 68,
+      "requested_quantity_contracts": 5,
+      "action_clock": {
+        "timestamp_epoch": 1784459754,
+        "t_minus_scheduled_seconds": 18846,
+        "t_minus_actual_bell_seconds": 19146
+      },
+      "action_trigger_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+      "own_book_receipt_at_action": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233",
+      "own_book_receipt_age_at_action_seconds": 0,
+      "exact_timestamp_own_book_snapshot_at_action": true,
+      "action_joint_observation": {
+        "bid_cents": 67,
+        "ask_cents": 68,
+        "last_traded_cents": 70,
+        "spread_cents": 1,
+        "ask_dwell_seconds": 32,
+        "displayed_ask_size_at_x": 110,
+        "displayed_ask_capacity_at_or_below_x": 110,
+        "top_five_ask_depth": 1084
+      },
+      "replay_credit_clock": {
+        "timestamp_epoch": 1784460635,
+        "t_minus_scheduled_seconds": 17965,
+        "t_minus_actual_bell_seconds": 18265
+      },
+      "replay_credit_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-495",
+      "replay_same_receipt_credit": false,
+      "action_to_replay_credit_seconds": 881,
+      "action_to_replay_credit_book_receipt_count": 263,
+      "seller_aggressed_prints_at_or_through_x_during_action_to_credit": [],
+      "seller_aggressed_print_proof_count": 0,
+      "proven_taker_predicates": {
+        "exact_timestamp_own_book_snapshot": true,
+        "displayed_best_ask_at_or_below_x": true,
+        "displayed_capacity_at_or_below_x_at_least_five": true,
+        "all_required": true
+      },
+      "proven_maker_predicates": {
+        "exact_timestamp_own_book_snapshot": true,
+        "x_strictly_below_ask_at_action": false,
+        "seller_aggressed_print_strictly_later_at_or_through_x_before_replay_credit": false,
+        "all_required": false
+      },
+      "fill_class": "PROVEN_TAKER",
+      "credited_under_honest_model": true,
+      "credited_quantity_contracts_under_honest_model": 5,
+      "honest_fill_price_cents": 68,
+      "honest_credit_clock": {
+        "timestamp_epoch": 1784459754,
+        "t_minus_scheduled_seconds": 18846,
+        "t_minus_actual_bell_seconds": 19146
+      },
+      "honest_credit_evidence_type": "DISPLAYED_OPPOSING_ASK_CAPACITY_AT_SUBMISSION",
+      "honest_credit_receipts": [
+        "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-233"
+      ],
+      "replay_later_receipt_used_as_honest_credit_evidence": false,
+      "applicable_fee_class": "TAKER_FEE_REQUIRED_VALUE_NOT_COMPUTED_HERE",
+      "classification_reason": "At submission timestamp, the authoritative own-leg BBO displayed at least five opposing contracts at or below X; an unchanged buy would cross."
+    }
+  ]
+}

@@ -1,0 +1,609 @@
+{
+  "schema_version": "WINDOW1_NAKED_NONCOMPLETION_RECEIPT_V1",
+  "score_free": true,
+  "definition": "A strict first floor was observable, but no strictly-later sibling ten-second/five-contract ask proof completed the pair below 100 cents.",
+  "fee_treatment": "NOT_INCLUDED; this is the existing entry-cost S diagnostic, not fee-aware PC",
+  "by_category_and_observable_starting_price_region": {
+    "ATP_CHALL|26_50+26_50": {
+      "events": 11,
+      "first_leg_commitments_observed": 11,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL19ROZSHE"
+      ]
+    },
+    "ATP_CHALL|26_50+51_75": {
+      "events": 229,
+      "first_leg_commitments_observed": 225,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 95,
+      "naked_or_never_completed_under_entry_cost_law": 95,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+        "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+        "KXATPCHALLENGERMATCH-26JUL12CHOGAS",
+        "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+        "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+        "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+        "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+        "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+        "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+        "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+        "KXATPCHALLENGERMATCH-26JUL12MORPET",
+        "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+        "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+        "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+        "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+        "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+        "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+        "KXATPCHALLENGERMATCH-26JUL13PALGON",
+        "KXATPCHALLENGERMATCH-26JUL13WINKIR",
+        "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+        "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+        "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+        "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+        "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+        "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+        "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+        "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+        "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+        "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+        "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+        "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+        "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+        "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+        "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+        "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+        "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+        "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+        "KXATPCHALLENGERMATCH-26JUL14ROZRIC",
+        "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+        "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+        "KXATPCHALLENGERMATCH-26JUL15LAJKRU",
+        "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+        "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+        "KXATPCHALLENGERMATCH-26JUL15RODINC",
+        "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+        "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+        "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+        "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+        "KXATPCHALLENGERMATCH-26JUL15ZINGAL",
+        "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+        "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+        "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+        "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+        "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+        "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+        "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+        "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+        "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+        "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+        "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+        "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+        "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+        "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+        "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+        "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+        "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+        "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+        "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+        "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+        "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+        "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+        "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+        "KXATPCHALLENGERMATCH-26JUL19BONALC",
+        "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+        "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+        "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+        "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+        "KXATPCHALLENGERMATCH-26JUL19PIENES",
+        "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+        "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+        "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+        "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+        "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+        "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+        "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+        "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+        "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+        "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+        "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+        "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+        "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+        "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+        "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+        "KXATPCHALLENGERMATCH-26JUL20VARDON"
+      ]
+    },
+    "ATP_CHALL|26_50+UNAVAILABLE": {
+      "events": 2,
+      "first_leg_commitments_observed": 2,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL14SMIILA"
+      ]
+    },
+    "ATP_CHALL|51_75+UNAVAILABLE": {
+      "events": 5,
+      "first_leg_commitments_observed": 5,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 4,
+      "naked_or_never_completed_under_entry_cost_law": 4,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+        "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+        "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+        "KXATPCHALLENGERMATCH-26JUL14LAGSAN"
+      ]
+    },
+    "ATP_CHALL|51_75+le25": {
+      "events": 14,
+      "first_leg_commitments_observed": 14,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 2,
+      "naked_or_never_completed_under_entry_cost_law": 2,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+        "KXATPCHALLENGERMATCH-26JUL20KYMCLA"
+      ]
+    },
+    "ATP_CHALL|UNAVAILABLE+UNAVAILABLE": {
+      "events": 7,
+      "first_leg_commitments_observed": 4,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 4,
+      "naked_or_never_completed_under_entry_cost_law": 4,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+        "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+        "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+        "KXATPCHALLENGERMATCH-26JUL19SALVRB"
+      ]
+    },
+    "ATP_CHALL|UNAVAILABLE+ge76": {
+      "events": 2,
+      "first_leg_commitments_observed": 2,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 2,
+      "naked_or_never_completed_under_entry_cost_law": 2,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+        "KXATPCHALLENGERMATCH-26JUL12SALARN"
+      ]
+    },
+    "ATP_CHALL|UNAVAILABLE+le25": {
+      "events": 4,
+      "first_leg_commitments_observed": 4,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 3,
+      "naked_or_never_completed_under_entry_cost_law": 3,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12BALPET",
+        "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+        "KXATPCHALLENGERMATCH-26JUL19GIUDEV"
+      ]
+    },
+    "ATP_CHALL|ge76+le25": {
+      "events": 95,
+      "first_leg_commitments_observed": 92,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 36,
+      "naked_or_never_completed_under_entry_cost_law": 36,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+        "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+        "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+        "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+        "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+        "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+        "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+        "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+        "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+        "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+        "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+        "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+        "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+        "KXATPCHALLENGERMATCH-26JUL12WINROB",
+        "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+        "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+        "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+        "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+        "KXATPCHALLENGERMATCH-26JUL15GENDE",
+        "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+        "KXATPCHALLENGERMATCH-26JUL16FUESEY",
+        "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+        "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+        "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+        "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+        "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "KXATPCHALLENGERMATCH-26JUL19MONTHO",
+        "KXATPCHALLENGERMATCH-26JUL19PETALO",
+        "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+        "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+        "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+        "KXATPCHALLENGERMATCH-26JUL20POHWES",
+        "KXATPCHALLENGERMATCH-26JUL20TROISO",
+        "KXATPCHALLENGERMATCH-26JUL20VALGOM"
+      ]
+    },
+    "ATP_MAIN|26_50+26_50": {
+      "events": 5,
+      "first_leg_commitments_observed": 5,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 0,
+      "naked_or_never_completed_under_entry_cost_law": 0,
+      "event_ids": []
+    },
+    "ATP_MAIN|26_50+51_75": {
+      "events": 99,
+      "first_leg_commitments_observed": 97,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 26,
+      "naked_or_never_completed_under_entry_cost_law": 26,
+      "event_ids": [
+        "KXATPMATCH-26JUL12BUEMAR",
+        "KXATPMATCH-26JUL12MOLFAU",
+        "KXATPMATCH-26JUL12NEUTOP",
+        "KXATPMATCH-26JUL12PRASAI",
+        "KXATPMATCH-26JUL12TABHUE",
+        "KXATPMATCH-26JUL13FAUDAM",
+        "KXATPMATCH-26JUL13MARMID",
+        "KXATPMATCH-26JUL13PASKRU",
+        "KXATPMATCH-26JUL14NEUPRA",
+        "KXATPMATCH-26JUL14TOPUGO",
+        "KXATPMATCH-26JUL14VANDAN",
+        "KXATPMATCH-26JUL15BORDIM",
+        "KXATPMATCH-26JUL16DZUARN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXATPMATCH-26JUL17COLVAC",
+        "KXATPMATCH-26JUL17DZUMOL",
+        "KXATPMATCH-26JUL17TABTIR",
+        "KXATPMATCH-26JUL17VALTRA",
+        "KXATPMATCH-26JUL18BUTTAB",
+        "KXATPMATCH-26JUL18CINMIC",
+        "KXATPMATCH-26JUL18DELRIB",
+        "KXATPMATCH-26JUL18HEIFEL",
+        "KXATPMATCH-26JUL18MERDZU",
+        "KXATPMATCH-26JUL18VALDAR",
+        "KXATPMATCH-26JUL19MOLOFN",
+        "KXATPMATCH-26JUL20SCHROD"
+      ]
+    },
+    "ATP_MAIN|51_75+51_75": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 0,
+      "naked_or_never_completed_under_entry_cost_law": 0,
+      "event_ids": []
+    },
+    "ATP_MAIN|51_75+UNAVAILABLE": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXATPMATCH-26JUL19CHODEJ"
+      ]
+    },
+    "ATP_MAIN|51_75+le25": {
+      "events": 9,
+      "first_leg_commitments_observed": 9,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXATPMATCH-26JUL19FELKOP"
+      ]
+    },
+    "ATP_MAIN|UNAVAILABLE+UNAVAILABLE": {
+      "events": 6,
+      "first_leg_commitments_observed": 0,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 0,
+      "naked_or_never_completed_under_entry_cost_law": 0,
+      "event_ids": []
+    },
+    "ATP_MAIN|ge76+ge76": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 0,
+      "naked_or_never_completed_under_entry_cost_law": 0,
+      "event_ids": []
+    },
+    "ATP_MAIN|ge76+le25": {
+      "events": 25,
+      "first_leg_commitments_observed": 24,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 9,
+      "naked_or_never_completed_under_entry_cost_law": 9,
+      "event_ids": [
+        "KXATPMATCH-26JUL12CECOLI",
+        "KXATPMATCH-26JUL12REJMID",
+        "KXATPMATCH-26JUL14DIAMID",
+        "KXATPMATCH-26JUL14VALDAM",
+        "KXATPMATCH-26JUL15GOMARN",
+        "KXATPMATCH-26JUL15TRANAV",
+        "KXATPMATCH-26JUL16FARRUU",
+        "KXATPMATCH-26JUL18WALDJE",
+        "KXATPMATCH-26JUL19FERVAN"
+      ]
+    },
+    "WTA_CHALL|26_50+26_50": {
+      "events": 5,
+      "first_leg_commitments_observed": 5,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 0,
+      "naked_or_never_completed_under_entry_cost_law": 0,
+      "event_ids": []
+    },
+    "WTA_CHALL|26_50+51_75": {
+      "events": 83,
+      "first_leg_commitments_observed": 76,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 45,
+      "naked_or_never_completed_under_entry_cost_law": 45,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+        "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+        "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+        "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+        "KXWTACHALLENGERMATCH-26JUL13KABPER",
+        "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+        "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+        "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+        "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+        "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+        "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+        "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+        "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+        "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+        "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+        "KXWTACHALLENGERMATCH-26JUL14TREGRA",
+        "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+        "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+        "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+        "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+        "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+        "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+        "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+        "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+        "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+        "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+        "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+        "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+        "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+        "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+        "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+        "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+        "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+        "KXWTACHALLENGERMATCH-26JUL18BROBRA",
+        "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+        "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+        "KXWTACHALLENGERMATCH-26JUL18RENGIA",
+        "KXWTACHALLENGERMATCH-26JUL18TREJON",
+        "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+        "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+        "KXWTACHALLENGERMATCH-26JUL19RENTON",
+        "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+        "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+        "KXWTACHALLENGERMATCH-26JUL20URGYAN"
+      ]
+    },
+    "WTA_CHALL|26_50+UNAVAILABLE": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL13GJOCHI"
+      ]
+    },
+    "WTA_CHALL|51_75+UNAVAILABLE": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL12MAZGAN"
+      ]
+    },
+    "WTA_CHALL|51_75+le25": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL13RAMNOH"
+      ]
+    },
+    "WTA_CHALL|UNAVAILABLE+le25": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL12FEICHE"
+      ]
+    },
+    "WTA_CHALL|ge76+le25": {
+      "events": 44,
+      "first_leg_commitments_observed": 42,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 18,
+      "naked_or_never_completed_under_entry_cost_law": 18,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL12BASABB",
+        "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+        "KXWTACHALLENGERMATCH-26JUL13GRABER",
+        "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+        "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+        "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+        "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+        "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+        "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+        "KXWTACHALLENGERMATCH-26JUL14PACVED",
+        "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+        "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+        "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+        "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+        "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+        "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+        "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+        "KXWTACHALLENGERMATCH-26JUL20KABCHI"
+      ]
+    },
+    "WTA_MAIN|26_50+26_50": {
+      "events": 4,
+      "first_leg_commitments_observed": 4,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 0,
+      "naked_or_never_completed_under_entry_cost_law": 0,
+      "event_ids": []
+    },
+    "WTA_MAIN|26_50+51_75": {
+      "events": 76,
+      "first_leg_commitments_observed": 74,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 32,
+      "naked_or_never_completed_under_entry_cost_law": 32,
+      "event_ids": [
+        "KXWTAMATCH-26JUL12FETPIE",
+        "KXWTAMATCH-26JUL12GARPRI",
+        "KXWTAMATCH-26JUL13AMAHER",
+        "KXWTAMATCH-26JUL13BADKAL",
+        "KXWTAMATCH-26JUL13CHAJIM",
+        "KXWTAMATCH-26JUL13LEPIBR",
+        "KXWTAMATCH-26JUL13SHEGAL",
+        "KXWTAMATCH-26JUL13ZHEBOU",
+        "KXWTAMATCH-26JUL14PUTLIU",
+        "KXWTAMATCH-26JUL14SALIBR",
+        "KXWTAMATCH-26JUL14UDVROM",
+        "KXWTAMATCH-26JUL15AVAMAR",
+        "KXWTAMATCH-26JUL15HONPAR",
+        "KXWTAMATCH-26JUL15PUTCHA",
+        "KXWTAMATCH-26JUL15SHEQUE",
+        "KXWTAMATCH-26JUL15TAGBEJ",
+        "KXWTAMATCH-26JUL16VALSAS",
+        "KXWTAMATCH-26JUL17OLIBUR",
+        "KXWTAMATCH-26JUL17TAUBEJ",
+        "KXWTAMATCH-26JUL17UDVBAD",
+        "KXWTAMATCH-26JUL17VALKOR",
+        "KXWTAMATCH-26JUL18BANGAO",
+        "KXWTAMATCH-26JUL18PALHON",
+        "KXWTAMATCH-26JUL18SAKKOR",
+        "KXWTAMATCH-26JUL19AVDNIE",
+        "KXWTAMATCH-26JUL19GAOFRU",
+        "KXWTAMATCH-26JUL19KRESAK",
+        "KXWTAMATCH-26JUL19SHEBAD",
+        "KXWTAMATCH-26JUL20LEPAVA",
+        "KXWTAMATCH-26JUL20LYSVAL",
+        "KXWTAMATCH-26JUL20PODLEE",
+        "KXWTAMATCH-26JUL20VEDBAR"
+      ]
+    },
+    "WTA_MAIN|26_50+UNAVAILABLE": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXWTAMATCH-26JUL13BURLEP"
+      ]
+    },
+    "WTA_MAIN|51_75+le25": {
+      "events": 9,
+      "first_leg_commitments_observed": 9,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 4,
+      "naked_or_never_completed_under_entry_cost_law": 4,
+      "event_ids": [
+        "KXWTAMATCH-26JUL13PODMAR",
+        "KXWTAMATCH-26JUL18MICFRU",
+        "KXWTAMATCH-26JUL19PODSAI",
+        "KXWTAMATCH-26JUL19RUSKAZ"
+      ]
+    },
+    "WTA_MAIN|UNAVAILABLE+UNAVAILABLE": {
+      "events": 12,
+      "first_leg_commitments_observed": 2,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 2,
+      "naked_or_never_completed_under_entry_cost_law": 2,
+      "event_ids": [
+        "KXWTAMATCH-26JUL12KULZAA",
+        "KXWTAMATCH-26JUL12PRIION"
+      ]
+    },
+    "WTA_MAIN|UNAVAILABLE+ge76": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXWTAMATCH-26JUL20PIECAR"
+      ]
+    },
+    "WTA_MAIN|UNAVAILABLE+le25": {
+      "events": 1,
+      "first_leg_commitments_observed": 1,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 1,
+      "naked_or_never_completed_under_entry_cost_law": 1,
+      "event_ids": [
+        "KXWTAMATCH-26JUL18SALZOL"
+      ]
+    },
+    "WTA_MAIN|ge76+le25": {
+      "events": 48,
+      "first_leg_commitments_observed": 46,
+      "no_strictly_later_sibling_capacity_proof": 0,
+      "later_floor_unaffordable_at_entry_cost_100": 26,
+      "naked_or_never_completed_under_entry_cost_law": 26,
+      "event_ids": [
+        "KXWTAMATCH-26JUL12AVASEI",
+        "KXWTAMATCH-26JUL12HODYAS",
+        "KXWTAMATCH-26JUL12LIUPOP",
+        "KXWTAMATCH-26JUL12MORNEP",
+        "KXWTAMATCH-26JUL12OKAIPE",
+        "KXWTAMATCH-26JUL12WERAMA",
+        "KXWTAMATCH-26JUL13ARGTAG",
+        "KXWTAMATCH-26JUL13AVAFET",
+        "KXWTAMATCH-26JUL13HODDAR",
+        "KXWTAMATCH-26JUL13KRETOM",
+        "KXWTAMATCH-26JUL13LIUIPE",
+        "KXWTAMATCH-26JUL13MONMAS",
+        "KXWTAMATCH-26JUL13MORBEJ",
+        "KXWTAMATCH-26JUL13PRIGAR",
+        "KXWTAMATCH-26JUL13ROMKUL",
+        "KXWTAMATCH-26JUL14BULPRI",
+        "KXWTAMATCH-26JUL14OLIIPE",
+        "KXWTAMATCH-26JUL15DARSAK",
+        "KXWTAMATCH-26JUL15MICZHE",
+        "KXWTAMATCH-26JUL16TAUTON",
+        "KXWTAMATCH-26JUL17PARSAK",
+        "KXWTAMATCH-26JUL18BADZID",
+        "KXWTAMATCH-26JUL19PRIMAR",
+        "KXWTAMATCH-26JUL19STRPAQ",
+        "KXWTAMATCH-26JUL20PRIBRA",
+        "KXWTAMATCH-26JUL20STENOH"
+      ]
+    }
+  }
+}

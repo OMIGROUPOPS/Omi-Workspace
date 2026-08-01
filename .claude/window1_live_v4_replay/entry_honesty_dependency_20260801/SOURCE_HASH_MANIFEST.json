@@ -1,0 +1,37 @@
+{
+  "schema_version": "WINDOW1_ENTRY_HONESTY_SOURCE_MANIFEST_V1",
+  "sources": {
+    "fill": {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/FOUR_FILL_CLASSIFICATION.json",
+      "sha256": "bd6770a9de3e9526b7b1c0d6e6cdeb8e96d4d246b632a87e233e5fd06c39cc5b"
+    },
+    "pairs": {
+      "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/PAIR_COMPLETION_RESCORING.json",
+      "sha256": "1e16fba1889f88ee23981d40b0a76a5869345cde4a54c147491ffc709d3bbe70"
+    },
+    "aggressor": {
+      "path": ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/AGGRESSOR_SPLIT.json",
+      "sha256": "d647877c4a42c7ca58f18fdda1578b7b78ad153550c67252ec72ab4cfbb6fef8"
+    },
+    "ceilings": {
+      "path": ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/CEILING_CENSUS.json",
+      "sha256": "b3aa41c3876db42fc36420d8dd77090c16d8789d37afb0aaeb7209633e44de73"
+    },
+    "fee": {
+      "path": ".claude/window1_live_v4_replay/fee_aware_take_census_20260801/FEE_AWARE_TAKE_CENSUS.json",
+      "sha256": "3261a19f06a8cdd889ad883e393871663ff0341981526cbd359e87733eba6e9e"
+    },
+    "commitment": {
+      "path": ".claude/window1_live_v4_replay/first_leg_commitment_diagnostic_20260801/COMMITMENT_GAP_CENSUS.json",
+      "sha256": "05f814678f720d79516eaba472352f8b0d7be778db11a80398c495845e39226f"
+    },
+    "conditional": {
+      "path": ".claude/window1_live_v4_replay/first_leg_commitment_diagnostic_20260801/SIBLING_FLOOR_CONDITIONAL_CENSUS.json",
+      "sha256": "2bcc5abc0eb5926501ee96fb0cee1068e77435ea7c000b5575d1c5cef3b2c68f"
+    },
+    "wiring": {
+      "path": ".claude/window1_live_v4_replay/pair_wiring_correction_20260801/PAIR_WIRING_CORRECTION_RECEIPT.json",
+      "sha256": "cafe79cda01af7e0031a3c7f38994f480d51ed9c666e3904bf0e92f9a926cc61"
+    }
+  }
+}

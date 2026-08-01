@@ -1,0 +1,33 @@
+{
+  "schema_version": "WINDOW1_FIRST_LEG_COMMITMENT_ARTIFACT_HASH_MANIFEST_V1",
+  "files": {
+    "CAUSAL_COMMITMENT_RULE_SPEC.json": {
+      "bytes": 2175,
+      "sha256": "a83bfe60644123f9dffc09d624bcb7ec92f883ce31822116de5057557dd80c5c"
+    },
+    "COMMITMENT_GAP_CENSUS.json": {
+      "bytes": 78242,
+      "sha256": "05f814678f720d79516eaba472352f8b0d7be778db11a80398c495845e39226f"
+    },
+    "FIRST_LEG_COMMITMENT_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 191310,
+      "sha256": "5d66000e9ec08233b873ef04291569dd7e348e58435eb279821ef667cc621892"
+    },
+    "NAKED_NONCOMPLETION_RECEIPT.json": {
+      "bytes": 23512,
+      "sha256": "c1a46494cb1edd7e8465a5e50b3a3965af54d9b0d7cea977a01a3985749bc413"
+    },
+    "REPORT.md": {
+      "bytes": 2115,
+      "sha256": "f58a6ce5ca2c7c121ae0f68947a8b6cb65c917ef7f821f5db184b66325183271"
+    },
+    "SIBLING_FLOOR_CONDITIONAL_CENSUS.json": {
+      "bytes": 316572,
+      "sha256": "2bcc5abc0eb5926501ee96fb0cee1068e77435ea7c000b5575d1c5cef3b2c68f"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 1202,
+      "sha256": "b4d165aa0e2cb51781f7cee013a4ac55d91d20f9037d8d05e32d459e431baf70"
+    }
+  }
+}

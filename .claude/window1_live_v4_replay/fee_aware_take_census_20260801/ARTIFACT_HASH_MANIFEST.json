@@ -1,0 +1,25 @@
+{
+  "schema_version": "WINDOW1_FEE_AWARE_TAKE_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": "DETERMINISM_RECEIPT.json",
+      "bytes": 704,
+      "sha256": "3d2c2a0029c3bf40e56dcd401c7eb93ec65f189f4cdabd992a83c9afb9c2d3b2"
+    },
+    {
+      "path": "FEE_AWARE_TAKE_CENSUS.json",
+      "bytes": 677557,
+      "sha256": "3261a19f06a8cdd889ad883e393871663ff0341981526cbd359e87733eba6e9e"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 1387,
+      "sha256": "b27652eca6ee230a59df1ca34a4b48d12a0c8e87fc6da16fb71fc32153801363"
+    },
+    {
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "bytes": 526,
+      "sha256": "70f0f6d8c7f43dd7849eb4dcd7083a0c3207ae75e339da35ad5defef87442851"
+    }
+  ]
+}

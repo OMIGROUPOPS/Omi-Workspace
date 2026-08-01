@@ -1,0 +1,6 @@
+{
+  "schema_version": "WINDOW1_PAIR_WIRING_DETERMINISM_RECEIPT_V3",
+  "canonical_json_lf": true,
+  "receipt_sha256": "cafe79cda01af7e0031a3c7f38994f480d51ed9c666e3904bf0e92f9a926cc61",
+  "expected_rebuild_identity": "BYTE_IDENTICAL"
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": "WINDOW1_PAIR_WIRING_SOURCE_MANIFEST_V3",
+  "sources": {
+    "diagnosis": {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/INSUFFICIENT_PREDICATE_DIAGNOSIS.json",
+      "sha256": "6dfe5bb8f197936174fb5dcfe11ea307c7f28552b458ffd0ebf037e095f23274"
+    },
+    "leave_five_out_library": {
+      "path": ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT.json",
+      "sha256": "8fbcb59c1a747aed5580d579d1234069cfaebf3a951af5718f227f5bae329e87"
+    }
+  }
+}

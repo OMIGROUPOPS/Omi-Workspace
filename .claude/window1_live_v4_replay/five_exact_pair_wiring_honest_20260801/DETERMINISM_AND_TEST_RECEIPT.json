@@ -1,0 +1,16 @@
+{
+  "schema_version": "WINDOW1_FIVE_EXACT_PAIR_WIRING_HONEST_VALIDATION_V1",
+  "date": "2026-08-01",
+  "cold_replay_builds": 2,
+  "byte_identical_files": 11,
+  "determinism_status": "PASS",
+  "tests": {
+    "command": "node --test arb-executor/tests/test_window1_quote_shape_pair_wiring_v3.js arb-executor/tests/test_window1_quote_shape_stable_ask_v2.js arb-executor/tests/test_window1_honest_fill_model_v1.js arb-executor/tests/test_window1_five_exact_honest_gate_v1.js",
+    "files": 4,
+    "failures": 0,
+    "status": "PASS"
+  },
+  "population_804_run": false,
+  "fee_test_run": false,
+  "expected_close_forecast_run": false
+}

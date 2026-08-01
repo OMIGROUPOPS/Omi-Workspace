@@ -1,0 +1,98 @@
+{
+  "schema_version": "WINDOW1_FIVE_EXACT_PAIR_WIRING_HONEST_SOURCE_MANIFEST_V1",
+  "committed_sources": {
+    "arb-executor/analysis/build_window1_five_exact_honest_gate_v1.js": {
+      "sha256": "03df0e1d5f0a7c6f8f07420a279d5e5327c25c738250919cce16385814d7bdb9",
+      "bytes": 17387
+    },
+    ".claude/window1_live_v4_replay/five_exact_pair_wiring_honest_20260801/FIVE_GAME_PAIR_WIRING_REPLAY.json": {
+      "sha256": "a71cd83cb626e41c476aa1d1b89a7207b2c651b1f49de40ba6c68a3870b99b59",
+      "bytes": 1992847
+    },
+    ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json": {
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd",
+      "bytes": 26384
+    },
+    ".claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json": {
+      "sha256": "206176fb50f11493e7df5d28fa88411bea7feeef467cec2bd5239b070f75b93e",
+      "bytes": 1515
+    },
+    ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/QUOTE_SHAPE_LIBRARY_LEAVE_FIVE_OUT.json": {
+      "sha256": "8fbcb59c1a747aed5580d579d1234069cfaebf3a951af5718f227f5bae329e87",
+      "bytes": 17292937
+    },
+    "arb-executor/analysis/window1_quote_shape_pair_wiring_v3.js": {
+      "sha256": "bad99cd3d1d8706c64a6b00067a888a80ce34406a5e179583715deff410d2bb7",
+      "bytes": 3367
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "d67449d1fc92e0662363abfc63e41003c6bea13847090d8cab6c280268c15dc8",
+      "bytes": 28064
+    },
+    ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/CEILING_CENSUS.json": {
+      "sha256": "b3aa41c3876db42fc36420d8dd77090c16d8789d37afb0aaeb7209633e44de73",
+      "bytes": 1208000
+    }
+  },
+  "private_sources": {
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG|BIG": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz",
+      "bytes": 85232,
+      "sha256": "8f1a7d6e7625d90487523ef95264533360ce462ceaf6f1ed767451594f8aae18"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG|HUR": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz",
+      "bytes": 85232,
+      "sha256": "8f1a7d6e7625d90487523ef95264533360ce462ceaf6f1ed767451594f8aae18"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB|NIK": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19NIKVRB.json.gz",
+      "bytes": 110963,
+      "sha256": "53312bd82ca55d71c32915b8ec2c8a33ea5220424f5e659d476cd5c776728e89"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB|VRB": {
+      "path": "fit-local/guarded-cache-v3/KXATPCHALLENGERMATCH-26JUL19NIKVRB.json.gz",
+      "bytes": 110963,
+      "sha256": "53312bd82ca55d71c32915b8ec2c8a33ea5220424f5e659d476cd5c776728e89"
+    },
+    "KXATPMATCH-26JUL12LAJVAN|LAJ": {
+      "path": "fit-local/guarded-cache-v3/KXATPMATCH-26JUL12LAJVAN.json.gz",
+      "bytes": 187516,
+      "sha256": "27603a09729f96727a011467df19cda020dc883e38970711f6b602b79727b21f"
+    },
+    "KXATPMATCH-26JUL12LAJVAN|VAN": {
+      "path": "fit-local/guarded-cache-v3/KXATPMATCH-26JUL12LAJVAN.json.gz",
+      "bytes": 187516,
+      "sha256": "27603a09729f96727a011467df19cda020dc883e38970711f6b602b79727b21f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED|BRA": {
+      "path": "fit-local/guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz",
+      "bytes": 75404,
+      "sha256": "79502c80b8ba03671e5e490ea4087d859b901f86e6fbe704eb2ad17a962aebd3"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED|VED": {
+      "path": "fit-local/guarded-cache-v3/KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz",
+      "bytes": 75404,
+      "sha256": "79502c80b8ba03671e5e490ea4087d859b901f86e6fbe704eb2ad17a962aebd3"
+    },
+    "KXWTAMATCH-26JUL20KORJIM|JIM": {
+      "path": "fit-local/guarded-cache-v3/KXWTAMATCH-26JUL20KORJIM.json.gz",
+      "bytes": 41108,
+      "sha256": "f59079b4fd1e38cea63bfb087c9f89e0a14c2abe18d01258b017aaa11100307a"
+    },
+    "KXWTAMATCH-26JUL20KORJIM|KOR": {
+      "path": "fit-local/guarded-cache-v3/KXWTAMATCH-26JUL20KORJIM.json.gz",
+      "bytes": 41108,
+      "sha256": "f59079b4fd1e38cea63bfb087c9f89e0a14c2abe18d01258b017aaa11100307a"
+    }
+  },
+  "honest_fill_contract_identity": {
+    "path": ".claude/window1_live_v4_replay/honest_fill_model_20260801/HONEST_FILL_MODEL_CONTRACT.json",
+    "sha256": "206176fb50f11493e7df5d28fa88411bea7feeef467cec2bd5239b070f75b93e",
+    "class_law": {
+      "PROVEN_MAKER": "Our nonmarketable resting price is proven on the exact action book before a strictly later positive-size SELL-aggressor true print trades at or through it during the action-to-credit interval.",
+      "PROVEN_TAKER": "At the exact submission timestamp, the authoritative own-leg BBO displays at least five opposing contracts at or below X, so an unchanged buy would cross.",
+      "UNPROVEN": "Every other replay credit, including carried/stale action books and later BBO-only simulator credits."
+    }
+  }
+}

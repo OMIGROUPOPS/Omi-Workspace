@@ -1,0 +1,30 @@
+{
+  "schema_version": "WINDOW1_MAKER_ROLE_ADDENDUM_ARTIFACT_MANIFEST_V1",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/MAKER_ROLE_RECEIPT_AUDIT.json",
+      "bytes": 13363,
+      "sha256": "ad91f2be81804b1c723c239536b73cc8d63adb79ca8fa1d808c200c4a98ef392"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/EXACT_ACTION_TO_CREDIT_SEQUENCE.json",
+      "bytes": 173730,
+      "sha256": "a2703647ac97806100c6c7fd3ec0bff274750ca397d62bf453dd856f26086402"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/BIG_FULL_ASK_PROGRESSION.json",
+      "bytes": 23566,
+      "sha256": "0435a0648437640ef299bf023411d37f60eecb5a3af2c32b0c7c0ebfe3b06e78"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/SOURCE_HASH_MANIFEST.json",
+      "bytes": 2640,
+      "sha256": "3d7a6d51c901ceda20afca74f92ac2383763c93244277219677682c50560109d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/quote_shape_maker_role_addendum_20260801/REPORT.md",
+      "bytes": 4844,
+      "sha256": "73465260d579856d375540c739db0f3747fcd66356daa2a3d7789608fbf9eb17"
+    }
+  ]
+}

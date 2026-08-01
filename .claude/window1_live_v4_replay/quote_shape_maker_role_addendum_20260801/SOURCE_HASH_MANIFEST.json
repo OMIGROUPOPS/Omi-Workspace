@@ -1,0 +1,59 @@
+{
+  "schema_version": "WINDOW1_MAKER_ROLE_ADDENDUM_SOURCE_MANIFEST_V1",
+  "committed": {
+    ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/FIVE_GAME_REPLAY.json": {
+      "bytes": 1970533,
+      "sha256": "667b927bcc5bafbcdbfcaed80985851081c673a83dbe20e7698019296bc5df9a"
+    },
+    ".claude/window1_live_v4_replay/quote_shape_stable_ask_20260731/FIVE_GAME_SUMMARY.json": {
+      "bytes": 15523,
+      "sha256": "9bfd2138b426dd9f808807df1ae2deabb99a78ee4b8737629a10117319f91f8b"
+    },
+    ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json": {
+      "bytes": 26384,
+      "sha256": "4abe49088721d823ce1455fce16d3a61d47b3851ef8c5569799d00474e6218cd"
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    ".claude/window1_live_v4_replay/quote_shape_maker_insufficient_diagnosis_20260801/MAKER_TAKER_FILL_AUDIT.json": {
+      "bytes": 8863,
+      "sha256": "c48ae1576313755a00cf3b7efeb50e37be386974d2c753bb80967c7a3d179df5"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "bytes": 26695,
+      "sha256": "f2d902951d07b85232c90915134335b60f5b1fb4ac674f34e0574ecf76f9f374"
+    },
+    "arb-executor/live_v4.py": {
+      "bytes": 1028619,
+      "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_maker_role_addendum_v2.js": {
+      "bytes": 23409,
+      "sha256": "6749a9b7425bdfaf610b0d0bdfa0f874f6ae3053c857111bbf07b2ae356b77e2"
+    }
+  },
+  "private_ticks": {
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG": {
+      "file": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz",
+      "bytes": 870974,
+      "sha256": "d0d32f6a1ea6191fb92802f85d1674a29f58629ca1f4af2daa85fffb1f4095b9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR": {
+      "file": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz",
+      "bytes": 806437,
+      "sha256": "27383bc516c05a0857fa95cf456e4edb332f707a1136f03e8aca28fec09750ea"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK": {
+      "file": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK.csv.gz",
+      "bytes": 1336372,
+      "sha256": "41ac9a7102cd7cd701a60c4051771d6cbc66885d4eb428660b48e0b82d9b07ce"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB": {
+      "file": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz",
+      "bytes": 1403319,
+      "sha256": "1e2fff31e866c9888ec631f881a128f805a50d0e01de291b52c78eccebfa57ee"
+    }
+  }
+}

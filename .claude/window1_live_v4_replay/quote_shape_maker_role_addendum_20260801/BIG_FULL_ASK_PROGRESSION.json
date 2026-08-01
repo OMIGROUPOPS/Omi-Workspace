@@ -1,0 +1,727 @@
+{
+  "schema_version": "WINDOW1_BIG_FULL_ASK_PROGRESSION_V1",
+  "score_free": true,
+  "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+  "leg_id": "BIG",
+  "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG",
+  "window": {
+    "left_ts": 1784471400,
+    "right_ts": 1784505540,
+    "scheduled_start_ts": 1784500200,
+    "actual_bell_ts": 1784505600
+  },
+  "action_ts": 1784484949,
+  "action_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1777",
+  "action_x_cents": 55,
+  "valid_raw_book_receipts": 13541,
+  "ask_episode_count": 26,
+  "minimum_best_ask_entire_window_cents": 55,
+  "minimum_best_ask_before_or_at_action_cents": 55,
+  "minimum_best_ask_strictly_after_action_cents": 55,
+  "ask_ever_below_55": false,
+  "ask_ever_below_action_x": false,
+  "action_episode": {
+    "ask_cents": 55,
+    "start_ts": 1784471490,
+    "start_clock": {
+      "timestamp_epoch": 1784471490,
+      "t_minus_scheduled_seconds": 28710,
+      "t_minus_actual_bell_seconds": 34110
+    },
+    "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1404",
+    "last_receipt_ts": 1784486297,
+    "end_ts_exclusive": 1784486305,
+    "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1867",
+    "state_interval_seconds_until_next_change": 14815,
+    "observed_receipt_span_seconds": 14807,
+    "receipt_count": 464,
+    "bid_min": 53,
+    "bid_max": 55,
+    "last_values": [
+      56,
+      55
+    ],
+    "displayed_ask_size_min": 1,
+    "displayed_ask_size_max": 2044,
+    "top_five_ask_depth_min": 3348,
+    "top_five_ask_depth_max": 17421
+  },
+  "participant_identity_available": false,
+  "seller_count_at_55_establishable": false,
+  "episodes": [
+    {
+      "ask_cents": 55,
+      "start_ts": 1784471490,
+      "start_clock": {
+        "timestamp_epoch": 1784471490,
+        "t_minus_scheduled_seconds": 28710,
+        "t_minus_actual_bell_seconds": 34110
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1404",
+      "last_receipt_ts": 1784486297,
+      "end_ts_exclusive": 1784486305,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1867",
+      "state_interval_seconds_until_next_change": 14815,
+      "observed_receipt_span_seconds": 14807,
+      "receipt_count": 464,
+      "bid_min": 53,
+      "bid_max": 55,
+      "last_values": [
+        56,
+        55
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 2044,
+      "top_five_ask_depth_min": 3348,
+      "top_five_ask_depth_max": 17421
+    },
+    {
+      "ask_cents": 57,
+      "start_ts": 1784486305,
+      "start_clock": {
+        "timestamp_epoch": 1784486305,
+        "t_minus_scheduled_seconds": 13895,
+        "t_minus_actual_bell_seconds": 19295
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-1868",
+      "last_receipt_ts": 1784490320,
+      "end_ts_exclusive": 1784490360,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2349",
+      "state_interval_seconds_until_next_change": 4055,
+      "observed_receipt_span_seconds": 4015,
+      "receipt_count": 482,
+      "bid_min": 55,
+      "bid_max": 56,
+      "last_values": [
+        55
+      ],
+      "displayed_ask_size_min": 347,
+      "displayed_ask_size_max": 395,
+      "top_five_ask_depth_min": 2016,
+      "top_five_ask_depth_max": 14777
+    },
+    {
+      "ask_cents": 58,
+      "start_ts": 1784490360,
+      "start_clock": {
+        "timestamp_epoch": 1784490360,
+        "t_minus_scheduled_seconds": 9840,
+        "t_minus_actual_bell_seconds": 15240
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2350",
+      "last_receipt_ts": 1784491713,
+      "end_ts_exclusive": 1784491755,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2385",
+      "state_interval_seconds_until_next_change": 1395,
+      "observed_receipt_span_seconds": 1353,
+      "receipt_count": 36,
+      "bid_min": 56,
+      "bid_max": 57,
+      "last_values": [
+        55
+      ],
+      "displayed_ask_size_min": 4,
+      "displayed_ask_size_max": 4,
+      "top_five_ask_depth_min": 2169,
+      "top_five_ask_depth_max": 3369
+    },
+    {
+      "ask_cents": 60,
+      "start_ts": 1784491755,
+      "start_clock": {
+        "timestamp_epoch": 1784491755,
+        "t_minus_scheduled_seconds": 8445,
+        "t_minus_actual_bell_seconds": 13845
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2386",
+      "last_receipt_ts": 1784491755,
+      "end_ts_exclusive": 1784491755,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2386",
+      "state_interval_seconds_until_next_change": 0,
+      "observed_receipt_span_seconds": 0,
+      "receipt_count": 1,
+      "bid_min": 57,
+      "bid_max": 57,
+      "last_values": [
+        55
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 1,
+      "top_five_ask_depth_min": 4853,
+      "top_five_ask_depth_max": 4853
+    },
+    {
+      "ask_cents": 61,
+      "start_ts": 1784491755,
+      "start_clock": {
+        "timestamp_epoch": 1784491755,
+        "t_minus_scheduled_seconds": 8445,
+        "t_minus_actual_bell_seconds": 13845
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2387",
+      "last_receipt_ts": 1784491762,
+      "end_ts_exclusive": 1784491762,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2397",
+      "state_interval_seconds_until_next_change": 7,
+      "observed_receipt_span_seconds": 7,
+      "receipt_count": 11,
+      "bid_min": 57,
+      "bid_max": 58,
+      "last_values": [
+        55
+      ],
+      "displayed_ask_size_min": 625,
+      "displayed_ask_size_max": 626,
+      "top_five_ask_depth_min": 4620,
+      "top_five_ask_depth_max": 4971
+    },
+    {
+      "ask_cents": 60,
+      "start_ts": 1784491762,
+      "start_clock": {
+        "timestamp_epoch": 1784491762,
+        "t_minus_scheduled_seconds": 8438,
+        "t_minus_actual_bell_seconds": 13838
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2398",
+      "last_receipt_ts": 1784493378,
+      "end_ts_exclusive": 1784493666,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2455",
+      "state_interval_seconds_until_next_change": 1904,
+      "observed_receipt_span_seconds": 1616,
+      "receipt_count": 58,
+      "bid_min": 58,
+      "bid_max": 60,
+      "last_values": [
+        55,
+        60,
+        61
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 65,
+      "top_five_ask_depth_min": 3176,
+      "top_five_ask_depth_max": 5760
+    },
+    {
+      "ask_cents": 61,
+      "start_ts": 1784493666,
+      "start_clock": {
+        "timestamp_epoch": 1784493666,
+        "t_minus_scheduled_seconds": 6534,
+        "t_minus_actual_bell_seconds": 11934
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2456",
+      "last_receipt_ts": 1784493788,
+      "end_ts_exclusive": 1784493788,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2512",
+      "state_interval_seconds_until_next_change": 122,
+      "observed_receipt_span_seconds": 122,
+      "receipt_count": 57,
+      "bid_min": 60,
+      "bid_max": 60,
+      "last_values": [
+        61
+      ],
+      "displayed_ask_size_min": 2,
+      "displayed_ask_size_max": 969,
+      "top_five_ask_depth_min": 4622,
+      "top_five_ask_depth_max": 5764
+    },
+    {
+      "ask_cents": 62,
+      "start_ts": 1784493788,
+      "start_clock": {
+        "timestamp_epoch": 1784493788,
+        "t_minus_scheduled_seconds": 6412,
+        "t_minus_actual_bell_seconds": 11812
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2513",
+      "last_receipt_ts": 1784493788,
+      "end_ts_exclusive": 1784493788,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2514",
+      "state_interval_seconds_until_next_change": 0,
+      "observed_receipt_span_seconds": 0,
+      "receipt_count": 2,
+      "bid_min": 60,
+      "bid_max": 60,
+      "last_values": [
+        61
+      ],
+      "displayed_ask_size_min": 56,
+      "displayed_ask_size_max": 203,
+      "top_five_ask_depth_min": 5663,
+      "top_five_ask_depth_max": 5810
+    },
+    {
+      "ask_cents": 63,
+      "start_ts": 1784493788,
+      "start_clock": {
+        "timestamp_epoch": 1784493788,
+        "t_minus_scheduled_seconds": 6412,
+        "t_minus_actual_bell_seconds": 11812
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2515",
+      "last_receipt_ts": 1784498732,
+      "end_ts_exclusive": 1784498732,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2885",
+      "state_interval_seconds_until_next_change": 4944,
+      "observed_receipt_span_seconds": 4944,
+      "receipt_count": 371,
+      "bid_min": 60,
+      "bid_max": 63,
+      "last_values": [
+        61,
+        62,
+        63,
+        64
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 2035,
+      "top_five_ask_depth_min": 1795,
+      "top_five_ask_depth_max": 6854
+    },
+    {
+      "ask_cents": 64,
+      "start_ts": 1784498732,
+      "start_clock": {
+        "timestamp_epoch": 1784498732,
+        "t_minus_scheduled_seconds": 1468,
+        "t_minus_actual_bell_seconds": 6868
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2886",
+      "last_receipt_ts": 1784498732,
+      "end_ts_exclusive": 1784498733,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2887",
+      "state_interval_seconds_until_next_change": 1,
+      "observed_receipt_span_seconds": 0,
+      "receipt_count": 2,
+      "bid_min": 61,
+      "bid_max": 61,
+      "last_values": [
+        63
+      ],
+      "displayed_ask_size_min": 364,
+      "displayed_ask_size_max": 386,
+      "top_five_ask_depth_min": 2440,
+      "top_five_ask_depth_max": 2462
+    },
+    {
+      "ask_cents": 63,
+      "start_ts": 1784498733,
+      "start_clock": {
+        "timestamp_epoch": 1784498733,
+        "t_minus_scheduled_seconds": 1467,
+        "t_minus_actual_bell_seconds": 6867
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-2888",
+      "last_receipt_ts": 1784499092,
+      "end_ts_exclusive": 1784499092,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-3241",
+      "state_interval_seconds_until_next_change": 359,
+      "observed_receipt_span_seconds": 359,
+      "receipt_count": 354,
+      "bid_min": 61,
+      "bid_max": 62,
+      "last_values": [
+        64,
+        63
+      ],
+      "displayed_ask_size_min": 27,
+      "displayed_ask_size_max": 2266,
+      "top_five_ask_depth_min": 1767,
+      "top_five_ask_depth_max": 20277
+    },
+    {
+      "ask_cents": 62,
+      "start_ts": 1784499092,
+      "start_clock": {
+        "timestamp_epoch": 1784499092,
+        "t_minus_scheduled_seconds": 1108,
+        "t_minus_actual_bell_seconds": 6508
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-3242",
+      "last_receipt_ts": 1784499605,
+      "end_ts_exclusive": 1784499615,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-3818",
+      "state_interval_seconds_until_next_change": 523,
+      "observed_receipt_span_seconds": 513,
+      "receipt_count": 577,
+      "bid_min": 61,
+      "bid_max": 62,
+      "last_values": [
+        63,
+        62
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 227,
+      "top_five_ask_depth_min": 2468,
+      "top_five_ask_depth_max": 20685
+    },
+    {
+      "ask_cents": 63,
+      "start_ts": 1784499615,
+      "start_clock": {
+        "timestamp_epoch": 1784499615,
+        "t_minus_scheduled_seconds": 585,
+        "t_minus_actual_bell_seconds": 5985
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-3819",
+      "last_receipt_ts": 1784500846,
+      "end_ts_exclusive": 1784500860,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-9662",
+      "state_interval_seconds_until_next_change": 1245,
+      "observed_receipt_span_seconds": 1231,
+      "receipt_count": 5844,
+      "bid_min": 62,
+      "bid_max": 63,
+      "last_values": [
+        63,
+        62,
+        64
+      ],
+      "displayed_ask_size_min": 2,
+      "displayed_ask_size_max": 5989,
+      "top_five_ask_depth_min": 6791,
+      "top_five_ask_depth_max": 27764
+    },
+    {
+      "ask_cents": 64,
+      "start_ts": 1784500860,
+      "start_clock": {
+        "timestamp_epoch": 1784500860,
+        "t_minus_scheduled_seconds": -660,
+        "t_minus_actual_bell_seconds": 4740
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-9663",
+      "last_receipt_ts": 1784501330,
+      "end_ts_exclusive": 1784501331,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-10774",
+      "state_interval_seconds_until_next_change": 471,
+      "observed_receipt_span_seconds": 470,
+      "receipt_count": 1112,
+      "bid_min": 62,
+      "bid_max": 63,
+      "last_values": [
+        64,
+        63,
+        65
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 7682,
+      "top_five_ask_depth_min": 4081,
+      "top_five_ask_depth_max": 24823
+    },
+    {
+      "ask_cents": 63,
+      "start_ts": 1784501331,
+      "start_clock": {
+        "timestamp_epoch": 1784501331,
+        "t_minus_scheduled_seconds": -1131,
+        "t_minus_actual_bell_seconds": 4269
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-10775",
+      "last_receipt_ts": 1784501365,
+      "end_ts_exclusive": 1784501365,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-10838",
+      "state_interval_seconds_until_next_change": 34,
+      "observed_receipt_span_seconds": 34,
+      "receipt_count": 64,
+      "bid_min": 61,
+      "bid_max": 62,
+      "last_values": [
+        65
+      ],
+      "displayed_ask_size_min": 78,
+      "displayed_ask_size_max": 487,
+      "top_five_ask_depth_min": 4459,
+      "top_five_ask_depth_max": 10828
+    },
+    {
+      "ask_cents": 62,
+      "start_ts": 1784501365,
+      "start_clock": {
+        "timestamp_epoch": 1784501365,
+        "t_minus_scheduled_seconds": -1165,
+        "t_minus_actual_bell_seconds": 4235
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-10839",
+      "last_receipt_ts": 1784502190,
+      "end_ts_exclusive": 1784502190,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-12633",
+      "state_interval_seconds_until_next_change": 825,
+      "observed_receipt_span_seconds": 825,
+      "receipt_count": 1795,
+      "bid_min": 60,
+      "bid_max": 61,
+      "last_values": [
+        65,
+        62,
+        61
+      ],
+      "displayed_ask_size_min": 24,
+      "displayed_ask_size_max": 15749,
+      "top_five_ask_depth_min": 3662,
+      "top_five_ask_depth_max": 54251
+    },
+    {
+      "ask_cents": 61,
+      "start_ts": 1784502190,
+      "start_clock": {
+        "timestamp_epoch": 1784502190,
+        "t_minus_scheduled_seconds": -1990,
+        "t_minus_actual_bell_seconds": 3410
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-12634",
+      "last_receipt_ts": 1784502473,
+      "end_ts_exclusive": 1784502473,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-12848",
+      "state_interval_seconds_until_next_change": 283,
+      "observed_receipt_span_seconds": 283,
+      "receipt_count": 215,
+      "bid_min": 59,
+      "bid_max": 60,
+      "last_values": [
+        62,
+        61,
+        60
+      ],
+      "displayed_ask_size_min": 41,
+      "displayed_ask_size_max": 8351,
+      "top_five_ask_depth_min": 9175,
+      "top_five_ask_depth_max": 72662
+    },
+    {
+      "ask_cents": 60,
+      "start_ts": 1784502473,
+      "start_clock": {
+        "timestamp_epoch": 1784502473,
+        "t_minus_scheduled_seconds": -2273,
+        "t_minus_actual_bell_seconds": 3127
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-12849",
+      "last_receipt_ts": 1784504969,
+      "end_ts_exclusive": 1784504969,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14578",
+      "state_interval_seconds_until_next_change": 2496,
+      "observed_receipt_span_seconds": 2496,
+      "receipt_count": 1730,
+      "bid_min": 58,
+      "bid_max": 59,
+      "last_values": [
+        60,
+        59,
+        61,
+        58
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 9151,
+      "top_five_ask_depth_min": 15967,
+      "top_five_ask_depth_max": 71484
+    },
+    {
+      "ask_cents": 59,
+      "start_ts": 1784504969,
+      "start_clock": {
+        "timestamp_epoch": 1784504969,
+        "t_minus_scheduled_seconds": -4769,
+        "t_minus_actual_bell_seconds": 631
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14579",
+      "last_receipt_ts": 1784504986,
+      "end_ts_exclusive": 1784504988,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14588",
+      "state_interval_seconds_until_next_change": 19,
+      "observed_receipt_span_seconds": 17,
+      "receipt_count": 10,
+      "bid_min": 58,
+      "bid_max": 58,
+      "last_values": [
+        58
+      ],
+      "displayed_ask_size_min": 1,
+      "displayed_ask_size_max": 1,
+      "top_five_ask_depth_min": 16152,
+      "top_five_ask_depth_max": 16223
+    },
+    {
+      "ask_cents": 60,
+      "start_ts": 1784504988,
+      "start_clock": {
+        "timestamp_epoch": 1784504988,
+        "t_minus_scheduled_seconds": -4788,
+        "t_minus_actual_bell_seconds": 612
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14589",
+      "last_receipt_ts": 1784505075,
+      "end_ts_exclusive": 1784505075,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14683",
+      "state_interval_seconds_until_next_change": 87,
+      "observed_receipt_span_seconds": 87,
+      "receipt_count": 95,
+      "bid_min": 58,
+      "bid_max": 59,
+      "last_values": [
+        58,
+        60
+      ],
+      "displayed_ask_size_min": 58,
+      "displayed_ask_size_max": 6642,
+      "top_five_ask_depth_min": 7419,
+      "top_five_ask_depth_max": 21536
+    },
+    {
+      "ask_cents": 59,
+      "start_ts": 1784505075,
+      "start_clock": {
+        "timestamp_epoch": 1784505075,
+        "t_minus_scheduled_seconds": -4875,
+        "t_minus_actual_bell_seconds": 525
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14684",
+      "last_receipt_ts": 1784505308,
+      "end_ts_exclusive": 1784505318,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14790",
+      "state_interval_seconds_until_next_change": 243,
+      "observed_receipt_span_seconds": 233,
+      "receipt_count": 107,
+      "bid_min": 58,
+      "bid_max": 58,
+      "last_values": [
+        60,
+        59
+      ],
+      "displayed_ask_size_min": 14,
+      "displayed_ask_size_max": 1201,
+      "top_five_ask_depth_min": 6042,
+      "top_five_ask_depth_max": 30384
+    },
+    {
+      "ask_cents": 60,
+      "start_ts": 1784505318,
+      "start_clock": {
+        "timestamp_epoch": 1784505318,
+        "t_minus_scheduled_seconds": -5118,
+        "t_minus_actual_bell_seconds": 282
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14791",
+      "last_receipt_ts": 1784505352,
+      "end_ts_exclusive": 1784505378,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14804",
+      "state_interval_seconds_until_next_change": 60,
+      "observed_receipt_span_seconds": 34,
+      "receipt_count": 14,
+      "bid_min": 58,
+      "bid_max": 58,
+      "last_values": [
+        59,
+        60
+      ],
+      "displayed_ask_size_min": 252,
+      "displayed_ask_size_max": 268,
+      "top_five_ask_depth_min": 16017,
+      "top_five_ask_depth_max": 19441
+    },
+    {
+      "ask_cents": 61,
+      "start_ts": 1784505378,
+      "start_clock": {
+        "timestamp_epoch": 1784505378,
+        "t_minus_scheduled_seconds": -5178,
+        "t_minus_actual_bell_seconds": 222
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14805",
+      "last_receipt_ts": 1784505381,
+      "end_ts_exclusive": 1784505381,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14816",
+      "state_interval_seconds_until_next_change": 3,
+      "observed_receipt_span_seconds": 3,
+      "receipt_count": 12,
+      "bid_min": 58,
+      "bid_max": 58,
+      "last_values": [
+        60
+      ],
+      "displayed_ask_size_min": 3304,
+      "displayed_ask_size_max": 3304,
+      "top_five_ask_depth_min": 10929,
+      "top_five_ask_depth_max": 20961
+    },
+    {
+      "ask_cents": 60,
+      "start_ts": 1784505381,
+      "start_clock": {
+        "timestamp_epoch": 1784505381,
+        "t_minus_scheduled_seconds": -5181,
+        "t_minus_actual_bell_seconds": 219
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14817",
+      "last_receipt_ts": 1784505381,
+      "end_ts_exclusive": 1784505381,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14821",
+      "state_interval_seconds_until_next_change": 0,
+      "observed_receipt_span_seconds": 0,
+      "receipt_count": 5,
+      "bid_min": 58,
+      "bid_max": 58,
+      "last_values": [
+        60
+      ],
+      "displayed_ask_size_min": 4941,
+      "displayed_ask_size_max": 4941,
+      "top_five_ask_depth_min": 15951,
+      "top_five_ask_depth_max": 20892
+    },
+    {
+      "ask_cents": 61,
+      "start_ts": 1784505381,
+      "start_clock": {
+        "timestamp_epoch": 1784505381,
+        "t_minus_scheduled_seconds": -5181,
+        "t_minus_actual_bell_seconds": 219
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14822",
+      "last_receipt_ts": 1784505414,
+      "end_ts_exclusive": 1784505420,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14836",
+      "state_interval_seconds_until_next_change": 39,
+      "observed_receipt_span_seconds": 33,
+      "receipt_count": 15,
+      "bid_min": 58,
+      "bid_max": 58,
+      "last_values": [
+        60,
+        61
+      ],
+      "displayed_ask_size_min": 2303,
+      "displayed_ask_size_max": 7244,
+      "top_five_ask_depth_min": 10078,
+      "top_five_ask_depth_max": 22960
+    },
+    {
+      "ask_cents": 60,
+      "start_ts": 1784505420,
+      "start_clock": {
+        "timestamp_epoch": 1784505420,
+        "t_minus_scheduled_seconds": -5220,
+        "t_minus_actual_bell_seconds": 180
+      },
+      "start_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14837",
+      "last_receipt_ts": 1784505540,
+      "end_ts_exclusive": 1784505540,
+      "end_receipt_inclusive": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14944",
+      "state_interval_seconds_until_next_change": 120,
+      "observed_receipt_span_seconds": 120,
+      "receipt_count": 108,
+      "bid_min": 58,
+      "bid_max": 58,
+      "last_values": [
+        61,
+        60
+      ],
+      "displayed_ask_size_min": 3,
+      "displayed_ask_size_max": 3694,
+      "top_five_ask_depth_min": 16428,
+      "top_five_ask_depth_max": 32554
+    }
+  ]
+}

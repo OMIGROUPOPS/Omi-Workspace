@@ -1,0 +1,24 @@
+{
+  "schema_version": "WINDOW1_V7_FLOOR_SEMANTIC_SUPERSESSION_V8",
+  "v7_commit": "0ec177445c04709cb147617a6419c3ea981585e5",
+  "v7_event_ledger": {
+    "path": ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/EVENT_LEDGER.jsonl.gz",
+    "sha256": "3a9830e942346d29ac0a4fe6fe57b391ff873808800887ad726306f9a7184a0c"
+  },
+  "v7_conservation": {
+    "path": ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/CONSERVATION_RECEIPT.json",
+    "sha256": "054cbbdce533698aa72af59d492ec718e3c185c2a68f767796d1699d06615fb9"
+  },
+  "defects": [
+    {
+      "name": "ASK_FLOOR_OVERLOADED_AS_OBJECTIVE_TRADE_FLOOR",
+      "description": "V7 used the capacity-proven ask floor as both an execution-reach floor and the objective traded-price floor."
+    },
+    {
+      "name": "BLANK_CLOSE_COERCED_TO_ZERO",
+      "description": "V7 converted blank source Window-1 closes through Number(blank), producing zero; 301 legs were affected, including 267 of the reported 317 above-close legs."
+    }
+  ],
+  "preserved": "All V7 decisions, actions, fill classes, clocks and receipts remain byte-identical.",
+  "corrected": "V8 reports ask-capacity and true-trade floors side by side, binds blank closes as unavailable, and recomputes every gap and ceiling without changing policy behavior."
+}

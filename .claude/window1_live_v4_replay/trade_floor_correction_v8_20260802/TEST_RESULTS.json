@@ -1,0 +1,9 @@
+{
+  "schema_version": "WINDOW1_TRADE_FLOOR_CORRECTION_TEST_RESULTS_V8",
+  "command": "node arb-executor/tests/test_window1_trade_floor_correction_v8.js",
+  "tests": 1,
+  "assertion_scope": "804 events; 1,608 legs; dual-floor conservation; five ceiling variants; V7 class reconciliation; print provenance; guarded chronology; exact size; null metrics; source hashes; forbidden access",
+  "passed": 1,
+  "failed": 0,
+  "stdout": "PASS test_window1_trade_floor_correction_v8: 1608 legs, 804 events, 0 failures"
+}

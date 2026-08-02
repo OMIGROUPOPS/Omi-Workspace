@@ -1,0 +1,3266 @@
+{
+  "schema_version": "WINDOW1_TRADE_FLOOR_CORRECTION_SOURCE_MANIFEST_V8",
+  "committed": {
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json": {
+      "sha256": "f92aa4a9eaebd9aa15da198da0c1351bf7398d3acaeb893d718d16fe63cfcd88",
+      "bytes": 1737135
+    },
+    ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/CEILING_CENSUS.json": {
+      "sha256": "b3aa41c3876db42fc36420d8dd77090c16d8789d37afb0aaeb7209633e44de73",
+      "bytes": 1208000
+    },
+    ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl": {
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed",
+      "bytes": 3696777
+    },
+    ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "3a9830e942346d29ac0a4fe6fe57b391ff873808800887ad726306f9a7184a0c",
+      "bytes": 432599
+    },
+    ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/CONSERVATION_RECEIPT.json": {
+      "sha256": "054cbbdce533698aa72af59d492ec718e3c185c2a68f767796d1699d06615fb9",
+      "bytes": 714
+    },
+    "arb-executor/analysis/build_window1_trade_floor_correction_v8.js": {
+      "sha256": "f43466fe57b0298f87b9c9e78b569dc2c6fc5cf5c7ff8c044b58b50746b48a60",
+      "bytes": 31554
+    },
+    "arb-executor/tests/test_window1_trade_floor_correction_v8.js": {
+      "sha256": "24f418c286da4fb71bda684819e33ed8eb46fbbb2f0027f1d58a5c5a0a1b0979",
+      "bytes": 5077
+    }
+  },
+  "private_guarded_cache_v3": {
+    "KXATPCHALLENGERMATCH-26JUL12ALVVAN.json.gz": {
+      "bytes": 122704,
+      "sha256": "027117b7c97b4bfaec357b05ab27d812b5c2655ab861632debfb468dec3ca8d1"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12ARNROM.json.gz": {
+      "bytes": 174962,
+      "sha256": "cfac702be1fefbe581c6ef86184dac6b8158466fd0d82aa890e905e35e14885b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12AVEFOR.json.gz": {
+      "bytes": 208203,
+      "sha256": "2349f6a14d0d4df5fcc7146dbc98500624b4d0b77283eb9d563741684c31c994"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12AZKLEO.json.gz": {
+      "bytes": 220168,
+      "sha256": "35dd212010a34ed05a829b444f2a73d6309332e98bcf394d3b1eb365f2c04cd7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BALPET.json.gz": {
+      "bytes": 67924,
+      "sha256": "9df3d1508091090292ee61a313932b2ce3533eece981322cc767343f9f23a598"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BARREI.json.gz": {
+      "bytes": 644827,
+      "sha256": "f4549d66001068f7c7b3f0c9405a4bcaf9a68e99577dfebd98435eb95f78552d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BARVIS.json.gz": {
+      "bytes": 531758,
+      "sha256": "937eb20f56b8f5e45018ac5d9fe3c4018d6055056db4be0af6a95af53a3e3a97"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BINGIL.json.gz": {
+      "bytes": 164420,
+      "sha256": "8fd8d579206dbe753f8e2ca541ad540e04dacdc113780a235ce78912583ae6ae"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BOOONC.json.gz": {
+      "bytes": 980234,
+      "sha256": "f542d97783ddbb2dffc65d15d99203ea22c10089972242b64f21ba032abeecc4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BOSCOP.json.gz": {
+      "bytes": 711124,
+      "sha256": "c39207f3458d14567cb918a987a9085c78406e274130a05fc0a89682c1cbad9f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BOUVIT.json.gz": {
+      "bytes": 124807,
+      "sha256": "26ec1c9a8533c59fce2fa6d430e8d56ee06d5ecb5d8335330159ce206bbc3496"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BROBAR.json.gz": {
+      "bytes": 231985,
+      "sha256": "c75e9c2660282fa859d7aa3549c949f661451332c424faa237bd3645cefe993f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BROGIU.json.gz": {
+      "bytes": 411661,
+      "sha256": "b882164a80384ed25e5dc2e0216c0f22cbfd796e2235d86cf9a4c5061c4490e1"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BROHUA.json.gz": {
+      "bytes": 112352,
+      "sha256": "37cd3cf3eb2e5ffbe7a87b42327034dbde30bfa71bfb65604532a22168f600a2"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BRUGAD.json.gz": {
+      "bytes": 326550,
+      "sha256": "abb27e8da897c50a35efa1caef01c87c1ac05cfe8de4d35e65fd1057355dde16"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12CALRAD.json.gz": {
+      "bytes": 155840,
+      "sha256": "d2181531300b28a962a3076d7c8499e695ca2ff8e387deb0854b233ca0f13c8d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12CHAJON.json.gz": {
+      "bytes": 117442,
+      "sha256": "90654373f542224f057d856ea1cc1eb9e5441b67fe817742bc2b839109ec76a9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12CHISEA.json.gz": {
+      "bytes": 157471,
+      "sha256": "8ab162f687102b080c44d8fd60baf871e5b6903fabe1f93d62db9bd4348a8373"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12CHOGAS.json.gz": {
+      "bytes": 530850,
+      "sha256": "5518875f06fbb1f4f527169e419baa977eb756190dacb0b883b80fcb4a3af361"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12CRIBAS.json.gz": {
+      "bytes": 230935,
+      "sha256": "6fff0381999ee52bad365d8f8255592fce99c1fa443d70ce7fffe0b4ac684548"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12DEGEE.json.gz": {
+      "bytes": 801134,
+      "sha256": "a66527e074870bbc7c6c72b196e3713fd278ea2b73cd30d6a9041458983aeb63"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12DELMAK.json.gz": {
+      "bytes": 53763,
+      "sha256": "fdbf3e78dde983e3a6383b8c24233c97728952f324265f0d928bd87a1a36bee3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12DEVGON.json.gz": {
+      "bytes": 143291,
+      "sha256": "82ff02621c36cf86da43db71b99026bc8362eeac2c511541ac02c1a53e444de9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12DODDEL.json.gz": {
+      "bytes": 435780,
+      "sha256": "bcdcc9a23cc943cc68e0e6a3d12378b188435161f6c5db9e5695e4dadaed5c09"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12DROPIR.json.gz": {
+      "bytes": 233707,
+      "sha256": "10c998ebb91d4223e6d9aa0bee22cf7a8f776517107a6fbed2fd10017122ae55"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12ECHMUN.json.gz": {
+      "bytes": 421024,
+      "sha256": "3fbd41eb832468f79ea582d6d0689875f64f431bc537d23f286b0c885bb236c3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12FANBIG.json.gz": {
+      "bytes": 272237,
+      "sha256": "5fdc6567a9266c81616942b686227e7f46bf91afb29e852e70988237aef5d612"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12FEAWAL.json.gz": {
+      "bytes": 781443,
+      "sha256": "af72cea4bce24fed5ecf1dcd07ce235fc328812737a8d70c6f888237066bbc2b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12FORPAM.json.gz": {
+      "bytes": 162818,
+      "sha256": "44174f0d3b2d751530462223e606880ae6021303d656b09690458e70022ad232"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12FUEROS.json.gz": {
+      "bytes": 219632,
+      "sha256": "85d34cd5ff9df7b2b2b3ff91143a85ff355f7924de7b35d507159a9f68291486"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12GANJAN.json.gz": {
+      "bytes": 132747,
+      "sha256": "7777af069b96e2c2981295034983b145a12815b8d14e051c45e56114870d0320"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12GEOMAG.json.gz": {
+      "bytes": 342865,
+      "sha256": "1e3ec13eca53d830b27944a7c450b16d1108853ba6ae2029542812158137d56f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12GIESHE.json.gz": {
+      "bytes": 101351,
+      "sha256": "703ed9bbe52d16abe7bcec1bc281f6f1ae081c52705d0cef2fe388e71d3565b0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR.json.gz": {
+      "bytes": 269211,
+      "sha256": "0c91f4d7d0479c736ddcc77cc0da074fc149489bbe64e4a0c6bd043e7ec3ec33"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12GURDAL.json.gz": {
+      "bytes": 83473,
+      "sha256": "31a32af12bf97f4d85bf588fe09f96b4cbeb721d3454478cd3e867349b85f46e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12GUTCAM.json.gz": {
+      "bytes": 118180,
+      "sha256": "26a4dd454af4a40a1f9a049fc4d213d1246b6bfc82f12cab6ebcaaca129d65e9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12HECISO.json.gz": {
+      "bytes": 193647,
+      "sha256": "4cdea035f4a44661b76a4d2f6b9bf2a7ada56812415b5b4ed9e42163c4d75ac6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12HERALM.json.gz": {
+      "bytes": 490399,
+      "sha256": "7f73af6f3e38ce7b1088700ce76e6dc8528f8c03c0491d4394d08ab04d4442e8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12HOHSUR.json.gz": {
+      "bytes": 152323,
+      "sha256": "dfae925b48a20cfa429282f9a46ac524e2e9e9a3ee27ea789bc33b1fb46b3600"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12HOUJOR.json.gz": {
+      "bytes": 368970,
+      "sha256": "7f0ac3d681b89fe9d42d48c53fe55999b88b59166ee967907bc140cb87693847"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12KARMAR.json.gz": {
+      "bytes": 72862,
+      "sha256": "15b7967cdbeaf2536de4d8828c87b60d449472f1d49952e9c0e0ac2df28ad310"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12KRALOR.json.gz": {
+      "bytes": 114131,
+      "sha256": "2292b11bf3f9b507c349e7daf9918e14945d5a0687bb48fb22aa12ab29d75e19"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12KUMTUR.json.gz": {
+      "bytes": 91529,
+      "sha256": "eef02fa8777dc90b67a38d7ec252d5288fd9e21e4dd8352ea7ea41afd7e4dc13"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12KUZDE.json.gz": {
+      "bytes": 28287,
+      "sha256": "5fb53f9d7d3b87edd1a8bd3d66682abf2b2ed2e9316fafca8f7694fed0e2387f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12LAGTEP.json.gz": {
+      "bytes": 237837,
+      "sha256": "30f7c945c3b587914fd522127cd835180fa6164c9bf01b4270fb6db86a8a4388"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12LANKOB.json.gz": {
+      "bytes": 167869,
+      "sha256": "a27c94bf4da9ee0357d7bc50ed05dcd6cde0fc0e46d93bdb2d59986c34cd2035"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12LINMAL.json.gz": {
+      "bytes": 178160,
+      "sha256": "077f994ddf9ee5662a0f16fd427550a5a4b255a0c8fb8afeb96c495e8d941061"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12MARARS.json.gz": {
+      "bytes": 230060,
+      "sha256": "b4a84b5f4d529122a7fef66dae86090735c0356ca9d2d0d455b58b7b43d658d4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12MARFOR.json.gz": {
+      "bytes": 23519,
+      "sha256": "a41d2d0f1ecb25b5fc9d7bfe7fd0fd30d77b4b9db2baaca94511c2ad206c3e02"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12MEJSOT.json.gz": {
+      "bytes": 197932,
+      "sha256": "38a6632a385e0856a399b3451f89e38d8956e56fe854d74ef51010d19a5520a6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12MIYKUZ.json.gz": {
+      "bytes": 426967,
+      "sha256": "c1f708c3fa93e3d4291f9f9dd2f812f55443f1becb11db2b19bb82825933f952"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12MOLDON.json.gz": {
+      "bytes": 87529,
+      "sha256": "39ffe9fd22de4cdad39642ae0b39f5a41e33b998784dc484169fde32c7c258b5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12MORPET.json.gz": {
+      "bytes": 169802,
+      "sha256": "fb59eb6984cd39a3950e0e5b5cf0a87a159b22683bd7c9ffeb493617b2c7104c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12OUAFER.json.gz": {
+      "bytes": 17196,
+      "sha256": "168df5eadc92564f1d1a96261dda0693c300d1218deecf38d6c9b33341b24e77"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12PALMAR.json.gz": {
+      "bytes": 100768,
+      "sha256": "aab82e9ddf99778fe862256a68daed40a1da6a9d42eb882843cce2dfa29bfcc8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12PEAKIR.json.gz": {
+      "bytes": 65946,
+      "sha256": "667f093ffd4e507c1a38bf79d513fb651b0bea9bcc6bec082bc1bffb80175f44"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12PIETAB.json.gz": {
+      "bytes": 185066,
+      "sha256": "88fa56f2d728755171c54e0b2fe06d9387aad7de478f55dd7861bb401db13247"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12POLKUH.json.gz": {
+      "bytes": 324287,
+      "sha256": "66b6ad1f93451e0a194a220da46784e9dd33b36fd10be24348bf2c7c8e17de04"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12POLVIN.json.gz": {
+      "bytes": 133316,
+      "sha256": "a16dce28fd55efcb0a8fa1302b45733d01de84a73e7ebcc377f974d83967d315"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12PRIBAL.json.gz": {
+      "bytes": 27206,
+      "sha256": "66c86a4a49f52cbbabe59ac01ea018c56c330ab4a1573a1d0f3073076bf8c6f6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12RAFAGU.json.gz": {
+      "bytes": 374297,
+      "sha256": "fadea955b1a27303418e1154d8226c1db257e479b5d5c60eafada411e307bd5b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12RAIZHU.json.gz": {
+      "bytes": 339166,
+      "sha256": "c3e7fe3aaa6c04093a0f2261123edc1667ddf8d0975cd363d807fa65b7fa8769"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12RAQKUM.json.gz": {
+      "bytes": 122946,
+      "sha256": "bcd3b67c3d955fcac63d53d21ea7a4c978769fa3545aa4b8c52f7f5c2555aa82"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12ROUGAN.json.gz": {
+      "bytes": 88785,
+      "sha256": "97da0795c13bc0003afefa77b797fb771a0bbc7d6c28a1f1c0679fd00f407681"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12SALARN.json.gz": {
+      "bytes": 82582,
+      "sha256": "d019576da5a57ae9ad8f434304f9c22631b23ce4692d9a413510570b5c55178c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12SANSCH.json.gz": {
+      "bytes": 1425732,
+      "sha256": "912fce934d3717f1e9afd70d44189ef29c05c265d3325ad67de3b0ddc24f2078"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12SIAIVA.json.gz": {
+      "bytes": 93989,
+      "sha256": "b68c33bcb9b9b84387341b2d926e6a53d0b5ed36de8b5ade3c65598f6381aa99"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12TOKROZ.json.gz": {
+      "bytes": 117931,
+      "sha256": "56bd0f1131225619a785e5b61992a737340856be32bbbf0c3cbeed3f69ab7ad7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12TROHOR.json.gz": {
+      "bytes": 97019,
+      "sha256": "62775eed4d014fc68dd186a0a5afbcf0337758b0cf5c85b2ff2a3879a75f131f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12VALNIJ.json.gz": {
+      "bytes": 23137,
+      "sha256": "1f3ab87a59d28bc5857b94b59406e8ca1b50cef24297c7a15163c02032df2b35"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12VANCHO.json.gz": {
+      "bytes": 279023,
+      "sha256": "0aa3655f6567186ea1504bc08b8336a95c2d51efeacc2a94ff3ff43e38552d92"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12VILRAH.json.gz": {
+      "bytes": 165967,
+      "sha256": "1957a564a03bec0687f1c27fb8641bcf624adc887aefc278317d0ee7d6eab7f7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12WESPAA.json.gz": {
+      "bytes": 168599,
+      "sha256": "62920690c2bbace41aef873c2e8612eb607656adec257f6d3447baef9f476529"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12WESSEL.json.gz": {
+      "bytes": 8209,
+      "sha256": "8cf15c58b73e90c0897f15124acd322950c8cf2b10601ecb1bac8279877e95da"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12WINROB.json.gz": {
+      "bytes": 358992,
+      "sha256": "3ff736643a85528ef0406067edd6182625cbb0b3dcd3758b6bc5863cf81bec2d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12YEVBOR.json.gz": {
+      "bytes": 17643,
+      "sha256": "7fabe2212b86e4cda9b412c842785ec481ce0698eb1108148bc2a9af3f515377"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12YIBMAL.json.gz": {
+      "bytes": 79575,
+      "sha256": "28ba39474f5774f8505c1050c1c9a8c3c8cf94b9a554d5d48d60f64b63d20a4f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12YOUDLI.json.gz": {
+      "bytes": 698727,
+      "sha256": "d8fc5413b2df7da98669e7940690528398f12ebf8e1680c1677403c95cfd0048"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13AGABAR.json.gz": {
+      "bytes": 843640,
+      "sha256": "6cf991548dfc0ba7925464f66a76fc4b93a6867d2d223faf2149150bdd1ff7ca"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13ALVKUM.json.gz": {
+      "bytes": 102442,
+      "sha256": "4e92aa2b09b5949dc6bf62fbb8ff8a130e4e2dce526beefeaa8f884f10b53002"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13ARSDAL.json.gz": {
+      "bytes": 275677,
+      "sha256": "974f22009de0b060144adf3fe6d5efdb8d552ea6e13bdad971d6a86f3d9a41ec"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13ARSMAR.json.gz": {
+      "bytes": 739938,
+      "sha256": "601ae25a733cdaa438c59b8f03aa49a8c34aab6175ab029929f4572354e33a72"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13BINFUE.json.gz": {
+      "bytes": 275028,
+      "sha256": "afa6cc8b16377cbe4c2140bed7d5d75f2f62949755803650ebee1dda25897f19"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13BOUGAN.json.gz": {
+      "bytes": 255831,
+      "sha256": "8e7a499235d4d022a76d589e7f5276945bdc8f49a2238061c56e87c548172eb9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13BOUZHA.json.gz": {
+      "bytes": 299485,
+      "sha256": "da8024989d5ce6b6b2598a189488760cff303017604e2f2decfd1be8cdf02e66"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13CHOSUR.json.gz": {
+      "bytes": 86072,
+      "sha256": "f10d6302f4b70deb927b086657270a3badc96b9f3810fda4fe2291d1754d9be5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13DONWES.json.gz": {
+      "bytes": 140347,
+      "sha256": "0f92b5a1e13c1a894373e9225089f7bc48d21449e202e0b5a9d4bf68230c7661"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13FORHUA.json.gz": {
+      "bytes": 74866,
+      "sha256": "6eca6b276b048f51618a3a76fbfbb5ba1f57d37ff41897e0377a297916696845"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13FORMAK.json.gz": {
+      "bytes": 100486,
+      "sha256": "b508dbc02e1fbf3c4a0e3bb9bdb020dfe61f1de2a2ee785a1d7720255916aeba"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13FORRAF.json.gz": {
+      "bytes": 38302,
+      "sha256": "391ce96840f04b0e029d902dcd1b4e792710feade63a84e5f04e301fc978b7f6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13GIUALM.json.gz": {
+      "bytes": 191473,
+      "sha256": "22f9e6ff74cecf6706516b083609df094f9781b04bacc571f20d1f35713a5f77"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13GREVAN.json.gz": {
+      "bytes": 119563,
+      "sha256": "51daf66fbcbaf3f83d660805d1ec53935f281c0621ce5cf4ca734c829914876a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13HOLWAT.json.gz": {
+      "bytes": 1138265,
+      "sha256": "f8df378871a8305487bc050b2278ab6c1d13e58aa94acc4f756f51c770ed9572"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13INCSTE.json.gz": {
+      "bytes": 1210474,
+      "sha256": "f9c8058d9d9bb5bb0c71db60198645726975d74f6d6705a48a68259d21fc00a7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13JONPET.json.gz": {
+      "bytes": 159994,
+      "sha256": "1f86f2d942c5aabac2c57839c8e252e63e321ffe9da3f2276eef77299931897c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13KENSHE.json.gz": {
+      "bytes": 1510674,
+      "sha256": "dd1abe214280d21458a3a9b7b372de501efae5b5f2ca6b19d11844260bf1a403"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13KRASAL.json.gz": {
+      "bytes": 124583,
+      "sha256": "92d8f59f22c63d68d23d250c761a111241ef1ee6d07f96120c95e6da43c3e261"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13KRUMAR.json.gz": {
+      "bytes": 176861,
+      "sha256": "be49a4744763347fc127c1af723929b717137874dc9e5baa887893a24d1682be"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13KUMLAG.json.gz": {
+      "bytes": 97859,
+      "sha256": "6a34dbd0033236b84e6194dc0b17f28f97b00f5818c2218f958bed54f49e1262"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13KUZNIJ.json.gz": {
+      "bytes": 219339,
+      "sha256": "02bc39cb4fc3c35aad06c5861ab6342c083b89a5bb54539352ef047e8325bbae"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13LANSHE.json.gz": {
+      "bytes": 287097,
+      "sha256": "e47bc621d02d12e6636de89e2400e371d81471837fdaef43fe9c1c08cc8371f0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13MONANG.json.gz": {
+      "bytes": 298677,
+      "sha256": "b64b2ad96f4f07e1d0e869ab1cc3c8ede0cd793cee9b35be846493b4d8b45164"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13MORFAN.json.gz": {
+      "bytes": 298660,
+      "sha256": "a27a3d013aeb9c779168ceda31ff8c4eefd4f490e42a11ecd323416c9c2c54d3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13MUNLEO.json.gz": {
+      "bytes": 354601,
+      "sha256": "a1d619ee8adc2a3250c104b3b49e41ee1fd3ea788b0607c66bd9c44f81938e28"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13NAPBAL.json.gz": {
+      "bytes": 418441,
+      "sha256": "abc67f2c5438e9f2e46feae774b4c0b26262a599437dc4a4f0012f280966910f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13NOGBRO.json.gz": {
+      "bytes": 1072425,
+      "sha256": "86f09b34b8f86f0f301069d52844f72bd56a0fc91d4d8cc5aae7ff87606b4f78"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13OUALIN.json.gz": {
+      "bytes": 28889,
+      "sha256": "f0288dd1c2ae2fc4966330f91192ab287d0e6e96227fa80fd3b3edcf7b3546df"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13PALGON.json.gz": {
+      "bytes": 187714,
+      "sha256": "c2307e6d35dce1160e89af57df14c3527d1224ac19ef80db4ccd228ec23965c6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13PERTOB.json.gz": {
+      "bytes": 518587,
+      "sha256": "0f30553d0771be89912b79ad8dddcc2df1a5528bb9e44f3835a556c71d749e9c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13POLMIY.json.gz": {
+      "bytes": 389646,
+      "sha256": "0789a70a0735e446c616549e6ec2e308f58639c3cd069cc62f8108d1b1a09bc1"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13PRICRI.json.gz": {
+      "bytes": 72283,
+      "sha256": "ab641d787f01cd73842746c2d714d8c938aa18950742855e862c36f73c45c0f9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13RADIVA.json.gz": {
+      "bytes": 180799,
+      "sha256": "64e1466df987ce50b99ae3134672529a3fb3014c7082ce206034430d1ed9feae"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13REHJUS.json.gz": {
+      "bytes": 234847,
+      "sha256": "f7478ee50cbf7e9755f96a8a3602dd7e376c56897e65c642425dff608b00907f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13RODALK.json.gz": {
+      "bytes": 783054,
+      "sha256": "95b5e23a5209e15e30deb82416b80f90dcd52d793099e9fae35d1c3ac0a80869"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13ROZISO.json.gz": {
+      "bytes": 237391,
+      "sha256": "5963e755e3ced094d8ae26e1cf159c3b4ff0b89f0bb663c1d58c83e58048b176"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13SANLOP.json.gz": {
+      "bytes": 409865,
+      "sha256": "99da2c376abb8e689dd9ad1fd8d33e552b1bc495b6dd01d17270ac6bb59c7178"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13SHIHAR.json.gz": {
+      "bytes": 74795,
+      "sha256": "0380b1fdd7de2904033f5f1215fc93c22dae7f8207d9fb64d06bbb45ef8566cb"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13TABVIN.json.gz": {
+      "bytes": 94755,
+      "sha256": "a6d0bdb11731a9e17032b80c0ac0a22b1683d79925d70f30c1a96d64e780cabb"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13TROGEO.json.gz": {
+      "bytes": 606091,
+      "sha256": "648fd5446408c8d6dd4faf68f781bc6796dc51d33cdb158da00e8bc63e925f89"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13VILGAN.json.gz": {
+      "bytes": 54028,
+      "sha256": "775654dbf2056a00d624958238ed35ec630a524f3aa953a9d3261040871cb7b3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13VUKBRO.json.gz": {
+      "bytes": 215273,
+      "sha256": "fbacf0abb3dadfa4ef59abc1c58e0edee94e9d479288ab9817123d3989116a07"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13WINKIR.json.gz": {
+      "bytes": 463071,
+      "sha256": "8687b874fa038fb06aa82565a7f0e8b67076f4e5b6500ad03d63d2e398fa7b40"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13WOLFEN.json.gz": {
+      "bytes": 722099,
+      "sha256": "5ea4ef8b732c63f4aa8bf89b71c22abea5d19291cd153169ab8839d2a9295b41"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13WONTUN.json.gz": {
+      "bytes": 217048,
+      "sha256": "85c928a107aaa25a6a7c1282ecbdbda279d35f315c84e10242fc1ffb7e6f9c66"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13YEVCAM.json.gz": {
+      "bytes": 72969,
+      "sha256": "d5151ad2e5d37baba42b8aac61161b4d79c6035723f227e8ae70565517b1bb29"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13YIBMAR.json.gz": {
+      "bytes": 191677,
+      "sha256": "38b10833ada5e35f871b89ea597d72c1d8ee8c52f3f3613dd3fb2ba21f5583b6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13ZHUDLI.json.gz": {
+      "bytes": 196350,
+      "sha256": "c816e3d1bc0c3e33809c858d699deca77d3971af0406b98ca078685415f9689d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ADDLEO.json.gz": {
+      "bytes": 285316,
+      "sha256": "7694e84d1393fcdde9e92175dbfc59b29d310a08030de8e7b53c5a47b52a7fb7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ALCTAB.json.gz": {
+      "bytes": 64941,
+      "sha256": "27c40592e4189a6512af503580254fad52286021f6eb2c9066955ea6b813bb33"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ALMGRA.json.gz": {
+      "bytes": 145963,
+      "sha256": "81351f7468d27e622957d65e8ab156f68017514bdeb09ab273139f3eb146341b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14BICMIY.json.gz": {
+      "bytes": 271430,
+      "sha256": "12bb732087db5fe7eba0a42fb28504ebbc5cb52c74bed239d64b8a3cbf091af7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14BLATOM.json.gz": {
+      "bytes": 510138,
+      "sha256": "6bf64eba99829833ed36d766179d097fb7f9cf72912676285a91bfb6e3d71fb5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14BRUNIJ.json.gz": {
+      "bytes": 338313,
+      "sha256": "078c1c8964bc86a9dea5e5ce5a10e9466e5afdb00eab6bbdeac4637fb9fdc4a5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14CASGHI.json.gz": {
+      "bytes": 187855,
+      "sha256": "37cd534d8328ade7fd276eb789d022f9110b1347042371baaad96eb67793e888"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14CASSCH.json.gz": {
+      "bytes": 264153,
+      "sha256": "ef5fab2043173a68bf1793dd2bb565f455a3950df03eb8a89ccd93e109ede148"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14CLAWES.json.gz": {
+      "bytes": 215318,
+      "sha256": "c4c22e31774dac470e11c6d62e5800f5548cf3e47dd053dd241d3928a6328e2a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14CUIFAN.json.gz": {
+      "bytes": 110261,
+      "sha256": "d4a474bcbcdbf4686abf279fbd5469b1512c40e360a6f4c5cb5828932146f05f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14DALMAY.json.gz": {
+      "bytes": 156113,
+      "sha256": "4e5d8b663e4a163ee1903107b2e597f949447633d00c23265a474f82e48cae8e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14DELXIL.json.gz": {
+      "bytes": 399263,
+      "sha256": "e7b36c78e2a1a9e12ecb15bcf91e98bf89ac663bfb3a93a593fdc41420428585"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14DENYEV.json.gz": {
+      "bytes": 60227,
+      "sha256": "4b399f5963e92d3486695d99f9a681da24a2bd6d544902f5a8c5406a9444d277"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14DRATRO.json.gz": {
+      "bytes": 528304,
+      "sha256": "ad8d46714fc8c49d406b2e3302e514e46d4acca995edac3d7f6eb1125f5515ce"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14EREPAV.json.gz": {
+      "bytes": 211116,
+      "sha256": "3b17259af4d4c3bfe6cfcf7deda6d3f1970a16b309b8fba6238d3a3acb550ae2"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14FORGOR.json.gz": {
+      "bytes": 231194,
+      "sha256": "a8cb9a1add3e723121bbbe3964bde5e43bbd5a656b0d01d7466674d6c2d3f10d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14FUEPRI.json.gz": {
+      "bytes": 188174,
+      "sha256": "628bfc90cbbfb6d3e80e91ce9d741b5d8a69a5dc2306a14bb45d2d0f445fd12a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14GALFOR.json.gz": {
+      "bytes": 201902,
+      "sha256": "2a2a0ef634dd03e1267c0254f8692afb714ea56fc953c18d6ea63f9bc708ec2e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14GANZIN.json.gz": {
+      "bytes": 505517,
+      "sha256": "5794654551efacd6a61a6905c1d54a459a493f94ca4e6b59a8bd447dc3c0e254"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14GENPET.json.gz": {
+      "bytes": 150289,
+      "sha256": "d62a880d2123b89dacc3c2c58113974af48df3bf874a8ecb05a15a31d2da4238"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14GLIJOH.json.gz": {
+      "bytes": 141851,
+      "sha256": "ed35a5705c9dbbe7851ae4202cf44a2c2d463d42b01f10e858b68c3e38f93720"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14GUIBON.json.gz": {
+      "bytes": 655137,
+      "sha256": "6b2c2fde6e08ac459c9943dab72383aa291ad4d83406aac0aa9100404edacaef"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14IMAMCC.json.gz": {
+      "bytes": 184680,
+      "sha256": "11fbbb900bc05a5ca9ce940f973c58f3a42f1d43a35400ac7e4c3b1d9ad25de6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14IVAGIU.json.gz": {
+      "bytes": 303372,
+      "sha256": "322eb59541e47bc81ec4edce89c32bc28706969761f16c11690ca9ff129cb42d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14JOHBER.json.gz": {
+      "bytes": 150845,
+      "sha256": "25a41931cf959429a0ebca53b63c0e262daaa2fe80a017f01d76130213cc662c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14JONIVA.json.gz": {
+      "bytes": 85363,
+      "sha256": "89b69aebf3c3453874f5da51aa85171dfea176833b5ea60204f379b9cd607f75"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14KIRSEK.json.gz": {
+      "bytes": 95500,
+      "sha256": "f82f84ef1be37b917a07b7b145bc491e58a798886a29473332c3339a35d7ad97"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14KRATOR.json.gz": {
+      "bytes": 182641,
+      "sha256": "a3db69b2b9853c9ba49ddcb39012a8d578f8f68e598953196d39d0878740d34f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14LAGSAN.json.gz": {
+      "bytes": 87688,
+      "sha256": "7d11089411e55bc3e861e3a62367c80748d33d8e7be646099a435ba2fd5e4ce7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14LAJSVA.json.gz": {
+      "bytes": 450620,
+      "sha256": "68f1d934f769e9cb6d05b8754db9b677f092e8bfefd598bdfb97cae14e8d735c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14LANYIB.json.gz": {
+      "bytes": 185193,
+      "sha256": "44e51f16e00e4e41a9117e040acd581d00d477275bdd96d052df99806ed0b139"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MAKSEY.json.gz": {
+      "bytes": 34791,
+      "sha256": "07497e2da0c89239f2df146aef199fb3f1e59dba28393444b6f6beca73a072a1"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MARCAM.json.gz": {
+      "bytes": 107142,
+      "sha256": "6cefc8f847ed2c070f12f3bb7498b54ec9c3a611011f5e4069e83974a2c28464"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MARMAY.json.gz": {
+      "bytes": 112815,
+      "sha256": "b0802c2f2cdccb640963e969fdeb98603549e6ecadda005e605814f0e1ff1a93"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR.json.gz": {
+      "bytes": 251529,
+      "sha256": "27cb5c974ec174174d18904b5ec6c3c9e107ea85a0d9b21d3353f3f68bca0e5c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MILCHA.json.gz": {
+      "bytes": 70576,
+      "sha256": "c4bca158b5c1b499dbfc698d1ecf33aff4474f23002f02fae76b8bd032f5754f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MRVCAN.json.gz": {
+      "bytes": 58284,
+      "sha256": "1544beccf439f7b0918098297e3bcc5f9cb40cae8004f4a1b6c3ff416dce7f8e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14NAGCRE.json.gz": {
+      "bytes": 165239,
+      "sha256": "2b782c09482fb50a422c37b97686848308f64a2add0adf22df57756cc83f1900"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14NEDDAL.json.gz": {
+      "bytes": 156572,
+      "sha256": "c170f480fceed080b3b1a10d18e1207d3d6707206f122568c9a1a970f124caf5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14OUAFIC.json.gz": {
+      "bytes": 55771,
+      "sha256": "6cd96525c0e2ed0784af8fe1a45c54df8abaa61feebc603f1745f02be899faf2"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14PERCRA.json.gz": {
+      "bytes": 165128,
+      "sha256": "9fe009ba61339a9052939989d4d450e886218fae2ecb19ffd5e0330d4c340331"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14RONGIU.json.gz": {
+      "bytes": 198782,
+      "sha256": "4ed18aa36db8b1fedc8f1b0e55693836f445175a86dbdca9fd8e91227c5e30c4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ROZRIC.json.gz": {
+      "bytes": 55800,
+      "sha256": "b28fc96cc201903b068a96eece23f72ad33a2942de930283def748cdcfd5d8e6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14SMIILA.json.gz": {
+      "bytes": 554694,
+      "sha256": "0012c4edc76ccc0e904eff3ea1cbba19e2c82094284dd389377a52a55c7ebf4d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14SQUKUM.json.gz": {
+      "bytes": 162860,
+      "sha256": "239a82e39c70dcb656e9e552fd72fe7e2f137e99a23512fd56aa6a1fb66b34b7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14SUNGEA.json.gz": {
+      "bytes": 210852,
+      "sha256": "f3891987976124619ac7af799f98ac71e0b0515a2ff532c3b4f737c96c604dcc"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14SURECH.json.gz": {
+      "bytes": 158908,
+      "sha256": "b8cbe34a3903b0309425a1737c044fd49dd6c8d53302e788fbd623936b2a6ab7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14UCHGAL.json.gz": {
+      "bytes": 101555,
+      "sha256": "774e0f7cff0135b8f0b24e6e4d4e96a7a34267240f0d77e3970f24c9ecbfd859"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14URSPAL.json.gz": {
+      "bytes": 178835,
+      "sha256": "6ad43370b30cb6f4ab13d65b4ed605afc990bd48a4b7340dd5b004364356f719"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14VILRIB.json.gz": {
+      "bytes": 106903,
+      "sha256": "e90a86631c5dec3eb9543109d1efb035b27c1d5d24fc653aab880142bfe909bc"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14VUKARS.json.gz": {
+      "bytes": 562724,
+      "sha256": "09465d88aca546db904b539cff4378153d10c002b2785b10c5fc246cb0140761"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ.json.gz": {
+      "bytes": 463966,
+      "sha256": "de23584ea0ad8dcda44b531f8fab2e8c893b293604e61c6e3c78c49b8c52dbb3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ZHUYUN.json.gz": {
+      "bytes": 185418,
+      "sha256": "b3cf3ae4eb1145ba42d08c59cadf0e281bdebc3a964fcf9ece5f5731556ca7fd"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15BONJUS.json.gz": {
+      "bytes": 309312,
+      "sha256": "90917e6eaa0717be5dea9191b1eaa07712cdb4f55e78dc79435d6942916001f6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15GENDE.json.gz": {
+      "bytes": 97696,
+      "sha256": "8f9662d237a57560f007785fa1133d73bd81ec26080166fffda0275544c5608c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15HOLMAY.json.gz": {
+      "bytes": 174509,
+      "sha256": "c78478d4542de80195800502a8a23bb3d19883393c5dcdc446afaab7a94cbd6e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15IVACRA.json.gz": {
+      "bytes": 577386,
+      "sha256": "f5b383f3e105743857330939fb498ce001343d67bab3871a8a2f5f2c44d2ed9b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15LAJKRU.json.gz": {
+      "bytes": 302596,
+      "sha256": "ab2bc4c7aa000a91df8499fafa4b044a05dac231000db82d8d5f4ff4b4bd541d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15NAGTOR.json.gz": {
+      "bytes": 283313,
+      "sha256": "5415d1938ed44b94e2ed11035a725b1b201161d03197b2c6b283750d60059337"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15NAPBAR.json.gz": {
+      "bytes": 208036,
+      "sha256": "824247aec9f8d58ff43d0847950741b834dba20e3db25192d64fdc69c384b646"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15NOGSUR.json.gz": {
+      "bytes": 110583,
+      "sha256": "031af9c263ee311669966739b4248050085ed6f4dcd597051e3e3b6e25e1d017"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15RODINC.json.gz": {
+      "bytes": 223602,
+      "sha256": "51e160745280a020ea0a75b1667043fdb0d333499900801b686228423267756f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15ROMGAL.json.gz": {
+      "bytes": 128261,
+      "sha256": "c6df551e9fe48f959668222366abd0c799e3b8ebebcefd0cfa17ab9618b4f701"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15SANERE.json.gz": {
+      "bytes": 116457,
+      "sha256": "af0bcf8d3a963040b5c3ac18a750efe8ff71ad935f913363a3a7bd88715336a4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15SCHHOU.json.gz": {
+      "bytes": 102911,
+      "sha256": "4c0ecb3c0c8450f1c2b5d1fa2ea7e9fece1f7f45aa2367f96898858f80533827"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15SHIBOU.json.gz": {
+      "bytes": 147438,
+      "sha256": "be6843eb10d413fa9228a833569a941e809b587de06049f1be3f341a9c58d876"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15VILMAR.json.gz": {
+      "bytes": 82917,
+      "sha256": "3a088d5d3820f64bf271508841ffc6f849f9bf2d5d885da444e941ec6117f936"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15WESCOP.json.gz": {
+      "bytes": 90536,
+      "sha256": "88e315e37669494e34fae19868277ae2539f4d7e0e30dc597bc42608500b2bbb"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15WOLJOH.json.gz": {
+      "bytes": 548395,
+      "sha256": "2e6831bf8754d8d2f53a29202aec53295eb6655eb6d05a15c0bf23f7d62f873a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15WONSHE.json.gz": {
+      "bytes": 495357,
+      "sha256": "f2809fff5e77d661c2e2db55594df8a2ffd5f38f144220197ab4ee24fa465b05"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15YIBYUN.json.gz": {
+      "bytes": 17502,
+      "sha256": "1579f449600ccbf54565f9b0661b5cebaf6bd6fb125fe6d716ff292f54473d00"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15ZHOPER.json.gz": {
+      "bytes": 460659,
+      "sha256": "578e97e225091a3c5f1801717b553ec235884d44bb12dfaeebdce41a72a8b0db"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15ZINGAL.json.gz": {
+      "bytes": 407599,
+      "sha256": "a156a8ffc462a90a43ecb61c5fae98c33cf1f806a00a162037ea31735be07c57"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16ADDGHI.json.gz": {
+      "bytes": 441992,
+      "sha256": "621b38c774aa3339162f99eb650db1fb36457bf2ac8ca56bee141f4af30f32f6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16ALCANG.json.gz": {
+      "bytes": 73868,
+      "sha256": "ddad1a6a77a7ab36e7f4009280d16f52b1cb5bc84fea550695e214651adf02a8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16BICCAS.json.gz": {
+      "bytes": 335748,
+      "sha256": "8ea7124808e43bb30dd8092a2bf7d9604fa3e19e1b593458bcf885327af69ad8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16CAMBOO.json.gz": {
+      "bytes": 325260,
+      "sha256": "702f1bbae3317968d08f8e8dadc783044ccee26edff71a10ffa490e24233e18d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16DELDAL.json.gz": {
+      "bytes": 585204,
+      "sha256": "6e5440a6eb016715c41d75c327604a5c7c5354abd24c09a207984955454097f2"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16DENBAR.json.gz": {
+      "bytes": 310500,
+      "sha256": "c251ddb212d34587d86d55da236377efb5a96c9991f0dce32efa1e94e22c42df"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16DRAMIL.json.gz": {
+      "bytes": 46209,
+      "sha256": "f554614f6700d10357bd64671f128a499ae02fed87458c6f5d069ae19585c879"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16FORCUI.json.gz": {
+      "bytes": 772409,
+      "sha256": "7fa40da5b8ac3fbcebb98a45d9067906eb75e9a5d6e859479200f5caf96c3514"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16FUESEY.json.gz": {
+      "bytes": 387385,
+      "sha256": "50617ce276aaf3e0f7dbbb39c2c6b12cb944f3851a9952b1a459205110a3c6b0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16GLISEK.json.gz": {
+      "bytes": 27970,
+      "sha256": "e3d1fd6dbdf124fed687b9797ccf18014a9b4a80183de4db9b2f391f21875605"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16GRESAN.json.gz": {
+      "bytes": 283274,
+      "sha256": "4ad00e097fada3cbfef2a5006db8d96634222d8e9fc6ac7fece16813d4b7d583"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16IVAOUA.json.gz": {
+      "bytes": 45619,
+      "sha256": "45c2f25f33d6f22c8f7a53750fd16bb61acc73935a78490555a334b2f0a0c619"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16KUMBRO.json.gz": {
+      "bytes": 344422,
+      "sha256": "4ef4a6cde41896c89dccabac8b5c810b9da4edeb3ae578a2c509816077f96e30"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16MCCTOM.json.gz": {
+      "bytes": 320542,
+      "sha256": "2a0799cd3a1cfc480af0f8c2f17fd86a2ba4ef75ea1db5c26c8067719e711f5c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16MRVRON.json.gz": {
+      "bytes": 609672,
+      "sha256": "9f1bbf62e5d5fedb02fd67a956f7572b016641e4f1a14a61ccce98d4d45548e5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16PALALM.json.gz": {
+      "bytes": 707169,
+      "sha256": "d7604369e0c2ec184ca6ab2b586d4201a272e91b992223efeeedd0db4a6c9dd7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16RICGEA.json.gz": {
+      "bytes": 541899,
+      "sha256": "370c7527fbbb5262df5a4a83228d83c53279e72d98491994630b7cad570df2eb"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16SMIMAT.json.gz": {
+      "bytes": 594462,
+      "sha256": "a749338b9504a233d1bc7bea15b633955b63fd99a371a1ef6a450dac5b4298be"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16VISNIJ.json.gz": {
+      "bytes": 139929,
+      "sha256": "7841bdaa83f35cab2cd3b30563765480e73832489844a4b6c17d8a94d4e62b3d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17ADDIVA.json.gz": {
+      "bytes": 713901,
+      "sha256": "a92fcea06673074539603ba166625bf8d31cfd62e35b7675c73efed2795d586e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17ALCRON.json.gz": {
+      "bytes": 72722,
+      "sha256": "0f7c56518c8d587c6f745eebb6226bb51434d4c59f6558dbf724532101166a95"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17DELFUE.json.gz": {
+      "bytes": 643087,
+      "sha256": "acdf030e1eb04deb462117ff5ec3fdb2aecd3b9ac829a7c03f60419d1405075f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17DRAGEA.json.gz": {
+      "bytes": 744577,
+      "sha256": "36f7153cb6294db505b0c7106b7a1ae3c8072366a43d8233b2e5d341ebe78f9c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17FORTOM.json.gz": {
+      "bytes": 450636,
+      "sha256": "07ed4090b828de7f5a5649d713fcbb36ba6ace54013cad60d0e237fd7702173e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17GALCOP.json.gz": {
+      "bytes": 105182,
+      "sha256": "aa5bb4596ad98b3aa896a2e49d06a13bf028dfff50fe257dc9d0cc3e564bf0b5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17GENHOU.json.gz": {
+      "bytes": 676120,
+      "sha256": "d497f47f841d08e89f821d683813dafc39dac0f4f9478470c31e42e281e821f8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17HOLBOU.json.gz": {
+      "bytes": 116568,
+      "sha256": "c0e107cada92ea5c9e61481985b5e3b84aae381ef345cf0a5f03a29d1e946f5f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17KUMBOO.json.gz": {
+      "bytes": 142479,
+      "sha256": "bf225efacf1cc8d7ecffd619c7fdd2cee901282f807c52c5cb3f9d1aa8d70acb"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17LAJNOG.json.gz": {
+      "bytes": 486186,
+      "sha256": "4755c143c3b103fdadfe0dd56e97770a085e86da7c5e31d3353755bc768d092b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17NAGBON.json.gz": {
+      "bytes": 572200,
+      "sha256": "4585751126e17076f8692a4aad5fec8e97dd39c89d2f32b2b3a773c216f1935b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17NAPVIL.json.gz": {
+      "bytes": 470887,
+      "sha256": "9b6faf0f073cd1d11c2b8f4f7eda74f48efa26df9a29240aba8b16c63b27bf0d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17NIJDEN.json.gz": {
+      "bytes": 239271,
+      "sha256": "ce96b5d4cba03547beae175be9dc580d19ea4b0aa03a2071ab18813d82d8e9ca"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17PERSAN.json.gz": {
+      "bytes": 343454,
+      "sha256": "75a7d61e599ad39f0cba8babb87d2241402a797c9fd9dbc818bb3ebaf61fb395"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17RODCRA.json.gz": {
+      "bytes": 1166304,
+      "sha256": "ad1edf586835f1c14c7145f7993e4ce96725909f18f5622cf740dd72a9f6dcf4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17SANALM.json.gz": {
+      "bytes": 965103,
+      "sha256": "bd311bde0fd7fa865949a052fa1c581f231fcaa374a59bdc92dd89a0f7358bbd"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17SEKCAS.json.gz": {
+      "bytes": 90732,
+      "sha256": "f2811e734612d8c6511178961970667de2c150aa32ef42e4feb0f35d7f520522"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17SMIYUN.json.gz": {
+      "bytes": 1063329,
+      "sha256": "43591e4dd0299e0d75ac2ea5fbb7d1212dbb4954b1b07a5fbdd9193cdf122cda"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17VUKGAL.json.gz": {
+      "bytes": 1237516,
+      "sha256": "c6bbc5d36a69dd5bea8ea5ad4905d30d88652992e1ce11d3bb3b6e203007e776"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17WONJOH.json.gz": {
+      "bytes": 623181,
+      "sha256": "71374bb491b47457e2ddc1a3d36a8f2b96ea74208f44eb3e07f517488e356834"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18ALCVIL.json.gz": {
+      "bytes": 943732,
+      "sha256": "6dc0b8584d1794b621a9769dca89a62bb00e7240a82f55fa3142c382566a9d12"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18CASGEA.json.gz": {
+      "bytes": 312693,
+      "sha256": "f6ab59834fc848996fa71b094c4633bcdb981e11456579b62a13b32268ccfa3b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18DENCOP.json.gz": {
+      "bytes": 316042,
+      "sha256": "5c9705514fb71a499fae1c206caa97ac8ab9634f5c7f455171d63b28061d7c39"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18FUEBON.json.gz": {
+      "bytes": 282525,
+      "sha256": "1bd6c8a73c4beda7a2bb671e1269a48a1739a9dbcfb08ae06439f52d1b0e9370"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18GENKUM.json.gz": {
+      "bytes": 218417,
+      "sha256": "f85e2ec106af1ed0560cb42b65ab61dbd2d4ce5443ed26abfc11a83fba69c798"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18LAJYUN.json.gz": {
+      "bytes": 1308309,
+      "sha256": "330d35fa61d8cb161939e2fc4f2f4a2e1c18d377ba95273c8dd7abff78ec80c0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18PERIVA.json.gz": {
+      "bytes": 1017791,
+      "sha256": "2da714c059ef79986c56fe21fa925ccb25a34e9867ec0a5daba5efdc76608d09"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18RODSAN.json.gz": {
+      "bytes": 208782,
+      "sha256": "9010e9c22aec2cd1bace3a4c1f7d29274634bd44da61f678079fa80e14bb2c17"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18TOMJOH.json.gz": {
+      "bytes": 255919,
+      "sha256": "9238d16ccb5380a048676d1f02fbc0cd60fd1f856e16f3052c8153a2ed1cb837"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18VUKHOL.json.gz": {
+      "bytes": 553119,
+      "sha256": "02a725b760d1a0681e46e64c40c5e5689edeead1c555e2955f97a7df22286aa3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19ARNPOH.json.gz": {
+      "bytes": 110904,
+      "sha256": "6758d6c46c5f3b9b11a8c5a9a7a421b92555edb490fbcaa514d497cf7f705921"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19ARSMAR.json.gz": {
+      "bytes": 140219,
+      "sha256": "10ba3beb731143d2410c7c76794fd5c26c3658a1b3c3ef46eb45f6000356fd75"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19AVECHA.json.gz": {
+      "bytes": 276143,
+      "sha256": "20094de00a0f9f6f672c562b6e56a7dd2448d6ebcae92b9d5316936f967b40c7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19BANZHU.json.gz": {
+      "bytes": 383372,
+      "sha256": "269973a2dfa174ea6b1823a847d2a03ce031716f7928b4a83403ce3bb8c8e52f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19BARLEO.json.gz": {
+      "bytes": 184079,
+      "sha256": "048ef3bc7ef467b9930b0d08b6b22a189a226e87e74b5c516d367dbea390c2b7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19BARSTA.json.gz": {
+      "bytes": 129508,
+      "sha256": "5926889184b1d70180532a5bad6d31cf976d82b7b19d0c1380d97036d65b8bcc"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19BIAYOU.json.gz": {
+      "bytes": 74392,
+      "sha256": "4b6c406c46f5bd03087cbe39df0a0e17965c6de7047b4e6918881845c9686abb"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19BOHBOU.json.gz": {
+      "bytes": 82853,
+      "sha256": "ce90de8fa895558ff16dc1ba5deea11983b72c4cf63566adaa8c87dd65da66ad"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19BONALC.json.gz": {
+      "bytes": 158317,
+      "sha256": "7df5c7f296ea774fd2bff7d4766994feeedf6451f564740b564f50f06628e795"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19BRUKRA.json.gz": {
+      "bytes": 301040,
+      "sha256": "844d0067cbeacf7841d82b0944ea8e77f608b50f08242b2b16efd0fda1cb8ee3"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19CALTEP.json.gz": {
+      "bytes": 126166,
+      "sha256": "2f908e96f771a0c9a921ff309df4a4a02bfa9173ce491b509219e830fad42506"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19CASVAS.json.gz": {
+      "bytes": 97499,
+      "sha256": "b7f85f7de5dc994dc50e6952b419df689f54fba1c85c02296861500b9064f304"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19CLAKUZ.json.gz": {
+      "bytes": 337832,
+      "sha256": "179b41595850079ec3d865e91573a7981736eb636ec2536a6be64a981f038bd8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DEMBIT.json.gz": {
+      "bytes": 183726,
+      "sha256": "bc34ee91b0c8ed485477728b64ffa4605d6421dfbe1efe8f44852a44fffc78d4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DEMMAG.json.gz": {
+      "bytes": 63011,
+      "sha256": "e714223e226255e4a202bd3c621737c4bb08ea8cb4e292bd312164bfe1ff240c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DENGEN.json.gz": {
+      "bytes": 268489,
+      "sha256": "00eaaf761049b691376b9f9a385b21a7cf66ee1fbd9e2998a817e7b21aa9eaa7"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DJOMAT.json.gz": {
+      "bytes": 57270,
+      "sha256": "a811b7d513ea69dc76df411403cabb17d88b91f490db91fb579bf97b8b2a35fc"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DONTOP.json.gz": {
+      "bytes": 96452,
+      "sha256": "2bf408f2cb20e29ddf5b65b80513f7a0b655246feefd6de7b0bc149858872332"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19GIUDEV.json.gz": {
+      "bytes": 184554,
+      "sha256": "5dc1446f2cea8b6e616cbd037d5a4fe64b6e113c096de5c848d24c4f7cee5a12"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HERECH.json.gz": {
+      "bytes": 234176,
+      "sha256": "8b7761ee1403a2a6d12e6e7a91f6ef98576c3fad76f0f34c4a7b7cf71dc3e6c8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG.json.gz": {
+      "bytes": 85232,
+      "sha256": "8f1a7d6e7625d90487523ef95264533360ce462ceaf6f1ed767451594f8aae18"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19IMATRA.json.gz": {
+      "bytes": 261297,
+      "sha256": "db7009f95b79c6e4e75e2fc699f00aa13453bbdd7243416308e318f9687ea49b"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19JOHGEO.json.gz": {
+      "bytes": 344135,
+      "sha256": "09a292d0b2c4c6a4e01b2c45ed264065b95700961dac0426b826a004410d6083"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19JONISO.json.gz": {
+      "bytes": 106139,
+      "sha256": "900da70af574299635705d6b70b26a0ceb50f10919b964766a55ccabe3997e56"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KIRAGU.json.gz": {
+      "bytes": 355109,
+      "sha256": "59eb6c53f69d3fe9af36148c0892b17bdb3742ba878655ec19e6e3b8115a8c17"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KOZVIT.json.gz": {
+      "bytes": 297568,
+      "sha256": "e681eaee123e74d6431db61dd2be843e1f5aeef89d406adb20feec26d56d12e5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KRUCAS.json.gz": {
+      "bytes": 279,
+      "sha256": "adda78275ceb5d9fac78b9ae522bfd809fcfd15a70bce3f34fba97684337201e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KUHPAS.json.gz": {
+      "bytes": 189459,
+      "sha256": "74ca8cd05f885b9ee48175cd1693d682bf2688e06660af00bdb06d461f8dea84"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KUZOPI.json.gz": {
+      "bytes": 98105,
+      "sha256": "d11d3da7484efd8d5dc4ce2ae835dac640fd5265baca11142fcdb0aa9375c934"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19LANMAY.json.gz": {
+      "bytes": 290986,
+      "sha256": "a8214074e6c9b46bedc17278cda856392c0b1a322646a0e1beba0bf86bd69bde"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MALMOR.json.gz": {
+      "bytes": 229572,
+      "sha256": "17afebc11114b7e0e7db649843632d33301342f0979079955a53b5615bc26589"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MARCOL.json.gz": {
+      "bytes": 89217,
+      "sha256": "7afd292ed9c47f332681fcaa68a4da5879f5e814558f39d90ba17cd6b90287f8"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MARWAZ.json.gz": {
+      "bytes": 93576,
+      "sha256": "22a617b807c1337d33cde22a0b3401a9dc8e90fb0f7a74e2882145855d06b0f9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MCKOUA.json.gz": {
+      "bytes": 76234,
+      "sha256": "c670b19a19e529a7dfd6f496d12dbf1a5779ff07c0b873969210e7e90078a19f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MENKUM.json.gz": {
+      "bytes": 55465,
+      "sha256": "224d201109bc9a5b449ad3d21d3fedd0f626f01a278df499630f198d03a3cd6c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MILFAN.json.gz": {
+      "bytes": 291504,
+      "sha256": "805e5aee92d25bd629491863c658f996a43b05cadafb0e77a63bf8e43d41305a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MONTHO.json.gz": {
+      "bytes": 101062,
+      "sha256": "4b1612bbe0a7aafd38e5b860a4d625000ee7180650c1320ee2406ecbb07aeaa6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB.json.gz": {
+      "bytes": 110963,
+      "sha256": "53312bd82ca55d71c32915b8ec2c8a33ea5220424f5e659d476cd5c776728e89"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19OLILAS.json.gz": {
+      "bytes": 59267,
+      "sha256": "ddf392330337ba7fca8f431be20b560a1b8875dfac7debb9355ad48cd84df01f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19PALMUN.json.gz": {
+      "bytes": 164400,
+      "sha256": "4766e704a689fe61c0299932569c1aa33cab966a1c0d0696b83924c0da70689d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19PAPROS.json.gz": {
+      "bytes": 34668,
+      "sha256": "254cf3a85abe5065a19049466a4ec53a4a8c09ef44514c274ebc4b79c3434efe"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19PETALO.json.gz": {
+      "bytes": 74704,
+      "sha256": "a1c8abaec4a79e806bcf3285698d4760600b1a0a0ae31c61426b1c63d4a8c208"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19PIENES.json.gz": {
+      "bytes": 237463,
+      "sha256": "32cf947bd6c3fe3f4dc3dadefd13998dfa02d3b7feb1daca32b8a1eab24be438"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19POLSCH.json.gz": {
+      "bytes": 119414,
+      "sha256": "46dc534f84d60b7935b2971b631b1651bdf7103d3066ce92987943be622eaa56"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19PONZIE.json.gz": {
+      "bytes": 9604,
+      "sha256": "952a4719edfd3b757de4f54b7be2c7b8c326be0438e561dfef3a382b40459dd6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19POUJAN.json.gz": {
+      "bytes": 113744,
+      "sha256": "576c62247363e8b0528eba235b6b867d10017ea27d4f59d52287dea466ddfd8c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19REJWES.json.gz": {
+      "bytes": 49343,
+      "sha256": "e97f4930d40103cea8df4465c5926f16f37c6667b94c69b85ca0de6093c5b347"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19RITGOM.json.gz": {
+      "bytes": 114247,
+      "sha256": "7d28231f44f1bdd6571bbdddf1fb01ec718096f5ba6d5b7e75d603f0f53ad3a4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19RODIVA.json.gz": {
+      "bytes": 1107330,
+      "sha256": "65957e7cdf6cfd07d8a2eddc15c3732320abd583aae5d0261edff04adc607698"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19ROZSHE.json.gz": {
+      "bytes": 303695,
+      "sha256": "644e5f05e63979d121b2535944babdf5c0fdc218160176979b2ea518e47dd72c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19SALVRB.json.gz": {
+      "bytes": 516,
+      "sha256": "688196f0be434667fd58542cdfca5549080b01b7dc5b27894a77c5350ea84a81"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19SINMAT.json.gz": {
+      "bytes": 225970,
+      "sha256": "5b70c2deccf3580a0929bc16c5cb89d6cebe8dcefd7a1cbc3d44a514d2ac1c89"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19SURPER.json.gz": {
+      "bytes": 167192,
+      "sha256": "31974d513043a32b1d0ba28d8503f36e2d9be33b713cf034cdb5409f99c52bd6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19TOKMIY.json.gz": {
+      "bytes": 219922,
+      "sha256": "03e6207fcab6c79fdbd50b6f9424252fff4693da9a64706b9e0f4f0ccf9b5627"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19TOMLAJ.json.gz": {
+      "bytes": 2076530,
+      "sha256": "1e4b777a99c162c4c5eaf5a84709b07ddce5240a46d801cae692f4e309f2bfa4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19TORSEN.json.gz": {
+      "bytes": 115126,
+      "sha256": "ba30fdb2e786c7ee7711dab6d8fbe07d276d96e7b29af68a302c951a33658ca4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19TRODAL.json.gz": {
+      "bytes": 175900,
+      "sha256": "c18e379adda9b820f964f2c8c204cc211ca46cda41dfec9e105df9845ec3fa36"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VALCAS.json.gz": {
+      "bytes": 58113,
+      "sha256": "f206521ff79bb0802eee31886c05bbc0f0cb36831cdf9bbb69af2f8a6929ce78"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VANGOR.json.gz": {
+      "bytes": 246952,
+      "sha256": "823db3e7c9f4a2136f8347c136a3845e3ef393790bfebd745686141ad227f2bc"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VANRAD.json.gz": {
+      "bytes": 105559,
+      "sha256": "dc1f7d9ef5f477d2199dee5f77a7f0991a862b8e69564528be37a498ec4cc062"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VARBOI.json.gz": {
+      "bytes": 264072,
+      "sha256": "535394b6cc1bbd92e56ed7e8da926216b252988b9dcebf8c9d6c5b1e626df54f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VASTAB.json.gz": {
+      "bytes": 82723,
+      "sha256": "88571b67e3f8de65e3b2ae290efa901840e3383da34ef37f66293df6cefdb4b6"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VISAHT.json.gz": {
+      "bytes": 42476,
+      "sha256": "8db7ae3f02c866c6b1d57f19dfa3c6a0253adee6006164c83ee8c6c890687377"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VUKGEA.json.gz": {
+      "bytes": 244269,
+      "sha256": "958a75e899ce8d6a07ef5e9bf6ae010ca4796499ffa8aa674d9aebb0d62ff414"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19WINSHE.json.gz": {
+      "bytes": 222990,
+      "sha256": "e7a439937112214e112f9c93ad02f02dd289959b8f4a719d0bf5cbde8d52fae4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19YEVSTR.json.gz": {
+      "bytes": 64993,
+      "sha256": "ee07b98ff246671bd4942792d04289d8771aea83def09d7f6a432dc21f666b8a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19ZAMKIN.json.gz": {
+      "bytes": 88609,
+      "sha256": "6a4a34bc20533cb89deec849ee66f4eb3924646f68a19631fb3677d41839a93d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19ZAMPOL.json.gz": {
+      "bytes": 252021,
+      "sha256": "73641f1a06e0799c860b0b79673f5379cfa083e98418f2ec5ac6719ded5a9e03"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ALKFIC.json.gz": {
+      "bytes": 249274,
+      "sha256": "1ffed5979fe697ec68d2c5741efd1ad6007ecdc4258d26222a846f82a35329ef"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ARSRIC.json.gz": {
+      "bytes": 274968,
+      "sha256": "a88cbd35446e05d09859899648ccc469f85c504db70ebcd702d184e1aad4b90f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20BICWAL.json.gz": {
+      "bytes": 959555,
+      "sha256": "7927e0c2304978b74f229605ac2b2b03e51a8ccfd0dc5fb3e4d8e28ca803263c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20CALKUM.json.gz": {
+      "bytes": 145292,
+      "sha256": "50ec1d890d4bc023b56847ee943aef95a98cbe880cfd9b82a7c251aecb8e1318"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20CHABOU.json.gz": {
+      "bytes": 540447,
+      "sha256": "6148e140c30e4c1f934ca5da2c00765c402fd9532495805e107487ae0b25c8d1"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20CRECOP.json.gz": {
+      "bytes": 5098,
+      "sha256": "4e46678fdfbddb8aee64b4b9624e52dd3cf15cb0f71ca54384c58ffe9ad25389"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20CREMAT.json.gz": {
+      "bytes": 46936,
+      "sha256": "f58e703edcfc290fddcd4aa3804cfa4e5677f0c6b58f78d071fa155b54a57916"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ECHHAR.json.gz": {
+      "bytes": 206372,
+      "sha256": "d55332be852b5eabfdd2cc0d96b863f516b23309f45a0172ee2e50b51147a9d5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20FAURIN.json.gz": {
+      "bytes": 822482,
+      "sha256": "15520425b40f3f5bcb97d43d645d91671ccae4d8899ecf8a5050460d12a04be1"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GADGUI.json.gz": {
+      "bytes": 68977,
+      "sha256": "a43fe717ee5c28039f834e2ad9c33caa5ce0b84d20ebaa7b4e12d837e3bcb993"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GALARN.json.gz": {
+      "bytes": 234398,
+      "sha256": "3e271848cef1f9e93d95bab6d727200032a3857916b2628f5f4b2387901d8fb1"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GALLLA.json.gz": {
+      "bytes": 70350,
+      "sha256": "ce9e0fdca7351d505526647ba436bcef9fcf98176be8435cb449efa1c226f340"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GIUHER.json.gz": {
+      "bytes": 67321,
+      "sha256": "653fd207eaf3e2b54e455e19cb4db4be80e0823a345d0995ed551f4f593e69b9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GONTOB.json.gz": {
+      "bytes": 745280,
+      "sha256": "6a4d7834f1f54156e8b6e31e42f9ad230fbeb95dff37e006cdb1f376eca17a12"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GORYOU.json.gz": {
+      "bytes": 431661,
+      "sha256": "46f8f539ea3809e271203f3090b5067cf2a049ef7823f188a7abecc3356035ac"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20HSUHAR.json.gz": {
+      "bytes": 248052,
+      "sha256": "845ef775c902077a408e5ec05b2fbf5eac6568c2ddc03e6e65b52c95c2809fd9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20IMAKIN.json.gz": {
+      "bytes": 178739,
+      "sha256": "4a3a67230a9464f7b09e3208430d42f729e216cf2e21360fdafc8cf6575272ac"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20JOHAGU.json.gz": {
+      "bytes": 570541,
+      "sha256": "1aa013a1a9ebd9e039e8222ed5298070b1f7d53e428dfa4cce53c1c92fa5867c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20KOZPAS.json.gz": {
+      "bytes": 626020,
+      "sha256": "b9c640e26cf06cb60fb0e289f5785e420c4a93fed0030a4059f45a580b5da301"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20KUZJAN.json.gz": {
+      "bytes": 58734,
+      "sha256": "bd3a59786e2c71cd2b78b431f6bac2ac0d588136c0e21bcfa13ab877e2ceef7c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20KYMCLA.json.gz": {
+      "bytes": 1026709,
+      "sha256": "d0b17629a8373bec97b09bf288774fe010a457abe155321e9606cc1230f19324"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20MARBIT.json.gz": {
+      "bytes": 226081,
+      "sha256": "31df87e3621b9c8c5f490cfe28c0a9143734cb3526cafa0e0286d883b2d2898a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20MARROS.json.gz": {
+      "bytes": 46801,
+      "sha256": "5f053beaae8869dfdc54c72c00117fb28925fd3c6daef155f5ee03de334c1cff"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20MAYMAG.json.gz": {
+      "bytes": 760219,
+      "sha256": "4185e0df8f2fd058713dfba4f7b41a5bc04dfa87e47e16512a81a8787d5c4b7c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20MILSHE.json.gz": {
+      "bytes": 107988,
+      "sha256": "60316419efc2e9efe3a620a783ef2585c6c1a592bcb4361caeb757f7086d9af2"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20MONBAR.json.gz": {
+      "bytes": 81119,
+      "sha256": "cc90297b58e78c331c187699d70de15d7f92d97684d6e1c58af28f2a6dfc64d4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20MONNES.json.gz": {
+      "bytes": 286540,
+      "sha256": "577644ca9cbdd3bbe3f8620616502a444bcca7943bd66c25061f5bb3ab87c528"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20NOGSHI.json.gz": {
+      "bytes": 819028,
+      "sha256": "7300c72af0ae9011b63fcfeaeb64535920b2a6723834cbbe6234ba283200162c"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20OLIZIE.json.gz": {
+      "bytes": 48052,
+      "sha256": "5222e12fd8c603d771109ade389d5ce196a7d7f3f0a5c2dd01d2e3d0716a26c5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ONCAJD.json.gz": {
+      "bytes": 186885,
+      "sha256": "560eacd82b2fd3a451ea6a592059b9e3f387c4a63c90cfae7ddb40cc0101a709"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20PALLEO.json.gz": {
+      "bytes": 524478,
+      "sha256": "f221de1909cab100d07c8026ea4245d0d1919d2812313219f27ab343398ea9d9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20PETTAB.json.gz": {
+      "bytes": 89241,
+      "sha256": "6c5eaedc86b5e7ebd6c6936e54c3bd3c9f10da3a9ebb6d37059c24e1bd48ecd0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20PIRNAP.json.gz": {
+      "bytes": 74333,
+      "sha256": "0d26efcc4e5177687513c83967df5f7f93d3c51858e78d50ede973b5e69773f4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20POHWES.json.gz": {
+      "bytes": 100082,
+      "sha256": "2b18209980afad08280225b80dfd330d89cdc1e2ca644d7550f4ffaff1928a75"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20POLBRU.json.gz": {
+      "bytes": 206236,
+      "sha256": "432eea1d208221325aee8caaa2437faa9a62b47c71518cd8f6747647687651a5"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20SEYKOL.json.gz": {
+      "bytes": 133396,
+      "sha256": "bdf5569436671a5bb18fa004b8fe083a76fd3b77658a630f0ea4e50909ed6d18"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20STAMAT.json.gz": {
+      "bytes": 97189,
+      "sha256": "18cb8847cd462d8b86b54082961d91434ef2f41e86f7726c80ff4039a3e639f0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20SURKUZ.json.gz": {
+      "bytes": 470712,
+      "sha256": "77470d3a4ac909b4eccfe2c06ac34a8e1a3f07b9307ee9551d246b84a24e1db4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20TOKHUR.json.gz": {
+      "bytes": 190227,
+      "sha256": "44fddb3f572939d028cbc517fe03c527cb2ac5586b6591fc9f05b275c1fdf939"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20TORSTR.json.gz": {
+      "bytes": 182239,
+      "sha256": "515e750dc03468f0018eaf9d0dd09750b2c752d0c3c7f0080f7b7a7b6c04dba9"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20TROISO.json.gz": {
+      "bytes": 111795,
+      "sha256": "18ccd61bc0aed251f2de16e3d7fc3fd5221bd9e03adcf2d710182bdefa7a77e0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20VALGOM.json.gz": {
+      "bytes": 22854,
+      "sha256": "9e751aba3c6a9038434ca4917acb20f76ccb1a9adaaadb4ca72653c600d124f4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20VANOUA.json.gz": {
+      "bytes": 79285,
+      "sha256": "5dc0b3c81759ff33ca71745813b5baa301f517c528fb837e3ac3cbe86f3c744a"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20VARDON.json.gz": {
+      "bytes": 173344,
+      "sha256": "e7a05b83123b20a73f5bba7ee35f9cc1f00834f8dbf75bf2cfc67053a45e0f0e"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20VASSIN.json.gz": {
+      "bytes": 182101,
+      "sha256": "8a201fd17b0737066337b6bdd4c6616141996e5c2b25669703a117abea2556b4"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20VISNIK.json.gz": {
+      "bytes": 38802,
+      "sha256": "22ae055b32665f0ed3f382cfa38a10450bc14df34d6faa888855a0072738f386"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20WATILA.json.gz": {
+      "bytes": 1297434,
+      "sha256": "545bcb2307de892fc2d8cdb4c28b945bfabb0ac229d3cd208bc65c766872ca00"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20WINARS.json.gz": {
+      "bytes": 564387,
+      "sha256": "8ac06ea5be0a1ba5386c12cc7e180f5477d85beb40ce88af72316948f57635fc"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ZHESHE.json.gz": {
+      "bytes": 140580,
+      "sha256": "b2fd7cd824a7b17db81cf7b33e8d1b344938cb60e72819c5f70191cd97974d38"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ZHOGEE.json.gz": {
+      "bytes": 73853,
+      "sha256": "585f8286841d0730b3398c8999fd2d408a92011dd494d5036611ce9bf04803eb"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ZHUMAL.json.gz": {
+      "bytes": 267795,
+      "sha256": "aa9c5a8139b2b5bcf727d23ddcf94913ea43e34495fa7e0bc87eec5a05af885d"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ZINZHA.json.gz": {
+      "bytes": 213178,
+      "sha256": "e981076183a61d056ae3660a857bef8eab36b479e1ebe1c87cbe98910b1740ff"
+    },
+    "KXATPMATCH-26JUL12ALTGAS.json.gz": {
+      "bytes": 178807,
+      "sha256": "e2775939397ca9b0e4217e6a6e594e5c46c8e31580f50ab3ae4266a0a30dfc59"
+    },
+    "KXATPMATCH-26JUL12BORKOU.json.gz": {
+      "bytes": 189644,
+      "sha256": "ab0328d2369daf02db2c9d2a146f221bdc4ef5523d538b0509aebdac00cfb70a"
+    },
+    "KXATPMATCH-26JUL12BUDPEL.json.gz": {
+      "bytes": 288400,
+      "sha256": "fc5f61aa773a0ee2296b2afd14546bd06d2d8b959fc39cb9a1cf01a6d1f7bbc5"
+    },
+    "KXATPMATCH-26JUL12BUEMAR.json.gz": {
+      "bytes": 141110,
+      "sha256": "18d1bc6a9e3d4ab40ee3fda0286257a84b64e422098e333a4f43f3cb939c1fb3"
+    },
+    "KXATPMATCH-26JUL12CARSAN.json.gz": {
+      "bytes": 28841,
+      "sha256": "aed3efab97107385fafb890c0144e33bc915fb1a140bbea5f8caccb83989d58d"
+    },
+    "KXATPMATCH-26JUL12CECOLI.json.gz": {
+      "bytes": 169938,
+      "sha256": "f0abfa3f858835bed5552b98c40bf27e7e44d2b137ecf12149e3604319d8b8f3"
+    },
+    "KXATPMATCH-26JUL12CERKOL.json.gz": {
+      "bytes": 907762,
+      "sha256": "2e6cb4f03082baaadf5da68c34c1d844475e1edfb598f82562302d8f3246aa74"
+    },
+    "KXATPMATCH-26JUL12CHOBAS.json.gz": {
+      "bytes": 136710,
+      "sha256": "eb7b7f13d99ff44d638e6d3adc94598812ccf4f442667c952aaeba7d550ebee1"
+    },
+    "KXATPMATCH-26JUL12CINHEM.json.gz": {
+      "bytes": 124748,
+      "sha256": "72c3d12605dc2d51fd5d0d9bb11d0d4906c11d12b74d58e6ae24a5b5d0417d7b"
+    },
+    "KXATPMATCH-26JUL12CORDAN.json.gz": {
+      "bytes": 44641,
+      "sha256": "50f7016808eaf086502b29c2d9ce0ff9698d2dcb477eab4299c866ba71f06535"
+    },
+    "KXATPMATCH-26JUL12DAHBAE.json.gz": {
+      "bytes": 494008,
+      "sha256": "181c0aa86111d64b93b68df666ea6c40fee54ed60964958200b5187b99429bc4"
+    },
+    "KXATPMATCH-26JUL12DEJGAU.json.gz": {
+      "bytes": 139237,
+      "sha256": "12c1d929c7292a358fb18dddc1b6bf0b949fc00c96777c2360edbcd721cb54d1"
+    },
+    "KXATPMATCH-26JUL12DIEMON.json.gz": {
+      "bytes": 124556,
+      "sha256": "b6a13f3fb07a4854f28e57ce4f51eb545351bab4b51377b2ed2cf969b415d15a"
+    },
+    "KXATPMATCH-26JUL12DODCAR.json.gz": {
+      "bytes": 208031,
+      "sha256": "47306cdff6baaa9fefd65f93710684e60ad3bbc86872bf6c2bbece1f3aefda77"
+    },
+    "KXATPMATCH-26JUL12DROBLO.json.gz": {
+      "bytes": 464095,
+      "sha256": "73caf9d2bd377691d88c022df983e89bea513e30a021b603ad4b1dfc024a20b0"
+    },
+    "KXATPMATCH-26JUL12DZUROC.json.gz": {
+      "bytes": 312051,
+      "sha256": "a819ccfc58efaf12c5f0dc11b34e00e9ee424c4cfeee47169547ad90806de2f0"
+    },
+    "KXATPMATCH-26JUL12FARWAW.json.gz": {
+      "bytes": 214313,
+      "sha256": "192f44c0499b84dc9e848a90808656bd845d880fd0e7881e9c7ac0f6f10c60a7"
+    },
+    "KXATPMATCH-26JUL12FELKEC.json.gz": {
+      "bytes": 127817,
+      "sha256": "b32341363555e5553aba45cfd49c6f4709c3d826c42eeb32e1226bdc94ee807c"
+    },
+    "KXATPMATCH-26JUL12GUEGOM.json.gz": {
+      "bytes": 303399,
+      "sha256": "a74f7368572a5acf055c8e5b406717e3f33e8a1ad3d12185ce5696164d61d810"
+    },
+    "KXATPMATCH-26JUL12JACTRU.json.gz": {
+      "bytes": 201010,
+      "sha256": "fb5358a29c753bb533488edaefe77918cae136664153874861807c9e1c0f2b5c"
+    },
+    "KXATPMATCH-26JUL12KOPPRI.json.gz": {
+      "bytes": 284614,
+      "sha256": "d89a31ff35f4afb643f3f1734f9c732cf495b718f141b2b3f72367c0c4a62274"
+    },
+    "KXATPMATCH-26JUL12KRUFER.json.gz": {
+      "bytes": 101518,
+      "sha256": "fc39e806ae9817284d0634c6743fafc8ad873b208b000cede0819788c85c41ad"
+    },
+    "KXATPMATCH-26JUL12LAJVAN.json.gz": {
+      "bytes": 187516,
+      "sha256": "27603a09729f96727a011467df19cda020dc883e38970711f6b602b79727b21f"
+    },
+    "KXATPMATCH-26JUL12MARHAN.json.gz": {
+      "bytes": 511311,
+      "sha256": "ef79befe7b989b378d74243c22677a88aab429c8bbd5b798a2561ca0181ae945"
+    },
+    "KXATPMATCH-26JUL12MOLFAU.json.gz": {
+      "bytes": 36494,
+      "sha256": "b29b8de0d5bea844e8d8cf810aa45ea028846cc24ba9357a7b247565b36c1920"
+    },
+    "KXATPMATCH-26JUL12MOLROY.json.gz": {
+      "bytes": 146731,
+      "sha256": "f3ba7d876b994d218c8450318d32892679a82e1e6d7f00e07c74b39cae658014"
+    },
+    "KXATPMATCH-26JUL12MULSHE.json.gz": {
+      "bytes": 922641,
+      "sha256": "e70682c60dff1d2978315107dda73a3ad51a7364114c9d577cecf82fcbc0e2a1"
+    },
+    "KXATPMATCH-26JUL12NEUTOP.json.gz": {
+      "bytes": 428612,
+      "sha256": "85a442e41bf114cb41053405ab4fa458a5f6adeae85d34d6596acf5714880297"
+    },
+    "KXATPMATCH-26JUL12OFNTIR.json.gz": {
+      "bytes": 93613,
+      "sha256": "3dd6320bf86f12cdf75ec36b69d5c7c45cdff5316cd69c6496b3c60540a45241"
+    },
+    "KXATPMATCH-26JUL12PASKAS.json.gz": {
+      "bytes": 188194,
+      "sha256": "844a04321dc8cf15457d73ef5b109e1e5421dce28218807af5f35e82b4a71a1a"
+    },
+    "KXATPMATCH-26JUL12PRASAI.json.gz": {
+      "bytes": 320870,
+      "sha256": "66c18d0057ef497cbbbb93be665ae08842385ce469bdb234f0d1d1bc76a989a1"
+    },
+    "KXATPMATCH-26JUL12REJMID.json.gz": {
+      "bytes": 153702,
+      "sha256": "f2e8cc4b60374c93317bce52fbdd2254e6a9412b27804c158a6e0e9ffac964c5"
+    },
+    "KXATPMATCH-26JUL12SESMER.json.gz": {
+      "bytes": 252256,
+      "sha256": "94bc369fa1edc89daf30116a44f5d45575f0a0adad578a1c9ff729f0e5c7fee6"
+    },
+    "KXATPMATCH-26JUL12SKASAC.json.gz": {
+      "bytes": 171679,
+      "sha256": "83ee0e9bf2b6ccf49ac9f7cdef4ebe1393314c281f689af77d99b79dea408b49"
+    },
+    "KXATPMATCH-26JUL12SLADAM.json.gz": {
+      "bytes": 54047,
+      "sha256": "abe9aa54d50befa126eaec85a947a4a8d91aaa4c1b3e461b735ebd6684f84ec6"
+    },
+    "KXATPMATCH-26JUL12SONSCH.json.gz": {
+      "bytes": 184954,
+      "sha256": "32632b8ffc1e3b320ca208bf0c74b76bdb47014b44cba31c7c33304da417a4d4"
+    },
+    "KXATPMATCH-26JUL12STRMUN.json.gz": {
+      "bytes": 75576,
+      "sha256": "1b4e8b2437e0da67d5d19a84240b565c8e9cb2b2bd84ec64437eb60fa7ac9f37"
+    },
+    "KXATPMATCH-26JUL12SVRDIM.json.gz": {
+      "bytes": 237966,
+      "sha256": "526e1cd00396ef1effd7e45291cde81e0a8944c1a26299635402d3ec020b1fb5"
+    },
+    "KXATPMATCH-26JUL12TABHUE.json.gz": {
+      "bytes": 194471,
+      "sha256": "b082fec10dc285d820a100704d39194d904008ed98ff18af5c4288c92ebe6299"
+    },
+    "KXATPMATCH-26JUL12TSIBUS.json.gz": {
+      "bytes": 601786,
+      "sha256": "3af10371b3812ec27b3a8fa94e0184951383fcfccc02634c674365f61ed6a95c"
+    },
+    "KXATPMATCH-26JUL13COLSKA.json.gz": {
+      "bytes": 661554,
+      "sha256": "827280114b2b47e349130923032b60f0984af5ef1969422e29e561851ae920be"
+    },
+    "KXATPMATCH-26JUL13FAUDAM.json.gz": {
+      "bytes": 711058,
+      "sha256": "72058c29b228f0b9c4bf1fc5697db92efcbf2206e40d586dafdfac33dfe61375"
+    },
+    "KXATPMATCH-26JUL13MARMID.json.gz": {
+      "bytes": 144730,
+      "sha256": "b496259e9a5b0daa99907023ad7d637787b78308ab56193c3134609427119a56"
+    },
+    "KXATPMATCH-26JUL13PASKRU.json.gz": {
+      "bytes": 151447,
+      "sha256": "4f0c078971884e74cc3dc09813091742e21dc25ee9e247fb7fe802ee18c1c2bb"
+    },
+    "KXATPMATCH-26JUL13SANDAN.json.gz": {
+      "bytes": 242940,
+      "sha256": "4a74a762917f5cec4c506902b0a91bc19140f061faec757d7c04d8f4debfa1c6"
+    },
+    "KXATPMATCH-26JUL13TABROD.json.gz": {
+      "bytes": 478276,
+      "sha256": "05cf8e9531c65e20637de007a5721f43100328b65e651e2a54b785c954b97451"
+    },
+    "KXATPMATCH-26JUL14CECBUR.json.gz": {
+      "bytes": 212717,
+      "sha256": "541284bebdd3e56e195b6bd9031bc6b1d736243b84dd01cfa3a22f0c7772f546"
+    },
+    "KXATPMATCH-26JUL14CINHAL.json.gz": {
+      "bytes": 183824,
+      "sha256": "183a6027e94255ea610db9565a7f05c0764a982957a46d68132cc0f1970a8862"
+    },
+    "KXATPMATCH-26JUL14DIAMID.json.gz": {
+      "bytes": 309159,
+      "sha256": "c93172fe5eae544a8dc659532da9be3a81be04882b8e74114416f99e5999704b"
+    },
+    "KXATPMATCH-26JUL14GOMMCD.json.gz": {
+      "bytes": 153012,
+      "sha256": "6c6a4527a14c654ac0d054cd73aa2a694fd7a37aff20a792b88886d12413e1f2"
+    },
+    "KXATPMATCH-26JUL14KYMDIE.json.gz": {
+      "bytes": 260817,
+      "sha256": "27577b131ed6f7c694a00b72db11b9fb42df9068be16bd3ba41898e04b51dcc3"
+    },
+    "KXATPMATCH-26JUL14MARPRA.json.gz": {
+      "bytes": 70583,
+      "sha256": "dfb1910d32379028706abb239f2b23ec9ffa6992592590d10129d173c8941a5d"
+    },
+    "KXATPMATCH-26JUL14NEUPRA.json.gz": {
+      "bytes": 216939,
+      "sha256": "2f6387fce3ca56c986e8428f88d8e50790afd3fe98293d665bfa016cb37e4cd0"
+    },
+    "KXATPMATCH-26JUL14RINTAB.json.gz": {
+      "bytes": 243286,
+      "sha256": "e3c4184efd22ad39b82faf0a080917318162b00b756d6c4f2f270c54542584a4"
+    },
+    "KXATPMATCH-26JUL14TOPUGO.json.gz": {
+      "bytes": 629109,
+      "sha256": "b18ea2bfc3738042c1b35a1bfc7eadbcba18140feb6119c3ab8ac288acc1162b"
+    },
+    "KXATPMATCH-26JUL14TRAKRU.json.gz": {
+      "bytes": 325367,
+      "sha256": "bd1a24d9fbea3a9cd498a33aa2736c0c307e4e023fc5567d6b95235d080a85b8"
+    },
+    "KXATPMATCH-26JUL14VALDAM.json.gz": {
+      "bytes": 171128,
+      "sha256": "8c4841ec2cbc85e217c452fd6e51176e07ccdf07aba110b479031bbb16c8a0b8"
+    },
+    "KXATPMATCH-26JUL14VANDAN.json.gz": {
+      "bytes": 267966,
+      "sha256": "9984b71b5e00c7edd77c345588a13b558354e554b5fc05d06656bf4bdd195777"
+    },
+    "KXATPMATCH-26JUL15ALTDAR.json.gz": {
+      "bytes": 126574,
+      "sha256": "c72f3408aafcd58300dcaf371f96a4e1fa62ac7a33596c4819a32b1365da32c2"
+    },
+    "KXATPMATCH-26JUL15BASTIR.json.gz": {
+      "bytes": 59798,
+      "sha256": "490719881f9bb4b0dbc7d7d71d80b1054934a31623eb796228c47a5192bb3a3a"
+    },
+    "KXATPMATCH-26JUL15BORDIM.json.gz": {
+      "bytes": 203904,
+      "sha256": "0cab60a4b34ddbf900cc558a04efbc05874cbfeea3e3ba7a7aae3ff3d12569e0"
+    },
+    "KXATPMATCH-26JUL15BUBHAL.json.gz": {
+      "bytes": 241912,
+      "sha256": "fa23ce0cce39792f37f798de9950aea8273363e26868880ca108d55bacdc5ebd"
+    },
+    "KXATPMATCH-26JUL15CARUGO.json.gz": {
+      "bytes": 254577,
+      "sha256": "37c0f527546865311bf9086857623184f39b7c378372ce986d519fcb5965c5f3"
+    },
+    "KXATPMATCH-26JUL15CERKEC.json.gz": {
+      "bytes": 367831,
+      "sha256": "ecaa0a994dc3f53908586bf0d64c36ea52f62be8334e29270e6e918ce3b1edd3"
+    },
+    "KXATPMATCH-26JUL15COBBUR.json.gz": {
+      "bytes": 279312,
+      "sha256": "4aa24760624fae3b385a35664a46a389d5e8a4f0d8533f72e048395eda2b6529"
+    },
+    "KXATPMATCH-26JUL15COLSON.json.gz": {
+      "bytes": 381985,
+      "sha256": "54656e3a018fb54442d6b4ff233bf34bad66e49adeb682f62b1ca30a5da2138c"
+    },
+    "KXATPMATCH-26JUL15ETCMER.json.gz": {
+      "bytes": 198757,
+      "sha256": "2d2623674ff4f886ded5dd5095a1d129fe48ad524077a714249ad46dc669b277"
+    },
+    "KXATPMATCH-26JUL15GOMARN.json.gz": {
+      "bytes": 340288,
+      "sha256": "29c7cfbd6c13a34bdeb9d746f7a2fbc5ef0b7fc1502e22b18f7a733b37d3f887"
+    },
+    "KXATPMATCH-26JUL15HANVAC.json.gz": {
+      "bytes": 129946,
+      "sha256": "7104103c616d4f196dd1f547ba30515f3a4409ee1cfcd1d2c643e650ba24b062"
+    },
+    "KXATPMATCH-26JUL15KYMTSI.json.gz": {
+      "bytes": 42818,
+      "sha256": "cc664675454943cd6b6898e35095258c714aa6946769472efe72518242de7ecc"
+    },
+    "KXATPMATCH-26JUL15PRADZU.json.gz": {
+      "bytes": 180555,
+      "sha256": "44efcce36d7a2dabb1c35d853e7ee16f6d273da6b13f6001615b1303bf35ea86"
+    },
+    "KXATPMATCH-26JUL15PRIMOL.json.gz": {
+      "bytes": 37339,
+      "sha256": "a40b67a1b035b8f68bc1e9ce150537da6d25617925990101bb4a0b36ca8003e3"
+    },
+    "KXATPMATCH-26JUL15RUBPEL.json.gz": {
+      "bytes": 129869,
+      "sha256": "789ee6180438146179fb1f6dabe2ad821c6525f8f33fcb9d90c1afd88f5e7490"
+    },
+    "KXATPMATCH-26JUL15TABMID.json.gz": {
+      "bytes": 126409,
+      "sha256": "d299feb6425aa184c7236fcf1d681e6000e531b2caae9bc5beecc42d67810480"
+    },
+    "KXATPMATCH-26JUL15TRANAV.json.gz": {
+      "bytes": 63140,
+      "sha256": "39499949778f7436ecd870db4090031861316774173a44b48bfbc66ec73a443d"
+    },
+    "KXATPMATCH-26JUL15TRUDAV.json.gz": {
+      "bytes": 280686,
+      "sha256": "1ed271254e5e7e08d8893660b009d364c24fb7989a2a602b0ead86dc1ccc4be2"
+    },
+    "KXATPMATCH-26JUL15VANDRO.json.gz": {
+      "bytes": 551507,
+      "sha256": "228c8baf5c3c501946c0a6c54e456d35040ff2d24b60a35c1ff9fa8eecc2af7e"
+    },
+    "KXATPMATCH-26JUL15VANVAL.json.gz": {
+      "bytes": 581290,
+      "sha256": "6653e7adfde8fc669bfb5a602fa372309ea4a47235239dd800ef0c0f2a215684"
+    },
+    "KXATPMATCH-26JUL16BURUGO.json.gz": {
+      "bytes": 271351,
+      "sha256": "53dc8aebeae85f3803311fb555336b6fcf09dbb6486afaa6786e74b0db6636d2"
+    },
+    "KXATPMATCH-26JUL16DEJBAE.json.gz": {
+      "bytes": 200159,
+      "sha256": "d1e2277fad01ddfe3a05c100cdda70fe6c2d3b2fce1d4e7cb1dbeee7f4f031d4"
+    },
+    "KXATPMATCH-26JUL16DZUARN.json.gz": {
+      "bytes": 528228,
+      "sha256": "ae02b89599a1a529602e1305dcac1ca766981e711bd8439d77e96d507116f093"
+    },
+    "KXATPMATCH-26JUL16FARRUU.json.gz": {
+      "bytes": 366522,
+      "sha256": "bce41a881383a5a08f468cbf7a19de48ffd7abb836a5fabc71767c266f04bfad"
+    },
+    "KXATPMATCH-26JUL16MERDRO.json.gz": {
+      "bytes": 179317,
+      "sha256": "799af312d69a378294791515917c044e3a3a1b78e4360f87031736e0c77e6f58"
+    },
+    "KXATPMATCH-26JUL16MOLDAV.json.gz": {
+      "bytes": 911200,
+      "sha256": "13ddc8843fc3b3029c3950c978bc2ee13c86d92341a8f5b2cf95b66decf04837"
+    },
+    "KXATPMATCH-26JUL16SHESTR.json.gz": {
+      "bytes": 66112,
+      "sha256": "3df2178c52417244429b004b2af1131c0305488a837636056533f53d4b76ec17"
+    },
+    "KXATPMATCH-26JUL17BORDAR.json.gz": {
+      "bytes": 490513,
+      "sha256": "ab5c1f053da0962d0a11845ec99b3b4f28f24b281f7c25d8591c9f77b23ba566"
+    },
+    "KXATPMATCH-26JUL17BURMER.json.gz": {
+      "bytes": 241109,
+      "sha256": "24ed90f29dd5e65aaeda52bdf5ce2db58c9569ef401c6f98192456ce66a1be46"
+    },
+    "KXATPMATCH-26JUL17CERRUU.json.gz": {
+      "bytes": 196757,
+      "sha256": "f9567353aeb063ca8eb7f71b86d9a3e0d01d951ce633176f477fd365c9b5b991"
+    },
+    "KXATPMATCH-26JUL17COLVAC.json.gz": {
+      "bytes": 608185,
+      "sha256": "eacbd39b68348804e9435484ed5cf2502bad95e29133af95bf135bcd4849fd22"
+    },
+    "KXATPMATCH-26JUL17DZUMOL.json.gz": {
+      "bytes": 1225275,
+      "sha256": "b8b7b45184f5756787150b9ed856e2ac54c1308dea06dd5e9a0539c06e7f9f8d"
+    },
+    "KXATPMATCH-26JUL17HALSHE.json.gz": {
+      "bytes": 417572,
+      "sha256": "80420b2085c387ad2ba6d32d4152e7f2b5b04540a9454628e8da509065d867ae"
+    },
+    "KXATPMATCH-26JUL17RINTSI.json.gz": {
+      "bytes": 127875,
+      "sha256": "fd275eb9ce1db847f5929cc7dfffeecbeaf1bed036ae0f67a75f53861aa13054"
+    },
+    "KXATPMATCH-26JUL17RUBBAE.json.gz": {
+      "bytes": 278023,
+      "sha256": "e1f20dd5566b469d3fb58aaba945ba63182049ad397b17d50d61fe24b800279d"
+    },
+    "KXATPMATCH-26JUL17TABTIR.json.gz": {
+      "bytes": 41206,
+      "sha256": "6f99de6341d4ff63b07125dce3a443ed3ba9db11278075c840939405f8351c0b"
+    },
+    "KXATPMATCH-26JUL17VALTRA.json.gz": {
+      "bytes": 293116,
+      "sha256": "f402adb612a665f0abcaeb270d8808971df824bf493c492f9a233b0c909483ec"
+    },
+    "KXATPMATCH-26JUL18BUTTAB.json.gz": {
+      "bytes": 501893,
+      "sha256": "40446a818bddc98cc6a9326a7d4eeccdff1bbb8ac307ef1c217cf6a66beac7b5"
+    },
+    "KXATPMATCH-26JUL18CINMIC.json.gz": {
+      "bytes": 178816,
+      "sha256": "3d87827a02e3c90b393546fe2b32b22969ff8f10f53a39e5337498ebe013449c"
+    },
+    "KXATPMATCH-26JUL18COLCER.json.gz": {
+      "bytes": 778929,
+      "sha256": "8ffd7d3a4a70cac5c4dddae7d4efbf980b92f383112c49dfcf5c8eeee72154a8"
+    },
+    "KXATPMATCH-26JUL18CORSAC.json.gz": {
+      "bytes": 272795,
+      "sha256": "edd0efb2adc8c1e78a813ff11483ed3eaf2746a239eea5bca44e0a7b6ff1890d"
+    },
+    "KXATPMATCH-26JUL18DANPRA.json.gz": {
+      "bytes": 141698,
+      "sha256": "cb4514653c8b9604f7a7844e6867bd9028abb8d349ca5b6ba4423140da0609d9"
+    },
+    "KXATPMATCH-26JUL18DELRIB.json.gz": {
+      "bytes": 405298,
+      "sha256": "c55eea15ce9d4bca685d9c43b4680bf6d930711114f75478aba3d23e748e835f"
+    },
+    "KXATPMATCH-26JUL18DOMSKA.json.gz": {
+      "bytes": 67755,
+      "sha256": "89cabc97672d0af6a9d6a0a25cdd682e5f6a01f4edf065b1aee17129a449156d"
+    },
+    "KXATPMATCH-26JUL18GAUTSE.json.gz": {
+      "bytes": 16059,
+      "sha256": "19db9a8f24488c75bd09e621026c004af3e8b3b42817d602e071d092b24b0275"
+    },
+    "KXATPMATCH-26JUL18HEIFEL.json.gz": {
+      "bytes": 329975,
+      "sha256": "8dd1b618fde4d26bcfddea44ae1550a97ae441309c588bdf5366366a0982a103"
+    },
+    "KXATPMATCH-26JUL18HIPGIU.json.gz": {
+      "bytes": 123994,
+      "sha256": "fcf2944d3390e0e8aec5827d75bffce40ba261b57d300ac981ae6205d967e8e5"
+    },
+    "KXATPMATCH-26JUL18JACDA.json.gz": {
+      "bytes": 20004,
+      "sha256": "44e6d7f7ba770ae3ef074b7246a9e7fccf11968824122137c43eb75635f9dee8"
+    },
+    "KXATPMATCH-26JUL18KOPHER.json.gz": {
+      "bytes": 174001,
+      "sha256": "2b2230ee35caccb1198eff0404bd1ba5f167c3f419ed126d00b17a25aba8083b"
+    },
+    "KXATPMATCH-26JUL18LUZTSE.json.gz": {
+      "bytes": 215834,
+      "sha256": "089a4ed94cb7eb18ae202db1a3f8dbb22ef255fad21a5e1db4d6df9c0d2b224c"
+    },
+    "KXATPMATCH-26JUL18MARJOR.json.gz": {
+      "bytes": 162125,
+      "sha256": "d3ac3e279c3cb081ccbf2b8f386ae5e31881eb4f9b95eb28c6dafbd881ec763e"
+    },
+    "KXATPMATCH-26JUL18MERDZU.json.gz": {
+      "bytes": 590447,
+      "sha256": "3c4a6aead21654ee9d5de487721155955c3ac28bfeebf5370354c90dbb662b68"
+    },
+    "KXATPMATCH-26JUL18PELSIL.json.gz": {
+      "bytes": 85426,
+      "sha256": "7cc0ac3fcb4365582be9edea0f2088031333dc2ccfa197f0bce7a52cc095ebed"
+    },
+    "KXATPMATCH-26JUL18ROCBUE.json.gz": {
+      "bytes": 236762,
+      "sha256": "e706426552f7acc7f2bec2a91ef914001449fc0e3eb4fcef49d6df12f8c38ba6"
+    },
+    "KXATPMATCH-26JUL18RODCHE.json.gz": {
+      "bytes": 90543,
+      "sha256": "e267ac1b2b55a741e40ae493633326bb414df581578b9bb3b3b61b95121ad497"
+    },
+    "KXATPMATCH-26JUL18RUBTAB.json.gz": {
+      "bytes": 754892,
+      "sha256": "eaf8b0b3506aadc89f6fdf071ccaf3b0858726b72da65b83682f17a105b597af"
+    },
+    "KXATPMATCH-26JUL18SHETSI.json.gz": {
+      "bytes": 422721,
+      "sha256": "5ff5a41222c355997ab97e660bd8aa859aab82f023696092ffc0ef8c0c2fca2d"
+    },
+    "KXATPMATCH-26JUL18VALDAR.json.gz": {
+      "bytes": 373966,
+      "sha256": "909091aaae9ba818e3f2d3ae2106e62d8ff79ec51ddb8de14fe2654a6b916c8a"
+    },
+    "KXATPMATCH-26JUL18WALDJE.json.gz": {
+      "bytes": 171405,
+      "sha256": "d9bcadc07fb28fe180ad6ba6dc263b3af7e5d90f4736d381f86ac5a2a0f9b7ea"
+    },
+    "KXATPMATCH-26JUL19ALTCOL.json.gz": {
+      "bytes": 216694,
+      "sha256": "1b0d41fcfc93c5fd24421caa55ec60fc5e6ea23757a6abbf0cad343cc0acb540"
+    },
+    "KXATPMATCH-26JUL19BAEKEC.json.gz": {
+      "bytes": 151819,
+      "sha256": "75555c7b930bc3b83ea69fb72dc97c446f6faaff94d07ab04d304a9d1d23b548"
+    },
+    "KXATPMATCH-26JUL19CERTRU.json.gz": {
+      "bytes": 774119,
+      "sha256": "600d2a4bcd093ee07219e2c6f732c1d2a4984afc9a9a6bdf0ad86b1222fd954c"
+    },
+    "KXATPMATCH-26JUL19CHODEJ.json.gz": {
+      "bytes": 25929,
+      "sha256": "09a51fd68058bc3fb3706c7774152877554dbbfa3f8002ecce2ff718822c57fb"
+    },
+    "KXATPMATCH-26JUL19CINGIU.json.gz": {
+      "bytes": 142349,
+      "sha256": "ab042ae6edc376ec6bf929759c0af5d697a5205a547e8e3a4794df6162543b0e"
+    },
+    "KXATPMATCH-26JUL19DELDJE.json.gz": {
+      "bytes": 131454,
+      "sha256": "ec08390b15ff12a53297e8b66ec79116da56d575e3bb15c00953b7d7ba7effb0"
+    },
+    "KXATPMATCH-26JUL19DROUGO.json.gz": {
+      "bytes": 253479,
+      "sha256": "0a213527bd33493ea7f9c30b0293e156f80705c72dc3dbdd95b27f282be4a40e"
+    },
+    "KXATPMATCH-26JUL19FELKOP.json.gz": {
+      "bytes": 30827,
+      "sha256": "25f6b9d45212ec86b14f167d484434e2c6c43fc151e1f1c5ba15c75f27bb6ed5"
+    },
+    "KXATPMATCH-26JUL19FERVAN.json.gz": {
+      "bytes": 48291,
+      "sha256": "dde6264de8537cc4f25198dd608c090a2d06056bdd26b27c2a8d333f0f0f56c2"
+    },
+    "KXATPMATCH-26JUL19GASDZU.json.gz": {
+      "bytes": 225432,
+      "sha256": "5e0833d4fddc6665c6329737858ed02caee7a87f4504a1d95ca3d05efdbbed10"
+    },
+    "KXATPMATCH-26JUL19GAUCAR.json.gz": {
+      "bytes": 267006,
+      "sha256": "22aa27c99693e867d0a13d1b4e786be4f44df7300aa72fa59673f52210fa3dbc"
+    },
+    "KXATPMATCH-26JUL19JACDAN.json.gz": {
+      "bytes": 338100,
+      "sha256": "e034ef746aa645033587979d1ba23355174ecdbcf606217cca49c6c02a58f6fb"
+    },
+    "KXATPMATCH-26JUL19KOPBUS.json.gz": {
+      "bytes": 80182,
+      "sha256": "560fcbe688a60d6bc0ab55ce35c96859c7bba3c0723bd85b15927371004e7d77"
+    },
+    "KXATPMATCH-26JUL19LUZTAB.json.gz": {
+      "bytes": 396423,
+      "sha256": "5211a4a050203b08f919dd9881335437b1de9c7090b1da9abca191c6139654bd"
+    },
+    "KXATPMATCH-26JUL19MARSKA.json.gz": {
+      "bytes": 84982,
+      "sha256": "476dbe36832976995e3a7eb21afedc4935c0c91242b8145e8889fcf7a8cab4a0"
+    },
+    "KXATPMATCH-26JUL19MOLOFN.json.gz": {
+      "bytes": 6187,
+      "sha256": "ecd261563d78602a6b4659dca81edbe995d4b83a9d4d39f9d2e4f135aea5ddec"
+    },
+    "KXATPMATCH-26JUL19MULNAV.json.gz": {
+      "bytes": 113059,
+      "sha256": "639bae3d21286380a89a25c0fee6dd7b3d7a99c1e1feb40500f03b952d41ceb8"
+    },
+    "KXATPMATCH-26JUL19NEUHAN.json.gz": {
+      "bytes": 133043,
+      "sha256": "c8626ede13674a6a9243959e515ec59168b755903e5054baad39b98faf612ad2"
+    },
+    "KXATPMATCH-26JUL19PELBUE.json.gz": {
+      "bytes": 804747,
+      "sha256": "5caf92ce79699829df36c797bf5ac51f69c3a2ff34d0c6bcfc00a36c7679db64"
+    },
+    "KXATPMATCH-26JUL19RODSAC.json.gz": {
+      "bytes": 28425,
+      "sha256": "acd6ba0ed1b91a5889e1e020dfe53f77db461dab6b32c2d2154c2ab90e988c55"
+    },
+    "KXATPMATCH-26JUL19RUBDAR.json.gz": {
+      "bytes": 323897,
+      "sha256": "c21c9ae81c41f86cb294adf9471dc872bbb8e573a5bfb996de84dc90b5b7f11a"
+    },
+    "KXATPMATCH-26JUL19STRSHE.json.gz": {
+      "bytes": 499911,
+      "sha256": "8ec46e0241e707a6e4e082050f30f3a6e1c00afec26102bf8cf81ff9e02cb9b5"
+    },
+    "KXATPMATCH-26JUL19TORBAS.json.gz": {
+      "bytes": 156478,
+      "sha256": "80bd2bb8187bf5482974a1fdf7297ebf2fffc2d12f8cf48f24bc1dd67c35702c"
+    },
+    "KXATPMATCH-26JUL19TSICOL.json.gz": {
+      "bytes": 579342,
+      "sha256": "5d54709f4dcef47173ba965287b23fee2a6432200153bdbf7f1c5c6eecfc5e72"
+    },
+    "KXATPMATCH-26JUL19VANFAR.json.gz": {
+      "bytes": 235033,
+      "sha256": "14b2e1002db979e0f0a6720875a8ab0d47889bff9be5c6028f6914f54855e174"
+    },
+    "KXATPMATCH-26JUL19WAWBUR.json.gz": {
+      "bytes": 127174,
+      "sha256": "838603f585b776461a0970f23db40b02126d10fe6da4f23254781d793a76add7"
+    },
+    "KXATPMATCH-26JUL20DIACIN.json.gz": {
+      "bytes": 412848,
+      "sha256": "f044eda32db21849241237d86fa4214f330cba451a9d9d6f278c9fd91b3af8f3"
+    },
+    "KXATPMATCH-26JUL20DJECIN.json.gz": {
+      "bytes": 137304,
+      "sha256": "f2d19cb9e7b2df181c77691874ed9364652058c0e1df85182cb132f7fff8f78f"
+    },
+    "KXATPMATCH-26JUL20ROCMAR.json.gz": {
+      "bytes": 124070,
+      "sha256": "89154fc91ecea1b9d342583b7a712f54cc6feaa280d7da441fea6671f6da606e"
+    },
+    "KXATPMATCH-26JUL20SCHROD.json.gz": {
+      "bytes": 120932,
+      "sha256": "f6e05e5aa1c6fa7963c4d2b7ef0141c21c31d0e5ea80137e6c97215cc46c1715"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12ARIZHA.json.gz": {
+      "bytes": 95529,
+      "sha256": "63f68c72284268496000ff63d91be216fd187d9d3547ff6b893a2e32093f44fb"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12BALHUA.json.gz": {
+      "bytes": 106567,
+      "sha256": "84710dbc8f7d0de1c1335c628003c2028296d85d5517c8ec99f6958868fd44cd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12BASABB.json.gz": {
+      "bytes": 112488,
+      "sha256": "13fc73bf410f9d69ef87672c1b2a0e6fb8c48f72774d29d5fb0d77ef16a18628"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12BOSKOV.json.gz": {
+      "bytes": 74262,
+      "sha256": "e5908e8125ae17e450b99a68793bb800d1fa57ff3fa38dda2f9ce76fe844f180"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12CIRHUA.json.gz": {
+      "bytes": 5753,
+      "sha256": "daf3633b6e5a5fd447fdcca8b52d60a89a1fe3bb5a265e5e9b315649c1836d46"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12ERJBOS.json.gz": {
+      "bytes": 259212,
+      "sha256": "9a4d82bede02fdce60a1afa9abbbc26a80ba29951c7a53b42a04600dccf28343"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12FEICHE.json.gz": {
+      "bytes": 113609,
+      "sha256": "ce0f093173562f0fec4dde625f6236207f0dbf679dfd91d056f2d8cb3bade62f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12HESKOT.json.gz": {
+      "bytes": 380745,
+      "sha256": "f2aec5079d7af4e6e399a48896b343752309cc0f1f7e2e6b1b95ef13316f88d3"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12KHOVIG.json.gz": {
+      "bytes": 12955,
+      "sha256": "216bf00680215c0336d8c9e37423c35e5daab9690a857de314c6620ded480162"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12MALTUR.json.gz": {
+      "bytes": 244516,
+      "sha256": "737cde2176ea847552bdf34f5cd15ec1635f8ddd5f3fdee5548321e53023263d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12MAZGAN.json.gz": {
+      "bytes": 121591,
+      "sha256": "731e4315b151cd295891646b02ca6ba2fadf7b24b8a1d582bb29b94845656077"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12PALCOL.json.gz": {
+      "bytes": 219097,
+      "sha256": "d41a6859f51685fc4edd83f0911ddfa0f94a19d8cd7e9bb5f7363b77603058fe"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12PANYOR.json.gz": {
+      "bytes": 57372,
+      "sha256": "8a3d281417d8e80d781b57af1f0b79cc69576387dc03b934dfe3506be9f0d184"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12ROUJAK.json.gz": {
+      "bytes": 90237,
+      "sha256": "6534361cffe3aa0f2a50843732c7d08c6f50e67ebf6cd7937c2b8b17f4ea803b"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12SAIETO.json.gz": {
+      "bytes": 26061,
+      "sha256": "a4d67047655c65eb3ace584f3681138a5731c4adc8f46b3152d58af5b25b9fe6"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12SHEVAN.json.gz": {
+      "bytes": 636234,
+      "sha256": "05155bfee33140e98ad823278eeee061118d7ec0194575bdaf7eec00b3f106c5"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12SHITUR.json.gz": {
+      "bytes": 56534,
+      "sha256": "50e521386e000c7abba89d41f1602fa515934561e29623b3574f24df1b4ac67f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12SOKNUG.json.gz": {
+      "bytes": 126159,
+      "sha256": "28e6ffbecc5ec4b26f9c851457c6e38b6dc6d00fc1f581e4d79ab6088832b446"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12VOLMAR.json.gz": {
+      "bytes": 214516,
+      "sha256": "1d7365c733a8b3fe112a34170290d697d2a1c4f9ca6aab58b2d06930edf7ad7f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12ZELFAL.json.gz": {
+      "bytes": 135215,
+      "sha256": "2afd72ddfd4cd39769724321c1031e0f5b9d45bc9ba7e24f1c9f85a036669ca5"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13AVDFEI.json.gz": {
+      "bytes": 155272,
+      "sha256": "12d8bda3e346a8ffeb662a10bd96300dc4ed069e87d06cf435a75dedd63e7d08"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13BAIPRO.json.gz": {
+      "bytes": 95258,
+      "sha256": "67ae5bf04e2aa4474641393ec0411aa6defc00a3fb62996092f444ab72e438ee"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13GASBAN.json.gz": {
+      "bytes": 354189,
+      "sha256": "24955aea015c5a5128cfa394caffdce58099f220c01b73512242d7b1ac090563"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13GJOCHI.json.gz": {
+      "bytes": 458216,
+      "sha256": "1b8a7d8aa56041ef3a34387b969731b7e599ae5b1e2dbeab9f8f20ae3cb7d73f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13GRABER.json.gz": {
+      "bytes": 283868,
+      "sha256": "bca94dc72b95dabcd48f3f2647e115b06674bab81e8bf244d18a9a8e53db906d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13HERJAK.json.gz": {
+      "bytes": 256998,
+      "sha256": "2e629c0d98ba0adde940fef93390f9db7e447eea0c6e60b17ca02164c3782b26"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13JONSPI.json.gz": {
+      "bytes": 129692,
+      "sha256": "4e4ae5561f6a07f3cd12ed72ee1885594e287ddf0f35e5196b8b3c3a58c75d21"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13KABPER.json.gz": {
+      "bytes": 312547,
+      "sha256": "5716a9862f4297025cc90239b613b5b7037d3742666929fbd09952e416426e3a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13KHOZHA.json.gz": {
+      "bytes": 211617,
+      "sha256": "71ec587ba78a77c5c0409570a1a0798ebd6b0998b90bf0e66544a75d6b6a7db4"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13KNUKUR.json.gz": {
+      "bytes": 234950,
+      "sha256": "5debf6add8f6d0c19a6b7ea85bafabb9cd28bd99873d00526245e514af9685b6"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13KOTURG.json.gz": {
+      "bytes": 157214,
+      "sha256": "f4d9d96823bd2e38e0105d6e09e54799c533b5db8fee841a610e0c8b9e009877"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13LANMAL.json.gz": {
+      "bytes": 340842,
+      "sha256": "6e6469faea4d4bdfab2bada2bb2cdbdd44f3453f6d68878eef00a2318068790e"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13OKATAR.json.gz": {
+      "bytes": 135655,
+      "sha256": "732f8dfd3064a91e87ce6032d0ba04b7b571f0810cc0bd1858623bacf1d879eb"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13PANFAL.json.gz": {
+      "bytes": 159162,
+      "sha256": "934c3dad4a450cfc20408a76317352063caed19f0bb8d20dd741d954b6a2b4f8"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13PAPAND.json.gz": {
+      "bytes": 84516,
+      "sha256": "adfd2b47de6b478ade74e511400de016f4f43f86ace58686d48ea466ab670f3d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13PENTHA.json.gz": {
+      "bytes": 417536,
+      "sha256": "9bffe4eb23ac92f2e04cda0bba203e667cc4a357e3e3d131c807474adba3b76d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13RADREN.json.gz": {
+      "bytes": 91967,
+      "sha256": "515ceadea54a9f15a1963fc89657d111e96741de34765c2c9b85182653e388c5"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13RAMNOH.json.gz": {
+      "bytes": 190302,
+      "sha256": "d4a99fcc44f41903fedfb988573abd8c5065643f2e7dfd099b928d6e4e989e4a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13RINAST.json.gz": {
+      "bytes": 98746,
+      "sha256": "fef833382ca49c28f5332e594d5246cebdbc2f61e137ddd7301129aa6cd630a7"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13RISPOH.json.gz": {
+      "bytes": 149801,
+      "sha256": "6d0be207a4382482551e67ed55cdcdcdb68279dfdeb04a27fa253151e16de9ca"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13SAINUG.json.gz": {
+      "bytes": 114139,
+      "sha256": "3d80786e3b83cba8d5c3e8ca537b2ec2291aa5af82c751fef359c137ec0042bd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13SELYAN.json.gz": {
+      "bytes": 246561,
+      "sha256": "9d0849fab3ba5d44c7365ba994036685a81128e6d86c78b3f48bf98e39678ba1"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13SHIHUA.json.gz": {
+      "bytes": 102923,
+      "sha256": "3bf80e9ca670c207ec13721c5fc6d93df1e59bc37909c70fc3f622da913a0275"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13TIKBEN.json.gz": {
+      "bytes": 133618,
+      "sha256": "4b7445c95dffd424cad3ab237a8e4bda31a644d1c6d6cf837024aeb6b6683006"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13VANLEE.json.gz": {
+      "bytes": 172786,
+      "sha256": "d3dec4bd43f4063566005c213890a36aa63bdb47a73c501343220ec8cb742b3a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14AKSVAL.json.gz": {
+      "bytes": 153962,
+      "sha256": "3b1d44d3bf4d4f4d71772454b094b9908b2c4bab80fda87067b8f1fa00a74819"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14BARKOL.json.gz": {
+      "bytes": 76545,
+      "sha256": "54e44a9c5993caf7740d32c208a70d50eea125db484873399b4d09cb188be707"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14BASFRI.json.gz": {
+      "bytes": 140109,
+      "sha256": "d10320b4351e9e4371c46f09788e9e43257181eb37c149c6ab123a9aabd34e54"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14BRAPIE.json.gz": {
+      "bytes": 95808,
+      "sha256": "e539e2b8727e47825979a1254d881ff4b76c07509b6a24bf95c6da133229747e"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14CARVON.json.gz": {
+      "bytes": 26263,
+      "sha256": "5ccb78d151e8fb5d7e66f69b35e14710ddfaa3cbf5cf0635712b4a515f89136c"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14COLPAL.json.gz": {
+      "bytes": 206234,
+      "sha256": "ce56cde79adb0330a6b55dbb132f2fe2270e5bb0922a963735ede6243a6e56eb"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14DILFAL.json.gz": {
+      "bytes": 266307,
+      "sha256": "91a0b2fffd43a62176454d3f4f94f42f3b565d5e5e970b1f1a8435bc4f591eb5"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14FALYUA.json.gz": {
+      "bytes": 156262,
+      "sha256": "c8db8c67a4e00a1a836f738b370626c817c8ac8b851daeaaf507df71933a412a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14FERZAN.json.gz": {
+      "bytes": 220549,
+      "sha256": "9daa1527e381d555274a546bbdb707b8875ddc4e2db804595310f9f7d310b21a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14FRUGAO.json.gz": {
+      "bytes": 60762,
+      "sha256": "bff394ad0fa5e699871b6e6f06ee4b21b029166d1b9ced491bcb569da5eb0e76"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14HENKRA.json.gz": {
+      "bytes": 185459,
+      "sha256": "9824c5f5593d3423b05fbabf20255e7b394510834a67c126515b354d94e3a6ad"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14HRUBUY.json.gz": {
+      "bytes": 98902,
+      "sha256": "82cf4661735aed66ad4ba657fa8c1c70e46c49a2d8b7ba80000177725accb127"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14IATZVO.json.gz": {
+      "bytes": 113388,
+      "sha256": "a16b30047b534ec1eaa6356a9c870ce0fbba7bd2615b5b26039c1efdeb05acdd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14KHONUG.json.gz": {
+      "bytes": 150916,
+      "sha256": "9e69d2d00896f8d1ce2fe4c0efc7f74c128d7f44ff920654f2abc731be26bafc"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14KOSRUG.json.gz": {
+      "bytes": 94864,
+      "sha256": "518d513f4d3bef6422e2edcb2b40e9bedd585e3517cd52a512993442deddc7a2"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14KOVBAS.json.gz": {
+      "bytes": 288128,
+      "sha256": "28b64ac129f6a47c5d50f801c05754c1421fa670114d315cb310b26418e1b1f2"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14MAZBRO.json.gz": {
+      "bytes": 141244,
+      "sha256": "373776521d42f4856d932411e935018011de32c73201fac132097a84c022c8ae"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14PACVED.json.gz": {
+      "bytes": 148733,
+      "sha256": "cb8373fd64c1dcc1c21496f282df70495083ec297cfa021f9ee1c5c5b7af9957"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14PIGSAM.json.gz": {
+      "bytes": 129521,
+      "sha256": "052b90f80b877ebd955b4e7ce175a275942686f262ce281c44fcd7b9026bd536"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14RABRUS.json.gz": {
+      "bytes": 19913,
+      "sha256": "48cc0a27955fac510f5f20800c3d4eb25ec62722911193d99299060b5a68763c"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14RIESEM.json.gz": {
+      "bytes": 179198,
+      "sha256": "354854a28b220abf3feee86c07951468abd93232e0dc75176a658efbcecd58a9"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14SHUSHI.json.gz": {
+      "bytes": 160609,
+      "sha256": "7a8e19a522d26068172b00312ad605576967525a0ecc90fa197c98e25f6e3956"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14TANHAV.json.gz": {
+      "bytes": 234248,
+      "sha256": "b913a580bd0d5ea7a5ff5f94c6d60a29ccb2624a5427056edd502e8d99fc3efd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14TREGRA.json.gz": {
+      "bytes": 149284,
+      "sha256": "32b31c9890c8fed848ff4d3ceca980a4ee607d36e1396cb1aa3275192077bad8"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14WOLVAN.json.gz": {
+      "bytes": 24417,
+      "sha256": "340d63b27a2c8da40310b609bc177d3e5fbf05af98e6c911ab416d8db2017775"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14ZAKTKA.json.gz": {
+      "bytes": 191159,
+      "sha256": "13d1c092d09efdc029c51e9f27cc4991308d3a7ec59cd120d7cfb0ee9e3c4d21"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15ANDRIS.json.gz": {
+      "bytes": 340312,
+      "sha256": "d7305680f7d712c759e7239af621db41985c3e46e28cfdb50345aab2023baace"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15ASTNOH.json.gz": {
+      "bytes": 258953,
+      "sha256": "a07bbc2eebe9b1e865700570de2c4a01426a0d6a07d31587863e75956065e83a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15CARPAL.json.gz": {
+      "bytes": 123782,
+      "sha256": "edfc2680de356b700034f6d20f5352511b3422337cfc3964dc4f389b903b0fbf"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15ERJBAR.json.gz": {
+      "bytes": 109111,
+      "sha256": "ded766fafab977d0ec5d7096a390d6db5a3c06dd96ace825e84e2a9c78bc1101"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15GRAPER.json.gz": {
+      "bytes": 124420,
+      "sha256": "aa5419887696bed0a4994d7eb71dbf57430570e5ddebf403dc8d96df63bc111a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15JONURG.json.gz": {
+      "bytes": 303528,
+      "sha256": "f68de03c617354b10f310897d3533e01d874b518f12d790cf5e9f8b3f1ed8e5c"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15KNUTAR.json.gz": {
+      "bytes": 280828,
+      "sha256": "b8cc846fa39491e8b1d29dfd0d83847444f85a798e4b96597abe3f8ed16d568e"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15PENFAL.json.gz": {
+      "bytes": 300734,
+      "sha256": "caeba996a88b737e7494aaea6262803e06fabdfb252fa6ccd4d8a9d85c87064f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15RADCHI.json.gz": {
+      "bytes": 128625,
+      "sha256": "ee87bb8228512adc63af552da9afa800a5268a066fa2a2b10f03ceebb07e408d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15TANGAS.json.gz": {
+      "bytes": 263742,
+      "sha256": "ecb2655d345e8a14fad091229230306b1bf8466fa33b1ea9d38213456faee9fd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15VANFAL.json.gz": {
+      "bytes": 357776,
+      "sha256": "f7c0e41f5783bac98ea0052ebede867b965aeed4b68c1737d356aa7480a45eae"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15YANLAN.json.gz": {
+      "bytes": 164856,
+      "sha256": "d81882fd16438faab025777cf47e0a13f95022e6610c8ed34ddfdbef236af47c"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BASRUS.json.gz": {
+      "bytes": 239197,
+      "sha256": "3bc5025d2e8082e05056ff6c4db3f7d3c575d40125ace2c9a745a2a8a7276453"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BENKRA.json.gz": {
+      "bytes": 69856,
+      "sha256": "3fab8930ea1092a34780159187c5b166301094daafeba88166f0ea93dd378bbf"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED.json.gz": {
+      "bytes": 75404,
+      "sha256": "79502c80b8ba03671e5e490ea4087d859b901f86e6fbe704eb2ad17a962aebd3"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16FEISAM.json.gz": {
+      "bytes": 174182,
+      "sha256": "de30fd6de8ef54fcc03f3ca1e9e0da429c2594b435402c49ab85ad1b0d5ba685"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16GAOVAL.json.gz": {
+      "bytes": 239705,
+      "sha256": "e69d3e51d309b98470be950ad709067089dbbbe8320f3863e2ce807b1a773a7e"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16HERVAN.json.gz": {
+      "bytes": 78521,
+      "sha256": "0abe94b79e0c90e935ea3cc838913342c0debf6e0c29823d99fe1aa9e6053196"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16KHOPRO.json.gz": {
+      "bytes": 103409,
+      "sha256": "dedb1951ed45e6857dac73b4c3f0736451233461f1d1ea12206a815f4ddd50ac"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16KOSBRO.json.gz": {
+      "bytes": 293116,
+      "sha256": "3be930d6e5920576593f0d3b0ac657c2658cdcb200a2704381c5e89f16105722"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16KOVRIE.json.gz": {
+      "bytes": 277742,
+      "sha256": "e8e3684cbe2845e02304fa3f9c50f469f0767d715ea063f18c812b7051f3753b"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16ZAKSHU.json.gz": {
+      "bytes": 456786,
+      "sha256": "fe090d2bc5372ba9a83d9e6bfb45f4c9a975a6039feddc3187d9a2d3f836e2fa"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16ZANTRE.json.gz": {
+      "bytes": 175996,
+      "sha256": "e6fe24c29152b03874629053be860e8d80d35074a49c3ada9d76147c67004c8e"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16ZVOHRU.json.gz": {
+      "bytes": 201364,
+      "sha256": "775c8f310a9243e042d358b85de8338687cd9c1a86cd81baa1738e7044d28770"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17ANDKRA.json.gz": {
+      "bytes": 136640,
+      "sha256": "e50c0d465366e19670bcfbcde2c145583d4392a8c0fba928d5ad80b470e7617b"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17BASCAR.json.gz": {
+      "bytes": 91993,
+      "sha256": "f2f247fca07deab91789dabe4d6e98bf9ae0aeba36dbd847ec49d3d24dc7ad30"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17BRARIE.json.gz": {
+      "bytes": 487276,
+      "sha256": "53cc8febbf990cb7b928e1b2937397f590d8b89aa2af239178dcf83f09217f40"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17CHIBRO.json.gz": {
+      "bytes": 567094,
+      "sha256": "60e25bf3a291437ca4f4fd620cf972215fcbec008e58c48bd47adfac40d2a091"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17ERJFEI.json.gz": {
+      "bytes": 236984,
+      "sha256": "6747f33c9cdd6d826ca33771f1155f3e823c6759a4bba898eca775e92ea0825b"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17GRAVAN.json.gz": {
+      "bytes": 354940,
+      "sha256": "4ccc0b61af39a24201437206c76114b15f99bbb422250e67e1d647960f2e3382"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17JONNOH.json.gz": {
+      "bytes": 124514,
+      "sha256": "da336b723c7a9eb534fbdba69ea589efae339efc58f162c887f16575217514d2"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17VALFAL.json.gz": {
+      "bytes": 283941,
+      "sha256": "ce75a301a956aa538d5371a80c36f731588286d382c4a3eb64feeb733a315ee4"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17VANTAN.json.gz": {
+      "bytes": 90237,
+      "sha256": "e814b3ca3cb67fc2b47c49d3242dc0c3ac4adb6f293484496ea948d2f40868bd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17YANTRE.json.gz": {
+      "bytes": 337182,
+      "sha256": "46c8ddb17bd18eece4c72597f033ae8f83a7dfe7ce0ed1ea2fb5d193610c8797"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17ZAKPRO.json.gz": {
+      "bytes": 151039,
+      "sha256": "66732a32bac161d601acdcf76181d9e9f3176a23f69d1d5c0424f47ab6c11da4"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17ZVOTAR.json.gz": {
+      "bytes": 132208,
+      "sha256": "4d233428e3c902f1264a99aea9210093c31e6c8ddca050a901daa8ace695e1fe"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18BASBOE.json.gz": {
+      "bytes": 140176,
+      "sha256": "15271987b48a0c6a0588358d70018c1c9c29f0acc4cf3f74b2b5a56729530c9c"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18BASKRA.json.gz": {
+      "bytes": 271136,
+      "sha256": "459e3462cff82b1bec1481585470f135a871a08d0fe600e24766eefebd5faed9"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18BROBRA.json.gz": {
+      "bytes": 488622,
+      "sha256": "fead29ec75deacbf10e4104e4b763c7bd8f6285483a9155178da7594d92c7b19"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18CIRTOT.json.gz": {
+      "bytes": 6433,
+      "sha256": "d805af77924a53c4e2710e63765386439d56691eac1e4b6ff29ef6313e0108d4"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18ERJGRA.json.gz": {
+      "bytes": 232544,
+      "sha256": "fb16c5873da627def9f48889e73cbc9d8a39a302a3f96a1a77a92c179f0264a2"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18MCASHI.json.gz": {
+      "bytes": 213678,
+      "sha256": "08573901f6d9d1439c328d43a4701b1fa439e92e7ef74d771eecbeb282c07aa7"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18RENGIA.json.gz": {
+      "bytes": 415938,
+      "sha256": "4d1be86c120fa2ecac936f1295dba44bbc0d4eee3ad8bfd735015d0e8f973fa6"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18SERBER.json.gz": {
+      "bytes": 331656,
+      "sha256": "9508712510946d37789464990d8838734844a6837c169670278bdec2307b9328"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18TONSPI.json.gz": {
+      "bytes": 11957,
+      "sha256": "e242ebe661edfd2370f6cd83b87ceef7dababfac96f2b39d625f245acc0551a1"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18TREJON.json.gz": {
+      "bytes": 382955,
+      "sha256": "dd572fe2caaafe66a6b784b664bfab34b7d78be2c90ec1617fcb6ff2280f015f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18URGKOT.json.gz": {
+      "bytes": 13992,
+      "sha256": "6542884b549e270fa95710123bb86e7feed0b045b5b9d69b4e0b35240fe49ba0"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18VALTAR.json.gz": {
+      "bytes": 96108,
+      "sha256": "37ef325d1433ca1fb36eacfa1b96e17dadb0fd25fa6c12e2b6b7176e66931fdc"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18WEBHOD.json.gz": {
+      "bytes": 109523,
+      "sha256": "c8198470b91300d1c61e45d2eb9e9a73ea5e973760202500b0f21b26affddf6f"
+    },
+    "KXWTACHALLENGERMATCH-26JUL18ZAKVAN.json.gz": {
+      "bytes": 187657,
+      "sha256": "9d10896bb4931df1c05a701e08c2c5e2491a113cd4811494ed6ad1cbd0c5b314"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19BASSHI.json.gz": {
+      "bytes": 125092,
+      "sha256": "d188fccc7c41c55ca886d1ef84711514bcadb13f86678bbe96570ca3f948dc9e"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19GRAKRA.json.gz": {
+      "bytes": 152263,
+      "sha256": "76df2f407b97968f45f3db0361a9dc6cd1189c380b71079dd5309c474ecf0c3e"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19JONBRO.json.gz": {
+      "bytes": 230804,
+      "sha256": "2e2ec55e592fe18540c728744e2fa0747b8c5e9073b7027d7b6d717672ad074a"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19KOTHOD.json.gz": {
+      "bytes": 187535,
+      "sha256": "745325d4543771fbb7876f104c082fbaf91f64ef795f0ef0b392f788e9fbaafd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19RENTON.json.gz": {
+      "bytes": 143234,
+      "sha256": "b641be17643c3aafda9c4d750f6bebea06a681d86ffff771d1fc36a95d2def59"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19SERTOT.json.gz": {
+      "bytes": 103543,
+      "sha256": "39fa134f68d23decff55fa6b448105962abe3b6fcd0ecabb033b7155b2e8f6fd"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19VANTAR.json.gz": {
+      "bytes": 377257,
+      "sha256": "7f3ca2084b006fd20ef2dd301846301609af9a715ce4534e72065ce65cf885ab"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20FERREN.json.gz": {
+      "bytes": 211406,
+      "sha256": "0d03287d5b042d87d1b4f014d9a944ec90545b505be26ee368feb0bfc3cf7f25"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20GJOAND.json.gz": {
+      "bytes": 112944,
+      "sha256": "1b5479369ce6156da4b75c1e2f497a58c34d24ae6b414b643ac345cf84899f01"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20GORMIN.json.gz": {
+      "bytes": 453975,
+      "sha256": "568e4877e8141d5f284986f2f3e8d1894686f3d00f93802ae1d48eebd0a58541"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20KABCHI.json.gz": {
+      "bytes": 204041,
+      "sha256": "ee80f76f3b52d617277383b8bcaa50aa267bd5de13de758582e667051f3a1d4d"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20LANRAD.json.gz": {
+      "bytes": 198519,
+      "sha256": "0d320e7a34000fcabd349b96f6cb54fad93a62e0aa3de9f3930e72058a6d1706"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20MAZSPI.json.gz": {
+      "bytes": 1422049,
+      "sha256": "d8f27a84bf101ea67044b14252509655d2847ad9d229861a09e93b2b54144325"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20TOTRUG.json.gz": {
+      "bytes": 570462,
+      "sha256": "e4204eeeddb8e802c1a47605b64b68ca5904344840c5dfa8d166e52183d8f636"
+    },
+    "KXWTACHALLENGERMATCH-26JUL20URGYAN.json.gz": {
+      "bytes": 542344,
+      "sha256": "057a92132e037f5c4f628035ceeb26d36143587af59e7f267aa4e0c020c6e0b9"
+    },
+    "KXWTAMATCH-26JUL12AVASEI.json.gz": {
+      "bytes": 42752,
+      "sha256": "111c39cef71b9e6557b723064c032a3f70f7d61e2a3a94b5bc58e6c0edc05269"
+    },
+    "KXWTAMATCH-26JUL12FETPIE.json.gz": {
+      "bytes": 27909,
+      "sha256": "e16abd0859891316b59347e100564ebf67e743c95a0d481441e03f829dc058ff"
+    },
+    "KXWTAMATCH-26JUL12GARPRI.json.gz": {
+      "bytes": 231566,
+      "sha256": "8e662dbbfe595cd4da786a4e583803055f051199558274343e603d9c1b4f4792"
+    },
+    "KXWTAMATCH-26JUL12HERKAZ.json.gz": {
+      "bytes": 164272,
+      "sha256": "c6c1e79a25d1839c567ea935ca8fcbe2aa9fd5d2449f01a6e64d0a36ae400743"
+    },
+    "KXWTAMATCH-26JUL12HIBTON.json.gz": {
+      "bytes": 125388,
+      "sha256": "867a84313913712346be88ec31c1773d8fd117a04935e5341a67f8ccdde93c4e"
+    },
+    "KXWTAMATCH-26JUL12HODYAS.json.gz": {
+      "bytes": 102161,
+      "sha256": "4d85215a00b5e8d1765a87a035703ba599af9012643628f5e645a3c79ceaf822"
+    },
+    "KXWTAMATCH-26JUL12ITOMAN.json.gz": {
+      "bytes": 111606,
+      "sha256": "e7a6844889c60be478147265bd8a18c83d88dd29ae5f74846e7dc212d0bd00ff"
+    },
+    "KXWTAMATCH-26JUL12KOZIBR.json.gz": {
+      "bytes": 192775,
+      "sha256": "15a60b64388b8bd55c5951ff8f01de614f09dfc7afc78cd5dcdcaa69d41ae94d"
+    },
+    "KXWTAMATCH-26JUL12KULZAA.json.gz": {
+      "bytes": 266777,
+      "sha256": "5a7d39584572fc3c67ef6ef0cde378de72ebc9099f2ff6f2888ed4f034321316"
+    },
+    "KXWTAMATCH-26JUL12LEPBUR.json.gz": {
+      "bytes": 76671,
+      "sha256": "901761d5ff4cb394191684a8c8409c4bf63ad7e40f8aa5d1d5269c1f57643e12"
+    },
+    "KXWTAMATCH-26JUL12LIUPOP.json.gz": {
+      "bytes": 147203,
+      "sha256": "819d2446ccfa1d6c4a398bd187e9d5e44eabc1e9c3be27b3f2871928332519a5"
+    },
+    "KXWTAMATCH-26JUL12MICKUL.json.gz": {
+      "bytes": 295031,
+      "sha256": "071b365835aa21d46611a3b580fafa3008004e16210582c218afd45539f2a906"
+    },
+    "KXWTAMATCH-26JUL12MORNEP.json.gz": {
+      "bytes": 132809,
+      "sha256": "cd2ed1927556bb932a847dde435b3e087c9e9489f3df948f42f318537d312583"
+    },
+    "KXWTAMATCH-26JUL12OKAIPE.json.gz": {
+      "bytes": 33013,
+      "sha256": "d4d71833b87c0a220d4ca75d3a375b8025cb6a3d3b99c0889ac8d3bb32ba680c"
+    },
+    "KXWTAMATCH-26JUL12PRIION.json.gz": {
+      "bytes": 53451,
+      "sha256": "ffc0fce2c353122b6229a0154b8510803a8c1532f296a7d6871ebf4a9c7e9ccf"
+    },
+    "KXWTAMATCH-26JUL12ROMTOD.json.gz": {
+      "bytes": 153997,
+      "sha256": "63e8ab1abd0c8a4787072c4defa463204f7cec911835b2fd7b08ddb0d5729f39"
+    },
+    "KXWTAMATCH-26JUL12TAGSIE.json.gz": {
+      "bytes": 115801,
+      "sha256": "4d81cdbd3d139422cdd9b11f0f4c75e7b604357e1ae7a5c44d91d1ac28c392e9"
+    },
+    "KXWTAMATCH-26JUL12WERAMA.json.gz": {
+      "bytes": 197901,
+      "sha256": "bc8b5dd041bde70a4c0647697a0b41082d6d3e3f1641957c497ce56cd5f6827b"
+    },
+    "KXWTAMATCH-26JUL13AMAHER.json.gz": {
+      "bytes": 243810,
+      "sha256": "9c5050f9038b455ec8e2173a2a6b947725f90b1fb2d59346798e7fce59e71331"
+    },
+    "KXWTAMATCH-26JUL13ARAZID.json.gz": {
+      "bytes": 40914,
+      "sha256": "88310e17588e064b3eaa46623cadecb1d2a30eb7aecf317eefb6b3e66526e606"
+    },
+    "KXWTAMATCH-26JUL13ARGTAG.json.gz": {
+      "bytes": 77885,
+      "sha256": "2b95da64cb798056c7642cc6b8701a28bcce6b7238caafd8809851b81e31b39b"
+    },
+    "KXWTAMATCH-26JUL13AVAFET.json.gz": {
+      "bytes": 94924,
+      "sha256": "603d6aff69c5b4b1a798d63784dfb2d3cd40c10297f52a42d58f0abae7021735"
+    },
+    "KXWTAMATCH-26JUL13BADKAL.json.gz": {
+      "bytes": 185323,
+      "sha256": "30da6dee3b6280d0f6b26fdd9c53503cc6e3016be06067d953b2eee13fe2f72a"
+    },
+    "KXWTAMATCH-26JUL13BLISAS.json.gz": {
+      "bytes": 124796,
+      "sha256": "e34252578fd2546d1ba02210f738e9e07e5e041dfe8e85bdb3a89499b65de265"
+    },
+    "KXWTAMATCH-26JUL13BONSOR.json.gz": {
+      "bytes": 50896,
+      "sha256": "5f4cc6c1eb36c16dc0ab45d364d915c7f3365bfe6ea94ac69948c41f5655954b"
+    },
+    "KXWTAMATCH-26JUL13BURLEP.json.gz": {
+      "bytes": 563561,
+      "sha256": "112b8e4e25dd6428f47b9169397ac793c07ee1f95347b64a8a091aa5220509f9"
+    },
+    "KXWTAMATCH-26JUL13BURPUT.json.gz": {
+      "bytes": 31152,
+      "sha256": "370d7c25e939e2e4e087e8c092fbae7dd3839bbfa182dca79bb9b7684cbfba46"
+    },
+    "KXWTAMATCH-26JUL13CHAJIM.json.gz": {
+      "bytes": 19684,
+      "sha256": "3e14f5a97c55e4be7ebb2706149e0560012556af89ff2191a66dfd9ba3286600"
+    },
+    "KXWTAMATCH-26JUL13CRIJEA.json.gz": {
+      "bytes": 23620,
+      "sha256": "fbfe0231d8ecdb264871b4771fcf5f29e7f5256a4950219967c8c76477fb7415"
+    },
+    "KXWTAMATCH-26JUL13GRAPAR.json.gz": {
+      "bytes": 80521,
+      "sha256": "0a6a9ac6fffd94448be94c0805fc44f2d240a0469842cc823e012e97b7cd0084"
+    },
+    "KXWTAMATCH-26JUL13HODDAR.json.gz": {
+      "bytes": 428772,
+      "sha256": "0fd70401b5264e9fdb8874e045134a0e0c5c2eb70b9b66a1b925d3f52357b309"
+    },
+    "KXWTAMATCH-26JUL13ITOKOR.json.gz": {
+      "bytes": 338086,
+      "sha256": "d5ace501219223e6d9a4a4a0710fa64948c3bbc8a101554958b9ec4b5d8340be"
+    },
+    "KXWTAMATCH-26JUL13KAWWAL.json.gz": {
+      "bytes": 66668,
+      "sha256": "239d49e350c7a06cc425441152e6b5f5d4b45ff831fde77939b2384ab5baa5c7"
+    },
+    "KXWTAMATCH-26JUL13KRETOM.json.gz": {
+      "bytes": 90273,
+      "sha256": "47beee7aaffbbc2ef94c148dbea52cc3247a42205d4cac38f7e2ca27716b9cfe"
+    },
+    "KXWTAMATCH-26JUL13KUDSAK.json.gz": {
+      "bytes": 56168,
+      "sha256": "bb7c0f45d5191afda7baffa127282b469fe9d3a46dec973dfac92e82fff9aee1"
+    },
+    "KXWTAMATCH-26JUL13LEPIBR.json.gz": {
+      "bytes": 219694,
+      "sha256": "a7095452cbc22f1ec83f28a3e25b463fcfa72ab296be5dc40425fbf667909625"
+    },
+    "KXWTAMATCH-26JUL13LINHON.json.gz": {
+      "bytes": 42611,
+      "sha256": "c4b4caf25dd9c79320b10f785e6d9937135bdb14eb28186736dc0cfedf514107"
+    },
+    "KXWTAMATCH-26JUL13LIUIPE.json.gz": {
+      "bytes": 100439,
+      "sha256": "5d2f108ff014be90e802b211130b9e88f5b890d658513e0a95fb02bcebff9b9c"
+    },
+    "KXWTAMATCH-26JUL13MATMIC.json.gz": {
+      "bytes": 150841,
+      "sha256": "68960ac986b5e187fb13ada572f6057c99dba3131d8e0499305ec5a8c4f3b088"
+    },
+    "KXWTAMATCH-26JUL13MONMAS.json.gz": {
+      "bytes": 455333,
+      "sha256": "7e0dc89deb295d6e60b37e563b644d839f0cd904ca534b0d55edf6d1c5e731c6"
+    },
+    "KXWTAMATCH-26JUL13MORBEJ.json.gz": {
+      "bytes": 249181,
+      "sha256": "f6c3f57308391decc3305b088cae7ec529c872e6e1d8097d4d24f9fd6d293e55"
+    },
+    "KXWTAMATCH-26JUL13PODMAR.json.gz": {
+      "bytes": 24133,
+      "sha256": "c1e31a2ae8e02e14c3061296bc490a4fa787cf67b3e82a39a68643e4775afd48"
+    },
+    "KXWTAMATCH-26JUL13PRIGAR.json.gz": {
+      "bytes": 106968,
+      "sha256": "be89abc626375c6e0557d9fad5b9d403585861da6e977b161f43ce7463c82458"
+    },
+    "KXWTAMATCH-26JUL13QUERUS.json.gz": {
+      "bytes": 55502,
+      "sha256": "240eaae2d1cbb64d7791ef5b9115c6c53b02353d37704c139732be2c094e8837"
+    },
+    "KXWTAMATCH-26JUL13ROMKUL.json.gz": {
+      "bytes": 67499,
+      "sha256": "5dc8cfff3c2d1a28452d7e4485e39b190abdffc2ef5b0c0636d54d91e014607e"
+    },
+    "KXWTAMATCH-26JUL13SAKTON.json.gz": {
+      "bytes": 64008,
+      "sha256": "6a77a80c51ac6e7bcdd96427a062cba28200c982f7aebad92150be857f5b701d"
+    },
+    "KXWTAMATCH-26JUL13SHEGAL.json.gz": {
+      "bytes": 7200,
+      "sha256": "7779d128d17c1038fc0eea9974ffa5428175093abbce8e028b4280d4f2a29977"
+    },
+    "KXWTAMATCH-26JUL13TAUHIB.json.gz": {
+      "bytes": 60190,
+      "sha256": "e6809538621128b206d10cd7c4661a6ea890798d0791c2d3e7c1b5349722adf7"
+    },
+    "KXWTAMATCH-26JUL13TAUTOM.json.gz": {
+      "bytes": 267,
+      "sha256": "4612c2f55d50e2ae06ca57346c18db3e70f786b068619cb8398a09d40170f9a7"
+    },
+    "KXWTAMATCH-26JUL13TIMANN.json.gz": {
+      "bytes": 132910,
+      "sha256": "4cd48f48cf074c82722a653a8f84808a5b3fac9dbf23fa5a631b713f8a49a21e"
+    },
+    "KXWTAMATCH-26JUL13VALCOS.json.gz": {
+      "bytes": 119403,
+      "sha256": "669fb0701c2aef8309dde4240c2038a09a8c8f8f7efff54069cb28a9dcc81fa5"
+    },
+    "KXWTAMATCH-26JUL13ZHEBOU.json.gz": {
+      "bytes": 32379,
+      "sha256": "8819c3d7a5d3f582b1a3d6cb4681401c58e0c299309ed23d4726910548638f34"
+    },
+    "KXWTAMATCH-26JUL14AMAJAC.json.gz": {
+      "bytes": 31860,
+      "sha256": "8bca3acbb81d84d42555565e2ef6419d5edec093f631ff1eeb003477e471352c"
+    },
+    "KXWTAMATCH-26JUL14AVAUCH.json.gz": {
+      "bytes": 224954,
+      "sha256": "1f4cf30811d666b1c5287f9feeff4e52c727dceb6d57853904c9efd807e3c280"
+    },
+    "KXWTAMATCH-26JUL14BULPRI.json.gz": {
+      "bytes": 88658,
+      "sha256": "702c070465253af8aed9d8b874f4f2c0b546b4975a232f58ccfdb95b4557f794"
+    },
+    "KXWTAMATCH-26JUL14OLIIPE.json.gz": {
+      "bytes": 89897,
+      "sha256": "443c0eb0d64272b4fd6f12a77ed563e1589cab40afc92e4706d0a35d4caba5d1"
+    },
+    "KXWTAMATCH-26JUL14PUTJEA.json.gz": {
+      "bytes": 268,
+      "sha256": "cbb6ea1559a4b9269d182b06f1f830453ea592d3c5ecccc4f7b4eb5320732aee"
+    },
+    "KXWTAMATCH-26JUL14PUTLIU.json.gz": {
+      "bytes": 322074,
+      "sha256": "8cab2b6194246a80bfc37ac369ea0633a02d4b5d178df3a7cb43b725857ef614"
+    },
+    "KXWTAMATCH-26JUL14SALIBR.json.gz": {
+      "bytes": 97173,
+      "sha256": "f7267b9229daacbcba2829c4c34373096c17a3afc8bacf178de0c3cd6bd724b7"
+    },
+    "KXWTAMATCH-26JUL14UDVROM.json.gz": {
+      "bytes": 145923,
+      "sha256": "99c0a662154f3c41c095213be72f04226356ea6e92f064d2989dc398f621bcee"
+    },
+    "KXWTAMATCH-26JUL15AVAMAR.json.gz": {
+      "bytes": 68229,
+      "sha256": "8ca53df1e806d84d92ab5ca36f8501632e92ed95b753c24c165966e9dcfa1e67"
+    },
+    "KXWTAMATCH-26JUL15BONZID.json.gz": {
+      "bytes": 73348,
+      "sha256": "e043031597e72000d1b312548005eadb71b6abfbb337b28a0b707ec9fd94aac7"
+    },
+    "KXWTAMATCH-26JUL15BURJAC.json.gz": {
+      "bytes": 89876,
+      "sha256": "668f8de39c319417a3f81810e608685b7c86b6566042542ed128d15ffc46e2e7"
+    },
+    "KXWTAMATCH-26JUL15DARSAK.json.gz": {
+      "bytes": 105203,
+      "sha256": "c0e1e076396fc73920ea783c919961d7c9a23e321771b2f1c0b223b753eef3df"
+    },
+    "KXWTAMATCH-26JUL15HONPAR.json.gz": {
+      "bytes": 106472,
+      "sha256": "bdd29aeb8a7d2a4f37ff2846aceddde0c517aa23493ff0269cafeee4cdd01497"
+    },
+    "KXWTAMATCH-26JUL15IBRBAD.json.gz": {
+      "bytes": 109362,
+      "sha256": "f7ec67f949336aded3675504e71c73fc71ea251707e018f4a8e86bc3694244fb"
+    },
+    "KXWTAMATCH-26JUL15KREMON.json.gz": {
+      "bytes": 42820,
+      "sha256": "83754ed992febce22ac5f7a7339320ffab86d7a7fd8cf10ac15caf87de1d1fe1"
+    },
+    "KXWTAMATCH-26JUL15MICZHE.json.gz": {
+      "bytes": 114811,
+      "sha256": "80e9eb4b93bbbcfefa97cc10a72e9bbee64889eaaa23afa30de04cf25b391c78"
+    },
+    "KXWTAMATCH-26JUL15OLIPRI.json.gz": {
+      "bytes": 104332,
+      "sha256": "48a3be465308f534de862a594467cacda6589871849493cf9b000a6edca96323"
+    },
+    "KXWTAMATCH-26JUL15PUTCHA.json.gz": {
+      "bytes": 191986,
+      "sha256": "55879141f572fe48b52ca774fed977daf3274127276f32c8c04b8b3ccbe11eb3"
+    },
+    "KXWTAMATCH-26JUL15SHEQUE.json.gz": {
+      "bytes": 47621,
+      "sha256": "ddc2aee96aa4cb45490903a175a9216ff1d12511a388f93e807693c0c09e5e84"
+    },
+    "KXWTAMATCH-26JUL15TAGBEJ.json.gz": {
+      "bytes": 56543,
+      "sha256": "6f9e82541e90c4256e5abb6f23ca9e23c998123a367b6de84f667835617a0cd4"
+    },
+    "KXWTAMATCH-26JUL16KORANN.json.gz": {
+      "bytes": 282606,
+      "sha256": "1483812b2d336db0f309748b65c64d64bb47beac99c92f0a7d4c33c40fc74c47"
+    },
+    "KXWTAMATCH-26JUL16TAUTON.json.gz": {
+      "bytes": 73701,
+      "sha256": "b6f00a73ae33eff117a4e667477456797a2d03f5120ff921f9ed0e8c03ea2978"
+    },
+    "KXWTAMATCH-26JUL16UDVKAW.json.gz": {
+      "bytes": 76766,
+      "sha256": "25dc718f7fe57901c8e994012bc4acd251c7ad685cc1596d9a7cc14a48a193fa"
+    },
+    "KXWTAMATCH-26JUL16VALSAS.json.gz": {
+      "bytes": 145219,
+      "sha256": "f6219851f0c532a7a563933ec196c072ed6d75df9806f1b5bf13de5c974d0272"
+    },
+    "KXWTAMATCH-26JUL17KREZHE.json.gz": {
+      "bytes": 581941,
+      "sha256": "04cf2e3f0363ac75ea4dabc31711d1ecf5a6ad8cde5ab0ead916f8c1eaaa4a5d"
+    },
+    "KXWTAMATCH-26JUL17OLIBUR.json.gz": {
+      "bytes": 146453,
+      "sha256": "fc6fe749fcc39e8d712a02b1c017e0538db71b81945f2b08a394f63998b6c806"
+    },
+    "KXWTAMATCH-26JUL17PARSAK.json.gz": {
+      "bytes": 206586,
+      "sha256": "ac1b185c010ee8f242bef621bda0d1d6a3a9c49adc33cee8cb47a33a24f3d00f"
+    },
+    "KXWTAMATCH-26JUL17PUTSHE.json.gz": {
+      "bytes": 737459,
+      "sha256": "13138209c9c0fa4ba750599c059a3b084bfa39dcd44e36f3bf179d85bdc43cc4"
+    },
+    "KXWTAMATCH-26JUL17TAUBEJ.json.gz": {
+      "bytes": 321696,
+      "sha256": "ea64d48f5e3da48da2718003f72dda45750a05155d50a27f6fdac0ee1d0e57d1"
+    },
+    "KXWTAMATCH-26JUL17UDVBAD.json.gz": {
+      "bytes": 557324,
+      "sha256": "726fb8f36c7c6a19c60cb00a96acb3ade26d346f4a9ea5915bdf7417205a4ace"
+    },
+    "KXWTAMATCH-26JUL17VALKOR.json.gz": {
+      "bytes": 469638,
+      "sha256": "30849f2349974b4831a8d505ff21bb47adecc238e4ea81ac44d0235dd1162cb0"
+    },
+    "KXWTAMATCH-26JUL17ZIDMAR.json.gz": {
+      "bytes": 74834,
+      "sha256": "b659f0b6577c5ef4a88c25c6dea38924b6e1c3e4ce10ee87290ba867e610236e"
+    },
+    "KXWTAMATCH-26JUL18BADZID.json.gz": {
+      "bytes": 1290151,
+      "sha256": "d07ded6fba54057df9a3626f65cecebe6e280ce1f93d5b9469242551dab62cff"
+    },
+    "KXWTAMATCH-26JUL18BANGAO.json.gz": {
+      "bytes": 209319,
+      "sha256": "0dd21825f00fb2649bd5fd2da90bcda6061b3af09dfdbb7daff1187cca1e49b8"
+    },
+    "KXWTAMATCH-26JUL18BERSAI.json.gz": {
+      "bytes": 46176,
+      "sha256": "a542496201f670e9eab421ea5414ce66660fc35d17e8e681ab4e03f9c5820c65"
+    },
+    "KXWTAMATCH-26JUL18COSHIB.json.gz": {
+      "bytes": 54017,
+      "sha256": "bed460a6c25817334e2d6d0c5eaf924d36542a8bb78c4ecc3d7d40049b256ad4"
+    },
+    "KXWTAMATCH-26JUL18HONTHA.json.gz": {
+      "bytes": 82083,
+      "sha256": "268f860c5b22aa7a207eab025afe525fe3a32d45e7ae02b0c1d9c9c0a9d39a64"
+    },
+    "KXWTAMATCH-26JUL18ITOKNU.json.gz": {
+      "bytes": 149705,
+      "sha256": "b91736da1abcf72a2f7ec2533833666abcb2afb3dfc953aac16f6160ce50089b"
+    },
+    "KXWTAMATCH-26JUL18MASRYS.json.gz": {
+      "bytes": 29348,
+      "sha256": "6785dc69d38509526a39e65b26b2ed3788dd36de9313dcd1bf2f829144da4107"
+    },
+    "KXWTAMATCH-26JUL18MICFRU.json.gz": {
+      "bytes": 163765,
+      "sha256": "f15150d51ccec8b0da6882453207f9b2696d95189dab9a30db5e582370338b49"
+    },
+    "KXWTAMATCH-26JUL18MORAKS.json.gz": {
+      "bytes": 64527,
+      "sha256": "da869d6355feb2800d28733665aa77d2db8bed53766557a0fa224c0ab9777c32"
+    },
+    "KXWTAMATCH-26JUL18OKALEE.json.gz": {
+      "bytes": 140163,
+      "sha256": "46b0af63a9fe15709e231f64840f74070b3d5476b50da41765769e023033acc6"
+    },
+    "KXWTAMATCH-26JUL18PALHON.json.gz": {
+      "bytes": 33339,
+      "sha256": "6f8d8284c2669a8c7eef8525f7db2b81cf1bcb546674f9db7efd2f727060b376"
+    },
+    "KXWTAMATCH-26JUL18PODKRE.json.gz": {
+      "bytes": 61342,
+      "sha256": "110eb22efc7f5dc6f7e1be41fce9c54170409cc196ceabc8ce7058d059bcb5be"
+    },
+    "KXWTAMATCH-26JUL18SAKKOR.json.gz": {
+      "bytes": 404150,
+      "sha256": "cb07096f1108134b494f35e14ea93ebcf60f5b6c58505b20114de5c04bf6c616"
+    },
+    "KXWTAMATCH-26JUL18SALZOL.json.gz": {
+      "bytes": 149399,
+      "sha256": "16578d6cd424a0949d6d67c29e8aba50554f870abbaf47c62c7b1bfbed5bf99e"
+    },
+    "KXWTAMATCH-26JUL18SHEOLI.json.gz": {
+      "bytes": 308376,
+      "sha256": "bdc8fa2387fc3a3b089dc68aa080a4351601103326ece094ee0f31c62f57a4f9"
+    },
+    "KXWTAMATCH-26JUL18TAUKRE.json.gz": {
+      "bytes": 713526,
+      "sha256": "9d3a46925990d3778991e4b1ab835b1999b597146021b0b11e7db0a8f92943f1"
+    },
+    "KXWTAMATCH-26JUL19AVDNIE.json.gz": {
+      "bytes": 289442,
+      "sha256": "8937c7ab6675a8d8ea508847ea6ae96cb105819c33f287a3ae3b269cebbd69c2"
+    },
+    "KXWTAMATCH-26JUL19BRAVON.json.gz": {
+      "bytes": 51565,
+      "sha256": "13344bb82698dbbf4a8ef3ba25d37c658dd816f726702635d69d56bc22652f60"
+    },
+    "KXWTAMATCH-26JUL19COSAKS.json.gz": {
+      "bytes": 224617,
+      "sha256": "53744eed1333b761be3dfeee56f73478839ae81fd7ef929d8c06592af0028719"
+    },
+    "KXWTAMATCH-26JUL19EIGCAR.json.gz": {
+      "bytes": 31122,
+      "sha256": "e59d58385c4ca02260ef20b01e3597be3132754de4ece0b60cc3370b3f1bbcb2"
+    },
+    "KXWTAMATCH-26JUL19GAOFRU.json.gz": {
+      "bytes": 295201,
+      "sha256": "ee58d465cb7f1115aaede19aa878a6b21bb7ca6af19e0cb91bda6688005dd039"
+    },
+    "KXWTAMATCH-26JUL19HONLEE.json.gz": {
+      "bytes": 162954,
+      "sha256": "15ca945c7fb3b96f9779bd97eb339720915406e0ea3a51d7d8f8cac4329844c2"
+    },
+    "KXWTAMATCH-26JUL19JAKAVA.json.gz": {
+      "bytes": 111908,
+      "sha256": "a24c14a591128e2adda0ea7a6c2ae836cba528af358d0f5f6b620bb3ceb88c3b"
+    },
+    "KXWTAMATCH-26JUL19KRESAK.json.gz": {
+      "bytes": 531078,
+      "sha256": "c42e9a4cdc6ad26a0c0c9141befd534e381cbd91c72be48cdd6b55968eb537f8"
+    },
+    "KXWTAMATCH-26JUL19LEPPET.json.gz": {
+      "bytes": 68402,
+      "sha256": "3d9fe7c18d3d245eca7ff357f0e6de50a35a39c1de760c0b148c5969778b15e7"
+    },
+    "KXWTAMATCH-26JUL19MALZAA.json.gz": {
+      "bytes": 189943,
+      "sha256": "f8340f2a1d5330f85045fa6be58168536b4e9a2e74672478e9b4ced59e58376e"
+    },
+    "KXWTAMATCH-26JUL19MONPIE.json.gz": {
+      "bytes": 189787,
+      "sha256": "a7ab43678e85734a406071a3f3ca5837399cd04d603d823e6f2d611cb840c34f"
+    },
+    "KXWTAMATCH-26JUL19PODSAI.json.gz": {
+      "bytes": 195181,
+      "sha256": "0d18aa5a8a40f4c9ba53c4a97293dae4708bb5986b9f11cb4998ef575714a5f2"
+    },
+    "KXWTAMATCH-26JUL19PRIMAR.json.gz": {
+      "bytes": 35741,
+      "sha256": "200191291e915bc767660e679341bbbb417b1cf29c75f3855db9514c438f7647"
+    },
+    "KXWTAMATCH-26JUL19RUSKAZ.json.gz": {
+      "bytes": 207338,
+      "sha256": "803f281572eff47146366040e05bd27b792b955406266bbce47b6d8988ad2977"
+    },
+    "KXWTAMATCH-26JUL19RYSHON.json.gz": {
+      "bytes": 110853,
+      "sha256": "9e1320364485681673742f514f10d632661f8058cac3a442f42a17d1a8c186d1"
+    },
+    "KXWTAMATCH-26JUL19SALKNU.json.gz": {
+      "bytes": 35552,
+      "sha256": "83c039dbcb993d9c7f1492a82baa82ffa7c520b50bf3b0edc70c89ede02ac2e2"
+    },
+    "KXWTAMATCH-26JUL19SHEBAD.json.gz": {
+      "bytes": 112976,
+      "sha256": "84c03cb24ce9fd8adf7e02752c8fb9a07a03bc9ac01051bd1c509b2108ae50fa"
+    },
+    "KXWTAMATCH-26JUL19STRPAQ.json.gz": {
+      "bytes": 22612,
+      "sha256": "81dc499a3a69e71cbcb115ac31e38f84b56554bd84ea2f46580f3a5418144e37"
+    },
+    "KXWTAMATCH-26JUL19VEDGAR.json.gz": {
+      "bytes": 25461,
+      "sha256": "328d603c94809d23401ca954bd4f5acd2c6cf57518a234193b54e02c1464432f"
+    },
+    "KXWTAMATCH-26JUL19YASBAR.json.gz": {
+      "bytes": 30962,
+      "sha256": "6029d1ab6068f6ababfd3a7a848357109f75cabb175e3688fd11fdfc0efad186"
+    },
+    "KXWTAMATCH-26JUL20AKSCOS.json.gz": {
+      "bytes": 172125,
+      "sha256": "2f07409363af834c5c7197f447e92fbcc2f249eb52b235b288a147c653f87952"
+    },
+    "KXWTAMATCH-26JUL20BARYUA.json.gz": {
+      "bytes": 104937,
+      "sha256": "9b1431ecdcdea438437e8283057e2a959b5ef63423d565016d7449b9084e2640"
+    },
+    "KXWTAMATCH-26JUL20BLIBEJ.json.gz": {
+      "bytes": 175288,
+      "sha256": "c642df90d6226e3dad75a72b2bad5b91fc70ffcfd676d741aff3f231bcf21089"
+    },
+    "KXWTAMATCH-26JUL20BONUCH.json.gz": {
+      "bytes": 167509,
+      "sha256": "a7cbd60aeefb04c524ab55f0b8456277700f0470a79ff67ed349888801af8643"
+    },
+    "KXWTAMATCH-26JUL20BOUBOU2.json.gz": {
+      "bytes": 86453,
+      "sha256": "0fcece3e8fb5403e5fa317a585493d37ba93bef01ceb8faf71e0518d7c5df149"
+    },
+    "KXWTAMATCH-26JUL20FRUKRE.json.gz": {
+      "bytes": 692612,
+      "sha256": "786ab53a63d403abaa6277d434ac6123abee17ef110e566051dacd73cca59166"
+    },
+    "KXWTAMATCH-26JUL20GAOTAG.json.gz": {
+      "bytes": 161277,
+      "sha256": "8d38f6b0d707cd0a142c93597664e46dbd20e9bd23fbf73b9e52509218f043c2"
+    },
+    "KXWTAMATCH-26JUL20KORJIM.json.gz": {
+      "bytes": 41108,
+      "sha256": "f59079b4fd1e38cea63bfb087c9f89e0a14c2abe18d01258b017aaa11100307a"
+    },
+    "KXWTAMATCH-26JUL20KOVTAR.json.gz": {
+      "bytes": 132636,
+      "sha256": "4115304eb3532a7c2808d06c14a044b93984278e39f1c13aebcf8b43a2cd184f"
+    },
+    "KXWTAMATCH-26JUL20KUDKOR.json.gz": {
+      "bytes": 268,
+      "sha256": "fe7ecdfb9f39e5ba2f3311610f9e2cc99e471bea92b45aa3add31ea1f87fc573"
+    },
+    "KXWTAMATCH-26JUL20LEPAVA.json.gz": {
+      "bytes": 515144,
+      "sha256": "8bcfad1f6c164caad9230281351a771ae52c9674f86e538332789887a45bef1c"
+    },
+    "KXWTAMATCH-26JUL20LYSVAL.json.gz": {
+      "bytes": 34795,
+      "sha256": "b1d3dabaab2df1e9bdbf7f5cbcde15be16cca744d9eae0ce494bacbb45a44ba1"
+    },
+    "KXWTAMATCH-26JUL20NIEMAL.json.gz": {
+      "bytes": 315328,
+      "sha256": "8578a1a8f17c9f3a9be956decea4a1ce054f795bb65ea032557f031a85277f7e"
+    },
+    "KXWTAMATCH-26JUL20OKTDOD.json.gz": {
+      "bytes": 148848,
+      "sha256": "5e7b3f579d23d1bc54ac799721c8176ab9fba333b7d1edefa73ac687a4f6c018"
+    },
+    "KXWTAMATCH-26JUL20OLISCH.json.gz": {
+      "bytes": 107623,
+      "sha256": "c300165315871edad1b50a72e96e2f08e3f96c227b8d33c0241a9fc77fbf830b"
+    },
+    "KXWTAMATCH-26JUL20PARHAV.json.gz": {
+      "bytes": 41531,
+      "sha256": "e30d1ae91a8502fd76d174c9ca6b19d5bac96946f82c53004c020fa81a87b517"
+    },
+    "KXWTAMATCH-26JUL20PARHON.json.gz": {
+      "bytes": 80418,
+      "sha256": "c0be9864c12867efc83ce6d394e8ded3f51b7895b70022d72ad1808707848bc2"
+    },
+    "KXWTAMATCH-26JUL20PIECAR.json.gz": {
+      "bytes": 260069,
+      "sha256": "cd0a48e79f83ada1ae2043b608487250c0594d69c8cf751f517df258991c2c94"
+    },
+    "KXWTAMATCH-26JUL20PODLEE.json.gz": {
+      "bytes": 360095,
+      "sha256": "4d5429d7ee9cce17d19ea50de7ccc79f4742909d00151fc38918e399ed11b405"
+    },
+    "KXWTAMATCH-26JUL20PODSTU.json.gz": {
+      "bytes": 43898,
+      "sha256": "b60d088a1335190d0a133767a0caf2caa29f43ede8937e73cc152da1f82aa285"
+    },
+    "KXWTAMATCH-26JUL20PRIBRA.json.gz": {
+      "bytes": 73157,
+      "sha256": "74038da1ecc1a1fe37674f1a1460219f68c72c9044f12519b413555f5d2a6378"
+    },
+    "KXWTAMATCH-26JUL20QUEKAL.json.gz": {
+      "bytes": 27088,
+      "sha256": "c8d2cbdce1d929de405038769494345f72ee2bafb23b01c0e9005ea097469bdf"
+    },
+    "KXWTAMATCH-26JUL20ROMERJ.json.gz": {
+      "bytes": 74072,
+      "sha256": "b8dce9f9172b247d70a7384c3db829aa2b6a3389ca50caff7777ec99732f1d14"
+    },
+    "KXWTAMATCH-26JUL20RUSPAQ.json.gz": {
+      "bytes": 344142,
+      "sha256": "8859836542edb55a3f186c124043ca7451341da09cbd6371d7f1e0ec6fef1049"
+    },
+    "KXWTAMATCH-26JUL20RUZSAL.json.gz": {
+      "bytes": 437638,
+      "sha256": "dcafe05db4d7cc032b7e0c46dd5818d08875dad081ce7d2629fe066e079543b2"
+    },
+    "KXWTAMATCH-26JUL20SAMJOI.json.gz": {
+      "bytes": 90424,
+      "sha256": "ec8adace4ba613d776a936f45fd093c7f9c7684e7ca0facb8a8550a806fed87c"
+    },
+    "KXWTAMATCH-26JUL20SEISNI.json.gz": {
+      "bytes": 272069,
+      "sha256": "8fc838ae0cfd40bf828a9d69e381dcfa261c910e4fdde6da8de8b54822cb6fe1"
+    },
+    "KXWTAMATCH-26JUL20SEMKRA.json.gz": {
+      "bytes": 107676,
+      "sha256": "cd9bc5b42065eae867eb5d061dc04a25f6a6ceaeffbcac22ed33a48198b1050e"
+    },
+    "KXWTAMATCH-26JUL20SORCHA.json.gz": {
+      "bytes": 56323,
+      "sha256": "1bed561f0894af2165a27584a4ed979d3ed76386fe437dac82dea298b31d7faa"
+    },
+    "KXWTAMATCH-26JUL20STENOH.json.gz": {
+      "bytes": 122834,
+      "sha256": "72d2c4bcd1245263c63e8905fe1366526713e8d99e0a0f4de32242517dd8e3a8"
+    },
+    "KXWTAMATCH-26JUL20TIMSAS.json.gz": {
+      "bytes": 96835,
+      "sha256": "04d7545b1bbe2292e79c95d244bec2447f2442c42dd25f3092bf1c3c1a2c5d4f"
+    },
+    "KXWTAMATCH-26JUL20VEDBAR.json.gz": {
+      "bytes": 124386,
+      "sha256": "5afa7baa11250fe6d54c1b91ef45da007d60fd9c35365031e7e8e85a82915077"
+    }
+  },
+  "forbidden_access": {
+    "holdout": false,
+    "live": false,
+    "network": false,
+    "orders": false,
+    "positions": false,
+    "exits": false,
+    "settlement": false,
+    "DCA": false,
+    "Window2": false
+  }
+}

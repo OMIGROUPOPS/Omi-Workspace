@@ -1,0 +1,11 @@
+{
+  "schema_version": "WINDOW1_TRADE_FLOOR_CORRECTION_DETERMINISM_V8",
+  "build_command": "node arb-executor/analysis/build_window1_trade_floor_correction_v8.js --repo .",
+  "clean_regenerations": 2,
+  "first_artifact_manifest_sha256": "77836f9cc4ddaad4ca4970db98b492563b05b5ac798cb0757da8036316d86c4c",
+  "second_artifact_manifest_sha256": "77836f9cc4ddaad4ca4970db98b492563b05b5ac798cb0757da8036316d86c4c",
+  "byte_identical": true,
+  "score_invocations": 0,
+  "live_access": false,
+  "holdout_access": false
+}

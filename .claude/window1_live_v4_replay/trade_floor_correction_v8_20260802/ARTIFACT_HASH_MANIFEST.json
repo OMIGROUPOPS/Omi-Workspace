@@ -1,0 +1,45 @@
+{
+  "schema_version": "WINDOW1_TRADE_FLOOR_CORRECTION_ARTIFACT_MANIFEST_V8",
+  "files": {
+    "ASK_FLOOR_CLASS_RECONCILIATION.json": {
+      "sha256": "77887dc112ab9e47fb7d40e60b54600647b25e766f071eb225cb89979c7b0f11",
+      "bytes": 128180
+    },
+    "CEILING_RECOMPUTATION.json": {
+      "sha256": "ac35f2bf21935d82bbf6b233e51267dd41da442da8a8150139280e8711fb7bbb",
+      "bytes": 1375109
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "fb148d1390394a1c3be14a6bf896080f95b2598dbb7e4cc4f4b0506a2bbfe405",
+      "bytes": 513
+    },
+    "DUAL_FLOOR_LEG_LEDGER.jsonl.gz": {
+      "sha256": "e5e4069ba44efaeb24c646b6ebb5d4e6d5a15b30c7cc8961efdae1695905d7a0",
+      "bytes": 949936
+    },
+    "DUAL_FLOOR_SUMMARY.json": {
+      "sha256": "31745b5d2670b38c0abf413101bda4705d14be186c6d10c506faeae96e8a2927",
+      "bytes": 230056
+    },
+    "REPORT.md": {
+      "sha256": "13418a41f1ddba59540c81cebaabec103a108204ea30eb104b6786d626dfbca9",
+      "bytes": 1448
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "2d33c4308eaa30b54ec3c3a97dab6648de5d6a40e3e4ac016db8cc5c801e9c77",
+      "bytes": 131445
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "3dd7348ece4cb1f895ac3904b49a26716acb8fbdfb8ab15151003e514af15f4d",
+      "bytes": 510
+    },
+    "TRADE_FLOOR_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "39990b4e61b170521497cd9e353c89e6ca42fc4637d5a78324ad6fedf56271d2",
+      "bytes": 44504
+    },
+    "V7_SUPERSESSION_RECEIPT.json": {
+      "sha256": "c31331d79b8406d959d348599b29c11e034cbc93060ebd59cdf9ba25057b2b87",
+      "bytes": 1316
+    }
+  }
+}

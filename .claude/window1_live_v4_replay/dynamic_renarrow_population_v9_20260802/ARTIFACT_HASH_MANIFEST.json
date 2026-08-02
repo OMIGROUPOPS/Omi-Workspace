@@ -1,0 +1,45 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_V9_ARTIFACT_MANIFEST",
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "be9fe369dc778244d93c258f32cd9daa76d5b36de71223fac420c4324aa7ea32",
+      "bytes": 518
+    },
+    "FUNNEL_RECEIPT.json": {
+      "sha256": "2623cc38a19ec194726200984dc21465ef9c95d10fbdd2921656b3ff3b2080cb",
+      "bytes": 1804
+    },
+    "NONACTION_CAUSE_CENSUS.json": {
+      "sha256": "644eb79a2e2f61e1a6e1c3090102f3838c82e5260c757e7bd23db09c7d065f49",
+      "bytes": 11069
+    },
+    "POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "1b8b0b39b0f7edae937d8facc2a0899c795c81ac328853e52f9e1bc885266ff7",
+      "bytes": 18658
+    },
+    "POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "6b40e22ae5221662c39642bd306337cbe85457aa779c9e8b65779767638044c2",
+      "bytes": 1018137
+    },
+    "POPULATION_SUMMARY.json": {
+      "sha256": "8edff525da62837fec4ca963115618041893d98e9f9dea9ec3a61e01e052772b",
+      "bytes": 153456
+    },
+    "REPORT.md": {
+      "sha256": "6d49627fa95370870fbd376445a92e60167990302558db666e28075199f4ec95",
+      "bytes": 453
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "07b358f57ab09964f13d7ed22801a003343bd51346cde300ff804b0fa63047f7",
+      "bytes": 1976
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "75113c43107efa9bf358ed4683567575db7007115f3e07772aac7b59ccea24d9",
+      "bytes": 489
+    },
+    "V7_SUPERSESSION_BINDING.json": {
+      "sha256": "679bc16c038e6c3c668944e30a0d544af29ab275800ee3b8e4f31b410e7d7878",
+      "bytes": 736
+    }
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_V9_NONACTION_CAUSES",
+  "total_nonacting_legs": 980,
+  "exact_terminal_reasons": {
+    "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 328,
+    "ALL_SURVIVING_SHAPES_SAY_LOWER": 215,
+    "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 145,
+    "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 111,
+    "SOURCE_UNAVAILABLE": 90,
+    "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 81,
+    "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 7,
+    "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 2,
+    "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+  },
+  "primary_causes": {
+    "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 328,
+    "FLOOR_CONSENSUS_NEVER_REACHED": 215,
+    "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 145,
+    "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 111,
+    "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 81,
+    "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 54,
+    "NO_FORMED_CAPACITY_QUALIFYING_ASK": 36,
+    "MICRO_MICRO_TRANSITION_NOT_READY": 7,
+    "OBSERVED_DESCENT_INVALIDATED_SURVIVING_LIBRARY_SUPPORT": 2,
+    "FRESH_OWN_BOOK_NOT_RECEIVED": 1
+  },
+  "levels": {
+    "MICRO_MICRO": 336,
+    "MICRO": 326,
+    "PAIR_MICRO": 145,
+    "SOURCE": 90,
+    "MACRO": 83
+  },
+  "by_category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "legs": 261,
+      "no_action": 169,
+      "primary_causes": {
+        "FLOOR_CONSENSUS_NEVER_REACHED": 66,
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 43,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 25,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 14,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 11,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 10
+      },
+      "levels": {
+        "MICRO": 80,
+        "MICRO_MICRO": 43,
+        "PAIR_MICRO": 25,
+        "MACRO": 11,
+        "SOURCE": 10
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "legs": 252,
+      "no_action": 150,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 63,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 33,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 24,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 11,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 9,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 9,
+        "MICRO_MICRO_TRANSITION_NOT_READY": 1
+      },
+      "levels": {
+        "MICRO_MICRO": 64,
+        "MICRO": 35,
+        "PAIR_MICRO": 33,
+        "MACRO": 9,
+        "SOURCE": 9
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "legs": 101,
+      "no_action": 79,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 40,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 11,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 11,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 6,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 6,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 5
+      },
+      "levels": {
+        "MICRO_MICRO": 40,
+        "MICRO": 22,
+        "PAIR_MICRO": 6,
+        "SOURCE": 6,
+        "MACRO": 5
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "legs": 124,
+      "no_action": 80,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 29,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 24,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 11,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 5,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 5,
+        "NO_FORMED_CAPACITY_QUALIFYING_ASK": 4,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 2
+      },
+      "levels": {
+        "MICRO": 29,
+        "MICRO_MICRO": 29,
+        "SOURCE": 15,
+        "PAIR_MICRO": 5,
+        "MACRO": 2
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "legs": 110,
+      "no_action": 61,
+      "primary_causes": {
+        "FLOOR_CONSENSUS_NEVER_REACHED": 23,
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 16,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 9,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 9,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 3,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 1
+      },
+      "levels": {
+        "MICRO": 26,
+        "MICRO_MICRO": 16,
+        "MACRO": 9,
+        "PAIR_MICRO": 9,
+        "SOURCE": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "legs": 111,
+      "no_action": 75,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 21,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 20,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 15,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 9,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 9,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 1
+      },
+      "levels": {
+        "MICRO": 24,
+        "MICRO_MICRO": 21,
+        "PAIR_MICRO": 20,
+        "MACRO": 9,
+        "SOURCE": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "legs": 27,
+      "no_action": 11,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 4,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 3,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 3,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 1
+      },
+      "levels": {
+        "MICRO_MICRO": 4,
+        "MACRO": 3,
+        "MICRO": 3,
+        "PAIR_MICRO": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "legs": 46,
+      "no_action": 33,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 12,
+        "NO_FORMED_CAPACITY_QUALIFYING_ASK": 12,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 4,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 3,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 1,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 1
+      },
+      "levels": {
+        "MICRO_MICRO": 12,
+        "SOURCE": 12,
+        "MICRO": 5,
+        "MACRO": 3,
+        "PAIR_MICRO": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "legs": 96,
+      "no_action": 39,
+      "primary_causes": {
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 16,
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 8,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 5,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 4,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 3,
+        "MICRO_MICRO_TRANSITION_NOT_READY": 2,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 1
+      },
+      "levels": {
+        "PAIR_MICRO": 16,
+        "MICRO_MICRO": 10,
+        "MICRO": 6,
+        "MACRO": 4,
+        "SOURCE": 3
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "legs": 87,
+      "no_action": 54,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 19,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 10,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 10,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 7,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 3,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 3,
+        "OBSERVED_DESCENT_INVALIDATED_SURVIVING_LIBRARY_SUPPORT": 2
+      },
+      "levels": {
+        "MICRO": 20,
+        "MICRO_MICRO": 19,
+        "PAIR_MICRO": 7,
+        "MACRO": 5,
+        "SOURCE": 3
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "legs": 44,
+      "no_action": 28,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 8,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 7,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 6,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 4,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 2,
+        "FRESH_OWN_BOOK_NOT_RECEIVED": 1
+      },
+      "levels": {
+        "MICRO": 9,
+        "MICRO_MICRO": 9,
+        "PAIR_MICRO": 6,
+        "MACRO": 4
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "legs": 45,
+      "no_action": 18,
+      "primary_causes": {
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 6,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 5,
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 4,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 3
+      },
+      "levels": {
+        "PAIR_MICRO": 6,
+        "MICRO": 5,
+        "MICRO_MICRO": 4,
+        "MACRO": 3
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "legs": 86,
+      "no_action": 44,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 14,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 10,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 10,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 6,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 2,
+        "MICRO_MICRO_TRANSITION_NOT_READY": 1,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 1
+      },
+      "levels": {
+        "MICRO": 20,
+        "MICRO_MICRO": 15,
+        "MACRO": 6,
+        "SOURCE": 2,
+        "PAIR_MICRO": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "legs": 87,
+      "no_action": 49,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 26,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 10,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 4,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 4,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 3,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 2
+      },
+      "levels": {
+        "MICRO_MICRO": 26,
+        "MICRO": 14,
+        "PAIR_MICRO": 4,
+        "MACRO": 3,
+        "SOURCE": 2
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "legs": 52,
+      "no_action": 33,
+      "primary_causes": {
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 12,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 7,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 4,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 3,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 3,
+        "MICRO_MICRO_TRANSITION_NOT_READY": 2,
+        "NO_FORMED_CAPACITY_QUALIFYING_ASK": 1,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 1
+      },
+      "levels": {
+        "MICRO_MICRO": 14,
+        "MICRO": 10,
+        "MACRO": 4,
+        "SOURCE": 4,
+        "PAIR_MICRO": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "legs": 79,
+      "no_action": 57,
+      "primary_causes": {
+        "NO_FORMED_CAPACITY_QUALIFYING_ASK": 19,
+        "FLOOR_CONSENSUS_NEVER_REACHED": 10,
+        "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 9,
+        "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 8,
+        "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 4,
+        "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 3,
+        "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 3,
+        "MICRO_MICRO_TRANSITION_NOT_READY": 1
+      },
+      "levels": {
+        "SOURCE": 22,
+        "MICRO": 18,
+        "MICRO_MICRO": 10,
+        "PAIR_MICRO": 4,
+        "MACRO": 3
+      }
+    }
+  ]
+}

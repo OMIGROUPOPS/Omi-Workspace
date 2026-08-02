@@ -1,0 +1,8 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_POPULATION_V9_TEST_RESULTS",
+  "command": "node arb-executor/tests/test_window1_dynamic_renarrow_population_v9.js",
+  "passed": 1,
+  "failed": 0,
+  "scope": "804-event and 1,608-leg conservation; corrected close and 300-second late-close law; five ceilings; dual-floor gaps; funnel; non-action causes; partitions; hashes; forbidden access",
+  "stdout": "PASS test_window1_dynamic_renarrow_population_v9: 804 events, 1608 legs, 0 failures"
+}

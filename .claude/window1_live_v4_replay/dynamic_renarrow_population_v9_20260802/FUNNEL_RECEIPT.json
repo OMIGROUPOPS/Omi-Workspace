@@ -1,0 +1,56 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_V9_FUNNEL",
+  "all_population": {
+    "legs": 1608,
+    "acted": 628,
+    "action_drop": 980,
+    "action_drop_causes": {
+      "ASK_DID_NOT_RETURN_AFTER_CONSENSUS": 328,
+      "FLOOR_CONSENSUS_NEVER_REACHED": 215,
+      "PAIR_SIBLING_EVIDENCE_INSUFFICIENT": 145,
+      "STABLE_ASK_SIGNING_SUPPORT_INSUFFICIENT": 111,
+      "SHAPE_SET_NEVER_COLLAPSED_OR_LIBRARY_GAP": 81,
+      "REPLAY_SOURCE_UNAVAILABLE_DESPITE_ASK_FLOOR": 54,
+      "NO_FORMED_CAPACITY_QUALIFYING_ASK": 36,
+      "MICRO_MICRO_TRANSITION_NOT_READY": 7,
+      "OBSERVED_DESCENT_INVALIDATED_SURVIVING_LIBRARY_SUPPORT": 2,
+      "FRESH_OWN_BOOK_NOT_RECEIVED": 1
+    },
+    "credited": 628,
+    "acted_to_credited_drop": 0,
+    "event_patterns": {
+      "NAKED_SINGLE": 354,
+      "NO_CREDITED_LEG": 313,
+      "COMPLETED_PAIR": 137
+    },
+    "completed_pairs": 137,
+    "completed_to_under_par_drop": 65,
+    "pairs_under_par": 72,
+    "under_par_to_final_drop": 61,
+    "under_par_final_drop_reasons": {
+      "CLOSE_UNAVAILABLE": 26,
+      "AT_LEAST_ONE_ENTRY_EQUALS_CLOSE": 23,
+      "AT_LEAST_ONE_ENTRY_ABOVE_CLOSE": 12
+    },
+    "final_under_par_and_both_below_close": 11
+  },
+  "properly_late_close_pair_cohort": {
+    "eligible_events": 305,
+    "eligible_legs": 610,
+    "D": 305,
+    "no_credited_leg_events": 106,
+    "naked_single_events": 144,
+    "completed_pairs": 55,
+    "pairs_under_par": 29,
+    "both_legs_strictly_below_close": 9,
+    "under_par_and_both_legs_strictly_below_close": 6,
+    "both_closes_available": 305,
+    "both_closes_properly_late": 305,
+    "completed_to_under_par_drop": 26,
+    "under_par_to_final_drop": 23,
+    "under_par_final_drop_reasons": {
+      "AT_LEAST_ONE_ENTRY_EQUALS_CLOSE": 14,
+      "AT_LEAST_ONE_ENTRY_ABOVE_CLOSE": 9
+    }
+  }
+}

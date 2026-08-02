@@ -1,0 +1,10 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_POPULATION_V9_DETERMINISM",
+  "build_command": "node arb-executor/analysis/build_window1_dynamic_renarrow_population_v9.js --repo .",
+  "clean_regenerations": 2,
+  "first_artifact_manifest_sha256": "993ed6ecd705622334ceade67a6b20b2a3dd7bb1445c51547a7c4b49c3a1d65c",
+  "second_artifact_manifest_sha256": "993ed6ecd705622334ceade67a6b20b2a3dd7bb1445c51547a7c4b49c3a1d65c",
+  "byte_identical": true,
+  "policy_replay_invocations": 0,
+  "measurement_reaccounting_runs": 2
+}

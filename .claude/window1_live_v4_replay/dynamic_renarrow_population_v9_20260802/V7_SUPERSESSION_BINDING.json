@@ -1,0 +1,18 @@
+{
+  "v7_commit": "0ec177445c04709cb147617a6419c3ea981585e5",
+  "v7_ledger": {
+    "path": ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/EVENT_LEDGER.jsonl.gz",
+    "sha256": "3a9830e942346d29ac0a4fe6fe57b391ff873808800887ad726306f9a7184a0c"
+  },
+  "v7_conservation": {
+    "path": ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/CONSERVATION_RECEIPT.json",
+    "sha256": "054cbbdce533698aa72af59d492ec718e3c185c2a68f767796d1699d06615fb9"
+  },
+  "V7_policy_stream_preserved": true,
+  "superseded_fields": [
+    "blank-close coercion",
+    "ask floor used as objective traded floor",
+    "floor-relative gaps and ceiling comparisons"
+  ],
+  "V9_change": "measurement-only reaccounting"
+}

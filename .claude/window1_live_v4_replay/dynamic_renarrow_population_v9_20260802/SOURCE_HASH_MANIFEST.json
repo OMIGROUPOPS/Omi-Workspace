@@ -1,0 +1,48 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_V9_SOURCE_MANIFEST",
+  "files": {
+    ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "3a9830e942346d29ac0a4fe6fe57b391ff873808800887ad726306f9a7184a0c",
+      "bytes": 432599
+    },
+    ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801/CONSERVATION_RECEIPT.json": {
+      "sha256": "054cbbdce533698aa72af59d492ec718e3c185c2a68f767796d1699d06615fb9",
+      "bytes": 714
+    },
+    ".claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/DUAL_FLOOR_LEG_LEDGER.jsonl.gz": {
+      "sha256": "e5e4069ba44efaeb24c646b6ebb5d4e6d5a15b30c7cc8961efdae1695905d7a0",
+      "bytes": 949936
+    },
+    ".claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/TRADE_FLOOR_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "39990b4e61b170521497cd9e353c89e6ca42fc4637d5a78324ad6fedf56271d2",
+      "bytes": 44504
+    },
+    ".claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/CEILING_RECOMPUTATION.json": {
+      "sha256": "ac35f2bf21935d82bbf6b233e51267dd41da442da8a8150139280e8711fb7bbb",
+      "bytes": 1375109
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b",
+      "bytes": 2479552
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v9.js": {
+      "sha256": "0e89d9c40001db3a86b140610f80a7464bcbef2daa11a4a6f33042973447b0e6",
+      "bytes": 22832
+    },
+    "arb-executor/tests/test_window1_dynamic_renarrow_population_v9.js": {
+      "sha256": "be82a83c745d79aec911a5b4f228d3497c3c5e42670bb7f09c8e007140d9970a",
+      "bytes": 4499
+    }
+  },
+  "forbidden_access": {
+    "holdout": false,
+    "live": false,
+    "network": false,
+    "orders": false,
+    "positions": false,
+    "exits": false,
+    "settlement": false,
+    "DCA": false,
+    "Window2": false
+  }
+}

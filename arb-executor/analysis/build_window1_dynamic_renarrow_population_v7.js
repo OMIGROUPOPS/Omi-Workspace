@@ -16,6 +16,8 @@ const repo = path.resolve(value("--repo", "."));
 const privateRoot = path.resolve(value("--private-root", "C:/Users/omigr/OMI-Window1-private"));
 const output = path.resolve(value("--output", path.join(repo, ".claude/window1_live_v4_replay/dynamic_renarrow_population_v7_20260801")));
 const workers = Number(value("--workers", "8"));
+const lagDiagnosticV10 = args.includes("--lag-diagnostic-v10");
+const causalDescentOrdinalV10 = args.includes("--causal-descent-ordinal-v10");
 const quotePath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv");
 const capacityPath = path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json");
 const bellPath = path.join(repo, ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json");
@@ -81,6 +83,8 @@ function launchShard(index, eventIds, work, refsPath, windowsPath) {
   fs.writeFileSync(targetFile, canonical(eventIds));
   fs.mkdirSync(shardDir, { recursive: true });
   const childArgs = [replayPath, "--repo", repo, "--private-root", privateRoot, "--library", libraryPath, "--references", refsPath, "--windows", windowsPath, "--target-file", targetFile, "--output", shardDir, "--receipt-name", "SHARD.json", "--stable-same-price-confirmation", "--pair-wiring-v3", "--stable-signer-v4", "--descent-verdict-v5", "--dynamic-renarrow-v6", "--compact-population", "--exclude-own-training-member", "--no-charts"];
+  if (lagDiagnosticV10) childArgs.push("--lag-diagnostic-v10");
+  if (causalDescentOrdinalV10) childArgs.push("--causal-descent-ordinal-v10");
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn(process.execPath, childArgs, { cwd: repo, stdio: ["ignore", "pipe", "pipe"] });
     let stdout = "", stderr = "";
@@ -139,6 +143,7 @@ function enrich(events, inputs) {
         delta_to_pair_reference_cents: "NOT_BOUND",
         predicates: replayLeg.placement ? ["DYNAMIC_MACRO_RENARROW", "PAIR_WIRING", "MICRO_POSITION", "ASK_DWELL_AT_LEAST_10_SECONDS", "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE", "EXACT_ACTION_BOOK", replayLeg.honest_fill_class] : [replayLeg.terminal_reason || event.reason || "NO_ACTION"],
         placement: replayLeg.placement || null,
+        lag_diagnostic_v10: replayLeg.lag_diagnostic_v10 || null,
         terminal_reason: replayLeg.terminal_reason || event.reason || null,
         replay_source: replayLeg.source || null,
       };

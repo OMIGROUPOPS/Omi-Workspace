@@ -1,0 +1,9 @@
+{
+  "cold_repaired_replays": 2,
+  "first_ledger_sha256": "4a5432475f7e8405a33dd5aae2716574c72cd45949896a5429cd08fcc1b22698",
+  "second_ledger_sha256": "4a5432475f7e8405a33dd5aae2716574c72cd45949896a5429cd08fcc1b22698",
+  "byte_identical": true,
+  "events_each": 804,
+  "legs_each": 1608,
+  "scorer_invocations": 0
+}

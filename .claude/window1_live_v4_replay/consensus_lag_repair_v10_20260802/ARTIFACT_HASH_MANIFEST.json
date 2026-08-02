@@ -1,0 +1,56 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "adc0a796c262d53db046b8383ee13fc9a965e5b619ae5a1ed3ea0d6465a90e7c",
+      "bytes": 316
+    },
+    "FUNNEL_RECEIPT.json": {
+      "sha256": "dcf16f5c5011bb3434d276a540a2fcd0872c2aef9b76d1fc52a8f15a48a52e85",
+      "bytes": 102876
+    },
+    "LAG_DIAGNOSIS_LEDGER.jsonl.gz": {
+      "sha256": "6aaf12322b2b06c49321eded50a0be6de195b918dfd4c3a2f58a1a4ba53632a9",
+      "bytes": 67958
+    },
+    "LAG_DIAGNOSIS_SUMMARY.json": {
+      "sha256": "5e00580fe547ee8cc236d4f70c5bb307c587574418ed74bcb7694c8e6c34dbc3",
+      "bytes": 11727
+    },
+    "LOWER_VERDICT_DIAGNOSIS_LEDGER.jsonl.gz": {
+      "sha256": "3c2b0620b09e4cac19ea529b77ea5ba9b9e805fa5cf9e0b065e72278815cf84f",
+      "bytes": 34424
+    },
+    "LOWER_VERDICT_SPLIT.json": {
+      "sha256": "166a151b898d4cf79f81cf813e3a307744cd71dbf61932c9d8f7039be158bc89",
+      "bytes": 6125
+    },
+    "POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "c6f19f91016af29209f832b6504f0a4b6c3c3422d77839c2b572426d703e539b",
+      "bytes": 2604005
+    },
+    "POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "76bc8fea18a512dab1c9abe550c680a26214a0127376c65c7a604d2ccfd15362",
+      "bytes": 2446850
+    },
+    "POPULATION_SUMMARY.json": {
+      "sha256": "9eb29e02a69a10f9ff958d4cd2a00cdf161d1de8bc25d18003ace3a0b910bc60",
+      "bytes": 118080
+    },
+    "REPAIR_RECEIPT.json": {
+      "sha256": "1c43dca7f741cb23bdee71105e6af2e104c492e1dc6c5c8830150293b95534b8",
+      "bytes": 1272
+    },
+    "REPORT.md": {
+      "sha256": "5b8d9ff00ef1b7e2f3baaeb4c9386352dac01585b79f5ba58dd611b1f11e0155",
+      "bytes": 1428
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "bafcddc1f75459e1e337c2b98bf49c247f29528bc64f2d3f02926c8646413af6",
+      "bytes": 2075
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "699a47bbd6c504e26664aa165d7b6a06c381cd01d8bc1b030b785bd9ddb4e500",
+      "bytes": 615
+    }
+  }
+}

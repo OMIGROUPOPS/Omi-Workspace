@@ -11,6 +11,7 @@ const { evaluateMicroPositionEvidence } = require("./window1_quote_shape_micro_p
 const { completePairTupleSupport, evaluatePairWiringEvidence } = require("./window1_quote_shape_pair_wiring_v3.js");
 const { evaluateStableAskSigningSupport } = require("./window1_quote_shape_stable_signer_v4.js");
 const { evaluateDescentVerdict } = require("./window1_quote_shape_descent_verdict_v5.js");
+const { evaluateCausalDescentOrdinalVerdict } = require("./window1_quote_shape_descent_verdict_v10.js");
 
 const args = process.argv.slice(2), value = (name, fallback) => { const index = args.indexOf(name); return index >= 0 ? args[index + 1] : fallback; };
 const repo = path.resolve(value("--repo", args[0] && !args[0].startsWith("--") ? args[0] : "."));
@@ -22,6 +23,8 @@ const pairWiringV3 = args.includes("--pair-wiring-v3");
 const stableSignerV4 = args.includes("--stable-signer-v4");
 const descentVerdictV5 = args.includes("--descent-verdict-v5");
 const dynamicRenarrowV6 = args.includes("--dynamic-renarrow-v6");
+const lagDiagnosticV10 = args.includes("--lag-diagnostic-v10");
+const causalDescentOrdinalV10 = args.includes("--causal-descent-ordinal-v10");
 const compactPopulation = args.includes("--compact-population");
 const noCharts = args.includes("--no-charts");
 const excludeOwnTrainingMember = args.includes("--exclude-own-training-member");
@@ -103,7 +106,9 @@ function nearestMemberFuture(shape, row, requiredDescentOrdinal = null, excluded
 function shapeVerdict(group, shapeId, bin, row, excludedEventId = null) {
   const shape = group.shapes.find((s) => s.shape_id === shapeId), delta = shape.medoid_future[bin], medoidVerdict = delta === null ? "UNKNOWN" : delta < 0 ? "LOWER" : "FLOOR", fitted = shape.descent_to_final_reachable_low ?? null;
   const zeroDescentSupport = Number(fitted?.counts?.["0"] || 0), useZeroDescentMember = dynamicRenarrowV6 && shape.topology.startsWith("DOWN_") && medoidVerdict === "LOWER" && row.new_low_descent_count === 0 && zeroDescentSupport > 0, memberVerdict = useZeroDescentMember ? nearestMemberFuture(shape, row, 0, excludedEventId) : null, baseVerdict = useZeroDescentMember ? memberVerdict.verdict : medoidVerdict;
-  const adjusted = descentVerdictV5 ? evaluateDescentVerdict({ baseVerdict, observedNewLowDescents: row.new_low_descent_count, fittedDistribution: fitted }) : { verdict: baseVerdict, descent_adjustment: "NOT_APPLICABLE", observed_new_low_descents: row.new_low_descent_count };
+  const adjusted = causalDescentOrdinalV10
+    ? evaluateCausalDescentOrdinalVerdict({ baseVerdict, observedNewLowDescents: row.new_low_descent_count, fittedDistribution: fitted })
+    : descentVerdictV5 ? evaluateDescentVerdict({ baseVerdict, observedNewLowDescents: row.new_low_descent_count, fittedDistribution: fitted }) : { verdict: baseVerdict, descent_adjustment: "NOT_APPLICABLE", observed_new_low_descents: row.new_low_descent_count };
   return { ...adjusted, base_verdict: baseVerdict, fitted_descent_distribution: fitted, temporal_authority: useZeroDescentMember ? "CAUSALLY_NEAREST_ZERO_DESCENT_MEMBER" : "STATIC_SHAPE_MEDOID", selected_training_members: memberVerdict?.selected_members ?? [], selected_member_remaining_min_deltas: memberVerdict?.remaining_min_deltas ?? [] };
 }
 function permitsObservedDescent(shape, observedNewLowDescents) { return observedNewLowDescents === 0 || Number(shape.descent_to_final_reachable_low?.max) >= observedNewLowDescents; }
@@ -140,10 +145,67 @@ function preActionEvidence(leg) {
     top_ask_size_ever_changed: row.top_ask_size_ever_changed,
   };
 }
+function tMinusReceipt(source, ts) {
+  return {
+    timestamp_epoch: ts,
+    t_minus_scheduled_seconds: Number.isFinite(source.scheduled) ? source.scheduled - ts : null,
+    t_minus_actual_bell_seconds: Number.isFinite(source.bell) ? source.bell - ts : null,
+  };
+}
+function diagnosticSnapshot({ eventId, leg, row, ts, state, reason, verdicts, shapes, tuples, microEvidence, stableSigningSupport, changedThisTick }) {
+  const allFloor = shapes.length > 0 && verdicts.every((item) => item.verdict === "FLOOR");
+  const allLower = shapes.length > 0 && verdicts.every((item) => item.verdict === "LOWER");
+  const ownMicro = Boolean(microEvidence?.own_micro_position_observed);
+  const inverseSibling = Boolean(microEvidence?.inverse_sibling_resolved);
+  const stableSupport = Boolean(stableSigningSupport?.supported);
+  const atObservedLow = row.prefix.ask_net === row.prefix.ask_dip;
+  const dwellReady = row.ask_dwell_seconds >= DWELL_SECONDS;
+  const capacityReady = row.top_ask_size >= QUANTITY;
+  const freshOwnReceipt = Boolean(changedThisTick);
+  const upstreamReady = allFloor && ownMicro && inverseSibling && stableSupport;
+  const failed = [];
+  if (!allFloor) failed.push(allLower ? "SHAPE_VERDICT_STILL_LOWER" : "SHAPE_VERDICT_NOT_UNANIMOUS_FLOOR");
+  if (!ownMicro) failed.push("OWN_MICRO_POSITION_UNOBSERVED");
+  if (!inverseSibling) failed.push("INVERSE_SIBLING_UNRESOLVED");
+  if (!stableSupport) failed.push("STABLE_SIGNING_SUPPORT_UNPROVEN");
+  if (!atObservedLow) failed.push("CURRENT_ASK_ABOVE_OBSERVED_LOW");
+  if (!dwellReady) failed.push("ASK_DWELL_BELOW_10_SECONDS");
+  if (!capacityReady) failed.push("TOP_ASK_CAPACITY_BELOW_FIVE");
+  if (!freshOwnReceipt) failed.push("NO_FRESH_OWN_BOOK_RECEIPT");
+  return {
+    event_id: eventId,
+    leg_id: leg.leg,
+    ticker: leg.ticker,
+    category: leg.category,
+    price_region: leg.price_region,
+    ...tMinusReceipt(leg, ts),
+    receipt: row.receipt,
+    book: { bid: row.bid, ask: row.ask, carried_last: row.carried_last, spread: row.spread, ask_dwell_seconds: row.ask_dwell_seconds, top_ask_size: row.top_ask_size, top5_ask_depth: row.top5_ask_depth },
+    prefix: { ask_net: row.prefix.ask_net, ask_dip: row.prefix.ask_dip, raw_row_count: row.raw_row_count, distinct_bbo_state_count: row.distinct_bbo_state_count, distinct_ask_count: row.distinct_ask_count, new_low_descent_count: row.new_low_descent_count },
+    state,
+    reason,
+    surviving_shape_ids: shapes,
+    shape_verdicts: verdicts,
+    surviving_pair_tuple_count: tuples.length,
+    predicates: {
+      unanimous_floor: allFloor,
+      unanimous_lower: allLower,
+      own_micro_position_observed: ownMicro,
+      inverse_sibling_resolved: inverseSibling,
+      stable_signing_support: stableSupport,
+      current_ask_at_observed_low: atObservedLow,
+      ask_dwell_at_least_10_seconds: dwellReady,
+      top_ask_capacity_at_least_five: capacityReady,
+      fresh_own_book_receipt: freshOwnReceipt,
+      upstream_consensus_ready: upstreamReady,
+    },
+    failed_predicates: failed,
+  };
+}
 function downsample(rows, max = 1400) { if (rows.length <= max) return rows; const step = (rows.length - 1) / (max - 1), out = []; for (let i = 0; i < max; i += 1) out.push(rows[Math.round(i * step)]); return out; }
 
 function replayGame(eventId, sources, library, refs) {
-  const legs = sources.map((source) => { const loaded = loadRows(source); return { ...source, source_receipt: loaded.source, rows: prefixRows(loaded.rows, source.left, source.right), first_book_ts: loaded.rows[0].ts, first_book_receipt: loaded.rows[0].receipt, first_ask: loaded.rows[0].ask, first_bid: loaded.rows[0].bid, price_region: region(loaded.rows[0].bid), order: null, fill: null, last: null, survivor_shapes: null, decisions: [] }; });
+  const legs = sources.map((source) => { const loaded = loadRows(source); return { ...source, source_receipt: loaded.source, rows: prefixRows(loaded.rows, source.left, source.right), first_book_ts: loaded.rows[0].ts, first_book_receipt: loaded.rows[0].receipt, first_ask: loaded.rows[0].ask, first_bid: loaded.rows[0].bid, price_region: region(loaded.rows[0].bid), order: null, fill: null, last: null, survivor_shapes: null, decisions: [], lag_diagnostic: { first_qualifying_floor_receipt: null, first_shape_floor_consensus: null, first_upstream_consensus: null, first_actionable_unanimous_lower: null, last_actionable_unanimous_lower: null, upstream_consensus_last_predicates_to_clear: [], raw_new_low_arrivals_by_price: {}, qualifying_observed_low_receipts_by_price: {} }, prior_lag_snapshot: null }; });
   legs.sort((a, b) => a.leg.localeCompare(b.leg)); const high = [...legs].sort((a, b) => b.first_ask - a.first_ask || a.leg.localeCompare(b.leg))[0], low = legs.find((x) => x !== high), pairKey = `${high.category}|${high.price_region}|${low.price_region}`, tuplesObject = library.pair_shape_tuples[pairKey] || {};
   const observedTuples = Object.keys(tuplesObject).map((key) => { const [highShape, lowShape] = key.split("|"); return { highShape, lowShape, n: tuplesObject[key], support_class: "EMPIRICALLY_OBSERVED_PAIR_TUPLE" }; });
   const allTuples = pairWiringV3 ? completePairTupleSupport({ observedTupleObject: tuplesObject, highShapes: library.groups[`${high.category}|${high.price_region}`].shapes.map((shape) => shape.shape_id), lowShapes: library.groups[`${low.category}|${low.price_region}`].shapes.map((shape) => shape.shape_id) }) : observedTuples;
@@ -196,15 +258,20 @@ function replayGame(eventId, sources, library, refs) {
       if (leg.order && distinctStrictlyLaterFillReceipt && fillRow.ask <= leg.order.price_cents && fillRow.ask_dwell_seconds >= DWELL_SECONDS && capacityAtOrBelow(fillRow, leg.order.price_cents) >= QUANTITY) { leg.fill = { price_cents: leg.order.price_cents, quantity: QUANTITY, evidence_ts: fillRow.ts, evidence_receipt: fillRow.receipt, evidence_type: "STRICTLY_LATER_ASK_DWELL_AND_DISPLAYED_CAPACITY", ask_cents: fillRow.ask, ask_dwell_seconds: fillRow.ask_dwell_seconds, capacity: capacityAtOrBelow(fillRow, leg.order.price_cents) }; leg.decisions.push({ ts: fillRow.ts, state: "FILLED", receipt: fillRow.receipt, order: leg.order, fill: leg.fill }); continue; }
       if (leg.order) continue;
       const role = leg === high ? "highShape" : "lowShape", shapes = [...new Set(tuples.map((t) => t[role]))], verdicts = shapes.map((id) => ({ shape_id: id, ...shapeVerdict(leg.group, id, row.progress_bin, row, excludeOwnTrainingMember ? eventId : null) })); let state = "INSUFFICIENT_EVIDENCE", reason = "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP";
+      const sibling = legs.find((candidate) => candidate !== leg);
+      const allFloor = shapes.length > 0 && verdicts.every((item) => item.verdict === "FLOOR");
+      const legRole = leg === high ? "highShape" : "lowShape";
+      let microEvidence = null;
+      let stableSigningSupport = null;
+      if (allFloor || lagDiagnosticV10) {
+        microEvidence = pairWiringV3 ? dynamicRenarrowV6 ? evaluateDynamicPairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : evaluatePairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : stableSamePriceConfirmation ? evaluateMicroPositionEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS }) : { own_micro_position_observed: leg.last.ask_change_after_first_timestamp, evidence_type: leg.last.ask_change_after_first_timestamp ? "ASK_PRICE_TRANSITION" : null, stable_same_price_receipt: false, inverse_sibling_resolved: Boolean(leg.resolved_direction && sibling.independent_direction && inverseDirection(leg.resolved_direction) === sibling.independent_direction && directionObserved(sibling, sibling.independent_direction)) };
+        stableSigningSupport = stableSignerV4 ? evaluateStableAskSigningSupport({ leg, sibling, inverseSiblingResolved: microEvidence.inverse_sibling_resolved }) : { required: false, supported: true, support_type: "V4_DISABLED", predicates: {} };
+      }
       if (row.raw_row_count < 2) reason = "NO_PRIOR_IN_WINDOW_BOOK";
       else if (shapes.length && verdicts.some((x) => x.descent_adjustment === "OBSERVED_DESCENT_OUTSIDE_SHAPE_TRAINING_SUPPORT")) reason = "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT";
       else if (shapes.length && verdicts.every((x) => x.verdict === "LOWER")) { state = "HOLD"; reason = "ALL_SURVIVING_SHAPES_SAY_LOWER"; }
-      else if (shapes.length && verdicts.every((x) => x.verdict === "FLOOR")) {
-        const sibling = legs.find((candidate) => candidate !== leg);
-        const legRole = leg === high ? "highShape" : "lowShape";
-        const microEvidence = pairWiringV3 ? dynamicRenarrowV6 ? evaluateDynamicPairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : evaluatePairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : stableSamePriceConfirmation ? evaluateMicroPositionEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS }) : { own_micro_position_observed: leg.last.ask_change_after_first_timestamp, evidence_type: leg.last.ask_change_after_first_timestamp ? "ASK_PRICE_TRANSITION" : null, stable_same_price_receipt: false, inverse_sibling_resolved: Boolean(leg.resolved_direction && sibling.independent_direction && inverseDirection(leg.resolved_direction) === sibling.independent_direction && directionObserved(sibling, sibling.independent_direction)) };
+      else if (allFloor) {
         const inverseSiblingResolved = microEvidence.inverse_sibling_resolved, stableSamePriceReceipt = microEvidence.stable_same_price_receipt, ownMicroPositionObserved = microEvidence.own_micro_position_observed, microPositionEvidenceType = microEvidence.evidence_type;
-        const stableSigningSupport = stableSignerV4 ? evaluateStableAskSigningSupport({ leg, sibling, inverseSiblingResolved }) : { required: false, supported: true, support_type: "V4_DISABLED", predicates: {} };
         if (!ownMicroPositionObserved) reason = "FLOOR_CONSENSUS_BUT_OWN_MICRO_POSITION_UNOBSERVED";
         else if (!inverseSiblingResolved) reason = "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED";
         else if (!stableSigningSupport.supported) reason = "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT";
@@ -218,12 +285,40 @@ function replayGame(eventId, sources, library, refs) {
         row.inverse_sibling_proof_type = microEvidence.inverse_sibling_proof_type ?? null;
         row.stable_signing_support = stableSigningSupport;
       }
+      if (lagDiagnosticV10) {
+        const snapshot = diagnosticSnapshot({ eventId, leg, row, ts, state, reason, verdicts, shapes, tuples, microEvidence, stableSigningSupport, changedThisTick: changedThisTick[leg.leg] });
+        if (!leg.lag_diagnostic.first_shape_floor_consensus && snapshot.predicates.unanimous_floor) leg.lag_diagnostic.first_shape_floor_consensus = snapshot;
+        if (!leg.lag_diagnostic.first_upstream_consensus && snapshot.predicates.upstream_consensus_ready) {
+          const prior = leg.prior_lag_snapshot;
+          const keys = ["unanimous_floor", "own_micro_position_observed", "inverse_sibling_resolved", "stable_signing_support"];
+          leg.lag_diagnostic.upstream_consensus_last_predicates_to_clear = keys.filter((key) => !prior?.predicates?.[key] && snapshot.predicates[key]);
+          leg.lag_diagnostic.first_upstream_consensus = snapshot;
+        }
+        const floorCents = leg.own_ask_reachable_low_cents;
+        const exactQualifyingFloorReceipt = changedThisTick[leg.leg] && Number.isInteger(floorCents) && row.ask === floorCents && snapshot.predicates.ask_dwell_at_least_10_seconds && snapshot.predicates.top_ask_capacity_at_least_five;
+        if (!leg.lag_diagnostic.first_qualifying_floor_receipt && exactQualifyingFloorReceipt) leg.lag_diagnostic.first_qualifying_floor_receipt = snapshot;
+        const atCurrentRawLow = row.ask === leg.first_ask + row.prefix.ask_dip;
+        if (changedThisTick[leg.leg] && atCurrentRawLow && !leg.lag_diagnostic.raw_new_low_arrivals_by_price[String(row.ask)]) leg.lag_diagnostic.raw_new_low_arrivals_by_price[String(row.ask)] = snapshot;
+        if (changedThisTick[leg.leg] && atCurrentRawLow && snapshot.predicates.ask_dwell_at_least_10_seconds && snapshot.predicates.top_ask_capacity_at_least_five && !leg.lag_diagnostic.qualifying_observed_low_receipts_by_price[String(row.ask)]) leg.lag_diagnostic.qualifying_observed_low_receipts_by_price[String(row.ask)] = snapshot;
+        const actionableLower = changedThisTick[leg.leg] && snapshot.predicates.unanimous_lower && snapshot.predicates.current_ask_at_observed_low && snapshot.predicates.ask_dwell_at_least_10_seconds && snapshot.predicates.top_ask_capacity_at_least_five;
+        if (actionableLower) {
+          if (!leg.lag_diagnostic.first_actionable_unanimous_lower) leg.lag_diagnostic.first_actionable_unanimous_lower = snapshot;
+          leg.lag_diagnostic.last_actionable_unanimous_lower = snapshot;
+        }
+        leg.prior_lag_snapshot = snapshot;
+      }
       if (state === "PLACE") { const sibling = legs.find((candidate) => candidate !== leg), baseOrder = { price_cents: row.ask, quantity: QUANTITY, action_ts: ts, action_receipt: row.receipt, same_receipt_fill_forbidden: true, surviving_shapes: verdicts, pair_shape_tuples: tuples.map((t) => ({ ...t })), inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null, stable_signing_support: row.stable_signing_support ?? null, pre_action_evidence: { own: preActionEvidence(leg), sibling: preActionEvidence(sibling) } }; leg.order = stableSamePriceConfirmation ? { ...baseOrder, action_receipt: changedThisTick[leg.leg] ? leg.last.receipt : sibling.last?.receipt, own_book_receipt_at_action: leg.last.receipt, own_book_ts_at_action: leg.last.ts, sibling_book_receipt_at_action: sibling.last?.receipt ?? null, sibling_book_ts_at_action: sibling.last?.ts ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? "ASK_PRICE_TRANSITION" } : baseOrder; }
       const prior = leg.decisions[leg.decisions.length - 1]; if (!prior || prior.state !== state || prior.reason !== reason || state === "PLACE") leg.decisions.push({ ts, state, reason, book: { bid: row.bid, ask: row.ask, spread: row.spread, carried_last: row.carried_last, ask_dwell_seconds: row.ask_dwell_seconds, ask_net: row.prefix.ask_net, ask_dip: row.prefix.ask_dip, ask_change_after_first_timestamp: row.ask_change_after_first_timestamp, ...(stableSamePriceConfirmation ? { strictly_later_same_price_ask_receipt: leg.last.strictly_later_same_price_ask_receipt, stable_same_price_receipt: row.stable_same_price_receipt ?? false, stable_signing_support: row.stable_signing_support ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? null, inverse_sibling_resolved: row.inverse_sibling_resolved ?? false, inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null } : {}), top_ask_size: row.top_ask_size, top5_ask_depth: row.top5_ask_depth }, surviving_shapes: verdicts, surviving_pair_tuple_count: tuples.length, receipt: row.receipt, order: leg.order });
     }
   }
+  if (lagDiagnosticV10) for (const leg of legs) {
+    const terminalObservedLow = leg.last ? leg.first_ask + leg.last.prefix.ask_dip : null;
+    leg.lag_diagnostic.terminal_observed_low_cents = terminalObservedLow;
+    leg.lag_diagnostic.first_terminal_observed_low_arrival = Number.isInteger(terminalObservedLow) ? leg.lag_diagnostic.raw_new_low_arrivals_by_price[String(terminalObservedLow)] || null : null;
+    leg.lag_diagnostic.first_qualifying_terminal_observed_low_receipt = Number.isInteger(terminalObservedLow) ? leg.lag_diagnostic.qualifying_observed_low_receipts_by_price[String(terminalObservedLow)] || null : null;
+  }
   const current = refs.current_branch.find((x) => x.event_id === eventId), corrected = refs.corrected_branch.find((x) => x.event_id === eventId);
-  return { event_id: eventId, category: legs[0].category, pair_constraint: { identity: "two outcomes sum to 100", training_pair_key: pairKey, observed_pair_shape_tuples: observedTuples.length, structural_closure_enabled: pairWiringV3, initial_pair_shape_tuples: allTuples.length, final_pair_shape_tuples: tuples.length, dynamic_current_path_inverse_closures: dynamicPairClosures }, legs: Object.fromEntries(legs.map((leg) => { const ref = corrected.legs[leg.leg], entry = leg.fill?.price_cents ?? null; return [leg.leg, { ticker: leg.ticker, price_region: leg.price_region, status: leg.fill ? "CREDITED" : "INSUFFICIENT_EVIDENCE", entry_cents: entry, baseline_entry_cents: current?.legs?.[leg.leg]?.entry_cents ?? null, own_window1_close_cents: ref.own_window1_close_cents, delta_to_own_window1_close_cents: entry === null || !Number.isInteger(ref.own_window1_close_cents) ? null : entry - ref.own_window1_close_cents, own_bell_price_cents: ref.own_bell_price_cents, delta_to_own_bell_price_cents: entry === null || !Number.isInteger(ref.own_bell_price_cents) ? null : entry - ref.own_bell_price_cents, own_ask_reachable_low_cents: ref.own_ask_reachable_low_cents, delta_to_own_ask_reachable_low_cents: entry === null || !Number.isInteger(ref.own_ask_reachable_low_cents) ? null : entry - ref.own_ask_reachable_low_cents, pair_reference_cents: "NOT_BOUND", delta_to_pair_reference_cents: "NOT_BOUND", placement: leg.order, fill: leg.fill, macro_reclassifications: leg.macro_reclassifications, surviving_shapes_at_placement: leg.order?.surviving_shapes || [], surviving_shapes_at_terminal: leg.survivor_shapes.map((shape_id) => ({ shape_id, direction: directionOf(shape_id) })), terminal_reason: leg.fill ? "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK" : leg.decisions[leg.decisions.length - 1]?.reason || "NO_LAWFUL_DECISION", decision_changes: leg.decisions, chart_rows: downsample(leg.rows.map((r) => ({ ts: r.ts, bid: r.bid, ask: r.ask, last: r.carried_last }))), source: leg.source_receipt }]; })) };
+  return { event_id: eventId, category: legs[0].category, pair_constraint: { identity: "two outcomes sum to 100", training_pair_key: pairKey, observed_pair_shape_tuples: observedTuples.length, structural_closure_enabled: pairWiringV3, initial_pair_shape_tuples: allTuples.length, final_pair_shape_tuples: tuples.length, dynamic_current_path_inverse_closures: dynamicPairClosures }, legs: Object.fromEntries(legs.map((leg) => { const ref = corrected.legs[leg.leg], entry = leg.fill?.price_cents ?? null; return [leg.leg, { ticker: leg.ticker, price_region: leg.price_region, status: leg.fill ? "CREDITED" : "INSUFFICIENT_EVIDENCE", entry_cents: entry, baseline_entry_cents: current?.legs?.[leg.leg]?.entry_cents ?? null, own_window1_close_cents: ref.own_window1_close_cents, delta_to_own_window1_close_cents: entry === null || !Number.isInteger(ref.own_window1_close_cents) ? null : entry - ref.own_window1_close_cents, own_bell_price_cents: ref.own_bell_price_cents, delta_to_own_bell_price_cents: entry === null || !Number.isInteger(ref.own_bell_price_cents) ? null : entry - ref.own_bell_price_cents, own_ask_reachable_low_cents: ref.own_ask_reachable_low_cents, delta_to_own_ask_reachable_low_cents: entry === null || !Number.isInteger(ref.own_ask_reachable_low_cents) ? null : entry - ref.own_ask_reachable_low_cents, pair_reference_cents: "NOT_BOUND", delta_to_pair_reference_cents: "NOT_BOUND", placement: leg.order, fill: leg.fill, macro_reclassifications: leg.macro_reclassifications, surviving_shapes_at_placement: leg.order?.surviving_shapes || [], surviving_shapes_at_terminal: leg.survivor_shapes.map((shape_id) => ({ shape_id, direction: directionOf(shape_id) })), terminal_reason: leg.fill ? "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK" : leg.decisions[leg.decisions.length - 1]?.reason || "NO_LAWFUL_DECISION", decision_changes: leg.decisions, lag_diagnostic_v10: lagDiagnosticV10 ? leg.lag_diagnostic : null, chart_rows: downsample(leg.rows.map((r) => ({ ts: r.ts, bid: r.bid, ask: r.ask, last: r.carried_last }))), source: leg.source_receipt }]; })) };
 }
 
 function svgChart(event, sources) {
@@ -278,6 +373,7 @@ function compactEvent(event) {
         surviving_shapes_at_placement: leg.surviving_shapes_at_placement,
         surviving_shapes_at_terminal: leg.surviving_shapes_at_terminal,
         terminal_reason: leg.terminal_reason,
+        lag_diagnostic_v10: leg.lag_diagnostic_v10,
         source: leg.source,
       }];
     })),
@@ -338,6 +434,8 @@ function main() {
     library_sha256: sha256(fs.readFileSync(libraryPath)),
     descent_verdict_v5: descentVerdictV5,
     dynamic_renarrow_v6: dynamicRenarrowV6,
+    lag_diagnostic_v10: lagDiagnosticV10,
+    causal_descent_ordinal_v10: causalDescentOrdinalV10,
     compact_population: compactPopulation,
     own_training_member_excluded_from_causal_nearest_member_selection: excludeOwnTrainingMember,
     aggregate_library_fit_disclosure: compactPopulation ? "The aggregate quote-shape library was fitted on the development population except the frozen five. The target event is excluded from causal nearest-member selection, but aggregate envelopes remain in-sample for non-five rows; this 804 diagnostic is not holdout validation." : null,

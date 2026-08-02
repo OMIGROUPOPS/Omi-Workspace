@@ -1,0 +1,215 @@
+{
+  "schema_version": "WINDOW1_UNANIMOUS_LOWER_DIAGNOSIS_V10",
+  "controlling_class_legs": 215,
+  "first_decline_outcomes": {
+    "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 95,
+    "BOTTOMED_AT_FIRST_DECLINED_ASK": 88,
+    "NO_ACTIONABLE_LOWER_RECEIPT": 32
+  },
+  "last_decline_outcomes": {
+    "BOTTOMED_AT_LAST_DECLINED_ASK": 181,
+    "NO_ACTIONABLE_LOWER_RECEIPT": 32,
+    "ASK_WENT_LOWER_AFTER_LAST_DECLINE": 2
+  },
+  "interpretation": "The first actionable LOWER call is marginally more often correct than bottomed; persistence of LOWER to the last qualified receipt is the defect addressed by the fitted ordinal authority.",
+  "partitions_by_category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "legs": 66,
+      "first_decline_outcomes": {
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 38,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 19,
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 9
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 47,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 19
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "legs": 24,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 13,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 10,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 23,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "legs": 11,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 6,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 5
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 11
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "legs": 24,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 18,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 4,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 2
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 22,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 2
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "legs": 23,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 12,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 6,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 5
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 17,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 5,
+        "ASK_WENT_LOWER_AFTER_LAST_DECLINE": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "legs": 15,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 10,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 5
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 15
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "legs": 3,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 1,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 1,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 2,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "legs": 4,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 2,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 2
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 4
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "legs": 1,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "legs": 10,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 6,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 3,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 8,
+        "ASK_WENT_LOWER_AFTER_LAST_DECLINE": 1,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "legs": 7,
+      "first_decline_outcomes": {
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 4,
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 2,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 6,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "legs": 10,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 9,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 10
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "legs": 4,
+      "first_decline_outcomes": {
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 2,
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 2
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 4
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "legs": 3,
+      "first_decline_outcomes": {
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 2,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 2,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "legs": 10,
+      "first_decline_outcomes": {
+        "BOTTOMED_AT_FIRST_DECLINED_ASK": 5,
+        "ASK_WENT_LOWER_AFTER_FIRST_DECLINE": 4,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      },
+      "last_decline_outcomes": {
+        "BOTTOMED_AT_LAST_DECLINED_ASK": 9,
+        "NO_ACTIONABLE_LOWER_RECEIPT": 1
+      }
+    }
+  ]
+}

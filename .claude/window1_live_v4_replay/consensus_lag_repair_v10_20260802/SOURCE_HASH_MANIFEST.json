@@ -1,0 +1,57 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/dynamic_renarrow_population_v9_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "6b40e22ae5221662c39642bd306337cbe85457aa779c9e8b65779767638044c2",
+      "bytes": 1018137
+    },
+    ".claude/window1_live_v4_replay/dynamic_renarrow_population_v9_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "1b8b0b39b0f7edae937d8facc2a0899c795c81ac328853e52f9e1bc885266ff7",
+      "bytes": 18658
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "b00c70aa79c90392b04e81fa72634d74d82bb4a0fed77edf68a91e80432e64ba",
+      "bytes": 50435
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v7.js": {
+      "sha256": "3cb77d6e27a51f315597ba1c2b4452ff0455bb9e1677be67faffbcf4ab32de1a",
+      "bytes": 23433
+    },
+    "arb-executor/analysis/window1_quote_shape_descent_verdict_v10.js": {
+      "sha256": "98024cfe81932fe1bb818d36abc16c55e2223585a7e03ee15f4163b4aa674f33",
+      "bytes": 1643
+    },
+    "arb-executor/analysis/build_window1_consensus_lag_repair_v10.js": {
+      "sha256": "90ceb6fa7babb22c3ecc73d21357b05bcd8ab5cf9d8bfb2924d4180c1214b1d3",
+      "bytes": 23723
+    },
+    "arb-executor/tests/test_window1_consensus_lag_repair_v10.js": {
+      "sha256": "9cbc35c7ee4a4bf53e8786c828ceae41e9980c5295e107012b72ae9852c6bcb0",
+      "bytes": 3742
+    }
+  },
+  "ephemeral_cold_replay_inputs": {
+    "baseline": {
+      "sha256": "566e692cf81f7d3a7b56475a45c33de3a76d97cecb532fdb3f11b917c0edc0de",
+      "bytes": 2122340
+    },
+    "repaired_first": {
+      "sha256": "4a5432475f7e8405a33dd5aae2716574c72cd45949896a5429cd08fcc1b22698",
+      "bytes": 2067474
+    },
+    "repaired_second": {
+      "sha256": "4a5432475f7e8405a33dd5aae2716574c72cd45949896a5429cd08fcc1b22698",
+      "bytes": 2067474
+    }
+  },
+  "forbidden_access": {
+    "holdout": false,
+    "live": false,
+    "network": false,
+    "orders": false,
+    "positions": false,
+    "exits": false,
+    "settlement": false,
+    "DCA": false,
+    "Window2": false
+  }
+}

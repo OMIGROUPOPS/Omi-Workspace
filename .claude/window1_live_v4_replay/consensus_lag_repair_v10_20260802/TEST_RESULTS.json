@@ -1,0 +1,18 @@
+{
+  "test_scripts_run": 8,
+  "test_scripts_passed": 8,
+  "test_scripts_failed": 0,
+  "tests": [
+    "test_window1_consensus_lag_repair_v10.js",
+    "test_window1_quote_shape_descent_verdict_v10.js",
+    "test_window1_quote_shape_descent_verdict_v5.js",
+    "test_window1_quote_shape_dynamic_renarrow_v6.js",
+    "test_window1_dynamic_renarrow_population_v7.js",
+    "test_window1_dynamic_renarrow_population_v9.js",
+    "test_window1_trade_floor_correction_v8.js",
+    "test_window1_quote_shape_elimination_two_game.js"
+  ],
+  "scorer_invocations": 0,
+  "holdout_access": false,
+  "live_or_trading_access": false
+}

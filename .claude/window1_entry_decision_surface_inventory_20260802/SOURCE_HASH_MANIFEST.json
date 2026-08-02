@@ -1,0 +1,30 @@
+{
+  "schema_version": "window1-entry-decision-surface-inventory-source-manifest-v1",
+  "parent_commit": "823a739daed7af6073e48ec037cff05db8f3d494",
+  "files": [
+    {"path": "arb-executor/live_v4.py", "bytes": 1028619, "sha256": "f6fb1d20f3943f7bac26d94ccf1e9d98a5f22762cd3357394adfc8a3b108d760"},
+    {"path": "arb-executor/config/deploy_v5_live.json", "bytes": 5305, "sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f"},
+    {"path": "arb-executor/docs/policy/per_regime_offsets_v2.csv", "bytes": 2518, "sha256": "d396ced38036f3e784c37832e1d354b5b49cdecee05534db6c3196bc54c23b31"},
+    {"path": "arb-executor/docs/policy/entry_table_percell_conservative.csv", "bytes": 20474, "sha256": "c454cb7f91c82ba775eb361fd5db76799d50617fa28dc5016199b454fd6386a6"},
+    {"path": ".claude/trendpath/ATLAS_V1.json", "bytes": 64012, "sha256": "efdfc2b414a752db560b7e494642632a0530c68f54b6d4e8f86d303887b5100c"},
+    {"path": ".claude/entrysurface_20260717/band_map_v1.json", "bytes": 15520, "sha256": "caf255a283bbb32f1d9bd2edd5f4d898d5f50fc8e67d5f9a076579b695a9e68c"},
+    {"path": ".claude/entrysurface_20260717/drift_surfaces_v1.json", "bytes": 182240, "sha256": "7dca4a4f0e6061d28765fd243f4ce717bc36a542b32490bafabc611bd2cf3bab"},
+    {"path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/cohort_surface_v1.json", "bytes": 19011, "sha256": "aef60745a195f2828f758092183a3564bfc052a65c8899e5b3c994271bc6212d"},
+    {"path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/entry_tables_sealed_v1.json", "bytes": 10125, "sha256": "c0c29e54792e2f49cad6e96297367b4ada80051cde464a8f3dddb748ae1ce8e7"},
+    {"path": ".claude/window1_live_v4_replay/vps_inputs_20260729/state/pair_policies_sealed_v1.json", "bytes": 5946, "sha256": "b2f0b670f70aabe3fbfef9092c0b227334e00da2ecbd51e9235204158daf7c44"},
+    {"path": ".claude/window1_live_v4_replay/vps_inputs_20260729/trendpath/LIBRARY_V1.json", "bytes": 16917, "sha256": "326ad88a516ce157a3c39d276e07b2559fad77f97e513d49e0798ad9144f973d"},
+    {"path": ".claude/window1_live_v4_replay/vps_inputs_20260729/trendpath/ORIENT_V1.json", "bytes": 2130, "sha256": "911de20128f8700ea6c6c8de8e27d62d2652a3ad8c30e467208995bd0f304f3d"},
+    {"path": ".claude/shelf/SHELF_CENSUS.md", "bytes": 6477, "sha256": "d3973381cc52e2b89c7d1fe2ae242c2054e3acfa41c8f0cee2e1dd587b0312a0"},
+    {"path": ".claude/window1_live_v4_replay/five_exact_dynamic_renarrow_v6_20260801/QUOTE_SHAPE_LIBRARY_DYNAMIC_RENARROW_V6.json", "bytes": 17538443, "sha256": "839c211a25814d2419752b314f9b7b4a67f8776e8ada345cf326a36f25967255"},
+    {"path": "arb-executor/analysis/build_window1_quote_shape_library_v1.js", "bytes": 21147, "sha256": "023c997f7a05272807a473b8071c15bfde9ecf5d4ec0cd5e697683cec0ec6c70"},
+    {"path": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js", "bytes": 54305, "sha256": "6e495ec38a4f0ba664c99837ec2c70c2375766dfaa37044e7b498f007d073e27"},
+    {"path": "arb-executor/analysis/window1_quote_shape_micro_position_v2.js", "bytes": 1830, "sha256": "0d56dc04f5d0b17308b30c44477c52ced66419fa1f3a94541fe960faff040ce2"},
+    {"path": "arb-executor/analysis/window1_quote_shape_pair_wiring_v3.js", "bytes": 3367, "sha256": "bad99cd3d1d8706c64a6b00067a888a80ce34406a5e179583715deff410d2bb7"},
+    {"path": "arb-executor/analysis/window1_quote_shape_stable_signer_v4.js", "bytes": 2036, "sha256": "80b71ff0eb433b02c2459c17e298e0b9f379438efe19a68a3ee774d87898addc"},
+    {"path": "arb-executor/analysis/window1_quote_shape_descent_verdict_v10.js", "bytes": 1643, "sha256": "98024cfe81932fe1bb818d36abc16c55e2223585a7e03ee15f4163b4aa674f33"},
+    {"path": "arb-executor/analysis/window1_quote_shape_persistence_floor_v11.js", "bytes": 2330, "sha256": "7da60f287d406692d30eec6ec6a635b4c2ba7986a9d67129789d58c892381d1d"},
+    {"path": ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json", "bytes": 3367048, "sha256": "d76c7014a1ddf32414f6a8eb2de2cbbbc12795a6d40ac6f67b19a8ff55c62c33"},
+    {"path": ".claude/window1_organ_scorecard_20260731/ORGAN_SCORECARD.json", "bytes": 23523, "sha256": "ca1ce3a7f507636db7fcb0fc42736728e78c749f74a6a615efc0d05312a64d3e"},
+    {"path": ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/V10_RESIDUAL_DIAGNOSIS.json", "bytes": 45149, "sha256": "a6e51f13f3f889f2a88f0f7f27a25e2a8f2070f641f1d63efe3a5964ad1f6903"}
+  ]
+}

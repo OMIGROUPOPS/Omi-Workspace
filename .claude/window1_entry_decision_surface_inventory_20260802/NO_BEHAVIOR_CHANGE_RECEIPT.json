@@ -1,0 +1,22 @@
+{
+  "schema_version": "window1-entry-decision-surface-inventory-no-change-v1",
+  "parent_commit": "823a739daed7af6073e48ec037cff05db8f3d494",
+  "scope": "read-only curation",
+  "code_changes": 0,
+  "configuration_changes": 0,
+  "replay_invocations": 0,
+  "scorer_invocations": 0,
+  "live_access": false,
+  "network_runtime_access": false,
+  "order_access_or_mutation": false,
+  "position_access_or_mutation": false,
+  "holdout_access": false,
+  "window2_access": false,
+  "behavior_authority_changes": 0,
+  "new_files": [
+    ".claude/window1_entry_decision_surface_inventory_20260802/ENTRY_DECISION_SURFACE_INVENTORY.md",
+    ".claude/window1_entry_decision_surface_inventory_20260802/SHAPE_LIBRARY_COVERAGE_GAPS.md",
+    ".claude/window1_entry_decision_surface_inventory_20260802/SOURCE_HASH_MANIFEST.json",
+    ".claude/window1_entry_decision_surface_inventory_20260802/NO_BEHAVIOR_CHANGE_RECEIPT.json"
+  ]
+}

@@ -1,0 +1,22 @@
+"use strict";
+
+const assert = require("assert");
+const crypto = require("crypto");
+const fs = require("fs");
+const path = require("path");
+const zlib = require("zlib");
+const repo = path.resolve(__dirname, "../.."), root = path.join(repo, ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802");
+const json = (name) => JSON.parse(fs.readFileSync(path.join(root, name)));
+const jsonl = (name) => zlib.gunzipSync(fs.readFileSync(path.join(root, name))).toString("utf8").trim().split(/\r?\n/).map(JSON.parse);
+const hash = (bytes) => crypto.createHash("sha256").update(bytes).digest("hex");
+const gaps = json("V10_NEW_ACTION_GAP_SUMMARY.json"), residual = json("V10_RESIDUAL_DIAGNOSIS.json"), funnel = json("FUNNEL_AND_FIVE_CEILINGS.json"), deterministic = json("DETERMINISM_RECEIPT.json"), forbidden = json("FORBIDDEN_ACCESS_RECEIPT.json"), legs = jsonl("POPULATION_LEG_LEDGER.jsonl.gz"), events = jsonl("POPULATION_EVENT_LEDGER.jsonl.gz"), artifacts = json("ARTIFACT_HASH_MANIFEST.json");
+assert.strictEqual(gaps.legs, 71); assert.strictEqual(gaps.exact_qualifying_ask_floor, 41); assert.strictEqual(gaps.within_three_cents_of_qualifying_ask_floor, 58);
+assert.strictEqual(residual.lag.legs, 287); assert.strictEqual(residual.lower.legs, 190); assert.strictEqual(residual.lower.residual_rows_with_no_fitted_ordinal, 11);
+assert.deepStrictEqual(residual.lower.first_refusal_outcomes, { BOTTOMED_AT_REFUSED_ASK: 86, ASK_WENT_LOWER_AFTER_REFUSAL: 74, NO_ACTIONABLE_LOWER_RECEIPT: 30 });
+assert.deepStrictEqual(residual.lower.last_refusal_outcomes, { BOTTOMED_AT_REFUSED_ASK: 160, NO_ACTIONABLE_LOWER_RECEIPT: 30 });
+assert.strictEqual(legs.length, 1608); assert.strictEqual(events.length, 804); assert.strictEqual(events.filter((x) => x.both_closes_properly_late).length, 305);
+assert.strictEqual(funnel.full_population.acted_legs, 712); assert.strictEqual(funnel.full_population.completed_pairs, 185); assert.strictEqual(funnel.full_population.execution_floor_pair_pass, 29);
+assert.strictEqual(funnel.strict_late_close_cohort.events, 305); assert.strictEqual(Object.keys(funnel.full_population.ceiling_comparison).length, 5);
+assert.strictEqual(deterministic.byte_identical, true); assert.strictEqual(forbidden.scorer_invocations, 0); assert.strictEqual(Object.values(forbidden).some((x) => x === true), false);
+assert.strictEqual(Object.entries(artifacts.files).every(([name, item]) => hash(fs.readFileSync(path.join(root, name))) === item.sha256), true);
+process.stdout.write(`${JSON.stringify({ status: "PASS", assertions: 20, events: 804, legs: 1608 })}\n`);

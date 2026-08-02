@@ -1,0 +1,58 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/consensus_lag_repair_v10_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "76bc8fea18a512dab1c9abe550c680a26214a0127376c65c7a604d2ccfd15362",
+      "bytes": 2446850
+    },
+    ".claude/window1_live_v4_replay/consensus_lag_repair_v10_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "c6f19f91016af29209f832b6504f0a4b6c3c3422d77839c2b572426d703e539b",
+      "bytes": 2604005
+    },
+    ".claude/window1_live_v4_replay/five_exact_dynamic_renarrow_v6_20260801/QUOTE_SHAPE_LIBRARY_DYNAMIC_RENARROW_V6.json": {
+      "sha256": "839c211a25814d2419752b314f9b7b4a67f8776e8ada345cf326a36f25967255",
+      "bytes": 17538443
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json": {
+      "sha256": "d76c7014a1ddf32414f6a8eb2de2cbbbc12795a6d40ac6f67b19a8ff55c62c33",
+      "bytes": 3367048
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "6e495ec38a4f0ba664c99837ec2c70c2375766dfaa37044e7b498f007d073e27",
+      "bytes": 54305
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v7.js": {
+      "sha256": "6415e517c367803c0c74fc2e4a8ddc391b2c397ae125874c0c3b1d4fbf3d7ac1",
+      "bytes": 23573
+    },
+    "arb-executor/analysis/window1_quote_shape_persistence_floor_v11.js": {
+      "sha256": "7da60f287d406692d30eec6ec6a635b4c2ba7986a9d67129789d58c892381d1d",
+      "bytes": 2330
+    },
+    "arb-executor/analysis/build_window1_quote_shape_persistence_library_v11.js": {
+      "sha256": "02ce56313dd8a3f91f2c0ce41b3697b449d72729e542b6a3e3d8e8d1e80d49aa",
+      "bytes": 10133
+    },
+    "arb-executor/analysis/build_window1_persistence_floor_repair_v11.js": {
+      "sha256": "52090b272493f377677e33f5276c000e0741bd443653471192836ba9cbba6ac8",
+      "bytes": 22625
+    },
+    "arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js": {
+      "sha256": "90d18be7be129e97ed2767b496302e8406a04ee2388721a6651dd475ddf14732",
+      "bytes": 1486
+    },
+    "arb-executor/tests/test_window1_persistence_floor_repair_v11.js": {
+      "sha256": "6d8f5d4e438d442a00b507588afe9e7f23289bf791a88ab0f71c8105a7457897",
+      "bytes": 2577
+    }
+  },
+  "ephemeral_replay_inputs": {
+    "run1": {
+      "sha256": "c47dd0cabc2082e697b629ac39315546e80e98163983580ec9571b5de17f52b3",
+      "bytes": 2072524
+    },
+    "run2": {
+      "sha256": "c47dd0cabc2082e697b629ac39315546e80e98163983580ec9571b5de17f52b3",
+      "bytes": 2072524
+    }
+  }
+}

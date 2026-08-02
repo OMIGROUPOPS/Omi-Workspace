@@ -1,0 +1,74 @@
+{
+  "schema_version": "WINDOW1_PERSISTENCE_FLOOR_REPAIR_V11",
+  "defect": "RAW_ASK_TEMPORAL_MEDOID_COULD_KEEP_SAYING_LOWER_WHEN_THE_FITTED_CAPACITY_QUALIFIED_DESCENT_ORDINAL_DID_NOT_EXIST",
+  "accepted_law": "override only when the fitted ordinal is absent and leave-one-leg-out support contains terminal qualified lows but zero future qualified lower asks; all existing ten-second, five-contract, fresh-receipt, own-micro, inverse-sibling, and stable-signing predicates remain mandatory",
+  "invented_thresholds": 0,
+  "persistence_library_sha256": "d76c7014a1ddf32414f6a8eb2de2cbbbc12795a6d40ac6f67b19a8ff55c62c33",
+  "movement": {
+    "stream_changes": {
+      "UNCHANGED": 1578,
+      "ACTION_CHANGED": 17,
+      "NEW_ACTION": 13
+    },
+    "newly_acted_legs": 13,
+    "new_action_qualifying_ask_floor_gap": {
+      "n": 13,
+      "unavailable": 0,
+      "min": 0,
+      "p25": 0,
+      "median": 0,
+      "p75": 1,
+      "p90": 1,
+      "max": 26,
+      "exact_counts": {
+        "0": 9,
+        "1": 2,
+        "4": 1,
+        "26": 1
+      }
+    },
+    "new_action_objective_traded_low_gap": {
+      "n": 8,
+      "unavailable": 5,
+      "min": -1,
+      "p25": -1,
+      "median": 0,
+      "p75": 1,
+      "p90": 1,
+      "max": 4,
+      "exact_counts": {
+        "0": 3,
+        "1": 2,
+        "4": 1,
+        "UNAVAILABLE": 5,
+        "-1": 2
+      }
+    }
+  },
+  "rejected_paths": [
+    {
+      "name": "UNCONDITIONAL_EXISTING_TEN_SECOND_PERSISTENCE",
+      "acted_legs": 909,
+      "completed_pairs": 286,
+      "pairs_under_par": 69,
+      "execution_floor_pair_pass": 14,
+      "rejection": "MORE_ACTIVITY_LOWER_PRECISION"
+    },
+    {
+      "name": "LEAVE_ONE_LEG_OUT_MEDIAN_WAIT_FOR_ALL_ORDINALS",
+      "acted_legs": 793,
+      "completed_pairs": 224,
+      "pairs_under_par": 84,
+      "execution_floor_pair_pass": 19,
+      "rejection": "DISPLACED_LATER_BETTER_V10_ACTIONS"
+    },
+    {
+      "name": "LEAVE_ONE_LEG_OUT_MAXIMUM_WAIT_FOR_ALL_ORDINALS",
+      "acted_legs": 699,
+      "completed_pairs": 177,
+      "pairs_under_par": 94,
+      "execution_floor_pair_pass": 28,
+      "rejection": "BEHAVIORALLY_INERT"
+    }
+  ]
+}

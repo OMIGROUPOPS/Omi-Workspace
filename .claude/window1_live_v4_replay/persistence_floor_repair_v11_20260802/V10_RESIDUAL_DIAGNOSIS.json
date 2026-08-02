@@ -1,0 +1,1728 @@
+{
+  "schema_version": "WINDOW1_V10_RESIDUAL_DIAGNOSIS_V11",
+  "lag": {
+    "legs": 287,
+    "temporal_order": {
+      "LOW_BEFORE_CONSENSUS": 275,
+      "CONSENSUS_BEFORE_LOW": 6,
+      "TIMING_UNAVAILABLE": 4,
+      "SAME_TIMESTAMP": 2
+    },
+    "lag_seconds": {
+      "n": 283,
+      "unavailable": 4,
+      "min": -19862,
+      "p25": 3808,
+      "median": 11743,
+      "p75": 17425,
+      "p90": 22106,
+      "max": 112171,
+      "exact_counts": {
+        "0": 2,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "11": 1,
+        "22": 1,
+        "44": 1,
+        "57": 1,
+        "66": 1,
+        "104": 1,
+        "162": 1,
+        "163": 1,
+        "178": 1,
+        "198": 1,
+        "206": 1,
+        "209": 1,
+        "212": 1,
+        "237": 1,
+        "257": 1,
+        "309": 1,
+        "334": 1,
+        "335": 1,
+        "443": 1,
+        "470": 1,
+        "481": 1,
+        "512": 1,
+        "632": 1,
+        "650": 1,
+        "680": 1,
+        "763": 1,
+        "800": 1,
+        "812": 1,
+        "871": 1,
+        "921": 1,
+        "1075": 1,
+        "1110": 1,
+        "1188": 1,
+        "1216": 1,
+        "1230": 1,
+        "1379": 1,
+        "1411": 1,
+        "1555": 1,
+        "1562": 1,
+        "1796": 1,
+        "1814": 1,
+        "1843": 1,
+        "2139": 1,
+        "2194": 1,
+        "2340": 1,
+        "2384": 1,
+        "2440": 1,
+        "2484": 1,
+        "2764": 1,
+        "2972": 1,
+        "3228": 1,
+        "3273": 1,
+        "3382": 1,
+        "3593": 1,
+        "3712": 1,
+        "3717": 1,
+        "3742": 1,
+        "3750": 1,
+        "3780": 1,
+        "3808": 1,
+        "4057": 1,
+        "4092": 1,
+        "4183": 1,
+        "4385": 1,
+        "4440": 1,
+        "4447": 1,
+        "4517": 1,
+        "4561": 1,
+        "4754": 1,
+        "4873": 1,
+        "4953": 1,
+        "5321": 1,
+        "5486": 1,
+        "5524": 1,
+        "5668": 1,
+        "6046": 1,
+        "6068": 1,
+        "6196": 1,
+        "6445": 1,
+        "6564": 1,
+        "6676": 1,
+        "6842": 1,
+        "6862": 1,
+        "6938": 1,
+        "7057": 1,
+        "7107": 1,
+        "7112": 1,
+        "7271": 1,
+        "7281": 1,
+        "7330": 1,
+        "7431": 1,
+        "7578": 1,
+        "7677": 1,
+        "7766": 1,
+        "7788": 1,
+        "7808": 1,
+        "7856": 1,
+        "7964": 1,
+        "8049": 1,
+        "8082": 1,
+        "8112": 1,
+        "8372": 1,
+        "8587": 1,
+        "8797": 1,
+        "8975": 1,
+        "9279": 1,
+        "9487": 1,
+        "9508": 1,
+        "9711": 1,
+        "9714": 1,
+        "9716": 1,
+        "9876": 1,
+        "10019": 1,
+        "10060": 1,
+        "10362": 1,
+        "10382": 1,
+        "10408": 1,
+        "10448": 1,
+        "10452": 1,
+        "10482": 1,
+        "10487": 1,
+        "10572": 1,
+        "10767": 1,
+        "10858": 1,
+        "10940": 1,
+        "10947": 1,
+        "10964": 1,
+        "11121": 1,
+        "11202": 1,
+        "11362": 1,
+        "11743": 1,
+        "11786": 1,
+        "11854": 1,
+        "11998": 1,
+        "12034": 1,
+        "12045": 1,
+        "12140": 1,
+        "12197": 1,
+        "12385": 1,
+        "12459": 1,
+        "12494": 1,
+        "12600": 1,
+        "12610": 1,
+        "12635": 1,
+        "12662": 1,
+        "12821": 1,
+        "12828": 1,
+        "13089": 1,
+        "13154": 1,
+        "13284": 1,
+        "13640": 1,
+        "13642": 1,
+        "13844": 1,
+        "14053": 1,
+        "14367": 1,
+        "14551": 1,
+        "14617": 1,
+        "14666": 1,
+        "14700": 1,
+        "14768": 1,
+        "14802": 1,
+        "14899": 1,
+        "14975": 1,
+        "15241": 1,
+        "15245": 1,
+        "15341": 1,
+        "15374": 2,
+        "15439": 1,
+        "15653": 1,
+        "15680": 1,
+        "15685": 1,
+        "15836": 1,
+        "15847": 1,
+        "15859": 1,
+        "15915": 1,
+        "15947": 1,
+        "16045": 1,
+        "16110": 1,
+        "16132": 1,
+        "16317": 1,
+        "16406": 1,
+        "16565": 1,
+        "16591": 1,
+        "16674": 1,
+        "16800": 1,
+        "16829": 1,
+        "16877": 1,
+        "17115": 1,
+        "17194": 1,
+        "17199": 1,
+        "17213": 1,
+        "17248": 1,
+        "17256": 1,
+        "17263": 1,
+        "17280": 1,
+        "17285": 1,
+        "17286": 1,
+        "17297": 1,
+        "17366": 1,
+        "17425": 1,
+        "17544": 1,
+        "17725": 1,
+        "17747": 1,
+        "17801": 1,
+        "17802": 1,
+        "17868": 1,
+        "17923": 1,
+        "17935": 1,
+        "17941": 1,
+        "17959": 1,
+        "17963": 1,
+        "17971": 1,
+        "17978": 1,
+        "18004": 1,
+        "18047": 1,
+        "18471": 1,
+        "18647": 1,
+        "18926": 1,
+        "19119": 1,
+        "19296": 1,
+        "19612": 1,
+        "19805": 1,
+        "19820": 1,
+        "19865": 1,
+        "19988": 1,
+        "20055": 1,
+        "20072": 1,
+        "20413": 1,
+        "20457": 1,
+        "20593": 1,
+        "20594": 1,
+        "20695": 1,
+        "20781": 1,
+        "20913": 1,
+        "20951": 1,
+        "21311": 1,
+        "21330": 1,
+        "21342": 1,
+        "21355": 1,
+        "21387": 1,
+        "22029": 1,
+        "22106": 1,
+        "22179": 1,
+        "22466": 1,
+        "22492": 1,
+        "22567": 1,
+        "22800": 1,
+        "23236": 1,
+        "23675": 1,
+        "24258": 1,
+        "25357": 1,
+        "25449": 1,
+        "26139": 1,
+        "26217": 1,
+        "26848": 1,
+        "26928": 1,
+        "27882": 1,
+        "32560": 1,
+        "32722": 1,
+        "33036": 1,
+        "36416": 1,
+        "38315": 1,
+        "39032": 1,
+        "39664": 1,
+        "46457": 1,
+        "57511": 1,
+        "64165": 1,
+        "70013": 1,
+        "71038": 1,
+        "108448": 1,
+        "112171": 1,
+        "UNAVAILABLE": 4,
+        "-10575": 1,
+        "-1420": 1,
+        "-17": 1,
+        "-19862": 1,
+        "-5119": 1,
+        "-8452": 1
+      }
+    },
+    "last_predicates_to_clear": {
+      "unanimous_floor": 118,
+      "stable_signing_support": 92,
+      "inverse_sibling_resolved": 32,
+      "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 21,
+      "unanimous_floor+inverse_sibling_resolved": 14,
+      "inverse_sibling_resolved+stable_signing_support": 2,
+      "own_micro_position_observed": 2,
+      "own_micro_position_observed+stable_signing_support": 2,
+      "unanimous_floor+stable_signing_support": 2,
+      "own_micro_position_observed+inverse_sibling_resolved": 1,
+      "unanimous_floor+own_micro_position_observed+inverse_sibling_resolved": 1
+    },
+    "partitions_by_category_and_price_region": [
+      {
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "thin": false,
+        "legs": 36,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 35,
+          "CONSENSUS_BEFORE_LOW": 1
+        },
+        "lag_seconds": {
+          "n": 36,
+          "unavailable": 0,
+          "min": -19862,
+          "p25": 4440,
+          "median": 9279,
+          "p75": 15439,
+          "p90": 17802,
+          "max": 22466,
+          "exact_counts": {
+            "257": 1,
+            "1188": 1,
+            "2194": 1,
+            "3273": 1,
+            "3712": 1,
+            "3717": 1,
+            "3780": 1,
+            "4440": 1,
+            "4447": 1,
+            "4561": 1,
+            "4873": 1,
+            "5524": 1,
+            "5668": 1,
+            "6445": 1,
+            "6842": 1,
+            "6938": 1,
+            "9279": 1,
+            "9711": 1,
+            "10362": 1,
+            "10452": 1,
+            "11362": 1,
+            "12045": 1,
+            "12197": 1,
+            "12821": 1,
+            "12828": 1,
+            "15439": 1,
+            "15653": 1,
+            "15915": 1,
+            "17286": 1,
+            "17544": 1,
+            "17802": 1,
+            "17935": 1,
+            "17941": 1,
+            "17963": 1,
+            "22466": 1,
+            "-19862": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "unanimous_floor": 12,
+          "stable_signing_support": 11,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 7,
+          "unanimous_floor+inverse_sibling_resolved": 3,
+          "inverse_sibling_resolved": 2,
+          "unanimous_floor+own_micro_position_observed+inverse_sibling_resolved": 1
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "51_75",
+        "thin": false,
+        "legs": 57,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 56,
+          "CONSENSUS_BEFORE_LOW": 1
+        },
+        "lag_seconds": {
+          "n": 57,
+          "unavailable": 0,
+          "min": -8452,
+          "p25": 2972,
+          "median": 8082,
+          "p75": 14975,
+          "p90": 17923,
+          "max": 108448,
+          "exact_counts": {
+            "11": 1,
+            "44": 1,
+            "198": 1,
+            "206": 1,
+            "209": 1,
+            "237": 1,
+            "512": 1,
+            "812": 1,
+            "871": 1,
+            "921": 1,
+            "1411": 1,
+            "2340": 1,
+            "2484": 1,
+            "2972": 1,
+            "3228": 1,
+            "4953": 1,
+            "5321": 1,
+            "5486": 1,
+            "6196": 1,
+            "6564": 1,
+            "6862": 1,
+            "7281": 1,
+            "7330": 1,
+            "7431": 1,
+            "7578": 1,
+            "7766": 1,
+            "7964": 1,
+            "8082": 1,
+            "8112": 1,
+            "9487": 1,
+            "9876": 1,
+            "10019": 1,
+            "10060": 1,
+            "10448": 1,
+            "10767": 1,
+            "10940": 1,
+            "11854": 1,
+            "12034": 1,
+            "12494": 1,
+            "13640": 1,
+            "14053": 1,
+            "14975": 1,
+            "15241": 1,
+            "15859": 1,
+            "16045": 1,
+            "16800": 1,
+            "17280": 1,
+            "17297": 1,
+            "17801": 1,
+            "17923": 1,
+            "17978": 1,
+            "18004": 1,
+            "19612": 1,
+            "19865": 1,
+            "20413": 1,
+            "108448": 1,
+            "-8452": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 20,
+          "unanimous_floor": 20,
+          "inverse_sibling_resolved": 11,
+          "unanimous_floor+inverse_sibling_resolved": 3,
+          "inverse_sibling_resolved+stable_signing_support": 2,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 1
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "ge76",
+        "thin": false,
+        "legs": 35,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 32,
+          "TIMING_UNAVAILABLE": 2,
+          "CONSENSUS_BEFORE_LOW": 1
+        },
+        "lag_seconds": {
+          "n": 33,
+          "unavailable": 2,
+          "min": -10575,
+          "p25": 15341,
+          "median": 17366,
+          "p75": 20593,
+          "p90": 21355,
+          "max": 26928,
+          "exact_counts": {
+            "5": 1,
+            "212": 1,
+            "2384": 1,
+            "4183": 1,
+            "6046": 1,
+            "7107": 1,
+            "12610": 1,
+            "15341": 1,
+            "15374": 2,
+            "15836": 1,
+            "15947": 1,
+            "16110": 1,
+            "16132": 1,
+            "17248": 1,
+            "17366": 1,
+            "17725": 1,
+            "18471": 1,
+            "19296": 1,
+            "19805": 1,
+            "19988": 1,
+            "20055": 1,
+            "20072": 1,
+            "20593": 1,
+            "20781": 1,
+            "20951": 1,
+            "21330": 1,
+            "21355": 1,
+            "24258": 1,
+            "26217": 1,
+            "26848": 1,
+            "26928": 1,
+            "UNAVAILABLE": 2,
+            "-10575": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "unanimous_floor": 29,
+          "stable_signing_support": 3,
+          "own_micro_position_observed+stable_signing_support": 1,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 1,
+          "unanimous_floor+stable_signing_support": 1
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "le25",
+        "thin": false,
+        "legs": 23,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 22,
+          "SAME_TIMESTAMP": 1
+        },
+        "lag_seconds": {
+          "n": 23,
+          "unavailable": 0,
+          "min": 0,
+          "p25": 12600,
+          "median": 17115,
+          "p75": 20695,
+          "p90": 23236,
+          "max": 39664,
+          "exact_counts": {
+            "0": 1,
+            "335": 1,
+            "6676": 1,
+            "9716": 1,
+            "12140": 1,
+            "12600": 1,
+            "14367": 1,
+            "14768": 1,
+            "15680": 1,
+            "16317": 1,
+            "16406": 1,
+            "17115": 1,
+            "17194": 1,
+            "17263": 1,
+            "18926": 1,
+            "19119": 1,
+            "20695": 1,
+            "20913": 1,
+            "21311": 1,
+            "23236": 1,
+            "25449": 1,
+            "32560": 1,
+            "39664": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "unanimous_floor": 15,
+          "stable_signing_support": 4,
+          "inverse_sibling_resolved": 2,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 1,
+          "unanimous_floor+stable_signing_support": 1
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "thin": false,
+        "legs": 14,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 13,
+          "CONSENSUS_BEFORE_LOW": 1
+        },
+        "lag_seconds": {
+          "n": 14,
+          "unavailable": 0,
+          "min": -5119,
+          "p25": 334,
+          "median": 1379,
+          "p75": 10482,
+          "p90": 14899,
+          "max": 22106,
+          "exact_counts": {
+            "57": 1,
+            "162": 1,
+            "334": 1,
+            "443": 1,
+            "1110": 1,
+            "1379": 1,
+            "3382": 1,
+            "4517": 1,
+            "10482": 1,
+            "11998": 1,
+            "14899": 1,
+            "17868": 1,
+            "22106": 1,
+            "-5119": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "unanimous_floor": 7,
+          "stable_signing_support": 3,
+          "inverse_sibling_resolved": 2,
+          "unanimous_floor+inverse_sibling_resolved": 2
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "51_75",
+        "thin": false,
+        "legs": 14,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 13,
+          "SAME_TIMESTAMP": 1
+        },
+        "lag_seconds": {
+          "n": 14,
+          "unavailable": 0,
+          "min": 0,
+          "p25": 2139,
+          "median": 10964,
+          "p75": 16591,
+          "p90": 21342,
+          "max": 70013,
+          "exact_counts": {
+            "0": 1,
+            "1075": 1,
+            "1796": 1,
+            "2139": 1,
+            "8587": 1,
+            "10382": 1,
+            "10964": 1,
+            "12635": 1,
+            "15685": 1,
+            "16591": 1,
+            "17971": 1,
+            "21342": 1,
+            "64165": 1,
+            "70013": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 7,
+          "unanimous_floor": 6,
+          "inverse_sibling_resolved": 1
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "ge76",
+        "thin": true,
+        "legs": 4,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 4
+        },
+        "lag_seconds": {
+          "n": 4,
+          "unavailable": 0,
+          "min": 3,
+          "p25": 3,
+          "median": 481,
+          "p75": 4754,
+          "p90": 4754,
+          "max": 7271,
+          "exact_counts": {
+            "3": 1,
+            "481": 1,
+            "4754": 1,
+            "7271": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "inverse_sibling_resolved": 1,
+          "own_micro_position_observed+inverse_sibling_resolved": 1,
+          "stable_signing_support": 1,
+          "unanimous_floor": 1
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "le25",
+        "thin": true,
+        "legs": 9,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 8,
+          "TIMING_UNAVAILABLE": 1
+        },
+        "lag_seconds": {
+          "n": 8,
+          "unavailable": 1,
+          "min": 66,
+          "p25": 632,
+          "median": 7788,
+          "p75": 16674,
+          "p90": 18647,
+          "max": 23675,
+          "exact_counts": {
+            "66": 1,
+            "632": 1,
+            "3593": 1,
+            "7788": 1,
+            "15847": 1,
+            "16674": 1,
+            "18647": 1,
+            "23675": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "unanimous_floor": 2,
+          "unanimous_floor+inverse_sibling_resolved": 2,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 2,
+          "inverse_sibling_resolved": 1,
+          "own_micro_position_observed": 1,
+          "stable_signing_support": 1
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "26_50",
+        "thin": true,
+        "legs": 8,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 7,
+          "CONSENSUS_BEFORE_LOW": 1
+        },
+        "lag_seconds": {
+          "n": 8,
+          "unavailable": 0,
+          "min": -17,
+          "p25": 650,
+          "median": 763,
+          "p75": 7112,
+          "p90": 10572,
+          "max": 22567,
+          "exact_counts": {
+            "650": 1,
+            "680": 1,
+            "763": 1,
+            "2764": 1,
+            "7112": 1,
+            "10572": 1,
+            "22567": 1,
+            "-17": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 3,
+          "inverse_sibling_resolved": 2,
+          "unanimous_floor": 2,
+          "unanimous_floor+inverse_sibling_resolved": 1
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "51_75",
+        "thin": false,
+        "legs": 19,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 18,
+          "CONSENSUS_BEFORE_LOW": 1
+        },
+        "lag_seconds": {
+          "n": 19,
+          "unavailable": 0,
+          "min": -1420,
+          "p25": 1230,
+          "median": 8975,
+          "p75": 13844,
+          "p90": 17285,
+          "max": 32722,
+          "exact_counts": {
+            "2": 1,
+            "178": 1,
+            "1216": 1,
+            "1230": 1,
+            "1555": 1,
+            "1814": 1,
+            "4385": 1,
+            "7677": 1,
+            "8975": 1,
+            "10408": 1,
+            "11202": 1,
+            "13642": 1,
+            "13844": 1,
+            "14551": 1,
+            "17256": 1,
+            "17285": 1,
+            "22800": 1,
+            "32722": 1,
+            "-1420": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 9,
+          "unanimous_floor": 5,
+          "inverse_sibling_resolved": 4,
+          "own_micro_position_observed+stable_signing_support": 1
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "ge76",
+        "thin": true,
+        "legs": 8,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 8
+        },
+        "lag_seconds": {
+          "n": 8,
+          "unavailable": 0,
+          "min": 4092,
+          "p25": 9714,
+          "median": 14617,
+          "p75": 16565,
+          "p90": 21387,
+          "max": 22492,
+          "exact_counts": {
+            "4092": 1,
+            "9714": 1,
+            "10858": 1,
+            "14617": 1,
+            "14666": 1,
+            "16565": 1,
+            "21387": 1,
+            "22492": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "unanimous_floor": 4,
+          "stable_signing_support": 2,
+          "inverse_sibling_resolved": 1,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 1
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "le25",
+        "thin": true,
+        "legs": 4,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 4
+        },
+        "lag_seconds": {
+          "n": 4,
+          "unavailable": 0,
+          "min": 17199,
+          "p25": 17199,
+          "median": 17747,
+          "p75": 19820,
+          "p90": 19820,
+          "max": 27882,
+          "exact_counts": {
+            "17199": 1,
+            "17747": 1,
+            "19820": 1,
+            "27882": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 2,
+          "unanimous_floor": 1,
+          "unanimous_floor+inverse_sibling_resolved": 1
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "26_50",
+        "thin": false,
+        "legs": 14,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 14
+        },
+        "lag_seconds": {
+          "n": 14,
+          "unavailable": 0,
+          "min": 7856,
+          "p25": 12459,
+          "median": 14700,
+          "p75": 22179,
+          "p90": 36416,
+          "max": 71038,
+          "exact_counts": {
+            "7856": 1,
+            "8372": 1,
+            "11743": 1,
+            "12459": 1,
+            "13089": 1,
+            "13284": 1,
+            "14700": 1,
+            "17213": 1,
+            "17959": 1,
+            "22179": 1,
+            "33036": 1,
+            "36416": 1,
+            "57511": 1,
+            "71038": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "unanimous_floor": 6,
+          "stable_signing_support": 5,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 2,
+          "unanimous_floor+inverse_sibling_resolved": 1
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "51_75",
+        "thin": false,
+        "legs": 23,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 22,
+          "TIMING_UNAVAILABLE": 1
+        },
+        "lag_seconds": {
+          "n": 22,
+          "unavailable": 1,
+          "min": 104,
+          "p25": 3742,
+          "median": 11786,
+          "p75": 18047,
+          "p90": 26139,
+          "max": 46457,
+          "exact_counts": {
+            "104": 1,
+            "309": 1,
+            "470": 1,
+            "1562": 1,
+            "2440": 1,
+            "3742": 1,
+            "3808": 1,
+            "7057": 1,
+            "8049": 1,
+            "9508": 1,
+            "11786": 1,
+            "12662": 1,
+            "15245": 1,
+            "16877": 1,
+            "17425": 1,
+            "18047": 1,
+            "22029": 1,
+            "25357": 1,
+            "26139": 1,
+            "38315": 1,
+            "39032": 1,
+            "46457": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 12,
+          "unanimous_floor": 7,
+          "inverse_sibling_resolved": 4
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "ge76",
+        "thin": false,
+        "legs": 12,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 12
+        },
+        "lag_seconds": {
+          "n": 12,
+          "unavailable": 0,
+          "min": 22,
+          "p25": 800,
+          "median": 7808,
+          "p75": 14802,
+          "p90": 16829,
+          "max": 112171,
+          "exact_counts": {
+            "22": 1,
+            "163": 1,
+            "800": 1,
+            "1843": 1,
+            "3750": 1,
+            "7808": 1,
+            "10487": 1,
+            "10947": 1,
+            "14802": 1,
+            "16829": 1,
+            "20457": 1,
+            "112171": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 4,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 4,
+          "inverse_sibling_resolved": 1,
+          "own_micro_position_observed": 1,
+          "unanimous_floor": 1,
+          "unanimous_floor+inverse_sibling_resolved": 1
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "le25",
+        "thin": true,
+        "legs": 7,
+        "temporal_order": {
+          "LOW_BEFORE_CONSENSUS": 7
+        },
+        "lag_seconds": {
+          "n": 7,
+          "unavailable": 0,
+          "min": 4057,
+          "p25": 6068,
+          "median": 11121,
+          "p75": 12385,
+          "p90": 13154,
+          "max": 20594,
+          "exact_counts": {
+            "4057": 1,
+            "6068": 1,
+            "8797": 1,
+            "11121": 1,
+            "12385": 1,
+            "13154": 1,
+            "20594": 1
+          }
+        },
+        "last_predicates_to_clear": {
+          "stable_signing_support": 5,
+          "unanimous_floor+inverse_sibling_resolved+stable_signing_support": 2
+        }
+      }
+    ]
+  },
+  "lower": {
+    "legs": 190,
+    "first_refusal_outcomes": {
+      "BOTTOMED_AT_REFUSED_ASK": 86,
+      "ASK_WENT_LOWER_AFTER_REFUSAL": 74,
+      "NO_ACTIONABLE_LOWER_RECEIPT": 30
+    },
+    "last_refusal_outcomes": {
+      "BOTTOMED_AT_REFUSED_ASK": 160,
+      "NO_ACTIONABLE_LOWER_RECEIPT": 30
+    },
+    "ordinal_shortfalls": {
+      "1": 110,
+      "2": 38,
+      "3": 1,
+      "ORDINAL_UNAVAILABLE": 11
+    },
+    "no_actionable_snapshot": 30,
+    "residual_rows_with_no_fitted_ordinal": 11,
+    "partitions_by_category_and_price_region": [
+      {
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "thin": false,
+        "legs": 65,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 37,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 19,
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 9
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 46,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 19
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "51_75",
+        "thin": false,
+        "legs": 22,
+        "first_refusal_outcomes": {
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 11,
+          "BOTTOMED_AT_REFUSED_ASK": 10,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 21,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "ge76",
+        "thin": true,
+        "legs": 8,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 5,
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 3
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 8
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "le25",
+        "thin": false,
+        "legs": 23,
+        "first_refusal_outcomes": {
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 17,
+          "BOTTOMED_AT_REFUSED_ASK": 5,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 22,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "thin": false,
+        "legs": 18,
+        "first_refusal_outcomes": {
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 8,
+          "BOTTOMED_AT_REFUSED_ASK": 6,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 4
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 14,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 4
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "51_75",
+        "thin": false,
+        "legs": 13,
+        "first_refusal_outcomes": {
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 9,
+          "BOTTOMED_AT_REFUSED_ASK": 3,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 12,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "ge76",
+        "thin": true,
+        "legs": 1,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 1
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "le25",
+        "thin": true,
+        "legs": 4,
+        "first_refusal_outcomes": {
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 2,
+          "BOTTOMED_AT_REFUSED_ASK": 2
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 4
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "26_50",
+        "thin": true,
+        "legs": 1,
+        "first_refusal_outcomes": {
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 1
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "51_75",
+        "thin": true,
+        "legs": 4,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 3,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 3,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "ge76",
+        "thin": true,
+        "legs": 7,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 4,
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 2,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 6,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "26_50",
+        "thin": true,
+        "legs": 9,
+        "first_refusal_outcomes": {
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 8,
+          "BOTTOMED_AT_REFUSED_ASK": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 9
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "51_75",
+        "thin": true,
+        "legs": 2,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 2
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 2
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "ge76",
+        "thin": true,
+        "legs": 3,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 2,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 2,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "le25",
+        "thin": false,
+        "legs": 10,
+        "first_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 5,
+          "ASK_WENT_LOWER_AFTER_REFUSAL": 4,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        },
+        "last_refusal_outcomes": {
+          "BOTTOMED_AT_REFUSED_ASK": 9,
+          "NO_ACTIONABLE_LOWER_RECEIPT": 1
+        }
+      }
+    ]
+  },
+  "ordinal_coverage": {
+    "global_shapes_without_fitted_ordinal": [
+      {
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "shape_id": "ATP_CHALL_26_50_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 33,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 77,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "51_75",
+        "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 29,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "51_75",
+        "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 104,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "ge76",
+        "shape_id": "ATP_CHALL_ge76_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 15,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "ge76",
+        "shape_id": "ATP_CHALL_ge76_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 42,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "le25",
+        "shape_id": "ATP_CHALL_le25_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 15,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_CHALL",
+        "price_region": "le25",
+        "shape_id": "ATP_CHALL_le25_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 26,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 10,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 22,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "51_75",
+        "shape_id": "ATP_MAIN_51_75_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 16,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "51_75",
+        "shape_id": "ATP_MAIN_51_75_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 27,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "ge76",
+        "shape_id": "ATP_MAIN_ge76_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 4,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "ge76",
+        "shape_id": "ATP_MAIN_ge76_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 6,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "le25",
+        "shape_id": "ATP_MAIN_le25_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 4,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "price_region": "le25",
+        "shape_id": "ATP_MAIN_le25_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 9,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "26_50",
+        "shape_id": "WTA_CHALL_26_50_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 28,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "26_50",
+        "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 14,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "51_75",
+        "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 20,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "51_75",
+        "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 27,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "ge76",
+        "shape_id": "WTA_CHALL_ge76_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 6,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "ge76",
+        "shape_id": "WTA_CHALL_ge76_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 10,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "le25",
+        "shape_id": "WTA_CHALL_le25_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 8,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "price_region": "le25",
+        "shape_id": "WTA_CHALL_le25_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 9,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "26_50",
+        "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 14,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "26_50",
+        "shape_id": "WTA_MAIN_26_50_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 12,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "51_75",
+        "shape_id": "WTA_MAIN_51_75_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 17,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "51_75",
+        "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 36,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "ge76",
+        "shape_id": "WTA_MAIN_ge76_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 15,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "ge76",
+        "shape_id": "WTA_MAIN_ge76_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 21,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "le25",
+        "shape_id": "WTA_MAIN_le25_FLAT_UNMOVED",
+        "topology": "FLAT_UNMOVED",
+        "support_n": 14,
+        "positive_descent_support_n": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "price_region": "le25",
+        "shape_id": "WTA_MAIN_le25_UP_CONTINUATION",
+        "topology": "UP_CONTINUATION",
+        "support_n": 10,
+        "positive_descent_support_n": 0
+      }
+    ],
+    "residual_rows_without_fitted_ordinal": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12CRIBAS|CRI",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12CRIBAS-CRI",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12HERALM|HER",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12HERALM-HER",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12MOLDON|MOL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+        "category": "ATP_CHALL",
+        "price_region": "ge76",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12MOLDON-MOL",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_CHALL_ge76_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL13ARSDAL|ARS",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL13ARSDAL-ARS",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ|NIJ",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ-NIJ",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL14IVAGIU|GIU",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL14IVAGIU-GIU",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ALKFIC|FIC",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+        "category": "ATP_CHALL",
+        "price_region": "26_50",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL20ALKFIC-FIC",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL17VALTRA|TRA",
+        "event_id": "KXATPMATCH-26JUL17VALTRA",
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "ticker": "KXATPMATCH-26JUL17VALTRA-TRA",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL18DANPRA|PRA",
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "ticker": "KXATPMATCH-26JUL18DANPRA-PRA",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL19DROUGO|UGO",
+        "event_id": "KXATPMATCH-26JUL19DROUGO",
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "ticker": "KXATPMATCH-26JUL19DROUGO-UGO",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL19TORBAS|TOR",
+        "event_id": "KXATPMATCH-26JUL19TORBAS",
+        "category": "ATP_MAIN",
+        "price_region": "le25",
+        "ticker": "KXATPMATCH-26JUL19TORBAS-TOR",
+        "actionable_snapshot_available": true,
+        "observed_new_low_descents": 0,
+        "shape_ordinals": [
+          {
+            "shape_id": "ATP_MAIN_le25_UP_CONTINUATION",
+            "fitted_ordinal": null,
+            "shortfall": null
+          }
+        ]
+      }
+    ],
+    "residual_missing_by_cell": {
+      "ATP_CHALL|26_50": 6,
+      "ATP_MAIN|26_50": 3,
+      "ATP_CHALL|ge76": 1,
+      "ATP_MAIN|le25": 1
+    }
+  }
+}

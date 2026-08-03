@@ -1,0 +1,13 @@
+{
+  "cold_library_fits": 2,
+  "committed_library_sha256": "9b948d850df0ce3492e4000e07fd37346eaa781d37119110ea435912c161bd8f",
+  "second_library_fit_sha256": "9b948d850df0ce3492e4000e07fd37346eaa781d37119110ea435912c161bd8f",
+  "library_fits_byte_identical": true,
+  "cold_population_replays": 2,
+  "run1_event_ledger_sha256": "7f7be887e3fc40c705358e60890f6cde1754f52e6b771eb5a68735d2e8a5adb3",
+  "run2_event_ledger_sha256": "7f7be887e3fc40c705358e60890f6cde1754f52e6b771eb5a68735d2e8a5adb3",
+  "event_ledgers_byte_identical": true,
+  "events_each": 804,
+  "legs_each": 1608,
+  "scorer_invocations": 0
+}

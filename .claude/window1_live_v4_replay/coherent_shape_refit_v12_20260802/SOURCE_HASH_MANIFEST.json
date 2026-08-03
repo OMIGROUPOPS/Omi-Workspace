@@ -1,0 +1,50 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/coherent_shape_v12_fit_20260802/COHERENT_QUOTE_SHAPE_LIBRARY_V12.json": {
+      "sha256": "9b948d850df0ce3492e4000e07fd37346eaa781d37119110ea435912c161bd8f",
+      "bytes": 17118286
+    },
+    ".claude/window1_live_v4_replay/five_exact_dynamic_renarrow_v6_20260801/QUOTE_SHAPE_LIBRARY_DYNAMIC_RENARROW_V6.json": {
+      "sha256": "839c211a25814d2419752b314f9b7b4a67f8776e8ada345cf326a36f25967255",
+      "bytes": 17538443
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902",
+      "bytes": 2475041
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3",
+      "bytes": 2632043
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "73a7f2829bf5629e323fa0a26a0416e138c4301db5b568238118f50f02e777a4",
+      "bytes": 56849
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v7.js": {
+      "sha256": "88e20caadbdb13cd672385a3f8c59deb3cf270b2fae37f42fe91a8aa0bc07184",
+      "bytes": 23905
+    },
+    "arb-executor/analysis/build_window1_quote_shape_coherent_library_v12.js": {
+      "sha256": "d6db40e87e2e953a3c7d61031c7695f6bc2cf6666bdda1e4516755c6318bf10d",
+      "bytes": 23482
+    },
+    "arb-executor/analysis/build_window1_coherent_shape_refit_v12.js": {
+      "sha256": "fee845da46b79ba88111363efe8590375d565bd41e09e4288ae637ba19006212",
+      "bytes": 20502
+    }
+  },
+  "cold_inputs": {
+    "run1": {
+      "sha256": "7f7be887e3fc40c705358e60890f6cde1754f52e6b771eb5a68735d2e8a5adb3",
+      "bytes": 1651504
+    },
+    "run2": {
+      "sha256": "7f7be887e3fc40c705358e60890f6cde1754f52e6b771eb5a68735d2e8a5adb3",
+      "bytes": 1651504
+    }
+  }
+}

@@ -1,0 +1,5187 @@
+{
+  "schema_version": "WINDOW1_COHERENT_SHAPE_REFIT_FUNNEL_V12",
+  "score_free": true,
+  "performance_fields": {
+    "C": null,
+    "PC": null,
+    "IC": null,
+    "S": null,
+    "ranking": null,
+    "selection": null
+  },
+  "full_population": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 257,
+    "credited_legs": 257,
+    "no_action_legs": 1351,
+    "no_action_terminal_reasons": {
+      "UNUSABLE_SHAPE_CLASS_SURVIVED": 971,
+      "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 160,
+      "SOURCE_UNAVAILABLE": 90,
+      "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 60,
+      "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 27,
+      "ALL_SURVIVING_SHAPES_SAY_LOWER": 21,
+      "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 21,
+      "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+    },
+    "no_credited_leg_events": 569,
+    "naked_single_events": 213,
+    "completed_pairs": 22,
+    "pairs_under_par": 5,
+    "both_legs_strictly_below_close": 0,
+    "under_par_and_both_legs_strictly_below_close": 0,
+    "execution_floor_pair_pass": 1,
+    "entry_to_qualifying_ask_floor_gap": {
+      "n": 257,
+      "unavailable": 1351,
+      "min": 0,
+      "p25": 0,
+      "median": 0,
+      "p75": 2,
+      "p90": 6,
+      "max": 56,
+      "exact_counts": {
+        "0": 145,
+        "1": 45,
+        "2": 21,
+        "3": 9,
+        "4": 7,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 3,
+        "10": 1,
+        "11": 2,
+        "14": 1,
+        "16": 1,
+        "17": 1,
+        "19": 2,
+        "20": 1,
+        "25": 1,
+        "26": 2,
+        "27": 1,
+        "29": 1,
+        "31": 1,
+        "39": 1,
+        "40": 1,
+        "42": 1,
+        "44": 1,
+        "47": 1,
+        "56": 1,
+        "UNAVAILABLE": 1351
+      }
+    },
+    "entry_to_objective_traded_low_gap": {
+      "n": 223,
+      "unavailable": 1385,
+      "min": -2,
+      "p25": 0,
+      "median": 1,
+      "p75": 2,
+      "p90": 3,
+      "max": 11,
+      "exact_counts": {
+        "0": 77,
+        "1": 72,
+        "2": 29,
+        "3": 19,
+        "4": 6,
+        "5": 3,
+        "6": 4,
+        "7": 3,
+        "8": 1,
+        "11": 1,
+        "UNAVAILABLE": 1385,
+        "-1": 6,
+        "-2": 2
+      }
+    },
+    "ceiling_comparison": {
+      "absolute_traded_low": {
+        "ceiling_events": 580,
+        "completed_pairs": 14,
+        "pairs_under_par": 2,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "traded_low_print_size_at_least_five": {
+        "ceiling_events": 558,
+        "completed_pairs": 14,
+        "pairs_under_par": 2,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "capacity_proven_ask_floor": {
+        "ceiling_events": 516,
+        "completed_pairs": 14,
+        "pairs_under_par": 2,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "lowest_seller_aggressed_trade_floor": {
+        "ceiling_events": 371,
+        "completed_pairs": 10,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "maker_reachable": {
+        "ceiling_events": 253,
+        "completed_pairs": 9,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      }
+    }
+  },
+  "strict_late_close_cohort": {
+    "events": 305,
+    "legs": 610,
+    "acted_legs": 97,
+    "credited_legs": 97,
+    "no_action_legs": 513,
+    "no_action_terminal_reasons": {
+      "UNUSABLE_SHAPE_CLASS_SURVIVED": 393,
+      "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 61,
+      "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 23,
+      "SOURCE_UNAVAILABLE": 14,
+      "ALL_SURVIVING_SHAPES_SAY_LOWER": 10,
+      "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 6,
+      "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 5,
+      "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+    },
+    "no_credited_leg_events": 217,
+    "naked_single_events": 79,
+    "completed_pairs": 9,
+    "pairs_under_par": 1,
+    "both_legs_strictly_below_close": 0,
+    "under_par_and_both_legs_strictly_below_close": 0,
+    "execution_floor_pair_pass": 1,
+    "entry_to_qualifying_ask_floor_gap": {
+      "n": 97,
+      "unavailable": 513,
+      "min": 0,
+      "p25": 0,
+      "median": 0,
+      "p75": 1,
+      "p90": 3,
+      "max": 29,
+      "exact_counts": {
+        "0": 57,
+        "1": 20,
+        "2": 8,
+        "3": 4,
+        "4": 3,
+        "5": 2,
+        "7": 1,
+        "8": 1,
+        "29": 1,
+        "UNAVAILABLE": 513
+      }
+    },
+    "entry_to_objective_traded_low_gap": {
+      "n": 97,
+      "unavailable": 513,
+      "min": -1,
+      "p25": 0,
+      "median": 1,
+      "p75": 2,
+      "p90": 3,
+      "max": 11,
+      "exact_counts": {
+        "0": 25,
+        "1": 31,
+        "2": 19,
+        "3": 10,
+        "4": 2,
+        "5": 3,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "11": 1,
+        "UNAVAILABLE": 513,
+        "-1": 2
+      }
+    },
+    "ceiling_comparison": {
+      "absolute_traded_low": {
+        "ceiling_events": 299,
+        "completed_pairs": 9,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "traded_low_print_size_at_least_five": {
+        "ceiling_events": 295,
+        "completed_pairs": 9,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "capacity_proven_ask_floor": {
+        "ceiling_events": 270,
+        "completed_pairs": 9,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "lowest_seller_aggressed_trade_floor": {
+        "ceiling_events": 238,
+        "completed_pairs": 7,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      },
+      "maker_reachable": {
+        "ceiling_events": 168,
+        "completed_pairs": 7,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1
+      }
+    }
+  },
+  "category_and_starting_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "full_population": {
+        "events": 238,
+        "legs": 476,
+        "acted_legs": 138,
+        "credited_legs": 138,
+        "no_action_legs": 338,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 191,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 72,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 23,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 16,
+          "SOURCE_UNAVAILABLE": 16,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 12,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 7,
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+        },
+        "no_credited_leg_events": 115,
+        "naked_single_events": 108,
+        "completed_pairs": 15,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 138,
+          "unavailable": 338,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 1,
+          "p90": 4,
+          "max": 39,
+          "exact_counts": {
+            "0": 76,
+            "1": 30,
+            "2": 10,
+            "3": 7,
+            "4": 2,
+            "5": 2,
+            "6": 2,
+            "7": 1,
+            "8": 1,
+            "17": 1,
+            "19": 1,
+            "20": 1,
+            "25": 1,
+            "26": 1,
+            "27": 1,
+            "39": 1,
+            "UNAVAILABLE": 338
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 126,
+          "unavailable": 350,
+          "min": -2,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 7,
+          "exact_counts": {
+            "0": 40,
+            "1": 38,
+            "2": 24,
+            "3": 10,
+            "4": 1,
+            "5": 2,
+            "6": 4,
+            "7": 2,
+            "UNAVAILABLE": 350,
+            "-1": 3,
+            "-2": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 177,
+            "completed_pairs": 9,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 171,
+            "completed_pairs": 9,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 167,
+            "completed_pairs": 9,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 88,
+            "completed_pairs": 7,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 64,
+            "completed_pairs": 6,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 83,
+        "legs": 166,
+        "acted_legs": 55,
+        "credited_legs": 55,
+        "no_action_legs": 111,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 69,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 25,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 9,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 4,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1
+        },
+        "no_credited_leg_events": 35,
+        "naked_single_events": 41,
+        "completed_pairs": 7,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 55,
+          "unavailable": 111,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 1,
+          "p90": 3,
+          "max": 7,
+          "exact_counts": {
+            "0": 33,
+            "1": 11,
+            "2": 4,
+            "3": 2,
+            "4": 2,
+            "5": 2,
+            "7": 1,
+            "UNAVAILABLE": 111
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 55,
+          "unavailable": 111,
+          "min": -1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 7,
+          "exact_counts": {
+            "0": 11,
+            "1": 18,
+            "2": 14,
+            "3": 4,
+            "4": 1,
+            "5": 2,
+            "6": 2,
+            "7": 1,
+            "UNAVAILABLE": 111,
+            "-1": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 83,
+            "completed_pairs": 7,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 81,
+            "completed_pairs": 7,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 78,
+            "completed_pairs": 7,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 59,
+            "completed_pairs": 5,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 46,
+            "completed_pairs": 5,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+ge75",
+      "thin": true,
+      "full_population": {
+        "events": 4,
+        "legs": 8,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 8,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 5,
+          "SOURCE_UNAVAILABLE": 2,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1
+        },
+        "no_credited_leg_events": 4,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 8,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 8
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 8,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 8
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 3,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "SOURCE_UNAVAILABLE": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+le25",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "SOURCE_UNAVAILABLE": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+51_75",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 1,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 2,
+          "unavailable": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 2,
+          "exact_counts": {
+            "0": 1,
+            "2": 1
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 2,
+          "unavailable": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 1,
+          "exact_counts": {
+            "0": 1,
+            "1": 1
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 1,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 1,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 1,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+ge75",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 1,
+        "no_action_terminal_reasons": {
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1
+        },
+        "no_credited_leg_events": 0,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0,
+          "exact_counts": {
+            "0": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0,
+          "exact_counts": {
+            "0": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 1,
+        "no_action_terminal_reasons": {
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1
+        },
+        "no_credited_leg_events": 0,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0,
+          "exact_counts": {
+            "0": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0,
+          "exact_counts": {
+            "0": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "full_population": {
+        "events": 6,
+        "legs": 12,
+        "acted_legs": 3,
+        "credited_legs": 3,
+        "no_action_legs": 9,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 5,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 2,
+          "SOURCE_UNAVAILABLE": 2
+        },
+        "no_credited_leg_events": 3,
+        "naked_single_events": 3,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 3,
+          "unavailable": 9,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0,
+          "exact_counts": {
+            "0": 3,
+            "UNAVAILABLE": 9
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 2,
+          "unavailable": 10,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1,
+          "exact_counts": {
+            "1": 2,
+            "UNAVAILABLE": 10
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 1,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 1
+        },
+        "no_credited_leg_events": 0,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0,
+          "exact_counts": {
+            "0": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1,
+          "exact_counts": {
+            "1": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "full_population": {
+        "events": 102,
+        "legs": 204,
+        "acted_legs": 43,
+        "credited_legs": 43,
+        "no_action_legs": 161,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 90,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 31,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 18,
+          "SOURCE_UNAVAILABLE": 10,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 6,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 6
+        },
+        "no_credited_leg_events": 61,
+        "naked_single_events": 39,
+        "completed_pairs": 2,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 43,
+          "unavailable": 161,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 1,
+          "p90": 2,
+          "max": 56,
+          "exact_counts": {
+            "0": 29,
+            "1": 7,
+            "2": 3,
+            "4": 2,
+            "7": 1,
+            "56": 1,
+            "UNAVAILABLE": 161
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 42,
+          "unavailable": 162,
+          "min": -1,
+          "p25": 0,
+          "median": 0,
+          "p75": 1,
+          "p90": 3,
+          "max": 7,
+          "exact_counts": {
+            "0": 19,
+            "1": 13,
+            "2": 1,
+            "3": 3,
+            "4": 2,
+            "7": 1,
+            "UNAVAILABLE": 162,
+            "-1": 3
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 79,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 74,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 75,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 42,
+            "completed_pairs": 1,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 32,
+            "completed_pairs": 1,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 31,
+        "legs": 62,
+        "acted_legs": 11,
+        "credited_legs": 11,
+        "no_action_legs": 51,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 25,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 11,
+          "SOURCE_UNAVAILABLE": 6,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2
+        },
+        "no_credited_leg_events": 20,
+        "naked_single_events": 11,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 11,
+          "unavailable": 51,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 2,
+          "exact_counts": {
+            "0": 7,
+            "1": 3,
+            "2": 1,
+            "UNAVAILABLE": 51
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 11,
+          "unavailable": 51,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 1,
+          "p90": 2,
+          "max": 3,
+          "exact_counts": {
+            "0": 5,
+            "1": 4,
+            "2": 1,
+            "3": 1,
+            "UNAVAILABLE": 51
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 30,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 29,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 30,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 19,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 15,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "le25+le25",
+      "thin": false,
+      "full_population": {
+        "events": 15,
+        "legs": 30,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "no_action_legs": 28,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 15,
+          "SOURCE_UNAVAILABLE": 8,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 3,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2
+        },
+        "no_credited_leg_events": 13,
+        "naked_single_events": 2,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 2,
+          "unavailable": 28,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 29,
+          "exact_counts": {
+            "1": 1,
+            "29": 1,
+            "UNAVAILABLE": 28
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 2,
+          "unavailable": 28,
+          "min": 4,
+          "p25": 4,
+          "median": 4,
+          "p75": 4,
+          "p90": 4,
+          "max": 11,
+          "exact_counts": {
+            "4": 1,
+            "11": 1,
+            "UNAVAILABLE": 28
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 9,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 9,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 9,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 7,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 5,
+        "legs": 10,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 9,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 8,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1
+        },
+        "no_credited_leg_events": 4,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 9,
+          "min": 29,
+          "p25": 29,
+          "median": 29,
+          "p75": 29,
+          "p90": 29,
+          "max": 29,
+          "exact_counts": {
+            "29": 1,
+            "UNAVAILABLE": 9
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 9,
+          "min": 11,
+          "p25": 11,
+          "median": 11,
+          "p75": 11,
+          "p90": 11,
+          "max": 11,
+          "exact_counts": {
+            "11": 1,
+            "UNAVAILABLE": 9
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 5,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 5,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 5,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+26_50",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "full_population": {
+        "events": 103,
+        "legs": 206,
+        "acted_legs": 9,
+        "credited_legs": 9,
+        "no_action_legs": 197,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 189,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 3,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 2,
+          "SOURCE_UNAVAILABLE": 2,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+        },
+        "no_credited_leg_events": 94,
+        "naked_single_events": 9,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 9,
+          "unavailable": 197,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 2,
+          "max": 3,
+          "exact_counts": {
+            "0": 4,
+            "1": 1,
+            "2": 3,
+            "3": 1,
+            "UNAVAILABLE": 197
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 7,
+          "unavailable": 199,
+          "min": 0,
+          "p25": 1,
+          "median": 2,
+          "p75": 2,
+          "p90": 3,
+          "max": 3,
+          "exact_counts": {
+            "0": 1,
+            "1": 2,
+            "2": 2,
+            "3": 2,
+            "UNAVAILABLE": 199
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 83,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 83,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 77,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 73,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 54,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 61,
+        "legs": 122,
+        "acted_legs": 4,
+        "credited_legs": 4,
+        "no_action_legs": 118,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 114,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 2,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 2
+        },
+        "no_credited_leg_events": 57,
+        "naked_single_events": 4,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 4,
+          "unavailable": 118,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 2,
+          "p90": 2,
+          "max": 3,
+          "exact_counts": {
+            "1": 1,
+            "2": 2,
+            "3": 1,
+            "UNAVAILABLE": 118
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 4,
+          "unavailable": 118,
+          "min": 2,
+          "p25": 2,
+          "median": 2,
+          "p75": 3,
+          "p90": 3,
+          "max": 3,
+          "exact_counts": {
+            "2": 2,
+            "3": 2,
+            "UNAVAILABLE": 118
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 60,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 60,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 58,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 56,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 43,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "thin": true,
+      "full_population": {
+        "events": 4,
+        "legs": 8,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 7,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 7
+        },
+        "no_credited_leg_events": 3,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 7,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1,
+          "exact_counts": {
+            "1": 1,
+            "UNAVAILABLE": 7
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 7,
+          "min": 4,
+          "p25": 4,
+          "median": 4,
+          "p75": 4,
+          "p90": 4,
+          "max": 4,
+          "exact_counts": {
+            "4": 1,
+            "UNAVAILABLE": 7
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 3,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 4,
+        "legs": 8,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 7,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 7
+        },
+        "no_credited_leg_events": 3,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 7,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1,
+          "exact_counts": {
+            "1": 1,
+            "UNAVAILABLE": 7
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 7,
+          "min": 4,
+          "p25": 4,
+          "median": 4,
+          "p75": 4,
+          "p90": 4,
+          "max": 4,
+          "exact_counts": {
+            "4": 1,
+            "UNAVAILABLE": 7
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 3,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1,
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 1
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1,
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 1
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "full_population": {
+        "events": 2,
+        "legs": 4,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 3,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 3
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 3,
+          "min": 8,
+          "p25": 8,
+          "median": 8,
+          "p75": 8,
+          "p90": 8,
+          "max": 8,
+          "exact_counts": {
+            "8": 1,
+            "UNAVAILABLE": 3
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 3,
+          "min": 8,
+          "p25": 8,
+          "median": 8,
+          "p75": 8,
+          "p90": 8,
+          "max": 8,
+          "exact_counts": {
+            "8": 1,
+            "UNAVAILABLE": 3
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 1,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 1
+        },
+        "no_credited_leg_events": 0,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 8,
+          "p25": 8,
+          "median": 8,
+          "p75": 8,
+          "p90": 8,
+          "max": 8,
+          "exact_counts": {
+            "8": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 1,
+          "unavailable": 1,
+          "min": 8,
+          "p25": 8,
+          "median": 8,
+          "p75": 8,
+          "p90": 8,
+          "max": 8,
+          "exact_counts": {
+            "8": 1,
+            "UNAVAILABLE": 1
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+ge75",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "full_population": {
+        "events": 29,
+        "legs": 58,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "no_action_legs": 57,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 57
+        },
+        "no_credited_leg_events": 28,
+        "naked_single_events": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 1,
+          "unavailable": 57,
+          "min": 16,
+          "p25": 16,
+          "median": 16,
+          "p75": 16,
+          "p90": 16,
+          "max": 16,
+          "exact_counts": {
+            "16": 1,
+            "UNAVAILABLE": 57
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 58,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 58
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 24,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 23,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 22,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 19,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 16,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 16,
+        "legs": 32,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 32,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 32
+        },
+        "no_credited_leg_events": 16,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 32,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 32
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 32,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 32
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 16,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 15,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 15,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 16,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 13,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "le25+le25",
+      "thin": true,
+      "full_population": {
+        "events": 6,
+        "legs": 12,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 12,
+        "no_action_terminal_reasons": {
+          "SOURCE_UNAVAILABLE": 12
+        },
+        "no_credited_leg_events": 6,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 12,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 12
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 12,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 12
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "thin": true,
+      "full_population": {
+        "events": 2,
+        "legs": 4,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 0,
+        "naked_single_events": 2,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 2,
+          "unavailable": 2,
+          "min": 4,
+          "p25": 4,
+          "median": 4,
+          "p75": 4,
+          "p90": 4,
+          "max": 11,
+          "exact_counts": {
+            "4": 1,
+            "11": 1,
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 4,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 4
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "full_population": {
+        "events": 88,
+        "legs": 176,
+        "acted_legs": 24,
+        "credited_legs": 24,
+        "no_action_legs": 152,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 103,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 24,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 11,
+          "SOURCE_UNAVAILABLE": 6,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 5,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3
+        },
+        "no_credited_leg_events": 66,
+        "naked_single_events": 20,
+        "completed_pairs": 2,
+        "pairs_under_par": 2,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 24,
+          "unavailable": 152,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 14,
+          "p90": 31,
+          "max": 47,
+          "exact_counts": {
+            "0": 11,
+            "1": 1,
+            "2": 2,
+            "4": 1,
+            "8": 1,
+            "10": 1,
+            "14": 1,
+            "19": 1,
+            "26": 1,
+            "31": 1,
+            "42": 1,
+            "44": 1,
+            "47": 1,
+            "UNAVAILABLE": 152
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 13,
+          "unavailable": 163,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 3,
+          "exact_counts": {
+            "0": 8,
+            "1": 3,
+            "2": 1,
+            "3": 1,
+            "UNAVAILABLE": 163
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 50,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 42,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 40,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 19,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 11,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 16,
+        "legs": 32,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "no_action_legs": 30,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 22,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 3,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 3,
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+        },
+        "no_credited_leg_events": 14,
+        "naked_single_events": 2,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 2,
+          "unavailable": 30,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 4,
+          "exact_counts": {
+            "1": 1,
+            "4": 1,
+            "UNAVAILABLE": 30
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 2,
+          "unavailable": 30,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 2,
+          "exact_counts": {
+            "0": 1,
+            "2": 1,
+            "UNAVAILABLE": 30
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 14,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 14,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 12,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 9,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 5,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1,
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 1
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "full_population": {
+        "events": 44,
+        "legs": 88,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 88,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 88
+        },
+        "no_credited_leg_events": 44,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 88,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 88
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 88,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 88
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 22,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 20,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 17,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 12,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 8,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 7,
+        "legs": 14,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 14,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 14
+        },
+        "no_credited_leg_events": 7,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 14,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 14
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 14,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 14
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 7,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 7,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 7,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 5,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "le25+le25",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "full_population": {
+        "events": 77,
+        "legs": 154,
+        "acted_legs": 30,
+        "credited_legs": 30,
+        "no_action_legs": 124,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 84,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 22,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 8,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+          "SOURCE_UNAVAILABLE": 4,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+        },
+        "no_credited_leg_events": 49,
+        "naked_single_events": 26,
+        "completed_pairs": 2,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 30,
+          "unavailable": 124,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 1,
+          "p90": 3,
+          "max": 40,
+          "exact_counts": {
+            "0": 20,
+            "1": 4,
+            "2": 2,
+            "3": 1,
+            "4": 1,
+            "11": 1,
+            "40": 1,
+            "UNAVAILABLE": 124
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 26,
+          "unavailable": 128,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 1,
+          "p90": 3,
+          "max": 5,
+          "exact_counts": {
+            "0": 7,
+            "1": 13,
+            "2": 1,
+            "3": 3,
+            "4": 1,
+            "5": 1,
+            "UNAVAILABLE": 128
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 64,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 64,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 53,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 53,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "maker_reachable": {
+            "ceiling_events": 33,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 44,
+        "legs": 88,
+        "acted_legs": 20,
+        "credited_legs": 20,
+        "no_action_legs": 68,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 37,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 17,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 6,
+          "SOURCE_UNAVAILABLE": 4,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 3,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+        },
+        "no_credited_leg_events": 26,
+        "naked_single_events": 16,
+        "completed_pairs": 2,
+        "pairs_under_par": 1,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 1,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 20,
+          "unavailable": 68,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 1,
+          "max": 3,
+          "exact_counts": {
+            "0": 15,
+            "1": 3,
+            "2": 1,
+            "3": 1,
+            "UNAVAILABLE": 68
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 20,
+          "unavailable": 68,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 1,
+          "p90": 3,
+          "max": 5,
+          "exact_counts": {
+            "0": 7,
+            "1": 8,
+            "2": 1,
+            "3": 3,
+            "5": 1,
+            "UNAVAILABLE": 68
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 43,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 43,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 35,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 35,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          },
+          "maker_reachable": {
+            "ceiling_events": 24,
+            "completed_pairs": 2,
+            "pairs_under_par": 1,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 1
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+le25",
+      "thin": true,
+      "full_population": {
+        "events": 3,
+        "legs": 6,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 6,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 6
+        },
+        "no_credited_leg_events": 3,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 6,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 6
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 6,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 6
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 2,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "thin": true,
+      "full_population": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "full_population": {
+        "events": 4,
+        "legs": 8,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 8,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 8
+        },
+        "no_credited_leg_events": 4,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 8,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 8
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 8,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 8
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 4,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 3,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 3,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 2,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 1,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 1,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "full_population": {
+        "events": 56,
+        "legs": 112,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 112,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 102,
+          "SOURCE_UNAVAILABLE": 8,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 1,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1
+        },
+        "no_credited_leg_events": 56,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 112,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 112
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 112,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 112
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 50,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 50,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 35,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 40,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 23,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 28,
+        "legs": 56,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 56,
+        "no_action_terminal_reasons": {
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 52,
+          "SOURCE_UNAVAILABLE": 2,
+          "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 1,
+          "SIGNABLE_ADJACENT_ORDINALS_NOT_YET_UNANIMOUS": 1
+        },
+        "no_credited_leg_events": 28,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 56,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 56
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 56,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 56
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 27,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 27,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 17,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 23,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 11,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "le25+le25",
+      "thin": false,
+      "full_population": {
+        "events": 10,
+        "legs": 20,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 20,
+        "no_action_terminal_reasons": {
+          "SOURCE_UNAVAILABLE": 18,
+          "UNUSABLE_SHAPE_CLASS_SURVIVED": 2
+        },
+        "no_credited_leg_events": 10,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 20,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 20
+          }
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 20,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 20
+          }
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      },
+      "strict_late_close_cohort": {
+        "events": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "no_action_legs": 0,
+        "no_action_terminal_reasons": {},
+        "no_credited_leg_events": 0,
+        "naked_single_events": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "under_par_and_both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "entry_to_qualifying_ask_floor_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "entry_to_objective_traded_low_gap": {
+          "n": 0,
+          "unavailable": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {}
+        },
+        "ceiling_comparison": {
+          "absolute_traded_low": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "traded_low_print_size_at_least_five": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "capacity_proven_ask_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "lowest_seller_aggressed_trade_floor": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          },
+          "maker_reachable": {
+            "ceiling_events": 0,
+            "completed_pairs": 0,
+            "pairs_under_par": 0,
+            "both_legs_strictly_below_close": 0,
+            "execution_floor_pair_pass": 0
+          }
+        }
+      }
+    }
+  ]
+}

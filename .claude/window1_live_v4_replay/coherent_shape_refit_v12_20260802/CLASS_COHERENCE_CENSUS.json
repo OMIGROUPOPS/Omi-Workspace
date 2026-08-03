@@ -1,0 +1,4121 @@
+{
+  "schema_version": "WINDOW1_COHERENT_SHAPE_CLASS_CENSUS_V12",
+  "fit_universe": {
+    "requested_development_events_excluding_five": 799,
+    "requested_legs_excluding_five": 1598,
+    "positively_provable_window_events": 688,
+    "positively_provable_window_legs": 1376,
+    "excluded_nonpositive_window_legs": 222,
+    "formed_book_training_events": 681,
+    "formed_book_training_legs": 1343,
+    "positive_window_legs_without_available_formed_book": 33
+  },
+  "old_library": {
+    "classes": 94,
+    "thin_below_20": 72
+  },
+  "refit": {
+    "groups": 16,
+    "classes_total": 68,
+    "signable_classes": 21,
+    "unusable_classes": 47,
+    "signable_members": 760,
+    "unusable_members": 583,
+    "all_signable_classes_n_at_least_20": true,
+    "all_signable_classes_ordinal_width_at_most_one": true
+  },
+  "classes": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_DOWN_COHERENT_ORD_1_2",
+      "members": 34,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 34,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 19,
+          "2": 15
+        },
+        "signing_ordinal_after_a_descent_is_observed": 2
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_DOWN_CONTINUATION": 28,
+        "ATP_CHALL_26_50_DOWN_REBOUND": 6
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12AZKLEO|LEO",
+        "KXATPCHALLENGERMATCH-26JUL12DEVGON|DEV",
+        "KXATPCHALLENGERMATCH-26JUL12DODDEL|DOD",
+        "KXATPCHALLENGERMATCH-26JUL13AGABAR|AGA",
+        "KXATPCHALLENGERMATCH-26JUL13REHJUS|JUS",
+        "KXATPCHALLENGERMATCH-26JUL13WONTUN|TUN",
+        "KXATPCHALLENGERMATCH-26JUL14GANZIN|GAN",
+        "KXATPCHALLENGERMATCH-26JUL14KRATOR|KRA",
+        "KXATPCHALLENGERMATCH-26JUL14RONGIU|RON",
+        "KXATPCHALLENGERMATCH-26JUL14VILRIB|VIL",
+        "KXATPCHALLENGERMATCH-26JUL15BONJUS|BON",
+        "KXATPCHALLENGERMATCH-26JUL15LAJKRU|KRU",
+        "KXATPCHALLENGERMATCH-26JUL15SCHHOU|HOU",
+        "KXATPCHALLENGERMATCH-26JUL16VISNIJ|VIS",
+        "KXATPCHALLENGERMATCH-26JUL17ADDIVA|ADD",
+        "KXATPCHALLENGERMATCH-26JUL17DRAGEA|DRA",
+        "KXATPCHALLENGERMATCH-26JUL17PERSAN|PER",
+        "KXATPCHALLENGERMATCH-26JUL17SANALM|ALM",
+        "KXATPCHALLENGERMATCH-26JUL17SEKCAS|SEK",
+        "KXATPCHALLENGERMATCH-26JUL18DENCOP|DEN",
+        "KXATPCHALLENGERMATCH-26JUL19AVECHA|AVE",
+        "KXATPCHALLENGERMATCH-26JUL19BONALC|BON",
+        "KXATPCHALLENGERMATCH-26JUL19DEMBIT|BIT",
+        "KXATPCHALLENGERMATCH-26JUL19MALMOR|MOR",
+        "KXATPCHALLENGERMATCH-26JUL19MILFAN|FAN",
+        "KXATPCHALLENGERMATCH-26JUL19VALCAS|CAS",
+        "KXATPCHALLENGERMATCH-26JUL19WINSHE|SHE",
+        "KXATPCHALLENGERMATCH-26JUL20GADGUI|GAD",
+        "KXATPCHALLENGERMATCH-26JUL20GALLLA|LLA",
+        "KXATPCHALLENGERMATCH-26JUL20IMAKIN|KIN",
+        "KXATPCHALLENGERMATCH-26JUL20PETTAB|TAB",
+        "KXATPCHALLENGERMATCH-26JUL20POLBRU|BRU",
+        "KXATPCHALLENGERMATCH-26JUL20TORSTR|TOR",
+        "KXATPCHALLENGERMATCH-26JUL20ZHOGEE|GEE"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_DOWN_COHERENT_ORD_3_4",
+      "members": 26,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 26,
+        "censored_n": 0,
+        "min": 3,
+        "p25": 3,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4,
+        "counts": {
+          "3": 13,
+          "4": 13
+        },
+        "signing_ordinal_after_a_descent_is_observed": 4
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_DOWN_CONTINUATION": 13,
+        "ATP_CHALL_26_50_DOWN_REBOUND": 13
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12CALRAD|RAD",
+        "KXATPCHALLENGERMATCH-26JUL12FANBIG|FAN",
+        "KXATPCHALLENGERMATCH-26JUL12HECISO|ISO",
+        "KXATPCHALLENGERMATCH-26JUL12LAGTEP|TEP",
+        "KXATPCHALLENGERMATCH-26JUL12RAIZHU|RAI",
+        "KXATPCHALLENGERMATCH-26JUL13ALVKUM|KUM",
+        "KXATPCHALLENGERMATCH-26JUL13ARSMAR|ARS",
+        "KXATPCHALLENGERMATCH-26JUL13BOUGAN|GAN",
+        "KXATPCHALLENGERMATCH-26JUL13HOLWAT|WAT",
+        "KXATPCHALLENGERMATCH-26JUL13INCSTE|STE",
+        "KXATPCHALLENGERMATCH-26JUL13PERTOB|TOB",
+        "KXATPCHALLENGERMATCH-26JUL13ROZISO|ISO",
+        "KXATPCHALLENGERMATCH-26JUL13TABVIN|VIN",
+        "KXATPCHALLENGERMATCH-26JUL13ZHUDLI|ZHU",
+        "KXATPCHALLENGERMATCH-26JUL14JOHBER|JOH",
+        "KXATPCHALLENGERMATCH-26JUL14NAGCRE|NAG",
+        "KXATPCHALLENGERMATCH-26JUL14SQUKUM|KUM",
+        "KXATPCHALLENGERMATCH-26JUL15VILMAR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL16KUMBRO|BRO",
+        "KXATPCHALLENGERMATCH-26JUL18TOMJOH|TOM",
+        "KXATPCHALLENGERMATCH-26JUL19BANZHU|ZHU",
+        "KXATPCHALLENGERMATCH-26JUL19IMATRA|TRA",
+        "KXATPCHALLENGERMATCH-26JUL19RODIVA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL20ARSRIC|ARS",
+        "KXATPCHALLENGERMATCH-26JUL20FAURIN|FAU",
+        "KXATPCHALLENGERMATCH-26JUL20JOHAGU|AGU"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 19,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 19,
+        "censored_n": 0,
+        "min": 5,
+        "p25": 6,
+        "median": 8,
+        "p75": 9,
+        "p90": 10,
+        "max": 11,
+        "counts": {
+          "5": 4,
+          "6": 3,
+          "7": 2,
+          "8": 3,
+          "9": 2,
+          "10": 3,
+          "11": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 6,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_DOWN_REBOUND": 10,
+        "ATP_CHALL_26_50_DOWN_CONTINUATION": 9
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+        "KXATPCHALLENGERMATCH-26JUL12BOSCOP|BOS",
+        "KXATPCHALLENGERMATCH-26JUL14MILCHA|CHA",
+        "KXATPCHALLENGERMATCH-26JUL14NEDDAL|NED",
+        "KXATPCHALLENGERMATCH-26JUL14OUAFIC|OUA",
+        "KXATPCHALLENGERMATCH-26JUL14SURECH|ECH",
+        "KXATPCHALLENGERMATCH-26JUL16ADDGHI|ADD",
+        "KXATPCHALLENGERMATCH-26JUL18CASGEA|CAS",
+        "KXATPCHALLENGERMATCH-26JUL19JONISO|JON",
+        "KXATPCHALLENGERMATCH-26JUL19SINMAT|SIN",
+        "KXATPCHALLENGERMATCH-26JUL19VUKGEA|VUK",
+        "KXATPCHALLENGERMATCH-26JUL20CHABOU|BOU",
+        "KXATPCHALLENGERMATCH-26JUL20CREMAT|MAT",
+        "KXATPCHALLENGERMATCH-26JUL20HSUHAR|HSU",
+        "KXATPCHALLENGERMATCH-26JUL20NOGSHI|SHI",
+        "KXATPCHALLENGERMATCH-26JUL20SURKUZ|KUZ",
+        "KXATPCHALLENGERMATCH-26JUL20VANOUA|OUA",
+        "KXATPCHALLENGERMATCH-26JUL20WATILA|ILA",
+        "KXATPCHALLENGERMATCH-26JUL20ZINZHA|ZIN"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_FLAT_COHERENT_ORD_0",
+      "members": 34,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 34,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 34
+        },
+        "signing_ordinal_after_a_descent_is_observed": 0
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 0,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_FLAT_UNMOVED": 33,
+        "ATP_CHALL_26_50_FLAT_RECOVERED": 1
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12CHAJON|CHA",
+        "KXATPCHALLENGERMATCH-26JUL12CHISEA|CHI",
+        "KXATPCHALLENGERMATCH-26JUL12CHOGAS|GAS",
+        "KXATPCHALLENGERMATCH-26JUL12FEAWAL|FEA",
+        "KXATPCHALLENGERMATCH-26JUL12FUEROS|ROS",
+        "KXATPCHALLENGERMATCH-26JUL12HERALM|HER",
+        "KXATPCHALLENGERMATCH-26JUL12MEJSOT|SOT",
+        "KXATPCHALLENGERMATCH-26JUL12PIETAB|TAB",
+        "KXATPCHALLENGERMATCH-26JUL13FORMAK|MAK",
+        "KXATPCHALLENGERMATCH-26JUL13GREVAN|VAN",
+        "KXATPCHALLENGERMATCH-26JUL13JONPET|JON",
+        "KXATPCHALLENGERMATCH-26JUL13KRUMAR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL13KUMLAG|KUM",
+        "KXATPCHALLENGERMATCH-26JUL13MORFAN|FAN",
+        "KXATPCHALLENGERMATCH-26JUL14ALMGRA|ALM",
+        "KXATPCHALLENGERMATCH-26JUL14FORGOR|FOR",
+        "KXATPCHALLENGERMATCH-26JUL14GLIJOH|JOH",
+        "KXATPCHALLENGERMATCH-26JUL14SMIILA|ILA",
+        "KXATPCHALLENGERMATCH-26JUL15NOGSUR|NOG",
+        "KXATPCHALLENGERMATCH-26JUL15ROMGAL|ROM",
+        "KXATPCHALLENGERMATCH-26JUL15WOLJOH|JOH",
+        "KXATPCHALLENGERMATCH-26JUL15ZINGAL|ZIN",
+        "KXATPCHALLENGERMATCH-26JUL16GLISEK|SEK",
+        "KXATPCHALLENGERMATCH-26JUL16GRESAN|SAN",
+        "KXATPCHALLENGERMATCH-26JUL17ALCRON|RON",
+        "KXATPCHALLENGERMATCH-26JUL17LAJNOG|NOG",
+        "KXATPCHALLENGERMATCH-26JUL17WONJOH|JOH",
+        "KXATPCHALLENGERMATCH-26JUL18PERIVA|PER",
+        "KXATPCHALLENGERMATCH-26JUL19LANMAY|LAN",
+        "KXATPCHALLENGERMATCH-26JUL20CALKUM|KUM",
+        "KXATPCHALLENGERMATCH-26JUL20MARBIT|BIT",
+        "KXATPCHALLENGERMATCH-26JUL20SEYKOL|KOL",
+        "KXATPCHALLENGERMATCH-26JUL20STAMAT|STA",
+        "KXATPCHALLENGERMATCH-26JUL20VARDON|DON"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_FLAT_COHERENT_ORD_1_2",
+      "members": 22,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 22,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 14,
+          "2": 8
+        },
+        "signing_ordinal_after_a_descent_is_observed": 2
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_FLAT_RECOVERED": 22
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12MARARS|ARS",
+        "KXATPCHALLENGERMATCH-26JUL12PEAKIR|PEA",
+        "KXATPCHALLENGERMATCH-26JUL13KENSHE|SHE",
+        "KXATPCHALLENGERMATCH-26JUL13WINKIR|KIR",
+        "KXATPCHALLENGERMATCH-26JUL14CASGHI|CAS",
+        "KXATPCHALLENGERMATCH-26JUL14JOHBER|BER",
+        "KXATPCHALLENGERMATCH-26JUL14MARCAM|MAR",
+        "KXATPCHALLENGERMATCH-26JUL15IVACRA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL15NAGTOR|TOR",
+        "KXATPCHALLENGERMATCH-26JUL16DRAMIL|MIL",
+        "KXATPCHALLENGERMATCH-26JUL17GENHOU|HOU",
+        "KXATPCHALLENGERMATCH-26JUL17KUMBOO|BOO",
+        "KXATPCHALLENGERMATCH-26JUL17RODCRA|CRA",
+        "KXATPCHALLENGERMATCH-26JUL17VUKGAL|VUK",
+        "KXATPCHALLENGERMATCH-26JUL18ALCVIL|VIL",
+        "KXATPCHALLENGERMATCH-26JUL19BRUKRA|KRA",
+        "KXATPCHALLENGERMATCH-26JUL19RITGOM|RIT",
+        "KXATPCHALLENGERMATCH-26JUL19ROZSHE|ROZ",
+        "KXATPCHALLENGERMATCH-26JUL19TOKMIY|TOK",
+        "KXATPCHALLENGERMATCH-26JUL19VARBOI|BOI",
+        "KXATPCHALLENGERMATCH-26JUL20ECHHAR|ECH",
+        "KXATPCHALLENGERMATCH-26JUL20GORYOU|YOU"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 1,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 3,
+        "p25": 3,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 3,
+        "counts": {
+          "3": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 0,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_FLAT_RECOVERED": 1
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12WESPAA|PAA"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_UP_COHERENT_ORD_0_1",
+      "members": 87,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 87,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 75,
+          "1": 12
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_UP_CONTINUATION": 76,
+        "ATP_CHALL_26_50_UP_AFTER_DIP": 11
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12AVEFOR|AVE",
+        "KXATPCHALLENGERMATCH-26JUL12BARREI|REI",
+        "KXATPCHALLENGERMATCH-26JUL12BROGIU|BRO",
+        "KXATPCHALLENGERMATCH-26JUL12CRIBAS|CRI",
+        "KXATPCHALLENGERMATCH-26JUL12DEGEE|DE",
+        "KXATPCHALLENGERMATCH-26JUL12DROPIR|PIR",
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR",
+        "KXATPCHALLENGERMATCH-26JUL12HOUJOR|HOU",
+        "KXATPCHALLENGERMATCH-26JUL12HOUJOR|JOR",
+        "KXATPCHALLENGERMATCH-26JUL12KUMTUR|TUR",
+        "KXATPCHALLENGERMATCH-26JUL12MARFOR|FOR",
+        "KXATPCHALLENGERMATCH-26JUL12MIYKUZ|KUZ",
+        "KXATPCHALLENGERMATCH-26JUL12MORPET|PET",
+        "KXATPCHALLENGERMATCH-26JUL12POLVIN|POL",
+        "KXATPCHALLENGERMATCH-26JUL12RAQKUM|RAQ",
+        "KXATPCHALLENGERMATCH-26JUL12SANSCH|SAN",
+        "KXATPCHALLENGERMATCH-26JUL12YOUDLI|DLI",
+        "KXATPCHALLENGERMATCH-26JUL13ARSDAL|ARS",
+        "KXATPCHALLENGERMATCH-26JUL13ARSDAL|DAL",
+        "KXATPCHALLENGERMATCH-26JUL13GIUALM|ALM",
+        "KXATPCHALLENGERMATCH-26JUL13LANSHE|SHE",
+        "KXATPCHALLENGERMATCH-26JUL13MUNLEO|MUN",
+        "KXATPCHALLENGERMATCH-26JUL13NAPBAL|NAP",
+        "KXATPCHALLENGERMATCH-26JUL13NOGBRO|NOG",
+        "KXATPCHALLENGERMATCH-26JUL13PALGON|PAL",
+        "KXATPCHALLENGERMATCH-26JUL13RADIVA|RAD",
+        "KXATPCHALLENGERMATCH-26JUL13VUKBRO|VUK",
+        "KXATPCHALLENGERMATCH-26JUL13YEVCAM|YEV",
+        "KXATPCHALLENGERMATCH-26JUL14ADDLEO|LEO",
+        "KXATPCHALLENGERMATCH-26JUL14BLATOM|TOM",
+        "KXATPCHALLENGERMATCH-26JUL14BRUNIJ|NIJ",
+        "KXATPCHALLENGERMATCH-26JUL14CASSCH|CAS",
+        "KXATPCHALLENGERMATCH-26JUL14CUIFAN|FAN",
+        "KXATPCHALLENGERMATCH-26JUL14EREPAV|ERE",
+        "KXATPCHALLENGERMATCH-26JUL14FUEPRI|FUE",
+        "KXATPCHALLENGERMATCH-26JUL14GALFOR|FOR",
+        "KXATPCHALLENGERMATCH-26JUL14GENPET|PET",
+        "KXATPCHALLENGERMATCH-26JUL14GUIBON|GUI",
+        "KXATPCHALLENGERMATCH-26JUL14IMAMCC|IMA",
+        "KXATPCHALLENGERMATCH-26JUL14IVAGIU|GIU",
+        "KXATPCHALLENGERMATCH-26JUL14JONIVA|JON",
+        "KXATPCHALLENGERMATCH-26JUL14KIRSEK|KIR",
+        "KXATPCHALLENGERMATCH-26JUL14MARMAY|MAR",
+        "KXATPCHALLENGERMATCH-26JUL14MRVCAN|CAN",
+        "KXATPCHALLENGERMATCH-26JUL14NAGCRE|CRE",
+        "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ|KOZ",
+        "KXATPCHALLENGERMATCH-26JUL15HOLMAY|MAY",
+        "KXATPCHALLENGERMATCH-26JUL15RODINC|INC",
+        "KXATPCHALLENGERMATCH-26JUL15SANERE|SAN",
+        "KXATPCHALLENGERMATCH-26JUL15SHIBOU|BOU",
+        "KXATPCHALLENGERMATCH-26JUL15VILMAR|VIL",
+        "KXATPCHALLENGERMATCH-26JUL15ZHOPER|PER",
+        "KXATPCHALLENGERMATCH-26JUL16BICCAS|BIC",
+        "KXATPCHALLENGERMATCH-26JUL16CAMBOO|CAM",
+        "KXATPCHALLENGERMATCH-26JUL16DELDAL|DAL",
+        "KXATPCHALLENGERMATCH-26JUL16DENBAR|BAR",
+        "KXATPCHALLENGERMATCH-26JUL16FORCUI|FOR",
+        "KXATPCHALLENGERMATCH-26JUL16KUMBRO|KUM",
+        "KXATPCHALLENGERMATCH-26JUL16MCCTOM|TOM",
+        "KXATPCHALLENGERMATCH-26JUL16MRVRON|RON",
+        "KXATPCHALLENGERMATCH-26JUL17GALCOP|GAL",
+        "KXATPCHALLENGERMATCH-26JUL17HOLBOU|BOU",
+        "KXATPCHALLENGERMATCH-26JUL17NAGBON|BON",
+        "KXATPCHALLENGERMATCH-26JUL17NAPVIL|VIL",
+        "KXATPCHALLENGERMATCH-26JUL17SANALM|SAN",
+        "KXATPCHALLENGERMATCH-26JUL18FUEBON|FUE",
+        "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+        "KXATPCHALLENGERMATCH-26JUL19BARLEO|BAR",
+        "KXATPCHALLENGERMATCH-26JUL19CASVAS|CAS",
+        "KXATPCHALLENGERMATCH-26JUL19CLAKUZ|CLA",
+        "KXATPCHALLENGERMATCH-26JUL19DENGEN|GEN",
+        "KXATPCHALLENGERMATCH-26JUL19MCKOUA|OUA",
+        "KXATPCHALLENGERMATCH-26JUL19PALMUN|MUN",
+        "KXATPCHALLENGERMATCH-26JUL19PIENES|PIE",
+        "KXATPCHALLENGERMATCH-26JUL19POLSCH|SCH",
+        "KXATPCHALLENGERMATCH-26JUL19POUJAN|POU",
+        "KXATPCHALLENGERMATCH-26JUL19ROZSHE|SHE",
+        "KXATPCHALLENGERMATCH-26JUL19TOMLAJ|TOM",
+        "KXATPCHALLENGERMATCH-26JUL19VALCAS|VAL",
+        "KXATPCHALLENGERMATCH-26JUL19VANGOR|GOR",
+        "KXATPCHALLENGERMATCH-26JUL19VANRAD|VAN",
+        "KXATPCHALLENGERMATCH-26JUL20ALKFIC|FIC",
+        "KXATPCHALLENGERMATCH-26JUL20MAYMAG|MAG",
+        "KXATPCHALLENGERMATCH-26JUL20MILSHE|SHE",
+        "KXATPCHALLENGERMATCH-26JUL20ONCAJD|AJD",
+        "KXATPCHALLENGERMATCH-26JUL20VANOUA|VAN",
+        "KXATPCHALLENGERMATCH-26JUL20ZHUMAL|ZHU"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "shape_id": "ATP_CHALL_26_50_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 9,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 3,
+        "p90": 3,
+        "max": 4,
+        "counts": {
+          "2": 6,
+          "3": 2,
+          "4": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 2,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_26_50_UP_AFTER_DIP": 8,
+        "ATP_CHALL_26_50_UP_CONTINUATION": 1
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BROHUA|HUA",
+        "KXATPCHALLENGERMATCH-26JUL12KARMAR|KAR",
+        "KXATPCHALLENGERMATCH-26JUL13HOLWAT|HOL",
+        "KXATPCHALLENGERMATCH-26JUL14BICMIY|BIC",
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+        "KXATPCHALLENGERMATCH-26JUL18VUKHOL|VUK",
+        "KXATPCHALLENGERMATCH-26JUL19BARSTA|BAR",
+        "KXATPCHALLENGERMATCH-26JUL19KIRAGU|KIR",
+        "KXATPCHALLENGERMATCH-26JUL20MONBAR|MON"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_DOWN_COHERENT_ORD_1_2",
+      "members": 26,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 26,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 14,
+          "2": 12
+        },
+        "signing_ordinal_after_a_descent_is_observed": 2
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_51_75_DOWN_CONTINUATION": 22,
+        "ATP_CHALL_51_75_DOWN_REBOUND": 4
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12DROPIR|DRO",
+        "KXATPCHALLENGERMATCH-26JUL12FEAWAL|WAL",
+        "KXATPCHALLENGERMATCH-26JUL12POLVIN|VIN",
+        "KXATPCHALLENGERMATCH-26JUL12RAQKUM|KUM",
+        "KXATPCHALLENGERMATCH-26JUL12YOUDLI|YOU",
+        "KXATPCHALLENGERMATCH-26JUL13KRUMAR|KRU",
+        "KXATPCHALLENGERMATCH-26JUL14BLATOM|BLA",
+        "KXATPCHALLENGERMATCH-26JUL14CUIFAN|CUI",
+        "KXATPCHALLENGERMATCH-26JUL14EREPAV|PAV",
+        "KXATPCHALLENGERMATCH-26JUL14IVAGIU|IVA",
+        "KXATPCHALLENGERMATCH-26JUL15HOLMAY|HOL",
+        "KXATPCHALLENGERMATCH-26JUL15RODINC|ROD",
+        "KXATPCHALLENGERMATCH-26JUL15ROMGAL|GAL",
+        "KXATPCHALLENGERMATCH-26JUL15ZHOPER|ZHO",
+        "KXATPCHALLENGERMATCH-26JUL16BICCAS|CAS",
+        "KXATPCHALLENGERMATCH-26JUL16MCCTOM|MCC",
+        "KXATPCHALLENGERMATCH-26JUL17GALCOP|COP",
+        "KXATPCHALLENGERMATCH-26JUL17GENHOU|GEN",
+        "KXATPCHALLENGERMATCH-26JUL17NAGBON|NAG",
+        "KXATPCHALLENGERMATCH-26JUL18FUEBON|BON",
+        "KXATPCHALLENGERMATCH-26JUL18PERIVA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL19DENGEN|DEN",
+        "KXATPCHALLENGERMATCH-26JUL19POLSCH|POL",
+        "KXATPCHALLENGERMATCH-26JUL19TOMLAJ|LAJ",
+        "KXATPCHALLENGERMATCH-26JUL19VARBOI|VAR",
+        "KXATPCHALLENGERMATCH-26JUL20ECHHAR|HAR"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 30,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 30,
+        "censored_n": 0,
+        "min": 3,
+        "p25": 3,
+        "median": 5,
+        "p75": 8,
+        "p90": 10,
+        "max": 178,
+        "counts": {
+          "3": 10,
+          "4": 3,
+          "5": 5,
+          "6": 2,
+          "7": 1,
+          "8": 2,
+          "9": 2,
+          "10": 2,
+          "14": 1,
+          "25": 1,
+          "178": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 175,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_51_75_DOWN_REBOUND": 14,
+        "ATP_CHALL_51_75_DOWN_CONTINUATION": 16
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12AVEFOR|FOR",
+        "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+        "KXATPCHALLENGERMATCH-26JUL12BROHUA|BRO",
+        "KXATPCHALLENGERMATCH-26JUL12DEGEE|GEE",
+        "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+        "KXATPCHALLENGERMATCH-26JUL12KARMAR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL12KUMTUR|KUM",
+        "KXATPCHALLENGERMATCH-26JUL12MARFOR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL13GIUALM|GIU",
+        "KXATPCHALLENGERMATCH-26JUL13LANSHE|LAN",
+        "KXATPCHALLENGERMATCH-26JUL13NOGBRO|BRO",
+        "KXATPCHALLENGERMATCH-26JUL13RADIVA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL13VUKBRO|BRO",
+        "KXATPCHALLENGERMATCH-26JUL14KIRSEK|SEK",
+        "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+        "KXATPCHALLENGERMATCH-26JUL14MRVCAN|MRV",
+        "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ|ZHO",
+        "KXATPCHALLENGERMATCH-26JUL16CAMBOO|BOO",
+        "KXATPCHALLENGERMATCH-26JUL16DENBAR|DEN",
+        "KXATPCHALLENGERMATCH-26JUL16FORCUI|CUI",
+        "KXATPCHALLENGERMATCH-26JUL17KUMBOO|KUM",
+        "KXATPCHALLENGERMATCH-26JUL18VUKHOL|HOL",
+        "KXATPCHALLENGERMATCH-26JUL19CASVAS|VAS",
+        "KXATPCHALLENGERMATCH-26JUL19CLAKUZ|KUZ",
+        "KXATPCHALLENGERMATCH-26JUL19MCKOUA|MCK",
+        "KXATPCHALLENGERMATCH-26JUL19PALMUN|PAL",
+        "KXATPCHALLENGERMATCH-26JUL19VANGOR|VAN",
+        "KXATPCHALLENGERMATCH-26JUL19VASTAB|TAB",
+        "KXATPCHALLENGERMATCH-26JUL20ALKFIC|ALK",
+        "KXATPCHALLENGERMATCH-26JUL20MILSHE|MIL"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_FLAT_COHERENT_ORD_0_1",
+      "members": 40,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 40,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 29,
+          "1": 11
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_51_75_FLAT_RECOVERED": 11,
+        "ATP_CHALL_51_75_FLAT_UNMOVED": 29
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BROGIU|GIU",
+        "KXATPCHALLENGERMATCH-26JUL12CHISEA|SEA",
+        "KXATPCHALLENGERMATCH-26JUL12CRIBAS|BAS",
+        "KXATPCHALLENGERMATCH-26JUL12DODDEL|DEL",
+        "KXATPCHALLENGERMATCH-26JUL12GUTCAM|CAM",
+        "KXATPCHALLENGERMATCH-26JUL12MORPET|MOR",
+        "KXATPCHALLENGERMATCH-26JUL12VILRAH|VIL",
+        "KXATPCHALLENGERMATCH-26JUL13AGABAR|BAR",
+        "KXATPCHALLENGERMATCH-26JUL13DONWES|WES",
+        "KXATPCHALLENGERMATCH-26JUL13GREVAN|GRE",
+        "KXATPCHALLENGERMATCH-26JUL13KENSHE|KEN",
+        "KXATPCHALLENGERMATCH-26JUL13MORFAN|MOR",
+        "KXATPCHALLENGERMATCH-26JUL13NAPBAL|BAL",
+        "KXATPCHALLENGERMATCH-26JUL13PALGON|GON",
+        "KXATPCHALLENGERMATCH-26JUL13POLMIY|MIY",
+        "KXATPCHALLENGERMATCH-26JUL13YEVCAM|CAM",
+        "KXATPCHALLENGERMATCH-26JUL14ADDLEO|ADD",
+        "KXATPCHALLENGERMATCH-26JUL14ALMGRA|GRA",
+        "KXATPCHALLENGERMATCH-26JUL14BRUNIJ|BRU",
+        "KXATPCHALLENGERMATCH-26JUL14CASGHI|GHI",
+        "KXATPCHALLENGERMATCH-26JUL14GUIBON|BON",
+        "KXATPCHALLENGERMATCH-26JUL14MILCHA|MIL",
+        "KXATPCHALLENGERMATCH-26JUL15SANERE|ERE",
+        "KXATPCHALLENGERMATCH-26JUL15ZINGAL|GAL",
+        "KXATPCHALLENGERMATCH-26JUL16MRVRON|MRV",
+        "KXATPCHALLENGERMATCH-26JUL17ALCRON|ALC",
+        "KXATPCHALLENGERMATCH-26JUL17HOLBOU|HOL",
+        "KXATPCHALLENGERMATCH-26JUL17LAJNOG|LAJ",
+        "KXATPCHALLENGERMATCH-26JUL17NAPVIL|NAP",
+        "KXATPCHALLENGERMATCH-26JUL17VUKGAL|GAL",
+        "KXATPCHALLENGERMATCH-26JUL17WONJOH|WON",
+        "KXATPCHALLENGERMATCH-26JUL18DENCOP|COP",
+        "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL19DEMBIT|DEM",
+        "KXATPCHALLENGERMATCH-26JUL19POUJAN|JAN",
+        "KXATPCHALLENGERMATCH-26JUL20CALKUM|CAL",
+        "KXATPCHALLENGERMATCH-26JUL20CREMAT|CRE",
+        "KXATPCHALLENGERMATCH-26JUL20MAYMAG|MAY",
+        "KXATPCHALLENGERMATCH-26JUL20ONCAJD|ONC",
+        "KXATPCHALLENGERMATCH-26JUL20ZHUMAL|MAL"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 5,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 5,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 4,
+        "counts": {
+          "2": 2,
+          "3": 2,
+          "4": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 2,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_51_75_FLAT_RECOVERED": 5
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12HERALM|ALM",
+        "KXATPCHALLENGERMATCH-26JUL12MIYKUZ|MIY",
+        "KXATPCHALLENGERMATCH-26JUL12PEAKIR|KIR",
+        "KXATPCHALLENGERMATCH-26JUL13BINFUE|FUE",
+        "KXATPCHALLENGERMATCH-26JUL16DELDAL|DEL"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_UP_COHERENT_ORD_0_1",
+      "members": 115,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 115,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 99,
+          "1": 16
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_51_75_UP_CONTINUATION": 101,
+        "ATP_CHALL_51_75_UP_AFTER_DIP": 14
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12ALVVAN|ALV",
+        "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+        "KXATPCHALLENGERMATCH-26JUL12AZKLEO|AZK",
+        "KXATPCHALLENGERMATCH-26JUL12BROBAR|BRO",
+        "KXATPCHALLENGERMATCH-26JUL12CALRAD|CAL",
+        "KXATPCHALLENGERMATCH-26JUL12CHAJON|JON",
+        "KXATPCHALLENGERMATCH-26JUL12CHOGAS|CHO",
+        "KXATPCHALLENGERMATCH-26JUL12DEVGON|GON",
+        "KXATPCHALLENGERMATCH-26JUL12FANBIG|BIG",
+        "KXATPCHALLENGERMATCH-26JUL12FUEROS|FUE",
+        "KXATPCHALLENGERMATCH-26JUL12HECISO|HEC",
+        "KXATPCHALLENGERMATCH-26JUL12LAGTEP|LAG",
+        "KXATPCHALLENGERMATCH-26JUL12MARARS|MAR",
+        "KXATPCHALLENGERMATCH-26JUL12MEJSOT|MEJ",
+        "KXATPCHALLENGERMATCH-26JUL12PIETAB|PIE",
+        "KXATPCHALLENGERMATCH-26JUL12SANSCH|SCH",
+        "KXATPCHALLENGERMATCH-26JUL12WESPAA|WES",
+        "KXATPCHALLENGERMATCH-26JUL13ARSMAR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL13BOUGAN|BOU",
+        "KXATPCHALLENGERMATCH-26JUL13BOUZHA|ZHA",
+        "KXATPCHALLENGERMATCH-26JUL13FORHUA|FOR",
+        "KXATPCHALLENGERMATCH-26JUL13FORMAK|FOR",
+        "KXATPCHALLENGERMATCH-26JUL13INCSTE|INC",
+        "KXATPCHALLENGERMATCH-26JUL13JONPET|PET",
+        "KXATPCHALLENGERMATCH-26JUL13KUMLAG|LAG",
+        "KXATPCHALLENGERMATCH-26JUL13MUNLEO|LEO",
+        "KXATPCHALLENGERMATCH-26JUL13PERTOB|PER",
+        "KXATPCHALLENGERMATCH-26JUL13REHJUS|REH",
+        "KXATPCHALLENGERMATCH-26JUL13RODALK|ROD",
+        "KXATPCHALLENGERMATCH-26JUL13ROZISO|ROZ",
+        "KXATPCHALLENGERMATCH-26JUL13TABVIN|TAB",
+        "KXATPCHALLENGERMATCH-26JUL13WINKIR|WIN",
+        "KXATPCHALLENGERMATCH-26JUL13WONTUN|WON",
+        "KXATPCHALLENGERMATCH-26JUL13ZHUDLI|DLI",
+        "KXATPCHALLENGERMATCH-26JUL14BICMIY|MIY",
+        "KXATPCHALLENGERMATCH-26JUL14CASSCH|SCH",
+        "KXATPCHALLENGERMATCH-26JUL14DRATRO|DRA",
+        "KXATPCHALLENGERMATCH-26JUL14FORGOR|GOR",
+        "KXATPCHALLENGERMATCH-26JUL14FUEPRI|PRI",
+        "KXATPCHALLENGERMATCH-26JUL14GALFOR|GAL",
+        "KXATPCHALLENGERMATCH-26JUL14GANZIN|ZIN",
+        "KXATPCHALLENGERMATCH-26JUL14GENPET|GEN",
+        "KXATPCHALLENGERMATCH-26JUL14GLIJOH|GLI",
+        "KXATPCHALLENGERMATCH-26JUL14JONIVA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL14KRATOR|TOR",
+        "KXATPCHALLENGERMATCH-26JUL14LAGSAN|SAN",
+        "KXATPCHALLENGERMATCH-26JUL14MARCAM|CAM",
+        "KXATPCHALLENGERMATCH-26JUL14MARMAY|MAY",
+        "KXATPCHALLENGERMATCH-26JUL14NEDDAL|DAL",
+        "KXATPCHALLENGERMATCH-26JUL14OUAFIC|FIC",
+        "KXATPCHALLENGERMATCH-26JUL14RONGIU|GIU",
+        "KXATPCHALLENGERMATCH-26JUL14SURECH|SUR",
+        "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+        "KXATPCHALLENGERMATCH-26JUL14VILRIB|RIB",
+        "KXATPCHALLENGERMATCH-26JUL15BONJUS|JUS",
+        "KXATPCHALLENGERMATCH-26JUL15IVACRA|CRA",
+        "KXATPCHALLENGERMATCH-26JUL15LAJKRU|LAJ",
+        "KXATPCHALLENGERMATCH-26JUL15NAGTOR|NAG",
+        "KXATPCHALLENGERMATCH-26JUL15NOGSUR|SUR",
+        "KXATPCHALLENGERMATCH-26JUL15SCHHOU|SCH",
+        "KXATPCHALLENGERMATCH-26JUL15SHIBOU|SHI",
+        "KXATPCHALLENGERMATCH-26JUL15WOLJOH|WOL",
+        "KXATPCHALLENGERMATCH-26JUL16DRAMIL|DRA",
+        "KXATPCHALLENGERMATCH-26JUL16GLISEK|GLI",
+        "KXATPCHALLENGERMATCH-26JUL16GRESAN|GRE",
+        "KXATPCHALLENGERMATCH-26JUL16VISNIJ|NIJ",
+        "KXATPCHALLENGERMATCH-26JUL17ADDIVA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL17DRAGEA|GEA",
+        "KXATPCHALLENGERMATCH-26JUL17PERSAN|SAN",
+        "KXATPCHALLENGERMATCH-26JUL17RODCRA|ROD",
+        "KXATPCHALLENGERMATCH-26JUL17SEKCAS|CAS",
+        "KXATPCHALLENGERMATCH-26JUL18ALCVIL|ALC",
+        "KXATPCHALLENGERMATCH-26JUL18CASGEA|GEA",
+        "KXATPCHALLENGERMATCH-26JUL18TOMJOH|JOH",
+        "KXATPCHALLENGERMATCH-26JUL19AVECHA|CHA",
+        "KXATPCHALLENGERMATCH-26JUL19BANZHU|BAN",
+        "KXATPCHALLENGERMATCH-26JUL19BARLEO|LEO",
+        "KXATPCHALLENGERMATCH-26JUL19BARSTA|STA",
+        "KXATPCHALLENGERMATCH-26JUL19BONALC|ALC",
+        "KXATPCHALLENGERMATCH-26JUL19BRUKRA|BRU",
+        "KXATPCHALLENGERMATCH-26JUL19HERECH|ECH",
+        "KXATPCHALLENGERMATCH-26JUL19JONISO|ISO",
+        "KXATPCHALLENGERMATCH-26JUL19KIRAGU|AGU",
+        "KXATPCHALLENGERMATCH-26JUL19MALMOR|MAL",
+        "KXATPCHALLENGERMATCH-26JUL19MILFAN|MIL",
+        "KXATPCHALLENGERMATCH-26JUL19PIENES|NES",
+        "KXATPCHALLENGERMATCH-26JUL19RITGOM|GOM",
+        "KXATPCHALLENGERMATCH-26JUL19RODIVA|ROD",
+        "KXATPCHALLENGERMATCH-26JUL19TOKMIY|MIY",
+        "KXATPCHALLENGERMATCH-26JUL19VANRAD|RAD",
+        "KXATPCHALLENGERMATCH-26JUL19WINSHE|WIN",
+        "KXATPCHALLENGERMATCH-26JUL20ARSRIC|RIC",
+        "KXATPCHALLENGERMATCH-26JUL20CHABOU|CHA",
+        "KXATPCHALLENGERMATCH-26JUL20FAURIN|RIN",
+        "KXATPCHALLENGERMATCH-26JUL20GADGUI|GUI",
+        "KXATPCHALLENGERMATCH-26JUL20GALLLA|GAL",
+        "KXATPCHALLENGERMATCH-26JUL20GORYOU|GOR",
+        "KXATPCHALLENGERMATCH-26JUL20IMAKIN|IMA",
+        "KXATPCHALLENGERMATCH-26JUL20JOHAGU|JOH",
+        "KXATPCHALLENGERMATCH-26JUL20KYMCLA|KYM",
+        "KXATPCHALLENGERMATCH-26JUL20MARBIT|MAR",
+        "KXATPCHALLENGERMATCH-26JUL20MONBAR|BAR",
+        "KXATPCHALLENGERMATCH-26JUL20NOGSHI|NOG",
+        "KXATPCHALLENGERMATCH-26JUL20PETTAB|PET",
+        "KXATPCHALLENGERMATCH-26JUL20PIRNAP|PIR",
+        "KXATPCHALLENGERMATCH-26JUL20POLBRU|POL",
+        "KXATPCHALLENGERMATCH-26JUL20SEYKOL|SEY",
+        "KXATPCHALLENGERMATCH-26JUL20STAMAT|MAT",
+        "KXATPCHALLENGERMATCH-26JUL20SURKUZ|SUR",
+        "KXATPCHALLENGERMATCH-26JUL20TORSTR|STR",
+        "KXATPCHALLENGERMATCH-26JUL20VARDON|VAR",
+        "KXATPCHALLENGERMATCH-26JUL20VASSIN|VAS",
+        "KXATPCHALLENGERMATCH-26JUL20WATILA|WAT",
+        "KXATPCHALLENGERMATCH-26JUL20ZHOGEE|ZHO",
+        "KXATPCHALLENGERMATCH-26JUL20ZINZHA|ZHA"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "shape_id": "ATP_CHALL_51_75_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 10,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 10,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 7,
+        "p90": 23,
+        "max": 62,
+        "counts": {
+          "2": 3,
+          "3": 3,
+          "7": 1,
+          "10": 1,
+          "23": 1,
+          "62": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 60,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_51_75_UP_CONTINUATION": 3,
+        "ATP_CHALL_51_75_UP_AFTER_DIP": 7
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BARREI|BAR",
+        "KXATPCHALLENGERMATCH-26JUL13ALVKUM|ALV",
+        "KXATPCHALLENGERMATCH-26JUL14IMAMCC|MCC",
+        "KXATPCHALLENGERMATCH-26JUL14SQUKUM|SQU",
+        "KXATPCHALLENGERMATCH-26JUL16ADDGHI|GHI",
+        "KXATPCHALLENGERMATCH-26JUL19IMATRA|IMA",
+        "KXATPCHALLENGERMATCH-26JUL19LANMAY|MAY",
+        "KXATPCHALLENGERMATCH-26JUL19SINMAT|MAT",
+        "KXATPCHALLENGERMATCH-26JUL19VUKGEA|GEA",
+        "KXATPCHALLENGERMATCH-26JUL20HSUHAR|HAR"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 18,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 18,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 2,
+        "median": 5,
+        "p75": 7,
+        "p90": 14,
+        "max": 145,
+        "counts": {
+          "1": 3,
+          "2": 2,
+          "3": 2,
+          "4": 1,
+          "5": 2,
+          "6": 2,
+          "7": 2,
+          "9": 1,
+          "14": 1,
+          "17": 1,
+          "145": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 144,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_ge76_DOWN_CONTINUATION": 12,
+        "ATP_CHALL_ge76_DOWN_REBOUND": 6
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BOOONC|ONC",
+        "KXATPCHALLENGERMATCH-26JUL12HOHSUR|SUR",
+        "KXATPCHALLENGERMATCH-26JUL12LANKOB|LAN",
+        "KXATPCHALLENGERMATCH-26JUL13PRICRI|PRI",
+        "KXATPCHALLENGERMATCH-26JUL13SANLOP|SAN",
+        "KXATPCHALLENGERMATCH-26JUL13TROGEO|TRO",
+        "KXATPCHALLENGERMATCH-26JUL13VILGAN|VIL",
+        "KXATPCHALLENGERMATCH-26JUL14LANYIB|YIB",
+        "KXATPCHALLENGERMATCH-26JUL14VUKARS|VUK",
+        "KXATPCHALLENGERMATCH-26JUL16FUESEY|SEY",
+        "KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOU",
+        "KXATPCHALLENGERMATCH-26JUL19CALTEP|CAL",
+        "KXATPCHALLENGERMATCH-26JUL19DJOMAT|MAT",
+        "KXATPCHALLENGERMATCH-26JUL19KOZVIT|KOZ",
+        "KXATPCHALLENGERMATCH-26JUL19REJWES|WES",
+        "KXATPCHALLENGERMATCH-26JUL20GIUHER|GIU",
+        "KXATPCHALLENGERMATCH-26JUL20VALGOM|GOM",
+        "KXATPCHALLENGERMATCH-26JUL20WINARS|WIN"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_FLAT_COHERENT_ORD_0_1",
+      "members": 21,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 21,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 14,
+          "1": 7
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_ge76_FLAT_RECOVERED": 6,
+        "ATP_CHALL_ge76_FLAT_UNMOVED": 15
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BOUVIT|BOU",
+        "KXATPCHALLENGERMATCH-26JUL12DELMAK|MAK",
+        "KXATPCHALLENGERMATCH-26JUL12FORPAM|FOR",
+        "KXATPCHALLENGERMATCH-26JUL12GEOMAG|MAG",
+        "KXATPCHALLENGERMATCH-26JUL12GURDAL|DAL",
+        "KXATPCHALLENGERMATCH-26JUL12KRALOR|KRA",
+        "KXATPCHALLENGERMATCH-26JUL12RAFAGU|AGU",
+        "KXATPCHALLENGERMATCH-26JUL12ROUGAN|GAN",
+        "KXATPCHALLENGERMATCH-26JUL12SIAIVA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL12YEVBOR|YEV",
+        "KXATPCHALLENGERMATCH-26JUL13MONANG|MON",
+        "KXATPCHALLENGERMATCH-26JUL14DENYEV|DEN",
+        "KXATPCHALLENGERMATCH-26JUL14PERCRA|CRA",
+        "KXATPCHALLENGERMATCH-26JUL15GENDE|GEN",
+        "KXATPCHALLENGERMATCH-26JUL16RICGEA|GEA",
+        "KXATPCHALLENGERMATCH-26JUL19DEMMAG|MAG",
+        "KXATPCHALLENGERMATCH-26JUL19MARCOL|MAR",
+        "KXATPCHALLENGERMATCH-26JUL19MONTHO|MON",
+        "KXATPCHALLENGERMATCH-26JUL20BICWAL|WAL",
+        "KXATPCHALLENGERMATCH-26JUL20KUZJAN|KUZ",
+        "KXATPCHALLENGERMATCH-26JUL20POHWES|WES"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 1,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4,
+        "counts": {
+          "4": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 0,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_ge76_FLAT_RECOVERED": 1
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL19SURPER|SUR"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_UP_COHERENT_ORD_0_1",
+      "members": 46,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 46,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 40,
+          "1": 6
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_ge76_UP_CONTINUATION": 40,
+        "ATP_CHALL_ge76_UP_AFTER_DIP": 6
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BINGIL|BIN",
+        "KXATPCHALLENGERMATCH-26JUL12GANJAN|JAN",
+        "KXATPCHALLENGERMATCH-26JUL12GIESHE|SHE",
+        "KXATPCHALLENGERMATCH-26JUL12KUZDE|KUZ",
+        "KXATPCHALLENGERMATCH-26JUL12OUAFER|OUA",
+        "KXATPCHALLENGERMATCH-26JUL12PALMAR|PAL",
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+        "KXATPCHALLENGERMATCH-26JUL12PRIBAL|PRI",
+        "KXATPCHALLENGERMATCH-26JUL12SALARN|ARN",
+        "KXATPCHALLENGERMATCH-26JUL12TROHOR|TRO",
+        "KXATPCHALLENGERMATCH-26JUL12VANCHO|VAN",
+        "KXATPCHALLENGERMATCH-26JUL12WINROB|WIN",
+        "KXATPCHALLENGERMATCH-26JUL12YIBMAL|YIB",
+        "KXATPCHALLENGERMATCH-26JUL13CHOSUR|SUR",
+        "KXATPCHALLENGERMATCH-26JUL13FORRAF|FOR",
+        "KXATPCHALLENGERMATCH-26JUL13WOLFEN|WOL",
+        "KXATPCHALLENGERMATCH-26JUL13YIBMAR|YIB",
+        "KXATPCHALLENGERMATCH-26JUL14ALCTAB|ALC",
+        "KXATPCHALLENGERMATCH-26JUL14CLAWES|CLA",
+        "KXATPCHALLENGERMATCH-26JUL14DALMAY|MAY",
+        "KXATPCHALLENGERMATCH-26JUL14DELXIL|DEL",
+        "KXATPCHALLENGERMATCH-26JUL14SUNGEA|GEA",
+        "KXATPCHALLENGERMATCH-26JUL14UCHGAL|GAL",
+        "KXATPCHALLENGERMATCH-26JUL15WESCOP|COP",
+        "KXATPCHALLENGERMATCH-26JUL15WONSHE|WON",
+        "KXATPCHALLENGERMATCH-26JUL16ALCANG|ALC",
+        "KXATPCHALLENGERMATCH-26JUL16IVAOUA|IVA",
+        "KXATPCHALLENGERMATCH-26JUL16SMIMAT|SMI",
+        "KXATPCHALLENGERMATCH-26JUL17NIJDEN|DEN",
+        "KXATPCHALLENGERMATCH-26JUL18RODSAN|ROD",
+        "KXATPCHALLENGERMATCH-26JUL19ARNPOH|ARN",
+        "KXATPCHALLENGERMATCH-26JUL19BIAYOU|YOU",
+        "KXATPCHALLENGERMATCH-26JUL19JOHGEO|JOH",
+        "KXATPCHALLENGERMATCH-26JUL19KUHPAS|PAS",
+        "KXATPCHALLENGERMATCH-26JUL19KUZOPI|KUZ",
+        "KXATPCHALLENGERMATCH-26JUL19MARWAZ|MAR",
+        "KXATPCHALLENGERMATCH-26JUL19MENKUM|KUM",
+        "KXATPCHALLENGERMATCH-26JUL19OLILAS|OLI",
+        "KXATPCHALLENGERMATCH-26JUL19PAPROS|ROS",
+        "KXATPCHALLENGERMATCH-26JUL19PETALO|PET",
+        "KXATPCHALLENGERMATCH-26JUL19PONZIE|ZIE",
+        "KXATPCHALLENGERMATCH-26JUL19TORSEN|TOR",
+        "KXATPCHALLENGERMATCH-26JUL19YEVSTR|STR",
+        "KXATPCHALLENGERMATCH-26JUL20MARROS|MAR",
+        "KXATPCHALLENGERMATCH-26JUL20TROISO|TRO",
+        "KXATPCHALLENGERMATCH-26JUL20ZHESHE|ZHE"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "shape_id": "ATP_CHALL_ge76_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 7,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 7,
+        "censored_n": 0,
+        "min": 3,
+        "p25": 4,
+        "median": 5,
+        "p75": 14,
+        "p90": 24,
+        "max": 85,
+        "counts": {
+          "3": 1,
+          "4": 2,
+          "5": 1,
+          "14": 1,
+          "24": 1,
+          "85": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 82,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_ge76_UP_AFTER_DIP": 5,
+        "ATP_CHALL_ge76_UP_CONTINUATION": 2
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BARVIS|BAR",
+        "KXATPCHALLENGERMATCH-26JUL12ECHMUN|ECH",
+        "KXATPCHALLENGERMATCH-26JUL12LINMAL|MAL",
+        "KXATPCHALLENGERMATCH-26JUL12MOLDON|MOL",
+        "KXATPCHALLENGERMATCH-26JUL13OUALIN|OUA",
+        "KXATPCHALLENGERMATCH-26JUL19VISAHT|VIS",
+        "KXATPCHALLENGERMATCH-26JUL20OLIZIE|OLI"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_DOWN_COHERENT_ORD_2_3",
+      "members": 20,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 20,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 3,
+        "p90": 3,
+        "max": 3,
+        "counts": {
+          "2": 11,
+          "3": 9
+        },
+        "signing_ordinal_after_a_descent_is_observed": 3
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_le25_DOWN_CONTINUATION": 13,
+        "ATP_CHALL_le25_DOWN_REBOUND": 7
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12DELMAK|DEL",
+        "KXATPCHALLENGERMATCH-26JUL12TROHOR|HOR",
+        "KXATPCHALLENGERMATCH-26JUL13RODALK|ALK",
+        "KXATPCHALLENGERMATCH-26JUL14CLAWES|WES",
+        "KXATPCHALLENGERMATCH-26JUL14DALMAY|DAL",
+        "KXATPCHALLENGERMATCH-26JUL15WESCOP|WES",
+        "KXATPCHALLENGERMATCH-26JUL15WONSHE|SHE",
+        "KXATPCHALLENGERMATCH-26JUL16IVAOUA|OUA",
+        "KXATPCHALLENGERMATCH-26JUL16SMIMAT|MAT",
+        "KXATPCHALLENGERMATCH-26JUL17NIJDEN|NIJ",
+        "KXATPCHALLENGERMATCH-26JUL18RODSAN|SAN",
+        "KXATPCHALLENGERMATCH-26JUL19ARNPOH|POH",
+        "KXATPCHALLENGERMATCH-26JUL19GIUDEV|DEV",
+        "KXATPCHALLENGERMATCH-26JUL19KUHPAS|KUH",
+        "KXATPCHALLENGERMATCH-26JUL19OLILAS|LAS",
+        "KXATPCHALLENGERMATCH-26JUL19TORSEN|SEN",
+        "KXATPCHALLENGERMATCH-26JUL19YEVSTR|YEV",
+        "KXATPCHALLENGERMATCH-26JUL20MARROS|ROS",
+        "KXATPCHALLENGERMATCH-26JUL20PIRNAP|NAP",
+        "KXATPCHALLENGERMATCH-26JUL20VISNIK|NIK"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 23,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 23,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 4,
+        "p75": 5,
+        "p90": 7,
+        "max": 13,
+        "counts": {
+          "0": 1,
+          "1": 9,
+          "4": 3,
+          "5": 4,
+          "6": 2,
+          "7": 2,
+          "9": 1,
+          "13": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 13,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_le25_DOWN_REBOUND": 6,
+        "ATP_CHALL_le25_DOWN_CONTINUATION": 17
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BARVIS|VIS",
+        "KXATPCHALLENGERMATCH-26JUL12BINGIL|GIL",
+        "KXATPCHALLENGERMATCH-26JUL12BOUVIT|VIT",
+        "KXATPCHALLENGERMATCH-26JUL12BROBAR|BAR",
+        "KXATPCHALLENGERMATCH-26JUL12ECHMUN|MUN",
+        "KXATPCHALLENGERMATCH-26JUL12KUZDE|DE",
+        "KXATPCHALLENGERMATCH-26JUL12YIBMAL|MAL",
+        "KXATPCHALLENGERMATCH-26JUL13BOUZHA|BOU",
+        "KXATPCHALLENGERMATCH-26JUL13CHOSUR|CHO",
+        "KXATPCHALLENGERMATCH-26JUL13POLMIY|POL",
+        "KXATPCHALLENGERMATCH-26JUL14ALCTAB|TAB",
+        "KXATPCHALLENGERMATCH-26JUL14DELXIL|XIL",
+        "KXATPCHALLENGERMATCH-26JUL14PERCRA|PER",
+        "KXATPCHALLENGERMATCH-26JUL14SUNGEA|SUN",
+        "KXATPCHALLENGERMATCH-26JUL19BIAYOU|BIA",
+        "KXATPCHALLENGERMATCH-26JUL19HERECH|HER",
+        "KXATPCHALLENGERMATCH-26JUL19JOHGEO|GEO",
+        "KXATPCHALLENGERMATCH-26JUL19KUZOPI|OPI",
+        "KXATPCHALLENGERMATCH-26JUL19PAPROS|PAP",
+        "KXATPCHALLENGERMATCH-26JUL19PETALO|ALO",
+        "KXATPCHALLENGERMATCH-26JUL20KYMCLA|CLA",
+        "KXATPCHALLENGERMATCH-26JUL20VASSIN|SIN",
+        "KXATPCHALLENGERMATCH-26JUL20ZHESHE|SHE"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_FLAT_COHERENT_ORD_0_1",
+      "members": 28,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 28,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 16,
+          "1": 12
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_le25_FLAT_UNMOVED": 15,
+        "ATP_CHALL_le25_FLAT_RECOVERED": 13
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12BALPET|BAL",
+        "KXATPCHALLENGERMATCH-26JUL12FORPAM|PAM",
+        "KXATPCHALLENGERMATCH-26JUL12LINMAL|LIN",
+        "KXATPCHALLENGERMATCH-26JUL12OUAFER|FER",
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+        "KXATPCHALLENGERMATCH-26JUL12PRIBAL|BAL",
+        "KXATPCHALLENGERMATCH-26JUL12ROUGAN|ROU",
+        "KXATPCHALLENGERMATCH-26JUL12SIAIVA|SIA",
+        "KXATPCHALLENGERMATCH-26JUL12VANCHO|CHO",
+        "KXATPCHALLENGERMATCH-26JUL12YEVBOR|BOR",
+        "KXATPCHALLENGERMATCH-26JUL13MONANG|ANG",
+        "KXATPCHALLENGERMATCH-26JUL13WOLFEN|FEN",
+        "KXATPCHALLENGERMATCH-26JUL13YIBMAR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL14DENYEV|YEV",
+        "KXATPCHALLENGERMATCH-26JUL14UCHGAL|UCH",
+        "KXATPCHALLENGERMATCH-26JUL15GENDE|DE",
+        "KXATPCHALLENGERMATCH-26JUL16ALCANG|ANG",
+        "KXATPCHALLENGERMATCH-26JUL16FUESEY|FUE",
+        "KXATPCHALLENGERMATCH-26JUL16RICGEA|RIC",
+        "KXATPCHALLENGERMATCH-26JUL19DEMMAG|DEM",
+        "KXATPCHALLENGERMATCH-26JUL19DONTOP|DON",
+        "KXATPCHALLENGERMATCH-26JUL19MARWAZ|WAZ",
+        "KXATPCHALLENGERMATCH-26JUL19SURPER|PER",
+        "KXATPCHALLENGERMATCH-26JUL20BICWAL|BIC",
+        "KXATPCHALLENGERMATCH-26JUL20KUZJAN|JAN",
+        "KXATPCHALLENGERMATCH-26JUL20POHWES|POH",
+        "KXATPCHALLENGERMATCH-26JUL20TROISO|ISO",
+        "KXATPCHALLENGERMATCH-26JUL20VALGOM|VAL"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 3,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 13,
+        "counts": {
+          "2": 1,
+          "3": 1,
+          "13": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 11,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_le25_FLAT_RECOVERED": 3
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL13FORHUA|HUA",
+        "KXATPCHALLENGERMATCH-26JUL14DRATRO|TRO",
+        "KXATPCHALLENGERMATCH-26JUL19MARCOL|COL"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_UP_COHERENT_ORD_0_1",
+      "members": 32,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 32,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "counts": {
+          "0": 28,
+          "1": 4
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_le25_UP_CONTINUATION": 26,
+        "ATP_CHALL_le25_UP_AFTER_DIP": 6
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12ALVVAN|VAN",
+        "KXATPCHALLENGERMATCH-26JUL12BOOONC|BOO",
+        "KXATPCHALLENGERMATCH-26JUL12GANJAN|GAN",
+        "KXATPCHALLENGERMATCH-26JUL12GEOMAG|GEO",
+        "KXATPCHALLENGERMATCH-26JUL12GURDAL|GUR",
+        "KXATPCHALLENGERMATCH-26JUL12HOHSUR|HOH",
+        "KXATPCHALLENGERMATCH-26JUL12KRALOR|LOR",
+        "KXATPCHALLENGERMATCH-26JUL12LANKOB|KOB",
+        "KXATPCHALLENGERMATCH-26JUL12MOLDON|DON",
+        "KXATPCHALLENGERMATCH-26JUL12PALMAR|MAR",
+        "KXATPCHALLENGERMATCH-26JUL12WINROB|ROB",
+        "KXATPCHALLENGERMATCH-26JUL13DONWES|DON",
+        "KXATPCHALLENGERMATCH-26JUL13FORRAF|RAF",
+        "KXATPCHALLENGERMATCH-26JUL13OUALIN|LIN",
+        "KXATPCHALLENGERMATCH-26JUL13PRICRI|CRI",
+        "KXATPCHALLENGERMATCH-26JUL13SANLOP|LOP",
+        "KXATPCHALLENGERMATCH-26JUL13TROGEO|GEO",
+        "KXATPCHALLENGERMATCH-26JUL13VILGAN|GAN",
+        "KXATPCHALLENGERMATCH-26JUL14LANYIB|LAN",
+        "KXATPCHALLENGERMATCH-26JUL14VUKARS|ARS",
+        "KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOH",
+        "KXATPCHALLENGERMATCH-26JUL19CALTEP|TEP",
+        "KXATPCHALLENGERMATCH-26JUL19DJOMAT|DJO",
+        "KXATPCHALLENGERMATCH-26JUL19KOZVIT|VIT",
+        "KXATPCHALLENGERMATCH-26JUL19MENKUM|MEN",
+        "KXATPCHALLENGERMATCH-26JUL19MONTHO|THO",
+        "KXATPCHALLENGERMATCH-26JUL19PONZIE|PON",
+        "KXATPCHALLENGERMATCH-26JUL19REJWES|REJ",
+        "KXATPCHALLENGERMATCH-26JUL19VASTAB|VAS",
+        "KXATPCHALLENGERMATCH-26JUL19VISAHT|AHT",
+        "KXATPCHALLENGERMATCH-26JUL20GIUHER|HER",
+        "KXATPCHALLENGERMATCH-26JUL20WINARS|ARS"
+      ]
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "shape_id": "ATP_CHALL_le25_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 2,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 2,
+        "censored_n": 0,
+        "min": 3,
+        "p25": 3,
+        "median": 5,
+        "p75": 3,
+        "p90": 3,
+        "max": 5,
+        "counts": {
+          "3": 1,
+          "5": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 2,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_CHALL_le25_UP_AFTER_DIP": 2
+      },
+      "member_identities": [
+        "KXATPCHALLENGERMATCH-26JUL12GIESHE|GIE",
+        "KXATPCHALLENGERMATCH-26JUL20OLIZIE|ZIE"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 43,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 43,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 2,
+        "median": 4,
+        "p75": 10,
+        "p90": 16,
+        "max": 27,
+        "counts": {
+          "0": 1,
+          "1": 9,
+          "2": 6,
+          "3": 4,
+          "4": 5,
+          "5": 3,
+          "7": 2,
+          "9": 1,
+          "10": 3,
+          "12": 2,
+          "14": 1,
+          "16": 2,
+          "17": 1,
+          "20": 1,
+          "25": 1,
+          "27": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 27,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_26_50_DOWN_REBOUND": 21,
+        "ATP_MAIN_26_50_DOWN_CONTINUATION": 22
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12ALTGAS|GAS",
+        "KXATPMATCH-26JUL12BUEMAR|MAR",
+        "KXATPMATCH-26JUL12DEJGAU|GAU",
+        "KXATPMATCH-26JUL12DZUROC|DZU",
+        "KXATPMATCH-26JUL12FARWAW|WAW",
+        "KXATPMATCH-26JUL12KOPPRI|KOP",
+        "KXATPMATCH-26JUL12MOLFAU|FAU",
+        "KXATPMATCH-26JUL12MOLROY|ROY",
+        "KXATPMATCH-26JUL12MULSHE|MUL",
+        "KXATPMATCH-26JUL12NEUTOP|TOP",
+        "KXATPMATCH-26JUL12OFNTIR|OFN",
+        "KXATPMATCH-26JUL12SKASAC|SKA",
+        "KXATPMATCH-26JUL12SONSCH|SCH",
+        "KXATPMATCH-26JUL12STRMUN|STR",
+        "KXATPMATCH-26JUL12TABHUE|HUE",
+        "KXATPMATCH-26JUL12TSIBUS|TSI",
+        "KXATPMATCH-26JUL13TABROD|ROD",
+        "KXATPMATCH-26JUL14CINHAL|CIN",
+        "KXATPMATCH-26JUL14GOMMCD|MCD",
+        "KXATPMATCH-26JUL14TOPUGO|TOP",
+        "KXATPMATCH-26JUL14VANDAN|DAN",
+        "KXATPMATCH-26JUL15CERKEC|KEC",
+        "KXATPMATCH-26JUL15ETCMER|MER",
+        "KXATPMATCH-26JUL15PRIMOL|MOL",
+        "KXATPMATCH-26JUL15VANDRO|VAN",
+        "KXATPMATCH-26JUL15VANVAL|VAN",
+        "KXATPMATCH-26JUL16DZUARN|DZU",
+        "KXATPMATCH-26JUL17CERRUU|CER",
+        "KXATPMATCH-26JUL17RINTSI|RIN",
+        "KXATPMATCH-26JUL17RUBBAE|BAE",
+        "KXATPMATCH-26JUL18DELRIB|RIB",
+        "KXATPMATCH-26JUL18HIPGIU|HIP",
+        "KXATPMATCH-26JUL18KOPHER|HER",
+        "KXATPMATCH-26JUL18MERDZU|DZU",
+        "KXATPMATCH-26JUL19BAEKEC|BAE",
+        "KXATPMATCH-26JUL19CERTRU|TRU",
+        "KXATPMATCH-26JUL19DROUGO|DRO",
+        "KXATPMATCH-26JUL19GAUCAR|GAU",
+        "KXATPMATCH-26JUL19NEUHAN|NEU",
+        "KXATPMATCH-26JUL19TSICOL|COL",
+        "KXATPMATCH-26JUL19VANFAR|VAN",
+        "KXATPMATCH-26JUL20ROCMAR|MAR",
+        "KXATPMATCH-26JUL20SCHROD|SCH"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 21,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 20,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 4,
+        "max": 5,
+        "counts": {
+          "0": 9,
+          "1": 8,
+          "4": 1,
+          "5": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 5,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_26_50_FLAT_RECOVERED": 10,
+        "ATP_MAIN_26_50_FLAT_UNMOVED": 11
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12BUDPEL|BUD",
+        "KXATPMATCH-26JUL12CHOBAS|BAS",
+        "KXATPMATCH-26JUL12CINHEM|HEM",
+        "KXATPMATCH-26JUL12JACTRU|JAC",
+        "KXATPMATCH-26JUL12PASKAS|KAS",
+        "KXATPMATCH-26JUL13FAUDAM|DAM",
+        "KXATPMATCH-26JUL13MARMID|MAR",
+        "KXATPMATCH-26JUL14RINTAB|TAB",
+        "KXATPMATCH-26JUL15BORDIM|DIM",
+        "KXATPMATCH-26JUL15BUBHAL|HAL",
+        "KXATPMATCH-26JUL15COLSON|SON",
+        "KXATPMATCH-26JUL16MERDRO|DRO",
+        "KXATPMATCH-26JUL16MOLDAV|MOL",
+        "KXATPMATCH-26JUL17BORDAR|BOR",
+        "KXATPMATCH-26JUL17DZUMOL|DZU",
+        "KXATPMATCH-26JUL17TABTIR|TIR",
+        "KXATPMATCH-26JUL18BUTTAB|BUT",
+        "KXATPMATCH-26JUL18DANPRA|PRA",
+        "KXATPMATCH-26JUL18MARJOR|JOR",
+        "KXATPMATCH-26JUL18VALDAR|VAL",
+        "KXATPMATCH-26JUL20DIACIN|CIN"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_UP_COHERENT_ORD_0_1",
+      "members": 29,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 29,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 23,
+          "1": 6
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_26_50_UP_AFTER_DIP": 7,
+        "ATP_MAIN_26_50_UP_CONTINUATION": 22
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12CORDAN|COR",
+        "KXATPMATCH-26JUL12DIEMON|MON",
+        "KXATPMATCH-26JUL12GUEGOM|GOM",
+        "KXATPMATCH-26JUL12PASKAS|PAS",
+        "KXATPMATCH-26JUL12PRASAI|PRA",
+        "KXATPMATCH-26JUL12SKASAC|SAC",
+        "KXATPMATCH-26JUL12SVRDIM|SVR",
+        "KXATPMATCH-26JUL13PASKRU|KRU",
+        "KXATPMATCH-26JUL14CECBUR|CEC",
+        "KXATPMATCH-26JUL14NEUPRA|PRA",
+        "KXATPMATCH-26JUL14TRAKRU|TRA",
+        "KXATPMATCH-26JUL15BASTIR|BAS",
+        "KXATPMATCH-26JUL15CARUGO|UGO",
+        "KXATPMATCH-26JUL15COBBUR|BUR",
+        "KXATPMATCH-26JUL15HANVAC|VAC",
+        "KXATPMATCH-26JUL15PRADZU|PRA",
+        "KXATPMATCH-26JUL16DEJBAE|BAE",
+        "KXATPMATCH-26JUL17COLVAC|VAC",
+        "KXATPMATCH-26JUL17VALTRA|TRA",
+        "KXATPMATCH-26JUL18CINMIC|MIC",
+        "KXATPMATCH-26JUL18HEIFEL|FEL",
+        "KXATPMATCH-26JUL18RUBTAB|TAB",
+        "KXATPMATCH-26JUL19ALTCOL|ALT",
+        "KXATPMATCH-26JUL19DROUGO|UGO",
+        "KXATPMATCH-26JUL19GASDZU|GAS",
+        "KXATPMATCH-26JUL19KOPBUS|KOP",
+        "KXATPMATCH-26JUL19MARSKA|SKA",
+        "KXATPMATCH-26JUL19STRSHE|SHE",
+        "KXATPMATCH-26JUL19WAWBUR|WAW"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "shape_id": "ATP_MAIN_26_50_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 3,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 5,
+        "counts": {
+          "2": 2,
+          "5": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 3,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_26_50_UP_AFTER_DIP": 3
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12FELKEC|FEL",
+        "KXATPMATCH-26JUL14KYMDIE|DIE",
+        "KXATPMATCH-26JUL17HALSHE|SHE"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 29,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 29,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 3,
+        "median": 5,
+        "p75": 6,
+        "p90": 12,
+        "max": 33,
+        "counts": {
+          "1": 1,
+          "2": 4,
+          "3": 6,
+          "4": 3,
+          "5": 3,
+          "6": 5,
+          "10": 2,
+          "12": 2,
+          "19": 1,
+          "20": 1,
+          "33": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 32,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_51_75_DOWN_CONTINUATION": 12,
+        "ATP_MAIN_51_75_DOWN_REBOUND": 17
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12CINHEM|CIN",
+        "KXATPMATCH-26JUL12CORDAN|DAN",
+        "KXATPMATCH-26JUL12DIEMON|DIE",
+        "KXATPMATCH-26JUL12DODCAR|CAR",
+        "KXATPMATCH-26JUL12DROBLO|DRO",
+        "KXATPMATCH-26JUL12GUEGOM|GUE",
+        "KXATPMATCH-26JUL12PRASAI|SAI",
+        "KXATPMATCH-26JUL12SVRDIM|DIM",
+        "KXATPMATCH-26JUL14CECBUR|BUR",
+        "KXATPMATCH-26JUL14KYMDIE|KYM",
+        "KXATPMATCH-26JUL14TRAKRU|KRU",
+        "KXATPMATCH-26JUL15BUBHAL|BUB",
+        "KXATPMATCH-26JUL15CARUGO|CAR",
+        "KXATPMATCH-26JUL15COBBUR|COB",
+        "KXATPMATCH-26JUL15COLSON|COL",
+        "KXATPMATCH-26JUL15HANVAC|HAN",
+        "KXATPMATCH-26JUL15PRADZU|DZU",
+        "KXATPMATCH-26JUL15RUBPEL|RUB",
+        "KXATPMATCH-26JUL16DEJBAE|DEJ",
+        "KXATPMATCH-26JUL16MOLDAV|DAV",
+        "KXATPMATCH-26JUL17COLVAC|COL",
+        "KXATPMATCH-26JUL18MARJOR|MAR",
+        "KXATPMATCH-26JUL18RUBTAB|RUB",
+        "KXATPMATCH-26JUL19ALTCOL|COL",
+        "KXATPMATCH-26JUL19GASDZU|DZU",
+        "KXATPMATCH-26JUL19KOPBUS|BUS",
+        "KXATPMATCH-26JUL19MARSKA|MAR",
+        "KXATPMATCH-26JUL19WAWBUR|BUR",
+        "KXATPMATCH-26JUL20DIACIN|DIA"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 26,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 25,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 3,
+        "max": 32,
+        "counts": {
+          "0": 15,
+          "1": 3,
+          "2": 2,
+          "3": 2,
+          "5": 1,
+          "10": 1,
+          "32": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 32,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_51_75_FLAT_UNMOVED": 17,
+        "ATP_MAIN_51_75_FLAT_RECOVERED": 9
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12BUEMAR|BUE",
+        "KXATPMATCH-26JUL12CHOBAS|CHO",
+        "KXATPMATCH-26JUL12FELKEC|KEC",
+        "KXATPMATCH-26JUL12JACTRU|TRU",
+        "KXATPMATCH-26JUL12MOLFAU|MOL",
+        "KXATPMATCH-26JUL12TABHUE|TAB",
+        "KXATPMATCH-26JUL13FAUDAM|FAU",
+        "KXATPMATCH-26JUL13MARMID|MID",
+        "KXATPMATCH-26JUL13PASKRU|PAS",
+        "KXATPMATCH-26JUL13TABROD|TAB",
+        "KXATPMATCH-26JUL14NEUPRA|NEU",
+        "KXATPMATCH-26JUL14RINTAB|RIN",
+        "KXATPMATCH-26JUL14TOPUGO|UGO",
+        "KXATPMATCH-26JUL15BASTIR|TIR",
+        "KXATPMATCH-26JUL15BORDIM|BOR",
+        "KXATPMATCH-26JUL15VANVAL|VAL",
+        "KXATPMATCH-26JUL16MERDRO|MER",
+        "KXATPMATCH-26JUL17HALSHE|HAL",
+        "KXATPMATCH-26JUL17RINTSI|TSI",
+        "KXATPMATCH-26JUL17VALTRA|VAL",
+        "KXATPMATCH-26JUL18BUTTAB|TAB",
+        "KXATPMATCH-26JUL18CINMIC|CIN",
+        "KXATPMATCH-26JUL18DANPRA|DAN",
+        "KXATPMATCH-26JUL18DELRIB|DEL",
+        "KXATPMATCH-26JUL18VALDAR|DAR",
+        "KXATPMATCH-26JUL19FELKOP|FEL"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_UP_COHERENT_ORD_0_1",
+      "members": 32,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 32,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 25,
+          "1": 7
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_51_75_UP_CONTINUATION": 26,
+        "ATP_MAIN_51_75_UP_AFTER_DIP": 6
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12ALTGAS|ALT",
+        "KXATPMATCH-26JUL12BUDPEL|PEL",
+        "KXATPMATCH-26JUL12DZUROC|ROC",
+        "KXATPMATCH-26JUL12FARWAW|FAR",
+        "KXATPMATCH-26JUL12KOPPRI|PRI",
+        "KXATPMATCH-26JUL12MARHAN|HAN",
+        "KXATPMATCH-26JUL12MOLROY|MOL",
+        "KXATPMATCH-26JUL12MULSHE|SHE",
+        "KXATPMATCH-26JUL12NEUTOP|NEU",
+        "KXATPMATCH-26JUL12OFNTIR|TIR",
+        "KXATPMATCH-26JUL12STRMUN|MUN",
+        "KXATPMATCH-26JUL14CINHAL|HAL",
+        "KXATPMATCH-26JUL14GOMMCD|GOM",
+        "KXATPMATCH-26JUL14VANDAN|VAN",
+        "KXATPMATCH-26JUL15ETCMER|ETC",
+        "KXATPMATCH-26JUL15PRIMOL|PRI",
+        "KXATPMATCH-26JUL15VANDRO|DRO",
+        "KXATPMATCH-26JUL16DZUARN|ARN",
+        "KXATPMATCH-26JUL17BORDAR|DAR",
+        "KXATPMATCH-26JUL17CERRUU|RUU",
+        "KXATPMATCH-26JUL17DZUMOL|MOL",
+        "KXATPMATCH-26JUL17TABTIR|TAB",
+        "KXATPMATCH-26JUL18HEIFEL|HEI",
+        "KXATPMATCH-26JUL18HIPGIU|GIU",
+        "KXATPMATCH-26JUL18KOPHER|KOP",
+        "KXATPMATCH-26JUL18MERDZU|MER",
+        "KXATPMATCH-26JUL19BAEKEC|KEC",
+        "KXATPMATCH-26JUL19CERTRU|CER",
+        "KXATPMATCH-26JUL19NEUHAN|HAN",
+        "KXATPMATCH-26JUL19TSICOL|TSI",
+        "KXATPMATCH-26JUL20ROCMAR|ROC",
+        "KXATPMATCH-26JUL20SCHROD|ROD"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "shape_id": "ATP_MAIN_51_75_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 11,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 11,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 4,
+        "p75": 6,
+        "p90": 7,
+        "max": 9,
+        "counts": {
+          "2": 4,
+          "3": 1,
+          "4": 2,
+          "6": 2,
+          "7": 1,
+          "9": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 7,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_51_75_UP_AFTER_DIP": 10,
+        "ATP_MAIN_51_75_UP_CONTINUATION": 1
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12CERKOL|CER",
+        "KXATPMATCH-26JUL12DEJGAU|DEJ",
+        "KXATPMATCH-26JUL12DROBLO|BLO",
+        "KXATPMATCH-26JUL12SONSCH|SON",
+        "KXATPMATCH-26JUL12TSIBUS|BUS",
+        "KXATPMATCH-26JUL15CERKEC|CER",
+        "KXATPMATCH-26JUL15TABMID|TAB",
+        "KXATPMATCH-26JUL17RUBBAE|RUB",
+        "KXATPMATCH-26JUL19GAUCAR|CAR",
+        "KXATPMATCH-26JUL19STRSHE|STR",
+        "KXATPMATCH-26JUL19VANFAR|FAR"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 7,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 7,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 5,
+        "max": 7,
+        "counts": {
+          "1": 3,
+          "2": 1,
+          "3": 1,
+          "5": 1,
+          "7": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 6,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_ge76_DOWN_REBOUND": 4,
+        "ATP_MAIN_ge76_DOWN_CONTINUATION": 3
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12BORKOU|BOR",
+        "KXATPMATCH-26JUL12CECOLI|CEC",
+        "KXATPMATCH-26JUL13COLSKA|COL",
+        "KXATPMATCH-26JUL13SANDAN|DAN",
+        "KXATPMATCH-26JUL18DOMSKA|SKA",
+        "KXATPMATCH-26JUL18SHETSI|TSI",
+        "KXATPMATCH-26JUL19TORBAS|BAS"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 8,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 8,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "0": 4,
+          "1": 2,
+          "2": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 2,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_ge76_FLAT_UNMOVED": 4,
+        "ATP_MAIN_ge76_FLAT_RECOVERED": 4
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12REJMID|MID",
+        "KXATPMATCH-26JUL14DIAMID|DIA",
+        "KXATPMATCH-26JUL14VALDAM|VAL",
+        "KXATPMATCH-26JUL15GOMARN|ARN",
+        "KXATPMATCH-26JUL15TRANAV|NAV",
+        "KXATPMATCH-26JUL16FARRUU|RUU",
+        "KXATPMATCH-26JUL18JACDA|JAC",
+        "KXATPMATCH-26JUL19MULNAV|NAV"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "shape_id": "ATP_MAIN_ge76_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 9,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 5,
+        "max": 6,
+        "counts": {
+          "0": 6,
+          "1": 1,
+          "5": 1,
+          "6": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 6,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_ge76_UP_CONTINUATION": 6,
+        "ATP_MAIN_ge76_UP_AFTER_DIP": 3
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12CARSAN|CAR",
+        "KXATPMATCH-26JUL12DAHBAE|BAE",
+        "KXATPMATCH-26JUL12SESMER|MER",
+        "KXATPMATCH-26JUL12SLADAM|DAM",
+        "KXATPMATCH-26JUL18PELSIL|PEL",
+        "KXATPMATCH-26JUL18ROCBUE|BUE",
+        "KXATPMATCH-26JUL18RODCHE|ROD",
+        "KXATPMATCH-26JUL18WALDJE|DJE",
+        "KXATPMATCH-26JUL19LUZTAB|TAB"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 14,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 14,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 3,
+        "p75": 5,
+        "p90": 6,
+        "max": 30,
+        "counts": {
+          "1": 5,
+          "2": 2,
+          "3": 1,
+          "4": 1,
+          "5": 1,
+          "6": 3,
+          "30": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 29,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_le25_DOWN_CONTINUATION": 9,
+        "ATP_MAIN_le25_DOWN_REBOUND": 5
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12CERKOL|KOL",
+        "KXATPMATCH-26JUL12DAHBAE|DAH",
+        "KXATPMATCH-26JUL12MARHAN|MAR",
+        "KXATPMATCH-26JUL12SESMER|SES",
+        "KXATPMATCH-26JUL14DIAMID|MID",
+        "KXATPMATCH-26JUL14VALDAM|DAM",
+        "KXATPMATCH-26JUL15GOMARN|GOM",
+        "KXATPMATCH-26JUL16FARRUU|FAR",
+        "KXATPMATCH-26JUL18PELSIL|SIL",
+        "KXATPMATCH-26JUL18ROCBUE|ROC",
+        "KXATPMATCH-26JUL18RODCHE|CHE",
+        "KXATPMATCH-26JUL18WALDJE|WAL",
+        "KXATPMATCH-26JUL19LUZTAB|LUZ",
+        "KXATPMATCH-26JUL19MULNAV|MUL"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 6,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 6,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 4,
+          "1": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_le25_FLAT_RECOVERED": 2,
+        "ATP_MAIN_le25_FLAT_UNMOVED": 4
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12CARSAN|SAN",
+        "KXATPMATCH-26JUL12SLADAM|SLA",
+        "KXATPMATCH-26JUL13SANDAN|SAN",
+        "KXATPMATCH-26JUL15TABMID|MID",
+        "KXATPMATCH-26JUL15TRANAV|TRA",
+        "KXATPMATCH-26JUL18JACDA|DA"
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "shape_id": "ATP_MAIN_le25_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 10,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 10,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "counts": {
+          "0": 9,
+          "1": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "ATP_MAIN_le25_UP_CONTINUATION": 9,
+        "ATP_MAIN_le25_UP_AFTER_DIP": 1
+      },
+      "member_identities": [
+        "KXATPMATCH-26JUL12BORKOU|KOU",
+        "KXATPMATCH-26JUL12CECOLI|OLI",
+        "KXATPMATCH-26JUL12DODCAR|DOD",
+        "KXATPMATCH-26JUL12REJMID|REJ",
+        "KXATPMATCH-26JUL13COLSKA|SKA",
+        "KXATPMATCH-26JUL15RUBPEL|PEL",
+        "KXATPMATCH-26JUL18DOMSKA|DOM",
+        "KXATPMATCH-26JUL18SHETSI|SHE",
+        "KXATPMATCH-26JUL19FELKOP|KOP",
+        "KXATPMATCH-26JUL19TORBAS|TOR"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 17,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 17,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 3,
+        "max": 6,
+        "counts": {
+          "0": 1,
+          "1": 7,
+          "2": 6,
+          "3": 1,
+          "4": 1,
+          "6": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 6,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_26_50_DOWN_CONTINUATION": 14,
+        "WTA_CHALL_26_50_DOWN_REBOUND": 3
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12ROUJAK|ROU",
+        "KXWTACHALLENGERMATCH-26JUL12SOKNUG|SOK",
+        "KXWTACHALLENGERMATCH-26JUL12VOLMAR|VOL",
+        "KXWTACHALLENGERMATCH-26JUL13RINAST|AST",
+        "KXWTACHALLENGERMATCH-26JUL13SELYAN|YAN",
+        "KXWTACHALLENGERMATCH-26JUL14CARVON|VON",
+        "KXWTACHALLENGERMATCH-26JUL14TREGRA|TRE",
+        "KXWTACHALLENGERMATCH-26JUL15ASTNOH|AST",
+        "KXWTACHALLENGERMATCH-26JUL15JONURG|URG",
+        "KXWTACHALLENGERMATCH-26JUL17ANDKRA|AND",
+        "KXWTACHALLENGERMATCH-26JUL17CHIBRO|CHI",
+        "KXWTACHALLENGERMATCH-26JUL17ERJFEI|FEI",
+        "KXWTACHALLENGERMATCH-26JUL17JONNOH|NOH",
+        "KXWTACHALLENGERMATCH-26JUL17VALFAL|FAL",
+        "KXWTACHALLENGERMATCH-26JUL18BASKRA|BAS",
+        "KXWTACHALLENGERMATCH-26JUL19SERTOT|SER",
+        "KXWTACHALLENGERMATCH-26JUL20GJOAND|GJO"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_FLAT_COHERENT_ORD_0_1",
+      "members": 30,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 30,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "counts": {
+          "0": 28,
+          "1": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_26_50_FLAT_UNMOVED": 28,
+        "WTA_CHALL_26_50_FLAT_RECOVERED": 2
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL13AVDFEI|FEI",
+        "KXWTACHALLENGERMATCH-26JUL13GASBAN|BAN",
+        "KXWTACHALLENGERMATCH-26JUL13GJOCHI|GJO",
+        "KXWTACHALLENGERMATCH-26JUL13KABPER|PER",
+        "KXWTACHALLENGERMATCH-26JUL13LANMAL|MAL",
+        "KXWTACHALLENGERMATCH-26JUL13RISPOH|RIS",
+        "KXWTACHALLENGERMATCH-26JUL14BASFRI|FRI",
+        "KXWTACHALLENGERMATCH-26JUL14COLPAL|COL",
+        "KXWTACHALLENGERMATCH-26JUL14KOSRUG|RUG",
+        "KXWTACHALLENGERMATCH-26JUL14KOVBAS|KOV",
+        "KXWTACHALLENGERMATCH-26JUL14RIESEM|RIE",
+        "KXWTACHALLENGERMATCH-26JUL15ANDRIS|RIS",
+        "KXWTACHALLENGERMATCH-26JUL15CARPAL|PAL",
+        "KXWTACHALLENGERMATCH-26JUL15ERJBAR|BAR",
+        "KXWTACHALLENGERMATCH-26JUL15RADCHI|CHI",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS|RUS",
+        "KXWTACHALLENGERMATCH-26JUL16HERVAN|HER",
+        "KXWTACHALLENGERMATCH-26JUL16KOSBRO|BRO",
+        "KXWTACHALLENGERMATCH-26JUL16ZANTRE|ZAN",
+        "KXWTACHALLENGERMATCH-26JUL17BASCAR|CAR",
+        "KXWTACHALLENGERMATCH-26JUL17GRAVAN|GRA",
+        "KXWTACHALLENGERMATCH-26JUL17YANTRE|TRE",
+        "KXWTACHALLENGERMATCH-26JUL18BROBRA|BRA",
+        "KXWTACHALLENGERMATCH-26JUL18ERJGRA|GRA",
+        "KXWTACHALLENGERMATCH-26JUL18RENGIA|GIA",
+        "KXWTACHALLENGERMATCH-26JUL18SERBER|BER",
+        "KXWTACHALLENGERMATCH-26JUL18TREJON|TRE",
+        "KXWTACHALLENGERMATCH-26JUL18VALTAR|VAL",
+        "KXWTACHALLENGERMATCH-26JUL19GRAKRA|GRA",
+        "KXWTACHALLENGERMATCH-26JUL20URGYAN|URG"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 1,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "2": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 0,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_26_50_FLAT_RECOVERED": 1
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL20TOTRUG|TOT"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "shape_id": "WTA_CHALL_26_50_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 16,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 16,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "counts": {
+          "0": 14,
+          "1": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_26_50_UP_CONTINUATION": 14,
+        "WTA_CHALL_26_50_UP_AFTER_DIP": 2
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12HESKOT|KOT",
+        "KXWTACHALLENGERMATCH-26JUL12MALTUR|TUR",
+        "KXWTACHALLENGERMATCH-26JUL13HERJAK|JAK",
+        "KXWTACHALLENGERMATCH-26JUL13KOTURG|KOT",
+        "KXWTACHALLENGERMATCH-26JUL13TIKBEN|TIK",
+        "KXWTACHALLENGERMATCH-26JUL14FERZAN|ZAN",
+        "KXWTACHALLENGERMATCH-26JUL16FEISAM|FEI",
+        "KXWTACHALLENGERMATCH-26JUL17BRARIE|BRA",
+        "KXWTACHALLENGERMATCH-26JUL18CIRTOT|CIR",
+        "KXWTACHALLENGERMATCH-26JUL18TONSPI|TON",
+        "KXWTACHALLENGERMATCH-26JUL18URGKOT|KOT",
+        "KXWTACHALLENGERMATCH-26JUL19JONBRO|BRO",
+        "KXWTACHALLENGERMATCH-26JUL19KOTHOD|KOT",
+        "KXWTACHALLENGERMATCH-26JUL19RENTON|TON",
+        "KXWTACHALLENGERMATCH-26JUL20GORMIN|GOR",
+        "KXWTACHALLENGERMATCH-26JUL20MAZSPI|SPI"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 8,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 8,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "counts": {
+          "1": 7,
+          "2": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_51_75_DOWN_CONTINUATION": 7,
+        "WTA_CHALL_51_75_DOWN_REBOUND": 1
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12HESKOT|HES",
+        "KXWTACHALLENGERMATCH-26JUL12MALTUR|MAL",
+        "KXWTACHALLENGERMATCH-26JUL13HERJAK|HER",
+        "KXWTACHALLENGERMATCH-26JUL13KABPER|KAB",
+        "KXWTACHALLENGERMATCH-26JUL14RIESEM|SEM",
+        "KXWTACHALLENGERMATCH-26JUL14TREGRA|GRA",
+        "KXWTACHALLENGERMATCH-26JUL17BASCAR|BAS",
+        "KXWTACHALLENGERMATCH-26JUL18ERJGRA|ERJ"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_FLAT_COHERENT_ORD_0_1",
+      "members": 25,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 25,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 20,
+          "1": 5
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_51_75_FLAT_UNMOVED": 20,
+        "WTA_CHALL_51_75_FLAT_RECOVERED": 5
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL13AVDFEI|AVD",
+        "KXWTACHALLENGERMATCH-26JUL13GASBAN|GAS",
+        "KXWTACHALLENGERMATCH-26JUL13KOTURG|URG",
+        "KXWTACHALLENGERMATCH-26JUL13TIKBEN|BEN",
+        "KXWTACHALLENGERMATCH-26JUL14FERZAN|FER",
+        "KXWTACHALLENGERMATCH-26JUL14KOSRUG|KOS",
+        "KXWTACHALLENGERMATCH-26JUL15ASTNOH|NOH",
+        "KXWTACHALLENGERMATCH-26JUL15CARPAL|CAR",
+        "KXWTACHALLENGERMATCH-26JUL15RADCHI|RAD",
+        "KXWTACHALLENGERMATCH-26JUL16BASRUS|BAS",
+        "KXWTACHALLENGERMATCH-26JUL16HERVAN|VAN",
+        "KXWTACHALLENGERMATCH-26JUL16KOSBRO|KOS",
+        "KXWTACHALLENGERMATCH-26JUL16ZANTRE|TRE",
+        "KXWTACHALLENGERMATCH-26JUL17BRARIE|RIE",
+        "KXWTACHALLENGERMATCH-26JUL17YANTRE|YAN",
+        "KXWTACHALLENGERMATCH-26JUL18BASKRA|KRA",
+        "KXWTACHALLENGERMATCH-26JUL18BROBRA|BRO",
+        "KXWTACHALLENGERMATCH-26JUL18CIRTOT|TOT",
+        "KXWTACHALLENGERMATCH-26JUL18SERBER|SER",
+        "KXWTACHALLENGERMATCH-26JUL18VALTAR|TAR",
+        "KXWTACHALLENGERMATCH-26JUL19GRAKRA|KRA",
+        "KXWTACHALLENGERMATCH-26JUL19JONBRO|JON",
+        "KXWTACHALLENGERMATCH-26JUL19RENTON|REN",
+        "KXWTACHALLENGERMATCH-26JUL20GORMIN|MIN",
+        "KXWTACHALLENGERMATCH-26JUL20MAZSPI|MAZ"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 1,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "2": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 0,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_51_75_FLAT_RECOVERED": 1
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL16FEISAM|SAM"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "shape_id": "WTA_CHALL_51_75_UP_COHERENT_ORD_0_1",
+      "members": 31,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 31,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 27,
+          "1": 4
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_51_75_UP_CONTINUATION": 27,
+        "WTA_CHALL_51_75_UP_AFTER_DIP": 4
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12MAZGAN|MAZ",
+        "KXWTACHALLENGERMATCH-26JUL12ROUJAK|JAK",
+        "KXWTACHALLENGERMATCH-26JUL12SOKNUG|NUG",
+        "KXWTACHALLENGERMATCH-26JUL12VOLMAR|MAR",
+        "KXWTACHALLENGERMATCH-26JUL13LANMAL|LAN",
+        "KXWTACHALLENGERMATCH-26JUL13RAMNOH|NOH",
+        "KXWTACHALLENGERMATCH-26JUL13RINAST|RIN",
+        "KXWTACHALLENGERMATCH-26JUL13RISPOH|POH",
+        "KXWTACHALLENGERMATCH-26JUL13SELYAN|SEL",
+        "KXWTACHALLENGERMATCH-26JUL14BASFRI|BAS",
+        "KXWTACHALLENGERMATCH-26JUL14CARVON|CAR",
+        "KXWTACHALLENGERMATCH-26JUL14COLPAL|PAL",
+        "KXWTACHALLENGERMATCH-26JUL14KOVBAS|BAS",
+        "KXWTACHALLENGERMATCH-26JUL15ANDRIS|AND",
+        "KXWTACHALLENGERMATCH-26JUL15ERJBAR|ERJ",
+        "KXWTACHALLENGERMATCH-26JUL15JONURG|JON",
+        "KXWTACHALLENGERMATCH-26JUL17ANDKRA|KRA",
+        "KXWTACHALLENGERMATCH-26JUL17CHIBRO|BRO",
+        "KXWTACHALLENGERMATCH-26JUL17ERJFEI|ERJ",
+        "KXWTACHALLENGERMATCH-26JUL17GRAVAN|VAN",
+        "KXWTACHALLENGERMATCH-26JUL17JONNOH|JON",
+        "KXWTACHALLENGERMATCH-26JUL17VALFAL|VAL",
+        "KXWTACHALLENGERMATCH-26JUL18RENGIA|REN",
+        "KXWTACHALLENGERMATCH-26JUL18TONSPI|SPI",
+        "KXWTACHALLENGERMATCH-26JUL18TREJON|JON",
+        "KXWTACHALLENGERMATCH-26JUL18URGKOT|URG",
+        "KXWTACHALLENGERMATCH-26JUL19KOTHOD|HOD",
+        "KXWTACHALLENGERMATCH-26JUL19SERTOT|TOT",
+        "KXWTACHALLENGERMATCH-26JUL20GJOAND|AND",
+        "KXWTACHALLENGERMATCH-26JUL20TOTRUG|RUG",
+        "KXWTACHALLENGERMATCH-26JUL20URGYAN|YAN"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 6,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 6,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 4,
+        "max": 5,
+        "counts": {
+          "1": 4,
+          "4": 1,
+          "5": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 4,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_ge76_DOWN_CONTINUATION": 6
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12BOSKOV|BOS",
+        "KXWTACHALLENGERMATCH-26JUL13JONSPI|JON",
+        "KXWTACHALLENGERMATCH-26JUL13PAPAND|AND",
+        "KXWTACHALLENGERMATCH-26JUL14RABRUS|RUS",
+        "KXWTACHALLENGERMATCH-26JUL15YANLAN|YAN",
+        "KXWTACHALLENGERMATCH-26JUL18BASBOE|BAS"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 9,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "counts": {
+          "0": 5,
+          "1": 1,
+          "2": 2,
+          "3": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 3,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_ge76_FLAT_UNMOVED": 6,
+        "WTA_CHALL_ge76_FLAT_RECOVERED": 3
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12BASABB|BAS",
+        "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ERJ",
+        "KXWTACHALLENGERMATCH-26JUL13RADREN|RAD",
+        "KXWTACHALLENGERMATCH-26JUL14MAZBRO|BRO",
+        "KXWTACHALLENGERMATCH-26JUL15GRAPER|GRA",
+        "KXWTACHALLENGERMATCH-26JUL16BENKRA|KRA",
+        "KXWTACHALLENGERMATCH-26JUL19BASSHI|BAS",
+        "KXWTACHALLENGERMATCH-26JUL20KABCHI|CHI",
+        "KXWTACHALLENGERMATCH-26JUL20LANRAD|RAD"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "shape_id": "WTA_CHALL_ge76_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 11,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 11,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 9,
+          "1": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_ge76_UP_CONTINUATION": 10,
+        "WTA_CHALL_ge76_UP_AFTER_DIP": 1
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL13GRABER|GRA",
+        "KXWTACHALLENGERMATCH-26JUL14BARKOL|BAR",
+        "KXWTACHALLENGERMATCH-26JUL14BRAPIE|BRA",
+        "KXWTACHALLENGERMATCH-26JUL14HENKRA|KRA",
+        "KXWTACHALLENGERMATCH-26JUL14PACVED|VED",
+        "KXWTACHALLENGERMATCH-26JUL14PIGSAM|SAM",
+        "KXWTACHALLENGERMATCH-26JUL14WOLVAN|VAN",
+        "KXWTACHALLENGERMATCH-26JUL15PENFAL|FAL",
+        "KXWTACHALLENGERMATCH-26JUL16KOVRIE|RIE",
+        "KXWTACHALLENGERMATCH-26JUL18WEBHOD|HOD",
+        "KXWTACHALLENGERMATCH-26JUL20FERREN|FER"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 9,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 6,
+          "2": 3
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_le25_DOWN_CONTINUATION": 8,
+        "WTA_CHALL_le25_DOWN_REBOUND": 1
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL14BARKOL|KOL",
+        "KXWTACHALLENGERMATCH-26JUL14MAZBRO|MAZ",
+        "KXWTACHALLENGERMATCH-26JUL14PACVED|PAC",
+        "KXWTACHALLENGERMATCH-26JUL14PIGSAM|PIG",
+        "KXWTACHALLENGERMATCH-26JUL15PENFAL|PEN",
+        "KXWTACHALLENGERMATCH-26JUL16KOVRIE|KOV",
+        "KXWTACHALLENGERMATCH-26JUL18WEBHOD|WEB",
+        "KXWTACHALLENGERMATCH-26JUL20FERREN|REN",
+        "KXWTACHALLENGERMATCH-26JUL20LANRAD|LAN"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 10,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 10,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "counts": {
+          "0": 8,
+          "1": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_le25_FLAT_RECOVERED": 2,
+        "WTA_CHALL_le25_FLAT_UNMOVED": 8
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12ERJBOS|BOS",
+        "KXWTACHALLENGERMATCH-26JUL13GRABER|BER",
+        "KXWTACHALLENGERMATCH-26JUL13JONSPI|SPI",
+        "KXWTACHALLENGERMATCH-26JUL13PAPAND|PAP",
+        "KXWTACHALLENGERMATCH-26JUL13RADREN|REN",
+        "KXWTACHALLENGERMATCH-26JUL13RAMNOH|RAM",
+        "KXWTACHALLENGERMATCH-26JUL14HENKRA|HEN",
+        "KXWTACHALLENGERMATCH-26JUL14WOLVAN|WOL",
+        "KXWTACHALLENGERMATCH-26JUL15GRAPER|PER",
+        "KXWTACHALLENGERMATCH-26JUL15YANLAN|LAN"
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "shape_id": "WTA_CHALL_le25_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 9,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 9,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "counts": {
+          "0": 9
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 0,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_CHALL_le25_UP_CONTINUATION": 9
+      },
+      "member_identities": [
+        "KXWTACHALLENGERMATCH-26JUL12BASABB|ABB",
+        "KXWTACHALLENGERMATCH-26JUL12BOSKOV|KOV",
+        "KXWTACHALLENGERMATCH-26JUL12FEICHE|CHE",
+        "KXWTACHALLENGERMATCH-26JUL14BRAPIE|PIE",
+        "KXWTACHALLENGERMATCH-26JUL14RABRUS|RAB",
+        "KXWTACHALLENGERMATCH-26JUL16BENKRA|BEN",
+        "KXWTACHALLENGERMATCH-26JUL18BASBOE|BOE",
+        "KXWTACHALLENGERMATCH-26JUL19BASSHI|SHI",
+        "KXWTACHALLENGERMATCH-26JUL20KABCHI|KAB"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_DOWN_COHERENT_ORD_1_2",
+      "members": 24,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 24,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "counts": {
+          "1": 12,
+          "2": 12
+        },
+        "signing_ordinal_after_a_descent_is_observed": 2
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_26_50_DOWN_CONTINUATION": 21,
+        "WTA_MAIN_26_50_DOWN_REBOUND": 3
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12HERKAZ|HER",
+        "KXWTAMATCH-26JUL13ARAZID|ZID",
+        "KXWTAMATCH-26JUL13BADKAL|KAL",
+        "KXWTAMATCH-26JUL13ZHEBOU|BOU",
+        "KXWTAMATCH-26JUL14AVAUCH|UCH",
+        "KXWTAMATCH-26JUL14PUTLIU|LIU",
+        "KXWTAMATCH-26JUL15HONPAR|HON",
+        "KXWTAMATCH-26JUL15TAGBEJ|TAG",
+        "KXWTAMATCH-26JUL16KORANN|KOR",
+        "KXWTAMATCH-26JUL16VALSAS|SAS",
+        "KXWTAMATCH-26JUL17OLIBUR|BUR",
+        "KXWTAMATCH-26JUL17TAUBEJ|BEJ",
+        "KXWTAMATCH-26JUL17UDVBAD|UDV",
+        "KXWTAMATCH-26JUL17ZIDMAR|ZID",
+        "KXWTAMATCH-26JUL18TAUKRE|TAU",
+        "KXWTAMATCH-26JUL19AVDNIE|NIE",
+        "KXWTAMATCH-26JUL20BONUCH|UCH",
+        "KXWTAMATCH-26JUL20BOUBOU2|BOU2",
+        "KXWTAMATCH-26JUL20OKTDOD|DOD",
+        "KXWTAMATCH-26JUL20OLISCH|SCH",
+        "KXWTAMATCH-26JUL20PODLEE|POD",
+        "KXWTAMATCH-26JUL20QUEKAL|QUE",
+        "KXWTAMATCH-26JUL20RUSPAQ|PAQ",
+        "KXWTAMATCH-26JUL20SAMJOI|SAM"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 15,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 15,
+        "censored_n": 0,
+        "min": 3,
+        "p25": 3,
+        "median": 5,
+        "p75": 6,
+        "p90": 7,
+        "max": 9,
+        "counts": {
+          "3": 4,
+          "5": 4,
+          "6": 3,
+          "7": 2,
+          "8": 1,
+          "9": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 6,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_26_50_DOWN_REBOUND": 4,
+        "WTA_MAIN_26_50_DOWN_CONTINUATION": 11
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12HERKAZ|KAZ",
+        "KXWTAMATCH-26JUL13BLISAS|BLI",
+        "KXWTAMATCH-26JUL13BONSOR|SOR",
+        "KXWTAMATCH-26JUL13SAKTON|TON",
+        "KXWTAMATCH-26JUL13TAUHIB|HIB",
+        "KXWTAMATCH-26JUL15BONZID|ZID",
+        "KXWTAMATCH-26JUL16UDVKAW|KAW",
+        "KXWTAMATCH-26JUL18MASRYS|RYS",
+        "KXWTAMATCH-26JUL18MORAKS|MOR",
+        "KXWTAMATCH-26JUL20BARYUA|YUA",
+        "KXWTAMATCH-26JUL20BLIBEJ|BLI",
+        "KXWTAMATCH-26JUL20GAOTAG|GAO",
+        "KXWTAMATCH-26JUL20PARHAV|HAV",
+        "KXWTAMATCH-26JUL20ROMERJ|ROM",
+        "KXWTAMATCH-26JUL20SORCHA|SOR"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 20,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 19,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 3,
+        "counts": {
+          "0": 14,
+          "1": 4,
+          "3": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 3,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_26_50_FLAT_UNMOVED": 15,
+        "WTA_MAIN_26_50_FLAT_RECOVERED": 5
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12FETPIE|FET",
+        "KXWTAMATCH-26JUL12GARPRI|GAR",
+        "KXWTAMATCH-26JUL13BURLEP|LEP",
+        "KXWTAMATCH-26JUL13CHAJIM|JIM",
+        "KXWTAMATCH-26JUL13KAWWAL|KAW",
+        "KXWTAMATCH-26JUL13LEPIBR|IBR",
+        "KXWTAMATCH-26JUL14SALIBR|IBR",
+        "KXWTAMATCH-26JUL15AVAMAR|AVA",
+        "KXWTAMATCH-26JUL15OLIPRI|PRI",
+        "KXWTAMATCH-26JUL15PUTCHA|CHA",
+        "KXWTAMATCH-26JUL17KREZHE|ZHE",
+        "KXWTAMATCH-26JUL18BANGAO|BAN",
+        "KXWTAMATCH-26JUL18COSHIB|COS",
+        "KXWTAMATCH-26JUL18COSHIB|HIB",
+        "KXWTAMATCH-26JUL18PALHON|PAL",
+        "KXWTAMATCH-26JUL19GAOFRU|FRU",
+        "KXWTAMATCH-26JUL19KRESAK|SAK",
+        "KXWTAMATCH-26JUL20LEPAVA|LEP",
+        "KXWTAMATCH-26JUL20NIEMAL|MAL",
+        "KXWTAMATCH-26JUL20VEDBAR|BAR"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "shape_id": "WTA_MAIN_26_50_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 14,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 14,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "counts": {
+          "0": 12,
+          "1": 2
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_26_50_UP_AFTER_DIP": 2,
+        "WTA_MAIN_26_50_UP_CONTINUATION": 12
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12MICKUL|MIC",
+        "KXWTAMATCH-26JUL13AMAHER|AMA",
+        "KXWTAMATCH-26JUL13ARAZID|ARA",
+        "KXWTAMATCH-26JUL13MATMIC|MAT",
+        "KXWTAMATCH-26JUL13QUERUS|QUE",
+        "KXWTAMATCH-26JUL13TIMANN|TIM",
+        "KXWTAMATCH-26JUL14UDVROM|ROM",
+        "KXWTAMATCH-26JUL16KORANN|ANN",
+        "KXWTAMATCH-26JUL17VALKOR|KOR",
+        "KXWTAMATCH-26JUL18ITOKNU|ITO",
+        "KXWTAMATCH-26JUL18SAKKOR|KOR",
+        "KXWTAMATCH-26JUL19COSAKS|AKS",
+        "KXWTAMATCH-26JUL20PARHON|HON",
+        "KXWTAMATCH-26JUL20TIMSAS|TIM"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 12,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 12,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 7,
+        "max": 15,
+        "counts": {
+          "1": 5,
+          "2": 2,
+          "4": 2,
+          "7": 1,
+          "9": 1,
+          "15": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 14,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_51_75_DOWN_REBOUND": 3,
+        "WTA_MAIN_51_75_DOWN_CONTINUATION": 9
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12MICKUL|KUL",
+        "KXWTAMATCH-26JUL13AMAHER|HER",
+        "KXWTAMATCH-26JUL13MATMIC|MIC",
+        "KXWTAMATCH-26JUL13QUERUS|RUS",
+        "KXWTAMATCH-26JUL13TIMANN|ANN",
+        "KXWTAMATCH-26JUL15AVAMAR|MAR",
+        "KXWTAMATCH-26JUL17VALKOR|VAL",
+        "KXWTAMATCH-26JUL18BANGAO|GAO",
+        "KXWTAMATCH-26JUL18ITOKNU|KNU",
+        "KXWTAMATCH-26JUL18MICFRU|FRU",
+        "KXWTAMATCH-26JUL18SAKKOR|SAK",
+        "KXWTAMATCH-26JUL20PARHON|PAR"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 21,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 21,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 4,
+        "counts": {
+          "0": 17,
+          "1": 2,
+          "3": 1,
+          "4": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 4,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_51_75_FLAT_UNMOVED": 17,
+        "WTA_MAIN_51_75_FLAT_RECOVERED": 4
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12GARPRI|PRI",
+        "KXWTAMATCH-26JUL13CHAJIM|CHA",
+        "KXWTAMATCH-26JUL13KAWWAL|WAL",
+        "KXWTAMATCH-26JUL13LEPIBR|LEP",
+        "KXWTAMATCH-26JUL14PUTLIU|PUT",
+        "KXWTAMATCH-26JUL14SALIBR|SAL",
+        "KXWTAMATCH-26JUL14UDVROM|UDV",
+        "KXWTAMATCH-26JUL15PUTCHA|PUT",
+        "KXWTAMATCH-26JUL15TAGBEJ|BEJ",
+        "KXWTAMATCH-26JUL16VALSAS|VAL",
+        "KXWTAMATCH-26JUL17KREZHE|KRE",
+        "KXWTAMATCH-26JUL17UDVBAD|BAD",
+        "KXWTAMATCH-26JUL19AVDNIE|AVD",
+        "KXWTAMATCH-26JUL19COSAKS|COS",
+        "KXWTAMATCH-26JUL19KRESAK|KRE",
+        "KXWTAMATCH-26JUL19PODSAI|POD",
+        "KXWTAMATCH-26JUL19RUSKAZ|RUS",
+        "KXWTAMATCH-26JUL20LEPAVA|AVA",
+        "KXWTAMATCH-26JUL20PODLEE|LEE",
+        "KXWTAMATCH-26JUL20TIMSAS|SAS",
+        "KXWTAMATCH-26JUL20VEDBAR|VED"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_UP_COHERENT_ORD_0_1",
+      "members": 37,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 37,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "counts": {
+          "0": 33,
+          "1": 4
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_51_75_UP_CONTINUATION": 36,
+        "WTA_MAIN_51_75_UP_AFTER_DIP": 1
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12FETPIE|PIE",
+        "KXWTAMATCH-26JUL12ITOMAN|ITO",
+        "KXWTAMATCH-26JUL12LEPBUR|LEP",
+        "KXWTAMATCH-26JUL13BADKAL|BAD",
+        "KXWTAMATCH-26JUL13BONSOR|BON",
+        "KXWTAMATCH-26JUL13PODMAR|MAR",
+        "KXWTAMATCH-26JUL13SAKTON|SAK",
+        "KXWTAMATCH-26JUL13TAUHIB|TAU",
+        "KXWTAMATCH-26JUL13ZHEBOU|ZHE",
+        "KXWTAMATCH-26JUL14AVAUCH|AVA",
+        "KXWTAMATCH-26JUL15BONZID|BON",
+        "KXWTAMATCH-26JUL15HONPAR|PAR",
+        "KXWTAMATCH-26JUL16UDVKAW|UDV",
+        "KXWTAMATCH-26JUL17OLIBUR|OLI",
+        "KXWTAMATCH-26JUL17TAUBEJ|TAU",
+        "KXWTAMATCH-26JUL17ZIDMAR|MAR",
+        "KXWTAMATCH-26JUL18MASRYS|MAS",
+        "KXWTAMATCH-26JUL18MORAKS|AKS",
+        "KXWTAMATCH-26JUL18PALHON|HON",
+        "KXWTAMATCH-26JUL18TAUKRE|KRE",
+        "KXWTAMATCH-26JUL19GAOFRU|GAO",
+        "KXWTAMATCH-26JUL20BARYUA|BAR",
+        "KXWTAMATCH-26JUL20BLIBEJ|BEJ",
+        "KXWTAMATCH-26JUL20BONUCH|BON",
+        "KXWTAMATCH-26JUL20BOUBOU2|BOU",
+        "KXWTAMATCH-26JUL20GAOTAG|TAG",
+        "KXWTAMATCH-26JUL20KOVTAR|TAR",
+        "KXWTAMATCH-26JUL20NIEMAL|NIE",
+        "KXWTAMATCH-26JUL20OKTDOD|OKT",
+        "KXWTAMATCH-26JUL20OLISCH|OLI",
+        "KXWTAMATCH-26JUL20PARHAV|PAR",
+        "KXWTAMATCH-26JUL20QUEKAL|KAL",
+        "KXWTAMATCH-26JUL20ROMERJ|ERJ",
+        "KXWTAMATCH-26JUL20RUSPAQ|RUS",
+        "KXWTAMATCH-26JUL20SAMJOI|JOI",
+        "KXWTAMATCH-26JUL20SEMKRA|KRA",
+        "KXWTAMATCH-26JUL20SORCHA|CHA"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "shape_id": "WTA_MAIN_51_75_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 3,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 3,
+        "censored_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 6,
+        "p75": 6,
+        "p90": 6,
+        "max": 19,
+        "counts": {
+          "2": 1,
+          "6": 1,
+          "19": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 17,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_51_75_UP_AFTER_DIP": 3
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL13BLISAS|SAS",
+        "KXWTAMATCH-26JUL15OLIPRI|OLI",
+        "KXWTAMATCH-26JUL20FRUKRE|KRE"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 8,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 8,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 6,
+        "max": 56,
+        "counts": {
+          "1": 1,
+          "2": 2,
+          "3": 2,
+          "5": 1,
+          "6": 1,
+          "56": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 55,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_ge76_DOWN_CONTINUATION": 5,
+        "WTA_MAIN_ge76_DOWN_REBOUND": 3
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL13GRAPAR|PAR",
+        "KXWTAMATCH-26JUL13ITOKOR|KOR",
+        "KXWTAMATCH-26JUL13KUDSAK|SAK",
+        "KXWTAMATCH-26JUL13LINHON|LIN",
+        "KXWTAMATCH-26JUL13VALCOS|VAL",
+        "KXWTAMATCH-26JUL18BERSAI|SAI",
+        "KXWTAMATCH-26JUL19YASBAR|BAR",
+        "KXWTAMATCH-26JUL20PODSTU|POD"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 19,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 18,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 4,
+        "counts": {
+          "0": 15,
+          "1": 2,
+          "4": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 4,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_ge76_FLAT_RECOVERED": 3,
+        "WTA_MAIN_ge76_FLAT_UNMOVED": 16
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12HODYAS|HOD",
+        "KXWTAMATCH-26JUL12WERAMA|WER",
+        "KXWTAMATCH-26JUL13ARGTAG|TAG",
+        "KXWTAMATCH-26JUL13AVAFET|AVA",
+        "KXWTAMATCH-26JUL13HODDAR|DAR",
+        "KXWTAMATCH-26JUL13LIUIPE|LIU",
+        "KXWTAMATCH-26JUL13MONMAS|MAS",
+        "KXWTAMATCH-26JUL13MORBEJ|BEJ",
+        "KXWTAMATCH-26JUL13PRIGAR|PRI",
+        "KXWTAMATCH-26JUL13ROMKUL|ROM",
+        "KXWTAMATCH-26JUL14AMAJAC|JAC",
+        "KXWTAMATCH-26JUL14BULPRI|PRI",
+        "KXWTAMATCH-26JUL14OLIIPE|OLI",
+        "KXWTAMATCH-26JUL17PARSAK|SAK",
+        "KXWTAMATCH-26JUL18BADZID|BAD",
+        "KXWTAMATCH-26JUL19BRAVON|VON",
+        "KXWTAMATCH-26JUL19STRPAQ|PAQ",
+        "KXWTAMATCH-26JUL20PIECAR|CAR",
+        "KXWTAMATCH-26JUL20STENOH|NOH"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_UP_COHERENT_ORD_0_1",
+      "members": 21,
+      "usable_for_signing": true,
+      "unusable_reason": null,
+      "descent_ordinal_distribution": {
+        "status": "FITTED_USABLE",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 21,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "counts": {
+          "0": 20,
+          "1": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": 1
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 1,
+        "internally_coherent": true,
+        "status": "PASS"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_ge76_UP_CONTINUATION": 20,
+        "WTA_MAIN_ge76_UP_AFTER_DIP": 1
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12AVASEI|AVA",
+        "KXWTAMATCH-26JUL12HIBTON|HIB",
+        "KXWTAMATCH-26JUL12LIUPOP|LIU",
+        "KXWTAMATCH-26JUL12MORNEP|MOR",
+        "KXWTAMATCH-26JUL12OKAIPE|IPE",
+        "KXWTAMATCH-26JUL12TAGSIE|TAG",
+        "KXWTAMATCH-26JUL13KRETOM|KRE",
+        "KXWTAMATCH-26JUL15DARSAK|SAK",
+        "KXWTAMATCH-26JUL15IBRBAD|BAD",
+        "KXWTAMATCH-26JUL15KREMON|KRE",
+        "KXWTAMATCH-26JUL15MICZHE|ZHE",
+        "KXWTAMATCH-26JUL16TAUTON|TAU",
+        "KXWTAMATCH-26JUL18HONTHA|HON",
+        "KXWTAMATCH-26JUL18OKALEE|LEE",
+        "KXWTAMATCH-26JUL18PODKRE|POD",
+        "KXWTAMATCH-26JUL19EIGCAR|CAR",
+        "KXWTAMATCH-26JUL19MONPIE|MON",
+        "KXWTAMATCH-26JUL19PRIMAR|PRI",
+        "KXWTAMATCH-26JUL19VEDGAR|VED",
+        "KXWTAMATCH-26JUL20PRIBRA|PRI",
+        "KXWTAMATCH-26JUL20SEISNI|SNI"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "shape_id": "WTA_MAIN_ge76_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 1,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 1,
+        "censored_n": 0,
+        "min": 3,
+        "p25": 3,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 3,
+        "counts": {
+          "3": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 0,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_ge76_UP_CONTINUATION": 1
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12KOZIBR|IBR"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_DOWN_COHERENT_UNUSABLE_REMAINDER",
+      "members": 26,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 26,
+        "censored_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 22,
+        "counts": {
+          "1": 9,
+          "2": 6,
+          "3": 4,
+          "4": 4,
+          "7": 1,
+          "9": 1,
+          "22": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 21,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_le25_DOWN_CONTINUATION": 19,
+        "WTA_MAIN_le25_DOWN_REBOUND": 7
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12HIBTON|TON",
+        "KXWTAMATCH-26JUL12HODYAS|YAS",
+        "KXWTAMATCH-26JUL12ITOMAN|MAN",
+        "KXWTAMATCH-26JUL12LEPBUR|BUR",
+        "KXWTAMATCH-26JUL12LIUPOP|POP",
+        "KXWTAMATCH-26JUL12MORNEP|NEP",
+        "KXWTAMATCH-26JUL12TAGSIE|SIE",
+        "KXWTAMATCH-26JUL12WERAMA|AMA",
+        "KXWTAMATCH-26JUL13KRETOM|TOM",
+        "KXWTAMATCH-26JUL15DARSAK|DAR",
+        "KXWTAMATCH-26JUL15IBRBAD|IBR",
+        "KXWTAMATCH-26JUL15KREMON|MON",
+        "KXWTAMATCH-26JUL15MICZHE|MIC",
+        "KXWTAMATCH-26JUL16TAUTON|TON",
+        "KXWTAMATCH-26JUL17PARSAK|PAR",
+        "KXWTAMATCH-26JUL18HONTHA|THA",
+        "KXWTAMATCH-26JUL18OKALEE|OKA",
+        "KXWTAMATCH-26JUL18PODKRE|KRE",
+        "KXWTAMATCH-26JUL19EIGCAR|EIG",
+        "KXWTAMATCH-26JUL19PRIMAR|MAR",
+        "KXWTAMATCH-26JUL19VEDGAR|GAR",
+        "KXWTAMATCH-26JUL20FRUKRE|FRU",
+        "KXWTAMATCH-26JUL20KOVTAR|KOV",
+        "KXWTAMATCH-26JUL20PODSTU|STU",
+        "KXWTAMATCH-26JUL20SEISNI|SEI",
+        "KXWTAMATCH-26JUL20SEMKRA|SEM"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_FLAT_COHERENT_UNUSABLE_REMAINDER",
+      "members": 20,
+      "usable_for_signing": false,
+      "unusable_reason": "ORDINAL_SUPPORT_WIDER_THAN_TWO_ADJACENT_COUNTS",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 19,
+        "censored_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 3,
+        "counts": {
+          "0": 14,
+          "1": 3,
+          "2": 1,
+          "3": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 3,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_le25_FLAT_UNMOVED": 15,
+        "WTA_MAIN_le25_FLAT_RECOVERED": 5
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL12AVASEI|SEI",
+        "KXWTAMATCH-26JUL12KOZIBR|KOZ",
+        "KXWTAMATCH-26JUL12OKAIPE|OKA",
+        "KXWTAMATCH-26JUL13ARGTAG|ARG",
+        "KXWTAMATCH-26JUL13AVAFET|FET",
+        "KXWTAMATCH-26JUL13GRAPAR|GRA",
+        "KXWTAMATCH-26JUL13LIUIPE|IPE",
+        "KXWTAMATCH-26JUL13MORBEJ|MOR",
+        "KXWTAMATCH-26JUL13PRIGAR|GAR",
+        "KXWTAMATCH-26JUL13ROMKUL|KUL",
+        "KXWTAMATCH-26JUL14AMAJAC|AMA",
+        "KXWTAMATCH-26JUL14OLIIPE|IPE",
+        "KXWTAMATCH-26JUL18BADZID|ZID",
+        "KXWTAMATCH-26JUL18MICFRU|MIC",
+        "KXWTAMATCH-26JUL18SALZOL|ZOL",
+        "KXWTAMATCH-26JUL19BRAVON|BRA",
+        "KXWTAMATCH-26JUL19PODSAI|SAI",
+        "KXWTAMATCH-26JUL19RUSKAZ|KAZ",
+        "KXWTAMATCH-26JUL19STRPAQ|STR",
+        "KXWTAMATCH-26JUL20PRIBRA|BRA"
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "shape_id": "WTA_MAIN_le25_UP_COHERENT_UNUSABLE_REMAINDER",
+      "members": 12,
+      "usable_for_signing": false,
+      "unusable_reason": "SUPPORT_BELOW_20",
+      "descent_ordinal_distribution": {
+        "status": "UNUSABLE_THIN_OR_HETEROGENEOUS",
+        "grain": "category + formed-book bid price region + final quote direction + coherent qualified-ask descent ordinal support",
+        "ordinal_definition": "number of capacity>=5 and dwell>=10s qualified ask-to-ask downward transitions before the first qualified occurrence of the final reachable ask low",
+        "support_n": 12,
+        "censored_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 4,
+        "counts": {
+          "0": 10,
+          "2": 1,
+          "4": 1
+        },
+        "signing_ordinal_after_a_descent_is_observed": null
+      },
+      "internal_coherence": {
+        "definition": "all signable members bottom on one exact qualified descent count or two adjacent counts",
+        "min_class_n": 20,
+        "ordinal_support_width": 4,
+        "internally_coherent": false,
+        "status": "UNUSABLE"
+      },
+      "old_classes_merged": {
+        "WTA_MAIN_le25_UP_CONTINUATION": 10,
+        "WTA_MAIN_le25_UP_AFTER_DIP": 2
+      },
+      "member_identities": [
+        "KXWTAMATCH-26JUL13HODDAR|HOD",
+        "KXWTAMATCH-26JUL13ITOKOR|ITO",
+        "KXWTAMATCH-26JUL13KUDSAK|KUD",
+        "KXWTAMATCH-26JUL13LINHON|HON",
+        "KXWTAMATCH-26JUL13MONMAS|MON",
+        "KXWTAMATCH-26JUL13PODMAR|POD",
+        "KXWTAMATCH-26JUL13VALCOS|COS",
+        "KXWTAMATCH-26JUL14BULPRI|BUL",
+        "KXWTAMATCH-26JUL18BERSAI|BER",
+        "KXWTAMATCH-26JUL19MONPIE|PIE",
+        "KXWTAMATCH-26JUL19YASBAR|YAS",
+        "KXWTAMATCH-26JUL20STENOH|STE"
+      ]
+    }
+  ]
+}

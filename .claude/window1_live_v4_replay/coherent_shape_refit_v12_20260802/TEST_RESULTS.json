@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "test_files_run": 16,
+  "test_files_passed": 16,
+  "test_files_failed": 0,
+  "focused_v12": "arb-executor/tests/test_window1_coherent_shape_refit_v12.js",
+  "inherited_quote_shape_and_population_files": 15,
+  "omissions": 0,
+  "deselections": 0,
+  "scorer_invocations": 0,
+  "holdout_access": false,
+  "live_or_trading_access": false
+}

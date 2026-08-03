@@ -19,11 +19,12 @@ const workers = Number(value("--workers", "8"));
 const lagDiagnosticV10 = args.includes("--lag-diagnostic-v10");
 const causalDescentOrdinalV10 = args.includes("--causal-descent-ordinal-v10");
 const persistenceFloorV11 = args.includes("--persistence-floor-v11");
+const coherentShapeV12 = args.includes("--coherent-shape-v12");
 const quotePath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv");
 const capacityPath = path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json");
 const bellPath = path.join(repo, ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json");
 const ceilingPath = path.join(repo, ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/CEILING_CENSUS.json");
-const libraryPath = path.join(repo, ".claude/window1_live_v4_replay/five_exact_dynamic_renarrow_v6_20260801/QUOTE_SHAPE_LIBRARY_DYNAMIC_RENARROW_V6.json");
+const libraryPath = path.resolve(value("--library", path.join(repo, ".claude/window1_live_v4_replay/five_exact_dynamic_renarrow_v6_20260801/QUOTE_SHAPE_LIBRARY_DYNAMIC_RENARROW_V6.json")));
 const replayPath = path.join(repo, "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js");
 const branchRaw = "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated";
 const DWELL_SECONDS = 10;
@@ -87,6 +88,7 @@ function launchShard(index, eventIds, work, refsPath, windowsPath) {
   if (lagDiagnosticV10) childArgs.push("--lag-diagnostic-v10");
   if (causalDescentOrdinalV10) childArgs.push("--causal-descent-ordinal-v10");
   if (persistenceFloorV11) childArgs.push("--persistence-floor-v11");
+  if (coherentShapeV12) childArgs.push("--coherent-shape-v12");
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn(process.execPath, childArgs, { cwd: repo, stdio: ["ignore", "pipe", "pipe"] });
     let stdout = "", stderr = "";
@@ -145,6 +147,8 @@ function enrich(events, inputs) {
         delta_to_pair_reference_cents: "NOT_BOUND",
         predicates: replayLeg.placement ? ["DYNAMIC_MACRO_RENARROW", "PAIR_WIRING", "MICRO_POSITION", "ASK_DWELL_AT_LEAST_10_SECONDS", "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE", "EXACT_ACTION_BOOK", replayLeg.honest_fill_class] : [replayLeg.terminal_reason || event.reason || "NO_ACTION"],
         placement: replayLeg.placement || null,
+        surviving_shapes_at_placement: replayLeg.surviving_shapes_at_placement || [],
+        surviving_shapes_at_terminal: replayLeg.surviving_shapes_at_terminal || [],
         lag_diagnostic_v10: replayLeg.lag_diagnostic_v10 || null,
         terminal_reason: replayLeg.terminal_reason || event.reason || null,
         replay_source: replayLeg.source || null,

@@ -1,0 +1,48 @@
+{
+  "files": {
+    "CLASS_COHERENCE_CENSUS.json": {
+      "sha256": "9000394fadee31561105ad10ea7fb037b33bbcb8646b108ea84933461a21b368",
+      "bytes": 158200
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "dcf97fc280ecddb9ff41f74653919cc4d84a81ad898726d7882e6148a5499dec",
+      "bytes": 603
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "8c13440a315d71ca8b5efdde282b10f023564fbc8621366fa3d6425c52d083bc",
+      "bytes": 345
+    },
+    "FUNNEL_AND_FIVE_CEILINGS.json": {
+      "sha256": "f570c184ae605c9e4a4814a3430e1d136a3fc727e965f7081cfc9dc2593e6fe4",
+      "bytes": 156343
+    },
+    "NON_ACTION_CENSUS.json": {
+      "sha256": "02670d5915e951857ab7342648e1c5dc4ef1e56d139a79fe4fe45197bbad2fd1",
+      "bytes": 23893
+    },
+    "POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "2a63db1b8e56a88a701953504deba3d59a95a676f5ae2b5213c61a36441410f9",
+      "bytes": 2538783
+    },
+    "POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "22d7ff51661feae8a2fbe0255804a9afde5aa501e233dfca0d6855003d35d0cb",
+      "bytes": 2380313
+    },
+    "REPORT.md": {
+      "sha256": "4cdf0b8a84450afa8aeea7a2e37f60ee25294ee754d9cb4659c2942107d2d3e6",
+      "bytes": 1899
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "94809113ecd6627f575337910769655a8ef331255e6f67542f5b9d32595e70b7",
+      "bytes": 2192
+    },
+    "TAXONOMY_SPAN_RECEIPT.json": {
+      "sha256": "48cdf07a5488c230f1eb64b96c19117162d2916bf3d7c5ed7015677452f0d634",
+      "bytes": 28888
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "d05901af0d4918016a2f6906085cc307ad3459e9cfe3acbf832a15cb83ddc809",
+      "bytes": 360
+    }
+  }
+}

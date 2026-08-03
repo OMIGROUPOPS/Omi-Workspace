@@ -42,7 +42,21 @@ function oldTopology(row) {
 }
 function direction(row) { return row.final_features.ask_net < 0 ? "DOWN" : row.final_features.ask_net > 0 ? "UP" : "FLAT"; }
 
-function scanOne(source, ticksRoot) {
+function microMicroSamples(rows, source) {
+  const samples = [], episodes = []; let start = 0;
+  for (let i = 1; i <= rows.length; i += 1) if (i === rows.length || rows[i].ask !== rows[start].ask) { episodes.push([start, i]); start = i; }
+  let askChanges = 0;
+  for (const [from, to] of episodes) {
+    const selected = [...new Set([from, from + Math.floor((to - from - 1) / 2), to - 1])].sort((a, b) => a - b), distinctBbo = new Set(), sizeValues = new Set();
+    for (let i = from; i < to; i += 1) { distinctBbo.add(`${rows[i].bid}/${rows[i].ask}`); sizeValues.add(rows[i].top_ask_size); if (!selected.includes(i)) continue; let next = i + 1; while (next < rows.length && rows[next].ts <= rows[i].ts) next += 1; const elapsed = Math.max(1, rows[i].ts - Number(source.left_ts)), capacity = next < rows.length ? rows[next].asks.filter(([price]) => price <= rows[i].ask).reduce((sum, level) => sum + level[1], 0) : null;
+      samples.push({ event_id: source.event_id, leg_id: source.leg, ticker: source.ticker, category: source.category, price_region: region(rows[0].bid), timestamp_epoch: rows[i].ts, receipt: rows[i].receipt, features: { ask_dwell_seconds: rows[i].ts - rows[from].ts, top_ask_size: rows[i].top_ask_size, top5_ask_depth: rows[i].top5_ask_depth, spread: rows[i].spread, quote_rate: (i + 1) * 3600 / elapsed, ask_change_rate: askChanges * 3600 / elapsed, same_price_receipt_count: i - from + 1, episode_distinct_bbo_states: distinctBbo.size, episode_distinct_size_values: sizeValues.size, seconds_since_prior_receipt: i > 0 ? Math.max(0, rows[i].ts - rows[i - 1].ts) : null }, label: next < rows.length ? Number(rows[next].ask <= rows[i].ask && capacity >= QUANTITY) : null, label_receipt: next < rows.length ? rows[next].receipt : null, label_timestamp_epoch: next < rows.length ? rows[next].ts : null, label_capacity_at_or_below_current_ask: capacity });
+    }
+    if (to < rows.length) askChanges += 1;
+  }
+  return samples;
+}
+
+function scanOne(source, ticksRoot, includeMicroMicroSamples = false) {
   const file = path.join(ticksRoot, `${source.ticker}.csv.gz`), bytes = fs.readFileSync(file), rows = [];
   for (const { raw, ordinal } of parseCsv(zlib.gunzipSync(bytes).toString("utf8"))) {
     const ts = parseEt(raw.ts_et); if (ts === null || ts < Number(source.left_ts) || ts > Number(source.right_ts)) continue;
@@ -52,7 +66,7 @@ function scanOne(source, ticksRoot) {
       if (bp !== null && bs !== null) bids.push([bp, bs]); if (ap !== null && as !== null) asks.push([ap, as]);
     }
     bids.sort((a, b) => b[0] - a[0]); asks.sort((a, b) => a[0] - b[0]); if (!bids.length || !asks.length || bids[0][0] > asks[0][0]) continue;
-    rows.push({ ts, ordinal, bid: bids[0][0], ask: asks[0][0], spread: asks[0][0] - bids[0][0], top_ask_size: asks[0][1], top5_ask_depth: asks.reduce((sum, x) => sum + x[1], 0), receipt: `${path.basename(file)}#row-${ordinal}` });
+    rows.push({ ts, ordinal, bid: bids[0][0], ask: asks[0][0], asks, spread: asks[0][0] - bids[0][0], top_ask_size: asks[0][1], top5_ask_depth: asks.reduce((sum, x) => sum + x[1], 0), receipt: `${path.basename(file)}#row-${ordinal}` });
   }
   rows.sort((a, b) => a.ts - b.ts || a.ordinal - b.ordinal);
   const formed = rows.findIndex((row) => row.spread === 1);
@@ -86,7 +100,7 @@ function scanOne(source, ticksRoot) {
   const finalLow = qualifiedWitnesses.length ? Math.min(...qualifiedWitnesses.map((x) => x.ask_cents)) : null, floorWitness = finalLow === null ? null : qualifiedWitnesses.find((x) => x.ask_cents === finalLow);
   for (let g = 0; g <= GRID; g += 1) if (grids[g]) { const cutoff = left + duration * g / GRID, future = qualifiedWitnesses.filter((x) => x.timestamp_epoch >= cutoff); grids[g].remaining_qualified_low_delta = future.length ? Math.min(...future.map((x) => x.ask_cents)) - grids[g].current_ask : null; }
   const final = grids[GRID], finalFeatures = { ask_net: rows[rows.length - 1].ask - firstAsk, ask_dip: Math.min(...rows.map((r) => r.ask)) - firstAsk, ask_peak: Math.max(...rows.map((r) => r.ask)) - firstAsk, ask_drawdown_from_peak: Math.max(...rows.map((r) => r.ask)) - rows[rows.length - 1].ask, first_min_progress: (firstMinTs - left) / duration, floor_dwell_fraction: floorDwell / Math.max(1, observedDuration), mean_spread: final.mean_spread, spread_range: final.spread_range, quote_rate: rows.length * 3600 / duration, ask_change_rate: askChanges * 3600 / duration, median_ask_episode_dwell: median(episodeDwells), mean_log_top_ask_size: final.mean_log_top_ask_size, mean_log_top5_ask_depth: final.mean_log_top5_ask_depth, qualified_ask_descent_count: qualifiedDescents, qualified_ask_rise_count: qualifiedRises };
-  return { event_id: source.event_id, leg_id: source.leg, ticker: source.ticker, category: source.category, status: "AVAILABLE", price_region: region(rows[0].bid), first_ask: firstAsk, first_bid: rows[0].bid, final_features: finalFeatures, old_topology: oldTopology({ final_features: finalFeatures }), direction: finalFeatures.ask_net < 0 ? "DOWN" : finalFeatures.ask_net > 0 ? "UP" : "FLAT", qualified_descent_to_final_reachable_low: floorWitness ? { status: "AVAILABLE", ask_reachable_low_cents: finalLow, descent_ordinal: floorWitness.descent_ordinal, witness_timestamp_epoch: floorWitness.timestamp_epoch, witness_receipt: floorWitness.receipt, dwell_seconds: DWELL_SECONDS, quantity_contracts: QUANTITY } : { status: "NO_QUALIFIED_ASK_REACHABLE_LOW", dwell_seconds: DWELL_SECONDS, quantity_contracts: QUANTITY }, grid: grids, source: { file: path.basename(file), bytes: bytes.length, sha256: sha256(bytes) } };
+  return { event_id: source.event_id, leg_id: source.leg, ticker: source.ticker, category: source.category, status: "AVAILABLE", price_region: region(rows[0].bid), first_ask: firstAsk, first_bid: rows[0].bid, final_features: finalFeatures, old_topology: oldTopology({ final_features: finalFeatures }), direction: finalFeatures.ask_net < 0 ? "DOWN" : finalFeatures.ask_net > 0 ? "UP" : "FLAT", qualified_descent_to_final_reachable_low: floorWitness ? { status: "AVAILABLE", ask_reachable_low_cents: finalLow, descent_ordinal: floorWitness.descent_ordinal, witness_timestamp_epoch: floorWitness.timestamp_epoch, witness_receipt: floorWitness.receipt, dwell_seconds: DWELL_SECONDS, quantity_contracts: QUANTITY } : { status: "NO_QUALIFIED_ASK_REACHABLE_LOW", dwell_seconds: DWELL_SECONDS, quantity_contracts: QUANTITY }, grid: grids, ...(includeMicroMicroSamples ? { micro_micro_samples: microMicroSamples(rows, source) } : {}), source: { file: path.basename(file), bytes: bytes.length, sha256: sha256(bytes) } };
 }
 
 function workerMain() { parentPort.postMessage(workerData.sources.map((source) => scanOne(source, workerData.ticksRoot))); }
@@ -160,4 +174,9 @@ async function main() {
   fs.mkdirSync(path.dirname(output), { recursive: true }); fs.writeFileSync(output, canonical(result)); process.stdout.write(canonical({ status: "BUILT", output, sha256: sha256(Buffer.from(canonical(result))), training_events: result.training_events, training_legs: result.training_legs, census: result.census }));
 }
 
-if (isMainThread) main().catch((error) => { process.stderr.write(`${error.stack || error}\n`); process.exitCode = 1; }); else { try { workerMain(); } catch (error) { throw error; } }
+if (require.main === module) {
+  if (!isMainThread) { try { workerMain(); } catch (error) { throw error; } }
+  else main().catch((error) => { process.stderr.write(`${error.stack || error}\n`); process.exitCode = 1; });
+}
+
+module.exports = { scanOne, oldTopology, direction, microMicroSamples, PREFIX_KEYS, FINAL_KEYS, EXCLUDED_EVENTS, GRID, DWELL_SECONDS, QUANTITY, MIN_CLASS_N };

@@ -1,0 +1,65 @@
+{
+  "schema_version": "WINDOW1_LEVEL_ORDERING_V13",
+  "states": [
+    "PLACE",
+    "HOLD",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "levels": [
+    {
+      "order": 1,
+      "level": "SOURCE",
+      "reads": [
+        "lawful contemporaneous positive-size non-crossed BBO",
+        "top-five ask chain/depth"
+      ],
+      "unresolved": "NO LOWER LEVEL CONSULTED"
+    },
+    {
+      "order": 2,
+      "level": "MACRO_INTERIM_PATH",
+      "reads": [
+        "ask peak",
+        "peak-to-current drawdown",
+        "ask net/dip",
+        "qualified rises/descents"
+      ],
+      "rule": "eliminate inconsistent causal path envelopes; endpoint outcome unavailable"
+    },
+    {
+      "order": 3,
+      "level": "PAIR_MICRO",
+      "reads": [
+        "empirically observed pair-path tuples",
+        "sibling resolved macro survivor set"
+      ]
+    },
+    {
+      "order": 4,
+      "level": "MICRO_POSITION",
+      "reads": [
+        "qualified descent ordinal",
+        "current ask position inside causal path"
+      ],
+      "rule": "all survivors must agree LOWER or FLOOR"
+    },
+    {
+      "order": 5,
+      "level": "MICRO_MICRO_TIMING",
+      "reads": [
+        "ask_dwell_seconds",
+        "top_ask_size",
+        "top5_ask_depth",
+        "spread",
+        "quote_rate",
+        "ask_change_rate",
+        "same_price_receipt_count",
+        "episode_distinct_bbo_states",
+        "episode_distinct_size_values",
+        "seconds_since_prior_receipt"
+      ],
+      "rule": "fitted tree says READY on a fresh own-book receipt"
+    }
+  ],
+  "prohibition": "An unresolved or stale upper level blocks every lower consultation."
+}

@@ -1,0 +1,16 @@
+{
+  "scorer_invocations": 0,
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "forecast": false,
+  "fee_test": false,
+  "new_instrument": false,
+  "duplicate_surface_retirement": false
+}

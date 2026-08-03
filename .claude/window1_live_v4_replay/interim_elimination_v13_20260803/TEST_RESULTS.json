@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "applicable_quote_shape_and_elimination_files_collected": 13,
+  "files_passed": 13,
+  "files_failed": 0,
+  "focused_v13": "arb-executor/tests/test_window1_interim_elimination_v13.js",
+  "inherited_files_passed": 12,
+  "assertions_or_receipt_checks": "all executable assertions in the 13 files",
+  "exclusions": [
+    {
+      "file": "arb-executor/tests/test_window1_consensus_lag_repair_v10.js",
+      "reason": "historical-package integrity test pins the V10 source manifest and must reject any later replay-source change; its frozen package was not altered"
+    }
+  ],
+  "omissions_within_applicable_set": 0,
+  "deselections_within_applicable_set": 0,
+  "scorer_invocations": 0,
+  "holdout_access": false,
+  "live_or_trading_access": false
+}

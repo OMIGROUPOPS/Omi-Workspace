@@ -20,6 +20,7 @@ const lagDiagnosticV10 = args.includes("--lag-diagnostic-v10");
 const causalDescentOrdinalV10 = args.includes("--causal-descent-ordinal-v10");
 const persistenceFloorV11 = args.includes("--persistence-floor-v11");
 const coherentShapeV12 = args.includes("--coherent-shape-v12");
+const interimEliminationV13 = args.includes("--interim-elimination-v13");
 const quotePath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv");
 const capacityPath = path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json");
 const bellPath = path.join(repo, ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json");
@@ -89,6 +90,7 @@ function launchShard(index, eventIds, work, refsPath, windowsPath) {
   if (causalDescentOrdinalV10) childArgs.push("--causal-descent-ordinal-v10");
   if (persistenceFloorV11) childArgs.push("--persistence-floor-v11");
   if (coherentShapeV12) childArgs.push("--coherent-shape-v12");
+  if (interimEliminationV13) childArgs.push("--interim-elimination-v13");
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn(process.execPath, childArgs, { cwd: repo, stdio: ["ignore", "pipe", "pipe"] });
     let stdout = "", stderr = "";
@@ -145,12 +147,13 @@ function enrich(events, inputs) {
         market_ceiling_class: floorClass(floor, close),
         pair_reference_cents: "NOT_BOUND",
         delta_to_pair_reference_cents: "NOT_BOUND",
-        predicates: replayLeg.placement ? ["DYNAMIC_MACRO_RENARROW", "PAIR_WIRING", "MICRO_POSITION", "ASK_DWELL_AT_LEAST_10_SECONDS", "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE", "EXACT_ACTION_BOOK", replayLeg.honest_fill_class] : [replayLeg.terminal_reason || event.reason || "NO_ACTION"],
+        predicates: replayLeg.placement ? interimEliminationV13 ? ["INTERIM_MACRO_ELIMINATION", "EMPIRICAL_PAIR_PATH_TUPLE", "COHERENT_DESCENT_ORDINAL_MICRO", "FITTED_MICRO_MICRO_READY", "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE", "EXACT_ACTION_BOOK", replayLeg.honest_fill_class] : ["DYNAMIC_MACRO_RENARROW", "PAIR_WIRING", "MICRO_POSITION", "ASK_DWELL_AT_LEAST_10_SECONDS", "DISPLAYED_ASK_CAPACITY_AT_LEAST_FIVE", "EXACT_ACTION_BOOK", replayLeg.honest_fill_class] : [replayLeg.terminal_reason || event.reason || "NO_ACTION"],
         placement: replayLeg.placement || null,
         surviving_shapes_at_placement: replayLeg.surviving_shapes_at_placement || [],
         surviving_shapes_at_terminal: replayLeg.surviving_shapes_at_terminal || [],
         lag_diagnostic_v10: replayLeg.lag_diagnostic_v10 || null,
         terminal_reason: replayLeg.terminal_reason || event.reason || null,
+        terminal_level_state: replayLeg.terminal_level_state || null,
         replay_source: replayLeg.source || null,
       };
     }

@@ -1,0 +1,14 @@
+{
+  "clean_fits": 2,
+  "library_sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8",
+  "second_library_sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8",
+  "libraries_byte_identical": true,
+  "micro_sample_sha256": "b54522f5361432d864a5efc4527533b37245108883c95c2dbf9018f0ea314620",
+  "second_micro_sample_sha256": "b54522f5361432d864a5efc4527533b37245108883c95c2dbf9018f0ea314620",
+  "micro_samples_byte_identical": true,
+  "clean_population_replays": 2,
+  "event_ledger_sha256": "e9c02efa424e7f4ca18b872e0da7a9e67977b625435d00310248d50bf97796a6",
+  "second_event_ledger_sha256": "e9c02efa424e7f4ca18b872e0da7a9e67977b625435d00310248d50bf97796a6",
+  "population_ledgers_byte_identical": true,
+  "scorer_invocations": 0
+}

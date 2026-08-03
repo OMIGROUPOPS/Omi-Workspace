@@ -124,3 +124,8 @@
 - MIRROR fader-A (shallow net_med+2): pairs 0 duals 0 · SUB-PAR 0/0 · tiers {} · MASTERY - · medPairD -
 - MIRROR fader-B (q25): pairs 0 duals 0 · SUB-PAR 0/0 · tiers {} · MASTERY - · medPairD -
 - MIRROR fader-C (q10-deep): pairs 0 duals 0 · SUB-PAR 0/0 · tiers {} · MASTERY - · medPairD -
+## WALL 20260720 (judge 20260720->20260727) · events scored 0 · bands fit 13 · tape fidelity: none · median prints/leg 0 · **EVIDENCE-GRADE (thin tape — error bars visible)**
+- FLAT-FLAT (sealed frame): pairs 0 duals 0 · SUB-PAR 0/0 · tiers {} · MASTERY dual-neg -
+- MIRROR fader-A (shallow net_med+2): pairs 0 duals 0 · SUB-PAR 0/0 · tiers {} · MASTERY - · medPairD -
+- MIRROR fader-B (q25): pairs 0 duals 0 · SUB-PAR 0/0 · tiers {} · MASTERY - · medPairD -
+- MIRROR fader-C (q10-deep): pairs 0 duals 0 · SUB-PAR 0/0 · tiers {} · MASTERY - · medPairD -

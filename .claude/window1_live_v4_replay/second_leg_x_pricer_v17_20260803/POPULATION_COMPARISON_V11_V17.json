@@ -1,0 +1,37 @@
+{
+  "schema_version": "WINDOW1_SECOND_LEG_X_POPULATION_COMPARISON_V17",
+  "score_free": true,
+  "v11": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 712,
+    "credited_legs": 712,
+    "completed_pairs": 185,
+    "pairs_under_par": 94,
+    "both_legs_strictly_below_close": 21,
+    "execution_floor_pair_pass": 29,
+    "carried_pairs_strict_one_above_one_below_close": 52
+  },
+  "v17": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 711,
+    "credited_legs": 711,
+    "completed_pairs": 184,
+    "pairs_under_par": 92,
+    "both_legs_strictly_below_close": 21,
+    "execution_floor_pair_pass": 30,
+    "carried_pairs_strict_one_above_one_below_close": 51
+  },
+  "ex_post_v16_prize": {
+    "both_below_close_from": 21,
+    "both_below_close_to": 31,
+    "under_par_from": 94,
+    "under_par_to": 112
+  },
+  "causal_recovery": {
+    "both_below_close_delta": 0,
+    "under_par_delta": -2
+  },
+  "ruling": "CAUSAL_X_DISTRIBUTION_DID_NOT_RECOVER_THE_EX_POST_PRIZE; DO_NOT_TUNE_POST_HOC"
+}

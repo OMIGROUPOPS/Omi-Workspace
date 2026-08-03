@@ -1,0 +1,37 @@
+{
+  "schema_version": "WINDOW1_DYNAMIC_RENARROW_POPULATION_ARTIFACT_MANIFEST_V7",
+  "files": {
+    "CONSERVATION_RECEIPT.json": {
+      "sha256": "f18bad49427cafbf393de424c45580d70d40a97fd9a876b853c280c42989c3c0",
+      "bytes": 774
+    },
+    "EVENT_LEDGER.jsonl.gz": {
+      "sha256": "8ea047a1ed644493e5fe88ecc4c3b1d4092e7a31d8b59241cb8fa3a2ca64de74",
+      "bytes": 2432823
+    },
+    "FIVE_GAME_EXECUTION_GATE_SPLIT_RECEIPT.json": {
+      "sha256": "476f6899029a30bd6d8689b6b9ed29cd1723b2b5d398ed2e205bc7bb1597468c",
+      "bytes": 680
+    },
+    "POPULATION_SUMMARY.json": {
+      "sha256": "f72766ca00121220f118a804b0a825831528ea67f8272fdd7c6b894ad67d50b4",
+      "bytes": 130660
+    },
+    "REPORT.md": {
+      "sha256": "c11854f1cc44a895264c4092126fc56b8a04907ebbc3ed8cf1946834bd3ecf81",
+      "bytes": 1098
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "7cf7d7412770386de822e865987daa466d6c659f1dd0aeb50e3958dc6cc30dcd",
+      "bytes": 331382
+    },
+    "TIME_AND_FLOW_AXIS_DIAGNOSTIC.json": {
+      "sha256": "45884542f59dec01afbb4d9734612431c130c9cefc6a2eda532502ae44513a38",
+      "bytes": 565718
+    },
+    "TIME_AND_FLOW_ROW_LEDGER.jsonl.gz": {
+      "sha256": "a000968b3df2a2a0ec983f68d10f5bb15333e89c36f958368f23628ecb8b6e91",
+      "bytes": 48201
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "WINDOW1_SECOND_LEG_X_DETERMINISM_V17",
+  "clean_population_builds": 2,
+  "clean_time_flow_builds": 2,
+  "files": [
+    {
+      "name": "population_event_ledger",
+      "file": "EVENT_LEDGER.jsonl.gz",
+      "run1_sha256": "8ea047a1ed644493e5fe88ecc4c3b1d4092e7a31d8b59241cb8fa3a2ca64de74",
+      "run2_sha256": "8ea047a1ed644493e5fe88ecc4c3b1d4092e7a31d8b59241cb8fa3a2ca64de74",
+      "byte_identical": true
+    },
+    {
+      "name": "population_summary",
+      "file": "POPULATION_SUMMARY.json",
+      "run1_sha256": "f72766ca00121220f118a804b0a825831528ea67f8272fdd7c6b894ad67d50b4",
+      "run2_sha256": "f72766ca00121220f118a804b0a825831528ea67f8272fdd7c6b894ad67d50b4",
+      "byte_identical": true
+    },
+    {
+      "name": "population_conservation",
+      "file": "CONSERVATION_RECEIPT.json",
+      "run1_sha256": "f18bad49427cafbf393de424c45580d70d40a97fd9a876b853c280c42989c3c0",
+      "run2_sha256": "f18bad49427cafbf393de424c45580d70d40a97fd9a876b853c280c42989c3c0",
+      "byte_identical": true
+    },
+    {
+      "name": "time_axis_diagnostic",
+      "file": "TIME_AND_FLOW_AXIS_DIAGNOSTIC.json",
+      "run1_sha256": "45884542f59dec01afbb4d9734612431c130c9cefc6a2eda532502ae44513a38",
+      "run2_sha256": "45884542f59dec01afbb4d9734612431c130c9cefc6a2eda532502ae44513a38",
+      "byte_identical": true
+    },
+    {
+      "name": "time_axis_row_ledger",
+      "file": "TIME_AND_FLOW_ROW_LEDGER.jsonl.gz",
+      "run1_sha256": "a000968b3df2a2a0ec983f68d10f5bb15333e89c36f958368f23628ecb8b6e91",
+      "run2_sha256": "a000968b3df2a2a0ec983f68d10f5bb15333e89c36f958368f23628ecb8b6e91",
+      "byte_identical": true
+    }
+  ],
+  "all_byte_identical": true,
+  "second_build_scratch_removed_after_hash_freeze": true
+}

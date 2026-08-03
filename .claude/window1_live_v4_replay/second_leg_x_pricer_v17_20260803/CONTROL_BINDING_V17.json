@@ -1,0 +1,29 @@
+{
+  "schema_version": "WINDOW1_SECOND_LEG_X_CONTROL_BINDING_V17",
+  "score_free": true,
+  "frozen_v11": {
+    "event_sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3",
+    "leg_sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902"
+  },
+  "x_library": {
+    "sha256": "e10ef0b819fb3f72fadaf54a4f9ca47383db53a680c078efdd9c14b50ea65b65",
+    "cells": 25,
+    "usable_cells": 8,
+    "fit_rows": 516,
+    "excluded_exact_start_events": [
+      "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "KXATPMATCH-26JUL12LAJVAN",
+      "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "KXWTAMATCH-26JUL20KORJIM"
+    ],
+    "minimum_support": {
+      "value": 20,
+      "provenance": "existing quote-shape coherence law"
+    }
+  },
+  "policy_law": "After a strictly earlier first-leg action/fill X, eliminate sibling shape hypotheses only when leave-one-event-out P10-P90 shape-floor support is disjoint from the leave-one-event-out X-conditional sibling-floor distribution. Thin cells and thin shape support abstain.",
+  "constants_changed": 0,
+  "timing_consumed": false,
+  "realized_fall_inversion_consumed": false
+}

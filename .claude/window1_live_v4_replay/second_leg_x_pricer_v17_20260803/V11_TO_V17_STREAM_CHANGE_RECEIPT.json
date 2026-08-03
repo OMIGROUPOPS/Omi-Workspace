@@ -1,0 +1,1697 @@
+{
+  "schema_version": "WINDOW1_V11_TO_V17_SECOND_LEG_X_STREAM_CHANGE",
+  "changes": 5,
+  "rows": [
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16KUMBRO|BRO",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "starting_price_split": "26_50+51_75",
+      "v11": {
+        "acted": false,
+        "entry_cents": null,
+        "action_timestamp_epoch": null,
+        "terminal_reason": "ALL_SURVIVING_SHAPES_SAY_LOWER"
+      },
+      "v17": {
+        "acted": true,
+        "entry_cents": 50,
+        "action_timestamp_epoch": 1784193089,
+        "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK"
+      },
+      "x_decisions": [
+        {
+          "timestamp_epoch": 1784181151,
+          "t_minus_scheduled_seconds": 27449,
+          "t_minus_actual_bell_seconds": -1784181151,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL16KUMBRO-BRO.csv.gz#row-3440",
+          "first_leg_id": "KUM",
+          "first_fill_x_cents": 49,
+          "first_fill_timestamp_epoch": 1784181143,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION",
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_FLAT_UNMOVED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 48.16953391970126,
+          "empirical_support_floor_low_cents": -9.752893197690987,
+          "empirical_support_floor_high_cents": 54.67137580539168,
+          "central_distribution_floor_low_cents": 46.34345292863282,
+          "central_distribution_floor_high_cents": 52.42062629071805,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.922427117392246,
+            "p10": -1.8260809910684372,
+            "p25": 0.20208547069615435,
+            "median": 1.6952452925117356,
+            "p75": 2.9480149928314816,
+            "p90": 4.251092371016789,
+            "max": 6.501841885690425,
+            "iqr": 2.7459295221353273,
+            "p90_p10_width": 6.077173362085226
+          },
+          "model": {
+            "intercept": 92.46787698016607,
+            "slope": -0.9040478175605063
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_DOWN_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 49,
+              "shape_member_floor_distribution": {
+                "n": 49,
+                "min": 26,
+                "p10": 29,
+                "p25": 33,
+                "median": 38,
+                "p75": 41,
+                "p90": 45,
+                "max": 48,
+                "iqr": 8,
+                "p90_p10_width": 16
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 33,
+              "shape_member_floor_distribution": {
+                "n": 33,
+                "min": 27,
+                "p10": 29,
+                "p25": 32,
+                "median": 36,
+                "p75": 39,
+                "p90": 42,
+                "max": 47,
+                "iqr": 7,
+                "p90_p10_width": 13
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 18,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "ATP_CHALL_26_50_FLAT_UNMOVED"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784181152,
+          "t_minus_scheduled_seconds": 27448,
+          "t_minus_actual_bell_seconds": -1784181152,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL16KUMBRO-BRO.csv.gz#row-3445",
+          "first_leg_id": "KUM",
+          "first_fill_x_cents": 49,
+          "first_fill_timestamp_epoch": 1784181143,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 48.16953391970126,
+          "empirical_support_floor_low_cents": -9.752893197690987,
+          "empirical_support_floor_high_cents": 54.67137580539168,
+          "central_distribution_floor_low_cents": 46.34345292863282,
+          "central_distribution_floor_high_cents": 52.42062629071805,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.922427117392246,
+            "p10": -1.8260809910684372,
+            "p25": 0.20208547069615435,
+            "median": 1.6952452925117356,
+            "p75": 2.9480149928314816,
+            "p90": 4.251092371016789,
+            "max": 6.501841885690425,
+            "iqr": 2.7459295221353273,
+            "p90_p10_width": 6.077173362085226
+          },
+          "model": {
+            "intercept": 92.46787698016607,
+            "slope": -0.9040478175605063
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784193034,
+          "t_minus_scheduled_seconds": 15566,
+          "t_minus_actual_bell_seconds": -1784193034,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL16KUMBRO-BRO.csv.gz#row-3927",
+          "first_leg_id": "KUM",
+          "first_fill_x_cents": 49,
+          "first_fill_timestamp_epoch": 1784181143,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 50,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION",
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_FLAT_UNMOVED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 48.16953391970126,
+          "empirical_support_floor_low_cents": -9.752893197690987,
+          "empirical_support_floor_high_cents": 54.67137580539168,
+          "central_distribution_floor_low_cents": 46.34345292863282,
+          "central_distribution_floor_high_cents": 52.42062629071805,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.922427117392246,
+            "p10": -1.8260809910684372,
+            "p25": 0.20208547069615435,
+            "median": 1.6952452925117356,
+            "p75": 2.9480149928314816,
+            "p90": 4.251092371016789,
+            "max": 6.501841885690425,
+            "iqr": 2.7459295221353273,
+            "p90_p10_width": 6.077173362085226
+          },
+          "model": {
+            "intercept": 92.46787698016607,
+            "slope": -0.9040478175605063
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_DOWN_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 49,
+              "shape_member_floor_distribution": {
+                "n": 49,
+                "min": 26,
+                "p10": 29,
+                "p25": 33,
+                "median": 38,
+                "p75": 41,
+                "p90": 45,
+                "max": 48,
+                "iqr": 8,
+                "p90_p10_width": 16
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 33,
+              "shape_member_floor_distribution": {
+                "n": 33,
+                "min": 27,
+                "p10": 29,
+                "p25": 32,
+                "median": 36,
+                "p75": 39,
+                "p90": 42,
+                "max": 47,
+                "iqr": 7,
+                "p90_p10_width": 13
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 18,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "ATP_CHALL_26_50_DOWN_CONTINUATION"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784193036,
+          "t_minus_scheduled_seconds": 15564,
+          "t_minus_actual_bell_seconds": -1784193036,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL16KUMBRO-BRO.csv.gz#row-3928",
+          "first_leg_id": "KUM",
+          "first_fill_x_cents": 49,
+          "first_fill_timestamp_epoch": 1784181143,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 50,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_UP_AFTER_DIP"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 48.16953391970126,
+          "empirical_support_floor_low_cents": -9.752893197690987,
+          "empirical_support_floor_high_cents": 54.67137580539168,
+          "central_distribution_floor_low_cents": 46.34345292863282,
+          "central_distribution_floor_high_cents": 52.42062629071805,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.922427117392246,
+            "p10": -1.8260809910684372,
+            "p25": 0.20208547069615435,
+            "median": 1.6952452925117356,
+            "p75": 2.9480149928314816,
+            "p90": 4.251092371016789,
+            "max": 6.501841885690425,
+            "iqr": 2.7459295221353273,
+            "p90_p10_width": 6.077173362085226
+          },
+          "model": {
+            "intercept": 92.46787698016607,
+            "slope": -0.9040478175605063
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_UP_AFTER_DIP"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 18,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        }
+      ],
+      "change_receipted_by_x": true
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL|ZAM",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "starting_price_split": "26_50+51_75",
+      "v11": {
+        "acted": true,
+        "entry_cents": 45,
+        "action_timestamp_epoch": 1784491679,
+        "terminal_reason": "ACTED"
+      },
+      "v17": {
+        "acted": false,
+        "entry_cents": null,
+        "action_timestamp_epoch": null,
+        "terminal_reason": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW"
+      },
+      "x_decisions": [
+        {
+          "timestamp_epoch": 1784476293,
+          "t_minus_scheduled_seconds": 22107,
+          "t_minus_actual_bell_seconds": -1784476293,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL-ZAM.csv.gz#row-1286",
+          "first_leg_id": "POL",
+          "first_fill_x_cents": 52,
+          "first_fill_timestamp_epoch": 1784476281,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 49,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION",
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_FLAT_UNMOVED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 45.48585058045564,
+          "empirical_support_floor_low_cents": -12.46775465120713,
+          "empirical_support_floor_high_cents": 51.953477188491654,
+          "central_distribution_floor_low_cents": 43.634469071037685,
+          "central_distribution_floor_high_cents": 49.706395636023,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95360523166277,
+            "p10": -1.8513815094179549,
+            "p25": 0.2286330611746692,
+            "median": 1.668831572028914,
+            "p75": 2.9183046556727064,
+            "p90": 4.2205450555673565,
+            "max": 6.467626608036014,
+            "iqr": 2.689671594498037,
+            "p90_p10_width": 6.071926564985311
+          },
+          "model": {
+            "intercept": 92.50950209986786,
+            "slope": -0.9043009907579272
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION",
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 33,
+              "shape_member_floor_distribution": {
+                "n": 33,
+                "min": 27,
+                "p10": 29,
+                "p25": 32,
+                "median": 36,
+                "p75": 39,
+                "p90": 42,
+                "max": 47,
+                "iqr": 7,
+                "p90_p10_width": 13
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 19,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "ATP_CHALL_26_50_FLAT_UNMOVED"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784476403,
+          "t_minus_scheduled_seconds": 21997,
+          "t_minus_actual_bell_seconds": -1784476403,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL-ZAM.csv.gz#row-1288",
+          "first_leg_id": "POL",
+          "first_fill_x_cents": 52,
+          "first_fill_timestamp_epoch": 1784476281,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 49,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 45.48585058045564,
+          "empirical_support_floor_low_cents": -12.46775465120713,
+          "empirical_support_floor_high_cents": 51.953477188491654,
+          "central_distribution_floor_low_cents": 43.634469071037685,
+          "central_distribution_floor_high_cents": 49.706395636023,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95360523166277,
+            "p10": -1.8513815094179549,
+            "p25": 0.2286330611746692,
+            "median": 1.668831572028914,
+            "p75": 2.9183046556727064,
+            "p90": 4.2205450555673565,
+            "max": 6.467626608036014,
+            "iqr": 2.689671594498037,
+            "p90_p10_width": 6.071926564985311
+          },
+          "model": {
+            "intercept": 92.50950209986786,
+            "slope": -0.9043009907579272
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784494632,
+          "t_minus_scheduled_seconds": 3768,
+          "t_minus_actual_bell_seconds": -1784494632,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL-ZAM.csv.gz#row-28609",
+          "first_leg_id": "POL",
+          "first_fill_x_cents": 52,
+          "first_fill_timestamp_epoch": 1784476281,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 49,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 45.48585058045564,
+          "empirical_support_floor_low_cents": -12.46775465120713,
+          "empirical_support_floor_high_cents": 51.953477188491654,
+          "central_distribution_floor_low_cents": 43.634469071037685,
+          "central_distribution_floor_high_cents": 49.706395636023,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95360523166277,
+            "p10": -1.8513815094179549,
+            "p25": 0.2286330611746692,
+            "median": 1.668831572028914,
+            "p75": 2.9183046556727064,
+            "p90": 4.2205450555673565,
+            "max": 6.467626608036014,
+            "iqr": 2.689671594498037,
+            "p90_p10_width": 6.071926564985311
+          },
+          "model": {
+            "intercept": 92.50950209986786,
+            "slope": -0.9043009907579272
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        }
+      ],
+      "change_receipted_by_x": true
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VANOUA|OUA",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "starting_price_split": "26_50+51_75",
+      "v11": {
+        "acted": true,
+        "entry_cents": 49,
+        "action_timestamp_epoch": 1784534495,
+        "terminal_reason": "ACTED"
+      },
+      "v17": {
+        "acted": true,
+        "entry_cents": 50,
+        "action_timestamp_epoch": 1784534120,
+        "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK"
+      },
+      "x_decisions": [
+        {
+          "timestamp_epoch": 1784530022,
+          "t_minus_scheduled_seconds": 25978,
+          "t_minus_actual_bell_seconds": 15178,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA.csv.gz#row-1195",
+          "first_leg_id": "VAN",
+          "first_fill_x_cents": 50,
+          "first_fill_timestamp_epoch": 1784530003,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION",
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_FLAT_UNMOVED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 47.29358115678737,
+          "empirical_support_floor_low_cents": -10.662468027472123,
+          "empirical_support_floor_high_cents": 53.75920912124786,
+          "central_distribution_floor_low_cents": 45.445944844351175,
+          "central_distribution_floor_high_cents": 51.51415631098491,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95604918425949,
+            "p10": -1.8476363124361939,
+            "p25": 0.23039048507304472,
+            "median": 1.671639794886815,
+            "p75": 2.918843286460195,
+            "p90": 4.22057515419754,
+            "max": 6.465627964460495,
+            "iqr": 2.6884528013871503,
+            "p90_p10_width": 6.068211466633734
+          },
+          "model": {
+            "intercept": 92.5173756999003,
+            "slope": -0.9044758908622585
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_DOWN_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 49,
+              "shape_member_floor_distribution": {
+                "n": 49,
+                "min": 26,
+                "p10": 29,
+                "p25": 33,
+                "median": 38,
+                "p75": 41,
+                "p90": 45,
+                "max": 50,
+                "iqr": 8,
+                "p90_p10_width": 16
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 33,
+              "shape_member_floor_distribution": {
+                "n": 33,
+                "min": 27,
+                "p10": 29,
+                "p25": 32,
+                "median": 36,
+                "p75": 39,
+                "p90": 42,
+                "max": 47,
+                "iqr": 7,
+                "p90_p10_width": 13
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 19,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "ATP_CHALL_26_50_DOWN_CONTINUATION"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784530030,
+          "t_minus_scheduled_seconds": 25970,
+          "t_minus_actual_bell_seconds": 15170,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA.csv.gz#row-1195",
+          "first_leg_id": "VAN",
+          "first_fill_x_cents": 50,
+          "first_fill_timestamp_epoch": 1784530003,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 47.29358115678737,
+          "empirical_support_floor_low_cents": -10.662468027472123,
+          "empirical_support_floor_high_cents": 53.75920912124786,
+          "central_distribution_floor_low_cents": 45.445944844351175,
+          "central_distribution_floor_high_cents": 51.51415631098491,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95604918425949,
+            "p10": -1.8476363124361939,
+            "p25": 0.23039048507304472,
+            "median": 1.671639794886815,
+            "p75": 2.918843286460195,
+            "p90": 4.22057515419754,
+            "max": 6.465627964460495,
+            "iqr": 2.6884528013871503,
+            "p90_p10_width": 6.068211466633734
+          },
+          "model": {
+            "intercept": 92.5173756999003,
+            "slope": -0.9044758908622585
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 19,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784530156,
+          "t_minus_scheduled_seconds": 25844,
+          "t_minus_actual_bell_seconds": 15044,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA.csv.gz#row-1196",
+          "first_leg_id": "VAN",
+          "first_fill_x_cents": 50,
+          "first_fill_timestamp_epoch": 1784530003,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 47.29358115678737,
+          "empirical_support_floor_low_cents": -10.662468027472123,
+          "empirical_support_floor_high_cents": 53.75920912124786,
+          "central_distribution_floor_low_cents": 45.445944844351175,
+          "central_distribution_floor_high_cents": 51.51415631098491,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95604918425949,
+            "p10": -1.8476363124361939,
+            "p25": 0.23039048507304472,
+            "median": 1.671639794886815,
+            "p75": 2.918843286460195,
+            "p90": 4.22057515419754,
+            "max": 6.465627964460495,
+            "iqr": 2.6884528013871503,
+            "p90_p10_width": 6.068211466633734
+          },
+          "model": {
+            "intercept": 92.5173756999003,
+            "slope": -0.9044758908622585
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784532106,
+          "t_minus_scheduled_seconds": 23894,
+          "t_minus_actual_bell_seconds": 13094,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA.csv.gz#row-1249",
+          "first_leg_id": "VAN",
+          "first_fill_x_cents": 50,
+          "first_fill_timestamp_epoch": 1784530003,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_CONTINUATION",
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_FLAT_UNMOVED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 47.29358115678737,
+          "empirical_support_floor_low_cents": -10.662468027472123,
+          "empirical_support_floor_high_cents": 53.75920912124786,
+          "central_distribution_floor_low_cents": 45.445944844351175,
+          "central_distribution_floor_high_cents": 51.51415631098491,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95604918425949,
+            "p10": -1.8476363124361939,
+            "p25": 0.23039048507304472,
+            "median": 1.671639794886815,
+            "p75": 2.918843286460195,
+            "p90": 4.22057515419754,
+            "max": 6.465627964460495,
+            "iqr": 2.6884528013871503,
+            "p90_p10_width": 6.068211466633734
+          },
+          "model": {
+            "intercept": 92.5173756999003,
+            "slope": -0.9044758908622585
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_DOWN_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 49,
+              "shape_member_floor_distribution": {
+                "n": 49,
+                "min": 26,
+                "p10": 29,
+                "p25": 33,
+                "median": 38,
+                "p75": 41,
+                "p90": 45,
+                "max": 50,
+                "iqr": 8,
+                "p90_p10_width": 16
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            },
+            {
+              "shape_id": "ATP_CHALL_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 33,
+              "shape_member_floor_distribution": {
+                "n": 33,
+                "min": 27,
+                "p10": 29,
+                "p25": 32,
+                "median": 36,
+                "p75": 39,
+                "p90": 42,
+                "max": 47,
+                "iqr": 7,
+                "p90_p10_width": 13
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 19,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "ATP_CHALL_26_50_DOWN_CONTINUATION"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784532107,
+          "t_minus_scheduled_seconds": 23893,
+          "t_minus_actual_bell_seconds": 13093,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA.csv.gz#row-1249",
+          "first_leg_id": "VAN",
+          "first_fill_x_cents": 50,
+          "first_fill_timestamp_epoch": 1784530003,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 47.29358115678737,
+          "empirical_support_floor_low_cents": -10.662468027472123,
+          "empirical_support_floor_high_cents": 53.75920912124786,
+          "central_distribution_floor_low_cents": 45.445944844351175,
+          "central_distribution_floor_high_cents": 51.51415631098491,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95604918425949,
+            "p10": -1.8476363124361939,
+            "p25": 0.23039048507304472,
+            "median": 1.671639794886815,
+            "p75": 2.918843286460195,
+            "p90": 4.22057515419754,
+            "max": 6.465627964460495,
+            "iqr": 2.6884528013871503,
+            "p90_p10_width": 6.068211466633734
+          },
+          "model": {
+            "intercept": 92.5173756999003,
+            "slope": -0.9044758908622585
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_DOWN_REBOUND",
+            "ATP_CHALL_26_50_FLAT_RECOVERED",
+            "ATP_CHALL_26_50_UP_AFTER_DIP",
+            "ATP_CHALL_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 19,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784532108,
+          "t_minus_scheduled_seconds": 23892,
+          "t_minus_actual_bell_seconds": 13092,
+          "trigger_receipt": "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA.csv.gz#row-1283",
+          "first_leg_id": "VAN",
+          "first_fill_x_cents": 50,
+          "first_fill_timestamp_epoch": 1784530003,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 51,
+          "prior_shape_ids": [
+            "ATP_CHALL_26_50_UP_AFTER_DIP"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_CHALL|26_50+51_75",
+          "leave_one_event_out_n": 151,
+          "fitted_center_cents": 47.29358115678737,
+          "empirical_support_floor_low_cents": -10.662468027472123,
+          "empirical_support_floor_high_cents": 53.75920912124786,
+          "central_distribution_floor_low_cents": 45.445944844351175,
+          "central_distribution_floor_high_cents": 51.51415631098491,
+          "residual_distribution": {
+            "n": 151,
+            "min": -57.95604918425949,
+            "p10": -1.8476363124361939,
+            "p25": 0.23039048507304472,
+            "median": 1.671639794886815,
+            "p75": 2.918843286460195,
+            "p90": 4.22057515419754,
+            "max": 6.465627964460495,
+            "iqr": 2.6884528013871503,
+            "p90_p10_width": 6.068211466633734
+          },
+          "model": {
+            "intercept": 92.5173756999003,
+            "slope": -0.9044758908622585
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_CHALL_26_50_UP_AFTER_DIP"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_CHALL_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 19,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        }
+      ],
+      "change_receipted_by_x": true
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15CERKEC|KEC",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "starting_price_split": "26_50+51_75",
+      "v11": {
+        "acted": true,
+        "entry_cents": 45,
+        "action_timestamp_epoch": 1784178743,
+        "terminal_reason": "ACTED"
+      },
+      "v17": {
+        "acted": false,
+        "entry_cents": null,
+        "action_timestamp_epoch": null,
+        "terminal_reason": "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED"
+      },
+      "x_decisions": [
+        {
+          "timestamp_epoch": 1784111745,
+          "t_minus_scheduled_seconds": 3255,
+          "t_minus_actual_bell_seconds": -1784111745,
+          "trigger_receipt": "KXATPMATCH-26JUL15CERKEC-KEC.csv.gz#row-12655",
+          "first_leg_id": "CER",
+          "first_fill_x_cents": 49,
+          "first_fill_timestamp_epoch": 1784111662,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 49,
+          "prior_shape_ids": [
+            "ATP_MAIN_26_50_DOWN_CONTINUATION",
+            "ATP_MAIN_26_50_DOWN_REBOUND",
+            "ATP_MAIN_26_50_FLAT_RECOVERED",
+            "ATP_MAIN_26_50_FLAT_UNMOVED",
+            "ATP_MAIN_26_50_UP_AFTER_DIP",
+            "ATP_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 64,
+          "fitted_center_cents": 48.36285017408149,
+          "empirical_support_floor_low_cents": 14.221231891912666,
+          "empirical_support_floor_high_cents": 53.333646099290746,
+          "central_distribution_floor_low_cents": 46.137556205251926,
+          "central_distribution_floor_high_cents": 51.97587478254747,
+          "residual_distribution": {
+            "n": 64,
+            "min": -34.14161828216882,
+            "p10": -2.225293968829561,
+            "p25": -0.26254581779854647,
+            "median": 1.8452951376554694,
+            "p75": 3.421384679831476,
+            "p90": 3.6130246084659845,
+            "max": 4.970795925209259,
+            "iqr": 3.6839304976300227,
+            "p90_p10_width": 5.838318577295546
+          },
+          "model": {
+            "intercept": 98.39263001409384,
+            "slope": -1.021015915102293
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_MAIN_26_50_FLAT_RECOVERED",
+            "ATP_MAIN_26_50_FLAT_UNMOVED",
+            "ATP_MAIN_26_50_UP_AFTER_DIP"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "ATP_MAIN_26_50_DOWN_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 21,
+              "shape_member_floor_distribution": {
+                "n": 21,
+                "min": 24,
+                "p10": 26,
+                "p25": 29,
+                "median": 34,
+                "p75": 42,
+                "p90": 46,
+                "max": 48,
+                "iqr": 13,
+                "p90_p10_width": 20
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            },
+            {
+              "shape_id": "ATP_MAIN_26_50_DOWN_REBOUND",
+              "shape_leave_one_event_out_support_n": 21,
+              "shape_member_floor_distribution": {
+                "n": 21,
+                "min": 20,
+                "p10": 26,
+                "p25": 33,
+                "median": 38,
+                "p75": 41,
+                "p90": 42,
+                "max": 46,
+                "iqr": 8,
+                "p90_p10_width": 16
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            },
+            {
+              "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 22,
+              "shape_member_floor_distribution": {
+                "n": 22,
+                "min": 27,
+                "p10": 31,
+                "p25": 34,
+                "median": 38,
+                "p75": 43,
+                "p90": 45,
+                "max": 51,
+                "iqr": 9,
+                "p90_p10_width": 14
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_MAIN_26_50_FLAT_RECOVERED",
+              "shape_leave_one_event_out_support_n": 10,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 11,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "ATP_MAIN_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 10,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "ATP_MAIN_26_50_DOWN_REBOUND"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784111746,
+          "t_minus_scheduled_seconds": 3254,
+          "t_minus_actual_bell_seconds": -1784111746,
+          "trigger_receipt": "KXATPMATCH-26JUL15CERKEC-KEC.csv.gz#row-12663",
+          "first_leg_id": "CER",
+          "first_fill_x_cents": 49,
+          "first_fill_timestamp_epoch": 1784111662,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 49,
+          "prior_shape_ids": [
+            "ATP_MAIN_26_50_FLAT_RECOVERED"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "ATP_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 64,
+          "fitted_center_cents": 48.36285017408149,
+          "empirical_support_floor_low_cents": 14.221231891912666,
+          "empirical_support_floor_high_cents": 53.333646099290746,
+          "central_distribution_floor_low_cents": 46.137556205251926,
+          "central_distribution_floor_high_cents": 51.97587478254747,
+          "residual_distribution": {
+            "n": 64,
+            "min": -34.14161828216882,
+            "p10": -2.225293968829561,
+            "p25": -0.26254581779854647,
+            "median": 1.8452951376554694,
+            "p75": 3.421384679831476,
+            "p90": 3.6130246084659845,
+            "max": 4.970795925209259,
+            "iqr": 3.6839304976300227,
+            "p90_p10_width": 5.838318577295546
+          },
+          "model": {
+            "intercept": 98.39263001409384,
+            "slope": -1.021015915102293
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "ATP_MAIN_26_50_FLAT_RECOVERED"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "ATP_MAIN_26_50_FLAT_RECOVERED",
+              "shape_leave_one_event_out_support_n": 10,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        }
+      ],
+      "change_receipted_by_x": true
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18MASRYS|RYS",
+      "event_id": "KXWTAMATCH-26JUL18MASRYS",
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "starting_price_split": "26_50+51_75",
+      "v11": {
+        "acted": true,
+        "entry_cents": 25,
+        "action_timestamp_epoch": 1784362331,
+        "terminal_reason": "ACTED"
+      },
+      "v17": {
+        "acted": true,
+        "entry_cents": 24,
+        "action_timestamp_epoch": 1784377701,
+        "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK"
+      },
+      "x_decisions": [
+        {
+          "timestamp_epoch": 1784343953,
+          "t_minus_scheduled_seconds": 28447,
+          "t_minus_actual_bell_seconds": 34747,
+          "trigger_receipt": "KXWTAMATCH-26JUL18MASRYS-RYS.csv.gz#row-1024",
+          "first_leg_id": "MAS",
+          "first_fill_x_cents": 74,
+          "first_fill_timestamp_epoch": 1784343952,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 27,
+          "prior_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_CONTINUATION",
+            "WTA_MAIN_26_50_DOWN_REBOUND",
+            "WTA_MAIN_26_50_FLAT_RECOVERED",
+            "WTA_MAIN_26_50_FLAT_UNMOVED",
+            "WTA_MAIN_26_50_UP_AFTER_DIP",
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "WTA_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 60,
+          "fitted_center_cents": 22.689568258384018,
+          "empirical_support_floor_low_cents": -19.790571072466516,
+          "empirical_support_floor_high_cents": 26.557970584343668,
+          "central_distribution_floor_low_cents": 20.570716993228768,
+          "central_distribution_floor_high_cents": 26.058340857821538,
+          "residual_distribution": {
+            "n": 60,
+            "min": -42.480139330850534,
+            "p10": -2.11885126515525,
+            "p25": 0.08879029073754907,
+            "median": 1.331926657381917,
+            "p75": 2.7579584094280136,
+            "p90": 3.36877259943752,
+            "max": 3.86840232595965,
+            "iqr": 2.6691681186904646,
+            "p90_p10_width": 5.48762386459277
+          },
+          "model": {
+            "intercept": 100.80791863350055,
+            "slope": -1.0556533834475206
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_REBOUND",
+            "WTA_MAIN_26_50_FLAT_RECOVERED",
+            "WTA_MAIN_26_50_FLAT_UNMOVED",
+            "WTA_MAIN_26_50_UP_AFTER_DIP",
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_DOWN_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 31,
+              "shape_member_floor_distribution": {
+                "n": 31,
+                "min": 22,
+                "p10": 27,
+                "p25": 32,
+                "median": 39,
+                "p75": 44,
+                "p90": 46,
+                "max": 48,
+                "iqr": 12,
+                "p90_p10_width": 19
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_DOWN_REBOUND",
+              "shape_leave_one_event_out_support_n": 7,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_FLAT_RECOVERED",
+              "shape_leave_one_event_out_support_n": 5,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 15,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 2,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_UP_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 12,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "WTA_MAIN_26_50_DOWN_CONTINUATION"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784343958,
+          "t_minus_scheduled_seconds": 28442,
+          "t_minus_actual_bell_seconds": 34742,
+          "trigger_receipt": "KXWTAMATCH-26JUL18MASRYS-RYS.csv.gz#row-1024",
+          "first_leg_id": "MAS",
+          "first_fill_x_cents": 74,
+          "first_fill_timestamp_epoch": 1784343952,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 27,
+          "prior_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_REBOUND",
+            "WTA_MAIN_26_50_FLAT_RECOVERED",
+            "WTA_MAIN_26_50_FLAT_UNMOVED",
+            "WTA_MAIN_26_50_UP_AFTER_DIP",
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "WTA_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 60,
+          "fitted_center_cents": 22.689568258384018,
+          "empirical_support_floor_low_cents": -19.790571072466516,
+          "empirical_support_floor_high_cents": 26.557970584343668,
+          "central_distribution_floor_low_cents": 20.570716993228768,
+          "central_distribution_floor_high_cents": 26.058340857821538,
+          "residual_distribution": {
+            "n": 60,
+            "min": -42.480139330850534,
+            "p10": -2.11885126515525,
+            "p25": 0.08879029073754907,
+            "median": 1.331926657381917,
+            "p75": 2.7579584094280136,
+            "p90": 3.36877259943752,
+            "max": 3.86840232595965,
+            "iqr": 2.6691681186904646,
+            "p90_p10_width": 5.48762386459277
+          },
+          "model": {
+            "intercept": 100.80791863350055,
+            "slope": -1.0556533834475206
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_REBOUND",
+            "WTA_MAIN_26_50_FLAT_RECOVERED",
+            "WTA_MAIN_26_50_FLAT_UNMOVED",
+            "WTA_MAIN_26_50_UP_AFTER_DIP",
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_DOWN_REBOUND",
+              "shape_leave_one_event_out_support_n": 7,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_FLAT_RECOVERED",
+              "shape_leave_one_event_out_support_n": 5,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 15,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 2,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_UP_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 12,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784344014,
+          "t_minus_scheduled_seconds": 28386,
+          "t_minus_actual_bell_seconds": 34686,
+          "trigger_receipt": "KXWTAMATCH-26JUL18MASRYS-RYS.csv.gz#row-1025",
+          "first_leg_id": "MAS",
+          "first_fill_x_cents": 74,
+          "first_fill_timestamp_epoch": 1784343952,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 27,
+          "prior_shape_ids": [
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "WTA_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 60,
+          "fitted_center_cents": 22.689568258384018,
+          "empirical_support_floor_low_cents": -19.790571072466516,
+          "empirical_support_floor_high_cents": 26.557970584343668,
+          "central_distribution_floor_low_cents": 20.570716993228768,
+          "central_distribution_floor_high_cents": 26.058340857821538,
+          "residual_distribution": {
+            "n": 60,
+            "min": -42.480139330850534,
+            "p10": -2.11885126515525,
+            "p25": 0.08879029073754907,
+            "median": 1.331926657381917,
+            "p75": 2.7579584094280136,
+            "p90": 3.36877259943752,
+            "max": 3.86840232595965,
+            "iqr": 2.6691681186904646,
+            "p90_p10_width": 5.48762386459277
+          },
+          "model": {
+            "intercept": 100.80791863350055,
+            "slope": -1.0556533834475206
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_UP_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 12,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784360914,
+          "t_minus_scheduled_seconds": 11486,
+          "t_minus_actual_bell_seconds": 17786,
+          "trigger_receipt": "KXWTAMATCH-26JUL18MASRYS-RYS.csv.gz#row-1791",
+          "first_leg_id": "MAS",
+          "first_fill_x_cents": 74,
+          "first_fill_timestamp_epoch": 1784343952,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 26,
+          "prior_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_CONTINUATION",
+            "WTA_MAIN_26_50_DOWN_REBOUND",
+            "WTA_MAIN_26_50_FLAT_RECOVERED",
+            "WTA_MAIN_26_50_FLAT_UNMOVED",
+            "WTA_MAIN_26_50_UP_AFTER_DIP",
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "WTA_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 60,
+          "fitted_center_cents": 22.689568258384018,
+          "empirical_support_floor_low_cents": -19.790571072466516,
+          "empirical_support_floor_high_cents": 26.557970584343668,
+          "central_distribution_floor_low_cents": 20.570716993228768,
+          "central_distribution_floor_high_cents": 26.058340857821538,
+          "residual_distribution": {
+            "n": 60,
+            "min": -42.480139330850534,
+            "p10": -2.11885126515525,
+            "p25": 0.08879029073754907,
+            "median": 1.331926657381917,
+            "p75": 2.7579584094280136,
+            "p90": 3.36877259943752,
+            "max": 3.86840232595965,
+            "iqr": 2.6691681186904646,
+            "p90_p10_width": 5.48762386459277
+          },
+          "model": {
+            "intercept": 100.80791863350055,
+            "slope": -1.0556533834475206
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_REBOUND",
+            "WTA_MAIN_26_50_FLAT_RECOVERED",
+            "WTA_MAIN_26_50_FLAT_UNMOVED",
+            "WTA_MAIN_26_50_UP_AFTER_DIP",
+            "WTA_MAIN_26_50_UP_CONTINUATION"
+          ],
+          "eliminated_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_DOWN_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 31,
+              "shape_member_floor_distribution": {
+                "n": 31,
+                "min": 22,
+                "p10": 27,
+                "p25": 32,
+                "median": 39,
+                "p75": 44,
+                "p90": 46,
+                "max": 48,
+                "iqr": 12,
+                "p90_p10_width": 19
+              },
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION"
+            }
+          ],
+          "abstaining_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_DOWN_REBOUND",
+              "shape_leave_one_event_out_support_n": 7,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_FLAT_RECOVERED",
+              "shape_leave_one_event_out_support_n": 5,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+              "shape_leave_one_event_out_support_n": 15,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_UP_AFTER_DIP",
+              "shape_leave_one_event_out_support_n": 2,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            },
+            {
+              "shape_id": "WTA_MAIN_26_50_UP_CONTINUATION",
+              "shape_leave_one_event_out_support_n": 12,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET",
+          "contradiction_reopen": {
+            "reason": "CURRENT_SURVIVOR_SET_DISJOINT_FROM_X_CONDITIONAL_DISTRIBUTION; FULL_FITTED_SET_REOPENED_BEFORE_RENARROW",
+            "contradicted_shape_ids": [
+              "WTA_MAIN_26_50_DOWN_CONTINUATION"
+            ]
+          }
+        },
+        {
+          "timestamp_epoch": 1784360915,
+          "t_minus_scheduled_seconds": 11485,
+          "t_minus_actual_bell_seconds": 17785,
+          "trigger_receipt": "KXWTAMATCH-26JUL18MASRYS-RYS.csv.gz#row-1795",
+          "first_leg_id": "MAS",
+          "first_fill_x_cents": 74,
+          "first_fill_timestamp_epoch": 1784343952,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 26,
+          "prior_shape_ids": [
+            "WTA_MAIN_26_50_FLAT_RECOVERED"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "WTA_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 60,
+          "fitted_center_cents": 22.689568258384018,
+          "empirical_support_floor_low_cents": -19.790571072466516,
+          "empirical_support_floor_high_cents": 26.557970584343668,
+          "central_distribution_floor_low_cents": 20.570716993228768,
+          "central_distribution_floor_high_cents": 26.058340857821538,
+          "residual_distribution": {
+            "n": 60,
+            "min": -42.480139330850534,
+            "p10": -2.11885126515525,
+            "p25": 0.08879029073754907,
+            "median": 1.331926657381917,
+            "p75": 2.7579584094280136,
+            "p90": 3.36877259943752,
+            "max": 3.86840232595965,
+            "iqr": 2.6691681186904646,
+            "p90_p10_width": 5.48762386459277
+          },
+          "model": {
+            "intercept": 100.80791863350055,
+            "slope": -1.0556533834475206
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "WTA_MAIN_26_50_FLAT_RECOVERED"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_FLAT_RECOVERED",
+              "shape_leave_one_event_out_support_n": 5,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        },
+        {
+          "timestamp_epoch": 1784377684,
+          "t_minus_scheduled_seconds": -5284,
+          "t_minus_actual_bell_seconds": 1016,
+          "trigger_receipt": "KXWTAMATCH-26JUL18MASRYS-RYS.csv.gz#row-4157",
+          "first_leg_id": "MAS",
+          "first_fill_x_cents": 74,
+          "first_fill_timestamp_epoch": 1784343952,
+          "strictly_after_first_fill": true,
+          "current_ask_cents": 24,
+          "prior_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_REBOUND"
+          ],
+          "usable": true,
+          "reason": "LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_DISTRIBUTION_BOUND",
+          "cell_key": "WTA_MAIN|26_50+51_75",
+          "leave_one_event_out_n": 60,
+          "fitted_center_cents": 22.689568258384018,
+          "empirical_support_floor_low_cents": -19.790571072466516,
+          "empirical_support_floor_high_cents": 26.557970584343668,
+          "central_distribution_floor_low_cents": 20.570716993228768,
+          "central_distribution_floor_high_cents": 26.058340857821538,
+          "residual_distribution": {
+            "n": 60,
+            "min": -42.480139330850534,
+            "p10": -2.11885126515525,
+            "p25": 0.08879029073754907,
+            "median": 1.331926657381917,
+            "p75": 2.7579584094280136,
+            "p90": 3.36877259943752,
+            "max": 3.86840232595965,
+            "iqr": 2.6691681186904646,
+            "p90_p10_width": 5.48762386459277
+          },
+          "model": {
+            "intercept": 100.80791863350055,
+            "slope": -1.0556533834475206
+          },
+          "uncertainty_statistic_provenance": "V16_LEAVE_ONE_EVENT_OUT_P10_P90_WIDTH",
+          "elimination_support_law": "EMPIRICAL_LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP; NO_POINT_TARGET",
+          "applied": true,
+          "retained_shape_ids": [
+            "WTA_MAIN_26_50_DOWN_REBOUND"
+          ],
+          "eliminated_shapes": [],
+          "abstaining_shapes": [
+            {
+              "shape_id": "WTA_MAIN_26_50_DOWN_REBOUND",
+              "shape_leave_one_event_out_support_n": 7,
+              "reason": "SHAPE_MEMBER_FLOOR_DISTRIBUTION_THIN_OR_UNAVAILABLE_LEAVE_ONE_EVENT_OUT"
+            }
+          ],
+          "all_shapes_eliminated": false,
+          "comparison_law": "LEAVE_ONE_EVENT_OUT_SHAPE_MEMBER_P10_P90_DISTRIBUTION_OVERLAPS_LEAVE_ONE_EVENT_OUT_X_CONDITIONAL_P10_P90_DISTRIBUTION; NO_POINT_TARGET"
+        }
+      ],
+      "change_receipted_by_x": true
+    }
+  ]
+}

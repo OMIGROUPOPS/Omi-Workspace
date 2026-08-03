@@ -1,0 +1,14 @@
+{
+  "schema_version": "WINDOW1_REALIZED_FALL_INVERSION_RETIREMENT_V17",
+  "source_sha256": "6d0c20482553695c8735f7cdaab36cb51cf9501215449deb6506328dd62ebc8d",
+  "v16_finding": {
+    "ask_floor_interpretable_cells": 8,
+    "ask_floor_tighter_cells": 2,
+    "traded_floor_interpretable_cells": 8,
+    "traded_floor_tighter_cells": 3
+  },
+  "status": "RETRACTED_AS_GENERAL_RULE",
+  "behavior_consumed": false,
+  "retained_scope": "CELL_SPECIFIC_DESCRIPTIVE_OBSERVATION_ONLY",
+  "rationale": "Only 2/8 supported ask-floor cells and 3/8 supported traded-floor cells tightened; it is not general."
+}

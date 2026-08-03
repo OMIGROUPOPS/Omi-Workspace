@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scripts": 11,
+  "explicitly_reported_assertions": 135,
+  "commands": [
+    "test_window1_second_leg_x_pricer_v17.js (13)",
+    "test_window1_second_leg_x_package_v17.js (15)",
+    "test_window1_pair_coupling_diagnostic_v16.js (30)",
+    "test_window1_first_leg_commitment_diagnostic_v1.js (39)",
+    "test_window1_quote_shape_persistence_floor_v11.js",
+    "test_window1_persistence_floor_repair_v11.js (20)",
+    "test_window1_quote_shape_descent_verdict_v10.js (7)",
+    "test_window1_quote_shape_descent_verdict_v5.js (7)",
+    "test_window1_quote_shape_dynamic_renarrow_v6.js",
+    "test_window1_dynamic_renarrow_population_v7.js (4)",
+    "test_window1_trade_floor_correction_v8.js"
+  ],
+  "omissions": 0,
+  "deselections": 0,
+  "scorer_invocations": 0
+}

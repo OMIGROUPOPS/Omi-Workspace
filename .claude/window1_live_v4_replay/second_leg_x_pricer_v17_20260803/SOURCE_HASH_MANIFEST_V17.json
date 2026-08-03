@@ -1,0 +1,64 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3",
+      "bytes": 2632043
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902",
+      "bytes": 2475041
+    },
+    ".claude/window1_live_v4_replay/second_leg_x_pricer_fit_v17_20260803/SECOND_LEG_X_CONDITIONAL_LIBRARY.json": {
+      "sha256": "e10ef0b819fb3f72fadaf54a4f9ca47383db53a680c078efdd9c14b50ea65b65",
+      "bytes": 626954
+    },
+    ".claude/window1_live_v4_replay/second_leg_x_pricer_v17_20260803/TIME_AND_FLOW_AXIS_DIAGNOSTIC.json": {
+      "sha256": "45884542f59dec01afbb4d9734612431c130c9cefc6a2eda532502ae44513a38",
+      "bytes": 565718
+    },
+    ".claude/window1_live_v4_replay/pair_coupling_diagnostic_v16_20260803/PAIR_INVERSION_LAW_RECEIPT.json": {
+      "sha256": "6d0c20482553695c8735f7cdaab36cb51cf9501215449deb6506328dd62ebc8d",
+      "bytes": 305245
+    },
+    ".claude/window1_live_v4_replay/pair_coupling_diagnostic_v16_20260803/DIAGNOSTIC_CONCLUSION.json": {
+      "sha256": "6862ba417873f2d78c43f50cff7ee40db4222652acc68dc56e913d2bfe29dbe5",
+      "bytes": 855
+    },
+    ".claude/window1_live_v4_replay/second_leg_x_pricer_v17_20260803/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "8ea047a1ed644493e5fe88ecc4c3b1d4092e7a31d8b59241cb8fa3a2ca64de74",
+      "bytes": 2432823
+    },
+    "arb-executor/analysis/build_window1_second_leg_x_package_v17.js": {
+      "sha256": "7f8acc831d2789483dc84b099c55778627678524590a97f6f3a966f3d717d41c",
+      "bytes": 16811
+    },
+    "arb-executor/analysis/window1_second_leg_x_pricer_v17.js": {
+      "sha256": "6b8df50b46b2eae27f7f387c63fd238a419df0dc1e28d88fad55d1fc660b31d4",
+      "bytes": 5904
+    },
+    "arb-executor/analysis/build_window1_second_leg_x_library_v17.js": {
+      "sha256": "680409e9495a082faac570f651bbc043f8acacf4d0b50f61ac0be0562f54ac3d",
+      "bytes": 6714
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v11_frozen.js": {
+      "sha256": "2cbbeb73f5c0a7c24ff234b0f85402b98c78ea337ca2a94a3eaba4af37c91ac9",
+      "bytes": 57758
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v11_frozen_for_v17.js": {
+      "sha256": "2ac113441f1a1c768302378ffe5528ff37ae6ecea61ded87e4efc53544641bbf",
+      "bytes": 24523
+    },
+    "arb-executor/analysis/build_window1_second_leg_time_axis_diagnostic_v17.js": {
+      "sha256": "1dee307e7e3f51c511b0d025df3d70131e29a4b51d169af211fd38f507bbd5d1",
+      "bytes": 11224
+    },
+    "arb-executor/tests/test_window1_second_leg_x_pricer_v17.js": {
+      "sha256": "14d6e5271e91292c58c45a185b9a6d1e0c317973504f064d8a09f47dad193eda",
+      "bytes": 2275
+    },
+    "arb-executor/tests/test_window1_second_leg_x_package_v17.js": {
+      "sha256": "c05b20aef3051f58c257bd958544c58603f8f34dde2c5717c092880ae41f57c9",
+      "bytes": 2331
+    }
+  }
+}

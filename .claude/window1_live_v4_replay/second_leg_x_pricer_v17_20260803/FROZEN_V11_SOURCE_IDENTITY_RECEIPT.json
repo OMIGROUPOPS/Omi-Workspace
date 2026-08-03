@@ -1,0 +1,8 @@
+{
+  "schema_version": "WINDOW1_FROZEN_V11_SOURCE_IDENTITY_V17",
+  "frozen_v11_source_commit": "823a739daed7af6073e48ec037cff05db8f3d494",
+  "frozen_v11_replay_blob": "9cdd95ccc33202f6b095cd430e27fd5d27fd637b",
+  "frozen_v11_population_builder_blob": "f1cd60dbe9f0e773baf425e49d77269e70669559",
+  "v17_replay_sha256": "2cbbeb73f5c0a7c24ff234b0f85402b98c78ea337ca2a94a3eaba4af37c91ac9",
+  "law": "V17 starts from the exact V11 Git blobs; only the X distributional narrowing and receipt fields are added."
+}

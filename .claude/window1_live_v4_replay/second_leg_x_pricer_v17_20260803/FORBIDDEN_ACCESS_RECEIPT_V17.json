@@ -1,0 +1,13 @@
+{
+  "scorer_invocations": 0,
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "tuning_against_results": false
+}

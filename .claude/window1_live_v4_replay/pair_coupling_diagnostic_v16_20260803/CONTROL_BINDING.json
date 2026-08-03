@@ -1,0 +1,25 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_CONTROL_BINDING_V16",
+  "behavior_changed": false,
+  "scorer_invocations": 0,
+  "population": {
+    "events": 804,
+    "legs": 1608
+  },
+  "fit": {
+    "events": 799,
+    "excluded_exact_start_events": [
+      "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "KXATPMATCH-26JUL12LAJVAN",
+      "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "KXWTAMATCH-26JUL20KORJIM"
+    ]
+  },
+  "v11_source": ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz",
+  "both_floor_definitions_preserved": true,
+  "clocks": {
+    "scheduled": "BOUND_FROM_FROZEN_QUOTE_LEDGER",
+    "actual_bell": "BOUND_WHERE_PRESENT_ELSE_ACTUAL_BELL_NOT_BOUND"
+  }
+}

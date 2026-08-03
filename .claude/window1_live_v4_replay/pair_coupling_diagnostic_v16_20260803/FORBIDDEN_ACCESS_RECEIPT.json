@@ -1,0 +1,9 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_FORBIDDEN_ACCESS_V16",
+  "holdout_july_24_26_accessed": false,
+  "live_or_production_accessed": false,
+  "network_runtime_accessed": false,
+  "orders_positions_exits_settlement_dca_accessed": false,
+  "scorer_invocations": 0,
+  "behavior_changes": 0
+}

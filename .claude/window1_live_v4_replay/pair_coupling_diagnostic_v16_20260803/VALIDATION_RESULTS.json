@@ -1,0 +1,50 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_VALIDATION_RESULTS_V16",
+  "status": "PASS",
+  "scripts": 6,
+  "explicitly_reported_assertions": 135,
+  "omissions": 0,
+  "deselections": 0,
+  "commands": [
+    {
+      "path": "arb-executor/tests/test_window1_pair_coupling_diagnostic_v16.js",
+      "sha256": "85370b8271632447d860c5921df2fd3e263d87ad9f5ef348a7501d00e91e7684",
+      "result": "PASS",
+      "reported_assertions": 30
+    },
+    {
+      "path": "arb-executor/tests/test_window1_first_leg_commitment_diagnostic_v1.js",
+      "sha256": "f4ee7de5b03684f79acd9536de5b7998e7af5f37de333b82d9867da3b42bda86",
+      "result": "PASS",
+      "reported_assertions": 39
+    },
+    {
+      "path": "arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js",
+      "sha256": "90d18be7be129e97ed2767b496302e8406a04ee2388721a6651dd475ddf14732",
+      "result": "PASS",
+      "reported_assertions": null
+    },
+    {
+      "path": "arb-executor/tests/test_window1_persistence_floor_repair_v11.js",
+      "sha256": "6d8f5d4e438d442a00b507588afe9e7f23289bf791a88ab0f71c8105a7457897",
+      "result": "PASS",
+      "reported_assertions": 20
+    },
+    {
+      "path": "arb-executor/tests/test_window1_live_book_ordinal_root_repair_v15.js",
+      "sha256": "266167d3b032c74b32357a70fc648bb94db317ee521a19dfd7e97845649c7cc5",
+      "result": "PASS",
+      "reported_assertions": 30
+    },
+    {
+      "path": "arb-executor/tests/test_window1_quote_shape_live_book_persistence_v15.js",
+      "sha256": "ec4cd407a16c1ad9a8f05e61ee1bf960304eb15c340884debbd66a7e75ecd896",
+      "result": "PASS",
+      "reported_assertions": 16
+    }
+  ],
+  "git_diff_check": "PASS",
+  "scorer_invocations": 0,
+  "behavior_changes": 0,
+  "holdout_access": false
+}

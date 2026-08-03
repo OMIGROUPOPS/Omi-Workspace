@@ -1,0 +1,12 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_INTERNAL_TEST_RESULTS_V16",
+  "status": "PASS",
+  "assertions": 24,
+  "conservation": {
+    "events": 804,
+    "legs": 1608,
+    "fit_excluded_events": 5,
+    "carried_rows": 52
+  },
+  "scorer_invocations": 0
+}

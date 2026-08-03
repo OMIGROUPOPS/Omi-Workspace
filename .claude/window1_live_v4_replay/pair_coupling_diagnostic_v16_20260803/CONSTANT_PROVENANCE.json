@@ -1,0 +1,20 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_CONSTANT_PROVENANCE_V16",
+  "behavior_constants_unchanged": true,
+  "ask_dwell_seconds": {
+    "value": 10,
+    "provenance": "frozen ask reachability law",
+    "role": "input floor identity only"
+  },
+  "exact_quantity": {
+    "value": 5,
+    "provenance": "frozen exact-five law",
+    "role": "input floor identity only"
+  },
+  "minimum_interpretable_cell_n": {
+    "value": 20,
+    "provenance": "existing quote-shape coherence reporting law",
+    "role": "diagnostic label only"
+  },
+  "changed_or_tuned_constants": []
+}

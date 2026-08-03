@@ -1,0 +1,402 @@
+{
+  "schema_version": "WINDOW1_STRICT_CARRIED_PAIR_COUPLING_COUNTERFACTUAL_V16",
+  "score_free": true,
+  "baseline": {
+    "completed_pairs": 185,
+    "pairs_under_par": 94,
+    "both_legs_strictly_below_close": 21,
+    "strict_one_above_one_below_pairs": 52
+  },
+  "chronological_second_leg": {
+    "strict_rows": 48,
+    "simultaneous_timestamp_rows": 4,
+    "later_ask_floor_available": 48
+  },
+  "oracle_result": {
+    "carried_pairs_flipped_to_both_below_close": 10,
+    "overall_both_below_close_if_substituted": 31,
+    "newly_under_par_pairs": 18,
+    "overall_under_par_if_substituted": 112
+  },
+  "authority_fence": "This uses each second leg's realized strictly-later floor. It is an ex-post timing oracle, not a causal coupling rule. Unless the matching fitted cell is non-thin and tighter, the first leg did not provide validated authority to wait for that price; no operational flip is claimed.",
+  "by_category_and_second_leg_price_region": [
+    {
+      "partition": "ATP_CHALL|26_50",
+      "n": 9,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 9,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 8,
+        "max": 9,
+        "iqr": 3,
+        "p90_p10_width": 8
+      },
+      "flips_to_both_below_close": 4,
+      "newly_under_par": 4,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+        "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+        "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+        "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+        "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+        "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+        "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+        "KXATPCHALLENGERMATCH-26JUL20VANOUA"
+      ]
+    },
+    {
+      "partition": "ATP_CHALL|51_75",
+      "n": 4,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 4,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 4,
+        "p90": 4,
+        "max": 5,
+        "iqr": 4,
+        "p90_p10_width": 4
+      },
+      "flips_to_both_below_close": 2,
+      "newly_under_par": 0,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+        "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+        "KXATPCHALLENGERMATCH-26JUL12MARFOR",
+        "KXATPCHALLENGERMATCH-26JUL19AVECHA"
+      ]
+    },
+    {
+      "partition": "ATP_CHALL|ge76",
+      "n": 1,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 4,
+        "p10": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 0,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL19REJWES"
+      ]
+    },
+    {
+      "partition": "ATP_CHALL|le25",
+      "n": 1,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 2,
+        "p10": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 1,
+      "event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL13BOUZHA"
+      ]
+    },
+    {
+      "partition": "ATP_MAIN|26_50",
+      "n": 6,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 6,
+        "unavailable": 0,
+        "min": 1,
+        "p10": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 5,
+        "max": 8,
+        "iqr": 3,
+        "p90_p10_width": 4
+      },
+      "flips_to_both_below_close": 2,
+      "newly_under_par": 3,
+      "event_ids": [
+        "KXATPMATCH-26JUL12ALTGAS",
+        "KXATPMATCH-26JUL12LAJVAN",
+        "KXATPMATCH-26JUL12MULSHE",
+        "KXATPMATCH-26JUL18HIPGIU",
+        "KXATPMATCH-26JUL19NEUHAN",
+        "KXATPMATCH-26JUL19VANFAR"
+      ]
+    },
+    {
+      "partition": "ATP_MAIN|51_75",
+      "n": 6,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "iqr": 0,
+        "p90_p10_width": 2
+      },
+      "flips_to_both_below_close": 1,
+      "newly_under_par": 2,
+      "event_ids": [
+        "KXATPMATCH-26JUL12DROBLO",
+        "KXATPMATCH-26JUL12GUEGOM",
+        "KXATPMATCH-26JUL12SVRDIM",
+        "KXATPMATCH-26JUL14TRAKRU",
+        "KXATPMATCH-26JUL15CARUGO",
+        "KXATPMATCH-26JUL18RUBTAB"
+      ]
+    },
+    {
+      "partition": "ATP_MAIN|le25",
+      "n": 5,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 5,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 4,
+        "max": 4,
+        "iqr": 4,
+        "p90_p10_width": 4
+      },
+      "flips_to_both_below_close": 1,
+      "newly_under_par": 3,
+      "event_ids": [
+        "KXATPMATCH-26JUL18ROCBUE",
+        "KXATPMATCH-26JUL18RODCHE",
+        "KXATPMATCH-26JUL18SHETSI",
+        "KXATPMATCH-26JUL19LUZTAB",
+        "KXATPMATCH-26JUL19TORBAS"
+      ]
+    },
+    {
+      "partition": "WTA_CHALL|26_50",
+      "n": 2,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 2,
+        "unavailable": 0,
+        "min": 1,
+        "p10": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 1,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
+        "KXWTACHALLENGERMATCH-26JUL17JONNOH"
+      ]
+    },
+    {
+      "partition": "WTA_CHALL|51_75",
+      "n": 1,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 0,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL19SERTOT"
+      ]
+    },
+    {
+      "partition": "WTA_CHALL|ge76",
+      "n": 1,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 2,
+        "p10": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 1,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL12BOSKOV"
+      ]
+    },
+    {
+      "partition": "WTA_CHALL|le25",
+      "n": 1,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 1,
+        "p10": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 1,
+      "event_ids": [
+        "KXWTACHALLENGERMATCH-26JUL18WEBHOD"
+      ]
+    },
+    {
+      "partition": "WTA_MAIN|26_50",
+      "n": 6,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 5,
+        "iqr": 1,
+        "p90_p10_width": 2
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 1,
+      "event_ids": [
+        "KXWTAMATCH-26JUL13BONSOR",
+        "KXWTAMATCH-26JUL13TAUHIB",
+        "KXWTAMATCH-26JUL18MASRYS",
+        "KXWTAMATCH-26JUL18MORAKS",
+        "KXWTAMATCH-26JUL20BLIBEJ",
+        "KXWTAMATCH-26JUL20OKTDOD"
+      ]
+    },
+    {
+      "partition": "WTA_MAIN|51_75",
+      "n": 2,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 0,
+      "event_ids": [
+        "KXWTAMATCH-26JUL13MATMIC",
+        "KXWTAMATCH-26JUL19AVDNIE"
+      ]
+    },
+    {
+      "partition": "WTA_MAIN|ge76",
+      "n": 2,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p10": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 6,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 1,
+      "event_ids": [
+        "KXWTAMATCH-26JUL12WERAMA",
+        "KXWTAMATCH-26JUL13KUDSAK"
+      ]
+    },
+    {
+      "partition": "WTA_MAIN|le25",
+      "n": 1,
+      "thin": true,
+      "second_entry_minus_later_ask_floor_cents": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 1,
+        "p10": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "iqr": 0,
+        "p90_p10_width": 0
+      },
+      "flips_to_both_below_close": 0,
+      "newly_under_par": 0,
+      "event_ids": [
+        "KXWTAMATCH-26JUL20SEMKRA"
+      ]
+    }
+  ]
+}

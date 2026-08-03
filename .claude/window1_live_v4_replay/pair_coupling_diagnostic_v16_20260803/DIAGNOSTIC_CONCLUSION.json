@@ -1,0 +1,27 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_CONCLUSION_V16",
+  "sibling_floor_prediction": {
+    "ask_floor": {
+      "cells": 26,
+      "interpretable_cells": 8,
+      "tighter_x_plus_time_cells": 8,
+      "not_tighter_cells": 0,
+      "time_adds_beyond_x_cells": 4
+    },
+    "traded_floor": {
+      "cells": 22,
+      "interpretable_cells": 8,
+      "tighter_x_plus_time_cells": 8,
+      "not_tighter_cells": 0,
+      "time_adds_beyond_x_cells": 3
+    }
+  },
+  "inversion_move_and_speed": {
+    "ask_floor_interpretable_cells": 8,
+    "ask_floor_tighter_cells": 2,
+    "traded_floor_interpretable_cells": 8,
+    "traded_floor_tighter_cells": 3
+  },
+  "ruling": "FIRST_FLOOR_X_PLUS_TIME_TIGHTENS_SIBLING_FLOOR_IN_SUPPORTED_DEVELOPMENT_CELLS; REALIZED_MOVE_AND_SPEED_ARE_NOT_A_GENERAL_INVERSION_LAW; NO_POLICY_AUTHORITY",
+  "no_behavior_change": true
+}

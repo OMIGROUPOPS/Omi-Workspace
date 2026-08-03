@@ -1,0 +1,45 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_SOURCE_HASH_MANIFEST_V16",
+  "committed": {
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "bytes": 503893,
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba"
+    },
+    ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json": {
+      "bytes": 1737135,
+      "sha256": "f92aa4a9eaebd9aa15da198da0c1351bf7398d3acaeb893d718d16fe63cfcd88"
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "bytes": 2479552,
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b"
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "bytes": 2475041,
+      "sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902"
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 2632043,
+      "sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3"
+    },
+    ".claude/window1_live_v4_replay/live_book_ordinal_root_repair_v15_20260803/STRICT_CARRIED_PAIR_DIAGNOSTIC.jsonl.gz": {
+      "bytes": 12181,
+      "sha256": "353917c3da7645a5118f3b7aa72820d9ef8e9e754aa52681e056e875b8701cb5"
+    },
+    "arb-executor/analysis/build_window1_pair_coupling_diagnostic_v16.js": {
+      "bytes": 49223,
+      "sha256": "e55adf5a87522f2e1fb78b402bc4480ce88cc44a25d4fbf8fbb49bf4b73a66d3"
+    },
+    "arb-executor/tests/test_window1_pair_coupling_diagnostic_v16.js": {
+      "bytes": 3774,
+      "sha256": "85370b8271632447d860c5921df2fd3e263d87ad9f5ef348a7501d00e91e7684"
+    }
+  },
+  "private_development_ticks": {
+    "count": 1608,
+    "aggregate_manifest_sha256": "c7cbda19a3a4edbdb9973d9e484070985741fc5dc2c3a119f9618b4888242a75"
+  },
+  "forbidden_inputs": {
+    "holdout": false,
+    "live": false
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLING_DETERMINISM_V16",
+  "canonical_json": true,
+  "gzip_mtime": 0,
+  "artifact_manifest_identity_sha256": "f651ba4ed22b634a8c55eb37d32b3b259fd3a908be98fc3f727a48e434c7052b",
+  "clean_build_comparison": "PASS_TWO_ISOLATED_RAW_INPUT_BUILDS_BYTE_IDENTICAL",
+  "comparison_output": ".claude/_tmp_pair_coupling_v16_regen2",
+  "mismatched_files": 0
+}

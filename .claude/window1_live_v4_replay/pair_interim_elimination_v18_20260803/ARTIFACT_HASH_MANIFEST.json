@@ -1,0 +1,64 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "872df63f1d23c30b4d5fd15307a8b6d40ffa26505e7998ffeecf55ec0a6eec47",
+      "bytes": 531
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "c6bb295c4ff3c25dd35bd4564a6a9df47a53c1cc69b0824c3b4ca496bf192b64",
+      "bytes": 247
+    },
+    "INDEPENDENT_AUDIT_INSTRUCTION.md": {
+      "sha256": "a7564db2f9af9f60275b7db5d834061862e8e29f8a176c6f33db4cdc3d9f16f5",
+      "bytes": 885
+    },
+    "INTERIM_PAIR_LIBRARY_V18.json": {
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "bytes": 4711921
+    },
+    "MUTUAL_NARROWING_RECEIPT.json": {
+      "sha256": "7de8fcfb72de1d565bc0408875a692a65558ad305446e479569b7af8477e9892",
+      "bytes": 379
+    },
+    "NON_ACTION_RESOLUTION_CENSUS.json": {
+      "sha256": "04d83b7c82a3fc7a98f912f1a86ddbdbd159ff1fc070f0a7c4f49084b790dae1",
+      "bytes": 7390
+    },
+    "PAIR_HYPOTHESIS_CENSUS.json": {
+      "sha256": "244ab75716946ee3f13989eb9a9818983464372a3abb98096f4601aeb89f0cf5",
+      "bytes": 44283
+    },
+    "POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "36cf8bd5ff7be5622dfeb2fc0bafbc309d4b6046edc2ebb849e3c8f49acca5db",
+      "bytes": 224454
+    },
+    "POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "842f0273b438deeafa46a967aa604ce8aa5c9f592552d2ced86f77297c077990",
+      "bytes": 213648
+    },
+    "PRE_RUN_REPORT.md": {
+      "sha256": "ab398e94f29ea5574d2a3012e820fcbd9214615cf9b11f3e586c2d77d71f8989",
+      "bytes": 2338
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "fdecfc78017cd99789557a47a9f349decd1800cc4f1a39809b814c7b12e4fe86",
+      "bytes": 2298
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "37e5c6a789c107d2cd58b4b1f7072cf21d7d95f646554d26acca4f121c935b08",
+      "bytes": 529
+    },
+    "V11_896_NON_ACTION_PAIR_RESOLUTION_TRACE.jsonl.gz": {
+      "sha256": "b9081fe1089797b816f5e7f0f0dbdbd05c7c4eabadc7d2b1234340ab4424a5fe",
+      "bytes": 16280
+    },
+    "V11_COMPARISON.json": {
+      "sha256": "a27abe94486eb74cddcb647d16143ac24f7a4e25daef3e79fea5b528924f32b2",
+      "bytes": 30759
+    },
+    "V17_SUPERSESSION_RECEIPT.json": {
+      "sha256": "cb7445db561e543cebc94a905655d8be2365284b27b202017b4fb59ab498fef3",
+      "bytes": 264
+    }
+  }
+}

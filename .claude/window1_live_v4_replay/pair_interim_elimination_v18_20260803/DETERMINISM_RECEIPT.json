@@ -1,0 +1,11 @@
+{
+  "clean_pair_fits": 2,
+  "fit_sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+  "second_fit_sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+  "fits_byte_identical": true,
+  "clean_population_replays": 2,
+  "event_ledger_sha256": "36cf8bd5ff7be5622dfeb2fc0bafbc309d4b6046edc2ebb849e3c8f49acca5db",
+  "second_event_ledger_sha256": "36cf8bd5ff7be5622dfeb2fc0bafbc309d4b6046edc2ebb849e3c8f49acca5db",
+  "population_ledgers_byte_identical": true,
+  "scorer_invocations": 0
+}

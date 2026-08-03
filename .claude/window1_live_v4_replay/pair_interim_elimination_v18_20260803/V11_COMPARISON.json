@@ -1,0 +1,1274 @@
+{
+  "schema_version": "WINDOW1_PAIR_INTERIM_V18_V11_COMPARISON",
+  "score_free": true,
+  "V11": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 712,
+    "completed_pairs": 185,
+    "pairs_under_par": 94,
+    "both_legs_strictly_below_close": 21,
+    "execution_floor_pair_pass": 29,
+    "strict_carried_pairs": 52
+  },
+  "V18": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 0,
+    "credited_legs": 0,
+    "completed_pairs": 0,
+    "pairs_under_par": 0,
+    "both_legs_strictly_below_close": 0,
+    "execution_floor_pair_pass": 0,
+    "strict_carried_pairs": 0,
+    "entry_to_ask_floor_gap": {
+      "denominator": 1608,
+      "available": 0,
+      "unavailable": 1608,
+      "min": null,
+      "p25": null,
+      "median": null,
+      "p75": null,
+      "p90": null,
+      "max": null,
+      "exact_counts": {
+        "UNAVAILABLE": 1608
+      }
+    }
+  },
+  "delta_V18_minus_V11": {
+    "acted_legs": -712,
+    "completed_pairs": -185,
+    "pairs_under_par": -94,
+    "both_legs_strictly_below_close": -21,
+    "execution_floor_pair_pass": -29,
+    "strict_carried_pairs": -52
+  },
+  "category_and_starting_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "V18": {
+        "events": 238,
+        "legs": 476,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 476,
+          "available": 0,
+          "unavailable": 476,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 476
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+ge75",
+      "thin": true,
+      "V18": {
+        "events": 4,
+        "legs": 8,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 8,
+          "available": 0,
+          "unavailable": 8,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 8
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+le25",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+51_75",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+ge75",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "V18": {
+        "events": 6,
+        "legs": 12,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 12,
+          "available": 0,
+          "unavailable": 12,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 12
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "V18": {
+        "events": 102,
+        "legs": 204,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 204,
+          "available": 0,
+          "unavailable": 204,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 204
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "le25+le25",
+      "thin": false,
+      "V18": {
+        "events": 15,
+        "legs": 30,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 30,
+          "available": 0,
+          "unavailable": 30,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 30
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+26_50",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "V18": {
+        "events": 103,
+        "legs": 206,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 206,
+          "available": 0,
+          "unavailable": 206,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 206
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "thin": true,
+      "V18": {
+        "events": 4,
+        "legs": 8,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 8,
+          "available": 0,
+          "unavailable": 8,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 8
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "V18": {
+        "events": 2,
+        "legs": 4,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 4,
+          "available": 0,
+          "unavailable": 4,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 4
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+ge75",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "V18": {
+        "events": 29,
+        "legs": 58,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 58,
+          "available": 0,
+          "unavailable": 58,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 58
+          }
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "le25+le25",
+      "thin": true,
+      "V18": {
+        "events": 6,
+        "legs": 12,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 12,
+          "available": 0,
+          "unavailable": 12,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 12
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "thin": true,
+      "V18": {
+        "events": 2,
+        "legs": 4,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 4,
+          "available": 0,
+          "unavailable": 4,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 4
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "V18": {
+        "events": 88,
+        "legs": 176,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 176,
+          "available": 0,
+          "unavailable": 176,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 176
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "V18": {
+        "events": 44,
+        "legs": 88,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 88,
+          "available": 0,
+          "unavailable": 88,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 88
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "le25+le25",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "thin": false,
+      "V18": {
+        "events": 77,
+        "legs": 154,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 154,
+          "available": 0,
+          "unavailable": 154,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 154
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+le25",
+      "thin": true,
+      "V18": {
+        "events": 3,
+        "legs": 6,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 6,
+          "available": 0,
+          "unavailable": 6,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 6
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "thin": true,
+      "V18": {
+        "events": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 2,
+          "available": 0,
+          "unavailable": 2,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 2
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+le25",
+      "thin": true,
+      "V18": {
+        "events": 4,
+        "legs": 8,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 8,
+          "available": 0,
+          "unavailable": 8,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 8
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "ge75+le25",
+      "thin": false,
+      "V18": {
+        "events": 56,
+        "legs": 112,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 112,
+          "available": 0,
+          "unavailable": 112,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 112
+          }
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "le25+le25",
+      "thin": false,
+      "V18": {
+        "events": 10,
+        "legs": 20,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "both_legs_strictly_below_close": 0,
+        "execution_floor_pair_pass": 0,
+        "strict_carried_pairs": 0,
+        "entry_to_ask_floor_gap": {
+          "denominator": 20,
+          "available": 0,
+          "unavailable": 20,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null,
+          "exact_counts": {
+            "UNAVAILABLE": 20
+          }
+        }
+      }
+    }
+  ],
+  "category_and_leg_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "legs": 261,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 261,
+        "available": 0,
+        "unavailable": 261,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 261
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "legs": 252,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 252,
+        "available": 0,
+        "unavailable": 252,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 252
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "legs": 101,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 101,
+        "available": 0,
+        "unavailable": 101,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 101
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "legs": 124,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 124,
+        "available": 0,
+        "unavailable": 124,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 124
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "legs": 110,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 110,
+        "available": 0,
+        "unavailable": 110,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 110
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "legs": 111,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 111,
+        "available": 0,
+        "unavailable": 111,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 111
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "legs": 27,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 27,
+        "available": 0,
+        "unavailable": 27,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 27
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "legs": 46,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 46,
+        "available": 0,
+        "unavailable": 46,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 46
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "legs": 96,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 96,
+        "available": 0,
+        "unavailable": 96,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 96
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "legs": 87,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 87,
+        "available": 0,
+        "unavailable": 87,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 87
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "legs": 44,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 44,
+        "available": 0,
+        "unavailable": 44,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 44
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "legs": 45,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 45,
+        "available": 0,
+        "unavailable": 45,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 45
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "legs": 86,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 86,
+        "available": 0,
+        "unavailable": 86,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 86
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "legs": 87,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 87,
+        "available": 0,
+        "unavailable": 87,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 87
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "legs": 52,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 52,
+        "available": 0,
+        "unavailable": 52,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 52
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "legs": 79,
+      "acted_legs": 0,
+      "credited_legs": 0,
+      "pair_only_resolved_legs": 0,
+      "entry_to_ask_floor_gap": {
+        "denominator": 79,
+        "available": 0,
+        "unavailable": 79,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {
+          "UNAVAILABLE": 79
+        }
+      }
+    }
+  ],
+  "claim": "IN_SAMPLE DEVELOPMENT REPLAY; NOT HOLDOUT; NOT MARKET CEILING"
+}

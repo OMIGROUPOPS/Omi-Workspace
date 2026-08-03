@@ -1,0 +1,48 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/pair_interim_shape_v18_fit_20260803/INTERIM_PAIR_LIBRARY_V18.json": {
+      "sha256": "4542b46d29b9d55dd97775ef3d8f8f3d971b899cf00e375189b15d08609849e2",
+      "bytes": 4711921
+    },
+    ".claude/window1_live_v4_replay/pair_interim_elimination_v18_20260803/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "36cf8bd5ff7be5622dfeb2fc0bafbc309d4b6046edc2ebb849e3c8f49acca5db",
+      "bytes": 224454
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902",
+      "bytes": 2475041
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3",
+      "bytes": 2632043
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/FUNNEL_AND_FIVE_CEILINGS.json": {
+      "sha256": "ec586a87ccf339b68718ef572c2c01192d581f970fce21aa8c761bad46987ad1",
+      "bytes": 118391
+    },
+    ".claude/window1_live_v4_replay/live_book_ordinal_root_repair_v15_20260803/CARRIED_PAIR_RECONCILIATION.json": {
+      "sha256": "6c77d399f279b4728ffa269e285ab3209174c76c524f820aa15edbcab5f3b648",
+      "bytes": 10094
+    },
+    "arb-executor/analysis/build_window1_pair_interim_library_v18.js": {
+      "sha256": "f292500b1719ea63008daadb6f64dacb8a4183b9c92f459e0e4ad9da8669805d",
+      "bytes": 15442
+    },
+    "arb-executor/analysis/window1_pair_interim_elimination_v18.js": {
+      "sha256": "7a21e7fb77236756769f4876d38bbefacf2f63d2ad79e43e3902db2462fe957e",
+      "bytes": 5533
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "6ffd3afa40e95e65dfec3f86743e5a9d0672548cf5076c86546672de7255b278",
+      "bytes": 70539
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v7.js": {
+      "sha256": "95504f9b70bcd933ace47c548764f820b15117bc2082769a637ea98421feabd1",
+      "bytes": 24671
+    },
+    "arb-executor/analysis/build_window1_pair_interim_v18_package.js": {
+      "sha256": "44ef9c67b8fcb733611a079956822a051cec37bd28ca024424c6afc7ab612e49",
+      "bytes": 16912
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "schema_version": "WINDOW1_MUTUAL_NARROWING_RECEIPT_V18",
+  "fixed_point_module": "arb-executor/analysis/window1_pair_interim_elimination_v18.js",
+  "pair_only_resolution_count": 0,
+  "rule": "LEG SURVIVORS REMOVE INCONSISTENT PAIR HYPOTHESES; PAIR SURVIVORS REMOVE INCONSISTENT LEG HYPOTHESES; FIXED POINT",
+  "no_override": true,
+  "unresolved_blocks_lower_levels": true
+}

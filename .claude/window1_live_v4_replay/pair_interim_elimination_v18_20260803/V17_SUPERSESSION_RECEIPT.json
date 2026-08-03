@@ -1,0 +1,6 @@
+{
+  "X_conditioned_pricer_V17": "RETIRED_AS_POLICY_CANDIDATE",
+  "reason": "24-cent finished-match buckets are not lawful decision inputs and changed only 5/1608 leg streams",
+  "V17_artifacts_preserved_byte_for_byte": true,
+  "imported_into_V18_runtime": false
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "files_run": [
+    "arb-executor/tests/test_window1_pair_interim_elimination_v18.js",
+    "arb-executor/tests/test_window1_pair_interim_v18_package.js",
+    "arb-executor/tests/test_window1_interim_elimination_v13.js",
+    "arb-executor/tests/test_window1_interim_micro_repair_v14.js",
+    "arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js"
+  ],
+  "files_passed": 5,
+  "files_failed": 0,
+  "omissions": 0,
+  "scorer_invocations": 0,
+  "holdout_access": false,
+  "live_access": false
+}

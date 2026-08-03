@@ -1,0 +1,264 @@
+{
+  "schema_version": "WINDOW1_V11_896_NON_ACTION_PAIR_LIBRARY_TRACE_V18",
+  "denominator": 896,
+  "V18_resolved": 0,
+  "V18_still_stopped": 896,
+  "resolved_by_pair_hypothesis_no_single_leg_hypothesis_could_resolve": 0,
+  "structural_test": "ZERO PAIR-ONLY RESOLUTIONS; LIBRARY APPROACH IS SPENT ON THIS TEST",
+  "still_stopped_by_level": {
+    "LEG_PAIR_MUTUAL_MACRO": 806,
+    "SOURCE": 90
+  },
+  "category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "V11_non_actions": 156,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 156,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 146,
+        "SOURCE": 10
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 146,
+        "SOURCE_UNAVAILABLE": 10
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "V11_non_actions": 140,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 140,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 131,
+        "SOURCE": 9
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 131,
+        "SOURCE_UNAVAILABLE": 9
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "V11_non_actions": 69,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 69,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 63,
+        "SOURCE": 6
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 63,
+        "SOURCE_UNAVAILABLE": 6
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "V11_non_actions": 73,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 73,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 58,
+        "SOURCE": 15
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 58,
+        "SOURCE_UNAVAILABLE": 15
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "V11_non_actions": 56,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 56,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 55,
+        "SOURCE": 1
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 55,
+        "SOURCE_UNAVAILABLE": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "V11_non_actions": 64,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 64,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 63,
+        "SOURCE": 1
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 63,
+        "SOURCE_UNAVAILABLE": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "V11_non_actions": 9,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 9,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 9
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 9
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "V11_non_actions": 29,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 29,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 17,
+        "SOURCE": 12
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 17,
+        "SOURCE_UNAVAILABLE": 12
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "V11_non_actions": 36,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 36,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 33,
+        "SOURCE": 3
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 33,
+        "SOURCE_UNAVAILABLE": 3
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "V11_non_actions": 52,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 52,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 49,
+        "SOURCE": 3
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 49,
+        "SOURCE_UNAVAILABLE": 3
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "V11_non_actions": 27,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 27,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 27
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 27
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "V11_non_actions": 18,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 18,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 18
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 18
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "V11_non_actions": 39,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 39,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 37,
+        "SOURCE": 2
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 37,
+        "SOURCE_UNAVAILABLE": 2
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "V11_non_actions": 41,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 41,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 39,
+        "SOURCE": 2
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 39,
+        "SOURCE_UNAVAILABLE": 2
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "V11_non_actions": 32,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 32,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 28,
+        "SOURCE": 4
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 28,
+        "SOURCE_UNAVAILABLE": 4
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "V11_non_actions": 55,
+      "V18_resolved": 0,
+      "pair_only_resolved": 0,
+      "V18_still_stopped": 55,
+      "stop_levels": {
+        "LEG_PAIR_MUTUAL_MACRO": 33,
+        "SOURCE": 22
+      },
+      "terminal_reasons": {
+        "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED": 33,
+        "SOURCE_UNAVAILABLE": 22
+      }
+    }
+  ]
+}

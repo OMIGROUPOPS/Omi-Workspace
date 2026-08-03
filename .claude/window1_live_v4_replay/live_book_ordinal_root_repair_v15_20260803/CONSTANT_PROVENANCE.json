@@ -1,0 +1,36 @@
+{
+  "inherited_and_unchanged": [
+    {
+      "constant": "dwell_seconds",
+      "value": 10,
+      "source": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv",
+      "role": "qualifying ask and micro-micro readiness"
+    },
+    {
+      "constant": "exact_quantity_contracts",
+      "value": 5,
+      "source": ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json",
+      "role": "displayed capacity"
+    }
+  ],
+  "fitted_not_constant": [
+    {
+      "value": "leave-one-leg-out upper-median same-price persistence wait by category/price-region/shape/raw-new-low ordinal",
+      "source": ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json"
+    }
+  ],
+  "deliberately_untouched": [
+    {
+      "constant": "five_cent_deadband",
+      "changed": false
+    },
+    {
+      "constant": "recurrence_greater_than_zero",
+      "changed": false
+    }
+  ],
+  "above_low_tolerance": {
+    "value": null,
+    "law": "no tolerance; historical-low equality removed"
+  }
+}

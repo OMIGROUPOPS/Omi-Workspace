@@ -1,0 +1,8 @@
+{
+  "combined_clean_regenerations": 2,
+  "run1_sha256": "9bdcfdbf4663975d994b07366cf1ab59eb71060fe3b12b49c31a0f325a09b529",
+  "run2_sha256": "9bdcfdbf4663975d994b07366cf1ab59eb71060fe3b12b49c31a0f325a09b529",
+  "byte_identical": true,
+  "events_each": 804,
+  "legs_each": 1608
+}

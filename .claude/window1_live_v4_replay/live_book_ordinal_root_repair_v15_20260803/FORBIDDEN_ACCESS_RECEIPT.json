@@ -1,0 +1,16 @@
+{
+  "development_population_only": true,
+  "holdout_access": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "forecast": false,
+  "fee_test": false,
+  "new_instrument": false,
+  "scorer_invocations": 0
+}

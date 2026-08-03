@@ -1,0 +1,158 @@
+{
+  "schema_version": "WINDOW1_V15_FITTED_PERSISTENCE_ROOT_RECEIPT",
+  "baseline_unanimous_lower_legs": 183,
+  "defect": "V11_REQUIRED_FITTED_WAIT_EXHAUSTION_AND_SIMULTANEOUSLY_REQUIRED_THE_DESCENT_ORDINAL_TO_BE_UNAVAILABLE",
+  "actionable_qualified_lower_receipts": 153,
+  "no_actionable_qualified_lower_receipt": 30,
+  "all_fitted_waits_exhausted": 49,
+  "all_fitted_waits_exhausted_and_all_other_predicates_satisfied": 34,
+  "prior_v11_eligible_missing_ordinal_only": 0,
+  "corrected_law": "An available leave-one-leg-out fitted upper-median persistence wait is independent causal authority. An existing descent ordinal is no longer a veto after every surviving-shape wait is exhausted.",
+  "estimator_provenance": {
+    "library": ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json",
+    "estimator": "leave-one-leg-out upper median",
+    "new_threshold": false
+  },
+  "fitted_persistence_only_new_actions_from_baseline_lower": 59,
+  "fitted_persistence_only_actions_with_exact_authority_receipt": 201,
+  "combined_new_actions_from_baseline_lower_all_causal_paths": 105,
+  "combined_actions_with_exact_persistence_authority_receipt": 180,
+  "remaining_lower_after_combined": 78,
+  "by_category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 61,
+      "exhausted_and_base_ready": 13,
+      "fitted_persistence_only_new_actions": 16,
+      "combined_new_actions_all_causal_paths": 40
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 21,
+      "exhausted_and_base_ready": 6,
+      "fitted_persistence_only_new_actions": 10,
+      "combined_new_actions_all_causal_paths": 12
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 8,
+      "exhausted_and_base_ready": 0,
+      "fitted_persistence_only_new_actions": 2,
+      "combined_new_actions_all_causal_paths": 4
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": false,
+      "legs": 23,
+      "exhausted_and_base_ready": 0,
+      "fitted_persistence_only_new_actions": 7,
+      "combined_new_actions_all_causal_paths": 10
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 18,
+      "exhausted_and_base_ready": 4,
+      "fitted_persistence_only_new_actions": 4,
+      "combined_new_actions_all_causal_paths": 10
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 13,
+      "exhausted_and_base_ready": 3,
+      "fitted_persistence_only_new_actions": 5,
+      "combined_new_actions_all_causal_paths": 6
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 1,
+      "exhausted_and_base_ready": 1,
+      "fitted_persistence_only_new_actions": 1,
+      "combined_new_actions_all_causal_paths": 1
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 3,
+      "exhausted_and_base_ready": 0,
+      "fitted_persistence_only_new_actions": 2,
+      "combined_new_actions_all_causal_paths": 2
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": true,
+      "legs": 1,
+      "exhausted_and_base_ready": 0,
+      "fitted_persistence_only_new_actions": 0,
+      "combined_new_actions_all_causal_paths": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "thin": true,
+      "legs": 4,
+      "exhausted_and_base_ready": 0,
+      "fitted_persistence_only_new_actions": 0,
+      "combined_new_actions_all_causal_paths": 3
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 7,
+      "exhausted_and_base_ready": 0,
+      "fitted_persistence_only_new_actions": 0,
+      "combined_new_actions_all_causal_paths": 2
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": true,
+      "legs": 8,
+      "exhausted_and_base_ready": 4,
+      "fitted_persistence_only_new_actions": 4,
+      "combined_new_actions_all_causal_paths": 5
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": true,
+      "legs": 2,
+      "exhausted_and_base_ready": 0,
+      "fitted_persistence_only_new_actions": 0,
+      "combined_new_actions_all_causal_paths": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 3,
+      "exhausted_and_base_ready": 1,
+      "fitted_persistence_only_new_actions": 2,
+      "combined_new_actions_all_causal_paths": 2
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": false,
+      "legs": 10,
+      "exhausted_and_base_ready": 2,
+      "fitted_persistence_only_new_actions": 6,
+      "combined_new_actions_all_causal_paths": 8
+    }
+  ]
+}

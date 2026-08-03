@@ -13,6 +13,7 @@ const { evaluateStableAskSigningSupport } = require("./window1_quote_shape_stabl
 const { evaluateDescentVerdict } = require("./window1_quote_shape_descent_verdict_v5.js");
 const { evaluateCausalDescentOrdinalVerdict } = require("./window1_quote_shape_descent_verdict_v10.js");
 const { evaluatePersistenceFloorOverride } = require("./window1_quote_shape_persistence_floor_v11.js");
+const { evaluateLiveBookFloorAuthority, evaluateFittedPersistenceFloorAuthority } = require("./window1_quote_shape_live_book_persistence_v15.js");
 const { matchesMacroEnvelope, ordinalVerdict, microRepairV14, microMicroFeatures, traverseMicroModel, macroState } = require("./window1_interim_elimination_v13.js");
 
 const args = process.argv.slice(2), value = (name, fallback) => { const index = args.indexOf(name); return index >= 0 ? args[index + 1] : fallback; };
@@ -32,6 +33,10 @@ const persistenceFloorV11 = args.includes("--persistence-floor-v11");
 const coherentShapeV12 = args.includes("--coherent-shape-v12");
 const interimEliminationV13 = args.includes("--interim-elimination-v13");
 const microRepairV14Enabled = args.includes("--micro-repair-v14");
+const liveBookFloorV15 = args.includes("--live-book-floor-v15");
+const fittedPersistenceV15 = args.includes("--fitted-persistence-v15");
+const allQuoteEvents = args.includes("--all-quote-events");
+const persistenceLibraryEnabled = persistenceFloorV11 || fittedPersistenceV15;
 const persistenceLibraryV11Path = path.resolve(value("--persistence-library-v11", path.join(repo, ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json")));
 const compactPopulation = args.includes("--compact-population");
 const noCharts = args.includes("--no-charts");
@@ -40,6 +45,7 @@ const receiptName = value("--receipt-name", "TWO_GAME_REPLAY.json");
 const traceDecisionReasons = new Set(value("--trace-decision-reasons", "").split(",").filter(Boolean));
 const quotePath = path.resolve(value("--quote-ledger", path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv")));
 const refsPath = path.resolve(value("--references", path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/REPLAY_AND_REFERENCE_PANEL.json")));
+const populationReferenceLedgerPath = value("--population-reference-ledger", null);
 const frozenFivePath = path.resolve(value("--windows", path.join(repo, ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json")));
 const DEFAULT_TARGETS = ["KXATPCHALLENGERMATCH-26JUL19NIKVRB", "KXATPCHALLENGERMATCH-26JUL19HURBIG"];
 const targetFile = value("--target-file", null);
@@ -319,13 +325,26 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
       const legRole = leg === high ? "highShape" : "lowShape";
       let microEvidence = null;
       let stableSigningSupport = null;
-      if (allFloor || lagDiagnosticV10 || persistenceFloorV11) {
+      if (allFloor || lagDiagnosticV10 || persistenceLibraryEnabled) {
         microEvidence = interimEliminationV13 ? { own_micro_position_observed: row.prefix.ask_net === row.prefix.ask_dip, evidence_type: "V13_CURRENT_ASK_AT_CAUSAL_OBSERVED_LOW_AFTER_COHERENT_ORDINAL", stable_same_price_receipt: leg.last.strictly_later_same_price_ask_receipt, inverse_sibling_resolved: Boolean(tuples.length && sibling.last && sibling.survivor_shapes.length), inverse_sibling_proof_type: "V13_EMPIRICAL_PAIR_PATH_TUPLE_AFTER_BOTH_MACRO_LEVELS_RESOLVED" } : pairWiringV3 ? dynamicRenarrowV6 ? evaluateDynamicPairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : evaluatePairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : stableSamePriceConfirmation ? evaluateMicroPositionEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS }) : { own_micro_position_observed: leg.last.ask_change_after_first_timestamp, evidence_type: leg.last.ask_change_after_first_timestamp ? "ASK_PRICE_TRANSITION" : null, stable_same_price_receipt: false, inverse_sibling_resolved: Boolean(leg.resolved_direction && sibling.independent_direction && inverseDirection(leg.resolved_direction) === sibling.independent_direction && directionObserved(sibling, sibling.independent_direction)) };
         if (interimEliminationV13) { const model = library.micro_micro_models?.[`${leg.category}|${leg.price_region}`], result = traverseMicroModel(model, microMicroFeatures(row)); stableSigningSupport = { required: true, supported: result.verdict === "READY", support_type: "V13_FITTED_MICRO_MICRO_NEXT_RECEIPT_EXECUTABILITY", result, predicates: microMicroFeatures(row) }; row.micro_micro_result = result; }
         else stableSigningSupport = stableSignerV4 ? evaluateStableAskSigningSupport({ leg, sibling, inverseSiblingResolved: microEvidence.inverse_sibling_resolved }) : { required: false, supported: true, support_type: "V4_DISABLED", predicates: {} };
       }
-      const persistenceProofs = persistenceFloorV11 ? shapes.map((shapeId) => fittedPersistenceAtCurrentLow(persistenceLibrary, { category: leg.category, priceRegion: leg.price_region, shapeId, observedNewLowDescents: row.new_low_descent_count, legIdentity: `${eventId}|${leg.leg}`, askDwellSeconds: row.ask_dwell_seconds })) : [];
-      const persistenceFloor = persistenceFloorV11 ? evaluatePersistenceFloorOverride({
+      const persistenceProofs = persistenceLibraryEnabled ? shapes.map((shapeId) => fittedPersistenceAtCurrentLow(persistenceLibrary, { category: leg.category, priceRegion: leg.price_region, shapeId, observedNewLowDescents: row.new_low_descent_count, legIdentity: `${eventId}|${leg.leg}`, askDwellSeconds: row.ask_dwell_seconds })) : [];
+      const persistenceFloor = fittedPersistenceV15 ? evaluateFittedPersistenceFloorAuthority({
+        unanimousLower: rawAllLower,
+        currentAskAtObservedLow: row.prefix.ask_net === row.prefix.ask_dip,
+        freshOwnReceipt: changedThisTick[leg.leg],
+        strictlyLaterSamePriceAskReceipt: leg.last.strictly_later_same_price_ask_receipt,
+        askDwellSeconds: row.ask_dwell_seconds,
+        dwellSeconds: DWELL_SECONDS,
+        topAskSize: row.top_ask_size,
+        quantity: QUANTITY,
+        ownMicroPositionObserved: microEvidence?.own_micro_position_observed,
+        inverseSiblingResolved: microEvidence?.inverse_sibling_resolved,
+        stableSigningSupported: stableSigningSupport?.supported,
+        persistenceProofs,
+      }) : persistenceFloorV11 ? evaluatePersistenceFloorOverride({
         unanimousLower: rawAllLower,
         currentAskAtObservedLow: row.prefix.ask_net === row.prefix.ask_dip,
         freshOwnReceipt: changedThisTick[leg.leg],
@@ -355,9 +374,13 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
         if (!ownMicroPositionObserved) reason = "FLOOR_CONSENSUS_BUT_OWN_MICRO_POSITION_UNOBSERVED";
         else if (!inverseSiblingResolved) reason = "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED";
         else if (!stableSigningSupport.supported) reason = interimEliminationV13 ? `FLOOR_CONSENSUS_BUT_FITTED_MICRO_MICRO_${stableSigningSupport.result?.verdict || "UNAVAILABLE"}` : "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT";
-        else if (row.prefix.ask_net !== row.prefix.ask_dip) reason = "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW";
+        else if (!liveBookFloorV15 && row.prefix.ask_net !== row.prefix.ask_dip) reason = "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW";
         else if (row.top_ask_size >= QUANTITY && (stableSignerV4 || interimEliminationV13) && !changedThisTick[leg.leg]) reason = "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT";
-        else if ((interimEliminationV13 || row.ask_dwell_seconds >= DWELL_SECONDS) && row.top_ask_size >= QUANTITY) { state = "PLACE"; reason = interimEliminationV13 ? "ORDERED_LEVELS_RESOLVED_AND_FITTED_MICRO_MICRO_SAYS_NOW" : stableSamePriceReceipt && !leg.last.ask_change_after_first_timestamp ? "ALL_SURVIVING_PAIR_CONSTRAINED_SHAPES_SAY_FLOOR_AND_STABLE_SAME_PRICE_ASK_IS_EXECUTABLE" : "ALL_SURVIVING_PAIR_CONSTRAINED_SHAPES_SAY_FLOOR_AND_ASK_IS_EXECUTABLE"; }
+        else if ((interimEliminationV13 || row.ask_dwell_seconds >= DWELL_SECONDS) && row.top_ask_size >= QUANTITY) {
+          const liveBookAuthority = liveBookFloorV15 ? evaluateLiveBookFloorAuthority({ unanimousFloor: allFloor, ownMicroPositionObserved, inverseSiblingResolved, stableSigningSupported: stableSigningSupport.supported, freshOwnReceipt: changedThisTick[leg.leg], askDwellSeconds: row.ask_dwell_seconds, dwellSeconds: DWELL_SECONDS, topAskSize: row.top_ask_size, quantity: QUANTITY }) : null;
+          if (liveBookFloorV15 && !liveBookAuthority.supported) reason = "FLOOR_CONSENSUS_BUT_CURRENT_LIVE_BOOK_AUTHORITY_INCOMPLETE";
+          else { state = "PLACE"; reason = liveBookFloorV15 ? "CURRENT_LAWFUL_BOOK_AND_SURVIVING_SHAPES_SAY_PLACE" : interimEliminationV13 ? "ORDERED_LEVELS_RESOLVED_AND_FITTED_MICRO_MICRO_SAYS_NOW" : stableSamePriceReceipt && !leg.last.ask_change_after_first_timestamp ? "ALL_SURVIVING_PAIR_CONSTRAINED_SHAPES_SAY_FLOOR_AND_STABLE_SAME_PRICE_ASK_IS_EXECUTABLE" : "ALL_SURVIVING_PAIR_CONSTRAINED_SHAPES_SAY_FLOOR_AND_ASK_IS_EXECUTABLE"; row.live_book_floor_authority_v15 = liveBookAuthority; }
+        }
         else reason = "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY";
         row.micro_position_evidence_type = microPositionEvidenceType;
         row.stable_same_price_receipt = stableSamePriceReceipt;
@@ -388,7 +411,7 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
         }
         leg.prior_lag_snapshot = snapshot;
       }
-      if (state === "PLACE") { const sibling = legs.find((candidate) => candidate !== leg), baseOrder = { price_cents: row.ask, quantity: QUANTITY, action_ts: ts, action_receipt: row.receipt, same_receipt_fill_forbidden: true, surviving_shapes: verdicts, macro_surviving_shapes: macroShapes, micro_repair_v14: microRepair, pair_shape_tuples: tuples.map((t) => ({ ...t })), inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null, stable_signing_support: row.stable_signing_support ?? null, pre_action_evidence: { own: preActionEvidence(leg), sibling: preActionEvidence(sibling) } }; leg.order = stableSamePriceConfirmation ? { ...baseOrder, action_receipt: changedThisTick[leg.leg] ? leg.last.receipt : sibling.last?.receipt, own_book_receipt_at_action: leg.last.receipt, own_book_ts_at_action: leg.last.ts, sibling_book_receipt_at_action: sibling.last?.receipt ?? null, sibling_book_ts_at_action: sibling.last?.ts ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? "ASK_PRICE_TRANSITION" } : baseOrder; }
+      if (state === "PLACE") { const sibling = legs.find((candidate) => candidate !== leg), baseOrder = { price_cents: row.ask, quantity: QUANTITY, action_ts: ts, action_receipt: row.receipt, same_receipt_fill_forbidden: true, surviving_shapes: verdicts, macro_surviving_shapes: macroShapes, micro_repair_v14: microRepair, pair_shape_tuples: tuples.map((t) => ({ ...t })), inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null, stable_signing_support: row.stable_signing_support ?? null, live_book_floor_authority_v15: row.live_book_floor_authority_v15 ?? null, persistence_floor_v15: persistenceFloor?.authority === "LEAVE_ONE_LEG_OUT_FITTED_SAME_PRICE_PERSISTENCE" ? persistenceFloor : null, pre_action_evidence: { own: preActionEvidence(leg), sibling: preActionEvidence(sibling) } }; leg.order = stableSamePriceConfirmation ? { ...baseOrder, action_receipt: changedThisTick[leg.leg] ? leg.last.receipt : sibling.last?.receipt, own_book_receipt_at_action: leg.last.receipt, own_book_ts_at_action: leg.last.ts, sibling_book_receipt_at_action: sibling.last?.receipt ?? null, sibling_book_ts_at_action: sibling.last?.ts ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? "ASK_PRICE_TRANSITION" } : baseOrder; }
       const prior = leg.decisions[leg.decisions.length - 1]; if (!prior || prior.state !== state || prior.reason !== reason || state === "PLACE") leg.decisions.push({ ts, state, reason, book: { bid: row.bid, ask: row.ask, spread: row.spread, carried_last: row.carried_last, ask_dwell_seconds: row.ask_dwell_seconds, ask_net: row.prefix.ask_net, ask_dip: row.prefix.ask_dip, ask_change_after_first_timestamp: row.ask_change_after_first_timestamp, ...(stableSamePriceConfirmation ? { strictly_later_same_price_ask_receipt: leg.last.strictly_later_same_price_ask_receipt, stable_same_price_receipt: row.stable_same_price_receipt ?? false, stable_signing_support: row.stable_signing_support ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? null, inverse_sibling_resolved: row.inverse_sibling_resolved ?? false, inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null } : {}), top_ask_size: row.top_ask_size, top5_ask_depth: row.top5_ask_depth }, surviving_shapes: verdicts, surviving_pair_tuple_count: tuples.length, receipt: row.receipt, order: leg.order });
     }
   }
@@ -491,13 +514,23 @@ function unavailableEvent(eventId, sources, error) {
 
 function main() {
   const library = JSON.parse(fs.readFileSync(libraryPath));
-  const persistenceLibrary = persistenceFloorV11 ? JSON.parse(fs.readFileSync(persistenceLibraryV11Path)) : null;
-  const refs = JSON.parse(fs.readFileSync(refsPath));
+  const persistenceLibrary = persistenceLibraryEnabled ? JSON.parse(fs.readFileSync(persistenceLibraryV11Path)) : null;
+  let refs = JSON.parse(fs.readFileSync(refsPath));
+  if (populationReferenceLedgerPath) {
+    const rows = zlib.gunzipSync(fs.readFileSync(path.resolve(populationReferenceLedgerPath))).toString("utf8").trim().split(/\r?\n/).map(JSON.parse);
+    const events = new Map();
+    for (const row of rows) {
+      if (!events.has(row.event_id)) events.set(row.event_id, { event_id: row.event_id, legs: {} });
+      events.get(row.event_id).legs[row.leg_id] = { own_window1_close_cents: row.own_window1_close_cents ?? null, own_bell_price_cents: null, own_ask_reachable_low_cents: row.qualifying_ask_floor_cents ?? null };
+    }
+    refs = { current_branch: [], corrected_branch: [...events.values()].sort((a, b) => a.event_id.localeCompare(b.event_id)), population_reference_ledger: path.relative(repo, path.resolve(populationReferenceLedgerPath)).replaceAll("\\", "/") };
+  }
   const windowsReceipt = JSON.parse(fs.readFileSync(frozenFivePath));
   const windows = Object.fromEntries(windowsReceipt.events.map((event) => [event.event_id, event.window]));
   const raw = fs.readFileSync(quotePath, "utf8").trimEnd().split(/\r?\n/);
   const headers = raw.shift().split(",");
   const quoteRows = raw.map((line) => Object.fromEntries(line.split(",").map((item, index) => [headers[index], item])));
+  if (allQuoteEvents) { TARGETS.clear(); for (const row of quoteRows) TARGETS.add(row.event_id); }
   const refByEvent = Object.fromEntries((refs.corrected_branch || []).map((event) => [event.event_id, event]));
   const sourcesByEvent = {};
   for (const row of quoteRows) if (TARGETS.has(row.event_id)) {
@@ -521,8 +554,12 @@ function main() {
     lag_diagnostic_v10: lagDiagnosticV10,
     causal_descent_ordinal_v10: causalDescentOrdinalV10,
     persistence_floor_v11: persistenceFloorV11,
+    live_book_floor_v15: liveBookFloorV15,
+    fitted_persistence_v15: fittedPersistenceV15,
     interim_elimination_v13: interimEliminationV13,
-    persistence_library_v11_sha256: persistenceFloorV11 ? sha256(fs.readFileSync(persistenceLibraryV11Path)) : null,
+    persistence_library_v11_sha256: persistenceLibraryEnabled ? sha256(fs.readFileSync(persistenceLibraryV11Path)) : null,
+    all_quote_events: allQuoteEvents,
+    population_reference_ledger: refs.population_reference_ledger ?? null,
     compact_population: compactPopulation,
     own_training_member_excluded_from_causal_nearest_member_selection: excludeOwnTrainingMember,
     aggregate_library_fit_disclosure: compactPopulation ? "The aggregate quote-shape library was fitted on the development population except the frozen five. The target event is excluded from causal nearest-member selection, but aggregate envelopes remain in-sample for non-five rows; this 804 diagnostic is not holdout validation." : null,

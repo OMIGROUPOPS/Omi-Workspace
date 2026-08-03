@@ -1,0 +1,140 @@
+{
+  "schema_version": "WINDOW1_V15_CURRENT_LIVE_BOOK_FLOOR_AUTHORITY_RECEIPT",
+  "baseline_above_observed_low_legs": 283,
+  "defect": "A live all-FLOOR verdict was vetoed by equality to a historical low no longer present in the current book",
+  "corrected_law": "Use the current lawful own ask, fresh receipt, inherited dwell/capacity, resolved sibling and surviving-shape consensus; historical-low equality is not consulted and no tolerance exists",
+  "tolerance_cents": null,
+  "invented_thresholds": 0,
+  "live_book_only_new_actions": 280,
+  "combined_new_actions": 280,
+  "by_category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 36,
+      "live_book_only_new_actions": 35,
+      "combined_new_actions": 35
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 56,
+      "live_book_only_new_actions": 56,
+      "combined_new_actions": 56
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": false,
+      "legs": 35,
+      "live_book_only_new_actions": 35,
+      "combined_new_actions": 35
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": false,
+      "legs": 23,
+      "live_book_only_new_actions": 22,
+      "combined_new_actions": 22
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 13,
+      "live_book_only_new_actions": 13,
+      "combined_new_actions": 13
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 14,
+      "live_book_only_new_actions": 14,
+      "combined_new_actions": 14
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 4,
+      "live_book_only_new_actions": 4,
+      "combined_new_actions": 4
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 9,
+      "live_book_only_new_actions": 9,
+      "combined_new_actions": 9
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": true,
+      "legs": 8,
+      "live_book_only_new_actions": 8,
+      "combined_new_actions": 8
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 18,
+      "live_book_only_new_actions": 17,
+      "combined_new_actions": 17
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 8,
+      "live_book_only_new_actions": 8,
+      "combined_new_actions": 8
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 4,
+      "live_book_only_new_actions": 4,
+      "combined_new_actions": 4
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 13,
+      "live_book_only_new_actions": 13,
+      "combined_new_actions": 13
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 23,
+      "live_book_only_new_actions": 23,
+      "combined_new_actions": 23
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "thin": false,
+      "legs": 12,
+      "live_book_only_new_actions": 12,
+      "combined_new_actions": 12
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 7,
+      "live_book_only_new_actions": 7,
+      "combined_new_actions": 7
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902",
+      "bytes": 2475041
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3",
+      "bytes": 2632043
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b",
+      "bytes": 2479552
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json": {
+      "sha256": "d76c7014a1ddf32414f6a8eb2de2cbbbc12795a6d40ac6f67b19a8ff55c62c33",
+      "bytes": 3367048
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "dfa09ad49c0cb3b6aba9c1a77d55117a889551aef14f19ee7f69553460104700",
+      "bytes": 66467
+    },
+    "arb-executor/analysis/window1_quote_shape_live_book_persistence_v15.js": {
+      "sha256": "5682e90a648af7557652740d0f48ca5afe884df72ba55d3292098f4ab19e9179",
+      "bytes": 3687
+    },
+    "arb-executor/analysis/build_window1_live_book_ordinal_root_repair_v15.js": {
+      "sha256": "c8475e79d00766ec2fd34f975b5e02b69068da3147c8f067bf19db1ab062b17b",
+      "bytes": 34911
+    },
+    "arb-executor/tests/test_window1_quote_shape_live_book_persistence_v15.js": {
+      "sha256": "ec4cd407a16c1ad9a8f05e61ee1bf960304eb15c340884debbd66a7e75ecd896",
+      "bytes": 2612
+    },
+    "arb-executor/tests/test_window1_live_book_ordinal_root_repair_v15.js": {
+      "sha256": "266167d3b032c74b32357a70fc648bb94db317ee521a19dfd7e97845649c7cc5",
+      "bytes": 3697
+    },
+    "arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js": {
+      "sha256": "90d18be7be129e97ed2767b496302e8406a04ee2388721a6651dd475ddf14732",
+      "bytes": 1486
+    },
+    "arb-executor/tests/test_window1_persistence_floor_repair_v11.js": {
+      "sha256": "6d8f5d4e438d442a00b507588afe9e7f23289bf791a88ab0f71c8105a7457897",
+      "bytes": 2577
+    },
+    "arb-executor/tests/test_window1_quote_shape_descent_verdict_v10.js": {
+      "sha256": "d19cb2adb74c03bbcc0552c1d1a411741f110c393a153f0510d080aa6e46d8bc",
+      "bytes": 1408
+    },
+    "arb-executor/tests/test_window1_quote_shape_dynamic_renarrow_v6.js": {
+      "sha256": "9de0e4bdec488be226250df1d41f0267ce18470418f36f06a2a499a2c31c5978",
+      "bytes": 3797
+    },
+    "arb-executor/tests/test_window1_dynamic_renarrow_population_v9.js": {
+      "sha256": "be82a83c745d79aec911a5b4f228d3497c3c5e42670bb7f09c8e007140d9970a",
+      "bytes": 4499
+    },
+    "arb-executor/tests/test_window1_quote_shape_elimination_two_game.js": {
+      "sha256": "afe161ee4cb4b34bf3c818fb413eb28b922d73cffa71c15fefd0c91424e4d2b3",
+      "bytes": 3417
+    }
+  },
+  "replay_inputs": {
+    "live_book_only": {
+      "sha256": "6b12814acf2c030e16a8d16df3e7a92683b2c8f3de9db92d4deba43a83333fe2",
+      "bytes": 271951488
+    },
+    "fitted_persistence_only": {
+      "sha256": "c7681a37439a72020bed270c1b590ec06f1bec384721ea5c2f9410a90f18a4f4",
+      "bytes": 272173133
+    },
+    "combined": {
+      "sha256": "9bdcfdbf4663975d994b07366cf1ab59eb71060fe3b12b49c31a0f325a09b529",
+      "bytes": 272774201
+    },
+    "combined_regeneration": {
+      "sha256": "9bdcfdbf4663975d994b07366cf1ab59eb71060fe3b12b49c31a0f325a09b529",
+      "bytes": 272774201
+    }
+  }
+}

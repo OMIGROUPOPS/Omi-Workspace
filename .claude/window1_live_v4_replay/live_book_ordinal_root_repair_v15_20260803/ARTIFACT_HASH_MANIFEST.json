@@ -1,0 +1,80 @@
+{
+  "files": {
+    "ABOVE_OBSERVED_LOW_REMOVAL_RECEIPT.json": {
+      "sha256": "c462ee367e615e68a81776144c72447309f373a767e76b319fb8f7b74d9248ed",
+      "bytes": 3567
+    },
+    "CARRIED_PAIR_RECONCILIATION.json": {
+      "sha256": "6c77d399f279b4728ffa269e285ab3209174c76c524f820aa15edbcab5f3b648",
+      "bytes": 10094
+    },
+    "CONSTANT_PROVENANCE.json": {
+      "sha256": "c55f2924c64ddfdb4e98eebbcfe7a9f8dd9d35c5e2ae58cf97164c24dfab3854",
+      "bytes": 1111
+    },
+    "CONSTRUCTION_RUN_RECEIPT.json": {
+      "sha256": "c22e3072c20f671cfd7baf74c69df173b753773fe7bf4dc7bf9a1bce7612d7cd",
+      "bytes": 871
+    },
+    "CURRENT_V11_SIX_GATE_NON_ACTION_CENSUS.json": {
+      "sha256": "1cfd8a91bf12ffc51108f81055ba67e2c38847e7e8dc28d57c4731fef4a5b934",
+      "bytes": 14229
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "269d362c615537fa6cf6cf9419ad30ec786936656c515f1c587266980c7e8fbb",
+      "bytes": 279
+    },
+    "DIAGNOSTIC_DISPOSITION.json": {
+      "sha256": "2f0fd7810b996577560d4ed37f98db36be04035bf8c119810c70a60850911ae1",
+      "bytes": 7920
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "e54c9bdee51a62b94107a7ad00fd5697bbb4605357066c2109d9c51098df124f",
+      "bytes": 320
+    },
+    "INDEPENDENT_AUDIT_INSTRUCTION.md": {
+      "sha256": "db7634f95446314bc6035f55c269b8da3225de2aebfc69a3f17294b668868f87",
+      "bytes": 552
+    },
+    "NON_ACTION_TRANSITION_LEDGER.jsonl.gz": {
+      "sha256": "4867fb8425fc76b0adc0ebeb377f64b73a2247658039e82f9b82f34a062fd3b1",
+      "bytes": 136370
+    },
+    "REPORT.md": {
+      "sha256": "460542a3f2fb889b7e303b2e880d8eeccb88fca9c9b90d0ae7f45861b234c045",
+      "bytes": 1811
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "edb47ce1980ded4f89903d2a32580c6c42279af2048236ec422e112c82043eeb",
+      "bytes": 3793
+    },
+    "STRICT_CARRIED_PAIR_DIAGNOSTIC.jsonl.gz": {
+      "sha256": "353917c3da7645a5118f3b7aa72820d9ef8e9e754aa52681e056e875b8701cb5",
+      "bytes": 12181
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "f0061724ec0fb571029f1ac7fdc3630fcc9f3c12dd607660a3ca417a373f0cc8",
+      "bytes": 837
+    },
+    "UNANIMOUS_LOWER_PERSISTENCE_ROOT_RECEIPT.json": {
+      "sha256": "d1d793a2080a10863e7f486906f95394f08d3b607b06e3b6ad9ed84fb4237b54",
+      "bytes": 4972
+    },
+    "UNANIMOUS_LOWER_PROOF_LEDGER.jsonl.gz": {
+      "sha256": "abd980180e8b52f73e517d191a479029b6e240aff692a7c74083d6a6f0c9497e",
+      "bytes": 7496
+    },
+    "V11_TO_V15_COMPARISON.json": {
+      "sha256": "7a00f6f7b2a39bd1e960f3741e6aadb1593ebf5fddfd1751fd58e019045236e3",
+      "bytes": 281267
+    },
+    "V15_COMBINED_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "306c2e7debb83ef76491b7899c742d4a0501dec01e83ffddf5ea5d5f542532a4",
+      "bytes": 3138878
+    },
+    "V15_COMBINED_LEG_LEDGER.jsonl.gz": {
+      "sha256": "bf72d23fd22a112ef965daf2e8ce64a2dd075358cc43fa41eccad29300aef70d",
+      "bytes": 3013505
+    }
+  }
+}

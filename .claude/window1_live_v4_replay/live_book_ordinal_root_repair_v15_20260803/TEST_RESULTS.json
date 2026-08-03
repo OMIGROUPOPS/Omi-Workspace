@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scripts_run": 8,
+  "scripts_passed": 8,
+  "scripts_failed": 0,
+  "explicitly_reported_assertions": 126,
+  "scripts": [
+    "arb-executor/tests/test_window1_quote_shape_live_book_persistence_v15.js",
+    "arb-executor/tests/test_window1_live_book_ordinal_root_repair_v15.js",
+    "arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js",
+    "arb-executor/tests/test_window1_persistence_floor_repair_v11.js",
+    "arb-executor/tests/test_window1_quote_shape_descent_verdict_v10.js",
+    "arb-executor/tests/test_window1_quote_shape_dynamic_renarrow_v6.js",
+    "arb-executor/tests/test_window1_dynamic_renarrow_population_v9.js",
+    "arb-executor/tests/test_window1_quote_shape_elimination_two_game.js"
+  ],
+  "scorer_invocations": 0,
+  "holdout_access": false,
+  "live_or_trading_access": false
+}

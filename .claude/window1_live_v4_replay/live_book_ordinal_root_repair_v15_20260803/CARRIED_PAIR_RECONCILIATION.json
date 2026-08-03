@@ -1,0 +1,485 @@
+{
+  "schema_version": "WINDOW1_V11_CARRIED_PAIR_RECONCILIATION",
+  "completed_pairs": 185,
+  "completed_pair_classes": {
+    "CLOSE_UNAVAILABLE": 53,
+    "ONE_ABOVE_ONE_BELOW": 52,
+    "ONE_EQUAL_ONE_BELOW": 47,
+    "BOTH_STRICTLY_BELOW_CLOSE": 21,
+    "BOTH_NONNEGATIVE_OR_OTHER": 12
+  },
+  "strict_one_above_one_below_rows_diagnosed": 52,
+  "strict_carried_fill_order": {
+    "SECOND": 39,
+    "FIRST": 9,
+    "SAME_TIMESTAMP": 4
+  },
+  "strict_carried_fill_gap_seconds": {
+    "n": 52,
+    "unavailable": 0,
+    "min": 0,
+    "p25": 721,
+    "median": 9609,
+    "p75": 17368,
+    "p90": 37053,
+    "max": 169638,
+    "exact_counts": {
+      "0": 4,
+      "10": 1,
+      "13": 1,
+      "40": 1,
+      "52": 1,
+      "106": 1,
+      "140": 1,
+      "329": 1,
+      "480": 1,
+      "721": 1,
+      "932": 1,
+      "2549": 1,
+      "3392": 1,
+      "4409": 1,
+      "4468": 1,
+      "4492": 1,
+      "6051": 1,
+      "6197": 1,
+      "6736": 1,
+      "7910": 1,
+      "9011": 1,
+      "9414": 1,
+      "9609": 1,
+      "10140": 1,
+      "12025": 1,
+      "12243": 1,
+      "12583": 1,
+      "13139": 1,
+      "13140": 1,
+      "13250": 1,
+      "13627": 1,
+      "13667": 1,
+      "14878": 1,
+      "15653": 1,
+      "17311": 1,
+      "17368": 1,
+      "18379": 1,
+      "18503": 1,
+      "19326": 1,
+      "23584": 1,
+      "32426": 1,
+      "33039": 1,
+      "37053": 1,
+      "66210": 1,
+      "75642": 1,
+      "100962": 1,
+      "147797": 1,
+      "153118": 1,
+      "169638": 1
+    }
+  },
+  "strict_carried_pair_under_par": 20,
+  "requested_approximate_73_reconciliation": {
+    "exact_73_cohort_exists": false,
+    "explanation": "94 under-par pairs minus the 21 both-below count from all completed pairs mixes denominators. The exact under-par both-below count is 16, so under-par not-both-below is 78.",
+    "under_par_pairs": 94,
+    "under_par_both_below": 16,
+    "under_par_not_both_below": 78,
+    "under_par_not_both_below_classes": {
+      "CLOSE_UNAVAILABLE": 34,
+      "ONE_EQUAL_ONE_BELOW": 24,
+      "ONE_ABOVE_ONE_BELOW": 20
+    }
+  },
+  "by_positive_leg_category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "pairs": 10,
+      "positive_leg_fill_order": {
+        "SECOND": 8,
+        "FIRST": 2
+      },
+      "fill_gap_seconds": {
+        "n": 10,
+        "unavailable": 0,
+        "min": 106,
+        "p25": 3392,
+        "median": 6736,
+        "p75": 12583,
+        "p90": 13667,
+        "max": 32426,
+        "exact_counts": {
+          "106": 1,
+          "140": 1,
+          "3392": 1,
+          "4492": 1,
+          "6736": 1,
+          "9609": 1,
+          "12583": 1,
+          "13139": 1,
+          "13667": 1,
+          "32426": 1
+        }
+      },
+      "pair_under_par": 3
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": true,
+      "pairs": 4,
+      "positive_leg_fill_order": {
+        "SECOND": 2,
+        "FIRST": 1,
+        "SAME_TIMESTAMP": 1
+      },
+      "fill_gap_seconds": {
+        "n": 4,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 2549,
+        "p75": 6197,
+        "p90": 6197,
+        "max": 14878,
+        "exact_counts": {
+          "0": 1,
+          "2549": 1,
+          "6197": 1,
+          "14878": 1
+        }
+      },
+      "pair_under_par": 2
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "pairs": 2,
+      "positive_leg_fill_order": {
+        "SAME_TIMESTAMP": 1,
+        "SECOND": 1
+      },
+      "fill_gap_seconds": {
+        "n": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 12025,
+        "exact_counts": {
+          "0": 1,
+          "12025": 1
+        }
+      },
+      "pair_under_par": 1
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": true,
+      "pairs": 1,
+      "positive_leg_fill_order": {
+        "SECOND": 1
+      },
+      "fill_gap_seconds": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 33039,
+        "p25": 33039,
+        "median": 33039,
+        "p75": 33039,
+        "p90": 33039,
+        "max": 33039,
+        "exact_counts": {
+          "33039": 1
+        }
+      },
+      "pair_under_par": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": true,
+      "pairs": 6,
+      "positive_leg_fill_order": {
+        "SECOND": 6
+      },
+      "fill_gap_seconds": {
+        "n": 6,
+        "unavailable": 0,
+        "min": 480,
+        "p25": 6051,
+        "median": 7910,
+        "p75": 19326,
+        "p90": 147797,
+        "max": 153118,
+        "exact_counts": {
+          "480": 1,
+          "6051": 1,
+          "7910": 1,
+          "19326": 1,
+          "147797": 1,
+          "153118": 1
+        }
+      },
+      "pair_under_par": 3
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": true,
+      "pairs": 6,
+      "positive_leg_fill_order": {
+        "SECOND": 5,
+        "FIRST": 1
+      },
+      "fill_gap_seconds": {
+        "n": 6,
+        "unavailable": 0,
+        "min": 52,
+        "p25": 4409,
+        "median": 17368,
+        "p75": 23584,
+        "p90": 100962,
+        "max": 169638,
+        "exact_counts": {
+          "52": 1,
+          "4409": 1,
+          "17368": 1,
+          "23584": 1,
+          "100962": 1,
+          "169638": 1
+        }
+      },
+      "pair_under_par": 4
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "pairs": 2,
+      "positive_leg_fill_order": {
+        "FIRST": 2
+      },
+      "fill_gap_seconds": {
+        "n": 2,
+        "unavailable": 0,
+        "min": 13,
+        "p25": 13,
+        "median": 13,
+        "p75": 13,
+        "p90": 13,
+        "max": 75642,
+        "exact_counts": {
+          "13": 1,
+          "75642": 1
+        }
+      },
+      "pair_under_par": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "pairs": 3,
+      "positive_leg_fill_order": {
+        "SECOND": 3
+      },
+      "fill_gap_seconds": {
+        "n": 3,
+        "unavailable": 0,
+        "min": 10,
+        "p25": 10,
+        "median": 13250,
+        "p75": 13250,
+        "p90": 13250,
+        "max": 15653,
+        "exact_counts": {
+          "10": 1,
+          "13250": 1,
+          "15653": 1
+        }
+      },
+      "pair_under_par": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": true,
+      "pairs": 3,
+      "positive_leg_fill_order": {
+        "SECOND": 2,
+        "FIRST": 1
+      },
+      "fill_gap_seconds": {
+        "n": 3,
+        "unavailable": 0,
+        "min": 932,
+        "p25": 932,
+        "median": 4468,
+        "p75": 4468,
+        "p90": 4468,
+        "max": 17311,
+        "exact_counts": {
+          "932": 1,
+          "4468": 1,
+          "17311": 1
+        }
+      },
+      "pair_under_par": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "pairs": 1,
+      "positive_leg_fill_order": {
+        "SECOND": 1
+      },
+      "fill_gap_seconds": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 9414,
+        "p25": 9414,
+        "median": 9414,
+        "p75": 9414,
+        "p90": 9414,
+        "max": 9414,
+        "exact_counts": {
+          "9414": 1
+        }
+      },
+      "pair_under_par": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "thin": true,
+      "pairs": 1,
+      "positive_leg_fill_order": {
+        "SECOND": 1
+      },
+      "fill_gap_seconds": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 9011,
+        "p25": 9011,
+        "median": 9011,
+        "p75": 9011,
+        "p90": 9011,
+        "max": 9011,
+        "exact_counts": {
+          "9011": 1
+        }
+      },
+      "pair_under_par": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": true,
+      "pairs": 8,
+      "positive_leg_fill_order": {
+        "SECOND": 6,
+        "FIRST": 1,
+        "SAME_TIMESTAMP": 1
+      },
+      "fill_gap_seconds": {
+        "n": 8,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 721,
+        "median": 12243,
+        "p75": 13627,
+        "p90": 18379,
+        "max": 37053,
+        "exact_counts": {
+          "0": 1,
+          "721": 1,
+          "10140": 1,
+          "12243": 1,
+          "13140": 1,
+          "13627": 1,
+          "18379": 1,
+          "37053": 1
+        }
+      },
+      "pair_under_par": 5
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": true,
+      "pairs": 1,
+      "positive_leg_fill_order": {
+        "SECOND": 1
+      },
+      "fill_gap_seconds": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 18503,
+        "p25": 18503,
+        "median": 18503,
+        "p75": 18503,
+        "p90": 18503,
+        "max": 18503,
+        "exact_counts": {
+          "18503": 1
+        }
+      },
+      "pair_under_par": 1
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "pairs": 1,
+      "positive_leg_fill_order": {
+        "SECOND": 1
+      },
+      "fill_gap_seconds": {
+        "n": 1,
+        "unavailable": 0,
+        "min": 329,
+        "p25": 329,
+        "median": 329,
+        "p75": 329,
+        "p90": 329,
+        "max": 329,
+        "exact_counts": {
+          "329": 1
+        }
+      },
+      "pair_under_par": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "pairs": 3,
+      "positive_leg_fill_order": {
+        "FIRST": 1,
+        "SAME_TIMESTAMP": 1,
+        "SECOND": 1
+      },
+      "fill_gap_seconds": {
+        "n": 3,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 40,
+        "p75": 40,
+        "p90": 40,
+        "max": 66210,
+        "exact_counts": {
+          "0": 1,
+          "40": 1,
+          "66210": 1
+        }
+      },
+      "pair_under_par": 1
+    }
+  ]
+}

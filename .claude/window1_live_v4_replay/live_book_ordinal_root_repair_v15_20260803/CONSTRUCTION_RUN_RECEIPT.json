@@ -1,0 +1,28 @@
+{
+  "successful_replays_entering_package": {
+    "live_book_only": 1,
+    "fitted_persistence_only": 1,
+    "combined": 2
+  },
+  "quarantined_runs": [
+    {
+      "workers": 3,
+      "outcome": "NO_OUTPUT",
+      "reason": "C:/tmp final mkdir denied by shell sandbox after computation",
+      "input_or_repository_mutation": false
+    },
+    {
+      "workers": 3,
+      "outcome": "QUARANTINED_NOT_USED",
+      "event_rows": 693,
+      "reason": "five-specimen reference panel was not a full-population reference binding",
+      "input_or_repository_mutation": false
+    }
+  ],
+  "corrected_runtime_bindings": {
+    "target_population": "all 804 event IDs in the frozen quote ledger",
+    "reference_source": ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz"
+  },
+  "scorer_invocations": 0,
+  "holdout_access": false
+}

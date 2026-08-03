@@ -1,0 +1,46 @@
+{
+  "policy_evaluation": {
+    "attempts": 1,
+    "retries": 0,
+    "versions": [
+      "V11",
+      "V13",
+      "V14"
+    ],
+    "events_per_version": 228,
+    "legs_per_version": 456,
+    "refits": 0
+  },
+  "pre_policy_failures": 2,
+  "summary_defects_corrected_without_replay": [
+    "UNPROVEN_ACTION_WAS_COUNTED_AS_CREDITED_FILL",
+    "MIN_MAX_READ_FROM_UNSORTED_DISTRIBUTION_ROWS"
+  ],
+  "immutable_source_ledgers": {
+    "V11_HOLDOUT_LEG_LEDGER.jsonl.gz": {
+      "sha256": "dfc93c56095c7cc75384ac3f2f19cd34ff791e10ba58802e2725f0072c9437cd",
+      "bytes": 143414
+    },
+    "V11_HOLDOUT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "72be580e83203accd51da6cc1a286abf885a738a374fd9dd810f407e04e1c3ea",
+      "bytes": 149030
+    },
+    "V13_HOLDOUT_LEG_LEDGER.jsonl.gz": {
+      "sha256": "e802771bd46b87f354c5b3cc151c9b2c787f836c0c9b08ee18fec265f4d66582",
+      "bytes": 116544
+    },
+    "V13_HOLDOUT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "a08fdfbc0603cda5fc8b924ad26683c9659f73057d3124df78db3691cd8d1be1",
+      "bytes": 122458
+    },
+    "V14_HOLDOUT_LEG_LEDGER.jsonl.gz": {
+      "sha256": "48862c2bfe40bbe5a81ffd17230d8b7a6b7e9f926e6e0bb66f1bf756f0b42896",
+      "bytes": 148875
+    },
+    "V14_HOLDOUT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "f0c8c6e045e5e68c8a888c048d7b38d4ae60e283fc667ee2747f11352600dfa8",
+      "bytes": 154388
+    }
+  },
+  "second_policy_evaluation": false
+}

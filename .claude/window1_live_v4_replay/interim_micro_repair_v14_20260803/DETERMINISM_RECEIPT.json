@@ -1,0 +1,9 @@
+{
+  "development_builds": 2,
+  "byte_identical": true,
+  "event_ledger_sha256": "79bcef2f1ee2c45cf4a72f9ed48ec09743c39b669367a958a5c6f5fac0dc3aa7",
+  "population_summary_sha256": "d00481f594aece6aebd2720a8de2b7a66d8144a912c36abe3f342c24ecd7350e",
+  "holdout_policy_evaluations": 1,
+  "holdout_replay_repeated": false,
+  "corrected_aggregation_deterministic_by_pure_frozen_ledger_transform": true
+}

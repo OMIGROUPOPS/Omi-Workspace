@@ -13,7 +13,7 @@ const { evaluateStableAskSigningSupport } = require("./window1_quote_shape_stabl
 const { evaluateDescentVerdict } = require("./window1_quote_shape_descent_verdict_v5.js");
 const { evaluateCausalDescentOrdinalVerdict } = require("./window1_quote_shape_descent_verdict_v10.js");
 const { evaluatePersistenceFloorOverride } = require("./window1_quote_shape_persistence_floor_v11.js");
-const { matchesMacroEnvelope, ordinalVerdict, microMicroFeatures, traverseMicroModel, macroState } = require("./window1_interim_elimination_v13.js");
+const { matchesMacroEnvelope, ordinalVerdict, microRepairV14, microMicroFeatures, traverseMicroModel, macroState } = require("./window1_interim_elimination_v13.js");
 
 const args = process.argv.slice(2), value = (name, fallback) => { const index = args.indexOf(name); return index >= 0 ? args[index + 1] : fallback; };
 const repo = path.resolve(value("--repo", args[0] && !args[0].startsWith("--") ? args[0] : "."));
@@ -31,6 +31,7 @@ const causalDescentOrdinalV10 = args.includes("--causal-descent-ordinal-v10");
 const persistenceFloorV11 = args.includes("--persistence-floor-v11");
 const coherentShapeV12 = args.includes("--coherent-shape-v12");
 const interimEliminationV13 = args.includes("--interim-elimination-v13");
+const microRepairV14Enabled = args.includes("--micro-repair-v14");
 const persistenceLibraryV11Path = path.resolve(value("--persistence-library-v11", path.join(repo, ".claude/window1_live_v4_replay/persistence_floor_v11_fit_20260802/PERSISTENCE_SURVIVAL_LIBRARY_V11.json")));
 const compactPopulation = args.includes("--compact-population");
 const noCharts = args.includes("--no-charts");
@@ -300,7 +301,17 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
       const distinctStrictlyLaterFillReceipt = stableSamePriceConfirmation ? fillRow.ts > leg.order?.action_ts && fillRow.receipt !== leg.order?.own_book_receipt_at_action : row.ts > leg.order?.action_ts;
       if (leg.order && distinctStrictlyLaterFillReceipt && fillRow.ask <= leg.order.price_cents && fillRow.ask_dwell_seconds >= DWELL_SECONDS && capacityAtOrBelow(fillRow, leg.order.price_cents) >= QUANTITY) { leg.fill = { price_cents: leg.order.price_cents, quantity: QUANTITY, evidence_ts: fillRow.ts, evidence_receipt: fillRow.receipt, evidence_type: "STRICTLY_LATER_ASK_DWELL_AND_DISPLAYED_CAPACITY", ask_cents: fillRow.ask, ask_dwell_seconds: fillRow.ask_dwell_seconds, capacity: capacityAtOrBelow(fillRow, leg.order.price_cents) }; leg.decisions.push({ ts: fillRow.ts, state: "FILLED", receipt: fillRow.receipt, order: leg.order, fill: leg.fill }); continue; }
       if (leg.order) continue;
-      const role = leg === high ? "highShape" : "lowShape", shapes = [...new Set(tuples.map((t) => t[role]))]; let verdicts = shapes.map((id) => ({ shape_id: id, ...shapeVerdict(leg.group, id, row.progress_bin, row, excludeOwnTrainingMember ? eventId : null) })); let state = "INSUFFICIENT_EVIDENCE", reason = "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP";
+      const role = leg === high ? "highShape" : "lowShape", macroShapes = [...new Set(tuples.map((t) => t[role]))];
+      let shapes = macroShapes, microRepair = null;
+      if (microRepairV14Enabled) {
+        const shapeObjects = macroShapes.map((id) => leg.group.shapes.find((shape) => shape.shape_id === id)).filter(Boolean);
+        microRepair = microRepairV14(shapeObjects, row.qualified_ask_descent_count);
+        shapes = microRepair.usable_shape_ids.length ? microRepair.usable_shape_ids : macroShapes;
+      }
+      let verdicts = microRepairV14Enabled && microRepair?.mode === "RESOLVED_MACRO_CARRY_AFTER_MICRO_ABSTENTION"
+        ? macroShapes.map((id) => ({ shape_id: id, verdict: "FLOOR", base_verdict: "FLOOR", descent_adjustment: "MICRO_ABSTAINS; RESOLVED_MACRO_CARRY", observed_qualified_ask_descents: row.qualified_ask_descent_count, temporal_authority: "V14_RESOLVED_MACRO_CARRY_TO_UNCHANGED_FITTED_MICRO_MICRO" }))
+        : shapes.map((id) => ({ shape_id: id, ...shapeVerdict(leg.group, id, row.progress_bin, row, excludeOwnTrainingMember ? eventId : null) }));
+      let state = "INSUFFICIENT_EVIDENCE", reason = "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP";
       const sibling = legs.find((candidate) => candidate !== leg);
       const rawAllLower = shapes.length > 0 && verdicts.every((item) => item.verdict === "LOWER");
       let allFloor = shapes.length > 0 && verdicts.every((item) => item.verdict === "FLOOR");
@@ -336,6 +347,7 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
       if (row.raw_row_count < 2) reason = "NO_PRIOR_IN_WINDOW_BOOK";
       else if (interimEliminationV13 && !shapes.length) reason = "MACRO_INTERIM_PATH_SET_UNRESOLVED_OR_PAIR_TUPLE_EMPTY; LOWER_LEVELS_NOT_CONSULTED";
       else if (shapes.length && verdicts.some((x) => x.descent_adjustment === "OBSERVED_DESCENT_OUTSIDE_SHAPE_TRAINING_SUPPORT")) reason = "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT";
+      else if (microRepairV14Enabled && microRepair?.verdict === "UNKNOWN") reason = "MICRO_ORDINAL_HYPOTHESES_STILL_NARROWING";
       else if (shapes.length && verdicts.every((x) => x.verdict === "LOWER")) { state = "HOLD"; reason = "ALL_SURVIVING_SHAPES_SAY_LOWER"; }
       else if (allFloor) {
         const inverseSiblingResolved = microEvidence.inverse_sibling_resolved, stableSamePriceReceipt = microEvidence.stable_same_price_receipt, ownMicroPositionObserved = microEvidence.own_micro_position_observed, microPositionEvidenceType = microEvidence.evidence_type;
@@ -374,7 +386,7 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
         }
         leg.prior_lag_snapshot = snapshot;
       }
-      if (state === "PLACE") { const sibling = legs.find((candidate) => candidate !== leg), baseOrder = { price_cents: row.ask, quantity: QUANTITY, action_ts: ts, action_receipt: row.receipt, same_receipt_fill_forbidden: true, surviving_shapes: verdicts, pair_shape_tuples: tuples.map((t) => ({ ...t })), inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null, stable_signing_support: row.stable_signing_support ?? null, pre_action_evidence: { own: preActionEvidence(leg), sibling: preActionEvidence(sibling) } }; leg.order = stableSamePriceConfirmation ? { ...baseOrder, action_receipt: changedThisTick[leg.leg] ? leg.last.receipt : sibling.last?.receipt, own_book_receipt_at_action: leg.last.receipt, own_book_ts_at_action: leg.last.ts, sibling_book_receipt_at_action: sibling.last?.receipt ?? null, sibling_book_ts_at_action: sibling.last?.ts ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? "ASK_PRICE_TRANSITION" } : baseOrder; }
+      if (state === "PLACE") { const sibling = legs.find((candidate) => candidate !== leg), baseOrder = { price_cents: row.ask, quantity: QUANTITY, action_ts: ts, action_receipt: row.receipt, same_receipt_fill_forbidden: true, surviving_shapes: verdicts, macro_surviving_shapes: macroShapes, micro_repair_v14: microRepair, pair_shape_tuples: tuples.map((t) => ({ ...t })), inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null, stable_signing_support: row.stable_signing_support ?? null, pre_action_evidence: { own: preActionEvidence(leg), sibling: preActionEvidence(sibling) } }; leg.order = stableSamePriceConfirmation ? { ...baseOrder, action_receipt: changedThisTick[leg.leg] ? leg.last.receipt : sibling.last?.receipt, own_book_receipt_at_action: leg.last.receipt, own_book_ts_at_action: leg.last.ts, sibling_book_receipt_at_action: sibling.last?.receipt ?? null, sibling_book_ts_at_action: sibling.last?.ts ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? "ASK_PRICE_TRANSITION" } : baseOrder; }
       const prior = leg.decisions[leg.decisions.length - 1]; if (!prior || prior.state !== state || prior.reason !== reason || state === "PLACE") leg.decisions.push({ ts, state, reason, book: { bid: row.bid, ask: row.ask, spread: row.spread, carried_last: row.carried_last, ask_dwell_seconds: row.ask_dwell_seconds, ask_net: row.prefix.ask_net, ask_dip: row.prefix.ask_dip, ask_change_after_first_timestamp: row.ask_change_after_first_timestamp, ...(stableSamePriceConfirmation ? { strictly_later_same_price_ask_receipt: leg.last.strictly_later_same_price_ask_receipt, stable_same_price_receipt: row.stable_same_price_receipt ?? false, stable_signing_support: row.stable_signing_support ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? null, inverse_sibling_resolved: row.inverse_sibling_resolved ?? false, inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null } : {}), top_ask_size: row.top_ask_size, top5_ask_depth: row.top5_ask_depth }, surviving_shapes: verdicts, surviving_pair_tuple_count: tuples.length, receipt: row.receipt, order: leg.order });
     }
   }
@@ -511,7 +523,7 @@ function main() {
     compact_population: compactPopulation,
     own_training_member_excluded_from_causal_nearest_member_selection: excludeOwnTrainingMember,
     aggregate_library_fit_disclosure: compactPopulation ? "The aggregate quote-shape library was fitted on the development population except the frozen five. The target event is excluded from causal nearest-member selection, but aggregate envelopes remain in-sample for non-five rows; this 804 diagnostic is not holdout validation." : null,
-    decision_law: interimEliminationV13 ? { states: ["PLACE", "HOLD", "INSUFFICIENT_EVIDENCE"], exact_quantity: QUANTITY, macro: "causal interim-envelope elimination; endpoint labels unavailable to runtime", pair: "empirical pair-path tuple after both macro levels resolve", micro: "unanimous coherent qualified-descent ordinal position", micro_micro: "fitted dwell/size/top-five-depth/cadence/stability next-receipt executability; consulted only after upper levels resolve", ordering: "an unresolved upper level blocks every lower consultation", fill: "honest PROVEN_TAKER derives only from exact action-time opposing ask capacity" } : { states: ["PLACE", "HOLD", "INSUFFICIENT_EVIDENCE"], dwell_seconds: DWELL_SECONDS, exact_quantity: QUANTITY, macro: "dynamic contradiction-driven re-narrowing before lower layers", pair: "inverse pair wiring and current-prefix closure", micro: "causal prefix position within surviving shapes", micro_micro: "fresh ask receipt, dwell and displayed ask capacity", fill: "replay later-receipt credit is retained separately; honest PROVEN_TAKER is derived from exact action-time opposing ask capacity in the compact population receipt" },
+    decision_law: interimEliminationV13 ? { states: ["PLACE", "HOLD", "INSUFFICIENT_EVIDENCE"], exact_quantity: QUANTITY, macro: "causal interim-envelope elimination; endpoint labels unavailable to runtime", pair: "empirical pair-path tuple after both macro levels resolve", micro: microRepairV14Enabled ? "V14 unusable-path abstention, causal post-floor contradiction elimination, and resolved-macro carry only when no coherent N>=20 micro path exists" : "unanimous coherent qualified-descent ordinal position", micro_micro: "fitted dwell/size/top-five-depth/cadence/stability next-receipt executability; consulted only after upper levels resolve", ordering: "an unresolved upper level blocks every lower consultation", fill: "honest PROVEN_TAKER derives only from exact action-time opposing ask capacity" } : { states: ["PLACE", "HOLD", "INSUFFICIENT_EVIDENCE"], dwell_seconds: DWELL_SECONDS, exact_quantity: QUANTITY, macro: "dynamic contradiction-driven re-narrowing before lower layers", pair: "inverse pair wiring and current-prefix closure", micro: "causal prefix position within surviving shapes", micro_micro: "fresh ask receipt, dwell and displayed ask capacity", fill: "replay later-receipt credit is retained separately; honest PROVEN_TAKER is derived from exact action-time opposing ask capacity in the compact population receipt" },
     events,
   };
   fs.mkdirSync(outDir, { recursive: true });

@@ -1,0 +1,18 @@
+{
+  "holdout_access": "AUTHORIZED_SINGLE_SEALED_EVALUATION_ONLY",
+  "holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "holdout_refits": 0,
+  "live": false,
+  "production": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "tuning_after_holdout": false
+}

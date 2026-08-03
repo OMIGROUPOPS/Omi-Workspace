@@ -1,0 +1,32 @@
+{
+  "files": {
+    "arb-executor/analysis/build_window1_interim_micro_repair_v14_package.js": {
+      "bytes": 21348,
+      "sha256": "c830d9dbaa32420a5dcba8f5563e8d98b9102afbf46e191ed9ebe11f76244c22"
+    },
+    "arb-executor/analysis/window1_interim_elimination_v13.js": {
+      "bytes": 5669,
+      "sha256": "742b15305ddd0653637cc6a3a31f5221fd926538aabe8b0720dccc50d81a3e06"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "bytes": 62727,
+      "sha256": "c20f2882ddc59338fc76cd7d2c04e4f432c44ad4923e18b11bda60be715d715c"
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v7.js": {
+      "bytes": 24551,
+      "sha256": "8477de6d1c37e885f380e5307e3c2b40e5562a40e0bdaa901d3a6c1dc6d884a5"
+    },
+    "arb-executor/analysis/window1_v11_v13_v14_holdout_runner_v2.js": {
+      "bytes": 41336,
+      "sha256": "c55d368c2e527de5ae10db460bdac7dc7679b72112e2f499cfeebc76b5a17213"
+    },
+    "arb-executor/tests/test_window1_interim_micro_repair_v14.js": {
+      "bytes": 1874,
+      "sha256": "4611ad97dadacf1dd872e142ca592d2187382057c9e50b4e6e8155bb095f6d8e"
+    },
+    "arb-executor/tests/test_window1_v14_holdout_honesty.js": {
+      "bytes": 1430,
+      "sha256": "3f6811ecb5a7aa6528740ae751f9db8c5c38e06586bab27b79b6a12be83d2022"
+    }
+  }
+}

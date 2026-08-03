@@ -1,0 +1,43 @@
+{
+  "policy_evaluation_attempts": 1,
+  "policy_evaluation_retries": 0,
+  "prior_pre_policy_failures": [
+    {
+      "status": "CAPTURE_INCOMPLETE",
+      "missing_tapes": 8,
+      "http_429_failures": 8,
+      "policy_evaluations": 0
+    },
+    {
+      "status": "SEALED_METADATA_JOIN_FAILED",
+      "error": "KXATPCHALLENGERMATCH-26JUL24DRACHI: missing catalog row",
+      "policy_evaluations": 0
+    }
+  ],
+  "runner_invocations_that_reached_policy": 1,
+  "version_evaluations_inside_single_runner": 3,
+  "versions": [
+    "V11",
+    "V13",
+    "V14"
+  ],
+  "refits": 0,
+  "holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "events": 228,
+  "legs": 456,
+  "completed_at_utc": "2026-08-03T12:14:22.278Z",
+  "no_tuning_after_view": true,
+  "forbidden_access": {
+    "live": false,
+    "orders": false,
+    "positions": false,
+    "exits": false,
+    "settlement": false,
+    "DCA": false,
+    "Window2": false
+  }
+}

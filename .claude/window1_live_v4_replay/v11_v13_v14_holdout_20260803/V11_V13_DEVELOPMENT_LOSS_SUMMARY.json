@@ -1,0 +1,935 @@
+{
+  "schema_version": "WINDOW1_V11_V13_DEVELOPMENT_LOSS_CROSSWALK_V1",
+  "development_only": true,
+  "rows": 482,
+  "classifications": {
+    "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 323,
+    "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 159
+  },
+  "V13_blocking_levels": {
+    "MICRO_ONLY_UNUSABLE_PATHS": 138,
+    "MICRO_ORDINAL_DISAGREEMENT": 99,
+    "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 84,
+    "MACRO_OR_PAIR_MICRO": 83,
+    "MICRO_POSITION": 77,
+    "MICRO_MICRO": 1
+  },
+  "category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 52,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 38,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 14
+      },
+      "V13_blocking_levels": {
+        "MICRO_ORDINAL_DISAGREEMENT": 23,
+        "MICRO_POSITION": 11,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 8,
+        "MICRO_ONLY_UNUSABLE_PATHS": 5,
+        "MACRO_OR_PAIR_MICRO": 4,
+        "MICRO_MICRO": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 52,
+        "available": 52,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 3,
+        "max": 0,
+        "exact_counts": {
+          "0": 31,
+          "1": 7,
+          "2": 6,
+          "3": 2,
+          "4": 2,
+          "5": 2,
+          "8": 1,
+          "9": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 52,
+        "available": 48,
+        "unavailable": 4,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": -1,
+        "exact_counts": {
+          "0": 18,
+          "1": 10,
+          "2": 11,
+          "3": 1,
+          "5": 3,
+          "8": 1,
+          "9": 1,
+          "UNAVAILABLE": 4,
+          "-1": 2,
+          "-2": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 80,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 56,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 24
+      },
+      "V13_blocking_levels": {
+        "MICRO_ORDINAL_DISAGREEMENT": 25,
+        "MICRO_POSITION": 18,
+        "MICRO_ONLY_UNUSABLE_PATHS": 17,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 14,
+        "MACRO_OR_PAIR_MICRO": 6
+      },
+      "V11_floor_gap": {
+        "denominator": 80,
+        "available": 80,
+        "unavailable": 0,
+        "min": 5,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 4,
+        "max": 1,
+        "exact_counts": {
+          "0": 43,
+          "1": 13,
+          "2": 11,
+          "3": 4,
+          "4": 2,
+          "5": 1,
+          "7": 1,
+          "8": 1,
+          "17": 1,
+          "29": 1,
+          "45": 1,
+          "52": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 80,
+        "available": 74,
+        "unavailable": 6,
+        "min": 5,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 2,
+        "exact_counts": {
+          "0": 26,
+          "1": 22,
+          "2": 12,
+          "3": 7,
+          "4": 1,
+          "5": 2,
+          "6": 1,
+          "9": 1,
+          "UNAVAILABLE": 6,
+          "-1": 1,
+          "-2": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": false,
+      "legs": 24,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 15,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 9
+      },
+      "V13_blocking_levels": {
+        "MICRO_ONLY_UNUSABLE_PATHS": 10,
+        "MICRO_POSITION": 5,
+        "MACRO_OR_PAIR_MICRO": 4,
+        "MICRO_ORDINAL_DISAGREEMENT": 3,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 2
+      },
+      "V11_floor_gap": {
+        "denominator": 24,
+        "available": 24,
+        "unavailable": 0,
+        "min": 30,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 7,
+        "max": 0,
+        "exact_counts": {
+          "0": 13,
+          "1": 2,
+          "2": 3,
+          "4": 2,
+          "7": 2,
+          "30": 1,
+          "43": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 24,
+        "available": 22,
+        "unavailable": 2,
+        "min": 12,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 0,
+        "exact_counts": {
+          "0": 6,
+          "1": 7,
+          "2": 2,
+          "3": 2,
+          "4": 1,
+          "7": 1,
+          "11": 1,
+          "12": 1,
+          "UNAVAILABLE": 2,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": false,
+      "legs": 29,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 25,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 4
+      },
+      "V13_blocking_levels": {
+        "MICRO_ORDINAL_DISAGREEMENT": 11,
+        "MICRO_POSITION": 6,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 5,
+        "MACRO_OR_PAIR_MICRO": 4,
+        "MICRO_ONLY_UNUSABLE_PATHS": 3
+      },
+      "V11_floor_gap": {
+        "denominator": 29,
+        "available": 29,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "exact_counts": {
+          "0": 19,
+          "1": 6,
+          "2": 2,
+          "8": 1,
+          "10": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 29,
+        "available": 26,
+        "unavailable": 3,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "exact_counts": {
+          "0": 10,
+          "1": 10,
+          "2": 4,
+          "4": 1,
+          "UNAVAILABLE": 3,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 43,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 25,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 18
+      },
+      "V13_blocking_levels": {
+        "MICRO_ONLY_UNUSABLE_PATHS": 16,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 13,
+        "MICRO_POSITION": 7,
+        "MACRO_OR_PAIR_MICRO": 4,
+        "MICRO_ORDINAL_DISAGREEMENT": 3
+      },
+      "V11_floor_gap": {
+        "denominator": 43,
+        "available": 43,
+        "unavailable": 0,
+        "min": 5,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 6,
+        "max": 0,
+        "exact_counts": {
+          "0": 17,
+          "1": 8,
+          "2": 4,
+          "3": 3,
+          "4": 1,
+          "5": 3,
+          "6": 3,
+          "8": 1,
+          "20": 1,
+          "26": 1,
+          "33": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 43,
+        "available": 38,
+        "unavailable": 5,
+        "min": 4,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 2,
+        "exact_counts": {
+          "0": 2,
+          "1": 13,
+          "2": 5,
+          "3": 4,
+          "4": 5,
+          "5": 2,
+          "6": 4,
+          "9": 1,
+          "UNAVAILABLE": 5,
+          "-1": 2
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 45,
+      "classifications": {
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 23,
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 22
+      },
+      "V13_blocking_levels": {
+        "MICRO_ONLY_UNUSABLE_PATHS": 24,
+        "MACRO_OR_PAIR_MICRO": 11,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 6,
+        "MICRO_POSITION": 3,
+        "MICRO_ORDINAL_DISAGREEMENT": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 45,
+        "available": 45,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 4,
+        "p90": 11,
+        "max": 6,
+        "exact_counts": {
+          "0": 12,
+          "1": 10,
+          "2": 5,
+          "3": 4,
+          "4": 5,
+          "6": 1,
+          "7": 2,
+          "11": 2,
+          "13": 1,
+          "14": 2,
+          "53": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 45,
+        "available": 35,
+        "unavailable": 10,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 5,
+        "max": 3,
+        "exact_counts": {
+          "0": 5,
+          "1": 6,
+          "2": 9,
+          "3": 6,
+          "4": 2,
+          "5": 3,
+          "7": 1,
+          "8": 2,
+          "14": 1,
+          "UNAVAILABLE": 10
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "thin": false,
+      "legs": 18,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 14,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 4
+      },
+      "V13_blocking_levels": {
+        "MICRO_ONLY_UNUSABLE_PATHS": 16,
+        "MACRO_OR_PAIR_MICRO": 2
+      },
+      "V11_floor_gap": {
+        "denominator": 18,
+        "available": 18,
+        "unavailable": 0,
+        "min": 4,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 4,
+        "max": 4,
+        "exact_counts": {
+          "0": 12,
+          "1": 2,
+          "3": 1,
+          "4": 3
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 18,
+        "available": 17,
+        "unavailable": 1,
+        "min": 4,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 5,
+        "exact_counts": {
+          "0": 4,
+          "1": 8,
+          "2": 1,
+          "4": 2,
+          "5": 1,
+          "6": 1,
+          "UNAVAILABLE": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 8,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 5,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 3
+      },
+      "V13_blocking_levels": {
+        "MACRO_OR_PAIR_MICRO": 3,
+        "MICRO_ONLY_UNUSABLE_PATHS": 2,
+        "MICRO_POSITION": 2,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 8,
+        "available": 8,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 4,
+        "max": 1,
+        "exact_counts": {
+          "0": 3,
+          "1": 2,
+          "4": 2,
+          "10": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 8,
+        "available": 6,
+        "unavailable": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 4,
+        "max": 4,
+        "exact_counts": {
+          "0": 2,
+          "1": 2,
+          "4": 1,
+          "6": 1,
+          "UNAVAILABLE": 2
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 41,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 23,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 18
+      },
+      "V13_blocking_levels": {
+        "MACRO_OR_PAIR_MICRO": 16,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 8,
+        "MICRO_ONLY_UNUSABLE_PATHS": 7,
+        "MICRO_ORDINAL_DISAGREEMENT": 6,
+        "MICRO_POSITION": 4
+      },
+      "V11_floor_gap": {
+        "denominator": 41,
+        "available": 41,
+        "unavailable": 0,
+        "min": 31,
+        "p25": 0,
+        "median": 1,
+        "p75": 8,
+        "p90": 38,
+        "max": 38,
+        "exact_counts": {
+          "0": 16,
+          "1": 7,
+          "2": 3,
+          "3": 2,
+          "4": 2,
+          "8": 1,
+          "11": 1,
+          "30": 1,
+          "31": 2,
+          "33": 1,
+          "38": 1,
+          "44": 1,
+          "46": 1,
+          "48": 1,
+          "49": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 41,
+        "available": 25,
+        "unavailable": 16,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "exact_counts": {
+          "0": 10,
+          "1": 8,
+          "2": 4,
+          "3": 1,
+          "4": 1,
+          "UNAVAILABLE": 16,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 16,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 10,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 6
+      },
+      "V13_blocking_levels": {
+        "MACRO_OR_PAIR_MICRO": 8,
+        "MICRO_ORDINAL_DISAGREEMENT": 4,
+        "MICRO_POSITION": 4
+      },
+      "V11_floor_gap": {
+        "denominator": 16,
+        "available": 16,
+        "unavailable": 0,
+        "min": 55,
+        "p25": 0,
+        "median": 0,
+        "p75": 19,
+        "p90": 35,
+        "max": 0,
+        "exact_counts": {
+          "0": 9,
+          "1": 1,
+          "2": 1,
+          "19": 1,
+          "33": 1,
+          "35": 1,
+          "46": 1,
+          "55": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 16,
+        "available": 8,
+        "unavailable": 8,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "exact_counts": {
+          "0": 5,
+          "1": 2,
+          "5": 1,
+          "UNAVAILABLE": 8
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "thin": false,
+      "legs": 10,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 6,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 4
+      },
+      "V13_blocking_levels": {
+        "MACRO_OR_PAIR_MICRO": 4,
+        "MICRO_ONLY_UNUSABLE_PATHS": 4,
+        "MICRO_ORDINAL_DISAGREEMENT": 1,
+        "MICRO_POSITION": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 10,
+        "available": 10,
+        "unavailable": 0,
+        "min": 2,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 8,
+        "max": 1,
+        "exact_counts": {
+          "0": 4,
+          "1": 2,
+          "2": 1,
+          "6": 1,
+          "8": 1,
+          "73": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 10,
+        "available": 5,
+        "unavailable": 5,
+        "min": 2,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 1,
+        "exact_counts": {
+          "0": 1,
+          "1": 2,
+          "2": 2,
+          "UNAVAILABLE": 5
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "thin": false,
+      "legs": 16,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 9,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 7
+      },
+      "V13_blocking_levels": {
+        "MACRO_OR_PAIR_MICRO": 7,
+        "MICRO_ORDINAL_DISAGREEMENT": 6,
+        "MICRO_ONLY_UNUSABLE_PATHS": 2,
+        "MICRO_POSITION": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 16,
+        "available": 16,
+        "unavailable": 0,
+        "min": 19,
+        "p25": 0,
+        "median": 0,
+        "p75": 14,
+        "p90": 15,
+        "max": 0,
+        "exact_counts": {
+          "0": 8,
+          "1": 1,
+          "2": 1,
+          "5": 1,
+          "14": 1,
+          "15": 2,
+          "17": 1,
+          "19": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 16,
+        "available": 9,
+        "unavailable": 7,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 0,
+        "exact_counts": {
+          "0": 5,
+          "1": 3,
+          "UNAVAILABLE": 7,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 37,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 25,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 12
+      },
+      "V13_blocking_levels": {
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 14,
+        "MICRO_ONLY_UNUSABLE_PATHS": 13,
+        "MACRO_OR_PAIR_MICRO": 6,
+        "MICRO_POSITION": 3,
+        "MICRO_ORDINAL_DISAGREEMENT": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 37,
+        "available": 37,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 8,
+        "max": 0,
+        "exact_counts": {
+          "0": 17,
+          "1": 8,
+          "2": 1,
+          "3": 2,
+          "4": 2,
+          "5": 1,
+          "6": 1,
+          "8": 1,
+          "10": 1,
+          "19": 1,
+          "37": 1,
+          "39": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 37,
+        "available": 30,
+        "unavailable": 7,
+        "min": 2,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 5,
+        "max": 0,
+        "exact_counts": {
+          "0": 8,
+          "1": 7,
+          "2": 7,
+          "3": 2,
+          "4": 2,
+          "5": 1,
+          "6": 2,
+          "10": 1,
+          "UNAVAILABLE": 7
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 28,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 25,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 3
+      },
+      "V13_blocking_levels": {
+        "MICRO_ONLY_UNUSABLE_PATHS": 9,
+        "MICRO_ORDINAL_DISAGREEMENT": 9,
+        "MICRO_POSITION": 7,
+        "MACRO_OR_PAIR_MICRO": 2,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 28,
+        "available": 28,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 0,
+        "exact_counts": {
+          "0": 19,
+          "1": 6,
+          "2": 3
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 28,
+        "available": 27,
+        "unavailable": 1,
+        "min": 1,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 0,
+        "exact_counts": {
+          "0": 10,
+          "1": 11,
+          "2": 4,
+          "3": 2,
+          "UNAVAILABLE": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "thin": false,
+      "legs": 14,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 12,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 2
+      },
+      "V13_blocking_levels": {
+        "MICRO_ORDINAL_DISAGREEMENT": 6,
+        "MICRO_ONLY_UNUSABLE_PATHS": 3,
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 2,
+        "MICRO_POSITION": 2,
+        "MACRO_OR_PAIR_MICRO": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 14,
+        "available": 14,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 0,
+        "exact_counts": {
+          "0": 11,
+          "1": 1,
+          "2": 1,
+          "6": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 14,
+        "available": 14,
+        "unavailable": 0,
+        "min": 1,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 0,
+        "exact_counts": {
+          "0": 5,
+          "1": 6,
+          "2": 2,
+          "6": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": false,
+      "legs": 21,
+      "classifications": {
+        "GENUINE_CATCH_AT_OR_WITHIN_ONE_CENT_OF_QUALIFYING_ASK_FLOOR": 13,
+        "REAL_EXECUTABLE_ASK_BUT_LOOSE_TIMING_ABOVE_FLOOR": 8
+      },
+      "V13_blocking_levels": {
+        "MICRO_MIXED_USABLE_AND_UNUSABLE_PATHS": 10,
+        "MICRO_ONLY_UNUSABLE_PATHS": 7,
+        "MICRO_POSITION": 3,
+        "MACRO_OR_PAIR_MICRO": 1
+      },
+      "V11_floor_gap": {
+        "denominator": 21,
+        "available": 21,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 1,
+        "exact_counts": {
+          "0": 8,
+          "1": 5,
+          "2": 5,
+          "3": 2,
+          "6": 1
+        }
+      },
+      "V11_traded_low_gap": {
+        "denominator": 21,
+        "available": 21,
+        "unavailable": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 5,
+        "max": 1,
+        "exact_counts": {
+          "0": 2,
+          "1": 8,
+          "2": 6,
+          "3": 1,
+          "4": 1,
+          "5": 2,
+          "6": 1
+        }
+      }
+    }
+  ]
+}

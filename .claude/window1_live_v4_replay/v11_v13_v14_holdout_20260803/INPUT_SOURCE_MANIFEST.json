@@ -1,0 +1,60 @@
+{
+  "holdout_dates": [
+    "2026-07-24",
+    "2026-07-25",
+    "2026-07-26"
+  ],
+  "events": 228,
+  "legs": 456,
+  "BBO_files": {
+    "count": 456,
+    "bytes": 230230542,
+    "hash_set_sha256": "09d5cefdd54ecc2db10b37cbcfe1ae38f03c64cac1b059e82dfdf6d0b5cd3c18"
+  },
+  "metadata_files": {
+    "corpus_events_v2.jsonl": {
+      "bytes": 4221024,
+      "sha256": "839f0552fd4edf8e0116d4ba8e8f2bf7808db82396bfd7a0a2b1eadd860a3ebf"
+    },
+    "daysheet_bells.json": {
+      "bytes": 504168,
+      "sha256": "904e43b95ba0abe0f02c0f3fe5400ef4f2d2ee745f1ed1a3b8981f5c60d9c5e2"
+    },
+    "daysheet_bells_official.json": {
+      "bytes": 87697,
+      "sha256": "aff74e14cdabe376d5c40e2f45a85360564d365671f959fe38cf5a7efaf04896"
+    },
+    "milestone_shadow.jsonl": {
+      "bytes": 989343,
+      "sha256": "8085cab892edcb7834d2fb6b74e9f05356e0f2c6de44236e9fc96287a1381410"
+    },
+    "milestone_starts.json": {
+      "bytes": 1594797,
+      "sha256": "d25c9ced5c14f8f74d3a7cde4e1245aec788dfbc6eec71d21bf471555334789d"
+    }
+  },
+  "public_tape": {
+    "endpoint": "https://api.elections.kalshi.com/trade-api/v2/markets/trades",
+    "authentication": "none",
+    "tickers": 456,
+    "pages": 2119,
+    "raw_trade_rows": 1878038,
+    "canonical_trade_rows": 1878038,
+    "raw_total_bytes": 60671796,
+    "raw_hash_set_sha256": "c3a77de71ac981bf4345f6cf09c640e55f8294a1e61e509ad212ce382030aa78"
+  },
+  "fit_artifacts_unchanged": {
+    "V11": {
+      "path": ".claude/window1_live_v4_replay/five_exact_dynamic_renarrow_v6_20260801/QUOTE_SHAPE_LIBRARY_DYNAMIC_RENARROW_V6.json",
+      "sha256": "839c211a25814d2419752b314f9b7b4a67f8776e8ada345cf326a36f25967255"
+    },
+    "V13": {
+      "path": ".claude/window1_live_v4_replay/interim_shape_v13_fit_20260803/INTERIM_SHAPE_LIBRARY_V13.json",
+      "sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8"
+    },
+    "V14": {
+      "path": ".claude/window1_live_v4_replay/interim_shape_v13_fit_20260803/INTERIM_SHAPE_LIBRARY_V13.json",
+      "sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": "WINDOW1_HOLDOUT_PRE_POLICY_FAILURE_RECEIPT_V1",
+  "prior_capture_failure": {
+    "runner": "arb-executor/analysis/window1_v11_v12_v13_holdout_runner_v1.js",
+    "public_tapes_frozen": 448,
+    "missing_tapes": 8,
+    "failure": "8 HTTP 429 responses",
+    "policy_evaluations": 0
+  },
+  "resumable_capture": {
+    "reused_tapes": 448,
+    "newly_fetched_tapes": 8,
+    "complete_tapes": 456
+  },
+  "prior_join_failure": {
+    "marker_path": "../../../tmp/window1_holdout_v11_v13_20260803/HOLDOUT_V11_V13_V14_EVALUATION_CONSUMED.json",
+    "marker_sha256": "50e530e45c56d1c4fbd81c14084e75deaad5159a39c839bfbfdea49863d6c8ac",
+    "error": "KXATPCHALLENGERMATCH-26JUL24DRACHI: missing catalog row",
+    "cause": "holdout event absent from development corpus catalog; sealed holdout metadata join was not used",
+    "policy_evaluations": 0
+  },
+  "controlling_evaluation": {
+    "policy_evaluation_attempts": 1,
+    "versions": [
+      "V11",
+      "V13",
+      "V14"
+    ],
+    "refits": 0
+  }
+}

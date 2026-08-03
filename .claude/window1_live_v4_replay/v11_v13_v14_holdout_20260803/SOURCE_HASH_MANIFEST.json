@@ -1,0 +1,20 @@
+{
+  "files": {
+    "arb-executor/analysis/window1_v11_v13_v14_holdout_runner_v2.js": {
+      "bytes": 40719,
+      "sha256": "518da5622b99bce4a49189c53d81d62041261dfa44129d4ba957538fea8f5f83"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "bytes": 62727,
+      "sha256": "c20f2882ddc59338fc76cd7d2c04e4f432c44ad4923e18b11bda60be715d715c"
+    },
+    ".claude/window1_live_v4_replay/five_exact_dynamic_renarrow_v6_20260801/QUOTE_SHAPE_LIBRARY_DYNAMIC_RENARROW_V6.json": {
+      "bytes": 17538443,
+      "sha256": "839c211a25814d2419752b314f9b7b4a67f8776e8ada345cf326a36f25967255"
+    },
+    ".claude/window1_live_v4_replay/interim_shape_v13_fit_20260803/INTERIM_SHAPE_LIBRARY_V13.json": {
+      "bytes": 2962257,
+      "sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8"
+    }
+  }
+}

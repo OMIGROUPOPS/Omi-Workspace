@@ -29,6 +29,41 @@ function ordinalVerdict(shape, observedQualifiedDescents) {
   return { verdict: "UNKNOWN", reason: "ADJACENT_ORDINAL_PATH_MEMBERS_DISAGREE" };
 }
 
+function microRepairV14(shapes, observedQualifiedDescents) {
+  const usable = shapes.filter((shape) => shape?.usable_for_signing);
+  const unusable = shapes.filter((shape) => !shape?.usable_for_signing);
+  const contradicted = usable.filter((shape) => Number.isInteger(observedQualifiedDescents) && Number.isInteger(shape.descent_to_final_reachable_low?.max) && observedQualifiedDescents > shape.descent_to_final_reachable_low.max);
+  const active = usable.filter((shape) => !contradicted.includes(shape));
+  if (!active.length && unusable.length) return {
+    mode: "RESOLVED_MACRO_CARRY_AFTER_MICRO_ABSTENTION",
+    verdict: "FLOOR",
+    reason: "NO_COHERENT_N_GE_20_MICRO_PATH; RESOLVED_MACRO_CARRIES_TO_FITTED_MICRO_MICRO",
+    usable_shape_ids: [],
+    abstaining_unusable_shape_ids: unusable.map((shape) => shape.shape_id),
+    contradicted_shape_ids: contradicted.map((shape) => shape.shape_id),
+    pending_shape_ids: [],
+  };
+  if (!active.length) return {
+    mode: "ALL_COHERENT_MICRO_HYPOTHESES_CAUSALLY_CONTRADICTED",
+    verdict: "UNKNOWN",
+    reason: "POST_FLOOR_QUALIFIED_DESCENT_ELIMINATED_EVERY_COHERENT_MICRO_HYPOTHESIS",
+    usable_shape_ids: [], abstaining_unusable_shape_ids: [],
+    contradicted_shape_ids: contradicted.map((shape) => shape.shape_id), pending_shape_ids: [],
+  };
+  const votes = active.map((shape) => ({ shape_id: shape.shape_id, ...ordinalVerdict(shape, observedQualifiedDescents) }));
+  const verdict = votes.every((vote) => vote.verdict === "FLOOR") ? "FLOOR" : votes.every((vote) => vote.verdict === "LOWER") ? "LOWER" : "UNKNOWN";
+  return {
+    mode: unusable.length ? "USABLE_MICRO_VOTE_WITH_UNUSABLE_ABSTENTIONS" : "COHERENT_USABLE_MICRO_VOTE",
+    verdict,
+    reason: verdict === "UNKNOWN" ? "ORDINAL_HYPOTHESES_STILL_NARROWING" : `USABLE_MICRO_UNANIMOUS_${verdict}`,
+    usable_shape_ids: active.map((shape) => shape.shape_id),
+    abstaining_unusable_shape_ids: unusable.map((shape) => shape.shape_id),
+    contradicted_shape_ids: contradicted.map((shape) => shape.shape_id),
+    pending_shape_ids: votes.filter((vote) => vote.verdict === "UNKNOWN").map((vote) => vote.shape_id),
+    votes,
+  };
+}
+
 function microMicroFeatures(row) {
   return {
     ask_dwell_seconds: row.ask_dwell_seconds,
@@ -55,4 +90,4 @@ function traverseMicroModel(model, features) {
   return { verdict: node.verdict, reason: node.verdict === "READY" ? "FITTED_NEXT_RECEIPT_MAJORITY_EXECUTABLE" : node.verdict === "NOT_READY" ? "FITTED_NEXT_RECEIPT_MAJORITY_NOT_EXECUTABLE" : "FITTED_NEXT_RECEIPT_TIE_OR_UNAVAILABLE", leaf_id: node.leaf_id, fit_rate: node.fit_rate, fit_samples: node.samples, fit_unique_legs: node.unique_legs };
 }
 
-module.exports = { MACRO_KEYS, MICRO_MICRO_KEYS, macroState, matchesMacroEnvelope, ordinalVerdict, microMicroFeatures, traverseMicroModel };
+module.exports = { MACRO_KEYS, MICRO_MICRO_KEYS, macroState, matchesMacroEnvelope, ordinalVerdict, microRepairV14, microMicroFeatures, traverseMicroModel };

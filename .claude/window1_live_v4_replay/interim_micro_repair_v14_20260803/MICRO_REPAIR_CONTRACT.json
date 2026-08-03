@@ -1,0 +1,16 @@
+{
+  "schema_version": "WINDOW1_INTERIM_MICRO_REPAIR_V14_CONTRACT_V1",
+  "macro_taxonomy": "V13_UNCHANGED",
+  "micro_micro_surface": "V13_UNCHANGED",
+  "coherence_law": {
+    "minimum_members": 20,
+    "ordinal_support": "ONE_EXACT_OR_TWO_ADJACENT"
+  },
+  "changes": {
+    "micro_only_unusable": "UNUSABLE_MICRO_PATH_ABSTAINS; RESOLVED_MACRO_MAY_CARRY_TO_UNCHANGED_MICRO_MICRO_WHEN_NO_COHERENT_MICRO_PATH_EXISTS",
+    "ordinal_disagreement": "CONTINUE_CAUSAL_ELIMINATION; CONTRADICTED_ORDINAL_PATHS_DROP; TRUE_DISAGREEMENT_REMAINS_PENDING",
+    "mixed_paths": "UNUSABLE_PATHS_ABSTAIN_AND_CANNOT_VETO_USABLE_COHERENT_VOTES"
+  },
+  "endpoint_labels_reintroduced": false,
+  "fit_or_refit": false
+}

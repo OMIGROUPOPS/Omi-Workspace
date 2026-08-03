@@ -1,0 +1,72 @@
+{
+  "files": {
+    "INPUT_SOURCE_MANIFEST.json": {
+      "bytes": 2087,
+      "sha256": "48c99e233d42f5606dea15f12f73743f637e99ed0a7a94ac02ee5fb3b0e83934"
+    },
+    "ONE_EXECUTION_RECEIPT.json": {
+      "bytes": 944,
+      "sha256": "e747a3b9361df6068fe16ee34a7a35f773a9c072585268b1f72bffc5398d642d"
+    },
+    "PRE_POLICY_PREPARATION_FAILURE_RECEIPT.json": {
+      "bytes": 1016,
+      "sha256": "24205d20d9b8d0e4cf2bbeb238a5293c443d9a05ef353e0fe9ef7f7002049679"
+    },
+    "REPORT.md": {
+      "bytes": 2315,
+      "sha256": "faac5fd95d59d6c3a2c9159081b9e9afed420e69c4da1c004e0e86b0541e30ad"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 854,
+      "sha256": "7851c804e25615f8841933b99dab9dd81bcce770d1aaf617f16c9941c56fad65"
+    },
+    "V11_HOLDOUT_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 149030,
+      "sha256": "72be580e83203accd51da6cc1a286abf885a738a374fd9dd810f407e04e1c3ea"
+    },
+    "V11_HOLDOUT_FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 171120,
+      "sha256": "584d452a1236e458969c30e4f77df2fc264adcd1b81dea3557f8937c325e692f"
+    },
+    "V11_HOLDOUT_LEG_LEDGER.jsonl.gz": {
+      "bytes": 143414,
+      "sha256": "dfc93c56095c7cc75384ac3f2f19cd34ff791e10ba58802e2725f0072c9437cd"
+    },
+    "V11_V13_DEVELOPMENT_LOSS_CROSSWALK.jsonl.gz": {
+      "bytes": 18658,
+      "sha256": "b656528202051bfd7a602cd78438101970b8bb82c3eca03361939f91702dce83"
+    },
+    "V11_V13_DEVELOPMENT_LOSS_SUMMARY.json": {
+      "bytes": 21322,
+      "sha256": "6bedb9a0af3acf6af7e979dd60cedff0869cdebcbfb389be67d58ae3b9836b02"
+    },
+    "V13_HOLDOUT_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 122458,
+      "sha256": "a08fdfbc0603cda5fc8b924ad26683c9659f73057d3124df78db3691cd8d1be1"
+    },
+    "V13_HOLDOUT_FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 174993,
+      "sha256": "b6da16e3a42900911e460f843d892306908f9fe2da77df3213c99ef88710d77b"
+    },
+    "V13_HOLDOUT_LEG_LEDGER.jsonl.gz": {
+      "bytes": 116544,
+      "sha256": "e802771bd46b87f354c5b3cc151c9b2c787f836c0c9b08ee18fec265f4d66582"
+    },
+    "V13_V14_EXECUTION_FLOOR_DIAGNOSTIC.json": {
+      "bytes": 50481,
+      "sha256": "487b8cb319580861bfda4e1a700de6a7cde68060e6f234ec7b2ab10cccaf80e7"
+    },
+    "V14_HOLDOUT_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 154388,
+      "sha256": "f0c8c6e045e5e68c8a888c048d7b38d4ae60e283fc667ee2747f11352600dfa8"
+    },
+    "V14_HOLDOUT_FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 171125,
+      "sha256": "7dbdabb42456b6d69782b5d114511f420b3232b48891ae8a12b2edb30763a258"
+    },
+    "V14_HOLDOUT_LEG_LEDGER.jsonl.gz": {
+      "bytes": 148875,
+      "sha256": "48862c2bfe40bbe5a81ffd17230d8b7a6b7e9f926e6e0bb66f1bf756f0b42896"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "commands": [
+    {
+      "command": "node arb-executor/tests/test_window1_interim_micro_repair_v14.js",
+      "assertions": 16
+    },
+    {
+      "command": "node arb-executor/tests/test_window1_interim_elimination_v13.js",
+      "status": "PASS"
+    },
+    {
+      "command": "node arb-executor/tests/test_window1_v14_holdout_honesty.js",
+      "assertions": 12
+    }
+  ],
+  "failures": 0
+}

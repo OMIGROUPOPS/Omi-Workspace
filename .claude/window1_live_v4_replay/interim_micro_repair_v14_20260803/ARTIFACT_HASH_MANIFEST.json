@@ -1,0 +1,92 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "bytes": 398,
+      "sha256": "c51c87777ef123b3612b63d423e5abfc607ea0e9abc38439f0118276727293c9"
+    },
+    "DEVELOPMENT_RECOVERY_CROSSWALK.jsonl.gz": {
+      "bytes": 20914,
+      "sha256": "19b41565a589793fc5424e9d9daa4799eeeb04c22e5479f9926cdcd97c8bdf9c"
+    },
+    "DEVELOPMENT_RECOVERY_SUMMARY.json": {
+      "bytes": 3773,
+      "sha256": "fc7b8ea6a37ca839e041da75340131e26307b54f2f2faff5160b3858d74dd69b"
+    },
+    "DEVELOPMENT_V11_V13_V14_COMPARISON.json": {
+      "bytes": 6148,
+      "sha256": "7081fd72cd43e6be6314239a8841235fde5d74e0694b17ea5ad9adf6cba7bf42"
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "bytes": 360,
+      "sha256": "496ca5033d6c7502863bcf7f74683303a94765c086a0db99ab81460ad99c77a5"
+    },
+    "HOLDOUT_COMPARISON.json": {
+      "bytes": 46461,
+      "sha256": "a3d38a049fe683f0aaed5b4f92e499c61e8d382c853c5a09012ebce40b8d033b"
+    },
+    "MICRO_REPAIR_CONTRACT.json": {
+      "bytes": 694,
+      "sha256": "fe70d4037622f01715e83d29ed96934e5db61a489269be7792f77f3c69079c65"
+    },
+    "POLICY_EVALUATION_AND_AGGREGATION_CORRECTION_RECEIPT.json": {
+      "bytes": 1396,
+      "sha256": "63a8fa95cff3d653947f9299892648afa4bd5a954514d3e4e9a749bf82f8a54c"
+    },
+    "PRE_RUN_REPORT.md": {
+      "bytes": 2259,
+      "sha256": "e8c5e4a26927fa777e32e4836dc9ca05e9106ba8e5eb80e89cb6d606c206b8e1"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 1314,
+      "sha256": "b6ad65c48c335ae463efe7c4a63420cccb101649f09637a28602da91703a092b"
+    },
+    "TEST_RESULTS.json": {
+      "bytes": 417,
+      "sha256": "5c00610c376172ee9e66820e98b1c58007c6e8ccad469e735fcb96d92200585d"
+    },
+    "V11_HOLDOUT_HONEST_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 153809,
+      "sha256": "960af6edcd4753b50700548a70a4a0456bc795ef231d5d20f79d2f58da9acc8b"
+    },
+    "V11_HOLDOUT_HONEST_FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 228064,
+      "sha256": "b5070fa45a22ad566d76020b212d014fddcb01d2b84b1cb79687ff791f52d3f9"
+    },
+    "V11_HOLDOUT_HONEST_LEG_LEDGER.jsonl.gz": {
+      "bytes": 147568,
+      "sha256": "325397eafd8e16318d0e0150bd9f8e5435ab2be26b93b2903e08bb5d43f53415"
+    },
+    "V13_HOLDOUT_HONEST_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 127171,
+      "sha256": "b36a41743909d4ff2a25d6f6cb2190a97c81d4fc9e413ceaf906fe8deeedf4a4"
+    },
+    "V13_HOLDOUT_HONEST_FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 228669,
+      "sha256": "27a4d99120d603bb287c6c970136d8d0df7f29e66e1209f537dfe5064aa51c7b"
+    },
+    "V13_HOLDOUT_HONEST_LEG_LEDGER.jsonl.gz": {
+      "bytes": 120372,
+      "sha256": "6f13fef61c95d3ca30e96a406d6c60279986d6883f198f598fe68229c0630702"
+    },
+    "V14_DEVELOPMENT_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 1552372,
+      "sha256": "79bcef2f1ee2c45cf4a72f9ed48ec09743c39b669367a958a5c6f5fac0dc3aa7"
+    },
+    "V14_DEVELOPMENT_POPULATION_SUMMARY.json": {
+      "bytes": 130353,
+      "sha256": "d00481f594aece6aebd2720a8de2b7a66d8144a912c36abe3f342c24ecd7350e"
+    },
+    "V14_HOLDOUT_HONEST_EVENT_LEDGER.jsonl.gz": {
+      "bytes": 159287,
+      "sha256": "48883d71b2a6492bbb5524a67b586e9da82bd97fd7f4cfb146b803c6a7450bf9"
+    },
+    "V14_HOLDOUT_HONEST_FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 227853,
+      "sha256": "e8e9478fb7e49fc8e0ac34ce99ab82f899ee176ce90625cf55924dd0da5fe4e1"
+    },
+    "V14_HOLDOUT_HONEST_LEG_LEDGER.jsonl.gz": {
+      "bytes": 152880,
+      "sha256": "77c21f12262c161aab49fe7a974b04b335a6ec0e91b5135b79617d47fa22f380"
+    }
+  }
+}

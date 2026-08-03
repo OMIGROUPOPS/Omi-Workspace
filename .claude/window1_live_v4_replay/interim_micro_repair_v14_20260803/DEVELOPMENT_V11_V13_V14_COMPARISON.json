@@ -1,0 +1,253 @@
+{
+  "V11": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 712,
+    "credited_legs": 712,
+    "no_action_legs": 896,
+    "no_action_terminal_reasons": {
+      "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 283,
+      "ALL_SURVIVING_SHAPES_SAY_LOWER": 183,
+      "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 147,
+      "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 110,
+      "SOURCE_UNAVAILABLE": 90,
+      "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 74,
+      "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 6,
+      "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 2,
+      "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+    },
+    "no_credited_leg_events": 277,
+    "naked_single_events": 342,
+    "completed_pairs": 185,
+    "pairs_under_par": 94,
+    "both_legs_strictly_below_close": 21,
+    "under_par_and_both_legs_strictly_below_close": 16,
+    "execution_floor_pair_pass": 29,
+    "ceiling_comparison": {
+      "absolute_traded_low": {
+        "ceiling_events": 580,
+        "completed_pairs": 124,
+        "pairs_under_par": 59,
+        "both_legs_strictly_below_close": 20,
+        "execution_floor_pair_pass": 26
+      },
+      "traded_low_print_size_at_least_five": {
+        "ceiling_events": 558,
+        "completed_pairs": 120,
+        "pairs_under_par": 59,
+        "both_legs_strictly_below_close": 18,
+        "execution_floor_pair_pass": 26
+      },
+      "capacity_proven_ask_floor": {
+        "ceiling_events": 516,
+        "completed_pairs": 123,
+        "pairs_under_par": 60,
+        "both_legs_strictly_below_close": 21,
+        "execution_floor_pair_pass": 27
+      },
+      "lowest_seller_aggressed_trade_floor": {
+        "ceiling_events": 371,
+        "completed_pairs": 88,
+        "pairs_under_par": 47,
+        "both_legs_strictly_below_close": 13,
+        "execution_floor_pair_pass": 22
+      },
+      "maker_reachable": {
+        "ceiling_events": 253,
+        "completed_pairs": 59,
+        "pairs_under_par": 29,
+        "both_legs_strictly_below_close": 10,
+        "execution_floor_pair_pass": 17
+      }
+    }
+  },
+  "V13": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 444,
+    "credited_legs": 444,
+    "completed_pairs": 80,
+    "pairs_under_par": 15,
+    "both_legs_strictly_below_close": 10,
+    "execution_floor_pair_pass": 8,
+    "entry_to_qualifying_ask_floor_gap": {
+      "denominator": 1608,
+      "available": 444,
+      "unavailable": 1164,
+      "min": -1,
+      "p25": 0,
+      "median": 0,
+      "p75": 1,
+      "p90": 4,
+      "max": 59,
+      "exact_counts": {
+        "0": 305,
+        "1": 63,
+        "2": 17,
+        "3": 8,
+        "4": 4,
+        "5": 5,
+        "6": 3,
+        "7": 1,
+        "8": 1,
+        "9": 4,
+        "10": 1,
+        "11": 3,
+        "12": 1,
+        "14": 1,
+        "15": 2,
+        "17": 1,
+        "19": 3,
+        "24": 2,
+        "25": 1,
+        "26": 4,
+        "28": 1,
+        "30": 1,
+        "32": 1,
+        "37": 1,
+        "39": 1,
+        "40": 1,
+        "41": 2,
+        "43": 1,
+        "48": 1,
+        "54": 1,
+        "59": 1,
+        "UNAVAILABLE": 1164,
+        "-1": 2
+      }
+    },
+    "entry_to_objective_traded_low_gap": {
+      "denominator": 1608,
+      "available": 376,
+      "unavailable": 1232,
+      "min": -2,
+      "p25": 0,
+      "median": 1,
+      "p75": 1,
+      "p90": 3,
+      "max": 31,
+      "exact_counts": {
+        "0": 148,
+        "1": 138,
+        "2": 37,
+        "3": 21,
+        "4": 7,
+        "5": 4,
+        "6": 1,
+        "7": 3,
+        "8": 1,
+        "9": 3,
+        "31": 1,
+        "UNAVAILABLE": 1232,
+        "-1": 10,
+        "-2": 2
+      }
+    },
+    "ceiling_comparison": {
+      "absolute_traded_low": {
+        "ceiling_events": 580,
+        "completed_pairs": 56,
+        "pairs_under_par": 9,
+        "both_legs_strictly_below_close": 10,
+        "execution_floor_pair_pass": 7
+      },
+      "traded_low_print_size_at_least_five": {
+        "ceiling_events": 558,
+        "completed_pairs": 54,
+        "pairs_under_par": 9,
+        "both_legs_strictly_below_close": 9,
+        "execution_floor_pair_pass": 7
+      },
+      "capacity_proven_ask_floor": {
+        "ceiling_events": 516,
+        "completed_pairs": 53,
+        "pairs_under_par": 9,
+        "both_legs_strictly_below_close": 10,
+        "execution_floor_pair_pass": 7
+      },
+      "lowest_seller_aggressed_trade_floor": {
+        "ceiling_events": 371,
+        "completed_pairs": 34,
+        "pairs_under_par": 6,
+        "both_legs_strictly_below_close": 5,
+        "execution_floor_pair_pass": 4
+      },
+      "maker_reachable": {
+        "ceiling_events": 253,
+        "completed_pairs": 32,
+        "pairs_under_par": 6,
+        "both_legs_strictly_below_close": 5,
+        "execution_floor_pair_pass": 4
+      }
+    }
+  },
+  "V14": {
+    "events": 804,
+    "legs": 1608,
+    "acted_legs": 802,
+    "credited_legs": 802,
+    "completed_pairs": 216,
+    "pairs_under_par": 62,
+    "both_legs_strictly_below_close": 28,
+    "execution_floor_pair_pass": 34,
+    "acted_gap_to_qualifying_ask_floor": {
+      "denominator": 1608,
+      "available": 802,
+      "unavailable": 806,
+      "min": -1,
+      "p25": 0,
+      "median": 0,
+      "p75": 1,
+      "p90": 5,
+      "max": 73,
+      "exact_counts": {
+        "0": 451,
+        "1": 148,
+        "2": 57,
+        "3": 32,
+        "4": 26,
+        "5": 12,
+        "6": 5,
+        "7": 9,
+        "8": 5,
+        "9": 5,
+        "10": 4,
+        "11": 4,
+        "12": 1,
+        "13": 2,
+        "14": 3,
+        "15": 3,
+        "16": 1,
+        "17": 2,
+        "19": 2,
+        "21": 2,
+        "22": 1,
+        "25": 1,
+        "26": 3,
+        "28": 1,
+        "29": 3,
+        "31": 1,
+        "32": 1,
+        "34": 1,
+        "37": 1,
+        "39": 1,
+        "40": 1,
+        "41": 2,
+        "43": 1,
+        "44": 1,
+        "45": 1,
+        "48": 1,
+        "54": 1,
+        "56": 2,
+        "59": 1,
+        "73": 1,
+        "UNAVAILABLE": 806,
+        "-1": 2
+      }
+    },
+    "fill_classes": {
+      "UNPROVEN": 806,
+      "PROVEN_TAKER": 802
+    }
+  }
+}

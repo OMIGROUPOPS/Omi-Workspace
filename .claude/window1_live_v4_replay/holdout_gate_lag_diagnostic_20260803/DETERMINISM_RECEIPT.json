@@ -1,0 +1,8 @@
+{
+  "clean_artifact_builds": 2,
+  "byte_identical": true,
+  "trace_replay_invocations": 2,
+  "first_trace_serializer_failure": true,
+  "policy_refits": 0,
+  "scorer_invocations": 0
+}

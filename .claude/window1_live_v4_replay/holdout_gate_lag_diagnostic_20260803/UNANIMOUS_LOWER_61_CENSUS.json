@@ -1,0 +1,555 @@
+{
+  "schema_version": "WINDOW1_V11_HOLDOUT_UNANIMOUS_LOWER_CENSUS_V1",
+  "conservation": {
+    "legs": 61
+  },
+  "first_qualified_refusal_outcomes": {
+    "BOTTOMED_AT_REFUSAL": 26,
+    "WENT_LOWER_AFTER_REFUSAL": 23,
+    "UNAVAILABLE": 12
+  },
+  "last_qualified_refusal_outcomes": {
+    "BOTTOMED_AT_REFUSAL": 48,
+    "UNAVAILABLE": 12,
+    "WENT_LOWER_AFTER_REFUSAL": 1
+  },
+  "category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 13,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 8,
+        "UNAVAILABLE": 4,
+        "WENT_LOWER_AFTER_REFUSAL": 1
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 9,
+        "UNAVAILABLE": 4
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 13,
+        "available": 9,
+        "unavailable": 4,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "exact_counts": {
+          "0": 8,
+          "1": 1
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 13,
+        "available": 9,
+        "unavailable": 4,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 9
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 10,
+      "first_refusal_outcomes": {
+        "WENT_LOWER_AFTER_REFUSAL": 10
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 10
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 10,
+        "available": 10,
+        "unavailable": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "exact_counts": {
+          "1": 9,
+          "2": 1
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 10,
+        "available": 10,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 10
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 2,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 6,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 3,
+        "WENT_LOWER_AFTER_REFUSAL": 3
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 6
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 6,
+        "available": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "exact_counts": {
+          "0": 3,
+          "1": 3
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 6,
+        "available": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 6
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 10,
+      "first_refusal_outcomes": {
+        "WENT_LOWER_AFTER_REFUSAL": 4,
+        "BOTTOMED_AT_REFUSAL": 3,
+        "UNAVAILABLE": 3
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 7,
+        "UNAVAILABLE": 3
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 10,
+        "available": 7,
+        "unavailable": 3,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "exact_counts": {
+          "0": 3,
+          "1": 2,
+          "2": 2
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 10,
+        "available": 7,
+        "unavailable": 3,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 7
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": true,
+      "legs": 4,
+      "first_refusal_outcomes": {
+        "WENT_LOWER_AFTER_REFUSAL": 2,
+        "BOTTOMED_AT_REFUSAL": 1,
+        "UNAVAILABLE": 1
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2,
+        "UNAVAILABLE": 1,
+        "WENT_LOWER_AFTER_REFUSAL": 1
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 4,
+        "available": 3,
+        "unavailable": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "exact_counts": {
+          "0": 1,
+          "1": 1,
+          "2": 1
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 4,
+        "available": 3,
+        "unavailable": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "exact_counts": {
+          "0": 2,
+          "1": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 2,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 1,
+        "WENT_LOWER_AFTER_REFUSAL": 1
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 4,
+        "exact_counts": {
+          "0": 1,
+          "4": 1
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 4,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2,
+        "UNAVAILABLE": 2
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2,
+        "UNAVAILABLE": 2
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 4,
+        "available": 2,
+        "unavailable": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 4,
+        "available": 2,
+        "unavailable": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": true,
+      "legs": 1,
+      "first_refusal_outcomes": {
+        "UNAVAILABLE": 1
+      },
+      "last_refusal_outcomes": {
+        "UNAVAILABLE": 1
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 1,
+        "available": 0,
+        "unavailable": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {}
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 1,
+        "available": 0,
+        "unavailable": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {}
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "thin": true,
+      "legs": 2,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": true,
+      "legs": 4,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2,
+        "WENT_LOWER_AFTER_REFUSAL": 2
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 4
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 4,
+        "available": 4,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "exact_counts": {
+          "0": 2,
+          "1": 2
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 4,
+        "available": 4,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 4
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": true,
+      "legs": 1,
+      "first_refusal_outcomes": {
+        "UNAVAILABLE": 1
+      },
+      "last_refusal_outcomes": {
+        "UNAVAILABLE": 1
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 1,
+        "available": 0,
+        "unavailable": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {}
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 1,
+        "available": 0,
+        "unavailable": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "exact_counts": {}
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 2,
+      "first_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2
+      },
+      "last_refusal_outcomes": {
+        "BOTTOMED_AT_REFUSAL": 2
+      },
+      "cents_lower_after_first_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      },
+      "cents_lower_after_last_refusal": {
+        "denominator": 2,
+        "available": 2,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "exact_counts": {
+          "0": 2
+        }
+      }
+    }
+  ]
+}

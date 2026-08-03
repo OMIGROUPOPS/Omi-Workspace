@@ -1,0 +1,48 @@
+{
+  "files": {
+    "ABOVE_LOW_PAIR_COUNTERFACTUAL_EVENT_LEDGER.jsonl": {
+      "bytes": 563671,
+      "sha256": "55a786570afd4a64297b111e32b28dc086ff2f52b27b68bdd35c023884f187bb"
+    },
+    "ABOVE_OBSERVED_LOW_83_CENSUS.json": {
+      "bytes": 28001,
+      "sha256": "02779f9bcce580b5e452cbe250f64d721dbb92e40df24080ff9dd54afaf8ed6b"
+    },
+    "ABOVE_OBSERVED_LOW_83_DECISION_EVALUATIONS.jsonl": {
+      "bytes": 63213708,
+      "sha256": "621d324cf909587eb98500045fd3fac913341580e92f1bfacd1f2a7bb0584a6f"
+    },
+    "ABOVE_OBSERVED_LOW_83_LEG_SUMMARY.jsonl": {
+      "bytes": 114774,
+      "sha256": "41090c57bd9b187c779e98c1ab0e479dbd031453226a4b9f55db56385ca7ad39"
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "bytes": 183,
+      "sha256": "888a39ca280cd5fa0e782410ba41289fc011780daa78a18a5aec8b01962929b5"
+    },
+    "REPORT.md": {
+      "bytes": 2599,
+      "sha256": "ec139219b7a9ebdd4b8002f162495deea7de8ace0b7f42abe343d5b2886aede5"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 588,
+      "sha256": "0b291ef50e2d922c60bd925137d1bd3710b2a15232eabd077260570e489a65cd"
+    },
+    "TEST_RESULTS.json": {
+      "bytes": 439,
+      "sha256": "e1080cc407cc47b394e6f046188323d2e6cace8706e717a978fd400e21c0b824"
+    },
+    "TRACE_REPLAY_IDENTITY_RECEIPT.json": {
+      "bytes": 924,
+      "sha256": "9ef409eff9edc25f5d4d60a14e5c6f283e8bd2e7d32d65f2b519e587f3097098"
+    },
+    "UNANIMOUS_LOWER_61_CENSUS.json": {
+      "bytes": 12007,
+      "sha256": "e84be2651d86f8f42add75f00605c1141796a4e6dd0bf5623cef026e0ab9a65f"
+    },
+    "UNANIMOUS_LOWER_61_LEG_SUMMARY.jsonl": {
+      "bytes": 242128,
+      "sha256": "fbab0f0a244b4595ec56753e3dc49f9a25eb464b52d50c7493d17b3f9d53bd9e"
+    }
+  }
+}

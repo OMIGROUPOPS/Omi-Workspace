@@ -1,0 +1,18 @@
+{
+  "tests": [
+    {
+      "command": "node arb-executor/tests/test_window1_holdout_gate_lag_diagnostic.js",
+      "exit_code": 0
+    },
+    {
+      "command": "node arb-executor/tests/test_window1_holdout_null_action_correction.js",
+      "exit_code": 0
+    },
+    {
+      "command": "node arb-executor/tests/test_window1_v14_holdout_honesty.js",
+      "exit_code": 0
+    }
+  ],
+  "trace_terminal_identity_checks": 144,
+  "failures": 0
+}

@@ -1,0 +1,16 @@
+{
+  "files": {
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "bytes": 63180,
+      "sha256": "5da93fab2717d13b066a40cc8af25184fb6274d88636f58fec4778c353dd7e0a"
+    },
+    "arb-executor/analysis/build_window1_holdout_gate_lag_diagnostic_v1.js": {
+      "bytes": 25341,
+      "sha256": "ccdacdf25f621fcd537391de39520337bff3e4ec977b933d72a284a311007094"
+    },
+    "arb-executor/tests/test_window1_holdout_gate_lag_diagnostic.js": {
+      "bytes": 1539,
+      "sha256": "c884f43a1de1772cdd3f22f22b7d5e1844a59b17f6f0d72226137f2321babe72"
+    }
+  }
+}

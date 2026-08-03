@@ -1,0 +1,22 @@
+{
+  "trace_only_instrumentation": true,
+  "trace_replay_invocations": 2,
+  "first_trace_analysis_failure": "trace evaluations were populated internally but omitted by the compact serializer; terminal outputs were not accepted as the requested trace",
+  "second_trace_analysis_status": "COMPLETE",
+  "policy_refit": false,
+  "scorer_invocations": 0,
+  "network_access": false,
+  "target_events": 124,
+  "compared_target_legs": 144,
+  "terminal_field_mismatches": 0,
+  "raw_replay": {
+    "path": "C:/tmp/window1_holdout_v11_v13_20260803/execution_workspace_v2/v11/HOLDOUT_REPLAY.json",
+    "bytes": 52888207,
+    "sha256": "f90488436822c71224e41309d838da0670ecdefe765bc0937a35b2b97854d667"
+  },
+  "traced_replay": {
+    "path": "C:/tmp/window1_holdout_v11_v13_20260803/gate_lag_trace_v2/replay/TRACE_REPLAY.json",
+    "bytes": 298083478,
+    "sha256": "a4f3f7680d0e65f4892cfd863edc59b5aaba80cc5ae4ec967d860f0a6af46aba"
+  }
+}

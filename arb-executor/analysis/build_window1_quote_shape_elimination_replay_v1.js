@@ -18,6 +18,7 @@ const { matchesMacroEnvelope, ordinalVerdict, microMicroFeatures, traverseMicroM
 const args = process.argv.slice(2), value = (name, fallback) => { const index = args.indexOf(name); return index >= 0 ? args[index + 1] : fallback; };
 const repo = path.resolve(value("--repo", args[0] && !args[0].startsWith("--") ? args[0] : "."));
 const privateRoot = path.resolve(value("--private-root", process.env.W1_PRIVATE_ROOT || "C:/Users/omigr/OMI-Window1-private"));
+const ticksRoot = path.resolve(value("--ticks-root", path.join(privateRoot, "fit-local/ticks")));
 const outDir = path.resolve(value("--output", path.join(repo, ".claude/window1_live_v4_replay/quote_shape_elimination_20260731")));
 const libraryPath = path.resolve(value("--library", path.join(outDir, "QUOTE_SHAPE_LIBRARY.json")));
 const stableSamePriceConfirmation = args.includes("--stable-same-price-confirmation");
@@ -35,7 +36,7 @@ const compactPopulation = args.includes("--compact-population");
 const noCharts = args.includes("--no-charts");
 const excludeOwnTrainingMember = args.includes("--exclude-own-training-member");
 const receiptName = value("--receipt-name", "TWO_GAME_REPLAY.json");
-const quotePath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv");
+const quotePath = path.resolve(value("--quote-ledger", path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv")));
 const refsPath = path.resolve(value("--references", path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/REPLAY_AND_REFERENCE_PANEL.json")));
 const frozenFivePath = path.resolve(value("--windows", path.join(repo, ".claude/window1_live_v4_replay/five_exact_full_stack_capacity_20260731/FIVE_GAME_FULL_STACK_RESULTS.json")));
 const DEFAULT_TARGETS = ["KXATPCHALLENGERMATCH-26JUL19NIKVRB", "KXATPCHALLENGERMATCH-26JUL19HURBIG"];
@@ -55,7 +56,7 @@ function et(ts) { return new Date((ts - 4 * 3600) * 1000).toISOString().replace(
 function signed(value) { return Number.isInteger(value) ? `${value >= 0 ? "+" : ""}${value}` : "NULL"; }
 
 function loadRows(source) {
-  const file = path.join(privateRoot, "fit-local/ticks", `${source.ticker}.csv.gz`), bytes = fs.readFileSync(file), rows = [];
+  const file = path.join(ticksRoot, `${source.ticker}.csv.gz`), bytes = fs.readFileSync(file), rows = [];
   for (const { raw, ordinal } of parseCsv(zlib.gunzipSync(bytes).toString("utf8"))) {
     const ts = parseEt(raw.ts_et); if (ts === null || ts < source.left || ts > source.right) continue; const bids = [], asks = [];
     for (let i = 1; i <= 5; i += 1) { const bp = integer(raw[`bid_${i}`]), bs = positive(raw[`bid_${i}_sz`]), ap = integer(raw[`ask_${i}`]), as = positive(raw[`ask_${i}_sz`]); if (bp !== null && bs !== null) bids.push([bp, bs]); if (ap !== null && as !== null) asks.push([ap, as]); }

@@ -1,0 +1,21 @@
+{
+  "focused_assertions": 18,
+  "focused_status": "PASS",
+  "inherited": {
+    "test_window1_quote_shape_persistence_floor_v11": "PASS",
+    "test_window1_persistence_floor_repair_v11": {
+      "status": "PASS",
+      "assertions": 20,
+      "events": 804,
+      "legs": 1608
+    },
+    "test_window1_coherent_shape_refit_v12": "PASS",
+    "test_window1_interim_elimination_v13": "PASS",
+    "test_window1_quote_shape_dynamic_renarrow_v6": "PASS"
+  },
+  "syntax": [
+    "arb-executor/analysis/window1_v11_v12_v13_holdout_runner_v1.js",
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+    "arb-executor/analysis/build_window1_v11_v13_development_and_holdout_failure_v1.js"
+  ]
+}

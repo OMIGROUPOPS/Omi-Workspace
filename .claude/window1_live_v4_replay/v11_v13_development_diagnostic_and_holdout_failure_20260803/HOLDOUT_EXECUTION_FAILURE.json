@@ -1,0 +1,48 @@
+{
+  "schema_version": "WINDOW1_V11_V12_V13_HOLDOUT_EXECUTION_FAILURE_V1",
+  "status": "FAILED_BEFORE_POLICY_EVALUATION",
+  "execution_started_at_utc": "2026-08-03T06:34:29.402Z",
+  "execution_ended_at_utc": "2026-08-03T06:36:08.578Z",
+  "process_exit_code": 1,
+  "runner_invocations": 1,
+  "retries": 0,
+  "public_tape_tickers_required": 456,
+  "public_tape_tickers_captured": 448,
+  "public_tape_tickers_failed": 8,
+  "failed_tickers": [
+    "KXATPCHALLENGERMATCH-26JUL26ANAHEC-ANA",
+    "KXATPMATCH-26JUL24RUBVAN-VAN",
+    "KXATPMATCH-26JUL25BLODAR-BLO",
+    "KXATPMATCH-26JUL24RUBVAN-RUB",
+    "KXATPMATCH-26JUL25SVAKOZ-KOZ",
+    "KXATPMATCH-26JUL26DAMSHE-DAM",
+    "KXWTAMATCH-26JUL25AVABON-AVA",
+    "KXWTAMATCH-26JUL26HUNJOH-HUN"
+  ],
+  "common_failure": "HTTP 429 after the runner's bounded internal request attempts",
+  "policy_evaluations_started": 0,
+  "V11_event_rows": 0,
+  "V12_event_rows": 0,
+  "V13_event_rows": 0,
+  "performance_rows": 0,
+  "holdout_result_available": false,
+  "rerun_permitted": false,
+  "completed_results_directory_created": false,
+  "immutable_external_residue": {
+    "marker": {
+      "path": "C:\\tmp\\window1_holdout_v11_v13_20260803\\HOLDOUT_EVALUATION_CONSUMED.json",
+      "bytes": 300,
+      "sha256": "42f15d62e3a7739c79073337ec21486acd3b9ace4a40a6a8368fe869fe971068"
+    },
+    "progress": {
+      "path": "C:\\tmp\\window1_holdout_v11_v13_20260803\\HOLDOUT_PROGRESS.log",
+      "bytes": 35954,
+      "sha256": "0af5d8728f5cd279cb468aeb05b91d675a058a975c73a277eef6628c5e7d133a"
+    },
+    "partial_public_tape_hash_set": {
+      "count": 448,
+      "bytes": 58047005,
+      "sha256": "c907f7631d73784ce93f0e9ef7594d248edb44431f37fd1555e7262faf222ca6"
+    }
+  }
+}

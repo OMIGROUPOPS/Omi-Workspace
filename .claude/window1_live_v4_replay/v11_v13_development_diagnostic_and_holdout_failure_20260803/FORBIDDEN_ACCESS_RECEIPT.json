@@ -1,0 +1,11 @@
+{
+  "live_access": false,
+  "order_access": false,
+  "position_access": false,
+  "exit_access": false,
+  "settlement_access": false,
+  "DCA_access": false,
+  "Window2_access": false,
+  "holdout_policy_result_access": false,
+  "note": "The single process attempted read-only public tape capture for the authorized July 24-26 holdout and failed before any policy evaluation. This post-attempt builder did not open sealed BBO rows or partial public tape payloads."
+}

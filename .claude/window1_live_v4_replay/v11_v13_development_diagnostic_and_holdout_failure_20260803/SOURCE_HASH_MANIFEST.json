@@ -1,0 +1,33 @@
+{
+  "git_head": "b1a57ec19cfc6bd3efc48827e42c70ef9661f960",
+  "files": {
+    "arb-executor/analysis/build_window1_v11_v13_development_and_holdout_failure_v1.js": {
+      "bytes": 20316,
+      "sha256": "c8bbaa8a64e5b246a776468eb0ad3b94c926bdb5ae0340e57ff95fd80bbef8f6"
+    },
+    "arb-executor/analysis/window1_v11_v12_v13_holdout_runner_v1.js": {
+      "bytes": 37018,
+      "sha256": "f030c6543d38b433dadbddb38c0a40b635287ba5ab48e65a9788932f03efec7d"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "bytes": 61446,
+      "sha256": "12476a3265f48c3f849d6f4bf995d5367709c4af09317c732919616fe72fa497"
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "bytes": 2475041,
+      "sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902"
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 118391,
+      "sha256": "ec586a87ccf339b68718ef572c2c01192d581f970fce21aa8c761bad46987ad1"
+    },
+    ".claude/window1_live_v4_replay/interim_elimination_v13_20260803/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "bytes": 418677,
+      "sha256": "7afb665499abe46bc4b90a355cac5c6bfa09bf2d7a851b58510713a8b1b4a37b"
+    },
+    ".claude/window1_live_v4_replay/interim_elimination_v13_20260803/FUNNEL_AND_FIVE_CEILINGS.json": {
+      "bytes": 142471,
+      "sha256": "732b08c1452ebf0902e221e159f66357c3e9788b79fb460428d1ac960d4f113e"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "deterministic_inputs": true,
+  "gzip_mtime": 0,
+  "clean_builds_compared": 2,
+  "regenerable_files_compared": 11,
+  "byte_identical_expected": true,
+  "note": "Two distinct clean output directories are compared externally; this receipt is itself deterministic."
+}

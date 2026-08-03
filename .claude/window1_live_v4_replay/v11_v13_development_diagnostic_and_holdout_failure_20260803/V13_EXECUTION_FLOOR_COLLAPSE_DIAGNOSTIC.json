@@ -1,0 +1,877 @@
+{
+  "schema_version": "WINDOW1_V13_EXECUTION_FLOOR_COLLAPSE_DIAGNOSTIC_V1",
+  "development_only": true,
+  "headline_pair_conservation": {
+    "V11_acted_legs": 712,
+    "V13_acted_legs": 444,
+    "V11_completed_pairs": 185,
+    "V13_completed_pairs": 80,
+    "V11_pairs_under_par": 94,
+    "V13_pairs_under_par": 15,
+    "V11_execution_floor_pair_pass": 29,
+    "V13_execution_floor_pair_pass": 8
+  },
+  "V11_acted_leg_gap_conservation": {
+    "legs": 712,
+    "exact_ask_floor": 360,
+    "within_one_cent_of_ask_floor": 485,
+    "two_or_more_cents_above_ask_floor": 227,
+    "qualifying_ask_floor_gap": {
+      "denominator": 712,
+      "available": 712,
+      "unavailable": 0,
+      "min": 0,
+      "p25": 0,
+      "median": 0,
+      "p75": 2,
+      "p90": 8,
+      "max": 73,
+      "exact_counts": {
+        "0": 360,
+        "1": 125,
+        "2": 67,
+        "3": 27,
+        "4": 24,
+        "5": 11,
+        "6": 12,
+        "7": 9,
+        "8": 8,
+        "9": 1,
+        "10": 4,
+        "11": 5,
+        "12": 2,
+        "13": 1,
+        "14": 5,
+        "15": 3,
+        "17": 3,
+        "19": 5,
+        "20": 1,
+        "21": 1,
+        "24": 1,
+        "25": 1,
+        "26": 3,
+        "27": 1,
+        "29": 2,
+        "30": 2,
+        "31": 3,
+        "33": 3,
+        "35": 1,
+        "37": 3,
+        "38": 1,
+        "39": 3,
+        "40": 2,
+        "43": 1,
+        "44": 1,
+        "45": 1,
+        "46": 2,
+        "48": 1,
+        "49": 1,
+        "52": 1,
+        "53": 1,
+        "55": 1,
+        "59": 1,
+        "73": 1
+      }
+    },
+    "objective_traded_low_gap": {
+      "denominator": 712,
+      "available": 712,
+      "unavailable": 0,
+      "min": -2,
+      "p25": 0,
+      "median": 1,
+      "p75": 2,
+      "p90": 3,
+      "max": 14,
+      "exact_counts": {
+        "0": 296,
+        "1": 192,
+        "2": 96,
+        "3": 40,
+        "4": 24,
+        "5": 19,
+        "6": 12,
+        "7": 3,
+        "8": 5,
+        "9": 4,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "14": 1,
+        "-1": 14,
+        "-2": 3
+      }
+    }
+  },
+  "V13_acted_leg_gap_conservation": {
+    "legs": 444,
+    "exact_ask_floor": 305,
+    "within_one_cent_of_ask_floor": 370,
+    "two_or_more_cents_above_ask_floor": 74,
+    "qualifying_ask_floor_gap": {
+      "denominator": 444,
+      "available": 444,
+      "unavailable": 0,
+      "min": -1,
+      "p25": 0,
+      "median": 0,
+      "p75": 1,
+      "p90": 4,
+      "max": 59,
+      "exact_counts": {
+        "0": 305,
+        "1": 63,
+        "2": 17,
+        "3": 8,
+        "4": 4,
+        "5": 5,
+        "6": 3,
+        "7": 1,
+        "8": 1,
+        "9": 4,
+        "10": 1,
+        "11": 3,
+        "12": 1,
+        "14": 1,
+        "15": 2,
+        "17": 1,
+        "19": 3,
+        "24": 2,
+        "25": 1,
+        "26": 4,
+        "28": 1,
+        "30": 1,
+        "32": 1,
+        "37": 1,
+        "39": 1,
+        "40": 1,
+        "41": 2,
+        "43": 1,
+        "48": 1,
+        "54": 1,
+        "59": 1,
+        "-1": 2
+      }
+    },
+    "objective_traded_low_gap": {
+      "denominator": 444,
+      "available": 444,
+      "unavailable": 0,
+      "min": -2,
+      "p25": 0,
+      "median": 0,
+      "p75": 1,
+      "p90": 2,
+      "max": 31,
+      "exact_counts": {
+        "0": 216,
+        "1": 138,
+        "2": 37,
+        "3": 21,
+        "4": 7,
+        "5": 4,
+        "6": 1,
+        "7": 3,
+        "8": 1,
+        "9": 3,
+        "31": 1,
+        "-1": 10,
+        "-2": 2
+      }
+    }
+  },
+  "V13_category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 103,
+      "exact_ask_floor": 73,
+      "within_one_cent_of_ask_floor": 90,
+      "two_or_more_cents_above_ask_floor": 13,
+      "qualifying_ask_floor_gap": {
+        "denominator": 103,
+        "available": 103,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 41,
+        "exact_counts": {
+          "0": 73,
+          "1": 17,
+          "2": 3,
+          "3": 2,
+          "5": 1,
+          "9": 1,
+          "19": 1,
+          "24": 2,
+          "26": 1,
+          "30": 1,
+          "41": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 103,
+        "available": 103,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 8,
+        "exact_counts": {
+          "0": 57,
+          "1": 20,
+          "2": 14,
+          "3": 5,
+          "5": 2,
+          "8": 1,
+          "-1": 4
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 55,
+      "exact_ask_floor": 36,
+      "within_one_cent_of_ask_floor": 46,
+      "two_or_more_cents_above_ask_floor": 9,
+      "qualifying_ask_floor_gap": {
+        "denominator": 55,
+        "available": 55,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 59,
+        "exact_counts": {
+          "0": 36,
+          "1": 10,
+          "2": 3,
+          "5": 1,
+          "6": 1,
+          "8": 1,
+          "19": 1,
+          "25": 1,
+          "59": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 55,
+        "available": 55,
+        "unavailable": 0,
+        "min": -2,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 9,
+        "exact_counts": {
+          "0": 26,
+          "1": 13,
+          "2": 7,
+          "3": 3,
+          "4": 1,
+          "7": 2,
+          "9": 1,
+          "-2": 2
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": false,
+      "legs": 28,
+      "exact_ask_floor": 21,
+      "within_one_cent_of_ask_floor": 25,
+      "two_or_more_cents_above_ask_floor": 3,
+      "qualifying_ask_floor_gap": {
+        "denominator": 28,
+        "available": 28,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 9,
+        "exact_counts": {
+          "0": 21,
+          "1": 4,
+          "2": 1,
+          "5": 1,
+          "9": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 28,
+        "available": 28,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 4,
+        "exact_counts": {
+          "0": 11,
+          "1": 11,
+          "2": 2,
+          "3": 1,
+          "4": 1,
+          "-1": 2
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": false,
+      "legs": 37,
+      "exact_ask_floor": 26,
+      "within_one_cent_of_ask_floor": 33,
+      "two_or_more_cents_above_ask_floor": 4,
+      "qualifying_ask_floor_gap": {
+        "denominator": 37,
+        "available": 37,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 4,
+        "exact_counts": {
+          "0": 26,
+          "1": 7,
+          "2": 3,
+          "4": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 37,
+        "available": 37,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 3,
+        "max": 4,
+        "exact_counts": {
+          "0": 17,
+          "1": 13,
+          "2": 2,
+          "3": 2,
+          "4": 3
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 20,
+      "exact_ask_floor": 13,
+      "within_one_cent_of_ask_floor": 14,
+      "two_or_more_cents_above_ask_floor": 6,
+      "qualifying_ask_floor_gap": {
+        "denominator": 20,
+        "available": 20,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 4,
+        "max": 7,
+        "exact_counts": {
+          "0": 13,
+          "1": 1,
+          "2": 1,
+          "3": 2,
+          "4": 1,
+          "5": 1,
+          "7": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 20,
+        "available": 20,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 9,
+        "exact_counts": {
+          "0": 4,
+          "1": 10,
+          "2": 1,
+          "3": 3,
+          "7": 1,
+          "9": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": true,
+      "legs": 9,
+      "exact_ask_floor": 7,
+      "within_one_cent_of_ask_floor": 9,
+      "two_or_more_cents_above_ask_floor": 0,
+      "qualifying_ask_floor_gap": {
+        "denominator": 9,
+        "available": 9,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1,
+        "exact_counts": {
+          "0": 7,
+          "1": 2
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 9,
+        "available": 9,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "exact_counts": {
+          "0": 3,
+          "1": 5,
+          "2": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 16,
+      "exact_ask_floor": 9,
+      "within_one_cent_of_ask_floor": 14,
+      "two_or_more_cents_above_ask_floor": 2,
+      "qualifying_ask_floor_gap": {
+        "denominator": 16,
+        "available": 16,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 9,
+        "exact_counts": {
+          "0": 9,
+          "1": 5,
+          "3": 1,
+          "9": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 16,
+        "available": 16,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 9,
+        "exact_counts": {
+          "0": 2,
+          "1": 7,
+          "2": 3,
+          "3": 2,
+          "4": 1,
+          "9": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 29,
+      "exact_ask_floor": 18,
+      "within_one_cent_of_ask_floor": 21,
+      "two_or_more_cents_above_ask_floor": 8,
+      "qualifying_ask_floor_gap": {
+        "denominator": 29,
+        "available": 29,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 26,
+        "max": 43,
+        "exact_counts": {
+          "0": 18,
+          "1": 2,
+          "3": 1,
+          "6": 1,
+          "14": 1,
+          "17": 1,
+          "26": 1,
+          "37": 1,
+          "41": 1,
+          "43": 1,
+          "-1": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 29,
+        "available": 29,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 3,
+        "exact_counts": {
+          "0": 21,
+          "1": 5,
+          "2": 1,
+          "3": 1,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 38,
+      "exact_ask_floor": 29,
+      "within_one_cent_of_ask_floor": 32,
+      "two_or_more_cents_above_ask_floor": 6,
+      "qualifying_ask_floor_gap": {
+        "denominator": 38,
+        "available": 38,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 4,
+        "max": 48,
+        "exact_counts": {
+          "0": 29,
+          "1": 3,
+          "3": 1,
+          "4": 1,
+          "19": 1,
+          "26": 2,
+          "48": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 38,
+        "available": 38,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 5,
+        "exact_counts": {
+          "0": 25,
+          "1": 10,
+          "2": 1,
+          "5": 1,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 17,
+      "exact_ask_floor": 8,
+      "within_one_cent_of_ask_floor": 12,
+      "two_or_more_cents_above_ask_floor": 5,
+      "qualifying_ask_floor_gap": {
+        "denominator": 17,
+        "available": 17,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 11,
+        "p90": 28,
+        "max": 54,
+        "exact_counts": {
+          "0": 8,
+          "1": 4,
+          "11": 1,
+          "12": 1,
+          "28": 1,
+          "39": 1,
+          "54": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 17,
+        "available": 17,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 31,
+        "exact_counts": {
+          "0": 12,
+          "1": 3,
+          "2": 1,
+          "31": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 19,
+      "exact_ask_floor": 10,
+      "within_one_cent_of_ask_floor": 12,
+      "two_or_more_cents_above_ask_floor": 7,
+      "qualifying_ask_floor_gap": {
+        "denominator": 19,
+        "available": 19,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 11,
+        "max": 15,
+        "exact_counts": {
+          "0": 10,
+          "1": 2,
+          "2": 2,
+          "6": 1,
+          "9": 1,
+          "11": 1,
+          "15": 2
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 19,
+        "available": 19,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "exact_counts": {
+          "0": 13,
+          "1": 6
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "legs": 23,
+      "exact_ask_floor": 16,
+      "within_one_cent_of_ask_floor": 20,
+      "two_or_more_cents_above_ask_floor": 3,
+      "qualifying_ask_floor_gap": {
+        "denominator": 23,
+        "available": 23,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 10,
+        "exact_counts": {
+          "0": 16,
+          "1": 3,
+          "2": 1,
+          "4": 1,
+          "10": 1,
+          "-1": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 23,
+        "available": 23,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 5,
+        "exact_counts": {
+          "0": 4,
+          "1": 14,
+          "2": 2,
+          "3": 1,
+          "5": 1,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "legs": 27,
+      "exact_ask_floor": 20,
+      "within_one_cent_of_ask_floor": 20,
+      "two_or_more_cents_above_ask_floor": 7,
+      "qualifying_ask_floor_gap": {
+        "denominator": 27,
+        "available": 27,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 5,
+        "max": 40,
+        "exact_counts": {
+          "0": 20,
+          "2": 3,
+          "5": 1,
+          "11": 1,
+          "32": 1,
+          "40": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 27,
+        "available": 27,
+        "unavailable": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 6,
+        "exact_counts": {
+          "0": 14,
+          "1": 9,
+          "3": 2,
+          "6": 1,
+          "-1": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "legs": 17,
+      "exact_ask_floor": 15,
+      "within_one_cent_of_ask_floor": 17,
+      "two_or_more_cents_above_ask_floor": 0,
+      "qualifying_ask_floor_gap": {
+        "denominator": 17,
+        "available": 17,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1,
+        "exact_counts": {
+          "0": 15,
+          "1": 2
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 17,
+        "available": 17,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "exact_counts": {
+          "0": 6,
+          "1": 8,
+          "2": 2,
+          "3": 1
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "legs": 6,
+      "exact_ask_floor": 4,
+      "within_one_cent_of_ask_floor": 5,
+      "two_or_more_cents_above_ask_floor": 1,
+      "qualifying_ask_floor_gap": {
+        "denominator": 6,
+        "available": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 3,
+        "exact_counts": {
+          "0": 4,
+          "1": 1,
+          "3": 1
+        }
+      },
+      "objective_traded_low_gap": {
+        "denominator": 6,
+        "available": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 4,
+        "exact_counts": {
+          "0": 1,
+          "1": 4,
+          "4": 1
+        }
+      }
+    }
+  ],
+  "finding": "The pair-pass collapse is principally a coverage/pair-completion collapse. V13 retains high per-leg ask-floor precision, but acts on fewer complementary leg pairs; exact category/price-region distributions are authoritative."
+}

@@ -1,0 +1,22 @@
+{
+  "generated_by": "arb-executor/analysis/second_seat/build_v11_non_action_mechanism_audit.py",
+  "source_trace": {
+    "path": "C:/Users/omigr/OMI-Workspace-codex-window1/.claude/window1_live_v4_replay/second_leg_x_pricer_v17_20260803/V11_NON_ACTION_DECISION_TRACE_896.jsonl.gz",
+    "sha256": "0147a4ec2952a772fad528984a20781df625517671233dafd0f88dc35950335a",
+    "bytes": 869165,
+    "decompressed_lines": 896
+  },
+  "per_leg_tape_source": {
+    "dir": "C:/Users/omigr/OMI-Window1-private/fit-local/ticks",
+    "files": 1608,
+    "total_bytes": 973834436
+  },
+  "conservation": {
+    "legs": 896,
+    "scanned_for_returns": 806,
+    "source_unavailable_no_book": 90,
+    "floor_backed": 860
+  },
+  "method": "see module docstring",
+  "ET_offset_hours": -4
+}

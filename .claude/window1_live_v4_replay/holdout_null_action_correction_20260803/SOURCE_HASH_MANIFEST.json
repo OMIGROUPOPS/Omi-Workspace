@@ -1,0 +1,47 @@
+{
+  "committed_sources": {
+    "arb-executor/analysis/window1_v11_v13_v14_holdout_runner_v2.js": {
+      "bytes": 41633,
+      "sha256": "5d57806c54b1c1e6e87ad561d52ffec329573911ab3863abfc9b461609e25412"
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "bytes": 62727,
+      "sha256": "c20f2882ddc59338fc76cd7d2c04e4f432c44ad4923e18b11bda60be715d715c"
+    },
+    "arb-executor/analysis/build_window1_holdout_null_action_correction_v1.js": {
+      "bytes": 19991,
+      "sha256": "29b8bd27216e32ff1aae48db21fc5e1ca2f136281a552fe5b4fe2040ffa158ba"
+    },
+    "arb-executor/tests/test_window1_holdout_null_action_correction.js": {
+      "bytes": 2975,
+      "sha256": "40012a5aa69cc5c97d7b750779d5c54de65fcb751bf18bd00d131e565d3f9a1b"
+    },
+    "arb-executor/tests/test_window1_v14_holdout_honesty.js": {
+      "bytes": 1776,
+      "sha256": "105cfaa038c86a0b5ace99e03f1ee5d09d842e62c74cd76ca1a0aeeb53061810"
+    }
+  },
+  "immutable_raw_replays": {
+    "V11": {
+      "path": "C:/tmp/window1_holdout_v11_v13_20260803/execution_workspace_v2/v11/HOLDOUT_REPLAY.json",
+      "bytes": 52888207,
+      "sha256": "f90488436822c71224e41309d838da0670ecdefe765bc0937a35b2b97854d667",
+      "events": 228,
+      "legs": 456
+    },
+    "V13": {
+      "path": "C:/tmp/window1_holdout_v11_v13_20260803/execution_workspace_v2/v13/HOLDOUT_REPLAY.json",
+      "bytes": 50154744,
+      "sha256": "3a7954ec11f35560499f451d2a4818dbec510ec6aace17bb656eb610586b55b4",
+      "events": 228,
+      "legs": 456
+    },
+    "V14": {
+      "path": "C:/tmp/window1_holdout_v11_v13_20260803/execution_workspace_v2/v14/HOLDOUT_REPLAY.json",
+      "bytes": 48092579,
+      "sha256": "2bcb1f0b975f22e7953290631878255abc39ed493d75fb630e186a967e63f7bc",
+      "events": 228,
+      "legs": 456
+    }
+  }
+}

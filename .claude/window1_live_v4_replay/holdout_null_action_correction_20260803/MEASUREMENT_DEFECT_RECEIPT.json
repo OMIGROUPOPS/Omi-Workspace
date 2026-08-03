@@ -1,0 +1,41 @@
+{
+  "schema_version": "WINDOW1_HOLDOUT_NULL_ACTION_MEASUREMENT_DEFECT_V1",
+  "prior_artifact_commit": "e08d080dc5c033bb3b98216b99588d4493e3947b",
+  "defect": {
+    "expression": "const n = Number(value); return Number.isInteger(n) ? n : null",
+    "javascript_fact": "Number(null) === 0",
+    "consequence": "raw proposed_entry_cents=null became normalized proposed_entry_cents=0 and acted=true",
+    "secondary_consequence": "an absent action timestamp could likewise normalize to epoch zero",
+    "invalid_rows": {
+      "V11": 268,
+      "V13": 352,
+      "V14": 262
+    },
+    "fabricated_policy_orders": false
+  },
+  "correction": {
+    "integer_expression": "typeof value === number && Number.isFinite(value) && Number.isInteger(value)",
+    "finite_expression": "typeof value === number && Number.isFinite(value)",
+    "null_is_action": false,
+    "null_is_timestamp": false,
+    "boolean_is_action": false,
+    "numeric_string_is_action": false,
+    "replayed_policy": false,
+    "mutated_raw_replay": false
+  },
+  "prior_source": {
+    "sha256": "c55d368c2e527de5ae10db460bdac7dc7679b72112e2f499cfeebc76b5a17213",
+    "line": 42
+  },
+  "corrected_source": {
+    "sha256": "5d57806c54b1c1e6e87ad561d52ffec329573911ab3863abfc9b461609e25412",
+    "line": 43
+  },
+  "corrected_use_site": {
+    "line": 272
+  },
+  "corrected_action_timestamp_use_site": {
+    "line": 274
+  },
+  "result": "THE_REPORTED_50_TO_99_CENT_BELOW_FLOOR_PRICES_WERE_NULL_NO_ACTIONS_COERCED_TO_ZERO"
+}

@@ -6,6 +6,8 @@ const {
   distribution,
   honestFillCredited,
   metrics,
+  strictFinite,
+  strictInteger,
 } = require("../analysis/window1_v11_v13_v14_holdout_runner_v2.js");
 
 const d = distribution([4, -2, 1, null, 9], 5);
@@ -19,6 +21,13 @@ assert.strictEqual(honestFillCredited("PROVEN_TAKER", 55), true);
 assert.strictEqual(honestFillCredited("UNPROVEN", 55), false);
 assert.strictEqual(honestFillCredited("PROVEN_TAKER", 55.5), false);
 assert.strictEqual(honestFillCredited("PROVEN_TAKER", null), false);
+assert.strictEqual(strictInteger(null), null);
+assert.strictEqual(strictInteger("0"), null);
+assert.strictEqual(strictInteger(false), null);
+assert.strictEqual(strictInteger(0), 0);
+assert.strictEqual(strictFinite(null), null);
+assert.strictEqual(strictFinite("0"), null);
+assert.strictEqual(strictFinite(0), 0);
 
 const legs = [
   { acted: true, credited: true, entry_cents: 40, entry_minus_qualifying_ask_floor_cents: 0, entry_minus_objective_traded_low_cents: 1 },

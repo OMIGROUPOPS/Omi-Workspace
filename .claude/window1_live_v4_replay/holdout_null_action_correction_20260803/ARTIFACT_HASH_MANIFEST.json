@@ -1,0 +1,48 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "bytes": 274,
+      "sha256": "2be6e258a0ce8c3906c630563d32bb8ef50ebf19f8e343b3dbd25ded1d4a7828"
+    },
+    "MEASUREMENT_DEFECT_RECEIPT.json": {
+      "bytes": 1479,
+      "sha256": "bd3ac9edef710189b0b9a151d04abeaeca4619f79101705411931647f1851566"
+    },
+    "REPORT.md": {
+      "bytes": 2244,
+      "sha256": "19f9719f51ec35267f9a9a1c5dc620c40e1dbf8a80a3ab3be84fae0fb4f98696"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 1814,
+      "sha256": "003fa6d4e01750824aa9c8551df7a1632b7443c8ae0f8bea00b5a5591de5f0d8"
+    },
+    "TEST_RESULTS.json": {
+      "bytes": 570,
+      "sha256": "b326c9fa28336faeaef27f4512d998d845e91e3179351a5a79527a66f9ef8305"
+    },
+    "V11_ACTUAL_PLACEMENT_GAP_CENSUS.json": {
+      "bytes": 8226,
+      "sha256": "8a4a73723c0a57226f6200a3086c5fde612dc9f808edf0429c164001f42a7a47"
+    },
+    "V11_ACTUAL_PLACEMENT_LEDGER.jsonl": {
+      "bytes": 99583,
+      "sha256": "4698ca2db8b2e56a0a6bdbd590f6c3a4eac2e5ecd951d353f6b2c4717d8325cd"
+    },
+    "V11_UNPROVEN_CODE_PATH_RECEIPT.json": {
+      "bytes": 2232,
+      "sha256": "2487e1b9794661a5310d71bcecca39c9d050985e67bd686f55d84290f34f3e23"
+    },
+    "V11_UNPROVEN_GROUPED_CENSUS.json": {
+      "bytes": 11586,
+      "sha256": "287407a7a21e195fd507265043a0e92b4cad0062cce6cc1d4a5f9f745fbee203"
+    },
+    "V11_UNPROVEN_LEG_LEDGER.jsonl": {
+      "bytes": 226006,
+      "sha256": "12b7a000305b1536545753dc1242301c4b4ade7dfb2ea1b8b925eea5fa88da1e"
+    },
+    "V11_V13_V14_STRICT_NULL_REAGGREGATION.json": {
+      "bytes": 3095,
+      "sha256": "0459b0c520576b15d4710cfa73b4ba5e992b4eae383e7a74bda38acbf17a85ba"
+    }
+  }
+}

@@ -1,0 +1,380 @@
+{
+  "schema_version": "WINDOW1_V11_HOLDOUT_ACTUAL_PLACEMENT_GAP_CENSUS_V1",
+  "actual_placements": 188,
+  "fill_classes": {
+    "PROVEN_TAKER": 188
+  },
+  "price_producers": {
+    "ASK_PRICE_TRANSITION": 112,
+    "STRICTLY_LATER_SAME_PRICE_ASK_RECEIPT": 76
+  },
+  "action_price_equals_contemporaneous_ask": 188,
+  "action_price_below_contemporaneous_ask": 0,
+  "placed_minus_qualifying_ask_floor": {
+    "denominator": 188,
+    "available": 188,
+    "unavailable": 0,
+    "min": 0,
+    "p25": 0,
+    "median": 1,
+    "p75": 2,
+    "p90": 4,
+    "max": 36,
+    "exact_zero": 93,
+    "within_one_cent": 130
+  },
+  "category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "placements": 20,
+      "fill_classes": {
+        "PROVEN_TAKER": 20
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 20,
+        "available": 20,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 15,
+        "exact_zero": 13,
+        "within_one_cent": 16
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "placements": 19,
+      "fill_classes": {
+        "PROVEN_TAKER": 19
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 19,
+        "available": 19,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 7,
+        "exact_zero": 12,
+        "within_one_cent": 14
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "placements": 7,
+      "fill_classes": {
+        "PROVEN_TAKER": 7
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 7,
+        "available": 7,
+        "unavailable": 0,
+        "min": 1,
+        "p25": 2,
+        "median": 5,
+        "p75": 7,
+        "p90": 9,
+        "max": 20,
+        "exact_zero": 0,
+        "within_one_cent": 1
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": false,
+      "placements": 16,
+      "fill_classes": {
+        "PROVEN_TAKER": 16
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 16,
+        "available": 16,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 7,
+        "exact_zero": 8,
+        "within_one_cent": 12
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "placements": 15,
+      "fill_classes": {
+        "PROVEN_TAKER": 15
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 15,
+        "available": 15,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 6,
+        "max": 29,
+        "exact_zero": 6,
+        "within_one_cent": 11
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "placements": 19,
+      "fill_classes": {
+        "PROVEN_TAKER": 19
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 19,
+        "available": 19,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 3,
+        "max": 36,
+        "exact_zero": 9,
+        "within_one_cent": 14
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "placements": 9,
+      "fill_classes": {
+        "PROVEN_TAKER": 9
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 9,
+        "available": 9,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 13,
+        "exact_zero": 2,
+        "within_one_cent": 4
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "placements": 6,
+      "fill_classes": {
+        "PROVEN_TAKER": 6
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 6,
+        "available": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "exact_zero": 3,
+        "within_one_cent": 3
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "placements": 12,
+      "fill_classes": {
+        "PROVEN_TAKER": 12
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 12,
+        "available": 12,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 9,
+        "exact_zero": 5,
+        "within_one_cent": 10
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "thin": true,
+      "placements": 8,
+      "fill_classes": {
+        "PROVEN_TAKER": 8
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 8,
+        "available": 8,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 2,
+        "max": 4,
+        "exact_zero": 4,
+        "within_one_cent": 5
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "placements": 5,
+      "fill_classes": {
+        "PROVEN_TAKER": 5
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 5,
+        "available": 5,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 12,
+        "exact_zero": 3,
+        "within_one_cent": 4
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "thin": true,
+      "placements": 6,
+      "fill_classes": {
+        "PROVEN_TAKER": 6
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 6,
+        "available": 6,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "exact_zero": 3,
+        "within_one_cent": 4
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "placements": 17,
+      "fill_classes": {
+        "PROVEN_TAKER": 17
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 17,
+        "available": 17,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 7,
+        "max": 11,
+        "exact_zero": 8,
+        "within_one_cent": 10
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "placements": 19,
+      "fill_classes": {
+        "PROVEN_TAKER": 19
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 19,
+        "available": 19,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 4,
+        "exact_zero": 11,
+        "within_one_cent": 15
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "placements": 7,
+      "fill_classes": {
+        "PROVEN_TAKER": 7
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 7,
+        "available": 7,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 2,
+        "max": 3,
+        "exact_zero": 5,
+        "within_one_cent": 5
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "placements": 3,
+      "fill_classes": {
+        "PROVEN_TAKER": 3
+      },
+      "placed_minus_qualifying_ask_floor": {
+        "denominator": 3,
+        "available": 3,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "exact_zero": 1,
+        "within_one_cent": 2
+      }
+    }
+  ]
+}

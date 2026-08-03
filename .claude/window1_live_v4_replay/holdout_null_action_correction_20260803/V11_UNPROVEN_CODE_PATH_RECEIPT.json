@@ -1,0 +1,58 @@
+{
+  "schema_version": "WINDOW1_V11_UNPROVEN_CODE_PATH_RECEIPT_V1",
+  "price_emission_path": {
+    "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+    "line": 389,
+    "law": "A PLACE action uses the contemporaneous ask exactly."
+  },
+  "actual_placement_proof": {
+    "placements": 188,
+    "all_equal_contemporaneous_ask": true,
+    "all_PROVEN_TAKER": true,
+    "fifty_plus_cents_below_floor": 0
+  },
+  "UNPROVEN_rows": {
+    "rows": 268,
+    "placements": 0,
+    "price_emission_paths": 0,
+    "explanation": "Each row ended in a named no-action predicate; no code path emitted a bid."
+  },
+  "terminal_predicate_source_lines": {
+    "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 314
+    },
+    "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 349
+    },
+    "ALL_SURVIVING_SHAPES_SAY_LOWER": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 351
+    },
+    "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 355
+    },
+    "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 356
+    },
+    "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 357
+    },
+    "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 358
+    },
+    "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 360
+    },
+    "SOURCE_UNAVAILABLE": {
+      "source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+      "line": 418
+    }
+  }
+}

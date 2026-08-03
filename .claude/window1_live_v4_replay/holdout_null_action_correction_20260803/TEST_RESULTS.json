@@ -1,0 +1,16 @@
+{
+  "commands": [
+    {
+      "command": "node arb-executor/tests/test_window1_holdout_null_action_correction.js",
+      "exit_code": 0,
+      "stdout": "window1 holdout null-action correction tests: PASS (strict null, 2 synthetic classifications, 4 gap bands)"
+    },
+    {
+      "command": "node arb-executor/tests/test_window1_v14_holdout_honesty.js",
+      "exit_code": 0,
+      "stdout": "{\"status\":\"PASS\",\"assertions\":12,\"development_scorer_calls\":0,\"holdout_policy_calls\":0,\"network_access\":false}"
+    }
+  ],
+  "failures": 0,
+  "policy_replays": 0
+}

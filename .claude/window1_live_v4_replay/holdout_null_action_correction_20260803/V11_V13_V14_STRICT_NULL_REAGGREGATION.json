@@ -1,0 +1,110 @@
+{
+  "schema_version": "WINDOW1_HOLDOUT_STRICT_NULL_REAGGREGATION_V1",
+  "policy_replays": 0,
+  "immutable_raw_replays": {
+    "V11": {
+      "path": "C:/tmp/window1_holdout_v11_v13_20260803/execution_workspace_v2/v11/HOLDOUT_REPLAY.json",
+      "bytes": 52888207,
+      "sha256": "f90488436822c71224e41309d838da0670ecdefe765bc0937a35b2b97854d667",
+      "events": 228,
+      "legs": 456
+    },
+    "V13": {
+      "path": "C:/tmp/window1_holdout_v11_v13_20260803/execution_workspace_v2/v13/HOLDOUT_REPLAY.json",
+      "bytes": 50154744,
+      "sha256": "3a7954ec11f35560499f451d2a4818dbec510ec6aace17bb656eb610586b55b4",
+      "events": 228,
+      "legs": 456
+    },
+    "V14": {
+      "path": "C:/tmp/window1_holdout_v11_v13_20260803/execution_workspace_v2/v14/HOLDOUT_REPLAY.json",
+      "bytes": 48092579,
+      "sha256": "2bcb1f0b975f22e7953290631878255abc39ed493d75fb630e186a967e63f7bc",
+      "events": 228,
+      "legs": 456
+    }
+  },
+  "versions": {
+    "V11": {
+      "legs": 456,
+      "acted_legs": 188,
+      "no_action_legs": 268,
+      "credited_legs": 188,
+      "actual_orders_with_unproven_execution": 0,
+      "raw_UNPROVEN_rows_with_no_order": 268,
+      "fill_classes": {
+        "UNPROVEN": 268,
+        "PROVEN_TAKER": 188
+      },
+      "acted_price_minus_qualifying_ask_floor": {
+        "denominator": 188,
+        "available": 188,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 36,
+        "exact_zero": 93,
+        "within_one_cent": 130
+      },
+      "action_price_equals_action_book_ask": 188,
+      "action_price_not_equal_action_book_ask": 0
+    },
+    "V13": {
+      "legs": 456,
+      "acted_legs": 104,
+      "no_action_legs": 352,
+      "credited_legs": 104,
+      "actual_orders_with_unproven_execution": 0,
+      "raw_UNPROVEN_rows_with_no_order": 352,
+      "fill_classes": {
+        "UNPROVEN": 352,
+        "PROVEN_TAKER": 104
+      },
+      "acted_price_minus_qualifying_ask_floor": {
+        "denominator": 104,
+        "available": 104,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 4,
+        "max": 37,
+        "exact_zero": 56,
+        "within_one_cent": 75
+      },
+      "action_price_equals_action_book_ask": 104,
+      "action_price_not_equal_action_book_ask": 0
+    },
+    "V14": {
+      "legs": 456,
+      "acted_legs": 194,
+      "no_action_legs": 262,
+      "credited_legs": 194,
+      "actual_orders_with_unproven_execution": 0,
+      "raw_UNPROVEN_rows_with_no_order": 262,
+      "fill_classes": {
+        "UNPROVEN": 262,
+        "PROVEN_TAKER": 194
+      },
+      "acted_price_minus_qualifying_ask_floor": {
+        "denominator": 194,
+        "available": 194,
+        "unavailable": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 6,
+        "max": 37,
+        "exact_zero": 86,
+        "within_one_cent": 127
+      },
+      "action_price_equals_action_book_ask": 194,
+      "action_price_not_equal_action_book_ask": 0
+    }
+  }
+}

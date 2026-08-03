@@ -1,0 +1,348 @@
+{
+  "schema_version": "WINDOW1_V11_HOLDOUT_UNPROVEN_GROUPED_CENSUS_V1",
+  "conservation_only_overall": {
+    "holdout_legs": 456,
+    "raw_UNPROVEN_rows": 268,
+    "corrected_no_order_rows": 268,
+    "corrected_actual_unproven_orders": 0,
+    "actual_placements": 188
+  },
+  "corrected_distance_below_floor": {
+    "distribution": {
+      "denominator": 268,
+      "available": 0,
+      "unavailable": 268,
+      "min": null,
+      "p25": null,
+      "median": null,
+      "p75": null,
+      "p90": null,
+      "max": null,
+      "exact_zero": 0,
+      "within_one_cent": 0
+    },
+    "bands": {
+      "NOT_APPLICABLE_NO_ORDER_OR_FLOOR": 268
+    },
+    "fifty_plus_cents_below_floor_orders": 0
+  },
+  "prior_invalid_zero_coercion_reproduction": {
+    "distribution": {
+      "denominator": 268,
+      "available": 240,
+      "unavailable": 28,
+      "min": -99,
+      "p25": -65,
+      "median": -48,
+      "p75": -32,
+      "p90": -16,
+      "max": -2,
+      "exact_zero": 0,
+      "within_one_cent": 0
+    },
+    "bands": {
+      "50_PLUS_CENTS_BELOW": 115,
+      "25_TO_49_CENTS_BELOW": 80,
+      "10_TO_24_CENTS_BELOW": 29,
+      "NOT_APPLICABLE_NO_ORDER_OR_FLOOR": 28,
+      "5_TO_9_CENTS_BELOW": 11,
+      "1_TO_4_CENTS_BELOW": 5
+    },
+    "warning": "These values are reproduced only to identify the adapter defect; they are not orders or policy outputs."
+  },
+  "prior_invalid_all_456_acted_gap_reproduction": {
+    "distribution": {
+      "denominator": 456,
+      "available": 428,
+      "unavailable": 28,
+      "min": -99,
+      "p25": -53,
+      "median": -16,
+      "p75": 0,
+      "p90": 2,
+      "max": 36,
+      "exact_zero": 93,
+      "within_one_cent": 130
+    },
+    "warning": "This exactly reproduces the reported p25=-53, median=-16, min=-99 only by combining 188 real actions with 268 null values coerced to zero."
+  },
+  "terminal_no_action_predicates": {
+    "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 83,
+    "ALL_SURVIVING_SHAPES_SAY_LOWER": 61,
+    "SOURCE_UNAVAILABLE": 42,
+    "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 31,
+    "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 29,
+    "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 19,
+    "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1,
+    "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+    "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+  },
+  "category_and_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "thin": false,
+      "UNPROVEN_rows": 33,
+      "corrected_no_order_rows": 33,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 13,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 8,
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 5,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "thin": false,
+      "UNPROVEN_rows": 35,
+      "corrected_no_order_rows": 35,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 12,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 10,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 6,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 3,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3,
+        "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "UNAVAILABLE",
+      "thin": false,
+      "UNPROVEN_rows": 12,
+      "corrected_no_order_rows": 12,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "SOURCE_UNAVAILABLE": 12
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "thin": false,
+      "UNPROVEN_rows": 30,
+      "corrected_no_order_rows": 30,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 18,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 5,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "thin": false,
+      "UNPROVEN_rows": 22,
+      "corrected_no_order_rows": 22,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 8,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 6,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 6,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "UNPROVEN_rows": 19,
+      "corrected_no_order_rows": 19,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 10,
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "thin": false,
+      "UNPROVEN_rows": 14,
+      "corrected_no_order_rows": 14,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 6,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 4,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "UNAVAILABLE",
+      "thin": true,
+      "UNPROVEN_rows": 4,
+      "corrected_no_order_rows": 4,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "SOURCE_UNAVAILABLE": 4
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "UNPROVEN_rows": 4,
+      "corrected_no_order_rows": 4,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "UNPROVEN_rows": 8,
+      "corrected_no_order_rows": 8,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 4,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2,
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 1,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "thin": true,
+      "UNPROVEN_rows": 7,
+      "corrected_no_order_rows": 7,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 1,
+        "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "thin": true,
+      "UNPROVEN_rows": 9,
+      "corrected_no_order_rows": 9,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 2,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 2
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "UNAVAILABLE",
+      "thin": false,
+      "UNPROVEN_rows": 22,
+      "corrected_no_order_rows": 22,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "SOURCE_UNAVAILABLE": 22
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "thin": true,
+      "UNPROVEN_rows": 6,
+      "corrected_no_order_rows": 6,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "thin": true,
+      "UNPROVEN_rows": 5,
+      "corrected_no_order_rows": 5,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 1,
+        "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "thin": false,
+      "UNPROVEN_rows": 14,
+      "corrected_no_order_rows": 14,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 7,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 4,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "thin": true,
+      "UNPROVEN_rows": 8,
+      "corrected_no_order_rows": 8,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 3,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "UNAVAILABLE",
+      "thin": true,
+      "UNPROVEN_rows": 4,
+      "corrected_no_order_rows": 4,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "SOURCE_UNAVAILABLE": 4
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "thin": true,
+      "UNPROVEN_rows": 4,
+      "corrected_no_order_rows": 4,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 3,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "thin": true,
+      "UNPROVEN_rows": 8,
+      "corrected_no_order_rows": 8,
+      "corrected_actual_unproven_orders": 0,
+      "terminal_no_action_predicates": {
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 3,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 2,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      }
+    }
+  ]
+}

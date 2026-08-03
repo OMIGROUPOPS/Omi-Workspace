@@ -1,0 +1,7 @@
+{
+  "clean_regenerations": 2,
+  "comparison": "BYTE_FOR_BYTE_ALL_PACKAGE_FILES",
+  "result": "PASS",
+  "policy_replays": 0,
+  "note": "The builder was run twice against the same immutable raw replay hashes; the complete generated trees were compared outside the builder."
+}

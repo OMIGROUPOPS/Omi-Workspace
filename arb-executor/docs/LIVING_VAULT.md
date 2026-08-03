@@ -1,5 +1,16 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-03 · WINDOW-1 PAIR COUPLES — CATEGORY MONOLITH V18 RETRACTED
+
+V18's four category-wide pair hypotheses and joint-macro veto are retracted.
+The lawful pair object is a couple of two fitted interim leg hypotheses. Thin
+couples follow the July-6 hard `n >= 30`, named-parent, no-silent-interpolation
+law. Unusable couples abstain to frozen V11 and cannot veto. FRONTIER and
+REGRET GAUGE print together; never-placed legs remain named in the regret
+denominator without a fabricated fill price.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/arb-executor/docs/research/window1/WINDOW1_PAIR_COUPLE_V19_VAULT_ADDENDUM.md
+
 > **THE CHRONOLOGY LAW: entries closer to today trump anything prior; older entries are context, never instruction.** When two entries collide, the newer one governs and the older one belongs in RETIRED. Nothing in this file is append-anywhere — new entries go ON TOP.
 >
 > **READ ORDER, every session:** `.claude/BOARD.md` (the standing queue) → **this file, top down until you hit dates you've already lived** → `docs/LESSONS.md` (A–G principles + C-law arc) → `.claude/rulings/` (verbatim law). The prior-art gate (C45) greps ALL FOUR surfaces.

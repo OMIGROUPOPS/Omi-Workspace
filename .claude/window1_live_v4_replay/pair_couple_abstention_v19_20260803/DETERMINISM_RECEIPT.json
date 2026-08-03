@@ -1,0 +1,11 @@
+{
+  "couple_library_builds": 2,
+  "fit1_sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+  "fit2_sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+  "fits_byte_identical": true,
+  "candidate_replays": 2,
+  "run1_sha256": "5ad206e7aa1c24adee46919d129054238c265296688ee23b2969072c24976837",
+  "run2_sha256": "5ad206e7aa1c24adee46919d129054238c265296688ee23b2969072c24976837",
+  "candidate_replays_byte_identical": true,
+  "final_overlay_is_pure_deterministic_transform": true
+}

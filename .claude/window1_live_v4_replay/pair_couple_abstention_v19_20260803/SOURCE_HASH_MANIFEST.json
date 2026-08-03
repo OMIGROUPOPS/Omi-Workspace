@@ -1,0 +1,68 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json": {
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "bytes": 3485183
+    },
+    ".claude/window1_live_v4_replay/pair_couple_abstention_v19_20260803/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "ccda9bcd4c63c2d2f0cbc5c9eb939e4be3d3e568009bbe8840ab07f129e327cc",
+      "bytes": 2825122
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "57c79f5b41e0006a2bc3a31ac42f978728c0008c3baed64622edac476aa38902",
+      "bytes": 2475041
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3",
+      "bytes": 2632043
+    },
+    ".claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/FUNNEL_AND_FIVE_CEILINGS.json": {
+      "sha256": "ec586a87ccf339b68718ef572c2c01192d581f970fce21aa8c761bad46987ad1",
+      "bytes": 118391
+    },
+    ".claude/window1_live_v4_replay/live_book_ordinal_root_repair_v15_20260803/CARRIED_PAIR_RECONCILIATION.json": {
+      "sha256": "6c77d399f279b4728ffa269e285ab3209174c76c524f820aa15edbcab5f3b648",
+      "bytes": 10094
+    },
+    "arb-executor/analysis/build_window1_pair_couple_library_v19.js": {
+      "sha256": "52b020b40d46f449ec3285a038297b736e1000087c5942f904b5a4537f11ab5b",
+      "bytes": 10154
+    },
+    "arb-executor/analysis/window1_pair_couple_elimination_v19.js": {
+      "sha256": "2a0ce88f30a9f2ed989de829f51b988460ffb7a7da78b8da309a1b24264fa741",
+      "bytes": 2121
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "3e3ddc530ed295b865d11d8e8c4debd36ce245bc819310ba972df2087de773e6",
+      "bytes": 72607
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v7.js": {
+      "sha256": "a8188e7bc8aa772b7835742d7c48bb1f3dae000c7132c70c3dbf0233b13c66d1",
+      "bytes": 24787
+    },
+    "arb-executor/analysis/build_window1_pair_couple_v19_package.js": {
+      "sha256": "40e440a170418065bf54deeea64b38930e5fb5722819b574e96bb091d8825809",
+      "bytes": 21506
+    },
+    "arb-executor/tests/test_window1_pair_couple_elimination_v19.js": {
+      "sha256": "2f63f0ddd45f20683062e5895965edfe106fda12de8ffeb334c1c1f65041dbda",
+      "bytes": 1412
+    },
+    "arb-executor/tests/test_window1_pair_couple_v19_package.js": {
+      "sha256": "e3e7e3ae443550cf1fc794533cae1001d6d55577a010dac5dc18d33ac2466ad8",
+      "bytes": 1761
+    },
+    "arb-executor/docs/research/window1/WINDOW1_PAIR_COUPLE_V19_VAULT_ADDENDUM.md": {
+      "sha256": "dd787186e29a46591abe42f917bfde52afc2b71bae0e2bf1c837f45b1dc400da",
+      "bytes": 2394
+    },
+    "arb-executor/docs/LIVING_VAULT.md": {
+      "sha256": "324e47cf6c99de50a4122fee63d8c321d9c8996bc595b90d517ed3126c4f980f",
+      "bytes": 436188
+    },
+    ".claude/HANDOFF_FABLE.md": {
+      "sha256": "2b80c87ac8a9ea1d6f4208a1b655c73cf0f29f47fa0174d6c65ca6a6b3937132",
+      "bytes": 89657
+    }
+  }
+}

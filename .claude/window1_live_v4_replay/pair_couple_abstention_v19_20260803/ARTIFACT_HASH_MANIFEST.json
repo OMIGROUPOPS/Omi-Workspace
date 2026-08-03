@@ -1,0 +1,72 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "485907f15cf961fbea95d65391834b7e4801d41d0a5c9fba46609866f501b4b3",
+      "bytes": 531
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "c6bb295c4ff3c25dd35bd4564a6a9df47a53c1cc69b0824c3b4ca496bf192b64",
+      "bytes": 247
+    },
+    "FRONTIER.json": {
+      "sha256": "1bff011e9a68a49f01f5c0e3b34d91b8c45437b14838138b631fd449bdd482a5",
+      "bytes": 35263
+    },
+    "INDEPENDENT_AUDIT_INSTRUCTION.md": {
+      "sha256": "acc1bb524015944c2838d1a950a6c9e89f0c6752d120408d63486ed83d6a05d6",
+      "bytes": 501
+    },
+    "NON_ACTION_RESOLUTION_CENSUS.json": {
+      "sha256": "a53251d99030a9b4e0df8a61c3d1ba9ff20a1225edbd6c5f1edaaaf574b8aa71",
+      "bytes": 11439
+    },
+    "PAIR_COUPLE_CENSUS.json": {
+      "sha256": "7c1379cffc4fa38e3d79b068458e7d62a7225934b2f142333520a5cb58c2af87",
+      "bytes": 169412
+    },
+    "PAIR_COUPLE_LIBRARY_V19.json": {
+      "sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b",
+      "bytes": 3485183
+    },
+    "POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "ccda9bcd4c63c2d2f0cbc5c9eb939e4be3d3e568009bbe8840ab07f129e327cc",
+      "bytes": 2825122
+    },
+    "POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "375a37a7316067143ae4e36af6c4ab82c8d130362ca6d8038045cc93b84ad397",
+      "bytes": 2722904
+    },
+    "PRE_RUN_REPORT.md": {
+      "sha256": "3c63aa4b4d2d28434e1a40b2abdcc992d40813aceb897ce5a23612b34491e688",
+      "bytes": 1730
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "c7803e9a5f144b208dc7c6f6aaee84883f2f323b5159ac1e1c536f83670f429d",
+      "bytes": 56697
+    },
+    "REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "1c6a56d6bdb0c0ecaa4400955a0cad69175aa33bc5bc94daed0f819762540fc4",
+      "bytes": 28597
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "3e554531639447cd246245e0d2dd009a10d47394efb0694bc315c4b99a84a1bc",
+      "bytes": 3147
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "b30216d79d0e20a17de6fa5e007e87b535d161f8950999e1221198d64f44568a",
+      "bytes": 598
+    },
+    "V11_896_PAIR_COUPLE_RESOLUTION_TRACE.jsonl.gz": {
+      "sha256": "386db322b5fbb6ee63aa4f728c8d1431c9c25a9c498d6eb1717bd99a16431b43",
+      "bytes": 18321
+    },
+    "V11_COMPARISON.json": {
+      "sha256": "f71c78f8372759b744fd2943e3fe1e160203dbd148bbfde4c451e74a244f9093",
+      "bytes": 44841
+    },
+    "V18_RULING_CORRECTION_RECEIPT.json": {
+      "sha256": "d64c47ae3637df70629e38f99af95ce5f8438bca8ec2187b4abf03636e845a0e",
+      "bytes": 287
+    }
+  }
+}

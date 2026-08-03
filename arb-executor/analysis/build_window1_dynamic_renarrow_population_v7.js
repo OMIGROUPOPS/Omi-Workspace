@@ -23,6 +23,7 @@ const coherentShapeV12 = args.includes("--coherent-shape-v12");
 const interimEliminationV13 = args.includes("--interim-elimination-v13");
 const microRepairV14 = args.includes("--micro-repair-v14");
 const pairInterimV18 = args.includes("--pair-interim-v18");
+const pairCoupleV19 = args.includes("--pair-couple-v19");
 const quotePath = path.join(repo, ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv");
 const capacityPath = path.join(repo, ".claude/window1_live_v4_replay/live_book_initial_aim_20260731/RAW_CAPACITY_FLOOR_SCAN.json");
 const bellPath = path.join(repo, ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json");
@@ -95,6 +96,7 @@ function launchShard(index, eventIds, work, refsPath, windowsPath) {
   if (interimEliminationV13) childArgs.push("--interim-elimination-v13");
   if (microRepairV14) childArgs.push("--micro-repair-v14");
   if (pairInterimV18) childArgs.push("--pair-interim-v18");
+  if (pairCoupleV19) childArgs.push("--pair-couple-v19");
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn(process.execPath, childArgs, { cwd: repo, stdio: ["ignore", "pipe", "pipe"] });
     let stdout = "", stderr = "";

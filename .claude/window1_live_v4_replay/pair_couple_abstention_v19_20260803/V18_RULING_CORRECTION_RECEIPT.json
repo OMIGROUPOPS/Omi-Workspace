@@ -1,0 +1,9 @@
+{
+  "V18_conclusion": "RETRACTED",
+  "violations": [
+    "CATEGORY_MONOLITHS_NOT_LEG_SHAPE_COUPLES",
+    "UNSIGNABLE_PAIR_LAYER_VETOED_SINGLE_LEG_PATH"
+  ],
+  "V18_artifacts_preserved": true,
+  "V19_correction": "EXACT_COUPLES_WITH_EXPLICIT_PARENT_BORROW_AND_ABSTENTION_TO_FROZEN_V11"
+}

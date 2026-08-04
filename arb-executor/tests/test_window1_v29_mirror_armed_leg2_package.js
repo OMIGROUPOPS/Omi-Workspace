@@ -17,6 +17,9 @@ assert.ok(Object.values(score.delta).every((x) => x === 0));
 assert.strictEqual(authority.findings.numeric_decision_time_own_close_bar_authorized_cells, 0);
 assert.strictEqual(authority.ruling, "OVERLAY_ABSTAINS_EVERYWHERE; V28 RUNS BYTE_IDENTICAL");
 assert.strictEqual(targets.carried.target_mass, 144);
+assert.strictEqual(targets.carried.structurally_eligible_before_authority_checks, 116);
+assert.strictEqual(targets.carried.decision_reasons.SIBLING_CREDITED_DISCOUNT_AUTHORITY_NOT_BOUND, 116);
+assert.strictEqual(targets.carried.decision_reasons.V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL, 28);
 assert.strictEqual(targets.completion_mirror_false_negatives.target_mass, 237);
 assert.strictEqual(targets.total.converted, 0);
 assert.strictEqual(rows.length, 381);
@@ -32,4 +35,4 @@ assert.strictEqual(det.clean_builds, 2);
 assert.strictEqual(det.byte_identical_payloads, true);
 for (const [name, rec] of Object.entries(artifacts.files)) { const p = path.join(root, name === "DETERMINISM_RECEIPT" ? "DETERMINISM_RECEIPT.json" : name); assert.ok(fs.existsSync(p), name); assert.strictEqual(hash(p), rec.sha256, name); assert.strictEqual(fs.statSync(p).size, rec.bytes, name); }
 
-process.stdout.write(`window1 V29 package tests: PASS (${Object.keys(artifacts.files).length} hashes; 20 invariants)\n`);
+process.stdout.write(`window1 V29 package tests: PASS (${Object.keys(artifacts.files).length} hashes; 23 invariants)\n`);

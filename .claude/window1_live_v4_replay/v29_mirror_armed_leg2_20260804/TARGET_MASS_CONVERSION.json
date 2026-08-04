@@ -4,7 +4,8 @@
     "structurally_eligible_before_authority_checks": 116,
     "converted": 0,
     "decision_reasons": {
-      "V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL": 144
+      "SIBLING_CREDITED_DISCOUNT_AUTHORITY_NOT_BOUND": 116,
+      "V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL": 28
     },
     "outcomes": {
       "UNCHANGED_V28_CARRIED": 144
@@ -28,8 +29,8 @@
     "structurally_eligible_before_authority_checks": 202,
     "converted": 0,
     "decision_reasons": {
-      "SIBLING_CREDITED_DISCOUNT_AUTHORITY_NOT_BOUND": 227,
-      "V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL": 154
+      "SIBLING_CREDITED_DISCOUNT_AUTHORITY_NOT_BOUND": 343,
+      "V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL": 38
     },
     "outcomes": {
       "ABSTAIN_NO_CAUSAL_DISCOUNT_OR_CLOSE_BAR_AUTHORITY": 227,

@@ -1,0 +1,117 @@
+{
+  "item2_dual_floor": {
+    "note": "Aug-1 ruling: objective stated against TRADED prices. Ask-capacity floor is a TAKER-reachable offer; it cannot see seller-aggressed prints below the best offer. Both reported side by side per leg in DUAL_FLOOR_REGRET_896.csv.",
+    "ask_capacity_floor_matches_prior_audit_floor": true,
+    "achievable_counts": {
+      "ask_floor": {
+        "n": 860,
+        "le_close": 716,
+        "le_97": 860,
+        "median": 51.0
+      },
+      "lowest_traded": {
+        "n": 782,
+        "le_close": 739,
+        "le_97": 782,
+        "median": 51.0
+      },
+      "seller_aggressed_maker": {
+        "n": 544,
+        "le_close": 502,
+        "le_97": 544,
+        "median": 50.5
+      },
+      "seller_aggressed_size5": {
+        "n": 505,
+        "le_close": 465,
+        "le_97": 505,
+        "median": 50
+      }
+    },
+    "aggressor_of_lowest_traded": {
+      "BUY": 391,
+      "SELL": 391,
+      "null": 114
+    },
+    "ask_vs_maker": {
+      "n_both": 542,
+      "maker_below_ask": 319,
+      "maker_equal_ask": 147,
+      "maker_above_ask": 76,
+      "ask_floor_but_no_seller_aggression": 318
+    },
+    "frontier_ask_floor": {
+      "both_known_events": 259,
+      "levels": {
+        "<=93": {
+          "events": 9,
+          "legs": 18
+        },
+        "<=95": {
+          "events": 12,
+          "legs": 24
+        },
+        "<=97": {
+          "events": 21,
+          "legs": 42
+        },
+        "<100": {
+          "events": 88,
+          "legs": 176
+        }
+      }
+    },
+    "frontier_seller_aggressed_maker": {
+      "both_known_events": 119,
+      "levels": {
+        "<=93": {
+          "events": 4,
+          "legs": 8
+        },
+        "<=95": {
+          "events": 7,
+          "legs": 14
+        },
+        "<=97": {
+          "events": 34,
+          "legs": 68
+        },
+        "<100": {
+          "events": 108,
+          "legs": 216
+        }
+      }
+    }
+  },
+  "item3_holdout_gate_lag": {
+    "holdout_nonaction_legs": 268,
+    "terminal_reason_distribution": {
+      "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 83,
+      "ALL_SURVIVING_SHAPES_SAY_LOWER": 61,
+      "SOURCE_UNAVAILABLE": 42,
+      "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 31,
+      "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 29,
+      "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 19,
+      "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1,
+      "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1,
+      "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+    },
+    "above_observed_low_legs": 83,
+    "above_low_decision_evaluations": 57912,
+    "above_low_failed_predicate_frequency": {
+      "CURRENT_ASK_ABOVE_OBSERVED_LOW": 57912,
+      "NO_FRESH_OWN_BOOK_RECEIPT": 20636,
+      "TOP_ASK_CAPACITY_BELOW_FIVE": 4182,
+      "ASK_DWELL_BELOW_10_SECONDS": 2992
+    },
+    "above_low_legs_touching_INVERSE_SIBLING_anywhere": 0,
+    "legs_touching_INVERSE_SIBLING_and_their_terminals": "all 26 are CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK (placed legs, sibling resolved)",
+    "answer": "0 of the 83 above-observed-low holdout legs were sibling-vetoed; every recorded refusal binds on the anchoring/executability stack (CURRENT_ASK_ABOVE_OBSERVED_LOW on 100%, NO_FRESH_OWN_BOOK_RECEIPT next). Contrast training: 183 of 283 above-low terminals were synthetic-sibling-vetoed at first floor.",
+    "caveat": "The above-low decision ledger is scoped to post-rise decisions; the at-low qualifying-floor instant's predicates are not separately published, but the sibling predicate appears in zero of the 83's full records and zero of their 57,912 decisions, and had it bound terminally these legs would carry the sibling terminal (31 other legs do)."
+  },
+  "sources": {
+    "dual_floor": "C:/Users/omigr/OMI-Workspace-codex-window1/.claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/DUAL_FLOOR_LEG_LEDGER.jsonl.gz",
+    "holdout_leg_ledger": "C:/Users/omigr/OMI-Workspace-codex-window1/.claude/window1_live_v4_replay/v11_v13_v14_holdout_20260803/V11_HOLDOUT_LEG_LEDGER.jsonl.gz",
+    "above_low_evals": "C:/Users/omigr/OMI-Workspace-codex-window1/.claude/window1_live_v4_replay/holdout_gate_lag_diagnostic_20260803/ABOVE_OBSERVED_LOW_83_DECISION_EVALUATIONS.jsonl"
+  }
+}

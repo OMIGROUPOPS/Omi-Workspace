@@ -1,0 +1,168 @@
+{
+  "band_source": {
+    "file": "arb-executor/data/durable/spike_volatility_map/{category}_adaptive_exit_bands.parquet",
+    "loader": "arb-executor/live_v4.py::_load_exit_table (line 5122); applied by exit_rule_for (5464)",
+    "semantics": "band_exit_X = +X cents fill-relative offset (live_v4.py:660); exit band abs = fill_cents + X; HOLD cells have no band; ITF borrows CHALL (not used here, all 4 native cats).",
+    "schema": "price_low, price_high, band_exit_X"
+  },
+  "conservation": {
+    "overlap": 31,
+    "disjoint": 359,
+    "sum": 390,
+    "scored": 359,
+    "unscored": 0
+  },
+  "net_drift_sign_by_side": {
+    "DEARER": {
+      "n": 211,
+      "favorable": 203,
+      "adverse": 1,
+      "zero": 7,
+      "median_drift": 2.0
+    },
+    "CHEAPER": {
+      "n": 128,
+      "favorable": 123,
+      "adverse": 0,
+      "zero": 5,
+      "median_drift": 2.0
+    }
+  },
+  "by_bucket_side": {
+    "<=1h": {
+      "DEARER": {
+        "n": 62,
+        "median_net": 1.25,
+        "median_mae": -0.5,
+        "median_mfe": 1.5,
+        "band_touched": 11,
+        "hold_cells": 3
+      },
+      "CHEAPER": {
+        "n": 44,
+        "median_net": 1.0,
+        "median_mae": -0.5,
+        "median_mfe": 1.0,
+        "band_touched": 3,
+        "hold_cells": 3
+      }
+    },
+    "<=2h": {
+      "DEARER": {
+        "n": 36,
+        "median_net": 1.5,
+        "median_mae": -0.5,
+        "median_mfe": 1.5,
+        "band_touched": 7,
+        "hold_cells": 7
+      },
+      "CHEAPER": {
+        "n": 18,
+        "median_net": 1.5,
+        "median_mae": -0.5,
+        "median_mfe": 1.5,
+        "band_touched": 0,
+        "hold_cells": 3
+      }
+    },
+    "<=4h": {
+      "DEARER": {
+        "n": 48,
+        "median_net": 1.5,
+        "median_mae": -0.25,
+        "median_mfe": 2.0,
+        "band_touched": 9,
+        "hold_cells": 4
+      },
+      "CHEAPER": {
+        "n": 38,
+        "median_net": 1.5,
+        "median_mae": 0.5,
+        "median_mfe": 1.75,
+        "band_touched": 1,
+        "hold_cells": 7
+      }
+    },
+    "<=8h": {
+      "DEARER": {
+        "n": 39,
+        "median_net": 2.5,
+        "median_mae": 0.0,
+        "median_mfe": 3.5,
+        "band_touched": 8,
+        "hold_cells": 3
+      },
+      "CHEAPER": {
+        "n": 21,
+        "median_net": 2.5,
+        "median_mae": 0.25,
+        "median_mfe": 2.75,
+        "band_touched": 1,
+        "hold_cells": 1
+      }
+    },
+    ">8h": {
+      "DEARER": {
+        "n": 34,
+        "median_net": 5.5,
+        "median_mae": 0.5,
+        "median_mfe": 5.5,
+        "band_touched": 12,
+        "hold_cells": 1
+      },
+      "CHEAPER": {
+        "n": 18,
+        "median_net": 4.0,
+        "median_mae": 0.25,
+        "median_mfe": 4.25,
+        "band_touched": 3,
+        "hold_cells": 0
+      }
+    }
+  },
+  "band_touched_by_bucket": {
+    "<=1h": {
+      "banded": 100,
+      "touched": 14
+    },
+    "<=2h": {
+      "banded": 45,
+      "touched": 7
+    },
+    "<=4h": {
+      "banded": 75,
+      "touched": 10
+    },
+    "<=8h": {
+      "banded": 56,
+      "touched": 9
+    },
+    ">8h": {
+      "banded": 51,
+      "touched": 15
+    }
+  },
+  "by_category": {
+    "ATP_CHALL": {
+      "n": 167,
+      "banded": 152,
+      "touched": 19
+    },
+    "ATP_MAIN": {
+      "n": 89,
+      "banded": 82,
+      "touched": 20
+    },
+    "WTA_MAIN": {
+      "n": 68,
+      "banded": 63,
+      "touched": 7
+    },
+    "WTA_CHALL": {
+      "n": 35,
+      "banded": 30,
+      "touched": 9
+    }
+  },
+  "mark_convention": "MTM mark = mid; net drift = mid(completion) - fill; MAE/MFE = min/max(mid-fill) over [fill,completion]; band touched = best_bid reaches fill+X (residency-exit)."
+}

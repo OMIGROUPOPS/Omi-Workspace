@@ -1,5 +1,13 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-04 - V23 IMMEDIATE PAIR CAP; AUDITED CLOSE RULER
+
+One isolated A/V20 replay now consumes the strictly earlier credited first-leg fill at second-leg placement: `leg2_bid <= 99 - leg1_fill`. It never chases; a cap below the current live bid abstains, while a cap resting at/above the live bid needs strictly later qualifying-ask evidence. On the independent 1,608-leg close audit, JOINT is V19 24, A 33, V23 45. The audit recovers 250 replay-null closes. V23 completes 204 pairs, 193 under par, 45 both below audited own closes, with 88 carried. V22 Phase 1 did not run: the current shape library emits no numeric close landing distribution in any category; its coverage is zero, and the separate 339-event climber-first hole is identity/order unresolved rather than a price estimator.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b508215a10e8ed0950ff186e745c48b48c7d42d/.claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/AUDITED_CLOSE_REGRADE.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b508215a10e8ed0950ff186e745c48b48c7d42d/.claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V22_PHASE1_LANDING_ESTIMATOR_SPEC.json
+
 ### 2026-08-04 - V22 INTENTIONAL PAIR BRAIN BLOCKED AT PHASE 0
 
 The V20-A close ruler reconciles all 942 legs from 471 completed pairs to the audited reference contract with zero mismatch; unavailable and ambiguous closes remain unavailable. The prompt's 15-pair premise is corrected: frozen A has 52 both-below-close pairs and 27 JOINT pairs, so 25 event identities—not 15—are below both closes but fail par. `PAIR CAP: ABSENT`: the replay placement path does not consume the sibling fill. V22 stopped before aim logic because decision-time own close is explicitly NOT_BOUND/prohibited for 804 policy replay and the maker floor is ex-post. No future close or floor was leaked into a policy replay; V20-A remains controlling.

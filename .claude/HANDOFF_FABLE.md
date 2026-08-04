@@ -1,6 +1,16 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## V23 IMMEDIATE PAIR CAP + AUDITED CLOSE RULER - 2026-08-04
+
+Frozen package `8b508215a10e8ed0950ff186e745c48b48c7d42d` implements one isolated A/V20 variant: after a strictly earlier credited first-leg fill, second-leg bid is capped at `99 - fill1`; it may rest only at/above the current live bid, never chases, and needs later qualifying-ask evidence. Audited-close JOINT is V19 24, A 33, V23 45. The ruler recovers 250 replay-null closes. V22 Phase 1 remains unbuilt: the current V13 library has zero numeric landing-estimate coverage and the V17 surface has a separate 339-event direction-identity hole.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b508215a10e8ed0950ff186e745c48b48c7d42d/.claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V23_VS_A.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b508215a10e8ed0950ff186e745c48b48c7d42d/.claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/AUDITED_CLOSE_REGRADE.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b508215a10e8ed0950ff186e745c48b48c7d42d/.claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V22_PHASE1_LANDING_ESTIMATOR_SPEC.json
+
 ## V22 INTENTIONAL PAIR BRAIN — PHASE-0 BLOCK - 2026-08-04
 
 V22 did not enter aim logic. Frozen V20-A closes reconcile 942/942 with zero mismatch, but 174 remain explicitly unavailable/ambiguous. The claimed 15 below-both-closes/fail-par pairs is corrected to 25 (`52 - 27`). The current replay has no first-fill pair cap. Decision-time own close remains NOT_BOUND and the maker floor is ex-post, so using either actual future surface would invalidate a causal replay. V20-A remains controlling pending lawful operator authority.

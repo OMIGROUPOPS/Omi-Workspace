@@ -1,0 +1,23 @@
+{
+  "ruling_1": {
+    "operative_baseline": "V23",
+    "joint_audited": 45,
+    "carried": 88,
+    "non_regression": true
+  },
+  "ruling_2": {
+    "name": "THE_CARRY_HAS_NO_CLOCK",
+    "wall_clock_pair_inputs": [],
+    "evidence_only": [
+      "OWN_BOOK_VS_AIM",
+      "READ_STAYS_RESOLVED",
+      "OWN_DECLINE_ORDINAL",
+      "GUARDED_WINDOW_END"
+    ],
+    "elapsed_time_never_input": true
+  },
+  "ruling_3": {
+    "build_authorized": "V24_LANDING_ESTIMATOR_PLUS_PHASED_ARMING",
+    "this_receipt_executes_authorized_build": true
+  }
+}

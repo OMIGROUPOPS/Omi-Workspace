@@ -1,0 +1,14 @@
+{
+  "development_only": true,
+  "D": 804,
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "time_as_pair_decision_input": false
+}

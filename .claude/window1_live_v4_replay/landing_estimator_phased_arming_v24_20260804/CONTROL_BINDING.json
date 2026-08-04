@@ -1,0 +1,12 @@
+{
+  "V23_artifact": ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V23_EVENT_LEDGER.jsonl.gz",
+  "V23_sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+  "audited_close_commit": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+  "audited_close_sha256": "51d542d9c1f18c6b30b6bb5e8f458d9cf3adeebf1895399f8f7b2ba416836303",
+  "shape_library_sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8",
+  "no_clock_inputs": true,
+  "pair_cap": "LEG2_BID <= 99 - LEG1_CREDITED_FILL",
+  "lazy_late_bid_banned": true,
+  "scoring_population": 804,
+  "output_legs": 1608
+}

@@ -1,0 +1,7 @@
+{
+  "source_rows": 516,
+  "unique_events": 516,
+  "intercept": 95.08360174692078,
+  "slope": -0.9664243161761595,
+  "law": "DIAGNOSTIC_CROSS_CHECK_ONLY; NEVER_TARGET_OR_VETO"
+}

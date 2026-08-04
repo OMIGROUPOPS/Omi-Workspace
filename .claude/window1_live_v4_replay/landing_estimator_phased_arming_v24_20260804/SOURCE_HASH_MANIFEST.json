@@ -1,0 +1,524 @@
+{
+  "committed": {
+    "arb-executor/analysis/window1_landing_estimator_v24_policy.js": {
+      "sha256": "db3d17fb5e36723e86c87d1fd020782c97808ae02827877e4be3e1afefdc53a1",
+      "bytes": 5562
+    },
+    "arb-executor/analysis/build_window1_landing_estimator_v24.js": {
+      "sha256": "ffb797e4b279cffbfbb60b8ab3ad4fd5c7c35ed8c3683934432990f0adf8f84f",
+      "bytes": 32598
+    },
+    "arb-executor/tests/test_window1_landing_estimator_v24.js": {
+      "sha256": "a08ea8a3d4dadc75d1203f5865828a5adbefcf45c05f460e6fc807ab17a9cee7",
+      "bytes": 4343
+    },
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V23_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+      "bytes": 3457618
+    },
+    ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "d2b604c1756502e543bfdd1166496a618439a0ac53c010c8a5da2626ca011cc8",
+      "bytes": 3228976
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    ".claude/window1_live_v4_replay/aggressor_ceiling_census_20260801/PER_LEG_AGGRESSOR_CENSUS.jsonl.gz": {
+      "sha256": "0c1ea5cecbda53955900d1293441bb27db914a4ab5eb5fb0ca02bbb41cfa535a",
+      "bytes": 322562
+    },
+    ".claude/window1_live_v4_replay/interim_shape_v13_fit_20260803/INTERIM_SHAPE_LIBRARY_V13.json": {
+      "sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8",
+      "bytes": 2962257
+    },
+    ".claude/window1_live_v4_replay/second_leg_x_pricer_v17_20260803/TIME_AND_FLOW_ROW_LEDGER.jsonl.gz": {
+      "sha256": "a000968b3df2a2a0ec983f68d10f5bb15333e89c36f958368f23628ecb8b6e91",
+      "bytes": 48201
+    },
+    ".claude/window1_live_v4_replay/second_leg_x_pricer_fit_v17_20260803/SECOND_LEG_X_CONDITIONAL_LIBRARY.json": {
+      "sha256": "e10ef0b819fb3f72fadaf54a4f9ca47383db53a680c078efdd9c14b50ea65b65",
+      "bytes": 626954
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b",
+      "bytes": 2479552
+    }
+  },
+  "independent_close": {
+    "commit": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INDEPENDENT_CLOSE_AUDIT_1608.csv",
+    "sha256": "51d542d9c1f18c6b30b6bb5e8f458d9cf3adeebf1895399f8f7b2ba416836303",
+    "bytes": 253158
+  },
+  "private_tick_sources": {
+    "KXATPCHALLENGERMATCH-26JUL12PEAKIR-KIR": {
+      "sha256": "705c405b77f5388a24557b03003f67fc02a02c587f4c779b5bf319b002aa0c76",
+      "bytes": 661090
+    },
+    "KXATPCHALLENGERMATCH-26JUL13FORRAF-RAF": {
+      "sha256": "596350f4fde539ddb8e787c09d876f0ad9d9810bc4c2725f448bf1d9cec75206",
+      "bytes": 93526
+    },
+    "KXATPCHALLENGERMATCH-26JUL13GREVAN-VAN": {
+      "sha256": "bc11341758d3cd273c9ca6cc4f8bbaf94134bbafbef50ea0ad60ff51e2eb3cf5",
+      "bytes": 498660
+    },
+    "KXATPCHALLENGERMATCH-26JUL13INCSTE-STE": {
+      "sha256": "56b270a0b26ba8ed661dd93366651e327503fadc4612c8d8e46b7f5f8e9fa9a2",
+      "bytes": 690027
+    },
+    "KXATPCHALLENGERMATCH-26JUL13KENSHE-SHE": {
+      "sha256": "8ef5de1a2c1f7d9d2a4b9eed7e7a84150011cf39c0f95b76a536a8df2808d3b9",
+      "bytes": 715802
+    },
+    "KXATPCHALLENGERMATCH-26JUL13NOGBRO-BRO": {
+      "sha256": "19e2e9473a10bc12b6884c9315961a4fd8493c909c552695ad10e1198b96213d",
+      "bytes": 1038302
+    },
+    "KXATPCHALLENGERMATCH-26JUL13REHJUS-REH": {
+      "sha256": "1bd66ff03357bc4ce42bc1be06ec3d9a32d197638853f9f6c29351752c0b54a4",
+      "bytes": 803051
+    },
+    "KXATPCHALLENGERMATCH-26JUL13VUKBRO-BRO": {
+      "sha256": "71e61ad756c9ae21d2e52b28849cc2d845c3741460b15df6cff709b4dbbe7f09",
+      "bytes": 644846
+    },
+    "KXATPCHALLENGERMATCH-26JUL13WONTUN-WON": {
+      "sha256": "4f4cd7e4123101c424964fa9b436efe4ca2d3accf06d315071ee7574ae128c77",
+      "bytes": 486267
+    },
+    "KXATPCHALLENGERMATCH-26JUL14DALMAY-DAL": {
+      "sha256": "b2bc3a5cfff7623a644d9c8c9d12d1bd18d75613c1228c50e143975ba24c90da",
+      "bytes": 493391
+    },
+    "KXATPCHALLENGERMATCH-26JUL14EREPAV-ERE": {
+      "sha256": "3fd817efef1d78fb9461a1f1fd882526dc004928a1824c3cce2c1f617d4499d8",
+      "bytes": 622144
+    },
+    "KXATPCHALLENGERMATCH-26JUL14GUIBON-GUI": {
+      "sha256": "dd14cd02dab1666deff22a44f7614d91d88c219466b327b22eaa630c788d7490",
+      "bytes": 1051038
+    },
+    "KXATPCHALLENGERMATCH-26JUL14JOHBER-JOH": {
+      "sha256": "2527830e4b683c46ba0a03e5583f1555d0d058f34845a41bc56dd500ae1aeb7f",
+      "bytes": 706435
+    },
+    "KXATPCHALLENGERMATCH-26JUL14NEDDAL-NED": {
+      "sha256": "73712d65e008a096f0da21ed6bd6324ed1e22f73bfccfa40f296bcb740035550",
+      "bytes": 718408
+    },
+    "KXATPCHALLENGERMATCH-26JUL14OUAFIC-FIC": {
+      "sha256": "46935e4b7c29d2e40025f15888177ceb68d32d21fbb8acbb9f0440f2b90762c0",
+      "bytes": 900588
+    },
+    "KXATPCHALLENGERMATCH-26JUL14RONGIU-RON": {
+      "sha256": "95756dc2df7f5ed274c07381dde9e94f8d82fa73a24f3762f5185d6b6646d806",
+      "bytes": 589681
+    },
+    "KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN": {
+      "sha256": "2ea6023870e9610d718525b08357e5a5c7f930185e0e2a00632edecf07ebe649",
+      "bytes": 646658
+    },
+    "KXATPCHALLENGERMATCH-26JUL14VILRIB-RIB": {
+      "sha256": "f781eb58018b9f539ed805954154a970f29881359de9cd14b936545a1eafd505",
+      "bytes": 306710
+    },
+    "KXATPCHALLENGERMATCH-26JUL15HOLMAY-MAY": {
+      "sha256": "fcc5dce35f6a9e5a2c02e0be70f4970eb18b647bf8d0be305200a81c8e81a6f0",
+      "bytes": 592636
+    },
+    "KXATPCHALLENGERMATCH-26JUL15SCHHOU-SCH": {
+      "sha256": "55afbd4cc52fe893555a29a8c0bd6157277b1f90e92681b81d82cb850a790df9",
+      "bytes": 165682
+    },
+    "KXATPCHALLENGERMATCH-26JUL15WESCOP-WES": {
+      "sha256": "2a059712413425d22b22c6c816ccad19263879022ea119499c643d73f8a0ab15",
+      "bytes": 361463
+    },
+    "KXATPCHALLENGERMATCH-26JUL15WONSHE-SHE": {
+      "sha256": "a619220feba6a8ba4e6c041e8eeb1d4e774e8e76509ad9f53cf8b3c316eae69f",
+      "bytes": 764165
+    },
+    "KXATPCHALLENGERMATCH-26JUL15ZHOPER-PER": {
+      "sha256": "c75d10b4ec9e54256690af986c1b35273c03c9f429e1c43a67023151c18a25c2",
+      "bytes": 459124
+    },
+    "KXATPCHALLENGERMATCH-26JUL16DRAMIL-MIL": {
+      "sha256": "3c0e56922b7a828a932de0a1db48a171ba07ae4a3cae8728bd85624dc6ed5fa7",
+      "bytes": 770929
+    },
+    "KXATPCHALLENGERMATCH-26JUL16FORCUI-FOR": {
+      "sha256": "45cb8b8e06c33c5a4426b23521ef46eb9cbee6b053fa3c1f5cb5e0904db23e50",
+      "bytes": 977357
+    },
+    "KXATPCHALLENGERMATCH-26JUL16GRESAN-SAN": {
+      "sha256": "2637ab3b0ccd9f321e29af7360f38f6f9c0ef11dde541b79fb600aa2aff1b3f1",
+      "bytes": 472419
+    },
+    "KXATPCHALLENGERMATCH-26JUL16MRVRON-RON": {
+      "sha256": "3efbd9718218d2b818743cd5d9c54da0bd3756cf24ccaa696b10cbb08323b0e3",
+      "bytes": 936636
+    },
+    "KXATPCHALLENGERMATCH-26JUL16SMIMAT-MAT": {
+      "sha256": "543ffb2378419979e220a4539ec943faa18d933811336153b6e25f5a919b72fc",
+      "bytes": 1125957
+    },
+    "KXATPCHALLENGERMATCH-26JUL17DRAGEA-GEA": {
+      "sha256": "03749a22aedf99af6011e2be5ba8996e52a244ef05dbf0d3d7cab8fc5f8568b3",
+      "bytes": 734047
+    },
+    "KXATPCHALLENGERMATCH-26JUL17GENHOU-HOU": {
+      "sha256": "95583bcf8ceb822b787acdebe9ef793627e20eaf6bb7352da9efe9bf91b8fa32",
+      "bytes": 907256
+    },
+    "KXATPCHALLENGERMATCH-26JUL17NAGBON-BON": {
+      "sha256": "e50d43ab387735f5cbf7e4f52c7db8005e8a517afdcd0695aed0aa45e94f1685",
+      "bytes": 1229790
+    },
+    "KXATPCHALLENGERMATCH-26JUL17NAPVIL-VIL": {
+      "sha256": "1a85137fd0bab6643301e360f4c1306e8155475eb78d00ca7bc774c119fd2ff3",
+      "bytes": 573503
+    },
+    "KXATPCHALLENGERMATCH-26JUL18ALCVIL-ALC": {
+      "sha256": "3dfa1cb3a5882afafd84855318759b74302d10ba51192aad3dff917c91c8a53c",
+      "bytes": 1186017
+    },
+    "KXATPCHALLENGERMATCH-26JUL18CASGEA-CAS": {
+      "sha256": "4b92dd0957895eeadc4e0eaad1f7e4b38b21113b3858e252027b6228a6204c7d",
+      "bytes": 654094
+    },
+    "KXATPCHALLENGERMATCH-26JUL18FUEBON-FUE": {
+      "sha256": "37ab51c87d152b4f4b801afddd672f8bba4000e9763f2338a885aa5a8d5e6191",
+      "bytes": 1131967
+    },
+    "KXATPCHALLENGERMATCH-26JUL19ARNPOH-POH": {
+      "sha256": "2a2c3498ed5c83b4b6946ca148a71a7498644d03b4afd67afd2bbf63c5da067f",
+      "bytes": 353921
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DEMMAG-DEM": {
+      "sha256": "e725c43a5391cd76f1c48cfa78f3304aa83f187fbeaccb27512c3bf2f090cd02",
+      "bytes": 163336
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DENGEN-GEN": {
+      "sha256": "a3b371b6d9329a5c5cce13ac862b4718a0671874fe919f68ea819543b380bd85",
+      "bytes": 658491
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KIRAGU-KIR": {
+      "sha256": "ace661c2fa9d653b337d7400bb8a9170383746e2c724dbe0cad8dc1c84cdf39c",
+      "bytes": 703970
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KUHPAS-KUH": {
+      "sha256": "a3edbafff981365cefee0b13c89e6b91dd0cc62687340a3bad42df42c2c3bd4f",
+      "bytes": 430475
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KUZOPI-OPI": {
+      "sha256": "ef9c83f891dca3fd816772a89dbdf33c3370657951631edeb230c613ca5ec1a2",
+      "bytes": 243623
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MARWAZ-WAZ": {
+      "sha256": "5bc21e091de916d2d12f80f8c7410bf84be417a364cb8b3950880192121f7b37",
+      "bytes": 415354
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN": {
+      "sha256": "0d94bc859c0f634e604d033fdd9518c505ccaa2efa4a61a5313a9de8009d1fc4",
+      "bytes": 144970
+    },
+    "KXATPCHALLENGERMATCH-26JUL19POLSCH-SCH": {
+      "sha256": "a5a32fb542467901bf881d198b0c7ffa8fa7c64807d7c0780ca0cfc4522f42a2",
+      "bytes": 369795
+    },
+    "KXATPCHALLENGERMATCH-26JUL19PONZIE-PON": {
+      "sha256": "02ddff798a718f79a262f3964718b5c3afa278590d39f125dbb96f1468294bbd",
+      "bytes": 538984
+    },
+    "KXATPCHALLENGERMATCH-26JUL19RODIVA-ROD": {
+      "sha256": "52f2281d4d6d2c991ef7e729d2bf9e02fca69b31d3630f2fd0c0f3d7571d5a5b",
+      "bytes": 1103812
+    },
+    "KXATPCHALLENGERMATCH-26JUL19ROZSHE-ROZ": {
+      "sha256": "ba1b88e15879f3123d46b199537efbf9f85ef5c749e51952628a50f180cbc1b0",
+      "bytes": 573016
+    },
+    "KXATPCHALLENGERMATCH-26JUL19TOMLAJ-LAJ": {
+      "sha256": "b33d16eb70ed607c2f9c1321f0ce616a59c570dc565923c018ad2be519532182",
+      "bytes": 2338990
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VANRAD-VAN": {
+      "sha256": "6f0d572ddbc028e6dd57104368fefb0eb3e56c4b45b45f2575fa3580c20a28a9",
+      "bytes": 217746
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VISAHT-AHT": {
+      "sha256": "374bae75241492dd3526f8e9b4711af1dda0eef00f1b94f23defebe3cd5ace51",
+      "bytes": 404847
+    },
+    "KXATPCHALLENGERMATCH-26JUL19YEVSTR-YEV": {
+      "sha256": "0b74d70ad979a9bd4905e690f2ea33aef29a32c5b798fff1d2e97e182342dcb6",
+      "bytes": 146595
+    },
+    "KXATPCHALLENGERMATCH-26JUL20CHABOU-BOU": {
+      "sha256": "d708344c5d5eff8d67937e23cff4550521c9dd0883ce56214a9a284ed93f84ae",
+      "bytes": 1273498
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ONCAJD-AJD": {
+      "sha256": "db4dbc4db3de1e44dd6e2602749cbc0a873a01639f177129666b0a67c7eedf94",
+      "bytes": 370970
+    },
+    "KXATPCHALLENGERMATCH-26JUL20PETTAB-TAB": {
+      "sha256": "5ce2fcdb309515cd8423cbb838f7abcc04dda372d9f765cdd6ae08712557fd6f",
+      "bytes": 202826
+    },
+    "KXATPCHALLENGERMATCH-26JUL20SEYKOL-SEY": {
+      "sha256": "4bc8a25276c1c91b3d1c312a98bf31c318ee85f2b4fb9a2e864c349586237b74",
+      "bytes": 367534
+    },
+    "KXATPCHALLENGERMATCH-26JUL20SURKUZ-KUZ": {
+      "sha256": "8fb061182d12771a13f6c0c0e53f80f004dd4b47a5142cafb74ff23cbceb5ebc",
+      "bytes": 503878
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ZHUMAL-ZHU": {
+      "sha256": "5b8f4e31989481d89b683a345af05c7f082f78ffa909ed0f66cb4fb986cc0c54",
+      "bytes": 216716
+    },
+    "KXATPMATCH-26JUL12DEJGAU-GAU": {
+      "sha256": "94753e6c546e359bc572571e5f129c58bcfa3efddac27fa1cd9b711ef9003ef8",
+      "bytes": 696150
+    },
+    "KXATPMATCH-26JUL12MOLROY-ROY": {
+      "sha256": "345860c39122114a0c31c58bcf187fe37754be68b843073f0c4f22837c7c837f",
+      "bytes": 468893
+    },
+    "KXATPMATCH-26JUL13FAUDAM-FAU": {
+      "sha256": "3499788484760b9cc5f36f818b5a657be621d70f43cbbf21f3d8f59eb87cb0d5",
+      "bytes": 559148
+    },
+    "KXATPMATCH-26JUL13SANDAN-SAN": {
+      "sha256": "fdae66925416add84f8e8b827c562355eaef1bbeb07d0c01f9dd208c8c1f3190",
+      "bytes": 457248
+    },
+    "KXATPMATCH-26JUL14CECBUR-CEC": {
+      "sha256": "99691812ed88b48bff90d859eb81947d24c81229a1f4ce661e20f6009cb95ed8",
+      "bytes": 522348
+    },
+    "KXATPMATCH-26JUL14CINHAL-CIN": {
+      "sha256": "19fa5ba306e7cbf5c66eba2abe59ee3ad1dcadf428bb577bf62d11295ad3d95c",
+      "bytes": 1012541
+    },
+    "KXATPMATCH-26JUL14GOMMCD-MCD": {
+      "sha256": "f0c6d612d70177bb0b4d3209091b4717c47be16a24f9ab251cc331e76a7a3339",
+      "bytes": 845153
+    },
+    "KXATPMATCH-26JUL14KYMDIE-DIE": {
+      "sha256": "350db16b9464169a5872d0eebb6fec8bc871e6c06822a9fb29cf65e2286c851a",
+      "bytes": 914470
+    },
+    "KXATPMATCH-26JUL14VANDAN-DAN": {
+      "sha256": "da0f02705316e8b100da943df724f78ca0afb3213300b88328a7b112d9a0c292",
+      "bytes": 515793
+    },
+    "KXATPMATCH-26JUL15BORDIM-DIM": {
+      "sha256": "731cc0b3ed2fa71effc1d9f852d3a882605b9cddcb1d7b0df95ee719a562984a",
+      "bytes": 497120
+    },
+    "KXATPMATCH-26JUL15BUBHAL-HAL": {
+      "sha256": "4763d4ca8d7bb4ab5671068b073b43768cb7abdfbfd1ae30a0d079cc585ee6f7",
+      "bytes": 3156520
+    },
+    "KXATPMATCH-26JUL15ETCMER-MER": {
+      "sha256": "87a70e36bccc078a91cb502315dfba0dd809b3ac71b0fa932764762652ccf223",
+      "bytes": 489880
+    },
+    "KXATPMATCH-26JUL15HANVAC-VAC": {
+      "sha256": "1857d1c7708d6b51fd7da394a176f913a24c68a1b33cc96205aab27b3366508f",
+      "bytes": 562758
+    },
+    "KXATPMATCH-26JUL15PRADZU-PRA": {
+      "sha256": "1aaf568bfe45bc98dd05e2daa014757ccae6e566f59d81e5d935c3029bc0a13a",
+      "bytes": 406587
+    },
+    "KXATPMATCH-26JUL15PRIMOL-MOL": {
+      "sha256": "eb10cb19e79bd7b0801db5fc88829575275c2c3bdf35294c0983902aa2e1b60a",
+      "bytes": 765706
+    },
+    "KXATPMATCH-26JUL15VANDRO-VAN": {
+      "sha256": "61ae8bd4dd092c2c5914d717983d4dfd981d66d9ae073d267fb24d61f1edb6d9",
+      "bytes": 674525
+    },
+    "KXATPMATCH-26JUL16DEJBAE-BAE": {
+      "sha256": "05e85ddd71d908317b814da68b74a28006006760d79b20aa671201c3c76379d8",
+      "bytes": 447709
+    },
+    "KXATPMATCH-26JUL16DZUARN-DZU": {
+      "sha256": "71c38217d2474298f6f25efd0f2bd9fc62c8f7451cdf8958541069cfaf5c30bb",
+      "bytes": 1463938
+    },
+    "KXATPMATCH-26JUL17BORDAR-BOR": {
+      "sha256": "026e4d93d3459cc2e47f2edd196c48e3101965a784c15c0cc6bb7d48501ece81",
+      "bytes": 782824
+    },
+    "KXATPMATCH-26JUL17CERRUU-RUU": {
+      "sha256": "0b772265ff8a7cde9b32ca20c91c638fb7685a21acc70254ae584b547f77fc3d",
+      "bytes": 991006
+    },
+    "KXATPMATCH-26JUL17COLVAC-COL": {
+      "sha256": "62eb2cd5074543f488e28756e152ffb7372e496c4320ee356c30036a1a91424e",
+      "bytes": 941639
+    },
+    "KXATPMATCH-26JUL17DZUMOL-DZU": {
+      "sha256": "f6352a6715f2be4936a9d7541feab28bc6954ca0ab2f810594fd34cb447e027a",
+      "bytes": 1149601
+    },
+    "KXATPMATCH-26JUL17RUBBAE-BAE": {
+      "sha256": "029ef187247720686ae4bf04e98b091e5b4c6abb8f0eac692441d2fefce777db",
+      "bytes": 556144
+    },
+    "KXATPMATCH-26JUL17VALTRA-TRA": {
+      "sha256": "2b89384c4dea22d12657393667bdedcab537fcf0f1b87577f58afeba61366f93",
+      "bytes": 703975
+    },
+    "KXATPMATCH-26JUL18CINMIC-MIC": {
+      "sha256": "a308a3f45344dc1d000f26820be03ac64ee35de7686e318b7a54af8f28f13e48",
+      "bytes": 400553
+    },
+    "KXATPMATCH-26JUL18MERDZU-DZU": {
+      "sha256": "ca13680c1160235888077f89c23fcec4335d861bcb7ce3742ea7456ef8fc6a13",
+      "bytes": 778917
+    },
+    "KXATPMATCH-26JUL18PELSIL-SIL": {
+      "sha256": "00aedc04700245f9cbef4ba253b5cd0e2d12e4c82141f0a47d3a8c2a6b741caf",
+      "bytes": 233467
+    },
+    "KXATPMATCH-26JUL19BAEKEC-BAE": {
+      "sha256": "b456971ed24ad3b7b200d91abf6f93e400fb0a49b183b8a182640ad713d9d3ed",
+      "bytes": 458001
+    },
+    "KXATPMATCH-26JUL19FELKOP-KOP": {
+      "sha256": "38928e22fe86ba84daba7774ee44261e7f48f2a33215572c6579246ac411c14c",
+      "bytes": 282271
+    },
+    "KXATPMATCH-26JUL19GAUCAR-GAU": {
+      "sha256": "f868bf1c4b96b137c92316d99e09ce6ad50fa7a3bc1532c9ebb3e1bbc6ab6ebd",
+      "bytes": 347204
+    },
+    "KXATPMATCH-26JUL19MULNAV-MUL": {
+      "sha256": "3972db9bc0d3f3559bb97434dc4962b9f6db7186ac822044104904b8a866c1d8",
+      "bytes": 558188
+    },
+    "KXATPMATCH-26JUL19TSICOL-COL": {
+      "sha256": "4adc458894acf2dd8ecd895c96d85ea6ae17ea62e5d1c612eacef7445377d802",
+      "bytes": 832158
+    },
+    "KXATPMATCH-26JUL19WAWBUR-WAW": {
+      "sha256": "48d7487750dc847781cdb7f626993a7176e87641cd9a4e42c79361636fbbc879",
+      "bytes": 523449
+    },
+    "KXATPMATCH-26JUL20ROCMAR-MAR": {
+      "sha256": "9aafd5b905b65ff75e3de806a0f25eec78f58498ce093eca1f9fefbc9a151000",
+      "bytes": 753944
+    },
+    "KXATPMATCH-26JUL20SCHROD-SCH": {
+      "sha256": "ddbc39472e31bba59317652e9a3f02c9ee7c66f4a85deb75deb81d98a066c11a",
+      "bytes": 224168
+    },
+    "KXWTACHALLENGERMATCH-26JUL14BASFRI-FRI": {
+      "sha256": "6ff780320585e35b4b3553d1c22441211b6806aa213fd762a2c6c4ecf20f0312",
+      "bytes": 453085
+    },
+    "KXWTACHALLENGERMATCH-26JUL14CARVON-CAR": {
+      "sha256": "2c83a4ff1d0099134fa1b9e8bbc8cbba0488e35ff22c76f392469357dd3fd1bf",
+      "bytes": 705755
+    },
+    "KXWTACHALLENGERMATCH-26JUL14COLPAL-PAL": {
+      "sha256": "b6c3afc03d4d9db150a5a09e7c7bafcb6b54ac0a3f43cf5d1e9b7d5100e3ea06",
+      "bytes": 1036089
+    },
+    "KXWTACHALLENGERMATCH-26JUL14KOSRUG-RUG": {
+      "sha256": "0c0f72cb762f4c48867650ab245dbe669d732cdb33bf22a8ebab2dc2422472c6",
+      "bytes": 251268
+    },
+    "KXWTACHALLENGERMATCH-26JUL14PIGSAM-PIG": {
+      "sha256": "9f47acdfe43c65c7eb33173ffdf1e8448125cd588a8afc8b1184886fccb19eb6",
+      "bytes": 1263037
+    },
+    "KXWTACHALLENGERMATCH-26JUL16KOVRIE-KOV": {
+      "sha256": "949f2fb2c81ee81cf88b9e9cd90704f4bec4f2602d4e0455414348b994cccc43",
+      "bytes": 1184251
+    },
+    "KXWTACHALLENGERMATCH-26JUL17GRAVAN-VAN": {
+      "sha256": "0a640645abb679e6068edce403f17d6699a851b3a96dbf4d89d2f3cc75b069f8",
+      "bytes": 580390
+    },
+    "KXWTACHALLENGERMATCH-26JUL18RENGIA-GIA": {
+      "sha256": "c91526641b387b1d579fd0df08c88683751abbf31b45352e8173ac8f41209aec",
+      "bytes": 1019634
+    },
+    "KXWTACHALLENGERMATCH-26JUL18TONSPI-SPI": {
+      "sha256": "86df07e05a59ff9f5fd588f9c982e2a7110df06e216fa683ee8f5036ae70f876",
+      "bytes": 25286
+    },
+    "KXWTACHALLENGERMATCH-26JUL19RENTON-TON": {
+      "sha256": "eb712b76fe27a312e127b3f3e95d3b91fff6b592ec328f0d0fdf262bbd928159",
+      "bytes": 427323
+    },
+    "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT": {
+      "sha256": "2be0939b391851d9426d92429b1d11c2a289bb6aaa4e1b2fc155eb0493a6bba1",
+      "bytes": 543998
+    },
+    "KXWTAMATCH-26JUL13AMAHER-HER": {
+      "sha256": "fd8233b88a6882d447f814d3a3ae65513408860a556e269eadd2939ca9de8b75",
+      "bytes": 334176
+    },
+    "KXWTAMATCH-26JUL13GRAPAR-GRA": {
+      "sha256": "a7d8781fe93102070c0877df9407fe271431dd59a90661937d2243c0a59c6f47",
+      "bytes": 670011
+    },
+    "KXWTAMATCH-26JUL13PODMAR-MAR": {
+      "sha256": "038cb110fc64cc0d5e663f37db415cfb915d4c7648a1b567f561a975142045db",
+      "bytes": 1087437
+    },
+    "KXWTAMATCH-26JUL13TIMANN-ANN": {
+      "sha256": "e7aeaebd4e843b905712b41e4d71cc045c38a042add6efaf777b2f35ae39fec4",
+      "bytes": 606892
+    },
+    "KXWTAMATCH-26JUL14AMAJAC-AMA": {
+      "sha256": "59a2c947aab406232eddec53d0f585d0f2d1d4d4c155daf9c77de8940359c490",
+      "bytes": 667444
+    },
+    "KXWTAMATCH-26JUL14UDVROM-UDV": {
+      "sha256": "a6b09493ca5e3ddb6f39231c5f3a074e1bb7fbf5f86da9ca8dc83dd970583f54",
+      "bytes": 643024
+    },
+    "KXWTAMATCH-26JUL16KORANN-KOR": {
+      "sha256": "fdfac2fae0b507748816393491cf7cf54f0ffdbca579750d5ca3aecac65ed0d3",
+      "bytes": 608074
+    },
+    "KXWTAMATCH-26JUL16VALSAS-SAS": {
+      "sha256": "462a82da1a8c24451ff9278f46fa964fc26c877f53e54fb0581149d0984b94c8",
+      "bytes": 465978
+    },
+    "KXWTAMATCH-26JUL17ZIDMAR-ZID": {
+      "sha256": "62ef90f455ea857c96cabf3d7a9a0695dd7ed0de33d3c25585ec47537ad55d8b",
+      "bytes": 797994
+    },
+    "KXWTAMATCH-26JUL18PODKRE-KRE": {
+      "sha256": "86343475dc832f47818e0ad6c0ad205bf8caf66c96a393449fa867c8490d3fad",
+      "bytes": 826929
+    },
+    "KXWTAMATCH-26JUL18SAKKOR-SAK": {
+      "sha256": "cb1b9725f9f985a8c6998a3cc7b6749b8e785480ec9ddf2e2a8d62a82da14518",
+      "bytes": 1062130
+    },
+    "KXWTAMATCH-26JUL19RUSKAZ-RUS": {
+      "sha256": "08e49183f36013b12ac9d860ddaa8c4727d7030a84a0d35fd6c4350914ac2449",
+      "bytes": 1128603
+    },
+    "KXWTAMATCH-26JUL20BARYUA-YUA": {
+      "sha256": "74fcfc33e72a9babfdb5375779d4a3e679613276a742614119ed18125860abd5",
+      "bytes": 484463
+    },
+    "KXWTAMATCH-26JUL20PARHON-PAR": {
+      "sha256": "c4c2070a51fccf7e89c2c3245af887b20b8f06250ab4740e6609f07a470a956b",
+      "bytes": 241960
+    }
+  }
+}

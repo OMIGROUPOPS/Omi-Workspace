@@ -1,0 +1,68 @@
+{
+  "files": {
+    "CONTROL_BINDING.json": {
+      "sha256": "1a5b2762a8bb087dc3eadef8364a470e92d4778daa9ac22dde1d536aac5e563e",
+      "bytes": 623
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "394db5819db7f2fa597602f7a31b6890842d28e440a7445effd7ae08efd9046b",
+      "bytes": 94
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4b12f0a87d0a5fd67d4c100c3f0f691d27ea6fa9f1cd44f32748fa0f1b456853",
+      "bytes": 258
+    },
+    "FRONTIER.json": {
+      "sha256": "0e055a71828850d9b1c53c6ef2868bc4faf838455611dc83dc22a1b82a2f150c",
+      "bytes": 120828
+    },
+    "LANDING_ESTIMATE_RECEIPTS.jsonl.gz": {
+      "sha256": "48afa8daae620493ce7dc9d5ce0cd404abb8a103718af15493a10342bcb2d8e2",
+      "bytes": 96598
+    },
+    "LANDING_ESTIMATOR_FIT.json": {
+      "sha256": "3549b2371c71adebf53dbb4ab4fbb7e695763bd0235b223bb089ecae05cf8911",
+      "bytes": 182512
+    },
+    "MISS_LEDGER_1608.jsonl.gz": {
+      "sha256": "635d2020be7a962cb5966445fb879576daf16a1f53fc1fce591906ac632ff647",
+      "bytes": 111929
+    },
+    "MISS_LEDGER_CONSERVATION.json": {
+      "sha256": "54310dff5ce0406fdf9e6d80a64fbe0a27d58cfa077653fc2190f5dfccace822",
+      "bytes": 587
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "4595da02ce20f43d80983bd5aefe6dd8f0a77b156decf81b5bd35ef198f3010d",
+      "bytes": 17318
+    },
+    "REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "8316864177339542bf84ec14c3ceb3e4bd80e46b1616714a5aa8c92b0b502ea5",
+      "bytes": 25819
+    },
+    "REPORT.md": {
+      "sha256": "17982fffc9019a2b6d5f8197a1068b4ed238015657f948fc6aad6a5741d4970a",
+      "bytes": 645
+    },
+    "RULINGS_RECEIPT.json": {
+      "sha256": "f34fc8f636e6bab07957b4c91198ce2575d627296330e08a563edcbf4eff6970",
+      "bytes": 538
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "c3874f25f6aa89d82a379849075da587c9480c9a774f52d8cb59d588e5175f4f",
+      "bytes": 21021
+    },
+    "V17_X_RELATION_CROSS_CHECK.json": {
+      "sha256": "2ff13ce6279fe55b46a7cfc981f35c905273990024f499df1f56b5b239aa1662",
+      "bytes": 177
+    },
+    "V24_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "d02f6cc0f61c133d5ace54ee2ed7886bd97a45b4a69e2e031f2f7507c2e3a5e4",
+      "bytes": 3090555
+    },
+    "V24_LEG_LEDGER.jsonl.gz": {
+      "sha256": "cbca0ab638f6fc8119135d8f8d28dbc03596b0d09dd1547a6775cc415f637393",
+      "bytes": 2899808
+    }
+  }
+}

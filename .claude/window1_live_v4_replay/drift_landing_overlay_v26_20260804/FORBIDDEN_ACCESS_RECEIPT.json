@@ -1,0 +1,15 @@
+{
+  "development_only": true,
+  "population_events": 804,
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "forecast_regression": false,
+  "clock_trigger": false
+}

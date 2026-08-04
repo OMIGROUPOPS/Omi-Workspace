@@ -1,0 +1,11 @@
+{
+  "overlay_law": "V23_BYTE_IDENTICAL_WHERE_AUTHORITY_ABSENT; OVERLAY_NEVER_BLOCKS_VETOES_OR_REPLACES_A_V23_ACTION",
+  "V23_event_sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+  "V26_event_sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+  "V23_leg_sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+  "V26_leg_sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+  "authorized_cells": [],
+  "changed_leg_streams": 0,
+  "identical_leg_streams": 1608,
+  "unauthorized_changed_streams": 0
+}

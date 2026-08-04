@@ -1,0 +1,11 @@
+{
+  "denominator": 1608,
+  "rows": 1608,
+  "unique_leg_identities": 1608,
+  "addresses": {
+    "CAPTURED": 920,
+    "DIED_INCUMBENT_NO_ACTION": 581,
+    "DIED_ACTED_NOT_CREDITED": 107
+  },
+  "conserved": true
+}

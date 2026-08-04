@@ -1,0 +1,552 @@
+{
+  "read_law": "BID_ASK_LAST_WITH_SPREAD_DWELL; QUALIFIED_IFF_SPREAD<=S_CELL_AND_DWELL>=10S_AND_DISPLAYED_CAPACITY>=5",
+  "fit_law": "LANDING_ESTIMATE=QUALIFIED_BID+TRAINING_ONLY_CELL_DRIFT; S_CELL WALK_FORWARD CHOSEN_FROM 1/2/3C BY Q30_PINBALL_LOSS; MIN_N=30; NO_POOLING",
+  "authority_bar": {
+    "non_overestimate_rate_min": 0.7,
+    "mean_overestimate_when_wrong_max_cents": 2,
+    "must_beat_naive_bid_same_asymmetric_loss": true,
+    "qualified_coverage_required": true
+  },
+  "analysis_candidate_cells": [
+    "ATP_CHALL|51_75",
+    "ATP_MAIN|51_75",
+    "WTA_CHALL|51_75",
+    "WTA_CHALL|ge76",
+    "WTA_MAIN|51_75"
+  ],
+  "authorized_cells": [],
+  "cells": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 261,
+      "validation_n": 204,
+      "qualified_read_coverage": 0.7816091954022989,
+      "non_overestimate_rate": 0.7843137254901961,
+      "wrong_n": 44,
+      "mean_overestimate_when_wrong_cents": 6.931818181818182,
+      "estimator_asymmetric_loss": 1.6465686274509812,
+      "naive_bid_asymmetric_loss": 1.6039215686274528,
+      "selected_spreads": {
+        "1": 152,
+        "2": 52
+      },
+      "drift_distribution": {
+        "denominator": 204,
+        "numeric_n": 204,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "candidate_cell_from_analysis_seat": true,
+      "population_legs": 252,
+      "validation_n": 193,
+      "qualified_read_coverage": 0.7658730158730159,
+      "non_overestimate_rate": 0.7461139896373057,
+      "wrong_n": 49,
+      "mean_overestimate_when_wrong_cents": 4.448979591836735,
+      "estimator_asymmetric_loss": 1.471502590673575,
+      "naive_bid_asymmetric_loss": 1.5067357512953377,
+      "selected_spreads": {
+        "1": 193
+      },
+      "drift_distribution": {
+        "denominator": 193,
+        "numeric_n": 193,
+        "null_n": 0,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "MEAN_SHORTFALL_WHEN_WRONG_ABOVE_2C"
+        ]
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 101,
+      "validation_n": 59,
+      "qualified_read_coverage": 0.5841584158415841,
+      "non_overestimate_rate": 0.7457627118644068,
+      "wrong_n": 15,
+      "mean_overestimate_when_wrong_cents": 6.933333333333334,
+      "estimator_asymmetric_loss": 1.615254237288136,
+      "naive_bid_asymmetric_loss": 1.6610169491525417,
+      "selected_spreads": {
+        "1": 23,
+        "3": 36
+      },
+      "drift_distribution": {
+        "denominator": 59,
+        "numeric_n": 59,
+        "null_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 124,
+      "validation_n": 80,
+      "qualified_read_coverage": 0.6451612903225806,
+      "non_overestimate_rate": 0.6875,
+      "wrong_n": 25,
+      "mean_overestimate_when_wrong_cents": 2.12,
+      "estimator_asymmetric_loss": 1.1574999999999993,
+      "naive_bid_asymmetric_loss": 1.1087499999999992,
+      "selected_spreads": {
+        "1": 42,
+        "2": 38
+      },
+      "drift_distribution": {
+        "denominator": 80,
+        "numeric_n": 80,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 110,
+      "validation_n": 62,
+      "qualified_read_coverage": 0.5636363636363636,
+      "non_overestimate_rate": 0.7258064516129032,
+      "wrong_n": 17,
+      "mean_overestimate_when_wrong_cents": 5.176470588235294,
+      "estimator_asymmetric_loss": 1.5354838709677419,
+      "naive_bid_asymmetric_loss": 1.4983870967741935,
+      "selected_spreads": {
+        "1": 62
+      },
+      "drift_distribution": {
+        "denominator": 62,
+        "numeric_n": 62,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "candidate_cell_from_analysis_seat": true,
+      "population_legs": 111,
+      "validation_n": 62,
+      "qualified_read_coverage": 0.5585585585585585,
+      "non_overestimate_rate": 0.8387096774193549,
+      "wrong_n": 10,
+      "mean_overestimate_when_wrong_cents": 2.4,
+      "estimator_asymmetric_loss": 1.3499999999999999,
+      "naive_bid_asymmetric_loss": 1.3290322580645162,
+      "selected_spreads": {
+        "1": 62
+      },
+      "drift_distribution": {
+        "denominator": 62,
+        "numeric_n": 62,
+        "null_n": 0,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "MEAN_SHORTFALL_WHEN_WRONG_ABOVE_2C",
+          "DOES_NOT_BEAT_NAIVE_QUALIFIED_BID"
+        ]
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 27,
+      "validation_n": 0,
+      "qualified_read_coverage": 0,
+      "non_overestimate_rate": null,
+      "wrong_n": 0,
+      "mean_overestimate_when_wrong_cents": 0,
+      "estimator_asymmetric_loss": null,
+      "naive_bid_asymmetric_loss": null,
+      "selected_spreads": {},
+      "drift_distribution": {
+        "denominator": 0,
+        "numeric_n": 0,
+        "null_n": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 46,
+      "validation_n": 1,
+      "qualified_read_coverage": 0.021739130434782608,
+      "non_overestimate_rate": 1,
+      "wrong_n": 0,
+      "mean_overestimate_when_wrong_cents": 0,
+      "estimator_asymmetric_loss": 13.2,
+      "naive_bid_asymmetric_loss": 13.2,
+      "selected_spreads": {
+        "2": 1
+      },
+      "drift_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 96,
+      "validation_n": 54,
+      "qualified_read_coverage": 0.5625,
+      "non_overestimate_rate": 0.7777777777777778,
+      "wrong_n": 12,
+      "mean_overestimate_when_wrong_cents": 32.083333333333336,
+      "estimator_asymmetric_loss": 6.851851851851854,
+      "naive_bid_asymmetric_loss": 6.781481481481483,
+      "selected_spreads": {
+        "2": 54
+      },
+      "drift_distribution": {
+        "denominator": 54,
+        "numeric_n": 54,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "candidate_cell_from_analysis_seat": true,
+      "population_legs": 87,
+      "validation_n": 46,
+      "qualified_read_coverage": 0.5287356321839081,
+      "non_overestimate_rate": 0.8260869565217391,
+      "wrong_n": 8,
+      "mean_overestimate_when_wrong_cents": 8.5,
+      "estimator_asymmetric_loss": 2.4630434782608686,
+      "naive_bid_asymmetric_loss": 2.589130434782607,
+      "selected_spreads": {
+        "1": 10,
+        "2": 36
+      },
+      "drift_distribution": {
+        "denominator": 46,
+        "numeric_n": 46,
+        "null_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "MEAN_SHORTFALL_WHEN_WRONG_ABOVE_2C"
+        ]
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "candidate_cell_from_analysis_seat": true,
+      "population_legs": 44,
+      "validation_n": 9,
+      "qualified_read_coverage": 0.20454545454545456,
+      "non_overestimate_rate": 0.7777777777777778,
+      "wrong_n": 2,
+      "mean_overestimate_when_wrong_cents": 1.5,
+      "estimator_asymmetric_loss": 0.8333333333333334,
+      "naive_bid_asymmetric_loss": 0.911111111111111,
+      "selected_spreads": {
+        "1": 9
+      },
+      "drift_distribution": {
+        "denominator": 9,
+        "numeric_n": 9,
+        "null_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "VALIDATION_MIN_N_NOT_MET"
+        ]
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 45,
+      "validation_n": 14,
+      "qualified_read_coverage": 0.3111111111111111,
+      "non_overestimate_rate": 0.8571428571428571,
+      "wrong_n": 2,
+      "mean_overestimate_when_wrong_cents": 8,
+      "estimator_asymmetric_loss": 2.664285714285714,
+      "naive_bid_asymmetric_loss": 2.15,
+      "selected_spreads": {
+        "3": 14
+      },
+      "drift_distribution": {
+        "denominator": 14,
+        "numeric_n": 14,
+        "null_n": 0,
+        "min": -7,
+        "p25": -7,
+        "median": -6,
+        "p75": -6,
+        "p90": -1,
+        "max": -1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 86,
+      "validation_n": 48,
+      "qualified_read_coverage": 0.5581395348837209,
+      "non_overestimate_rate": 0.5208333333333334,
+      "wrong_n": 23,
+      "mean_overestimate_when_wrong_cents": 4.391304347826087,
+      "estimator_asymmetric_loss": 1.8604166666666664,
+      "naive_bid_asymmetric_loss": 1.8604166666666664,
+      "selected_spreads": {
+        "3": 48
+      },
+      "drift_distribution": {
+        "denominator": 48,
+        "numeric_n": 48,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "candidate_cell_from_analysis_seat": true,
+      "population_legs": 87,
+      "validation_n": 46,
+      "qualified_read_coverage": 0.5287356321839081,
+      "non_overestimate_rate": 0.8260869565217391,
+      "wrong_n": 8,
+      "mean_overestimate_when_wrong_cents": 4.25,
+      "estimator_asymmetric_loss": 1.3,
+      "naive_bid_asymmetric_loss": 1.4260869565217387,
+      "selected_spreads": {
+        "1": 46
+      },
+      "drift_distribution": {
+        "denominator": 46,
+        "numeric_n": 46,
+        "null_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "MEAN_SHORTFALL_WHEN_WRONG_ABOVE_2C"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 52,
+      "validation_n": 16,
+      "qualified_read_coverage": 0.3076923076923077,
+      "non_overestimate_rate": 0.8125,
+      "wrong_n": 3,
+      "mean_overestimate_when_wrong_cents": 1.6666666666666667,
+      "estimator_asymmetric_loss": 0.42499999999999993,
+      "naive_bid_asymmetric_loss": 0.5375,
+      "selected_spreads": {
+        "1": 16
+      },
+      "drift_distribution": {
+        "denominator": 16,
+        "numeric_n": 16,
+        "null_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "candidate_cell_from_analysis_seat": false,
+      "population_legs": 79,
+      "validation_n": 24,
+      "qualified_read_coverage": 0.3037974683544304,
+      "non_overestimate_rate": 0.7083333333333334,
+      "wrong_n": 7,
+      "mean_overestimate_when_wrong_cents": 2.2857142857142856,
+      "estimator_asymmetric_loss": 0.6791666666666666,
+      "naive_bid_asymmetric_loss": 0.6791666666666666,
+      "selected_spreads": {
+        "1": 23,
+        "3": 1
+      },
+      "drift_distribution": {
+        "denominator": 24,
+        "numeric_n": 24,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "authority": {
+        "authorized": false,
+        "reasons": [
+          "NOT_ANALYSIS_SEAT_CANDIDATE_CELL"
+        ]
+      }
+    }
+  ]
+}

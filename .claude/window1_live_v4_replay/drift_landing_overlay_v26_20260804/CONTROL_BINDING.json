@@ -1,0 +1,26 @@
+{
+  "incumbent": "V23",
+  "incumbent_joint": 45,
+  "incumbent_carried": 88,
+  "analysis_seat_commit": "d07a9813cf96f78631a2b22a6b11b95593742f61",
+  "analysis_landing_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LANDING_PREDICTABILITY_LEGS.csv",
+  "analysis_landing_sha256": "7271878ca60f2e9a779b88ea4a70feeb105beec1f7f44d15ae3773d7d6bfd8d9",
+  "analysis_miss_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MISS_LEDGER_V23_1608.csv",
+  "analysis_miss_sha256": "5bb9240b2c5d06cc9b6aeb5fe995f7f9d134ad5bf90ba6bbea75f93e2257c511",
+  "exact_start_training_exclusions": [
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "KXATPMATCH-26JUL12LAJVAN",
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+    "KXWTAMATCH-26JUL20KORJIM"
+  ],
+  "candidate_authority_cells": [
+    "ATP_CHALL|51_75",
+    "ATP_MAIN|51_75",
+    "WTA_CHALL|51_75",
+    "WTA_CHALL|ge76",
+    "WTA_MAIN|51_75"
+  ],
+  "drift_sign_pooling": false,
+  "elapsed_time_pair_input": false
+}

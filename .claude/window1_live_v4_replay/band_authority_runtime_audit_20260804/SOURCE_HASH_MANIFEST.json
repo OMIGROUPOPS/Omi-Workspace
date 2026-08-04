@@ -1,0 +1,50 @@
+{
+  "git_objects": [
+    {
+      "identity": "fd4abec0f3d464634ee1d61ac02f6c977c41fb3c:arb-executor/live_v4.py",
+      "git_blob": "f1857199164664037fef41b024e60f27fa373548",
+      "bytes": 997352,
+      "sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54"
+    },
+    {
+      "identity": "fd4abec0f3d464634ee1d61ac02f6c977c41fb3c:arb-executor/config/deploy_v5_live.json",
+      "git_blob": "d36e9e76e3608a300cebf59e9487b49bef4f930b",
+      "bytes": 5037,
+      "sha256": "3d5b07af10523e9b724f019dc367e4cf74b93f4dd66c0ff7bed0d347c72722a1"
+    },
+    {
+      "identity": "fd623dd042da2f1dfb9479c8a759c8c610672215:.claude/ops_schedule_liar_controlled_stop_20260728/OPERATIONAL_STOP_REPORT.md",
+      "bytes": 5164,
+      "sha256": "f2aa843a53cfe787210f37abddc28ebe4184761501753dd50ee93d5595acd97a"
+    },
+    {
+      "identity": "e59aa4cc711a972cd12f5a664394d9cb45fe2e6c:arb-executor/data/durable/exit_surface_gated_optima/LOCKED_DOWN.md",
+      "git_blob": "f9c114672c5acdce827d5adb45755530ba818c4f",
+      "bytes": 6270,
+      "sha256": "bd28613ee55d09e2ba98ba23e75bda048752e1a9dc9086916e1817a58092d8f3"
+    }
+  ],
+  "sealed_runtime_parquets": [
+    {
+      "path": "arb-executor/data/durable/exit_surface_gated_optima/atp_main_adaptive_exit_bands.parquet",
+      "bytes": 4034,
+      "sha256": "c9a44fdde0235226ce6b7e63bd03aa506311b2b94e8853b945368b1c7a3b5c8f"
+    },
+    {
+      "path": "arb-executor/data/durable/exit_surface_gated_optima/wta_main_adaptive_exit_bands.parquet",
+      "bytes": 4028,
+      "sha256": "94e9a4f2baf0ffe2cb08af10bd6e2e347d15e0a1afd519c048c49d5f9b86a60e"
+    },
+    {
+      "path": "arb-executor/data/durable/exit_surface_gated_optima/atp_chall_adaptive_exit_bands.parquet",
+      "bytes": 4023,
+      "sha256": "3e6eb5a6e5706cec9a63e612a19812e57522fc1bdd620e165b85c5fb117f4a88"
+    },
+    {
+      "path": "arb-executor/data/durable/exit_surface_gated_optima/wta_chall_adaptive_exit_bands.parquet",
+      "bytes": 4033,
+      "sha256": "3bd995b7328e0119a152c87073f06815096932879948c92862721f1f13a61258"
+    }
+  ],
+  "hash_note": "Git-object hashes use repository LF bytes. Windows checkout hashes can differ by CRLF conversion."
+}

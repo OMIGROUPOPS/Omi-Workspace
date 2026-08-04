@@ -1,0 +1,76 @@
+{
+  "audit": "BAND_AUTHORITY_RUNTIME_AUDIT",
+  "captured_utc": "2026-08-04T16:21:21Z",
+  "verdict": "GATED_OPTIMA_SELECTED; SPIKE_MAP_IS_INACTIVE_FALLBACK",
+  "engine_state": "STOPPED",
+  "live_process_count": 0,
+  "last_executed_engine": {
+    "vps_head_at_stop": "fd4abec0f3d464634ee1d61ac02f6c977c41fb3c",
+    "live_v4_git_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "live_v4_sha256": "834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54",
+    "live_v4_bytes": 997352,
+    "config_git_blob": "d36e9e76e3608a300cebf59e9487b49bef4f930b",
+    "config_sha256": "3d5b07af10523e9b724f019dc367e4cf74b93f4dd66c0ff7bed0d347c72722a1",
+    "config_bytes": 5037,
+    "command": "python3 -u live_v4.py",
+    "environment_override_observed_in_command": false,
+    "resolved_exit_table_dir": "data/durable/exit_surface_gated_optima/"
+  },
+  "last_executed_source_receipts": {
+    "config_default": "arb-executor/live_v4.py:305-308",
+    "loader": "arb-executor/live_v4.py:4704-4737",
+    "inactive_missing_key_fallback": "arb-executor/live_v4.py:4712",
+    "consumer": "arb-executor/live_v4.py:5046-5059",
+    "selected_config_key": "arb-executor/config/deploy_v5_live.json:33"
+  },
+  "current_stopped_vps": {
+    "head": "1fafcebc28c30f16bcefad6c41eee076d8e2c016",
+    "head_live_v4_blob": "f1857199164664037fef41b024e60f27fa373548",
+    "worktree_live_v4_blob": "c25cd3129248710a665d77eb815a9df6a93c9009",
+    "worktree_live_v4_sha256": "25698d80642524c70f39d850ef0a7041edda6df9c4d2dbac0c666d58aab56a63",
+    "worktree_live_v4_bytes": 1025887,
+    "worktree_config_blob": "38bd5d6383da7b217ad8bd643bfa74448a747f5a",
+    "worktree_config_sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f",
+    "worktree_config_bytes": 5305,
+    "worktree_status": [
+      "M arb-executor/config/deploy_v5_live.json",
+      "M arb-executor/live_v4.py"
+    ],
+    "loader": "arb-executor/live_v4.py:5074",
+    "inactive_missing_key_fallback": "arb-executor/live_v4.py:5082",
+    "consumer": "arb-executor/live_v4.py:5416",
+    "selected_config_key": "arb-executor/config/deploy_v5_live.json:33",
+    "resolved_exit_table_dir_if_booted_by_the_frozen_command": "data/durable/exit_surface_gated_optima/",
+    "mutation_by_this_audit": false
+  },
+  "sealed_runtime_parquets": {
+    "ATP_MAIN": "c9a44fdde0235226ce6b7e63bd03aa506311b2b94e8853b945368b1c7a3b5c8f",
+    "WTA_MAIN": "94e9a4f2baf0ffe2cb08af10bd6e2e347d15e0a1afd519c048c49d5f9b86a60e",
+    "ATP_CHALL": "3e6eb5a6e5706cec9a63e612a19812e57522fc1bdd620e165b85c5fb117f4a88",
+    "WTA_CHALL": "3bd995b7328e0119a152c87073f06815096932879948c92862721f1f13a61258"
+  },
+  "conditional_spike_branch": {
+    "antecedent": "runtime selected data/durable/spike_volatility_map/",
+    "antecedent_true": false,
+    "cell_by_cell_diff_executed": false,
+    "post_2026_06_15_fill_reclassification_executed": false,
+    "reason": "The selected runtime surface is already the sealed surface. Actual-versus-sealed lookup is identical; the requested conditional branch does not apply.",
+    "actual_vs_sealed_different_fill_count_under_proven_binding": 0
+  },
+  "proposed_hardening": {
+    "status": "REPORT_ONLY_NOT_APPLIED",
+    "old": "rel_dir = self.config.get(\"exit_table_dir\", \"data/durable/spike_volatility_map/\")",
+    "new": "rel_dir = self.config.get(\"exit_table_dir\", \"data/durable/exit_surface_gated_optima/\")",
+    "semantic_effect_on_current_config": "NONE",
+    "note": "The runtime loader consumes sealed parquets. The provenance CSVs use a different schema and cannot be substituted literally by a one-line path edit."
+  },
+  "forbidden_actions": {
+    "live_source_edit": false,
+    "config_edit": false,
+    "deployment": false,
+    "restart": false,
+    "cron_restore": false,
+    "order_or_position_access": false,
+    "order_or_position_mutation": false
+  }
+}

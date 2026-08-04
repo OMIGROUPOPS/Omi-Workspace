@@ -1,0 +1,14 @@
+REPORT ONLY - NOT APPLIED
+
+--- a/arb-executor/live_v4.py
++++ b/arb-executor/live_v4.py
+@@
+-        rel_dir = self.config.get("exit_table_dir", "data/durable/spike_volatility_map/")
++        rel_dir = self.config.get("exit_table_dir", "data/durable/exit_surface_gated_optima/")
+
+This changes only the missing-key fallback. The selected production config
+already names exit_surface_gated_optima, so deployed semantics are unchanged.
+
+The sealed CSVs are provenance/build inputs. _load_exit_table reads the four
+sealed *_adaptive_exit_bands.parquet runtime artifacts; a literal CSV path is
+not compatible with its pyarrow/parquet schema.

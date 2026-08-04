@@ -1,0 +1,25 @@
+{
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/BAND_AUTHORITY_RUNTIME_AUDIT.md",
+      "bytes": 3425,
+      "sha256": "b6ad7bd0ba0e96ee815051d50ae0f913b47d838cd6c1dc6672f211524b0d6d61"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/RUNTIME_BINDING_RECEIPT.json",
+      "bytes": 3844,
+      "sha256": "85382c38a1d2e6a1d91427e1b494092d8d8f6a7115c15f3725fbfb047f6328e8"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/PROPOSED_ONE_LINE_HARDENING.diff",
+      "bytes": 635,
+      "sha256": "f416c1396a273c7346c971ba867133fe82fda155a6e2c000c7e0ad36a03a2a81"
+    },
+    {
+      "path": "arb-executor/docs/research/window1/WINDOW1_BAND_AUTHORITY_RUNTIME_AUDIT_VAULT_ADDENDUM.md",
+      "bytes": 1251,
+      "sha256": "da8c24bf556af942ae84040e86072d8eb96559da094774d83e0be7f0892509e6"
+    }
+  ],
+  "self_excluded": true
+}

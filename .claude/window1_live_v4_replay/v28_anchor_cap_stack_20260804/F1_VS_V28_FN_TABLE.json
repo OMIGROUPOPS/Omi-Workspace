@@ -1,0 +1,828 @@
+{
+  "law": "FIRST_FLAG_FALSE_NEGATIVE_IFF_LATER_QUALIFYING_ASK_FLOOR_IS_STRICTLY_BELOW_OWN_AUDITED_CLOSE",
+  "F1_trace_sha256": "1cca7a03af965f4bb564463b7ed1e69dc94fa5e9ef5523281726d19041de3e36",
+  "F1_layer_totals": [
+    {
+      "layer": "ADMISSION",
+      "stopped_legs": 90,
+      "false_negative_neg_delta_available_past_flag": 23,
+      "predicates": {
+        "SOURCE_UNAVAILABLE": 90
+      }
+    },
+    {
+      "layer": "ANCHOR",
+      "stopped_legs": 6,
+      "false_negative_neg_delta_available_past_flag": 2,
+      "predicates": {
+        "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 5,
+        "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+      }
+    },
+    {
+      "layer": "COMPLETION",
+      "stopped_legs": 481,
+      "false_negative_neg_delta_available_past_flag": 258,
+      "predicates": {
+        "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 457,
+        "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 22,
+        "COMPLETED_PAIR_NOT_STRICTLY_UNDER_PAR": 2
+      }
+    },
+    {
+      "layer": "FILL",
+      "stopped_legs": 133,
+      "false_negative_neg_delta_available_past_flag": 62,
+      "predicates": {
+        "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 107,
+        "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 26
+      }
+    },
+    {
+      "layer": "IDENTITY",
+      "stopped_legs": 16,
+      "false_negative_neg_delta_available_past_flag": 5,
+      "predicates": {
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 15,
+        "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+      }
+    },
+    {
+      "layer": "PLACEMENT_CAP",
+      "stopped_legs": 188,
+      "false_negative_neg_delta_available_past_flag": 94,
+      "predicates": {
+        "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 188
+      }
+    },
+    {
+      "layer": "SIBLING_PAIR",
+      "stopped_legs": 50,
+      "false_negative_neg_delta_available_past_flag": 27,
+      "predicates": {
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 50
+      }
+    },
+    {
+      "layer": "VERDICT",
+      "stopped_legs": 116,
+      "false_negative_neg_delta_available_past_flag": 35,
+      "predicates": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 58,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 58
+      }
+    }
+  ],
+  "V28_layer_totals": [
+    {
+      "layer": "ADMISSION",
+      "stopped_legs": 90,
+      "false_negative_neg_delta_available_past_flag": 23,
+      "predicates": {
+        "SOURCE_UNAVAILABLE": 90
+      }
+    },
+    {
+      "layer": "ANCHOR",
+      "stopped_legs": 6,
+      "false_negative_neg_delta_available_past_flag": 2,
+      "predicates": {
+        "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 5,
+        "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+      }
+    },
+    {
+      "layer": "COMPLETION",
+      "stopped_legs": 450,
+      "false_negative_neg_delta_available_past_flag": 237,
+      "predicates": {
+        "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 426,
+        "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 22,
+        "COMPLETED_PAIR_NOT_STRICTLY_UNDER_PAR": 2
+      }
+    },
+    {
+      "layer": "FILL",
+      "stopped_legs": 133,
+      "false_negative_neg_delta_available_past_flag": 62,
+      "predicates": {
+        "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 107,
+        "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 26
+      }
+    },
+    {
+      "layer": "IDENTITY",
+      "stopped_legs": 16,
+      "false_negative_neg_delta_available_past_flag": 5,
+      "predicates": {
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 15,
+        "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+      }
+    },
+    {
+      "layer": "PLACEMENT_CAP",
+      "stopped_legs": 157,
+      "false_negative_neg_delta_available_past_flag": 78,
+      "predicates": {
+        "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 157
+      }
+    },
+    {
+      "layer": "SIBLING_PAIR",
+      "stopped_legs": 50,
+      "false_negative_neg_delta_available_past_flag": 27,
+      "predicates": {
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 50
+      }
+    },
+    {
+      "layer": "VERDICT",
+      "stopped_legs": 116,
+      "false_negative_neg_delta_available_past_flag": 35,
+      "predicates": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 58,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 58
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "layer": "ADMISSION",
+      "F1_stopped_legs": 90,
+      "V28_stopped_legs": 90,
+      "stopped_delta": 0,
+      "F1_false_negative": 23,
+      "V28_false_negative": 23,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "BOOK",
+      "F1_stopped_legs": 0,
+      "V28_stopped_legs": 0,
+      "stopped_delta": 0,
+      "F1_false_negative": 0,
+      "V28_false_negative": 0,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "IDENTITY",
+      "F1_stopped_legs": 16,
+      "V28_stopped_legs": 16,
+      "stopped_delta": 0,
+      "F1_false_negative": 5,
+      "V28_false_negative": 5,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "FLOOR",
+      "F1_stopped_legs": 0,
+      "V28_stopped_legs": 0,
+      "stopped_delta": 0,
+      "F1_false_negative": 0,
+      "V28_false_negative": 0,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "VERDICT",
+      "F1_stopped_legs": 116,
+      "V28_stopped_legs": 116,
+      "stopped_delta": 0,
+      "F1_false_negative": 35,
+      "V28_false_negative": 35,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "ANCHOR",
+      "F1_stopped_legs": 6,
+      "V28_stopped_legs": 6,
+      "stopped_delta": 0,
+      "F1_false_negative": 2,
+      "V28_false_negative": 2,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "SIBLING_PAIR",
+      "F1_stopped_legs": 50,
+      "V28_stopped_legs": 50,
+      "stopped_delta": 0,
+      "F1_false_negative": 27,
+      "V28_false_negative": 27,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "PLACEMENT_CAP",
+      "F1_stopped_legs": 188,
+      "V28_stopped_legs": 157,
+      "stopped_delta": -31,
+      "F1_false_negative": 94,
+      "V28_false_negative": 78,
+      "false_negative_delta": -16
+    },
+    {
+      "layer": "FILL",
+      "F1_stopped_legs": 133,
+      "V28_stopped_legs": 133,
+      "stopped_delta": 0,
+      "F1_false_negative": 62,
+      "V28_false_negative": 62,
+      "false_negative_delta": 0
+    },
+    {
+      "layer": "COMPLETION",
+      "F1_stopped_legs": 481,
+      "V28_stopped_legs": 450,
+      "stopped_delta": -31,
+      "F1_false_negative": 258,
+      "V28_false_negative": 237,
+      "false_negative_delta": -21
+    }
+  ],
+  "category_detail": {
+    "F1": [
+      {
+        "layer": "ADMISSION",
+        "category": "ATP_CHALL",
+        "stopped_legs": 40,
+        "false_negative_neg_delta_available_past_flag": 14,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 40
+        }
+      },
+      {
+        "layer": "ADMISSION",
+        "category": "ATP_MAIN",
+        "stopped_legs": 14,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 14
+        }
+      },
+      {
+        "layer": "ADMISSION",
+        "category": "WTA_CHALL",
+        "stopped_legs": 6,
+        "false_negative_neg_delta_available_past_flag": 4,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 6
+        }
+      },
+      {
+        "layer": "ADMISSION",
+        "category": "WTA_MAIN",
+        "stopped_legs": 30,
+        "false_negative_neg_delta_available_past_flag": 4,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 30
+        }
+      },
+      {
+        "layer": "ANCHOR",
+        "category": "ATP_CHALL",
+        "stopped_legs": 1,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+        }
+      },
+      {
+        "layer": "ANCHOR",
+        "category": "WTA_CHALL",
+        "stopped_legs": 2,
+        "false_negative_neg_delta_available_past_flag": 0,
+        "predicates": {
+          "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1,
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+        }
+      },
+      {
+        "layer": "ANCHOR",
+        "category": "WTA_MAIN",
+        "stopped_legs": 3,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 3
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "ATP_CHALL",
+        "stopped_legs": 220,
+        "false_negative_neg_delta_available_past_flag": 129,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 210,
+          "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 8,
+          "COMPLETED_PAIR_NOT_STRICTLY_UNDER_PAR": 2
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "ATP_MAIN",
+        "stopped_legs": 80,
+        "false_negative_neg_delta_available_past_flag": 46,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 80
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "WTA_CHALL",
+        "stopped_legs": 89,
+        "false_negative_neg_delta_available_past_flag": 41,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 85,
+          "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 4
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "WTA_MAIN",
+        "stopped_legs": 92,
+        "false_negative_neg_delta_available_past_flag": 42,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 82,
+          "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 10
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "ATP_CHALL",
+        "stopped_legs": 83,
+        "false_negative_neg_delta_available_past_flag": 44,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 64,
+          "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 19
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "ATP_MAIN",
+        "stopped_legs": 13,
+        "false_negative_neg_delta_available_past_flag": 6,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 13
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "WTA_CHALL",
+        "stopped_legs": 26,
+        "false_negative_neg_delta_available_past_flag": 7,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 19,
+          "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 7
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "WTA_MAIN",
+        "stopped_legs": 11,
+        "false_negative_neg_delta_available_past_flag": 5,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 11
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "ATP_CHALL",
+        "stopped_legs": 7,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 7
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "ATP_MAIN",
+        "stopped_legs": 3,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "WTA_CHALL",
+        "stopped_legs": 5,
+        "false_negative_neg_delta_available_past_flag": 3,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 4,
+          "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "WTA_MAIN",
+        "stopped_legs": 1,
+        "false_negative_neg_delta_available_past_flag": 0,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "ATP_CHALL",
+        "stopped_legs": 56,
+        "false_negative_neg_delta_available_past_flag": 26,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 56
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "ATP_MAIN",
+        "stopped_legs": 47,
+        "false_negative_neg_delta_available_past_flag": 28,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 47
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "WTA_CHALL",
+        "stopped_legs": 42,
+        "false_negative_neg_delta_available_past_flag": 17,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 42
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "WTA_MAIN",
+        "stopped_legs": 43,
+        "false_negative_neg_delta_available_past_flag": 23,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 43
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "ATP_CHALL",
+        "stopped_legs": 30,
+        "false_negative_neg_delta_available_past_flag": 19,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 30
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "ATP_MAIN",
+        "stopped_legs": 5,
+        "false_negative_neg_delta_available_past_flag": 3,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 5
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "WTA_CHALL",
+        "stopped_legs": 12,
+        "false_negative_neg_delta_available_past_flag": 4,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 12
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "WTA_MAIN",
+        "stopped_legs": 3,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "ATP_CHALL",
+        "stopped_legs": 53,
+        "false_negative_neg_delta_available_past_flag": 24,
+        "predicates": {
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 32,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 21
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "ATP_MAIN",
+        "stopped_legs": 16,
+        "false_negative_neg_delta_available_past_flag": 6,
+        "predicates": {
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 12,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 4
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "WTA_CHALL",
+        "stopped_legs": 16,
+        "false_negative_neg_delta_available_past_flag": 3,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 12,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 4
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "WTA_MAIN",
+        "stopped_legs": 31,
+        "false_negative_neg_delta_available_past_flag": 2,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 21,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 10
+        }
+      }
+    ],
+    "V28": [
+      {
+        "layer": "ADMISSION",
+        "category": "ATP_CHALL",
+        "stopped_legs": 40,
+        "false_negative_neg_delta_available_past_flag": 14,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 40
+        }
+      },
+      {
+        "layer": "ADMISSION",
+        "category": "ATP_MAIN",
+        "stopped_legs": 14,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 14
+        }
+      },
+      {
+        "layer": "ADMISSION",
+        "category": "WTA_CHALL",
+        "stopped_legs": 6,
+        "false_negative_neg_delta_available_past_flag": 4,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 6
+        }
+      },
+      {
+        "layer": "ADMISSION",
+        "category": "WTA_MAIN",
+        "stopped_legs": 30,
+        "false_negative_neg_delta_available_past_flag": 4,
+        "predicates": {
+          "SOURCE_UNAVAILABLE": 30
+        }
+      },
+      {
+        "layer": "ANCHOR",
+        "category": "ATP_CHALL",
+        "stopped_legs": 1,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+        }
+      },
+      {
+        "layer": "ANCHOR",
+        "category": "WTA_CHALL",
+        "stopped_legs": 2,
+        "false_negative_neg_delta_available_past_flag": 0,
+        "predicates": {
+          "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1,
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+        }
+      },
+      {
+        "layer": "ANCHOR",
+        "category": "WTA_MAIN",
+        "stopped_legs": 3,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 3
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "ATP_CHALL",
+        "stopped_legs": 213,
+        "false_negative_neg_delta_available_past_flag": 124,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 203,
+          "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 8,
+          "COMPLETED_PAIR_NOT_STRICTLY_UNDER_PAR": 2
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "ATP_MAIN",
+        "stopped_legs": 69,
+        "false_negative_neg_delta_available_past_flag": 38,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 69
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "WTA_CHALL",
+        "stopped_legs": 80,
+        "false_negative_neg_delta_available_past_flag": 35,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 76,
+          "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 4
+        }
+      },
+      {
+        "layer": "COMPLETION",
+        "category": "WTA_MAIN",
+        "stopped_legs": 88,
+        "false_negative_neg_delta_available_past_flag": 40,
+        "predicates": {
+          "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 78,
+          "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 10
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "ATP_CHALL",
+        "stopped_legs": 83,
+        "false_negative_neg_delta_available_past_flag": 44,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 64,
+          "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 19
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "ATP_MAIN",
+        "stopped_legs": 13,
+        "false_negative_neg_delta_available_past_flag": 6,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 13
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "WTA_CHALL",
+        "stopped_legs": 26,
+        "false_negative_neg_delta_available_past_flag": 7,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 19,
+          "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 7
+        }
+      },
+      {
+        "layer": "FILL",
+        "category": "WTA_MAIN",
+        "stopped_legs": 11,
+        "false_negative_neg_delta_available_past_flag": 5,
+        "predicates": {
+          "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 11
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "ATP_CHALL",
+        "stopped_legs": 7,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 7
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "ATP_MAIN",
+        "stopped_legs": 3,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "WTA_CHALL",
+        "stopped_legs": 5,
+        "false_negative_neg_delta_available_past_flag": 3,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 4,
+          "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+        }
+      },
+      {
+        "layer": "IDENTITY",
+        "category": "WTA_MAIN",
+        "stopped_legs": 1,
+        "false_negative_neg_delta_available_past_flag": 0,
+        "predicates": {
+          "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "ATP_CHALL",
+        "stopped_legs": 49,
+        "false_negative_neg_delta_available_past_flag": 24,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 49
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "ATP_MAIN",
+        "stopped_legs": 36,
+        "false_negative_neg_delta_available_past_flag": 20,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 36
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "WTA_CHALL",
+        "stopped_legs": 33,
+        "false_negative_neg_delta_available_past_flag": 12,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 33
+        }
+      },
+      {
+        "layer": "PLACEMENT_CAP",
+        "category": "WTA_MAIN",
+        "stopped_legs": 39,
+        "false_negative_neg_delta_available_past_flag": 22,
+        "predicates": {
+          "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 39
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "ATP_CHALL",
+        "stopped_legs": 30,
+        "false_negative_neg_delta_available_past_flag": 19,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 30
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "ATP_MAIN",
+        "stopped_legs": 5,
+        "false_negative_neg_delta_available_past_flag": 3,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 5
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "WTA_CHALL",
+        "stopped_legs": 12,
+        "false_negative_neg_delta_available_past_flag": 4,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 12
+        }
+      },
+      {
+        "layer": "SIBLING_PAIR",
+        "category": "WTA_MAIN",
+        "stopped_legs": 3,
+        "false_negative_neg_delta_available_past_flag": 1,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "ATP_CHALL",
+        "stopped_legs": 53,
+        "false_negative_neg_delta_available_past_flag": 24,
+        "predicates": {
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 32,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 21
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "ATP_MAIN",
+        "stopped_legs": 16,
+        "false_negative_neg_delta_available_past_flag": 6,
+        "predicates": {
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 12,
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 4
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "WTA_CHALL",
+        "stopped_legs": 16,
+        "false_negative_neg_delta_available_past_flag": 3,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 12,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 4
+        }
+      },
+      {
+        "layer": "VERDICT",
+        "category": "WTA_MAIN",
+        "stopped_legs": 31,
+        "false_negative_neg_delta_available_past_flag": 2,
+        "predicates": {
+          "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 21,
+          "ALL_SURVIVING_SHAPES_SAY_LOWER": 10
+        }
+      }
+    ]
+  }
+}

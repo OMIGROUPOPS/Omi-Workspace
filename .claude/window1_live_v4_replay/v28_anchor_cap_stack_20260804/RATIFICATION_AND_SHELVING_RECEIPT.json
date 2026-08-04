@@ -1,0 +1,31 @@
+{
+  "ratified": {
+    "mechanism": "FIX1_ANCHOR_REARM",
+    "status": "OPERATIVE_NEW_FLOOR",
+    "joint": 62,
+    "source_commit": "0a5a3a9f50b17a60e5718d918aa8e5a9429aa62a",
+    "source_receipt_sha256": "45d745d37aaa41ac88d5ccb654d3a7eee8280e877a6bce61cf2b79f7211f0ae4"
+  },
+  "stacked_candidate": {
+    "name": "V28_F1_PLUS_F2",
+    "components": [
+      "FIX1_ANCHOR_REARM",
+      "FIX2_CAP_REARM"
+    ],
+    "disposition": "V28_SURVIVES_F1_JOINT_FLOOR_PENDING_OPERATOR_RATIFICATION"
+  },
+  "shelved_not_deleted": [
+    {
+      "mechanism": "FIX3_VERDICT_FALSIFIABILITY",
+      "receipt_sha256": "4e53dc589c664e2f99f2d5c175eb16d5370a1bb821f8c0636095bdcddf3bd8bd"
+    },
+    {
+      "mechanism": "FIX4_ADMISSION_REASK",
+      "receipt_sha256": "ec073053d7774a0dc091ddd58c2431fa430f4875e833fe2826a24f6ea7110123"
+    }
+  ],
+  "excluded_from_V28": [
+    "FIX3_VERDICT_FALSIFIABILITY",
+    "FIX4_ADMISSION_REASK"
+  ]
+}

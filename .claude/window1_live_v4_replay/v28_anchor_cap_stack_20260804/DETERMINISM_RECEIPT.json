@@ -1,0 +1,7 @@
+{
+  "clean_builds": 2,
+  "byte_identical_payloads": true,
+  "payload_file_count": 16,
+  "payload_manifest_sha256": "78e78114859e00dc3bee4b47f19a40571f1dd77b37b6b3a6285bfc43e26055a8",
+  "run_paths_not_authoritative": true
+}

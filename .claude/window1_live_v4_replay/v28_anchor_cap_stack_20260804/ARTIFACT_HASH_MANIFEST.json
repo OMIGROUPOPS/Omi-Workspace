@@ -1,0 +1,72 @@
+{
+  "files": {
+    "CAP_REARM_RECEIPTS.json": {
+      "sha256": "734beaa70df3c41b6614bce460f0bd85d053d7503eb79a7f23835608e245b802",
+      "bytes": 91746
+    },
+    "CONTROL_SUMMARY.json": {
+      "sha256": "5e5a429aff2d75486dbc53a058d602aae2afa29e0a246bebc2b7b1f9a074c582",
+      "bytes": 1611
+    },
+    "DECISION_TRACE_1608.json": {
+      "sha256": "e2c01db8e90d94d0dd3297a8b097607dfa0d6bbae810aaea51308114df8b19e3",
+      "bytes": 8473370
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "5c4a64c169cce0c61b0b27b3ec93e2c729de1afd9f9c1ab2f08c77757c8e121b",
+      "bytes": 223
+    },
+    "DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "d59492125cdb1c0b601366c62686f6ec2e37c05fcdf6ea9406d1b6ca6c0e1090",
+      "bytes": 465312
+    },
+    "EVENT_LEDGER.jsonl.gz": {
+      "sha256": "6ef554cbf74a821b0fcf3e3b6046867df6f7e88811db81fb57bce33e61c65891",
+      "bytes": 3502728
+    },
+    "F1_VS_V28_FN_TABLE.json": {
+      "sha256": "f407a792cb35a13e0a1efa6976080ea17dd98890e4c25d8ca84b4072b0354741",
+      "bytes": 24546
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "33a41641128e80ceddc7f43d2f88a33244ff368a6d67d67e1a27ab1bb27a2bf4",
+      "bytes": 287
+    },
+    "FRONTIER.json": {
+      "sha256": "ceefb2ebeeb0941503860781497d26a3e05b96d50b1a16b7233fd9028046e27c",
+      "bytes": 23647
+    },
+    "LEG_LEDGER.jsonl.gz": {
+      "sha256": "a932582aaf18d405612f78f4b707c462b052edc7bc456ef3e0966d2c09d04169",
+      "bytes": 3326747
+    },
+    "RATIFICATION_AND_SHELVING_RECEIPT.json": {
+      "sha256": "b73181890d965b65a16815601df79c53db072ec402e10c6a5eb6f63c30b54688",
+      "bytes": 917
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "5e33ec2e578597d74cf291a8546ae07e81f9f5ed54163d1b115ae6c09f259358",
+      "bytes": 16267
+    },
+    "REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "0b536c68d8f7991c88c83972345eabecccacb80987d4b6a98d5da52f22e68f12",
+      "bytes": 20360
+    },
+    "REPORT.md": {
+      "sha256": "d6463a1b42a986651f48ca1639d30cdb67b94a86c8b2687f5f42e0b256190e0a",
+      "bytes": 409
+    },
+    "SCORECARD.json": {
+      "sha256": "8c3aeac8eb5baec556163980b06cbbe03fe356d705e7181f484452c27aaa6235",
+      "bytes": 35618
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "b99f1af7ebfa0551276a938ce9d6a9d5a275d011e980051ce5d7ed99e1c2dd00",
+      "bytes": 14880
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "8d8133dc23dda6ff7dd542b8fcf12b8975a2a2d21ce89c0de4fd1dec07f4b926",
+      "bytes": 530
+    }
+  }
+}

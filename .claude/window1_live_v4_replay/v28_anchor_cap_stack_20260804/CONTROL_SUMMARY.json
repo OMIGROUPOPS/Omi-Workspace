@@ -1,0 +1,61 @@
+{
+  "schema_version": "WINDOW1_V28_F1_F2_STACK",
+  "baseline": {
+    "mechanism": "RATIFIED_FIX1",
+    "joint": 62,
+    "score": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1142,
+      "credited_legs": 1009,
+      "completed_pairs": 276,
+      "pairs_under_par": 264,
+      "completed_pairs_close_unavailable": 1,
+      "both_legs_strictly_below_audited_close": 62,
+      "joint_objective_pairs": 62,
+      "strict_carried_pairs": 125,
+      "execution_floor_pair_passes": 95
+    }
+  },
+  "candidate": {
+    "score": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1173,
+      "credited_legs": 1040,
+      "completed_pairs": 307,
+      "pairs_under_par": 295,
+      "completed_pairs_close_unavailable": 1,
+      "both_legs_strictly_below_audited_close": 65,
+      "joint_objective_pairs": 65,
+      "strict_carried_pairs": 144,
+      "execution_floor_pair_passes": 100
+    },
+    "delta": {
+      "D": 0,
+      "legs": 0,
+      "acted_legs": 31,
+      "credited_legs": 31,
+      "completed_pairs": 31,
+      "pairs_under_par": 31,
+      "completed_pairs_close_unavailable": 0,
+      "both_legs_strictly_below_audited_close": 3,
+      "joint_objective_pairs": 3,
+      "strict_carried_pairs": 19,
+      "execution_floor_pair_passes": 5
+    },
+    "disposition": "V28_SURVIVES_F1_JOINT_FLOOR_PENDING_OPERATOR_RATIFICATION"
+  },
+  "conservation": {
+    "events": 804,
+    "legs": 1608,
+    "trace_rows": 1608
+  },
+  "cap_rearm": {
+    "targeted": 188,
+    "reused_frozen_no_return": 136,
+    "fresh_scans": 52,
+    "rearmed": 31
+  },
+  "fixes_3_4": "SHELVED_NOT_DELETED_AND_NOT_EXECUTED"
+}

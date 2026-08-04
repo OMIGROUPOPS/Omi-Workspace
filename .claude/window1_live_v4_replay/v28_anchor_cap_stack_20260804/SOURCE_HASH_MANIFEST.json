@@ -1,0 +1,330 @@
+{
+  "committed": {
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix1_anchor_residual/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "7f6d8004096bb5dd81ae9f3cfdc93b1434b180de1676b8e5224e38ca54566bfa",
+      "bytes": 3494427
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix1_anchor_residual/LEG_LEDGER.jsonl.gz": {
+      "sha256": "89952438db590de921082b1772deb4951990e91894c4475d33817c96bdeef193",
+      "bytes": 3318494
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix1_anchor_residual/DECISION_TRACE_1608.json": {
+      "sha256": "1cca7a03af965f4bb564463b7ed1e69dc94fa5e9ef5523281726d19041de3e36",
+      "bytes": 8563346
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix1_anchor_residual/SCORECARD.json": {
+      "sha256": "981b1a971857ee92aefeb4504dd2a5d9f4b17965beb1bf93073ec26e06bfe884",
+      "bytes": 35610
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix1_anchor_residual/REPAIR_RECEIPT.json": {
+      "sha256": "45d745d37aaa41ac88d5ccb654d3a7eee8280e877a6bce61cf2b79f7211f0ae4",
+      "bytes": 114208
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix2_cap_rearm/DECISION_TRACE_1608.json": {
+      "sha256": "9ae6e4b62dbf3f51fadd86b56a6a5b2a2f2de479a95bf20d815fdbeea422c66c",
+      "bytes": 9184774
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix2_cap_rearm/REPAIR_RECEIPT.json": {
+      "sha256": "9c0380d7caf4c9b4a2f8f62842910d9e73131420b8ef9ac4dd30725712f01edc",
+      "bytes": 51120
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix3_verdict_falsifiability/REPAIR_RECEIPT.json": {
+      "sha256": "4e53dc589c664e2f99f2d5c175eb16d5370a1bb821f8c0636095bdcddf3bd8bd",
+      "bytes": 127517
+    },
+    ".claude/window1_live_v4_replay/v23_isolated_rearms_v27_20260804/fix4_admission_reask/REPAIR_RECEIPT.json": {
+      "sha256": "ec073053d7774a0dc091ddd58c2431fa430f4875e833fe2826a24f6ea7110123",
+      "bytes": 38418
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b",
+      "bytes": 2479552
+    },
+    "arb-executor/analysis/window1_v28_anchor_cap_stack_policy.js": {
+      "sha256": "4ef9c5f1646f4b9934bb73dfeeac9a1cfd1f650775d8afd657ba96b325122538",
+      "bytes": 1828
+    },
+    "arb-executor/analysis/window1_v23_isolated_rearm_policies_v27.js": {
+      "sha256": "0a607f8a6b383df06b693d9f14ad95ff45bf2ac340050f1664143c43136375b9",
+      "bytes": 2939
+    },
+    "arb-executor/tests/test_window1_v28_anchor_cap_stack_policy.js": {
+      "sha256": "0e11a8c6a2d36e331f49e32120ca9bf6172e8662d25467854e48234ef1bafccb",
+      "bytes": 2086
+    },
+    "arb-executor/tests/test_window1_v28_anchor_cap_stack_package.js": {
+      "sha256": "911e76f7c65746d8346409fb8c7c7297bff41dcf32a2089e70d3e7c5d648404f",
+      "bytes": 3434
+    },
+    "arb-executor/analysis/build_window1_v28_anchor_cap_stack.js": {
+      "sha256": "a2dce98ca2f0da07119997fe269a17ad8321cb1fe1215aae0edea29b366c040e",
+      "bytes": 29351
+    }
+  },
+  "private_fit_tick_hashes": {
+    "KXATPCHALLENGERMATCH-26JUL12PALMAR-MAR": {
+      "sha256": "c3eca9bb04bf8b2b646b88edd7f404568629f03b1eab1de96fe4775156b1b560",
+      "bytes": 310119,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12SANSCH-SAN": {
+      "sha256": "9acaf245fd4d2254401fcd5b9b776de9458c667f87268318048233e36dca1038",
+      "bytes": 1749063,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13BOUGAN-GAN": {
+      "sha256": "d030f8c68cef360bc11106ed6ddb12316edbdf21b96aac0ca99b285ba42da9a5",
+      "bytes": 764010,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13BOUZHA-BOU": {
+      "sha256": "ac2f5b186395b597127b0682f6b696db78524d224590a0e949bd3c05a08d7844",
+      "bytes": 650196,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MAKSEY-SEY": {
+      "sha256": "0300bac0655a46f509998f9e849a364f22b61d122da58199831e15649eff45d4",
+      "bytes": 4474680,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16ALCANG-ANG": {
+      "sha256": "19cee325cbf524be580e7baca1ee7811288507180f14ff8c9860e6e030023e34",
+      "bytes": 188068,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17DRAGEA-DRA": {
+      "sha256": "859131b728612886e6eedd558b1daa3a0564869dbb21ddbb3887dd67596aea99",
+      "bytes": 702654,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18TOMJOH-TOM": {
+      "sha256": "c2c0e19486f1e36d13e953268349e556e0f70b2067d8496d48b10d994bbfd74e",
+      "bytes": 591581,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR": {
+      "sha256": "27383bc516c05a0857fa95cf456e4edb332f707a1136f03e8aca28fec09750ea",
+      "bytes": 806437,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19PAPROS-PAP": {
+      "sha256": "e26c76e88f266349c2ebb7e388f02d405908d5051e85b7c7f1659703edc689b2",
+      "bytes": 291433,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VISAHT-VIS": {
+      "sha256": "b3fd1b19a45477fe792456b8320253e1057d0cd54244acce8b7b30a84a55c980",
+      "bytes": 385972,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20SEYKOL-KOL": {
+      "sha256": "805315b4dc5f2323dcf71f520f690226512a7e73fe4871713965982ac9bb4112",
+      "bytes": 253013,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12CECOLI-OLI": {
+      "sha256": "a6eb436d8ac7339f70848c5a78462895f75abf4d0594d0fa8d44fe120b7a3b1c",
+      "bytes": 451783,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12DIEMON-MON": {
+      "sha256": "7568ab880890126a5310e743ce2c6af09d230b3d6546b1eda94e45232bfea3bc",
+      "bytes": 816120,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12KOPPRI-KOP": {
+      "sha256": "d300b9f596138293830b43f87beb80ffe1cd0148887db4e2ceca2654692d2c9c",
+      "bytes": 568984,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12MULSHE-MUL": {
+      "sha256": "84d9712e9dda444e0100928145234999798761655d197aad7ca3c78d4b2f7fd1",
+      "bytes": 1080757,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12PRASAI-SAI": {
+      "sha256": "2512d345bc929e605cdc5bc6d7d1b4d3f9daea67c21ec5ac230832d82601ce29",
+      "bytes": 447303,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12REJMID-MID": {
+      "sha256": "b32c9afc284674279e7e17f36483de83cd5db61aec04d018d9a82b1f1fd97546",
+      "bytes": 419608,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12SKASAC-SKA": {
+      "sha256": "6d8251d94fc645b3eec3d869582c99f8c75ab0d98c44e7b3ba240de0a8853610",
+      "bytes": 353520,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL13COLSKA-SKA": {
+      "sha256": "6661f97b8cf3ecaed22efeea590e10d3e3e7553ca3e2562a7890f1899c92ad87",
+      "bytes": 792549,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL13PASKRU-PAS": {
+      "sha256": "a37a28ae1d3410cffd9e1b7ab6af604c0a96f0e1aa63474b7d36711875e5c24a",
+      "bytes": 374898,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL14GOMMCD-MCD": {
+      "sha256": "f0c6d612d70177bb0b4d3209091b4717c47be16a24f9ab251cc331e76a7a3339",
+      "bytes": 845153,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL14NEUPRA-NEU": {
+      "sha256": "d6de5777eb5d58134eb33b9c62ef928aa21710d1b279376e52a1aefc4b9d5857",
+      "bytes": 326316,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL14RINTAB-RIN": {
+      "sha256": "9802e1e115a3c95377833acc1c6625a585f5dce74039dfd70e5d1416186ed056",
+      "bytes": 1153469,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL15BUBHAL-HAL": {
+      "sha256": "4763d4ca8d7bb4ab5671068b073b43768cb7abdfbfd1ae30a0d079cc585ee6f7",
+      "bytes": 3156520,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL15VANDRO-VAN": {
+      "sha256": "61ae8bd4dd092c2c5914d717983d4dfd981d66d9ae073d267fb24d61f1edb6d9",
+      "bytes": 674525,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL18PELSIL-SIL": {
+      "sha256": "00aedc04700245f9cbef4ba253b5cd0e2d12e4c82141f0a47d3a8c2a6b741caf",
+      "bytes": 233467,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL18RODCHE-CHE": {
+      "sha256": "bd0c463a947cc390325eb28bea9a004b4fb5a2f891d93cdec64d0f6355ae5433",
+      "bytes": 200185,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19FELKOP-KOP": {
+      "sha256": "38928e22fe86ba84daba7774ee44261e7f48f2a33215572c6579246ac411c14c",
+      "bytes": 282271,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19LUZTAB-LUZ": {
+      "sha256": "a5a99bd0f70e3e2b5f1e409a81b15edf44c3e5e2ad815ebd7960b744bd59062d",
+      "bytes": 450131,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19NEUHAN-NEU": {
+      "sha256": "7a3e3afcf66e815d8c1dc41e09c954e3c9b699b5a7a836ed450baf61264af18c",
+      "bytes": 179146,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL": {
+      "sha256": "f2764fee48d4b521eea0ce020ac1874944b561d5d36176466630bfce3539a53f",
+      "bytes": 426313,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12PANYOR-PAN": {
+      "sha256": "26e1b5b87443555df5feab6aecf7fffac3a62426579d6b9a2e6452dad6975244",
+      "bytes": 145321,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12SHITUR-TUR": {
+      "sha256": "56b7d89455a2b59be51a2e7ba3efe6304337f0a96e3b31293e1214a3c8393167",
+      "bytes": 205452,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13OKATAR-TAR": {
+      "sha256": "d5a0c00ff3092d9be96432f9e6e35161c3cfce7e258dffdc70f7928586d0a3ca",
+      "bytes": 579794,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13PENTHA-PEN": {
+      "sha256": "0cec199480efaa6d106db30b6d666d3028205043a758c221e7d73fe7eb238779",
+      "bytes": 1448742,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM": {
+      "sha256": "8846763c1cc824cbbbaa1d323906ec7e2b1051f1b4bf51137d9d85fcd6b9d179",
+      "bytes": 718783,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13RISPOH-RIS": {
+      "sha256": "a6d597589029629c860843a31305fd549d68d58fdd2acce7fa61d71f9d421db7",
+      "bytes": 301300,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14AKSVAL-VAL": {
+      "sha256": "6e2db0e9f5e7e4e18c67b74fe458fc8988ae8fd4c669d21303cb8e976ac72a2b",
+      "bytes": 583189,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14KHONUG-NUG": {
+      "sha256": "b0b42577a63eed8ec9b33d509239651d8c7e45c1ff2665cd022e0071e89919fb",
+      "bytes": 555134,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17CHIBRO-CHI": {
+      "sha256": "17c268dea25546dafa531c79138cb9532392afa8563f6f8b228e4386e85376e7",
+      "bytes": 898272,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17ERJFEI-FEI": {
+      "sha256": "45ca50a42acd6ff0c36862f4792451b0aab1b896b3ac6b18ab2282dfafe96954",
+      "bytes": 768633,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17VALFAL-FAL": {
+      "sha256": "e8a42d9617246e9e85b730f20340635bc42fc9a4bb9abaf0d27173aa035aa8ce",
+      "bytes": 791464,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17ZVOTAR-ZVO": {
+      "sha256": "65211e62110decf78915958ab76c09c06a3f1fee54c9a166e6545c2da9292218",
+      "bytes": 468135,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL12FETPIE-FET": {
+      "sha256": "a830c45b51d090d9704e02372b656380f1339a6b1c42330c655ab03ad73f246b",
+      "bytes": 1295451,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL12LEPBUR-LEP": {
+      "sha256": "336c71f9a722c225d53cd218d3b07de837f1640734f1c2435251ead356302f3d",
+      "bytes": 1258857,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL12OKAIPE-IPE": {
+      "sha256": "26439de7f129301d31163d67c554e4601d2392e14152053f18f85030cf0084d6",
+      "bytes": 292542,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13KUDSAK-SAK": {
+      "sha256": "fa82a181cfb51dff547b5fc967f4b4907bd2695ddb88370fb5c229d0e162499d",
+      "bytes": 1034667,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13TAUHIB-HIB": {
+      "sha256": "449b4f7edf289e7cbc9b60466a9e5ef6fecd306ff8530e518c95cb50375c1c5c",
+      "bytes": 522033,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL19MONPIE-PIE": {
+      "sha256": "6c4babbfb8e899bfb6c32a1ecc7dfcece80e1b3f2d767f54aa7687f43e908026",
+      "bytes": 1619066,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20OLISCH-SCH": {
+      "sha256": "85aabc960772ebd4ad19bc7b419485a5d46c3a7c508dd1387917e3186cc67a55",
+      "bytes": 589644,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20SEISNI-SEI": {
+      "sha256": "699b7cd61a66f75ea38222ec902093e8477a9531aeb3fde2dda9819d21ca8be2",
+      "bytes": 532756,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    }
+  }
+}

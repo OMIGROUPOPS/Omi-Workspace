@@ -1,5 +1,15 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-04 - V23/A NAKED-LEG DISPOSITION; SIMULTANEOUS CAP PATCH
+
+The sealed gated-optima exit surface governs a read-only post-fill walk of all naked credited legs: exact conservation is V23 `408+512=920`, A `942+245=1187`. V23 origins split 160 cap-abstention siblings / 352 other never-completed siblings; A has 245 other never-completed siblings. Band targets touch for 22 V23 and 9 A legs. On legally marked rows, band-or-edge totals are V23 -21¢/contract and A -139¢, but 23/13 post-fill edge marks are unavailable, so the full-book pay/wash/bleed comparison remains unresolved and unimputed. The separate 11-event simultaneous own-aim proxy patch arms all 11, yields 7 abstentions / 4 resting caps / 1 later credit, and moves V23 to 194 completed / 194 under par / 45 JOINT / 83 carried; JOINT is unchanged and completion falls by ten.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/arb-executor/docs/research/window1/WINDOW1_NAKED_LEG_DISPOSITION_V23_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/.claude/window1_live_v4_replay/naked_leg_disposition_v23_vs_a_20260804/DISPOSITION_DISTRIBUTIONS.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/.claude/window1_live_v4_replay/pair_cap_v23_simultaneous_proxy_patch_20260804/V23_VS_A.json
+
 ### 2026-08-04 - V23 IMMEDIATE PAIR CAP; AUDITED CLOSE RULER
 
 One isolated A/V20 replay now consumes the strictly earlier credited first-leg fill at second-leg placement: `leg2_bid <= 99 - leg1_fill`. It never chases; a cap below the current live bid abstains, while a cap resting at/above the live bid needs strictly later qualifying-ask evidence. On the independent 1,608-leg close audit, JOINT is V19 24, A 33, V23 45. The audit recovers 250 replay-null closes. V23 completes 204 pairs, 193 under par, 45 both below audited own closes, with 88 carried. V22 Phase 1 did not run: the current shape library emits no numeric close landing distribution in any category; its coverage is zero, and the separate 339-event climber-first hole is identity/order unresolved rather than a price estimator.

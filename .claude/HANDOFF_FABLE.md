@@ -1,6 +1,16 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## V23/A NAKED-LEG DISPOSITION + SIMULTANEOUS CAP PATCH - 2026-08-04
+
+Canonical band authority is the sealed gated-optima surface and true-print reach law. Conservation: V23 `408+512=920`; A `942+245=1187`. Band touch is 22/512 V23 and 9/245 A. Observed band-or-edge totals are V23 -21¢/contract and A -139¢, but 23/13 unmarked post-fill edges prevent a full-book verdict. The isolated 11-event own-aim proxy patch arms all simultaneous pairs: 7 abstain, 4 rest, 1 later credits; patched V23 is 194 completions, 194 under par, 45 JOINT, 83 carried. It does not supersede frozen V23 on JOINT and loses ten completions.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/arb-executor/docs/research/window1/WINDOW1_NAKED_LEG_DISPOSITION_V23_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/.claude/window1_live_v4_replay/naked_leg_disposition_v23_vs_a_20260804/NAKED_LEG_DISPOSITION_LEDGER.jsonl.gz
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/.claude/window1_live_v4_replay/pair_cap_v23_simultaneous_proxy_patch_20260804/SIMULTANEOUS_OWN_AIM_PROXY_PATCH_RECEIPT.json
+
 ## V23 IMMEDIATE PAIR CAP + AUDITED CLOSE RULER - 2026-08-04
 
 Frozen package `8b508215a10e8ed0950ff186e745c48b48c7d42d` implements one isolated A/V20 variant: after a strictly earlier credited first-leg fill, second-leg bid is capped at `99 - fill1`; it may rest only at/above the current live bid, never chases, and needs later qualifying-ask evidence. Audited-close JOINT is V19 24, A 33, V23 45. The ruler recovers 250 replay-null closes. V22 Phase 1 remains unbuilt: the current V13 library has zero numeric landing-estimate coverage and the V17 surface has a separate 339-event direction-identity hole.

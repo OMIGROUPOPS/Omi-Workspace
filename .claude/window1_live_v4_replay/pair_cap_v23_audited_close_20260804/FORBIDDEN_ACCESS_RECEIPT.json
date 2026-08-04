@@ -1,0 +1,14 @@
+{
+  "development_population_only": true,
+  "D": 804,
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "V22_phase1_execution": false
+}

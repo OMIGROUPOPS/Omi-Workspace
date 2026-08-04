@@ -1,0 +1,8 @@
+{
+  "base_variant": "A_V20",
+  "pair_cap_law": "AT STRICTLY LATER LEG2 PLACEMENT, CAP=99-CREDITED_LEG1_FILL; CAP MAY REST ONLY AT/ABOVE CURRENT LIVE BID; BELOW LIVE BID ABSTAINS; STRICTLY LATER QUALIFYING ASK REQUIRED; NO CHASE",
+  "audit_commit": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+  "audit_csv_sha256": "51d542d9c1f18c6b30b6bb5e8f458d9cf3adeebf1895399f8f7b2ba416836303",
+  "audit_summary_sha256": "a1b9047684f2be1a1942d40cae9c326501fbe3ad4219852bfedf586e1ecb67cf",
+  "V22_phase1_executed": false
+}

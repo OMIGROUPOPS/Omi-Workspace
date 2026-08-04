@@ -1,0 +1,8 @@
+{
+  "clean_builds": 2,
+  "compared_files": 15,
+  "byte_identical": true,
+  "mismatches": [],
+  "run1_hash": "909587b0d40d9ee0540bc4a4ad83e64bf32a9c8496f2713d4395843ed39b031e",
+  "run2_hash": "909587b0d40d9ee0540bc4a4ad83e64bf32a9c8496f2713d4395843ed39b031e"
+}

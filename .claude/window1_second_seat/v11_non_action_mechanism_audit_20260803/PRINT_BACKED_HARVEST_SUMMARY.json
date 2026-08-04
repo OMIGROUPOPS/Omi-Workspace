@@ -1,0 +1,91 @@
+{
+  "accounting": {
+    "total_disjoint": 359,
+    "held_side": {
+      "DEARER": 219,
+      "CHEAPER": 139,
+      "TIE": 1
+    },
+    "missing_event_TIE": [
+      {
+        "event": "KXWTAMATCH-26JUL17PUTSHE",
+        "bucket": "<=2h",
+        "held": "KXWTAMATCH-26JUL17PUTSHE-PUT",
+        "fill": "19"
+      }
+    ],
+    "zero_length_carries": {
+      "n": 19,
+      "band_touched_all_false": true,
+      "by_bucket": {
+        "<=1h": 17,
+        "<=8h": 1,
+        "<=2h": 1
+      },
+      "by_category": {
+        "ATP_CHALL": 8,
+        "ATP_MAIN": 7,
+        "WTA_CHALL": 2,
+        "WTA_MAIN": 2
+      },
+      "disposition": "counted in bucket conservation and band-touch denominators; net/MAE/MFE blank; band_touched=False by construction (empty carry window)"
+    }
+  },
+  "print_backed": {
+    "definition": "buyer-aggressed true print (taker_side=yes) at price_cents >= fill+X within [fill_ts, completion_ts]; taker_side=yes==BUY per dual-ledger aggressor law.",
+    "banded_events": 327,
+    "residency_bid_touch": 55,
+    "print_backed": 62,
+    "print_backed_not_bid": 7,
+    "bid_touch_not_print_backed": 0,
+    "by_bucket": {
+      "<=1h": {
+        "banded": 100,
+        "bid_touch": 14,
+        "print_backed": 17
+      },
+      "<=2h": {
+        "banded": 45,
+        "bid_touch": 7,
+        "print_backed": 8
+      },
+      "<=4h": {
+        "banded": 75,
+        "bid_touch": 10,
+        "print_backed": 12
+      },
+      "<=8h": {
+        "banded": 56,
+        "bid_touch": 9,
+        "print_backed": 9
+      },
+      ">8h": {
+        "banded": 51,
+        "bid_touch": 15,
+        "print_backed": 16
+      }
+    },
+    "by_category": {
+      "ATP_CHALL": {
+        "banded": 152,
+        "bid_touch": 19,
+        "print_backed": 23
+      },
+      "ATP_MAIN": {
+        "banded": 82,
+        "bid_touch": 20,
+        "print_backed": 22
+      },
+      "WTA_MAIN": {
+        "banded": 63,
+        "bid_touch": 7,
+        "print_backed": 7
+      },
+      "WTA_CHALL": {
+        "banded": 30,
+        "bid_touch": 9,
+        "print_backed": 10
+      }
+    }
+  }
+}

@@ -68,6 +68,10 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/win
 >
 > **Merge provenance:** consolidates JUNE_VAULT §0A–0E/§1/§4E–4I/§5 (canonical copy frozen on `blend/agent-derivation` @d2faa9c3), the two VAULT_PENDING docs, and the July working record (inventory: `.claude/INVENTORY.md`, 2026-07-07). Each surviving lesson appears ONCE, at its most-current form, with lineage. Every dead view is in RETIRED at the bottom — graves are findable, never re-discoverable as new insight.
 
+### 2026-08-04 · V23 OPERATIVE / THE CARRY HAS NO CLOCK / V24 LANDING BUILD REJECTED
+
+V23 remains the operative Window-1 baseline (`45` audited JOINT, `88` carried) and the non-regression floor. Pair lifecycle decisions may never use elapsed time: a mirror bid lives or dies only by its own book versus aim, causal read resolution, own fitted decline ordinal, and the guarded Window-1 boundary. V24's landing estimator and phased arming were built under that law, with causal walk-forward `q25/q50/q75`, five-game exclusion, `n=30` hierarchical pooling, unresolved-identity abstention, mirror own-decline release, and the V23 cap. The deterministic replay produced only `1` JOINT, so promotion is rejected and V23 remains operative. The exact 1,608-row miss ledger is frozen in `WINDOW1_V24_LANDING_ESTIMATOR_VAULT_ADDENDUM.md`.
+
 ---
 
 # FRONT PAGE — THE ENTRY DOCTRINE

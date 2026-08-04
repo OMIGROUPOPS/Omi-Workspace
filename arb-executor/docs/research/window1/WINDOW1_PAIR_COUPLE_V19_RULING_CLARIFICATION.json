@@ -1,0 +1,136 @@
+{
+  "schema_version": "WINDOW1_PAIR_COUPLE_V19_RULING_CLARIFICATION_V1",
+  "as_of_et": "2026-08-03",
+  "behavior_changed": false,
+  "conditional_rebuild_triggered": false,
+  "reason_no_rebuild": "The ordered structural path-family parent tier already exists for ATP_MAIN and WTA_MAIN. ATP_MAIN has no parent at n>=30; WTA_MAIN has two coherent n>=30 parents and six explicit borrows.",
+  "objective_joint": {
+    "law": "completed_pair && combined_entry_cents < 100 && both_legs_strictly_below_own_window1_close",
+    "denominator": 804,
+    "V11": {
+      "joint": 16,
+      "by_category": {
+        "ATP_CHALL": 12,
+        "ATP_MAIN": 3,
+        "WTA_CHALL": 1,
+        "WTA_MAIN": 0
+      },
+      "source_sha256": "4d6d28ebee2e37b82ca6bdbb0551838c0f3382d213e0dcd6b990150ca1e127d3"
+    },
+    "V19": {
+      "joint": 19,
+      "by_category": {
+        "ATP_CHALL": 15,
+        "ATP_MAIN": 3,
+        "WTA_CHALL": 1,
+        "WTA_MAIN": 0
+      },
+      "source_sha256": "ccda9bcd4c63c2d2f0cbc5c9eb939e4be3d3e568009bbe8840ab07f129e327cc"
+    },
+    "delta_V19_minus_V11": 3,
+    "ruling": "V19 exceeds V11 on the exact joint objective by 3; prior marginal-only comparison was incomplete."
+  },
+  "path_family_parent_audit": {
+    "ordered_role_law": "HIGH_LEG_PATH_FAMILY|LOW_LEG_PATH_FAMILY within category; price region is removed, role order is preserved.",
+    "minimum_n": 30,
+    "ATP_MAIN": {
+      "exact_couples": 17,
+      "parent_receipts_constructed": 4,
+      "parent_receipts": [
+        {
+          "parent": "INTERIM_PATH_01|INTERIM_PATH_01",
+          "n": 11,
+          "usable_for_signing": false
+        },
+        {
+          "parent": "INTERIM_PATH_01|INTERIM_PATH_02",
+          "n": 16,
+          "usable_for_signing": false
+        },
+        {
+          "parent": "INTERIM_PATH_02|INTERIM_PATH_01",
+          "n": 6,
+          "usable_for_signing": false
+        },
+        {
+          "parent": "INTERIM_PATH_02|INTERIM_PATH_02",
+          "n": 3,
+          "usable_for_signing": false
+        }
+      ],
+      "borrowed_couples": 0,
+      "specific_n16_couple": "ATP_MAIN_51_75_INTERIM_PATH_01_ORD_0|ATP_MAIN_26_50_INTERIM_PATH_02_ORD_1_2",
+      "specific_parent_membership": 16,
+      "all_coherent_non_remainder_exact_members_across_different_ordered_parent_keys": 36,
+      "claimed_38_reproduced": false,
+      "explanation": "The n=16 couple's only same ordered structural parent is PATH_01|PATH_02 and has n=16. Combining 11+16+6+3 would mix four different ordered path-family couples and totals 36, not 38. Cross-category or unordered pooling is not an existing ratified parent tier and was not silently introduced."
+    },
+    "WTA_MAIN": {
+      "exact_couples": 19,
+      "parent_receipts_constructed": 3,
+      "parent_receipts": [
+        {
+          "parent": "INTERIM_PATH_01|INTERIM_PATH_01",
+          "n": 35,
+          "usable_for_signing": true
+        },
+        {
+          "parent": "INTERIM_PATH_01|INTERIM_PATH_02",
+          "n": 40,
+          "usable_for_signing": true
+        },
+        {
+          "parent": "INTERIM_PATH_02|INTERIM_PATH_02",
+          "n": 1,
+          "usable_for_signing": false
+        }
+      ],
+      "borrowed_couples": 6,
+      "borrowed_event_members": 75
+    },
+    "ATP_CHALL_control": {
+      "exact_couple": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1|ATP_CHALL_26_50_INTERIM_PATH_02_ORD_2",
+      "exact_n": 22,
+      "borrowed_from": "INTERIM_PATH_01|INTERIM_PATH_02",
+      "parent_n": 43
+    },
+    "library_sha256": "73469a96ad2cf4627db9f274042e583b4e8fe2c196476f67ddece6a21e5b947b"
+  },
+  "unusable_remainder_touch_census": {
+    "grain": "distinct pair events among the 658 fitted events; exact couples are mutually exclusive",
+    "total_events": 230,
+    "total_exact_couples": 39,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 77,
+        "exact_couples": 12,
+        "pair_signable_events": 0
+      },
+      "ATP_MAIN": {
+        "events": 86,
+        "exact_couples": 11,
+        "pair_signable_events": 0
+      },
+      "WTA_CHALL": {
+        "events": 20,
+        "exact_couples": 4,
+        "pair_signable_events": 0
+      },
+      "WTA_MAIN": {
+        "events": 47,
+        "exact_couples": 12,
+        "pair_signable_events": 0
+      }
+    },
+    "can_UNUSABLE_REMAINDER_sign_in_pair_layer": false,
+    "mechanism": "familyOf(UNUSABLE_REMAINDER) is null; no remainder-touching couple has direct or borrowed authority.",
+    "fallback_law": "The pair layer abstains. Frozen V11 may still act independently, but UNUSABLE_REMAINDER is never the signing authority and never removes a V11 action."
+  },
+  "frontier_sha256": "1bff011e9a68a49f01f5c0e3b34d91b8c45437b14838138b631fd449bdd482a5",
+  "raw_sources": [
+    "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/persistence_floor_repair_v11_20260802/POPULATION_EVENT_LEDGER.jsonl.gz",
+    "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/pair_couple_abstention_v19_20260803/POPULATION_EVENT_LEDGER.jsonl.gz",
+    "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/pair_couple_v19_fit_20260803/PAIR_COUPLE_LIBRARY_V19.json",
+    "https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/pair_couple_abstention_v19_20260803/FRONTIER.json"
+  ]
+}

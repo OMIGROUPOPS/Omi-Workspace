@@ -45,6 +45,13 @@ test("Fix C later same-price qualified receipt settles LOWER", () => {
   assert.strictEqual(result.settlement.settlement_receipt_id, "r2");
 });
 
+test("Fix C later qualified ask above the refused floor settles LOWER", () => {
+  const result = advanceLowerSettlementC({ priorRefusal: { refused_ask: 40, timestamp: 100, receipt_id: "r1" }, currentAsk: 41, observedLow: 40, timestamp: 101, receiptId: "r2", dwellSeconds: 11, displayedAskSize: 5, requiredDwellSeconds: 10, requiredQuantity: 5, freshOwnBookReceipt: true, upperLevelsResolved: true });
+  assert.strictEqual(result.settled, true);
+  assert.strictEqual(result.settlement.refused_ask, 40);
+  assert.strictEqual(result.settlement.settlement_ask, 41);
+});
+
 test("Fix C never settles from the trigger receipt itself", () => {
   const result = advanceLowerSettlementC({ priorRefusal: { refused_ask: 40, timestamp: 100, receipt_id: "r1" }, currentAsk: 40, observedLow: 40, timestamp: 100, receiptId: "r1", dwellSeconds: 100, displayedAskSize: 50, requiredDwellSeconds: 10, requiredQuantity: 5, freshOwnBookReceipt: true, upperLevelsResolved: true });
   assert.strictEqual(result.settled, false);

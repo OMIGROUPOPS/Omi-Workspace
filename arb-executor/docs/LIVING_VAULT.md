@@ -2,7 +2,7 @@
 
 ### 2026-08-04 - WINDOW-1 ISOLATED REPAIRS V20
 
-Fix A and Fix C were replayed and scored separately on D=804 against frozen V19; no stacking. Fix A binds the current live ask to a fresh own-book receipt and re-arms the observed-low anchor within the operator-authorized one-cent starting tolerance. Fix C re-asks unanimous LOWER after a strictly later qualified same-price settlement receipt. The proposed mirror-sibling defect is false: the predicate reads the sibling ticker's own formed-book ask path, so no Fix B was built. WTA_MAIN's frozen V19 JOINT count remains zero and has a complete 152-event death ledger.
+Fix A and Fix C were replayed and scored separately on D=804 against frozen V19; no stacking. Fix A binds the current live ask to a fresh own-book receipt and re-arms the observed-low anchor within the operator-authorized one-cent starting tolerance. Fix C re-asks unanimous LOWER after a strictly later qualified ask at or above the refused floor. The proposed mirror-sibling defect is false: the predicate reads the sibling ticker's own formed-book ask path, so no Fix B was built. WTA_MAIN's frozen V19 JOINT count remains zero and has a complete 152-event death ledger.
 
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/arb-executor/docs/research/window1/WINDOW1_ISOLATED_REPAIRS_V20_VAULT_ADDENDUM.md
 

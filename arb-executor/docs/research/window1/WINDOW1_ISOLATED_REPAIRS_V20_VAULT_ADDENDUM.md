@@ -16,5 +16,5 @@ Rulings:
 
 1. Fix A is live-ask anchoring on a fresh own-book receipt. The one-cent starting tolerance is operator-authorized from the frozen 2026-08-03 holdout diagnostic, not fitted here.
 2. The mirror-sibling claim is false. The predicate reads the sibling ticker's own formed-book ask path. Fix B was not constructed.
-3. Fix C re-asks unanimous LOWER only after a strictly later qualified own-ask settlement receipt; it retains the inherited ten-second dwell and exact-five displayed-capacity laws.
+3. Fix C re-asks unanimous LOWER only after a strictly later qualified own-ask receipt at or above the refused floor; it retains the inherited ten-second dwell and exact-five displayed-capacity laws.
 4. V19 remains the mandatory non-regression floor for every isolated replay. Development evidence is not holdout validation and is not a market ceiling.

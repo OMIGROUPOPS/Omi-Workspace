@@ -61,19 +61,12 @@ function advanceLowerSettlementC({
   finiteInteger("requiredDwellSeconds", requiredDwellSeconds);
   finiteInteger("requiredQuantity", requiredQuantity);
   if (!Number.isFinite(timestamp)) throw new Error("timestamp must be finite");
-  const qualified = freshOwnBookReceipt
+  const supportQualified = freshOwnBookReceipt
     && upperLevelsResolved
-    && currentAsk === observedLow
     && dwellSeconds >= requiredDwellSeconds
     && displayedAskSize >= requiredQuantity;
-  if (!qualified) {
-    return {
-      anchor: priorRefusal,
-      settled: false,
-      reason: "LOWER_SETTLEMENT_SUPPORT_NOT_ESTABLISHED",
-    };
-  }
-  if (!priorRefusal || currentAsk < priorRefusal.refused_ask) {
+  if (!priorRefusal) {
+    if (!supportQualified || currentAsk !== observedLow) return { anchor: null, settled: false, reason: "LOWER_SETTLEMENT_SUPPORT_NOT_ESTABLISHED" };
     return {
       anchor: {
         refused_ask: currentAsk,
@@ -84,16 +77,8 @@ function advanceLowerSettlementC({
       reason: "LOWER_REFUSAL_ANCHOR_ESTABLISHED",
     };
   }
-  const strictlyLater = timestamp > priorRefusal.timestamp
-    || (timestamp === priorRefusal.timestamp && receiptId !== priorRefusal.receipt_id);
-  if (!strictlyLater) {
-    return {
-      anchor: priorRefusal,
-      settled: false,
-      reason: "LOWER_SETTLEMENT_REQUIRES_LATER_RECEIPT",
-    };
-  }
   if (currentAsk < priorRefusal.refused_ask) {
+    if (!supportQualified || currentAsk !== observedLow) return { anchor: priorRefusal, settled: false, reason: "LOWER_SETTLEMENT_SUPPORT_NOT_ESTABLISHED" };
     return {
       anchor: {
         refused_ask: currentAsk,
@@ -102,6 +87,22 @@ function advanceLowerSettlementC({
       },
       settled: false,
       reason: "LOWER_REFUSAL_ANCHOR_MOVED_DOWN",
+    };
+  }
+  if (!supportQualified) {
+    return {
+      anchor: priorRefusal,
+      settled: false,
+      reason: "LOWER_SETTLEMENT_SUPPORT_NOT_ESTABLISHED",
+    };
+  }
+  const strictlyLater = timestamp > priorRefusal.timestamp
+    || (timestamp === priorRefusal.timestamp && receiptId !== priorRefusal.receipt_id);
+  if (!strictlyLater) {
+    return {
+      anchor: priorRefusal,
+      settled: false,
+      reason: "LOWER_SETTLEMENT_REQUIRES_LATER_RECEIPT",
     };
   }
   return {

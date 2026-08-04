@@ -1,11 +1,11 @@
 {
   "files": {
     ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/ARTIFACT_HASH_MANIFEST.json": {
-      "sha256": "ca7e926a387996bfd6f7c00df2dedfe2406bc3830917c25f5bbf98795f43c9b2",
+      "sha256": "78f1d907ccf262a271188039bc3f2cc6fda9493a8f92f6b0de983bd331d5b4d6",
       "bytes": 1792
     },
     ".claude/window1_live_v4_replay/isolated_fix_c_shape_settlement_v20_20260804/ARTIFACT_HASH_MANIFEST.json": {
-      "sha256": "4541979385244c6d415d44dc1dd2016c6da7486b579a93c2bf797d21cd515e44",
+      "sha256": "2cac374a3a04c2d65cdfefd6ca72b88894a55291c57edf2b39e817f146e1f81d",
       "bytes": 1791
     },
     ".claude/window1_live_v4_replay/sibling_source_read_20260804/SIBLING_SOURCE_RECEIPT.json": {
@@ -17,7 +17,7 @@
       "bytes": 8539
     },
     "arb-executor/analysis/build_window1_isolated_repairs_v20_release.js": {
-      "sha256": "3f643da1588e3b34384b5d3ecf394fb1db4f0f9929da55e011b0a246b87fe26d",
+      "sha256": "8a3b437ca07a0764f7e201048c7f2ef0b8d945f7b543f4f8b09a4f4da1c55c80",
       "bytes": 7471
     },
     "arb-executor/tests/test_window1_isolated_repair_v20_package.js": {
@@ -25,12 +25,12 @@
       "bytes": 3818
     },
     "arb-executor/docs/research/window1/WINDOW1_ISOLATED_REPAIRS_V20_VAULT_ADDENDUM.md": {
-      "sha256": "1bdd4ea48ab29eb423df94d42c5a50114829b6aeb4ec3649c11ecbd10d93a0da",
-      "bytes": 2871
+      "sha256": "a14e39c1d32dd655551f93713ca47afe0012dc3e71d65aedd4359414632a3e26",
+      "bytes": 2890
     },
     "arb-executor/docs/LIVING_VAULT.md": {
-      "sha256": "20a551d8825884c6fbcb4c5b02b5928090c6c05fbf0e225b6a91fadad67d5fa1",
-      "bytes": 436993
+      "sha256": "64cd63db03e94c1f080332fa4825d8c16a913295c3a2e46a750bf9e3055c62ef",
+      "bytes": 436997
     },
     ".claude/HANDOFF_FABLE.md": {
       "sha256": "a7cb827bf2b13112feeba0552142a2fd12abbf3a796446b4dde9b70de489c90a",

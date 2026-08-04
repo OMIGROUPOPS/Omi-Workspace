@@ -1,6 +1,14 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## V22 INTENTIONAL PAIR BRAIN — PHASE-0 BLOCK - 2026-08-04
+
+V22 did not enter aim logic. Frozen V20-A closes reconcile 942/942 with zero mismatch, but 174 remain explicitly unavailable/ambiguous. The claimed 15 below-both-closes/fail-par pairs is corrected to 25 (`52 - 27`). The current replay has no first-fill pair cap. Decision-time own close remains NOT_BOUND and the maker floor is ex-post, so using either actual future surface would invalidate a causal replay. V20-A remains controlling pending lawful operator authority.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/arb-executor/docs/research/window1/WINDOW1_V22_PHASE0_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/intentional_pair_brain_v22_phase0_20260804/V22_CAUSAL_BLOCKER_RECEIPT.json
+
 ## FIX A MAKER-FLOOR CORRECTION - 2026-08-04
 
 Fix A's 337 recovered development legs are rescored against the controlling August-1 maker floor: the minimum of the qualifying ask with residency and the seller-aggressed traded low. The corrected score has 66 exact-floor legs, 168 one-cent gaps, 79 two-to-three-cent gaps, 13 four-to-nine-cent gaps, and 11 gaps of ten cents or more. The exact category-by-price-region partitions and leg identities are frozen here:

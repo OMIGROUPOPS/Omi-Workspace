@@ -1,0 +1,27 @@
+{
+  "schema_version": "WINDOW1_V22_PAIR_CAP_SOURCE_AUDIT_V1",
+  "result": "PAIR CAP: ABSENT",
+  "executable_replay_source": "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js",
+  "placement_source": {
+    "line": 479,
+    "operation": "price_cents = current row.ask",
+    "sibling_fill_consumed": false,
+    "combined_sum_cap_consumed": false
+  },
+  "pair_metadata_source": {
+    "line": 490,
+    "operation": "records pair identity and shape constraints only"
+  },
+  "v17_source": {
+    "file": "arb-executor/analysis/window1_second_leg_x_pricer_v17.js",
+    "first_fill_input_line": 50,
+    "role": "distributional hypothesis elimination only",
+    "hard_cap_99_minus_first_fill": false
+  },
+  "searched_cap_patterns": [
+    "/99\\s*-\\s*[^;\\n]*fill/i",
+    "/pair[_ ]cap/i",
+    "/combined[_ ]entry[_ ]cap/i"
+  ],
+  "matching_executable_paths": []
+}

@@ -1,0 +1,5 @@
+{
+  "required_clean_builds": 2,
+  "verification": "arb-executor/tests/test_window1_intentional_pair_brain_v22_phase0.js regenerates twice into distinct temporary directories and compares every byte",
+  "status": "PASS"
+}

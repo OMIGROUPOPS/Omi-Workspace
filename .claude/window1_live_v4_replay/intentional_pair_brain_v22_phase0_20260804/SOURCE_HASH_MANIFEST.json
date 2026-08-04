@@ -1,0 +1,44 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "d2b604c1756502e543bfdd1166496a618439a0ac53c010c8a5da2626ca011cc8",
+      "bytes": 3228976
+    },
+    ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "0c14003108dc2f9e7b9e162c1bffc2a1b2d069c7941885982a9468ed28dd2fb4",
+      "bytes": 3122608
+    },
+    ".claude/window1_t2_scoring_package_v3_prerun_20260728/FROZEN_WINDOW1_CLOSE_REFERENCE_LEDGER.jsonl.gz": {
+      "sha256": "3756773947d48cc2f718f90f8da2fb0a2462f35c567d50614c3318372b25a51c",
+      "bytes": 189041
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b",
+      "bytes": 2479552
+    },
+    ".claude/window1_live_v4_replay/expected_close_binding_20260801/CONTROL_BINDING.json": {
+      "sha256": "cd7e5fa43da8694bb9fa63d865c2a403bfa96bf951fd52669d63dc2dea1ed36d",
+      "bytes": 1089
+    },
+    ".claude/window1_live_v4_replay/expected_close_binding_20260801/DECISION_UNLOCK_RECEIPT.json": {
+      "sha256": "1de3df9f0a743a3eb16427ce83314ccefa63f0628593092cb1b5702820b0ba6e",
+      "bytes": 85443
+    },
+    ".claude/window1_live_v4_replay/second_leg_x_pricer_fit_v17_20260803/SECOND_LEG_X_CONDITIONAL_LIBRARY.json": {
+      "sha256": "e10ef0b819fb3f72fadaf54a4f9ca47383db53a680c078efdd9c14b50ea65b65",
+      "bytes": 626954
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "85908e1d94f8692417a7458047b1d863502e6c20338252ef4bdd5fa4381fb09c",
+      "bytes": 75518
+    },
+    "arb-executor/analysis/window1_second_leg_x_pricer_v17.js": {
+      "sha256": "6b8df50b46b2eae27f7f387c63fd238a419df0dc1e28d88fad55d1fc660b31d4",
+      "bytes": 5904
+    },
+    "arb-executor/analysis/build_window1_intentional_pair_brain_v22_phase0.js": {
+      "sha256": "bb8bdf45541efa460be4533266345b5b07f85800d312cd29818597987340b398",
+      "bytes": 23281
+    }
+  }
+}

@@ -1,5 +1,11 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-04 - V22 INTENTIONAL PAIR BRAIN BLOCKED AT PHASE 0
+
+The V20-A close ruler reconciles all 942 legs from 471 completed pairs to the audited reference contract with zero mismatch; unavailable and ambiguous closes remain unavailable. The prompt's 15-pair premise is corrected: frozen A has 52 both-below-close pairs and 27 JOINT pairs, so 25 event identities—not 15—are below both closes but fail par. `PAIR CAP: ABSENT`: the replay placement path does not consume the sibling fill. V22 stopped before aim logic because decision-time own close is explicitly NOT_BOUND/prohibited for 804 policy replay and the maker floor is ex-post. No future close or floor was leaked into a policy replay; V20-A remains controlling.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/arb-executor/docs/research/window1/WINDOW1_V22_PHASE0_VAULT_ADDENDUM.md
+
 ### 2026-08-04 - FIX A MAKER-FLOOR CORRECTION
 
 Fix A's 337 recovered development legs are now scored against the controlling August-1 maker floor, `min(qualifying ask with residency, seller-aggressed traded low)`, rather than the qualifying ask alone. The seller-aggressed component lowers the floor on 151 legs. Corrected placement regret is exact on 66 legs, one cent on 168, two-to-three cents on 79, four-to-nine cents on 13, and at least ten cents on 11; median one cent, p90 three cents. This corrects the reference surface only and does not change Fix A behavior.

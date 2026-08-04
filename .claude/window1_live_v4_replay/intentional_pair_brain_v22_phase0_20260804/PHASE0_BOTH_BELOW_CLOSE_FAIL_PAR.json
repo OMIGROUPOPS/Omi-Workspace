@@ -1,0 +1,2526 @@
+{
+  "prompt_expected_count": 15,
+  "frozen_A_both_below_close": 52,
+  "frozen_A_joint": 27,
+  "arithmetic_expected_count": 25,
+  "observed_event_count": 25,
+  "discrepancy": "PROMPT_15_UNDERSTATES_FROZEN_EVENT_LEVEL_SET_BY_10",
+  "events": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "combined_entry_cents": 100,
+      "close_1_cents": 17,
+      "close_2_cents": 85,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "GEO",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12GEOMAG-GEO",
+          "entry_cents": 16,
+          "close_available": true,
+          "close_cents": 17,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783876572.816603,
+          "guarded_window_right_edge_epoch": 1783878900,
+          "close_seconds_before_window_right_edge": 2327.1833970546722,
+          "close_tminus_window_right_edge": "T-38:47.183",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "c4f7b551-6921-451c-659e-cfe3e8d20e05",
+          "close_supporting_receipts": [
+            "c4f7b551-6921-451c-659e-cfe3e8d20e05"
+          ],
+          "close_print_size": 39.91,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "c4f7b551-6921-451c-659e-cfe3e8d20e05",
+              "size": 39.91,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            17
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL12GEOMAG.json.gz",
+          "guarded_cache_sha256": "1e3ec13eca53d830b27944a7c450b16d1108853ba6ae2029542812158137d56f",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "MAG",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12GEOMAG-MAG",
+          "entry_cents": 84,
+          "close_available": true,
+          "close_cents": 85,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783878701.240825,
+          "guarded_window_right_edge_epoch": 1783878900,
+          "close_seconds_before_window_right_edge": 198.75917506217957,
+          "close_tminus_window_right_edge": "T-3:18.759",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "a635e5d7-40eb-66bc-fa3e-2d1a991ec1fc",
+          "close_supporting_receipts": [
+            "a635e5d7-40eb-66bc-fa3e-2d1a991ec1fc"
+          ],
+          "close_print_size": 0.5,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "a635e5d7-40eb-66bc-fa3e-2d1a991ec1fc",
+              "size": 0.5,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            85
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL12GEOMAG.json.gz",
+          "guarded_cache_sha256": "1e3ec13eca53d830b27944a7c450b16d1108853ba6ae2029542812158137d56f",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 101,
+      "close_1_cents": 74,
+      "close_2_cents": 29,
+      "close_sum_cents": 103,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "KIR",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12PEAKIR-KIR",
+          "entry_cents": 73,
+          "close_available": true,
+          "close_cents": 74,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783890239.092731,
+          "guarded_window_right_edge_epoch": 1783890300,
+          "close_seconds_before_window_right_edge": 60.90726900100708,
+          "close_tminus_window_right_edge": "T-1:00.907",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "73941750-8135-41f9-177c-ed537f71d9f5",
+            "7ee49175-b524-4717-0125-2cafa63e714b"
+          ],
+          "close_print_size": 132.71,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "73941750-8135-41f9-177c-ed537f71d9f5",
+              "size": 45.98,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "7ee49175-b524-4717-0125-2cafa63e714b",
+              "size": 86.73,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            74
+          ],
+          "same_timestamp_close_receipt_count": 2,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL12PEAKIR.json.gz",
+          "guarded_cache_sha256": "667f093ffd4e507c1a38bf79d513fb651b0bea9bcc6bec082bc1bffb80175f44",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "PEA",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12PEAKIR-PEA",
+          "entry_cents": 28,
+          "close_available": true,
+          "close_cents": 29,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783890221.387339,
+          "guarded_window_right_edge_epoch": 1783890300,
+          "close_seconds_before_window_right_edge": 78.61266088485718,
+          "close_tminus_window_right_edge": "T-1:18.613",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "f8dfd2ba-a147-6b65-e709-3156ed014194",
+          "close_supporting_receipts": [
+            "f8dfd2ba-a147-6b65-e709-3156ed014194"
+          ],
+          "close_print_size": 7,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "f8dfd2ba-a147-6b65-e709-3156ed014194",
+              "size": 7,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            29
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL12PEAKIR.json.gz",
+          "guarded_cache_sha256": "667f093ffd4e507c1a38bf79d513fb651b0bea9bcc6bec082bc1bffb80175f44",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "combined_entry_cents": 100,
+      "close_1_cents": 97,
+      "close_2_cents": 5,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "IVA",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12SIAIVA-IVA",
+          "entry_cents": 96,
+          "close_available": true,
+          "close_cents": 97,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783885496.61477,
+          "guarded_window_right_edge_epoch": 1783886700,
+          "close_seconds_before_window_right_edge": 1203.385230064392,
+          "close_tminus_window_right_edge": "T-20:03.385",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "6a424435-454c-633a-9762-3ec1b7f482ab",
+          "close_supporting_receipts": [
+            "6a424435-454c-633a-9762-3ec1b7f482ab"
+          ],
+          "close_print_size": 1.02,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "6a424435-454c-633a-9762-3ec1b7f482ab",
+              "size": 1.02,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            97
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL12SIAIVA.json.gz",
+          "guarded_cache_sha256": "b68c33bcb9b9b84387341b2d926e6a53d0b5ed36de8b5ade3c65598f6381aa99",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "SIA",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12SIAIVA-SIA",
+          "entry_cents": 4,
+          "close_available": true,
+          "close_cents": 5,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783886688.341336,
+          "guarded_window_right_edge_epoch": 1783886700,
+          "close_seconds_before_window_right_edge": 11.658663988113403,
+          "close_tminus_window_right_edge": "T-0:11.659",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "e784d7fc-d40d-4e68-4b81-e565ec3380d0",
+          "close_supporting_receipts": [
+            "e784d7fc-d40d-4e68-4b81-e565ec3380d0"
+          ],
+          "close_print_size": 187.52,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "e784d7fc-d40d-4e68-4b81-e565ec3380d0",
+              "size": 187.52,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            5
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL12SIAIVA.json.gz",
+          "guarded_cache_sha256": "b68c33bcb9b9b84387341b2d926e6a53d0b5ed36de8b5ade3c65598f6381aa99",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 58,
+      "close_2_cents": 44,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "KEN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL13KENSHE-KEN",
+          "entry_cents": 57,
+          "close_available": true,
+          "close_cents": 58,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783981497.332484,
+          "guarded_window_right_edge_epoch": 1783981500,
+          "close_seconds_before_window_right_edge": 2.667515993118286,
+          "close_tminus_window_right_edge": "T-0:02.668",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "aa9ed248-efd5-5739-aa32-6630c8ef78a2",
+          "close_supporting_receipts": [
+            "aa9ed248-efd5-5739-aa32-6630c8ef78a2"
+          ],
+          "close_print_size": 678.33,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "aa9ed248-efd5-5739-aa32-6630c8ef78a2",
+              "size": 678.33,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            58
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL13KENSHE.json.gz",
+          "guarded_cache_sha256": "dd1abe214280d21458a3a9b7b372de501efae5b5f2ca6b19d11844260bf1a403",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "SHE",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL13KENSHE-SHE",
+          "entry_cents": 43,
+          "close_available": true,
+          "close_cents": 44,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783981484.101115,
+          "guarded_window_right_edge_epoch": 1783981500,
+          "close_seconds_before_window_right_edge": 15.898885011672974,
+          "close_tminus_window_right_edge": "T-0:15.899",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "07dd9c4e-969e-5089-9b7c-b3c22ea392a9",
+            "57744b6a-9de5-5eab-a6a5-e5ef9f3eac8c"
+          ],
+          "close_print_size": 1317,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "07dd9c4e-969e-5089-9b7c-b3c22ea392a9",
+              "size": 962.7,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "57744b6a-9de5-5eab-a6a5-e5ef9f3eac8c",
+              "size": 354.3,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            44
+          ],
+          "same_timestamp_close_receipt_count": 2,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL13KENSHE.json.gz",
+          "guarded_cache_sha256": "dd1abe214280d21458a3a9b7b372de501efae5b5f2ca6b19d11844260bf1a403",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 101,
+      "close_1_cents": 66,
+      "close_2_cents": 38,
+      "close_sum_cents": 104,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "GON",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL13PALGON-GON",
+          "entry_cents": 64,
+          "close_available": true,
+          "close_cents": 66,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -2,
+          "close_print_timestamp_epoch": 1783960665.51344,
+          "guarded_window_right_edge_epoch": 1783960740,
+          "close_seconds_before_window_right_edge": 74.48656010627747,
+          "close_tminus_window_right_edge": "T-1:14.487",
+          "exact_bell_timestamp_epoch": 1783960800,
+          "close_seconds_before_actual_bell": 134.48656010627747,
+          "close_tminus_actual_bell": "T-2:14.487",
+          "close_print_receipt": "b9975a4a-11ec-6087-75e5-c4b0b2b1fb61",
+          "close_supporting_receipts": [
+            "b9975a4a-11ec-6087-75e5-c4b0b2b1fb61"
+          ],
+          "close_print_size": 0.72,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "b9975a4a-11ec-6087-75e5-c4b0b2b1fb61",
+              "size": 0.72,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            66
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL13PALGON.json.gz",
+          "guarded_cache_sha256": "c2307e6d35dce1160e89af57df14c3527d1224ac19ef80db4ccd228ec23965c6",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "PAL",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL13PALGON-PAL",
+          "entry_cents": 37,
+          "close_available": true,
+          "close_cents": 38,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783960661.972322,
+          "guarded_window_right_edge_epoch": 1783960740,
+          "close_seconds_before_window_right_edge": 78.0276780128479,
+          "close_tminus_window_right_edge": "T-1:18.028",
+          "exact_bell_timestamp_epoch": 1783960800,
+          "close_seconds_before_actual_bell": 138.0276780128479,
+          "close_tminus_actual_bell": "T-2:18.028",
+          "close_print_receipt": "f60d5287-8919-64a7-81a4-ef3cb43da905",
+          "close_supporting_receipts": [
+            "f60d5287-8919-64a7-81a4-ef3cb43da905"
+          ],
+          "close_print_size": 25.22,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "f60d5287-8919-64a7-81a4-ef3cb43da905",
+              "size": 25.22,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            38
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL13PALGON.json.gz",
+          "guarded_cache_sha256": "c2307e6d35dce1160e89af57df14c3527d1224ac19ef80db4ccd228ec23965c6",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 44,
+      "close_2_cents": 58,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "BIC",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14BICMIY-BIC",
+          "entry_cents": 43,
+          "close_available": true,
+          "close_cents": 44,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784046820.291294,
+          "guarded_window_right_edge_epoch": 1784049000,
+          "close_seconds_before_window_right_edge": 2179.7087059020996,
+          "close_tminus_window_right_edge": "T-36:19.709",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "79194240-6de7-61cf-55d6-c32faee1ea18",
+          "close_supporting_receipts": [
+            "79194240-6de7-61cf-55d6-c32faee1ea18"
+          ],
+          "close_print_size": 26.24,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "79194240-6de7-61cf-55d6-c32faee1ea18",
+              "size": 26.24,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            44
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14BICMIY.json.gz",
+          "guarded_cache_sha256": "12bb732087db5fe7eba0a42fb28504ebbc5cb52c74bed239d64b8a3cbf091af7",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "MIY",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14BICMIY-MIY",
+          "entry_cents": 57,
+          "close_available": true,
+          "close_cents": 58,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784047969.570253,
+          "guarded_window_right_edge_epoch": 1784049000,
+          "close_seconds_before_window_right_edge": 1030.4297471046448,
+          "close_tminus_window_right_edge": "T-17:10.430",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "3e68d29d-1ca7-7d61-5f1a-4793ad167b4e",
+          "close_supporting_receipts": [
+            "3e68d29d-1ca7-7d61-5f1a-4793ad167b4e"
+          ],
+          "close_print_size": 3.34,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "3e68d29d-1ca7-7d61-5f1a-4793ad167b4e",
+              "size": 3.34,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            58
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14BICMIY.json.gz",
+          "guarded_cache_sha256": "12bb732087db5fe7eba0a42fb28504ebbc5cb52c74bed239d64b8a3cbf091af7",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 43,
+      "close_2_cents": 60,
+      "close_sum_cents": 103,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "CAS",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-CAS",
+          "entry_cents": 41,
+          "close_available": true,
+          "close_cents": 43,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -2,
+          "close_print_timestamp_epoch": 1784053519.813163,
+          "guarded_window_right_edge_epoch": 1784054100,
+          "close_seconds_before_window_right_edge": 580.1868369579315,
+          "close_tminus_window_right_edge": "T-9:40.187",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "39cfa0b7-d81e-5369-eb41-7556b6bb020c",
+            "e2263a57-d342-580f-fcfb-75bf8027ec62"
+          ],
+          "close_print_size": 107.12,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "39cfa0b7-d81e-5369-eb41-7556b6bb020c",
+              "size": 100,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "e2263a57-d342-580f-fcfb-75bf8027ec62",
+              "size": 7.12,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            43
+          ],
+          "same_timestamp_close_receipt_count": 2,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14CASSCH.json.gz",
+          "guarded_cache_sha256": "ef5fab2043173a68bf1793dd2bb565f455a3950df03eb8a89ccd93e109ede148",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "SCH",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-SCH",
+          "entry_cents": 59,
+          "close_available": true,
+          "close_cents": 60,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784054058.516909,
+          "guarded_window_right_edge_epoch": 1784054100,
+          "close_seconds_before_window_right_edge": 41.48309111595154,
+          "close_tminus_window_right_edge": "T-0:41.483",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "445be899-6c45-5fa9-5132-061d1d306cba",
+          "close_supporting_receipts": [
+            "445be899-6c45-5fa9-5132-061d1d306cba"
+          ],
+          "close_print_size": 40.53,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "445be899-6c45-5fa9-5132-061d1d306cba",
+              "size": 40.53,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            60
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14CASSCH.json.gz",
+          "guarded_cache_sha256": "ef5fab2043173a68bf1793dd2bb565f455a3950df03eb8a89ccd93e109ede148",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 64,
+      "close_2_cents": 38,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "GEN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14GENPET-GEN",
+          "entry_cents": 63,
+          "close_available": true,
+          "close_cents": 64,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784026381.101823,
+          "guarded_window_right_edge_epoch": 1784026500,
+          "close_seconds_before_window_right_edge": 118.89817690849304,
+          "close_tminus_window_right_edge": "T-1:58.898",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "7ccddf10-f8cd-6c72-3e05-f9f6fafc1fb2",
+          "close_supporting_receipts": [
+            "7ccddf10-f8cd-6c72-3e05-f9f6fafc1fb2"
+          ],
+          "close_print_size": 30,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "7ccddf10-f8cd-6c72-3e05-f9f6fafc1fb2",
+              "size": 30,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            64
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14GENPET.json.gz",
+          "guarded_cache_sha256": "d62a880d2123b89dacc3c2c58113974af48df3bf874a8ecb05a15a31d2da4238",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "PET",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14GENPET-PET",
+          "entry_cents": 37,
+          "close_available": true,
+          "close_cents": 38,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784022800.068036,
+          "guarded_window_right_edge_epoch": 1784026500,
+          "close_seconds_before_window_right_edge": 3699.9319639205933,
+          "close_tminus_window_right_edge": "T-61:39.932",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "d75a1933-37ef-56be-b51f-b417df9eecd6",
+          "close_supporting_receipts": [
+            "d75a1933-37ef-56be-b51f-b417df9eecd6"
+          ],
+          "close_print_size": 25.22,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "d75a1933-37ef-56be-b51f-b417df9eecd6",
+              "size": 25.22,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            38
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14GENPET.json.gz",
+          "guarded_cache_sha256": "d62a880d2123b89dacc3c2c58113974af48df3bf874a8ecb05a15a31d2da4238",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 55,
+      "close_2_cents": 49,
+      "close_sum_cents": 104,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "DAL",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14NEDDAL-DAL",
+          "entry_cents": 52,
+          "close_available": true,
+          "close_cents": 55,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -3,
+          "close_print_timestamp_epoch": 1784111854.184101,
+          "guarded_window_right_edge_epoch": 1784111940,
+          "close_seconds_before_window_right_edge": 85.81589889526367,
+          "close_tminus_window_right_edge": "T-1:25.816",
+          "exact_bell_timestamp_epoch": 1784112000,
+          "close_seconds_before_actual_bell": 145.81589889526367,
+          "close_tminus_actual_bell": "T-2:25.816",
+          "close_print_receipt": "d60d79b8-e6ba-638c-148a-5bffb6f35ee8",
+          "close_supporting_receipts": [
+            "d60d79b8-e6ba-638c-148a-5bffb6f35ee8"
+          ],
+          "close_print_size": 54,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "d60d79b8-e6ba-638c-148a-5bffb6f35ee8",
+              "size": 54,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            55
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14NEDDAL.json.gz",
+          "guarded_cache_sha256": "c170f480fceed080b3b1a10d18e1207d3d6707206f122568c9a1a970f124caf5",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "NED",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14NEDDAL-NED",
+          "entry_cents": 48,
+          "close_available": true,
+          "close_cents": 49,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784111921.158593,
+          "guarded_window_right_edge_epoch": 1784111940,
+          "close_seconds_before_window_right_edge": 18.84140706062317,
+          "close_tminus_window_right_edge": "T-0:18.841",
+          "exact_bell_timestamp_epoch": 1784112000,
+          "close_seconds_before_actual_bell": 78.84140706062317,
+          "close_tminus_actual_bell": "T-1:18.841",
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "4f627b32-ccb1-75b7-5cc7-c939d86a5dad",
+            "7e7fd992-bfa7-7744-7d09-b3b13534afb5"
+          ],
+          "close_print_size": 19.72,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "4f627b32-ccb1-75b7-5cc7-c939d86a5dad",
+              "size": 1,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "7e7fd992-bfa7-7744-7d09-b3b13534afb5",
+              "size": 18.72,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            49
+          ],
+          "same_timestamp_close_receipt_count": 2,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14NEDDAL.json.gz",
+          "guarded_cache_sha256": "c170f480fceed080b3b1a10d18e1207d3d6707206f122568c9a1a970f124caf5",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "combined_entry_cents": 100,
+      "close_1_cents": 80,
+      "close_2_cents": 22,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "GEA",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14SUNGEA-GEA",
+          "entry_cents": 79,
+          "close_available": true,
+          "close_cents": 80,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784055066.963602,
+          "guarded_window_right_edge_epoch": 1784055300,
+          "close_seconds_before_window_right_edge": 233.03639793395996,
+          "close_tminus_window_right_edge": "T-3:53.036",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "eb3decb5-4d64-58bf-d100-afe4dda43a25",
+          "close_supporting_receipts": [
+            "eb3decb5-4d64-58bf-d100-afe4dda43a25"
+          ],
+          "close_print_size": 0.61,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "eb3decb5-4d64-58bf-d100-afe4dda43a25",
+              "size": 0.61,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            80
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14SUNGEA.json.gz",
+          "guarded_cache_sha256": "f3891987976124619ac7af799f98ac71e0b0515a2ff532c3b4f737c96c604dcc",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "SUN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14SUNGEA-SUN",
+          "entry_cents": 21,
+          "close_available": true,
+          "close_cents": 22,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784054956.06291,
+          "guarded_window_right_edge_epoch": 1784055300,
+          "close_seconds_before_window_right_edge": 343.93708992004395,
+          "close_tminus_window_right_edge": "T-5:43.937",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "50d670a2-78b6-450f-fa8b-575bd32c134c",
+          "close_supporting_receipts": [
+            "50d670a2-78b6-450f-fa8b-575bd32c134c"
+          ],
+          "close_print_size": 4.31,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "50d670a2-78b6-450f-fa8b-575bd32c134c",
+              "size": 4.31,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            22
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL14SUNGEA.json.gz",
+          "guarded_cache_sha256": "f3891987976124619ac7af799f98ac71e0b0515a2ff532c3b4f737c96c604dcc",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 40,
+      "close_2_cents": 62,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "JOH",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15WOLJOH-JOH",
+          "entry_cents": 39,
+          "close_available": true,
+          "close_cents": 40,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784159088.206125,
+          "guarded_window_right_edge_epoch": 1784159100,
+          "close_seconds_before_window_right_edge": 11.793874979019165,
+          "close_tminus_window_right_edge": "T-0:11.794",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "1f11ca6f-3ce8-504a-2616-273c9cfb52b7",
+          "close_supporting_receipts": [
+            "1f11ca6f-3ce8-504a-2616-273c9cfb52b7"
+          ],
+          "close_print_size": 21.59,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "1f11ca6f-3ce8-504a-2616-273c9cfb52b7",
+              "size": 21.59,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            40
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL15WOLJOH.json.gz",
+          "guarded_cache_sha256": "2e6831bf8754d8d2f53a29202aec53295eb6655eb6d05a15c0bf23f7d62f873a",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "WOL",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL15WOLJOH-WOL",
+          "entry_cents": 61,
+          "close_available": true,
+          "close_cents": 62,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784159094.385024,
+          "guarded_window_right_edge_epoch": 1784159100,
+          "close_seconds_before_window_right_edge": 5.614975929260254,
+          "close_tminus_window_right_edge": "T-0:05.615",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "b971ae63-449f-4d6e-1365-7f1bae0cd61e",
+          "close_supporting_receipts": [
+            "b971ae63-449f-4d6e-1365-7f1bae0cd61e"
+          ],
+          "close_print_size": 18,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "b971ae63-449f-4d6e-1365-7f1bae0cd61e",
+              "size": 18,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            62
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL15WOLJOH.json.gz",
+          "guarded_cache_sha256": "2e6831bf8754d8d2f53a29202aec53295eb6655eb6d05a15c0bf23f7d62f873a",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 54,
+      "close_2_cents": 48,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "GEN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL17GENHOU-GEN",
+          "entry_cents": 53,
+          "close_available": true,
+          "close_cents": 54,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784303077.925793,
+          "guarded_window_right_edge_epoch": 1784303100,
+          "close_seconds_before_window_right_edge": 22.074207067489624,
+          "close_tminus_window_right_edge": "T-0:22.074",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "151ce856-a5ec-6167-d7c6-f5d5567d8ce6",
+            "ffc89340-dd4b-65fd-e286-07db875c121d"
+          ],
+          "close_print_size": 35,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "151ce856-a5ec-6167-d7c6-f5d5567d8ce6",
+              "size": 8.52,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "ffc89340-dd4b-65fd-e286-07db875c121d",
+              "size": 26.48,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            54
+          ],
+          "same_timestamp_close_receipt_count": 2,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL17GENHOU.json.gz",
+          "guarded_cache_sha256": "d497f47f841d08e89f821d683813dafc39dac0f4f9478470c31e42e281e821f8",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "HOU",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL17GENHOU-HOU",
+          "entry_cents": 47,
+          "close_available": true,
+          "close_cents": 48,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784303013.915801,
+          "guarded_window_right_edge_epoch": 1784303100,
+          "close_seconds_before_window_right_edge": 86.08419895172119,
+          "close_tminus_window_right_edge": "T-1:26.084",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "4778d55c-abc9-510c-de66-e506055de13e",
+          "close_supporting_receipts": [
+            "4778d55c-abc9-510c-de66-e506055de13e"
+          ],
+          "close_print_size": 200,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "4778d55c-abc9-510c-de66-e506055de13e",
+              "size": 200,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            48
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL17GENHOU.json.gz",
+          "guarded_cache_sha256": "d497f47f841d08e89f821d683813dafc39dac0f4f9478470c31e42e281e821f8",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 46,
+      "close_2_cents": 56,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "BON",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL17NAGBON-BON",
+          "entry_cents": 45,
+          "close_available": true,
+          "close_cents": 46,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784287461.454674,
+          "guarded_window_right_edge_epoch": 1784287500,
+          "close_seconds_before_window_right_edge": 38.54532599449158,
+          "close_tminus_window_right_edge": "T-0:38.545",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "3304d33a-b177-609a-3d7e-764d07e1ef9a",
+          "close_supporting_receipts": [
+            "3304d33a-b177-609a-3d7e-764d07e1ef9a"
+          ],
+          "close_print_size": 9,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "3304d33a-b177-609a-3d7e-764d07e1ef9a",
+              "size": 9,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            46
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL17NAGBON.json.gz",
+          "guarded_cache_sha256": "4585751126e17076f8692a4aad5fec8e97dd39c89d2f32b2b3a773c216f1935b",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "NAG",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL17NAGBON-NAG",
+          "entry_cents": 55,
+          "close_available": true,
+          "close_cents": 56,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784286941.646729,
+          "guarded_window_right_edge_epoch": 1784287500,
+          "close_seconds_before_window_right_edge": 558.3532710075378,
+          "close_tminus_window_right_edge": "T-9:18.353",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "23482ac9-f680-5d66-9c67-8cdabc8690d7",
+          "close_supporting_receipts": [
+            "23482ac9-f680-5d66-9c67-8cdabc8690d7"
+          ],
+          "close_print_size": 42,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "23482ac9-f680-5d66-9c67-8cdabc8690d7",
+              "size": 42,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            56
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL17NAGBON.json.gz",
+          "guarded_cache_sha256": "4585751126e17076f8692a4aad5fec8e97dd39c89d2f32b2b3a773c216f1935b",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 31,
+      "close_2_cents": 71,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "CRA",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL17RODCRA-CRA",
+          "entry_cents": 30,
+          "close_available": true,
+          "close_cents": 31,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784314404.412464,
+          "guarded_window_right_edge_epoch": 1784314440,
+          "close_seconds_before_window_right_edge": 35.587536096572876,
+          "close_tminus_window_right_edge": "T-0:35.588",
+          "exact_bell_timestamp_epoch": 1784314500,
+          "close_seconds_before_actual_bell": 95.58753609657288,
+          "close_tminus_actual_bell": "T-1:35.588",
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "37cf21d5-4c73-7b7d-e892-3dfd62d75f5b",
+            "76244380-8666-7925-f5aa-4d1b0e769325",
+            "7e9d6af3-7466-7c09-c19b-ae81e89fdf3c"
+          ],
+          "close_print_size": 153.85,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "37cf21d5-4c73-7b7d-e892-3dfd62d75f5b",
+              "size": 46,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "76244380-8666-7925-f5aa-4d1b0e769325",
+              "size": 7.85,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "7e9d6af3-7466-7c09-c19b-ae81e89fdf3c",
+              "size": 100,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            31
+          ],
+          "same_timestamp_close_receipt_count": 3,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL17RODCRA.json.gz",
+          "guarded_cache_sha256": "ad1edf586835f1c14c7145f7993e4ce96725909f18f5622cf740dd72a9f6dcf4",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "ROD",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD",
+          "entry_cents": 70,
+          "close_available": true,
+          "close_cents": 71,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784314347.038758,
+          "guarded_window_right_edge_epoch": 1784314440,
+          "close_seconds_before_window_right_edge": 92.96124196052551,
+          "close_tminus_window_right_edge": "T-1:32.961",
+          "exact_bell_timestamp_epoch": 1784314500,
+          "close_seconds_before_actual_bell": 152.9612419605255,
+          "close_tminus_actual_bell": "T-2:32.961",
+          "close_print_receipt": "4ed2c909-d457-6613-4d07-3a08f0a710aa",
+          "close_supporting_receipts": [
+            "4ed2c909-d457-6613-4d07-3a08f0a710aa"
+          ],
+          "close_print_size": 2.76,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "4ed2c909-d457-6613-4d07-3a08f0a710aa",
+              "size": 2.76,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            71
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL17RODCRA.json.gz",
+          "guarded_cache_sha256": "ad1edf586835f1c14c7145f7993e4ce96725909f18f5622cf740dd72a9f6dcf4",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 101,
+      "close_1_cents": 58,
+      "close_2_cents": 46,
+      "close_sum_cents": 104,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "AGU",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19KIRAGU-AGU",
+          "entry_cents": 56,
+          "close_available": true,
+          "close_cents": 58,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -2,
+          "close_print_timestamp_epoch": 1784484767.308736,
+          "guarded_window_right_edge_epoch": 1784485200,
+          "close_seconds_before_window_right_edge": 432.6912639141083,
+          "close_tminus_window_right_edge": "T-7:12.691",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "eab3d385-c0a1-43cd-e017-d87b5c8d1d55",
+          "close_supporting_receipts": [
+            "eab3d385-c0a1-43cd-e017-d87b5c8d1d55"
+          ],
+          "close_print_size": 0.83,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "eab3d385-c0a1-43cd-e017-d87b5c8d1d55",
+              "size": 0.83,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            58
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL19KIRAGU.json.gz",
+          "guarded_cache_sha256": "59eb6c53f69d3fe9af36148c0892b17bdb3742ba878655ec19e6e3b8115a8c17",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "KIR",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19KIRAGU-KIR",
+          "entry_cents": 45,
+          "close_available": true,
+          "close_cents": 46,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784485191.563277,
+          "guarded_window_right_edge_epoch": 1784485200,
+          "close_seconds_before_window_right_edge": 8.436722993850708,
+          "close_tminus_window_right_edge": "T-0:08.437",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "694f4220-15b4-6059-9a33-779966e9ef82",
+            "7dea6f85-52e2-6994-b498-a56d7f389ffe"
+          ],
+          "close_print_size": 40,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "694f4220-15b4-6059-9a33-779966e9ef82",
+              "size": 2.72,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "7dea6f85-52e2-6994-b498-a56d7f389ffe",
+              "size": 37.28,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            46
+          ],
+          "same_timestamp_close_receipt_count": 2,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL19KIRAGU.json.gz",
+          "guarded_cache_sha256": "59eb6c53f69d3fe9af36148c0892b17bdb3742ba878655ec19e6e3b8115a8c17",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "combined_entry_cents": 101,
+      "close_1_cents": 22,
+      "close_2_cents": 81,
+      "close_sum_cents": 103,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "PON",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19PONZIE-PON",
+          "entry_cents": 21,
+          "close_available": true,
+          "close_cents": 22,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784470442.493885,
+          "guarded_window_right_edge_epoch": 1784470500,
+          "close_seconds_before_window_right_edge": 57.5061149597168,
+          "close_tminus_window_right_edge": "T-0:57.506",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "c8d3e222-3696-789e-2781-d2b8d8069d21",
+          "close_supporting_receipts": [
+            "c8d3e222-3696-789e-2781-d2b8d8069d21"
+          ],
+          "close_print_size": 38.79,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "c8d3e222-3696-789e-2781-d2b8d8069d21",
+              "size": 38.79,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            22
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL19PONZIE.json.gz",
+          "guarded_cache_sha256": "952a4719edfd3b757de4f54b7be2c7b8c326be0438e561dfef3a382b40459dd6",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+          "category": "ATP_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "ZIE",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL19PONZIE-ZIE",
+          "entry_cents": 80,
+          "close_available": true,
+          "close_cents": 81,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784466218.653066,
+          "guarded_window_right_edge_epoch": 1784470500,
+          "close_seconds_before_window_right_edge": 4281.346934080124,
+          "close_tminus_window_right_edge": "T-71:21.347",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "238eb839-8dea-5311-04c4-ea96d47b4fc2",
+          "close_supporting_receipts": [
+            "238eb839-8dea-5311-04c4-ea96d47b4fc2"
+          ],
+          "close_print_size": 1.2,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "238eb839-8dea-5311-04c4-ea96d47b4fc2",
+              "size": 1.2,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            81
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL19PONZIE.json.gz",
+          "guarded_cache_sha256": "952a4719edfd3b757de4f54b7be2c7b8c326be0438e561dfef3a382b40459dd6",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 35,
+      "close_2_cents": 67,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "FAU",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20FAURIN-FAU",
+          "entry_cents": 34,
+          "close_available": true,
+          "close_cents": 35,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784553267.847188,
+          "guarded_window_right_edge_epoch": 1784553600,
+          "close_seconds_before_window_right_edge": 332.15281200408936,
+          "close_tminus_window_right_edge": "T-5:32.153",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "d7934763-6bd4-6662-0b99-9ab3da95ea4e",
+          "close_supporting_receipts": [
+            "d7934763-6bd4-6662-0b99-9ab3da95ea4e"
+          ],
+          "close_print_size": 95.64,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "d7934763-6bd4-6662-0b99-9ab3da95ea4e",
+              "size": 95.64,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            35
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20FAURIN.json.gz",
+          "guarded_cache_sha256": "15520425b40f3f5bcb97d43d645d91671ccae4d8899ecf8a5050460d12a04be1",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "RIN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20FAURIN-RIN",
+          "entry_cents": 66,
+          "close_available": true,
+          "close_cents": 67,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784553547.835684,
+          "guarded_window_right_edge_epoch": 1784553600,
+          "close_seconds_before_window_right_edge": 52.164315938949585,
+          "close_tminus_window_right_edge": "T-0:52.164",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "fea0d5f7-be60-6ef8-5ba7-d650cc119b13",
+          "close_supporting_receipts": [
+            "fea0d5f7-be60-6ef8-5ba7-d650cc119b13"
+          ],
+          "close_print_size": 1,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "fea0d5f7-be60-6ef8-5ba7-d650cc119b13",
+              "size": 1,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            67
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20FAURIN.json.gz",
+          "guarded_cache_sha256": "15520425b40f3f5bcb97d43d645d91671ccae4d8899ecf8a5050460d12a04be1",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 57,
+      "close_2_cents": 46,
+      "close_sum_cents": 103,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "BAR",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20MONBAR-BAR",
+          "entry_cents": 55,
+          "close_available": true,
+          "close_cents": 57,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -2,
+          "close_print_timestamp_epoch": 1784555634.265558,
+          "guarded_window_right_edge_epoch": 1784555940,
+          "close_seconds_before_window_right_edge": 305.7344419956207,
+          "close_tminus_window_right_edge": "T-5:05.734",
+          "exact_bell_timestamp_epoch": 1784556000,
+          "close_seconds_before_actual_bell": 365.7344419956207,
+          "close_tminus_actual_bell": "T-6:05.734",
+          "close_print_receipt": "62872098-078c-67e8-a11d-b6f7ee60842f",
+          "close_supporting_receipts": [
+            "62872098-078c-67e8-a11d-b6f7ee60842f"
+          ],
+          "close_print_size": 6.43,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "62872098-078c-67e8-a11d-b6f7ee60842f",
+              "size": 6.43,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            57
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20MONBAR.json.gz",
+          "guarded_cache_sha256": "cc90297b58e78c331c187699d70de15d7f92d97684d6e1c58af28f2a6dfc64d4",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "MON",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20MONBAR-MON",
+          "entry_cents": 45,
+          "close_available": true,
+          "close_cents": 46,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784555938.196109,
+          "guarded_window_right_edge_epoch": 1784555940,
+          "close_seconds_before_window_right_edge": 1.8038909435272217,
+          "close_tminus_window_right_edge": "T-0:01.804",
+          "exact_bell_timestamp_epoch": 1784556000,
+          "close_seconds_before_actual_bell": 61.80389094352722,
+          "close_tminus_actual_bell": "T-1:01.804",
+          "close_print_receipt": "1b64b399-52c0-4735-58f7-0272889e859d",
+          "close_supporting_receipts": [
+            "1b64b399-52c0-4735-58f7-0272889e859d"
+          ],
+          "close_print_size": 2.09,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "1b64b399-52c0-4735-58f7-0272889e859d",
+              "size": 2.09,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            46
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20MONBAR.json.gz",
+          "guarded_cache_sha256": "cc90297b58e78c331c187699d70de15d7f92d97684d6e1c58af28f2a6dfc64d4",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 101,
+      "close_1_cents": 68,
+      "close_2_cents": 36,
+      "close_sum_cents": 104,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "PET",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20PETTAB-PET",
+          "entry_cents": 66,
+          "close_available": true,
+          "close_cents": 68,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -2,
+          "close_print_timestamp_epoch": 1784539079.124966,
+          "guarded_window_right_edge_epoch": 1784539200,
+          "close_seconds_before_window_right_edge": 120.87503409385681,
+          "close_tminus_window_right_edge": "T-2:00.875",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "1149c77e-7675-7c3b-ed76-547d8a798e77",
+          "close_supporting_receipts": [
+            "1149c77e-7675-7c3b-ed76-547d8a798e77"
+          ],
+          "close_print_size": 6,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "1149c77e-7675-7c3b-ed76-547d8a798e77",
+              "size": 6,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            68
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20PETTAB.json.gz",
+          "guarded_cache_sha256": "6c5eaedc86b5e7ebd6c6936e54c3bd3c9f10da3a9ebb6d37059c24e1bd48ecd0",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "TAB",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20PETTAB-TAB",
+          "entry_cents": 35,
+          "close_available": true,
+          "close_cents": 36,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784534713.587253,
+          "guarded_window_right_edge_epoch": 1784539200,
+          "close_seconds_before_window_right_edge": 4486.4127469062805,
+          "close_tminus_window_right_edge": "T-74:46.413",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "a0d6cae7-ad60-7751-5a61-a87c751048e5",
+          "close_supporting_receipts": [
+            "a0d6cae7-ad60-7751-5a61-a87c751048e5"
+          ],
+          "close_print_size": 5.31,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "a0d6cae7-ad60-7751-5a61-a87c751048e5",
+              "size": 5.31,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            36
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20PETTAB.json.gz",
+          "guarded_cache_sha256": "6c5eaedc86b5e7ebd6c6936e54c3bd3c9f10da3a9ebb6d37059c24e1bd48ecd0",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 101,
+      "close_1_cents": 37,
+      "close_2_cents": 66,
+      "close_sum_cents": 103,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "DON",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20VARDON-DON",
+          "entry_cents": 36,
+          "close_available": true,
+          "close_cents": 37,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784522938.623763,
+          "guarded_window_right_edge_epoch": 1784537700,
+          "close_seconds_before_window_right_edge": 14761.376236915588,
+          "close_tminus_window_right_edge": "T-246:01.376",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "be0a8f89-75ea-5758-c5e5-433022439dd3",
+          "close_supporting_receipts": [
+            "be0a8f89-75ea-5758-c5e5-433022439dd3"
+          ],
+          "close_print_size": 13,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "be0a8f89-75ea-5758-c5e5-433022439dd3",
+              "size": 13,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            37
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20VARDON.json.gz",
+          "guarded_cache_sha256": "e7a05b83123b20a73f5bba7ee35f9cc1f00834f8dbf75bf2cfc67053a45e0f0e",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+          "category": "ATP_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "VAR",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL20VARDON-VAR",
+          "entry_cents": 65,
+          "close_available": true,
+          "close_cents": 66,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784531940.479697,
+          "guarded_window_right_edge_epoch": 1784537700,
+          "close_seconds_before_window_right_edge": 5759.520303010941,
+          "close_tminus_window_right_edge": "T-95:59.520",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "398a0d7c-3e90-5045-6fee-d647f1180dbb",
+          "close_supporting_receipts": [
+            "398a0d7c-3e90-5045-6fee-d647f1180dbb"
+          ],
+          "close_print_size": 59.19,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "398a0d7c-3e90-5045-6fee-d647f1180dbb",
+              "size": 59.19,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            66
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPCHALLENGERMATCH-26JUL20VARDON.json.gz",
+          "guarded_cache_sha256": "e7a05b83123b20a73f5bba7ee35f9cc1f00834f8dbf75bf2cfc67053a45e0f0e",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MARHAN",
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 77,
+      "close_2_cents": 25,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPMATCH-26JUL12MARHAN",
+          "category": "ATP_MAIN",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "HAN",
+          "ticker": "KXATPMATCH-26JUL12MARHAN-HAN",
+          "entry_cents": 76,
+          "close_available": true,
+          "close_cents": 77,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784017312.879955,
+          "guarded_window_right_edge_epoch": 1784017500,
+          "close_seconds_before_window_right_edge": 187.12004494667053,
+          "close_tminus_window_right_edge": "T-3:07.120",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "7d2a96f5-9c79-78d2-9afa-a3b19ab7ab58",
+          "close_supporting_receipts": [
+            "7d2a96f5-9c79-78d2-9afa-a3b19ab7ab58"
+          ],
+          "close_print_size": 5,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "7d2a96f5-9c79-78d2-9afa-a3b19ab7ab58",
+              "size": 5,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            77
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPMATCH-26JUL12MARHAN.json.gz",
+          "guarded_cache_sha256": "ef79befe7b989b378d74243c22677a88aab429c8bbd5b798a2561ca0181ae945",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12MARHAN",
+          "category": "ATP_MAIN",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "MAR",
+          "ticker": "KXATPMATCH-26JUL12MARHAN-MAR",
+          "entry_cents": 24,
+          "close_available": true,
+          "close_cents": 25,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784016654.480175,
+          "guarded_window_right_edge_epoch": 1784017500,
+          "close_seconds_before_window_right_edge": 845.5198249816895,
+          "close_tminus_window_right_edge": "T-14:05.520",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "b6afa5f9-a69d-7ee8-c965-281c454a32de",
+          "close_supporting_receipts": [
+            "b6afa5f9-a69d-7ee8-c965-281c454a32de"
+          ],
+          "close_print_size": 80,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "b6afa5f9-a69d-7ee8-c965-281c454a32de",
+              "size": 80,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            25
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPMATCH-26JUL12MARHAN.json.gz",
+          "guarded_cache_sha256": "ef79befe7b989b378d74243c22677a88aab429c8bbd5b798a2561ca0181ae945",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MARSKA",
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 62,
+      "close_2_cents": 40,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXATPMATCH-26JUL19MARSKA",
+          "category": "ATP_MAIN",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "MAR",
+          "ticker": "KXATPMATCH-26JUL19MARSKA-MAR",
+          "entry_cents": 61,
+          "close_available": true,
+          "close_cents": 62,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784469894.422517,
+          "guarded_window_right_edge_epoch": 1784469900,
+          "close_seconds_before_window_right_edge": 5.5774829387664795,
+          "close_tminus_window_right_edge": "T-0:05.577",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "487be1b7-91a3-65af-6b0d-42950f8a1ebf",
+          "close_supporting_receipts": [
+            "487be1b7-91a3-65af-6b0d-42950f8a1ebf"
+          ],
+          "close_print_size": 296,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "487be1b7-91a3-65af-6b0d-42950f8a1ebf",
+              "size": 296,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            62
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPMATCH-26JUL19MARSKA.json.gz",
+          "guarded_cache_sha256": "476dbe36832976995e3a7eb21afedc4935c0c91242b8145e8889fcf7a8cab4a0",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL19MARSKA",
+          "category": "ATP_MAIN",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "SKA",
+          "ticker": "KXATPMATCH-26JUL19MARSKA-SKA",
+          "entry_cents": 39,
+          "close_available": true,
+          "close_cents": 40,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784469729.983911,
+          "guarded_window_right_edge_epoch": 1784469900,
+          "close_seconds_before_window_right_edge": 170.01608896255493,
+          "close_tminus_window_right_edge": "T-2:50.016",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "30b5933d-8c33-7eab-889a-46b70606e269",
+          "close_supporting_receipts": [
+            "30b5933d-8c33-7eab-889a-46b70606e269"
+          ],
+          "close_print_size": 11.99,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "30b5933d-8c33-7eab-889a-46b70606e269",
+              "size": 11.99,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            40
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXATPMATCH-26JUL19MARSKA.json.gz",
+          "guarded_cache_sha256": "476dbe36832976995e3a7eb21afedc4935c0c91242b8145e8889fcf7a8cab4a0",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "combined_entry_cents": 100,
+      "close_1_cents": 69,
+      "close_2_cents": 33,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+          "category": "WTA_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "FER",
+          "ticker": "KXWTACHALLENGERMATCH-26JUL14FERZAN-FER",
+          "entry_cents": 68,
+          "close_available": true,
+          "close_cents": 69,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784036068.736375,
+          "guarded_window_right_edge_epoch": 1784037840,
+          "close_seconds_before_window_right_edge": 1771.26362490654,
+          "close_tminus_window_right_edge": "T-29:31.264",
+          "exact_bell_timestamp_epoch": 1784037900,
+          "close_seconds_before_actual_bell": 1831.26362490654,
+          "close_tminus_actual_bell": "T-30:31.264",
+          "close_print_receipt": "e386a6dc-9040-5153-ec01-8bad5df29152",
+          "close_supporting_receipts": [
+            "e386a6dc-9040-5153-ec01-8bad5df29152"
+          ],
+          "close_print_size": 70,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "e386a6dc-9040-5153-ec01-8bad5df29152",
+              "size": 70,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            69
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXWTACHALLENGERMATCH-26JUL14FERZAN.json.gz",
+          "guarded_cache_sha256": "9daa1527e381d555274a546bbdb707b8875ddc4e2db804595310f9f7d310b21a",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+          "category": "WTA_CHALL",
+          "starting_price_region": "26_50+51_75",
+          "leg_id": "ZAN",
+          "ticker": "KXWTACHALLENGERMATCH-26JUL14FERZAN-ZAN",
+          "entry_cents": 32,
+          "close_available": true,
+          "close_cents": 33,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784035395.352702,
+          "guarded_window_right_edge_epoch": 1784037840,
+          "close_seconds_before_window_right_edge": 2444.6472980976105,
+          "close_tminus_window_right_edge": "T-40:44.647",
+          "exact_bell_timestamp_epoch": 1784037900,
+          "close_seconds_before_actual_bell": 2504.6472980976105,
+          "close_tminus_actual_bell": "T-41:44.647",
+          "close_print_receipt": "bb447acd-cc7e-60e1-4d38-379750103446",
+          "close_supporting_receipts": [
+            "bb447acd-cc7e-60e1-4d38-379750103446"
+          ],
+          "close_print_size": 14.25,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "bb447acd-cc7e-60e1-4d38-379750103446",
+              "size": 14.25,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            33
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXWTACHALLENGERMATCH-26JUL14FERZAN.json.gz",
+          "guarded_cache_sha256": "9daa1527e381d555274a546bbdb707b8875ddc4e2db804595310f9f7d310b21a",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "category": "WTA_CHALL",
+      "starting_price_region": "ge75+le25",
+      "combined_entry_cents": 100,
+      "close_1_cents": 20,
+      "close_2_cents": 82,
+      "close_sum_cents": 102,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+          "category": "WTA_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "LAN",
+          "ticker": "KXWTACHALLENGERMATCH-26JUL20LANRAD-LAN",
+          "entry_cents": 19,
+          "close_available": true,
+          "close_cents": 20,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784561295.887183,
+          "guarded_window_right_edge_epoch": 1784561340,
+          "close_seconds_before_window_right_edge": 44.11281704902649,
+          "close_tminus_window_right_edge": "T-0:44.113",
+          "exact_bell_timestamp_epoch": 1784561400,
+          "close_seconds_before_actual_bell": 104.11281704902649,
+          "close_tminus_actual_bell": "T-1:44.113",
+          "close_print_receipt": "e0f297de-cae7-63b6-b95f-db7866b721b7",
+          "close_supporting_receipts": [
+            "e0f297de-cae7-63b6-b95f-db7866b721b7"
+          ],
+          "close_print_size": 200,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "e0f297de-cae7-63b6-b95f-db7866b721b7",
+              "size": 200,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            20
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXWTACHALLENGERMATCH-26JUL20LANRAD.json.gz",
+          "guarded_cache_sha256": "0d320e7a34000fcabd349b96f6cb54fad93a62e0aa3de9f3930e72058a6d1706",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+          "category": "WTA_CHALL",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "RAD",
+          "ticker": "KXWTACHALLENGERMATCH-26JUL20LANRAD-RAD",
+          "entry_cents": 81,
+          "close_available": true,
+          "close_cents": 82,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1784561040.66078,
+          "guarded_window_right_edge_epoch": 1784561340,
+          "close_seconds_before_window_right_edge": 299.33922004699707,
+          "close_tminus_window_right_edge": "T-4:59.339",
+          "exact_bell_timestamp_epoch": 1784561400,
+          "close_seconds_before_actual_bell": 359.33922004699707,
+          "close_tminus_actual_bell": "T-5:59.339",
+          "close_print_receipt": "8d3efa3a-fab5-6752-1fcd-87b1e30d22c7",
+          "close_supporting_receipts": [
+            "8d3efa3a-fab5-6752-1fcd-87b1e30d22c7"
+          ],
+          "close_print_size": 26.76,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "8d3efa3a-fab5-6752-1fcd-87b1e30d22c7",
+              "size": 26.76,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            82
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "official_exact",
+          "boundary_guard_id": "official-point-strict-60s-v1",
+          "guarded_cache_file": "KXWTACHALLENGERMATCH-26JUL20LANRAD.json.gz",
+          "guarded_cache_sha256": "0d320e7a34000fcabd349b96f6cb54fad93a62e0aa3de9f3930e72058a6d1706",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12MORNEP",
+      "category": "WTA_MAIN",
+      "starting_price_region": "ge75+le25",
+      "combined_entry_cents": 101,
+      "close_1_cents": 78,
+      "close_2_cents": 25,
+      "close_sum_cents": 103,
+      "pair_under_par": false,
+      "both_legs_strictly_below_close": true,
+      "joint_objective_pass": false,
+      "legs": [
+        {
+          "event_id": "KXWTAMATCH-26JUL12MORNEP",
+          "category": "WTA_MAIN",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "MOR",
+          "ticker": "KXWTAMATCH-26JUL12MORNEP-MOR",
+          "entry_cents": 77,
+          "close_available": true,
+          "close_cents": 78,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783869499.21257,
+          "guarded_window_right_edge_epoch": 1783869600,
+          "close_seconds_before_window_right_edge": 100.78743004798889,
+          "close_tminus_window_right_edge": "T-1:40.787",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": "c63d8d4b-cc4c-4d1b-be3a-c088cba99944",
+          "close_supporting_receipts": [
+            "c63d8d4b-cc4c-4d1b-be3a-c088cba99944"
+          ],
+          "close_print_size": 1,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "c63d8d4b-cc4c-4d1b-be3a-c088cba99944",
+              "size": 1,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            78
+          ],
+          "same_timestamp_close_receipt_count": 1,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXWTAMATCH-26JUL12MORNEP.json.gz",
+          "guarded_cache_sha256": "cd2ed1927556bb932a847dde435b3e087c9e9489f3df948f42f318537d312583",
+          "frozen_reference_row_verified": true
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL12MORNEP",
+          "category": "WTA_MAIN",
+          "starting_price_region": "ge75+le25",
+          "leg_id": "NEP",
+          "ticker": "KXWTAMATCH-26JUL12MORNEP-NEP",
+          "entry_cents": 24,
+          "close_available": true,
+          "close_cents": 25,
+          "close_unavailability_reason": null,
+          "entry_minus_close_cents": -1,
+          "close_print_timestamp_epoch": 1783869187.732654,
+          "guarded_window_right_edge_epoch": 1783869600,
+          "close_seconds_before_window_right_edge": 412.26734590530396,
+          "close_tminus_window_right_edge": "T-6:52.267",
+          "exact_bell_timestamp_epoch": null,
+          "close_seconds_before_actual_bell": null,
+          "close_tminus_actual_bell": null,
+          "close_print_receipt": null,
+          "close_supporting_receipts": [
+            "131c7e8b-3f83-529d-8f9e-48b9b7811e7d",
+            "6fd37f4b-70fe-5340-9cf1-835664987e74",
+            "998a7bd6-3bab-5cfb-b282-239b3e8ecb42",
+            "aff3b506-400c-58df-8cde-3a0dd003e979"
+          ],
+          "close_print_size": 361.03999999999996,
+          "close_print_aggressor_side": "BUY",
+          "aggressor_source_law": "all supporting receipts taker_side=yes",
+          "close_print_receipts": [
+            {
+              "receipt": "131c7e8b-3f83-529d-8f9e-48b9b7811e7d",
+              "size": 50.04,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "6fd37f4b-70fe-5340-9cf1-835664987e74",
+              "size": 23,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "998a7bd6-3bab-5cfb-b282-239b3e8ecb42",
+              "size": 287,
+              "aggressor_side": "BUY"
+            },
+            {
+              "receipt": "aff3b506-400c-58df-8cde-3a0dd003e979",
+              "size": 1,
+              "aggressor_side": "BUY"
+            }
+          ],
+          "latest_timestamp_distinct_prices": [
+            25
+          ],
+          "same_timestamp_close_receipt_count": 4,
+          "boundary_source_class": "quantized_late_detection_proxy",
+          "boundary_guard_id": "te-calibration-central-93pct-asymmetric-v1",
+          "guarded_cache_file": "KXWTAMATCH-26JUL12MORNEP.json.gz",
+          "guarded_cache_sha256": "cd2ed1927556bb932a847dde435b3e087c9e9489f3df948f42f318537d312583",
+          "frozen_reference_row_verified": true
+        }
+      ]
+    }
+  ]
+}

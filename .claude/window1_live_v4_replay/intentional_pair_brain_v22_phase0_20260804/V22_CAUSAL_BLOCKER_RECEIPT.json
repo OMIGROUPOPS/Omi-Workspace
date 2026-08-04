@@ -1,0 +1,42 @@
+{
+  "schema_version": "WINDOW1_V22_CAUSAL_BLOCKER_RECEIPT_V1",
+  "status": "BLOCKED_BEFORE_PHASE_1",
+  "phase_0_close_ruler": "STRAIGHT_NO_CORRECTION_REQUIRED",
+  "phase_0_pair_cap": "PAIR CAP: ABSENT",
+  "blockers": [
+    {
+      "input": "OWN_CLOSE_ESTIMATE_AT_DECISION_TIME",
+      "status": "NOT_BOUND",
+      "reason": "The disjoint internal estimator beats the current-ask baseline in 0/16 category-price cells, 10 cells are thin, 301 legs lack close labels, and external-book predictive comparison is impossible because fresh July coverage is zero.",
+      "prohibited_use": [
+        "fee-aware take authority",
+        "first-leg commitment authority",
+        "take-versus-rest authority",
+        "five-game replay",
+        "804 policy replay"
+      ],
+      "consequence": "Phase 2 cannot lawfully certify aim < own close without inventing a new estimator or consuming the future audited close."
+    },
+    {
+      "input": "OWN_MAKER_FLOOR_AT_FIRST_SHAPE_PAIR_RESOLUTION",
+      "status": "EX_POST_ONLY_IN_FROZEN_LINEAGE",
+      "reason": "The frozen maker floor is computed from later qualifying asks and seller-aggressed trades over the completed Window-1 tape; it is a score/reference surface, not a decision-time input.",
+      "consequence": "A policy target equal to that eventual floor would leak future evidence unless a causal shape-to-price mapping is separately specified and bound."
+    }
+  ],
+  "V17_operator_relation": {
+    "prompt_literal": "sibling floor approximately 92.5 - 0.9X",
+    "frozen_library_fit_law": "First credited fill X predicts sibling eventual ten-second/exact-five ask floor within category+frozen starting-price-split. Every runtime target event is excluded and residual uncertainty is itself leave-one-event-out.",
+    "frozen_runtime_role": "LEAVE_ONE_EVENT_OUT_P10_P90_DISTRIBUTION_OVERLAP_FOR_BOTH_X_CONDITIONAL_AND_SHAPE_MEMBER_FLOORS; NO_POINT_TARGET",
+    "point_target_in_frozen_V17": false,
+    "usable_without_new_authority": "distributional hypothesis elimination only"
+  },
+  "forbidden_shortcuts": [
+    "use actual Window-1 close as its own decision-time estimate",
+    "use eventual maker floor as a decision-time aim",
+    "coerce the V17 fitted distribution into an unreceipted point target"
+  ],
+  "V22_replay_executed": false,
+  "V22_score_emitted": false,
+  "V20_A_remains_controlling_non_regression_floor": true
+}

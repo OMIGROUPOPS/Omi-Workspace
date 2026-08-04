@@ -1,0 +1,13 @@
+{
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "future_close_as_policy_input": false,
+  "future_floor_as_policy_input": false
+}

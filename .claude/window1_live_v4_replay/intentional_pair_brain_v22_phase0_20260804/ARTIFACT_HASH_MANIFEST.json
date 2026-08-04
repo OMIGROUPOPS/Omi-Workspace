@@ -1,0 +1,40 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "61e093f15436fec436f0ebaa9487270d05840c79a4bf54ba865686237f479726",
+      "bytes": 221
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "7b836532b581f5a549d24f8d208bd4879004bc6bf950be85e057bd0c79fbfbaa",
+      "bytes": 260
+    },
+    "PHASE0_BOTH_BELOW_CLOSE_FAIL_PAR.json": {
+      "sha256": "5574272aec9c7d7614f468661a0519b79c562a5a7ba1657feff42d8a6e083341",
+      "bytes": 105569
+    },
+    "PHASE0_CLOSE_RULER_RECEIPT.json": {
+      "sha256": "c2001c4055b846bf4e22ba6e4af2de5933eacca8f4912b9c15fa908f4d3ae100",
+      "bytes": 26214
+    },
+    "PHASE0_COMPLETED_A_CLOSE_FORENSICS.json": {
+      "sha256": "c8ac3bfd0040cf662a4a82fbf1aeb7e3b4e1e4be6f2fa1fb99af97adeeecde83",
+      "bytes": 1951875
+    },
+    "PHASE0_PAIR_CAP_SOURCE_AUDIT.json": {
+      "sha256": "55fb6a36a575d00437f5bdfdc8f511e74c6c89a21211f7d03daba114ed84ffe0",
+      "bytes": 877
+    },
+    "REPORT.md": {
+      "sha256": "52e99ce4cf97735f90e7d154fe3f0121dea310200067181985605aff44ec0666",
+      "bytes": 1998
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "a7b139e1007defb80bd7e0b03234ac7c6ad1548f44442f1736c2257f33456338",
+      "bytes": 2119
+    },
+    "V22_CAUSAL_BLOCKER_RECEIPT.json": {
+      "sha256": "017d473c15a5b03ae77f18fdcdc367dc63df4714074ecf52e0fe74a17edd4acd",
+      "bytes": 2386
+    }
+  }
+}

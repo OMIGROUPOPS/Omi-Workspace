@@ -1,0 +1,976 @@
+{
+  "schema_version": "WINDOW1_V22_PHASE0_CLOSE_RULER_RECEIPT_V1",
+  "status": "STRAIGHT",
+  "definition": "latest lawful true public print at or before the guarded Window-1 cutoff; latest-timestamp differing-price ambiguity remains unavailable",
+  "completed_A_variant_pairs": 471,
+  "completed_A_variant_legs": 942,
+  "frozen_reference_matches": 942,
+  "mismatches": 0,
+  "available_close_legs": 768,
+  "unavailable_or_ambiguous_close_legs": 174,
+  "exact_bell_available_legs": 274,
+  "exact_bell_unavailable_legs": 668,
+  "close_print_aggressor_sides": {
+    "BUY": 723,
+    "SELL": 78,
+    "UNKNOWN": 141
+  },
+  "close_sum_distribution_cents": {
+    "denominator": 471,
+    "numeric_n": 368,
+    "null_n": 103,
+    "min": 98,
+    "p25": 101,
+    "median": 101,
+    "p75": 102,
+    "p90": 103,
+    "max": 109
+  },
+  "close_seconds_before_window_right_distribution": {
+    "denominator": 942,
+    "numeric_n": 801,
+    "null_n": 141,
+    "min": 0.09654402732849121,
+    "p25": 30.745632886886597,
+    "median": 111.3398380279541,
+    "p75": 450.1870849132538,
+    "p90": 1444.877865076065,
+    "max": 19731.253532886505
+  },
+  "close_seconds_before_actual_bell_distribution": {
+    "denominator": 942,
+    "numeric_n": 274,
+    "null_n": 668,
+    "min": 60.29793906211853,
+    "p25": 78.98485708236694,
+    "median": 129.29328894615173,
+    "p75": 294.02801489830017,
+    "p90": 1069.5234289169312,
+    "max": 14690.21333193779
+  },
+  "both_below_close_but_fail_par_pairs": 25,
+  "category_and_starting_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "completed_pairs": 138,
+      "joint_objective_pairs": 13,
+      "both_below_close_but_fail_par": 16,
+      "close_sum_distribution_cents": {
+        "denominator": 138,
+        "numeric_n": 108,
+        "null_n": 30,
+        "min": 99,
+        "p25": 101,
+        "median": 102,
+        "p75": 102,
+        "p90": 103,
+        "max": 104
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 276,
+        "numeric_n": 246,
+        "null_n": 30,
+        "min": 0.41628408432006836,
+        "p25": 37.264944076538086,
+        "median": 123.68499398231506,
+        "p75": 572.7746059894562,
+        "p90": 2215.5305540561676,
+        "max": 14761.376236915588
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 276,
+        "numeric_n": 90,
+        "null_n": 186,
+        "min": 60.41628408432007,
+        "p25": 78.84140706062317,
+        "median": 126.72787690162659,
+        "p75": 255.12122702598572,
+        "p90": 1298.2274448871613,
+        "max": 13413.533998966217
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 226,
+        "SELL": 20,
+        "UNKNOWN": 30
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+51_75",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 101,
+        "p25": 101,
+        "median": 101,
+        "p75": 101,
+        "p90": 101,
+        "max": 101
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 132.7414948940277,
+        "p25": 132.7414948940277,
+        "median": 132.7414948940277,
+        "p75": 132.7414948940277,
+        "p90": 132.7414948940277,
+        "max": 457.3111810684204
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 0,
+        "null_n": 2,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 2
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+ge75",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 100,
+        "p25": 100,
+        "median": 100,
+        "p75": 100,
+        "p90": 100,
+        "max": 100
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 7.040507078170776,
+        "p25": 7.040507078170776,
+        "median": 7.040507078170776,
+        "p75": 7.040507078170776,
+        "p90": 7.040507078170776,
+        "max": 48.310441970825195
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 0,
+        "null_n": 2,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 2
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+le25",
+      "completed_pairs": 3,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 3,
+        "numeric_n": 1,
+        "null_n": 2,
+        "min": 100,
+        "p25": 100,
+        "median": 100,
+        "p75": 100,
+        "p90": 100,
+        "max": 100
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 6,
+        "numeric_n": 4,
+        "null_n": 2,
+        "min": 4.899400949478149,
+        "p25": 4.899400949478149,
+        "median": 73.92591905593872,
+        "p75": 2426.3191220760345,
+        "p90": 2426.3191220760345,
+        "max": 2582.5429339408875
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 6,
+        "numeric_n": 0,
+        "null_n": 6,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 4,
+        "UNKNOWN": 2
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "completed_pairs": 48,
+      "joint_objective_pairs": 5,
+      "both_below_close_but_fail_par": 4,
+      "close_sum_distribution_cents": {
+        "denominator": 48,
+        "numeric_n": 40,
+        "null_n": 8,
+        "min": 98,
+        "p25": 101,
+        "median": 101,
+        "p75": 102,
+        "p90": 103,
+        "max": 109
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 96,
+        "numeric_n": 90,
+        "null_n": 6,
+        "min": 1.8622419834136963,
+        "p25": 60.86755895614624,
+        "median": 217.15038800239563,
+        "p75": 680.6229629516602,
+        "p90": 1444.877865076065,
+        "max": 6313.362101078033
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 96,
+        "numeric_n": 22,
+        "null_n": 74,
+        "min": 62.347031116485596,
+        "p25": 93.62204599380493,
+        "median": 137.80345606803894,
+        "p75": 294.02801489830017,
+        "p90": 662.3297519683838,
+        "max": 3741.439066886902
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 78,
+        "SELL": 12,
+        "UNKNOWN": 6
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "le25+le25",
+      "completed_pairs": 4,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 4,
+        "numeric_n": 3,
+        "null_n": 1,
+        "min": 100,
+        "p25": 100,
+        "median": 101,
+        "p75": 101,
+        "p90": 101,
+        "max": 103
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 8,
+        "numeric_n": 7,
+        "null_n": 1,
+        "min": 87.09890007972717,
+        "p25": 90.07088804244995,
+        "median": 296.973659992218,
+        "p75": 445.55100107192993,
+        "p90": 510.29110288619995,
+        "max": 975.2482581138611
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 8,
+        "numeric_n": 2,
+        "null_n": 6,
+        "min": 147.09890007972717,
+        "p25": 147.09890007972717,
+        "median": 147.09890007972717,
+        "p75": 147.09890007972717,
+        "p90": 147.09890007972717,
+        "max": 570.2911028862
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 5,
+        "SELL": 2,
+        "UNKNOWN": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+26_50",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 102,
+        "p25": 102,
+        "median": 102,
+        "p75": 102,
+        "p90": 102,
+        "max": 102
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 17.2776141166687,
+        "p25": 17.2776141166687,
+        "median": 17.2776141166687,
+        "p75": 17.2776141166687,
+        "p90": 17.2776141166687,
+        "max": 19.224117040634155
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 77.2776141166687,
+        "p25": 77.2776141166687,
+        "median": 77.2776141166687,
+        "p75": 77.2776141166687,
+        "p90": 77.2776141166687,
+        "max": 79.22411704063416
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 2
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "completed_pairs": 74,
+      "joint_objective_pairs": 2,
+      "both_below_close_but_fail_par": 2,
+      "close_sum_distribution_cents": {
+        "denominator": 74,
+        "numeric_n": 62,
+        "null_n": 12,
+        "min": 99,
+        "p25": 101,
+        "median": 101,
+        "p75": 102,
+        "p90": 102,
+        "max": 103
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 148,
+        "numeric_n": 130,
+        "null_n": 18,
+        "min": 0.2979390621185303,
+        "p25": 11.585819005966187,
+        "median": 36.624711990356445,
+        "p75": 160.69945788383484,
+        "p90": 450.1870849132538,
+        "max": 7157.480633020401
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 148,
+        "numeric_n": 42,
+        "null_n": 106,
+        "min": 60.29793906211853,
+        "p25": 68.49120593070984,
+        "median": 82.74409890174866,
+        "p75": 134.64238691329956,
+        "p90": 301.4064109325409,
+        "max": 574.0764091014862
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 117,
+        "SELL": 13,
+        "UNKNOWN": 18
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "completed_pairs": 4,
+      "joint_objective_pairs": 2,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 100,
+        "p25": 100,
+        "median": 101,
+        "p75": 103,
+        "p90": 103,
+        "max": 103
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 8,
+        "numeric_n": 8,
+        "null_n": 0,
+        "min": 11.337960958480835,
+        "p25": 15.35995101928711,
+        "median": 22.370508909225464,
+        "p75": 30.745632886886597,
+        "p90": 39.53142309188843,
+        "max": 81.44944095611572
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 8,
+        "numeric_n": 0,
+        "null_n": 8,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 7,
+        "SELL": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 103,
+        "p25": 103,
+        "median": 103,
+        "p75": 103,
+        "p90": 103,
+        "max": 103
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 56.520384073257446,
+        "p25": 56.520384073257446,
+        "median": 56.520384073257446,
+        "p75": 56.520384073257446,
+        "p90": 56.520384073257446,
+        "max": 58.454636096954346
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 0,
+        "null_n": 2,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 2
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+le25",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 101,
+        "p25": 101,
+        "median": 101,
+        "p75": 101,
+        "p90": 101,
+        "max": 101
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 13.326795101165771,
+        "p25": 13.326795101165771,
+        "median": 13.326795101165771,
+        "p75": 13.326795101165771,
+        "p90": 13.326795101165771,
+        "max": 334.2838089466095
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 0,
+        "null_n": 2,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 2
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+le25",
+      "completed_pairs": 22,
+      "joint_objective_pairs": 2,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 22,
+        "numeric_n": 18,
+        "null_n": 4,
+        "min": 100,
+        "p25": 101,
+        "median": 101,
+        "p75": 102,
+        "p90": 102,
+        "max": 102
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 44,
+        "numeric_n": 38,
+        "null_n": 6,
+        "min": 2.2665960788726807,
+        "p25": 19.297635078430176,
+        "median": 69.29328894615173,
+        "p75": 194.49943900108337,
+        "p90": 318.3270089626312,
+        "max": 1096.0731449127197
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 44,
+        "numeric_n": 14,
+        "null_n": 30,
+        "min": 62.26659607887268,
+        "p25": 74.0074200630188,
+        "median": 89.06560492515564,
+        "p75": 117.81469488143921,
+        "p90": 205.90857100486755,
+        "max": 310.7841520309448
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 36,
+        "SELL": 2,
+        "UNKNOWN": 6
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 0,
+        "null_n": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 0,
+        "null_n": 2,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 0,
+        "null_n": 2,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "UNKNOWN": 2
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "completed_pairs": 54,
+      "joint_objective_pairs": 2,
+      "both_below_close_but_fail_par": 1,
+      "close_sum_distribution_cents": {
+        "denominator": 54,
+        "numeric_n": 35,
+        "null_n": 19,
+        "min": 99,
+        "p25": 100,
+        "median": 101,
+        "p75": 102,
+        "p90": 102,
+        "max": 103
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 108,
+        "numeric_n": 76,
+        "null_n": 32,
+        "min": 1.2521109580993652,
+        "p25": 63.81498908996582,
+        "median": 232.70239305496216,
+        "p75": 1333.4499371051788,
+        "p90": 3400.513750076294,
+        "max": 14630.21333193779
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 108,
+        "numeric_n": 36,
+        "null_n": 72,
+        "min": 61.252110958099365,
+        "p25": 107.37732195854187,
+        "median": 237.51227688789368,
+        "p75": 1821.1579411029816,
+        "p90": 3460.513750076294,
+        "max": 14690.21333193779
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 65,
+        "SELL": 11,
+        "UNKNOWN": 32
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "ge75+le25",
+      "completed_pairs": 31,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 1,
+      "close_sum_distribution_cents": {
+        "denominator": 31,
+        "numeric_n": 16,
+        "null_n": 15,
+        "min": 100,
+        "p25": 100,
+        "median": 101,
+        "p75": 102,
+        "p90": 102,
+        "max": 102
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 62,
+        "numeric_n": 34,
+        "null_n": 28,
+        "min": 4.133124113082886,
+        "p25": 72.48355102539062,
+        "median": 219.8353090286255,
+        "p75": 689.081619977951,
+        "p90": 2761.90584897995,
+        "max": 19731.253532886505
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 62,
+        "numeric_n": 12,
+        "null_n": 50,
+        "min": 89.37581992149353,
+        "p25": 98.1302490234375,
+        "median": 149.96600794792175,
+        "p75": 257.87330198287964,
+        "p90": 279.8353090286255,
+        "max": 445.083055973053
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 30,
+        "SELL": 4,
+        "UNKNOWN": 28
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "le25+le25",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 102,
+        "p25": 102,
+        "median": 102,
+        "p75": 102,
+        "p90": 102,
+        "max": 102
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 42.585143089294434,
+        "p25": 42.585143089294434,
+        "median": 42.585143089294434,
+        "p75": 42.585143089294434,
+        "p90": 42.585143089294434,
+        "max": 145.04701209068298
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 0,
+        "null_n": 2,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 2
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "completed_pairs": 47,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 47,
+        "numeric_n": 38,
+        "null_n": 9,
+        "min": 100,
+        "p25": 101,
+        "median": 101,
+        "p75": 101,
+        "p90": 102,
+        "max": 103
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 94,
+        "numeric_n": 78,
+        "null_n": 16,
+        "min": 0.09654402732849121,
+        "p25": 18.912167072296143,
+        "median": 69.31538701057434,
+        "p75": 216.07164907455444,
+        "p90": 883.4664580821991,
+        "max": 3857.041927099228
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 94,
+        "numeric_n": 24,
+        "null_n": 70,
+        "min": 60.94005990028381,
+        "p25": 66.6309928894043,
+        "median": 110.54471588134766,
+        "p75": 477.49367594718933,
+        "p90": 1063.8461420536041,
+        "max": 1247.1368570327759
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 72,
+        "SELL": 6,
+        "UNKNOWN": 16
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "completed_pairs": 1,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 101,
+        "p25": 101,
+        "median": 101,
+        "p75": 101,
+        "p90": 101,
+        "max": 101
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 6.472764015197754,
+        "p25": 6.472764015197754,
+        "median": 6.472764015197754,
+        "p75": 6.472764015197754,
+        "p90": 6.472764015197754,
+        "max": 6.482775926589966
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 66.47276401519775,
+        "p25": 66.47276401519775,
+        "median": 66.47276401519775,
+        "p75": 66.47276401519775,
+        "p90": 66.47276401519775,
+        "max": 66.48277592658997
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 2
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+le25",
+      "completed_pairs": 2,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 101,
+        "p25": 101,
+        "median": 101,
+        "p75": 101,
+        "p90": 101,
+        "max": 101
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 21.156665086746216,
+        "p25": 21.156665086746216,
+        "median": 49.281485080718994,
+        "p75": 262.3572449684143,
+        "p90": 262.3572449684143,
+        "max": 370.90483808517456
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 4,
+        "numeric_n": 0,
+        "null_n": 4,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 4
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+le25",
+      "completed_pairs": 2,
+      "joint_objective_pairs": 0,
+      "both_below_close_but_fail_par": 0,
+      "close_sum_distribution_cents": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 101,
+        "p25": 101,
+        "median": 101,
+        "p75": 101,
+        "p90": 101,
+        "max": 101
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 52.451021909713745,
+        "p25": 52.451021909713745,
+        "median": 460.00533294677734,
+        "p75": 914.7915449142456,
+        "p90": 914.7915449142456,
+        "max": 1725.0877199172974
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 4,
+        "numeric_n": 2,
+        "null_n": 2,
+        "min": 974.7915449142456,
+        "p25": 974.7915449142456,
+        "median": 974.7915449142456,
+        "p75": 974.7915449142456,
+        "p90": 974.7915449142456,
+        "max": 1785.0877199172974
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 4
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "ge75+le25",
+      "completed_pairs": 34,
+      "joint_objective_pairs": 1,
+      "both_below_close_but_fail_par": 1,
+      "close_sum_distribution_cents": {
+        "denominator": 34,
+        "numeric_n": 32,
+        "null_n": 2,
+        "min": 99,
+        "p25": 101,
+        "median": 101,
+        "p75": 102,
+        "p90": 102,
+        "max": 103
+      },
+      "close_seconds_before_window_right_distribution": {
+        "denominator": 68,
+        "numeric_n": 68,
+        "null_n": 0,
+        "min": 5.186397075653076,
+        "p25": 60.769476890563965,
+        "median": 115.38108897209167,
+        "p75": 395.5850100517273,
+        "p90": 794.6378409862518,
+        "max": 1713.3675589561462
+      },
+      "close_seconds_before_actual_bell_distribution": {
+        "denominator": 68,
+        "numeric_n": 26,
+        "null_n": 42,
+        "min": 69.97481393814087,
+        "p25": 104.19375801086426,
+        "median": 252.94476509094238,
+        "p75": 451.4000389575958,
+        "p90": 803.380166053772,
+        "max": 1773.3675589561462
+      },
+      "close_print_aggressor_sides": {
+        "BUY": 61,
+        "SELL": 7
+      }
+    }
+  ]
+}

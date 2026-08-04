@@ -1,0 +1,96 @@
+{
+  "guard": "CONDITIONAL ON RUNTIME AUDIT. Codex owns runtime authority; if his startup receipts rule differently, the NEW (gated) columns are counterfactual and the OLD (spike-map) columns stand. This pass scores against the sealed gated-optima surface as instructed; it does not adjudicate which surface the runtime binds.",
+  "authority": {
+    "receipt": "OMI-Workspace-codex-window1/.claude/window1_live_v4_replay/naked_leg_disposition_v23_vs_a_20260804/BAND_AUTHORITY_RECEIPT.json (e59aa4cc)",
+    "surfaces": {
+      "ATP_MAIN": "deploy_gated_optima_full.csv",
+      "WTA_MAIN": "deploy_gated_optima_WTA_MAIN.csv",
+      "ATP_CHALL": "deploy_gated_optima_ATP_CHALL.csv",
+      "WTA_CHALL": "deploy_gated_optima_WTA_CHALL.csv"
+    },
+    "content_verified": "working-tree CSVs match receipt git_blob_sha256 for all 4 (checkout_sha256 differs by line-ending only)",
+    "lookup_law": "CELL=CLAMP(ROUND(ENTRY),5,94); X=CSV.X; TARGET=MIN(ENTRY+X,98)",
+    "touch_law": "TRUE TAPE PRINT PRICE >= TARGET, after fill, before guarded right edge",
+    "hold_cells": 0
+  },
+  "conservation": {
+    "overlap": 31,
+    "disjoint": 359,
+    "sum": 390
+  },
+  "denominator_note": "all 359 disjoint; spike-map had 32 HOLD (non-harvestable), gated has 0 HOLD.",
+  "totals": {
+    "old_residency_bid_carry": 55,
+    "old_print_backed_carry": 62,
+    "new_band_touch_full": 40,
+    "new_print_backed_full": 39,
+    "new_print_backed_carry_isolation": 30
+  },
+  "by_bucket": {
+    "<=1h": {
+      "n": 106,
+      "old_bid": 14,
+      "old_pb": 17,
+      "new_touch": 12,
+      "new_pb": 12
+    },
+    "<=2h": {
+      "n": 55,
+      "old_bid": 7,
+      "old_pb": 8,
+      "new_touch": 7,
+      "new_pb": 7
+    },
+    "<=4h": {
+      "n": 86,
+      "old_bid": 10,
+      "old_pb": 12,
+      "new_touch": 6,
+      "new_pb": 5
+    },
+    "<=8h": {
+      "n": 60,
+      "old_bid": 9,
+      "old_pb": 9,
+      "new_touch": 8,
+      "new_pb": 8
+    },
+    ">8h": {
+      "n": 52,
+      "old_bid": 15,
+      "old_pb": 16,
+      "new_touch": 7,
+      "new_pb": 7
+    }
+  },
+  "by_category": {
+    "ATP_CHALL": {
+      "n": 167,
+      "old_bid": 19,
+      "old_pb": 23,
+      "new_touch": 20,
+      "new_pb": 20
+    },
+    "ATP_MAIN": {
+      "n": 89,
+      "old_bid": 20,
+      "old_pb": 22,
+      "new_touch": 7,
+      "new_pb": 7
+    },
+    "WTA_MAIN": {
+      "n": 68,
+      "old_bid": 7,
+      "old_pb": 7,
+      "new_touch": 4,
+      "new_pb": 3
+    },
+    "WTA_CHALL": {
+      "n": 35,
+      "old_bid": 9,
+      "old_pb": 10,
+      "new_touch": 9,
+      "new_pb": 9
+    }
+  }
+}

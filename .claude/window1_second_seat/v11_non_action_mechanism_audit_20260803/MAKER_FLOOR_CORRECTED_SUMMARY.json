@@ -1,0 +1,267 @@
+{
+  "correction": "maker_floor(leg)=min(qualifying_ask_floor, seller_aggressed_traded_low), residency-based, full denominator. A qualifying ask at X is maker-reachable by residency (our bid at X becomes best bid; the stepping seller hits us as maker); no historical print at X required.",
+  "evidence_tiers_not_availability": {
+    "note": "These are recorded-tape corroboration tiers, NOT the availability denominator.",
+    "lowest_traded_present": 782,
+    "seller_aggressed_present": 544
+  },
+  "acceptance": {
+    "maker_le_ask_violations": 0,
+    "maker_count_ge_ask_violations": 0,
+    "passed": true
+  },
+  "totals": {
+    "n": 896,
+    "ask_floor_legs": 860,
+    "maker_floor_legs": 862,
+    "ask_median": 51.0,
+    "maker_median": 51.0,
+    "maker_le_close": 739,
+    "maker_le_97": 862,
+    "maker_below_ask": 319
+  },
+  "per_category_x_region": {
+    "ATP_CHALL|le25": {
+      "n": 73,
+      "ask_floor_legs": 69,
+      "maker_floor_legs": 69,
+      "ask_median": 15,
+      "maker_median": 14,
+      "maker_le_close": 54,
+      "maker_le_97": 69,
+      "maker_below_ask": 24
+    },
+    "ATP_CHALL|26_50": {
+      "n": 156,
+      "ask_floor_legs": 156,
+      "maker_floor_legs": 156,
+      "ask_median": 38.0,
+      "maker_median": 37.0,
+      "maker_le_close": 138,
+      "maker_le_97": 156,
+      "maker_below_ask": 45
+    },
+    "ATP_CHALL|51_75": {
+      "n": 140,
+      "ask_floor_legs": 140,
+      "maker_floor_legs": 140,
+      "ask_median": 62.0,
+      "maker_median": 61.0,
+      "maker_le_close": 124,
+      "maker_le_97": 140,
+      "maker_below_ask": 47
+    },
+    "ATP_CHALL|ge76": {
+      "n": 69,
+      "ask_floor_legs": 69,
+      "maker_floor_legs": 69,
+      "ask_median": 84,
+      "maker_median": 84,
+      "maker_le_close": 61,
+      "maker_le_97": 69,
+      "maker_below_ask": 21
+    },
+    "ATP_MAIN|le25": {
+      "n": 29,
+      "ask_floor_legs": 17,
+      "maker_floor_legs": 17,
+      "ask_median": 20,
+      "maker_median": 20,
+      "maker_le_close": 15,
+      "maker_le_97": 17,
+      "maker_below_ask": 7
+    },
+    "ATP_MAIN|26_50": {
+      "n": 56,
+      "ask_floor_legs": 56,
+      "maker_floor_legs": 56,
+      "ask_median": 38.0,
+      "maker_median": 38.0,
+      "maker_le_close": 46,
+      "maker_le_97": 56,
+      "maker_below_ask": 22
+    },
+    "ATP_MAIN|51_75": {
+      "n": 64,
+      "ask_floor_legs": 64,
+      "maker_floor_legs": 64,
+      "ask_median": 62.5,
+      "maker_median": 61.5,
+      "maker_le_close": 58,
+      "maker_le_97": 64,
+      "maker_below_ask": 38
+    },
+    "ATP_MAIN|ge76": {
+      "n": 9,
+      "ask_floor_legs": 9,
+      "maker_floor_legs": 9,
+      "ask_median": 79,
+      "maker_median": 79,
+      "maker_le_close": 7,
+      "maker_le_97": 9,
+      "maker_below_ask": 4
+    },
+    "WTA_MAIN|le25": {
+      "n": 55,
+      "ask_floor_legs": 36,
+      "maker_floor_legs": 37,
+      "ask_median": 16.0,
+      "maker_median": 15,
+      "maker_le_close": 35,
+      "maker_le_97": 37,
+      "maker_below_ask": 20
+    },
+    "WTA_MAIN|26_50": {
+      "n": 39,
+      "ask_floor_legs": 39,
+      "maker_floor_legs": 39,
+      "ask_median": 40,
+      "maker_median": 39,
+      "maker_le_close": 36,
+      "maker_le_97": 39,
+      "maker_below_ask": 18
+    },
+    "WTA_MAIN|51_75": {
+      "n": 41,
+      "ask_floor_legs": 41,
+      "maker_floor_legs": 41,
+      "ask_median": 65,
+      "maker_median": 64,
+      "maker_le_close": 36,
+      "maker_le_97": 41,
+      "maker_below_ask": 19
+    },
+    "WTA_MAIN|ge76": {
+      "n": 32,
+      "ask_floor_legs": 31,
+      "maker_floor_legs": 32,
+      "ask_median": 84,
+      "maker_median": 83.5,
+      "maker_le_close": 31,
+      "maker_le_97": 32,
+      "maker_below_ask": 17
+    },
+    "WTA_CHALL|le25": {
+      "n": 18,
+      "ask_floor_legs": 18,
+      "maker_floor_legs": 18,
+      "ask_median": 10.0,
+      "maker_median": 9.5,
+      "maker_le_close": 10,
+      "maker_le_97": 18,
+      "maker_below_ask": 7
+    },
+    "WTA_CHALL|26_50": {
+      "n": 36,
+      "ask_floor_legs": 36,
+      "maker_floor_legs": 36,
+      "ask_median": 34.0,
+      "maker_median": 34.0,
+      "maker_le_close": 29,
+      "maker_le_97": 36,
+      "maker_below_ask": 10
+    },
+    "WTA_CHALL|51_75": {
+      "n": 52,
+      "ask_floor_legs": 52,
+      "maker_floor_legs": 52,
+      "ask_median": 62.5,
+      "maker_median": 61.5,
+      "maker_le_close": 42,
+      "maker_le_97": 52,
+      "maker_below_ask": 14
+    },
+    "WTA_CHALL|ge76": {
+      "n": 27,
+      "ask_floor_legs": 27,
+      "maker_floor_legs": 27,
+      "ask_median": 80,
+      "maker_median": 80,
+      "maker_le_close": 17,
+      "maker_le_97": 27,
+      "maker_below_ask": 6
+    }
+  },
+  "joint_frontier": {
+    "ask": {
+      "<=93": {
+        "events": 9,
+        "legs": 18
+      },
+      "<=95": {
+        "events": 12,
+        "legs": 24
+      },
+      "<=97": {
+        "events": 21,
+        "legs": 42
+      },
+      "<100": {
+        "events": 88,
+        "legs": 176
+      }
+    },
+    "maker": {
+      "<=93": {
+        "events": 11,
+        "legs": 22
+      },
+      "<=95": {
+        "events": 16,
+        "legs": 32
+      },
+      "<=97": {
+        "events": 59,
+        "legs": 118
+      },
+      "<100": {
+        "events": 171,
+        "legs": 342
+      }
+    },
+    "both_known_events": {
+      "ask": 259,
+      "maker": 260
+    }
+  },
+  "v19": {
+    "acted_of_896": 138,
+    "v19_global": {
+      "V11_acted": 712,
+      "V19_acted": 850,
+      "V11_completed_pairs": 185,
+      "V19_completed_pairs": 251,
+      "V11_pairs_under_par": 94,
+      "V19_pairs_under_par": 102
+    },
+    "v19_frontier_completed_pairs_over_804": {
+      "LE_93": 9,
+      "LE_95": 15,
+      "LE_97": 34,
+      "LT_100": 102,
+      "ANY": 251
+    },
+    "pair_couple_resolution": {
+      "resolved_138_all_needed_pair_hypothesis": 138,
+      "resolved_by_V11_terminal": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 57,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 28,
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 26,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 16,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 11
+      },
+      "still_stopped_758_by_V11_terminal": {
+        "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 257,
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 126,
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 119,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 94,
+        "SOURCE_UNAVAILABLE": 90,
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 63,
+        "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 6,
+        "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 2,
+        "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+      },
+      "independent_check_note": "V19's pair-couple (the built sibling fix) resolves 138 of the 896; it supplies a coupled shape verdict, not only a sibling read. My 500-leg synthetic-sibling PREDICATE incidence is a count of a binding predicate, not a placement forecast: most of the 500 carry co-binding shape/anchoring predicates, so only 138 convert under the actual pair fix. The residual after V19 is dominated by anchoring (257 above-low), unanimous-lower (126), still-sibling (119), stable (94), source (90)."
+    }
+  }
+}

@@ -81,7 +81,8 @@
           "legs": 216
         }
       }
-    }
+    },
+    "SUPERSEDED_BY": "MAKER_FLOOR_CORRECTED_SUMMARY.json \u2014 the 860->544 'availability' frame is RETIRED; a qualifying ask is maker-reachable by residency. The seller-aggressed/lowest-traded counts here are recorded-tape EVIDENCE TIERS, not the availability denominator. Use maker_floor=min(qualifying_ask_floor, seller_aggressed_traded_low)."
   },
   "item3_holdout_gate_lag": {
     "holdout_nonaction_legs": 268,

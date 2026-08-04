@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "commands": [
+    "node arb-executor/tests/test_window1_v29_mirror_armed_leg2_policy.js",
+    "node arb-executor/tests/test_window1_v29_mirror_armed_leg2_package.js",
+    "node arb-executor/tests/test_window1_v28_anchor_cap_stack_package.js"
+  ],
+  "omissions": 0,
+  "deselections": 0
+}

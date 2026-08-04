@@ -1,0 +1,41 @@
+{
+  "carried": {
+    "target_mass": 144,
+    "structurally_eligible_before_authority_checks": 116,
+    "converted": 0,
+    "decision_reasons": {
+      "V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL": 144
+    },
+    "outcomes": {
+      "UNCHANGED_V28_CARRIED": 144
+    }
+  },
+  "completion_mirror_false_negatives": {
+    "target_mass": 237,
+    "structurally_eligible_before_authority_checks": 86,
+    "converted": 0,
+    "decision_reasons": {
+      "SIBLING_CREDITED_DISCOUNT_AUTHORITY_NOT_BOUND": 227,
+      "V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL": 10
+    },
+    "outcomes": {
+      "ABSTAIN_NO_CAUSAL_DISCOUNT_OR_CLOSE_BAR_AUTHORITY": 227,
+      "UNCHANGED_ALREADY_COMPLETED_NONPAR_FN": 10
+    }
+  },
+  "total": {
+    "target_mass": 381,
+    "structurally_eligible_before_authority_checks": 202,
+    "converted": 0,
+    "decision_reasons": {
+      "SIBLING_CREDITED_DISCOUNT_AUTHORITY_NOT_BOUND": 227,
+      "V28_ALREADY_HANDLES_LEG_BYTE_IDENTICAL": 154
+    },
+    "outcomes": {
+      "ABSTAIN_NO_CAUSAL_DISCOUNT_OR_CLOSE_BAR_AUTHORITY": 227,
+      "UNCHANGED_V28_CARRIED": 144,
+      "UNCHANGED_ALREADY_COMPLETED_NONPAR_FN": 10
+    }
+  },
+  "note": "EX_POST_BELOW_CLOSE FIELDS CLASSIFY THE REQUESTED MASS FOR DIAGNOSIS ONLY; THEY NEVER ENTER POLICY"
+}

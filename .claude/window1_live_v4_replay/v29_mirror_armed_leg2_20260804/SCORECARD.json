@@ -1,0 +1,52 @@
+{
+  "variant": "V29_MIRROR_ARMED_LEG2",
+  "V28_floor": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1173,
+    "credited_legs": 1040,
+    "completed_pairs": 307,
+    "pairs_under_par": 295,
+    "completed_pairs_close_unavailable": 1,
+    "both_legs_strictly_below_audited_close": 65,
+    "joint_objective_pairs": 65,
+    "strict_carried_pairs": 144,
+    "execution_floor_pair_passes": 100
+  },
+  "V29_score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1173,
+    "credited_legs": 1040,
+    "completed_pairs": 307,
+    "pairs_under_par": 295,
+    "completed_pairs_close_unavailable": 1,
+    "both_legs_strictly_below_audited_close": 65,
+    "joint_objective_pairs": 65,
+    "strict_carried_pairs": 144,
+    "execution_floor_pair_passes": 100
+  },
+  "delta": {
+    "D": 0,
+    "legs": 0,
+    "acted_legs": 0,
+    "credited_legs": 0,
+    "completed_pairs": 0,
+    "pairs_under_par": 0,
+    "completed_pairs_close_unavailable": 0,
+    "both_legs_strictly_below_audited_close": 0,
+    "joint_objective_pairs": 0,
+    "strict_carried_pairs": 0,
+    "execution_floor_pair_passes": 0
+  },
+  "joint_non_regression": true,
+  "result": "NO_BOUND_AUTHORITY_ZERO_WIRING_V29_EQUALS_V28",
+  "carried_conversion": {
+    "target": 144,
+    "converted": 0
+  },
+  "completion_mirror_FN_conversion": {
+    "target": 237,
+    "converted": 0
+  }
+}

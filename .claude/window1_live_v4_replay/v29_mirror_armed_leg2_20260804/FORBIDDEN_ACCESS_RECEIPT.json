@@ -1,0 +1,14 @@
+{
+  "ex_post_close_as_policy_input": false,
+  "ex_post_floor_as_policy_input": false,
+  "holdout": false,
+  "live": false,
+  "network_runtime": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "elapsed_time_pair_input": false
+}

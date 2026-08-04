@@ -1,0 +1,45 @@
+{
+  "V28_leg_streams": 1608,
+  "changed_leg_streams": 0,
+  "unchanged_leg_streams": 1608,
+  "changed_stream_identities": [],
+  "all_other_streams_hash_equal": true,
+  "artifact_identities": [
+    {
+      "artifact": "EVENT_LEDGER.jsonl.gz",
+      "V28_sha256": "6ef554cbf74a821b0fcf3e3b6046867df6f7e88811db81fb57bce33e61c65891",
+      "V29_sha256": "6ef554cbf74a821b0fcf3e3b6046867df6f7e88811db81fb57bce33e61c65891",
+      "equal": true
+    },
+    {
+      "artifact": "LEG_LEDGER.jsonl.gz",
+      "V28_sha256": "a932582aaf18d405612f78f4b707c462b052edc7bc456ef3e0966d2c09d04169",
+      "V29_sha256": "a932582aaf18d405612f78f4b707c462b052edc7bc456ef3e0966d2c09d04169",
+      "equal": true
+    },
+    {
+      "artifact": "DECISION_TRACE_1608.json",
+      "V28_sha256": "e2c01db8e90d94d0dd3297a8b097607dfa0d6bbae810aaea51308114df8b19e3",
+      "V29_sha256": "e2c01db8e90d94d0dd3297a8b097607dfa0d6bbae810aaea51308114df8b19e3",
+      "equal": true
+    },
+    {
+      "artifact": "FRONTIER.json",
+      "V28_sha256": "ceefb2ebeeb0941503860781497d26a3e05b96d50b1a16b7233fd9028046e27c",
+      "V29_sha256": "ceefb2ebeeb0941503860781497d26a3e05b96d50b1a16b7233fd9028046e27c",
+      "equal": true
+    },
+    {
+      "artifact": "REGRET_GAUGE.json",
+      "V28_sha256": "5e33ec2e578597d74cf291a8546ae07e81f9f5ed54163d1b115ae6c09f259358",
+      "V29_sha256": "5e33ec2e578597d74cf291a8546ae07e81f9f5ed54163d1b115ae6c09f259358",
+      "equal": true
+    },
+    {
+      "artifact": "REGRET_LEG_LEDGER.jsonl.gz",
+      "V28_sha256": "0b536c68d8f7991c88c83972345eabecccacb80987d4b6a98d5da52f22e68f12",
+      "V29_sha256": "0b536c68d8f7991c88c83972345eabecccacb80987d4b6a98d5da52f22e68f12",
+      "equal": true
+    }
+  ]
+}

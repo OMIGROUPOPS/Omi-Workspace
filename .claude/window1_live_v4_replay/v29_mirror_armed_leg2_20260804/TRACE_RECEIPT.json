@@ -1,0 +1,79 @@
+{
+  "fresh_output_path": ".claude/window1_live_v4_replay/v29_mirror_armed_leg2_20260804/DECISION_TRACE_1608.json",
+  "rows": 1608,
+  "V28_sha256": "e2c01db8e90d94d0dd3297a8b097607dfa0d6bbae810aaea51308114df8b19e3",
+  "V29_sha256": "e2c01db8e90d94d0dd3297a8b097607dfa0d6bbae810aaea51308114df8b19e3",
+  "byte_identical_because_overlay_has_zero_authorized_decisions": true,
+  "layer_FN_table": [
+    {
+      "layer": "ADMISSION",
+      "stopped_legs": 90,
+      "false_negative_neg_delta_available_past_flag": 23,
+      "predicates": {
+        "SOURCE_UNAVAILABLE": 90
+      }
+    },
+    {
+      "layer": "ANCHOR",
+      "stopped_legs": 6,
+      "false_negative_neg_delta_available_past_flag": 2,
+      "predicates": {
+        "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 5,
+        "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+      }
+    },
+    {
+      "layer": "COMPLETION",
+      "stopped_legs": 450,
+      "false_negative_neg_delta_available_past_flag": 237,
+      "predicates": {
+        "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 426,
+        "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 22,
+        "COMPLETED_PAIR_NOT_STRICTLY_UNDER_PAR": 2
+      }
+    },
+    {
+      "layer": "FILL",
+      "stopped_legs": 133,
+      "false_negative_neg_delta_available_past_flag": 62,
+      "predicates": {
+        "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 107,
+        "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 26
+      }
+    },
+    {
+      "layer": "IDENTITY",
+      "stopped_legs": 16,
+      "false_negative_neg_delta_available_past_flag": 5,
+      "predicates": {
+        "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 15,
+        "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+      }
+    },
+    {
+      "layer": "PLACEMENT_CAP",
+      "stopped_legs": 157,
+      "false_negative_neg_delta_available_past_flag": 78,
+      "predicates": {
+        "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 157
+      }
+    },
+    {
+      "layer": "SIBLING_PAIR",
+      "stopped_legs": 50,
+      "false_negative_neg_delta_available_past_flag": 27,
+      "predicates": {
+        "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 50
+      }
+    },
+    {
+      "layer": "VERDICT",
+      "stopped_legs": 116,
+      "false_negative_neg_delta_available_past_flag": 35,
+      "predicates": {
+        "ALL_SURVIVING_SHAPES_SAY_LOWER": 58,
+        "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 58
+      }
+    }
+  ]
+}

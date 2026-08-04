@@ -1,0 +1,28 @@
+{
+  "requested_organ": "MIRROR_ARMED_LEG2",
+  "incumbent": {
+    "variant": "V28",
+    "joint": 65,
+    "status": "RATIFIED_OPERATIVE_NEW_FLOOR",
+    "commit": "3339f30dc9d3136788617bf0e5456708008b845b"
+  },
+  "causal_requirements": [
+    "CREDITED_SIBLING_DISCOUNT_AUTHORITY",
+    "DECISION_TIME_OWN_CLOSE_BAR",
+    "DECISION_TIME_OWN_LAWFUL_FLOOR_BAR",
+    "OWN_BOOK_DECLINE_COHERENT_ORDINAL",
+    "SPREAD_DWELL_CAPACITY_LAWFUL_READ",
+    "PAIR_CAP"
+  ],
+  "findings": {
+    "independent_pair_reference": "NOT_BOUND",
+    "numeric_decision_time_own_close_bar_authorized_cells": 0,
+    "V25_authorized_cells": [],
+    "V26_authorized_cells": [],
+    "ex_post_audited_close_policy_input": "FORBIDDEN",
+    "ex_post_floor_policy_input": "FORBIDDEN"
+  },
+  "ruling": "OVERLAY_ABSTAINS_EVERYWHERE; V28 RUNS BYTE_IDENTICAL",
+  "no_clock_inputs": true,
+  "elapsed_time_inputs": []
+}

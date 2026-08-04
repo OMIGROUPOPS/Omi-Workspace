@@ -1,0 +1,13 @@
+{
+  "V28": {
+    "status": "RATIFIED_OPERATIVE_NEW_FLOOR",
+    "joint": 65,
+    "source_commit": "3339f30dc9d3136788617bf0e5456708008b845b",
+    "source_receipt_sha256": "b73181890d965b65a16815601df79c53db072ec402e10c6a5eb6f63c30b54688"
+  },
+  "V29": {
+    "status": "BUILT_ZERO_AUTHORITY_NOT_PROMOTED",
+    "joint": 65
+  },
+  "law": "NEW_OVERLAY_NEVER_GATES_OR_LEAKS_FUTURE; ABSENT_AUTHORITY_PRESERVES_INCUMBENT_BYTE_IDENTICAL"
+}

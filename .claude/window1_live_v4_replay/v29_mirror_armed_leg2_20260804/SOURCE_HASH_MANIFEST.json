@@ -1,0 +1,64 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "6ef554cbf74a821b0fcf3e3b6046867df6f7e88811db81fb57bce33e61c65891",
+      "bytes": 3502728
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/LEG_LEDGER.jsonl.gz": {
+      "sha256": "a932582aaf18d405612f78f4b707c462b052edc7bc456ef3e0966d2c09d04169",
+      "bytes": 3326747
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/DECISION_TRACE_1608.json": {
+      "sha256": "e2c01db8e90d94d0dd3297a8b097607dfa0d6bbae810aaea51308114df8b19e3",
+      "bytes": 8473370
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/SCORECARD.json": {
+      "sha256": "8c3aeac8eb5baec556163980b06cbbe03fe356d705e7181f484452c27aaa6235",
+      "bytes": 35618
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/FRONTIER.json": {
+      "sha256": "ceefb2ebeeb0941503860781497d26a3e05b96d50b1a16b7233fd9028046e27c",
+      "bytes": 23647
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/REGRET_GAUGE.json": {
+      "sha256": "5e33ec2e578597d74cf291a8546ae07e81f9f5ed54163d1b115ae6c09f259358",
+      "bytes": 16267
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "0b536c68d8f7991c88c83972345eabecccacb80987d4b6a98d5da52f22e68f12",
+      "bytes": 20360
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/RATIFICATION_AND_SHELVING_RECEIPT.json": {
+      "sha256": "b73181890d965b65a16815601df79c53db072ec402e10c6a5eb6f63c30b54688",
+      "bytes": 917
+    },
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V22_PHASE1_LANDING_ESTIMATOR_SPEC.json": {
+      "sha256": "c520a96d0e8f44aa9a8bc96d9747a2d1e656699d58b49e1af503cd702fcab288",
+      "bytes": 3166
+    },
+    ".claude/window1_live_v4_replay/landing_estimator_overlay_v25_20260804/OVERLAY_AUTHORITY_RECEIPT.json": {
+      "sha256": "9b4362a52f7b0eb298ed929fbaec39bcca65a7f44634617616794fb149cb145d",
+      "bytes": 478
+    },
+    ".claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/DRIFT_CELL_AUTHORITY.json": {
+      "sha256": "ed1d8db6e5da026a201e9a3272584669654fdb2e2c86f4023108dd90228d9011",
+      "bytes": 14682
+    },
+    "arb-executor/analysis/window1_v29_mirror_armed_leg2_policy.js": {
+      "sha256": "27c542dd1b6d074aea616f00396be60fda72343c013a52b0438db246f0b1da54",
+      "bytes": 2289
+    },
+    "arb-executor/tests/test_window1_v29_mirror_armed_leg2_policy.js": {
+      "sha256": "94f074206f777e427406ecaf33e8074e60961dc9a8b81bce5a35b69ed11df921",
+      "bytes": 2999
+    },
+    "arb-executor/tests/test_window1_v29_mirror_armed_leg2_package.js": {
+      "sha256": "86c28c55adbd5f949ce927f3c81982b22c909448f8ad14d27dbfda0a24b09745",
+      "bytes": 2856
+    },
+    "arb-executor/analysis/build_window1_v29_mirror_armed_leg2.js": {
+      "sha256": "46ceace4e212d7ca743e3f18d13b5ab571ae6e437d4ff7df1e9e74a3cc3377fe",
+      "bytes": 14824
+    }
+  }
+}

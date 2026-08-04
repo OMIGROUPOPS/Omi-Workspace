@@ -1,0 +1,108 @@
+{
+  "item1": {
+    "legs": 1608,
+    "audited": 1557,
+    "no_inwindow_print": 51,
+    "divergence_from_replay": 256,
+    "closes_gt5min_early": 601,
+    "pct_early": 38.6,
+    "dist_from_right_edge_median_s": 164,
+    "close_aggressor": {
+      "BUY(lifted ask)": 1365,
+      "SELL(hit bid)": 192
+    },
+    "close_sum_per_category": {
+      "ATP_CHALL": {
+        "n": 357,
+        "min": 97,
+        "median": 101,
+        "max": 109,
+        "under_100": 11
+      },
+      "ATP_MAIN": {
+        "n": 141,
+        "min": 99,
+        "median": 101,
+        "max": 104,
+        "under_100": 2
+      },
+      "WTA_MAIN": {
+        "n": 141,
+        "min": 99,
+        "median": 101,
+        "max": 103,
+        "under_100": 3
+      },
+      "WTA_CHALL": {
+        "n": 134,
+        "min": 81,
+        "median": 101,
+        "max": 108,
+        "under_100": 7
+      }
+    },
+    "divergence_decomposition": {
+      "AGREE": 1301,
+      "REPLAY_CLOSE_ABSENT_AUDIT_RECOVERS": 250,
+      "NO_INWINDOW_TRUE_PRINT": 51,
+      "DIFFER": 6
+    },
+    "divergence_note": "Independent raw-tape audit reproduces the replay close on 1301/1307 legs where both exist (99.5%). 6 legs DIFFER by 1-2c. 250 legs: replay close was null, audit recovers a real in-window true print. 51 legs: no in-window true print at all.",
+    "differ_legs_mine_vs_replay": [
+      [
+        "19LUZTAB-TAB",
+        92,
+        93
+      ],
+      [
+        "19VANFAR-FAR",
+        64,
+        65
+      ],
+      [
+        "20ROCMAR-ROC",
+        56,
+        58
+      ],
+      [
+        "13KABPER-KAB",
+        71,
+        73
+      ],
+      [
+        "14CARVON-VON",
+        24,
+        25
+      ],
+      [
+        "20FERREN-REN",
+        16,
+        15
+      ]
+    ],
+    "early_close_severity": {
+      "gt5min": 601,
+      "gt30min": 228,
+      "gt1h": 133,
+      "dist_median_s": 164.0,
+      "dist_p90_s": 2951.0,
+      "dist_max_s": 27042.0
+    }
+  },
+  "item2_joint_achievable_ceiling": {
+    "definition": "events where BOTH maker_floor < MY audited close (strict) AND maker_sum<100",
+    "total_events": 390,
+    "by_tier": {
+      "<=93": 59,
+      "<=95": 104,
+      "<=97": 217,
+      "<100": 390
+    },
+    "by_category": {
+      "ATP_CHALL": 184,
+      "ATP_MAIN": 92,
+      "WTA_MAIN": 75,
+      "WTA_CHALL": 39
+    }
+  }
+}

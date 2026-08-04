@@ -1,0 +1,998 @@
+{
+  "ruling": "Canonical CAPTURED = joint objective: completed pair AND sum<100 AND both legs strictly below own audited close. Par-only-not-joint is marginal, never captured.",
+  "source": "V23 replay artifacts (8b50821): pair_cap_v23_audited_close_20260804/V23_LEG_LEDGER + V23_EVENT_LEDGER; tape-derived floors/prints with receipts.",
+  "conservation": {
+    "legs": 1608,
+    "tag_totals": {
+      "FIXABLE": 945,
+      "SIBLING_FAULT": 146,
+      "TAPE_CEILING": 267,
+      "CAPTURED": 90,
+      "ARCH_CEILING": 160
+    },
+    "sum": 1608,
+    "equals_1608": true
+  },
+  "addresses": {
+    "CAPTURED": {
+      "n": 90,
+      "FIXABLE": 0,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 0,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 90
+    },
+    "L0_source": {
+      "n": 90,
+      "FIXABLE": 56,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 34,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L2_shape": {
+      "n": 16,
+      "FIXABLE": 16,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 0,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L4_verdict": {
+      "n": 116,
+      "FIXABLE": 116,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 0,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L5_anchor": {
+      "n": 149,
+      "FIXABLE": 149,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 0,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L6_pair": {
+      "n": 50,
+      "FIXABLE": 50,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 0,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L7_cap": {
+      "n": 160,
+      "FIXABLE": 0,
+      "ARCH_CEILING": 160,
+      "TAPE_CEILING": 0,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L8_fill": {
+      "n": 107,
+      "FIXABLE": 79,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 28,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L9_carry": {
+      "n": 512,
+      "FIXABLE": 388,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 124,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L10_grading": {
+      "n": 22,
+      "FIXABLE": 13,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 9,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "L_AIM": {
+      "n": 150,
+      "FIXABLE": 78,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 72,
+      "SIBLING_FAULT": 0,
+      "CAPTURED": 0
+    },
+    "SIBLING_FAULT": {
+      "n": 146,
+      "FIXABLE": 0,
+      "ARCH_CEILING": 0,
+      "TAPE_CEILING": 0,
+      "SIBLING_FAULT": 146,
+      "CAPTURED": 0
+    }
+  },
+  "v24_addressable": {
+    "total": 1105,
+    "by_layer": {
+      "L9_carry": 388,
+      "L7_cap": 160,
+      "L5_anchor": 149,
+      "L4_verdict": 116,
+      "L8_fill": 79,
+      "L_AIM": 78,
+      "L0_source": 56,
+      "L6_pair": 50,
+      "L2_shape": 16,
+      "L10_grading": 13
+    },
+    "by_layer_category": {
+      "L9_carry": {
+        "ATP_CHALL": 187,
+        "ATP_MAIN": 76,
+        "WTA_MAIN": 69,
+        "WTA_CHALL": 56
+      },
+      "L7_cap": {
+        "ATP_CHALL": 47,
+        "ATP_MAIN": 39,
+        "WTA_MAIN": 37,
+        "WTA_CHALL": 37
+      },
+      "L5_anchor": {
+        "ATP_CHALL": 82,
+        "ATP_MAIN": 16,
+        "WTA_MAIN": 26,
+        "WTA_CHALL": 25
+      },
+      "L4_verdict": {
+        "ATP_CHALL": 53,
+        "ATP_MAIN": 16,
+        "WTA_MAIN": 31,
+        "WTA_CHALL": 16
+      },
+      "L8_fill": {
+        "ATP_CHALL": 47,
+        "ATP_MAIN": 12,
+        "WTA_MAIN": 8,
+        "WTA_CHALL": 12
+      },
+      "L_AIM": {
+        "ATP_CHALL": 31,
+        "ATP_MAIN": 25,
+        "WTA_MAIN": 13,
+        "WTA_CHALL": 9
+      },
+      "L0_source": {
+        "ATP_CHALL": 36,
+        "ATP_MAIN": 2,
+        "WTA_MAIN": 12,
+        "WTA_CHALL": 6
+      },
+      "L6_pair": {
+        "ATP_CHALL": 30,
+        "ATP_MAIN": 5,
+        "WTA_MAIN": 3,
+        "WTA_CHALL": 12
+      },
+      "L2_shape": {
+        "ATP_CHALL": 7,
+        "ATP_MAIN": 3,
+        "WTA_MAIN": 1,
+        "WTA_CHALL": 5
+      },
+      "L10_grading": {
+        "ATP_CHALL": 3,
+        "ATP_MAIN": 0,
+        "WTA_MAIN": 7,
+        "WTA_CHALL": 3
+      }
+    },
+    "by_region": {
+      "le25": 193,
+      "26_50": 382,
+      "51_75": 366,
+      "ge76": 164
+    },
+    "cells_sorted": [
+      {
+        "fixable_or_arch": 77,
+        "layer": "L9_carry",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 54,
+        "layer": "L9_carry",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 41,
+        "layer": "L9_carry",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 30,
+        "layer": "L4_verdict",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 29,
+        "layer": "L9_carry",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 29,
+        "layer": "L5_anchor",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 27,
+        "layer": "L9_carry",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 24,
+        "layer": "L7_cap",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 23,
+        "layer": "L9_carry",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 23,
+        "layer": "L9_carry",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 22,
+        "layer": "L8_fill",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 20,
+        "layer": "L5_anchor",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 19,
+        "layer": "L7_cap",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 18,
+        "layer": "L5_anchor",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 17,
+        "layer": "L9_carry",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 17,
+        "layer": "L6_pair",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 17,
+        "layer": "L7_cap",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 16,
+        "layer": "L9_carry",
+        "category": "ATP_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 16,
+        "layer": "L9_carry",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 15,
+        "layer": "L9_carry",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 15,
+        "layer": "L9_carry",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 15,
+        "layer": "L5_anchor",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 15,
+        "layer": "L5_anchor",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 14,
+        "layer": "L9_carry",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 13,
+        "layer": "L5_anchor",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 13,
+        "layer": "L4_verdict",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 12,
+        "layer": "L9_carry",
+        "category": "WTA_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 12,
+        "layer": "L_AIM",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 12,
+        "layer": "L4_verdict",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 12,
+        "layer": "L7_cap",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 11,
+        "layer": "L_AIM",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 11,
+        "layer": "L0_source",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 11,
+        "layer": "L8_fill",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L_AIM",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L_AIM",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L0_source",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L4_verdict",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L4_verdict",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L7_cap",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L7_cap",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L7_cap",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 10,
+        "layer": "L8_fill",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 9,
+        "layer": "L0_source",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 9,
+        "layer": "L7_cap",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 9,
+        "layer": "L7_cap",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 9,
+        "layer": "L7_cap",
+        "category": "WTA_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 8,
+        "layer": "L4_verdict",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 8,
+        "layer": "L7_cap",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 7,
+        "layer": "L9_carry",
+        "category": "WTA_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 7,
+        "layer": "L6_pair",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 7,
+        "layer": "L_AIM",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 7,
+        "layer": "L7_cap",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 6,
+        "layer": "L_AIM",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 6,
+        "layer": "L0_source",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 6,
+        "layer": "L5_anchor",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 6,
+        "layer": "L5_anchor",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 6,
+        "layer": "L5_anchor",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 6,
+        "layer": "L7_cap",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 6,
+        "layer": "L7_cap",
+        "category": "WTA_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L2_shape",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L6_pair",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L_AIM",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L5_anchor",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L5_anchor",
+        "category": "WTA_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L4_verdict",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L4_verdict",
+        "category": "WTA_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 5,
+        "layer": "L8_fill",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L_AIM",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L0_source",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L0_source",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L5_anchor",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L4_verdict",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L4_verdict",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L4_verdict",
+        "category": "WTA_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L4_verdict",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L7_cap",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L8_fill",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L8_fill",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 4,
+        "layer": "L8_fill",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L2_shape",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L6_pair",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L6_pair",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L6_pair",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L_AIM",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L0_source",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L0_source",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L5_anchor",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L4_verdict",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L4_verdict",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L10_grading",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L8_fill",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L8_fill",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L8_fill",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L8_fill",
+        "category": "WTA_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 3,
+        "layer": "L8_fill",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L9_carry",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L2_shape",
+        "category": "ATP_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L2_shape",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L2_shape",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L6_pair",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L6_pair",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L6_pair",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L6_pair",
+        "category": "WTA_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L6_pair",
+        "category": "WTA_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L_AIM",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L_AIM",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L_AIM",
+        "category": "ATP_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L0_source",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L0_source",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L5_anchor",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L10_grading",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L10_grading",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L10_grading",
+        "category": "WTA_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 2,
+        "layer": "L8_fill",
+        "category": "WTA_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L2_shape",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L2_shape",
+        "category": "WTA_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L6_pair",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L6_pair",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L_AIM",
+        "category": "WTA_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L_AIM",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L_AIM",
+        "category": "WTA_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L_AIM",
+        "category": "WTA_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L0_source",
+        "category": "ATP_MAIN",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L0_source",
+        "category": "ATP_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L5_anchor",
+        "category": "ATP_MAIN",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L5_anchor",
+        "category": "WTA_CHALL",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L4_verdict",
+        "category": "ATP_MAIN",
+        "region": "le25"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L10_grading",
+        "category": "ATP_CHALL",
+        "region": "26_50"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L10_grading",
+        "category": "ATP_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L10_grading",
+        "category": "ATP_CHALL",
+        "region": "ge76"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L10_grading",
+        "category": "WTA_CHALL",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L8_fill",
+        "category": "WTA_MAIN",
+        "region": "51_75"
+      },
+      {
+        "fixable_or_arch": 1,
+        "layer": "L8_fill",
+        "category": "WTA_MAIN",
+        "region": "ge76"
+      }
+    ]
+  },
+  "arch_ceiling_cite": "L7 placement-cap: V23 pair_reference cap is a function of leg-1's fill; PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING put the leg-2 cap below the live bid though a reachable price existed -> ARCH_CEILING (V24 can rework cap/chase)."
+}

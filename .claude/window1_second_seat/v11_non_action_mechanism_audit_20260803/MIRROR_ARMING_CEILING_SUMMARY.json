@@ -1,0 +1,187 @@
+{
+  "method": "Model-free mirror-arming ceiling from V28 trace (3339f30) population + raw tapes + independent audited closes (50ce0f49). No V29 access. Per leg, after the sibling's credited fill ts, first qualifying ask (10s dwell, 5-lot, residency-maker) at <= min(99 - sibling_fill, own_close - 1).",
+  "conservation": {
+    "total_legs": 533,
+    "class_a_carried": 296,
+    "class_b_FN": 237,
+    "carried_pairs": 148
+  },
+  "class_a_carried_pairs": {
+    "n": 296,
+    "convertible": 119,
+    "not_convertible": 177,
+    "undetermined": 0,
+    "not_conv_reasons": {
+      "CAP_UNREACHABLE (99-sib_fill binds)": 60,
+      "PRICE_NEVER_PRINTED (below close-1 not offered after fill)": 117
+    },
+    "release_min_median": 102.8,
+    "release_le5": 29,
+    "release_le15": 39,
+    "release_le60": 53,
+    "release_gt60": 66,
+    "by_cat_region": {
+      "ATP_CHALL": {
+        "le25": {
+          "convertible": 7,
+          "total": 15
+        },
+        "26_50": {
+          "convertible": 20,
+          "total": 38
+        },
+        "51_75": {
+          "convertible": 18,
+          "total": 33
+        },
+        "ge76": {
+          "convertible": 4,
+          "total": 12
+        }
+      },
+      "ATP_MAIN": {
+        "le25": {
+          "convertible": 1,
+          "total": 7
+        },
+        "26_50": {
+          "convertible": 13,
+          "total": 37
+        },
+        "51_75": {
+          "convertible": 15,
+          "total": 36
+        },
+        "ge76": {
+          "convertible": 2,
+          "total": 4
+        }
+      },
+      "WTA_MAIN": {
+        "le25": {
+          "convertible": 1,
+          "total": 7
+        },
+        "26_50": {
+          "convertible": 7,
+          "total": 26
+        },
+        "51_75": {
+          "convertible": 5,
+          "total": 24
+        },
+        "ge76": {
+          "convertible": 0,
+          "total": 5
+        }
+      },
+      "WTA_CHALL": {
+        "le25": {
+          "convertible": 2,
+          "total": 10
+        },
+        "26_50": {
+          "convertible": 9,
+          "total": 18
+        },
+        "51_75": {
+          "convertible": 9,
+          "total": 14
+        },
+        "ge76": {
+          "convertible": 6,
+          "total": 10
+        }
+      }
+    }
+  },
+  "class_b_FN_mirror": {
+    "n": 237,
+    "convertible": 29,
+    "not_convertible": 208,
+    "undetermined": 0,
+    "not_conv_reasons": {
+      "PRICE_NEVER_PRINTED (below close-1 not offered after fill)": 7,
+      "CAP_UNREACHABLE (99-sib_fill binds)": 201
+    },
+    "release_min_median": 0.9,
+    "release_le5": 21,
+    "release_le15": 22,
+    "release_le60": 22,
+    "release_gt60": 7,
+    "by_cat_region": {
+      "ATP_CHALL": {
+        "le25": {
+          "convertible": 2,
+          "total": 15
+        },
+        "26_50": {
+          "convertible": 12,
+          "total": 57
+        },
+        "51_75": {
+          "convertible": 2,
+          "total": 42
+        },
+        "ge76": {
+          "convertible": 0,
+          "total": 10
+        }
+      },
+      "ATP_MAIN": {
+        "le25": {
+          "convertible": 1,
+          "total": 9
+        },
+        "26_50": {
+          "convertible": 3,
+          "total": 20
+        },
+        "51_75": {
+          "convertible": 0,
+          "total": 9
+        },
+        "ge76": {
+          "convertible": 0,
+          "total": 0
+        }
+      },
+      "WTA_MAIN": {
+        "le25": {
+          "convertible": 2,
+          "total": 10
+        },
+        "26_50": {
+          "convertible": 2,
+          "total": 11
+        },
+        "51_75": {
+          "convertible": 0,
+          "total": 10
+        },
+        "ge76": {
+          "convertible": 0,
+          "total": 9
+        }
+      },
+      "WTA_CHALL": {
+        "le25": {
+          "convertible": 1,
+          "total": 3
+        },
+        "26_50": {
+          "convertible": 3,
+          "total": 10
+        },
+        "51_75": {
+          "convertible": 1,
+          "total": 14
+        },
+        "ge76": {
+          "convertible": 0,
+          "total": 8
+        }
+      }
+    }
+  }
+}

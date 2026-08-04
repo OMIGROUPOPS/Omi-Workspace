@@ -1,0 +1,208 @@
+{
+  "source": {
+    "v23_leg_ledger": "pair_cap_v23_audited_close_20260804/V23_LEG_LEDGER.jsonl.gz",
+    "v23_event_ledger": "pair_cap_v23_audited_close_20260804/V23_EVENT_LEDGER.jsonl.gz",
+    "provenance": "V23 replay artifacts (commit 8b50821); evidence fields (qualifying_ask_floor, traded_low_proof.print receipts, maker_floor, seller_aggressed_floor, pair_reference) are tape-derived and carry receipts."
+  },
+  "conservation": {
+    "legs": 1608,
+    "layer_sum": 1608,
+    "equals_1608": true
+  },
+  "layer_counts": {
+    "CAPTURED": 386,
+    "L0_source": 90,
+    "L1_book": 0,
+    "L2_shape": 16,
+    "L3_floor": 0,
+    "L4_verdict": 116,
+    "L5_anchor": 149,
+    "L6_pair": 50,
+    "L7_cap": 160,
+    "L8_fill": 107,
+    "L9_carry": 512,
+    "L10_grading": 22
+  },
+  "fixable_ceiling": {
+    "L0_source": {
+      "fixable": 56,
+      "ceiling": 34
+    },
+    "L1_book": {
+      "fixable": 0,
+      "ceiling": 0
+    },
+    "L2_shape": {
+      "fixable": 16,
+      "ceiling": 0
+    },
+    "L3_floor": {
+      "fixable": 0,
+      "ceiling": 0
+    },
+    "L4_verdict": {
+      "fixable": 116,
+      "ceiling": 0
+    },
+    "L5_anchor": {
+      "fixable": 149,
+      "ceiling": 0
+    },
+    "L6_pair": {
+      "fixable": 50,
+      "ceiling": 0
+    },
+    "L7_cap": {
+      "fixable": 0,
+      "ceiling": 160
+    },
+    "L8_fill": {
+      "fixable": 79,
+      "ceiling": 28
+    },
+    "L9_carry": {
+      "fixable": 388,
+      "ceiling": 124
+    },
+    "L10_grading": {
+      "fixable": 13,
+      "ceiling": 9
+    }
+  },
+  "fixable_mass_sorted": [
+    {
+      "layer": "L9_carry",
+      "fixable": 388
+    },
+    {
+      "layer": "L5_anchor",
+      "fixable": 149
+    },
+    {
+      "layer": "L4_verdict",
+      "fixable": 116
+    },
+    {
+      "layer": "L8_fill",
+      "fixable": 79
+    },
+    {
+      "layer": "L0_source",
+      "fixable": 56
+    },
+    {
+      "layer": "L6_pair",
+      "fixable": 50
+    },
+    {
+      "layer": "L2_shape",
+      "fixable": 16
+    },
+    {
+      "layer": "L10_grading",
+      "fixable": 13
+    }
+  ],
+  "fixable_by_layer_category": {
+    "L9_carry": {
+      "ATP_CHALL": 187,
+      "ATP_MAIN": 76,
+      "WTA_MAIN": 69,
+      "WTA_CHALL": 56
+    },
+    "L5_anchor": {
+      "ATP_CHALL": 82,
+      "ATP_MAIN": 16,
+      "WTA_MAIN": 26,
+      "WTA_CHALL": 25
+    },
+    "L4_verdict": {
+      "ATP_CHALL": 53,
+      "ATP_MAIN": 16,
+      "WTA_MAIN": 31,
+      "WTA_CHALL": 16
+    },
+    "L8_fill": {
+      "ATP_CHALL": 47,
+      "ATP_MAIN": 12,
+      "WTA_MAIN": 8,
+      "WTA_CHALL": 12
+    },
+    "L0_source": {
+      "ATP_CHALL": 36,
+      "ATP_MAIN": 2,
+      "WTA_MAIN": 12,
+      "WTA_CHALL": 6
+    },
+    "L6_pair": {
+      "ATP_CHALL": 30,
+      "ATP_MAIN": 5,
+      "WTA_MAIN": 3,
+      "WTA_CHALL": 12
+    },
+    "L2_shape": {
+      "ATP_CHALL": 7,
+      "ATP_MAIN": 3,
+      "WTA_MAIN": 1,
+      "WTA_CHALL": 5
+    },
+    "L10_grading": {
+      "ATP_CHALL": 3,
+      "ATP_MAIN": 0,
+      "WTA_MAIN": 7,
+      "WTA_CHALL": 3
+    }
+  },
+  "fixable_by_layer_region": {
+    "L9_carry": {
+      "le25": 59,
+      "26_50": 117,
+      "51_75": 147,
+      "ge76": 65
+    },
+    "L5_anchor": {
+      "le25": 24,
+      "26_50": 34,
+      "51_75": 61,
+      "ge76": 30
+    },
+    "L4_verdict": {
+      "le25": 19,
+      "26_50": 58,
+      "51_75": 22,
+      "ge76": 17
+    },
+    "L8_fill": {
+      "le25": 19,
+      "26_50": 32,
+      "51_75": 21,
+      "ge76": 7
+    },
+    "L0_source": {
+      "le25": 15,
+      "26_50": 16,
+      "51_75": 15,
+      "ge76": 10
+    },
+    "L6_pair": {
+      "le25": 8,
+      "26_50": 14,
+      "51_75": 23,
+      "ge76": 5
+    },
+    "L2_shape": {
+      "le25": 3,
+      "26_50": 11,
+      "51_75": 2,
+      "ge76": 0
+    },
+    "L10_grading": {
+      "le25": 3,
+      "26_50": 5,
+      "51_75": 2,
+      "ge76": 3
+    }
+  },
+  "captured": 386,
+  "layer_semantics": "L0 source/L1 book/L2 shape/L3 floor/L4 verdict/L5 anchor-freshness/L6 pair authority/L7 placement-cap/L8 fill/L9 completion-carry/L10 grading; L1 and L3 unpopulated in this run (book-absence folds into L0; floor-formation failures present as L2/L4)."
+}

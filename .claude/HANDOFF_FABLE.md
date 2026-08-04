@@ -1,6 +1,12 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## FIX A MAKER-FLOOR CORRECTION - 2026-08-04
+
+Fix A's 337 recovered development legs are rescored against the controlling August-1 maker floor: the minimum of the qualifying ask with residency and the seller-aggressed traded low. The corrected score has 66 exact-floor legs, 168 one-cent gaps, 79 two-to-three-cent gaps, 13 four-to-nine-cent gaps, and 11 gaps of ten cents or more. The exact category-by-price-region partitions and leg identities are frozen here:
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/fix_a_maker_floor_score_v21_20260804/FIX_A_MAKER_FLOOR_SCORE.json
+
 ## WINDOW-1 ISOLATED REPAIRS V20 - 2026-08-04
 
 Fix A and Fix C are separate 804-event V19 overlays and were not stacked. Fix B was not built because the source reads the sibling's own formed book, not a 100-p mirror.

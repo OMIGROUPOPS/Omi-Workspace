@@ -1,0 +1,22 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "0c14003108dc2f9e7b9e162c1bffc2a1b2d069c7941885982a9468ed28dd2fb4",
+      "bytes": 3122608
+    },
+    "arb-executor/analysis/build_window1_fix_a_maker_floor_score_v21.js": {
+      "sha256": "f2e1a345ef441fbf6b6e645cb7504e9ea7fc51bf9cc3db49ef807f18d6d3d7f1",
+      "bytes": 10574
+    }
+  },
+  "git_object_inputs": {
+    "08fe622badbf92bb43a2f2acbd78b515a1ad5308:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MAKER_FLOOR_REGRET_896.csv": {
+      "sha256": "6de1f35a59ad8d29b857c3cd312f28c600e624c97f23162d1c38b84b94998480",
+      "bytes": 89783
+    },
+    "08fe622badbf92bb43a2f2acbd78b515a1ad5308:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MAKER_FLOOR_CORRECTED_SUMMARY.json": {
+      "sha256": "dc59e313fb88cf5d23ea171669317ce7da4db9fa1f8eaeba7bdd2718c101da76",
+      "bytes": 7580
+    }
+  }
+}

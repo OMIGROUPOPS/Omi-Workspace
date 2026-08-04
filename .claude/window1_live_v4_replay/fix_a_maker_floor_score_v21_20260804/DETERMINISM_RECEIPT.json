@@ -1,0 +1,7 @@
+{
+  "schema_version": "WINDOW1_FIX_A_MAKER_FLOOR_SCORE_V21_DETERMINISM",
+  "clean_builds": 2,
+  "comparison": "RELATIVE_PATH_SIZE_AND_SHA256",
+  "regenerable_artifacts_byte_identical": true,
+  "generated_at_runtime_timestamp": null
+}

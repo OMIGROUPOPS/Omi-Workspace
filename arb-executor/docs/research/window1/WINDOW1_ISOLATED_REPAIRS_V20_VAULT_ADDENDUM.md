@@ -18,3 +18,11 @@ Rulings:
 2. The mirror-sibling claim is false. The predicate reads the sibling ticker's own formed-book ask path. Fix B was not constructed.
 3. Fix C re-asks unanimous LOWER only after a strictly later qualified own-ask receipt at or above the refused floor; it retains the inherited ten-second dwell and exact-five displayed-capacity laws.
 4. V19 remains the mandatory non-regression floor for every isolated replay. Development evidence is not holdout validation and is not a market ceiling.
+
+## Maker-floor correction, 2026-08-04
+
+Fix A's 337 recovered legs were rescored against the August-1 maker-floor law: `min(qualifying ask with residency, seller-aggressed traded low)`. The corrected floor is below the qualifying-ask floor on 151 legs. Against the corrected maker floor, 66 legs are exact, 168 are one cent above, 79 are two-to-three cents above, 13 are four-to-nine cents above, and 11 are at least ten cents above. Median regret is one cent, p90 is three cents, and total signed nonnegative regret is 726 cents. This is a development-replay diagnostic over Fix A's recovered legs only.
+
+- Corrected score: https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/fix_a_maker_floor_score_v21_20260804/FIX_A_MAKER_FLOOR_SCORE.json
+- Exact recovered-leg ledger: https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/fix_a_maker_floor_score_v21_20260804/FIX_A_RECOVERED_LEG_MAKER_FLOOR_LEDGER.jsonl.gz
+- August-1 reference surface: https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/08fe622badbf92bb43a2f2acbd78b515a1ad5308/.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MAKER_FLOOR_CORRECTED_SUMMARY.json

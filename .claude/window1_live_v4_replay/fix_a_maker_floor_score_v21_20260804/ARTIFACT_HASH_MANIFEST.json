@@ -1,0 +1,28 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "bf2515c97d6cc66d58d317274a3d77a38695e24bb37e9a13dc47cfcc6203b007",
+      "bytes": 234
+    },
+    "FIX_A_MAKER_FLOOR_SCORE.json": {
+      "sha256": "cbb6c05f6661d279df239ce290603912d6694fa94f9836c202850360e3c777ab",
+      "bytes": 35440
+    },
+    "FIX_A_RECOVERED_LEG_MAKER_FLOOR_LEDGER.jsonl.gz": {
+      "sha256": "63249f364194d4527b00c10558382debff24745cf9a09a5f76f246916d19e05a",
+      "bytes": 19643
+    },
+    "REFERENCE_BINDING_RECEIPT.json": {
+      "sha256": "1e975f16b41c6cae88562f58bf6ee00cab992897063d91448ad4e8959a887d27",
+      "bytes": 498
+    },
+    "REPORT.md": {
+      "sha256": "da7b6343fb46318f07cf54e49aa3403df6ef83fa5be2cf63e96c4e5ca9398a2f",
+      "bytes": 722
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "e5b89531d6d4bbabddc86138df91468f68ff607377dfe9be3ede9470877895ca",
+      "bytes": 988
+    }
+  }
+}

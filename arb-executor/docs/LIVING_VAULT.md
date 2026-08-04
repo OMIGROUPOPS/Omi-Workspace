@@ -1,5 +1,11 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-04 - FIX A MAKER-FLOOR CORRECTION
+
+Fix A's 337 recovered development legs are now scored against the controlling August-1 maker floor, `min(qualifying ask with residency, seller-aggressed traded low)`, rather than the qualifying ask alone. The seller-aggressed component lowers the floor on 151 legs. Corrected placement regret is exact on 66 legs, one cent on 168, two-to-three cents on 79, four-to-nine cents on 13, and at least ten cents on 11; median one cent, p90 three cents. This corrects the reference surface only and does not change Fix A behavior.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/fix_a_maker_floor_score_v21_20260804/FIX_A_MAKER_FLOOR_SCORE.json
+
 ### 2026-08-04 - WINDOW-1 ISOLATED REPAIRS V20
 
 Fix A and Fix C were replayed and scored separately on D=804 against frozen V19; no stacking. Fix A binds the current live ask to a fresh own-book receipt and re-arms the observed-low anchor within the operator-authorized one-cent starting tolerance. Fix C re-asks unanimous LOWER after a strictly later qualified ask at or above the refused floor. The proposed mirror-sibling defect is false: the predicate reads the sibling ticker's own formed-book ask path, so no Fix B was built. WTA_MAIN's frozen V19 JOINT count remains zero and has a complete 152-event death ledger.

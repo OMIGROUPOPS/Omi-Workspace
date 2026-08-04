@@ -1,0 +1,8 @@
+{
+  "commit": "08fe622badbf92bb43a2f2acbd78b515a1ad5308",
+  "summary_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MAKER_FLOOR_CORRECTED_SUMMARY.json",
+  "ledger_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MAKER_FLOOR_REGRET_896.csv",
+  "summary_sha256": "dc59e313fb88cf5d23ea171669317ce7da4db9fa1f8eaeba7bdd2718c101da76",
+  "ledger_sha256": "6de1f35a59ad8d29b857c3cd312f28c600e624c97f23162d1c38b84b94998480",
+  "reference_rows": 896
+}

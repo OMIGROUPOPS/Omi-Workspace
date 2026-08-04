@@ -1,5 +1,35 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-04 - V26 DRIFT-CORRECTED LANDING OVERLAY: ZERO AUTHORITY, V23 EXACT
+
+V26 tested the spread-lawful organ exactly as ruled: one simultaneous
+bid/ask/last read with spread and dwell, qualified only at fitted `S_cell` in
+`{1,2,3}` cents, at least ten seconds dwell, and displayed capacity of five.
+The estimator was only `qualified bid + training-only cell drift`, causal
+walk-forward, `n>=30`, and without cross-sign pooling. None of the five
+analysis-seat candidate cells passed all four authority bars. ATP_CHALL/51-75,
+WTA_CHALL/51-75, and WTA_MAIN/51-75 failed the two-cent wrong-side severity
+bar; ATP_MAIN/51-75 also failed to beat the naive qualified bid; WTA_CHALL/>=76
+had only nine validation reads. Under the overlay law V26 therefore wired zero
+actions and preserved V23 byte-for-byte: 0 changed / 1,608 identical leg
+streams, event and leg ledger hashes exact, 45 JOINT, 88 carried. The named
+L9-carry ATP_CHALL/51-75 miss cell remains 77 unresolved carry losses before
+and after. Two clean regenerations compared 16 files byte-identically.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/9bf8349f0f6924b7c0780c2aba220990b7eb2543/.claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/REPORT.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/9bf8349f0f6924b7c0780c2aba220990b7eb2543/.claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/DRIFT_CELL_AUTHORITY.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/9bf8349f0f6924b7c0780c2aba220990b7eb2543/.claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/DIFFERENTIAL_RECEIPT.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/9bf8349f0f6924b7c0780c2aba220990b7eb2543/.claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/FRONTIER.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/9bf8349f0f6924b7c0780c2aba220990b7eb2543/.claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/REGRET_GAUGE.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/9bf8349f0f6924b7c0780c2aba220990b7eb2543/.claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/TOP_MISS_CELL_L9_ATP_CHALL_51_75.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/9bf8349f0f6924b7c0780c2aba220990b7eb2543/.claude/window1_live_v4_replay/drift_landing_overlay_v26_20260804/DETERMINISM_RECEIPT.json
+
 ### 2026-08-04 - LIVE EXIT-BAND AUTHORITY: GATED OPTIMA, NOT SPIKE MAP
 
 The potential runtime defect is not active. The last executed `live_v4` source

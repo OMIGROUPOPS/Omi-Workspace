@@ -1,0 +1,28 @@
+{
+  "premise_correction": "These predicates are NOT in live_v4.py (grep count 0). They are implemented in the quote-shape-elimination replay pricer JS modules (stable_signer_v4, micro_position_v2, pair_wiring_v3, persistence_floor_v11, v23_isolated_rearm_policies_v27) + the fitted shape library. Registry cites the actual source.",
+  "conservation": {
+    "trace_universe": 41,
+    "registry_rows": 41,
+    "every_trace_name_once": true,
+    "trace": "decision_trace_v23_20260804/DECISION_TRACE_1608.json @ 6b9c0ff"
+  },
+  "role_counts": {
+    "gate": 22,
+    "FAILURE_TOKEN": 9,
+    "FEATURE": 10
+  },
+  "ORPHANS": {
+    "count": 3,
+    "names": [
+      "ask_dwell_at_least_10_seconds",
+      "ASK_DWELL_BELOW_10_SECONDS",
+      "ask_dwell_at_least_existing_threshold"
+    ],
+    "finding": "The 10-second same-price dwell (DWELL_SECONDS=10) is the one tuned constant with no vault ruling. The 5-contract capacity is authorized (LIVING_VAULT five-contract-proven floor); all other gates are structural (no tuned constant) or fitted (authorized by fit receipts)."
+  },
+  "tuned_constants": {
+    "DWELL_SECONDS_10": "ORPHAN (no ruling)",
+    "QUANTITY_5": "AUTHORIZED (LIVING_VAULT five-contract-proven floor)"
+  },
+  "caveat": "ORPHAN determination covers the operative tuned constants in v23_isolated_rearm_policies_v27.js (DWELL_SECONDS, QUANTITY); a line-by-line audit of all 7 pricer modules for any further hidden constants is the v1 follow-up."
+}

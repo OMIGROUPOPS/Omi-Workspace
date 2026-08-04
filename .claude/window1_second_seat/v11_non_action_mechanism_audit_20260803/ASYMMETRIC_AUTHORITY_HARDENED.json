@@ -1,0 +1,904 @@
+{
+  "supersedes": "ASYMMETRIC_SPREAD_SUMMARY.json (e3833e63) authority_map_bid.authorized, which carried 8 wide-book (>3c) spread artifacts as if grantable.",
+  "conservation": {
+    "covered": 1512,
+    "uncovered": 96,
+    "total": 1608
+  },
+  "rule_corrected": "Authority grantable ONLY in spread regimes {<=1c, 2-3c}; >3c rows carry SPREAD_ARTIFACT_EXCLUDED and can never be granted. Base thresholds BID P(bid<=close)>=0.70 AND mean shortfall<=2c.",
+  "rule_hardened": "Additionally: Wilson-95 lower bound on P >= 0.70 AND p90 per-leg shortfall <= 4c.",
+  "corrected_map": {
+    "authorized": [
+      {
+        "cat": "ATP_CHALL",
+        "region": "le25",
+        "regime": "2-3c",
+        "n": 36,
+        "bid_P": 0.889,
+        "mean_shortfall": 2,
+        "bid_drift": null
+      },
+      {
+        "cat": "ATP_MAIN",
+        "region": "51_75",
+        "regime": "2-3c",
+        "n": 24,
+        "bid_P": 0.917,
+        "mean_shortfall": 2,
+        "bid_drift": null
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "le25",
+        "regime": "2-3c",
+        "n": 14,
+        "bid_P": 0.857,
+        "mean_shortfall": 2,
+        "bid_drift": null
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "51_75",
+        "regime": "2-3c",
+        "n": 20,
+        "bid_P": 0.9,
+        "mean_shortfall": 1,
+        "bid_drift": null
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "ge76",
+        "regime": "2-3c",
+        "n": 11,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "bid_drift": null
+      }
+    ],
+    "n_cells": 5,
+    "n_legs": 105,
+    "spread_artifact_excluded": [
+      {
+        "cat": "ATP_CHALL",
+        "region": "51_75",
+        "regime": ">3c",
+        "n": 17,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      },
+      {
+        "cat": "ATP_CHALL",
+        "region": "ge76",
+        "regime": ">3c",
+        "n": 11,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      },
+      {
+        "cat": "ATP_MAIN",
+        "region": "le25",
+        "regime": ">3c",
+        "n": 3,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "26_50",
+        "regime": ">3c",
+        "n": 6,
+        "bid_P": 0.833,
+        "mean_shortfall": 2,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "51_75",
+        "regime": ">3c",
+        "n": 5,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "ge76",
+        "regime": ">3c",
+        "n": 1,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      },
+      {
+        "cat": "WTA_CHALL",
+        "region": "51_75",
+        "regime": ">3c",
+        "n": 1,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      },
+      {
+        "cat": "WTA_CHALL",
+        "region": "ge76",
+        "regime": ">3c",
+        "n": 3,
+        "bid_P": 1.0,
+        "mean_shortfall": 0.0,
+        "flag": "SPREAD_ARTIFACT_EXCLUDED"
+      }
+    ]
+  },
+  "hardened_map": {
+    "candidates": [
+      {
+        "cat": "ATP_CHALL",
+        "region": "le25",
+        "regime": "2-3c",
+        "n": 36,
+        "k": 32,
+        "P": 0.889,
+        "wilson_lower": 0.747,
+        "mean_shortfall": 2,
+        "shortfall_ci95": [
+          1.0,
+          4.0
+        ],
+        "p90_shortfall": 0.5,
+        "max_shortfall": 4,
+        "survives": true,
+        "verdict": "SURVIVES"
+      },
+      {
+        "cat": "ATP_MAIN",
+        "region": "51_75",
+        "regime": "2-3c",
+        "n": 24,
+        "k": 22,
+        "P": 0.917,
+        "wilson_lower": 0.742,
+        "mean_shortfall": 2,
+        "shortfall_ci95": [
+          0.0,
+          2.0
+        ],
+        "p90_shortfall": 0.0,
+        "max_shortfall": 2,
+        "survives": true,
+        "verdict": "SURVIVES"
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "le25",
+        "regime": "2-3c",
+        "n": 14,
+        "k": 12,
+        "P": 0.857,
+        "wilson_lower": 0.601,
+        "mean_shortfall": 2,
+        "shortfall_ci95": [
+          0.0,
+          3.0
+        ],
+        "p90_shortfall": 0.7,
+        "max_shortfall": 3,
+        "survives": false,
+        "verdict": "FAIL_Wilson<0.70"
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "51_75",
+        "regime": "2-3c",
+        "n": 20,
+        "k": 18,
+        "P": 0.9,
+        "wilson_lower": 0.699,
+        "mean_shortfall": 1,
+        "shortfall_ci95": [
+          0.0,
+          1.0
+        ],
+        "p90_shortfall": 0.1,
+        "max_shortfall": 1,
+        "survives": false,
+        "verdict": "FAIL_Wilson<0.70"
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "ge76",
+        "regime": "2-3c",
+        "n": 11,
+        "k": 11,
+        "P": 1.0,
+        "wilson_lower": 0.741,
+        "mean_shortfall": 0.0,
+        "shortfall_ci95": [
+          0.0,
+          0.0
+        ],
+        "p90_shortfall": 0.0,
+        "max_shortfall": 0,
+        "survives": true,
+        "verdict": "SURVIVES"
+      }
+    ],
+    "survivors": [
+      {
+        "cat": "ATP_CHALL",
+        "region": "le25",
+        "regime": "2-3c",
+        "n": 36,
+        "P": 0.889,
+        "wilson_lower": 0.747,
+        "mean_shortfall": 2,
+        "shortfall_ci95": [
+          1.0,
+          4.0
+        ],
+        "p90_shortfall": 0.5,
+        "max_shortfall": 4
+      },
+      {
+        "cat": "ATP_MAIN",
+        "region": "51_75",
+        "regime": "2-3c",
+        "n": 24,
+        "P": 0.917,
+        "wilson_lower": 0.742,
+        "mean_shortfall": 2,
+        "shortfall_ci95": [
+          0.0,
+          2.0
+        ],
+        "p90_shortfall": 0.0,
+        "max_shortfall": 2
+      },
+      {
+        "cat": "WTA_MAIN",
+        "region": "ge76",
+        "regime": "2-3c",
+        "n": 11,
+        "P": 1.0,
+        "wilson_lower": 0.741,
+        "mean_shortfall": 0.0,
+        "shortfall_ci95": [
+          0.0,
+          0.0
+        ],
+        "p90_shortfall": 0.0,
+        "max_shortfall": 0
+      }
+    ],
+    "n_survivors": 3,
+    "n_legs": 71
+  },
+  "all_cells_bid_stats": {
+    "ATP_CHALL|le25|<=1c": {
+      "n": 68,
+      "k": 55,
+      "P": 0.809,
+      "wilson_lower": 0.7,
+      "mean_shortfall": 2.54,
+      "shortfall_ci95": [
+        1.27,
+        4.6
+      ],
+      "p90_shortfall": 1.0,
+      "max_shortfall": 13
+    },
+    "ATP_CHALL|le25|2-3c": {
+      "n": 36,
+      "k": 32,
+      "P": 0.889,
+      "wilson_lower": 0.747,
+      "mean_shortfall": 2,
+      "shortfall_ci95": [
+        1.0,
+        4.0
+      ],
+      "p90_shortfall": 0.5,
+      "max_shortfall": 4
+    },
+    "ATP_CHALL|le25|>3c": {
+      "n": 10,
+      "k": 8,
+      "P": 0.8,
+      "wilson_lower": 0.49,
+      "mean_shortfall": 12,
+      "shortfall_ci95": [
+        0.0,
+        21.0
+      ],
+      "p90_shortfall": 4.8,
+      "max_shortfall": 21
+    },
+    "ATP_CHALL|26_50|<=1c": {
+      "n": 119,
+      "k": 94,
+      "P": 0.79,
+      "wilson_lower": 0.708,
+      "mean_shortfall": 6.84,
+      "shortfall_ci95": [
+        3.17,
+        11.52
+      ],
+      "p90_shortfall": 3.0,
+      "max_shortfall": 43
+    },
+    "ATP_CHALL|26_50|2-3c": {
+      "n": 105,
+      "k": 89,
+      "P": 0.848,
+      "wilson_lower": 0.767,
+      "mean_shortfall": 6.69,
+      "shortfall_ci95": [
+        2.25,
+        12.53
+      ],
+      "p90_shortfall": 2.0,
+      "max_shortfall": 35
+    },
+    "ATP_CHALL|26_50|>3c": {
+      "n": 27,
+      "k": 25,
+      "P": 0.926,
+      "wilson_lower": 0.766,
+      "mean_shortfall": 3,
+      "shortfall_ci95": [
+        0.0,
+        5.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 5
+    },
+    "ATP_CHALL|51_75|<=1c": {
+      "n": 118,
+      "k": 98,
+      "P": 0.831,
+      "wilson_lower": 0.753,
+      "mean_shortfall": 6.5,
+      "shortfall_ci95": [
+        1.93,
+        13.95
+      ],
+      "p90_shortfall": 1.3,
+      "max_shortfall": 59
+    },
+    "ATP_CHALL|51_75|2-3c": {
+      "n": 110,
+      "k": 92,
+      "P": 0.836,
+      "wilson_lower": 0.756,
+      "mean_shortfall": 3.22,
+      "shortfall_ci95": [
+        1.93,
+        4.8
+      ],
+      "p90_shortfall": 1.0,
+      "max_shortfall": 11
+    },
+    "ATP_CHALL|51_75|>3c": {
+      "n": 17,
+      "k": 17,
+      "P": 1.0,
+      "wilson_lower": 0.816,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    },
+    "ATP_CHALL|ge76|<=1c": {
+      "n": 59,
+      "k": 50,
+      "P": 0.847,
+      "wilson_lower": 0.735,
+      "mean_shortfall": 3.89,
+      "shortfall_ci95": [
+        1.33,
+        6.7
+      ],
+      "p90_shortfall": 1.0,
+      "max_shortfall": 11
+    },
+    "ATP_CHALL|ge76|2-3c": {
+      "n": 27,
+      "k": 22,
+      "P": 0.815,
+      "wilson_lower": 0.633,
+      "mean_shortfall": 10.6,
+      "shortfall_ci95": [
+        1.0,
+        32.33
+      ],
+      "p90_shortfall": 1.0,
+      "max_shortfall": 48
+    },
+    "ATP_CHALL|ge76|>3c": {
+      "n": 11,
+      "k": 11,
+      "P": 1.0,
+      "wilson_lower": 0.741,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    },
+    "ATP_MAIN|le25|<=1c": {
+      "n": 25,
+      "k": 19,
+      "P": 0.76,
+      "wilson_lower": 0.566,
+      "mean_shortfall": 3.67,
+      "shortfall_ci95": [
+        1.67,
+        6.5
+      ],
+      "p90_shortfall": 2.6,
+      "max_shortfall": 10
+    },
+    "ATP_MAIN|le25|2-3c": {
+      "n": 5,
+      "k": 4,
+      "P": 0.8,
+      "wilson_lower": 0.376,
+      "mean_shortfall": 7,
+      "shortfall_ci95": [
+        0.0,
+        7.0
+      ],
+      "p90_shortfall": 4.2,
+      "max_shortfall": 7
+    },
+    "ATP_MAIN|le25|>3c": {
+      "n": 3,
+      "k": 3,
+      "P": 1.0,
+      "wilson_lower": 0.438,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    },
+    "ATP_MAIN|26_50|<=1c": {
+      "n": 84,
+      "k": 58,
+      "P": 0.69,
+      "wilson_lower": 0.585,
+      "mean_shortfall": 7.77,
+      "shortfall_ci95": [
+        3.35,
+        13.82
+      ],
+      "p90_shortfall": 3.0,
+      "max_shortfall": 49
+    },
+    "ATP_MAIN|26_50|2-3c": {
+      "n": 16,
+      "k": 9,
+      "P": 0.562,
+      "wilson_lower": 0.332,
+      "mean_shortfall": 2.71,
+      "shortfall_ci95": [
+        1.67,
+        3.8
+      ],
+      "p90_shortfall": 3.5,
+      "max_shortfall": 5
+    },
+    "ATP_MAIN|26_50|>3c": {
+      "n": 8,
+      "k": 7,
+      "P": 0.875,
+      "wilson_lower": 0.529,
+      "mean_shortfall": 6,
+      "shortfall_ci95": [
+        0.0,
+        6.0
+      ],
+      "p90_shortfall": 1.8,
+      "max_shortfall": 6
+    },
+    "ATP_MAIN|51_75|<=1c": {
+      "n": 70,
+      "k": 51,
+      "P": 0.729,
+      "wilson_lower": 0.615,
+      "mean_shortfall": 2.37,
+      "shortfall_ci95": [
+        1.73,
+        3.14
+      ],
+      "p90_shortfall": 3.0,
+      "max_shortfall": 7
+    },
+    "ATP_MAIN|51_75|2-3c": {
+      "n": 24,
+      "k": 22,
+      "P": 0.917,
+      "wilson_lower": 0.742,
+      "mean_shortfall": 2,
+      "shortfall_ci95": [
+        0.0,
+        2.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 2
+    },
+    "ATP_MAIN|51_75|>3c": {
+      "n": 10,
+      "k": 9,
+      "P": 0.9,
+      "wilson_lower": 0.596,
+      "mean_shortfall": 21,
+      "shortfall_ci95": [
+        0.0,
+        21.0
+      ],
+      "p90_shortfall": 2.1,
+      "max_shortfall": 21
+    },
+    "ATP_MAIN|ge76|<=1c": {
+      "n": 18,
+      "k": 15,
+      "P": 0.833,
+      "wilson_lower": 0.608,
+      "mean_shortfall": 2.67,
+      "shortfall_ci95": [
+        0.0,
+        3.0
+      ],
+      "p90_shortfall": 2.3,
+      "max_shortfall": 3
+    },
+    "ATP_MAIN|ge76|2-3c": {
+      "n": 5,
+      "k": 4,
+      "P": 0.8,
+      "wilson_lower": 0.376,
+      "mean_shortfall": 3,
+      "shortfall_ci95": [
+        0.0,
+        3.0
+      ],
+      "p90_shortfall": 1.8,
+      "max_shortfall": 3
+    },
+    "ATP_MAIN|ge76|>3c": {
+      "n": 3,
+      "k": 2,
+      "P": 0.667,
+      "wilson_lower": 0.208,
+      "mean_shortfall": 5,
+      "shortfall_ci95": [
+        0.0,
+        5.0
+      ],
+      "p90_shortfall": 4.0,
+      "max_shortfall": 5
+    },
+    "WTA_MAIN|le25|<=1c": {
+      "n": 44,
+      "k": 30,
+      "P": 0.682,
+      "wilson_lower": 0.534,
+      "mean_shortfall": 2.64,
+      "shortfall_ci95": [
+        2.0,
+        3.22
+      ],
+      "p90_shortfall": 3.0,
+      "max_shortfall": 4
+    },
+    "WTA_MAIN|le25|2-3c": {
+      "n": 14,
+      "k": 12,
+      "P": 0.857,
+      "wilson_lower": 0.601,
+      "mean_shortfall": 2,
+      "shortfall_ci95": [
+        0.0,
+        3.0
+      ],
+      "p90_shortfall": 0.7,
+      "max_shortfall": 3
+    },
+    "WTA_MAIN|le25|>3c": {
+      "n": 1,
+      "k": 0,
+      "P": 0.0,
+      "wilson_lower": -0.0,
+      "mean_shortfall": 2,
+      "shortfall_ci95": [
+        2.0,
+        2.0
+      ],
+      "p90_shortfall": 2.0,
+      "max_shortfall": 2
+    },
+    "WTA_MAIN|26_50|<=1c": {
+      "n": 66,
+      "k": 42,
+      "P": 0.636,
+      "wilson_lower": 0.516,
+      "mean_shortfall": 4.71,
+      "shortfall_ci95": [
+        2.14,
+        8.77
+      ],
+      "p90_shortfall": 4.0,
+      "max_shortfall": 44
+    },
+    "WTA_MAIN|26_50|2-3c": {
+      "n": 12,
+      "k": 6,
+      "P": 0.5,
+      "wilson_lower": 0.254,
+      "mean_shortfall": 9.33,
+      "shortfall_ci95": [
+        2.33,
+        22.23
+      ],
+      "p90_shortfall": 7.5,
+      "max_shortfall": 38
+    },
+    "WTA_MAIN|26_50|>3c": {
+      "n": 6,
+      "k": 5,
+      "P": 0.833,
+      "wilson_lower": 0.436,
+      "mean_shortfall": 2,
+      "shortfall_ci95": [
+        0.0,
+        2.0
+      ],
+      "p90_shortfall": 1.0,
+      "max_shortfall": 2
+    },
+    "WTA_MAIN|51_75|<=1c": {
+      "n": 58,
+      "k": 53,
+      "P": 0.914,
+      "wilson_lower": 0.814,
+      "mean_shortfall": 5.8,
+      "shortfall_ci95": [
+        2.0,
+        11.5
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 16
+    },
+    "WTA_MAIN|51_75|2-3c": {
+      "n": 20,
+      "k": 18,
+      "P": 0.9,
+      "wilson_lower": 0.699,
+      "mean_shortfall": 1,
+      "shortfall_ci95": [
+        0.0,
+        1.0
+      ],
+      "p90_shortfall": 0.1,
+      "max_shortfall": 1
+    },
+    "WTA_MAIN|51_75|>3c": {
+      "n": 5,
+      "k": 5,
+      "P": 1.0,
+      "wilson_lower": 0.566,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    },
+    "WTA_MAIN|ge76|<=1c": {
+      "n": 32,
+      "k": 28,
+      "P": 0.875,
+      "wilson_lower": 0.719,
+      "mean_shortfall": 3,
+      "shortfall_ci95": [
+        1.0,
+        8.0
+      ],
+      "p90_shortfall": 0.9,
+      "max_shortfall": 8
+    },
+    "WTA_MAIN|ge76|2-3c": {
+      "n": 11,
+      "k": 11,
+      "P": 1.0,
+      "wilson_lower": 0.741,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    },
+    "WTA_MAIN|ge76|>3c": {
+      "n": 1,
+      "k": 1,
+      "P": 1.0,
+      "wilson_lower": 0.207,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    },
+    "WTA_CHALL|le25|<=1c": {
+      "n": 30,
+      "k": 18,
+      "P": 0.6,
+      "wilson_lower": 0.423,
+      "mean_shortfall": 10.58,
+      "shortfall_ci95": [
+        6.6,
+        14.29
+      ],
+      "p90_shortfall": 15.1,
+      "max_shortfall": 19
+    },
+    "WTA_CHALL|le25|2-3c": {
+      "n": 12,
+      "k": 10,
+      "P": 0.833,
+      "wilson_lower": 0.552,
+      "mean_shortfall": 14,
+      "shortfall_ci95": [
+        0.0,
+        15.0
+      ],
+      "p90_shortfall": 11.7,
+      "max_shortfall": 15
+    },
+    "WTA_CHALL|le25|>3c": {
+      "n": 2,
+      "k": 1,
+      "P": 0.5,
+      "wilson_lower": 0.095,
+      "mean_shortfall": 3,
+      "shortfall_ci95": [
+        0.0,
+        3.0
+      ],
+      "p90_shortfall": 2.7,
+      "max_shortfall": 3
+    },
+    "WTA_CHALL|26_50|<=1c": {
+      "n": 62,
+      "k": 43,
+      "P": 0.694,
+      "wilson_lower": 0.57,
+      "mean_shortfall": 25,
+      "shortfall_ci95": [
+        15.82,
+        33.65
+      ],
+      "p90_shortfall": 39.7,
+      "max_shortfall": 49
+    },
+    "WTA_CHALL|26_50|2-3c": {
+      "n": 30,
+      "k": 23,
+      "P": 0.767,
+      "wilson_lower": 0.591,
+      "mean_shortfall": 22.57,
+      "shortfall_ci95": [
+        7.5,
+        38.76
+      ],
+      "p90_shortfall": 31.1,
+      "max_shortfall": 49
+    },
+    "WTA_CHALL|26_50|>3c": {
+      "n": 2,
+      "k": 1,
+      "P": 0.5,
+      "wilson_lower": 0.095,
+      "mean_shortfall": 2,
+      "shortfall_ci95": [
+        0.0,
+        2.0
+      ],
+      "p90_shortfall": 1.8,
+      "max_shortfall": 2
+    },
+    "WTA_CHALL|51_75|<=1c": {
+      "n": 57,
+      "k": 52,
+      "P": 0.912,
+      "wilson_lower": 0.811,
+      "mean_shortfall": 24.8,
+      "shortfall_ci95": [
+        1.5,
+        55.2
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 57
+    },
+    "WTA_CHALL|51_75|2-3c": {
+      "n": 26,
+      "k": 23,
+      "P": 0.885,
+      "wilson_lower": 0.71,
+      "mean_shortfall": 37.33,
+      "shortfall_ci95": [
+        0.0,
+        64.0
+      ],
+      "p90_shortfall": 2.0,
+      "max_shortfall": 64
+    },
+    "WTA_CHALL|51_75|>3c": {
+      "n": 1,
+      "k": 1,
+      "P": 1.0,
+      "wilson_lower": 0.207,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    },
+    "WTA_CHALL|ge76|<=1c": {
+      "n": 25,
+      "k": 20,
+      "P": 0.8,
+      "wilson_lower": 0.609,
+      "mean_shortfall": 8.2,
+      "shortfall_ci95": [
+        1.0,
+        19.0
+      ],
+      "p90_shortfall": 1.0,
+      "max_shortfall": 25
+    },
+    "WTA_CHALL|ge76|2-3c": {
+      "n": 14,
+      "k": 12,
+      "P": 0.857,
+      "wilson_lower": 0.601,
+      "mean_shortfall": 38.5,
+      "shortfall_ci95": [
+        0.0,
+        75.0
+      ],
+      "p90_shortfall": 1.4,
+      "max_shortfall": 75
+    },
+    "WTA_CHALL|ge76|>3c": {
+      "n": 3,
+      "k": 3,
+      "P": 1.0,
+      "wilson_lower": 0.438,
+      "mean_shortfall": 0.0,
+      "shortfall_ci95": [
+        0.0,
+        0.0
+      ],
+      "p90_shortfall": 0.0,
+      "max_shortfall": 0
+    }
+  }
+}

@@ -806,6 +806,7 @@
       }
     ],
     "n_cells": 13,
-    "n_legs": 152
+    "n_legs": 152,
+    "SUPERSEDED_BY": "ASYMMETRIC_AUTHORITY_HARDENED.json \u2014 the .authorized list here contained 13 cells incl. 8 >3c spread artifacts; the corrected machine map encodes the regime exclusion (5 cells/105 legs) and the hardened map applies Wilson-lower>=0.70 and p90<=4c."
   }
 }

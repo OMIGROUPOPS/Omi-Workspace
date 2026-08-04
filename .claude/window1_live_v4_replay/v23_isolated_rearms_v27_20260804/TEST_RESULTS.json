@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "test_files": 9,
+  "failed": 0,
+  "new_policy_assertions": 13,
+  "new_package_test": "PASS",
+  "tests": [
+    "arb-executor/tests/test_window1_v23_isolated_rearm_policies_v27.js",
+    "arb-executor/tests/test_window1_v23_isolated_rearms_v27_package.js",
+    "arb-executor/tests/test_window1_pair_cap_v23.js",
+    "arb-executor/tests/test_window1_pair_cap_v23_simultaneous_patch.js",
+    "arb-executor/tests/test_window1_isolated_repair_predicates_v20.js",
+    "arb-executor/tests/test_window1_isolated_repair_v20_package.js",
+    "arb-executor/tests/test_window1_pair_couple_elimination_v19.js",
+    "arb-executor/tests/test_window1_pair_couple_v19_package.js",
+    "arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js"
+  ]
+}

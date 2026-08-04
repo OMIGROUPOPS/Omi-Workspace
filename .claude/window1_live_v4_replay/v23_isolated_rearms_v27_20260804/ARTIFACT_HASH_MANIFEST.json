@@ -1,0 +1,156 @@
+{
+  "files": {
+    "CONTROL_SUMMARY.json": {
+      "sha256": "349d171f88d548a5b220b46a7416a230c445bc0c9cd7ca4e19752e6a9cc66386",
+      "bytes": 15018
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "9e7f36e2ecd4be58637af22aafa72222f283eadd82c56507c554edfbe53e51c3",
+      "bytes": 223
+    },
+    "fix1_anchor_residual/DECISION_TRACE_1608.json": {
+      "sha256": "1cca7a03af965f4bb564463b7ed1e69dc94fa5e9ef5523281726d19041de3e36",
+      "bytes": 8563346
+    },
+    "fix1_anchor_residual/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "7f6d8004096bb5dd81ae9f3cfdc93b1434b180de1676b8e5224e38ca54566bfa",
+      "bytes": 3494427
+    },
+    "fix1_anchor_residual/FRONTIER.json": {
+      "sha256": "94de5826ff6c87e5b56ae156c396fab5ef301f5660fcaa70611e72761007d72a",
+      "bytes": 23645
+    },
+    "fix1_anchor_residual/LEG_LEDGER.jsonl.gz": {
+      "sha256": "89952438db590de921082b1772deb4951990e91894c4475d33817c96bdeef193",
+      "bytes": 3318494
+    },
+    "fix1_anchor_residual/REGRET_GAUGE.json": {
+      "sha256": "184a04b9e497a1b8c7a01086fbca52f49dd35271e2f2af8c4c8037aade7c9932",
+      "bytes": 16339
+    },
+    "fix1_anchor_residual/REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "6d997391136ae56badb73717d5f151dc07f374ff300a7699b5c6c52d07f5cb58",
+      "bytes": 20337
+    },
+    "fix1_anchor_residual/REPAIR_RECEIPT.json": {
+      "sha256": "45d745d37aaa41ac88d5ccb654d3a7eee8280e877a6bce61cf2b79f7211f0ae4",
+      "bytes": 114208
+    },
+    "fix1_anchor_residual/SCORECARD.json": {
+      "sha256": "981b1a971857ee92aefeb4504dd2a5d9f4b17965beb1bf93073ec26e06bfe884",
+      "bytes": 35610
+    },
+    "fix2_cap_rearm/DECISION_TRACE_1608.json": {
+      "sha256": "9ae6e4b62dbf3f51fadd86b56a6a5b2a2f2de479a95bf20d815fdbeea422c66c",
+      "bytes": 9184774
+    },
+    "fix2_cap_rearm/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "ac3a07577be2715a3c8718dadc1e77f33ae4f08579f0536136c8663c6d5c0977",
+      "bytes": 3466759
+    },
+    "fix2_cap_rearm/FRONTIER.json": {
+      "sha256": "4e3b33ac51958b2dcfd3907f8f74d1ba1e59ea5fbf4ecb0350d3ae93f28ee36d",
+      "bytes": 23644
+    },
+    "fix2_cap_rearm/LEG_LEDGER.jsonl.gz": {
+      "sha256": "e21560581dccd6f327b4ac94f2701455440edd0f33632a63d03b870954ce1733",
+      "bytes": 3289876
+    },
+    "fix2_cap_rearm/REGRET_GAUGE.json": {
+      "sha256": "7575f84da8d0f6738239b6ed8bbf3394c0817b0695aa3fe4777e06b10b5d7883",
+      "bytes": 16366
+    },
+    "fix2_cap_rearm/REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "3d30f803010ab850c898b4e3f6a55802f8b2de8bb07e1e7ccf954ac93aae53b0",
+      "bytes": 20354
+    },
+    "fix2_cap_rearm/REPAIR_RECEIPT.json": {
+      "sha256": "9c0380d7caf4c9b4a2f8f62842910d9e73131420b8ef9ac4dd30725712f01edc",
+      "bytes": 51120
+    },
+    "fix2_cap_rearm/SCORECARD.json": {
+      "sha256": "b6effaf5d56dba27388c40b3757536a504c55fab054506c0270f752d436ce857",
+      "bytes": 35593
+    },
+    "fix3_verdict_falsifiability/DECISION_TRACE_1608.json": {
+      "sha256": "0f336e76ee0cc38d2187fbd15202e5ea4c5a0c14af017903a8f1fd343d02aaa1",
+      "bytes": 9191194
+    },
+    "fix3_verdict_falsifiability/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "aae3569a0d6eddfa5eccfd50a4ef483fb3009faf1874288f050068b2422cb380",
+      "bytes": 3444642
+    },
+    "fix3_verdict_falsifiability/FRONTIER.json": {
+      "sha256": "5c8782739ab56893389917497a34e2a399ccfc2280ac85558f8a2e283a300fb0",
+      "bytes": 23641
+    },
+    "fix3_verdict_falsifiability/LEG_LEDGER.jsonl.gz": {
+      "sha256": "3fe01bc076e73418859df5ed100f4816b43153403448ce4b3e2e1899a606903b",
+      "bytes": 3267034
+    },
+    "fix3_verdict_falsifiability/REGRET_GAUGE.json": {
+      "sha256": "65832af328daebc473bd58fd853ab48dd80c7261bb863e1affccab49a4635e7e",
+      "bytes": 16994
+    },
+    "fix3_verdict_falsifiability/REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "a665f4292ed19eb2afacf419d7fa3390a2035395683ef2b451978fc49f360eda",
+      "bytes": 20442
+    },
+    "fix3_verdict_falsifiability/REPAIR_RECEIPT.json": {
+      "sha256": "4e53dc589c664e2f99f2d5c175eb16d5370a1bb821f8c0636095bdcddf3bd8bd",
+      "bytes": 127517
+    },
+    "fix3_verdict_falsifiability/SCORECARD.json": {
+      "sha256": "00efbacd889ed6e23f98b87cd39e079e878a6b57835c3487993ca1d53c7ff0fe",
+      "bytes": 35600
+    },
+    "fix4_admission_reask/DECISION_TRACE_1608.json": {
+      "sha256": "b0a43d198121741f1883190b8513832728a2356c78b7d5984502583ae26088b4",
+      "bytes": 9269603
+    },
+    "fix4_admission_reask/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "b7d8a476bbb558c76679aff2577d91c8d51518ac83e589a6aa6f5a977a5fa8f8",
+      "bytes": 3457648
+    },
+    "fix4_admission_reask/FRONTIER.json": {
+      "sha256": "29ba7d3214a160c9f5f870aed1f9fc598f58fbd1221673b5b0bd7721ded28086",
+      "bytes": 23642
+    },
+    "fix4_admission_reask/LEG_LEDGER.jsonl.gz": {
+      "sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+      "bytes": 3281591
+    },
+    "fix4_admission_reask/REGRET_GAUGE.json": {
+      "sha256": "d9bda78fa05b91d0eca90290fb5ce03b03d2112e6c683e7c7b6d270f5b71c2cb",
+      "bytes": 16363
+    },
+    "fix4_admission_reask/REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "f593627f8692ed6a70a97a15b05e10c3d50cfd22b6754f8ea8dca19cb3224d33",
+      "bytes": 20345
+    },
+    "fix4_admission_reask/REPAIR_RECEIPT.json": {
+      "sha256": "ec073053d7774a0dc091ddd58c2431fa430f4875e833fe2826a24f6ea7110123",
+      "bytes": 38418
+    },
+    "fix4_admission_reask/SCORECARD.json": {
+      "sha256": "c16c005e052cb709ab4c87fb371fcc9e3269d51c87ae891ff218474f94bf56d5",
+      "bytes": 35587
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "9f1a0b395ada6090271b4505ccce0635269a13f74c6c1289a4e4206e0d83fc2a",
+      "bytes": 264
+    },
+    "REPORT.md": {
+      "sha256": "277cccec4962742dec710059dc5f6460ded413d39a4cf5049b3888017a952f72",
+      "bytes": 349
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "5bbdf4f8639cf3caa4e9c146c0a14c65a62c151c28e177478c20e68e421f8394",
+      "bytes": 213821
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "4e8343f30e5cc34482eb5fc9fd4ba229351e7c37e2d14abc8773b277d56807a0",
+      "bytes": 767
+    }
+  }
+}

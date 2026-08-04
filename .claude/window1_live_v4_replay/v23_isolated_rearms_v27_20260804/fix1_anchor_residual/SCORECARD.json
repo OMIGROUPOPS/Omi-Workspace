@@ -1,0 +1,1324 @@
+{
+  "variant": "FIX1_ANCHOR_RESIDUAL",
+  "V23_floor": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1027,
+    "credited_legs": 920,
+    "completed_pairs": 204,
+    "pairs_under_par": 193,
+    "completed_pairs_close_unavailable": 1,
+    "both_legs_strictly_below_audited_close": 45,
+    "joint_objective_pairs": 45,
+    "strict_carried_pairs": 88,
+    "execution_floor_pair_passes": 64
+  },
+  "variant_score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1142,
+    "credited_legs": 1009,
+    "completed_pairs": 276,
+    "pairs_under_par": 264,
+    "completed_pairs_close_unavailable": 1,
+    "both_legs_strictly_below_audited_close": 62,
+    "joint_objective_pairs": 62,
+    "strict_carried_pairs": 125,
+    "execution_floor_pair_passes": 95
+  },
+  "delta": {
+    "D": 0,
+    "legs": 0,
+    "acted_legs": 115,
+    "credited_legs": 89,
+    "completed_pairs": 72,
+    "pairs_under_par": 71,
+    "completed_pairs_close_unavailable": 0,
+    "both_legs_strictly_below_audited_close": 17,
+    "joint_objective_pairs": 17,
+    "strict_carried_pairs": 37,
+    "execution_floor_pair_passes": 31
+  },
+  "V23_joint_non_regression": true,
+  "stacking_eligible": false,
+  "category_x_starting_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "completed_pairs": 1,
+        "pairs_under_par": 1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 1,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "aggregate": {
+        "D": 238,
+        "legs": 476,
+        "acted_legs": 365,
+        "credited_legs": 306,
+        "completed_pairs": 82,
+        "pairs_under_par": 79,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 29,
+        "joint_objective_pairs": 29,
+        "strict_carried_pairs": 31,
+        "execution_floor_pair_passes": 29
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 238,
+          "completed_pairs": 4,
+          "joint_objective_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 238,
+          "completed_pairs": 6,
+          "joint_objective_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 238,
+          "completed_pairs": 13,
+          "joint_objective_pairs": 3
+        },
+        "LT_100": {
+          "fixed_denominator": 238,
+          "completed_pairs": 79,
+          "joint_objective_pairs": 29
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 238,
+          "completed_pairs": 82,
+          "joint_objective_pairs": 29
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+ge75",
+      "aggregate": {
+        "D": 4,
+        "legs": 8,
+        "acted_legs": 4,
+        "credited_legs": 4,
+        "completed_pairs": 1,
+        "pairs_under_par": 1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 1,
+        "joint_objective_pairs": 1,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+le25",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+51_75",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "completed_pairs": 1,
+        "pairs_under_par": 1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+ge75",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+le25",
+      "aggregate": {
+        "D": 6,
+        "legs": 12,
+        "acted_legs": 6,
+        "credited_legs": 5,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "aggregate": {
+        "D": 102,
+        "legs": 204,
+        "acted_legs": 155,
+        "credited_legs": 132,
+        "completed_pairs": 39,
+        "pairs_under_par": 39,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 11,
+        "joint_objective_pairs": 11,
+        "strict_carried_pairs": 14,
+        "execution_floor_pair_passes": 17
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 102,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 102,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 102,
+          "completed_pairs": 5,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 102,
+          "completed_pairs": 39,
+          "joint_objective_pairs": 11
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 102,
+          "completed_pairs": 39,
+          "joint_objective_pairs": 11
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "le25+le25",
+      "aggregate": {
+        "D": 15,
+        "legs": 30,
+        "acted_legs": 16,
+        "credited_legs": 16,
+        "completed_pairs": 5,
+        "pairs_under_par": 3,
+        "completed_pairs_close_unavailable": 1,
+        "both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "strict_carried_pairs": 1,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 15,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 15,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 15,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 15,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 15,
+          "completed_pairs": 5,
+          "joint_objective_pairs": 2
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+26_50",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "completed_pairs": 1,
+        "pairs_under_par": 1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 1,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "aggregate": {
+        "D": 103,
+        "legs": 206,
+        "acted_legs": 151,
+        "credited_legs": 142,
+        "completed_pairs": 42,
+        "pairs_under_par": 42,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 7,
+        "joint_objective_pairs": 7,
+        "strict_carried_pairs": 21,
+        "execution_floor_pair_passes": 10
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 103,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 103,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 103,
+          "completed_pairs": 8,
+          "joint_objective_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 103,
+          "completed_pairs": 42,
+          "joint_objective_pairs": 7
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 103,
+          "completed_pairs": 42,
+          "joint_objective_pairs": 7
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "aggregate": {
+        "D": 4,
+        "legs": 8,
+        "acted_legs": 8,
+        "credited_legs": 8,
+        "completed_pairs": 4,
+        "pairs_under_par": 4,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "strict_carried_pairs": 1,
+        "execution_floor_pair_passes": 1
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 4,
+          "joint_objective_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 4,
+          "joint_objective_pairs": 2
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+le25",
+      "aggregate": {
+        "D": 2,
+        "legs": 4,
+        "acted_legs": 3,
+        "credited_legs": 3,
+        "completed_pairs": 1,
+        "pairs_under_par": 1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 1,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+ge75",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 2,
+        "credited_legs": 2,
+        "completed_pairs": 1,
+        "pairs_under_par": 1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 1,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+le25",
+      "aggregate": {
+        "D": 29,
+        "legs": 58,
+        "acted_legs": 42,
+        "credited_legs": 38,
+        "completed_pairs": 9,
+        "pairs_under_par": 9,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 3,
+        "joint_objective_pairs": 3,
+        "strict_carried_pairs": 3,
+        "execution_floor_pair_passes": 5
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 29,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 29,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 29,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 29,
+          "completed_pairs": 9,
+          "joint_objective_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 29,
+          "completed_pairs": 9,
+          "joint_objective_pairs": 3
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "le25+le25",
+      "aggregate": {
+        "D": 6,
+        "legs": 12,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "aggregate": {
+        "D": 2,
+        "legs": 4,
+        "acted_legs": 4,
+        "credited_legs": 4,
+        "completed_pairs": 2,
+        "pairs_under_par": 2,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 2,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "aggregate": {
+        "D": 88,
+        "legs": 176,
+        "acted_legs": 124,
+        "credited_legs": 104,
+        "completed_pairs": 24,
+        "pairs_under_par": 22,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "strict_carried_pairs": 15,
+        "execution_floor_pair_passes": 7
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 88,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 88,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 88,
+          "completed_pairs": 7,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 88,
+          "completed_pairs": 22,
+          "joint_objective_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 88,
+          "completed_pairs": 24,
+          "joint_objective_pairs": 2
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "51_75+le25",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "ge75+le25",
+      "aggregate": {
+        "D": 44,
+        "legs": 88,
+        "acted_legs": 59,
+        "credited_legs": 53,
+        "completed_pairs": 13,
+        "pairs_under_par": 13,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "strict_carried_pairs": 7,
+        "execution_floor_pair_passes": 6
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 44,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 44,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 44,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 44,
+          "completed_pairs": 13,
+          "joint_objective_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 44,
+          "completed_pairs": 13,
+          "joint_objective_pairs": 2
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "le25+le25",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "aggregate": {
+        "D": 77,
+        "legs": 154,
+        "acted_legs": 109,
+        "credited_legs": 102,
+        "completed_pairs": 31,
+        "pairs_under_par": 29,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 19,
+        "execution_floor_pair_passes": 12
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 77,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 77,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 77,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 77,
+          "completed_pairs": 29,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 77,
+          "completed_pairs": 31,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+le25",
+      "aggregate": {
+        "D": 3,
+        "legs": 6,
+        "acted_legs": 4,
+        "credited_legs": 4,
+        "completed_pairs": 1,
+        "pairs_under_par": 1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "aggregate": {
+        "D": 1,
+        "legs": 2,
+        "acted_legs": 1,
+        "credited_legs": 1,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+le25",
+      "aggregate": {
+        "D": 4,
+        "legs": 8,
+        "acted_legs": 7,
+        "credited_legs": 7,
+        "completed_pairs": 3,
+        "pairs_under_par": 3,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 2,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "ge75+le25",
+      "aggregate": {
+        "D": 56,
+        "legs": 112,
+        "acted_legs": 71,
+        "credited_legs": 67,
+        "completed_pairs": 15,
+        "pairs_under_par": 12,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 3,
+        "joint_objective_pairs": 3,
+        "strict_carried_pairs": 5,
+        "execution_floor_pair_passes": 8
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 56,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 56,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 56,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 56,
+          "completed_pairs": 12,
+          "joint_objective_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 56,
+          "completed_pairs": 15,
+          "joint_objective_pairs": 3
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "le25+le25",
+      "aggregate": {
+        "D": 10,
+        "legs": 20,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 10,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 10,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 10,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 10,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 10,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    }
+  ],
+  "V23_multimetric_floor_nonregression": true,
+  "stacking_requires_separate_operator_ratification": true
+}

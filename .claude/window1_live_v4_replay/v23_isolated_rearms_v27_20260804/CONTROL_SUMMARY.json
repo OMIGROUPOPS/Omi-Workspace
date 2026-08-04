@@ -1,0 +1,456 @@
+{
+  "schema_version": "WINDOW1_V23_ISOLATED_REARMS_V27",
+  "baseline": {
+    "commit": "6b9c0ff25d74332b5ae6616a58adac641636462e",
+    "score": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1027,
+      "credited_legs": 920,
+      "completed_pairs": 204,
+      "pairs_under_par": 193,
+      "completed_pairs_close_unavailable": 1,
+      "both_legs_strictly_below_audited_close": 45,
+      "joint_objective_pairs": 45,
+      "strict_carried_pairs": 88,
+      "execution_floor_pair_passes": 64
+    }
+  },
+  "stacking": false,
+  "variants": {
+    "FIX1_ANCHOR_RESIDUAL": {
+      "directory": "fix1_anchor_residual",
+      "touched_legs": 143,
+      "changed_leg_streams": 206,
+      "score": {
+        "D": 804,
+        "legs": 1608,
+        "acted_legs": 1142,
+        "credited_legs": 1009,
+        "completed_pairs": 276,
+        "pairs_under_par": 264,
+        "completed_pairs_close_unavailable": 1,
+        "both_legs_strictly_below_audited_close": 62,
+        "joint_objective_pairs": 62,
+        "strict_carried_pairs": 125,
+        "execution_floor_pair_passes": 95
+      },
+      "delta": {
+        "D": 0,
+        "legs": 0,
+        "acted_legs": 115,
+        "credited_legs": 89,
+        "completed_pairs": 72,
+        "pairs_under_par": 71,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 17,
+        "joint_objective_pairs": 17,
+        "strict_carried_pairs": 37,
+        "execution_floor_pair_passes": 31
+      },
+      "V23_joint_non_regression": true,
+      "stacking_eligible": false,
+      "first_flag_totals": [
+        {
+          "layer": "ADMISSION",
+          "stopped_legs": 90,
+          "false_negative_neg_delta_available_past_flag": 23,
+          "predicates": {
+            "SOURCE_UNAVAILABLE": 90
+          }
+        },
+        {
+          "layer": "ANCHOR",
+          "stopped_legs": 6,
+          "false_negative_neg_delta_available_past_flag": 2,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 5,
+            "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+          }
+        },
+        {
+          "layer": "COMPLETION",
+          "stopped_legs": 481,
+          "false_negative_neg_delta_available_past_flag": 258,
+          "predicates": {
+            "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 457,
+            "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 22,
+            "COMPLETED_PAIR_NOT_STRICTLY_UNDER_PAR": 2
+          }
+        },
+        {
+          "layer": "FILL",
+          "stopped_legs": 133,
+          "false_negative_neg_delta_available_past_flag": 62,
+          "predicates": {
+            "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 107,
+            "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 26
+          }
+        },
+        {
+          "layer": "IDENTITY",
+          "stopped_legs": 16,
+          "false_negative_neg_delta_available_past_flag": 5,
+          "predicates": {
+            "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 15,
+            "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+          }
+        },
+        {
+          "layer": "PLACEMENT_CAP",
+          "stopped_legs": 188,
+          "false_negative_neg_delta_available_past_flag": 94,
+          "predicates": {
+            "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 188
+          }
+        },
+        {
+          "layer": "SIBLING_PAIR",
+          "stopped_legs": 50,
+          "false_negative_neg_delta_available_past_flag": 27,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 50
+          }
+        },
+        {
+          "layer": "VERDICT",
+          "stopped_legs": 116,
+          "false_negative_neg_delta_available_past_flag": 35,
+          "predicates": {
+            "ALL_SURVIVING_SHAPES_SAY_LOWER": 58,
+            "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 58
+          }
+        }
+      ],
+      "V23_multimetric_floor_nonregression": true,
+      "stacking_requires_separate_operator_ratification": true
+    },
+    "FIX2_CAP_REARM": {
+      "directory": "fix2_cap_rearm",
+      "touched_legs": 160,
+      "changed_leg_streams": 24,
+      "score": {
+        "D": 804,
+        "legs": 1608,
+        "acted_legs": 1051,
+        "credited_legs": 944,
+        "completed_pairs": 228,
+        "pairs_under_par": 217,
+        "completed_pairs_close_unavailable": 1,
+        "both_legs_strictly_below_audited_close": 46,
+        "joint_objective_pairs": 46,
+        "strict_carried_pairs": 104,
+        "execution_floor_pair_passes": 67
+      },
+      "delta": {
+        "D": 0,
+        "legs": 0,
+        "acted_legs": 24,
+        "credited_legs": 24,
+        "completed_pairs": 24,
+        "pairs_under_par": 24,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 1,
+        "joint_objective_pairs": 1,
+        "strict_carried_pairs": 16,
+        "execution_floor_pair_passes": 3
+      },
+      "V23_joint_non_regression": true,
+      "stacking_eligible": false,
+      "first_flag_totals": [
+        {
+          "layer": "ADMISSION",
+          "stopped_legs": 90,
+          "false_negative_neg_delta_available_past_flag": 23,
+          "predicates": {
+            "SOURCE_UNAVAILABLE": 90
+          }
+        },
+        {
+          "layer": "ANCHOR",
+          "stopped_legs": 149,
+          "false_negative_neg_delta_available_past_flag": 131,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 143,
+            "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 5,
+            "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+          }
+        },
+        {
+          "layer": "COMPLETION",
+          "stopped_legs": 510,
+          "false_negative_neg_delta_available_past_flag": 303,
+          "predicates": {
+            "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 488,
+            "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 22
+          }
+        },
+        {
+          "layer": "FILL",
+          "stopped_legs": 107,
+          "false_negative_neg_delta_available_past_flag": 52,
+          "predicates": {
+            "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 107
+          }
+        },
+        {
+          "layer": "IDENTITY",
+          "stopped_legs": 16,
+          "false_negative_neg_delta_available_past_flag": 5,
+          "predicates": {
+            "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 15,
+            "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+          }
+        },
+        {
+          "layer": "PLACEMENT_CAP",
+          "stopped_legs": 136,
+          "false_negative_neg_delta_available_past_flag": 67,
+          "predicates": {
+            "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 136
+          }
+        },
+        {
+          "layer": "SIBLING_PAIR",
+          "stopped_legs": 50,
+          "false_negative_neg_delta_available_past_flag": 27,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 50
+          }
+        },
+        {
+          "layer": "VERDICT",
+          "stopped_legs": 116,
+          "false_negative_neg_delta_available_past_flag": 35,
+          "predicates": {
+            "ALL_SURVIVING_SHAPES_SAY_LOWER": 58,
+            "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 58
+          }
+        }
+      ],
+      "V23_multimetric_floor_nonregression": true,
+      "stacking_requires_separate_operator_ratification": true
+    },
+    "FIX3_VERDICT_FALSIFIABILITY": {
+      "directory": "fix3_verdict_falsifiability",
+      "touched_legs": 145,
+      "changed_leg_streams": 170,
+      "score": {
+        "D": 804,
+        "legs": 1608,
+        "acted_legs": 1041,
+        "credited_legs": 926,
+        "completed_pairs": 203,
+        "pairs_under_par": 192,
+        "completed_pairs_close_unavailable": 1,
+        "both_legs_strictly_below_audited_close": 45,
+        "joint_objective_pairs": 45,
+        "strict_carried_pairs": 89,
+        "execution_floor_pair_passes": 66
+      },
+      "delta": {
+        "D": 0,
+        "legs": 0,
+        "acted_legs": 14,
+        "credited_legs": 6,
+        "completed_pairs": -1,
+        "pairs_under_par": -1,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 1,
+        "execution_floor_pair_passes": 2
+      },
+      "V23_joint_non_regression": true,
+      "stacking_eligible": false,
+      "first_flag_totals": [
+        {
+          "layer": "ADMISSION",
+          "stopped_legs": 90,
+          "false_negative_neg_delta_available_past_flag": 23,
+          "predicates": {
+            "SOURCE_UNAVAILABLE": 90
+          }
+        },
+        {
+          "layer": "ANCHOR",
+          "stopped_legs": 128,
+          "false_negative_neg_delta_available_past_flag": 113,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 124,
+            "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 3,
+            "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+          }
+        },
+        {
+          "layer": "COMPLETION",
+          "stopped_legs": 528,
+          "false_negative_neg_delta_available_past_flag": 312,
+          "predicates": {
+            "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 506,
+            "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 22
+          }
+        },
+        {
+          "layer": "FILL",
+          "stopped_legs": 113,
+          "false_negative_neg_delta_available_past_flag": 55,
+          "predicates": {
+            "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 99,
+            "RESTING_EXPOSURE_NOT_CREDITED_BY_GUARDED_WINDOW_END": 14
+          }
+        },
+        {
+          "layer": "IDENTITY",
+          "stopped_legs": 15,
+          "false_negative_neg_delta_available_past_flag": 4,
+          "predicates": {
+            "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 15
+          }
+        },
+        {
+          "layer": "PLACEMENT_CAP",
+          "stopped_legs": 172,
+          "false_negative_neg_delta_available_past_flag": 85,
+          "predicates": {
+            "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 172
+          }
+        },
+        {
+          "layer": "SIBLING_PAIR",
+          "stopped_legs": 73,
+          "false_negative_neg_delta_available_past_flag": 38,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 37,
+            "UNFALSIFIABLE_LOWER_SETTLED_BUT_INVERSE_SIBLING_UNRESOLVED": 36
+          }
+        },
+        {
+          "layer": "VERDICT",
+          "stopped_legs": 99,
+          "false_negative_neg_delta_available_past_flag": 31,
+          "predicates": {
+            "ALL_SURVIVING_SHAPES_SAY_LOWER": 52,
+            "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 47
+          }
+        }
+      ],
+      "V23_multimetric_floor_nonregression": false,
+      "stacking_requires_separate_operator_ratification": true
+    },
+    "FIX4_ADMISSION_REASK": {
+      "directory": "fix4_admission_reask",
+      "touched_legs": 90,
+      "changed_leg_streams": 20,
+      "score": {
+        "D": 804,
+        "legs": 1608,
+        "acted_legs": 1027,
+        "credited_legs": 920,
+        "completed_pairs": 204,
+        "pairs_under_par": 193,
+        "completed_pairs_close_unavailable": 1,
+        "both_legs_strictly_below_audited_close": 45,
+        "joint_objective_pairs": 45,
+        "strict_carried_pairs": 88,
+        "execution_floor_pair_passes": 64
+      },
+      "delta": {
+        "D": 0,
+        "legs": 0,
+        "acted_legs": 0,
+        "credited_legs": 0,
+        "completed_pairs": 0,
+        "pairs_under_par": 0,
+        "completed_pairs_close_unavailable": 0,
+        "both_legs_strictly_below_audited_close": 0,
+        "joint_objective_pairs": 0,
+        "strict_carried_pairs": 0,
+        "execution_floor_pair_passes": 0
+      },
+      "V23_joint_non_regression": true,
+      "stacking_eligible": false,
+      "first_flag_totals": [
+        {
+          "layer": "ADMISSION",
+          "stopped_legs": 70,
+          "false_negative_neg_delta_available_past_flag": 14,
+          "predicates": {
+            "SOURCE_UNAVAILABLE": 70
+          }
+        },
+        {
+          "layer": "ANCHOR",
+          "stopped_legs": 149,
+          "false_negative_neg_delta_available_past_flag": 131,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 143,
+            "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 5,
+            "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+          }
+        },
+        {
+          "layer": "COMPLETION",
+          "stopped_legs": 534,
+          "false_negative_neg_delta_available_past_flag": 317,
+          "predicates": {
+            "SIBLING_NOT_COMPLETED_BY_GUARDED_WINDOW_END": 512,
+            "COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR": 22
+          }
+        },
+        {
+          "layer": "FILL",
+          "stopped_legs": 107,
+          "false_negative_neg_delta_available_past_flag": 52,
+          "predicates": {
+            "PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 107
+          }
+        },
+        {
+          "layer": "IDENTITY",
+          "stopped_legs": 16,
+          "false_negative_neg_delta_available_past_flag": 5,
+          "predicates": {
+            "SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 15,
+            "OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1
+          }
+        },
+        {
+          "layer": "PLACEMENT_CAP",
+          "stopped_legs": 160,
+          "false_negative_neg_delta_available_past_flag": 81,
+          "predicates": {
+            "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 160
+          }
+        },
+        {
+          "layer": "SIBLING_PAIR",
+          "stopped_legs": 70,
+          "false_negative_neg_delta_available_past_flag": 36,
+          "predicates": {
+            "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 50,
+            "ADMISSION_REASK_PASSED_BUT_DOWNSTREAM_PAIR_PATH_UNRESOLVED": 20
+          }
+        },
+        {
+          "layer": "VERDICT",
+          "stopped_legs": 116,
+          "false_negative_neg_delta_available_past_flag": 35,
+          "predicates": {
+            "ALL_SURVIVING_SHAPES_SAY_LOWER": 58,
+            "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 58
+          }
+        }
+      ],
+      "V23_multimetric_floor_nonregression": true,
+      "stacking_requires_separate_operator_ratification": true
+    }
+  },
+  "fix1_binding_predicate_distribution": {
+    "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 143,
+    "FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 5,
+    "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+  },
+  "fix1_anchor_stopped_legs": 149,
+  "fix1_anchor_false_negative_legs": 131
+}

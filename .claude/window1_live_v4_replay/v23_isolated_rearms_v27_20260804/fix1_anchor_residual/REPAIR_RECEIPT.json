@@ -1,0 +1,3591 @@
+{
+  "variant": "FIX1_ANCHOR_RESIDUAL",
+  "stacking": false,
+  "constants": {
+    "dwell_seconds": 10,
+    "displayed_quantity": 5,
+    "provenance": "INHERITED_V23_MICRO_MICRO_LAW; NO_NEW_NUMERIC_CONSTANT"
+  },
+  "touched_legs": 143,
+  "changed_leg_streams": 206,
+  "receipts": [
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BINGIL|BIN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-3682",
+        "timestamp_epoch": 1783863793,
+        "bid": 84,
+        "ask": 85,
+        "spread": 1,
+        "dwell": 1377,
+        "size": 95
+      },
+      "post_flag_floor": {
+        "price_cents": 85,
+        "timestamp_epoch": 1783863793,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-3682",
+        "bid": 84,
+        "ask": 85,
+        "spread": 1,
+        "ask_dwell_seconds": 1377,
+        "top_ask_size": 95
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BROBAR|BRO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BROBAR-BRO.csv.gz#row-14855",
+        "timestamp_epoch": 1783865256,
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "dwell": 2661,
+        "size": 12
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1783865256,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BROBAR-BRO.csv.gz#row-14855",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 2661,
+        "top_ask_size": 12
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12CHAJON|JON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12CHAJON-JON.csv.gz#row-9585",
+        "timestamp_epoch": 1783834393,
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "dwell": 7574,
+        "size": 8
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1783834393,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12CHAJON-JON.csv.gz#row-9585",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 7574,
+        "top_ask_size": 8
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GANJAN|GAN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN.csv.gz#row-672",
+        "timestamp_epoch": 1783826248,
+        "bid": 19,
+        "ask": 20,
+        "spread": 1,
+        "dwell": 67,
+        "size": 25
+      },
+      "post_flag_floor": {
+        "price_cents": 20,
+        "timestamp_epoch": 1783826248,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN.csv.gz#row-672",
+        "bid": 19,
+        "ask": 20,
+        "spread": 1,
+        "ask_dwell_seconds": 67,
+        "top_ask_size": 25
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GURDAL|GUR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GURDAL-GUR.csv.gz#row-1278",
+        "timestamp_epoch": 1783864041,
+        "bid": 7,
+        "ask": 8,
+        "spread": 1,
+        "dwell": 17194,
+        "size": 1537
+      },
+      "post_flag_floor": {
+        "price_cents": 8,
+        "timestamp_epoch": 1783864041,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GURDAL-GUR.csv.gz#row-1278",
+        "bid": 7,
+        "ask": 8,
+        "spread": 1,
+        "ask_dwell_seconds": 17194,
+        "top_ask_size": 1537
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12HECISO|HEC",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12HECISO-HEC.csv.gz#row-627",
+        "timestamp_epoch": 1783856012,
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "dwell": 2592,
+        "size": 424
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1783856012,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12HECISO-HEC.csv.gz#row-627",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 2592,
+        "top_ask_size": 424
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12HOUJOR|HOU",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12HOUJOR-HOU.csv.gz#row-2722",
+        "timestamp_epoch": 1783885756,
+        "bid": 47,
+        "ask": 48,
+        "spread": 1,
+        "dwell": 7157,
+        "size": 46
+      },
+      "post_flag_floor": {
+        "price_cents": 48,
+        "timestamp_epoch": 1783885756,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12HOUJOR-HOU.csv.gz#row-2722",
+        "bid": 47,
+        "ask": 48,
+        "spread": 1,
+        "ask_dwell_seconds": 7157,
+        "top_ask_size": 46
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12KRALOR|LOR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR.csv.gz#row-490",
+        "timestamp_epoch": 1783833631,
+        "bid": 4,
+        "ask": 5,
+        "spread": 1,
+        "dwell": 19,
+        "size": 323
+      },
+      "post_flag_floor": {
+        "price_cents": 5,
+        "timestamp_epoch": 1783833631,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR.csv.gz#row-490",
+        "bid": 4,
+        "ask": 5,
+        "spread": 1,
+        "ask_dwell_seconds": 19,
+        "top_ask_size": 323
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12OUAFER|OUA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12OUAFER-OUA.csv.gz#row-5701",
+        "timestamp_epoch": 1783855880,
+        "bid": 94,
+        "ask": 95,
+        "spread": 1,
+        "dwell": 60,
+        "size": 5
+      },
+      "post_flag_floor": {
+        "price_cents": 95,
+        "timestamp_epoch": 1783855880,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12OUAFER-OUA.csv.gz#row-5701",
+        "bid": 94,
+        "ask": 95,
+        "spread": 1,
+        "ask_dwell_seconds": 60,
+        "top_ask_size": 5
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PALMAR|PAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12PALMAR-PAL.csv.gz#row-1935",
+        "timestamp_epoch": 1783860084,
+        "bid": 92,
+        "ask": 94,
+        "spread": 2,
+        "dwell": 21,
+        "size": 174
+      },
+      "post_flag_floor": {
+        "price_cents": 93,
+        "timestamp_epoch": 1783860120,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12PALMAR-PAL.csv.gz#row-1937",
+        "bid": 92,
+        "ask": 93,
+        "spread": 1,
+        "ask_dwell_seconds": 24,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-1070",
+        "timestamp_epoch": 1783855318,
+        "bid": 80,
+        "ask": 81,
+        "spread": 1,
+        "dwell": 27,
+        "size": 100
+      },
+      "post_flag_floor": {
+        "price_cents": 81,
+        "timestamp_epoch": 1783855318,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-1070",
+        "bid": 80,
+        "ask": 81,
+        "spread": 1,
+        "ask_dwell_seconds": 27,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12SANSCH|SCH",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12SANSCH-SCH.csv.gz#row-57605",
+        "timestamp_epoch": 1783907274,
+        "bid": 61,
+        "ask": 63,
+        "spread": 2,
+        "dwell": 70,
+        "size": 400
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1783956146,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12SANSCH-SCH.csv.gz#row-210204",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 906
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12TROHOR|TRO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12TROHOR-TRO.csv.gz#row-4328",
+        "timestamp_epoch": 1783853296,
+        "bid": 92,
+        "ask": 94,
+        "spread": 2,
+        "dwell": 2260,
+        "size": 504
+      },
+      "post_flag_floor": {
+        "price_cents": 94,
+        "timestamp_epoch": 1783853296,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12TROHOR-TRO.csv.gz#row-4328",
+        "bid": 92,
+        "ask": 94,
+        "spread": 2,
+        "ask_dwell_seconds": 2260,
+        "top_ask_size": 504
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12VANCHO|VAN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12VANCHO-VAN.csv.gz#row-1016",
+        "timestamp_epoch": 1783854677,
+        "bid": 76,
+        "ask": 78,
+        "spread": 2,
+        "dwell": 15,
+        "size": 1600
+      },
+      "post_flag_floor": {
+        "price_cents": 77,
+        "timestamp_epoch": 1783854718,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12VANCHO-VAN.csv.gz#row-1022",
+        "bid": 76,
+        "ask": 77,
+        "spread": 1,
+        "ask_dwell_seconds": 27,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12WINROB|WIN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WINROB-WIN.csv.gz#row-1045",
+        "timestamp_epoch": 1783855265,
+        "bid": 92,
+        "ask": 93,
+        "spread": 1,
+        "dwell": 34,
+        "size": 100
+      },
+      "post_flag_floor": {
+        "price_cents": 93,
+        "timestamp_epoch": 1783855265,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12WINROB-WIN.csv.gz#row-1045",
+        "bid": 92,
+        "ask": 93,
+        "spread": 1,
+        "ask_dwell_seconds": 34,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12YOUDLI|DLI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12YOUDLI-DLI.csv.gz#row-1721",
+        "timestamp_epoch": 1783872514,
+        "bid": 38,
+        "ask": 39,
+        "spread": 1,
+        "dwell": 493,
+        "size": 55
+      },
+      "post_flag_floor": {
+        "price_cents": 39,
+        "timestamp_epoch": 1783872514,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12YOUDLI-DLI.csv.gz#row-1721",
+        "bid": 38,
+        "ask": 39,
+        "spread": 1,
+        "ask_dwell_seconds": 493,
+        "top_ask_size": 55
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13ARSDAL|DAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13ARSDAL-DAL.csv.gz#row-750",
+        "timestamp_epoch": 1783933561,
+        "bid": 50,
+        "ask": 51,
+        "spread": 1,
+        "dwell": 239,
+        "size": 42
+      },
+      "post_flag_floor": {
+        "price_cents": 51,
+        "timestamp_epoch": 1783933561,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13ARSDAL-DAL.csv.gz#row-750",
+        "bid": 50,
+        "ask": 51,
+        "spread": 1,
+        "ask_dwell_seconds": 239,
+        "top_ask_size": 42
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13BOUGAN|BOU",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13BOUGAN-BOU.csv.gz#row-556",
+        "timestamp_epoch": 1783933794,
+        "bid": 62,
+        "ask": 63,
+        "spread": 1,
+        "dwell": 89,
+        "size": 253
+      },
+      "post_flag_floor": {
+        "price_cents": 63,
+        "timestamp_epoch": 1783933794,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13BOUGAN-BOU.csv.gz#row-556",
+        "bid": 62,
+        "ask": 63,
+        "spread": 1,
+        "ask_dwell_seconds": 89,
+        "top_ask_size": 253
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13DONWES|DON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-508",
+        "timestamp_epoch": 1783921642,
+        "bid": 25,
+        "ask": 26,
+        "spread": 1,
+        "dwell": 2195,
+        "size": 501
+      },
+      "post_flag_floor": {
+        "price_cents": 26,
+        "timestamp_epoch": 1783921642,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-508",
+        "bid": 25,
+        "ask": 26,
+        "spread": 1,
+        "ask_dwell_seconds": 2195,
+        "top_ask_size": 501
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13FORHUA|FOR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13FORHUA-FOR.csv.gz#row-873",
+        "timestamp_epoch": 1783920631,
+        "bid": 75,
+        "ask": 77,
+        "spread": 2,
+        "dwell": 170,
+        "size": 781
+      },
+      "post_flag_floor": {
+        "price_cents": 77,
+        "timestamp_epoch": 1783920631,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13FORHUA-FOR.csv.gz#row-873",
+        "bid": 75,
+        "ask": 77,
+        "spread": 2,
+        "ask_dwell_seconds": 170,
+        "top_ask_size": 781
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13GIUALM|ALM",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13GIUALM-ALM.csv.gz#row-882",
+        "timestamp_epoch": 1783942230,
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "dwell": 25,
+        "size": 440
+      },
+      "post_flag_floor": {
+        "price_cents": 34,
+        "timestamp_epoch": 1783942230,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13GIUALM-ALM.csv.gz#row-882",
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "ask_dwell_seconds": 25,
+        "top_ask_size": 440
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13JONPET|PET",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13JONPET-PET.csv.gz#row-8965",
+        "timestamp_epoch": 1783915215,
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "dwell": 14,
+        "size": 177
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1783915215,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13JONPET-PET.csv.gz#row-8965",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 14,
+        "top_ask_size": 177
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13LANSHE|SHE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13LANSHE-SHE.csv.gz#row-488",
+        "timestamp_epoch": 1783941030,
+        "bid": 31,
+        "ask": 33,
+        "spread": 2,
+        "dwell": 26,
+        "size": 1445
+      },
+      "post_flag_floor": {
+        "price_cents": 33,
+        "timestamp_epoch": 1783941030,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13LANSHE-SHE.csv.gz#row-488",
+        "bid": 31,
+        "ask": 33,
+        "spread": 2,
+        "ask_dwell_seconds": 26,
+        "top_ask_size": 1445
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13OUALIN|OUA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13OUALIN-OUA.csv.gz#row-5099",
+        "timestamp_epoch": 1783929432,
+        "bid": 79,
+        "ask": 82,
+        "spread": 3,
+        "dwell": 3832,
+        "size": 42
+      },
+      "post_flag_floor": {
+        "price_cents": 80,
+        "timestamp_epoch": 1783952180,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13OUALIN-OUA.csv.gz#row-5940",
+        "bid": 77,
+        "ask": 80,
+        "spread": 3,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 248
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13PRICRI|CRI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13PRICRI-CRI.csv.gz#row-575",
+        "timestamp_epoch": 1783912079,
+        "bid": 8,
+        "ask": 9,
+        "spread": 1,
+        "dwell": 264,
+        "size": 922
+      },
+      "post_flag_floor": {
+        "price_cents": 9,
+        "timestamp_epoch": 1783912079,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13PRICRI-CRI.csv.gz#row-575",
+        "bid": 8,
+        "ask": 9,
+        "spread": 1,
+        "ask_dwell_seconds": 264,
+        "top_ask_size": 922
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13REHJUS|REH",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13REHJUS-REH.csv.gz#row-1948",
+        "timestamp_epoch": 1783935072,
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "dwell": 12,
+        "size": 1080
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1783935072,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13REHJUS-REH.csv.gz#row-1948",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 1080
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13RODALK|ROD",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13RODALK-ROD.csv.gz#row-11329",
+        "timestamp_epoch": 1783954822,
+        "bid": 75,
+        "ask": 76,
+        "spread": 1,
+        "dwell": 17,
+        "size": 100
+      },
+      "post_flag_floor": {
+        "price_cents": 76,
+        "timestamp_epoch": 1783954822,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13RODALK-ROD.csv.gz#row-11329",
+        "bid": 75,
+        "ask": 76,
+        "spread": 1,
+        "ask_dwell_seconds": 17,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13ROZISO|ROZ",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13ROZISO-ROZ.csv.gz#row-1076",
+        "timestamp_epoch": 1783937540,
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "dwell": 132,
+        "size": 179
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1783937540,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13ROZISO-ROZ.csv.gz#row-1076",
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "ask_dwell_seconds": 132,
+        "top_ask_size": 179
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13SANLOP|LOP",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13SANLOP-LOP.csv.gz#row-777",
+        "timestamp_epoch": 1783958115,
+        "bid": 10,
+        "ask": 12,
+        "spread": 2,
+        "dwell": 3274,
+        "size": 41
+      },
+      "post_flag_floor": {
+        "price_cents": 11,
+        "timestamp_epoch": 1783958722,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13SANLOP-LOP.csv.gz#row-991",
+        "bid": 9,
+        "ask": 11,
+        "spread": 2,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 545
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13VILGAN|GAN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13VILGAN-GAN.csv.gz#row-744",
+        "timestamp_epoch": 1783911811,
+        "bid": 6,
+        "ask": 7,
+        "spread": 1,
+        "dwell": 187,
+        "size": 1652
+      },
+      "post_flag_floor": {
+        "price_cents": 7,
+        "timestamp_epoch": 1783911811,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13VILGAN-GAN.csv.gz#row-744",
+        "bid": 6,
+        "ask": 7,
+        "spread": 1,
+        "ask_dwell_seconds": 187,
+        "top_ask_size": 1652
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13WOLFEN|WOL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13WOLFEN-WOL.csv.gz#row-15385",
+        "timestamp_epoch": 1783969268,
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "dwell": 33,
+        "size": 477
+      },
+      "post_flag_floor": {
+        "price_cents": 78,
+        "timestamp_epoch": 1783969268,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13WOLFEN-WOL.csv.gz#row-15385",
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "ask_dwell_seconds": 33,
+        "top_ask_size": 477
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13WONTUN|WON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13WONTUN-WON.csv.gz#row-20362",
+        "timestamp_epoch": 1783958439,
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "dwell": 29,
+        "size": 1551
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1783958439,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13WONTUN-WON.csv.gz#row-20362",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 29,
+        "top_ask_size": 1551
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14ALCTAB|ALC",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14ALCTAB-ALC.csv.gz#row-652",
+        "timestamp_epoch": 1783998219,
+        "bid": 81,
+        "ask": 82,
+        "spread": 1,
+        "dwell": 15,
+        "size": 94
+      },
+      "post_flag_floor": {
+        "price_cents": 82,
+        "timestamp_epoch": 1783998219,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14ALCTAB-ALC.csv.gz#row-652",
+        "bid": 81,
+        "ask": 82,
+        "spread": 1,
+        "ask_dwell_seconds": 15,
+        "top_ask_size": 94
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14FORGOR|GOR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14FORGOR-GOR.csv.gz#row-2596",
+        "timestamp_epoch": 1784032245,
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "dwell": 435,
+        "size": 1401
+      },
+      "post_flag_floor": {
+        "price_cents": 58,
+        "timestamp_epoch": 1784032245,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14FORGOR-GOR.csv.gz#row-2596",
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "ask_dwell_seconds": 435,
+        "top_ask_size": 1401
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14FUEPRI|FUE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14FUEPRI-FUE.csv.gz#row-671",
+        "timestamp_epoch": 1784006498,
+        "bid": 30,
+        "ask": 31,
+        "spread": 1,
+        "dwell": 30,
+        "size": 8
+      },
+      "post_flag_floor": {
+        "price_cents": 31,
+        "timestamp_epoch": 1784006498,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14FUEPRI-FUE.csv.gz#row-671",
+        "bid": 30,
+        "ask": 31,
+        "spread": 1,
+        "ask_dwell_seconds": 30,
+        "top_ask_size": 8
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14GALFOR|FOR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14GALFOR-FOR.csv.gz#row-1646",
+        "timestamp_epoch": 1783999876,
+        "bid": 27,
+        "ask": 28,
+        "spread": 1,
+        "dwell": 38,
+        "size": 2180
+      },
+      "post_flag_floor": {
+        "price_cents": 28,
+        "timestamp_epoch": 1783999876,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14GALFOR-FOR.csv.gz#row-1646",
+        "bid": 27,
+        "ask": 28,
+        "spread": 1,
+        "ask_dwell_seconds": 38,
+        "top_ask_size": 2180
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14GUIBON|GUI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14GUIBON-GUI.csv.gz#row-824",
+        "timestamp_epoch": 1783999631,
+        "bid": 46,
+        "ask": 47,
+        "spread": 1,
+        "dwell": 61,
+        "size": 34
+      },
+      "post_flag_floor": {
+        "price_cents": 47,
+        "timestamp_epoch": 1783999631,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14GUIBON-GUI.csv.gz#row-824",
+        "bid": 46,
+        "ask": 47,
+        "spread": 1,
+        "ask_dwell_seconds": 61,
+        "top_ask_size": 34
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14KIRSEK|KIR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR.csv.gz#row-10040",
+        "timestamp_epoch": 1784019620,
+        "bid": 27,
+        "ask": 28,
+        "spread": 1,
+        "dwell": 16,
+        "size": 1550
+      },
+      "post_flag_floor": {
+        "price_cents": 28,
+        "timestamp_epoch": 1784019620,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR.csv.gz#row-10040",
+        "bid": 27,
+        "ask": 28,
+        "spread": 1,
+        "ask_dwell_seconds": 16,
+        "top_ask_size": 1550
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14KRATOR|TOR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14KRATOR-TOR.csv.gz#row-1794",
+        "timestamp_epoch": 1784002269,
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "dwell": 30,
+        "size": 182
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784002269,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14KRATOR-TOR.csv.gz#row-1794",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 30,
+        "top_ask_size": 182
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14MAKSEY|MAK",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-MAK.csv.gz#row-740",
+        "timestamp_epoch": 1784011075,
+        "bid": 20,
+        "ask": 21,
+        "spread": 1,
+        "dwell": 89,
+        "size": 741
+      },
+      "post_flag_floor": {
+        "price_cents": 21,
+        "timestamp_epoch": 1784011075,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-MAK.csv.gz#row-740",
+        "bid": 20,
+        "ask": 21,
+        "spread": 1,
+        "ask_dwell_seconds": 89,
+        "top_ask_size": 741
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14MARMAY|MAR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14MARMAY-MAR.csv.gz#row-985",
+        "timestamp_epoch": 1784003261,
+        "bid": 36,
+        "ask": 37,
+        "spread": 1,
+        "dwell": 347,
+        "size": 1587
+      },
+      "post_flag_floor": {
+        "price_cents": 37,
+        "timestamp_epoch": 1784003261,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14MARMAY-MAR.csv.gz#row-985",
+        "bid": 36,
+        "ask": 37,
+        "spread": 1,
+        "ask_dwell_seconds": 347,
+        "top_ask_size": 1587
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14MRVCAN|CAN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14MRVCAN-CAN.csv.gz#row-1364",
+        "timestamp_epoch": 1784006443,
+        "bid": 41,
+        "ask": 43,
+        "spread": 2,
+        "dwell": 24,
+        "size": 2400
+      },
+      "post_flag_floor": {
+        "price_cents": 43,
+        "timestamp_epoch": 1784006443,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14MRVCAN-CAN.csv.gz#row-1364",
+        "bid": 41,
+        "ask": 43,
+        "spread": 2,
+        "ask_dwell_seconds": 24,
+        "top_ask_size": 2400
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14NAGCRE|CRE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14NAGCRE-CRE.csv.gz#row-2444",
+        "timestamp_epoch": 1783998188,
+        "bid": 49,
+        "ask": 50,
+        "spread": 1,
+        "dwell": 85,
+        "size": 353
+      },
+      "post_flag_floor": {
+        "price_cents": 50,
+        "timestamp_epoch": 1783998188,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14NAGCRE-CRE.csv.gz#row-2444",
+        "bid": 49,
+        "ask": 50,
+        "spread": 1,
+        "ask_dwell_seconds": 85,
+        "top_ask_size": 353
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14SQUKUM|SQU",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SQUKUM-SQU.csv.gz#row-15347",
+        "timestamp_epoch": 1784019317,
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "dwell": 30,
+        "size": 1974
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784019317,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SQUKUM-SQU.csv.gz#row-15347",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 30,
+        "top_ask_size": 1974
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14UCHGAL|GAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14UCHGAL-GAL.csv.gz#row-2647",
+        "timestamp_epoch": 1784023891,
+        "bid": 83,
+        "ask": 84,
+        "spread": 1,
+        "dwell": 19,
+        "size": 507
+      },
+      "post_flag_floor": {
+        "price_cents": 84,
+        "timestamp_epoch": 1784023891,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14UCHGAL-GAL.csv.gz#row-2647",
+        "bid": 83,
+        "ask": 84,
+        "spread": 1,
+        "ask_dwell_seconds": 19,
+        "top_ask_size": 507
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14VILRIB|RIB",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14VILRIB-RIB.csv.gz#row-864",
+        "timestamp_epoch": 1784003938,
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "dwell": 1731,
+        "size": 1357
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784003938,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14VILRIB-RIB.csv.gz#row-864",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 1731,
+        "top_ask_size": 1357
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14VUKARS|ARS",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS.csv.gz#row-25",
+        "timestamp_epoch": 1784075556,
+        "bid": 14,
+        "ask": 15,
+        "spread": 1,
+        "dwell": 134,
+        "size": 23
+      },
+      "post_flag_floor": {
+        "price_cents": 15,
+        "timestamp_epoch": 1784075556,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14VUKARS-ARS.csv.gz#row-25",
+        "bid": 14,
+        "ask": 15,
+        "spread": 1,
+        "ask_dwell_seconds": 134,
+        "top_ask_size": 23
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ|KOZ",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-2161",
+        "timestamp_epoch": 1784027440,
+        "bid": 36,
+        "ask": 37,
+        "spread": 1,
+        "dwell": 29,
+        "size": 1737
+      },
+      "post_flag_floor": {
+        "price_cents": 37,
+        "timestamp_epoch": 1784027440,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-2161",
+        "bid": 36,
+        "ask": 37,
+        "spread": 1,
+        "ask_dwell_seconds": 29,
+        "top_ask_size": 1737
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15GENDE|DE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL15GENDE-DE.csv.gz#row-694",
+        "timestamp_epoch": 1784102937,
+        "bid": 18,
+        "ask": 19,
+        "spread": 1,
+        "dwell": 136,
+        "size": 1486
+      },
+      "post_flag_floor": {
+        "price_cents": 19,
+        "timestamp_epoch": 1784102937,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL15GENDE-DE.csv.gz#row-694",
+        "bid": 18,
+        "ask": 19,
+        "spread": 1,
+        "ask_dwell_seconds": 136,
+        "top_ask_size": 1486
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15NAPBAR|NAP",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL15NAPBAR-NAP.csv.gz#row-510",
+        "timestamp_epoch": 1784102867,
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "dwell": 66,
+        "size": 4075
+      },
+      "post_flag_floor": {
+        "price_cents": 58,
+        "timestamp_epoch": 1784102867,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL15NAPBAR-NAP.csv.gz#row-510",
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "ask_dwell_seconds": 66,
+        "top_ask_size": 4075
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15SCHHOU|SCH",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL15SCHHOU-SCH.csv.gz#row-1614",
+        "timestamp_epoch": 1784113297,
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "dwell": 70,
+        "size": 2000
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784113297,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL15SCHHOU-SCH.csv.gz#row-1614",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 70,
+        "top_ask_size": 2000
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16ALCANG|ALC",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16ALCANG-ALC.csv.gz#row-3098",
+        "timestamp_epoch": 1784171081,
+        "bid": 81,
+        "ask": 82,
+        "spread": 1,
+        "dwell": 127,
+        "size": 1258
+      },
+      "post_flag_floor": {
+        "price_cents": 82,
+        "timestamp_epoch": 1784171081,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16ALCANG-ALC.csv.gz#row-3098",
+        "bid": 81,
+        "ask": 82,
+        "spread": 1,
+        "ask_dwell_seconds": 127,
+        "top_ask_size": 1258
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16DENBAR|BAR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16DENBAR-BAR.csv.gz#row-1646",
+        "timestamp_epoch": 1784179899,
+        "bid": 41,
+        "ask": 42,
+        "spread": 1,
+        "dwell": 80,
+        "size": 2124
+      },
+      "post_flag_floor": {
+        "price_cents": 42,
+        "timestamp_epoch": 1784179899,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16DENBAR-BAR.csv.gz#row-1646",
+        "bid": 41,
+        "ask": 42,
+        "spread": 1,
+        "ask_dwell_seconds": 80,
+        "top_ask_size": 2124
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16IVAOUA|IVA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16IVAOUA-IVA.csv.gz#row-829",
+        "timestamp_epoch": 1784201616,
+        "bid": 82,
+        "ask": 83,
+        "spread": 1,
+        "dwell": 199,
+        "size": 380
+      },
+      "post_flag_floor": {
+        "price_cents": 83,
+        "timestamp_epoch": 1784201616,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16IVAOUA-IVA.csv.gz#row-829",
+        "bid": 82,
+        "ask": 83,
+        "spread": 1,
+        "ask_dwell_seconds": 199,
+        "top_ask_size": 380
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17ADDIVA|IVA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-IVA.csv.gz#row-1129",
+        "timestamp_epoch": 1784290088,
+        "bid": 69,
+        "ask": 70,
+        "spread": 1,
+        "dwell": 480,
+        "size": 764
+      },
+      "post_flag_floor": {
+        "price_cents": 69,
+        "timestamp_epoch": 1784302234,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-IVA.csv.gz#row-1458",
+        "bid": 68,
+        "ask": 69,
+        "spread": 1,
+        "ask_dwell_seconds": 79,
+        "top_ask_size": 31
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17DRAGEA|GEA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17DRAGEA-GEA.csv.gz#row-2575",
+        "timestamp_epoch": 1784293985,
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "dwell": 15,
+        "size": 110
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784293985,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17DRAGEA-GEA.csv.gz#row-2575",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 15,
+        "top_ask_size": 110
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17GALCOP|GAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17GALCOP-GAL.csv.gz#row-727",
+        "timestamp_epoch": 1784262919,
+        "bid": 42,
+        "ask": 43,
+        "spread": 1,
+        "dwell": 24,
+        "size": 1100
+      },
+      "post_flag_floor": {
+        "price_cents": 43,
+        "timestamp_epoch": 1784262919,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17GALCOP-GAL.csv.gz#row-727",
+        "bid": 42,
+        "ask": 43,
+        "spread": 1,
+        "ask_dwell_seconds": 24,
+        "top_ask_size": 1100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17NIJDEN|DEN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17NIJDEN-DEN.csv.gz#row-1767",
+        "timestamp_epoch": 1784266256,
+        "bid": 79,
+        "ask": 80,
+        "spread": 1,
+        "dwell": 22,
+        "size": 16399
+      },
+      "post_flag_floor": {
+        "price_cents": 80,
+        "timestamp_epoch": 1784266256,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17NIJDEN-DEN.csv.gz#row-1767",
+        "bid": 79,
+        "ask": 80,
+        "spread": 1,
+        "ask_dwell_seconds": 22,
+        "top_ask_size": 16399
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17PERSAN|SAN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17PERSAN-SAN.csv.gz#row-1804",
+        "timestamp_epoch": 1784289873,
+        "bid": 57,
+        "ask": 59,
+        "spread": 2,
+        "dwell": 53,
+        "size": 1951
+      },
+      "post_flag_floor": {
+        "price_cents": 59,
+        "timestamp_epoch": 1784289873,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17PERSAN-SAN.csv.gz#row-1804",
+        "bid": 57,
+        "ask": 59,
+        "spread": 2,
+        "ask_dwell_seconds": 53,
+        "top_ask_size": 1951
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17SANALM|SAN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17SANALM-SAN.csv.gz#row-2015",
+        "timestamp_epoch": 1784294906,
+        "bid": 49,
+        "ask": 50,
+        "spread": 1,
+        "dwell": 1085,
+        "size": 9
+      },
+      "post_flag_floor": {
+        "price_cents": 50,
+        "timestamp_epoch": 1784294906,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17SANALM-SAN.csv.gz#row-2015",
+        "bid": 49,
+        "ask": 50,
+        "spread": 1,
+        "ask_dwell_seconds": 1085,
+        "top_ask_size": 9
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL18RODSAN|ROD",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL18RODSAN-ROD.csv.gz#row-1071",
+        "timestamp_epoch": 1784380331,
+        "bid": 76,
+        "ask": 77,
+        "spread": 1,
+        "dwell": 32,
+        "size": 1728
+      },
+      "post_flag_floor": {
+        "price_cents": 77,
+        "timestamp_epoch": 1784380331,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL18RODSAN-ROD.csv.gz#row-1071",
+        "bid": 76,
+        "ask": 77,
+        "spread": 1,
+        "ask_dwell_seconds": 32,
+        "top_ask_size": 1728
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1181",
+        "timestamp_epoch": 1784474619,
+        "bid": 39,
+        "ask": 40,
+        "spread": 1,
+        "dwell": 10,
+        "size": 138
+      },
+      "post_flag_floor": {
+        "price_cents": 40,
+        "timestamp_epoch": 1784474619,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1181",
+        "bid": 39,
+        "ask": 40,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 138
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|BRU",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-606",
+        "timestamp_epoch": 1784433978,
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "dwell": 327,
+        "size": 531
+      },
+      "post_flag_floor": {
+        "price_cents": 58,
+        "timestamp_epoch": 1784433978,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-606",
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "ask_dwell_seconds": 327,
+        "top_ask_size": 531
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ|CLA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ-CLA.csv.gz#row-1160",
+        "timestamp_epoch": 1784462360,
+        "bid": 41,
+        "ask": 42,
+        "spread": 1,
+        "dwell": 1019,
+        "size": 920
+      },
+      "post_flag_floor": {
+        "price_cents": 42,
+        "timestamp_epoch": 1784462360,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ-CLA.csv.gz#row-1160",
+        "bid": 41,
+        "ask": 42,
+        "spread": 1,
+        "ask_dwell_seconds": 1019,
+        "top_ask_size": 920
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19DJOMAT|DJO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO.csv.gz#row-905",
+        "timestamp_epoch": 1784440500,
+        "bid": 8,
+        "ask": 9,
+        "spread": 1,
+        "dwell": 181,
+        "size": 205
+      },
+      "post_flag_floor": {
+        "price_cents": 9,
+        "timestamp_epoch": 1784440500,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO.csv.gz#row-905",
+        "bid": 8,
+        "ask": 9,
+        "spread": 1,
+        "ask_dwell_seconds": 181,
+        "top_ask_size": 205
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19JONISO|ISO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19JONISO-ISO.csv.gz#row-1191",
+        "timestamp_epoch": 1784467627,
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "dwell": 411,
+        "size": 1562
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784467627,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19JONISO-ISO.csv.gz#row-1191",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 411,
+        "top_ask_size": 1562
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19KOZVIT|VIT",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19KOZVIT-VIT.csv.gz#row-531",
+        "timestamp_epoch": 1784460039,
+        "bid": 9,
+        "ask": 11,
+        "spread": 2,
+        "dwell": 26,
+        "size": 850
+      },
+      "post_flag_floor": {
+        "price_cents": 11,
+        "timestamp_epoch": 1784460039,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19KOZVIT-VIT.csv.gz#row-531",
+        "bid": 9,
+        "ask": 11,
+        "spread": 2,
+        "ask_dwell_seconds": 26,
+        "top_ask_size": 850
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MALMOR|MAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MALMOR-MAL.csv.gz#row-949",
+        "timestamp_epoch": 1784452954,
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "dwell": 1314,
+        "size": 1773
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784452954,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MALMOR-MAL.csv.gz#row-949",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 1314,
+        "top_ask_size": 1773
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MCKOUA|OUA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MCKOUA-OUA.csv.gz#row-595",
+        "timestamp_epoch": 1784443281,
+        "bid": 36,
+        "ask": 37,
+        "spread": 1,
+        "dwell": 662,
+        "size": 420
+      },
+      "post_flag_floor": {
+        "price_cents": 37,
+        "timestamp_epoch": 1784443281,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MCKOUA-OUA.csv.gz#row-595",
+        "bid": 36,
+        "ask": 37,
+        "spread": 1,
+        "ask_dwell_seconds": 662,
+        "top_ask_size": 420
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MILFAN|MIL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MILFAN-MIL.csv.gz#row-815",
+        "timestamp_epoch": 1784462851,
+        "bid": 72,
+        "ask": 73,
+        "spread": 1,
+        "dwell": 3616,
+        "size": 296
+      },
+      "post_flag_floor": {
+        "price_cents": 73,
+        "timestamp_epoch": 1784462851,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MILFAN-MIL.csv.gz#row-815",
+        "bid": 72,
+        "ask": 73,
+        "spread": 1,
+        "ask_dwell_seconds": 3616,
+        "top_ask_size": 296
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19OLILAS|OLI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS-OLI.csv.gz#row-305",
+        "timestamp_epoch": 1784439276,
+        "bid": 94,
+        "ask": 95,
+        "spread": 1,
+        "dwell": 723,
+        "size": 31
+      },
+      "post_flag_floor": {
+        "price_cents": 95,
+        "timestamp_epoch": 1784439276,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19OLILAS-OLI.csv.gz#row-305",
+        "bid": 94,
+        "ask": 95,
+        "spread": 1,
+        "ask_dwell_seconds": 723,
+        "top_ask_size": 31
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19PAPROS|ROS",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19PAPROS-ROS.csv.gz#row-356",
+        "timestamp_epoch": 1784443959,
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "dwell": 219,
+        "size": 1606
+      },
+      "post_flag_floor": {
+        "price_cents": 78,
+        "timestamp_epoch": 1784443959,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19PAPROS-ROS.csv.gz#row-356",
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "ask_dwell_seconds": 219,
+        "top_ask_size": 1606
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19TOKMIY|MIY",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19TOKMIY-MIY.csv.gz#row-450",
+        "timestamp_epoch": 1784468424,
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "dwell": 799,
+        "size": 55
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1784468424,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19TOKMIY-MIY.csv.gz#row-450",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 799,
+        "top_ask_size": 55
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19VASTAB|VAS",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19VASTAB-VAS.csv.gz#row-412",
+        "timestamp_epoch": 1784430105,
+        "bid": 23,
+        "ask": 24,
+        "spread": 1,
+        "dwell": 80,
+        "size": 229
+      },
+      "post_flag_floor": {
+        "price_cents": 24,
+        "timestamp_epoch": 1784430105,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19VASTAB-VAS.csv.gz#row-412",
+        "bid": 23,
+        "ask": 24,
+        "spread": 1,
+        "ask_dwell_seconds": 80,
+        "top_ask_size": 229
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19VISAHT|AHT",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19VISAHT-AHT.csv.gz#row-673",
+        "timestamp_epoch": 1784447773,
+        "bid": 4,
+        "ask": 5,
+        "spread": 1,
+        "dwell": 5163,
+        "size": 2140
+      },
+      "post_flag_floor": {
+        "price_cents": 4,
+        "timestamp_epoch": 1784449478,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19VISAHT-AHT.csv.gz#row-951",
+        "bid": 3,
+        "ask": 4,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 1117
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19WINSHE|WIN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19WINSHE-WIN.csv.gz#row-399",
+        "timestamp_epoch": 1784461487,
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "dwell": 53,
+        "size": 100
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1784461487,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19WINSHE-WIN.csv.gz#row-399",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 53,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GIUHER|HER",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20GIUHER-HER.csv.gz#row-637",
+        "timestamp_epoch": 1784520230,
+        "bid": 20,
+        "ask": 21,
+        "spread": 1,
+        "dwell": 115,
+        "size": 258
+      },
+      "post_flag_floor": {
+        "price_cents": 21,
+        "timestamp_epoch": 1784520230,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20GIUHER-HER.csv.gz#row-637",
+        "bid": 20,
+        "ask": 21,
+        "spread": 1,
+        "ask_dwell_seconds": 115,
+        "top_ask_size": 258
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ONCAJD|AJD",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20ONCAJD-AJD.csv.gz#row-2009",
+        "timestamp_epoch": 1784534706,
+        "bid": 30,
+        "ask": 31,
+        "spread": 1,
+        "dwell": 255,
+        "size": 72
+      },
+      "post_flag_floor": {
+        "price_cents": 31,
+        "timestamp_epoch": 1784534706,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20ONCAJD-AJD.csv.gz#row-2009",
+        "bid": 30,
+        "ask": 31,
+        "spread": 1,
+        "ask_dwell_seconds": 255,
+        "top_ask_size": 72
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20POLBRU|POL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20POLBRU-POL.csv.gz#row-436",
+        "timestamp_epoch": 1784521246,
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "dwell": 1197,
+        "size": 462
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1784521246,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20POLBRU-POL.csv.gz#row-436",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 1197,
+        "top_ask_size": 462
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20SEYKOL|SEY",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20SEYKOL-SEY.csv.gz#row-10046",
+        "timestamp_epoch": 1784539111,
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "dwell": 6470,
+        "size": 1895
+      },
+      "post_flag_floor": {
+        "price_cents": 54,
+        "timestamp_epoch": 1784539111,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20SEYKOL-SEY.csv.gz#row-10046",
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "ask_dwell_seconds": 6470,
+        "top_ask_size": 1895
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ZHESHE|ZHE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20ZHESHE-ZHE.csv.gz#row-935",
+        "timestamp_epoch": 1784549219,
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "dwell": 100,
+        "size": 1559
+      },
+      "post_flag_floor": {
+        "price_cents": 78,
+        "timestamp_epoch": 1784549219,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20ZHESHE-ZHE.csv.gz#row-935",
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "ask_dwell_seconds": 100,
+        "top_ask_size": 1559
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12CECOLI|OLI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-864",
+        "timestamp_epoch": 1783850939,
+        "bid": 23,
+        "ask": 24,
+        "spread": 1,
+        "dwell": 254,
+        "size": 275
+      },
+      "post_flag_floor": {
+        "price_cents": 24,
+        "timestamp_epoch": 1783850939,
+        "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-864",
+        "bid": 23,
+        "ask": 24,
+        "spread": 1,
+        "ask_dwell_seconds": 254,
+        "top_ask_size": 275
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12DIEMON|MON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL12DIEMON-MON.csv.gz#row-4061",
+        "timestamp_epoch": 1783846879,
+        "bid": 44,
+        "ask": 45,
+        "spread": 1,
+        "dwell": 31,
+        "size": 340
+      },
+      "post_flag_floor": {
+        "price_cents": 45,
+        "timestamp_epoch": 1783846879,
+        "receipt": "KXATPMATCH-26JUL12DIEMON-MON.csv.gz#row-4061",
+        "bid": 44,
+        "ask": 45,
+        "spread": 1,
+        "ask_dwell_seconds": 31,
+        "top_ask_size": 340
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12FARWAW|FAR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL12FARWAW-FAR.csv.gz#row-871",
+        "timestamp_epoch": 1783825365,
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "dwell": 162,
+        "size": 899
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1783825365,
+        "receipt": "KXATPMATCH-26JUL12FARWAW-FAR.csv.gz#row-871",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 162,
+        "top_ask_size": 899
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12NEUTOP|NEU",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL12NEUTOP-NEU.csv.gz#row-879",
+        "timestamp_epoch": 1783850891,
+        "bid": 73,
+        "ask": 74,
+        "spread": 1,
+        "dwell": 10,
+        "size": 1513
+      },
+      "post_flag_floor": {
+        "price_cents": 74,
+        "timestamp_epoch": 1783850891,
+        "receipt": "KXATPMATCH-26JUL12NEUTOP-NEU.csv.gz#row-879",
+        "bid": 73,
+        "ask": 74,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 1513
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12PRASAI|PRA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL12PRASAI-PRA.csv.gz#row-1746",
+        "timestamp_epoch": 1783850548,
+        "bid": 42,
+        "ask": 43,
+        "spread": 1,
+        "dwell": 81,
+        "size": 8625
+      },
+      "post_flag_floor": {
+        "price_cents": 43,
+        "timestamp_epoch": 1783850548,
+        "receipt": "KXATPMATCH-26JUL12PRASAI-PRA.csv.gz#row-1746",
+        "bid": 42,
+        "ask": 43,
+        "spread": 1,
+        "ask_dwell_seconds": 81,
+        "top_ask_size": 8625
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12REJMID|REJ",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL12REJMID-REJ.csv.gz#row-4792",
+        "timestamp_epoch": 1783846931,
+        "bid": 7,
+        "ask": 8,
+        "spread": 1,
+        "dwell": 83,
+        "size": 633
+      },
+      "post_flag_floor": {
+        "price_cents": 8,
+        "timestamp_epoch": 1783846931,
+        "receipt": "KXATPMATCH-26JUL12REJMID-REJ.csv.gz#row-4792",
+        "bid": 7,
+        "ask": 8,
+        "spread": 1,
+        "ask_dwell_seconds": 83,
+        "top_ask_size": 633
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13COLSKA|SKA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL13COLSKA-SKA.csv.gz#row-3035",
+        "timestamp_epoch": 1783924283,
+        "bid": 13,
+        "ask": 14,
+        "spread": 1,
+        "dwell": 619,
+        "size": 12215
+      },
+      "post_flag_floor": {
+        "price_cents": 14,
+        "timestamp_epoch": 1783924283,
+        "receipt": "KXATPMATCH-26JUL13COLSKA-SKA.csv.gz#row-3035",
+        "bid": 13,
+        "ask": 14,
+        "spread": 1,
+        "ask_dwell_seconds": 619,
+        "top_ask_size": 12215
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13PASKRU|KRU",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL13PASKRU-KRU.csv.gz#row-2753",
+        "timestamp_epoch": 1783911646,
+        "bid": 35,
+        "ask": 36,
+        "spread": 1,
+        "dwell": 21,
+        "size": 1398
+      },
+      "post_flag_floor": {
+        "price_cents": 36,
+        "timestamp_epoch": 1783911646,
+        "receipt": "KXATPMATCH-26JUL13PASKRU-KRU.csv.gz#row-2753",
+        "bid": 35,
+        "ask": 36,
+        "spread": 1,
+        "ask_dwell_seconds": 21,
+        "top_ask_size": 1398
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14MARPRA|PRA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL14MARPRA-PRA.csv.gz#row-18073",
+        "timestamp_epoch": 1784019635,
+        "bid": 25,
+        "ask": 26,
+        "spread": 1,
+        "dwell": 24,
+        "size": 2032
+      },
+      "post_flag_floor": {
+        "price_cents": 26,
+        "timestamp_epoch": 1784019635,
+        "receipt": "KXATPMATCH-26JUL14MARPRA-PRA.csv.gz#row-18073",
+        "bid": 25,
+        "ask": 26,
+        "spread": 1,
+        "ask_dwell_seconds": 24,
+        "top_ask_size": 2032
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14NEUPRA|PRA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL14NEUPRA-PRA.csv.gz#row-294",
+        "timestamp_epoch": 1784046353,
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "dwell": 36,
+        "size": 501
+      },
+      "post_flag_floor": {
+        "price_cents": 34,
+        "timestamp_epoch": 1784046353,
+        "receipt": "KXATPMATCH-26JUL14NEUPRA-PRA.csv.gz#row-294",
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "ask_dwell_seconds": 36,
+        "top_ask_size": 501
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18KOPHER|KOP",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL18KOPHER-KOP.csv.gz#row-1911",
+        "timestamp_epoch": 1784362536,
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "dwell": 14,
+        "size": 1372
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1784362536,
+        "receipt": "KXATPMATCH-26JUL18KOPHER-KOP.csv.gz#row-1911",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 14,
+        "top_ask_size": 1372
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18LUZTSE|LUZ",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL18LUZTSE-LUZ.csv.gz#row-184",
+        "timestamp_epoch": 1784375309,
+        "bid": 11,
+        "ask": 18,
+        "spread": 7,
+        "dwell": 15,
+        "size": 24
+      },
+      "post_flag_floor": {
+        "price_cents": 15,
+        "timestamp_epoch": 1784376686,
+        "receipt": "KXATPMATCH-26JUL18LUZTSE-LUZ.csv.gz#row-240",
+        "bid": 13,
+        "ask": 15,
+        "spread": 2,
+        "ask_dwell_seconds": 35,
+        "top_ask_size": 17
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CERTRU|CER",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL19CERTRU-CER.csv.gz#row-3407",
+        "timestamp_epoch": 1784450642,
+        "bid": 64,
+        "ask": 65,
+        "spread": 1,
+        "dwell": 109,
+        "size": 45
+      },
+      "post_flag_floor": {
+        "price_cents": 65,
+        "timestamp_epoch": 1784450642,
+        "receipt": "KXATPMATCH-26JUL19CERTRU-CER.csv.gz#row-3407",
+        "bid": 64,
+        "ask": 65,
+        "spread": 1,
+        "ask_dwell_seconds": 109,
+        "top_ask_size": 45
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19FELKOP|KOP",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL19FELKOP-KOP.csv.gz#row-1085",
+        "timestamp_epoch": 1784431965,
+        "bid": 24,
+        "ask": 25,
+        "spread": 1,
+        "dwell": 1934,
+        "size": 21
+      },
+      "post_flag_floor": {
+        "price_cents": 25,
+        "timestamp_epoch": 1784431965,
+        "receipt": "KXATPMATCH-26JUL19FELKOP-KOP.csv.gz#row-1085",
+        "bid": 24,
+        "ask": 25,
+        "spread": 1,
+        "ask_dwell_seconds": 1934,
+        "top_ask_size": 21
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19KOPBUS|KOP",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL19KOPBUS-KOP.csv.gz#row-1115",
+        "timestamp_epoch": 1784435865,
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "dwell": 403,
+        "size": 702
+      },
+      "post_flag_floor": {
+        "price_cents": 34,
+        "timestamp_epoch": 1784435865,
+        "receipt": "KXATPMATCH-26JUL19KOPBUS-KOP.csv.gz#row-1115",
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "ask_dwell_seconds": 403,
+        "top_ask_size": 702
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19STRSHE|SHE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXATPMATCH-26JUL19STRSHE-SHE.csv.gz#row-4220",
+        "timestamp_epoch": 1784456671,
+        "bid": 41,
+        "ask": 42,
+        "spread": 1,
+        "dwell": 133,
+        "size": 822
+      },
+      "post_flag_floor": {
+        "price_cents": 41,
+        "timestamp_epoch": 1784617030,
+        "receipt": "KXATPMATCH-26JUL19STRSHE-SHE.csv.gz#row-71658",
+        "bid": 40,
+        "ask": 41,
+        "spread": 1,
+        "ask_dwell_seconds": 28,
+        "top_ask_size": 51
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12ARIZHA|ZHA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12ARIZHA-ZHA.csv.gz#row-1578",
+        "timestamp_epoch": 1783850753,
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "dwell": 19,
+        "size": 125
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1783850753,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12ARIZHA-ZHA.csv.gz#row-1578",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 19,
+        "top_ask_size": 125
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12CIRHUA|CIR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12CIRHUA-CIR.csv.gz#row-446",
+        "timestamp_epoch": 1783836967,
+        "bid": 6,
+        "ask": 7,
+        "spread": 1,
+        "dwell": 363,
+        "size": 2608
+      },
+      "post_flag_floor": {
+        "price_cents": 7,
+        "timestamp_epoch": 1783836967,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12CIRHUA-CIR.csv.gz#row-446",
+        "bid": 6,
+        "ask": 7,
+        "spread": 1,
+        "ask_dwell_seconds": 363,
+        "top_ask_size": 2608
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12ROUJAK|JAK",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12ROUJAK-JAK.csv.gz#row-4685",
+        "timestamp_epoch": 1783845707,
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "dwell": 1895,
+        "size": 290
+      },
+      "post_flag_floor": {
+        "price_cents": 54,
+        "timestamp_epoch": 1783845707,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12ROUJAK-JAK.csv.gz#row-4685",
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "ask_dwell_seconds": 1895,
+        "top_ask_size": 290
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13BAIPRO|PRO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13BAIPRO-PRO.csv.gz#row-4290",
+        "timestamp_epoch": 1783931761,
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "dwell": 576,
+        "size": 100
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1783931761,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13BAIPRO-PRO.csv.gz#row-4290",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 576,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13GRABER|GRA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13GRABER-GRA.csv.gz#row-2943",
+        "timestamp_epoch": 1783918021,
+        "bid": 78,
+        "ask": 79,
+        "spread": 1,
+        "dwell": 2821,
+        "size": 402
+      },
+      "post_flag_floor": {
+        "price_cents": 79,
+        "timestamp_epoch": 1783918021,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13GRABER-GRA.csv.gz#row-2943",
+        "bid": 78,
+        "ask": 79,
+        "spread": 1,
+        "ask_dwell_seconds": 2821,
+        "top_ask_size": 402
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13KOTURG|KOT",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-4260",
+        "timestamp_epoch": 1783959598,
+        "bid": 31,
+        "ask": 32,
+        "spread": 1,
+        "dwell": 10,
+        "size": 4676
+      },
+      "post_flag_floor": {
+        "price_cents": 32,
+        "timestamp_epoch": 1783959598,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-4260",
+        "bid": 31,
+        "ask": 32,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 4676
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|NOH",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-1258",
+        "timestamp_epoch": 1783937789,
+        "bid": 75,
+        "ask": 77,
+        "spread": 2,
+        "dwell": 13,
+        "size": 1755
+      },
+      "post_flag_floor": {
+        "price_cents": 76,
+        "timestamp_epoch": 1783937869,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-1275",
+        "bid": 74,
+        "ask": 76,
+        "spread": 2,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 400
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RINAST|RIN",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RINAST-RIN.csv.gz#row-168",
+        "timestamp_epoch": 1783934121,
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "dwell": 863,
+        "size": 3042
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1783934121,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RINAST-RIN.csv.gz#row-168",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 863,
+        "top_ask_size": 3042
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RISPOH|POH",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RISPOH-POH.csv.gz#row-797",
+        "timestamp_epoch": 1783919470,
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "dwell": 66,
+        "size": 6342
+      },
+      "post_flag_floor": {
+        "price_cents": 54,
+        "timestamp_epoch": 1783919470,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RISPOH-POH.csv.gz#row-797",
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "ask_dwell_seconds": 66,
+        "top_ask_size": 6342
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14COLPAL|PAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14COLPAL-PAL.csv.gz#row-633",
+        "timestamp_epoch": 1784001645,
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "dwell": 45,
+        "size": 981
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1784001645,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14COLPAL-PAL.csv.gz#row-633",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 45,
+        "top_ask_size": 981
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14HENKRA|KRA",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14HENKRA-KRA.csv.gz#row-767",
+        "timestamp_epoch": 1784004849,
+        "bid": 80,
+        "ask": 81,
+        "spread": 1,
+        "dwell": 3249,
+        "size": 433
+      },
+      "post_flag_floor": {
+        "price_cents": 81,
+        "timestamp_epoch": 1784004849,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14HENKRA-KRA.csv.gz#row-767",
+        "bid": 80,
+        "ask": 81,
+        "spread": 1,
+        "ask_dwell_seconds": 3249,
+        "top_ask_size": 433
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14IATZVO|ZVO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14IATZVO-ZVO.csv.gz#row-7310",
+        "timestamp_epoch": 1784013895,
+        "bid": 49,
+        "ask": 50,
+        "spread": 1,
+        "dwell": 18,
+        "size": 6830
+      },
+      "post_flag_floor": {
+        "price_cents": 50,
+        "timestamp_epoch": 1784013895,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14IATZVO-ZVO.csv.gz#row-7310",
+        "bid": 49,
+        "ask": 50,
+        "spread": 1,
+        "ask_dwell_seconds": 18,
+        "top_ask_size": 6830
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14KOVBAS|BAS",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14KOVBAS-BAS.csv.gz#row-623",
+        "timestamp_epoch": 1783999897,
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "dwell": 59,
+        "size": 914
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1783999897,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14KOVBAS-BAS.csv.gz#row-623",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 59,
+        "top_ask_size": 914
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15JONURG|JON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15JONURG-JON.csv.gz#row-1338",
+        "timestamp_epoch": 1784106066,
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "dwell": 25,
+        "size": 644
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1784106066,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15JONURG-JON.csv.gz#row-1338",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 25,
+        "top_ask_size": 644
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15PENFAL|FAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15PENFAL-FAL.csv.gz#row-1097",
+        "timestamp_epoch": 1784101262,
+        "bid": 78,
+        "ask": 79,
+        "spread": 1,
+        "dwell": 44,
+        "size": 2945
+      },
+      "post_flag_floor": {
+        "price_cents": 79,
+        "timestamp_epoch": 1784101262,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15PENFAL-FAL.csv.gz#row-1097",
+        "bid": 78,
+        "ask": 79,
+        "spread": 1,
+        "ask_dwell_seconds": 44,
+        "top_ask_size": 2945
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17CHIBRO|BRO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17CHIBRO-BRO.csv.gz#row-1094",
+        "timestamp_epoch": 1784287515,
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "dwell": 281,
+        "size": 132
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1784287515,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17CHIBRO-BRO.csv.gz#row-1094",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 281,
+        "top_ask_size": 132
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ERJFEI|ERJ",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-ERJ.csv.gz#row-1481",
+        "timestamp_epoch": 1784273433,
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "dwell": 26,
+        "size": 390
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1784273433,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-ERJ.csv.gz#row-1481",
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "ask_dwell_seconds": 26,
+        "top_ask_size": 390
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17VALFAL|VAL",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17VALFAL-VAL.csv.gz#row-775",
+        "timestamp_epoch": 1784276547,
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "dwell": 620,
+        "size": 363
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784276547,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17VALFAL-VAL.csv.gz#row-775",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 620,
+        "top_ask_size": 363
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18CIRTOT|CIR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18CIRTOT-CIR.csv.gz#row-3113",
+        "timestamp_epoch": 1784388668,
+        "bid": 40,
+        "ask": 41,
+        "spread": 1,
+        "dwell": 255,
+        "size": 400
+      },
+      "post_flag_floor": {
+        "price_cents": 41,
+        "timestamp_epoch": 1784388668,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18CIRTOT-CIR.csv.gz#row-3113",
+        "bid": 40,
+        "ask": 41,
+        "spread": 1,
+        "ask_dwell_seconds": 255,
+        "top_ask_size": 400
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18MCASHI|SHI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18MCASHI-SHI.csv.gz#row-22550",
+        "timestamp_epoch": 1784392946,
+        "bid": 45,
+        "ask": 46,
+        "spread": 1,
+        "dwell": 10,
+        "size": 823
+      },
+      "post_flag_floor": {
+        "price_cents": 45,
+        "timestamp_epoch": 1784393060,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18MCASHI-SHI.csv.gz#row-24413",
+        "bid": 44,
+        "ask": 45,
+        "spread": 1,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 1930
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL19KOTHOD|HOD",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL19KOTHOD-HOD.csv.gz#row-846",
+        "timestamp_epoch": 1784475356,
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "dwell": 16199,
+        "size": 357
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1784475356,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL19KOTHOD-HOD.csv.gz#row-846",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 16199,
+        "top_ask_size": 357
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL20FERREN|FER",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL20FERREN-FER.csv.gz#row-864",
+        "timestamp_epoch": 1784550090,
+        "bid": 83,
+        "ask": 84,
+        "spread": 1,
+        "dwell": 61,
+        "size": 115950
+      },
+      "post_flag_floor": {
+        "price_cents": 84,
+        "timestamp_epoch": 1784550090,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL20FERREN-FER.csv.gz#row-864",
+        "bid": 83,
+        "ask": 84,
+        "spread": 1,
+        "ask_dwell_seconds": 61,
+        "top_ask_size": 115950
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL20MAZSPI|SPI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL20MAZSPI-SPI.csv.gz#row-921",
+        "timestamp_epoch": 1784565060,
+        "bid": 32,
+        "ask": 33,
+        "spread": 1,
+        "dwell": 61,
+        "size": 421
+      },
+      "post_flag_floor": {
+        "price_cents": 33,
+        "timestamp_epoch": 1784565060,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL20MAZSPI-SPI.csv.gz#row-921",
+        "bid": 32,
+        "ask": 33,
+        "spread": 1,
+        "ask_dwell_seconds": 61,
+        "top_ask_size": 421
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12FETPIE|PIE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL12FETPIE-PIE.csv.gz#row-2369",
+        "timestamp_epoch": 1783848031,
+        "bid": 65,
+        "ask": 67,
+        "spread": 2,
+        "dwell": 30,
+        "size": 360
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1783848031,
+        "receipt": "KXWTAMATCH-26JUL12FETPIE-PIE.csv.gz#row-2369",
+        "bid": 65,
+        "ask": 67,
+        "spread": 2,
+        "ask_dwell_seconds": 30,
+        "top_ask_size": 360
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12ITOMAN|ITO",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL12ITOMAN-ITO.csv.gz#row-2894",
+        "timestamp_epoch": 1783847012,
+        "bid": 75,
+        "ask": 76,
+        "spread": 1,
+        "dwell": 183,
+        "size": 446
+      },
+      "post_flag_floor": {
+        "price_cents": 76,
+        "timestamp_epoch": 1783847012,
+        "receipt": "KXWTAMATCH-26JUL12ITOMAN-ITO.csv.gz#row-2894",
+        "bid": 75,
+        "ask": 76,
+        "spread": 1,
+        "ask_dwell_seconds": 183,
+        "top_ask_size": 446
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12LEPBUR|LEP",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL12LEPBUR-LEP.csv.gz#row-16320",
+        "timestamp_epoch": 1783846868,
+        "bid": 76,
+        "ask": 77,
+        "spread": 1,
+        "dwell": 20,
+        "size": 10657
+      },
+      "post_flag_floor": {
+        "price_cents": 77,
+        "timestamp_epoch": 1783846868,
+        "receipt": "KXWTAMATCH-26JUL12LEPBUR-LEP.csv.gz#row-16320",
+        "bid": 76,
+        "ask": 77,
+        "spread": 1,
+        "ask_dwell_seconds": 20,
+        "top_ask_size": 10657
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12OKAIPE|IPE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL12OKAIPE-IPE.csv.gz#row-2250",
+        "timestamp_epoch": 1783846997,
+        "bid": 85,
+        "ask": 86,
+        "spread": 1,
+        "dwell": 150,
+        "size": 17147
+      },
+      "post_flag_floor": {
+        "price_cents": 86,
+        "timestamp_epoch": 1783846997,
+        "receipt": "KXWTAMATCH-26JUL12OKAIPE-IPE.csv.gz#row-2250",
+        "bid": 85,
+        "ask": 86,
+        "spread": 1,
+        "ask_dwell_seconds": 150,
+        "top_ask_size": 17147
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12TAGSIE|TAG",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL12TAGSIE-TAG.csv.gz#row-20993",
+        "timestamp_epoch": 1783848413,
+        "bid": 87,
+        "ask": 88,
+        "spread": 1,
+        "dwell": 1566,
+        "size": 538
+      },
+      "post_flag_floor": {
+        "price_cents": 88,
+        "timestamp_epoch": 1783848413,
+        "receipt": "KXWTAMATCH-26JUL12TAGSIE-TAG.csv.gz#row-20993",
+        "bid": 87,
+        "ask": 88,
+        "spread": 1,
+        "ask_dwell_seconds": 1566,
+        "top_ask_size": 538
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13BURPUT|BUR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL13BURPUT-BUR.csv.gz#row-4149",
+        "timestamp_epoch": 1783913417,
+        "bid": 31,
+        "ask": 32,
+        "spread": 1,
+        "dwell": 1328,
+        "size": 1011
+      },
+      "post_flag_floor": {
+        "price_cents": 32,
+        "timestamp_epoch": 1783913417,
+        "receipt": "KXWTAMATCH-26JUL13BURPUT-BUR.csv.gz#row-4149",
+        "bid": 31,
+        "ask": 32,
+        "spread": 1,
+        "ask_dwell_seconds": 1328,
+        "top_ask_size": 1011
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13HODDAR|HOD",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL13HODDAR-HOD.csv.gz#row-1720",
+        "timestamp_epoch": 1783935112,
+        "bid": 21,
+        "ask": 22,
+        "spread": 1,
+        "dwell": 46,
+        "size": 7557
+      },
+      "post_flag_floor": {
+        "price_cents": 22,
+        "timestamp_epoch": 1783935112,
+        "receipt": "KXWTAMATCH-26JUL13HODDAR-HOD.csv.gz#row-1720",
+        "bid": 21,
+        "ask": 22,
+        "spread": 1,
+        "ask_dwell_seconds": 46,
+        "top_ask_size": 7557
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13SAKTON|SAK",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL13SAKTON-SAK.csv.gz#row-824",
+        "timestamp_epoch": 1783938584,
+        "bid": 53,
+        "ask": 55,
+        "spread": 2,
+        "dwell": 11,
+        "size": 531
+      },
+      "post_flag_floor": {
+        "price_cents": 54,
+        "timestamp_epoch": 1783938630,
+        "receipt": "KXWTAMATCH-26JUL13SAKTON-SAK.csv.gz#row-830",
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "ask_dwell_seconds": 29,
+        "top_ask_size": 100
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15BONZID|BON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL15BONZID-BON.csv.gz#row-2756",
+        "timestamp_epoch": 1784088066,
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "dwell": 52,
+        "size": 4127
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1784088066,
+        "receipt": "KXWTAMATCH-26JUL15BONZID-BON.csv.gz#row-2756",
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "ask_dwell_seconds": 52,
+        "top_ask_size": 4127
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18BERSAI|BER",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL18BERSAI-BER.csv.gz#row-839",
+        "timestamp_epoch": 1784343946,
+        "bid": 9,
+        "ask": 10,
+        "spread": 1,
+        "dwell": 311,
+        "size": 4565
+      },
+      "post_flag_floor": {
+        "price_cents": 10,
+        "timestamp_epoch": 1784343946,
+        "receipt": "KXWTAMATCH-26JUL18BERSAI-BER.csv.gz#row-839",
+        "bid": 9,
+        "ask": 10,
+        "spread": 1,
+        "ask_dwell_seconds": 311,
+        "top_ask_size": 4565
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18HONTHA|HON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL18HONTHA-HON.csv.gz#row-974",
+        "timestamp_epoch": 1784347351,
+        "bid": 83,
+        "ask": 84,
+        "spread": 1,
+        "dwell": 95,
+        "size": 4132
+      },
+      "post_flag_floor": {
+        "price_cents": 84,
+        "timestamp_epoch": 1784347351,
+        "receipt": "KXWTAMATCH-26JUL18HONTHA-HON.csv.gz#row-974",
+        "bid": 83,
+        "ask": 84,
+        "spread": 1,
+        "ask_dwell_seconds": 95,
+        "top_ask_size": 4132
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18PALHON|HON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL18PALHON-HON.csv.gz#row-1795",
+        "timestamp_epoch": 1784345820,
+        "bid": 62,
+        "ask": 63,
+        "spread": 1,
+        "dwell": 14,
+        "size": 2877
+      },
+      "post_flag_floor": {
+        "price_cents": 63,
+        "timestamp_epoch": 1784345820,
+        "receipt": "KXWTAMATCH-26JUL18PALHON-HON.csv.gz#row-1795",
+        "bid": 62,
+        "ask": 63,
+        "spread": 1,
+        "ask_dwell_seconds": 14,
+        "top_ask_size": 2877
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18TAUKRE|KRE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL18TAUKRE-KRE.csv.gz#row-4307",
+        "timestamp_epoch": 1784378481,
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "dwell": 63,
+        "size": 9314
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784378481,
+        "receipt": "KXWTAMATCH-26JUL18TAUKRE-KRE.csv.gz#row-4307",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 63,
+        "top_ask_size": 9314
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19MONPIE|MON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL19MONPIE-MON.csv.gz#row-1078",
+        "timestamp_epoch": 1784430141,
+        "bid": 76,
+        "ask": 77,
+        "spread": 1,
+        "dwell": 139,
+        "size": 361
+      },
+      "post_flag_floor": {
+        "price_cents": 77,
+        "timestamp_epoch": 1784430141,
+        "receipt": "KXWTAMATCH-26JUL19MONPIE-MON.csv.gz#row-1078",
+        "bid": 76,
+        "ask": 77,
+        "spread": 1,
+        "ask_dwell_seconds": 139,
+        "top_ask_size": 361
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20BONUCH|BON",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20BONUCH-BON.csv.gz#row-7729",
+        "timestamp_epoch": 1784516426,
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "dwell": 20,
+        "size": 1693
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1784516426,
+        "receipt": "KXWTAMATCH-26JUL20BONUCH-BON.csv.gz#row-7729",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 20,
+        "top_ask_size": 1693
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20BOUBOU2|BOU",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20BOUBOU2-BOU.csv.gz#row-2855",
+        "timestamp_epoch": 1784516458,
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "dwell": 25,
+        "size": 3616
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1784516458,
+        "receipt": "KXWTAMATCH-26JUL20BOUBOU2-BOU.csv.gz#row-2855",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 25,
+        "top_ask_size": 3616
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20FRUKRE|KRE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20FRUKRE-KRE.csv.gz#row-18249",
+        "timestamp_epoch": 1784524074,
+        "bid": 73,
+        "ask": 78,
+        "spread": 5,
+        "dwell": 12,
+        "size": 15
+      },
+      "post_flag_floor": {
+        "price_cents": 75,
+        "timestamp_epoch": 1784538619,
+        "receipt": "KXWTAMATCH-26JUL20FRUKRE-KRE.csv.gz#row-130243",
+        "bid": 74,
+        "ask": 75,
+        "spread": 1,
+        "ask_dwell_seconds": 19,
+        "top_ask_size": 354
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20NIEMAL|NIE",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20NIEMAL-NIE.csv.gz#row-1359",
+        "timestamp_epoch": 1784516526,
+        "bid": 58,
+        "ask": 59,
+        "spread": 1,
+        "dwell": 45,
+        "size": 354
+      },
+      "post_flag_floor": {
+        "price_cents": 59,
+        "timestamp_epoch": 1784516526,
+        "receipt": "KXWTAMATCH-26JUL20NIEMAL-NIE.csv.gz#row-1359",
+        "bid": 58,
+        "ask": 59,
+        "spread": 1,
+        "ask_dwell_seconds": 45,
+        "top_ask_size": 354
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20OLISCH|OLI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20OLISCH-OLI.csv.gz#row-1512",
+        "timestamp_epoch": 1784541956,
+        "bid": 69,
+        "ask": 70,
+        "spread": 1,
+        "dwell": 3482,
+        "size": 524
+      },
+      "post_flag_floor": {
+        "price_cents": 70,
+        "timestamp_epoch": 1784541956,
+        "receipt": "KXWTAMATCH-26JUL20OLISCH-OLI.csv.gz#row-1512",
+        "bid": 69,
+        "ask": 70,
+        "spread": 1,
+        "ask_dwell_seconds": 3482,
+        "top_ask_size": 524
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20PARHAV|PAR",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20PARHAV-PAR.csv.gz#row-7117",
+        "timestamp_epoch": 1784516808,
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "dwell": 221,
+        "size": 2718
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784516808,
+        "receipt": "KXWTAMATCH-26JUL20PARHAV-PAR.csv.gz#row-7117",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 221,
+        "top_ask_size": 2718
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20ROMERJ|ERJ",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20ROMERJ-ERJ.csv.gz#row-3068",
+        "timestamp_epoch": 1784545521,
+        "bid": 52,
+        "ask": 53,
+        "spread": 1,
+        "dwell": 2648,
+        "size": 256
+      },
+      "post_flag_floor": {
+        "price_cents": 53,
+        "timestamp_epoch": 1784545521,
+        "receipt": "KXWTAMATCH-26JUL20ROMERJ-ERJ.csv.gz#row-3068",
+        "bid": 52,
+        "ask": 53,
+        "spread": 1,
+        "ask_dwell_seconds": 2648,
+        "top_ask_size": 256
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20RUSPAQ|RUS",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20RUSPAQ-RUS.csv.gz#row-2671",
+        "timestamp_epoch": 1784520811,
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "dwell": 165,
+        "size": 44
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1784520811,
+        "receipt": "KXWTAMATCH-26JUL20RUSPAQ-RUS.csv.gz#row-2671",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 165,
+        "top_ask_size": 44
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20SEISNI|SNI",
+      "binding_predicate": "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW",
+      "refusal_is_state_not_terminal": true,
+      "rearm": {
+        "receipt": "KXWTAMATCH-26JUL20SEISNI-SNI.csv.gz#row-2946",
+        "timestamp_epoch": 1784516438,
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "dwell": 32,
+        "size": 361
+      },
+      "post_flag_floor": {
+        "price_cents": 78,
+        "timestamp_epoch": 1784516438,
+        "receipt": "KXWTAMATCH-26JUL20SEISNI-SNI.csv.gz#row-2946",
+        "bid": 77,
+        "ask": 78,
+        "spread": 1,
+        "ask_dwell_seconds": 32,
+        "top_ask_size": 361
+      },
+      "outcome": "REARMED_ON_FRESH_QUALIFIED_LIVE_BOOK"
+    }
+  ],
+  "V23_joint_non_regression": true,
+  "V23_multimetric_floor_nonregression": true,
+  "stacking_requires_separate_operator_ratification": true
+}

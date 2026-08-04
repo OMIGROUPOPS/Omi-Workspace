@@ -1,0 +1,502 @@
+{
+  "law": "CREDITED_FILL_MINUS_OBJECTIVE_PRINT_BACKED_FLOOR; NEVER_PLACED_REMAINS_CATEGORICAL_FULL_REGRET",
+  "denominator_legs": 1608,
+  "numeric_regret": {
+    "denominator": 1608,
+    "numeric_n": 787,
+    "null_n": 821,
+    "min": -2,
+    "p25": 0,
+    "median": 1,
+    "p75": 2,
+    "p90": 3,
+    "max": 31,
+    "total_cents": 1068
+  },
+  "never_placed_full_regret_n": 682,
+  "category_x_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "n": 261,
+      "regret": {
+        "denominator": 261,
+        "numeric_n": 117,
+        "null_n": 144,
+        "min": -2,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 8,
+        "total_cents": 134
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 72,
+        "ZERO": 44,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 32,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 22,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 20,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 18,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 10,
+        "FOUR_TO_NINE": 9,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 8,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 7,
+        "BETTER_THAN_PRINT_FLOOR": 6,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 5,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_ABSTAIN": 4,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_UNFILLED": 4
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "n": 252,
+      "regret": {
+        "denominator": 252,
+        "numeric_n": 151,
+        "null_n": 101,
+        "min": -2,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 9,
+        "total_cents": 196
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 101,
+        "ZERO": 52,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 24,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 16,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 15,
+        "FOUR_TO_NINE": 12,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 12,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 9,
+        "BETTER_THAN_PRINT_FLOOR": 4,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 3,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "NEVER_PLACED:ISOLATED_REPAIR_CAP_RESTED_UNFILLED": 1,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_ABSTAIN": 1
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "n": 101,
+      "regret": {
+        "denominator": 101,
+        "numeric_n": 51,
+        "null_n": 50,
+        "min": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 3,
+        "max": 12,
+        "total_cents": 69
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 29,
+        "ZERO": 20,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 18,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 6,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 6,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 5,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 4,
+        "FOUR_TO_NINE": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3,
+        "BETTER_THAN_PRINT_FLOOR": 2,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "TEN_OR_MORE": 2,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_UNFILLED": 1
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "n": 124,
+      "regret": {
+        "denominator": 124,
+        "numeric_n": 60,
+        "null_n": 64,
+        "min": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 4,
+        "total_cents": 64
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 39,
+        "ZERO": 20,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 15,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 14,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 11,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 7,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 5,
+        "FOUR_TO_NINE": 4,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 4,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2,
+        "BETTER_THAN_PRINT_FLOOR": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "n": 110,
+      "regret": {
+        "denominator": 110,
+        "numeric_n": 49,
+        "null_n": 61,
+        "min": -1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 5,
+        "max": 9,
+        "total_cents": 87
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 38,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 34,
+        "FOUR_TO_NINE": 9,
+        "ZERO": 8,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 6,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 4,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 3,
+        "BETTER_THAN_PRINT_FLOOR": 2,
+        "NEVER_PLACED:ISOLATED_REPAIR_CAP_RESTED_UNFILLED": 2,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "n": 111,
+      "regret": {
+        "denominator": 111,
+        "numeric_n": 76,
+        "null_n": 35,
+        "min": -2,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 14,
+        "total_cents": 164
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 60,
+        "ZERO": 13,
+        "FOUR_TO_NINE": 12,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 7,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 5,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 3,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_ABSTAIN": 3,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "BETTER_THAN_PRINT_FLOOR": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 1,
+        "TEN_OR_MORE": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "n": 27,
+      "regret": {
+        "denominator": 27,
+        "numeric_n": 24,
+        "null_n": 3,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 6,
+        "total_cents": 41
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 18,
+        "FOUR_TO_NINE": 4,
+        "ZERO": 4,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 1
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "n": 46,
+      "regret": {
+        "denominator": 46,
+        "numeric_n": 11,
+        "null_n": 35,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 5,
+        "total_cents": 14
+      },
+      "loss_buckets": {
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 12,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 9,
+        "ONE_TO_THREE": 9,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 4,
+        "ZERO": 3,
+        "FOUR_TO_NINE": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "n": 96,
+      "regret": {
+        "denominator": 96,
+        "numeric_n": 32,
+        "null_n": 64,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "total_cents": 18
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 36,
+        "ZERO": 15,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 10,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 6,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 5,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_ABSTAIN": 4,
+        "BETTER_THAN_PRINT_FLOOR": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 3,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_UNFILLED": 3,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 3,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "n": 87,
+      "regret": {
+        "denominator": 87,
+        "numeric_n": 36,
+        "null_n": 51,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 5,
+        "total_cents": 26
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 32,
+        "ZERO": 17,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 9,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 8,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 6,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 3,
+        "FOUR_TO_NINE": 2,
+        "NEVER_PLACED:ISOLATED_REPAIR_CAP_RESTED_UNFILLED": 2,
+        "BETTER_THAN_PRINT_FLOOR": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1,
+        "NEVER_PLACED:OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 1,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_UNFILLED": 1,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "n": 44,
+      "regret": {
+        "denominator": 44,
+        "numeric_n": 9,
+        "null_n": 35,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 2,
+        "max": 31,
+        "total_cents": 36
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 14,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 9,
+        "ZERO": 5,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 4,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 4,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "NEVER_PLACED:FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1,
+        "TEN_OR_MORE": 1
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "n": 45,
+      "regret": {
+        "denominator": 45,
+        "numeric_n": 17,
+        "null_n": 28,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "total_cents": 7
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 19,
+        "ZERO": 9,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 6,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 4,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "BETTER_THAN_PRINT_FLOOR": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "n": 86,
+      "regret": {
+        "denominator": 86,
+        "numeric_n": 45,
+        "null_n": 41,
+        "min": -1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 10,
+        "total_cents": 77
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 39,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 8,
+        "ZERO": 8,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 7,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 6,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 5,
+        "FOUR_TO_NINE": 3,
+        "NEVER_PLACED:PAIR_CAP_REORDERED_BY_ISOLATED_REPAIR_ABSTAIN": 3,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 2,
+        "BETTER_THAN_PRINT_FLOOR": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1,
+        "TEN_OR_MORE": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "n": 87,
+      "regret": {
+        "denominator": 87,
+        "numeric_n": 45,
+        "null_n": 42,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 4,
+        "total_cents": 44
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 37,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 14,
+        "ZERO": 14,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 10,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 5,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 2,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 2,
+        "FOUR_TO_NINE": 1,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "n": 52,
+      "regret": {
+        "denominator": 52,
+        "numeric_n": 29,
+        "null_n": 23,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 5,
+        "total_cents": 32
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 18,
+        "ZERO": 10,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 8,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 5,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 4,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 4,
+        "FOUR_TO_NINE": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 1
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "n": 79,
+      "regret": {
+        "denominator": 79,
+        "numeric_n": 35,
+        "null_n": 44,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 6,
+        "total_cents": 59
+      },
+      "loss_buckets": {
+        "ONE_TO_THREE": 26,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 22,
+        "NEVER_PLACED:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 10,
+        "ZERO": 5,
+        "FOUR_TO_NINE": 4,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 3,
+        "NEVER_PLACED:PAIR_CAP_RESTED_UNFILLED_THROUGH_GUARDED_WINDOW_NO_CHASE": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 2,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+      }
+    }
+  ]
+}

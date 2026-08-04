@@ -1,0 +1,4366 @@
+{
+  "variant": "FIX3_VERDICT_FALSIFIABILITY",
+  "stacking": false,
+  "constants": {
+    "dwell_seconds": 10,
+    "displayed_quantity": 5,
+    "provenance": "INHERITED_V23_MICRO_MICRO_LAW; NO_NEW_NUMERIC_CONSTANT"
+  },
+  "touched_legs": 145,
+  "changed_leg_streams": 170,
+  "receipts": [
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35593",
+      "source_timestamp_epoch": 1783896043,
+      "source_csv_row": "NAMED_ARN_EXEMPLAR",
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1783896043,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35592",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 15409,
+        "top_ask_size": 40
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12AVEFOR|FOR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12AVEFOR-FOR.csv.gz#row-1040",
+      "source_timestamp_epoch": 1783858549,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 46,
+        "timestamp_epoch": 1783877954,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12AVEFOR-FOR.csv.gz#row-25702",
+        "bid": 44,
+        "ask": 46,
+        "spread": 2,
+        "ask_dwell_seconds": 40,
+        "top_ask_size": 500
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BROBAR|BAR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12BROBAR-BAR.csv.gz#row-9291",
+      "source_timestamp_epoch": 1783972849,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 22,
+        "timestamp_epoch": 1784019844,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BROBAR-BAR.csv.gz#row-10810",
+        "bid": 21,
+        "ask": 22,
+        "spread": 1,
+        "ask_dwell_seconds": 17,
+        "top_ask_size": 723
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 26
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12CRIBAS|CRI",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12CRIBAS-CRI.csv.gz#row-795",
+      "source_timestamp_epoch": 1783841113,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 36,
+        "timestamp_epoch": 1783841113,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12CRIBAS-CRI.csv.gz#row-795",
+        "bid": 35,
+        "ask": 36,
+        "spread": 1,
+        "ask_dwell_seconds": 8199,
+        "top_ask_size": 371
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 77
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12DEVGON|GON",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12DEVGON-GON.csv.gz#row-2165",
+      "source_timestamp_epoch": 1783863316,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 69,
+        "timestamp_epoch": 1783863316,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12DEVGON-GON.csv.gz#row-2165",
+        "bid": 68,
+        "ask": 69,
+        "spread": 1,
+        "ask_dwell_seconds": 760,
+        "top_ask_size": 722
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12DROPIR|DRO",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12DROPIR-DRO.csv.gz#row-2189",
+      "source_timestamp_epoch": 1783856922,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 59,
+        "timestamp_epoch": 1783872234,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12DROPIR-DRO.csv.gz#row-4189",
+        "bid": 58,
+        "ask": 59,
+        "spread": 1,
+        "ask_dwell_seconds": 15,
+        "top_ask_size": 1163
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GURDAL|GUR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12GURDAL-GUR.csv.gz#row-1277",
+      "source_timestamp_epoch": 1783864040,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 8,
+        "timestamp_epoch": 1783864040,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GURDAL-GUR.csv.gz#row-1272",
+        "bid": 7,
+        "ask": 8,
+        "spread": 1,
+        "ask_dwell_seconds": 17193,
+        "top_ask_size": 1537
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 15
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12HOHSUR|HOH",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12HOHSUR-HOH.csv.gz#row-1332",
+      "source_timestamp_epoch": 1783879708,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 15,
+        "timestamp_epoch": 1783879708,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12HOHSUR-HOH.csv.gz#row-1332",
+        "bid": 14,
+        "ask": 15,
+        "spread": 1,
+        "ask_dwell_seconds": 12133,
+        "top_ask_size": 1243
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 26
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12KARMAR|MAR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12KARMAR-MAR.csv.gz#row-1390",
+      "source_timestamp_epoch": 1783863601,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 58,
+        "timestamp_epoch": 1783887674,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12KARMAR-MAR.csv.gz#row-4606",
+        "bid": 56,
+        "ask": 58,
+        "spread": 2,
+        "ask_dwell_seconds": 2692,
+        "top_ask_size": 281
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12MEJSOT|MEJ",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12MEJSOT-MEJ.csv.gz#row-1918",
+      "source_timestamp_epoch": 1783856836,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1783856836,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12MEJSOT-MEJ.csv.gz#row-1918",
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "ask_dwell_seconds": 2834,
+        "top_ask_size": 8840
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12MOLDON|MOL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12MOLDON-MOL.csv.gz#row-1748",
+      "source_timestamp_epoch": 1783864047,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 88,
+        "timestamp_epoch": 1783868339,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12MOLDON-MOL.csv.gz#row-10603",
+        "bid": 87,
+        "ask": 88,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 1350
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_ge76_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 42
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PEAKIR|KIR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12PEAKIR-KIR.csv.gz#row-1479",
+      "source_timestamp_epoch": 1783864345,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1783884021,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12PEAKIR-KIR.csv.gz#row-41870",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 31
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PRIBAL|BAL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-BAL.csv.gz#row-1798",
+      "source_timestamp_epoch": 1783847810,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 5,
+        "timestamp_epoch": 1783847810,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-BAL.csv.gz#row-1798",
+        "bid": 3,
+        "ask": 5,
+        "spread": 2,
+        "ask_dwell_seconds": 18399,
+        "top_ask_size": 28
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 15
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13AGABAR|BAR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13AGABAR-BAR.csv.gz#row-1617",
+      "source_timestamp_epoch": 1783942826,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 55,
+        "timestamp_epoch": 1783942826,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13AGABAR-BAR.csv.gz#row-1616",
+        "bid": 54,
+        "ask": 55,
+        "spread": 1,
+        "ask_dwell_seconds": 7685,
+        "top_ask_size": 637
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13FORHUA|HUA",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13FORHUA-HUA.csv.gz#row-1402",
+      "source_timestamp_epoch": 1783934918,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 23,
+        "timestamp_epoch": 1783937016,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13FORHUA-HUA.csv.gz#row-1450",
+        "bid": 22,
+        "ask": 23,
+        "spread": 1,
+        "ask_dwell_seconds": 20,
+        "top_ask_size": 265
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 15
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13FORRAF|RAF",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13FORRAF-RAF.csv.gz#row-2884",
+      "source_timestamp_epoch": 1783948861,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 16,
+        "timestamp_epoch": 1783948861,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13FORRAF-RAF.csv.gz#row-2884",
+        "bid": 15,
+        "ask": 16,
+        "spread": 1,
+        "ask_dwell_seconds": 11977,
+        "top_ask_size": 2934
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 26
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13JONPET|PET",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13JONPET-PET.csv.gz#row-10042",
+      "source_timestamp_epoch": 1783918032,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1783920470,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13JONPET-PET.csv.gz#row-10484",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 723
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13LANSHE|LAN",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13LANSHE-LAN.csv.gz#row-1044",
+      "source_timestamp_epoch": 1783944846,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 65,
+        "timestamp_epoch": 1783950466,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13LANSHE-LAN.csv.gz#row-1733",
+        "bid": 64,
+        "ask": 65,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 447
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MORFAN|MOR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13MORFAN-MOR.csv.gz#row-864",
+      "source_timestamp_epoch": 1783939767,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 66,
+        "timestamp_epoch": 1783939767,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13MORFAN-MOR.csv.gz#row-864",
+        "bid": 65,
+        "ask": 66,
+        "spread": 1,
+        "ask_dwell_seconds": 2833,
+        "top_ask_size": 1553
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13PERTOB|PER",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-PER.csv.gz#row-3980",
+      "source_timestamp_epoch": 1783955636,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 53,
+        "timestamp_epoch": 1783955636,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-PER.csv.gz#row-3980",
+        "bid": 52,
+        "ask": 53,
+        "spread": 1,
+        "ask_dwell_seconds": 8015,
+        "top_ask_size": 1749
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13REHJUS|REH",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL13REHJUS-REH.csv.gz#row-2244",
+      "source_timestamp_epoch": 1783937845,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1783937845,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13REHJUS-REH.csv.gz#row-2239",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 2785,
+        "top_ask_size": 480
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14BLATOM|BLA",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14BLATOM-BLA.csv.gz#row-2907",
+      "source_timestamp_epoch": 1784067643,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 66,
+        "timestamp_epoch": 1784079668,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14BLATOM-BLA.csv.gz#row-27505",
+        "bid": 65,
+        "ask": 66,
+        "spread": 1,
+        "ask_dwell_seconds": 13,
+        "top_ask_size": 484
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14CUIFAN|CUI",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14CUIFAN-CUI.csv.gz#row-3640",
+      "source_timestamp_epoch": 1784031212,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 70,
+        "timestamp_epoch": 1784035469,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14CUIFAN-CUI.csv.gz#row-4630",
+        "bid": 69,
+        "ask": 70,
+        "spread": 1,
+        "ask_dwell_seconds": 18,
+        "top_ask_size": 1510
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14FORGOR|GOR",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14FORGOR-GOR.csv.gz#row-2595",
+      "source_timestamp_epoch": 1784031957,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 58,
+        "timestamp_epoch": 1784031957,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14FORGOR-GOR.csv.gz#row-2595",
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "ask_dwell_seconds": 147,
+        "top_ask_size": 1401
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14GENPET|GEN",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-GEN.csv.gz#row-1113",
+      "source_timestamp_epoch": 1784007658,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1784007658,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-GEN.csv.gz#row-1113",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 3543,
+        "top_ask_size": 898
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14IVAGIU|IVA",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14IVAGIU-IVA.csv.gz#row-2093",
+      "source_timestamp_epoch": 1784030891,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1784038215,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14IVAGIU-IVA.csv.gz#row-3543",
+        "bid": 54,
+        "ask": 56,
+        "spread": 2,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 5400
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14KIRSEK|SEK",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK.csv.gz#row-4477",
+      "source_timestamp_epoch": 1784022585,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 69,
+        "timestamp_epoch": 1784037956,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK.csv.gz#row-6731",
+        "bid": 68,
+        "ask": 69,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 50
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15SCHHOU|SCH",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL15SCHHOU-SCH.csv.gz#row-1821",
+      "source_timestamp_epoch": 1784120932,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784120932,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL15SCHHOU-SCH.csv.gz#row-1811",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 7705,
+        "top_ask_size": 2408
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16CAMBOO|BOO",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL16CAMBOO-BOO.csv.gz#row-3617",
+      "source_timestamp_epoch": 1784207519,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1784210824,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16CAMBOO-BOO.csv.gz#row-4089",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 37,
+        "top_ask_size": 20
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16MCCTOM|MCC",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL16MCCTOM-MCC.csv.gz#row-2259",
+      "source_timestamp_epoch": 1784202690,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 51,
+        "timestamp_epoch": 1784207671,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16MCCTOM-MCC.csv.gz#row-2700",
+        "bid": 50,
+        "ask": 51,
+        "spread": 1,
+        "ask_dwell_seconds": 17,
+        "top_ask_size": 665
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16VISNIJ|NIJ",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL16VISNIJ-NIJ.csv.gz#row-5854",
+      "source_timestamp_epoch": 1784192555,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 59,
+        "timestamp_epoch": 1784192555,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL16VISNIJ-NIJ.csv.gz#row-5850",
+        "bid": 58,
+        "ask": 59,
+        "spread": 1,
+        "ask_dwell_seconds": 40,
+        "top_ask_size": 455
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17ADDIVA|IVA",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-IVA.csv.gz#row-1340",
+      "source_timestamp_epoch": 1784297165,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 69,
+        "timestamp_epoch": 1784302234,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-IVA.csv.gz#row-1458",
+        "bid": 68,
+        "ask": 69,
+        "spread": 1,
+        "ask_dwell_seconds": 79,
+        "top_ask_size": 31
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17ALCRON|ALC",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2994",
+      "source_timestamp_epoch": 1784277593,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1784277593,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2994",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 7739,
+        "top_ask_size": 239
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17VUKGAL|GAL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL.csv.gz#row-1517",
+      "source_timestamp_epoch": 1784311657,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 52,
+        "timestamp_epoch": 1784311657,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL.csv.gz#row-1517",
+        "bid": 51,
+        "ask": 52,
+        "spread": 1,
+        "ask_dwell_seconds": 164,
+        "top_ask_size": 481
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL18GENKUM|GEN",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL18GENKUM-GEN.csv.gz#row-1927",
+      "source_timestamp_epoch": 1784369811,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 52,
+        "timestamp_epoch": 1784384895,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL18GENKUM-GEN.csv.gz#row-37270",
+        "bid": 51,
+        "ask": 52,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 72142
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL18LAJYUN|YUN",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN.csv.gz#row-2208",
+      "source_timestamp_epoch": 1784410532,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784410532,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL18LAJYUN-YUN.csv.gz#row-2208",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 6922,
+        "top_ask_size": 401
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19BANZHU|BAN",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19BANZHU-BAN.csv.gz#row-924",
+      "source_timestamp_epoch": 1784459170,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 65,
+        "timestamp_epoch": 1784459170,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19BANZHU-BAN.csv.gz#row-924",
+        "bid": 64,
+        "ask": 65,
+        "spread": 1,
+        "ask_dwell_seconds": 3351,
+        "top_ask_size": 3456
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19HERECH|ECH",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19HERECH-ECH.csv.gz#row-164",
+      "source_timestamp_epoch": 1784435017,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 76,
+        "timestamp_epoch": 1784435017,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19HERECH-ECH.csv.gz#row-162",
+        "bid": 75,
+        "ask": 76,
+        "spread": 1,
+        "ask_dwell_seconds": 453,
+        "top_ask_size": 443
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MALMOR|MAL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19MALMOR-MAL.csv.gz#row-955",
+      "source_timestamp_epoch": 1784454653,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784454653,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MALMOR-MAL.csv.gz#row-955",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 3013,
+        "top_ask_size": 1773
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MARCOL|COL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19MARCOL-COL.csv.gz#row-925",
+      "source_timestamp_epoch": 1784452464,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 3,
+        "timestamp_epoch": 1784453124,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MARCOL-COL.csv.gz#row-1027",
+        "bid": 2,
+        "ask": 3,
+        "spread": 1,
+        "ask_dwell_seconds": 53,
+        "top_ask_size": 75
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 15
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MILFAN|MIL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19MILFAN-MIL.csv.gz#row-937",
+      "source_timestamp_epoch": 1784466846,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 73,
+        "timestamp_epoch": 1784466846,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19MILFAN-MIL.csv.gz#row-937",
+        "bid": 72,
+        "ask": 73,
+        "spread": 1,
+        "ask_dwell_seconds": 7611,
+        "top_ask_size": 294
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ|LAJ",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ-LAJ.csv.gz#row-13870",
+      "source_timestamp_epoch": 1784491793,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784498454,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ-LAJ.csv.gz#row-17530",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 269,
+        "top_ask_size": 422
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20CREMAT|CRE",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20CREMAT-CRE.csv.gz#row-1610",
+      "source_timestamp_epoch": 1784588938,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1784588938,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20CREMAT-CRE.csv.gz#row-1608",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 10241,
+        "top_ask_size": 105
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20FAURIN|RIN",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20FAURIN-RIN.csv.gz#row-837",
+      "source_timestamp_epoch": 1784536013,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 66,
+        "timestamp_epoch": 1784536013,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20FAURIN-RIN.csv.gz#row-837",
+        "bid": 65,
+        "ask": 66,
+        "spread": 1,
+        "ask_dwell_seconds": 3313,
+        "top_ask_size": 1778
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GALARN|GAL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL.csv.gz#row-542",
+      "source_timestamp_epoch": 1784535621,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 2,
+        "timestamp_epoch": 1784555221,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL.csv.gz#row-28525",
+        "bid": 1,
+        "ask": 2,
+        "spread": 1,
+        "ask_dwell_seconds": 35,
+        "top_ask_size": 53334
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GALLLA|GAL",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20GALLLA-GAL.csv.gz#row-1539",
+      "source_timestamp_epoch": 1784555793,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 55,
+        "timestamp_epoch": 1784555793,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20GALLLA-GAL.csv.gz#row-1537",
+        "bid": 54,
+        "ask": 55,
+        "spread": 1,
+        "ask_dwell_seconds": 2722,
+        "top_ask_size": 2005
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 104
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20KOZPAS|PAS",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20KOZPAS-PAS.csv.gz#row-994",
+      "source_timestamp_epoch": 1784557325,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 26,
+        "timestamp_epoch": 1784565815,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20KOZPAS-PAS.csv.gz#row-5541",
+        "bid": 19,
+        "ask": 26,
+        "spread": 7,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 239
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 77
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20MARROS|ROS",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20MARROS-ROS.csv.gz#row-507",
+      "source_timestamp_epoch": 1784542279,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 19,
+        "timestamp_epoch": 1784542404,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20MARROS-ROS.csv.gz#row-581",
+        "bid": 17,
+        "ask": 19,
+        "spread": 2,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 327
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_le25_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 15
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20MAYMAG|MAY",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-561",
+      "source_timestamp_epoch": 1784545938,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1784545938,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-561",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 7752,
+        "top_ask_size": 1272
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20MONNES|MON",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20MONNES-MON.csv.gz#row-776",
+      "source_timestamp_epoch": 1784536992,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 47,
+        "timestamp_epoch": 1784552800,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20MONNES-MON.csv.gz#row-24493",
+        "bid": 46,
+        "ask": 47,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 18700
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20SEYKOL|SEY",
+      "source_receipt": "KXATPCHALLENGERMATCH-26JUL20SEYKOL-SEY.csv.gz#row-10054",
+      "source_timestamp_epoch": 1784540513,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 54,
+        "timestamp_epoch": 1784540513,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20SEYKOL-SEY.csv.gz#row-10053",
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "ask_dwell_seconds": 7872,
+        "top_ask_size": 1895
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 29
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12CORDAN|COR",
+      "source_receipt": "KXATPMATCH-26JUL12CORDAN-COR.csv.gz#row-3076",
+      "source_timestamp_epoch": 1783834952,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 30,
+        "timestamp_epoch": 1783834952,
+        "receipt": "KXATPMATCH-26JUL12CORDAN-COR.csv.gz#row-3075",
+        "bid": 29,
+        "ask": 30,
+        "spread": 1,
+        "ask_dwell_seconds": 9724,
+        "top_ask_size": 5889
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12SESMER|SES",
+      "source_receipt": "KXATPMATCH-26JUL12SESMER-SES.csv.gz#row-22432",
+      "source_timestamp_epoch": 1784004525,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 14,
+        "timestamp_epoch": 1784043066,
+        "receipt": "KXATPMATCH-26JUL12SESMER-SES.csv.gz#row-30925",
+        "bid": 13,
+        "ask": 14,
+        "spread": 1,
+        "ask_dwell_seconds": 52,
+        "top_ask_size": 9100
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_le25_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 9
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12STRMUN|STR",
+      "source_receipt": "KXATPMATCH-26JUL12STRMUN-STR.csv.gz#row-3708",
+      "source_timestamp_epoch": 1783864890,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 21,
+        "timestamp_epoch": 1783952918,
+        "receipt": "KXATPMATCH-26JUL12STRMUN-STR.csv.gz#row-16546",
+        "bid": 20,
+        "ask": 21,
+        "spread": 1,
+        "ask_dwell_seconds": 28,
+        "top_ask_size": 360
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13PASKRU|KRU",
+      "source_receipt": "KXATPMATCH-26JUL13PASKRU-KRU.csv.gz#row-3724",
+      "source_timestamp_epoch": 1783917784,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 36,
+        "timestamp_epoch": 1783917784,
+        "receipt": "KXATPMATCH-26JUL13PASKRU-KRU.csv.gz#row-3724",
+        "bid": 35,
+        "ask": 36,
+        "spread": 1,
+        "ask_dwell_seconds": 6159,
+        "top_ask_size": 2013
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14CECBUR|CEC",
+      "source_receipt": "KXATPMATCH-26JUL14CECBUR-CEC.csv.gz#row-27893",
+      "source_timestamp_epoch": 1784026978,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 44,
+        "timestamp_epoch": 1784026978,
+        "receipt": "KXATPMATCH-26JUL14CECBUR-CEC.csv.gz#row-27892",
+        "bid": 43,
+        "ask": 44,
+        "spread": 1,
+        "ask_dwell_seconds": 7376,
+        "top_ask_size": 3232
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14KYMDIE|DIE",
+      "source_receipt": "KXATPMATCH-26JUL14KYMDIE-DIE.csv.gz#row-72882",
+      "source_timestamp_epoch": 1784010353,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 36,
+        "timestamp_epoch": 1784011144,
+        "receipt": "KXATPMATCH-26JUL14KYMDIE-DIE.csv.gz#row-73453",
+        "bid": 35,
+        "ask": 36,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 880
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14MARPRA|MAR",
+      "source_receipt": "KXATPMATCH-26JUL14MARPRA-MAR.csv.gz#row-19423",
+      "source_timestamp_epoch": 1784029393,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1784036806,
+        "receipt": "KXATPMATCH-26JUL14MARPRA-MAR.csv.gz#row-23208",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 15,
+        "top_ask_size": 11624
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14NEUPRA|PRA",
+      "source_receipt": "KXATPMATCH-26JUL14NEUPRA-PRA.csv.gz#row-293",
+      "source_timestamp_epoch": 1784046352,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 34,
+        "timestamp_epoch": 1784046352,
+        "receipt": "KXATPMATCH-26JUL14NEUPRA-PRA.csv.gz#row-291",
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "ask_dwell_seconds": 35,
+        "top_ask_size": 501
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14VANDAN|DAN",
+      "source_receipt": "KXATPMATCH-26JUL14VANDAN-DAN.csv.gz#row-15415",
+      "source_timestamp_epoch": 1784011630,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 40,
+        "timestamp_epoch": 1784012079,
+        "receipt": "KXATPMATCH-26JUL14VANDAN-DAN.csv.gz#row-15794",
+        "bid": 39,
+        "ask": 40,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 2842
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15BORDIM|DIM",
+      "source_receipt": "KXATPMATCH-26JUL15BORDIM-DIM.csv.gz#row-4054",
+      "source_timestamp_epoch": 1784099555,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 34,
+        "timestamp_epoch": 1784099555,
+        "receipt": "KXATPMATCH-26JUL15BORDIM-DIM.csv.gz#row-4054",
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "ask_dwell_seconds": 7314,
+        "top_ask_size": 10491
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15CARUGO|CAR",
+      "source_receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-4619",
+      "source_timestamp_epoch": 1784120903,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784130727,
+        "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-6587",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 24,
+        "top_ask_size": 605
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15COBBUR|BUR",
+      "source_receipt": "KXATPMATCH-26JUL15COBBUR-BUR.csv.gz#row-4905",
+      "source_timestamp_epoch": 1784114364,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 31,
+        "timestamp_epoch": 1784114364,
+        "receipt": "KXATPMATCH-26JUL15COBBUR-BUR.csv.gz#row-4905",
+        "bid": 30,
+        "ask": 31,
+        "spread": 1,
+        "ask_dwell_seconds": 8334,
+        "top_ask_size": 30461
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15COLSON|SON",
+      "source_receipt": "KXATPMATCH-26JUL15COLSON-SON.csv.gz#row-76403",
+      "source_timestamp_epoch": 1784091407,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 33,
+        "timestamp_epoch": 1784100080,
+        "receipt": "KXATPMATCH-26JUL15COLSON-SON.csv.gz#row-84781",
+        "bid": 32,
+        "ask": 33,
+        "spread": 1,
+        "ask_dwell_seconds": 29,
+        "top_ask_size": 587
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15ETCMER|MER",
+      "source_receipt": "KXATPMATCH-26JUL15ETCMER-MER.csv.gz#row-18263",
+      "source_timestamp_epoch": 1784111291,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 38,
+        "timestamp_epoch": 1784124110,
+        "receipt": "KXATPMATCH-26JUL15ETCMER-MER.csv.gz#row-20504",
+        "bid": 37,
+        "ask": 38,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 9717
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15KYMTSI|KYM",
+      "source_receipt": "KXATPMATCH-26JUL15KYMTSI-KYM.csv.gz#row-4239",
+      "source_timestamp_epoch": 1784094554,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 27,
+        "timestamp_epoch": 1784101484,
+        "receipt": "KXATPMATCH-26JUL15KYMTSI-KYM.csv.gz#row-5266",
+        "bid": 26,
+        "ask": 27,
+        "spread": 1,
+        "ask_dwell_seconds": 13,
+        "top_ask_size": 4467
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15PRADZU|PRA",
+      "source_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-2350",
+      "source_timestamp_epoch": 1784111512,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 35,
+        "timestamp_epoch": 1784112165,
+        "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-2531",
+        "bid": 34,
+        "ask": 35,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 360
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16BURUGO|UGO",
+      "source_receipt": "KXATPMATCH-26JUL16BURUGO-UGO.csv.gz#row-8533",
+      "source_timestamp_epoch": 1784200775,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 38,
+        "timestamp_epoch": 1784220788,
+        "receipt": "KXATPMATCH-26JUL16BURUGO-UGO.csv.gz#row-14521",
+        "bid": 37,
+        "ask": 38,
+        "spread": 1,
+        "ask_dwell_seconds": 138,
+        "top_ask_size": 53283
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16DEJBAE|BAE",
+      "source_receipt": "KXATPMATCH-26JUL16DEJBAE-BAE.csv.gz#row-8718",
+      "source_timestamp_epoch": 1784192555,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 47,
+        "timestamp_epoch": 1784192555,
+        "receipt": "KXATPMATCH-26JUL16DEJBAE-BAE.csv.gz#row-8712",
+        "bid": 46,
+        "ask": 47,
+        "spread": 1,
+        "ask_dwell_seconds": 13,
+        "top_ask_size": 1507
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+      "source_receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-10114",
+      "source_timestamp_epoch": 1784197696,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 40,
+        "timestamp_epoch": 1784197696,
+        "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-10114",
+        "bid": 39,
+        "ask": 40,
+        "spread": 1,
+        "ask_dwell_seconds": 5242,
+        "top_ask_size": 485
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17BORDAR|BOR",
+      "source_receipt": "KXATPMATCH-26JUL17BORDAR-BOR.csv.gz#row-5512",
+      "source_timestamp_epoch": 1784267871,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 43,
+        "timestamp_epoch": 1784267871,
+        "receipt": "KXATPMATCH-26JUL17BORDAR-BOR.csv.gz#row-5512",
+        "bid": 42,
+        "ask": 43,
+        "spread": 1,
+        "ask_dwell_seconds": 6980,
+        "top_ask_size": 130976
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17CERRUU|CER",
+      "source_receipt": "KXATPMATCH-26JUL17CERRUU-CER.csv.gz#row-10345",
+      "source_timestamp_epoch": 1784271824,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 26,
+        "timestamp_epoch": 1784275830,
+        "receipt": "KXATPMATCH-26JUL17CERRUU-CER.csv.gz#row-10924",
+        "bid": 25,
+        "ask": 26,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 5705
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17COLVAC|VAC",
+      "source_receipt": "KXATPMATCH-26JUL17COLVAC-VAC.csv.gz#row-17900",
+      "source_timestamp_epoch": 1784264182,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 43,
+        "timestamp_epoch": 1784264182,
+        "receipt": "KXATPMATCH-26JUL17COLVAC-VAC.csv.gz#row-17900",
+        "bid": 42,
+        "ask": 43,
+        "spread": 1,
+        "ask_dwell_seconds": 35,
+        "top_ask_size": 700
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17HALSHE|SHE",
+      "source_receipt": "KXATPMATCH-26JUL17HALSHE-SHE.csv.gz#row-198",
+      "source_timestamp_epoch": 1784290229,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 39,
+        "timestamp_epoch": 1784290932,
+        "receipt": "KXATPMATCH-26JUL17HALSHE-SHE.csv.gz#row-306",
+        "bid": 37,
+        "ask": 39,
+        "spread": 2,
+        "ask_dwell_seconds": 148,
+        "top_ask_size": 68
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17TABTIR|TIR",
+      "source_receipt": "KXATPMATCH-26JUL17TABTIR-TIR.csv.gz#row-3840",
+      "source_timestamp_epoch": 1784280640,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 44,
+        "timestamp_epoch": 1784296700,
+        "receipt": "KXATPMATCH-26JUL17TABTIR-TIR.csv.gz#row-4820",
+        "bid": 43,
+        "ask": 44,
+        "spread": 1,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 941
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17VALTRA|TRA",
+      "source_receipt": "KXATPMATCH-26JUL17VALTRA-TRA.csv.gz#row-16818",
+      "source_timestamp_epoch": 1784267572,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 29,
+        "timestamp_epoch": 1784267572,
+        "receipt": "KXATPMATCH-26JUL17VALTRA-TRA.csv.gz#row-16818",
+        "bid": 28,
+        "ask": 29,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 8023
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 22
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18BUTTAB|TAB",
+      "source_receipt": "KXATPMATCH-26JUL18BUTTAB-TAB.csv.gz#row-1918",
+      "source_timestamp_epoch": 1784360466,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 69,
+        "timestamp_epoch": 1784360466,
+        "receipt": "KXATPMATCH-26JUL18BUTTAB-TAB.csv.gz#row-1918",
+        "bid": 68,
+        "ask": 69,
+        "spread": 1,
+        "ask_dwell_seconds": 4293,
+        "top_ask_size": 2985
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18DANPRA|PRA",
+      "source_receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3324",
+      "source_timestamp_epoch": 1784369271,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 41,
+        "timestamp_epoch": 1784369271,
+        "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-3320",
+        "bid": 40,
+        "ask": 41,
+        "spread": 1,
+        "ask_dwell_seconds": 22,
+        "top_ask_size": 360
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 22
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18DELRIB|RIB",
+      "source_receipt": "KXATPMATCH-26JUL18DELRIB-RIB.csv.gz#row-2916",
+      "source_timestamp_epoch": 1784372264,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 31,
+        "timestamp_epoch": 1784384610,
+        "receipt": "KXATPMATCH-26JUL18DELRIB-RIB.csv.gz#row-4156",
+        "bid": 30,
+        "ask": 31,
+        "spread": 1,
+        "ask_dwell_seconds": 18,
+        "top_ask_size": 709
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18KOPHER|KOP",
+      "source_receipt": "KXATPMATCH-26JUL18KOPHER-KOP.csv.gz#row-2259",
+      "source_timestamp_epoch": 1784371074,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1784371074,
+        "receipt": "KXATPMATCH-26JUL18KOPHER-KOP.csv.gz#row-2257",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 8552,
+        "top_ask_size": 1000
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18VALDAR|VAL",
+      "source_receipt": "KXATPMATCH-26JUL18VALDAR-VAL.csv.gz#row-2360",
+      "source_timestamp_epoch": 1784347512,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 34,
+        "timestamp_epoch": 1784347512,
+        "receipt": "KXATPMATCH-26JUL18VALDAR-VAL.csv.gz#row-2360",
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "ask_dwell_seconds": 257,
+        "top_ask_size": 39523
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CERTRU|TRU",
+      "source_receipt": "KXATPMATCH-26JUL19CERTRU-TRU.csv.gz#row-2883",
+      "source_timestamp_epoch": 1784456936,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 26,
+        "timestamp_epoch": 1784617892,
+        "receipt": "KXATPMATCH-26JUL19CERTRU-TRU.csv.gz#row-136078",
+        "bid": 25,
+        "ask": 26,
+        "spread": 1,
+        "ask_dwell_seconds": 38,
+        "top_ask_size": 2648
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 22
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19DROUGO|UGO",
+      "source_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-983",
+      "source_timestamp_epoch": 1784472953,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 51,
+        "timestamp_epoch": 1784472953,
+        "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-983",
+        "bid": 50,
+        "ask": 51,
+        "spread": 1,
+        "ask_dwell_seconds": 15214,
+        "top_ask_size": 575
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19MOLOFN|OFN",
+      "source_receipt": "KXATPMATCH-26JUL19MOLOFN-OFN.csv.gz#row-1703",
+      "source_timestamp_epoch": 1784456364,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 39,
+        "timestamp_epoch": 1784456364,
+        "receipt": "KXATPMATCH-26JUL19MOLOFN-OFN.csv.gz#row-1700",
+        "bid": 38,
+        "ask": 39,
+        "spread": 1,
+        "ask_dwell_seconds": 320,
+        "top_ask_size": 375
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19TSICOL|COL",
+      "source_receipt": "KXATPMATCH-26JUL19TSICOL-COL.csv.gz#row-12596",
+      "source_timestamp_epoch": 1784440547,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 41,
+        "timestamp_epoch": 1784442980,
+        "receipt": "KXATPMATCH-26JUL19TSICOL-COL.csv.gz#row-13711",
+        "bid": 40,
+        "ask": 41,
+        "spread": 1,
+        "ask_dwell_seconds": 58,
+        "top_ask_size": 46327
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL20ROCMAR|MAR",
+      "source_receipt": "KXATPMATCH-26JUL20ROCMAR-MAR.csv.gz#row-4379",
+      "source_timestamp_epoch": 1784549296,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 44,
+        "timestamp_epoch": 1784569867,
+        "receipt": "KXATPMATCH-26JUL20ROCMAR-MAR.csv.gz#row-16243",
+        "bid": 43,
+        "ask": 44,
+        "spread": 1,
+        "ask_dwell_seconds": 43,
+        "top_ask_size": 629
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "ATP_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 10
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13AVDFEI|AVD",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13AVDFEI-AVD.csv.gz#row-2663",
+      "source_timestamp_epoch": 1783935264,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 54,
+        "timestamp_epoch": 1783935264,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13AVDFEI-AVD.csv.gz#row-2663",
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "ask_dwell_seconds": 5661,
+        "top_ask_size": 1614
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13HERJAK|HER",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13HERJAK-HER.csv.gz#row-1223",
+      "source_timestamp_epoch": 1783939886,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 70,
+        "timestamp_epoch": 1783951895,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13HERJAK-HER.csv.gz#row-3509",
+        "bid": 69,
+        "ask": 70,
+        "spread": 1,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 14482
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13KABPER|PER",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13KABPER-PER.csv.gz#row-2936",
+      "source_timestamp_epoch": 1783931369,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 28,
+        "timestamp_epoch": 1783931369,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13KABPER-PER.csv.gz#row-2936",
+        "bid": 27,
+        "ask": 28,
+        "spread": 1,
+        "ask_dwell_seconds": 7874,
+        "top_ask_size": 994
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13KOTURG|URG",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-URG.csv.gz#row-2192",
+      "source_timestamp_epoch": 1783952464,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1783952464,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-URG.csv.gz#row-2192",
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "ask_dwell_seconds": 23,
+        "top_ask_size": 2041
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 20
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RINAST|RIN",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13RINAST-RIN.csv.gz#row-261",
+      "source_timestamp_epoch": 1783938866,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1783938866,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RINAST-RIN.csv.gz#row-260",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 861,
+        "top_ask_size": 1258
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RISPOH|POH",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13RISPOH-POH.csv.gz#row-826",
+      "source_timestamp_epoch": 1783926345,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 54,
+        "timestamp_epoch": 1783926345,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13RISPOH-POH.csv.gz#row-826",
+        "bid": 53,
+        "ask": 54,
+        "spread": 1,
+        "ask_dwell_seconds": 6941,
+        "top_ask_size": 6340
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13SAINUG|NUG",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13SAINUG-NUG.csv.gz#row-327",
+      "source_timestamp_epoch": 1783932369,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 50,
+        "timestamp_epoch": 1783943649,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13SAINUG-NUG.csv.gz#row-6635",
+        "bid": 49,
+        "ask": 50,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 20831
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13SAINUG|SAI",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13SAINUG-SAI.csv.gz#row-434",
+      "source_timestamp_epoch": 1783937381,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 16,
+        "timestamp_epoch": 1783946144,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13SAINUG-SAI.csv.gz#row-27694",
+        "bid": 15,
+        "ask": 16,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 53148
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13SELYAN|SEL",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-2624",
+      "source_timestamp_epoch": 1783947389,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1783947389,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-2617",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 13,
+        "top_ask_size": 1330
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13TIKBEN|BEN",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL13TIKBEN-BEN.csv.gz#row-1618",
+      "source_timestamp_epoch": 1783934659,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1783934659,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13TIKBEN-BEN.csv.gz#row-1617",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 11023,
+        "top_ask_size": 7446
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 20
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14AKSVAL|VAL",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL14AKSVAL-VAL.csv.gz#row-10844",
+      "source_timestamp_epoch": 1784018639,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 41,
+        "timestamp_epoch": 1784035002,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14AKSVAL-VAL.csv.gz#row-22547",
+        "bid": 39,
+        "ask": 41,
+        "spread": 2,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 11401
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14CARVON|CAR",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL14CARVON-CAR.csv.gz#row-1262",
+      "source_timestamp_epoch": 1784016710,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1784016710,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14CARVON-CAR.csv.gz#row-1258",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 10695,
+        "top_ask_size": 194
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14COLPAL|PAL",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL14COLPAL-PAL.csv.gz#row-838",
+      "source_timestamp_epoch": 1784008822,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1784008822,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14COLPAL-PAL.csv.gz#row-836",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 7222,
+        "top_ask_size": 905
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 20
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14FRUGAO|GAO",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL14FRUGAO-GAO.csv.gz#row-11162",
+      "source_timestamp_epoch": 1784022818,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1784022818,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14FRUGAO-GAO.csv.gz#row-11162",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 9218,
+        "top_ask_size": 2680
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14KHONUG|NUG",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL14KHONUG-NUG.csv.gz#row-801",
+      "source_timestamp_epoch": 1784018639,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 2,
+        "timestamp_epoch": 1784036666,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL14KHONUG-NUG.csv.gz#row-54282",
+        "bid": 1,
+        "ask": 2,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 30173
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15ANDRIS|AND",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-2451",
+      "source_timestamp_epoch": 1784102801,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1784102801,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-2451",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 7001,
+        "top_ask_size": 956
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15CARPAL|CAR",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL15CARPAL-CAR.csv.gz#row-1455",
+      "source_timestamp_epoch": 1784108556,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 66,
+        "timestamp_epoch": 1784108556,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15CARPAL-CAR.csv.gz#row-1454",
+        "bid": 65,
+        "ask": 66,
+        "spread": 1,
+        "ask_dwell_seconds": 7942,
+        "top_ask_size": 5194
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15RADCHI|RAD",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL15RADCHI-RAD.csv.gz#row-517",
+      "source_timestamp_epoch": 1784091838,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 65,
+        "timestamp_epoch": 1784096729,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15RADCHI-RAD.csv.gz#row-771",
+        "bid": 64,
+        "ask": 65,
+        "spread": 1,
+        "ask_dwell_seconds": 21,
+        "top_ask_size": 3395
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15TANGAS|GAS",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL15TANGAS-GAS.csv.gz#row-3161",
+      "source_timestamp_epoch": 1784104419,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 10,
+        "timestamp_epoch": 1784120649,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL15TANGAS-GAS.csv.gz#row-134199",
+        "bid": 9,
+        "ask": 10,
+        "spread": 1,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 14145
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16BASRUS|RUS",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-776",
+      "source_timestamp_epoch": 1784195593,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 32,
+        "timestamp_epoch": 1784195593,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-775",
+        "bid": 31,
+        "ask": 32,
+        "spread": 1,
+        "ask_dwell_seconds": 423,
+        "top_ask_size": 6424
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16BRAVED|VED",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-3830",
+      "source_timestamp_epoch": 1784210962,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784228971,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED.csv.gz#row-5125",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 13,
+        "top_ask_size": 4886
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16GAOVAL|VAL",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL16GAOVAL-VAL.csv.gz#row-860",
+      "source_timestamp_epoch": 1784203525,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 41,
+        "timestamp_epoch": 1784211029,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16GAOVAL-VAL.csv.gz#row-6266",
+        "bid": 40,
+        "ask": 41,
+        "spread": 1,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 23772
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16HERVAN|HER",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL16HERVAN-HER.csv.gz#row-2465",
+      "source_timestamp_epoch": 1784192425,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 31,
+        "timestamp_epoch": 1784192425,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16HERVAN-HER.csv.gz#row-2464",
+        "bid": 30,
+        "ask": 31,
+        "spread": 1,
+        "ask_dwell_seconds": 17,
+        "top_ask_size": 403
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16HERVAN|VAN",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL16HERVAN-VAN.csv.gz#row-956",
+      "source_timestamp_epoch": 1784187064,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 70,
+        "timestamp_epoch": 1784192415,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16HERVAN-VAN.csv.gz#row-977",
+        "bid": 68,
+        "ask": 70,
+        "spread": 2,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 5446
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 20
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU|SHU",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU-SHU.csv.gz#row-987",
+      "source_timestamp_epoch": 1784206546,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 2,
+        "timestamp_epoch": 1784219451,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU-SHU.csv.gz#row-68257",
+        "bid": 1,
+        "ask": 2,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 68714
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17BASCAR|BAS",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL17BASCAR-BAS.csv.gz#row-1825",
+      "source_timestamp_epoch": 1784271969,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784283152,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17BASCAR-BAS.csv.gz#row-2516",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 34,
+        "top_ask_size": 10197
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17CHIBRO|BRO",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL17CHIBRO-BRO.csv.gz#row-1467",
+      "source_timestamp_epoch": 1784294410,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1784294410,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17CHIBRO-BRO.csv.gz#row-1467",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 7176,
+        "top_ask_size": 2921
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ERJFEI|ERJ",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-ERJ.csv.gz#row-1870",
+      "source_timestamp_epoch": 1784279468,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1784279468,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-ERJ.csv.gz#row-1870",
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "ask_dwell_seconds": 6061,
+        "top_ask_size": 3272
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17VALFAL|VAL",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL17VALFAL-VAL.csv.gz#row-938",
+      "source_timestamp_epoch": 1784281977,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784281977,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17VALFAL-VAL.csv.gz#row-938",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 6050,
+        "top_ask_size": 2887
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17VANTAN|VAN",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL17VANTAN-VAN.csv.gz#row-1563",
+      "source_timestamp_epoch": 1784288144,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 59,
+        "timestamp_epoch": 1784297220,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17VANTAN-VAN.csv.gz#row-3342",
+        "bid": 58,
+        "ask": 59,
+        "spread": 1,
+        "ask_dwell_seconds": 12,
+        "top_ask_size": 7441
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17YANTRE|YAN",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL17YANTRE-YAN.csv.gz#row-678",
+      "source_timestamp_epoch": 1784288938,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784288938,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17YANTRE-YAN.csv.gz#row-678",
+        "bid": 58,
+        "ask": 60,
+        "spread": 2,
+        "ask_dwell_seconds": 5906,
+        "top_ask_size": 455
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR|TAR",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR-TAR.csv.gz#row-2661",
+      "source_timestamp_epoch": 1784280822,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1784290045,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR-TAR.csv.gz#row-3608",
+        "bid": 67,
+        "ask": 68,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 23164
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18BROBRA|BRO",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18BROBRA-BRO.csv.gz#row-1928",
+      "source_timestamp_epoch": 1784370967,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1784370967,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18BROBRA-BRO.csv.gz#row-1928",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 5753,
+        "top_ask_size": 4748
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18ERJGRA|ERJ",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18ERJGRA-ERJ.csv.gz#row-2593",
+      "source_timestamp_epoch": 1784360382,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 56,
+        "timestamp_epoch": 1784371227,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18ERJGRA-ERJ.csv.gz#row-3604",
+        "bid": 55,
+        "ask": 56,
+        "spread": 1,
+        "ask_dwell_seconds": 22,
+        "top_ask_size": 1039
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18SERBER|SER",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18SERBER-SER.csv.gz#row-569",
+      "source_timestamp_epoch": 1784378570,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 75,
+        "timestamp_epoch": 1784378570,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18SERBER-SER.csv.gz#row-569",
+        "bid": 74,
+        "ask": 75,
+        "spread": 1,
+        "ask_dwell_seconds": 5563,
+        "top_ask_size": 6142
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18TONSPI|SPI",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-SPI.csv.gz#row-705",
+      "source_timestamp_epoch": 1784379382,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 66,
+        "timestamp_epoch": 1784379382,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-SPI.csv.gz#row-705",
+        "bid": 65,
+        "ask": 66,
+        "spread": 1,
+        "ask_dwell_seconds": 9605,
+        "top_ask_size": 289
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 20
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18TONSPI|TON",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON.csv.gz#row-995",
+      "source_timestamp_epoch": 1784381709,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 34,
+        "timestamp_epoch": 1784381709,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON.csv.gz#row-987",
+        "bid": 33,
+        "ask": 34,
+        "spread": 1,
+        "ask_dwell_seconds": 12743,
+        "top_ask_size": 1000
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_26_50_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18TREJON|JON",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18TREJON-JON.csv.gz#row-9836",
+      "source_timestamp_epoch": 1784376986,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784376986,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18TREJON-JON.csv.gz#row-9836",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 7453,
+        "top_ask_size": 4782
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18URGKOT|URG",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18URGKOT-URG.csv.gz#row-985",
+      "source_timestamp_epoch": 1784375599,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 67,
+        "timestamp_epoch": 1784375599,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18URGKOT-URG.csv.gz#row-984",
+        "bid": 66,
+        "ask": 67,
+        "spread": 1,
+        "ask_dwell_seconds": 6767,
+        "top_ask_size": 751
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18VALTAR|TAR",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL18VALTAR-TAR.csv.gz#row-590",
+      "source_timestamp_epoch": 1784372175,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 63,
+        "timestamp_epoch": 1784372175,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL18VALTAR-TAR.csv.gz#row-590",
+        "bid": 62,
+        "ask": 63,
+        "spread": 1,
+        "ask_dwell_seconds": 5173,
+        "top_ask_size": 3425
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL19GRAKRA|KRA",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL19GRAKRA-KRA.csv.gz#row-749",
+      "source_timestamp_epoch": 1784441285,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 64,
+        "timestamp_epoch": 1784441285,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL19GRAKRA-KRA.csv.gz#row-746",
+        "bid": 63,
+        "ask": 64,
+        "spread": 1,
+        "ask_dwell_seconds": 5717,
+        "top_ask_size": 7859
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL19JONBRO|JON",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL19JONBRO-JON.csv.gz#row-1105",
+      "source_timestamp_epoch": 1784464740,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784464740,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL19JONBRO-JON.csv.gz#row-1105",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 5896,
+        "top_ask_size": 4202
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL19RENTON|REN",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL19RENTON-REN.csv.gz#row-962",
+      "source_timestamp_epoch": 1784467763,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 70,
+        "timestamp_epoch": 1784470171,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL19RENTON-REN.csv.gz#row-1267",
+        "bid": 69,
+        "ask": 70,
+        "spread": 1,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 4413
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL19SERTOT|TOT",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL19SERTOT-TOT.csv.gz#row-602",
+      "source_timestamp_epoch": 1784463735,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 59,
+        "timestamp_epoch": 1784463735,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL19SERTOT-TOT.csv.gz#row-602",
+        "bid": 58,
+        "ask": 59,
+        "spread": 1,
+        "ask_dwell_seconds": 8165,
+        "top_ask_size": 1335
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 27
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL20GORMIN|MIN",
+      "source_receipt": "KXWTACHALLENGERMATCH-26JUL20GORMIN-MIN.csv.gz#row-735",
+      "source_timestamp_epoch": 1784555409,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": false,
+        "reason": "INVERSE_SIBLING_UNRESOLVED"
+      },
+      "post_flag_floor": {
+        "price_cents": 55,
+        "timestamp_epoch": 1784555893,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL20GORMIN-MIN.csv.gz#row-756",
+        "bid": 54,
+        "ask": 55,
+        "spread": 1,
+        "ask_dwell_seconds": 73,
+        "top_ask_size": 420
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_CHALL_51_75_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 20
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12GARPRI|PRI",
+      "source_receipt": "KXWTAMATCH-26JUL12GARPRI-PRI.csv.gz#row-4010",
+      "source_timestamp_epoch": 1783834880,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1783834880,
+        "receipt": "KXWTAMATCH-26JUL12GARPRI-PRI.csv.gz#row-4009",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 13201,
+        "top_ask_size": 2596
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13CHAJIM|CHA",
+      "source_receipt": "KXWTAMATCH-26JUL13CHAJIM-CHA.csv.gz#row-4790",
+      "source_timestamp_epoch": 1783935788,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 66,
+        "timestamp_epoch": 1783935788,
+        "receipt": "KXWTAMATCH-26JUL13CHAJIM-CHA.csv.gz#row-4789",
+        "bid": 65,
+        "ask": 66,
+        "spread": 1,
+        "ask_dwell_seconds": 6031,
+        "top_ask_size": 4707
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13KAWWAL|KAW",
+      "source_receipt": "KXWTAMATCH-26JUL13KAWWAL-KAW.csv.gz#row-3934",
+      "source_timestamp_epoch": 1783932616,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 32,
+        "timestamp_epoch": 1783932616,
+        "receipt": "KXWTAMATCH-26JUL13KAWWAL-KAW.csv.gz#row-3934",
+        "bid": 31,
+        "ask": 32,
+        "spread": 1,
+        "ask_dwell_seconds": 20511,
+        "top_ask_size": 7151
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13LEPIBR|LEP",
+      "source_receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-3334",
+      "source_timestamp_epoch": 1783939471,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1783939471,
+        "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-3334",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 13470,
+        "top_ask_size": 8075
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13TAUHIB|HIB",
+      "source_receipt": "KXWTAMATCH-26JUL13TAUHIB-HIB.csv.gz#row-2390",
+      "source_timestamp_epoch": 1783951017,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 22,
+        "timestamp_epoch": 1783973289,
+        "receipt": "KXWTAMATCH-26JUL13TAUHIB-HIB.csv.gz#row-2884",
+        "bid": 21,
+        "ask": 22,
+        "spread": 1,
+        "ask_dwell_seconds": 80,
+        "top_ask_size": 152
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL17VALKOR|VAL",
+      "source_receipt": "KXWTAMATCH-26JUL17VALKOR-VAL.csv.gz#row-5136",
+      "source_timestamp_epoch": 1784293473,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 55,
+        "timestamp_epoch": 1784295349,
+        "receipt": "KXWTAMATCH-26JUL17VALKOR-VAL.csv.gz#row-5723",
+        "bid": 54,
+        "ask": 55,
+        "spread": 1,
+        "ask_dwell_seconds": 16,
+        "top_ask_size": 3052
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL17ZIDMAR|MAR",
+      "source_receipt": "KXWTAMATCH-26JUL17ZIDMAR-MAR.csv.gz#row-5119",
+      "source_timestamp_epoch": 1784298431,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 65,
+        "timestamp_epoch": 1784298431,
+        "receipt": "KXWTAMATCH-26JUL17ZIDMAR-MAR.csv.gz#row-5116",
+        "bid": 64,
+        "ask": 65,
+        "spread": 1,
+        "ask_dwell_seconds": 8032,
+        "top_ask_size": 9918
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18BANGAO|GAO",
+      "source_receipt": "KXWTAMATCH-26JUL18BANGAO-GAO.csv.gz#row-1204",
+      "source_timestamp_epoch": 1784361110,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1784362185,
+        "receipt": "KXWTAMATCH-26JUL18BANGAO-GAO.csv.gz#row-1269",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 29,
+        "top_ask_size": 3596
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18SAKKOR|SAK",
+      "source_receipt": "KXWTAMATCH-26JUL18SAKKOR-SAK.csv.gz#row-7313",
+      "source_timestamp_epoch": 1784386307,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 58,
+        "timestamp_epoch": 1784389032,
+        "receipt": "KXWTAMATCH-26JUL18SAKKOR-SAK.csv.gz#row-7908",
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "ask_dwell_seconds": 60,
+        "top_ask_size": 27554
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18TAUKRE|KRE",
+      "source_receipt": "KXWTAMATCH-26JUL18TAUKRE-KRE.csv.gz#row-5468",
+      "source_timestamp_epoch": 1784393940,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784393940,
+        "receipt": "KXWTAMATCH-26JUL18TAUKRE-KRE.csv.gz#row-5467",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 15522,
+        "top_ask_size": 3881
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19KRESAK|KRE",
+      "source_receipt": "KXWTAMATCH-26JUL19KRESAK-KRE.csv.gz#row-36750",
+      "source_timestamp_epoch": 1784476087,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 57,
+        "timestamp_epoch": 1784476087,
+        "receipt": "KXWTAMATCH-26JUL19KRESAK-KRE.csv.gz#row-36750",
+        "bid": 56,
+        "ask": 57,
+        "spread": 1,
+        "ask_dwell_seconds": 13680,
+        "top_ask_size": 67920
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20AKSCOS|COS",
+      "source_receipt": "KXWTAMATCH-26JUL20AKSCOS-COS.csv.gz#row-11186",
+      "source_timestamp_epoch": 1784550028,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 69,
+        "timestamp_epoch": 1784556912,
+        "receipt": "KXWTAMATCH-26JUL20AKSCOS-COS.csv.gz#row-17650",
+        "bid": 68,
+        "ask": 69,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 11807
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20GAOTAG|GAO",
+      "source_receipt": "KXWTAMATCH-26JUL20GAOTAG-GAO.csv.gz#row-4635",
+      "source_timestamp_epoch": 1784542938,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 37,
+        "timestamp_epoch": 1784619014,
+        "receipt": "KXWTAMATCH-26JUL20GAOTAG-GAO.csv.gz#row-31146",
+        "bid": 36,
+        "ask": 37,
+        "spread": 1,
+        "ask_dwell_seconds": 10,
+        "top_ask_size": 2039
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_26_50_FLAT_UNMOVED",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 14
+          }
+        }
+      ]
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20VEDBAR|VED",
+      "source_receipt": "KXWTAMATCH-26JUL20VEDBAR-VED.csv.gz#row-12714",
+      "source_timestamp_epoch": 1784538360,
+      "source_csv_row": null,
+      "verdict": {
+        "touched": true,
+        "placeable": true,
+        "reason": "UNFALSIFIABLE_LOWER_SETTLED_BY_SUSTAINED_QUALIFIED_DWELL_AT_OBSERVED_LOW"
+      },
+      "post_flag_floor": {
+        "price_cents": 61,
+        "timestamp_epoch": 1784538360,
+        "receipt": "KXWTAMATCH-26JUL20VEDBAR-VED.csv.gz#row-12714",
+        "bid": 60,
+        "ask": 61,
+        "spread": 1,
+        "ask_dwell_seconds": 964,
+        "top_ask_size": 788
+      },
+      "fitted_shapes": [
+        {
+          "shape_id": "WTA_MAIN_51_75_UP_CONTINUATION",
+          "verdict": "LOWER",
+          "counts": {
+            "0": 36
+          }
+        }
+      ]
+    }
+  ],
+  "V23_joint_non_regression": true,
+  "V23_multimetric_floor_nonregression": false,
+  "stacking_requires_separate_operator_ratification": true
+}

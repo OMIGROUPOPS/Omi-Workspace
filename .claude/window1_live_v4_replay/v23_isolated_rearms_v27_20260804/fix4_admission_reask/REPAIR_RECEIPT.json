@@ -1,0 +1,1126 @@
+{
+  "variant": "FIX4_ADMISSION_REASK",
+  "stacking": false,
+  "constants": {
+    "dwell_seconds": 10,
+    "displayed_quantity": 5,
+    "provenance": "INHERITED_V23_MICRO_MICRO_LAW; NO_NEW_NUMERIC_CONSTANT"
+  },
+  "touched_legs": 90,
+  "changed_leg_streams": 20,
+  "receipts": [
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BALPET|BAL",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BALPET-BAL.csv.gz#row-1934",
+        "timestamp_epoch": 1783845112,
+        "bid": 13,
+        "ask": 14,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 14,
+        "timestamp_epoch": 1783845112,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BALPET-BAL.csv.gz#row-1932",
+        "bid": 12,
+        "ask": 14,
+        "spread": 2,
+        "ask_dwell_seconds": 696,
+        "top_ask_size": 1025
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BALPET|PET",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BRUGAD|BRU",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BRUGAD|GAD",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GUTCAM|CAM",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GUTCAM-CAM.csv.gz#row-413",
+        "timestamp_epoch": 1783825216,
+        "bid": 68,
+        "ask": 69,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 68,
+        "timestamp_epoch": 1783849941,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12GUTCAM-CAM.csv.gz#row-1152",
+        "bid": 66,
+        "ask": 68,
+        "spread": 2,
+        "ask_dwell_seconds": 44,
+        "top_ask_size": 93
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GUTCAM|GUT",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12RAFAGU|AGU",
+      "initial_flag_timestamp_epoch": 1783850400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-AGU.csv.gz#row-6546",
+        "timestamp_epoch": 1783850441,
+        "bid": 92,
+        "ask": 93,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 93,
+        "timestamp_epoch": 1783868210,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-AGU.csv.gz#row-6653",
+        "bid": 90,
+        "ask": 93,
+        "spread": 3,
+        "ask_dwell_seconds": 38,
+        "top_ask_size": 149
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12RAFAGU|RAF",
+      "initial_flag_timestamp_epoch": 1783850400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12RAIZHU|RAI",
+      "initial_flag_timestamp_epoch": 1783872000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12RAIZHU-RAI.csv.gz#row-260",
+        "timestamp_epoch": 1783885939,
+        "bid": 43,
+        "ask": 44,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 40,
+        "timestamp_epoch": 1783887400,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12RAIZHU-RAI.csv.gz#row-397",
+        "bid": 37,
+        "ask": 40,
+        "spread": 3,
+        "ask_dwell_seconds": 71,
+        "top_ask_size": 286
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12RAIZHU|ZHU",
+      "initial_flag_timestamp_epoch": 1783872000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12SALARN|ARN",
+      "initial_flag_timestamp_epoch": 1783837800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12SALARN-ARN.csv.gz#row-991",
+        "timestamp_epoch": 1783844729,
+        "bid": 83,
+        "ask": 84,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 84,
+        "timestamp_epoch": 1783844729,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12SALARN-ARN.csv.gz#row-987",
+        "bid": 82,
+        "ask": 84,
+        "spread": 2,
+        "ask_dwell_seconds": 6306,
+        "top_ask_size": 103
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12SALARN|SAL",
+      "initial_flag_timestamp_epoch": 1783837800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12VALNIJ|NIJ",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12VALNIJ|VAL",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12VILRAH|RAH",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12VILRAH|VIL",
+      "initial_flag_timestamp_epoch": 1783825200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12VILRAH-VIL.csv.gz#row-391",
+        "timestamp_epoch": 1783828685,
+        "bid": 68,
+        "ask": 69,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 69,
+        "timestamp_epoch": 1783828760,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12VILRAH-VIL.csv.gz#row-396",
+        "bid": 68,
+        "ask": 69,
+        "spread": 1,
+        "ask_dwell_seconds": 75,
+        "top_ask_size": 103
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13BINFUE|BIN",
+      "initial_flag_timestamp_epoch": 1783915800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13BINFUE|FUE",
+      "initial_flag_timestamp_epoch": 1783915800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-629",
+        "timestamp_epoch": 1783915837,
+        "bid": 62,
+        "ask": 63,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 62,
+        "timestamp_epoch": 1783932078,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE.csv.gz#row-1319",
+        "bid": 61,
+        "ask": 62,
+        "spread": 1,
+        "ask_dwell_seconds": 11,
+        "top_ask_size": 13
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ|KUZ",
+      "initial_flag_timestamp_epoch": 1783919400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ|NIJ",
+      "initial_flag_timestamp_epoch": 1783919400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14LAGSAN|LAG",
+      "initial_flag_timestamp_epoch": 1784023200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14LAGSAN|SAN",
+      "initial_flag_timestamp_epoch": 1784023200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAGSAN-SAN.csv.gz#row-923",
+        "timestamp_epoch": 1784026489,
+        "bid": 59,
+        "ask": 60,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 60,
+        "timestamp_epoch": 1784026565,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAGSAN-SAN.csv.gz#row-927",
+        "bid": 59,
+        "ask": 60,
+        "spread": 1,
+        "ask_dwell_seconds": 76,
+        "top_ask_size": 410
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14SMIILA|ILA",
+      "initial_flag_timestamp_epoch": 1784023200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SMIILA-ILA.csv.gz#row-1785",
+        "timestamp_epoch": 1784034346,
+        "bid": 26,
+        "ask": 27,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 27,
+        "timestamp_epoch": 1784034346,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SMIILA-ILA.csv.gz#row-1779",
+        "bid": 25,
+        "ask": 27,
+        "spread": 2,
+        "ask_dwell_seconds": 9640,
+        "top_ask_size": 6906
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14SMIILA|SMI",
+      "initial_flag_timestamp_epoch": 1784023200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL",
+      "initial_flag_timestamp_epoch": 1784023200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+      "initial_flag_timestamp_epoch": 1784023200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3753",
+        "timestamp_epoch": 1784029072,
+        "bid": 57,
+        "ask": 58,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 58,
+        "timestamp_epoch": 1784029072,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.csv.gz#row-3753",
+        "bid": 57,
+        "ask": 58,
+        "spread": 1,
+        "ask_dwell_seconds": 826,
+        "top_ask_size": 11
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19DONTOP|DON",
+      "initial_flag_timestamp_epoch": 1784431800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19DONTOP-DON.csv.gz#row-294",
+        "timestamp_epoch": 1784444063,
+        "bid": 25,
+        "ask": 26,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 26,
+        "timestamp_epoch": 1784444063,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19DONTOP-DON.csv.gz#row-293",
+        "bid": 24,
+        "ask": 26,
+        "spread": 2,
+        "ask_dwell_seconds": 10942,
+        "top_ask_size": 285
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19DONTOP|TOP",
+      "initial_flag_timestamp_epoch": 1784431800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19GIUDEV|DEV",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19GIUDEV-DEV.csv.gz#row-469",
+        "timestamp_epoch": 1784437690,
+        "bid": 17,
+        "ask": 18,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 17,
+        "timestamp_epoch": 1784441359,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL19GIUDEV-DEV.csv.gz#row-677",
+        "bid": 16,
+        "ask": 17,
+        "spread": 1,
+        "ask_dwell_seconds": 181,
+        "top_ask_size": 930
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19GIUDEV|GIU",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19KRUCAS|CAS",
+      "initial_flag_timestamp_epoch": 1784444400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19KRUCAS|KRU",
+      "initial_flag_timestamp_epoch": 1784444400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19SALVRB|SAL",
+      "initial_flag_timestamp_epoch": 1784444400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19SALVRB|VRB",
+      "initial_flag_timestamp_epoch": 1784444400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN|KIN",
+      "initial_flag_timestamp_epoch": 1784470200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN|ZAM",
+      "initial_flag_timestamp_epoch": 1784470200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20TOKHUR|HUR",
+      "initial_flag_timestamp_epoch": 1784549400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20TOKHUR|TOK",
+      "initial_flag_timestamp_epoch": 1784549400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VISNIK|NIK",
+      "initial_flag_timestamp_epoch": 1784525400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20VISNIK-NIK.csv.gz#row-195",
+        "timestamp_epoch": 1784542299,
+        "bid": 25,
+        "ask": 26,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 15,
+        "timestamp_epoch": 1784543084,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL20VISNIK-NIK.csv.gz#row-271",
+        "bid": 14,
+        "ask": 15,
+        "spread": 1,
+        "ask_dwell_seconds": 20,
+        "top_ask_size": 24
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VISNIK|VIS",
+      "initial_flag_timestamp_epoch": 1784525400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CHODEJ|CHO",
+      "initial_flag_timestamp_epoch": 1784440800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CHODEJ|DEJ",
+      "initial_flag_timestamp_epoch": 1784440800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXATPMATCH-26JUL19CHODEJ-DEJ.csv.gz#row-1981",
+        "timestamp_epoch": 1784457153,
+        "bid": 54,
+        "ask": 55,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 55,
+        "timestamp_epoch": 1784457169,
+        "receipt": "KXATPMATCH-26JUL19CHODEJ-DEJ.csv.gz#row-1987",
+        "bid": 54,
+        "ask": 55,
+        "spread": 1,
+        "ask_dwell_seconds": 16,
+        "top_ask_size": 574
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CINGIU|CIN",
+      "initial_flag_timestamp_epoch": 1784435400,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CINGIU|GIU",
+      "initial_flag_timestamp_epoch": 1784435400,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19DELDJE|DEL",
+      "initial_flag_timestamp_epoch": 1784439000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19DELDJE|DJE",
+      "initial_flag_timestamp_epoch": 1784439000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19JACDAN|DAN",
+      "initial_flag_timestamp_epoch": 1784440800,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19JACDAN|JAC",
+      "initial_flag_timestamp_epoch": 1784440800,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19PELBUE|BUE",
+      "initial_flag_timestamp_epoch": 1784440800,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19PELBUE|PEL",
+      "initial_flag_timestamp_epoch": 1784440800,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19RODSAC|ROD",
+      "initial_flag_timestamp_epoch": 1784435400,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19RODSAC|SAC",
+      "initial_flag_timestamp_epoch": 1784435400,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19RUBDAR|DAR",
+      "initial_flag_timestamp_epoch": 1784444400,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19RUBDAR|RUB",
+      "initial_flag_timestamp_epoch": 1784444400,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12FEICHE|CHE",
+      "initial_flag_timestamp_epoch": 1783833000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-CHE.csv.gz#row-6854",
+        "timestamp_epoch": 1783840439,
+        "bid": 24,
+        "ask": 25,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 25,
+        "timestamp_epoch": 1783840573,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-CHE.csv.gz#row-6859",
+        "bid": 24,
+        "ask": 25,
+        "spread": 1,
+        "ask_dwell_seconds": 134,
+        "top_ask_size": 36
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12FEICHE|FEI",
+      "initial_flag_timestamp_epoch": 1783833000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12MAZGAN|GAN",
+      "initial_flag_timestamp_epoch": 1783846800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12MAZGAN|MAZ",
+      "initial_flag_timestamp_epoch": 1783846800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12MAZGAN-MAZ.csv.gz#row-743",
+        "timestamp_epoch": 1783859242,
+        "bid": 71,
+        "ask": 72,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 72,
+        "timestamp_epoch": 1783860746,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL12MAZGAN-MAZ.csv.gz#row-747",
+        "bid": 71,
+        "ask": 72,
+        "spread": 1,
+        "ask_dwell_seconds": 1504,
+        "top_ask_size": 400
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13GJOCHI|CHI",
+      "initial_flag_timestamp_epoch": 1783933200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13GJOCHI|GJO",
+      "initial_flag_timestamp_epoch": 1783933200,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13GJOCHI-GJO.csv.gz#row-860",
+        "timestamp_epoch": 1783933646,
+        "bid": 40,
+        "ask": 41,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 41,
+        "timestamp_epoch": 1783933672,
+        "receipt": "KXWTACHALLENGERMATCH-26JUL13GJOCHI-GJO.csv.gz#row-863",
+        "bid": 40,
+        "ask": 41,
+        "spread": 1,
+        "ask_dwell_seconds": 26,
+        "top_ask_size": 650
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12KULZAA|KUL",
+      "initial_flag_timestamp_epoch": 1783821600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12KULZAA|ZAA",
+      "initial_flag_timestamp_epoch": 1783821600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12PRIION|ION",
+      "initial_flag_timestamp_epoch": 1783821600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12PRIION|PRI",
+      "initial_flag_timestamp_epoch": 1783821600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12ROMTOD|ROM",
+      "initial_flag_timestamp_epoch": 1783821600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12ROMTOD|TOD",
+      "initial_flag_timestamp_epoch": 1783821600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13BURLEP|BUR",
+      "initial_flag_timestamp_epoch": 1783944000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13BURLEP|LEP",
+      "initial_flag_timestamp_epoch": 1783944000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXWTAMATCH-26JUL13BURLEP-LEP.csv.gz#row-57",
+        "timestamp_epoch": 1783958715,
+        "bid": 36,
+        "ask": 37,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 36,
+        "timestamp_epoch": 1783960927,
+        "receipt": "KXWTAMATCH-26JUL13BURLEP-LEP.csv.gz#row-571",
+        "bid": 35,
+        "ask": 36,
+        "spread": 1,
+        "ask_dwell_seconds": 28,
+        "top_ask_size": 20
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13TAUTOM|TAU",
+      "initial_flag_timestamp_epoch": 1783918800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13TAUTOM|TOM",
+      "initial_flag_timestamp_epoch": 1783918800,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+      "initial_flag_timestamp_epoch": 1783998000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+      "initial_flag_timestamp_epoch": 1783998000,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18SALZOL|SAL",
+      "initial_flag_timestamp_epoch": 1784343600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18SALZOL|ZOL",
+      "initial_flag_timestamp_epoch": 1784343600,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXWTAMATCH-26JUL18SALZOL-ZOL.csv.gz#row-419",
+        "timestamp_epoch": 1784343657,
+        "bid": 23,
+        "ask": 24,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 24,
+        "timestamp_epoch": 1784343750,
+        "receipt": "KXWTAMATCH-26JUL18SALZOL-ZOL.csv.gz#row-420",
+        "bid": 23,
+        "ask": 24,
+        "spread": 1,
+        "ask_dwell_seconds": 93,
+        "top_ask_size": 2383
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19HONLEE|HON",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19HONLEE|LEE",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19JAKAVA|AVA",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19JAKAVA|JAK",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19LEPPET|LEP",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19LEPPET|PET",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19MALZAA|MAL",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19MALZAA|ZAA",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19RYSHON|HON",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19RYSHON|RYS",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19SALKNU|KNU",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19SALKNU|SAL",
+      "initial_flag_timestamp_epoch": 1784430000,
+      "guarded_window_status": "NON_POSITIVE_OR_UNAVAILABLE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "ADMISSION_WINDOW_NOT_LAWFUL_FOR_REASK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20KUDKOR|KOR",
+      "initial_flag_timestamp_epoch": 1784516400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20KUDKOR|KUD",
+      "initial_flag_timestamp_epoch": 1784516400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20PIECAR|CAR",
+      "initial_flag_timestamp_epoch": 1784516400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": {
+        "receipt": "KXWTAMATCH-26JUL20PIECAR-CAR.csv.gz#row-1581",
+        "timestamp_epoch": 1784516489,
+        "bid": 81,
+        "ask": 82,
+        "spread": 1
+      },
+      "post_flag_floor": {
+        "price_cents": 82,
+        "timestamp_epoch": 1784516530,
+        "receipt": "KXWTAMATCH-26JUL20PIECAR-CAR.csv.gz#row-1582",
+        "bid": 81,
+        "ask": 82,
+        "spread": 1,
+        "ask_dwell_seconds": 41,
+        "top_ask_size": 2296
+      },
+      "both_clocks_lawful": true,
+      "outcome": "ADMISSION_REASK_PASSED_ON_LATER_FORMED_BOOK"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20PIECAR|PIE",
+      "initial_flag_timestamp_epoch": 1784516400,
+      "guarded_window_status": "POSITIVE",
+      "formed_book": null,
+      "post_flag_floor": null,
+      "both_clocks_lawful": false,
+      "outcome": "NO_LATER_FORMED_BOOK_INSIDE_GUARDED_WINDOW"
+    }
+  ],
+  "V23_joint_non_regression": true,
+  "V23_multimetric_floor_nonregression": true,
+  "stacking_requires_separate_operator_ratification": true
+}

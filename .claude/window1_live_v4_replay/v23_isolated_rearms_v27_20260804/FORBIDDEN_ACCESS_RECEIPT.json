@@ -1,0 +1,13 @@
+{
+  "holdout": false,
+  "live": false,
+  "network_runtime": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "variants_stacked": false,
+  "scope": "FROZEN_804_DEVELOPMENT_REPLAY_ONLY"
+}

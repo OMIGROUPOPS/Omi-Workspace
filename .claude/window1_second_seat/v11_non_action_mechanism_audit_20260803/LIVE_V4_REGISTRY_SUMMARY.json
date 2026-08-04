@@ -66,5 +66,6 @@
     "THRESHOLD_CANDIDATE": "numeric comparison literal that may be a decision threshold (first-draft; not individually ruling-checked).",
     "NON_DECISION": "numeric literal in a non-decision context (index/page/version/ttl)."
   },
-  "caveat": "Per-row tags on the ~700 swept rows are a heuristic first draft for the cutover, NOT a per-row ruling audit. ORPHAN count here = hand-verified tuned constants only; the THRESHOLD_CANDIDATE literals are swept and flagged but not each ruling-checked -- that is the v1 close."
+  "caveat": "Per-row tags on the ~700 swept rows are a heuristic first draft for the cutover, NOT a per-row ruling audit. ORPHAN count here = hand-verified tuned constants only; the THRESHOLD_CANDIDATE literals are swept and flagged but not each ruling-checked -- that is the v1 close.",
+  "SUPERSEDED_BY": "LIVE_V4_REGISTRY_V1.(csv|json) -- all 442 THRESHOLD_CANDIDATE literals walked to a terminal tag; zero CANDIDATE remaining."
 }

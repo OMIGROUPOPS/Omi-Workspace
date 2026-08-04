@@ -1,0 +1,41 @@
+{
+  "method": "Each of the 442 THRESHOLD_CANDIDATE literals classified by reading its live_v4.py line + neighbors through ordered rules (NON_DECISION mechanics -> AUTHORIZED par/five/staircase -> SUPERSEDED entry-pricing keywords -> residual KEEP+ORPHAN). Reason recorded per row; automated first-pass, operator-auditable via the reason column.",
+  "conservation": {
+    "total_rows": 800,
+    "candidates_remaining": 0,
+    "final_by_subtag": {
+      "NON_DECISION": 443,
+      "BOOT_GATE": 77,
+      "KEEP": 64,
+      "KEEP+ORPHAN": 71,
+      "SUPERSEDED_BY_PRICER": 143,
+      "KEEP+AUTHORIZED": 2
+    },
+    "the_442_walk": {
+      "NON_DECISION": 331,
+      "KEEP+ORPHAN": 67,
+      "SUPERSEDED_BY_PRICER": 43,
+      "KEEP+AUTHORIZED": 1
+    }
+  },
+  "keep_orphan_findings": 71,
+  "proposed_owners": {
+    "completion_reprice": "SUPERSEDED_BY_PRICER (PROPOSED): completion repricing is the L9 completion layer the pricer owns; live completion_* becomes shadow post-cutover.",
+    "completion_live_enabled": "SUPERSEDED_BY_PRICER (PROPOSED): completion decision moves to the pricer completion layer.",
+    "completion_all_cells": "SUPERSEDED_BY_PRICER (PROPOSED).",
+    "completion_combined_ceiling": "KEEP+AUTHORIZED (PROPOSED): combined ceiling is par-law economics (100), retained as an execution guard.",
+    "completion_cells_path": "BOOT_GATE (PROPOSED): loader path; keep as a boot gate but its table is superseded by the pricer completion surface.",
+    "completion_shadow_enabled": "KEEP (PROPOSED): shadow/observability, inert.",
+    "complete_cross_enabled": "KEEP (PROPOSED): emergency cross is execution safety, not pricing.",
+    "window_truth_live": "SUPERSEDED_BY_PRICER (PROPOSED): window-truth reaim is an entry-aim organ replaced by the pricer floor/verdict.",
+    "aim_shadow": "KEEP (PROPOSED): shadow organ, inert (observability).",
+    "live_aim_shadow_enabled": "KEEP (PROPOSED): shadow, inert.",
+    "os_shadow_enabled": "KEEP (PROPOSED): shadow, inert.",
+    "composer_live_shadow_enabled": "KEEP (PROPOSED): shadow, inert.",
+    "guidebook_shadow_enabled": "KEEP (PROPOSED): shadow, inert.",
+    "trendpath_shadow_enabled": "KEEP (PROPOSED): shadow, inert.",
+    "percat_gun_shadow_enabled": "KEEP (PROPOSED): shadow, inert.",
+    "per_match_clock_shadow": "KEEP (PROPOSED): shadow, inert.",
+    "scale_gun_shadow": "KEEP (PROPOSED): shadow, inert."
+  }
+}

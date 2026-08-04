@@ -1,0 +1,60 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "342d8997f861a641c777b0a21f5d925be55ff06e932fe25761ae54926aeb56d2",
+      "bytes": 94
+    },
+    "DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "8fe796e44f7e340e375de66341fa56e50aac1b77f5f00d6319a8ad6448fb3d72",
+      "bytes": 578
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "537c3914d60ebf6e9207d29d68dd43f5efc2a3888eb71c4169eecbbc7c85a2ba",
+      "bytes": 242
+    },
+    "FRONTIER.json": {
+      "sha256": "37304ac8b1818d7b57857017fbc4966b17ad33001d725562f0f0e9606856def3",
+      "bytes": 120782
+    },
+    "MISS_LEDGER_1608.jsonl.gz": {
+      "sha256": "2f5f3bbb6378e593a7cb3747e807895819f6dafff15853dfd9f63bf3dfa02e0d",
+      "bytes": 19359
+    },
+    "MISS_LEDGER_CONSERVATION.json": {
+      "sha256": "e915ebf9e43a62a9618ca582b104648b5e1f00e8634ec2f8caeb8871207ca28c",
+      "bytes": 234
+    },
+    "OVERLAY_AUTHORITY_RECEIPT.json": {
+      "sha256": "9b4362a52f7b0eb298ed929fbaec39bcca65a7f44634617616794fb149cb145d",
+      "bytes": 478
+    },
+    "OVERLAY_EVALUATION_LEDGER.jsonl.gz": {
+      "sha256": "c483b26cbcafb6e54aad8dd0f424816b8ee6f6713a89afdb182c86100faaf063",
+      "bytes": 17237
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "7e7b2cb0f414e610b3a3305a662d8ab02e32a998c967d9e7912423b478056fb0",
+      "bytes": 46879
+    },
+    "REPORT.md": {
+      "sha256": "a78333127230b643dc3a1edec09df9fafd4ce519c635b7388ad3347df853bfbe",
+      "bytes": 327
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "b5bafe8e6e8e5632368220bce2e1ceff10d2575ec3e1851f839642f2ea5cfc97",
+      "bytes": 2100
+    },
+    "V23_TO_V25_LEG_DIFFERENTIAL.jsonl.gz": {
+      "sha256": "038df8de8b5751e4238346d38a864f2fd36b1c2ec767998f583298bff0e41688",
+      "bytes": 80300
+    },
+    "V25_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+      "bytes": 3457618
+    },
+    "V25_LEG_LEDGER.jsonl.gz": {
+      "sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+      "bytes": 3281591
+    }
+  }
+}

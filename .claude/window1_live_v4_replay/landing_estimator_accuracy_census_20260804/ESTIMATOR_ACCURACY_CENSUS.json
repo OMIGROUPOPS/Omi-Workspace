@@ -1,0 +1,1277 @@
+{
+  "population_legs": 1608,
+  "estimator_covered_and_audited_close_available": 336,
+  "coverage_rate": 0.208955223880597,
+  "uncovered_or_close_unavailable": 1272,
+  "aggregate": {
+    "n": 336,
+    "q50_signed_error_cents": {
+      "n": 336,
+      "min": -19,
+      "p25": -1,
+      "median": 0,
+      "p75": 1,
+      "p90": 2,
+      "max": 45
+    },
+    "MAE_cents": 1.7708333333333333,
+    "bias_cents": 0.14583333333333334,
+    "current_live_ask_baseline_MAE_cents": 1.7083333333333333,
+    "q25_q75_interval_inside_n": 203,
+    "q25_q75_interval_calibration": 0.6041666666666666
+  },
+  "direct": {
+    "n": 183,
+    "q50_signed_error_cents": {
+      "n": 183,
+      "min": -9,
+      "p25": -1,
+      "median": 0,
+      "p75": 0,
+      "p90": 1,
+      "max": 43
+    },
+    "MAE_cents": 1.4262295081967213,
+    "bias_cents": -0.2568306010928962,
+    "current_live_ask_baseline_MAE_cents": 1.3715846994535519,
+    "q25_q75_interval_inside_n": 128,
+    "q25_q75_interval_calibration": 0.6994535519125683
+  },
+  "parent_pool": {
+    "n": 153,
+    "q50_signed_error_cents": {
+      "n": 153,
+      "min": -19,
+      "p25": -1,
+      "median": 0,
+      "p75": 1,
+      "p90": 3,
+      "max": 45
+    },
+    "MAE_cents": 2.183006535947712,
+    "bias_cents": 0.6274509803921569,
+    "current_live_ask_baseline_MAE_cents": 2.111111111111111,
+    "q25_q75_interval_inside_n": 75,
+    "q25_q75_interval_calibration": 0.49019607843137253
+  },
+  "category_x_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "all": {
+        "n": 65,
+        "q50_signed_error_cents": {
+          "n": 65,
+          "min": -5,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 6
+        },
+        "MAE_cents": 1.2153846153846153,
+        "bias_cents": -0.13846153846153847,
+        "current_live_ask_baseline_MAE_cents": 1.1076923076923078,
+        "q25_q75_interval_inside_n": 45,
+        "q25_q75_interval_calibration": 0.6923076923076923
+      },
+      "direct": {
+        "n": 43,
+        "q50_signed_error_cents": {
+          "n": 43,
+          "min": -5,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 6
+        },
+        "MAE_cents": 1.255813953488372,
+        "bias_cents": -0.13953488372093023,
+        "current_live_ask_baseline_MAE_cents": 1.1395348837209303,
+        "q25_q75_interval_inside_n": 31,
+        "q25_q75_interval_calibration": 0.7209302325581395
+      },
+      "parent_pool": {
+        "n": 22,
+        "q50_signed_error_cents": {
+          "n": 22,
+          "min": -4,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 1,
+          "max": 4
+        },
+        "MAE_cents": 1.1363636363636365,
+        "bias_cents": -0.13636363636363635,
+        "current_live_ask_baseline_MAE_cents": 1.0454545454545454,
+        "q25_q75_interval_inside_n": 14,
+        "q25_q75_interval_calibration": 0.6363636363636364
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": true,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 65,
+          "q50_signed_error_cents": {
+            "n": 65,
+            "min": -5,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 1,
+            "max": 6
+          },
+          "MAE_cents": 1.2153846153846153,
+          "bias_cents": -0.13846153846153847,
+          "current_live_ask_baseline_MAE_cents": 1.1076923076923078,
+          "q25_q75_interval_inside_n": 45,
+          "q25_q75_interval_calibration": 0.6923076923076923
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "all": {
+        "n": 60,
+        "q50_signed_error_cents": {
+          "n": 60,
+          "min": -6,
+          "p25": -2,
+          "median": -1,
+          "p75": 1,
+          "p90": 1,
+          "max": 4
+        },
+        "MAE_cents": 1.3333333333333333,
+        "bias_cents": -0.6,
+        "current_live_ask_baseline_MAE_cents": 1.25,
+        "q25_q75_interval_inside_n": 39,
+        "q25_q75_interval_calibration": 0.65
+      },
+      "direct": {
+        "n": 53,
+        "q50_signed_error_cents": {
+          "n": 53,
+          "min": -6,
+          "p25": -2,
+          "median": -1,
+          "p75": 0,
+          "p90": 1,
+          "max": 4
+        },
+        "MAE_cents": 1.3018867924528301,
+        "bias_cents": -0.660377358490566,
+        "current_live_ask_baseline_MAE_cents": 1.2452830188679245,
+        "q25_q75_interval_inside_n": 35,
+        "q25_q75_interval_calibration": 0.660377358490566
+      },
+      "parent_pool": {
+        "n": 7,
+        "q50_signed_error_cents": {
+          "n": 7,
+          "min": -4,
+          "p25": -2,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 3
+        },
+        "MAE_cents": 1.5714285714285714,
+        "bias_cents": -0.14285714285714285,
+        "current_live_ask_baseline_MAE_cents": 1.2857142857142858,
+        "q25_q75_interval_inside_n": 4,
+        "q25_q75_interval_calibration": 0.5714285714285714
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": true,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 60,
+          "q50_signed_error_cents": {
+            "n": 60,
+            "min": -6,
+            "p25": -2,
+            "median": -1,
+            "p75": 1,
+            "p90": 1,
+            "max": 4
+          },
+          "MAE_cents": 1.3333333333333333,
+          "bias_cents": -0.6,
+          "current_live_ask_baseline_MAE_cents": 1.25,
+          "q25_q75_interval_inside_n": 39,
+          "q25_q75_interval_calibration": 0.65
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "all": {
+        "n": 19,
+        "q50_signed_error_cents": {
+          "n": 19,
+          "min": -6,
+          "p25": -1,
+          "median": -1,
+          "p75": 0,
+          "p90": 2,
+          "max": 2
+        },
+        "MAE_cents": 1.5789473684210527,
+        "bias_cents": -0.7368421052631579,
+        "current_live_ask_baseline_MAE_cents": 1.4736842105263157,
+        "q25_q75_interval_inside_n": 12,
+        "q25_q75_interval_calibration": 0.631578947368421
+      },
+      "direct": {
+        "n": 18,
+        "q50_signed_error_cents": {
+          "n": 18,
+          "min": -6,
+          "p25": -1,
+          "median": -1,
+          "p75": 0,
+          "p90": 1,
+          "max": 2
+        },
+        "MAE_cents": 1.5555555555555556,
+        "bias_cents": -0.8888888888888888,
+        "current_live_ask_baseline_MAE_cents": 1.5,
+        "q25_q75_interval_inside_n": 12,
+        "q25_q75_interval_calibration": 0.6666666666666666
+      },
+      "parent_pool": {
+        "n": 1,
+        "q50_signed_error_cents": {
+          "n": 1,
+          "min": 2,
+          "p25": 2,
+          "median": 2,
+          "p75": 2,
+          "p90": 2,
+          "max": 2
+        },
+        "MAE_cents": 2,
+        "bias_cents": 2,
+        "current_live_ask_baseline_MAE_cents": 1,
+        "q25_q75_interval_inside_n": 0,
+        "q25_q75_interval_calibration": 0
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 19,
+          "q50_signed_error_cents": {
+            "n": 19,
+            "min": -6,
+            "p25": -1,
+            "median": -1,
+            "p75": 0,
+            "p90": 2,
+            "max": 2
+          },
+          "MAE_cents": 1.5789473684210527,
+          "bias_cents": -0.7368421052631579,
+          "current_live_ask_baseline_MAE_cents": 1.4736842105263157,
+          "q25_q75_interval_inside_n": 12,
+          "q25_q75_interval_calibration": 0.631578947368421
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "all": {
+        "n": 29,
+        "q50_signed_error_cents": {
+          "n": 29,
+          "min": -11,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 6
+        },
+        "MAE_cents": 1.7586206896551724,
+        "bias_cents": -0.3793103448275862,
+        "current_live_ask_baseline_MAE_cents": 1.6896551724137931,
+        "q25_q75_interval_inside_n": 15,
+        "q25_q75_interval_calibration": 0.5172413793103449
+      },
+      "direct": {
+        "n": 11,
+        "q50_signed_error_cents": {
+          "n": 11,
+          "min": -9,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 1,
+          "max": 2
+        },
+        "MAE_cents": 1.3636363636363635,
+        "bias_cents": -0.6363636363636364,
+        "current_live_ask_baseline_MAE_cents": 1.2727272727272727,
+        "q25_q75_interval_inside_n": 8,
+        "q25_q75_interval_calibration": 0.7272727272727273
+      },
+      "parent_pool": {
+        "n": 18,
+        "q50_signed_error_cents": {
+          "n": 18,
+          "min": -11,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 6
+        },
+        "MAE_cents": 2,
+        "bias_cents": -0.2222222222222222,
+        "current_live_ask_baseline_MAE_cents": 1.9444444444444444,
+        "q25_q75_interval_inside_n": 7,
+        "q25_q75_interval_calibration": 0.3888888888888889
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 29,
+          "q50_signed_error_cents": {
+            "n": 29,
+            "min": -11,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 1,
+            "max": 6
+          },
+          "MAE_cents": 1.7586206896551724,
+          "bias_cents": -0.3793103448275862,
+          "current_live_ask_baseline_MAE_cents": 1.6896551724137931,
+          "q25_q75_interval_inside_n": 15,
+          "q25_q75_interval_calibration": 0.5172413793103449
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "all": {
+        "n": 34,
+        "q50_signed_error_cents": {
+          "n": 34,
+          "min": -5,
+          "p25": -1,
+          "median": 1,
+          "p75": 3,
+          "p90": 3,
+          "max": 43
+        },
+        "MAE_cents": 3.176470588235294,
+        "bias_cents": 1.8823529411764706,
+        "current_live_ask_baseline_MAE_cents": 3.1470588235294117,
+        "q25_q75_interval_inside_n": 15,
+        "q25_q75_interval_calibration": 0.4411764705882353
+      },
+      "direct": {
+        "n": 2,
+        "q50_signed_error_cents": {
+          "n": 2,
+          "min": -5,
+          "p25": -5,
+          "median": -5,
+          "p75": -5,
+          "p90": -5,
+          "max": 43
+        },
+        "MAE_cents": 24,
+        "bias_cents": 19,
+        "current_live_ask_baseline_MAE_cents": 24,
+        "q25_q75_interval_inside_n": 0,
+        "q25_q75_interval_calibration": 0
+      },
+      "parent_pool": {
+        "n": 32,
+        "q50_signed_error_cents": {
+          "n": 32,
+          "min": -4,
+          "p25": -1,
+          "median": 1,
+          "p75": 3,
+          "p90": 3,
+          "max": 7
+        },
+        "MAE_cents": 1.875,
+        "bias_cents": 0.8125,
+        "current_live_ask_baseline_MAE_cents": 1.84375,
+        "q25_q75_interval_inside_n": 15,
+        "q25_q75_interval_calibration": 0.46875
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": true,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": false
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 34,
+          "q50_signed_error_cents": {
+            "n": 34,
+            "min": -5,
+            "p25": -1,
+            "median": 1,
+            "p75": 3,
+            "p90": 3,
+            "max": 43
+          },
+          "MAE_cents": 3.176470588235294,
+          "bias_cents": 1.8823529411764706,
+          "current_live_ask_baseline_MAE_cents": 3.1470588235294117,
+          "q25_q75_interval_inside_n": 15,
+          "q25_q75_interval_calibration": 0.4411764705882353
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "all": {
+        "n": 41,
+        "q50_signed_error_cents": {
+          "n": 41,
+          "min": -5,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 3,
+          "max": 4
+        },
+        "MAE_cents": 1.6097560975609757,
+        "bias_cents": -0.14634146341463414,
+        "current_live_ask_baseline_MAE_cents": 1.5365853658536586,
+        "q25_q75_interval_inside_n": 22,
+        "q25_q75_interval_calibration": 0.5365853658536586
+      },
+      "direct": {
+        "n": 13,
+        "q50_signed_error_cents": {
+          "n": 13,
+          "min": -3,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "MAE_cents": 0.6923076923076923,
+        "bias_cents": -0.6923076923076923,
+        "current_live_ask_baseline_MAE_cents": 0.6923076923076923,
+        "q25_q75_interval_inside_n": 12,
+        "q25_q75_interval_calibration": 0.9230769230769231
+      },
+      "parent_pool": {
+        "n": 28,
+        "q50_signed_error_cents": {
+          "n": 28,
+          "min": -5,
+          "p25": -2,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 4
+        },
+        "MAE_cents": 2.0357142857142856,
+        "bias_cents": 0.10714285714285714,
+        "current_live_ask_baseline_MAE_cents": 1.9285714285714286,
+        "q25_q75_interval_inside_n": 10,
+        "q25_q75_interval_calibration": 0.35714285714285715
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": true,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 41,
+          "q50_signed_error_cents": {
+            "n": 41,
+            "min": -5,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 3,
+            "max": 4
+          },
+          "MAE_cents": 1.6097560975609757,
+          "bias_cents": -0.14634146341463414,
+          "current_live_ask_baseline_MAE_cents": 1.5365853658536586,
+          "q25_q75_interval_inside_n": 22,
+          "q25_q75_interval_calibration": 0.5365853658536586
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "all": {
+        "n": 4,
+        "q50_signed_error_cents": {
+          "n": 4,
+          "min": -1,
+          "p25": -1,
+          "median": -1,
+          "p75": 0,
+          "p90": 0,
+          "max": 4
+        },
+        "MAE_cents": 1.5,
+        "bias_cents": 0.5,
+        "current_live_ask_baseline_MAE_cents": 1.75,
+        "q25_q75_interval_inside_n": 2,
+        "q25_q75_interval_calibration": 0.5
+      },
+      "direct": {
+        "n": 3,
+        "q50_signed_error_cents": {
+          "n": 3,
+          "min": -1,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 4
+        },
+        "MAE_cents": 1.6666666666666667,
+        "bias_cents": 1,
+        "current_live_ask_baseline_MAE_cents": 1.6666666666666667,
+        "q25_q75_interval_inside_n": 2,
+        "q25_q75_interval_calibration": 0.6666666666666666
+      },
+      "parent_pool": {
+        "n": 1,
+        "q50_signed_error_cents": {
+          "n": 1,
+          "min": -1,
+          "p25": -1,
+          "median": -1,
+          "p75": -1,
+          "p90": -1,
+          "max": -1
+        },
+        "MAE_cents": 1,
+        "bias_cents": -1,
+        "current_live_ask_baseline_MAE_cents": 2,
+        "q25_q75_interval_inside_n": 0,
+        "q25_q75_interval_calibration": 0
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": true,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 4,
+          "q50_signed_error_cents": {
+            "n": 4,
+            "min": -1,
+            "p25": -1,
+            "median": -1,
+            "p75": 0,
+            "p90": 0,
+            "max": 4
+          },
+          "MAE_cents": 1.5,
+          "bias_cents": 0.5,
+          "current_live_ask_baseline_MAE_cents": 1.75,
+          "q25_q75_interval_inside_n": 2,
+          "q25_q75_interval_calibration": 0.5
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "all": {
+        "n": 13,
+        "q50_signed_error_cents": {
+          "n": 13,
+          "min": -1,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 1,
+          "max": 33
+        },
+        "MAE_cents": 3.076923076923077,
+        "bias_cents": 2.769230769230769,
+        "current_live_ask_baseline_MAE_cents": 3,
+        "q25_q75_interval_inside_n": 9,
+        "q25_q75_interval_calibration": 0.6923076923076923
+      },
+      "direct": {
+        "n": 7,
+        "q50_signed_error_cents": {
+          "n": 7,
+          "min": -1,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 1
+        },
+        "MAE_cents": 0.42857142857142855,
+        "bias_cents": -0.14285714285714285,
+        "current_live_ask_baseline_MAE_cents": 0.42857142857142855,
+        "q25_q75_interval_inside_n": 5,
+        "q25_q75_interval_calibration": 0.7142857142857143
+      },
+      "parent_pool": {
+        "n": 6,
+        "q50_signed_error_cents": {
+          "n": 6,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 4,
+          "max": 33
+        },
+        "MAE_cents": 6.166666666666667,
+        "bias_cents": 6.166666666666667,
+        "current_live_ask_baseline_MAE_cents": 6,
+        "q25_q75_interval_inside_n": 4,
+        "q25_q75_interval_calibration": 0.6666666666666666
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 13,
+          "q50_signed_error_cents": {
+            "n": 13,
+            "min": -1,
+            "p25": 0,
+            "median": 0,
+            "p75": 0,
+            "p90": 1,
+            "max": 33
+          },
+          "MAE_cents": 3.076923076923077,
+          "bias_cents": 2.769230769230769,
+          "current_live_ask_baseline_MAE_cents": 3,
+          "q25_q75_interval_inside_n": 9,
+          "q25_q75_interval_calibration": 0.6923076923076923
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "all": {
+        "n": 18,
+        "q50_signed_error_cents": {
+          "n": 18,
+          "min": -3,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 1,
+          "max": 45
+        },
+        "MAE_cents": 3.111111111111111,
+        "bias_cents": 2.2222222222222223,
+        "current_live_ask_baseline_MAE_cents": 3.111111111111111,
+        "q25_q75_interval_inside_n": 13,
+        "q25_q75_interval_calibration": 0.7222222222222222
+      },
+      "direct": {
+        "n": 11,
+        "q50_signed_error_cents": {
+          "n": 11,
+          "min": -2,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 2
+        },
+        "MAE_cents": 0.5454545454545454,
+        "bias_cents": -0.18181818181818182,
+        "current_live_ask_baseline_MAE_cents": 0.5454545454545454,
+        "q25_q75_interval_inside_n": 9,
+        "q25_q75_interval_calibration": 0.8181818181818182
+      },
+      "parent_pool": {
+        "n": 7,
+        "q50_signed_error_cents": {
+          "n": 7,
+          "min": -3,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 1,
+          "max": 45
+        },
+        "MAE_cents": 7.142857142857143,
+        "bias_cents": 6,
+        "current_live_ask_baseline_MAE_cents": 7.142857142857143,
+        "q25_q75_interval_inside_n": 4,
+        "q25_q75_interval_calibration": 0.5714285714285714
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 18,
+          "q50_signed_error_cents": {
+            "n": 18,
+            "min": -3,
+            "p25": -1,
+            "median": 0,
+            "p75": 0,
+            "p90": 1,
+            "max": 45
+          },
+          "MAE_cents": 3.111111111111111,
+          "bias_cents": 2.2222222222222223,
+          "current_live_ask_baseline_MAE_cents": 3.111111111111111,
+          "q25_q75_interval_inside_n": 13,
+          "q25_q75_interval_calibration": 0.7222222222222222
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "all": {
+        "n": 4,
+        "q50_signed_error_cents": {
+          "n": 4,
+          "min": -19,
+          "p25": -19,
+          "median": -2,
+          "p75": -1,
+          "p90": -1,
+          "max": 1
+        },
+        "MAE_cents": 5.75,
+        "bias_cents": -5.25,
+        "current_live_ask_baseline_MAE_cents": 5.5,
+        "q25_q75_interval_inside_n": 2,
+        "q25_q75_interval_calibration": 0.5
+      },
+      "direct": {
+        "n": 1,
+        "q50_signed_error_cents": {
+          "n": 1,
+          "min": -1,
+          "p25": -1,
+          "median": -1,
+          "p75": -1,
+          "p90": -1,
+          "max": -1
+        },
+        "MAE_cents": 1,
+        "bias_cents": -1,
+        "current_live_ask_baseline_MAE_cents": 1,
+        "q25_q75_interval_inside_n": 1,
+        "q25_q75_interval_calibration": 1
+      },
+      "parent_pool": {
+        "n": 3,
+        "q50_signed_error_cents": {
+          "n": 3,
+          "min": -19,
+          "p25": -19,
+          "median": -2,
+          "p75": -2,
+          "p90": -2,
+          "max": 1
+        },
+        "MAE_cents": 7.333333333333333,
+        "bias_cents": -6.666666666666667,
+        "current_live_ask_baseline_MAE_cents": 7,
+        "q25_q75_interval_inside_n": 1,
+        "q25_q75_interval_calibration": 0.3333333333333333
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 4,
+          "q50_signed_error_cents": {
+            "n": 4,
+            "min": -19,
+            "p25": -19,
+            "median": -2,
+            "p75": -1,
+            "p90": -1,
+            "max": 1
+          },
+          "MAE_cents": 5.75,
+          "bias_cents": -5.25,
+          "current_live_ask_baseline_MAE_cents": 5.5,
+          "q25_q75_interval_inside_n": 2,
+          "q25_q75_interval_calibration": 0.5
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "all": {
+        "n": 6,
+        "q50_signed_error_cents": {
+          "n": 6,
+          "min": -1,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        },
+        "MAE_cents": 0.8333333333333334,
+        "bias_cents": 0.16666666666666666,
+        "current_live_ask_baseline_MAE_cents": 0.8333333333333334,
+        "q25_q75_interval_inside_n": 3,
+        "q25_q75_interval_calibration": 0.5
+      },
+      "direct": {
+        "n": 3,
+        "q50_signed_error_cents": {
+          "n": 3,
+          "min": -1,
+          "p25": -1,
+          "median": -1,
+          "p75": -1,
+          "p90": -1,
+          "max": 1
+        },
+        "MAE_cents": 1,
+        "bias_cents": -0.3333333333333333,
+        "current_live_ask_baseline_MAE_cents": 1,
+        "q25_q75_interval_inside_n": 2,
+        "q25_q75_interval_calibration": 0.6666666666666666
+      },
+      "parent_pool": {
+        "n": 3,
+        "q50_signed_error_cents": {
+          "n": 3,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        },
+        "MAE_cents": 0.6666666666666666,
+        "bias_cents": 0.6666666666666666,
+        "current_live_ask_baseline_MAE_cents": 0.6666666666666666,
+        "q25_q75_interval_inside_n": 1,
+        "q25_q75_interval_calibration": 0.3333333333333333
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 6,
+          "q50_signed_error_cents": {
+            "n": 6,
+            "min": -1,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 1,
+            "max": 1
+          },
+          "MAE_cents": 0.8333333333333334,
+          "bias_cents": 0.16666666666666666,
+          "current_live_ask_baseline_MAE_cents": 0.8333333333333334,
+          "q25_q75_interval_inside_n": 3,
+          "q25_q75_interval_calibration": 0.5
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "all": {
+        "n": 15,
+        "q50_signed_error_cents": {
+          "n": 15,
+          "min": -4,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 2,
+          "max": 5
+        },
+        "MAE_cents": 1.4,
+        "bias_cents": 0.2,
+        "current_live_ask_baseline_MAE_cents": 1.4666666666666666,
+        "q25_q75_interval_inside_n": 7,
+        "q25_q75_interval_calibration": 0.4666666666666667
+      },
+      "direct": {
+        "n": 5,
+        "q50_signed_error_cents": {
+          "n": 5,
+          "min": -4,
+          "p25": -2,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 1
+        },
+        "MAE_cents": 1.4,
+        "bias_cents": -1,
+        "current_live_ask_baseline_MAE_cents": 1.4,
+        "q25_q75_interval_inside_n": 2,
+        "q25_q75_interval_calibration": 0.4
+      },
+      "parent_pool": {
+        "n": 10,
+        "q50_signed_error_cents": {
+          "n": 10,
+          "min": -1,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 3,
+          "max": 5
+        },
+        "MAE_cents": 1.4,
+        "bias_cents": 0.8,
+        "current_live_ask_baseline_MAE_cents": 1.5,
+        "q25_q75_interval_inside_n": 5,
+        "q25_q75_interval_calibration": 0.5
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": true,
+          "central_50pct_interval_calibration_at_least_50pct": false
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 15,
+          "q50_signed_error_cents": {
+            "n": 15,
+            "min": -4,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 5
+          },
+          "MAE_cents": 1.4,
+          "bias_cents": 0.2,
+          "current_live_ask_baseline_MAE_cents": 1.4666666666666666,
+          "q25_q75_interval_inside_n": 7,
+          "q25_q75_interval_calibration": 0.4666666666666667
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "all": {
+        "n": 13,
+        "q50_signed_error_cents": {
+          "n": 13,
+          "min": -5,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 2,
+          "max": 3
+        },
+        "MAE_cents": 1.5384615384615385,
+        "bias_cents": 0,
+        "current_live_ask_baseline_MAE_cents": 1.3846153846153846,
+        "q25_q75_interval_inside_n": 6,
+        "q25_q75_interval_calibration": 0.46153846153846156
+      },
+      "direct": {
+        "n": 7,
+        "q50_signed_error_cents": {
+          "n": 7,
+          "min": -5,
+          "p25": -2,
+          "median": 0,
+          "p75": 0,
+          "p90": 1,
+          "max": 3
+        },
+        "MAE_cents": 1.5714285714285714,
+        "bias_cents": -0.42857142857142855,
+        "current_live_ask_baseline_MAE_cents": 1.5714285714285714,
+        "q25_q75_interval_inside_n": 3,
+        "q25_q75_interval_calibration": 0.42857142857142855
+      },
+      "parent_pool": {
+        "n": 6,
+        "q50_signed_error_cents": {
+          "n": 6,
+          "min": -2,
+          "p25": -1,
+          "median": 0,
+          "p75": 1,
+          "p90": 2,
+          "max": 3
+        },
+        "MAE_cents": 1.5,
+        "bias_cents": 0.5,
+        "current_live_ask_baseline_MAE_cents": 1.1666666666666667,
+        "q25_q75_interval_inside_n": 3,
+        "q25_q75_interval_calibration": 0.5
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": false
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 13,
+          "q50_signed_error_cents": {
+            "n": 13,
+            "min": -5,
+            "p25": -1,
+            "median": 0,
+            "p75": 1,
+            "p90": 2,
+            "max": 3
+          },
+          "MAE_cents": 1.5384615384615385,
+          "bias_cents": 0,
+          "current_live_ask_baseline_MAE_cents": 1.3846153846153846,
+          "q25_q75_interval_inside_n": 6,
+          "q25_q75_interval_calibration": 0.46153846153846156
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "all": {
+        "n": 4,
+        "q50_signed_error_cents": {
+          "n": 4,
+          "min": -1,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 4
+        },
+        "MAE_cents": 1.25,
+        "bias_cents": 0.75,
+        "current_live_ask_baseline_MAE_cents": 1.25,
+        "q25_q75_interval_inside_n": 3,
+        "q25_q75_interval_calibration": 0.75
+      },
+      "direct": {
+        "n": 1,
+        "q50_signed_error_cents": {
+          "n": 1,
+          "min": -1,
+          "p25": -1,
+          "median": -1,
+          "p75": -1,
+          "p90": -1,
+          "max": -1
+        },
+        "MAE_cents": 1,
+        "bias_cents": -1,
+        "current_live_ask_baseline_MAE_cents": 1,
+        "q25_q75_interval_inside_n": 1,
+        "q25_q75_interval_calibration": 1
+      },
+      "parent_pool": {
+        "n": 3,
+        "q50_signed_error_cents": {
+          "n": 3,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 4
+        },
+        "MAE_cents": 1.3333333333333333,
+        "bias_cents": 1.3333333333333333,
+        "current_live_ask_baseline_MAE_cents": 1.3333333333333333,
+        "q25_q75_interval_inside_n": 2,
+        "q25_q75_interval_calibration": 0.6666666666666666
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": false,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 4,
+          "q50_signed_error_cents": {
+            "n": 4,
+            "min": -1,
+            "p25": -1,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 4
+          },
+          "MAE_cents": 1.25,
+          "bias_cents": 0.75,
+          "current_live_ask_baseline_MAE_cents": 1.25,
+          "q25_q75_interval_inside_n": 3,
+          "q25_q75_interval_calibration": 0.75
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "all": {
+        "n": 11,
+        "q50_signed_error_cents": {
+          "n": 11,
+          "min": -1,
+          "p25": -1,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 1
+        },
+        "MAE_cents": 0.45454545454545453,
+        "bias_cents": -0.2727272727272727,
+        "current_live_ask_baseline_MAE_cents": 0.5454545454545454,
+        "q25_q75_interval_inside_n": 10,
+        "q25_q75_interval_calibration": 0.9090909090909091
+      },
+      "direct": {
+        "n": 5,
+        "q50_signed_error_cents": {
+          "n": 5,
+          "min": -1,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "MAE_cents": 0.2,
+        "bias_cents": -0.2,
+        "current_live_ask_baseline_MAE_cents": 0.2,
+        "q25_q75_interval_inside_n": 5,
+        "q25_q75_interval_calibration": 1
+      },
+      "parent_pool": {
+        "n": 6,
+        "q50_signed_error_cents": {
+          "n": 6,
+          "min": -1,
+          "p25": -1,
+          "median": -1,
+          "p75": 0,
+          "p90": 0,
+          "max": 1
+        },
+        "MAE_cents": 0.6666666666666666,
+        "bias_cents": -0.3333333333333333,
+        "current_live_ask_baseline_MAE_cents": 0.8333333333333334,
+        "q25_q75_interval_inside_n": 5,
+        "q25_q75_interval_calibration": 0.8333333333333334
+      },
+      "overlay_authority": {
+        "authorized": false,
+        "checks": {
+          "validation_n_at_least_30": false,
+          "q50_MAE_strictly_beats_live_ask_baseline": true,
+          "central_50pct_interval_calibration_at_least_50pct": true
+        },
+        "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+        "metrics": {
+          "n": 11,
+          "q50_signed_error_cents": {
+            "n": 11,
+            "min": -1,
+            "p25": -1,
+            "median": 0,
+            "p75": 0,
+            "p90": 0,
+            "max": 1
+          },
+          "MAE_cents": 0.45454545454545453,
+          "bias_cents": -0.2727272727272727,
+          "current_live_ask_baseline_MAE_cents": 0.5454545454545454,
+          "q25_q75_interval_inside_n": 10,
+          "q25_q75_interval_calibration": 0.9090909090909091
+        }
+      }
+    }
+  ],
+  "overlay_authority_law": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+  "authorized_cells": [],
+  "authorized_cell_count": 0
+}

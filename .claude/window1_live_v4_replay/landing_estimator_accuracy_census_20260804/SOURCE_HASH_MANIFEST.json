@@ -1,0 +1,22 @@
+{
+  "inputs": {
+    ".claude/window1_live_v4_replay/landing_estimator_phased_arming_v24_20260804/LANDING_ESTIMATE_RECEIPTS.jsonl.gz": {
+      "sha256": "48afa8daae620493ce7dc9d5ce0cd404abb8a103718af15493a10342bcb2d8e2",
+      "bytes": 96598
+    },
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V23_LEG_LEDGER.jsonl.gz": {
+      "sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+      "bytes": 3281591
+    }
+  },
+  "code": {
+    "arb-executor/analysis/build_window1_landing_estimator_accuracy_census.js": {
+      "sha256": "867c228ecd39788e9e7fc4bf6f2e6fe432789874d4a49bc3f4bf9b9b6c1e36a3",
+      "bytes": 9738
+    },
+    "arb-executor/tests/test_window1_landing_estimator_accuracy_census.js": {
+      "sha256": "e37284d88ad9a02e17061bef930846103935b5bb05c4a721dde8e67141386399",
+      "bytes": 1284
+    }
+  }
+}

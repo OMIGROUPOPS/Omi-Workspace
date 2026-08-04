@@ -1,0 +1,13 @@
+{
+  "development_only": true,
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "elapsed_time_pair_input": false
+}

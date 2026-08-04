@@ -1,0 +1,8 @@
+{
+  "overlay_law": "NEW_LAYER_IS_OVERLAY_NEVER_GATE; ABSENT_AUTHORITY_RUNS_INCUMBENT_BYTE_IDENTICAL",
+  "canonical_template": "V19_ABSTENTION_FALLBACK",
+  "accuracy_authority_sha256": "bb47b2496e978da402e269c75d8876a33e839b91d71835c0aab969d0dc16af9c",
+  "stated_error_bar": "CELL q50 MAE MUST BE STRICTLY LOWER THAN DECISION-TIME LIVE-ASK-AS-CLOSE MAE; n>=30; q25-q75 empirical coverage>=0.50",
+  "authorized_cells": [],
+  "result": "NO_CELL_EARNED_AUTHORITY; V25_EQUALS_V23"
+}

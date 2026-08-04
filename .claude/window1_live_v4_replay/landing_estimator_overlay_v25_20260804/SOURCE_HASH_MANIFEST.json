@@ -1,0 +1,44 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V23_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+      "bytes": 3457618
+    },
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V23_LEG_LEDGER.jsonl.gz": {
+      "sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+      "bytes": 3281591
+    },
+    ".claude/window1_live_v4_replay/landing_estimator_accuracy_census_20260804/OVERLAY_CELL_AUTHORITY.json": {
+      "sha256": "bb47b2496e978da402e269c75d8876a33e839b91d71835c0aab969d0dc16af9c",
+      "bytes": 13785
+    },
+    ".claude/window1_live_v4_replay/landing_estimator_accuracy_census_20260804/ESTIMATOR_ACCURACY_LEDGER.jsonl.gz": {
+      "sha256": "702f29e8d360431d991e48c2794ccca6370c59fb3dc593fa856bd490572ca40b",
+      "bytes": 13250
+    },
+    ".claude/window1_live_v4_replay/landing_estimator_phased_arming_v24_20260804/V24_LEG_LEDGER.jsonl.gz": {
+      "sha256": "cbca0ab638f6fc8119135d8f8d28dbc03596b0d09dd1547a6775cc415f637393",
+      "bytes": 2899808
+    },
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/FRONTIER.json": {
+      "sha256": "bede77d8092c1d727c36b3c07ceed2efc807a13a03e3cd86f6e0270621acd6e2",
+      "bytes": 191393
+    },
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/REGRET_GAUGE.json": {
+      "sha256": "8798e99e99951f6e47c159ae7d7a6af2250c476c5056e3e2b6b248167b814ffe",
+      "bytes": 43999
+    },
+    "arb-executor/analysis/build_window1_landing_estimator_overlay_v25.js": {
+      "sha256": "ee8734e446f61415f55ece5d718fd2b3b9e652d4418532db1b738df9954829a7",
+      "bytes": 10519
+    },
+    "arb-executor/analysis/window1_landing_estimator_overlay_v25_policy.js": {
+      "sha256": "c70d41b2989231960deb6365c1e400a4505c3f4db690f9cd74871a838a0ade12",
+      "bytes": 1158
+    },
+    "arb-executor/tests/test_window1_landing_estimator_overlay_v25.js": {
+      "sha256": "53fba42a5df05d7243834e42ea6b57e50a8f44d75d124d75144f0a728db3d65f",
+      "bytes": 2029
+    }
+  }
+}

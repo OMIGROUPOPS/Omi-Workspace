@@ -1,0 +1,12 @@
+{
+  "V23_event_ledger_sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+  "V25_event_ledger_sha256": "b1dc3e4daec06ccf80d278aaab510bff447f1ea1f943d068728c78542914f24d",
+  "event_ledgers_byte_identical": true,
+  "V23_leg_ledger_sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+  "V25_leg_ledger_sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+  "leg_ledgers_byte_identical": true,
+  "differing_leg_streams": 0,
+  "identical_leg_streams": 1608,
+  "authorized_cells": [],
+  "overlay_actions": 0
+}

@@ -1,0 +1,3547 @@
+{
+  "fixed_denominator": 804,
+  "V23": {
+    "variant": "V23_OPERATIVE_BASELINE",
+    "audited_close_commit": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+    "aggregate": {
+      "D": 804,
+      "acted_legs": 1027,
+      "credited_legs": 920,
+      "completed_pairs": 204,
+      "pairs_under_par": 193,
+      "completed_pairs_with_both_audited_closes": 203,
+      "completed_pairs_close_unavailable": 1,
+      "both_legs_strictly_below_audited_close": 45,
+      "joint_objective_pairs": 45,
+      "strict_carried_pairs": 88
+    },
+    "frontier": {
+      "LE_93": {
+        "fixed_denominator": 804,
+        "completed_pairs": 10,
+        "raw_completion_rate": "10/804",
+        "pairs_both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "close_unavailable_pairs": 0
+      },
+      "LE_95": {
+        "fixed_denominator": 804,
+        "completed_pairs": 16,
+        "raw_completion_rate": "16/804",
+        "pairs_both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "close_unavailable_pairs": 0
+      },
+      "LE_97": {
+        "fixed_denominator": 804,
+        "completed_pairs": 35,
+        "raw_completion_rate": "35/804",
+        "pairs_both_legs_strictly_below_audited_close": 4,
+        "joint_objective_pairs": 4,
+        "close_unavailable_pairs": 0
+      },
+      "LT_100": {
+        "fixed_denominator": 804,
+        "completed_pairs": 193,
+        "raw_completion_rate": "193/804",
+        "pairs_both_legs_strictly_below_audited_close": 45,
+        "joint_objective_pairs": 45,
+        "close_unavailable_pairs": 0
+      },
+      "ANY_PRICE": {
+        "fixed_denominator": 804,
+        "completed_pairs": 204,
+        "raw_completion_rate": "204/804",
+        "pairs_both_legs_strictly_below_audited_close": 45,
+        "joint_objective_pairs": 45,
+        "close_unavailable_pairs": 1
+      }
+    },
+    "category_x_starting_price_region": [
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+26_50",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+51_75",
+        "D": 238,
+        "metrics": {
+          "D": 238,
+          "acted_legs": 325,
+          "credited_legs": 279,
+          "completed_pairs": 59,
+          "pairs_under_par": 57,
+          "completed_pairs_with_both_audited_closes": 59,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 23,
+          "joint_objective_pairs": 23,
+          "strict_carried_pairs": 20
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 238,
+            "completed_pairs": 4,
+            "raw_completion_rate": "4/238",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 238,
+            "completed_pairs": 5,
+            "raw_completion_rate": "5/238",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 238,
+            "completed_pairs": 12,
+            "raw_completion_rate": "12/238",
+            "pairs_both_legs_strictly_below_audited_close": 3,
+            "joint_objective_pairs": 3,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 238,
+            "completed_pairs": 57,
+            "raw_completion_rate": "57/238",
+            "pairs_both_legs_strictly_below_audited_close": 23,
+            "joint_objective_pairs": 23,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 238,
+            "completed_pairs": 59,
+            "raw_completion_rate": "59/238",
+            "pairs_both_legs_strictly_below_audited_close": 23,
+            "joint_objective_pairs": 23,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+ge75",
+        "D": 4,
+        "metrics": {
+          "D": 4,
+          "acted_legs": 3,
+          "credited_legs": 3,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+le25",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 0,
+          "credited_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "51_75+51_75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "51_75+ge75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "51_75+le25",
+        "D": 6,
+        "metrics": {
+          "D": 6,
+          "acted_legs": 6,
+          "credited_legs": 5,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "ge75+le25",
+        "D": 102,
+        "metrics": {
+          "D": 102,
+          "acted_legs": 128,
+          "credited_legs": 111,
+          "completed_pairs": 21,
+          "pairs_under_par": 21,
+          "completed_pairs_with_both_audited_closes": 21,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 7,
+          "joint_objective_pairs": 7,
+          "strict_carried_pairs": 5
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 102,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/102",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 102,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/102",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 102,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/102",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 102,
+            "completed_pairs": 21,
+            "raw_completion_rate": "21/102",
+            "pairs_both_legs_strictly_below_audited_close": 7,
+            "joint_objective_pairs": 7,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 102,
+            "completed_pairs": 21,
+            "raw_completion_rate": "21/102",
+            "pairs_both_legs_strictly_below_audited_close": 7,
+            "joint_objective_pairs": 7,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "le25+le25",
+        "D": 15,
+        "metrics": {
+          "D": 15,
+          "acted_legs": 13,
+          "credited_legs": 13,
+          "completed_pairs": 3,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 2,
+          "completed_pairs_close_unavailable": 1,
+          "both_legs_strictly_below_audited_close": 1,
+          "joint_objective_pairs": 1,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 15,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/15",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 15,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/15",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 15,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/15",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 15,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/15",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 15,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/15",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 1
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "26_50+26_50",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "26_50+51_75",
+        "D": 103,
+        "metrics": {
+          "D": 103,
+          "acted_legs": 145,
+          "credited_legs": 136,
+          "completed_pairs": 37,
+          "pairs_under_par": 37,
+          "completed_pairs_with_both_audited_closes": 37,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 4,
+          "joint_objective_pairs": 4,
+          "strict_carried_pairs": 20
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 103,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/103",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 103,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/103",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 103,
+            "completed_pairs": 6,
+            "raw_completion_rate": "6/103",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 103,
+            "completed_pairs": 37,
+            "raw_completion_rate": "37/103",
+            "pairs_both_legs_strictly_below_audited_close": 4,
+            "joint_objective_pairs": 4,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 103,
+            "completed_pairs": 37,
+            "raw_completion_rate": "37/103",
+            "pairs_both_legs_strictly_below_audited_close": 4,
+            "joint_objective_pairs": 4,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "26_50+ge75",
+        "D": 4,
+        "metrics": {
+          "D": 4,
+          "acted_legs": 8,
+          "credited_legs": 8,
+          "completed_pairs": 4,
+          "pairs_under_par": 4,
+          "completed_pairs_with_both_audited_closes": 4,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 2,
+          "joint_objective_pairs": 2,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 4,
+            "raw_completion_rate": "4/4",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 4,
+            "raw_completion_rate": "4/4",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "51_75+51_75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "51_75+le25",
+        "D": 2,
+        "metrics": {
+          "D": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "ge75+ge75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "ge75+le25",
+        "D": 29,
+        "metrics": {
+          "D": 29,
+          "acted_legs": 42,
+          "credited_legs": 38,
+          "completed_pairs": 9,
+          "pairs_under_par": 9,
+          "completed_pairs_with_both_audited_closes": 9,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 3,
+          "joint_objective_pairs": 3,
+          "strict_carried_pairs": 3
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 29,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/29",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 29,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/29",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 29,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/29",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 29,
+            "completed_pairs": 9,
+            "raw_completion_rate": "9/29",
+            "pairs_both_legs_strictly_below_audited_close": 3,
+            "joint_objective_pairs": 3,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 29,
+            "completed_pairs": 9,
+            "raw_completion_rate": "9/29",
+            "pairs_both_legs_strictly_below_audited_close": 3,
+            "joint_objective_pairs": 3,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "le25+le25",
+        "D": 6,
+        "metrics": {
+          "D": 6,
+          "acted_legs": 0,
+          "credited_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "26_50+26_50",
+        "D": 2,
+        "metrics": {
+          "D": 2,
+          "acted_legs": 3,
+          "credited_legs": 3,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "26_50+51_75",
+        "D": 88,
+        "metrics": {
+          "D": 88,
+          "acted_legs": 112,
+          "credited_legs": 99,
+          "completed_pairs": 19,
+          "pairs_under_par": 17,
+          "completed_pairs_with_both_audited_closes": 19,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 2,
+          "joint_objective_pairs": 2,
+          "strict_carried_pairs": 11
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 88,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/88",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 88,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/88",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 88,
+            "completed_pairs": 6,
+            "raw_completion_rate": "6/88",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 88,
+            "completed_pairs": 17,
+            "raw_completion_rate": "17/88",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 88,
+            "completed_pairs": 19,
+            "raw_completion_rate": "19/88",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "51_75+le25",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "ge75+le25",
+        "D": 44,
+        "metrics": {
+          "D": 44,
+          "acted_legs": 54,
+          "credited_legs": 48,
+          "completed_pairs": 11,
+          "pairs_under_par": 11,
+          "completed_pairs_with_both_audited_closes": 11,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 1,
+          "joint_objective_pairs": 1,
+          "strict_carried_pairs": 7
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 44,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/44",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 44,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/44",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 44,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/44",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 44,
+            "completed_pairs": 11,
+            "raw_completion_rate": "11/44",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 44,
+            "completed_pairs": 11,
+            "raw_completion_rate": "11/44",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "le25+le25",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "26_50+51_75",
+        "D": 77,
+        "metrics": {
+          "D": 77,
+          "acted_legs": 101,
+          "credited_legs": 94,
+          "completed_pairs": 25,
+          "pairs_under_par": 23,
+          "completed_pairs_with_both_audited_closes": 25,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 16
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 77,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 77,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 77,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 77,
+            "completed_pairs": 23,
+            "raw_completion_rate": "23/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 77,
+            "completed_pairs": 25,
+            "raw_completion_rate": "25/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "26_50+ge75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "26_50+le25",
+        "D": 3,
+        "metrics": {
+          "D": 3,
+          "acted_legs": 3,
+          "credited_legs": 3,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "51_75+51_75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "51_75+le25",
+        "D": 4,
+        "metrics": {
+          "D": 4,
+          "acted_legs": 5,
+          "credited_legs": 5,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "ge75+le25",
+        "D": 56,
+        "metrics": {
+          "D": 56,
+          "acted_legs": 65,
+          "credited_legs": 61,
+          "completed_pairs": 11,
+          "pairs_under_par": 8,
+          "completed_pairs_with_both_audited_closes": 11,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 2,
+          "joint_objective_pairs": 2,
+          "strict_carried_pairs": 2
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 56,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/56",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 56,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/56",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 56,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/56",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 56,
+            "completed_pairs": 8,
+            "raw_completion_rate": "8/56",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 56,
+            "completed_pairs": 11,
+            "raw_completion_rate": "11/56",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "le25+le25",
+        "D": 10,
+        "metrics": {
+          "D": 10,
+          "acted_legs": 0,
+          "credited_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      }
+    ]
+  },
+  "V25": {
+    "variant": "V25_ESTIMATOR_OVERLAY",
+    "audited_close_commit": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+    "aggregate": {
+      "D": 804,
+      "acted_legs": 1027,
+      "credited_legs": 920,
+      "completed_pairs": 204,
+      "pairs_under_par": 193,
+      "completed_pairs_with_both_audited_closes": 203,
+      "completed_pairs_close_unavailable": 1,
+      "both_legs_strictly_below_audited_close": 45,
+      "joint_objective_pairs": 45,
+      "strict_carried_pairs": 88
+    },
+    "frontier": {
+      "LE_93": {
+        "fixed_denominator": 804,
+        "completed_pairs": 10,
+        "raw_completion_rate": "10/804",
+        "pairs_both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "close_unavailable_pairs": 0
+      },
+      "LE_95": {
+        "fixed_denominator": 804,
+        "completed_pairs": 16,
+        "raw_completion_rate": "16/804",
+        "pairs_both_legs_strictly_below_audited_close": 2,
+        "joint_objective_pairs": 2,
+        "close_unavailable_pairs": 0
+      },
+      "LE_97": {
+        "fixed_denominator": 804,
+        "completed_pairs": 35,
+        "raw_completion_rate": "35/804",
+        "pairs_both_legs_strictly_below_audited_close": 4,
+        "joint_objective_pairs": 4,
+        "close_unavailable_pairs": 0
+      },
+      "LT_100": {
+        "fixed_denominator": 804,
+        "completed_pairs": 193,
+        "raw_completion_rate": "193/804",
+        "pairs_both_legs_strictly_below_audited_close": 45,
+        "joint_objective_pairs": 45,
+        "close_unavailable_pairs": 0
+      },
+      "ANY_PRICE": {
+        "fixed_denominator": 804,
+        "completed_pairs": 204,
+        "raw_completion_rate": "204/804",
+        "pairs_both_legs_strictly_below_audited_close": 45,
+        "joint_objective_pairs": 45,
+        "close_unavailable_pairs": 1
+      }
+    },
+    "category_x_starting_price_region": [
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+26_50",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+51_75",
+        "D": 238,
+        "metrics": {
+          "D": 238,
+          "acted_legs": 325,
+          "credited_legs": 279,
+          "completed_pairs": 59,
+          "pairs_under_par": 57,
+          "completed_pairs_with_both_audited_closes": 59,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 23,
+          "joint_objective_pairs": 23,
+          "strict_carried_pairs": 20
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 238,
+            "completed_pairs": 4,
+            "raw_completion_rate": "4/238",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 238,
+            "completed_pairs": 5,
+            "raw_completion_rate": "5/238",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 238,
+            "completed_pairs": 12,
+            "raw_completion_rate": "12/238",
+            "pairs_both_legs_strictly_below_audited_close": 3,
+            "joint_objective_pairs": 3,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 238,
+            "completed_pairs": 57,
+            "raw_completion_rate": "57/238",
+            "pairs_both_legs_strictly_below_audited_close": 23,
+            "joint_objective_pairs": 23,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 238,
+            "completed_pairs": 59,
+            "raw_completion_rate": "59/238",
+            "pairs_both_legs_strictly_below_audited_close": 23,
+            "joint_objective_pairs": 23,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+ge75",
+        "D": 4,
+        "metrics": {
+          "D": 4,
+          "acted_legs": 3,
+          "credited_legs": 3,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "26_50+le25",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 0,
+          "credited_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "51_75+51_75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "51_75+ge75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "51_75+le25",
+        "D": 6,
+        "metrics": {
+          "D": 6,
+          "acted_legs": 6,
+          "credited_legs": 5,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "ge75+le25",
+        "D": 102,
+        "metrics": {
+          "D": 102,
+          "acted_legs": 128,
+          "credited_legs": 111,
+          "completed_pairs": 21,
+          "pairs_under_par": 21,
+          "completed_pairs_with_both_audited_closes": 21,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 7,
+          "joint_objective_pairs": 7,
+          "strict_carried_pairs": 5
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 102,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/102",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 102,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/102",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 102,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/102",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 102,
+            "completed_pairs": 21,
+            "raw_completion_rate": "21/102",
+            "pairs_both_legs_strictly_below_audited_close": 7,
+            "joint_objective_pairs": 7,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 102,
+            "completed_pairs": 21,
+            "raw_completion_rate": "21/102",
+            "pairs_both_legs_strictly_below_audited_close": 7,
+            "joint_objective_pairs": 7,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_CHALL",
+        "starting_price_region": "le25+le25",
+        "D": 15,
+        "metrics": {
+          "D": 15,
+          "acted_legs": 13,
+          "credited_legs": 13,
+          "completed_pairs": 3,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 2,
+          "completed_pairs_close_unavailable": 1,
+          "both_legs_strictly_below_audited_close": 1,
+          "joint_objective_pairs": 1,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 15,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/15",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 15,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/15",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 15,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/15",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 15,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/15",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 15,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/15",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 1
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "26_50+26_50",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "26_50+51_75",
+        "D": 103,
+        "metrics": {
+          "D": 103,
+          "acted_legs": 145,
+          "credited_legs": 136,
+          "completed_pairs": 37,
+          "pairs_under_par": 37,
+          "completed_pairs_with_both_audited_closes": 37,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 4,
+          "joint_objective_pairs": 4,
+          "strict_carried_pairs": 20
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 103,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/103",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 103,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/103",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 103,
+            "completed_pairs": 6,
+            "raw_completion_rate": "6/103",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 103,
+            "completed_pairs": 37,
+            "raw_completion_rate": "37/103",
+            "pairs_both_legs_strictly_below_audited_close": 4,
+            "joint_objective_pairs": 4,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 103,
+            "completed_pairs": 37,
+            "raw_completion_rate": "37/103",
+            "pairs_both_legs_strictly_below_audited_close": 4,
+            "joint_objective_pairs": 4,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "26_50+ge75",
+        "D": 4,
+        "metrics": {
+          "D": 4,
+          "acted_legs": 8,
+          "credited_legs": 8,
+          "completed_pairs": 4,
+          "pairs_under_par": 4,
+          "completed_pairs_with_both_audited_closes": 4,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 2,
+          "joint_objective_pairs": 2,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 4,
+            "raw_completion_rate": "4/4",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 4,
+            "raw_completion_rate": "4/4",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "51_75+51_75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "51_75+le25",
+        "D": 2,
+        "metrics": {
+          "D": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "ge75+ge75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "ge75+le25",
+        "D": 29,
+        "metrics": {
+          "D": 29,
+          "acted_legs": 42,
+          "credited_legs": 38,
+          "completed_pairs": 9,
+          "pairs_under_par": 9,
+          "completed_pairs_with_both_audited_closes": 9,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 3,
+          "joint_objective_pairs": 3,
+          "strict_carried_pairs": 3
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 29,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/29",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 29,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/29",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 29,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/29",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 29,
+            "completed_pairs": 9,
+            "raw_completion_rate": "9/29",
+            "pairs_both_legs_strictly_below_audited_close": 3,
+            "joint_objective_pairs": 3,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 29,
+            "completed_pairs": 9,
+            "raw_completion_rate": "9/29",
+            "pairs_both_legs_strictly_below_audited_close": 3,
+            "joint_objective_pairs": 3,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "starting_price_region": "le25+le25",
+        "D": 6,
+        "metrics": {
+          "D": 6,
+          "acted_legs": 0,
+          "credited_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/6",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "26_50+26_50",
+        "D": 2,
+        "metrics": {
+          "D": 2,
+          "acted_legs": 3,
+          "credited_legs": 3,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 1
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/2",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "26_50+51_75",
+        "D": 88,
+        "metrics": {
+          "D": 88,
+          "acted_legs": 112,
+          "credited_legs": 99,
+          "completed_pairs": 19,
+          "pairs_under_par": 17,
+          "completed_pairs_with_both_audited_closes": 19,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 2,
+          "joint_objective_pairs": 2,
+          "strict_carried_pairs": 11
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 88,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/88",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 88,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/88",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 88,
+            "completed_pairs": 6,
+            "raw_completion_rate": "6/88",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 88,
+            "completed_pairs": 17,
+            "raw_completion_rate": "17/88",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 88,
+            "completed_pairs": 19,
+            "raw_completion_rate": "19/88",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "51_75+le25",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "ge75+le25",
+        "D": 44,
+        "metrics": {
+          "D": 44,
+          "acted_legs": 54,
+          "credited_legs": 48,
+          "completed_pairs": 11,
+          "pairs_under_par": 11,
+          "completed_pairs_with_both_audited_closes": 11,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 1,
+          "joint_objective_pairs": 1,
+          "strict_carried_pairs": 7
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 44,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/44",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 44,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/44",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 44,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/44",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 44,
+            "completed_pairs": 11,
+            "raw_completion_rate": "11/44",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 44,
+            "completed_pairs": 11,
+            "raw_completion_rate": "11/44",
+            "pairs_both_legs_strictly_below_audited_close": 1,
+            "joint_objective_pairs": 1,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "starting_price_region": "le25+le25",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "26_50+51_75",
+        "D": 77,
+        "metrics": {
+          "D": 77,
+          "acted_legs": 101,
+          "credited_legs": 94,
+          "completed_pairs": 25,
+          "pairs_under_par": 23,
+          "completed_pairs_with_both_audited_closes": 25,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 16
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 77,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 77,
+            "completed_pairs": 2,
+            "raw_completion_rate": "2/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 77,
+            "completed_pairs": 3,
+            "raw_completion_rate": "3/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 77,
+            "completed_pairs": 23,
+            "raw_completion_rate": "23/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 77,
+            "completed_pairs": 25,
+            "raw_completion_rate": "25/77",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "26_50+ge75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "26_50+le25",
+        "D": 3,
+        "metrics": {
+          "D": 3,
+          "acted_legs": 3,
+          "credited_legs": 3,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/3",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "51_75+51_75",
+        "D": 1,
+        "metrics": {
+          "D": 1,
+          "acted_legs": 1,
+          "credited_legs": 1,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/1",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "51_75+le25",
+        "D": 4,
+        "metrics": {
+          "D": 4,
+          "acted_legs": 5,
+          "credited_legs": 5,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "completed_pairs_with_both_audited_closes": 1,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "raw_completion_rate": "1/4",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "ge75+le25",
+        "D": 56,
+        "metrics": {
+          "D": 56,
+          "acted_legs": 65,
+          "credited_legs": 61,
+          "completed_pairs": 11,
+          "pairs_under_par": 8,
+          "completed_pairs_with_both_audited_closes": 11,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 2,
+          "joint_objective_pairs": 2,
+          "strict_carried_pairs": 2
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 56,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/56",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 56,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/56",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 56,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/56",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 56,
+            "completed_pairs": 8,
+            "raw_completion_rate": "8/56",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 56,
+            "completed_pairs": 11,
+            "raw_completion_rate": "11/56",
+            "pairs_both_legs_strictly_below_audited_close": 2,
+            "joint_objective_pairs": 2,
+            "close_unavailable_pairs": 0
+          }
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "starting_price_region": "le25+le25",
+        "D": 10,
+        "metrics": {
+          "D": 10,
+          "acted_legs": 0,
+          "credited_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "completed_pairs_with_both_audited_closes": 0,
+          "completed_pairs_close_unavailable": 0,
+          "both_legs_strictly_below_audited_close": 0,
+          "joint_objective_pairs": 0,
+          "strict_carried_pairs": 0
+        },
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "raw_completion_rate": "0/10",
+            "pairs_both_legs_strictly_below_audited_close": 0,
+            "joint_objective_pairs": 0,
+            "close_unavailable_pairs": 0
+          }
+        }
+      }
+    ]
+  },
+  "V23_source_frontier_sha256": "bede77d8092c1d727c36b3c07ceed2efc807a13a03e3cd86f6e0270621acd6e2",
+  "exact_score_identity": true
+}

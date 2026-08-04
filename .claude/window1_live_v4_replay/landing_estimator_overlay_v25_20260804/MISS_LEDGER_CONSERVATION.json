@@ -1,0 +1,11 @@
+{
+  "denominator": 1608,
+  "unique_leg_identities": 1608,
+  "addresses": {
+    "CAPTURED_INCUMBENT_V23": 920,
+    "DIED_INCUMBENT_NO_ACTION": 581,
+    "DIED_INCUMBENT_ACTED_NOT_CREDITED": 107
+  },
+  "sum": 1608,
+  "conserved": true
+}

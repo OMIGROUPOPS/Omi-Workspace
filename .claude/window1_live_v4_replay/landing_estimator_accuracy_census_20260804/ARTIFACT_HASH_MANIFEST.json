@@ -1,0 +1,32 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "8106fd48f34d399e44c5de365932d86ad7e41071623eb97ffc64d1844fff37d8",
+      "bytes": 93
+    },
+    "ESTIMATOR_ACCURACY_CENSUS.json": {
+      "sha256": "c1da66cc3caa4560133258bd1eca48300af0fa51ad5569fe8cd51222031c7e7c",
+      "bytes": 37310
+    },
+    "ESTIMATOR_ACCURACY_LEDGER.jsonl.gz": {
+      "sha256": "702f29e8d360431d991e48c2794ccca6370c59fb3dc593fa856bd490572ca40b",
+      "bytes": 13250
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "eec6b15e9ff0b33aa8ba387f828ed11f9775a9bcc31bf05f3ab641fea0df6060",
+      "bytes": 271
+    },
+    "OVERLAY_CELL_AUTHORITY.json": {
+      "sha256": "bb47b2496e978da402e269c75d8876a33e839b91d71835c0aab969d0dc16af9c",
+      "bytes": 13785
+    },
+    "REPORT.md": {
+      "sha256": "4d967b822c37fc72b4251b3a3d19bdbc4c02948aed4dde93b2c6a4047fe13537",
+      "bytes": 297
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "521625bb36941983614f772de3ccc68efd808552e6695889e7a7755c5eb664c8",
+      "bytes": 865
+    }
+  }
+}

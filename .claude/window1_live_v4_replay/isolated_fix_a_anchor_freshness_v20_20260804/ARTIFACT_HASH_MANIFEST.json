@@ -1,0 +1,52 @@
+{
+  "files": {
+    "CAUSAL_ADDITION_RECEIPT.json": {
+      "sha256": "646166886cd989be86cd7e8199e7dea8df88b4a8483674efe76faa676348dff4",
+      "bytes": 14181
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "e80e4e709cbb778327b1ee13ae3bb2574667666a0f1a121a150521de8a558e71",
+      "bytes": 267
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "a0d1fceaa68a4335fcb523f168f8e0d9adc1de0dbd21ae557d2f767f457fa296",
+      "bytes": 199
+    },
+    "FRONTIER.json": {
+      "sha256": "668bae45a382e5a11bc5122c4476776aac3162b98a1e57bc49e593371eaabb0d",
+      "bytes": 41035
+    },
+    "POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "d2b604c1756502e543bfdd1166496a618439a0ac53c010c8a5da2626ca011cc8",
+      "bytes": 3228976
+    },
+    "POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "0c14003108dc2f9e7b9e162c1bffc2a1b2d069c7941885982a9468ed28dd2fb4",
+      "bytes": 3122608
+    },
+    "RAW_ISOLATED_REPLAY_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "1a7f397d721c520dd8c0d40810519427bcf17bd7a059f22a4faa9a5aad43ee64",
+      "bytes": 1670545
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "621d4ec6a60e7a1c3b13ec92f14113850d3b6bad710a89eb9a97914a8436c4dc",
+      "bytes": 47432
+    },
+    "REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "e72d2bf02a5fa77dce4929029245a8b514ba24a441356533ec34e663e61f3bc7",
+      "bytes": 29535
+    },
+    "REPORT.md": {
+      "sha256": "cfc3a334d77e26c2f991f7eec690eb0d28ef8d33f11e81e24171964249900957",
+      "bytes": 1656
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "26a6f250734d8caaedf8efe0bcdc94ad4bc479644eb84e9568b4d7eb067370bd",
+      "bytes": 1664
+    },
+    "V19_NON_REGRESSION_COMPARISON.json": {
+      "sha256": "9ed463d6298dae5efa202d5c9b7c6d7513bf3d1a81307549a5322d95b1fa3961",
+      "bytes": 50463
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "files": {
+    "REPORT.md": {
+      "sha256": "a52072bb4ad58b2e56eb2512801667afb11a7b17cf68107cc24ae1249e16aa90",
+      "bytes": 458
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "46ce5f4b4be8e697f7874c7a25948e285bd63a965ef92f53d1ceda0a52f5dd27",
+      "bytes": 427
+    },
+    "WTA_MAIN_DEATH_CENSUS.json": {
+      "sha256": "2981428847ba8a909736a44768c14090057a444110ec8a586725f51d578c126c",
+      "bytes": 8539
+    },
+    "WTA_MAIN_EVENT_DEATH_LEDGER.jsonl.gz": {
+      "sha256": "b65efae207d56c07da1df6e8699898fcb34891451763b3bec76e097353515138",
+      "bytes": 4543
+    }
+  }
+}

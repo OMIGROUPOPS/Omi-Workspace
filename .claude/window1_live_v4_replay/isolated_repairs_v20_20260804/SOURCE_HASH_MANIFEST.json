@@ -1,0 +1,40 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/ARTIFACT_HASH_MANIFEST.json": {
+      "sha256": "ca7e926a387996bfd6f7c00df2dedfe2406bc3830917c25f5bbf98795f43c9b2",
+      "bytes": 1792
+    },
+    ".claude/window1_live_v4_replay/isolated_fix_c_shape_settlement_v20_20260804/ARTIFACT_HASH_MANIFEST.json": {
+      "sha256": "4541979385244c6d415d44dc1dd2016c6da7486b579a93c2bf797d21cd515e44",
+      "bytes": 1791
+    },
+    ".claude/window1_live_v4_replay/sibling_source_read_20260804/SIBLING_SOURCE_RECEIPT.json": {
+      "sha256": "fd32b416a360d6c470d3b5924babcb398adec28e6256dee79aa902a43856a807",
+      "bytes": 1320
+    },
+    ".claude/window1_live_v4_replay/wta_main_v19_death_trace_20260804/WTA_MAIN_DEATH_CENSUS.json": {
+      "sha256": "2981428847ba8a909736a44768c14090057a444110ec8a586725f51d578c126c",
+      "bytes": 8539
+    },
+    "arb-executor/analysis/build_window1_isolated_repairs_v20_release.js": {
+      "sha256": "3f643da1588e3b34384b5d3ecf394fb1db4f0f9929da55e011b0a246b87fe26d",
+      "bytes": 7471
+    },
+    "arb-executor/tests/test_window1_isolated_repair_v20_package.js": {
+      "sha256": "4dd0e9d7f7f20e8ee27e0b38cd62f33782406a8f1526c65237ad530e5ca3f05d",
+      "bytes": 3818
+    },
+    "arb-executor/docs/research/window1/WINDOW1_ISOLATED_REPAIRS_V20_VAULT_ADDENDUM.md": {
+      "sha256": "1bdd4ea48ab29eb423df94d42c5a50114829b6aeb4ec3649c11ecbd10d93a0da",
+      "bytes": 2871
+    },
+    "arb-executor/docs/LIVING_VAULT.md": {
+      "sha256": "20a551d8825884c6fbcb4c5b02b5928090c6c05fbf0e225b6a91fadad67d5fa1",
+      "bytes": 436993
+    },
+    ".claude/HANDOFF_FABLE.md": {
+      "sha256": "a7cb827bf2b13112feeba0552142a2fd12abbf3a796446b4dde9b70de489c90a",
+      "bytes": 90247
+    }
+  }
+}

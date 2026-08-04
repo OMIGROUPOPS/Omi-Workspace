@@ -1,6 +1,14 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## WINDOW-1 ISOLATED REPAIRS V20 - 2026-08-04
+
+Fix A and Fix C are separate 804-event V19 overlays and were not stacked. Fix B was not built because the source reads the sibling's own formed book, not a 100-p mirror.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/arb-executor/docs/research/window1/WINDOW1_ISOLATED_REPAIRS_V20_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/refs/heads/codex/window1-live-consolidated/.claude/window1_live_v4_replay/isolated_repairs_v20_20260804/CONTROL_SUMMARY.json
+
 ## WINDOW-1 ANALYSIS RESTORATION — 2026-08-03
 
 V18's category-monolith pair conclusion is retracted. V19 uses exact couples

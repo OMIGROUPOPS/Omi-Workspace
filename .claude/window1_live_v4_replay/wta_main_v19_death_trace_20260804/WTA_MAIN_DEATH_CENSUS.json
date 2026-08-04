@@ -1,0 +1,270 @@
+{
+  "schema_version": "WINDOW1_WTA_MAIN_V19_DEATH_TRACE_20260804",
+  "D": 152,
+  "category": "WTA_MAIN",
+  "death_stages": {
+    "COMPLETION_AT_OR_ABOVE_100": 16,
+    "NO_COMPLETION": 118,
+    "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": 14,
+    "OWN_CLOSE_UNAVAILABLE": 4
+  },
+  "joint_objective_law": "PAIR_STRICTLY_UNDER_PAR_AND_BOTH_LEGS_STRICTLY_BELOW_OWN_W1_CLOSE",
+  "joint_objective_pairs": 0,
+  "conservation": 152,
+  "category_and_starting_price_region": [
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "D": 77,
+      "death_stages": {
+        "COMPLETION_AT_OR_ABOVE_100": 9,
+        "NO_COMPLETION": 52,
+        "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": 12,
+        "OWN_CLOSE_UNAVAILABLE": 4
+      },
+      "event_ids_by_stage": {
+        "COMPLETION_AT_OR_ABOVE_100": [
+          "KXWTAMATCH-26JUL13CRIJEA",
+          "KXWTAMATCH-26JUL13TAUHIB",
+          "KXWTAMATCH-26JUL13ZHEBOU",
+          "KXWTAMATCH-26JUL17TAUBEJ",
+          "KXWTAMATCH-26JUL17UDVBAD",
+          "KXWTAMATCH-26JUL19AVDNIE",
+          "KXWTAMATCH-26JUL19SHEBAD",
+          "KXWTAMATCH-26JUL20KORJIM",
+          "KXWTAMATCH-26JUL20RUZSAL"
+        ],
+        "NO_COMPLETION": [
+          "KXWTAMATCH-26JUL12FETPIE",
+          "KXWTAMATCH-26JUL12GARPRI",
+          "KXWTAMATCH-26JUL12KULZAA",
+          "KXWTAMATCH-26JUL12LEPBUR",
+          "KXWTAMATCH-26JUL12MICKUL",
+          "KXWTAMATCH-26JUL13AMAHER",
+          "KXWTAMATCH-26JUL13BADKAL",
+          "KXWTAMATCH-26JUL13BURLEP",
+          "KXWTAMATCH-26JUL13BURPUT",
+          "KXWTAMATCH-26JUL13CHAJIM",
+          "KXWTAMATCH-26JUL13KAWWAL",
+          "KXWTAMATCH-26JUL13LEPIBR",
+          "KXWTAMATCH-26JUL13QUERUS",
+          "KXWTAMATCH-26JUL13SHEGAL",
+          "KXWTAMATCH-26JUL13TIMANN",
+          "KXWTAMATCH-26JUL14PUTLIU",
+          "KXWTAMATCH-26JUL14SALIBR",
+          "KXWTAMATCH-26JUL14UDVROM",
+          "KXWTAMATCH-26JUL15AVAMAR",
+          "KXWTAMATCH-26JUL15BONZID",
+          "KXWTAMATCH-26JUL15BURJAC",
+          "KXWTAMATCH-26JUL15HONPAR",
+          "KXWTAMATCH-26JUL15PUTCHA",
+          "KXWTAMATCH-26JUL15SHEQUE",
+          "KXWTAMATCH-26JUL15TAGBEJ",
+          "KXWTAMATCH-26JUL16KORANN",
+          "KXWTAMATCH-26JUL16VALSAS",
+          "KXWTAMATCH-26JUL17KREZHE",
+          "KXWTAMATCH-26JUL17OLIBUR",
+          "KXWTAMATCH-26JUL17VALKOR",
+          "KXWTAMATCH-26JUL17ZIDMAR",
+          "KXWTAMATCH-26JUL18BANGAO",
+          "KXWTAMATCH-26JUL18COSHIB",
+          "KXWTAMATCH-26JUL18ITOKNU",
+          "KXWTAMATCH-26JUL18SAKKOR",
+          "KXWTAMATCH-26JUL18TAUKRE",
+          "KXWTAMATCH-26JUL19COSAKS",
+          "KXWTAMATCH-26JUL19GAOFRU",
+          "KXWTAMATCH-26JUL19KRESAK",
+          "KXWTAMATCH-26JUL20BARYUA",
+          "KXWTAMATCH-26JUL20BONUCH",
+          "KXWTAMATCH-26JUL20BOUBOU2",
+          "KXWTAMATCH-26JUL20LEPAVA",
+          "KXWTAMATCH-26JUL20LYSVAL",
+          "KXWTAMATCH-26JUL20NIEMAL",
+          "KXWTAMATCH-26JUL20OLISCH",
+          "KXWTAMATCH-26JUL20PARHAV",
+          "KXWTAMATCH-26JUL20PARHON",
+          "KXWTAMATCH-26JUL20PODLEE",
+          "KXWTAMATCH-26JUL20QUEKAL",
+          "KXWTAMATCH-26JUL20RUSPAQ",
+          "KXWTAMATCH-26JUL20VEDBAR"
+        ],
+        "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": [
+          "KXWTAMATCH-26JUL13ARAZID",
+          "KXWTAMATCH-26JUL13BONSOR",
+          "KXWTAMATCH-26JUL13MATMIC",
+          "KXWTAMATCH-26JUL14AVAUCH",
+          "KXWTAMATCH-26JUL15OLIPRI",
+          "KXWTAMATCH-26JUL18MASRYS",
+          "KXWTAMATCH-26JUL18MORAKS",
+          "KXWTAMATCH-26JUL20BLIBEJ",
+          "KXWTAMATCH-26JUL20OKTDOD",
+          "KXWTAMATCH-26JUL20SAMJOI",
+          "KXWTAMATCH-26JUL20SEMKRA",
+          "KXWTAMATCH-26JUL20SORCHA"
+        ],
+        "OWN_CLOSE_UNAVAILABLE": [
+          "KXWTAMATCH-26JUL16UDVKAW",
+          "KXWTAMATCH-26JUL17PUTSHE",
+          "KXWTAMATCH-26JUL18SHEOLI",
+          "KXWTAMATCH-26JUL20AKSCOS"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "D": 1,
+      "death_stages": {
+        "COMPLETION_AT_OR_ABOVE_100": 1
+      },
+      "event_ids_by_stage": {
+        "COMPLETION_AT_OR_ABOVE_100": [
+          "KXWTAMATCH-26JUL18MICFRU"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+le25",
+      "D": 3,
+      "death_stages": {
+        "NO_COMPLETION": 2,
+        "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": 1
+      },
+      "event_ids_by_stage": {
+        "NO_COMPLETION": [
+          "KXWTAMATCH-26JUL18PALHON",
+          "KXWTAMATCH-26JUL20TIMSAS"
+        ],
+        "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": [
+          "KXWTAMATCH-26JUL13BLISAS"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "D": 1,
+      "death_stages": {
+        "NO_COMPLETION": 1
+      },
+      "event_ids_by_stage": {
+        "NO_COMPLETION": [
+          "KXWTAMATCH-26JUL12HERKAZ"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+le25",
+      "D": 4,
+      "death_stages": {
+        "NO_COMPLETION": 4
+      },
+      "event_ids_by_stage": {
+        "NO_COMPLETION": [
+          "KXWTAMATCH-26JUL13SAKTON",
+          "KXWTAMATCH-26JUL19RUSKAZ",
+          "KXWTAMATCH-26JUL20GAOTAG",
+          "KXWTAMATCH-26JUL20ROMERJ"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "ge75+le25",
+      "D": 56,
+      "death_stages": {
+        "COMPLETION_AT_OR_ABOVE_100": 6,
+        "NO_COMPLETION": 49,
+        "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": 1
+      },
+      "event_ids_by_stage": {
+        "COMPLETION_AT_OR_ABOVE_100": [
+          "KXWTAMATCH-26JUL12LIUPOP",
+          "KXWTAMATCH-26JUL12WERAMA",
+          "KXWTAMATCH-26JUL13KUDSAK",
+          "KXWTAMATCH-26JUL15DARSAK",
+          "KXWTAMATCH-26JUL19EIGCAR",
+          "KXWTAMATCH-26JUL20STENOH"
+        ],
+        "NO_COMPLETION": [
+          "KXWTAMATCH-26JUL12AVASEI",
+          "KXWTAMATCH-26JUL12HIBTON",
+          "KXWTAMATCH-26JUL12HODYAS",
+          "KXWTAMATCH-26JUL12ITOMAN",
+          "KXWTAMATCH-26JUL12KOZIBR",
+          "KXWTAMATCH-26JUL12MORNEP",
+          "KXWTAMATCH-26JUL12OKAIPE",
+          "KXWTAMATCH-26JUL12PRIION",
+          "KXWTAMATCH-26JUL12ROMTOD",
+          "KXWTAMATCH-26JUL12TAGSIE",
+          "KXWTAMATCH-26JUL13ARGTAG",
+          "KXWTAMATCH-26JUL13AVAFET",
+          "KXWTAMATCH-26JUL13GRAPAR",
+          "KXWTAMATCH-26JUL13HODDAR",
+          "KXWTAMATCH-26JUL13ITOKOR",
+          "KXWTAMATCH-26JUL13KRETOM",
+          "KXWTAMATCH-26JUL13LINHON",
+          "KXWTAMATCH-26JUL13LIUIPE",
+          "KXWTAMATCH-26JUL13MONMAS",
+          "KXWTAMATCH-26JUL13MORBEJ",
+          "KXWTAMATCH-26JUL13PODMAR",
+          "KXWTAMATCH-26JUL13PRIGAR",
+          "KXWTAMATCH-26JUL13ROMKUL",
+          "KXWTAMATCH-26JUL13VALCOS",
+          "KXWTAMATCH-26JUL14AMAJAC",
+          "KXWTAMATCH-26JUL14BULPRI",
+          "KXWTAMATCH-26JUL14OLIIPE",
+          "KXWTAMATCH-26JUL15IBRBAD",
+          "KXWTAMATCH-26JUL15KREMON",
+          "KXWTAMATCH-26JUL15MICZHE",
+          "KXWTAMATCH-26JUL16TAUTON",
+          "KXWTAMATCH-26JUL17PARSAK",
+          "KXWTAMATCH-26JUL18BADZID",
+          "KXWTAMATCH-26JUL18BERSAI",
+          "KXWTAMATCH-26JUL18HONTHA",
+          "KXWTAMATCH-26JUL18OKALEE",
+          "KXWTAMATCH-26JUL18PODKRE",
+          "KXWTAMATCH-26JUL18SALZOL",
+          "KXWTAMATCH-26JUL19MONPIE",
+          "KXWTAMATCH-26JUL19PODSAI",
+          "KXWTAMATCH-26JUL19PRIMAR",
+          "KXWTAMATCH-26JUL19STRPAQ",
+          "KXWTAMATCH-26JUL19VEDGAR",
+          "KXWTAMATCH-26JUL19YASBAR",
+          "KXWTAMATCH-26JUL20FRUKRE",
+          "KXWTAMATCH-26JUL20PIECAR",
+          "KXWTAMATCH-26JUL20PODSTU",
+          "KXWTAMATCH-26JUL20PRIBRA",
+          "KXWTAMATCH-26JUL20SEISNI"
+        ],
+        "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": [
+          "KXWTAMATCH-26JUL20KOVTAR"
+        ]
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "le25+le25",
+      "D": 10,
+      "death_stages": {
+        "NO_COMPLETION": 10
+      },
+      "event_ids_by_stage": {
+        "NO_COMPLETION": [
+          "KXWTAMATCH-26JUL13TAUTOM",
+          "KXWTAMATCH-26JUL14PUTJEA",
+          "KXWTAMATCH-26JUL19BRAVON",
+          "KXWTAMATCH-26JUL19HONLEE",
+          "KXWTAMATCH-26JUL19JAKAVA",
+          "KXWTAMATCH-26JUL19LEPPET",
+          "KXWTAMATCH-26JUL19MALZAA",
+          "KXWTAMATCH-26JUL19RYSHON",
+          "KXWTAMATCH-26JUL19SALKNU",
+          "KXWTAMATCH-26JUL20KUDKOR"
+        ]
+      }
+    }
+  ]
+}

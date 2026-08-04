@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "test_files_run": 9,
+  "failed": 0,
+  "files": [
+    "arb-executor/tests/test_window1_isolated_repair_predicates_v20.js",
+    "arb-executor/tests/test_window1_isolated_repair_v20_package.js",
+    "arb-executor/tests/test_window1_pair_couple_elimination_v19.js",
+    "arb-executor/tests/test_window1_pair_couple_v19_package.js",
+    "arb-executor/tests/test_window1_pair_interim_elimination_v18.js",
+    "arb-executor/tests/test_window1_interim_elimination_v13.js",
+    "arb-executor/tests/test_window1_interim_micro_repair_v14.js",
+    "arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js",
+    "arb-executor/tests/test_window1_quote_shape_pair_wiring_v3.js"
+  ],
+  "direct_assertions_in_new_files": 17,
+  "scorer_variants_executed": [
+    "FIX_A",
+    "FIX_C"
+  ],
+  "variants_stacked": false
+}

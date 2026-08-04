@@ -1,0 +1,26 @@
+{
+  "schema_version": "WINDOW1_INVERSE_SIBLING_SOURCE_READ_20260804",
+  "claim_tested": "INVERSE_SIBLING_UNRESOLVED prices the sibling from this leg's own 100-p mirror",
+  "conclusion": "FALSE; THEORY_DIES; NO_FIX_B_BUILT",
+  "actual_source": "THE_SIBLING_TICKER'S_OWN_CHRONOLOGICAL_FORMED_BOOK_ASK_PATH",
+  "evidence": [
+    {
+      "path": "arb-executor/analysis/window1_quote_shape_micro_position_v2.js",
+      "sha256": "0d56dc04f5d0b17308b30c44477c52ced66419fa1f3a94541fe960faff040ce2",
+      "lines": "8-12,18-33",
+      "proof": "directionObserved reads leg.last.prefix.ask_net. evaluateMicroPositionEvidence requires sibling.independent_direction and calls directionObserved(sibling, sibling.independent_direction)."
+    },
+    {
+      "path": "arb-executor/analysis/window1_quote_shape_pair_wiring_v3.js",
+      "sha256": "bad99cd3d1d8706c64a6b00067a888a80ce34406a5e179583715deff410d2bb7",
+      "lines": "42-53",
+      "proof": "evaluatePairWiringEvidence receives the sibling object, requires its surviving path, then calls ownMicroObserved(sibling, dwellSeconds) over the sibling's own book-derived state."
+    }
+  ],
+  "mirror_expression_found": false,
+  "mirror_expression_census": {
+    "100_minus_p_in_either_predicate_source": 0
+  },
+  "behavior_change": false,
+  "fix_b_candidate_constructed": false
+}

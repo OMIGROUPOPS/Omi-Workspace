@@ -1,0 +1,1723 @@
+{
+  "law": "REGRET = CREDITED FILL - ACHIEVABLE PRINT-BACKED FLOOR",
+  "denominator_legs": 1608,
+  "numeric_completed_regret": {
+    "denominator": 1608,
+    "numeric_n": 744,
+    "null_n": 864,
+    "min": -2,
+    "p25": 0,
+    "median": 1,
+    "p75": 2,
+    "p90": 3,
+    "max": 14,
+    "total_numeric_cents": 1012
+  },
+  "never_placed_full_regret_n": 735,
+  "category_price_region_loss_buckets": [
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 9,
+      "regret_distribution": {
+        "denominator": 9,
+        "numeric_n": 9,
+        "null_n": 0,
+        "min": -2,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -11
+      },
+      "loss_attribution": {
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 5,
+        "FROZEN_V11_BASE": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 11,
+      "regret_distribution": {
+        "denominator": 11,
+        "numeric_n": 11,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 5,
+        "p75": 6,
+        "p90": 8,
+        "max": 9,
+        "total_numeric_cents": 63
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 8,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 2,
+        "FIX_C_ISOLATED_ADDITION_TO_FROZEN_V19_NON_ACTION": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 88,
+      "regret_distribution": {
+        "denominator": 88,
+        "numeric_n": 0,
+        "null_n": 88,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 26,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 25,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 12,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 10,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 8,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 7
+      },
+      "never_placed_full_regret_n": 88
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 96,
+      "regret_distribution": {
+        "denominator": 96,
+        "numeric_n": 80,
+        "null_n": 16,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total_numeric_cents": 126
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 62,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 33,
+        "FIX_C_ISOLATED_ADDITION_TO_FROZEN_V19_NON_ACTION": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "ZERO",
+      "n": 57,
+      "regret_distribution": {
+        "denominator": 57,
+        "numeric_n": 57,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 31,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 26
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 5,
+      "regret_distribution": {
+        "denominator": 5,
+        "numeric_n": 5,
+        "null_n": 0,
+        "min": -2,
+        "p25": -2,
+        "median": -2,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -8
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 3,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 10,
+      "regret_distribution": {
+        "denominator": 10,
+        "numeric_n": 10,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 5,
+        "p75": 6,
+        "p90": 8,
+        "max": 9,
+        "total_numeric_cents": 56
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 10
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 79,
+      "regret_distribution": {
+        "denominator": 79,
+        "numeric_n": 0,
+        "null_n": 79,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 41,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 18,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 9,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 6,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 1
+      },
+      "never_placed_full_regret_n": 79
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 99,
+      "regret_distribution": {
+        "denominator": 99,
+        "numeric_n": 83,
+        "null_n": 16,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 3,
+        "total_numeric_cents": 133
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 68,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 30,
+        "FIX_C_ISOLATED_ADDITION_TO_FROZEN_V19_NON_ACTION": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "ZERO",
+      "n": 59,
+      "regret_distribution": {
+        "denominator": 59,
+        "numeric_n": 59,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 31,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 28
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 2,
+      "regret_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -2
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 2,
+      "regret_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 7,
+        "total_numeric_cents": 11
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 69,
+      "regret_distribution": {
+        "denominator": 69,
+        "numeric_n": 0,
+        "null_n": 69,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 35,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 11,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 8,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 6,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 6,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3
+      },
+      "never_placed_full_regret_n": 69
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 16,
+      "regret_distribution": {
+        "denominator": 16,
+        "numeric_n": 13,
+        "null_n": 3,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total_numeric_cents": 20
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 16
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "TEN_OR_MORE",
+      "n": 2,
+      "regret_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 11,
+        "p25": 11,
+        "median": 11,
+        "p75": 11,
+        "p90": 11,
+        "max": 12,
+        "total_numeric_cents": 23
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "ZERO",
+      "n": 10,
+      "regret_distribution": {
+        "denominator": 10,
+        "numeric_n": 10,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 10
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -1
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 3,
+      "regret_distribution": {
+        "denominator": 3,
+        "numeric_n": 3,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4,
+        "total_numeric_cents": 12
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 3
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 63,
+      "regret_distribution": {
+        "denominator": 63,
+        "numeric_n": 0,
+        "null_n": 63,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 21,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 16,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 15,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 5,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 4,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2
+      },
+      "never_placed_full_regret_n": 63
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 37,
+      "regret_distribution": {
+        "denominator": 37,
+        "numeric_n": 33,
+        "null_n": 4,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "total_numeric_cents": 42
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 31,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 5,
+        "FIX_C_ISOLATED_ADDITION_TO_FROZEN_V19_NON_ACTION": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "ZERO",
+      "n": 20,
+      "regret_distribution": {
+        "denominator": 20,
+        "numeric_n": 20,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 16,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 2,
+      "regret_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -2
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 15,
+      "regret_distribution": {
+        "denominator": 15,
+        "numeric_n": 15,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 5,
+        "p75": 6,
+        "p90": 6,
+        "max": 9,
+        "total_numeric_cents": 81
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 15
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 56,
+      "regret_distribution": {
+        "denominator": 56,
+        "numeric_n": 0,
+        "null_n": 56,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 18,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 13,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 12,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 9,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 3,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 1
+      },
+      "never_placed_full_regret_n": 56
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 34,
+      "regret_distribution": {
+        "denominator": 34,
+        "numeric_n": 28,
+        "null_n": 6,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 3,
+        "total_numeric_cents": 44
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 34
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "ZERO",
+      "n": 3,
+      "regret_distribution": {
+        "denominator": 3,
+        "numeric_n": 3,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 3
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 8,
+      "regret_distribution": {
+        "denominator": 8,
+        "numeric_n": 8,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 5,
+        "p75": 7,
+        "p90": 8,
+        "max": 8,
+        "total_numeric_cents": 46
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 8
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 64,
+      "regret_distribution": {
+        "denominator": 64,
+        "numeric_n": 0,
+        "null_n": 64,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 20,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 14,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 13,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 8,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 8,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 1
+      },
+      "never_placed_full_regret_n": 64
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 32,
+      "regret_distribution": {
+        "denominator": 32,
+        "numeric_n": 22,
+        "null_n": 10,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 3,
+        "max": 3,
+        "total_numeric_cents": 43
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 32
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "TEN_OR_MORE",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 14,
+        "p25": 14,
+        "median": 14,
+        "p75": 14,
+        "p90": 14,
+        "max": 14,
+        "total_numeric_cents": 14
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "ZERO",
+      "n": 6,
+      "regret_distribution": {
+        "denominator": 6,
+        "numeric_n": 6,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 6
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 4,
+      "regret_distribution": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 5,
+        "p90": 5,
+        "max": 6,
+        "total_numeric_cents": 19
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 9,
+      "regret_distribution": {
+        "denominator": 9,
+        "numeric_n": 0,
+        "null_n": 9,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 4,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1
+      },
+      "never_placed_full_regret_n": 9
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 10,
+      "regret_distribution": {
+        "denominator": 10,
+        "numeric_n": 9,
+        "null_n": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 2,
+        "total_numeric_cents": 10
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 10
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "ZERO",
+      "n": 4,
+      "regret_distribution": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 4,
+      "regret_distribution": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 5,
+        "p75": 5,
+        "p90": 5,
+        "max": 6,
+        "total_numeric_cents": 20
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 29,
+      "regret_distribution": {
+        "denominator": 29,
+        "numeric_n": 0,
+        "null_n": 29,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 12,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 9,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 3,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 1
+      },
+      "never_placed_full_regret_n": 29
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 10,
+      "regret_distribution": {
+        "denominator": 10,
+        "numeric_n": 8,
+        "null_n": 2,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "total_numeric_cents": 10
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 10
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "ZERO",
+      "n": 3,
+      "regret_distribution": {
+        "denominator": 3,
+        "numeric_n": 3,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 3
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 2,
+      "regret_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -2
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4,
+        "total_numeric_cents": 4
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 36,
+      "regret_distribution": {
+        "denominator": 36,
+        "numeric_n": 0,
+        "null_n": 36,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 13,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 8,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 5,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 4,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 2,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 1
+      },
+      "never_placed_full_regret_n": 36
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 41,
+      "regret_distribution": {
+        "denominator": 41,
+        "numeric_n": 17,
+        "null_n": 24,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total_numeric_cents": 24
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 41
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "loss_bucket": "ZERO",
+      "n": 16,
+      "regret_distribution": {
+        "denominator": 16,
+        "numeric_n": 16,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 16
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 2,
+      "regret_distribution": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -2
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 5,
+        "p25": 5,
+        "median": 5,
+        "p75": 5,
+        "p90": 5,
+        "max": 5,
+        "total_numeric_cents": 5
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 52,
+      "regret_distribution": {
+        "denominator": 52,
+        "numeric_n": 0,
+        "null_n": 52,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 18,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 12,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 10,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 4,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 3,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3,
+        "NEVER_PLACED:OBSERVED_DESCENT_OUTSIDE_SURVIVING_SHAPE_TRAINING_SUPPORT": 2
+      },
+      "never_placed_full_regret_n": 52
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 21,
+      "regret_distribution": {
+        "denominator": 21,
+        "numeric_n": 9,
+        "null_n": 12,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 2,
+        "total_numeric_cents": 11
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 21
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "loss_bucket": "ZERO",
+      "n": 11,
+      "regret_distribution": {
+        "denominator": 11,
+        "numeric_n": 11,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 11
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 27,
+      "regret_distribution": {
+        "denominator": 27,
+        "numeric_n": 0,
+        "null_n": 27,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 8,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 7,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 6,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 2,
+        "NEVER_PLACED:FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT": 1
+      },
+      "never_placed_full_regret_n": 27
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 13,
+      "regret_distribution": {
+        "denominator": 13,
+        "numeric_n": 5,
+        "null_n": 8,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "total_numeric_cents": 8
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 13
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "loss_bucket": "ZERO",
+      "n": 4,
+      "regret_distribution": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "BETTER_THAN_PRINT_FLOOR",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": -1,
+        "total_numeric_cents": -1
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 18,
+      "regret_distribution": {
+        "denominator": 18,
+        "numeric_n": 0,
+        "null_n": 18,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 6,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 5,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 4,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3
+      },
+      "never_placed_full_regret_n": 18
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 19,
+      "regret_distribution": {
+        "denominator": 19,
+        "numeric_n": 7,
+        "null_n": 12,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "total_numeric_cents": 7
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 19
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "loss_bucket": "ZERO",
+      "n": 7,
+      "regret_distribution": {
+        "denominator": 7,
+        "numeric_n": 7,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 7
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 5,
+      "regret_distribution": {
+        "denominator": 5,
+        "numeric_n": 5,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 5,
+        "p75": 6,
+        "p90": 6,
+        "max": 6,
+        "total_numeric_cents": 25
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 5
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 20,
+      "regret_distribution": {
+        "denominator": 20,
+        "numeric_n": 0,
+        "null_n": 20,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 8,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 6,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 2,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+      },
+      "never_placed_full_regret_n": 20
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 47,
+      "regret_distribution": {
+        "denominator": 47,
+        "numeric_n": 39,
+        "null_n": 8,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 3,
+        "total_numeric_cents": 61
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 32,
+        "FIX_C_ISOLATED_ADDITION_TO_FROZEN_V19_NON_ACTION": 15
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "TEN_OR_MORE",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 10,
+        "p25": 10,
+        "median": 10,
+        "p75": 10,
+        "p90": 10,
+        "max": 10,
+        "total_numeric_cents": 10
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "loss_bucket": "ZERO",
+      "n": 13,
+      "regret_distribution": {
+        "denominator": 13,
+        "numeric_n": 13,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 9,
+        "FIX_C_ISOLATED_ADDITION_TO_FROZEN_V19_NON_ACTION": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 5,
+        "p25": 5,
+        "median": 5,
+        "p75": 5,
+        "p90": 5,
+        "max": 5,
+        "total_numeric_cents": 5
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 41,
+      "regret_distribution": {
+        "denominator": 41,
+        "numeric_n": 0,
+        "null_n": 41,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 23,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 10,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 2,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 2,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 2,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 2
+      },
+      "never_placed_full_regret_n": 41
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 32,
+      "regret_distribution": {
+        "denominator": 32,
+        "numeric_n": 25,
+        "null_n": 7,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total_numeric_cents": 37
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 32
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "loss_bucket": "ZERO",
+      "n": 13,
+      "regret_distribution": {
+        "denominator": 13,
+        "numeric_n": 13,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 13
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 1,
+      "regret_distribution": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 6,
+        "p25": 6,
+        "median": 6,
+        "p75": 6,
+        "p90": 6,
+        "max": 6,
+        "total_numeric_cents": 6
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 1
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 32,
+      "regret_distribution": {
+        "denominator": 32,
+        "numeric_n": 0,
+        "null_n": 32,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 12,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 7,
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 4,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 4,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 1
+      },
+      "never_placed_full_regret_n": 32
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 12,
+      "regret_distribution": {
+        "denominator": 12,
+        "numeric_n": 12,
+        "null_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 2,
+        "max": 3,
+        "total_numeric_cents": 16
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 12
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "loss_bucket": "ZERO",
+      "n": 7,
+      "regret_distribution": {
+        "denominator": 7,
+        "numeric_n": 7,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 7
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "FOUR_TO_NINE",
+      "n": 4,
+      "regret_distribution": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 4,
+        "p25": 4,
+        "median": 5,
+        "p75": 5,
+        "p90": 5,
+        "max": 6,
+        "total_numeric_cents": 20
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 4
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "NEVER_PLACED_FULL_REGRET",
+      "n": 52,
+      "regret_distribution": {
+        "denominator": 52,
+        "numeric_n": 0,
+        "null_n": 52,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "NEVER_PLACED:SOURCE_UNAVAILABLE": 22,
+        "NEVER_PLACED:ALL_SURVIVING_SHAPES_SAY_LOWER": 10,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW": 7,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT": 6,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED": 3,
+        "NEVER_PLACED:SURVIVING_SHAPES_DISAGREE_OR_LIBRARY_GAP": 3,
+        "NEVER_PLACED:FLOOR_CONSENSUS_BUT_MICRO_MICRO_NOT_READY": 1
+      },
+      "never_placed_full_regret_n": 52
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "ONE_TO_THREE",
+      "n": 20,
+      "regret_distribution": {
+        "denominator": 20,
+        "numeric_n": 20,
+        "null_n": 0,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total_numeric_cents": 29
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 18,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 2
+      },
+      "never_placed_full_regret_n": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "loss_bucket": "ZERO",
+      "n": 3,
+      "regret_distribution": {
+        "denominator": 3,
+        "numeric_n": 3,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total_numeric_cents": 0
+      },
+      "loss_attribution": {
+        "FROZEN_V11_BASE": 2,
+        "PAIR_COUPLE_V19_ADDITION_TO_V11_NON_ACTION": 1
+      },
+      "never_placed_full_regret_n": 0
+    }
+  ]
+}

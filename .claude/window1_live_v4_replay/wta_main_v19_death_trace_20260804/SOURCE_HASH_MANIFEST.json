@@ -1,0 +1,12 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/pair_couple_abstention_v19_20260803/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "ccda9bcd4c63c2d2f0cbc5c9eb939e4be3d3e568009bbe8840ab07f129e327cc",
+      "bytes": 2825122
+    },
+    "arb-executor/analysis/build_window1_wta_main_v19_death_trace.js": {
+      "sha256": "28e72972ea57f2f0d92576797221109c6d1bb8e3b08fdc9594a85c9658a09712",
+      "bytes": 5255
+    }
+  }
+}

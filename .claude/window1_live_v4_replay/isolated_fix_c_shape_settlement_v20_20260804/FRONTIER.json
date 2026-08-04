@@ -1,0 +1,1411 @@
+{
+  "fixed_denominator": 804,
+  "JOINT_law": "PAIR_STRICTLY_UNDER_PAR_AND_BOTH_LEGS_STRICTLY_BELOW_OWN_W1_CLOSE",
+  "tiers": {
+    "LE_93": {
+      "denominator": 804,
+      "completed_pairs": 9,
+      "raw_rate": "9/804",
+      "pairs_both_legs_strictly_below_close": 0,
+      "joint_objective_pairs": 0
+    },
+    "LE_95": {
+      "denominator": 804,
+      "completed_pairs": 15,
+      "raw_rate": "15/804",
+      "pairs_both_legs_strictly_below_close": 0,
+      "joint_objective_pairs": 0
+    },
+    "LE_97": {
+      "denominator": 804,
+      "completed_pairs": 34,
+      "raw_rate": "34/804",
+      "pairs_both_legs_strictly_below_close": 1,
+      "joint_objective_pairs": 1
+    },
+    "LT_100": {
+      "denominator": 804,
+      "completed_pairs": 105,
+      "raw_rate": "105/804",
+      "pairs_both_legs_strictly_below_close": 19,
+      "joint_objective_pairs": 19
+    },
+    "ANY_PRICE": {
+      "denominator": 804,
+      "completed_pairs": 266,
+      "raw_rate": "266/804",
+      "pairs_both_legs_strictly_below_close": 34,
+      "joint_objective_pairs": 19
+    },
+    "any_price_reference_ceiling": {
+      "denominator": 804,
+      "count": 516,
+      "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+    }
+  },
+  "category_and_starting_price_region": [
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "D": 238,
+      "frontier": {
+        "LE_93": {
+          "denominator": 238,
+          "completed_pairs": 3,
+          "raw_rate": "3/238",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 238,
+          "completed_pairs": 4,
+          "raw_rate": "4/238",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 238,
+          "completed_pairs": 11,
+          "raw_rate": "11/238",
+          "pairs_both_legs_strictly_below_close": 1,
+          "joint_objective_pairs": 1
+        },
+        "LT_100": {
+          "denominator": 238,
+          "completed_pairs": 38,
+          "raw_rate": "38/238",
+          "pairs_both_legs_strictly_below_close": 12,
+          "joint_objective_pairs": 12
+        },
+        "ANY_PRICE": {
+          "denominator": 238,
+          "completed_pairs": 112,
+          "raw_rate": "112/238",
+          "pairs_both_legs_strictly_below_close": 24,
+          "joint_objective_pairs": 12
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 238,
+          "count": 167,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+ge75",
+      "D": 4,
+      "frontier": {
+        "LE_93": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 4,
+          "count": 3,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "26_50+le25",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+51_75",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 1,
+          "raw_rate": "1/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 1,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+ge75",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 1,
+          "raw_rate": "1/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "51_75+le25",
+      "D": 6,
+      "frontier": {
+        "LE_93": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 6,
+          "completed_pairs": 2,
+          "raw_rate": "2/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 6,
+          "count": 1,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "ge75+le25",
+      "D": 102,
+      "frontier": {
+        "LE_93": {
+          "denominator": 102,
+          "completed_pairs": 2,
+          "raw_rate": "2/102",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 102,
+          "completed_pairs": 2,
+          "raw_rate": "2/102",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 102,
+          "completed_pairs": 3,
+          "raw_rate": "3/102",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 102,
+          "completed_pairs": 12,
+          "raw_rate": "12/102",
+          "pairs_both_legs_strictly_below_close": 3,
+          "joint_objective_pairs": 3
+        },
+        "ANY_PRICE": {
+          "denominator": 102,
+          "completed_pairs": 16,
+          "raw_rate": "16/102",
+          "pairs_both_legs_strictly_below_close": 5,
+          "joint_objective_pairs": 3
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 102,
+          "count": 75,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_CHALL",
+      "starting_price_region": "le25+le25",
+      "D": 15,
+      "frontier": {
+        "LE_93": {
+          "denominator": 15,
+          "completed_pairs": 0,
+          "raw_rate": "0/15",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 15,
+          "completed_pairs": 0,
+          "raw_rate": "0/15",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 15,
+          "completed_pairs": 0,
+          "raw_rate": "0/15",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 15,
+          "completed_pairs": 0,
+          "raw_rate": "0/15",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 15,
+          "completed_pairs": 1,
+          "raw_rate": "1/15",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 15,
+          "count": 9,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+26_50",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 1,
+          "raw_rate": "1/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 1,
+          "raw_rate": "1/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 1,
+          "raw_rate": "1/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 1,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "D": 103,
+      "frontier": {
+        "LE_93": {
+          "denominator": 103,
+          "completed_pairs": 1,
+          "raw_rate": "1/103",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 103,
+          "completed_pairs": 3,
+          "raw_rate": "3/103",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 103,
+          "completed_pairs": 6,
+          "raw_rate": "6/103",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 103,
+          "completed_pairs": 13,
+          "raw_rate": "13/103",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 103,
+          "completed_pairs": 23,
+          "raw_rate": "23/103",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 103,
+          "count": 77,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "D": 4,
+      "frontier": {
+        "LE_93": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 4,
+          "completed_pairs": 2,
+          "raw_rate": "2/4",
+          "pairs_both_legs_strictly_below_close": 2,
+          "joint_objective_pairs": 2
+        },
+        "ANY_PRICE": {
+          "denominator": 4,
+          "completed_pairs": 2,
+          "raw_rate": "2/4",
+          "pairs_both_legs_strictly_below_close": 2,
+          "joint_objective_pairs": 2
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 4,
+          "count": 4,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 1,
+          "raw_rate": "1/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 1,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "51_75+le25",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 2,
+          "completed_pairs": 1,
+          "raw_rate": "1/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 2,
+          "count": 2,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+ge75",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "ge75+le25",
+      "D": 29,
+      "frontier": {
+        "LE_93": {
+          "denominator": 29,
+          "completed_pairs": 1,
+          "raw_rate": "1/29",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 29,
+          "completed_pairs": 1,
+          "raw_rate": "1/29",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 29,
+          "completed_pairs": 1,
+          "raw_rate": "1/29",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 29,
+          "completed_pairs": 5,
+          "raw_rate": "5/29",
+          "pairs_both_legs_strictly_below_close": 1,
+          "joint_objective_pairs": 1
+        },
+        "ANY_PRICE": {
+          "denominator": 29,
+          "completed_pairs": 13,
+          "raw_rate": "13/29",
+          "pairs_both_legs_strictly_below_close": 1,
+          "joint_objective_pairs": 1
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 29,
+          "count": 22,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "starting_price_region": "le25+le25",
+      "D": 6,
+      "frontier": {
+        "LE_93": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 6,
+          "completed_pairs": 0,
+          "raw_rate": "0/6",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 6,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+26_50",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 2,
+          "completed_pairs": 0,
+          "raw_rate": "0/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 2,
+          "completed_pairs": 1,
+          "raw_rate": "1/2",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 2,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "26_50+51_75",
+      "D": 88,
+      "frontier": {
+        "LE_93": {
+          "denominator": 88,
+          "completed_pairs": 0,
+          "raw_rate": "0/88",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 88,
+          "completed_pairs": 1,
+          "raw_rate": "1/88",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 88,
+          "completed_pairs": 6,
+          "raw_rate": "6/88",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 88,
+          "completed_pairs": 10,
+          "raw_rate": "10/88",
+          "pairs_both_legs_strictly_below_close": 1,
+          "joint_objective_pairs": 1
+        },
+        "ANY_PRICE": {
+          "denominator": 88,
+          "completed_pairs": 30,
+          "raw_rate": "30/88",
+          "pairs_both_legs_strictly_below_close": 2,
+          "joint_objective_pairs": 1
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 88,
+          "count": 40,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "51_75+le25",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "ge75+le25",
+      "D": 44,
+      "frontier": {
+        "LE_93": {
+          "denominator": 44,
+          "completed_pairs": 1,
+          "raw_rate": "1/44",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 44,
+          "completed_pairs": 2,
+          "raw_rate": "2/44",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 44,
+          "completed_pairs": 3,
+          "raw_rate": "3/44",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 44,
+          "completed_pairs": 4,
+          "raw_rate": "4/44",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 44,
+          "completed_pairs": 14,
+          "raw_rate": "14/44",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 44,
+          "count": 17,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "starting_price_region": "le25+le25",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 1,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+51_75",
+      "D": 77,
+      "frontier": {
+        "LE_93": {
+          "denominator": 77,
+          "completed_pairs": 1,
+          "raw_rate": "1/77",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 77,
+          "completed_pairs": 2,
+          "raw_rate": "2/77",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 77,
+          "completed_pairs": 3,
+          "raw_rate": "3/77",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 77,
+          "completed_pairs": 18,
+          "raw_rate": "18/77",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 77,
+          "completed_pairs": 38,
+          "raw_rate": "38/77",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 77,
+          "count": 53,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+ge75",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 1,
+          "raw_rate": "1/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 1,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "26_50+le25",
+      "D": 3,
+      "frontier": {
+        "LE_93": {
+          "denominator": 3,
+          "completed_pairs": 0,
+          "raw_rate": "0/3",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 3,
+          "completed_pairs": 0,
+          "raw_rate": "0/3",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 3,
+          "completed_pairs": 0,
+          "raw_rate": "0/3",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 3,
+          "completed_pairs": 1,
+          "raw_rate": "1/3",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 3,
+          "completed_pairs": 1,
+          "raw_rate": "1/3",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 3,
+          "count": 2,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+51_75",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 1,
+          "completed_pairs": 0,
+          "raw_rate": "0/1",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 1,
+          "count": 1,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "51_75+le25",
+      "D": 4,
+      "frontier": {
+        "LE_93": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 4,
+          "completed_pairs": 0,
+          "raw_rate": "0/4",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 4,
+          "count": 3,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "ge75+le25",
+      "D": 56,
+      "frontier": {
+        "LE_93": {
+          "denominator": 56,
+          "completed_pairs": 0,
+          "raw_rate": "0/56",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 56,
+          "completed_pairs": 0,
+          "raw_rate": "0/56",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 56,
+          "completed_pairs": 0,
+          "raw_rate": "0/56",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 56,
+          "completed_pairs": 1,
+          "raw_rate": "1/56",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 56,
+          "completed_pairs": 7,
+          "raw_rate": "7/56",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 56,
+          "count": 35,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "starting_price_region": "le25+le25",
+      "D": 10,
+      "frontier": {
+        "LE_93": {
+          "denominator": 10,
+          "completed_pairs": 0,
+          "raw_rate": "0/10",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "denominator": 10,
+          "completed_pairs": 0,
+          "raw_rate": "0/10",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "denominator": 10,
+          "completed_pairs": 0,
+          "raw_rate": "0/10",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "denominator": 10,
+          "completed_pairs": 0,
+          "raw_rate": "0/10",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "denominator": 10,
+          "completed_pairs": 0,
+          "raw_rate": "0/10",
+          "pairs_both_legs_strictly_below_close": 0,
+          "joint_objective_pairs": 0
+        },
+        "any_price_reference_ceiling": {
+          "denominator": 10,
+          "count": 0,
+          "law": "FROZEN_516_TAKE_REACHABLE_REFERENCE_CEILING; NOT A POLICY FILL"
+        }
+      }
+    }
+  ]
+}

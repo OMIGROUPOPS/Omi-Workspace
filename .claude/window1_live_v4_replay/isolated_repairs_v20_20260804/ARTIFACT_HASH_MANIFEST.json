@@ -1,0 +1,28 @@
+{
+  "files": {
+    "CONTROL_SUMMARY.json": {
+      "sha256": "d9ebccb185042043de00762ea38a762e1052643ec2c886333646112cfe35a80d",
+      "bytes": 4727
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "bf60ba033542b6f7d3fdc9eb7ee231fb9a0c8ef471623e51cd4617e4e518840e",
+      "bytes": 4533
+    },
+    "INDEPENDENT_AUDIT_INSTRUCTION.md": {
+      "sha256": "3313be15d80a33347a26d6f9fe7ad1ecc970877877f953157398ed5afd5b8cbf",
+      "bytes": 522
+    },
+    "REPORT.md": {
+      "sha256": "2c0a40a27e3c206809579216f830d57f3e5829a3f438067abbfa4ecedfea5151",
+      "bytes": 1430
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "c6cdf59706184e58e94660b81cac3f1a41e09e7bad81d7e2d498cca75bafa8bf",
+      "bytes": 1763
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "79dee398831e18c89dd4ee31dce91d40cef82adf10acd0e912f3733b96111dba",
+      "bytes": 837
+    }
+  }
+}

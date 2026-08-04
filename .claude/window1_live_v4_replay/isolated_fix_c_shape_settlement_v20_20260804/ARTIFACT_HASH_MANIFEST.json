@@ -1,0 +1,52 @@
+{
+  "files": {
+    "CAUSAL_ADDITION_RECEIPT.json": {
+      "sha256": "d82bcc49be2d72004c2eb311a8e76f8d2c85fe458b56b5e989ff681199cdaed1",
+      "bytes": 1273
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "624df70232ff2374bf2b9ce23984f4703f5a78ab202646427b7187a4dc8f03a8",
+      "bytes": 267
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "a0d1fceaa68a4335fcb523f168f8e0d9adc1de0dbd21ae557d2f767f457fa296",
+      "bytes": 199
+    },
+    "FRONTIER.json": {
+      "sha256": "3d8d5d9ae6c1cec276dbb66d2a64c4cb939a4fdc037bcc86860d3fd56e2f7368",
+      "bytes": 41031
+    },
+    "POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "6ad730cf32afecdd08b472647eabc4cb04b604c2fb2d1d15c1e5b92873538729",
+      "bytes": 2874807
+    },
+    "POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "92d007e4e279216a812e4725182fe0734aac05d22f2161b36dd569621597d563",
+      "bytes": 2768885
+    },
+    "RAW_ISOLATED_REPLAY_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "b31ad8fcb96fbbb1f1bcd2df58bd77675f35d3209ea11d96bce2a4d5dabbff14",
+      "bytes": 1603752
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "9a662fc9c27a9fc0d87ad9143141c38e3707e283da9f7d6fd5a120fdeba0a98f",
+      "bytes": 44108
+    },
+    "REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "1d45c856b758604025eb54fb571484a9f775464f7326af819dfb79c11c683119",
+      "bytes": 28612
+    },
+    "REPORT.md": {
+      "sha256": "c16a51e5ec51d50267d5666e1eccfa18d101720f76d068dc89f5187464ee7955",
+      "bytes": 1656
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "c09d433849c0518d2787503e1b7efb88509b49f5e8d1d1cb0e68594f8d26e782",
+      "bytes": 1664
+    },
+    "V19_NON_REGRESSION_COMPARISON.json": {
+      "sha256": "308fccbd832e5c8417dd32b93929099d95d8886464621e88c9a3501e97abe393",
+      "bytes": 50442
+    }
+  }
+}

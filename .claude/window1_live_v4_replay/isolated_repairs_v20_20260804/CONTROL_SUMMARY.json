@@ -1,0 +1,164 @@
+{
+  "schema_version": "WINDOW1_ISOLATED_REPAIRS_V20_CONTROL_SUMMARY",
+  "D": 804,
+  "variants_stacked": false,
+  "V19_floor": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 850,
+    "credited_legs": 850,
+    "completed_pairs": 251,
+    "pairs_under_par": 102,
+    "both_legs_strictly_below_close": 34,
+    "joint_objective_pairs": 19,
+    "execution_floor_pair_pass": 32,
+    "strict_carried_pairs": 65
+  },
+  "FIX_A": {
+    "metrics": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1187,
+      "credited_legs": 1187,
+      "completed_pairs": 471,
+      "pairs_under_par": 139,
+      "both_legs_strictly_below_close": 52,
+      "joint_objective_pairs": 27,
+      "execution_floor_pair_pass": 46,
+      "strict_carried_pairs": 127
+    },
+    "delta": {
+      "D": 0,
+      "legs": 0,
+      "acted_legs": 337,
+      "credited_legs": 337,
+      "completed_pairs": 220,
+      "pairs_under_par": 37,
+      "both_legs_strictly_below_close": 18,
+      "joint_objective_pairs": 8,
+      "execution_floor_pair_pass": 14,
+      "strict_carried_pairs": 62
+    },
+    "category": {
+      "ATP_CHALL": {
+        "D": 369,
+        "acted_legs": 526,
+        "completed_pairs": 195,
+        "pairs_under_par": 59,
+        "both_legs_strictly_below_close": 38,
+        "joint_objective_pairs": 18,
+        "execution_floor_pair_pass": 17
+      },
+      "ATP_MAIN": {
+        "D": 147,
+        "acted_legs": 240,
+        "completed_pairs": 103,
+        "pairs_under_par": 38,
+        "both_legs_strictly_below_close": 8,
+        "joint_objective_pairs": 6,
+        "execution_floor_pair_pass": 11
+      },
+      "WTA_CHALL": {
+        "D": 136,
+        "acted_legs": 208,
+        "completed_pairs": 87,
+        "pairs_under_par": 16,
+        "both_legs_strictly_below_close": 4,
+        "joint_objective_pairs": 2,
+        "execution_floor_pair_pass": 4
+      },
+      "WTA_MAIN": {
+        "D": 152,
+        "acted_legs": 213,
+        "completed_pairs": 86,
+        "pairs_under_par": 26,
+        "both_legs_strictly_below_close": 2,
+        "joint_objective_pairs": 1,
+        "execution_floor_pair_pass": 14
+      }
+    },
+    "full_category_and_price_region_in": "isolated_fix_a_anchor_freshness_v20_20260804/V19_NON_REGRESSION_COMPARISON.json"
+  },
+  "FIX_B": {
+    "built": false,
+    "conclusion": "FALSE; THEORY_DIES; NO_FIX_B_BUILT",
+    "actual_source": "THE_SIBLING_TICKER'S_OWN_CHRONOLOGICAL_FORMED_BOOK_ASK_PATH"
+  },
+  "FIX_C": {
+    "metrics": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 873,
+      "credited_legs": 873,
+      "completed_pairs": 266,
+      "pairs_under_par": 105,
+      "both_legs_strictly_below_close": 34,
+      "joint_objective_pairs": 19,
+      "execution_floor_pair_pass": 34,
+      "strict_carried_pairs": 70
+    },
+    "delta": {
+      "D": 0,
+      "legs": 0,
+      "acted_legs": 23,
+      "credited_legs": 23,
+      "completed_pairs": 15,
+      "pairs_under_par": 3,
+      "both_legs_strictly_below_close": 0,
+      "joint_objective_pairs": 0,
+      "execution_floor_pair_pass": 2,
+      "strict_carried_pairs": 5
+    },
+    "category": {
+      "ATP_CHALL": {
+        "D": 369,
+        "acted_legs": 439,
+        "completed_pairs": 133,
+        "pairs_under_par": 50,
+        "both_legs_strictly_below_close": 29,
+        "joint_objective_pairs": 15,
+        "execution_floor_pair_pass": 16
+      },
+      "ATP_MAIN": {
+        "D": 147,
+        "acted_legs": 136,
+        "completed_pairs": 41,
+        "pairs_under_par": 21,
+        "both_legs_strictly_below_close": 3,
+        "joint_objective_pairs": 3,
+        "execution_floor_pair_pass": 6
+      },
+      "WTA_CHALL": {
+        "D": 136,
+        "acted_legs": 139,
+        "completed_pairs": 45,
+        "pairs_under_par": 14,
+        "both_legs_strictly_below_close": 2,
+        "joint_objective_pairs": 1,
+        "execution_floor_pair_pass": 3
+      },
+      "WTA_MAIN": {
+        "D": 152,
+        "acted_legs": 159,
+        "completed_pairs": 47,
+        "pairs_under_par": 20,
+        "both_legs_strictly_below_close": 0,
+        "joint_objective_pairs": 0,
+        "execution_floor_pair_pass": 9
+      }
+    },
+    "full_category_and_price_region_in": "isolated_fix_c_shape_settlement_v20_20260804/V19_NON_REGRESSION_COMPARISON.json"
+  },
+  "WTA_MAIN_V19_DEATH_TRACE": {
+    "D": 152,
+    "death_stages": {
+      "COMPLETION_AT_OR_ABOVE_100": 16,
+      "NO_COMPLETION": 118,
+      "ONE_OR_BOTH_LEGS_AT_OR_ABOVE_OWN_CLOSE": 14,
+      "OWN_CLOSE_UNAVAILABLE": 4
+    },
+    "joint_objective_pairs": 0,
+    "full_price_regions_in": "wta_main_v19_death_trace_20260804/WTA_MAIN_DEATH_CENSUS.json"
+  },
+  "claim": "IN_SAMPLE_804_DEVELOPMENT_REPLAY; ISOLATED_VARIANTS; NOT_STACKED; NOT_HOLDOUT; NOT_MARKET_CEILING"
+}

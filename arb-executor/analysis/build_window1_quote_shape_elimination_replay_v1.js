@@ -17,6 +17,7 @@ const { evaluateLiveBookFloorAuthority, evaluateFittedPersistenceFloorAuthority 
 const { matchesMacroEnvelope, ordinalVerdict, microRepairV14, microMicroFeatures, traverseMicroModel, macroState } = require("./window1_interim_elimination_v13.js");
 const { mutuallyNarrowPairAndLegs } = require("./window1_pair_interim_elimination_v18.js");
 const { narrowBySignableCouples } = require("./window1_pair_couple_elimination_v19.js");
+const { evaluateAnchorFreshnessA, advanceLowerSettlementC } = require("./window1_isolated_repair_predicates_v20.js");
 
 const args = process.argv.slice(2), value = (name, fallback) => { const index = args.indexOf(name); return index >= 0 ? args[index + 1] : fallback; };
 const repo = path.resolve(value("--repo", args[0] && !args[0].startsWith("--") ? args[0] : "."));
@@ -37,6 +38,8 @@ const interimEliminationV13 = args.includes("--interim-elimination-v13");
 const microRepairV14Enabled = args.includes("--micro-repair-v14");
 const pairInterimV18 = args.includes("--pair-interim-v18");
 const pairCoupleV19 = args.includes("--pair-couple-v19");
+const fixAAnchorFreshness = args.includes("--fix-a-anchor-freshness");
+const fixCShapeVerdictSettlement = args.includes("--fix-c-shape-verdict-settlement");
 const liveBookFloorV15 = args.includes("--live-book-floor-v15");
 const fittedPersistenceV15 = args.includes("--fitted-persistence-v15");
 const allQuoteEvents = args.includes("--all-quote-events");
@@ -56,6 +59,10 @@ const targetFile = value("--target-file", null);
 const TARGETS = new Set(targetFile ? JSON.parse(fs.readFileSync(path.resolve(targetFile))) : value("--targets", DEFAULT_TARGETS.join(",")).split(",").filter(Boolean));
 const PREFIX_KEYS = ["ask_net", "ask_dip", "mean_spread", "spread_range", "quote_rate", "ask_change_rate", "ask_dwell_fraction", "mean_log_top_ask_size", "mean_log_top5_ask_depth"];
 const DWELL_SECONDS = 10, QUANTITY = 5;
+// One cent is the operator-authorized starting tolerance from the frozen
+// 2026-08-03 holdout gate-lag diagnostic; it is not a newly fitted constant.
+const FIX_A_ANCHOR_TOLERANCE_CENTS = 1;
+if (fixAAnchorFreshness && fixCShapeVerdictSettlement) throw new Error("isolated variants may not be stacked");
 
 function canonical(value) { return `${JSON.stringify(value, null, 2)}\n`; }
 function sha256(value) { return crypto.createHash("sha256").update(value).digest("hex"); }
@@ -254,7 +261,7 @@ function diagnosticSnapshot({ eventId, leg, row, ts, state, reason, verdicts, sh
 function downsample(rows, max = 1400) { if (rows.length <= max) return rows; const step = (rows.length - 1) / (max - 1), out = []; for (let i = 0; i < max; i += 1) out.push(rows[Math.round(i * step)]); return out; }
 
 function replayGame(eventId, sources, library, refs, persistenceLibrary = null) {
-  const legs = sources.map((source) => { const loaded = loadRows(source); return { ...source, source_receipt: loaded.source, rows: prefixRows(loaded.rows, source.left, source.right), first_book_ts: loaded.rows[0].ts, first_book_receipt: loaded.rows[0].receipt, first_ask: loaded.rows[0].ask, first_bid: loaded.rows[0].bid, price_region: region(loaded.rows[0].bid), order: null, fill: null, last: null, survivor_shapes: null, decisions: [], traced_decision_evaluations: [], lag_diagnostic: { first_qualifying_floor_receipt: null, first_shape_floor_consensus: null, first_upstream_consensus: null, first_actionable_unanimous_lower: null, last_actionable_unanimous_lower: null, upstream_consensus_last_predicates_to_clear: [], raw_new_low_arrivals_by_price: {}, qualifying_observed_low_receipts_by_price: {} }, prior_lag_snapshot: null }; });
+  const legs = sources.map((source) => { const loaded = loadRows(source); return { ...source, source_receipt: loaded.source, rows: prefixRows(loaded.rows, source.left, source.right), first_book_ts: loaded.rows[0].ts, first_book_receipt: loaded.rows[0].receipt, first_ask: loaded.rows[0].ask, first_bid: loaded.rows[0].bid, price_region: region(loaded.rows[0].bid), order: null, fill: null, last: null, survivor_shapes: null, decisions: [], traced_decision_evaluations: [], lower_settlement_anchor_v20: null, active_fix_receipt_v20: null, lag_diagnostic: { first_qualifying_floor_receipt: null, first_shape_floor_consensus: null, first_upstream_consensus: null, first_actionable_unanimous_lower: null, last_actionable_unanimous_lower: null, upstream_consensus_last_predicates_to_clear: [], raw_new_low_arrivals_by_price: {}, qualifying_observed_low_receipts_by_price: {} }, prior_lag_snapshot: null }; });
   legs.sort((a, b) => a.leg.localeCompare(b.leg)); const high = [...legs].sort((a, b) => b.first_ask - a.first_ask || a.leg.localeCompare(b.leg))[0], low = legs.find((x) => x !== high), pairKey = `${high.category}|${high.price_region}|${low.price_region}`, tuplesObject = library.pair_shape_tuples[pairKey] || {}, pairHypothesisGroup = pairInterimV18 ? library.pair_hypothesis_groups?.[high.category] : null, pairCoupleGroup = pairCoupleV19 ? library.pair_couple_groups?.[high.category] : null;
   const observedTuples = Object.keys(tuplesObject).map((key) => { const [highShape, lowShape] = key.split("|"); return { highShape, lowShape, n: tuplesObject[key], support_class: "EMPIRICALLY_OBSERVED_PAIR_TUPLE" }; });
   const allTuples = pairWiringV3 ? completePairTupleSupport({ observedTupleObject: tuplesObject, highShapes: library.groups[`${high.category}|${high.price_region}`].shapes.map((shape) => shape.shape_id), lowShapes: library.groups[`${low.category}|${low.price_region}`].shapes.map((shape) => shape.shape_id) }) : observedTuples;
@@ -352,10 +359,40 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
       const legRole = leg === high ? "highShape" : "lowShape";
       let microEvidence = null;
       let stableSigningSupport = null;
-      if (allFloor || lagDiagnosticV10 || persistenceLibraryEnabled) {
+      if (allFloor || lagDiagnosticV10 || persistenceLibraryEnabled || fixCShapeVerdictSettlement) {
         microEvidence = interimEliminationV13 ? { own_micro_position_observed: row.prefix.ask_net === row.prefix.ask_dip, evidence_type: "V13_CURRENT_ASK_AT_CAUSAL_OBSERVED_LOW_AFTER_COHERENT_ORDINAL", stable_same_price_receipt: leg.last.strictly_later_same_price_ask_receipt, inverse_sibling_resolved: Boolean(tuples.length && sibling.last && sibling.survivor_shapes.length), inverse_sibling_proof_type: "V13_EMPIRICAL_PAIR_PATH_TUPLE_AFTER_BOTH_MACRO_LEVELS_RESOLVED" } : pairWiringV3 ? dynamicRenarrowV6 ? evaluateDynamicPairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : evaluatePairWiringEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS, survivingTuples: tuples, legRole }) : stableSamePriceConfirmation ? evaluateMicroPositionEvidence({ leg, sibling, dwellSeconds: DWELL_SECONDS }) : { own_micro_position_observed: leg.last.ask_change_after_first_timestamp, evidence_type: leg.last.ask_change_after_first_timestamp ? "ASK_PRICE_TRANSITION" : null, stable_same_price_receipt: false, inverse_sibling_resolved: Boolean(leg.resolved_direction && sibling.independent_direction && inverseDirection(leg.resolved_direction) === sibling.independent_direction && directionObserved(sibling, sibling.independent_direction)) };
         if (interimEliminationV13) { const model = library.micro_micro_models?.[`${leg.category}|${leg.price_region}`], result = traverseMicroModel(model, microMicroFeatures(row)); stableSigningSupport = { required: true, supported: result.verdict === "READY", support_type: "V13_FITTED_MICRO_MICRO_NEXT_RECEIPT_EXECUTABILITY", result, predicates: microMicroFeatures(row) }; row.micro_micro_result = result; }
         else stableSigningSupport = stableSignerV4 ? evaluateStableAskSigningSupport({ leg, sibling, inverseSiblingResolved: microEvidence.inverse_sibling_resolved }) : { required: false, supported: true, support_type: "V4_DISABLED", predicates: {} };
+      }
+      let fixAReceipt = null;
+      if (fixAAnchorFreshness && allFloor) {
+        const anchor = evaluateAnchorFreshnessA({ currentAsk: row.ask, observedLow: leg.first_ask + row.prefix.ask_dip, toleranceCents: FIX_A_ANCHOR_TOLERANCE_CENTS, freshOwnBookReceipt: changedThisTick[leg.leg] });
+        fixAReceipt = { ...anchor, current_ask: row.ask, observed_low: leg.first_ask + row.prefix.ask_dip, tolerance_cents: FIX_A_ANCHOR_TOLERANCE_CENTS, own_book_receipt: row.receipt, own_book_timestamp: row.ts };
+        if (anchor.placeable && microEvidence) {
+          microEvidence = { ...microEvidence, own_micro_position_observed: true, evidence_type: "FIX_A_LIVE_ASK_WITHIN_REARMED_OBSERVED_LOW_ANCHOR_ON_FRESH_OWN_RECEIPT" };
+        }
+      }
+      let fixCReceipt = null;
+      if (fixCShapeVerdictSettlement && rawAllLower && microEvidence && stableSigningSupport) {
+        const settlement = advanceLowerSettlementC({
+          priorRefusal: leg.lower_settlement_anchor_v20,
+          currentAsk: row.ask,
+          observedLow: leg.first_ask + row.prefix.ask_dip,
+          timestamp: row.ts,
+          receiptId: row.receipt,
+          dwellSeconds: row.ask_dwell_seconds,
+          displayedAskSize: row.top_ask_size,
+          requiredDwellSeconds: DWELL_SECONDS,
+          requiredQuantity: QUANTITY,
+          freshOwnBookReceipt: changedThisTick[leg.leg],
+          upperLevelsResolved: Boolean(shapes.length && microEvidence.inverse_sibling_resolved && stableSigningSupport.supported),
+        });
+        leg.lower_settlement_anchor_v20 = settlement.anchor;
+        if (settlement.settled) {
+          fixCReceipt = settlement;
+          verdicts = verdicts.map((item) => ({ ...item, verdict: "FLOOR", prior_verdict: item.verdict, fix_c_shape_verdict_settlement: settlement.settlement }));
+          allFloor = true;
+        }
       }
       const persistenceProofs = persistenceLibraryEnabled ? shapes.map((shapeId) => fittedPersistenceAtCurrentLow(persistenceLibrary, { category: leg.category, priceRegion: leg.price_region, shapeId, observedNewLowDescents: row.new_low_descent_count, legIdentity: `${eventId}|${leg.leg}`, askDwellSeconds: row.ask_dwell_seconds })) : [];
       const persistenceFloor = fittedPersistenceV15 ? evaluateFittedPersistenceFloorAuthority({
@@ -398,10 +435,11 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
       else if (shapes.length && verdicts.every((x) => x.verdict === "LOWER")) { state = "HOLD"; reason = "ALL_SURVIVING_SHAPES_SAY_LOWER"; }
       else if (allFloor) {
         const inverseSiblingResolved = microEvidence.inverse_sibling_resolved, stableSamePriceReceipt = microEvidence.stable_same_price_receipt, ownMicroPositionObserved = microEvidence.own_micro_position_observed, microPositionEvidenceType = microEvidence.evidence_type;
-        if (!ownMicroPositionObserved) reason = "FLOOR_CONSENSUS_BUT_OWN_MICRO_POSITION_UNOBSERVED";
+        if (fixAAnchorFreshness && !fixAReceipt?.placeable) reason = fixAReceipt?.reason || "NO_FRESH_OWN_BOOK_RECEIPT";
+        else if (!ownMicroPositionObserved) reason = "FLOOR_CONSENSUS_BUT_OWN_MICRO_POSITION_UNOBSERVED";
         else if (!inverseSiblingResolved) reason = "FLOOR_CONSENSUS_BUT_SIBLING_DIRECTION_NOT_INDEPENDENTLY_OBSERVED";
         else if (!stableSigningSupport.supported) reason = interimEliminationV13 ? `FLOOR_CONSENSUS_BUT_FITTED_MICRO_MICRO_${stableSigningSupport.result?.verdict || "UNAVAILABLE"}` : "FLOOR_CONSENSUS_BUT_STABLE_SAME_PRICE_ASK_LACKS_SIGNING_SUPPORT";
-        else if (!liveBookFloorV15 && row.prefix.ask_net !== row.prefix.ask_dip) reason = "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW";
+        else if (!fixAAnchorFreshness && !liveBookFloorV15 && row.prefix.ask_net !== row.prefix.ask_dip) reason = "FLOOR_CONSENSUS_BUT_CURRENT_ASK_IS_ABOVE_OBSERVED_LOW";
         else if (row.top_ask_size >= QUANTITY && (stableSignerV4 || interimEliminationV13) && !changedThisTick[leg.leg]) reason = "FLOOR_CONSENSUS_AWAITING_FRESH_OWN_BOOK_RECEIPT";
         else if ((interimEliminationV13 || row.ask_dwell_seconds >= DWELL_SECONDS) && row.top_ask_size >= QUANTITY) {
           const liveBookAuthority = liveBookFloorV15 ? evaluateLiveBookFloorAuthority({ unanimousFloor: allFloor, ownMicroPositionObserved, inverseSiblingResolved, stableSigningSupported: stableSigningSupport.supported, freshOwnReceipt: changedThisTick[leg.leg], askDwellSeconds: row.ask_dwell_seconds, dwellSeconds: DWELL_SECONDS, topAskSize: row.top_ask_size, quantity: QUANTITY }) : null;
@@ -438,7 +476,7 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
         }
         leg.prior_lag_snapshot = snapshot;
       }
-      if (state === "PLACE") { const sibling = legs.find((candidate) => candidate !== leg), baseOrder = { price_cents: row.ask, quantity: QUANTITY, action_ts: ts, action_receipt: row.receipt, same_receipt_fill_forbidden: true, surviving_shapes: verdicts, macro_surviving_shapes: macroShapes, micro_repair_v14: microRepair, pair_shape_tuples: tuples.map((t) => ({ ...t })), pair_interim_v18: pairOnlyResolution, inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null, stable_signing_support: row.stable_signing_support ?? null, live_book_floor_authority_v15: row.live_book_floor_authority_v15 ?? null, persistence_floor_v15: persistenceFloor?.authority === "LEAVE_ONE_LEG_OUT_FITTED_SAME_PRICE_PERSISTENCE" ? persistenceFloor : null, pre_action_evidence: { own: preActionEvidence(leg), sibling: preActionEvidence(sibling) } }; leg.order = stableSamePriceConfirmation ? { ...baseOrder, action_receipt: changedThisTick[leg.leg] ? leg.last.receipt : sibling.last?.receipt, own_book_receipt_at_action: leg.last.receipt, own_book_ts_at_action: leg.last.ts, sibling_book_receipt_at_action: sibling.last?.receipt ?? null, sibling_book_ts_at_action: sibling.last?.ts ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? "ASK_PRICE_TRANSITION" } : baseOrder; }
+      if (state === "PLACE") { const sibling = legs.find((candidate) => candidate !== leg), baseOrder = { price_cents: row.ask, quantity: QUANTITY, action_ts: ts, action_receipt: row.receipt, same_receipt_fill_forbidden: true, surviving_shapes: verdicts, macro_surviving_shapes: macroShapes, micro_repair_v14: microRepair, pair_shape_tuples: tuples.map((t) => ({ ...t })), pair_interim_v18: pairOnlyResolution, inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null, stable_signing_support: row.stable_signing_support ?? null, live_book_floor_authority_v15: row.live_book_floor_authority_v15 ?? null, persistence_floor_v15: persistenceFloor?.authority === "LEAVE_ONE_LEG_OUT_FITTED_SAME_PRICE_PERSISTENCE" ? persistenceFloor : null, fix_a_anchor_freshness_v20: fixAReceipt, fix_c_shape_verdict_settlement_v20: fixCReceipt, pre_action_evidence: { own: preActionEvidence(leg), sibling: preActionEvidence(sibling) } }; leg.order = stableSamePriceConfirmation ? { ...baseOrder, action_receipt: leg.last.receipt, own_book_receipt_at_action: leg.last.receipt, own_book_ts_at_action: leg.last.ts, sibling_book_receipt_at_action: sibling.last?.receipt ?? null, sibling_book_ts_at_action: sibling.last?.ts ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? "ASK_PRICE_TRANSITION" } : baseOrder; }
       const prior = leg.decisions[leg.decisions.length - 1]; if (!prior || prior.state !== state || prior.reason !== reason || state === "PLACE") leg.decisions.push({ ts, state, reason, book: { bid: row.bid, ask: row.ask, spread: row.spread, carried_last: row.carried_last, ask_dwell_seconds: row.ask_dwell_seconds, ask_net: row.prefix.ask_net, ask_dip: row.prefix.ask_dip, ask_change_after_first_timestamp: row.ask_change_after_first_timestamp, ...(stableSamePriceConfirmation ? { strictly_later_same_price_ask_receipt: leg.last.strictly_later_same_price_ask_receipt, stable_same_price_receipt: row.stable_same_price_receipt ?? false, stable_signing_support: row.stable_signing_support ?? null, micro_position_evidence_type: row.micro_position_evidence_type ?? null, inverse_sibling_resolved: row.inverse_sibling_resolved ?? false, inverse_sibling_proof_type: row.inverse_sibling_proof_type ?? null } : {}), top_ask_size: row.top_ask_size, top5_ask_depth: row.top5_ask_depth }, surviving_shapes: verdicts, surviving_pair_tuple_count: tuples.length, receipt: row.receipt, order: leg.order });
     }
   }
@@ -449,7 +487,7 @@ function replayGame(eventId, sources, library, refs, persistenceLibrary = null) 
     leg.lag_diagnostic.first_qualifying_terminal_observed_low_receipt = Number.isInteger(terminalObservedLow) ? leg.lag_diagnostic.qualifying_observed_low_receipts_by_price[String(terminalObservedLow)] || null : null;
   }
   const current = refs.current_branch.find((x) => x.event_id === eventId), corrected = refs.corrected_branch.find((x) => x.event_id === eventId);
-  return { event_id: eventId, category: legs[0].category, pair_constraint: { identity: "two outcomes sum to 100", training_pair_key: pairKey, observed_pair_shape_tuples: observedTuples.length, structural_closure_enabled: pairWiringV3, synchronized_pair_interim_hypotheses_enabled: pairInterimV18, pair_couple_v19_enabled: pairCoupleV19, initial_pair_hypotheses: pairHypothesisGroup?.hypotheses?.length ?? null, final_pair_hypothesis_ids: pairSurvivorIds, pair_narrowing_transitions: pairNarrowingTransitions, pair_couple_narrowing_transitions: coupleNarrowingTransitions, initial_pair_shape_tuples: allTuples.length, final_pair_shape_tuples: tuples.length, dynamic_current_path_inverse_closures: dynamicPairClosures }, legs: Object.fromEntries(legs.map((leg) => { const ref = corrected.legs[leg.leg], entry = leg.fill?.price_cents ?? null; return [leg.leg, { ticker: leg.ticker, price_region: leg.price_region, status: leg.fill ? "CREDITED" : "INSUFFICIENT_EVIDENCE", entry_cents: entry, baseline_entry_cents: current?.legs?.[leg.leg]?.entry_cents ?? null, own_window1_close_cents: ref.own_window1_close_cents, delta_to_own_window1_close_cents: entry === null || !Number.isInteger(ref.own_window1_close_cents) ? null : entry - ref.own_window1_close_cents, own_bell_price_cents: ref.own_bell_price_cents, delta_to_own_bell_price_cents: entry === null || !Number.isInteger(ref.own_bell_price_cents) ? null : entry - ref.own_bell_price_cents, own_ask_reachable_low_cents: ref.own_ask_reachable_low_cents, delta_to_own_ask_reachable_low_cents: entry === null || !Number.isInteger(ref.own_ask_reachable_low_cents) ? null : entry - ref.own_ask_reachable_low_cents, pair_reference_cents: "NOT_BOUND", delta_to_pair_reference_cents: "NOT_BOUND", placement: leg.order, fill: leg.fill, macro_reclassifications: leg.macro_reclassifications, surviving_shapes_at_placement: leg.order?.surviving_shapes || [], surviving_shapes_at_terminal: leg.survivor_shapes.map((shape_id) => ({ shape_id, direction: directionOf(shape_id) })), terminal_reason: leg.fill ? "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK" : leg.decisions[leg.decisions.length - 1]?.reason || "NO_LAWFUL_DECISION", decision_changes: leg.decisions, ...(traceDecisionReasons.size ? { traced_decision_evaluations: leg.traced_decision_evaluations } : {}), lag_diagnostic_v10: lagDiagnosticV10 ? leg.lag_diagnostic : null, chart_rows: downsample(leg.rows.map((r) => ({ ts: r.ts, bid: r.bid, ask: r.ask, last: r.carried_last }))), source: leg.source_receipt }]; })) };
+  return { event_id: eventId, category: legs[0].category, isolated_repairs: { fix_a_anchor_freshness: fixAAnchorFreshness, fix_c_shape_verdict_settlement: fixCShapeVerdictSettlement, stacking_forbidden: fixAAnchorFreshness && fixCShapeVerdictSettlement }, pair_constraint: { identity: "two outcomes sum to 100", training_pair_key: pairKey, observed_pair_shape_tuples: observedTuples.length, structural_closure_enabled: pairWiringV3, synchronized_pair_interim_hypotheses_enabled: pairInterimV18, pair_couple_v19_enabled: pairCoupleV19, initial_pair_hypotheses: pairHypothesisGroup?.hypotheses?.length ?? null, final_pair_hypothesis_ids: pairSurvivorIds, pair_narrowing_transitions: pairNarrowingTransitions, pair_couple_narrowing_transitions: coupleNarrowingTransitions, initial_pair_shape_tuples: allTuples.length, final_pair_shape_tuples: tuples.length, dynamic_current_path_inverse_closures: dynamicPairClosures }, legs: Object.fromEntries(legs.map((leg) => { const ref = corrected.legs[leg.leg], entry = leg.fill?.price_cents ?? null; return [leg.leg, { ticker: leg.ticker, price_region: leg.price_region, status: leg.fill ? "CREDITED" : "INSUFFICIENT_EVIDENCE", entry_cents: entry, baseline_entry_cents: current?.legs?.[leg.leg]?.entry_cents ?? null, own_window1_close_cents: ref.own_window1_close_cents, delta_to_own_window1_close_cents: entry === null || !Number.isInteger(ref.own_window1_close_cents) ? null : entry - ref.own_window1_close_cents, own_bell_price_cents: ref.own_bell_price_cents, delta_to_own_bell_price_cents: entry === null || !Number.isInteger(ref.own_bell_price_cents) ? null : entry - ref.own_bell_price_cents, own_ask_reachable_low_cents: ref.own_ask_reachable_low_cents, delta_to_own_ask_reachable_low_cents: entry === null || !Number.isInteger(ref.own_ask_reachable_low_cents) ? null : entry - ref.own_ask_reachable_low_cents, pair_reference_cents: "NOT_BOUND", delta_to_pair_reference_cents: "NOT_BOUND", placement: leg.order, fill: leg.fill, macro_reclassifications: leg.macro_reclassifications, surviving_shapes_at_placement: leg.order?.surviving_shapes || [], surviving_shapes_at_terminal: leg.survivor_shapes.map((shape_id) => ({ shape_id, direction: directionOf(shape_id) })), terminal_reason: leg.fill ? "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK" : leg.decisions[leg.decisions.length - 1]?.reason || "NO_LAWFUL_DECISION", decision_changes: leg.decisions, ...(traceDecisionReasons.size ? { traced_decision_evaluations: leg.traced_decision_evaluations } : {}), lag_diagnostic_v10: lagDiagnosticV10 ? leg.lag_diagnostic : null, chart_rows: downsample(leg.rows.map((r) => ({ ts: r.ts, bid: r.bid, ask: r.ask, last: r.carried_last }))), source: leg.source_receipt }]; })) };
 }
 
 function svgChart(event, sources) {

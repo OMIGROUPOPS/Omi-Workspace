@@ -1,0 +1,36 @@
+{
+  "files": {
+    ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/RAW_ISOLATED_REPLAY_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "1a7f397d721c520dd8c0d40810519427bcf17bd7a059f22a4faa9a5aad43ee64",
+      "bytes": 1670545
+    },
+    ".claude/window1_live_v4_replay/pair_couple_abstention_v19_20260803/POPULATION_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "ccda9bcd4c63c2d2f0cbc5c9eb939e4be3d3e568009bbe8840ab07f129e327cc",
+      "bytes": 2825122
+    },
+    ".claude/window1_live_v4_replay/pair_couple_abstention_v19_20260803/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "375a37a7316067143ae4e36af6c4ab82c8d130362ca6d8038045cc93b84ad397",
+      "bytes": 2722904
+    },
+    ".claude/window1_live_v4_replay/pair_couple_abstention_v19_20260803/FRONTIER.json": {
+      "sha256": "1bff011e9a68a49f01f5c0e3b34d91b8c45437b14838138b631fd449bdd482a5",
+      "bytes": 35263
+    },
+    "arb-executor/analysis/window1_isolated_repair_predicates_v20.js": {
+      "sha256": "b6e49d3d9ee917639f6b85bfae018a4e21f206eaf1bca23fb091fb2e782e75a4",
+      "bytes": 3452
+    },
+    "arb-executor/analysis/build_window1_quote_shape_elimination_replay_v1.js": {
+      "sha256": "85908e1d94f8692417a7458047b1d863502e6c20338252ef4bdd5fa4381fb09c",
+      "bytes": 75518
+    },
+    "arb-executor/analysis/build_window1_dynamic_renarrow_population_v7.js": {
+      "sha256": "af0b77f980bf1a15cd37b10977825b084bbbb7f1c87ff7877f29e1b5bb40932e",
+      "bytes": 25415
+    },
+    "arb-executor/analysis/build_window1_isolated_repair_v20_package.js": {
+      "sha256": "23fb19c2c1d8d114da3647e057d3527e7783c271b34b342e09a5c18157f359cc",
+      "bytes": 17375
+    }
+  }
+}

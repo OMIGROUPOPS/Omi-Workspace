@@ -1,0 +1,70 @@
+{
+  "sweep_method": "Every self.config.get(key,default) call; every numeric literal in a comparison operator (>=,<=,==,!=,>,<); every fitted/corpus table loader in live_v4.py. Per-row cutover tag is a heuristic FIRST DRAFT (keyword-based); the 7 headline rows are hand-verified with line numbers.",
+  "conservation": {
+    "total_rows": 800,
+    "per_tag": {
+      "KEEP": 68,
+      "SUPERSEDED_BY_PRICER": 100,
+      "BOOT_GATE": 78,
+      "NON_DECISION": 112,
+      "THRESHOLD_CANDIDATE": 442
+    },
+    "config_get": 191,
+    "cmp_literals": 554,
+    "loaders": 52,
+    "ORPHAN": 4
+  },
+  "headline_findings": [
+    {
+      "site": "live_v4.py:1610",
+      "name": "gun_divergence_move_cents",
+      "tag": "KEEP",
+      "ruling": "ORPHAN: 10c gun-divergence default has no cited ruling (gun is live-execution KEEP; the number is unruled)."
+    },
+    {
+      "site": "live_v4.py:1797",
+      "name": "combined_goal",
+      "tag": "KEEP",
+      "ruling": "AUTHORIZED: par law (<=97 pass) -- LIVING_VAULT / RULING_PAIR_ECONOMICS."
+    },
+    {
+      "site": "live_v4.py:5130",
+      "name": "exit_table_dir",
+      "tag": "BOOT_GATE",
+      "ruling": "SUPERSEDED_BY_PRICER: BAND_AUTHORITY_RECEIPT (e59aa4cc) marks spike_volatility_map SUPERSEDED by gated-optima; live default still loads the retired surface unless config overrides -> restart/VPS-drift hazard. Replacing row: gated-optima surface in the pricer registry (3ff1b038)."
+    },
+    {
+      "site": "live_v4.py:14904",
+      "name": "reality_divergence_cents",
+      "tag": "KEEP",
+      "ruling": "ORPHAN: 25c reality-divergence default unruled (telemetry bound)."
+    },
+    {
+      "site": "live_v4.py:5478",
+      "name": "exit_rule_for_fallback",
+      "tag": "BOOT_GATE",
+      "ruling": "ORPHAN: the 15-cent fallback exit is a tuned constant with no ruling; hit only when the exit table is missing a cell (a boot/coverage gap)."
+    },
+    {
+      "site": "live_v4.py:150",
+      "name": "ROUTING_SWEEP_INTERVAL",
+      "tag": "KEEP",
+      "ruling": "ORPHAN: 60s backstop cadence has no cited ruling (execution backstop, low-risk)."
+    },
+    {
+      "site": "live_v4.py:183",
+      "name": "STAIRCASE_ABORT_WINDOW",
+      "tag": "SUPERSEDED_BY_PRICER",
+      "ruling": "AUTHORIZED: Plex-ratified staircase BAR gates (C-STAIRCASE SHIP-2). Staircase entry surface is replaced by the pricer floor/verdict."
+    }
+  ],
+  "tag_legend": {
+    "SUPERSEDED_BY_PRICER": "the shape-pricer registry (3ff1b038) contains the replacement decision surface (entry/floor/verdict/anchor/sibling/aim/staircase).",
+    "BOOT_GATE": "restart-checklist implicated: exit-table fallback default, config.get unsafe defaults, loaders, VPS source/config drift.",
+    "KEEP": "live-execution machinery the pricer does not replace (order transport, fill poll, exit stamping, clocks, gun, admission).",
+    "UNTAGGED_FINDING": "config knob with no assigned fate (needs a cutover decision).",
+    "THRESHOLD_CANDIDATE": "numeric comparison literal that may be a decision threshold (first-draft; not individually ruling-checked).",
+    "NON_DECISION": "numeric literal in a non-decision context (index/page/version/ttl)."
+  },
+  "caveat": "Per-row tags on the ~700 swept rows are a heuristic first draft for the cutover, NOT a per-row ruling audit. ORPHAN count here = hand-verified tuned constants only; the THRESHOLD_CANDIDATE literals are swept and flagged but not each ruling-checked -- that is the v1 close."
+}

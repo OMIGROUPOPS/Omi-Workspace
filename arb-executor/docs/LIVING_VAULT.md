@@ -4,7 +4,7 @@
 
 The sealed gated-optima exit surface governs a read-only post-fill walk of all naked credited legs: exact conservation is V23 `408+512=920`, A `942+245=1187`. V23 origins split 160 cap-abstention siblings / 352 other never-completed siblings; A has 245 other never-completed siblings. Band targets touch for 22 V23 and 9 A legs. On legally marked rows, band-or-edge totals are V23 -21¢/contract and A -139¢, but 23/13 post-fill edge marks are unavailable, so the full-book pay/wash/bleed comparison remains unresolved and unimputed. The separate 11-event simultaneous own-aim proxy patch arms all 11, yields 7 abstentions / 4 resting caps / 1 later credit, and moves V23 to 194 completed / 194 under par / 45 JOINT / 83 carried; JOINT is unchanged and completion falls by ten.
 
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/arb-executor/docs/research/window1/WINDOW1_NAKED_LEG_DISPOSITION_V23_VAULT_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/7e16ae281b708fc6c2c77a827a2ac336498e4ad4/arb-executor/docs/research/window1/WINDOW1_NAKED_LEG_DISPOSITION_V23_VAULT_ADDENDUM.md
 
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/.claude/window1_live_v4_replay/naked_leg_disposition_v23_vs_a_20260804/DISPOSITION_DISTRIBUTIONS.json
 

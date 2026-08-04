@@ -5,7 +5,7 @@ close-out that changes state updates THIS file's State paragraph)
 
 Canonical band authority is the sealed gated-optima surface and true-print reach law. Conservation: V23 `408+512=920`; A `942+245=1187`. Band touch is 22/512 V23 and 9/245 A. Observed band-or-edge totals are V23 -21¢/contract and A -139¢, but 23/13 unmarked post-fill edges prevent a full-book verdict. The isolated 11-event own-aim proxy patch arms all simultaneous pairs: 7 abstain, 4 rest, 1 later credits; patched V23 is 194 completions, 194 under par, 45 JOINT, 83 carried. It does not supersede frozen V23 on JOINT and loses ten completions.
 
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/arb-executor/docs/research/window1/WINDOW1_NAKED_LEG_DISPOSITION_V23_VAULT_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/7e16ae281b708fc6c2c77a827a2ac336498e4ad4/arb-executor/docs/research/window1/WINDOW1_NAKED_LEG_DISPOSITION_V23_VAULT_ADDENDUM.md
 
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e59aa4cc711a972cd12f5a664394d9cb45fe2e6c/.claude/window1_live_v4_replay/naked_leg_disposition_v23_vs_a_20260804/NAKED_LEG_DISPOSITION_LEDGER.jsonl.gz
 

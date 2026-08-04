@@ -1,0 +1,129 @@
+{
+  "definition": "Re-cut of the 359 DISJOINT price-ceiling events by single-leg carry budget = the gap between the two legs' reachable windows (you fill the earlier leg, then hold it exposed until the later leg's window). Cumulative in budget and in frontier tier. OVERLAP events (31) carry zero and are included in the combined ceiling.",
+  "disjoint_total": 359,
+  "overlap_zero_carry": 31,
+  "disjoint_within_budget": {
+    "<=1h": {
+      "any_tier": 106,
+      "by_tier": {
+        "<=93": 14,
+        "<=95": 22,
+        "<=97": 33,
+        "<100": 106
+      },
+      "by_category": {
+        "ATP_CHALL": 55,
+        "ATP_MAIN": 19,
+        "WTA_MAIN": 12,
+        "WTA_CHALL": 20
+      },
+      "carried_dearer_first": 62,
+      "carried_cheaper_first": 44
+    },
+    "<=2h": {
+      "any_tier": 161,
+      "by_tier": {
+        "<=93": 21,
+        "<=95": 33,
+        "<=97": 62,
+        "<100": 161
+      },
+      "by_category": {
+        "ATP_CHALL": 92,
+        "ATP_MAIN": 27,
+        "WTA_MAIN": 17,
+        "WTA_CHALL": 25
+      },
+      "carried_dearer_first": 98,
+      "carried_cheaper_first": 62
+    },
+    "<=4h": {
+      "any_tier": 247,
+      "by_tier": {
+        "<=93": 29,
+        "<=95": 49,
+        "<=97": 112,
+        "<100": 247
+      },
+      "by_category": {
+        "ATP_CHALL": 138,
+        "ATP_MAIN": 41,
+        "WTA_MAIN": 35,
+        "WTA_CHALL": 33
+      },
+      "carried_dearer_first": 146,
+      "carried_cheaper_first": 100
+    },
+    "<=8h": {
+      "any_tier": 307,
+      "by_tier": {
+        "<=93": 36,
+        "<=95": 68,
+        "<=97": 158,
+        "<100": 307
+      },
+      "by_category": {
+        "ATP_CHALL": 158,
+        "ATP_MAIN": 62,
+        "WTA_MAIN": 52,
+        "WTA_CHALL": 35
+      },
+      "carried_dearer_first": 185,
+      "carried_cheaper_first": 121
+    }
+  },
+  "disjoint_over_8h": 52,
+  "combined_executable_ceiling": {
+    "0": {
+      "total": 31,
+      "by_tier": {
+        "<=93": 2,
+        "<=95": 2,
+        "<=97": 10,
+        "<100": 31
+      }
+    },
+    "<=1h": {
+      "total": 137,
+      "by_tier": {
+        "<=93": 16,
+        "<=95": 24,
+        "<=97": 43,
+        "<100": 137
+      }
+    },
+    "<=2h": {
+      "total": 192,
+      "by_tier": {
+        "<=93": 23,
+        "<=95": 35,
+        "<=97": 72,
+        "<100": 192
+      }
+    },
+    "<=4h": {
+      "total": 278,
+      "by_tier": {
+        "<=93": 31,
+        "<=95": 51,
+        "<=97": 122,
+        "<100": 278
+      }
+    },
+    "<=8h": {
+      "total": 338,
+      "by_tier": {
+        "<=93": 38,
+        "<=95": 70,
+        "<=97": 168,
+        "<100": 338
+      }
+    }
+  },
+  "acceptance": {
+    "overlap_plus_disjoint": 390,
+    "monotonic": true,
+    "all_gaps_positive": true,
+    "passed": true
+  }
+}

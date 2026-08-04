@@ -1,0 +1,59 @@
+{
+  "status": "BOUND",
+  "canonical_surface": "gated_optima_validated_2026-06-01; C-EXIT-SEAL; Plex-countersigned; ATP_MAIN resealed full-universe 2026-06-15",
+  "seal": {
+    "path": "arb-executor/data/durable/exit_surface_gated_optima/LOCKED_DOWN.md",
+    "sha256": "cc2e96bb37f2776f4b0a7823f30c3435e3d9d06fc76489e7ebd944c872a45fcb"
+  },
+  "machine_readable_surfaces": {
+    "ATP_MAIN": {
+      "path": "arb-executor/analysis/exit_charts/deploy_gated_optima_full.csv",
+      "git_blob_sha256": "9fc6dd7beedb4d63292268af8de7ac9e83a42ac5f6b2eafc7a2de39602e4d41f",
+      "checkout_sha256": "7952a40a39f66854195a5ef1089697892e1cebd7275c849fee924a275788c1ca",
+      "cells": 90,
+      "cell_domain": [
+        5,
+        94
+      ]
+    },
+    "WTA_MAIN": {
+      "path": "arb-executor/analysis/exit_charts/deploy_gated_optima_WTA_MAIN.csv",
+      "git_blob_sha256": "3fc8a3880fac1a2590094b6d36117f48271346361410a3772e1f68a69b086a46",
+      "checkout_sha256": "6f6e682cc8f2581bcfbc1d0e4639fd0a2980e65bdb23765fe4045d834e490fb1",
+      "cells": 90,
+      "cell_domain": [
+        5,
+        94
+      ]
+    },
+    "ATP_CHALL": {
+      "path": "arb-executor/analysis/exit_charts/deploy_gated_optima_ATP_CHALL.csv",
+      "git_blob_sha256": "ee6377c5146caeae9c93701ee412b4ec7ecee06975222024218875e1dd532df9",
+      "checkout_sha256": "d8a51b54c4fa608af85552f863ef15bce3a214942936c2f26db442dad60d90d1",
+      "cells": 90,
+      "cell_domain": [
+        5,
+        94
+      ]
+    },
+    "WTA_CHALL": {
+      "path": "arb-executor/analysis/exit_charts/deploy_gated_optima_WTA_CHALL.csv",
+      "git_blob_sha256": "3416a87b8e64040f0a315a73e3870b5038905d8fee9a23c07bcfc92c644062c4",
+      "checkout_sha256": "d66cb3ed4e7c6dede4e793401f47eb91ba6c144c65b0f5f7ab9bb987b3c131f9",
+      "cells": 90,
+      "cell_domain": [
+        5,
+        94
+      ]
+    }
+  },
+  "lookup_law": "CELL=CLAMP(ROUND(CREDITED_ENTRY_CENTS),5,94); X=SEALED_CSV.X; TARGET=MIN(ENTRY+X,98)",
+  "touch_law": {
+    "path": "arb-executor/audit/w1_grading.py",
+    "sha256": "c36985d4323610566dfb24ff92fef1c4097ad71f2c10c71f1c88ec9ebe24312d",
+    "rule": "TRUE TAPE PRINT PRICE >= EXIT LEVEL BEFORE GUARDED RIGHT EDGE"
+  },
+  "superseded_surface_excluded": "arb-executor/data/durable/spike_volatility_map",
+  "hold_cells": 0,
+  "invented_band_or_touch_rule": false
+}

@@ -1,0 +1,28 @@
+{
+  "V23": {
+    "credited_legs": 920,
+    "legs_in_completed_pairs": 408,
+    "naked_credited_legs": 512,
+    "equation": "408+512=920",
+    "pass": true
+  },
+  "A_V20": {
+    "credited_legs": 1187,
+    "legs_in_completed_pairs": 942,
+    "naked_credited_legs": 245,
+    "equation": "942+245=1187",
+    "pass": true
+  },
+  "disposition_rows": 757,
+  "unique_variant_leg_identities": 757,
+  "exactly_one_disposition_row_per_naked_leg": true,
+  "origin_class_counts": {
+    "A_V20": {
+      "NEVER_COMPLETED_SIBLING": 245
+    },
+    "V23_PAIR_CAP_IMMEDIATE": {
+      "NEVER_COMPLETED_SIBLING": 352,
+      "CAP_ABSTENTION_SIBLING": 160
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "A_V20": {
+    "D": 804,
+    "acted_legs": 1187,
+    "credited_legs": 1187,
+    "completed_pairs": 471,
+    "pairs_under_par": 139,
+    "completed_pairs_with_both_audited_closes": 468,
+    "completed_pairs_close_unavailable": 3,
+    "both_legs_strictly_below_audited_close": 62,
+    "joint_objective_pairs": 33,
+    "strict_carried_pairs": 191
+  },
+  "V23_PAIR_CAP_IMMEDIATE": {
+    "D": 804,
+    "acted_legs": 1020,
+    "credited_legs": 910,
+    "completed_pairs": 194,
+    "pairs_under_par": 194,
+    "completed_pairs_with_both_audited_closes": 194,
+    "completed_pairs_close_unavailable": 0,
+    "both_legs_strictly_below_audited_close": 45,
+    "joint_objective_pairs": 45,
+    "strict_carried_pairs": 83
+  },
+  "delta": {
+    "D": 0,
+    "acted_legs": -167,
+    "credited_legs": -277,
+    "completed_pairs": -277,
+    "pairs_under_par": 55,
+    "completed_pairs_with_both_audited_closes": -274,
+    "completed_pairs_close_unavailable": -3,
+    "both_legs_strictly_below_audited_close": -17,
+    "joint_objective_pairs": 12,
+    "strict_carried_pairs": -108
+  },
+  "pair_cap_receipts": {
+    "ABSTAIN:PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING": 167,
+    "PLACE:PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE": 165,
+    "UNCHANGED:ORIGINAL_LEG2_BID_ALREADY_STRICTLY_UNDER_PAR": 139
+  },
+  "receipt_rows": 471,
+  "strict_order_receipts": 460,
+  "simultaneous_not_armed": 0,
+  "simultaneous_own_aim_proxy_armed": 11
+}

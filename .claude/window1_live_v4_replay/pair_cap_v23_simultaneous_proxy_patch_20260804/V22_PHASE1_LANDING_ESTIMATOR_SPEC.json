@@ -1,0 +1,82 @@
+{
+  "ruling": "SPEC_ONLY; V22_PHASE1_NOT_RUN",
+  "current_shape_surface": {
+    "path": ".claude/window1_live_v4_replay/interim_shape_v13_fit_20260803/INTERIM_SHAPE_LIBRARY_V13.json",
+    "shapes": 39,
+    "signable_shapes": 23,
+    "available_training_legs": 1343,
+    "signable_members": 1086,
+    "emitted_runtime_values": [
+      "surviving_shape_ids",
+      "coherent qualified-ask descent ordinal distribution",
+      "FLOOR/LOWER/UNKNOWN verdict",
+      "fitted micro-micro READY/WAIT"
+    ],
+    "numeric_own_close_landing_distribution": "NOT_BOUND",
+    "numeric_own_close_landing_coverage_legs": 0,
+    "reason": "NO CURRENT SHAPE OBJECT CONTAINS A DECISION-TIME OWN-CLOSE PRICE OR DISTRIBUTION",
+    "category_coverage": [
+      {
+        "category": "ATP_CHALL",
+        "population_legs": 738,
+        "shape_assigned": 659,
+        "signable_shape_assignment": 577,
+        "unusable_shape_assignment": 82,
+        "unassigned": 79,
+        "numeric_decision_time_close_landing_estimate_available": 0
+      },
+      {
+        "category": "ATP_MAIN",
+        "population_legs": 294,
+        "shape_assigned": 248,
+        "signable_shape_assignment": 146,
+        "unusable_shape_assignment": 102,
+        "unassigned": 46,
+        "numeric_decision_time_close_landing_estimate_available": 0
+      },
+      {
+        "category": "WTA_CHALL",
+        "population_legs": 272,
+        "shape_assigned": 183,
+        "signable_shape_assignment": 163,
+        "unusable_shape_assignment": 20,
+        "unassigned": 89,
+        "numeric_decision_time_close_landing_estimate_available": 0
+      },
+      {
+        "category": "WTA_MAIN",
+        "population_legs": 304,
+        "shape_assigned": 253,
+        "signable_shape_assignment": 200,
+        "unusable_shape_assignment": 53,
+        "unassigned": 51,
+        "numeric_decision_time_close_landing_estimate_available": 0
+      }
+    ]
+  },
+  "identity_unresolved_hole": {
+    "source_surface": ".claude/window1_live_v4_replay/second_leg_x_pricer_v17_20260803/TIME_AND_FLOW_ROW_LEDGER.jsonl.gz",
+    "evaluated_async_floor_events": 757,
+    "climber_first_identity_unresolved": 339,
+    "category_counts": {
+      "ATP_CHALL": 156,
+      "WTA_CHALL": 80,
+      "WTA_MAIN": 57,
+      "ATP_MAIN": 46
+    },
+    "interpretation": "THE 339 IS AN ORDERING/DIRECTION-IDENTITY HOLE, NOT AN EXISTING NUMERIC CLOSE-LANDING ESTIMATE"
+  },
+  "ratification_candidate_interface": {
+    "status": "UNBUILT_AWAITING_OPERATOR_RATIFICATION",
+    "causal_input": "CURRENT SURVIVING SHAPE SET AND DECISION-TIME LIVE BOOK ONLY",
+    "required_new_fit": "FOR EACH CAUSAL SURVIVOR STATE, A TRAINING-ONLY DISTRIBUTION OF OWN_AUDITED_CLOSE_MINUS_CURRENT_QUALIFYING_ASK WITH DISJOINT VALIDATION AND NAMED THIN/UNRESOLVED ABSTENTION",
+    "aim_bar": "STRICTLY BELOW A CONSERVATIVELY SELECTED DECISION-TIME LANDING DISTRIBUTION QUANTILE; QUANTILE NOT YET AUTHORIZED",
+    "aim_floor": "CURRENT LIVE QUALIFYING ASK BY RESIDENCY; NEVER EX-POST MAKER FLOOR",
+    "prohibited": [
+      "EX_POST_CLOSE_AS_POLICY_INPUT",
+      "EX_POST_MAKER_FLOOR_AS_POLICY_INPUT",
+      "V17_BUCKET_POINT_TARGET",
+      "CELL_BEFORE_ENTRY"
+    ]
+  }
+}

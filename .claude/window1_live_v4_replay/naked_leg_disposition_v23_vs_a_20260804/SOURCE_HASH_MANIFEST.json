@@ -1,0 +1,65 @@
+{
+  "committed": {
+    ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/POPULATION_LEG_LEDGER.jsonl.gz": {
+      "sha256": "0c14003108dc2f9e7b9e162c1bffc2a1b2d069c7941885982a9468ed28dd2fb4",
+      "bytes": 3122608
+    },
+    ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_20260804/V23_LEG_LEDGER.jsonl.gz": {
+      "sha256": "d8349d831b2ad00db1e7748d1683b6882035eddd0af69967c6530a4b7d236c33",
+      "bytes": 3281591
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl": {
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed",
+      "bytes": 3696777
+    },
+    "arb-executor/data/durable/exit_surface_gated_optima/LOCKED_DOWN.md": {
+      "sha256": "cc2e96bb37f2776f4b0a7823f30c3435e3d9d06fc76489e7ebd944c872a45fcb",
+      "bytes": 6387
+    },
+    "arb-executor/audit/w1_grading.py": {
+      "sha256": "c36985d4323610566dfb24ff92fef1c4097ad71f2c10c71f1c88ec9ebe24312d",
+      "bytes": 7438
+    },
+    "arb-executor/analysis/exit_charts/deploy_gated_optima_full.csv": {
+      "sha256": "7952a40a39f66854195a5ef1089697892e1cebd7275c849fee924a275788c1ca",
+      "bytes": 22097
+    },
+    "arb-executor/analysis/exit_charts/deploy_gated_optima_WTA_MAIN.csv": {
+      "sha256": "6f6e682cc8f2581bcfbc1d0e4639fd0a2980e65bdb23765fe4045d834e490fb1",
+      "bytes": 24208
+    },
+    "arb-executor/analysis/exit_charts/deploy_gated_optima_ATP_CHALL.csv": {
+      "sha256": "d8a51b54c4fa608af85552f863ef15bce3a214942936c2f26db442dad60d90d1",
+      "bytes": 23753
+    },
+    "arb-executor/analysis/exit_charts/deploy_gated_optima_WTA_CHALL.csv": {
+      "sha256": "d66cb3ed4e7c6dede4e793401f47eb91ba6c144c65b0f5f7ab9bb987b3c131f9",
+      "bytes": 23548
+    },
+    "arb-executor/analysis/build_window1_naked_leg_disposition_v23.js": {
+      "sha256": "1a3a433d46a3c7e1c9bba628702998e1f3aa40c1db753856688b0de8efa63289",
+      "bytes": 24232
+    },
+    "arb-executor/tests/test_window1_naked_leg_disposition_v23.js": {
+      "sha256": "755fa08ae38b4dd5cb72714f7592af73230bdc77f858ec6804ac41deb834a358",
+      "bytes": 2574
+    }
+  },
+  "private_public_print_tape": {
+    "path_redacted_to_contract": "OMI-Window1-private/fit-local/prints.jsonl",
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "bytes": 1766090446,
+    "physical_rows": 4836462,
+    "selected_target_ticker_rows": 1470958,
+    "target_tickers": 512
+  },
+  "private_public_print_manifest": {
+    "path_redacted_to_contract": "OMI-Window1-private/fit-local/PUBLIC_TAPE_MANIFEST.sanitized.json",
+    "sha256": "d2a3bd4b156f312fce3bbb8a8875114904ac39f2ed5b36801799d9a905e4d575",
+    "bytes": 2245
+  }
+}

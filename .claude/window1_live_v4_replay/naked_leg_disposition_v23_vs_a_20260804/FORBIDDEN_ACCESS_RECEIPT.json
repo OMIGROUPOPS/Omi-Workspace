@@ -1,0 +1,16 @@
+{
+  "development_population_only": true,
+  "read_only_tape_walk": true,
+  "policy_variant": false,
+  "scoring_change": false,
+  "scorer_invocations": 0,
+  "holdout": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits_mutated": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false
+}

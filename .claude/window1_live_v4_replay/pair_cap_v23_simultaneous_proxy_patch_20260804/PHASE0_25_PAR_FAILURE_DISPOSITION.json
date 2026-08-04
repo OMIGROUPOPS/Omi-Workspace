@@ -1,0 +1,393 @@
+{
+  "law": "FROZEN_A_BOTH_LEGS_STRICTLY_BELOW_REPLAY_CLOSE_BUT_COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR",
+  "count": 25,
+  "A_combined_cost_distribution": {
+    "100": 18,
+    "101": 7
+  },
+  "V23_status": {
+    "PLACE": 19,
+    "ABSTAIN": 6
+  },
+  "V23_completed": {
+    "false": 22,
+    "true": 3
+  },
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+      "category": "ATP_CHALL",
+      "starting_price_split": "ge75+le25",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "GEO": 16,
+        "MAG": 84
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 101,
+      "A_entries": {
+        "KIR": 73,
+        "PEA": 28
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+      "category": "ATP_CHALL",
+      "starting_price_split": "ge75+le25",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "IVA": 96,
+        "SIA": 4
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "KEN": 57,
+        "SHE": 43
+      },
+      "V23_pair_cap_status": "ABSTAIN",
+      "V23_pair_cap_reason": "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 101,
+      "A_entries": {
+        "GON": 64,
+        "PAL": 37
+      },
+      "V23_pair_cap_status": "ABSTAIN",
+      "V23_pair_cap_reason": "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "BIC": 43,
+        "MIY": 57
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "CAS": 41,
+        "SCH": 59
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "GEN": 63,
+        "PET": 37
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "DAL": 52,
+        "NED": 48
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": true,
+      "V23_combined_entry_cents": 99,
+      "V23_joint_on_audited_close": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+      "category": "ATP_CHALL",
+      "starting_price_split": "ge75+le25",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "GEA": 79,
+        "SUN": 21
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "JOH": 39,
+        "WOL": 61
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "GEN": 53,
+        "HOU": 47
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "BON": 45,
+        "NAG": 55
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "CRA": 30,
+        "ROD": 70
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 101,
+      "A_entries": {
+        "AGU": 56,
+        "KIR": 45
+      },
+      "V23_pair_cap_status": "ABSTAIN",
+      "V23_pair_cap_reason": "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+      "category": "ATP_CHALL",
+      "starting_price_split": "ge75+le25",
+      "A_combined_entry_cents": 101,
+      "A_entries": {
+        "PON": 21,
+        "ZIE": 80
+      },
+      "V23_pair_cap_status": "ABSTAIN",
+      "V23_pair_cap_reason": "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "FAU": 34,
+        "RIN": 66
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "BAR": 55,
+        "MON": 45
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 101,
+      "A_entries": {
+        "PET": 66,
+        "TAB": 35
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+      "category": "ATP_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 101,
+      "A_entries": {
+        "DON": 36,
+        "VAR": 65
+      },
+      "V23_pair_cap_status": "ABSTAIN",
+      "V23_pair_cap_reason": "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MARHAN",
+      "category": "ATP_MAIN",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "HAN": 76,
+        "MAR": 24
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MARSKA",
+      "category": "ATP_MAIN",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "MAR": 61,
+        "SKA": 39
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": true,
+      "V23_combined_entry_cents": 99,
+      "V23_joint_on_audited_close": true
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "category": "WTA_CHALL",
+      "starting_price_split": "26_50+51_75",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "FER": 68,
+        "ZAN": 32
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "category": "WTA_CHALL",
+      "starting_price_split": "ge75+le25",
+      "A_combined_entry_cents": 100,
+      "A_entries": {
+        "LAN": 19,
+        "RAD": 81
+      },
+      "V23_pair_cap_status": "PLACE",
+      "V23_pair_cap_reason": "PAIR_CAP_AT_OR_ABOVE_LIVE_BID_MAKER_RESTING_NO_CHASE",
+      "V23_completed": true,
+      "V23_combined_entry_cents": 99,
+      "V23_joint_on_audited_close": true
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12MORNEP",
+      "category": "WTA_MAIN",
+      "starting_price_split": "ge75+le25",
+      "A_combined_entry_cents": 101,
+      "A_entries": {
+        "MOR": 77,
+        "NEP": 24
+      },
+      "V23_pair_cap_status": "ABSTAIN",
+      "V23_pair_cap_reason": "PAIR_CAP_BELOW_CURRENT_LIVE_BID_UNREACHABLE_WITHOUT_CHASING",
+      "V23_completed": false,
+      "V23_combined_entry_cents": null,
+      "V23_joint_on_audited_close": false
+    }
+  ]
+}

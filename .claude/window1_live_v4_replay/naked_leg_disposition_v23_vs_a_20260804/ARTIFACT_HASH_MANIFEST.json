@@ -1,0 +1,36 @@
+{
+  "files": {
+    "BAND_AUTHORITY_RECEIPT.json": {
+      "sha256": "5f4c7d051cc1baea988695b6d19f1e5042e92485f88863e8a18459c9d3d96406",
+      "bytes": 2320
+    },
+    "CONSERVATION_RECEIPT.json": {
+      "sha256": "8528d856f811e3219867e0248358ab84275bb4d0e0550208d79b5c19f3f5b680",
+      "bytes": 646
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "e9b327a09976bf263e72118ecfd4d2d314f93a20bb5bb8e68116d437a9ef2c5e",
+      "bytes": 93
+    },
+    "DISPOSITION_DISTRIBUTIONS.json": {
+      "sha256": "e1bc71276d25d3511a04207ce9f42c10994fa2374a5e61656ed2adc41602ff28",
+      "bytes": 177069
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "ce730f5f3e7d09e4dd51cd56c8214e3b8ad5a045463c8d9ba943e9b95c6020de",
+      "bytes": 337
+    },
+    "NAKED_LEG_DISPOSITION_LEDGER.jsonl.gz": {
+      "sha256": "d41a1089be0350145788ea50596db612662133a5fa13c29119e65dc50f9db7fd",
+      "bytes": 167829
+    },
+    "REPORT.md": {
+      "sha256": "8d9f3133e57ae123b0ecf905461f8df0c776c633deab310476e6dea4ef6fcb61",
+      "bytes": 635
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "56a5f167cddabbe8c718795f74f4ed31785dbe21ffc6bd52b25ed99dd8f3d5b2",
+      "bytes": 2907
+    }
+  }
+}

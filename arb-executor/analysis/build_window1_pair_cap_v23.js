@@ -17,6 +17,7 @@ const artifactRel = ".claude/window1_live_v4_replay/pair_cap_v23_audited_close_2
 const out = path.resolve(value("--output", path.join(repo, artifactRel)));
 const compare1 = value("--compare-run1", null);
 const compare2 = value("--compare-run2", null);
+const simultaneousOwnAimProxy = args.includes("--simultaneous-own-aim-proxy");
 const auditCommit = "50ce0f4940c461cf0b6fa1b79000d96b335cd601";
 const auditCsvRel = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INDEPENDENT_CLOSE_AUDIT_1608.csv";
 const auditSummaryRel = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CLOSE_AUDIT_AND_JOINT_CEILING_SUMMARY.json";
@@ -144,14 +145,15 @@ function legacyReplayJoint(events) {
   }).length;
 }
 
-function buildV23(aEvents, quoteSources, sourceHashes) {
+function buildV23(aEvents, quoteSources, sourceHashes, options = {}) {
   const receipts = [];
   const events = aEvents.map((event) => {
     const legs = Object.values(event.legs).map((leg) => ({ ...leg }));
     if (!legs.every((leg) => leg.credited)) return { ...event, legs: Object.fromEntries(legs.map((leg) => [leg.leg_id, leg])), pair_cap_v23: { status: "NOT_APPLICABLE_PAIR_NOT_COMPLETED_IN_A" } };
     const ordered = [...legs].sort((a, b) => a.action_timestamp_epoch - b.action_timestamp_epoch || a.leg_id.localeCompare(b.leg_id));
     const first = ordered[0], second = ordered[1];
-    if (first.action_timestamp_epoch === second.action_timestamp_epoch) {
+    const simultaneous = first.action_timestamp_epoch === second.action_timestamp_epoch;
+    if (simultaneous && !options.simultaneousOwnAimProxy) {
       const receipt = { event_id: event.event_id, status: "NOT_ARMED_SIMULTANEOUS_ACTIONS_NO_STRICTLY_PRIOR_CREDITED_FILL", action_timestamp_epoch: first.action_timestamp_epoch, A_combined_entry_cents: first.entry_cents + second.entry_cents, leg_identities: ordered.map((leg) => leg.leg_identity) };
       receipts.push(receipt);
       return { ...event, legs: Object.fromEntries(legs.map((leg) => [leg.leg_id, leg])), pair_cap_v23: receipt };
@@ -166,12 +168,13 @@ function buildV23(aEvents, quoteSources, sourceHashes) {
       first_leg_identity: first.leg_identity,
       first_leg_fill_cents: first.entry_cents,
       first_leg_fill_timestamp_epoch: first.action_timestamp_epoch,
+      first_leg_basis_type: simultaneous ? "SIMULTANEOUS_LEXICALLY_FIRST_LEG_OWN_AIM_PRICE_PROXY_NOT_A_FILL" : "STRICTLY_PRIOR_CREDITED_FILL",
       second_leg_identity: second.leg_identity,
       second_leg_action_timestamp_epoch: second.action_timestamp_epoch,
       second_leg_action_receipt: second.placement.action_receipt,
       live_book_at_leg2_decision: { bid: ownBook.bid, ask: ownBook.ask, spread: ownBook.spread, top_ask_size: ownBook.top_ask_size, receipt: ownBook.receipt, timestamp_epoch: ownBook.timestamp_epoch },
       A_leg2_bid_cents: second.entry_cents,
-      pair_cap_formula: "99 - credited_leg1_fill_cents",
+      pair_cap_formula: simultaneous ? "99 - simultaneous_leg1_own_aim_price_proxy_cents" : "99 - credited_leg1_fill_cents",
       pair_cap_cents: decision.cap_cents,
       selected_leg2_bid_cents: decision.selected_bid_cents,
       no_chase: true,
@@ -329,7 +332,7 @@ function main() {
   const aLegs = readRows(path.join(aDir, "POPULATION_LEG_LEDGER.jsonl.gz"));
   ensure(v19Events.length === 804 && aEvents.length === 804 && aLegs.length === 1608, "frozen population conservation");
   const sourceHashes = {};
-  const v23Raw = buildV23(aEvents, quoteSources, sourceHashes);
+  const v23Raw = buildV23(aEvents, quoteSources, sourceHashes, { simultaneousOwnAimProxy });
   const v19 = addDerivedFields(v19Events, closeMap, aggressors), a = addDerivedFields(aEvents, closeMap, aggressors), v23 = addDerivedFields(v23Raw.events, closeMap, aggressors);
   const variants = [scoreVariant("V19", v19, closeMap), scoreVariant("A_V20", a, closeMap), scoreVariant("V23_PAIR_CAP_IMMEDIATE", v23, closeMap)];
   const legacy = { V19: legacyReplayJoint(v19Events), A_V20: legacyReplayJoint(aEvents), V23_PAIR_CAP_IMMEDIATE: legacyReplayJoint(v23) };
@@ -383,11 +386,12 @@ function main() {
   fs.writeFileSync(path.join(out, "FRONTIER.json"), canonical({ fixed_denominator: 804, JOINT_law: "COMPLETED_AND_SUM_LT_100_AND_EACH_LEG_ENTRY_STRICTLY_BELOW_ITS_INDEPENDENTLY_AUDITED_OWN_CLOSE", variants: Object.fromEntries(variants.map((variant) => [variant.variant, { aggregate: variant.aggregate, frontier: variant.frontier, category_x_starting_price_region: variant.category_x_starting_price_region }])) }));
   fs.writeFileSync(path.join(out, "REGRET_GAUGE.json"), canonical({ score: "REGRET_GAUGE", A_V20: { aggregate: aRegret.aggregate, category_x_price_region: aRegret.category_x_price_region }, V23_PAIR_CAP_IMMEDIATE: { aggregate: v23Regret.aggregate, category_x_price_region: v23Regret.category_x_price_region } }));
   fs.writeFileSync(path.join(out, "REGRET_LEG_LEDGER.jsonl.gz"), gzipRows(v23Regret.rows));
-  fs.writeFileSync(path.join(out, "V23_VS_A.json"), canonical({ A_V20: variants[1].aggregate, V23_PAIR_CAP_IMMEDIATE: variants[2].aggregate, delta: Object.fromEntries(Object.keys(variants[1].aggregate).filter((key) => Number.isInteger(variants[1].aggregate[key])).map((key) => [key, variants[2].aggregate[key] - variants[1].aggregate[key]])), pair_cap_receipts: receiptCounts, receipt_rows: v23Raw.receipts.length, strict_order_receipts: v23Raw.receipts.filter((row) => row.status !== "NOT_ARMED_SIMULTANEOUS_ACTIONS_NO_STRICTLY_PRIOR_CREDITED_FILL").length, simultaneous_not_armed: v23Raw.receipts.filter((row) => row.status === "NOT_ARMED_SIMULTANEOUS_ACTIONS_NO_STRICTLY_PRIOR_CREDITED_FILL").length }));
+  fs.writeFileSync(path.join(out, "V23_VS_A.json"), canonical({ A_V20: variants[1].aggregate, V23_PAIR_CAP_IMMEDIATE: variants[2].aggregate, delta: Object.fromEntries(Object.keys(variants[1].aggregate).filter((key) => Number.isInteger(variants[1].aggregate[key])).map((key) => [key, variants[2].aggregate[key] - variants[1].aggregate[key]])), pair_cap_receipts: receiptCounts, receipt_rows: v23Raw.receipts.length, strict_order_receipts: v23Raw.receipts.filter((row) => row.first_leg_basis_type === "STRICTLY_PRIOR_CREDITED_FILL").length, simultaneous_not_armed: v23Raw.receipts.filter((row) => row.status === "NOT_ARMED_SIMULTANEOUS_ACTIONS_NO_STRICTLY_PRIOR_CREDITED_FILL").length, simultaneous_own_aim_proxy_armed: v23Raw.receipts.filter((row) => row.first_leg_basis_type === "SIMULTANEOUS_LEXICALLY_FIRST_LEG_OWN_AIM_PRICE_PROXY_NOT_A_FILL").length }));
   fs.writeFileSync(path.join(out, "PHASE0_25_PAR_FAILURE_DISPOSITION.json"), canonical({ law: "FROZEN_A_BOTH_LEGS_STRICTLY_BELOW_REPLAY_CLOSE_BUT_COMBINED_ENTRY_NOT_STRICTLY_UNDER_PAR", count: phase0ParFailures.length, A_combined_cost_distribution: countBy(phase0ParFailures, (row) => row.A_combined_entry_cents), V23_status: countBy(phase0ParFailures, (row) => row.V23_pair_cap_status), V23_completed: countBy(phase0ParFailures, (row) => row.V23_completed), rows: phase0ParFailures }));
   fs.writeFileSync(path.join(out, "V22_PHASE1_LANDING_ESTIMATOR_SPEC.json"), canonical(spec));
   fs.writeFileSync(path.join(out, "V22_IDENTITY_UNRESOLVED_339.jsonl.gz"), gzipRows(unresolvedRows));
-  fs.writeFileSync(path.join(out, "CONTROL_BINDING.json"), canonical({ base_variant: "A_V20", pair_cap_law: "AT STRICTLY LATER LEG2 PLACEMENT, CAP=99-CREDITED_LEG1_FILL; CAP MAY REST ONLY AT/ABOVE CURRENT LIVE BID; BELOW LIVE BID ABSTAINS; STRICTLY LATER QUALIFYING ASK REQUIRED; NO CHASE", audit_commit: auditCommit, audit_csv_sha256: sha256(audit.csvBytes), audit_summary_sha256: sha256(audit.summaryBytes), V22_phase1_executed: false }));
+  fs.writeFileSync(path.join(out, "CONTROL_BINDING.json"), canonical({ base_variant: "A_V20", pair_cap_law: "AT STRICTLY LATER LEG2 PLACEMENT, CAP=99-CREDITED_LEG1_FILL; CAP MAY REST ONLY AT/ABOVE CURRENT LIVE BID; BELOW LIVE BID ABSTAINS; STRICTLY LATER QUALIFYING ASK REQUIRED; NO CHASE", simultaneous_own_aim_proxy_patch: simultaneousOwnAimProxy, simultaneous_patch_law: simultaneousOwnAimProxy ? "FOR SAME-SECOND DUAL PLACEMENTS ONLY, LEXICALLY FIRST LEG OWN AIM IS THE NON-FILL PROXY BASIS; SECOND LEG CAP=99-PROXY; STRICTLY LATER EVIDENCE STILL REQUIRED" : "INACTIVE", audit_commit: auditCommit, audit_csv_sha256: sha256(audit.csvBytes), audit_summary_sha256: sha256(audit.summaryBytes), V22_phase1_executed: false }));
+  if (simultaneousOwnAimProxy) fs.writeFileSync(path.join(out, "SIMULTANEOUS_OWN_AIM_PROXY_PATCH_RECEIPT.json"), canonical({ scope: "EXACTLY_11_SAME-SECOND_A_PLACEMENT_EVENTS", events: v23Raw.receipts.filter((row) => row.first_leg_basis_type === "SIMULTANEOUS_LEXICALLY_FIRST_LEG_OWN_AIM_PRICE_PROXY_NOT_A_FILL"), ordering: "LEG_ID_LEXICAL; INHERITED REPLAY PER-TICK LEG ITERATION ORDER", proxy_is_fill: false, same_receipt_fill_forbidden: true, no_chase: true }));
   fs.writeFileSync(path.join(out, "FORBIDDEN_ACCESS_RECEIPT.json"), canonical({ development_population_only: true, D: 804, holdout: false, live: false, network: false, orders: false, positions: false, exits: false, settlement: false, DCA: false, Window2: false, V22_phase1_execution: false }));
   const sourceFiles = [
     ["arb-executor/analysis/window1_pair_cap_v23_policy.js", path.join(repo, "arb-executor/analysis/window1_pair_cap_v23_policy.js")],
@@ -401,12 +405,15 @@ function main() {
     [path.relative(repo, libraryPath).replaceAll("\\", "/"), libraryPath],
     [path.relative(repo, timeFlowPath).replaceAll("\\", "/"), timeFlowPath],
   ];
+  if (simultaneousOwnAimProxy) sourceFiles.push(["arb-executor/tests/test_window1_pair_cap_v23_simultaneous_patch.js", path.join(repo, "arb-executor/tests/test_window1_pair_cap_v23_simultaneous_patch.js")]);
   fs.writeFileSync(path.join(out, "SOURCE_HASH_MANIFEST.json"), canonical({ committed_files: Object.fromEntries(sourceFiles.map(([name, file]) => [name, { sha256: hashFile(file), bytes: fs.statSync(file).size }])), independent_close_audit: { commit: auditCommit, csv: { path: auditCsvRel, sha256: sha256(audit.csvBytes), bytes: audit.csvBytes.length }, summary: { path: auditSummaryRel, sha256: sha256(audit.summaryBytes), bytes: audit.summaryBytes.length } }, private_tick_sources_accessed_for_pair_cap: sourceHashes }));
-  fs.writeFileSync(path.join(out, "REPORT.md"), `# Window-1 V23 pair-cap replay and audited-close regrade\n\nV23 is one isolated replay variant of frozen A. It adds only the immediate second-leg cap. V19, A, and V23 are regraded against the independently audited 1,608-leg close ruler. V22 Phase 1 is not built or run: the current shape library emits ordinal/verdict state but no numeric close landing distribution.\n\nArtifacts: AUDITED_CLOSE_REGRADE.json, FRONTIER.json, REGRET_GAUGE.json, V23_VS_A.json, PAIR_CAP_DECISION_RECEIPTS.jsonl.gz, V22_PHASE1_LANDING_ESTIMATOR_SPEC.json, and V22_IDENTITY_UNRESOLVED_339.jsonl.gz.\n`);
+  fs.writeFileSync(path.join(out, "REPORT.md"), `# Window-1 V23 pair-cap replay and audited-close regrade\n\nV23 is one isolated replay variant of frozen A. It adds only the immediate second-leg cap.${simultaneousOwnAimProxy ? " The cents-sized simultaneous patch arms the 11 same-second placements using the lexically first leg's own aim as a non-fill proxy basis; later fill evidence remains strictly later." : ""} V19, A, and V23 are regraded against the independently audited 1,608-leg close ruler. V22 Phase 1 is not built or run: the current shape library emits ordinal/verdict state but no numeric close landing distribution.\n\nArtifacts: AUDITED_CLOSE_REGRADE.json, FRONTIER.json, REGRET_GAUGE.json, V23_VS_A.json, PAIR_CAP_DECISION_RECEIPTS.jsonl.gz, V22_PHASE1_LANDING_ESTIMATOR_SPEC.json, and V22_IDENTITY_UNRESOLVED_339.jsonl.gz.\n`);
   if (compare1 && compare2) fs.writeFileSync(path.join(out, "DETERMINISM_RECEIPT.json"), canonical(compareBuilds(path.resolve(compare1), path.resolve(compare2))));
   const artifactNames = fs.readdirSync(out).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
   fs.writeFileSync(path.join(out, "ARTIFACT_HASH_MANIFEST.json"), canonical({ files: Object.fromEntries(artifactNames.map((name) => [name, { sha256: hashFile(path.join(out, name)), bytes: fs.statSync(path.join(out, name)).size }])) }));
   process.stdout.write(canonical({ status: "BUILT", output: out, audited_joint: audited, V23_vs_A_joint_delta: regrade.V23_vs_A_audited_joint_delta, V23_metrics: variants[2].aggregate, pair_cap_receipts: receiptCounts, shape_numeric_landing_coverage: 0, identity_unresolved: unresolvedRows.length }));
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { buildV23, addDerivedFields, metrics, scoreVariant };

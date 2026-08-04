@@ -22,3 +22,11 @@ changing the default directory on one line from `spike_volatility_map/` to
 `exit_surface_gated_optima/`. That proposal was not applied. The loader reads
 sealed parquets; the provenance CSVs cannot be substituted literally without a
 schema/loader change.
+
+Immutable artifacts:
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/be4c446b23fa7f0e6bccbb8b12238c802005174e/.claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/BAND_AUTHORITY_RUNTIME_AUDIT.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/be4c446b23fa7f0e6bccbb8b12238c802005174e/.claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/RUNTIME_BINDING_RECEIPT.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/be4c446b23fa7f0e6bccbb8b12238c802005174e/.claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/PROPOSED_ONE_LINE_HARDENING.diff

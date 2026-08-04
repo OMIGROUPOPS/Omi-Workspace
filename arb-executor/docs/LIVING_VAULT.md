@@ -1,5 +1,20 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-04 - LIVE EXIT-BAND AUTHORITY: GATED OPTIMA, NOT SPIKE MAP
+
+The potential runtime defect is not active. The last executed `live_v4` source
+blob `f1857199` loaded `deploy_v5_live.json`; its explicit `exit_table_dir`
+selects the sealed gated-optima runtime parquets. The spike-map string in
+`_load_exit_table` is only a missing-key fallback. `exit_rule_for` consumes the
+already-loaded table. The engine remains stopped. A read-only VPS census found
+zero processes, a still-gated config, and all four sealed parquet hashes exact.
+The stopped VPS has pre-existing uncommitted source/config changes, which this
+audit did not mutate. A one-line fallback hardening is proposed but not applied.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/be4c446b23fa7f0e6bccbb8b12238c802005174e/.claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/BAND_AUTHORITY_RUNTIME_AUDIT.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/be4c446b23fa7f0e6bccbb8b12238c802005174e/.claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/RUNTIME_BINDING_RECEIPT.json
+
 ### 2026-08-04 - V23/A NAKED-LEG DISPOSITION; SIMULTANEOUS CAP PATCH
 
 The sealed gated-optima exit surface governs a read-only post-fill walk of all naked credited legs: exact conservation is V23 `408+512=920`, A `942+245=1187`. V23 origins split 160 cap-abstention siblings / 352 other never-completed siblings; A has 245 other never-completed siblings. Band targets touch for 22 V23 and 9 A legs. On legally marked rows, band-or-edge totals are V23 -21¢/contract and A -139¢, but 23/13 post-fill edge marks are unavailable, so the full-book pay/wash/bleed comparison remains unresolved and unimputed. The separate 11-event simultaneous own-aim proxy patch arms all 11, yields 7 abstentions / 4 resting caps / 1 later credit, and moves V23 to 194 completed / 194 under par / 45 JOINT / 83 carried; JOINT is unchanged and completion falls by ten.

@@ -1,6 +1,21 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## LIVE EXIT-BAND AUTHORITY AUDIT - 2026-08-04
+
+The stopped live lane is bound to the sealed gated-optima exit parquets, not
+the superseded spike map. In the last executed blob, `live_v4.py:4712` is only
+the missing-config fallback; `deploy_v5_live.json:33` selects gated optima and
+`exit_rule_for` consumes the cached result. Read-only current VPS census:
+process count zero, config still selects gated optima, four sealed hashes exact.
+The stopped VPS has pre-existing uncommitted source/config changes; no runtime
+or remote mutation was made by this audit. Proposed fallback hardening is
+report-only pending operator word.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/be4c446b23fa7f0e6bccbb8b12238c802005174e/.claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/BAND_AUTHORITY_RUNTIME_AUDIT.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/be4c446b23fa7f0e6bccbb8b12238c802005174e/.claude/window1_live_v4_replay/band_authority_runtime_audit_20260804/RUNTIME_BINDING_RECEIPT.json
+
 ## V23/A NAKED-LEG DISPOSITION + SIMULTANEOUS CAP PATCH - 2026-08-04
 
 Canonical band authority is the sealed gated-optima surface and true-print reach law. Conservation: V23 `408+512=920`; A `942+245=1187`. Band touch is 22/512 V23 and 9/245 A. Observed band-or-edge totals are V23 -21¢/contract and A -139¢, but 23/13 unmarked post-fill edges prevent a full-book verdict. The isolated 11-event own-aim proxy patch arms all simultaneous pairs: 7 abstain, 4 rest, 1 later credits; patched V23 is 194 completions, 194 under par, 45 JOINT, 83 carried. It does not supersede frozen V23 on JOINT and loses ten completions.

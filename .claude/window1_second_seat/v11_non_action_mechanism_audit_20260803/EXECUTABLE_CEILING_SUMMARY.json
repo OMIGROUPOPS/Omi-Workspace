@@ -1,0 +1,109 @@
+{
+  "definition": "For each of the 390 price-ceiling events, each leg's residency-maker reachable window = contiguous tape intervals where best_ask<=maker_floor, unioned with the seller-aggressed print instant at<=maker_floor. OVERLAP = the two legs' reachable sets intersect in time (both rests fillable simultaneously). DISJOINT = no intersection (sequential-only).",
+  "reachability_note": "Reachability = best_ask<=maker_floor (an offer at or below our resting maker bid is fillable). It does NOT re-impose the pricer's 10s signing dwell or 5-lot capacity gate: maker_floor is already capacity-qualified upstream (qualifying_ask_floor had >=5 cap, or the seller-aggressed print carried real size); those are signing gates, not physical fill conditions.",
+  "acceptance": {
+    "empty_reachable_legs": 0,
+    "overlap_plus_disjoint_equals_events": true,
+    "all_disjoint_gaps_positive": true,
+    "passed": true
+  },
+  "price_ceiling_events": 390,
+  "overlap": 31,
+  "disjoint": 359,
+  "disjoint_gap_seconds": {
+    "median": 8088,
+    "p25": 2660,
+    "p75": 18951.509468078613,
+    "max": 183671.92123389244,
+    "gt_1h": 253,
+    "gt_4h": 112
+  },
+  "overlap_by_category_region": {
+    "ATP_CHALL": {
+      "le25": 3,
+      "26_50": 6,
+      "51_75": 8,
+      "ge76": 0
+    },
+    "ATP_MAIN": {
+      "le25": 0,
+      "26_50": 0,
+      "51_75": 2,
+      "ge76": 1
+    },
+    "WTA_MAIN": {
+      "le25": 2,
+      "26_50": 2,
+      "51_75": 0,
+      "ge76": 3
+    },
+    "WTA_CHALL": {
+      "le25": 1,
+      "26_50": 1,
+      "51_75": 1,
+      "ge76": 1
+    }
+  },
+  "disjoint_by_category_region": {
+    "ATP_CHALL": {
+      "le25": 28,
+      "26_50": 61,
+      "51_75": 60,
+      "ge76": 18
+    },
+    "ATP_MAIN": {
+      "le25": 8,
+      "26_50": 40,
+      "51_75": 32,
+      "ge76": 9
+    },
+    "WTA_MAIN": {
+      "le25": 18,
+      "26_50": 22,
+      "51_75": 18,
+      "ge76": 10
+    },
+    "WTA_CHALL": {
+      "le25": 6,
+      "26_50": 10,
+      "51_75": 13,
+      "ge76": 6
+    }
+  },
+  "by_tier_cumulative": {
+    "<=93": {
+      "events": 59,
+      "overlap": 2,
+      "disjoint": 57
+    },
+    "<=95": {
+      "events": 104,
+      "overlap": 2,
+      "disjoint": 102
+    },
+    "<=97": {
+      "events": 217,
+      "overlap": 10,
+      "disjoint": 207
+    },
+    "<100": {
+      "events": 390,
+      "overlap": 31,
+      "disjoint": 359
+    }
+  },
+  "disjoint_ordering": {
+    "cheaper_leg_first": 139,
+    "dearer_leg_first": 219,
+    "tie": 1,
+    "note": "Which leg reaches its maker floor first in the sequential (disjoint) events."
+  },
+  "disjoint_gap_buckets": {
+    ">12h": 36,
+    "1-4h": 141,
+    "4-12h": 76,
+    "<=15min": 35,
+    "15-60min": 71
+  },
+  "headline": "Of 390 price-ceiling events, only 31 are simultaneously lockable (overlapping reachable windows); 359 are sequential-only. The executable simultaneous ceiling is ~31/804 = 3.9% of games; at par (<=97) only 10."
+}

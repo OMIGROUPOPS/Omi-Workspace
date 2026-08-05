@@ -1,5 +1,23 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-04 - V29-R2: ARM THE UNCAPTURED SIBLING, FLOOR RELEASE IS NOT ORDINAL-GATED
+
+V29-R targeted the credited completion-trace row; the actual activation
+population is its uncredited sibling in 227 unique events. V29-R2 corrects the
+scope and demotes coherent decline ordinal from release precondition to logged
+confirmation. Release authority is the first strictly later own-book floor at
+or below aim with spread <=1, dwell >=10 seconds, and displayed size >=5. The
+incumbent path always wins an earlier race and is never blocked. Exact
+disposition is 27 released-and-filled / 201 incumbent-first / 143
+never-released. V29-R2 moves 27 leg streams, preserves the other 1,581 by
+semantic hash, and grades JOINT 68 versus the immutable V28 floor of 65.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/c8b6a10208d7c988dd041b19a19f0726436475c5/arb-executor/docs/research/window1/WINDOW1_V29R2_UNCAPTURED_SIBLING_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/c8b6a10208d7c988dd041b19a19f0726436475c5/.claude/window1_live_v4_replay/v29r2_mirror_armed_uncaptured_side_20260804/SCORECARD.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/c8b6a10208d7c988dd041b19a19f0726436475c5/.claude/window1_live_v4_replay/v29r2_mirror_armed_uncaptured_side_20260804/ARMED_LEG_DISPOSITION.json
+
 ### 2026-08-04 - V26 DRIFT-CORRECTED LANDING OVERLAY: ZERO AUTHORITY, V23 EXACT
 
 V26 tested the spread-lawful organ exactly as ruled: one simultaneous

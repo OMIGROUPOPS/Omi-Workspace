@@ -1,5 +1,18 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-05 - V31 DIP-PRESSURE GOVERNOR REJECTED; R3 REMAINS OPERATIVE
+
+V31 lawfully earned repair authority only in WTA_CHALL under the stated
+held-out precision bar. It changed 26 streams: seven deeper fills, nineteen
+lost completions, zero JOINT gained, one JOINT lost. JOINT regressed 68 to 67,
+so V31 is rejected and V29-R3 remains operative. Tests PASS authenticates the
+receipt; it does not ratify the candidate. ARNROM|ROM was LOW pressure and its
+ATP_CHALL category lacked authority, so it remained untouched at 42.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/5db33ffdf26d22b5287825d0648d47205d1b9c13/.claude/window1_live_v4_replay/v31_dip_pressure_governor_20260805/VERDICT_RECEIPT.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/5db33ffdf26d22b5287825d0648d47205d1b9c13/.claude/window1_live_v4_replay/v31_dip_pressure_governor_20260805/DEMOTE_RISK_RECEIPT.json
+
 ### 2026-08-05 - V29-R3: THE STANDING FLOOR RELEASES
 
 At arm, evaluate the current own-book snapshot before waiting for future

@@ -1,2 +1,3 @@
 /.claude/window1_live_v4_replay/** text eol=lf
 /.claude/window1_live_v4_replay/**/*.gz binary
+/.claude/window1_live_v4_replay/**/*.gz.part* binary

@@ -1,0 +1,30 @@
+{
+  "requested_target_mass": {
+    "V28_carried_positive_legs": 144,
+    "V28_completion_layer_false_negative_rows": 237
+  },
+  "causal_eligibility": {
+    "carried_positive_leg_was_second_fill": 116,
+    "carried_already_active_at_arm": 4,
+    "carried_armed": 95,
+    "carried_released": 4,
+    "completion_rows_already_credited_in_V28": 237,
+    "completion_rows_currently_uncredited_in_V28": 0,
+    "completion_rows_armed": 0,
+    "completion_rows_released": 0
+  },
+  "score_effect": {
+    "D": 0,
+    "legs": 0,
+    "acted_legs": 0,
+    "credited_legs": 0,
+    "completed_pairs": 0,
+    "pairs_under_par": 0,
+    "completed_pairs_close_unavailable": 0,
+    "both_legs_strictly_below_audited_close": 0,
+    "joint_objective_pairs": 0,
+    "strict_carried_pairs": 0,
+    "execution_floor_pair_passes": 0
+  },
+  "ruling": "OVERLAY_ACTS_ONLY_WHEN OTHER SIDE IS REFUSED OR NOT YET PLACED AT FIRST CREDITED FILL; ALREADY-CREDITED TRACE ROWS ARE NOT REWRITTEN"
+}

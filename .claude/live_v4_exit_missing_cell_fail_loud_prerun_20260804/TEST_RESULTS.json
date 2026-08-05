@@ -1,0 +1,22 @@
+{
+  "status": "PARTIAL_ENVIRONMENT_LIMIT_RECORDED",
+  "passed": [
+    {
+      "command": "node arb-executor/tests/test_exit_cell_fail_loud_source.js",
+      "result": "PASS",
+      "assertions": 8
+    }
+  ],
+  "committed_not_run": [
+    {
+      "command": "python -B arb-executor/tests/test_exit_cell_fail_loud.py",
+      "reason": "NO_INSTALLED_PYTHON_INTERPRETER; py.exe reports No installed Python found",
+      "tests": 6
+    },
+    {
+      "command": "python -B -m py_compile arb-executor/live_v4.py",
+      "reason": "NO_INSTALLED_PYTHON_INTERPRETER"
+    }
+  ],
+  "false_pass_claimed": false
+}

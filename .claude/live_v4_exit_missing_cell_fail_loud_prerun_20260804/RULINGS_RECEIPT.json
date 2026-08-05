@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-08-04",
+  "dwell_10_seconds": {
+    "status": "RATIFIED_PROVISIONALLY_AS_IS",
+    "reason": "comparability with all prior results",
+    "sensitivity_study": "DEFERRED_TO_HOLDOUT_ERA"
+  },
+  "missing_exit_cell": {
+    "old_law": "SILENT_RETURN_15_CENTS_EXIT",
+    "new_law": "FAIL_LOUD_ALARM_PLUS_NEAREST_SAME_CATEGORY_BORROW_WITH_RECEIPT",
+    "deployed": false
+  },
+  "orphans_awaiting_ruling_unchanged": [
+    {
+      "name": "DEAD_SPREAD_THRESHOLD",
+      "value_cents": 20,
+      "source": "arb-executor/live_v4.py:144"
+    },
+    {
+      "name": "SPREAD_LE_2_POSTING_GATE",
+      "value_cents": 2,
+      "source_sites": [
+        "arb-executor/live_v4.py:10999",
+        "arb-executor/live_v4.py:12470",
+        "arb-executor/live_v4.py:14239"
+      ]
+    }
+  ]
+}

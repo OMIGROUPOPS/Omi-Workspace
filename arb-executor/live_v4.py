@@ -5463,19 +5463,53 @@ class LiveV3:
 
     def exit_rule_for(self, category, price_cents):
         """v4 exit lookup: returns (band_x|None, rule) for the 1c cell of
-        price_cents. rule in {"exit","hold"}. Falls back to ("exit", default)
-        if the category/cell is somehow absent (never expected for the 4
-        enabled categories).
+        price_cents. rule in {"exit","hold"}. A missing cell is a loud data
+        defect: receipt the miss, alarm, then borrow the deterministic nearest
+        cell from the same category.  An absent category/table cannot be
+        borrowed safely and raises instead of inventing a constant.
 
         [C-COPILOT ITF] ITF_M/ITF_W BORROW the Challenger exit surface at the
         fill cent (lookup-only translation; the position keeps its ITF
         category, so ledger/cell attribution never pollutes native CHALL)."""
+        requested_category = category
         category = ITF_EXIT_BORROW.get(category, category)
         cid = self.cell_lookup(category, price_cents)
         cmap = self.exit_table.get(category)
         if cmap and cid in cmap:
             return cmap[cid]
-        return (15, "exit")  # defensive default; logged by caller if hit
+        available = sorted(cmap) if cmap else []
+        nearest = min(available, key=lambda cell: (abs(cell - cid), cell)) \
+            if available else None
+        receipt = {
+            "requested_category": requested_category,
+            "borrowed_category": category,
+            "price_cents": price_cents,
+            "requested_cell": cid,
+            "available_cell_count": len(available),
+            "nearest_cell": nearest,
+            "distance_cents": abs(nearest - cid) if nearest is not None else None,
+            "tie_break": "MIN_ABSOLUTE_DISTANCE_THEN_LOWER_CELL",
+            "action": "BORROW_NEAREST_SAME_CATEGORY" if nearest is not None
+                      else "RAISE_NO_BORROW_SURFACE",
+        }
+        self._log("CRITICAL_exit_cell_missing", receipt)
+        try:
+            print("[CRITICAL] EXIT CELL MISSING: %s" % json.dumps(receipt),
+                  flush=True)
+        except OSError:
+            self._log_write_errors = getattr(self, "_log_write_errors", 0) + 1
+        if nearest is None:
+            raise RuntimeError(
+                "exit cell missing and no same-category borrow surface: %s/%s"
+                % (category, cid)
+            )
+        borrowed = cmap[nearest]
+        self._log("exit_cell_nearest_borrowed", {
+            **receipt,
+            "borrowed_band_x": borrowed[0],
+            "borrowed_rule": borrowed[1],
+        })
+        return borrowed
 
     def get_category(self, ticker):
         # [C-EVENT-CAT-OVERRIDE] per-event override wins over the prefix SERIES_MAP, so a single

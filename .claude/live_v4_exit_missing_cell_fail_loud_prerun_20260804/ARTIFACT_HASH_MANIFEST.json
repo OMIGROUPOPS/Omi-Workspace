@@ -1,0 +1,32 @@
+{
+  "files": {
+    "EXIT_CELL_FALLBACK_PATCH_RECEIPT.json": {
+      "sha256": "89703dbc7d628e77594db8ef2af6dcae90872ff249b3566529d1a5656c8dd06a",
+      "bytes": 761
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "69140d825ea3315950041ee0be7c9b865168f6594296ab2ec79752ebfb8daa3b",
+      "bytes": 358
+    },
+    "INDEPENDENT_AUDIT_INSTRUCTION.md": {
+      "sha256": "0169cc4ceafed49366fe78105ec443eeafb75012274578fcfa4ff2b9ccdb244e",
+      "bytes": 498
+    },
+    "PRE_RUN_REPORT.md": {
+      "sha256": "b93d11321e9d3c8a85a4d2c21893b5189c40381d87e492a137c60acd07ba1656",
+      "bytes": 728
+    },
+    "RULINGS_RECEIPT.json": {
+      "sha256": "4604792cabf36ad3ca6f0c51b8643fa335b7b83dd99d6ad452519edd29d8e46d",
+      "bytes": 788
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "724a595a154f15cc8c5740bd4f42b63c15dde8728246c4866645ff050442b4b2",
+      "bytes": 507
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "e35c43c5e9dab502f99af42e58216e77dfc2d4b280ffccc008601763f397ee93",
+      "bytes": 600
+    }
+  }
+}

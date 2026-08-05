@@ -1,0 +1,30 @@
+{
+  "dwell_10_seconds": {
+    "status": "RATIFIED_PROVISIONALLY_AS_IS",
+    "reason": "COMPARABILITY_WITH_ALL_PRIOR_RESULTS",
+    "sensitivity_study": "DEFERRED_TO_HOLDOUT_ERA"
+  },
+  "pair_carry_clock": {
+    "status": "PROHIBITED",
+    "wall_clock_limit": null,
+    "elapsed_time_policy_inputs": []
+  },
+  "V29R": {
+    "close_bar": "REMOVED_EX_POST_NOT_BOUND",
+    "aim": "min(99-first_fill, own_lawful_live_book_floor)",
+    "sequential_and_symmetric": true,
+    "joint_law": "EX_POST_GRADE_ONLY"
+  },
+  "orphans_unchanged": [
+    {
+      "name": "DEAD_SPREAD_THRESHOLD",
+      "value": 20,
+      "status": "AWAITING_RULING"
+    },
+    {
+      "name": "SPREAD_LE_2_POSTING_GATE",
+      "value": 2,
+      "status": "AWAITING_RULING"
+    }
+  ]
+}

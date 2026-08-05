@@ -1,0 +1,624 @@
+{
+  "committed": {
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/EVENT_LEDGER.jsonl.gz": {
+      "sha256": "6ef554cbf74a821b0fcf3e3b6046867df6f7e88811db81fb57bce33e61c65891",
+      "bytes": 3502728
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/LEG_LEDGER.jsonl.gz": {
+      "sha256": "a932582aaf18d405612f78f4b707c462b052edc7bc456ef3e0966d2c09d04169",
+      "bytes": 3326747
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/DECISION_TRACE_1608.json": {
+      "sha256": "e2c01db8e90d94d0dd3297a8b097607dfa0d6bbae810aaea51308114df8b19e3",
+      "bytes": 8473370
+    },
+    ".claude/window1_live_v4_replay/v28_anchor_cap_stack_20260804/SCORECARD.json": {
+      "sha256": "8c3aeac8eb5baec556163980b06cbbe03fe356d705e7181f484452c27aaa6235",
+      "bytes": 35618
+    },
+    ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_LEGS.csv": {
+      "sha256": "453fdafbe955c5a4eed8357e77a2abcaa35bd1e84d783b19400aebaf3e2d17ba",
+      "bytes": 503893
+    },
+    ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json": {
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b",
+      "bytes": 2479552
+    },
+    ".claude/window1_live_v4_replay/interim_shape_v13_fit_20260803/INTERIM_SHAPE_LIBRARY_V13.json": {
+      "sha256": "99519ee91979fdbe0e502381f09da0b521d5338d94431613ca2a34edf633d4f8",
+      "bytes": 2962257
+    },
+    "arb-executor/analysis/window1_v29r_mirror_armed_second_side_policy.js": {
+      "sha256": "e9a7e553d193027e025551758a6debf2b5a636c51ece2a2d40079372de54e1be",
+      "bytes": 2967
+    },
+    "arb-executor/analysis/window1_interim_elimination_v13.js": {
+      "sha256": "742b15305ddd0653637cc6a3a31f5221fd926538aabe8b0720dccc50d81a3e06",
+      "bytes": 5669
+    },
+    "arb-executor/tests/test_window1_v29r_mirror_armed_second_side_policy.js": {
+      "sha256": "4ac5ffe7d1715f1bbb8a17df5375d343bd1f71f68211b18939b2d1b2399edf05",
+      "bytes": 2751
+    },
+    "arb-executor/tests/test_window1_v29r_mirror_armed_second_side_package.js": {
+      "sha256": "68cdc9ec83f068e58f38f92959b65d23e583b126f22977a76dc43e039c4c2a73",
+      "bytes": 3487
+    },
+    "arb-executor/analysis/build_window1_v29r_mirror_armed_second_side.js": {
+      "sha256": "24940735cb2e795db0745de0c3e063ec491f975085f6ac8fb52a0d7d2051eca2",
+      "bytes": 38451
+    }
+  },
+  "git_object_sources": {
+    "44eab76f0caefbba6bab3315416e51e292fbdb1e:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MIRROR_ARMING_CEILING.csv": {
+      "sha256": "9cbbdd7dcc39a6f083658946ccfe98b638204818ddfec8dc7eb37e753f4d00b7",
+      "bytes": 99370
+    },
+    "44eab76f0caefbba6bab3315416e51e292fbdb1e:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MIRROR_ARMING_CEILING_SUMMARY.json": {
+      "sha256": "9de50ac61c68e989bb1d8807ffe79c848babb96528900c5eeb15eccbbe33cedb",
+      "bytes": 4237
+    }
+  },
+  "private_fit_tick_hashes": {
+    "KXATPCHALLENGERMATCH-26JUL12AVEFOR-FOR": {
+      "sha256": "96a64583c77c283ea2d2eafe7467259c30a2c208d7e5656139a58c62c8cc60d6",
+      "bytes": 490106,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BROHUA-BRO": {
+      "sha256": "12198a322cae2300025cc2d6c8a208496d51dd831df4021c10e597cd3e2b329f",
+      "bytes": 402201,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12HECISO-ISO": {
+      "sha256": "7dba467acac2d65ff83337dcee0860487624f365c96feb81d26f29130c2f3f65",
+      "bytes": 941636,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12MARFOR-MAR": {
+      "sha256": "1cb4eb0ffe26e0aa9418494704e9849650c4a66e107bc4a33c8e019d5795f375",
+      "bytes": 1473314,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13BOUGAN-GAN": {
+      "sha256": "d030f8c68cef360bc11106ed6ddb12316edbdf21b96aac0ca99b285ba42da9a5",
+      "bytes": 764010,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13BOUZHA-BOU": {
+      "sha256": "ac2f5b186395b597127b0682f6b696db78524d224590a0e949bd3c05a08d7844",
+      "bytes": 650196,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13KRASAL-SAL": {
+      "sha256": "6fe192fa9c374e960a7f318594ae721f5a4df231782868f0ab34d6d456c42188",
+      "bytes": 294950,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13NOGBRO-BRO": {
+      "sha256": "19e2e9473a10bc12b6884c9315961a4fd8493c909c552695ad10e1198b96213d",
+      "bytes": 1038302,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13PRICRI-PRI": {
+      "sha256": "78b49c18c9967c31f0a2396cba17be12b19078414417e1077dbe88428286e0bc",
+      "bytes": 194940,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13RODALK-ALK": {
+      "sha256": "536adb0fc13a3175fec1959b52a8a5e6f6562bee05e72359f90595f68d125c72",
+      "bytes": 675258,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13SANLOP-SAN": {
+      "sha256": "621ed96e990323dc012510de037b44df8f1920843bcbd7aefacabc5418559f9b",
+      "bytes": 666538,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL": {
+      "sha256": "4a248f31c9664181721f12959300dc33226ad515fd8c4146e6156e0711c3d138",
+      "bytes": 63170,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK": {
+      "sha256": "a46f219494fa961f3f73a7f7cbee1833d7bb4bce0cc2c9a4e3acea7bbc595df0",
+      "bytes": 244096,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR-MOR": {
+      "sha256": "a8f89f2c8c231fce93f2b4a846ff47cd3b84a5bf209d4f9ce7aded3299f308dc",
+      "bytes": 883154,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14VUKARS-VUK": {
+      "sha256": "aae45581b26c26f655c56b8135dae1a944151d19c455f6a4e6d014487ad5a4a2",
+      "bytes": 1127101,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO": {
+      "sha256": "d608384f41cb4cf5152de7317a051ae38c1b5eb8948b20dbb083d75c0fae68f6",
+      "bytes": 812669,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-YUN": {
+      "sha256": "f9f49c97b16b01551257759074efc0b009cba7f450c00471ceefb9742ee49a80",
+      "bytes": 1603177,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL15NAPBAR-BAR": {
+      "sha256": "b79e4ced8a4c97a0c5509977451bdf63ed305497e452243cb51087084ceaf2a7",
+      "bytes": 1700424,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16DENBAR-DEN": {
+      "sha256": "a12b67bfe1cabd2376a378a057b009b46ea7a7cf7fb96cb63195c6b56931e66f",
+      "bytes": 704026,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL16PALALM-PAL": {
+      "sha256": "47030659580f763e2daec521b53f132e6c61477f36bb8969055c71da02c3924e",
+      "bytes": 629735,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17DELFUE-DEL": {
+      "sha256": "1180f7e661ee8efcc29ae7aee8a8e5811af66b6e29d5cd8b414ecf2cfaa2abf4",
+      "bytes": 734255,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM": {
+      "sha256": "05407a3340e550cb4e5590dbc598c04c039614186f44f5f2e874d825f6a75264",
+      "bytes": 1047492,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL17SMIYUN-SMI": {
+      "sha256": "0b888b60b623fbf61de8bfbe88d6123d9984d91153cdceff526e4fa5daea6dd5",
+      "bytes": 1547973,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL18CASGEA-CAS": {
+      "sha256": "4b92dd0957895eeadc4e0eaad1f7e4b38b21113b3858e252027b6228a6204c7d",
+      "bytes": 654094,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19CLAKUZ-KUZ": {
+      "sha256": "72d31a5995f2680fe1b533a47ed317dd3ebf59e78b5a5acd854a902a18480b69",
+      "bytes": 862870,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19DJOMAT-MAT": {
+      "sha256": "aad5d27441af0641a60841f7f549de4c4cebe9f62dc7db595c1d024bcea5fd8b",
+      "bytes": 219145,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19JONISO-JON": {
+      "sha256": "773d820c0c1fe55b5c6dca44919ff55e87ccb88afe0bc396ece56632b63438c8",
+      "bytes": 966375,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19KUZOPI-OPI": {
+      "sha256": "ef9c83f891dca3fd816772a89dbdf33c3370657951631edeb230c613ca5ec1a2",
+      "bytes": 243623,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19MCKOUA-MCK": {
+      "sha256": "802a1eefb61e131bb9784e01f224c7ebd95227f2400d66d48453cd3f124e539e",
+      "bytes": 251972,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK": {
+      "sha256": "41ac9a7102cd7cd701a60c4051771d6cbc66885d4eb428660b48e0b82d9b07ce",
+      "bytes": 1336372,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19REJWES-WES": {
+      "sha256": "e3b9fc5083a1f8a6b8a64f4333afc3f94ce4aea892bca9fc67a02dcca9d050da",
+      "bytes": 237694,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19VASTAB-TAB": {
+      "sha256": "1251ef12b63c68c762780926fd20c1f67f3fc34217d94b25af1effe4057f618b",
+      "bytes": 222270,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL19WINSHE-SHE": {
+      "sha256": "13d788fc14859d15f3f0c86b33d40c2f7b6374e8a19e133439a3d94103789fbb",
+      "bytes": 427524,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL": {
+      "sha256": "109caa8d3c8790be6f15a72b52d398148af48be5adac54fb7409bdd78a1d1447",
+      "bytes": 272616,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20GIUHER-GIU": {
+      "sha256": "e369d54f7b542991d851b394fdcaf76a8c2a276e7d23973dfad06b067deeeb9c",
+      "bytes": 129758,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20JOHAGU-AGU": {
+      "sha256": "01855a35ab94845e2f92f28f8c537be4b89f6aa81540126701138a3681bb8951",
+      "bytes": 314346,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20KOZPAS-KOZ": {
+      "sha256": "2209eea09e3f009c7e9a45cc44275fa8440484ecf85a878815ddc6e7c68f8206",
+      "bytes": 356938,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20SURKUZ-KUZ": {
+      "sha256": "8fb061182d12771a13f6c0c0e53f80f004dd4b47a5142cafb74ff23cbceb5ebc",
+      "bytes": 503878,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA": {
+      "sha256": "6481d925f2d5598a781df6cfde4330b4f2ff7024e2a5119b837eb2f38c6928f9",
+      "bytes": 125184,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPCHALLENGERMATCH-26JUL20ZHESHE-SHE": {
+      "sha256": "115b87aeadbc73fc85fafb220419073f3bb5ddc7bddb8d85d4ed9ea8ebbaaea3",
+      "bytes": 271763,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12ALTGAS-GAS": {
+      "sha256": "fa704092578cd84fc93474b3c1326e18feae7efb53747707a8e6b7fdff0dbf7e",
+      "bytes": 478198,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12BORKOU-BOR": {
+      "sha256": "8de0d81ec6ae8ecc9ceae6235486a1d7fe1759825b6b35f50bf424ffa4d002a0",
+      "bytes": 475511,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12DEJGAU-GAU": {
+      "sha256": "94753e6c546e359bc572571e5f129c58bcfa3efddac27fa1cd9b711ef9003ef8",
+      "bytes": 696150,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12DODCAR-CAR": {
+      "sha256": "a6161cfa1f4cc37560029d0ea8c5273b6a7c47aea67947a65ea18b4ce8ab9d09",
+      "bytes": 277910,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12GUEGOM-GUE": {
+      "sha256": "64ae5295e42f8b82330e2ba8711c27e5c6743c312f5d28af1f8d73a40e280c89",
+      "bytes": 800705,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12KOPPRI-KOP": {
+      "sha256": "d300b9f596138293830b43f87beb80ffe1cd0148887db4e2ceca2654692d2c9c",
+      "bytes": 568984,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12KRUFER-FER": {
+      "sha256": "aca64e3d5412e9ed74708746b69dc90b4fb6fb9730d99a17aa8e43fb6f57854e",
+      "bytes": 263296,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12LAJVAN-LAJ": {
+      "sha256": "3b1ba81645882ba60da26492a7c48ac6c51350274f79cfcdc6ad4a26d0e0b0cd",
+      "bytes": 997665,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12MULSHE-MUL": {
+      "sha256": "84d9712e9dda444e0100928145234999798761655d197aad7ca3c78d4b2f7fd1",
+      "bytes": 1080757,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12STRMUN-STR": {
+      "sha256": "4dd804efce8c654b6d88c9435ef30ad68aa8eca4bd60727504acb81e945f48b6",
+      "bytes": 430272,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL12SVRDIM-DIM": {
+      "sha256": "6405952da59fd00f083742cbb32172fd94b8243b6824d1c65e3d8110b16d0081",
+      "bytes": 634976,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL14MARPRA-MAR": {
+      "sha256": "cdba825bda44ed455bdf49a1c117b897853f6cabd6f38e2da4c3a68d95c46428",
+      "bytes": 169356,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL14TRAKRU-KRU": {
+      "sha256": "fee78a26f07e5807202073c45ff7f4626396913bfe3e8dab35b9bc080929cf64",
+      "bytes": 734929,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL15CARUGO-CAR": {
+      "sha256": "d7156e2169b3c05f7013eb6b980e0f6c883926d6628dccaef914e86c09105538",
+      "bytes": 534353,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL15ETCMER-MER": {
+      "sha256": "87a70e36bccc078a91cb502315dfba0dd809b3ac71b0fa932764762652ccf223",
+      "bytes": 489880,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL15PRIMOL-MOL": {
+      "sha256": "eb10cb19e79bd7b0801db5fc88829575275c2c3bdf35294c0983902aa2e1b60a",
+      "bytes": 765706,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL15TRUDAV-TRU": {
+      "sha256": "2be1810ee871ca5445a6c96c0fa860c3d361c0308de3731737e81002cdc86b99",
+      "bytes": 379435,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL17BURMER-BUR": {
+      "sha256": "6bc3be6b829d2970e61ed811445cf1781c82f27fb346d5a91e3b6fdadbd6ea00",
+      "bytes": 500081,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL17HALSHE-HAL": {
+      "sha256": "3a7632dd89e461d1617489e2619269b674d35af8928fb86cbb8d8704a2dd146b",
+      "bytes": 567222,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL18HIPGIU-HIP": {
+      "sha256": "6fcb9f3e98f8d14bd720ac6a1e69bd6263e24c0b082ef1c839bd4deb9174ef50",
+      "bytes": 249576,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL18LUZTSE-TSE": {
+      "sha256": "2d5c0c40e527f64e824f4c79326094f9765e71ab753d5ad22424bdce45c09762",
+      "bytes": 534116,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL18PELSIL-SIL": {
+      "sha256": "00aedc04700245f9cbef4ba253b5cd0e2d12e4c82141f0a47d3a8c2a6b741caf",
+      "bytes": 233467,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL18RODCHE-CHE": {
+      "sha256": "bd0c463a947cc390325eb28bea9a004b4fb5a2f891d93cdec64d0f6355ae5433",
+      "bytes": 200185,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL18RUBTAB-RUB": {
+      "sha256": "388f8ccd926a71087cabfdf649fbe9da1ebf9fa502fc1589ff19f97d12ab3d10",
+      "bytes": 1117784,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19BAEKEC-BAE": {
+      "sha256": "b456971ed24ad3b7b200d91abf6f93e400fb0a49b183b8a182640ad713d9d3ed",
+      "bytes": 458001,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19CERTRU-TRU": {
+      "sha256": "27c3989cc2e5897aed8efccf06a0086b39ac18ad0a7db71e90e65e20140d8fa9",
+      "bytes": 872350,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19GASDZU-DZU": {
+      "sha256": "b58380cc8618b75514988138d089943f385ce846bd8a15b45c5ab5eded0b7567",
+      "bytes": 230814,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19NEUHAN-NEU": {
+      "sha256": "7a3e3afcf66e815d8c1dc41e09c954e3c9b699b5a7a836ed450baf61264af18c",
+      "bytes": 179146,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXATPMATCH-26JUL19VANFAR-VAN": {
+      "sha256": "13222d170cac0c592b86176e4fe945eb188f82f63017f16ea7345495b7960c35",
+      "bytes": 336864,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12ARIZHA-ARI": {
+      "sha256": "f744e5d8bd5615458e04b51d9954ff3868169c9606778a7e28142f179c74a72a",
+      "bytes": 289253,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL": {
+      "sha256": "f2764fee48d4b521eea0ce020ac1874944b561d5d36176466630bfce3539a53f",
+      "bytes": 426313,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12SHEVAN-VAN": {
+      "sha256": "ea8cb28005763695bbff0a0a777f0b59624962e743a2b31603ac69e7989b485d",
+      "bytes": 970676,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL12SHITUR-TUR": {
+      "sha256": "56b7d89455a2b59be51a2e7ba3efe6304337f0a96e3b31293e1214a3c8393167",
+      "bytes": 205452,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13BAIPRO-BAI": {
+      "sha256": "6adff347cd461f92df17a8359387f32604b1b8f848dce5f5077bc59562457a44",
+      "bytes": 567331,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13PENTHA-PEN": {
+      "sha256": "0cec199480efaa6d106db30b6d666d3028205043a758c221e7d73fe7eb238779",
+      "bytes": 1448742,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL13RINAST-AST": {
+      "sha256": "874e7989bc1c572c2aeb4eed2a43f9902ae1396e9fd8886e7145cd6e81b20cb4",
+      "bytes": 272417,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14HRUBUY-BUY": {
+      "sha256": "49be9d60b6930ea18abfc5e2a228a4b43ca7a0c3deced2884bd8a248c70e9724",
+      "bytes": 259719,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14IATZVO-IAT": {
+      "sha256": "c3591b554ae9a85d1730cf1a66af6e53eed45d633e169798f76f58b4189994fd",
+      "bytes": 366073,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14KHONUG-NUG": {
+      "sha256": "b0b42577a63eed8ec9b33d509239651d8c7e45c1ff2665cd022e0071e89919fb",
+      "bytes": 555134,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL14TANHAV-HAV": {
+      "sha256": "d9cc220d7b93e26ef10a913a366be316a0d17efdb50c87912bbebd4d142cc42f",
+      "bytes": 665906,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL15TANGAS-GAS": {
+      "sha256": "eb7c2c2c41ab13d4ab0172afb6b40d9a2e7cdd6b4efeca807d1042ac79eb50a3",
+      "bytes": 1140477,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16GAOVAL-GAO": {
+      "sha256": "4d77653ec1d1eab211bb2f32cd69f774e4f164f6adc548892a65cd3a844ba746",
+      "bytes": 347121,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16ZAKSHU-SHU": {
+      "sha256": "6d3fadf8359f31f977775c03dd270d48c3bf6d024c1f2078f13c7635b4fdfd50",
+      "bytes": 628930,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL16ZVOHRU-HRU": {
+      "sha256": "264b4528aefb5aff862f571b6c09117d9fe4c6fa3d3eb8008f9d998f686530ba",
+      "bytes": 506821,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17CHIBRO-CHI": {
+      "sha256": "17c268dea25546dafa531c79138cb9532392afa8563f6f8b228e4386e85376e7",
+      "bytes": 898272,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17VANTAN-TAN": {
+      "sha256": "d104125be4f2dc28e7cb4a2d63924ac02c849bf397e1b28d8e1ad3ff2d35f814",
+      "bytes": 287304,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL17ZVOTAR-ZVO": {
+      "sha256": "65211e62110decf78915958ab76c09c06a3f1fee54c9a166e6545c2da9292218",
+      "bytes": 468135,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTACHALLENGERMATCH-26JUL19VANTAR-VAN": {
+      "sha256": "4215329a678cfa0ab69f5220834f6d04e6d903109490b50e516da6f51ac76f0d",
+      "bytes": 729597,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL12ITOMAN-MAN": {
+      "sha256": "0382b1fbaab39b16973f557a24e0833fb9ccb45e67bb0990ea248fa9bf551751",
+      "bytes": 376836,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13BONSOR-SOR": {
+      "sha256": "6f5cf8b9e788cf0e5c1bd8ebd6766eb9870a66c99a558b7c529fb046b0b71bae",
+      "bytes": 992370,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13BURPUT-PUT": {
+      "sha256": "3488a46f0a1128d7210af845f9338a5ccd8a8dfddd79dbd2f77e046bbd54e900",
+      "bytes": 103451,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13KUDSAK-SAK": {
+      "sha256": "fa82a181cfb51dff547b5fc967f4b4907bd2695ddb88370fb5c229d0e162499d",
+      "bytes": 1034667,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13MATMIC-MIC": {
+      "sha256": "6f548959c429e19e1a4d310c3f50fbef40d31bdccea94e89df75ba0d702d2add",
+      "bytes": 707375,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13SAKTON-TON": {
+      "sha256": "803d22eaabe5c10401240424075b2b3a439ceb1d76999ec7e061107a44b67f06",
+      "bytes": 1041434,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL13TAUHIB-HIB": {
+      "sha256": "449b4f7edf289e7cbc9b60466a9e5ef6fecd306ff8530e518c95cb50375c1c5c",
+      "bytes": 522033,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL15BONZID-ZID": {
+      "sha256": "ec598b99087ea08f4a8397c9f1ac24fb8ac652adfadecd3ea31360af00d9eb55",
+      "bytes": 1486684,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL15KREMON-MON": {
+      "sha256": "f6bc34b9bae15952ff8f9e0596c6dfcee08993ff554c46a0ac165af9c16124e3",
+      "bytes": 292630,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL16KORANN-KOR": {
+      "sha256": "fdfac2fae0b507748816393491cf7cf54f0ffdbca579750d5ca3aecac65ed0d3",
+      "bytes": 608074,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL18BERSAI-SAI": {
+      "sha256": "0faf785f0a5a708b5e8730c72be56b0865307b84cbd545f1c4909ba3031bb15b",
+      "bytes": 306532,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL18MASRYS-RYS": {
+      "sha256": "15bcd5649491789804d7c45a8cfd811cdef0f782f6c12d7775ed66e632791d3c",
+      "bytes": 633744,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL18MORAKS-MOR": {
+      "sha256": "5c7e4c2c09025e648d40ff1f2619a5d84dc7bce373e6a6115b65477f2bbc57b5",
+      "bytes": 561136,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL18SHEOLI-OLI": {
+      "sha256": "24d50cc0ebf4696c5328026ec421fd49adcb19aee106e6b63d6112f8defec629",
+      "bytes": 788372,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20AKSCOS-AKS": {
+      "sha256": "09bea8d6a78aaaa91399fc6f0667c16d9e11599adc57ddd195ee74dfc6f33051",
+      "bytes": 389675,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20BARYUA-YUA": {
+      "sha256": "74fcfc33e72a9babfdb5375779d4a3e679613276a742614119ed18125860abd5",
+      "bytes": 484463,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20BLIBEJ-BLI": {
+      "sha256": "b3c5d8f062762e0912131aa0b255f25d8ff0c7cd891b831a03ec0f3c282e642c",
+      "bytes": 720078,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20FRUKRE-FRU": {
+      "sha256": "63b95903fce88119634b9cbac6dfdc5c0733fbb1b4a73034b4be6df2f0ec7ee0",
+      "bytes": 587164,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20OKTDOD-DOD": {
+      "sha256": "40e3711c2729801f17297e0aa5deaead12daf3be31a114e2c7af9784270cffdb",
+      "bytes": 537364,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20PARHAV-HAV": {
+      "sha256": "57b19045780ea6aa71249ea001bc0caedd1e2a2482eecf9919764803a05c9170",
+      "bytes": 452396,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20PARHON-PAR": {
+      "sha256": "c4c2070a51fccf7e89c2c3245af887b20b8f06250ab4740e6609f07a470a956b",
+      "bytes": 241960,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20ROMERJ-ROM": {
+      "sha256": "b5157b9b0f7aa5c4eb7ea3468af90f649fe094bad00cb73eb30e79bb0a403227",
+      "bytes": 297941,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20SEISNI-SEI": {
+      "sha256": "699b7cd61a66f75ea38222ec902093e8477a9531aeb3fde2dda9819d21ca8be2",
+      "bytes": 532756,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    },
+    "KXWTAMATCH-26JUL20SEMKRA-SEM": {
+      "sha256": "e23845e056604abc249aba5c9a54329fe68374debedba463f9e0c316f393ce4d",
+      "bytes": 413216,
+      "source_class": "PRIVATE_FIT_DEVELOPMENT_TAPE_HASH_ONLY"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source": "arb-executor/live_v4.py",
+  "method": "LiveV3.exit_rule_for",
+  "method_start_line": 5464,
+  "old_blob": "01534495161a9f8f53477794a9e30d4483ebe39f",
+  "new_blob_precommit": "8d23f9236abb49b06732a3736cd39cf7d1de596a",
+  "old_behavior": "missing category/cell returned (15, exit)",
+  "new_behavior": {
+    "exact_hit": "byte-semantic unchanged table return",
+    "missing_cell_with_surface": "critical alarm, nearest same-category borrow, borrow receipt",
+    "nearest_law": "minimum absolute cell distance; tie chooses lower cell",
+    "missing_category_or_empty_surface": "critical alarm then RuntimeError",
+    "critical_receipt_line": 5495,
+    "borrow_receipt_line": 5507
+  },
+  "scope": "SOURCE_AND_FOCUSED_TESTS_ONLY",
+  "deployed": false
+}

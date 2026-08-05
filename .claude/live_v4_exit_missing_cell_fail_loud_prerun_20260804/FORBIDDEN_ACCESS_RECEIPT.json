@@ -1,0 +1,13 @@
+{
+  "live_access": false,
+  "deployment": false,
+  "restart": false,
+  "cron_restoration": false,
+  "order_action": false,
+  "position_action": false,
+  "exit_action": false,
+  "configuration_change": false,
+  "holdout_access": false,
+  "T2_access": false,
+  "engine_state_assumption": "PARKED_UNDER_EXISTING_CONTROLLING_RECEIPT; NOT_MUTATED_OR_RECHECKED"
+}

@@ -1,0 +1,3702 @@
+{
+  "actual_bell_refit": {
+    "emitted_leg_rows": 466,
+    "exact_games": 234,
+    "note": "The refit is an exact-bell subset analysis, not an 804-event bell ledger.",
+    "skipped_legs_without_true_print": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+        "leg_id": "NIJ",
+        "reason": "no_true_print_inside_actual_bell_window",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12VALNIJ-NIJ"
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+        "leg_id": "HEN",
+        "reason": "no_true_print_inside_actual_bell_window",
+        "ticker": "KXWTACHALLENGERMATCH-26JUL14HENKRA-HEN"
+      }
+    ]
+  },
+  "conservation": "234 exact + 570 non-exact = 804",
+  "events_without_exact_actual_bell": 570,
+  "exact_actual_bell_events": 234,
+  "exact_event_ids": [
+    "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+    "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+    "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+    "KXATPCHALLENGERMATCH-26JUL12BROBAR",
+    "KXATPCHALLENGERMATCH-26JUL12CHOGAS",
+    "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+    "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+    "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+    "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+    "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+    "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+    "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+    "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+    "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+    "KXATPCHALLENGERMATCH-26JUL12LANKOB",
+    "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+    "KXATPCHALLENGERMATCH-26JUL12SALARN",
+    "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+    "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+    "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+    "KXATPCHALLENGERMATCH-26JUL12WINROB",
+    "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+    "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+    "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+    "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+    "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+    "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+    "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+    "KXATPCHALLENGERMATCH-26JUL13MONANG",
+    "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+    "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+    "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+    "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+    "KXATPCHALLENGERMATCH-26JUL13PALGON",
+    "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+    "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+    "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+    "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+    "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+    "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+    "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+    "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+    "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+    "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+    "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+    "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+    "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+    "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+    "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+    "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+    "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+    "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+    "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+    "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+    "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+    "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+    "KXATPCHALLENGERMATCH-26JUL15ZINGAL",
+    "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+    "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+    "KXATPCHALLENGERMATCH-26JUL16DENBAR",
+    "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+    "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+    "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+    "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+    "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+    "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+    "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+    "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+    "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+    "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+    "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+    "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+    "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+    "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+    "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+    "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+    "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+    "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+    "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+    "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+    "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "KXATPCHALLENGERMATCH-26JUL19JONISO",
+    "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+    "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+    "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+    "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+    "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+    "KXATPCHALLENGERMATCH-26JUL19PETALO",
+    "KXATPCHALLENGERMATCH-26JUL19REJWES",
+    "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+    "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+    "KXATPCHALLENGERMATCH-26JUL19SURPER",
+    "KXATPCHALLENGERMATCH-26JUL19TOKMIY",
+    "KXATPCHALLENGERMATCH-26JUL19VANGOR",
+    "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+    "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+    "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+    "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+    "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+    "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+    "KXATPCHALLENGERMATCH-26JUL20MARROS",
+    "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+    "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+    "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+    "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+    "KXATPCHALLENGERMATCH-26JUL20WATILA",
+    "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+    "KXATPMATCH-26JUL12ALTGAS",
+    "KXATPMATCH-26JUL12BORKOU",
+    "KXATPMATCH-26JUL12CORDAN",
+    "KXATPMATCH-26JUL12DAHBAE",
+    "KXATPMATCH-26JUL12DROBLO",
+    "KXATPMATCH-26JUL12DZUROC",
+    "KXATPMATCH-26JUL12FARWAW",
+    "KXATPMATCH-26JUL12JACTRU",
+    "KXATPMATCH-26JUL12KOPPRI",
+    "KXATPMATCH-26JUL12LAJVAN",
+    "KXATPMATCH-26JUL12MULSHE",
+    "KXATPMATCH-26JUL12SESMER",
+    "KXATPMATCH-26JUL12STRMUN",
+    "KXATPMATCH-26JUL12TSIBUS",
+    "KXATPMATCH-26JUL13FAUDAM",
+    "KXATPMATCH-26JUL13SANDAN",
+    "KXATPMATCH-26JUL13TABROD",
+    "KXATPMATCH-26JUL14CECBUR",
+    "KXATPMATCH-26JUL14CINHAL",
+    "KXATPMATCH-26JUL14GOMMCD",
+    "KXATPMATCH-26JUL14NEUPRA",
+    "KXATPMATCH-26JUL14TRAKRU",
+    "KXATPMATCH-26JUL15BUBHAL",
+    "KXATPMATCH-26JUL15COBBUR",
+    "KXATPMATCH-26JUL15COLSON",
+    "KXATPMATCH-26JUL15ETCMER",
+    "KXATPMATCH-26JUL15GOMARN",
+    "KXATPMATCH-26JUL15HANVAC",
+    "KXATPMATCH-26JUL15PRADZU",
+    "KXATPMATCH-26JUL16MERDRO",
+    "KXATPMATCH-26JUL17TABTIR",
+    "KXATPMATCH-26JUL18MERDZU",
+    "KXATPMATCH-26JUL18PELSIL",
+    "KXATPMATCH-26JUL18RODCHE",
+    "KXATPMATCH-26JUL18SHETSI",
+    "KXATPMATCH-26JUL19KOPBUS",
+    "KXATPMATCH-26JUL20SCHROD",
+    "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+    "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+    "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+    "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+    "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
+    "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+    "KXWTACHALLENGERMATCH-26JUL13KABPER",
+    "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+    "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+    "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+    "KXWTACHALLENGERMATCH-26JUL14CARVON",
+    "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+    "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+    "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+    "KXWTACHALLENGERMATCH-26JUL14PACVED",
+    "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+    "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+    "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+    "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+    "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+    "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+    "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+    "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+    "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+    "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+    "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+    "KXWTACHALLENGERMATCH-26JUL18SERBER",
+    "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+    "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+    "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+    "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+    "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+    "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+    "KXWTACHALLENGERMATCH-26JUL19RENTON",
+    "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+    "KXWTACHALLENGERMATCH-26JUL20FERREN",
+    "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+    "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+    "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+    "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+    "KXWTAMATCH-26JUL12KOZIBR",
+    "KXWTAMATCH-26JUL12LIUPOP",
+    "KXWTAMATCH-26JUL12OKAIPE",
+    "KXWTAMATCH-26JUL13BURLEP",
+    "KXWTAMATCH-26JUL13GRAPAR",
+    "KXWTAMATCH-26JUL13ITOKOR",
+    "KXWTAMATCH-26JUL13KRETOM",
+    "KXWTAMATCH-26JUL13LEPIBR",
+    "KXWTAMATCH-26JUL13MONMAS",
+    "KXWTAMATCH-26JUL13PODMAR",
+    "KXWTAMATCH-26JUL13SAKTON",
+    "KXWTAMATCH-26JUL13TAUHIB",
+    "KXWTAMATCH-26JUL14AMAJAC",
+    "KXWTAMATCH-26JUL14OLIIPE",
+    "KXWTAMATCH-26JUL15BONZID",
+    "KXWTAMATCH-26JUL15HONPAR",
+    "KXWTAMATCH-26JUL18BADZID",
+    "KXWTAMATCH-26JUL18BANGAO",
+    "KXWTAMATCH-26JUL18BERSAI",
+    "KXWTAMATCH-26JUL18COSHIB",
+    "KXWTAMATCH-26JUL18HONTHA",
+    "KXWTAMATCH-26JUL18ITOKNU",
+    "KXWTAMATCH-26JUL18MASRYS",
+    "KXWTAMATCH-26JUL18MICFRU",
+    "KXWTAMATCH-26JUL18MORAKS",
+    "KXWTAMATCH-26JUL18OKALEE",
+    "KXWTAMATCH-26JUL18PODKRE",
+    "KXWTAMATCH-26JUL18SAKKOR",
+    "KXWTAMATCH-26JUL18TAUKRE",
+    "KXWTAMATCH-26JUL19AVDNIE",
+    "KXWTAMATCH-26JUL19COSAKS",
+    "KXWTAMATCH-26JUL19GAOFRU",
+    "KXWTAMATCH-26JUL19KRESAK",
+    "KXWTAMATCH-26JUL19MONPIE",
+    "KXWTAMATCH-26JUL19PODSAI",
+    "KXWTAMATCH-26JUL19PRIMAR",
+    "KXWTAMATCH-26JUL19RUSKAZ",
+    "KXWTAMATCH-26JUL20BONUCH",
+    "KXWTAMATCH-26JUL20BOUBOU2",
+    "KXWTAMATCH-26JUL20KORJIM",
+    "KXWTAMATCH-26JUL20KOVTAR",
+    "KXWTAMATCH-26JUL20OKTDOD",
+    "KXWTAMATCH-26JUL20PARHAV",
+    "KXWTAMATCH-26JUL20PRIBRA",
+    "KXWTAMATCH-26JUL20QUEKAL",
+    "KXWTAMATCH-26JUL20ROMERJ",
+    "KXWTAMATCH-26JUL20RUSPAQ",
+    "KXWTAMATCH-26JUL20SEISNI",
+    "KXWTAMATCH-26JUL20VEDBAR"
+  ],
+  "full_population_exact_bell_coverage_rate": 0.291044776119403,
+  "non_exact_event_rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CALRAD",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ECHMUN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HECISO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KARMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUZDE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARARS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARFOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MORPET",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YIBMAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PRICRI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RODALK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13SANLOP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WINKIR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WONTUN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ALCTAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAGSAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14OUAFIC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ROZRIC",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SQUKUM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VUKARS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15GENDE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15HOLMAY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15IVACRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15LAJKRU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+      "precision_class": "contradictory",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ZHOPER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16FUESEY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SANALM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18FUEBON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18GENKUM",
+      "precision_class": "contradictory",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "precision_class": "contradictory",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18RODSAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BONALC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19GIUDEV",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HERECH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19JOHGEO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KUZOPI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MONTHO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PALMUN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PIENES",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TORSEN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VALCAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VARBOI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VASTAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:tape_flow",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GIUHER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "precision_class": "contradictory",
+      "selected_source": "engine_regime_transition:tape_flow",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KYMCLA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20POLBRU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TROISO",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12BUDPEL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12BUEMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CARSAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CECOLI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CHOBAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CINHEM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DEJGAU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DIEMON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DODCAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12FELKEC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12GUEGOM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12KRUFER",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MARHAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MOLFAU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MOLROY",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12NEUTOP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12OFNTIR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12PASKAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12PRASAI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12REJMID",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SKASAC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SLADAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SONSCH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SVRDIM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12TABHUE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13COLSKA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13MARMID",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13PASKRU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14DIAMID",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14KYMDIE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14MARPRA",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14RINTAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14TOPUGO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14VALDAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14VANDAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15ALTDAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15BASTIR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15BORDIM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15CARUGO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15KYMTSI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15PRIMOL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15RUBPEL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15TABMID",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15TRANAV",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15TRUDAV",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15VANDRO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15VANVAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16BURUGO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16DEJBAE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16DZUARN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16FARRUU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16MOLDAV",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16SHESTR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17BORDAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17BURMER",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17CERRUU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17COLVAC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17DZUMOL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17HALSHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17RINTSI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17RUBBAE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17VALTRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18BUTTAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18CINMIC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18COLCER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18CORSAC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DELRIB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18GAUTSE",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:price_divergence",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18HEIFEL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18HIPGIU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18JACDA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18KOPHER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18LUZTSE",
+      "precision_class": "contradictory",
+      "selected_source": "engine_regime_transition:price_divergence",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18MARJOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18ROCBUE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18RUBTAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18VALDAR",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18WALDJE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19ALTCOL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19BAEKEC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19CERTRU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19CHODEJ",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19CINGIU",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DELDJE",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19FELKOP",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19FERVAN",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19GASDZU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19GAUCAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19JACDAN",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19LUZTAB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MARSKA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MOLOFN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MULNAV",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19NEUHAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19PELBUE",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19RODSAC",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19RUBDAR",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19STRSHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19TORBAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19TSICOL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19VANFAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19WAWBUR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL20DIACIN",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL20DJECIN",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL20ROCMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BASABB",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SAIETO",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13BAIPRO",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GRABER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:price_divergence",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RINAST",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14SHUSHI",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TREGRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15JONURG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17CHIBRO",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BROBRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18RENGIA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TREJON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18WEBHOD",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:percat_fitted",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19VANTAR",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12AVASEI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12FETPIE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12GARPRI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12HERKAZ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12HIBTON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12HODYAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12ITOMAN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12KULZAA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12LEPBUR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12MICKUL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12MORNEP",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12PRIION",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12ROMTOD",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12TAGSIE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12WERAMA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13AMAHER",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ARAZID",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ARGTAG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13AVAFET",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BADKAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BLISAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BONSOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BURPUT",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13CHAJIM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13HODDAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KUDSAK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13LINHON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MATMIC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MORBEJ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13QUERUS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ROMKUL",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13SHEGAL",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13TIMANN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13VALCOS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14AVAUCH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTLIU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14SALIBR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14UDVROM",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15AVAMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15BURJAC",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15DARSAK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15IBRBAD",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15KREMON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15MICZHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15OLIPRI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15PUTCHA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15SHEQUE",
+      "precision_class": "live_by_only",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15TAGBEJ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16KORANN",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16TAUTON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16VALSAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17KREZHE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17OLIBUR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17PARSAK",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17PUTSHE",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17TAUBEJ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17VALKOR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17ZIDMAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18PALHON",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18SALZOL",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18SHEOLI",
+      "precision_class": "live_by_only",
+      "selected_source": "te_scoreboard_first_observed_inplay",
+      "selected_source_family": "mapped_score_onset_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19BRAVON",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19HONLEE",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19JAKAVA",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19LEPPET",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19MALZAA",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19RYSHON",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19SALKNU",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19SHEBAD",
+      "precision_class": "live_by_only",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19STRPAQ",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19VEDGAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19YASBAR",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20AKSCOS",
+      "precision_class": "contradictory",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20BARYUA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20BLIBEJ",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20GAOTAG",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20LEPAVA",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20LYSVAL",
+      "precision_class": "schedule_only",
+      "selected_source": null,
+      "selected_source_family": "schedule_last_resort_bound"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20NIEMAL",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20OLISCH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PARHON",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PIECAR",
+      "precision_class": "clean_interval",
+      "selected_source": "engine_regime_transition:fallback_bell",
+      "selected_source_family": "live_v3_live_v4_historical_log"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PODLEE",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PODSTU",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20RUZSAL",
+      "precision_class": "contradictory",
+      "selected_source": "observed_starts_db_first_observed_inplay",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20SAMJOI",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20SEMKRA",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20SORCHA",
+      "precision_class": "clean_interval",
+      "selected_source": "public_tape_5_prints_in_15m_onset",
+      "selected_source_family": "true_tape_regime_interval"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20STENOH",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20TIMSAS",
+      "precision_class": "quantized_late_detection_proxy",
+      "selected_source": "tennisexplorer_historical_result_start_clock",
+      "selected_source_family": "tennis_db_start_or_live_score"
+    }
+  ],
+  "population_events": 804,
+  "precision_class_counts": {
+    "clean_interval": 31,
+    "contradictory": 14,
+    "exact": 234,
+    "live_by_only": 52,
+    "quantized_late_detection_proxy": 453,
+    "schedule_only": 20
+  },
+  "schema_version": "window1-v34-actual-bell-coverage-v1",
+  "selected_source_family_counts": {
+    "exact_official_provider_match_start": 230,
+    "live_v3_live_v4_historical_log": 50,
+    "mapped_score_onset_interval": 1,
+    "raw_milestone_shadow": 4,
+    "schedule_last_resort_bound": 20,
+    "tennis_db_start_or_live_score": 454,
+    "true_tape_regime_interval": 45
+  }
+}

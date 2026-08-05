@@ -1,0 +1,8 @@
+{
+  "build_mode": "clean_output_directories_from_same_git_tree",
+  "canonicalization": "recursively_sorted_JSON_keys_LF_newlines",
+  "observed_builds": 2,
+  "required_builds": 2,
+  "result": "PASS_BYTE_IDENTICAL",
+  "schema_version": "window1-v34-preflight-determinism-v1"
+}

@@ -1,0 +1,45 @@
+{
+  "artifacts": [
+    {
+      "path": "ACTUAL_BELL_COVERAGE_RECEIPT.json",
+      "sha256": "66735ee64c6380ad7a90fedb4f2a323c63e76652ebf6f4762e18789216619eaf",
+      "size": 155551
+    },
+    {
+      "path": "CENSUS_PRICED_BINDING.json",
+      "sha256": "77a7a4be29d217ad79059978f06149041c135d405ffbd176176deb722077d608",
+      "size": 1157
+    },
+    {
+      "path": "CONSTRUCTION_BLOCK_RECEIPT.json",
+      "sha256": "56a3fb324389f29d7a22fab5bf59ab7286637124b4dc834f2086844123590159",
+      "size": 1260
+    },
+    {
+      "path": "CONTROL_BINDING.json",
+      "sha256": "0a5487dac447b82d828290c4af9917499c7cf40490855b242f830c700b49206f",
+      "size": 1638
+    },
+    {
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "37770358e207a1fb90bc8e7ef08756dce0b2cb3b67070cfed9758f2a8b79edbb",
+      "size": 275
+    },
+    {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "4632d165f2ee5d8c8dd82b144ada60766331be3322616760495321382adf614d",
+      "size": 314
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "a98746fa7e42d9639e962985b7edafa515b3cb66bfba5b2c5f3b90461bec2bfc",
+      "size": 752
+    },
+    {
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "f15c2d3b6b493b6c9ce1941defd1589c42bee9cc2f043aae757fb5efde201a8d",
+      "size": 794
+    }
+  ],
+  "schema_version": "window1-v34-artifact-hash-manifest-v1"
+}

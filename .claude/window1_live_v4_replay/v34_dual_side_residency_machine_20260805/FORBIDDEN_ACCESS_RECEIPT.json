@@ -1,0 +1,16 @@
+{
+  "accesses": {
+    "cron": 0,
+    "deployment": 0,
+    "holdout": 0,
+    "live": 0,
+    "network_runtime": 0,
+    "orders": 0,
+    "positions": 0,
+    "replay_invocations": 0,
+    "restart": 0,
+    "scorer_invocations": 0
+  },
+  "result": "PASS",
+  "schema_version": "window1-v34-forbidden-access-receipt-v1"
+}

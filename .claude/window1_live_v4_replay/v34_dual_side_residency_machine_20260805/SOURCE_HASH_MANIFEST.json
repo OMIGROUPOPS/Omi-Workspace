@@ -1,0 +1,21 @@
+{
+  "files": [
+    {
+      "path": ".claude/window1_start_guard_corrected_20260724/REAL_START_LEDGER_V5.jsonl",
+      "sha256": "c6204d016aeeab9cec54c5f989e695cb74a13e40b8e25085a3a9410a2c5548ed",
+      "size": 3696777
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/actual_bell_refit_20260729/ACTUAL_BELL_REFIT.json",
+      "sha256": "8e7b53d4afc522a11ab044b7cd01af32c0200c165ab99b3e97c58b0bddc4898b",
+      "size": 2479552
+    },
+    {
+      "commit": "65d49b5d623d99fb1d8ad3ef7eee6be9225c328e",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V32_NEARMISS_CENSUS.json",
+      "sha256": "926ef775a96c81a6268d5b80518e68e4a5269dff54edbbb1fc0e72095260cb8d",
+      "size": 109073
+    }
+  ],
+  "schema_version": "window1-v34-source-hash-manifest-v1"
+}

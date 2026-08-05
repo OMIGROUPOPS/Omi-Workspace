@@ -1,0 +1,15 @@
+{
+  "V32_legs": 1608,
+  "execution_gap": 160,
+  "label": "MODEL_FREE_CEILING",
+  "method": "Near-miss census on V32 (finalized) waited-and-lost rests (terminal_reason RESTING_ORDER_NEVER_RECEIVED_LATER_SELLER_AGGRESSED_PRINT). Rest TRAJECTORY reconstructed from the full decision trace (PLACE/REPRICE target_cents over time); at each seller-aggressed print (prints.jsonl taker_side=='no') the gap = print_price - ACTIVE walked-down rest level. 1c/2c/3c ABOVE = sellers who stopped just short of our resting bid. Implied joint: convert 1c near-miss (fill at rest level) -> game joint if sibling V32-credited, both below close, sum<100.",
+  "model_free_ceiling_joint": 201,
+  "one_cent_near_miss_flip_games": 57,
+  "one_cent_near_miss_rests": 247,
+  "schema_version": "window1-v34-census-priced-binding-v1",
+  "source_commit": "65d49b5d623d99fb1d8ad3ef7eee6be9225c328e",
+  "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V32_NEARMISS_CENSUS.json",
+  "v32_executable_joint": 41,
+  "v34_treatment": "BOUND_AS_CENSUS_PRICED_CONVENTION_ONLY; NOT_EXECUTED_BECAUSE_FULL_LIFE_CLOCK_GATE_BLOCKED",
+  "waited_and_lost_rests": 607
+}

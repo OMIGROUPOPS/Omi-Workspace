@@ -1,0 +1,5684 @@
+{
+ "summary": {
+  "LABEL": "MODEL_FREE_CEILING",
+  "method": "Near-miss census on V32 (finalized) waited-and-lost rests (terminal_reason RESTING_ORDER_NEVER_RECEIVED_LATER_SELLER_AGGRESSED_PRINT). Rest TRAJECTORY reconstructed from the full decision trace (PLACE/REPRICE target_cents over time); at each seller-aggressed print (prints.jsonl taker_side=='no') the gap = print_price - ACTIVE walked-down rest level. 1c/2c/3c ABOVE = sellers who stopped just short of our resting bid. Implied joint: convert 1c near-miss (fill at rest level) -> game joint if sibling V32-credited, both below close, sum<100.",
+  "conservation": {
+   "V32_legs": 1608,
+   "waited_and_lost_censused": 607,
+   "seller_aggressed_prints": 495458,
+   "V32_executable_joint": 41,
+   "model_free_ceiling_joint": 201,
+   "execution_gap": 160
+  },
+  "density_by_category": {
+   "ATP_CHALL": {
+    "lost_rests": 287,
+    "with_1c": 89,
+    "with_2c": 130,
+    "with_3c": 155,
+    "pct_1c": 31.0,
+    "pct_2c": 45.3,
+    "pct_3c": 54.0,
+    "prints_1c": 416
+   },
+   "ATP_MAIN": {
+    "lost_rests": 104,
+    "with_1c": 68,
+    "with_2c": 77,
+    "with_3c": 79,
+    "pct_1c": 65.4,
+    "pct_2c": 74.0,
+    "pct_3c": 76.0,
+    "prints_1c": 499
+   },
+   "WTA_CHALL": {
+    "lost_rests": 105,
+    "with_1c": 39,
+    "with_2c": 55,
+    "with_3c": 58,
+    "pct_1c": 37.1,
+    "pct_2c": 52.4,
+    "pct_3c": 55.2,
+    "prints_1c": 110
+   },
+   "WTA_MAIN": {
+    "lost_rests": 111,
+    "with_1c": 51,
+    "with_2c": 65,
+    "with_3c": 71,
+    "pct_1c": 45.9,
+    "pct_2c": 58.6,
+    "pct_3c": 64.0,
+    "prints_1c": 332
+   }
+  },
+  "totals": {
+   "lost": 607,
+   "with1": 247,
+   "with2": 327,
+   "with3": 363,
+   "p1": 40.7,
+   "p2": 53.9,
+   "p3": 59.8,
+   "prints1": 1357
+  },
+  "implied_joint": {
+   "V32_executable_baseline": 41,
+   "model_free_ceiling": 201,
+   "flip_games_1c": 57,
+   "range": {
+    "25pct": 55,
+    "50pct": 70,
+    "100pct": 98
+   },
+   "note": "Convert X% of 1c-near-miss legs that complete a joint (sibling V32-credited). 41 baseline, 201 ceiling; the increment is the 1c-residency-reachable slice of the 160-game execution gap."
+  },
+  "flip_examples": [
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+    "cat": "ATP_CHALL",
+    "rest": 29,
+    "sib": 69,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+    "cat": "ATP_CHALL",
+    "rest": 84,
+    "sib": 15,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12KARMAR",
+    "cat": "ATP_CHALL",
+    "rest": 57,
+    "sib": 42,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+    "cat": "ATP_CHALL",
+    "rest": 89,
+    "sib": 8,
+    "sum": 97
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12WINROB",
+    "cat": "ATP_CHALL",
+    "rest": 91,
+    "sib": 7,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+    "cat": "ATP_CHALL",
+    "rest": 40,
+    "sib": 58,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+    "cat": "ATP_CHALL",
+    "rest": 62,
+    "sib": 36,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+    "cat": "ATP_CHALL",
+    "rest": 21,
+    "sib": 78,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+    "cat": "ATP_CHALL",
+    "rest": 61,
+    "sib": 38,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+    "cat": "ATP_CHALL",
+    "rest": 40,
+    "sib": 58,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+    "cat": "ATP_CHALL",
+    "rest": 76,
+    "sib": 21,
+    "sum": 97
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+    "cat": "ATP_CHALL",
+    "rest": 39,
+    "sib": 60,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+    "cat": "ATP_CHALL",
+    "rest": 38,
+    "sib": 60,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+    "cat": "ATP_CHALL",
+    "rest": 59,
+    "sib": 39,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+    "cat": "ATP_CHALL",
+    "rest": 17,
+    "sib": 82,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+    "cat": "ATP_CHALL",
+    "rest": 31,
+    "sib": 68,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+    "cat": "ATP_CHALL",
+    "rest": 36,
+    "sib": 63,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+    "cat": "ATP_CHALL",
+    "rest": 37,
+    "sib": 61,
+    "sum": 98
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+    "cat": "ATP_CHALL",
+    "rest": 18,
+    "sib": 81,
+    "sum": 99
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+    "cat": "ATP_CHALL",
+    "rest": 40,
+    "sib": 59,
+    "sum": 99
+   }
+  ]
+ },
+ "per_rest": [
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK",
+   "cat": "ATP_CHALL",
+   "rest_low": 49,
+   "close": 53,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BALPET-BAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 10,
+   "close": 14,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BALPET-PET",
+   "cat": "ATP_CHALL",
+   "rest_low": 77,
+   "close": 88,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 81,
+   "close": 85,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BOOONC-BOO",
+   "cat": "ATP_CHALL",
+   "rest_low": 18,
+   "close": 26,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP",
+   "cat": "ATP_CHALL",
+   "rest_low": 13,
+   "close": 72,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BOUVIT-BOU",
+   "cat": "ATP_CHALL",
+   "rest_low": 78,
+   "close": 81,
+   "near1": 2,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BROHUA-HUA",
+   "cat": "ATP_CHALL",
+   "rest_low": 23,
+   "close": 38,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BRUGAD-BRU",
+   "cat": "ATP_CHALL",
+   "rest_low": 4,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BRUGAD-GAD",
+   "cat": "ATP_CHALL",
+   "rest_low": 13,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12CHAJON-CHA",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 42,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12CHISEA-CHI",
+   "cat": "ATP_CHALL",
+   "rest_low": 33,
+   "close": 32,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12CHOGAS-CHO",
+   "cat": "ATP_CHALL",
+   "rest_low": 59,
+   "close": 62,
+   "near1": 0,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12CRIBAS-CRI",
+   "cat": "ATP_CHALL",
+   "rest_low": 32,
+   "close": 36,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12DELMAK-MAK",
+   "cat": "ATP_CHALL",
+   "rest_low": 87,
+   "close": 93,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12DEVGON-DEV",
+   "cat": "ATP_CHALL",
+   "rest_low": 29,
+   "close": 32,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12DODDEL-DEL",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12DROPIR-PIR",
+   "cat": "ATP_CHALL",
+   "rest_low": 38,
+   "close": 42,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12ECHMUN-ECH",
+   "cat": "ATP_CHALL",
+   "rest_low": 77,
+   "close": 80,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12FANBIG-BIG",
+   "cat": "ATP_CHALL",
+   "rest_low": 59,
+   "close": 69,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12FEAWAL-WAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 49,
+   "close": 52,
+   "near1": 14,
+   "near2": 19,
+   "near3": 19
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12FORPAM-FOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 94,
+   "close": 96,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12FORPAM-PAM",
+   "cat": "ATP_CHALL",
+   "rest_low": 3,
+   "close": 6,
+   "near1": 0,
+   "near2": 4,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12FUEROS-FUE",
+   "cat": "ATP_CHALL",
+   "rest_low": 56,
+   "close": 60,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 74,
+   "close": 80,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12GEOMAG-MAG",
+   "cat": "ATP_CHALL",
+   "rest_low": 82,
+   "close": 85,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12GIESHE-GIE",
+   "cat": "ATP_CHALL",
+   "rest_low": 9,
+   "close": 15,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12GIESHE-SHE",
+   "cat": "ATP_CHALL",
+   "rest_low": 84,
+   "close": 88,
+   "near1": 0,
+   "near2": 0,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12GUTCAM-GUT",
+   "cat": "ATP_CHALL",
+   "rest_low": 28,
+   "close": 35,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12HECISO-ISO",
+   "cat": "ATP_CHALL",
+   "rest_low": 36,
+   "close": 41,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12HERALM-ALM",
+   "cat": "ATP_CHALL",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12HOHSUR-SUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 82,
+   "close": 85,
+   "near1": 2,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12HOUJOR-HOU",
+   "cat": "ATP_CHALL",
+   "rest_low": 3,
+   "close": 51,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12KARMAR-MAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 57,
+   "close": 59,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12KRALOR-KRA",
+   "cat": "ATP_CHALL",
+   "rest_low": 93,
+   "close": 95,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12KUMTUR-TUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 28,
+   "close": 32,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12LAGTEP-LAG",
+   "cat": "ATP_CHALL",
+   "rest_low": 64,
+   "close": 71,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12LINMAL-MAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 89,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12MARARS-ARS",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 38,
+   "near1": 14,
+   "near2": 15,
+   "near3": 15
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12MEJSOT-SOT",
+   "cat": "ATP_CHALL",
+   "rest_low": 31,
+   "close": 33,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ-KUZ",
+   "cat": "ATP_CHALL",
+   "rest_low": 32,
+   "close": 37,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12MOLDON-MOL",
+   "cat": "ATP_CHALL",
+   "rest_low": 82,
+   "close": 90,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12MORPET-MOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12OUAFER-OUA",
+   "cat": "ATP_CHALL",
+   "rest_low": 90,
+   "close": 96,
+   "near1": 2,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12PALMAR-PAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 89,
+   "close": 90,
+   "near1": 2,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12PEAKIR-KIR",
+   "cat": "ATP_CHALL",
+   "rest_low": 71,
+   "close": 74,
+   "near1": 12,
+   "near2": 15,
+   "near3": 15
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL",
+   "cat": "ATP_CHALL",
+   "rest_low": 79,
+   "close": 84,
+   "near1": 1,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12POLVIN-POL",
+   "cat": "ATP_CHALL",
+   "rest_low": 35,
+   "close": 43,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12POLVIN-VIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 54,
+   "close": 59,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-BAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 3,
+   "close": 5,
+   "near1": 0,
+   "near2": 3,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-AGU",
+   "cat": "ATP_CHALL",
+   "rest_low": 88,
+   "close": 93,
+   "near1": 0,
+   "near2": 0,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-RAF",
+   "cat": "ATP_CHALL",
+   "rest_low": 5,
+   "close": 9,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12RAIZHU-ZHU",
+   "cat": "ATP_CHALL",
+   "rest_low": 48,
+   "close": 63,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12RAQKUM-RAQ",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 46,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12ROUGAN-GAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 94,
+   "close": 96,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12SALARN-ARN",
+   "cat": "ATP_CHALL",
+   "rest_low": 81,
+   "close": 87,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12SALARN-SAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 12,
+   "close": 17,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12SANSCH-SAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 3,
+   "close": 41,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12SIAIVA-IVA",
+   "cat": "ATP_CHALL",
+   "rest_low": 94,
+   "close": 97,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12TROHOR-TRO",
+   "cat": "ATP_CHALL",
+   "rest_low": 91,
+   "close": 95,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12VALNIJ-NIJ",
+   "cat": "ATP_CHALL",
+   "rest_low": 65,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12VALNIJ-VAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 23,
+   "close": 28,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12VANCHO-VAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 75,
+   "close": 79,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12VILRAH-RAH",
+   "cat": "ATP_CHALL",
+   "rest_low": 28,
+   "close": 31,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12VILRAH-VIL",
+   "cat": "ATP_CHALL",
+   "rest_low": 67,
+   "close": 70,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12WESPAA-WES",
+   "cat": "ATP_CHALL",
+   "rest_low": 55,
+   "close": 65,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12WESSEL-SEL",
+   "cat": "ATP_CHALL",
+   "rest_low": 46,
+   "close": 54,
+   "near1": 0,
+   "near2": 0,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12WINROB-WIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 91,
+   "close": 92,
+   "near1": 2,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12YEVBOR-YEV",
+   "cat": "ATP_CHALL",
+   "rest_low": 88,
+   "close": 95,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12YIBMAL-YIB",
+   "cat": "ATP_CHALL",
+   "rest_low": 80,
+   "close": 85,
+   "near1": 0,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13ALVKUM-ALV",
+   "cat": "ATP_CHALL",
+   "rest_low": 50,
+   "close": 57,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13ARSDAL-ARS",
+   "cat": "ATP_CHALL",
+   "rest_low": 44,
+   "close": 49,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13ARSMAR-MAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 6,
+   "near2": 11,
+   "near3": 11
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13BINFUE-BIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13BINFUE-FUE",
+   "cat": "ATP_CHALL",
+   "rest_low": 60,
+   "close": 64,
+   "near1": 4,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13CHOSUR-SUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 75,
+   "close": 80,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13FORHUA-HUA",
+   "cat": "ATP_CHALL",
+   "rest_low": 19,
+   "close": 23,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13FORMAK-FOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 66,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13GIUALM-ALM",
+   "cat": "ATP_CHALL",
+   "rest_low": 32,
+   "close": 36,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13GREVAN-GRE",
+   "cat": "ATP_CHALL",
+   "rest_low": 68,
+   "close": 70,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13INCSTE-INC",
+   "cat": "ATP_CHALL",
+   "rest_low": 49,
+   "close": 56,
+   "near1": 0,
+   "near2": 0,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13JONPET-PET",
+   "cat": "ATP_CHALL",
+   "rest_low": 59,
+   "close": 62,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13KRUMAR-KRU",
+   "cat": "ATP_CHALL",
+   "rest_low": 58,
+   "close": 60,
+   "near1": 0,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13KUMLAG-KUM",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 43,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ-KUZ",
+   "cat": "ATP_CHALL",
+   "rest_low": 64,
+   "close": 68,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ-NIJ",
+   "cat": "ATP_CHALL",
+   "rest_low": 31,
+   "close": 34,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13MONANG-ANG",
+   "cat": "ATP_CHALL",
+   "rest_low": 11,
+   "close": 14,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13MORFAN-FAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 34,
+   "close": 36,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP",
+   "cat": "ATP_CHALL",
+   "rest_low": 32,
+   "close": 35,
+   "near1": 0,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13NOGBRO-NOG",
+   "cat": "ATP_CHALL",
+   "rest_low": 46,
+   "close": 51,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13OUALIN-OUA",
+   "cat": "ATP_CHALL",
+   "rest_low": 50,
+   "close": 82,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13PALGON-GON",
+   "cat": "ATP_CHALL",
+   "rest_low": 60,
+   "close": 66,
+   "near1": 4,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13POLMIY-POL",
+   "cat": "ATP_CHALL",
+   "rest_low": 20,
+   "close": 25,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13REHJUS-REH",
+   "cat": "ATP_CHALL",
+   "rest_low": 59,
+   "close": 62,
+   "near1": 0,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13RODALK-ROD",
+   "cat": "ATP_CHALL",
+   "rest_low": 74,
+   "close": 79,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13SANLOP-LOP",
+   "cat": "ATP_CHALL",
+   "rest_low": 8,
+   "close": 16,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13SHIHAR-SHI",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 41,
+   "near1": 2,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13TABVIN-VIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 38,
+   "close": 43,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13VILGAN-VIL",
+   "cat": "ATP_CHALL",
+   "rest_low": 87,
+   "close": 91,
+   "near1": 20,
+   "near2": 20,
+   "near3": 25
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13WINKIR-KIR",
+   "cat": "ATP_CHALL",
+   "rest_low": 26,
+   "close": 30,
+   "near1": 0,
+   "near2": 2,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13WOLFEN-FEN",
+   "cat": "ATP_CHALL",
+   "rest_low": 20,
+   "close": 23,
+   "near1": 9,
+   "near2": 17,
+   "near3": 17
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13WONTUN-WON",
+   "cat": "ATP_CHALL",
+   "rest_low": 59,
+   "close": 63,
+   "near1": 0,
+   "near2": 0,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13YEVCAM-CAM",
+   "cat": "ATP_CHALL",
+   "rest_low": 56,
+   "close": 58,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13YIBMAR-YIB",
+   "cat": "ATP_CHALL",
+   "rest_low": 91,
+   "close": 93,
+   "near1": 1,
+   "near2": 5,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI-ZHU",
+   "cat": "ATP_CHALL",
+   "rest_low": 26,
+   "close": 32,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14ADDLEO-ADD",
+   "cat": "ATP_CHALL",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14ALMGRA-ALM",
+   "cat": "ATP_CHALL",
+   "rest_low": 25,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14BICMIY-MIY",
+   "cat": "ATP_CHALL",
+   "rest_low": 54,
+   "close": 58,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14BLATOM-TOM",
+   "cat": "ATP_CHALL",
+   "rest_low": 31,
+   "close": 34,
+   "near1": 0,
+   "near2": 8,
+   "near3": 23
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ-BRU",
+   "cat": "ATP_CHALL",
+   "rest_low": 49,
+   "close": 51,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14CASGHI-GHI",
+   "cat": "ATP_CHALL",
+   "rest_low": 61,
+   "close": 63,
+   "near1": 11,
+   "near2": 16,
+   "near3": 16
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14CASSCH-SCH",
+   "cat": "ATP_CHALL",
+   "rest_low": 57,
+   "close": 60,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14CLAWES-CLA",
+   "cat": "ATP_CHALL",
+   "rest_low": 75,
+   "close": 78,
+   "near1": 0,
+   "near2": 0,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14CUIFAN-FAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 27,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14DALMAY-DAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 15,
+   "close": 18,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-DEL",
+   "cat": "ATP_CHALL",
+   "rest_low": 81,
+   "close": 85,
+   "near1": 5,
+   "near2": 19,
+   "near3": 28
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14DENYEV-DEN",
+   "cat": "ATP_CHALL",
+   "rest_low": 85,
+   "close": 87,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14EREPAV-ERE",
+   "cat": "ATP_CHALL",
+   "rest_low": 45,
+   "close": 52,
+   "near1": 1,
+   "near2": 11,
+   "near3": 11
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14FORGOR-FOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 41,
+   "near1": 5,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14FUEPRI-PRI",
+   "cat": "ATP_CHALL",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14GALFOR-GAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 70,
+   "close": 73,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14GLIJOH-GLI",
+   "cat": "ATP_CHALL",
+   "rest_low": 63,
+   "close": 66,
+   "near1": 10,
+   "near2": 10,
+   "near3": 10
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14GUIBON-BON",
+   "cat": "ATP_CHALL",
+   "rest_low": 50,
+   "close": 53,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14IVAGIU-GIU",
+   "cat": "ATP_CHALL",
+   "rest_low": 39,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14JOHBER-JOH",
+   "cat": "ATP_CHALL",
+   "rest_low": 47,
+   "close": 50,
+   "near1": 0,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14JONIVA-IVA",
+   "cat": "ATP_CHALL",
+   "rest_low": 72,
+   "close": 75,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR",
+   "cat": "ATP_CHALL",
+   "rest_low": 25,
+   "close": 33,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14KRATOR-KRA",
+   "cat": "ATP_CHALL",
+   "rest_low": 41,
+   "close": 43,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14LAGSAN-LAG",
+   "cat": "ATP_CHALL",
+   "rest_low": 38,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14LANYIB-LAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 12,
+   "close": 18,
+   "near1": 0,
+   "near2": 8,
+   "near3": 35
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-SEY",
+   "cat": "ATP_CHALL",
+   "rest_low": 75,
+   "close": 78,
+   "near1": 1,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14MARCAM-CAM",
+   "cat": "ATP_CHALL",
+   "rest_low": 50,
+   "close": 55,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14MARMAY-MAY",
+   "cat": "ATP_CHALL",
+   "rest_low": 60,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14MILCHA-MIL",
+   "cat": "ATP_CHALL",
+   "rest_low": 49,
+   "close": 62,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14MRVCAN-CAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 46,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14PERCRA-CRA",
+   "cat": "ATP_CHALL",
+   "rest_low": 93,
+   "close": 95,
+   "near1": 2,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14ROZRIC-RIC",
+   "cat": "ATP_CHALL",
+   "rest_low": 55,
+   "close": 59,
+   "near1": 0,
+   "near2": 1,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14SMIILA-SMI",
+   "cat": "ATP_CHALL",
+   "rest_low": 71,
+   "close": 74,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14SQUKUM-SQU",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 67,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14SURECH-SUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 56,
+   "close": 63,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 29,
+   "close": 43,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14VILRIB-VIL",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 40,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ",
+   "cat": "ATP_CHALL",
+   "rest_low": 36,
+   "close": 41,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-ZHU",
+   "cat": "ATP_CHALL",
+   "rest_low": 5,
+   "close": 19,
+   "near1": 4,
+   "near2": 20,
+   "near3": 32
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS",
+   "cat": "ATP_CHALL",
+   "rest_low": 59,
+   "close": 61,
+   "near1": 4,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15GENDE-DE",
+   "cat": "ATP_CHALL",
+   "rest_low": 16,
+   "close": 19,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15HOLMAY-MAY",
+   "cat": "ATP_CHALL",
+   "rest_low": 33,
+   "close": 37,
+   "near1": 0,
+   "near2": 0,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15IVACRA-CRA",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 66,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15LAJKRU-LAJ",
+   "cat": "ATP_CHALL",
+   "rest_low": 67,
+   "close": 70,
+   "near1": 0,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15NAGTOR-TOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 40,
+   "near1": 2,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15NAPBAR-NAP",
+   "cat": "ATP_CHALL",
+   "rest_low": 56,
+   "close": 77,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-SUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 54,
+   "close": 59,
+   "near1": 2,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15RODINC-INC",
+   "cat": "ATP_CHALL",
+   "rest_low": 26,
+   "close": 31,
+   "near1": 0,
+   "near2": 0,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15ROMGAL-GAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 65,
+   "close": 67,
+   "near1": 0,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15SANERE-SAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 41,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15SCHHOU-HOU",
+   "cat": "ATP_CHALL",
+   "rest_low": 38,
+   "close": 40,
+   "near1": 0,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15WESCOP-COP",
+   "cat": "ATP_CHALL",
+   "rest_low": 80,
+   "close": 83,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15WOLJOH-WOL",
+   "cat": "ATP_CHALL",
+   "rest_low": 59,
+   "close": 62,
+   "near1": 5,
+   "near2": 35,
+   "near3": 35
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15WONSHE-WON",
+   "cat": "ATP_CHALL",
+   "rest_low": 79,
+   "close": 83,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN",
+   "cat": "ATP_CHALL",
+   "rest_low": 30,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL15ZINGAL-ZIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 26,
+   "close": 28,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16ADDGHI-ADD",
+   "cat": "ATP_CHALL",
+   "rest_low": 44,
+   "close": 48,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16ALCANG-ANG",
+   "cat": "ATP_CHALL",
+   "rest_low": 16,
+   "close": 19,
+   "near1": 3,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC",
+   "cat": "ATP_CHALL",
+   "rest_low": 29,
+   "close": 33,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16DENBAR-BAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 46,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16DRAMIL-MIL",
+   "cat": "ATP_CHALL",
+   "rest_low": 29,
+   "close": 33,
+   "near1": 2,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16FUESEY-SEY",
+   "cat": "ATP_CHALL",
+   "rest_low": 84,
+   "close": 86,
+   "near1": 7,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16GLISEK-SEK",
+   "cat": "ATP_CHALL",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16GRESAN-SAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 40,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16IVAOUA-IVA",
+   "cat": "ATP_CHALL",
+   "rest_low": 81,
+   "close": 84,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16KUMBRO-KUM",
+   "cat": "ATP_CHALL",
+   "rest_low": 47,
+   "close": 51,
+   "near1": 0,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16MRVRON-RON",
+   "cat": "ATP_CHALL",
+   "rest_low": 41,
+   "close": 44,
+   "near1": 7,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16SMIMAT-MAT",
+   "cat": "ATP_CHALL",
+   "rest_low": 16,
+   "close": 19,
+   "near1": 9,
+   "near2": 11,
+   "near3": 11
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL16VISNIJ-VIS",
+   "cat": "ATP_CHALL",
+   "rest_low": 39,
+   "close": 41,
+   "near1": 5,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD",
+   "cat": "ATP_CHALL",
+   "rest_low": 28,
+   "close": 30,
+   "near1": 2,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON",
+   "cat": "ATP_CHALL",
+   "rest_low": 26,
+   "close": 29,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17DRAGEA-DRA",
+   "cat": "ATP_CHALL",
+   "rest_low": 34,
+   "close": 36,
+   "near1": 3,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17GENHOU-HOU",
+   "cat": "ATP_CHALL",
+   "rest_low": 44,
+   "close": 48,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17HOLBOU-BOU",
+   "cat": "ATP_CHALL",
+   "rest_low": 31,
+   "close": 34,
+   "near1": 0,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17KUMBOO-BOO",
+   "cat": "ATP_CHALL",
+   "rest_low": 42,
+   "close": 45,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17LAJNOG-LAJ",
+   "cat": "ATP_CHALL",
+   "rest_low": 69,
+   "close": 72,
+   "near1": 0,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17NAGBON-BON",
+   "cat": "ATP_CHALL",
+   "rest_low": 43,
+   "close": 46,
+   "near1": 2,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17NIJDEN-DEN",
+   "cat": "ATP_CHALL",
+   "rest_low": 77,
+   "close": 81,
+   "near1": 2,
+   "near2": 20,
+   "near3": 22
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17PERSAN-PER",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 42,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17RODCRA-ROD",
+   "cat": "ATP_CHALL",
+   "rest_low": 67,
+   "close": 71,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-SAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 47,
+   "close": 53,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17SEKCAS-SEK",
+   "cat": "ATP_CHALL",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 2,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17VUKGAL-GAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 50,
+   "close": 52,
+   "near1": 3,
+   "near2": 6,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17VUKGAL-VUK",
+   "cat": "ATP_CHALL",
+   "rest_low": 46,
+   "close": 49,
+   "near1": 1,
+   "near2": 12,
+   "near3": 12
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL17WONJOH-JOH",
+   "cat": "ATP_CHALL",
+   "rest_low": 35,
+   "close": 37,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL18ALCVIL-VIL",
+   "cat": "ATP_CHALL",
+   "rest_low": 26,
+   "close": 28,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL18CASGEA-GEA",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 72,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL18DENCOP-COP",
+   "cat": "ATP_CHALL",
+   "rest_low": 51,
+   "close": 54,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL18PERIVA-PER",
+   "cat": "ATP_CHALL",
+   "rest_low": 32,
+   "close": 34,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL18RODSAN-ROD",
+   "cat": "ATP_CHALL",
+   "rest_low": 75,
+   "close": 81,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL18TOMJOH-TOM",
+   "cat": "ATP_CHALL",
+   "rest_low": 39,
+   "close": 41,
+   "near1": 40,
+   "near2": 47,
+   "near3": 47
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19ARNPOH-ARN",
+   "cat": "ATP_CHALL",
+   "rest_low": 94,
+   "close": 98,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS",
+   "cat": "ATP_CHALL",
+   "rest_low": 36,
+   "close": 40,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19AVECHA-AVE",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 40,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19BANZHU-ZHU",
+   "cat": "ATP_CHALL",
+   "rest_low": 31,
+   "close": 35,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19BARLEO-LEO",
+   "cat": "ATP_CHALL",
+   "rest_low": 51,
+   "close": 56,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19BIAYOU-YOU",
+   "cat": "ATP_CHALL",
+   "rest_low": 91,
+   "close": 94,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19BONALC-ALC",
+   "cat": "ATP_CHALL",
+   "rest_low": 65,
+   "close": 69,
+   "near1": 1,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19CALTEP-CAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 3,
+   "close": 76,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19CASVAS-CAS",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19DEMBIT-DEM",
+   "cat": "ATP_CHALL",
+   "rest_low": 54,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19DEMMAG-MAG",
+   "cat": "ATP_CHALL",
+   "rest_low": 93,
+   "close": 96,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19DENGEN-DEN",
+   "cat": "ATP_CHALL",
+   "rest_low": 58,
+   "close": 61,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19DONTOP-TOP",
+   "cat": "ATP_CHALL",
+   "rest_low": 72,
+   "close": 75,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19GIUDEV-GIU",
+   "cat": "ATP_CHALL",
+   "rest_low": 74,
+   "close": 85,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19IMATRA-TRA",
+   "cat": "ATP_CHALL",
+   "rest_low": 23,
+   "close": 34,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19JONISO-ISO",
+   "cat": "ATP_CHALL",
+   "rest_low": 56,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19KIRAGU-KIR",
+   "cat": "ATP_CHALL",
+   "rest_low": 41,
+   "close": 46,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19KOZVIT-KOZ",
+   "cat": "ATP_CHALL",
+   "rest_low": 85,
+   "close": 89,
+   "near1": 1,
+   "near2": 8,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19KUHPAS-PAS",
+   "cat": "ATP_CHALL",
+   "rest_low": 85,
+   "close": 93,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19KUZOPI-KUZ",
+   "cat": "ATP_CHALL",
+   "rest_low": 80,
+   "close": 89,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19LANMAY-MAY",
+   "cat": "ATP_CHALL",
+   "rest_low": 60,
+   "close": 65,
+   "near1": 1,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19MALMOR-MAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 58,
+   "close": 62,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19MARCOL-MAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 82,
+   "close": 97,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19MARWAZ-MAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 74,
+   "close": 80,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN",
+   "cat": "ATP_CHALL",
+   "rest_low": 4,
+   "close": 7,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19MILFAN-FAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 23,
+   "close": 26,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19MONTHO-MON",
+   "cat": "ATP_CHALL",
+   "rest_low": 92,
+   "close": 94,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB",
+   "cat": "ATP_CHALL",
+   "rest_low": 66,
+   "close": 83,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19OLILAS-OLI",
+   "cat": "ATP_CHALL",
+   "rest_low": 93,
+   "close": 97,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19PAPROS-ROS",
+   "cat": "ATP_CHALL",
+   "rest_low": 76,
+   "close": 81,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19PETALO-PET",
+   "cat": "ATP_CHALL",
+   "rest_low": 93,
+   "close": 96,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19PIENES-PIE",
+   "cat": "ATP_CHALL",
+   "rest_low": 40,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19POLSCH-SCH",
+   "cat": "ATP_CHALL",
+   "rest_low": 27,
+   "close": 34,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19PONZIE-ZIE",
+   "cat": "ATP_CHALL",
+   "rest_low": 76,
+   "close": 81,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19POUJAN-JAN",
+   "cat": "ATP_CHALL",
+   "rest_low": 69,
+   "close": 72,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19REJWES-REJ",
+   "cat": "ATP_CHALL",
+   "rest_low": 14,
+   "close": 28,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19RITGOM-RIT",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 43,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19ROZSHE-SHE",
+   "cat": "ATP_CHALL",
+   "rest_low": 48,
+   "close": 52,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19SALVRB-SAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 25,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19SALVRB-VRB",
+   "cat": "ATP_CHALL",
+   "rest_low": 45,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19SINMAT-MAT",
+   "cat": "ATP_CHALL",
+   "rest_low": 54,
+   "close": 71,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19SURPER-SUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 90,
+   "close": 96,
+   "near1": 21,
+   "near2": 21,
+   "near3": 21
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19TOKMIY-TOK",
+   "cat": "ATP_CHALL",
+   "rest_low": 29,
+   "close": 34,
+   "near1": 1,
+   "near2": 3,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ-LAJ",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 64,
+   "near1": 4,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19TORSEN-TOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 91,
+   "close": 96,
+   "near1": 0,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19TRODAL-DAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 26,
+   "close": 30,
+   "near1": 0,
+   "near2": 0,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19VANGOR-GOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 41,
+   "close": 53,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19VANRAD-RAD",
+   "cat": "ATP_CHALL",
+   "rest_low": 69,
+   "close": 74,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19VARBOI-BOI",
+   "cat": "ATP_CHALL",
+   "rest_low": 30,
+   "close": 36,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19VASTAB-TAB",
+   "cat": "ATP_CHALL",
+   "rest_low": 70,
+   "close": 73,
+   "near1": 0,
+   "near2": 1,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19VISAHT-VIS",
+   "cat": "ATP_CHALL",
+   "rest_low": 90,
+   "close": 94,
+   "near1": 0,
+   "near2": 11,
+   "near3": 21
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19WINSHE-WIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 63,
+   "close": 71,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19YEVSTR-STR",
+   "cat": "ATP_CHALL",
+   "rest_low": 86,
+   "close": 89,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20ALKFIC-FIC",
+   "cat": "ATP_CHALL",
+   "rest_low": 44,
+   "close": 50,
+   "near1": 0,
+   "near2": 0,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20ARSRIC-ARS",
+   "cat": "ATP_CHALL",
+   "rest_low": 32,
+   "close": 36,
+   "near1": 0,
+   "near2": 7,
+   "near3": 17
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20BICWAL-WAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 83,
+   "close": 85,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20CALKUM-CAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 69,
+   "close": 72,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA",
+   "cat": "ATP_CHALL",
+   "rest_low": 57,
+   "close": 62,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20CREMAT-CRE",
+   "cat": "ATP_CHALL",
+   "rest_low": 52,
+   "close": 63,
+   "near1": 0,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20ECHHAR-HAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 0,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20FAURIN-RIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 63,
+   "close": 67,
+   "near1": 0,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20GALLLA-LLA",
+   "cat": "ATP_CHALL",
+   "rest_low": 43,
+   "close": 45,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20HSUHAR-HAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 54,
+   "close": 59,
+   "near1": 0,
+   "near2": 0,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20JOHAGU-JOH",
+   "cat": "ATP_CHALL",
+   "rest_low": 53,
+   "close": 59,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20KYMCLA-KYM",
+   "cat": "ATP_CHALL",
+   "rest_low": 74,
+   "close": 77,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20MARBIT-MAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 63,
+   "close": 66,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20MARROS-ROS",
+   "cat": "ATP_CHALL",
+   "rest_low": 15,
+   "close": 19,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY",
+   "cat": "ATP_CHALL",
+   "rest_low": 65,
+   "close": 67,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20MONBAR-BAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 53,
+   "close": 57,
+   "near1": 0,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20NOGSHI-SHI",
+   "cat": "ATP_CHALL",
+   "rest_low": 42,
+   "close": 46,
+   "near1": 25,
+   "near2": 31,
+   "near3": 48
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI",
+   "cat": "ATP_CHALL",
+   "rest_low": 78,
+   "close": 86,
+   "near1": 0,
+   "near2": 0,
+   "near3": 18
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20PETTAB-PET",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 68,
+   "near1": 5,
+   "near2": 11,
+   "near3": 11
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20PIRNAP-PIR",
+   "cat": "ATP_CHALL",
+   "rest_low": 73,
+   "close": 77,
+   "near1": 0,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20POHWES-POH",
+   "cat": "ATP_CHALL",
+   "rest_low": 7,
+   "close": 10,
+   "near1": 3,
+   "near2": 14,
+   "near3": 15
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20SEYKOL-SEY",
+   "cat": "ATP_CHALL",
+   "rest_low": 51,
+   "close": 55,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20STAMAT-STA",
+   "cat": "ATP_CHALL",
+   "rest_low": 37,
+   "close": 39,
+   "near1": 1,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20SURKUZ-SUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 65,
+   "close": 72,
+   "near1": 0,
+   "near2": 5,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20TOKHUR-HUR",
+   "cat": "ATP_CHALL",
+   "rest_low": 43,
+   "close": 46,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20TOKHUR-TOK",
+   "cat": "ATP_CHALL",
+   "rest_low": 53,
+   "close": 57,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20TORSTR-TOR",
+   "cat": "ATP_CHALL",
+   "rest_low": 30,
+   "close": 35,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20TROISO-TRO",
+   "cat": "ATP_CHALL",
+   "rest_low": 75,
+   "close": 79,
+   "near1": 13,
+   "near2": 13,
+   "near3": 13
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20VALGOM-GOM",
+   "cat": "ATP_CHALL",
+   "rest_low": 85,
+   "close": 86,
+   "near1": 19,
+   "near2": 19,
+   "near3": 19
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20VANOUA-OUA",
+   "cat": "ATP_CHALL",
+   "rest_low": 43,
+   "close": 46,
+   "near1": 5,
+   "near2": 8,
+   "near3": 8
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20VARDON-VAR",
+   "cat": "ATP_CHALL",
+   "rest_low": 62,
+   "close": 66,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20VISNIK-NIK",
+   "cat": "ATP_CHALL",
+   "rest_low": 13,
+   "close": 15,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20VISNIK-VIS",
+   "cat": "ATP_CHALL",
+   "rest_low": 69,
+   "close": 82,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20WATILA-WAT",
+   "cat": "ATP_CHALL",
+   "rest_low": 57,
+   "close": 68,
+   "near1": 3,
+   "near2": 5,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20WINARS-WIN",
+   "cat": "ATP_CHALL",
+   "rest_low": 74,
+   "close": 77,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20ZHESHE-ZHE",
+   "cat": "ATP_CHALL",
+   "rest_low": 76,
+   "close": 82,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE-ZHO",
+   "cat": "ATP_CHALL",
+   "rest_low": 72,
+   "close": 74,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL-MAL",
+   "cat": "ATP_CHALL",
+   "rest_low": 54,
+   "close": 57,
+   "near1": 13,
+   "near2": 14,
+   "near3": 14
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12ALTGAS-ALT",
+   "cat": "ATP_MAIN",
+   "rest_low": 56,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12BUEMAR-BUE",
+   "cat": "ATP_MAIN",
+   "rest_low": 58,
+   "close": 62,
+   "near1": 0,
+   "near2": 0,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12CARSAN-CAR",
+   "cat": "ATP_MAIN",
+   "rest_low": 77,
+   "close": 81,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12CECOLI-CEC",
+   "cat": "ATP_MAIN",
+   "rest_low": 75,
+   "close": 77,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12CHOBAS-CHO",
+   "cat": "ATP_MAIN",
+   "rest_low": 58,
+   "close": 63,
+   "near1": 2,
+   "near2": 12,
+   "near3": 32
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12CINHEM-HEM",
+   "cat": "ATP_MAIN",
+   "rest_low": 25,
+   "close": 32,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12DIEMON-MON",
+   "cat": "ATP_MAIN",
+   "rest_low": 40,
+   "close": 49,
+   "near1": 0,
+   "near2": 1,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12DODCAR-DOD",
+   "cat": "ATP_MAIN",
+   "rest_low": 23,
+   "close": 29,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12DROBLO-DRO",
+   "cat": "ATP_MAIN",
+   "rest_low": 20,
+   "close": 34,
+   "near1": 3,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12GUEGOM-GUE",
+   "cat": "ATP_MAIN",
+   "rest_low": 58,
+   "close": 60,
+   "near1": 9,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12JACTRU-JAC",
+   "cat": "ATP_MAIN",
+   "rest_low": 43,
+   "close": 45,
+   "near1": 2,
+   "near2": 5,
+   "near3": 11
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12LAJVAN-VAN",
+   "cat": "ATP_MAIN",
+   "rest_low": 48,
+   "close": 57,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12MARHAN-HAN",
+   "cat": "ATP_MAIN",
+   "rest_low": 73,
+   "close": 77,
+   "near1": 0,
+   "near2": 9,
+   "near3": 21
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12MOLFAU-MOL",
+   "cat": "ATP_MAIN",
+   "rest_low": 64,
+   "close": 67,
+   "near1": 2,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12MOLROY-MOL",
+   "cat": "ATP_MAIN",
+   "rest_low": 56,
+   "close": 61,
+   "near1": 0,
+   "near2": 1,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12MULSHE-SHE",
+   "cat": "ATP_MAIN",
+   "rest_low": 54,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12NEUTOP-NEU",
+   "cat": "ATP_MAIN",
+   "rest_low": 72,
+   "close": 75,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12OFNTIR-TIR",
+   "cat": "ATP_MAIN",
+   "rest_low": 55,
+   "close": 60,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12PASKAS-PAS",
+   "cat": "ATP_MAIN",
+   "rest_low": 49,
+   "close": 53,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12PRASAI-PRA",
+   "cat": "ATP_MAIN",
+   "rest_low": 41,
+   "close": 44,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12REJMID-MID",
+   "cat": "ATP_MAIN",
+   "rest_low": 92,
+   "close": 93,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12SESMER-SES",
+   "cat": "ATP_MAIN",
+   "rest_low": 11,
+   "close": 14,
+   "near1": 1,
+   "near2": 3,
+   "near3": 10
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12SKASAC-SAC",
+   "cat": "ATP_MAIN",
+   "rest_low": 49,
+   "close": 54,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12SLADAM-DAM",
+   "cat": "ATP_MAIN",
+   "rest_low": 82,
+   "close": 84,
+   "near1": 2,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12STRMUN-MUN",
+   "cat": "ATP_MAIN",
+   "rest_low": 70,
+   "close": 81,
+   "near1": 3,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL12TABHUE-TAB",
+   "cat": "ATP_MAIN",
+   "rest_low": 54,
+   "close": 59,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL13FAUDAM-FAU",
+   "cat": "ATP_MAIN",
+   "rest_low": 54,
+   "close": 55,
+   "near1": 7,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL13MARMID-MID",
+   "cat": "ATP_MAIN",
+   "rest_low": 61,
+   "close": 63,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL13SANDAN-DAN",
+   "cat": "ATP_MAIN",
+   "rest_low": 74,
+   "close": 75,
+   "near1": 1,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL13TABROD-ROD",
+   "cat": "ATP_MAIN",
+   "rest_low": 39,
+   "close": 41,
+   "near1": 11,
+   "near2": 15,
+   "near3": 15
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14CECBUR-BUR",
+   "cat": "ATP_MAIN",
+   "rest_low": 51,
+   "close": 54,
+   "near1": 11,
+   "near2": 15,
+   "near3": 15
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14CINHAL-HAL",
+   "cat": "ATP_MAIN",
+   "rest_low": 50,
+   "close": 55,
+   "near1": 2,
+   "near2": 3,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14DIAMID-DIA",
+   "cat": "ATP_MAIN",
+   "rest_low": 76,
+   "close": 79,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14GOMMCD-GOM",
+   "cat": "ATP_MAIN",
+   "rest_low": 54,
+   "close": 61,
+   "near1": 0,
+   "near2": 5,
+   "near3": 8
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14NEUPRA-PRA",
+   "cat": "ATP_MAIN",
+   "rest_low": 30,
+   "close": 35,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14TOPUGO-UGO",
+   "cat": "ATP_MAIN",
+   "rest_low": 69,
+   "close": 72,
+   "near1": 1,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14TRAKRU-KRU",
+   "cat": "ATP_MAIN",
+   "rest_low": 53,
+   "close": 56,
+   "near1": 10,
+   "near2": 21,
+   "near3": 21
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14VALDAM-DAM",
+   "cat": "ATP_MAIN",
+   "rest_low": 17,
+   "close": 19,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14VALDAM-VAL",
+   "cat": "ATP_MAIN",
+   "rest_low": 79,
+   "close": 82,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL14VANDAN-VAN",
+   "cat": "ATP_MAIN",
+   "rest_low": 58,
+   "close": 61,
+   "near1": 2,
+   "near2": 2,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15ALTDAR-ALT",
+   "cat": "ATP_MAIN",
+   "rest_low": 34,
+   "close": 37,
+   "near1": 10,
+   "near2": 18,
+   "near3": 18
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15ALTDAR-DAR",
+   "cat": "ATP_MAIN",
+   "rest_low": 61,
+   "close": 65,
+   "near1": 0,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15BASTIR-BAS",
+   "cat": "ATP_MAIN",
+   "rest_low": 29,
+   "close": 31,
+   "near1": 5,
+   "near2": 19,
+   "near3": 29
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15BORDIM-DIM",
+   "cat": "ATP_MAIN",
+   "rest_low": 32,
+   "close": 34,
+   "near1": 4,
+   "near2": 18,
+   "near3": 21
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15BUBHAL-HAL",
+   "cat": "ATP_MAIN",
+   "rest_low": 25,
+   "close": 32,
+   "near1": 1,
+   "near2": 1,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15CARUGO-CAR",
+   "cat": "ATP_MAIN",
+   "rest_low": 55,
+   "close": 57,
+   "near1": 10,
+   "near2": 12,
+   "near3": 12
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15COBBUR-BUR",
+   "cat": "ATP_MAIN",
+   "rest_low": 29,
+   "close": 36,
+   "near1": 12,
+   "near2": 12,
+   "near3": 13
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15COLSON-COL",
+   "cat": "ATP_MAIN",
+   "rest_low": 63,
+   "close": 66,
+   "near1": 6,
+   "near2": 28,
+   "near3": 34
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15COLSON-SON",
+   "cat": "ATP_MAIN",
+   "rest_low": 31,
+   "close": 36,
+   "near1": 23,
+   "near2": 34,
+   "near3": 35
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15ETCMER-MER",
+   "cat": "ATP_MAIN",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 4,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15GOMARN-ARN",
+   "cat": "ATP_MAIN",
+   "rest_low": 76,
+   "close": 78,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15HANVAC-VAC",
+   "cat": "ATP_MAIN",
+   "rest_low": 36,
+   "close": 39,
+   "near1": 7,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15KYMTSI-KYM",
+   "cat": "ATP_MAIN",
+   "rest_low": 25,
+   "close": 27,
+   "near1": 7,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15PRADZU-DZU",
+   "cat": "ATP_MAIN",
+   "rest_low": 61,
+   "close": 65,
+   "near1": 11,
+   "near2": 11,
+   "near3": 12
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15RUBPEL-PEL",
+   "cat": "ATP_MAIN",
+   "rest_low": 23,
+   "close": 29,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15TABMID-MID",
+   "cat": "ATP_MAIN",
+   "rest_low": 22,
+   "close": 24,
+   "near1": 8,
+   "near2": 22,
+   "near3": 35
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15TRANAV-NAV",
+   "cat": "ATP_MAIN",
+   "rest_low": 81,
+   "close": 84,
+   "near1": 9,
+   "near2": 16,
+   "near3": 16
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL15VANVAL-VAL",
+   "cat": "ATP_MAIN",
+   "rest_low": 50,
+   "close": 52,
+   "near1": 0,
+   "near2": 14,
+   "near3": 24
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL16BURUGO-BUR",
+   "cat": "ATP_MAIN",
+   "rest_low": 56,
+   "close": 59,
+   "near1": 37,
+   "near2": 45,
+   "near3": 48
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL16DEJBAE-BAE",
+   "cat": "ATP_MAIN",
+   "rest_low": 45,
+   "close": 49,
+   "near1": 7,
+   "near2": 23,
+   "near3": 48
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL16DZUARN-ARN",
+   "cat": "ATP_MAIN",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 8,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL16FARRUU-FAR",
+   "cat": "ATP_MAIN",
+   "rest_low": 18,
+   "close": 21,
+   "near1": 22,
+   "near2": 28,
+   "near3": 28
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL16FARRUU-RUU",
+   "cat": "ATP_MAIN",
+   "rest_low": 77,
+   "close": 81,
+   "near1": 10,
+   "near2": 16,
+   "near3": 23
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL16MERDRO-DRO",
+   "cat": "ATP_MAIN",
+   "rest_low": 38,
+   "close": 40,
+   "near1": 5,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL16MOLDAV-DAV",
+   "cat": "ATP_MAIN",
+   "rest_low": 55,
+   "close": 57,
+   "near1": 15,
+   "near2": 50,
+   "near3": 50
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17BORDAR-DAR",
+   "cat": "ATP_MAIN",
+   "rest_low": 56,
+   "close": 58,
+   "near1": 3,
+   "near2": 19,
+   "near3": 19
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17CERRUU-CER",
+   "cat": "ATP_MAIN",
+   "rest_low": 24,
+   "close": 26,
+   "near1": 21,
+   "near2": 29,
+   "near3": 29
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17COLVAC-COL",
+   "cat": "ATP_MAIN",
+   "rest_low": 55,
+   "close": 57,
+   "near1": 18,
+   "near2": 33,
+   "near3": 33
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17COLVAC-VAC",
+   "cat": "ATP_MAIN",
+   "rest_low": 41,
+   "close": 45,
+   "near1": 11,
+   "near2": 28,
+   "near3": 34
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17DZUMOL-DZU",
+   "cat": "ATP_MAIN",
+   "rest_low": 31,
+   "close": 33,
+   "near1": 10,
+   "near2": 10,
+   "near3": 10
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17DZUMOL-MOL",
+   "cat": "ATP_MAIN",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 9,
+   "near2": 21,
+   "near3": 21
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17HALSHE-HAL",
+   "cat": "ATP_MAIN",
+   "rest_low": 5,
+   "close": 59,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17HALSHE-SHE",
+   "cat": "ATP_MAIN",
+   "rest_low": 5,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17RINTSI-RIN",
+   "cat": "ATP_MAIN",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 30,
+   "near2": 33,
+   "near3": 43
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17RUBBAE-BAE",
+   "cat": "ATP_MAIN",
+   "rest_low": 35,
+   "close": 37,
+   "near1": 10,
+   "near2": 16,
+   "near3": 17
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17TABTIR-TIR",
+   "cat": "ATP_MAIN",
+   "rest_low": 42,
+   "close": 45,
+   "near1": 12,
+   "near2": 17,
+   "near3": 17
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL17VALTRA-TRA",
+   "cat": "ATP_MAIN",
+   "rest_low": 27,
+   "close": 30,
+   "near1": 1,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18BUTTAB-TAB",
+   "cat": "ATP_MAIN",
+   "rest_low": 67,
+   "close": 69,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18CINMIC-CIN",
+   "cat": "ATP_MAIN",
+   "rest_low": 71,
+   "close": 74,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18DANPRA-DAN",
+   "cat": "ATP_MAIN",
+   "rest_low": 57,
+   "close": 61,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18DELRIB-DEL",
+   "cat": "ATP_MAIN",
+   "rest_low": 68,
+   "close": 70,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18HEIFEL-FEL",
+   "cat": "ATP_MAIN",
+   "rest_low": 40,
+   "close": 44,
+   "near1": 2,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18KOPHER-KOP",
+   "cat": "ATP_MAIN",
+   "rest_low": 54,
+   "close": 60,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18LUZTSE-LUZ",
+   "cat": "ATP_MAIN",
+   "rest_low": 5,
+   "close": 99,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18MARJOR-JOR",
+   "cat": "ATP_MAIN",
+   "rest_low": 31,
+   "close": 33,
+   "near1": 2,
+   "near2": 10,
+   "near3": 10
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18MERDZU-MER",
+   "cat": "ATP_MAIN",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18ROCBUE-ROC",
+   "cat": "ATP_MAIN",
+   "rest_low": 15,
+   "close": 16,
+   "near1": 2,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18RUBTAB-TAB",
+   "cat": "ATP_MAIN",
+   "rest_low": 29,
+   "close": 35,
+   "near1": 4,
+   "near2": 7,
+   "near3": 8
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18SHETSI-SHE",
+   "cat": "ATP_MAIN",
+   "rest_low": 20,
+   "close": 27,
+   "near1": 6,
+   "near2": 22,
+   "near3": 22
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18VALDAR-VAL",
+   "cat": "ATP_MAIN",
+   "rest_low": 32,
+   "close": 34,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL18WALDJE-WAL",
+   "cat": "ATP_MAIN",
+   "rest_low": 2,
+   "close": 4,
+   "near1": 6,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19CHODEJ-CHO",
+   "cat": "ATP_MAIN",
+   "rest_low": 42,
+   "close": 47,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19FELKOP-FEL",
+   "cat": "ATP_MAIN",
+   "rest_low": 74,
+   "close": 76,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19FERVAN-FER",
+   "cat": "ATP_MAIN",
+   "rest_low": 16,
+   "close": 20,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19FERVAN-VAN",
+   "cat": "ATP_MAIN",
+   "rest_low": 77,
+   "close": 81,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19GAUCAR-CAR",
+   "cat": "ATP_MAIN",
+   "rest_low": 64,
+   "close": 71,
+   "near1": 0,
+   "near2": 7,
+   "near3": 29
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19LUZTAB-TAB",
+   "cat": "ATP_MAIN",
+   "rest_low": 89,
+   "close": 92,
+   "near1": 6,
+   "near2": 6,
+   "near3": 10
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19MOLOFN-MOL",
+   "cat": "ATP_MAIN",
+   "rest_low": 57,
+   "close": 63,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19NEUHAN-HAN",
+   "cat": "ATP_MAIN",
+   "rest_low": 65,
+   "close": 75,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19TORBAS-TOR",
+   "cat": "ATP_MAIN",
+   "rest_low": 20,
+   "close": 24,
+   "near1": 0,
+   "near2": 1,
+   "near3": 9
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19TSICOL-TSI",
+   "cat": "ATP_MAIN",
+   "rest_low": 55,
+   "close": 59,
+   "near1": 18,
+   "near2": 21,
+   "near3": 23
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL19WAWBUR-WAW",
+   "cat": "ATP_MAIN",
+   "rest_low": 17,
+   "close": 34,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL20ROCMAR-ROC",
+   "cat": "ATP_MAIN",
+   "rest_low": 52,
+   "close": 56,
+   "near1": 15,
+   "near2": 32,
+   "near3": 78
+  },
+  {
+   "ticker": "KXATPMATCH-26JUL20SCHROD-ROD",
+   "cat": "ATP_MAIN",
+   "rest_low": 58,
+   "close": 63,
+   "near1": 0,
+   "near2": 5,
+   "near3": 7
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA",
+   "cat": "WTA_CHALL",
+   "rest_low": 15,
+   "close": 99,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12BASABB-BAS",
+   "cat": "WTA_CHALL",
+   "rest_low": 77,
+   "close": 80,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12BOSKOV-BOS",
+   "cat": "WTA_CHALL",
+   "rest_low": 91,
+   "close": 93,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12CIRHUA-HUA",
+   "cat": "WTA_CHALL",
+   "rest_low": 91,
+   "close": 95,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ",
+   "cat": "WTA_CHALL",
+   "rest_low": 49,
+   "close": 82,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12FEICHE-FEI",
+   "cat": "WTA_CHALL",
+   "rest_low": 70,
+   "close": 76,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12HESKOT-HES",
+   "cat": "WTA_CHALL",
+   "rest_low": 50,
+   "close": 54,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12KHOVIG-VIG",
+   "cat": "WTA_CHALL",
+   "rest_low": 1,
+   "close": 1,
+   "near1": 12,
+   "near2": 12,
+   "near3": 12
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12MALTUR-MAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 51,
+   "close": 54,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12MAZGAN-GAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 26,
+   "close": 30,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12PANYOR-PAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 71,
+   "close": 80,
+   "near1": 2,
+   "near2": 10,
+   "near3": 11
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12ROUJAK-JAK",
+   "cat": "WTA_CHALL",
+   "rest_low": 50,
+   "close": 55,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12SAIETO-SAI",
+   "cat": "WTA_CHALL",
+   "rest_low": 94,
+   "close": 99,
+   "near1": 0,
+   "near2": 0,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12SOKNUG-NUG",
+   "cat": "WTA_CHALL",
+   "rest_low": 65,
+   "close": 71,
+   "near1": 0,
+   "near2": 1,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12VOLMAR-MAR",
+   "cat": "WTA_CHALL",
+   "rest_low": 54,
+   "close": 58,
+   "near1": 0,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12ZELFAL-FAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 75,
+   "close": 99,
+   "near1": 0,
+   "near2": 1,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13AVDFEI-FEI",
+   "cat": "WTA_CHALL",
+   "rest_low": 44,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13GASBAN-GAS",
+   "cat": "WTA_CHALL",
+   "rest_low": 57,
+   "close": 59,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13GJOCHI-CHI",
+   "cat": "WTA_CHALL",
+   "rest_low": 58,
+   "close": 61,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13GRABER-GRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 76,
+   "close": 80,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13HERJAK-JAK",
+   "cat": "WTA_CHALL",
+   "rest_low": 27,
+   "close": 29,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13JONSPI-JON",
+   "cat": "WTA_CHALL",
+   "rest_low": 90,
+   "close": 91,
+   "near1": 6,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13KABPER-KAB",
+   "cat": "WTA_CHALL",
+   "rest_low": 67,
+   "close": 71,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU",
+   "cat": "WTA_CHALL",
+   "rest_low": 83,
+   "close": 94,
+   "near1": 3,
+   "near2": 4,
+   "near3": 7
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13KOTURG-URG",
+   "cat": "WTA_CHALL",
+   "rest_low": 66,
+   "close": 67,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13LANMAL-MAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 45,
+   "close": 48,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-FAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 26,
+   "close": 99,
+   "near1": 2,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PAPAND-PAP",
+   "cat": "WTA_CHALL",
+   "rest_low": 20,
+   "close": 23,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13RADREN-RAD",
+   "cat": "WTA_CHALL",
+   "rest_low": 82,
+   "close": 85,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM",
+   "cat": "WTA_CHALL",
+   "rest_low": 22,
+   "close": 25,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13RISPOH-RIS",
+   "cat": "WTA_CHALL",
+   "rest_low": 44,
+   "close": 47,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13SELYAN-YAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 36,
+   "close": 39,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13TIKBEN-TIK",
+   "cat": "WTA_CHALL",
+   "rest_low": 38,
+   "close": 41,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14AKSVAL-VAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 37,
+   "close": 89,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14BARKOL-BAR",
+   "cat": "WTA_CHALL",
+   "rest_low": 90,
+   "close": 94,
+   "near1": 0,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14BASFRI-BAS",
+   "cat": "WTA_CHALL",
+   "rest_low": 69,
+   "close": 72,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14BRAPIE-BRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 74,
+   "close": 79,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14CARVON-VON",
+   "cat": "WTA_CHALL",
+   "rest_low": 22,
+   "close": 24,
+   "near1": 0,
+   "near2": 7,
+   "near3": 8
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14COLPAL-PAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14FERZAN-ZAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 30,
+   "close": 33,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14FRUGAO-FRU",
+   "cat": "WTA_CHALL",
+   "rest_low": 43,
+   "close": 46,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14HENKRA-KRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 78,
+   "close": 82,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14HRUBUY-HRU",
+   "cat": "WTA_CHALL",
+   "rest_low": 75,
+   "close": 99,
+   "near1": 2,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14IATZVO-ZVO",
+   "cat": "WTA_CHALL",
+   "rest_low": 48,
+   "close": 58,
+   "near1": 3,
+   "near2": 3,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14KOSRUG-KOS",
+   "cat": "WTA_CHALL",
+   "rest_low": 71,
+   "close": 74,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14KOVBAS-BAS",
+   "cat": "WTA_CHALL",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14MAZBRO-BRO",
+   "cat": "WTA_CHALL",
+   "rest_low": 74,
+   "close": 77,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14PACVED-VED",
+   "cat": "WTA_CHALL",
+   "rest_low": 82,
+   "close": 86,
+   "near1": 3,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14PIGSAM-SAM",
+   "cat": "WTA_CHALL",
+   "rest_low": 78,
+   "close": 82,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14RABRUS-RUS",
+   "cat": "WTA_CHALL",
+   "rest_low": 93,
+   "close": 94,
+   "near1": 8,
+   "near2": 21,
+   "near3": 21
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14RIESEM-SEM",
+   "cat": "WTA_CHALL",
+   "rest_low": 59,
+   "close": 61,
+   "near1": 1,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14TREGRA-TRE",
+   "cat": "WTA_CHALL",
+   "rest_low": 25,
+   "close": 27,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL14WOLVAN-VAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 77,
+   "close": 80,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS",
+   "cat": "WTA_CHALL",
+   "rest_low": 41,
+   "close": 43,
+   "near1": 1,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL15ASTNOH-AST",
+   "cat": "WTA_CHALL",
+   "rest_low": 37,
+   "close": 40,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL15CARPAL-CAR",
+   "cat": "WTA_CHALL",
+   "rest_low": 64,
+   "close": 65,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL15ERJBAR-ERJ",
+   "cat": "WTA_CHALL",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL15GRAPER-GRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 86,
+   "close": 88,
+   "near1": 6,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL15RADCHI-CHI",
+   "cat": "WTA_CHALL",
+   "rest_low": 34,
+   "close": 36,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL15YANLAN-YAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 80,
+   "close": 81,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS",
+   "cat": "WTA_CHALL",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16BENKRA-KRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 78,
+   "close": 80,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 37,
+   "close": 44,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM",
+   "cat": "WTA_CHALL",
+   "rest_low": 64,
+   "close": 67,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16HERVAN-VAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 67,
+   "close": 71,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-PRO",
+   "cat": "WTA_CHALL",
+   "rest_low": 82,
+   "close": 99,
+   "near1": 1,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16KOSBRO-KOS",
+   "cat": "WTA_CHALL",
+   "rest_low": 58,
+   "close": 60,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16KOVRIE-KOV",
+   "cat": "WTA_CHALL",
+   "rest_low": 20,
+   "close": 22,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU-ZAK",
+   "cat": "WTA_CHALL",
+   "rest_low": 30,
+   "close": 99,
+   "near1": 8,
+   "near2": 11,
+   "near3": 22
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16ZANTRE-TRE",
+   "cat": "WTA_CHALL",
+   "rest_low": 54,
+   "close": 57,
+   "near1": 0,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU-ZVO",
+   "cat": "WTA_CHALL",
+   "rest_low": 31,
+   "close": 99,
+   "near1": 0,
+   "near2": 2,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17ANDKRA-KRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 72,
+   "close": 75,
+   "near1": 0,
+   "near2": 14,
+   "near3": 18
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17BASCAR-CAR",
+   "cat": "WTA_CHALL",
+   "rest_low": 34,
+   "close": 37,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17BRARIE-BRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 42,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-FEI",
+   "cat": "WTA_CHALL",
+   "rest_low": 30,
+   "close": 34,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17GRAVAN-GRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 41,
+   "close": 44,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17JONNOH-NOH",
+   "cat": "WTA_CHALL",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17VALFAL-FAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 41,
+   "close": 43,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17YANTRE-TRE",
+   "cat": "WTA_CHALL",
+   "rest_low": 38,
+   "close": 41,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR-TAR",
+   "cat": "WTA_CHALL",
+   "rest_low": 65,
+   "close": 99,
+   "near1": 0,
+   "near2": 14,
+   "near3": 15
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18BASKRA-KRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 66,
+   "close": 68,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18BROBRA-BRO",
+   "cat": "WTA_CHALL",
+   "rest_low": 60,
+   "close": 62,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18CIRTOT-CIR",
+   "cat": "WTA_CHALL",
+   "rest_low": 36,
+   "close": 43,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18ERJGRA-GRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 42,
+   "close": 45,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18RENGIA-GIA",
+   "cat": "WTA_CHALL",
+   "rest_low": 26,
+   "close": 28,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18SERBER-BER",
+   "cat": "WTA_CHALL",
+   "rest_low": 25,
+   "close": 27,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18TONSPI-TON",
+   "cat": "WTA_CHALL",
+   "rest_low": 30,
+   "close": 35,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18TREJON-JON",
+   "cat": "WTA_CHALL",
+   "rest_low": 62,
+   "close": 65,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18VALTAR-VAL",
+   "cat": "WTA_CHALL",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18WEBHOD-HOD",
+   "cat": "WTA_CHALL",
+   "rest_low": 93,
+   "close": 96,
+   "near1": 4,
+   "near2": 4,
+   "near3": 5
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN-VAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 48,
+   "close": 99,
+   "near1": 1,
+   "near2": 3,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL19BASSHI-BAS",
+   "cat": "WTA_CHALL",
+   "rest_low": 78,
+   "close": 80,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL19GRAKRA-KRA",
+   "cat": "WTA_CHALL",
+   "rest_low": 62,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL19JONBRO-JON",
+   "cat": "WTA_CHALL",
+   "rest_low": 55,
+   "close": 58,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL19KOTHOD-KOT",
+   "cat": "WTA_CHALL",
+   "rest_low": 35,
+   "close": 39,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL19RENTON-REN",
+   "cat": "WTA_CHALL",
+   "rest_low": 68,
+   "close": 71,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL19SERTOT-TOT",
+   "cat": "WTA_CHALL",
+   "rest_low": 57,
+   "close": 61,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20FERREN-FER",
+   "cat": "WTA_CHALL",
+   "rest_low": 82,
+   "close": 86,
+   "near1": 0,
+   "near2": 0,
+   "near3": 12
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20GJOAND-AND",
+   "cat": "WTA_CHALL",
+   "rest_low": 61,
+   "close": 64,
+   "near1": 3,
+   "near2": 4,
+   "near3": 11
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20GORMIN-GOR",
+   "cat": "WTA_CHALL",
+   "rest_low": 43,
+   "close": 45,
+   "near1": 2,
+   "near2": 6,
+   "near3": 7
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20KABCHI-CHI",
+   "cat": "WTA_CHALL",
+   "rest_low": 75,
+   "close": 78,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20LANRAD-RAD",
+   "cat": "WTA_CHALL",
+   "rest_low": 80,
+   "close": 82,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20MAZSPI-SPI",
+   "cat": "WTA_CHALL",
+   "rest_low": 31,
+   "close": 34,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT",
+   "cat": "WTA_CHALL",
+   "rest_low": 42,
+   "close": 45,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20URGYAN-YAN",
+   "cat": "WTA_CHALL",
+   "rest_low": 62,
+   "close": 66,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12AVASEI-AVA",
+   "cat": "WTA_MAIN",
+   "rest_low": 87,
+   "close": 91,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12FETPIE-PIE",
+   "cat": "WTA_MAIN",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12GARPRI-GAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 38,
+   "close": 40,
+   "near1": 5,
+   "near2": 5,
+   "near3": 5
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12HERKAZ-HER",
+   "cat": "WTA_MAIN",
+   "rest_low": 40,
+   "close": 55,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12HIBTON-HIB",
+   "cat": "WTA_MAIN",
+   "rest_low": 84,
+   "close": 89,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12HODYAS-HOD",
+   "cat": "WTA_MAIN",
+   "rest_low": 86,
+   "close": 88,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12ITOMAN-ITO",
+   "cat": "WTA_MAIN",
+   "rest_low": 74,
+   "close": 81,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12KOZIBR-IBR",
+   "cat": "WTA_MAIN",
+   "rest_low": 85,
+   "close": 91,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12LEPBUR-LEP",
+   "cat": "WTA_MAIN",
+   "rest_low": 66,
+   "close": 79,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12LIUPOP-LIU",
+   "cat": "WTA_MAIN",
+   "rest_low": 83,
+   "close": 87,
+   "near1": 0,
+   "near2": 6,
+   "near3": 10
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12MICKUL-MIC",
+   "cat": "WTA_MAIN",
+   "rest_low": 41,
+   "close": 45,
+   "near1": 2,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12MORNEP-MOR",
+   "cat": "WTA_MAIN",
+   "rest_low": 74,
+   "close": 78,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12OKAIPE-IPE",
+   "cat": "WTA_MAIN",
+   "rest_low": 83,
+   "close": 87,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12PRIION-PRI",
+   "cat": "WTA_MAIN",
+   "rest_low": 89,
+   "close": 95,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12ROMTOD-ROM",
+   "cat": "WTA_MAIN",
+   "rest_low": 90,
+   "close": 94,
+   "near1": 0,
+   "near2": 0,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL12TAGSIE-TAG",
+   "cat": "WTA_MAIN",
+   "rest_low": 85,
+   "close": 90,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13AMAHER-HER",
+   "cat": "WTA_MAIN",
+   "rest_low": 63,
+   "close": 65,
+   "near1": 11,
+   "near2": 12,
+   "near3": 12
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13ARAZID-ARA",
+   "cat": "WTA_MAIN",
+   "rest_low": 47,
+   "close": 54,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13ARGTAG-TAG",
+   "cat": "WTA_MAIN",
+   "rest_low": 95,
+   "close": 97,
+   "near1": 16,
+   "near2": 16,
+   "near3": 16
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13AVAFET-AVA",
+   "cat": "WTA_MAIN",
+   "rest_low": 90,
+   "close": 92,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13BADKAL-KAL",
+   "cat": "WTA_MAIN",
+   "rest_low": 38,
+   "close": 40,
+   "near1": 6,
+   "near2": 10,
+   "near3": 10
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13BURLEP-BUR",
+   "cat": "WTA_MAIN",
+   "rest_low": 57,
+   "close": 65,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13BURLEP-LEP",
+   "cat": "WTA_MAIN",
+   "rest_low": 34,
+   "close": 37,
+   "near1": 1,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13CHAJIM-CHA",
+   "cat": "WTA_MAIN",
+   "rest_low": 64,
+   "close": 66,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13CRIJEA-JEA",
+   "cat": "WTA_MAIN",
+   "rest_low": 32,
+   "close": 38,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13GRAPAR-PAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 87,
+   "close": 90,
+   "near1": 2,
+   "near2": 7,
+   "near3": 31
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13HODDAR-DAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 78,
+   "close": 79,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13KAWWAL-WAL",
+   "cat": "WTA_MAIN",
+   "rest_low": 65,
+   "close": 69,
+   "near1": 0,
+   "near2": 7,
+   "near3": 9
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13KRETOM-TOM",
+   "cat": "WTA_MAIN",
+   "rest_low": 7,
+   "close": 10,
+   "near1": 7,
+   "near2": 8,
+   "near3": 9
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13LEPIBR-LEP",
+   "cat": "WTA_MAIN",
+   "rest_low": 55,
+   "close": 57,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13LINHON-HON",
+   "cat": "WTA_MAIN",
+   "rest_low": 14,
+   "close": 18,
+   "near1": 2,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13LIUIPE-LIU",
+   "cat": "WTA_MAIN",
+   "rest_low": 79,
+   "close": 81,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13MATMIC-MAT",
+   "cat": "WTA_MAIN",
+   "rest_low": 39,
+   "close": 43,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13MONMAS-MON",
+   "cat": "WTA_MAIN",
+   "rest_low": 14,
+   "close": 17,
+   "near1": 0,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13MORBEJ-BEJ",
+   "cat": "WTA_MAIN",
+   "rest_low": 87,
+   "close": 89,
+   "near1": 3,
+   "near2": 11,
+   "near3": 11
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13PODMAR-MAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 74,
+   "close": 77,
+   "near1": 0,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13PRIGAR-GAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 5,
+   "close": 8,
+   "near1": 5,
+   "near2": 14,
+   "near3": 14
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13ROMKUL-ROM",
+   "cat": "WTA_MAIN",
+   "rest_low": 75,
+   "close": 76,
+   "near1": 6,
+   "near2": 6,
+   "near3": 6
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL13SAKTON-SAK",
+   "cat": "WTA_MAIN",
+   "rest_low": 52,
+   "close": 61,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL14AMAJAC-JAC",
+   "cat": "WTA_MAIN",
+   "rest_low": 81,
+   "close": 84,
+   "near1": 2,
+   "near2": 5,
+   "near3": 6
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL14BULPRI-PRI",
+   "cat": "WTA_MAIN",
+   "rest_low": 79,
+   "close": 81,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL14OLIIPE-OLI",
+   "cat": "WTA_MAIN",
+   "rest_low": 78,
+   "close": 80,
+   "near1": 1,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL14PUTLIU-PUT",
+   "cat": "WTA_MAIN",
+   "rest_low": 60,
+   "close": 62,
+   "near1": 8,
+   "near2": 8,
+   "near3": 8
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL14SALIBR-IBR",
+   "cat": "WTA_MAIN",
+   "rest_low": 42,
+   "close": 44,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL14UDVROM-ROM",
+   "cat": "WTA_MAIN",
+   "rest_low": 46,
+   "close": 49,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15DARSAK-SAK",
+   "cat": "WTA_MAIN",
+   "rest_low": 76,
+   "close": 79,
+   "near1": 0,
+   "near2": 3,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15HONPAR-HON",
+   "cat": "WTA_MAIN",
+   "rest_low": 39,
+   "close": 41,
+   "near1": 4,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR",
+   "cat": "WTA_MAIN",
+   "rest_low": 11,
+   "close": 15,
+   "near1": 0,
+   "near2": 1,
+   "near3": 13
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15KREMON-KRE",
+   "cat": "WTA_MAIN",
+   "rest_low": 87,
+   "close": 94,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15MICZHE-ZHE",
+   "cat": "WTA_MAIN",
+   "rest_low": 92,
+   "close": 94,
+   "near1": 7,
+   "near2": 38,
+   "near3": 38
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15OLIPRI-PRI",
+   "cat": "WTA_MAIN",
+   "rest_low": 41,
+   "close": 45,
+   "near1": 0,
+   "near2": 0,
+   "near3": 5
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15PUTCHA-PUT",
+   "cat": "WTA_MAIN",
+   "rest_low": 59,
+   "close": 61,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15SHEQUE-SHE",
+   "cat": "WTA_MAIN",
+   "rest_low": 63,
+   "close": 66,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL15TAGBEJ-TAG",
+   "cat": "WTA_MAIN",
+   "rest_low": 44,
+   "close": 45,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL16KORANN-ANN",
+   "cat": "WTA_MAIN",
+   "rest_low": 49,
+   "close": 54,
+   "near1": 7,
+   "near2": 9,
+   "near3": 13
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL16TAUTON-TAU",
+   "cat": "WTA_MAIN",
+   "rest_low": 92,
+   "close": 94,
+   "near1": 0,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL16VALSAS-SAS",
+   "cat": "WTA_MAIN",
+   "rest_low": 30,
+   "close": 32,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL17KREZHE-KRE",
+   "cat": "WTA_MAIN",
+   "rest_low": 49,
+   "close": 52,
+   "near1": 0,
+   "near2": 4,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL17OLIBUR-OLI",
+   "cat": "WTA_MAIN",
+   "rest_low": 54,
+   "close": 57,
+   "near1": 2,
+   "near2": 16,
+   "near3": 24
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL17PARSAK-SAK",
+   "cat": "WTA_MAIN",
+   "rest_low": 74,
+   "close": 77,
+   "near1": 0,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL17TAUBEJ-BEJ",
+   "cat": "WTA_MAIN",
+   "rest_low": 46,
+   "close": 48,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL17UDVBAD-BAD",
+   "cat": "WTA_MAIN",
+   "rest_low": 70,
+   "close": 72,
+   "near1": 14,
+   "near2": 14,
+   "near3": 14
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL17VALKOR-VAL",
+   "cat": "WTA_MAIN",
+   "rest_low": 53,
+   "close": 55,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL17ZIDMAR-MAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 63,
+   "close": 67,
+   "near1": 4,
+   "near2": 6,
+   "near3": 7
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18BADZID-ZID",
+   "cat": "WTA_MAIN",
+   "rest_low": 22,
+   "close": 24,
+   "near1": 8,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18BANGAO-BAN",
+   "cat": "WTA_MAIN",
+   "rest_low": 37,
+   "close": 39,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18COSHIB-COS",
+   "cat": "WTA_MAIN",
+   "rest_low": 49,
+   "close": 51,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18HONTHA-HON",
+   "cat": "WTA_MAIN",
+   "rest_low": 82,
+   "close": 85,
+   "near1": 1,
+   "near2": 3,
+   "near3": 4
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18MICFRU-FRU",
+   "cat": "WTA_MAIN",
+   "rest_low": 72,
+   "close": 75,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18MORAKS-AKS",
+   "cat": "WTA_MAIN",
+   "rest_low": 64,
+   "close": 70,
+   "near1": 0,
+   "near2": 5,
+   "near3": 15
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18PALHON-HON",
+   "cat": "WTA_MAIN",
+   "rest_low": 61,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18PODKRE-POD",
+   "cat": "WTA_MAIN",
+   "rest_low": 89,
+   "close": 92,
+   "near1": 4,
+   "near2": 4,
+   "near3": 8
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18SALZOL-SAL",
+   "cat": "WTA_MAIN",
+   "rest_low": 75,
+   "close": 78,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18SALZOL-ZOL",
+   "cat": "WTA_MAIN",
+   "rest_low": 22,
+   "close": 24,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18TAUKRE-KRE",
+   "cat": "WTA_MAIN",
+   "rest_low": 55,
+   "close": 59,
+   "near1": 3,
+   "near2": 4,
+   "near3": 5
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL18TAUKRE-TAU",
+   "cat": "WTA_MAIN",
+   "rest_low": 40,
+   "close": 42,
+   "near1": 6,
+   "near2": 9,
+   "near3": 9
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19AVDNIE-NIE",
+   "cat": "WTA_MAIN",
+   "rest_low": 39,
+   "close": 39,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19BRAVON-VON",
+   "cat": "WTA_MAIN",
+   "rest_low": 89,
+   "close": null,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19COSAKS-AKS",
+   "cat": "WTA_MAIN",
+   "rest_low": 35,
+   "close": 38,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19EIGCAR-CAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 90,
+   "close": 96,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19GAOFRU-GAO",
+   "cat": "WTA_MAIN",
+   "rest_low": 50,
+   "close": 53,
+   "near1": 10,
+   "near2": 10,
+   "near3": 10
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19KRESAK-SAK",
+   "cat": "WTA_MAIN",
+   "rest_low": 42,
+   "close": 44,
+   "near1": 13,
+   "near2": 26,
+   "near3": 26
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19MONPIE-MON",
+   "cat": "WTA_MAIN",
+   "rest_low": 75,
+   "close": 77,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19PODSAI-SAI",
+   "cat": "WTA_MAIN",
+   "rest_low": 23,
+   "close": 25,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19PRIMAR-PRI",
+   "cat": "WTA_MAIN",
+   "rest_low": 86,
+   "close": 90,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19RUSKAZ-KAZ",
+   "cat": "WTA_MAIN",
+   "rest_low": 23,
+   "close": 26,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19STRPAQ-PAQ",
+   "cat": "WTA_MAIN",
+   "rest_low": 84,
+   "close": 86,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL19VEDGAR-GAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 9,
+   "close": 11,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20AKSCOS-COS",
+   "cat": "WTA_MAIN",
+   "rest_low": 67,
+   "close": 79,
+   "near1": 118,
+   "near2": 119,
+   "near3": 119
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20FRUKRE-KRE",
+   "cat": "WTA_MAIN",
+   "rest_low": 70,
+   "close": 86,
+   "near1": 3,
+   "near2": 10,
+   "near3": 14
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20GAOTAG-TAG",
+   "cat": "WTA_MAIN",
+   "rest_low": 56,
+   "close": 64,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20KORJIM-KOR",
+   "cat": "WTA_MAIN",
+   "rest_low": 54,
+   "close": 70,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20LEPAVA-AVA",
+   "cat": "WTA_MAIN",
+   "rest_low": 65,
+   "close": 68,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20LEPAVA-LEP",
+   "cat": "WTA_MAIN",
+   "rest_low": 31,
+   "close": 33,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20LYSVAL-VAL",
+   "cat": "WTA_MAIN",
+   "rest_low": 69,
+   "close": 71,
+   "near1": 1,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20NIEMAL-NIE",
+   "cat": "WTA_MAIN",
+   "rest_low": 56,
+   "close": 59,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20OKTDOD-OKT",
+   "cat": "WTA_MAIN",
+   "rest_low": 67,
+   "close": 71,
+   "near1": 0,
+   "near2": 0,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20OLISCH-OLI",
+   "cat": "WTA_MAIN",
+   "rest_low": 64,
+   "close": 73,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20PARHON-HON",
+   "cat": "WTA_MAIN",
+   "rest_low": 29,
+   "close": 37,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20PIECAR-PIE",
+   "cat": "WTA_MAIN",
+   "rest_low": 16,
+   "close": 19,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20PODLEE-LEE",
+   "cat": "WTA_MAIN",
+   "rest_low": 55,
+   "close": 55,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20PODSTU-POD",
+   "cat": "WTA_MAIN",
+   "rest_low": 76,
+   "close": 78,
+   "near1": 2,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20PRIBRA-PRI",
+   "cat": "WTA_MAIN",
+   "rest_low": 90,
+   "close": 93,
+   "near1": 3,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20QUEKAL-KAL",
+   "cat": "WTA_MAIN",
+   "rest_low": 66,
+   "close": 69,
+   "near1": 0,
+   "near2": 0,
+   "near3": 6
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20RUSPAQ-PAQ",
+   "cat": "WTA_MAIN",
+   "rest_low": 36,
+   "close": 38,
+   "near1": 6,
+   "near2": 7,
+   "near3": 7
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20SEISNI-SNI",
+   "cat": "WTA_MAIN",
+   "rest_low": 76,
+   "close": 81,
+   "near1": 0,
+   "near2": 2,
+   "near3": 2
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20SEMKRA-KRA",
+   "cat": "WTA_MAIN",
+   "rest_low": 71,
+   "close": 76,
+   "near1": 1,
+   "near2": 3,
+   "near3": 3
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20SORCHA-CHA",
+   "cat": "WTA_MAIN",
+   "rest_low": 50,
+   "close": 56,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20STENOH-NOH",
+   "cat": "WTA_MAIN",
+   "rest_low": 74,
+   "close": 79,
+   "near1": 0,
+   "near2": 1,
+   "near3": 1
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20TIMSAS-SAS",
+   "cat": "WTA_MAIN",
+   "rest_low": 50,
+   "close": 54,
+   "near1": 0,
+   "near2": 0,
+   "near3": 0
+  },
+  {
+   "ticker": "KXWTAMATCH-26JUL20VEDBAR-BAR",
+   "cat": "WTA_MAIN",
+   "rest_low": 38,
+   "close": 40,
+   "near1": 11,
+   "near2": 18,
+   "near3": 18
+  }
+ ]
+}

@@ -1,0 +1,341 @@
+{
+  "law": "regret=entry-minus-lowest-true-exchange-print-over-full-market-life; incomplete numeric regret remains null",
+  "aggregate": {
+    "denominator": 1608,
+    "numeric_n": 1336,
+    "null_n": 272,
+    "min": 0,
+    "p25": 6,
+    "median": 20,
+    "p75": 39,
+    "p90": 54,
+    "max": 85,
+    "total": 32347,
+    "total_cents": 32347
+  },
+  "loss_attribution": {
+    "CREDITED": 1336,
+    "RESTED_UNFILLED": 272
+  },
+  "category_x_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50",
+      "regret": {
+        "denominator": 261,
+        "numeric_n": 245,
+        "null_n": 16,
+        "min": 0,
+        "p25": 7,
+        "median": 27,
+        "p75": 36,
+        "p90": 44,
+        "max": 52,
+        "total": 5698,
+        "total_cents": 5698
+      },
+      "loss_attribution": {
+        "CREDITED": 245,
+        "RESTED_UNFILLED": 16
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75",
+      "regret": {
+        "denominator": 252,
+        "numeric_n": 216,
+        "null_n": 36,
+        "min": 0,
+        "p25": 9,
+        "median": 35,
+        "p75": 57,
+        "p90": 64,
+        "max": 80,
+        "total": 7329,
+        "total_cents": 7329
+      },
+      "loss_attribution": {
+        "CREDITED": 216,
+        "RESTED_UNFILLED": 36
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76",
+      "regret": {
+        "denominator": 101,
+        "numeric_n": 53,
+        "null_n": 48,
+        "min": 0,
+        "p25": 2,
+        "median": 10,
+        "p75": 40,
+        "p90": 73,
+        "max": 85,
+        "total": 1191,
+        "total_cents": 1191
+      },
+      "loss_attribution": {
+        "CREDITED": 53,
+        "RESTED_UNFILLED": 48
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25",
+      "regret": {
+        "denominator": 124,
+        "numeric_n": 113,
+        "null_n": 11,
+        "min": 0,
+        "p25": 4,
+        "median": 13,
+        "p75": 18,
+        "p90": 21,
+        "max": 26,
+        "total": 1305,
+        "total_cents": 1305
+      },
+      "loss_attribution": {
+        "CREDITED": 113,
+        "RESTED_UNFILLED": 11
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50",
+      "regret": {
+        "denominator": 110,
+        "numeric_n": 103,
+        "null_n": 7,
+        "min": 1,
+        "p25": 8,
+        "median": 31,
+        "p75": 41,
+        "p90": 45,
+        "max": 51,
+        "total": 2749,
+        "total_cents": 2749
+      },
+      "loss_attribution": {
+        "CREDITED": 103,
+        "RESTED_UNFILLED": 7
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75",
+      "regret": {
+        "denominator": 111,
+        "numeric_n": 89,
+        "null_n": 22,
+        "min": 1,
+        "p25": 4,
+        "median": 26,
+        "p75": 56,
+        "p90": 64,
+        "max": 74,
+        "total": 2774,
+        "total_cents": 2774
+      },
+      "loss_attribution": {
+        "CREDITED": 89,
+        "RESTED_UNFILLED": 22
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76",
+      "regret": {
+        "denominator": 27,
+        "numeric_n": 18,
+        "null_n": 9,
+        "min": 0,
+        "p25": 4,
+        "median": 8,
+        "p75": 30,
+        "p90": 70,
+        "max": 80,
+        "total": 416,
+        "total_cents": 416
+      },
+      "loss_attribution": {
+        "CREDITED": 18,
+        "RESTED_UNFILLED": 9
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25",
+      "regret": {
+        "denominator": 46,
+        "numeric_n": 40,
+        "null_n": 6,
+        "min": 2,
+        "p25": 6,
+        "median": 19,
+        "p75": 25,
+        "p90": 34,
+        "max": 65,
+        "total": 785,
+        "total_cents": 785
+      },
+      "loss_attribution": {
+        "CREDITED": 40,
+        "RESTED_UNFILLED": 6
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50",
+      "regret": {
+        "denominator": 96,
+        "numeric_n": 84,
+        "null_n": 12,
+        "min": 0,
+        "p25": 8,
+        "median": 27,
+        "p75": 37,
+        "p90": 43,
+        "max": 52,
+        "total": 2087,
+        "total_cents": 2087
+      },
+      "loss_attribution": {
+        "CREDITED": 84,
+        "RESTED_UNFILLED": 12
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75",
+      "regret": {
+        "denominator": 87,
+        "numeric_n": 65,
+        "null_n": 22,
+        "min": 0,
+        "p25": 3,
+        "median": 17,
+        "p75": 53,
+        "p90": 59,
+        "max": 74,
+        "total": 1682,
+        "total_cents": 1682
+      },
+      "loss_attribution": {
+        "CREDITED": 65,
+        "RESTED_UNFILLED": 22
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76",
+      "regret": {
+        "denominator": 44,
+        "numeric_n": 20,
+        "null_n": 24,
+        "min": 0,
+        "p25": 4,
+        "median": 15,
+        "p75": 32,
+        "p90": 37,
+        "max": 68,
+        "total": 402,
+        "total_cents": 402
+      },
+      "loss_attribution": {
+        "RESTED_UNFILLED": 24,
+        "CREDITED": 20
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25",
+      "regret": {
+        "denominator": 45,
+        "numeric_n": 45,
+        "null_n": 0,
+        "min": 0,
+        "p25": 2,
+        "median": 11,
+        "p75": 19,
+        "p90": 21,
+        "max": 23,
+        "total": 480,
+        "total_cents": 480
+      },
+      "loss_attribution": {
+        "CREDITED": 45
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50",
+      "regret": {
+        "denominator": 86,
+        "numeric_n": 78,
+        "null_n": 8,
+        "min": 1,
+        "p25": 8,
+        "median": 29,
+        "p75": 40,
+        "p90": 45,
+        "max": 52,
+        "total": 2048,
+        "total_cents": 2048
+      },
+      "loss_attribution": {
+        "CREDITED": 78,
+        "RESTED_UNFILLED": 8
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75",
+      "regret": {
+        "denominator": 87,
+        "numeric_n": 71,
+        "null_n": 16,
+        "min": 2,
+        "p25": 6,
+        "median": 14,
+        "p75": 43,
+        "p90": 60,
+        "max": 70,
+        "total": 1736,
+        "total_cents": 1736
+      },
+      "loss_attribution": {
+        "CREDITED": 71,
+        "RESTED_UNFILLED": 16
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76",
+      "regret": {
+        "denominator": 52,
+        "numeric_n": 25,
+        "null_n": 27,
+        "min": 0,
+        "p25": 5,
+        "median": 11,
+        "p75": 35,
+        "p90": 61,
+        "max": 85,
+        "total": 580,
+        "total_cents": 580
+      },
+      "loss_attribution": {
+        "RESTED_UNFILLED": 27,
+        "CREDITED": 25
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25",
+      "regret": {
+        "denominator": 79,
+        "numeric_n": 71,
+        "null_n": 8,
+        "min": 2,
+        "p25": 10,
+        "median": 14,
+        "p75": 22,
+        "p90": 24,
+        "max": 37,
+        "total": 1085,
+        "total_cents": 1085
+      },
+      "loss_attribution": {
+        "CREDITED": 71,
+        "RESTED_UNFILLED": 8
+      }
+    }
+  ]
+}

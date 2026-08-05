@@ -1,31 +1,23 @@
 {
-  "cc_603_map": {
-    "status": "NOT_LANDED_NOT_BOUND_NOT_SCORED",
-    "treatment": "comparison remains unavailable; no substitute was constructed"
+  "schema_version": "window1-v34-control-v2-unblocked",
+  "construction_parent": "d5adc4ff080decef634309b7d1d022c2fd4b6841",
+  "architecture": "DUAL_SIDE_RESIDENCY_MACHINE_NOT_OVERLAY",
+  "window_law": {
+    "left": "EARLIER_OF_FIRST_TWO_SIDED_BOOK_OR_FIRST_TRUE_EXCHANGE_PRINT",
+    "right": "EVENT_FINAL_TRUE_EXCHANGE_PRINT_TIMESTAMP_FROM_MARKET_OWN_EXCHANGE_RECORD",
+    "close": "EACH_LEG_FINAL_TRUE_EXCHANGE_PRINT_AT_ITS_LATEST_TIMESTAMP",
+    "scheduled_edge_role": "NONE",
+    "actual_bell_role": "OPTIONAL_TIMING_METADATA_ONLY_NEVER_BOUNDARY",
+    "book_chain_after_end": "ACTIVE_REST_PERSISTS; PRINT_EVIDENCE_CONTINUES; NO_BOOK_DEPENDENT_TRANSITION_IS_FABRICATED"
   },
-  "census_priced_source_commit": "65d49b5d623d99fb1d8ad3ef7eee6be9225c328e",
-  "census_priced_source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V32_NEARMISS_CENSUS.json",
-  "construction_parent": "df689627004547bac1c2fb6a4ad175526aa9ec0b",
-  "controlling_v32_state_machine_commit": "a3429cad6719f96a25a900812e0f360b71a5607e",
-  "full_life_window_law": {
-    "engagement_left": "first_two_sided_book",
-    "engagement_right": "exact_actual_bell_on_honest_clock",
-    "grading_close": "true_final_pre_bell_print",
-    "proxy_or_interval_point_selection_permitted": false,
-    "scheduled_fallback_permitted": false
+  "source_seal": {
+    "commit": "938dca474e8bc4d96b17095e2aaa7cbb2fe97a87",
+    "receipt": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECONCILIATION_SEAL_804.json",
+    "scope_note": "938dca47 reconciled the guarded subset; the same sealed 4,836,462-row public archive supplies the full-life extension"
   },
-  "operative_r3_commit": "49f6501561c5d99a7f36c68ec41e0ea7250680e5",
-  "operative_r3_joint": 68,
-  "requested_architecture": {
-    "elapsed_time_as_decision_input": false,
-    "evidence_state": "V32_quote_path_plus_July_6_pressure_read",
-    "first_fill_pair_cap": "other_expression_at_or_below_99_minus_first_fill",
-    "policy_unit": "one_game_state_with_two_entry_outputs",
-    "rest_movement": "walk_down_with_falls_hold_through_climbs",
-    "standing_rest": "both_expressions_one_cent_under_best_bid_from_formation",
-    "strict_rest_fill": "strictly_later_seller_aggressed_print_size_at_least_five_at_or_below_rest",
-    "take_path": "V29_R3_qualified_SETTLED_floor_path_unchanged"
-  },
-  "requested_machine": "V34_DUAL_SIDE_RESIDENCY_MACHINE_FULL_MARKET_LIFE",
-  "schema_version": "window1-v34-full-life-control-binding-v1"
+  "comparisons": {
+    "R3_joint_floor": 68,
+    "operator_bound_CC_map_joint": 603,
+    "CC_event_map_status": "NOT_PRESENT_IN_FETCHED_GIT_REFS_AGGREGATE_603_BOUND_FROM_OPERATOR_ORDER"
+  }
 }

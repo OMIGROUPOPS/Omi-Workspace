@@ -1,0 +1,8 @@
+{
+  "supersedes_commit": "4450de974d855605f51816049bcc5b693502c6d4",
+  "prior_block": "EXACT_EXTERNAL_ACTUAL_BELL_REQUIRED",
+  "corrected_law": "MARKET_OWN_FINAL_EXCHANGE_ACTIVITY_BOUNDARY",
+  "external_actual_bell_required": false,
+  "actual_bell_timing_metadata_only": true,
+  "scheduled_edge_used": false
+}

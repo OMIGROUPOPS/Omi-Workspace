@@ -1,5 +1,10 @@
 # Window-1 V34 full-life construction block
 
+> SUPERSEDED on 2026-08-05 by the operator's market-own-close restatement.
+> This document remains the immutable record of the earlier exact-bell block;
+> the executed construction is recorded in
+> `WINDOW1_V34_DUAL_SIDE_RESIDENCY_ADDENDUM.md` and the versioned V34 package.
+
 V34 was stopped before architecture code or replay because its requested
 right boundary is the exact actual bell for every game. The frozen D=804
 guard ledger contains 234 exact bell timestamps and 570 non-exact boundaries.

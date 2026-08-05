@@ -1,0 +1,37 @@
+{
+  "schema_version": "window1-v34-dual-side-residency-v1",
+  "game_state": "ONE_GAME_STATE_TWO_ENTRY_OUTPUTS",
+  "standing_rest": {
+    "both_legs": true,
+    "starts": "FIRST_OWN_TWO_SIDED_BOOK",
+    "formula": "min(best_bid-1, prior_rest, running_true_trade_low_if_any, running_qualified_ask_low_if_any, 99-first_fill_if_armed)",
+    "falls": "WALK_DOWN",
+    "climbs": "HOLD_NEVER_CHASE_UP"
+  },
+  "state": {
+    "quote_path": {
+      "trailing_evidence_seconds": 300,
+      "falling": [
+        "NEW_LOW_ASK",
+        "SELLER_HIT_PRINT"
+      ],
+      "rising": [
+        "NEW_HIGH_BID",
+        "BUYER_LIFT_PRINT"
+      ],
+      "otherwise": "SETTLED"
+    },
+    "July6_pressure": {
+      "rising_at_or_above": 0.6,
+      "falling_at_or_below": 0.4
+    },
+    "combination": "QUOTE_PATH_PRIMARY; PRESSURE_ONLY_WHEN_QUOTE_PATH_SETTLED; DISAGREEMENTS_LOGGED"
+  },
+  "take_path": "V29_R3_QUALIFIED_SETTLED_FLOOR; DWELL_10; ORDINARY_SPREAD_LE_1_AND_SIZE_GE_5; CROSSED_OR_LOCKED_MAXIMAL_URGENCY",
+  "fill_laws": {
+    "STRICT_LAW": "STRICTLY_LATER_SELLER_AGGRESSED_PRINT_SIZE_GE_5_AT_OR_BELOW_REST_OR_PROVEN_TAKER",
+    "CENSUS_PRICED": "STRICT_LAW_PLUS_SELLER_PRINT_EXACTLY_REST_PLUS_1_CONVERTED_AT_REST_PER_65d49b5d"
+  },
+  "pair_cap": "ON_FIRST_FILL_OTHER_LEG_CAP_99_MINUS_FILL_SAME_RECEIPT_CANNOT_FILL_REPRICE",
+  "clock_inputs": []
+}

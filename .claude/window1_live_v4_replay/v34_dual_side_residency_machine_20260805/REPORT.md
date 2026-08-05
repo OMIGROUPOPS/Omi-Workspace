@@ -1,7 +1,12 @@
-# V34 dual-side residency machine — construction blocked
+# V34 dual-side residency machine - full market life
 
-V34 was stopped before policy construction or replay. Its immutable right boundary is the exact actual bell, but the frozen 804-event boundary ledger contains only 234 exact actual bells; 570 events have only proxy, interval, contradictory, live-by-only, or schedule-only evidence.
+V34 is a new game-level architecture with both entries as outputs. It runs from the earlier of the first two-sided book or first true exchange print through the event's final ordered exchange print. Scheduled edges are not boundaries. The 234-event exact-bell subset is timing metadata only.
 
-Using any of those as a point bell would violate the requested prohibition on scheduled-edge truncation and would make the true final pre-bell print unknowable for part of D. A 234-game subset was not promoted to D=804.
+- STRICT-LAW JOINT: 0; delta vs R3 68: -68; gap to operator-bound 603: 603.
+- CENSUS-PRICED JOINT: 0; delta vs R3 68: -68; gap to operator-bound 603: 603.
+- STRICT completed / under par / carried: 539 / 539 / 521.
+- CENSUS completed / under par / carried: 557 / 557 / 548.
+- ARNROM STRICT: 97; CENSUS: 97.
+- Ordered close availability: 1606/1608; close-price counts are frozen in CLOSE_RULER_CONSEQUENCE_RECEIPT.json.
 
-No V34 score exists. STRICT-LAW, CENSUS-PRICED, R3 comparison, CC-603 comparison, FRONTIER, REGRET, carried count, ARNROM result, and full-life spans are all unavailable rather than zero.
+The restated final-exchange-print close is terminal 1/99 pricing for the great majority of legs, so neither column can satisfy both-legs-below-close. This is a ruler consequence, not a hidden replay exclusion. The CC per-event 603 map is not present in fetched Git refs. The operator-bound aggregate 603 comparison is reported; no event identities were fabricated.

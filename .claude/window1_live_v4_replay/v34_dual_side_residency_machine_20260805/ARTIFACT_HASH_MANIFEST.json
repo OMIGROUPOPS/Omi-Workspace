@@ -1,45 +1,104 @@
 {
-  "artifacts": [
-    {
-      "path": "ACTUAL_BELL_COVERAGE_RECEIPT.json",
-      "sha256": "66735ee64c6380ad7a90fedb4f2a323c63e76652ebf6f4762e18789216619eaf",
-      "size": 155551
+  "files": {
+    "ACTION_AND_FILL_TRACE.jsonl.gz": {
+      "sha256": "742302bfd353519ad25a8b2b93096943cb1443512c4d627a61abd8fa60ba1181",
+      "bytes": 218195
     },
-    {
-      "path": "CENSUS_PRICED_BINDING.json",
-      "sha256": "77a7a4be29d217ad79059978f06149041c135d405ffbd176176deb722077d608",
-      "size": 1157
+    "ARNROM_REGRESSION_RECEIPT.json": {
+      "sha256": "5cbe0608246fbaa356555be7380e4a26b980e9a8bd9fb1f174c15f5a49334041",
+      "bytes": 24165
     },
-    {
-      "path": "CONSTRUCTION_BLOCK_RECEIPT.json",
-      "sha256": "56a3fb324389f29d7a22fab5bf59ab7286637124b4dc834f2086844123590159",
-      "size": 1260
+    "CENSUS_PRICED_65D49B5D_BINDING.json": {
+      "sha256": "1672cde9890b86da0447c9d1d8c34dd51202405b3c7b87974e20887be78b95c6",
+      "bytes": 516
     },
-    {
-      "path": "CONTROL_BINDING.json",
-      "sha256": "0a5487dac447b82d828290c4af9917499c7cf40490855b242f830c700b49206f",
-      "size": 1638
+    "CENSUS_PRICED_DECISION_TRACE_1608.json": {
+      "sha256": "c0b76e0f176d2ee5092843dd066f93cd9c34ddaebfaa54982760d95ed5980e4d",
+      "bytes": 5201240
     },
-    {
-      "path": "DETERMINISM_RECEIPT.json",
-      "sha256": "37770358e207a1fb90bc8e7ef08756dce0b2cb3b67070cfed9758f2a8b79edbb",
-      "size": 275
+    "CENSUS_PRICED_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "1350613653835cd3de31c7ddc0ea0ecefcb4c80b40a071f24d42f1a47496fb26",
+      "bytes": 499955
     },
-    {
-      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
-      "sha256": "4632d165f2ee5d8c8dd82b144ada60766331be3322616760495321382adf614d",
-      "size": 314
+    "CENSUS_PRICED_FRONTIER.json": {
+      "sha256": "491cc11229ee555478797990b0d0d9ba8fec5ca5914926100bb5bf1c29527c80",
+      "bytes": 22477
     },
-    {
-      "path": "REPORT.md",
-      "sha256": "a98746fa7e42d9639e962985b7edafa515b3cb66bfba5b2c5f3b90461bec2bfc",
-      "size": 752
+    "CENSUS_PRICED_REGRET_GAUGE.json": {
+      "sha256": "4c69f286ea7268f3c14a052901d262e452ce1cdd0ff428d764c188f0d7a2c9be",
+      "bytes": 6859
     },
-    {
-      "path": "SOURCE_HASH_MANIFEST.json",
-      "sha256": "f15c2d3b6b493b6c9ce1941defd1589c42bee9cc2f043aae757fb5efde201a8d",
-      "size": 794
+    "CENSUS_PRICED_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "5a7f84af12762268543edfad866041b3d729a2b98910c703d9c00da78031b306",
+      "bytes": 19650
+    },
+    "CLOSE_RULER_CONSEQUENCE_RECEIPT.json": {
+      "sha256": "cdcf20c68f266b05f72a3ca27340fdf05f56adf7cd2ad7cb23d12d20e2682c74",
+      "bytes": 1425
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "2e6a62e0c65990d2f3ac7f41865fe3eaa3310d82dc1efd503fe87d9a1cd0ea86",
+      "bytes": 1207
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "0accd0779d5ed107f78508ba598b6482eaa55d3dacfbb16b7478c644f07a9127",
+      "bytes": 88
+    },
+    "DIFFERENTIAL_VS_R3.json": {
+      "sha256": "4954282c77cd4bfefc0438dec2fce1ff7c4e59d1b78e90afd555df5e1d6e4236",
+      "bytes": 123385
+    },
+    "ENTRY_PATH_DISPOSITION.json": {
+      "sha256": "369916fe8b7b9decf3e317ef3ead90bba1f316de3e2ad906bfba20e47747437e",
+      "bytes": 723
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "df985c24ad458c1ae8d1d57630732b5e171f113fe35f3a8a77c52f1fa2424137",
+      "bytes": 271
+    },
+    "FULL_MARKET_LIFE_SPAN_804.json": {
+      "sha256": "f8c24ec7da78b8891b43deed46a3b6c3a636449d3fddd2e2707b2e707771ba00",
+      "bytes": 1880602
+    },
+    "REPORT.md": {
+      "sha256": "812ff12bf1699e06df0311d5e032fb59e3723bdfd985b0ec6799021df588dbba",
+      "bytes": 1131
+    },
+    "SCORECARD_TWO_COLUMN.json": {
+      "sha256": "2bb1cc01afdd4f1118003d3e6081ee36bbe4fe9289544974fc20ca44f0f31a92",
+      "bytes": 33990
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "64df513d7c2cf42b069d35d892e9ca8cd499a21b7f77e115880d9ad4bc304459",
+      "bytes": 256294
+    },
+    "STATE_MACHINE_CONTRACT.json": {
+      "sha256": "bab2b2f5434033d0742ede5e374b53ddc26b7ba77b938bde67315b2fbd30792b",
+      "bytes": 1340
+    },
+    "STRICT_DECISION_TRACE_1608.json": {
+      "sha256": "d80f0723926cd5227ab5be49d3e83d84536ce56335bc38f68449012fb2acb38e",
+      "bytes": 5206760
+    },
+    "STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "c4efa0f6b3eb40d7382b42e321bbb97b7bdcba4d9b0326169290c5cc7291122c",
+      "bytes": 499339
+    },
+    "STRICT_FRONTIER.json": {
+      "sha256": "b2fb8ebe4b5364a46b946d4efc9ceaf8f228c74a952d2cbf56ece9284679a449",
+      "bytes": 22477
+    },
+    "STRICT_REGRET_GAUGE.json": {
+      "sha256": "4152c302662ef4e608a1dfa554da747fc79cad01b637ee8b1f869a68ad28b2ee",
+      "bytes": 6855
+    },
+    "STRICT_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "012b0dfb83455cf5fcde4cbd1f04e9cbf1d7e988fc979bd729a5d72687ebd427",
+      "bytes": 19655
+    },
+    "UNBLOCK_SUPERSESSION_RECEIPT.json": {
+      "sha256": "1887c2fca0366bfafcf86dc7839e722c42d172293a00bdab0ecaa9ab80b65bd0",
+      "bytes": 310
     }
-  ],
-  "schema_version": "window1-v34-artifact-hash-manifest-v1"
+  }
 }

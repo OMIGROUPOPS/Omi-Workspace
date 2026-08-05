@@ -14,7 +14,7 @@ but the frozen row is `57/56`, 519 seconds dwell, ask size 2—not the shorthand
 four-hour/five-lot description. R3 changes 11 streams, completes six more
 pairs, adds zero JOINT, and leaves the V29-R2 JOINT floor at 68.
 
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/49f6501561c5d99a7f36c68ec41e0ea7250680e5/arb-executor/docs/research/window1/WINDOW1_V29R3_STANDING_FLOOR_VAULT_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/668975ffe123d3c4c5ab701d91105d1c16114531/arb-executor/docs/research/window1/WINDOW1_V29R3_STANDING_FLOOR_VAULT_ADDENDUM.md
 
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/49f6501561c5d99a7f36c68ec41e0ea7250680e5/.claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805/ARNROM_ARN_REGRESSION_RECEIPT.json
 

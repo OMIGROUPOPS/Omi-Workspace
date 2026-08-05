@@ -1,0 +1,21 @@
+{
+  "wrong_phase_buys_converted_to_deeper_fills": 4,
+  "all_demoted_then_deeper_fill": 7,
+  "all_demoted_then_lost": 19,
+  "joint_gained": 0,
+  "joint_gained_event_ids": [],
+  "joint_lost": 1,
+  "joint_lost_event_ids": [
+    "KXWTACHALLENGERMATCH-26JUL13SELYAN"
+  ],
+  "completions_gained": 0,
+  "completion_gained_event_ids": [],
+  "completions_lost": 4,
+  "completion_lost_event_ids": [
+    "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+    "KXWTACHALLENGERMATCH-26JUL13RINAST",
+    "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+    "KXWTACHALLENGERMATCH-26JUL13VANLEE"
+  ],
+  "net_joint_delta": -1
+}

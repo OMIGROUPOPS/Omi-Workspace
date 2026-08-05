@@ -1,0 +1,85 @@
+{
+  "schema": "WINDOW1_V31_ARTIFACT_HASH_MANIFEST_V1",
+  "files": {
+    "ARNROM_ROM_REGRESSION_RECEIPT.json": {
+      "sha256": "0fddbc5f6d913973ace585b2b6d557a176848ad2275c762bafb07d7aaf94d98f",
+      "bytes": 2285
+    },
+    "BAND_SPEC_BINDING.json": {
+      "sha256": "acb258959db8642ccba9cd7b89de2fb435de25e0827a880cb68c3c3c3e2721c0",
+      "bytes": 1304
+    },
+    "DECISION_TRACE_1608.json": {
+      "sha256": "b9665716f0d918d0a4931aaf724a5ffe530b3d1fce138222ebc1a16291ce727c",
+      "bytes": 9715162
+    },
+    "DEMOTE_RISK_RECEIPT.json": {
+      "sha256": "59ab0a50ebe8ec91981f025477ca99b91ee8b268f0607896ff29d6eb44723581",
+      "bytes": 587
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "3b641f61fd1b622231d71103335fa0cb92a53ccbe6b1dbff3da8c2f3bea92aac",
+      "bytes": 4988
+    },
+    "DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "efbd1ae9a2f3990a064e285b247db5e5ae3726d09b9b82f17540f6208b0a5a1a",
+      "bytes": 465325
+    },
+    "EVENT_LEDGER.jsonl.gz": {
+      "sha256": "c75dd7e9162bd86b25c06d90007ac5bd143f068d2d441a01badfd54ccdbb0461",
+      "bytes": 3531865
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4a485cdd1217b2041a325ab158461432c41209fc6580e61e2b806fbccff11667",
+      "bytes": 477
+    },
+    "FRONTIER.json": {
+      "sha256": "ebbd37a9e641cb8938618337ab0df62fdfe7c2690ba2319d0da7c18af418c59e",
+      "bytes": 23648
+    },
+    "GOVERNOR_AUTHORITY_FIT.json": {
+      "sha256": "353147b924cf40cc70c801b0968da97c996a30d0bf381c6b77a2fb742131fa01",
+      "bytes": 3803
+    },
+    "GOVERNOR_DISPOSITION.json": {
+      "sha256": "3aadeb253cc6e6e66968d7d7831ac5fb81fc5d9688a8c8325c59f573a92be7b1",
+      "bytes": 682270
+    },
+    "GOVERNOR_SAMPLE_LEDGER.jsonl.gz": {
+      "sha256": "e332e04648354efbceb03e7f040795db129335bbc18eb367a875761c28ff41ec",
+      "bytes": 262078
+    },
+    "LEG_LEDGER.jsonl.gz": {
+      "sha256": "cbd19cb663d20cf4314384df4b433bcbfc265defba99938026952d5670a0d53f",
+      "bytes": 3357056
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "48ad5bd6132b9e3b3adf36a48c0c53101a281b974b2a92613e682032198cbaba",
+      "bytes": 16245
+    },
+    "REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "dcd9577445c60f6bb2d22b98762f425e60784ee53f8808c8a527a50e566b5836",
+      "bytes": 29085
+    },
+    "REPORT.md": {
+      "sha256": "9b878a68f5351d6b060c8e9286768b84c9df5333bb6b2d609e5e36a56a676765",
+      "bytes": 1217
+    },
+    "SCORECARD.json": {
+      "sha256": "a6f08d0c5c5c7b9a39790db52f2efd197dd59d05a6b80a797819ddad51cf9e61",
+      "bytes": 35478
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "a1a70d14d850e2121d8548406c2ea64e980444950b76ccaa0ec6091afc7ca46d",
+      "bytes": 265442
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "c840e37166626b594e31055de28508be2ea714d3a303b8feeb4e3c8472f9e429",
+      "bytes": 733
+    },
+    "VERDICT_RECEIPT.json": {
+      "sha256": "79adf5a404edd31cad45bd60ea311172dd09e75d6d41c91b8d0377d235bf993f",
+      "bytes": 291
+    }
+  }
+}

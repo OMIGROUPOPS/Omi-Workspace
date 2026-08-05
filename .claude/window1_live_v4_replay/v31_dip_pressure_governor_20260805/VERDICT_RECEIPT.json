@@ -1,0 +1,9 @@
+{
+  "candidate": "V31_DIP_PRESSURE_GOVERNOR",
+  "verdict": "REJECTED_JOINT_REGRESSION_DO_NOT_PROMOTE",
+  "operative_baseline_after_build": "V29R3_STANDING_FLOOR_RELEASE",
+  "floor_joint": 68,
+  "candidate_joint": 67,
+  "joint_delta": -1,
+  "tests_pass_is_not_candidate_ratification": true
+}

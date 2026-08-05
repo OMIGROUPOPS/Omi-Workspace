@@ -1,0 +1,34 @@
+{
+  "commit": "e64b0837e04e3ea7dd58fbbba907816b3fdbdcb2",
+  "commit_object_verified": true,
+  "json_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PATHALPHA_MEASUREMENT.json",
+  "json_sha256": "2f057f4824bd3d6c5cc5aab1311a50830600add133152f9ba1134f46ec9c6397",
+  "doc_path": "arb-executor/docs/research/window1/second_seat/PATHALPHA_MEASUREMENT.md",
+  "doc_sha256": "90567b737e6942c1016e0effce9d1e2ae2d17225c1717cdcc712f1503d1fd496",
+  "frozen_spec": {
+    "bands": [
+      "cross",
+      "lock",
+      "bid_dom",
+      "ask_dom",
+      "ask_stair",
+      "bid_stair"
+    ],
+    "halflife_seconds": 120,
+    "training_dip_horizon_seconds": 600,
+    "causal": true,
+    "combined_walkforward_auc": 0.777,
+    "median_lead_seconds": 2221,
+    "original_bar": "AUC>0.65 AND median lead>4.0s fill latency"
+  },
+  "implementation_definition": {
+    "cross": "bid>ask",
+    "lock": "bid==ask",
+    "bid_dom": "top5_bid_depth/(top5_bid_depth+top5_ask_depth)",
+    "ask_dom": "top5_ask_depth/(top5_bid_depth+top5_ask_depth)",
+    "ask_stair": "current_ask<previous_ask",
+    "bid_stair": "current_bid>previous_bid",
+    "ewma": "exp(-ln(2)*delta_seconds/120)",
+    "threshold_fit": "maximize_prior_training_precision_lift_with_at_least_20_HIGH_rows; ties by F1 then threshold"
+  }
+}

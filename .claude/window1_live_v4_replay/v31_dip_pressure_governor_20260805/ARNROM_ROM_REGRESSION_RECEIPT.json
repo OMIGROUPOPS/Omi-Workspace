@@ -1,0 +1,81 @@
+{
+  "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+  "named_price_cents": 42,
+  "named_timestamp_epoch": 1783896551,
+  "action_matches_named_case": true,
+  "action_book": {
+    "bid": 40,
+    "ask": 42,
+    "spread": 2,
+    "ask_dwell_seconds": 63,
+    "top_bid_size": 37,
+    "top_ask_size": 51,
+    "top5_bid_depth": 15432,
+    "top5_ask_depth": 5539
+  },
+  "band_state": {
+    "cross": 0,
+    "lock": 0,
+    "bid_dom": 0.7432700553125653,
+    "ask_dom": 0.25672994468743465,
+    "ask_stair": 0.047526441542816183,
+    "bid_stair": 6.248381248283649e-50
+  },
+  "walkforward": {
+    "scored": true,
+    "probability": 0.14668472614504158,
+    "threshold": 0.2585508190363806,
+    "pressure_state": "LOW",
+    "training_rows_before_decision": 94,
+    "category_authority": {
+      "category": "ATP_CHALL",
+      "earned": false,
+      "heldout_scored_n": 525,
+      "heldout_high_n": 9,
+      "heldout_positive_n": 35,
+      "heldout_high_true_positive_n": 0,
+      "heldout_base_rate": 0.06666666666666667,
+      "heldout_high_precision": 0,
+      "observed_precision_lift": -0.06666666666666667,
+      "required_margin": 0.05,
+      "authority_bar": "heldout_high_n>=20 AND precision-base_rate>=0.05",
+      "feature_names": [
+        "cross",
+        "lock",
+        "bid_dom",
+        "ask_dom",
+        "ask_stair",
+        "bid_stair"
+      ],
+      "halflife_seconds": 120,
+      "online_walkforward_min_train_rows": 40,
+      "final_weights": [
+        -1.5600612217808798,
+        -0.010030985349570965,
+        -0.024620770314383866,
+        -0.7180701197696675,
+        -0.8325995282607814,
+        -0.043753757436704475,
+        -0.017900265672241126
+      ]
+    }
+  },
+  "governor_disposition": {
+    "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+    "category": "ATP_CHALL",
+    "price_region": "26_50",
+    "buy_path": "INCUMBENT",
+    "disposition": "UNTOUCHED",
+    "reason": "CATEGORY_GOVERNOR_AUTHORITY_NOT_EARNED",
+    "authority_earned": false,
+    "pressure_state": "LOW",
+    "probability": 0.14668472614504158,
+    "threshold": 0.2585508190363806
+  },
+  "result": {
+    "credited": true,
+    "entry_cents": 42,
+    "terminal_reason": "CREDITED_ON_STRICTLY_LATER_EXECUTABLE_ASK"
+  }
+}

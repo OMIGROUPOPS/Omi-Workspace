@@ -1,0 +1,21 @@
+{
+  "holdout": false,
+  "live": false,
+  "network_runtime": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "Window2": false,
+  "deployment": false,
+  "wall_clock_policy_input": false,
+  "audited_close_policy_input": false,
+  "future_floor_policy_input": false,
+  "grading_only_fields": [
+    "label",
+    "future_qualifying_floor_cents_grading_only",
+    "audited_close_cents",
+    "objective_traded_low_cents"
+  ]
+}

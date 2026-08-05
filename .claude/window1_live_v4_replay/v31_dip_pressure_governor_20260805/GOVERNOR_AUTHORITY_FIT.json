@@ -1,0 +1,134 @@
+{
+  "method": "ONLINE_EXPANDING_WALK_FORWARD_BY_CATEGORY_ORDERED_BY_DATE_THEN_ACTION_TIMESTAMP",
+  "no_current_or_future_outcome_in_decision": true,
+  "fits": [
+    {
+      "category": "ATP_CHALL",
+      "earned": false,
+      "heldout_scored_n": 525,
+      "heldout_high_n": 9,
+      "heldout_positive_n": 35,
+      "heldout_high_true_positive_n": 0,
+      "heldout_base_rate": 0.06666666666666667,
+      "heldout_high_precision": 0,
+      "observed_precision_lift": -0.06666666666666667,
+      "required_margin": 0.05,
+      "authority_bar": "heldout_high_n>=20 AND precision-base_rate>=0.05",
+      "feature_names": [
+        "cross",
+        "lock",
+        "bid_dom",
+        "ask_dom",
+        "ask_stair",
+        "bid_stair"
+      ],
+      "halflife_seconds": 120,
+      "online_walkforward_min_train_rows": 40,
+      "final_weights": [
+        -1.5600612217808798,
+        -0.010030985349570965,
+        -0.024620770314383866,
+        -0.7180701197696675,
+        -0.8325995282607814,
+        -0.043753757436704475,
+        -0.017900265672241126
+      ]
+    },
+    {
+      "category": "ATP_MAIN",
+      "earned": false,
+      "heldout_scored_n": 181,
+      "heldout_high_n": 112,
+      "heldout_positive_n": 15,
+      "heldout_high_true_positive_n": 6,
+      "heldout_base_rate": 0.08287292817679558,
+      "heldout_high_precision": 0.05357142857142857,
+      "observed_precision_lift": -0.029301499605367008,
+      "required_margin": 0.05,
+      "authority_bar": "heldout_high_n>=20 AND precision-base_rate>=0.05",
+      "feature_names": [
+        "cross",
+        "lock",
+        "bid_dom",
+        "ask_dom",
+        "ask_stair",
+        "bid_stair"
+      ],
+      "halflife_seconds": 120,
+      "online_walkforward_min_train_rows": 40,
+      "final_weights": [
+        -1.335892114798421,
+        -0.009048237527451139,
+        -0.07335489329627454,
+        -0.5327027756278032,
+        -0.7984633250126375,
+        -0.01544610225619344,
+        0.018275429864654785
+      ]
+    },
+    {
+      "category": "WTA_CHALL",
+      "earned": true,
+      "heldout_scored_n": 160,
+      "heldout_high_n": 26,
+      "heldout_positive_n": 26,
+      "heldout_high_true_positive_n": 6,
+      "heldout_base_rate": 0.1625,
+      "heldout_high_precision": 0.23076923076923078,
+      "observed_precision_lift": 0.06826923076923078,
+      "required_margin": 0.05,
+      "authority_bar": "heldout_high_n>=20 AND precision-base_rate>=0.05",
+      "feature_names": [
+        "cross",
+        "lock",
+        "bid_dom",
+        "ask_dom",
+        "ask_stair",
+        "bid_stair"
+      ],
+      "halflife_seconds": 120,
+      "online_walkforward_min_train_rows": 40,
+      "final_weights": [
+        -0.9860809178463128,
+        0.10126309523704026,
+        0.011564150683523405,
+        -0.38735469175799003,
+        -0.5956809864507274,
+        -0.0159363821378113,
+        -0.009264437603553213
+      ]
+    },
+    {
+      "category": "WTA_MAIN",
+      "earned": false,
+      "heldout_scored_n": 161,
+      "heldout_high_n": 0,
+      "heldout_positive_n": 10,
+      "heldout_high_true_positive_n": 0,
+      "heldout_base_rate": 0.062111801242236024,
+      "heldout_high_precision": null,
+      "observed_precision_lift": null,
+      "required_margin": 0.05,
+      "authority_bar": "heldout_high_n>=20 AND precision-base_rate>=0.05",
+      "feature_names": [
+        "cross",
+        "lock",
+        "bid_dom",
+        "ask_dom",
+        "ask_stair",
+        "bid_stair"
+      ],
+      "halflife_seconds": 120,
+      "online_walkforward_min_train_rows": 40,
+      "final_weights": [
+        -1.3714269446073033,
+        -0.08197390054791588,
+        -0.06671763447899501,
+        -0.5336214876793531,
+        -0.8334770869852631,
+        -0.017541232399260552,
+        -0.021699064509428607
+      ]
+    }
+  ]
+}

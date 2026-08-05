@@ -183,6 +183,33 @@ lower ask on one leg flips any of them — hence *unproven*, not *proven-lost*.
 ARNROM is CAPTURE_CLEAN (not a GAP game) and is WINNABLE in V28, so it carries no
 stamp.
 
+## 4c. Gap-print recovery — resolving the 11 stamps
+
+For each of the 11 `CEILING_UNPROVEN_CAPTURE_GAP` games I re-pulled the public
+`/markets/trades` feed over the outage span `[s,e]`, both legs, and set each leg's
+floor to `min(recorded maker_floor, lowest missed gap-span print)`, then re-ran the
+achievable-ceiling test. A game upgrades to **`WINNABLE_BY_GAP_PRINT`** only if a
+missed print flips it. Machine artifact: `GAP_PRINT_UPGRADE.json`.
+
+**N = 1.** Only **CRECOP** upgrades. Its blocker leg COP (recorded `maker_floor 62 =
+close 62`) shows **six seller-aggressed prints at 61¢** during the outage (07:10–07:22
+ET Jul 20, `taker=no`, sizes 6–64 lots) — the exact `seller_aggressed_traded_low`
+term of the maker-floor law (rest-and-be-hit at 61). Our recorder missed all six, so
+the recorded floor stayed at 62. True floor 61 → COP 61 < 62 and CRE 35 < 39, sum
+**96 < 100** → WINNABLE.
+
+The other **10 stay UNPROVEN** — the rigorous test rejects near-misses that only
+print below the *non-blocker* leg's close. Examples: PARHAV had 65 gap-span prints
+below close, but all on PAR (already 64 < 67); the blocker HAV (33 = 33) never printed
+below 33. SEYKOL/KABCHI (sum = 100) needed a print below a leg's *floor*, and none
+came. GALARN is structurally unflippable — its blocker leg GAL closes at **1¢**, and
+no print can be below 1¢ (minimum tick). PIRNAP/BARYUA/GAOTAG/SEMKRA blocker legs had
+no qualifying missed print.
+
+**Final denominator: 390 + 1 = 391.** The single recovered event is CRECOP; the
+capture outage cost the ceiling exactly one provable event, and ten remain genuinely
+unproven (not proven-lost).
+
 ## Conservation
 
 1a: 2 channels, both LOSSLESS_BY_DESIGN. 1b: 21 games, 21 PRINTS_FAITHFUL, 0 defect.
@@ -190,7 +217,8 @@ stamp.
 stamped. 4: **804 games = 765 CAPTURE_CLEAN + 39 GAP + 0 NO_TAPE**; 39 GAPs = 10
 (Jul19 main) + 29 (Jul20 challenger); ARNROM CAPTURE_CLEAN. 4b: **39 GAP = 28 WINNABLE
 + 11 NOT_WINNABLE(stamped CEILING_UNPROVEN_CAPTURE_GAP)**; 24 in completions, 5 in the
-65 joint pairs; achievable ceiling reconstructs 390/383/31.
+65 joint pairs; achievable ceiling reconstructs 390/383/31. 4c: **11 stamped = 1
+WINNABLE_BY_GAP_PRINT (CRECOP) + 10 remain UNPROVEN**; final denominator **391**.
 
 ## Artifacts
 

@@ -1,0 +1,422 @@
+{
+  "method": "For each of the 11 CEILING_UNPROVEN_CAPTURE_GAP games, re-pulled public /markets/trades over the outage span [s,e] (both legs), verified our tape was silent there (our_rows_in_span), then set each leg's floor to min(recorded maker_floor, lowest missed gap-span print) and re-tested the achievable ceiling (both new floors < audited close AND floor sum<100). A game upgrades to WINNABLE_BY_GAP_PRINT only if a missed gap-span print flips it.",
+  "conservation": {
+    "stamped_input": 11,
+    "upgraded_WINNABLE_BY_GAP_PRINT": 1,
+    "remain_UNPROVEN": 10
+  },
+  "final_denominator": {
+    "base_390": 390,
+    "gap_print_wins": 1,
+    "total": 391
+  },
+  "per_game": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 98
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 98,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "ALK",
+          "close": 51,
+          "maker_floor": 51,
+          "lowest_span_print": 54,
+          "new_floor": 51,
+          "our_rows_in_span": 3,
+          "span_prints": 22,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "FIC",
+          "close": 50,
+          "maker_floor": 47,
+          "lowest_span_print": 47,
+          "new_floor": 47,
+          "our_rows_in_span": 33,
+          "span_prints": 9,
+          "n_below_close": 9,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 97
+      },
+      "with_gap_prints": {
+        "both_below": true,
+        "floor_sum": 96,
+        "winnable": true
+      },
+      "final_stamp": "WINNABLE_BY_GAP_PRINT",
+      "legs": [
+        {
+          "leg": "COP",
+          "close": 62,
+          "maker_floor": 62,
+          "lowest_span_print": 61,
+          "new_floor": 61,
+          "our_rows_in_span": 5,
+          "span_prints": 8,
+          "n_below_close": 6,
+          "n_below_floor": 6
+        },
+        {
+          "leg": "CRE",
+          "close": 39,
+          "maker_floor": 35,
+          "lowest_span_print": 39,
+          "new_floor": 35,
+          "our_rows_in_span": 0,
+          "span_prints": 2,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 35
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 35,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "ARN",
+          "close": 99,
+          "maker_floor": 33,
+          "lowest_span_print": 40,
+          "new_floor": 33,
+          "our_rows_in_span": 4,
+          "span_prints": 6,
+          "n_below_close": 6,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "GAL",
+          "close": 1,
+          "maker_floor": 2,
+          "lowest_span_print": 61,
+          "new_floor": 2,
+          "our_rows_in_span": 10,
+          "span_prints": 8,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 99
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 99,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "NAP",
+          "close": 24,
+          "maker_floor": 24,
+          "lowest_span_print": null,
+          "new_floor": 24,
+          "our_rows_in_span": 3,
+          "span_prints": 0,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "PIR",
+          "close": 77,
+          "maker_floor": 75,
+          "lowest_span_print": 75,
+          "new_floor": 75,
+          "our_rows_in_span": 20,
+          "span_prints": 4,
+          "n_below_close": 4,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+      "recorded": {
+        "both_below": true,
+        "floor_sum": 100
+      },
+      "with_gap_prints": {
+        "both_below": true,
+        "floor_sum": 100,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "KOL",
+          "close": 47,
+          "maker_floor": 46,
+          "lowest_span_print": 47,
+          "new_floor": 46,
+          "our_rows_in_span": 2,
+          "span_prints": 4,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "SEY",
+          "close": 55,
+          "maker_floor": 54,
+          "lowest_span_print": 54,
+          "new_floor": 54,
+          "our_rows_in_span": 9,
+          "span_prints": 5,
+          "n_below_close": 4,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 98
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 98,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "GEE",
+          "close": 26,
+          "maker_floor": 26,
+          "lowest_span_print": 28,
+          "new_floor": 26,
+          "our_rows_in_span": 17,
+          "span_prints": 7,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "ZHO",
+          "close": 74,
+          "maker_floor": 72,
+          "lowest_span_print": 72,
+          "new_floor": 72,
+          "our_rows_in_span": 3,
+          "span_prints": 20,
+          "n_below_close": 4,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+      "recorded": {
+        "both_below": true,
+        "floor_sum": 100
+      },
+      "with_gap_prints": {
+        "both_below": true,
+        "floor_sum": 100,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "CHI",
+          "close": 78,
+          "maker_floor": 77,
+          "lowest_span_print": 79,
+          "new_floor": 77,
+          "our_rows_in_span": 2,
+          "span_prints": 1,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "KAB",
+          "close": 24,
+          "maker_floor": 23,
+          "lowest_span_print": null,
+          "new_floor": 23,
+          "our_rows_in_span": 21,
+          "span_prints": 0,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BARYUA",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 95
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 95,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "BAR",
+          "close": 76,
+          "maker_floor": 70,
+          "lowest_span_print": null,
+          "new_floor": 70,
+          "our_rows_in_span": 28,
+          "span_prints": 0,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "YUA",
+          "close": 25,
+          "maker_floor": 25,
+          "lowest_span_print": null,
+          "new_floor": 25,
+          "our_rows_in_span": 2,
+          "span_prints": 0,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20GAOTAG",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 98
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 98,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "GAO",
+          "close": 37,
+          "maker_floor": 37,
+          "lowest_span_print": null,
+          "new_floor": 37,
+          "our_rows_in_span": 26,
+          "span_prints": 0,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "TAG",
+          "close": 64,
+          "maker_floor": 61,
+          "lowest_span_print": null,
+          "new_floor": 61,
+          "our_rows_in_span": 2,
+          "span_prints": 0,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHAV",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 97
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 97,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "HAV",
+          "close": 33,
+          "maker_floor": 33,
+          "lowest_span_print": 35,
+          "new_floor": 33,
+          "our_rows_in_span": 13,
+          "span_prints": 10,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "PAR",
+          "close": 67,
+          "maker_floor": 64,
+          "lowest_span_print": 65,
+          "new_floor": 64,
+          "our_rows_in_span": 3,
+          "span_prints": 65,
+          "n_below_close": 65,
+          "n_below_floor": 0
+        }
+      ]
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SEMKRA",
+      "recorded": {
+        "both_below": false,
+        "floor_sum": 97
+      },
+      "with_gap_prints": {
+        "both_below": false,
+        "floor_sum": 97,
+        "winnable": false
+      },
+      "final_stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "legs": [
+        {
+          "leg": "KRA",
+          "close": 76,
+          "maker_floor": 72,
+          "lowest_span_print": 73,
+          "new_floor": 72,
+          "our_rows_in_span": 21,
+          "span_prints": 1,
+          "n_below_close": 1,
+          "n_below_floor": 0
+        },
+        {
+          "leg": "SEM",
+          "close": 25,
+          "maker_floor": 25,
+          "lowest_span_print": null,
+          "new_floor": 25,
+          "our_rows_in_span": 3,
+          "span_prints": 0,
+          "n_below_close": 0,
+          "n_below_floor": 0
+        }
+      ]
+    }
+  ]
+}

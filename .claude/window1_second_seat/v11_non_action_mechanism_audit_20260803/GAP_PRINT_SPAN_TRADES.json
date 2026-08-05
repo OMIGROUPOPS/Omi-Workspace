@@ -1,0 +1,1054 @@
+{
+  "KXATPCHALLENGERMATCH-26JUL20ALKFIC": {
+    "span": [
+      1784543297,
+      1784549128
+    ],
+    "legs": {
+      "KXATPCHALLENGERMATCH-26JUL20ALKFIC-ALK": {
+        "leg": "ALK",
+        "close": 51,
+        "maker_floor": 51,
+        "span_print_count": 22,
+        "lowest_span_print": 54,
+        "our_tape_rows_in_span": 3,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXATPCHALLENGERMATCH-26JUL20ALKFIC-FIC": {
+        "leg": "FIC",
+        "close": 50,
+        "maker_floor": 47,
+        "span_print_count": 9,
+        "lowest_span_print": 47,
+        "our_tape_rows_in_span": 33,
+        "prints_below_close": [
+          {
+            "ep": 1784548974,
+            "px": 48,
+            "size": 2.01,
+            "taker": "yes",
+            "tid": "775c82e3-14d0-58fc-9de9-00879ad76fce"
+          },
+          {
+            "ep": 1784548113,
+            "px": 48,
+            "size": 14.43,
+            "taker": "yes",
+            "tid": "c9b6a752-0ee0-7d30-fb00-c48dae8b93be"
+          },
+          {
+            "ep": 1784548113,
+            "px": 48,
+            "size": 5.67,
+            "taker": "yes",
+            "tid": "5186c1ed-c72b-7113-f85e-6e4fa91ce805"
+          },
+          {
+            "ep": 1784547191,
+            "px": 48,
+            "size": 66.33,
+            "taker": "yes",
+            "tid": "261e0e6e-4eab-7c7b-4757-44f4fe75a881"
+          },
+          {
+            "ep": 1784546683,
+            "px": 47,
+            "size": 306.0,
+            "taker": "yes",
+            "tid": "5221b57b-fc2b-4b34-373d-bddaa933f56d"
+          },
+          {
+            "ep": 1784546542,
+            "px": 47,
+            "size": 20.0,
+            "taker": "yes",
+            "tid": "c52485bd-3a23-51dc-199a-578184ca1651"
+          },
+          {
+            "ep": 1784545953,
+            "px": 47,
+            "size": 6.56,
+            "taker": "yes",
+            "tid": "0e6d2446-0377-6720-013c-dcbabec2ecc5"
+          },
+          {
+            "ep": 1784543773,
+            "px": 47,
+            "size": 10.25,
+            "taker": "yes",
+            "tid": "4bfc475b-549b-7fa4-574f-c95c334cf2c9"
+          },
+          {
+            "ep": 1784543585,
+            "px": 47,
+            "size": 20.51,
+            "taker": "yes",
+            "tid": "3542c746-72c3-7128-287e-a59622e42b2d"
+          }
+        ],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXATPCHALLENGERMATCH-26JUL20CRECOP": {
+    "span": [
+      1784543003,
+      1784550832
+    ],
+    "legs": {
+      "KXATPCHALLENGERMATCH-26JUL20CRECOP-COP": {
+        "leg": "COP",
+        "close": 62,
+        "maker_floor": 62,
+        "span_print_count": 8,
+        "lowest_span_print": 61,
+        "our_tape_rows_in_span": 5,
+        "prints_below_close": [
+          {
+            "ep": 1784546515,
+            "px": 61,
+            "size": 27.0,
+            "taker": "no",
+            "tid": "f80c3557-05be-49dc-7f5f-b227de99bba1"
+          },
+          {
+            "ep": 1784546213,
+            "px": 61,
+            "size": 6.0,
+            "taker": "no",
+            "tid": "f57e0e6e-071f-74b7-c17e-3ff60a08f436"
+          },
+          {
+            "ep": 1784546213,
+            "px": 61,
+            "size": 10.0,
+            "taker": "no",
+            "tid": "acb642c6-9c1a-711c-c011-da8b1a560391"
+          },
+          {
+            "ep": 1784545930,
+            "px": 61,
+            "size": 7.35,
+            "taker": "no",
+            "tid": "3208ec33-cf52-4c49-cb3f-f68619754392"
+          },
+          {
+            "ep": 1784545906,
+            "px": 61,
+            "size": 16.0,
+            "taker": "no",
+            "tid": "66575845-4d3a-6299-64f8-3c8ca8823c3e"
+          },
+          {
+            "ep": 1784545837,
+            "px": 61,
+            "size": 64.0,
+            "taker": "no",
+            "tid": "bca4ee21-6f32-6ed5-75cb-0a5d967302f6"
+          }
+        ],
+        "prints_below_floor": [
+          {
+            "ep": 1784546515,
+            "px": 61,
+            "size": 27.0,
+            "taker": "no",
+            "tid": "f80c3557-05be-49dc-7f5f-b227de99bba1"
+          },
+          {
+            "ep": 1784546213,
+            "px": 61,
+            "size": 6.0,
+            "taker": "no",
+            "tid": "f57e0e6e-071f-74b7-c17e-3ff60a08f436"
+          },
+          {
+            "ep": 1784546213,
+            "px": 61,
+            "size": 10.0,
+            "taker": "no",
+            "tid": "acb642c6-9c1a-711c-c011-da8b1a560391"
+          },
+          {
+            "ep": 1784545930,
+            "px": 61,
+            "size": 7.35,
+            "taker": "no",
+            "tid": "3208ec33-cf52-4c49-cb3f-f68619754392"
+          },
+          {
+            "ep": 1784545906,
+            "px": 61,
+            "size": 16.0,
+            "taker": "no",
+            "tid": "66575845-4d3a-6299-64f8-3c8ca8823c3e"
+          },
+          {
+            "ep": 1784545837,
+            "px": 61,
+            "size": 64.0,
+            "taker": "no",
+            "tid": "bca4ee21-6f32-6ed5-75cb-0a5d967302f6"
+          }
+        ]
+      },
+      "KXATPCHALLENGERMATCH-26JUL20CRECOP-CRE": {
+        "leg": "CRE",
+        "close": 39,
+        "maker_floor": 35,
+        "span_print_count": 2,
+        "lowest_span_print": 39,
+        "our_tape_rows_in_span": 0,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXATPCHALLENGERMATCH-26JUL20GALARN": {
+    "span": [
+      1784544142,
+      1784549053
+    ],
+    "legs": {
+      "KXATPCHALLENGERMATCH-26JUL20GALARN-ARN": {
+        "leg": "ARN",
+        "close": 99,
+        "maker_floor": 33,
+        "span_print_count": 6,
+        "lowest_span_print": 40,
+        "our_tape_rows_in_span": 4,
+        "prints_below_close": [
+          {
+            "ep": 1784548973,
+            "px": 40,
+            "size": 9.0,
+            "taker": "yes",
+            "tid": "f691ae4b-9b6a-6793-e574-3783aa31eff8"
+          },
+          {
+            "ep": 1784548973,
+            "px": 40,
+            "size": 48.0,
+            "taker": "yes",
+            "tid": "6b655795-4c48-6a4e-c204-586d133dc679"
+          },
+          {
+            "ep": 1784548756,
+            "px": 40,
+            "size": 11.99,
+            "taker": "yes",
+            "tid": "13cf1d88-75c2-7b85-8ad9-2b29a3477190"
+          },
+          {
+            "ep": 1784548527,
+            "px": 40,
+            "size": 2.0,
+            "taker": "yes",
+            "tid": "8e55b361-c882-6305-fb57-a9fefdd4c180"
+          },
+          {
+            "ep": 1784548264,
+            "px": 40,
+            "size": 2.39,
+            "taker": "yes",
+            "tid": "f4368fc0-dde2-643d-bb17-645e5c09bc04"
+          },
+          {
+            "ep": 1784546607,
+            "px": 40,
+            "size": 23.0,
+            "taker": "yes",
+            "tid": "075603d5-434a-7775-a4cc-8afd800f1328"
+          }
+        ],
+        "prints_below_floor": []
+      },
+      "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL": {
+        "leg": "GAL",
+        "close": 1,
+        "maker_floor": 2,
+        "span_print_count": 8,
+        "lowest_span_print": 61,
+        "our_tape_rows_in_span": 10,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXATPCHALLENGERMATCH-26JUL20PIRNAP": {
+    "span": [
+      1784545390,
+      1784549354
+    ],
+    "legs": {
+      "KXATPCHALLENGERMATCH-26JUL20PIRNAP-NAP": {
+        "leg": "NAP",
+        "close": 24,
+        "maker_floor": 24,
+        "span_print_count": 0,
+        "lowest_span_print": null,
+        "our_tape_rows_in_span": 3,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXATPCHALLENGERMATCH-26JUL20PIRNAP-PIR": {
+        "leg": "PIR",
+        "close": 77,
+        "maker_floor": 75,
+        "span_print_count": 4,
+        "lowest_span_print": 75,
+        "our_tape_rows_in_span": 20,
+        "prints_below_close": [
+          {
+            "ep": 1784549275,
+            "px": 75,
+            "size": 34.55,
+            "taker": "yes",
+            "tid": "d9263919-b95b-4229-58bd-6dc735436f28"
+          },
+          {
+            "ep": 1784547567,
+            "px": 75,
+            "size": 36.06,
+            "taker": "yes",
+            "tid": "d0d625b8-5463-46c1-5efe-babb431b3208"
+          },
+          {
+            "ep": 1784547567,
+            "px": 75,
+            "size": 12.94,
+            "taker": "yes",
+            "tid": "5cf61f76-bbe3-41a2-4121-4aa03aa747b1"
+          },
+          {
+            "ep": 1784546715,
+            "px": 75,
+            "size": 51.0,
+            "taker": "yes",
+            "tid": "2f5b3e9c-3cbb-7afa-19b5-20cc1e40052d"
+          }
+        ],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXATPCHALLENGERMATCH-26JUL20SEYKOL": {
+    "span": [
+      1784544321,
+      1784549051
+    ],
+    "legs": {
+      "KXATPCHALLENGERMATCH-26JUL20SEYKOL-KOL": {
+        "leg": "KOL",
+        "close": 47,
+        "maker_floor": 46,
+        "span_print_count": 4,
+        "lowest_span_print": 47,
+        "our_tape_rows_in_span": 2,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXATPCHALLENGERMATCH-26JUL20SEYKOL-SEY": {
+        "leg": "SEY",
+        "close": 55,
+        "maker_floor": 54,
+        "span_print_count": 5,
+        "lowest_span_print": 54,
+        "our_tape_rows_in_span": 9,
+        "prints_below_close": [
+          {
+            "ep": 1784548226,
+            "px": 54,
+            "size": 51.25,
+            "taker": "yes",
+            "tid": "e9b0ed9c-946c-5068-bc9a-59eb3f5fd016"
+          },
+          {
+            "ep": 1784548226,
+            "px": 54,
+            "size": 20.0,
+            "taker": "yes",
+            "tid": "871ba8d5-d1d6-5244-b9fa-8bd9b00e32c7"
+          },
+          {
+            "ep": 1784548226,
+            "px": 54,
+            "size": 368.3,
+            "taker": "yes",
+            "tid": "1347d038-27ff-5006-ade8-23d4b1925e2a"
+          },
+          {
+            "ep": 1784546678,
+            "px": 54,
+            "size": 3.58,
+            "taker": "yes",
+            "tid": "fe3c7fce-368c-65b8-062a-10eadff1da62"
+          }
+        ],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXATPCHALLENGERMATCH-26JUL20ZHOGEE": {
+    "span": [
+      1784543164,
+      1784549136
+    ],
+    "legs": {
+      "KXATPCHALLENGERMATCH-26JUL20ZHOGEE-GEE": {
+        "leg": "GEE",
+        "close": 26,
+        "maker_floor": 26,
+        "span_print_count": 7,
+        "lowest_span_print": 28,
+        "our_tape_rows_in_span": 17,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXATPCHALLENGERMATCH-26JUL20ZHOGEE-ZHO": {
+        "leg": "ZHO",
+        "close": 74,
+        "maker_floor": 72,
+        "span_print_count": 20,
+        "lowest_span_print": 72,
+        "our_tape_rows_in_span": 3,
+        "prints_below_close": [
+          {
+            "ep": 1784546436,
+            "px": 73,
+            "size": 100.0,
+            "taker": "yes",
+            "tid": "0ebebc9e-17be-7b52-1f7d-fddee088c435"
+          },
+          {
+            "ep": 1784546349,
+            "px": 73,
+            "size": 0.67,
+            "taker": "yes",
+            "tid": "90a0f5f0-d74b-4516-02a1-9a1daf3bd595"
+          },
+          {
+            "ep": 1784546333,
+            "px": 72,
+            "size": 2.62,
+            "taker": "no",
+            "tid": "b929f6ba-11f6-61be-8131-659400dd72a3"
+          },
+          {
+            "ep": 1784546333,
+            "px": 73,
+            "size": 0.03,
+            "taker": "no",
+            "tid": "9b259d12-36c6-6c6b-8a86-b75bb609f572"
+          }
+        ],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXWTACHALLENGERMATCH-26JUL20KABCHI": {
+    "span": [
+      1784545450,
+      1784549355
+    ],
+    "legs": {
+      "KXWTACHALLENGERMATCH-26JUL20KABCHI-CHI": {
+        "leg": "CHI",
+        "close": 78,
+        "maker_floor": 77,
+        "span_print_count": 1,
+        "lowest_span_print": 79,
+        "our_tape_rows_in_span": 2,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXWTACHALLENGERMATCH-26JUL20KABCHI-KAB": {
+        "leg": "KAB",
+        "close": 24,
+        "maker_floor": 23,
+        "span_print_count": 0,
+        "lowest_span_print": null,
+        "our_tape_rows_in_span": 21,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXWTAMATCH-26JUL20BARYUA": {
+    "span": [
+      1784543500,
+      1784549062
+    ],
+    "legs": {
+      "KXWTAMATCH-26JUL20BARYUA-BAR": {
+        "leg": "BAR",
+        "close": 76,
+        "maker_floor": 70,
+        "span_print_count": 0,
+        "lowest_span_print": null,
+        "our_tape_rows_in_span": 28,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXWTAMATCH-26JUL20BARYUA-YUA": {
+        "leg": "YUA",
+        "close": 25,
+        "maker_floor": 25,
+        "span_print_count": 0,
+        "lowest_span_print": null,
+        "our_tape_rows_in_span": 2,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXWTAMATCH-26JUL20GAOTAG": {
+    "span": [
+      1784543588,
+      1784549171
+    ],
+    "legs": {
+      "KXWTAMATCH-26JUL20GAOTAG-GAO": {
+        "leg": "GAO",
+        "close": 37,
+        "maker_floor": 37,
+        "span_print_count": 0,
+        "lowest_span_print": null,
+        "our_tape_rows_in_span": 26,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXWTAMATCH-26JUL20GAOTAG-TAG": {
+        "leg": "TAG",
+        "close": 64,
+        "maker_floor": 61,
+        "span_print_count": 0,
+        "lowest_span_print": null,
+        "our_tape_rows_in_span": 2,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXWTAMATCH-26JUL20PARHAV": {
+    "span": [
+      1784543670,
+      1784549072
+    ],
+    "legs": {
+      "KXWTAMATCH-26JUL20PARHAV-HAV": {
+        "leg": "HAV",
+        "close": 33,
+        "maker_floor": 33,
+        "span_print_count": 10,
+        "lowest_span_print": 35,
+        "our_tape_rows_in_span": 13,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      },
+      "KXWTAMATCH-26JUL20PARHAV-PAR": {
+        "leg": "PAR",
+        "close": 67,
+        "maker_floor": 64,
+        "span_print_count": 65,
+        "lowest_span_print": 65,
+        "our_tape_rows_in_span": 3,
+        "prints_below_close": [
+          {
+            "ep": 1784548970,
+            "px": 66,
+            "size": 100.0,
+            "taker": "yes",
+            "tid": "ff523318-cd61-6daa-fad5-e10ff2ebbedf"
+          },
+          {
+            "ep": 1784548970,
+            "px": 66,
+            "size": 100.0,
+            "taker": "yes",
+            "tid": "f0ee4705-a94e-6f83-fb61-7eaf1c9b1d2e"
+          },
+          {
+            "ep": 1784548970,
+            "px": 66,
+            "size": 100.0,
+            "taker": "yes",
+            "tid": "e8eb06d8-85c9-66be-ec01-000ad0715904"
+          },
+          {
+            "ep": 1784548970,
+            "px": 66,
+            "size": 69.98,
+            "taker": "yes",
+            "tid": "2677c1ef-48b0-60d7-f26c-39af93892b75"
+          },
+          {
+            "ep": 1784548791,
+            "px": 65,
+            "size": 2.0,
+            "taker": "yes",
+            "tid": "b25e8723-23c2-797d-6103-49a1d3e3feae"
+          },
+          {
+            "ep": 1784548790,
+            "px": 65,
+            "size": 45.09,
+            "taker": "yes",
+            "tid": "d273db67-e346-7039-77ec-c92259e460aa"
+          },
+          {
+            "ep": 1784548748,
+            "px": 65,
+            "size": 14.0,
+            "taker": "yes",
+            "tid": "ee69699e-4782-4b0d-d4db-65f62f80879e"
+          },
+          {
+            "ep": 1784548615,
+            "px": 65,
+            "size": 42.04,
+            "taker": "yes",
+            "tid": "96cc8acb-7cd6-7abd-1405-09ff7da12162"
+          },
+          {
+            "ep": 1784548592,
+            "px": 65,
+            "size": 37.21,
+            "taker": "yes",
+            "tid": "32150564-4072-46bd-89b1-a0228923159a"
+          },
+          {
+            "ep": 1784548561,
+            "px": 65,
+            "size": 15.01,
+            "taker": "yes",
+            "tid": "07b2a2e0-5f6a-5b3d-06ce-7f5ba5df8172"
+          },
+          {
+            "ep": 1784548368,
+            "px": 65,
+            "size": 22.52,
+            "taker": "yes",
+            "tid": "2f7a4150-667e-4a7d-024d-c8935c395b96"
+          },
+          {
+            "ep": 1784548357,
+            "px": 65,
+            "size": 12.01,
+            "taker": "yes",
+            "tid": "f8b5f59b-46ca-7b11-6112-cf6f5a2b7a82"
+          },
+          {
+            "ep": 1784548203,
+            "px": 65,
+            "size": 2.97,
+            "taker": "yes",
+            "tid": "587da893-ddee-54e5-a35b-edbdb5a11ad6"
+          },
+          {
+            "ep": 1784548023,
+            "px": 65,
+            "size": 150.16,
+            "taker": "yes",
+            "tid": "548e12d0-9dea-695d-5266-e0670c89f3f2"
+          },
+          {
+            "ep": 1784547988,
+            "px": 65,
+            "size": 158.89,
+            "taker": "yes",
+            "tid": "3502bce5-dbbe-6775-8675-4b27163fc86a"
+          },
+          {
+            "ep": 1784547844,
+            "px": 65,
+            "size": 15.01,
+            "taker": "yes",
+            "tid": "353e21d4-6472-77b5-89e3-55f165ac6392"
+          },
+          {
+            "ep": 1784547799,
+            "px": 65,
+            "size": 48.0,
+            "taker": "yes",
+            "tid": "76008715-ff3a-5d1d-0492-46452789820a"
+          },
+          {
+            "ep": 1784547767,
+            "px": 65,
+            "size": 380.0,
+            "taker": "yes",
+            "tid": "35dc7732-77ee-4d95-0cb1-7139829b183e"
+          },
+          {
+            "ep": 1784547668,
+            "px": 65,
+            "size": 60.06,
+            "taker": "yes",
+            "tid": "d13bc495-c946-7a95-58b7-8b00b165b0be"
+          },
+          {
+            "ep": 1784547613,
+            "px": 65,
+            "size": 14.0,
+            "taker": "yes",
+            "tid": "0b73a8c5-b736-6719-7b6e-24571b157762"
+          },
+          {
+            "ep": 1784547596,
+            "px": 65,
+            "size": 7.5,
+            "taker": "yes",
+            "tid": "f9a65ed8-14aa-48b1-63f4-d649ad9d5c42"
+          },
+          {
+            "ep": 1784547555,
+            "px": 65,
+            "size": 191.04,
+            "taker": "yes",
+            "tid": "e89bdcb8-e5ea-7845-4de1-189975969d8e"
+          },
+          {
+            "ep": 1784547509,
+            "px": 65,
+            "size": 1.5,
+            "taker": "yes",
+            "tid": "c7ff53be-50a6-69d1-d6de-355525b1b60a"
+          },
+          {
+            "ep": 1784547507,
+            "px": 65,
+            "size": 29.0,
+            "taker": "yes",
+            "tid": "ab9abb8a-7522-438d-d9a0-3f0c885ee402"
+          },
+          {
+            "ep": 1784547449,
+            "px": 65,
+            "size": 37.54,
+            "taker": "yes",
+            "tid": "693a1526-5eaa-4775-8123-c8a83df6e4ca"
+          },
+          {
+            "ep": 1784547437,
+            "px": 65,
+            "size": 105.11,
+            "taker": "yes",
+            "tid": "cc0a3cf5-bcb6-48f9-1606-ef4cf1e9c3fa"
+          },
+          {
+            "ep": 1784547392,
+            "px": 65,
+            "size": 28.53,
+            "taker": "yes",
+            "tid": "18be5e04-f4ee-59b5-e79a-bfbc5faaa9aa"
+          },
+          {
+            "ep": 1784547212,
+            "px": 65,
+            "size": 15.01,
+            "taker": "yes",
+            "tid": "722e1458-db7a-7b3d-7192-ae724513764e"
+          },
+          {
+            "ep": 1784547159,
+            "px": 65,
+            "size": 23.0,
+            "taker": "yes",
+            "tid": "77171d14-456e-57c9-88f4-34aa81a9b77e"
+          },
+          {
+            "ep": 1784547098,
+            "px": 65,
+            "size": 30.03,
+            "taker": "yes",
+            "tid": "76d85e17-da52-4841-08dd-3e63abfc0656"
+          },
+          {
+            "ep": 1784546880,
+            "px": 65,
+            "size": 54.0,
+            "taker": "yes",
+            "tid": "da2f362e-c74a-7b09-2621-48998b6a4b92"
+          },
+          {
+            "ep": 1784546834,
+            "px": 65,
+            "size": 171.61,
+            "taker": "yes",
+            "tid": "6d9797a7-c272-6ea5-9825-19add522e396"
+          },
+          {
+            "ep": 1784546771,
+            "px": 65,
+            "size": 74.0,
+            "taker": "yes",
+            "tid": "3d0c71e2-5eb6-7f35-8ec2-28378899f65a"
+          },
+          {
+            "ep": 1784546734,
+            "px": 65,
+            "size": 30.79,
+            "taker": "yes",
+            "tid": "b7ac2660-c1ae-7e29-153b-624b33a6c556"
+          },
+          {
+            "ep": 1784546631,
+            "px": 65,
+            "size": 1.0,
+            "taker": "yes",
+            "tid": "a7283974-f1ea-7209-e476-ca0ce17c67d6"
+          },
+          {
+            "ep": 1784546574,
+            "px": 65,
+            "size": 14.0,
+            "taker": "yes",
+            "tid": "240b027a-f632-75f9-93aa-4e226ac5d60a"
+          },
+          {
+            "ep": 1784546557,
+            "px": 65,
+            "size": 7.5,
+            "taker": "yes",
+            "tid": "947aefb3-9b3a-6d45-0ffc-80f05bb9b5e6"
+          },
+          {
+            "ep": 1784546557,
+            "px": 65,
+            "size": 376.0,
+            "taker": "yes",
+            "tid": "d058d7fc-78b0-4d23-fa9f-a73f4ef8add5"
+          },
+          {
+            "ep": 1784546557,
+            "px": 65,
+            "size": 0.02,
+            "taker": "yes",
+            "tid": "ba62285d-1905-4b91-e176-5f3bf08b0892"
+          },
+          {
+            "ep": 1784546557,
+            "px": 65,
+            "size": 21.17,
+            "taker": "yes",
+            "tid": "37225430-0eb0-4059-f1c8-db8794ba8eec"
+          },
+          {
+            "ep": 1784546557,
+            "px": 65,
+            "size": 300.0,
+            "taker": "yes",
+            "tid": "283e9a12-4f95-4673-f1fb-8e75dde8cd9a"
+          },
+          {
+            "ep": 1784546557,
+            "px": 65,
+            "size": 252.81,
+            "taker": "yes",
+            "tid": "2668c05b-79d6-4129-cbcb-7a53d6ddc42a"
+          },
+          {
+            "ep": 1784546485,
+            "px": 65,
+            "size": 490.0,
+            "taker": "yes",
+            "tid": "f2c1f59e-fe84-5806-8327-23de9a55f5bb"
+          },
+          {
+            "ep": 1784546485,
+            "px": 65,
+            "size": 1.0,
+            "taker": "yes",
+            "tid": "f063d94f-19a5-5508-89c1-385575567ca0"
+          },
+          {
+            "ep": 1784546485,
+            "px": 65,
+            "size": 316.0,
+            "taker": "yes",
+            "tid": "ad65c01b-933d-59a2-b265-e402683f9dba"
+          },
+          {
+            "ep": 1784546485,
+            "px": 65,
+            "size": 363.83,
+            "taker": "yes",
+            "tid": "a0872dc2-bab8-5495-8c6b-381bb2accc88"
+          },
+          {
+            "ep": 1784546485,
+            "px": 65,
+            "size": 330.0,
+            "taker": "yes",
+            "tid": "9e102a73-bc2d-530c-aff7-fcdf187e86ea"
+          },
+          {
+            "ep": 1784546485,
+            "px": 65,
+            "size": 0.84,
+            "taker": "yes",
+            "tid": "689d91ad-e596-5e07-bd5b-40bab7fa1e52"
+          },
+          {
+            "ep": 1784546301,
+            "px": 65,
+            "size": 2.0,
+            "taker": "yes",
+            "tid": "bcbce810-6ef6-6c8b-8fe4-04b1e6cae3c6"
+          },
+          {
+            "ep": 1784546200,
+            "px": 65,
+            "size": 37.0,
+            "taker": "yes",
+            "tid": "489e74bd-3d22-65df-06aa-731766bd7702"
+          },
+          {
+            "ep": 1784545939,
+            "px": 65,
+            "size": 1.0,
+            "taker": "yes",
+            "tid": "d4ee0486-d826-5be7-0bf4-c193a08cdc2e"
+          },
+          {
+            "ep": 1784545853,
+            "px": 65,
+            "size": 82.0,
+            "taker": "yes",
+            "tid": "32081e3b-b55e-644f-0655-a6ee2f61876e"
+          },
+          {
+            "ep": 1784545766,
+            "px": 65,
+            "size": 7.5,
+            "taker": "yes",
+            "tid": "d75b9412-739e-58c3-c31c-cec5cada4056"
+          },
+          {
+            "ep": 1784545742,
+            "px": 65,
+            "size": 147.16,
+            "taker": "yes",
+            "tid": "9a2cb354-fdbe-5c2b-fbad-d313e379c092"
+          },
+          {
+            "ep": 1784545471,
+            "px": 65,
+            "size": 1.5,
+            "taker": "yes",
+            "tid": "a1dad433-b066-439b-2e41-636f3a2e073a"
+          },
+          {
+            "ep": 1784545353,
+            "px": 65,
+            "size": 367.0,
+            "taker": "yes",
+            "tid": "c120881c-64e6-54b4-b072-2c04afd2bbcc"
+          },
+          {
+            "ep": 1784545094,
+            "px": 65,
+            "size": 3.0,
+            "taker": "yes",
+            "tid": "16b8a9c0-f87a-7f8c-64fa-4bad042e5024"
+          },
+          {
+            "ep": 1784545035,
+            "px": 65,
+            "size": 6.0,
+            "taker": "yes",
+            "tid": "f748d7b6-bf16-4ed4-7bbe-8ff30bc10ac0"
+          },
+          {
+            "ep": 1784544939,
+            "px": 65,
+            "size": 7.5,
+            "taker": "yes",
+            "tid": "914c11ff-e53a-67d4-b573-c25952aa877c"
+          },
+          {
+            "ep": 1784544713,
+            "px": 65,
+            "size": 1.0,
+            "taker": "yes",
+            "tid": "414f2ae1-0586-6470-d474-2f4547bfd348"
+          },
+          {
+            "ep": 1784544354,
+            "px": 65,
+            "size": 139.0,
+            "taker": "yes",
+            "tid": "95fe06a0-fdfe-724c-b041-14e64657d2d8"
+          },
+          {
+            "ep": 1784544127,
+            "px": 65,
+            "size": 67.0,
+            "taker": "yes",
+            "tid": "484d4f8f-e126-4500-6cdb-15b1945e7450"
+          },
+          {
+            "ep": 1784544046,
+            "px": 65,
+            "size": 0.01,
+            "taker": "yes",
+            "tid": "e79612bc-cb47-5122-fa55-dbdf12d1ab31"
+          },
+          {
+            "ep": 1784544046,
+            "px": 65,
+            "size": 78.54,
+            "taker": "yes",
+            "tid": "82cb8ead-bf3e-5b7c-c55e-f812f09e0790"
+          },
+          {
+            "ep": 1784544046,
+            "px": 65,
+            "size": 127.45,
+            "taker": "yes",
+            "tid": "020dce47-58f8-5409-cba9-4b9f51cff422"
+          }
+        ],
+        "prints_below_floor": []
+      }
+    }
+  },
+  "KXWTAMATCH-26JUL20SEMKRA": {
+    "span": [
+      1784543778,
+      1784549194
+    ],
+    "legs": {
+      "KXWTAMATCH-26JUL20SEMKRA-KRA": {
+        "leg": "KRA",
+        "close": 76,
+        "maker_floor": 72,
+        "span_print_count": 1,
+        "lowest_span_print": 73,
+        "our_tape_rows_in_span": 21,
+        "prints_below_close": [
+          {
+            "ep": 1784545943,
+            "px": 73,
+            "size": 1.0,
+            "taker": "yes",
+            "tid": "d587b452-acef-45a5-4d16-d82239bdedb4"
+          }
+        ],
+        "prints_below_floor": []
+      },
+      "KXWTAMATCH-26JUL20SEMKRA-SEM": {
+        "leg": "SEM",
+        "close": 25,
+        "maker_floor": 25,
+        "span_print_count": 0,
+        "lowest_span_print": null,
+        "our_tape_rows_in_span": 3,
+        "prints_below_close": [],
+        "prints_below_floor": []
+      }
+    }
+  }
+}

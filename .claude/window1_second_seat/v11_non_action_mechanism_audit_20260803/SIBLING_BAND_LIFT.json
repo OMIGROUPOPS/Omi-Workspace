@@ -1,0 +1,34 @@
+{
+ "method": "P2 dip-timing (e64b0837 spec) with feature set DOUBLED: own-leg 6 EWMA bands + sibling-leg 6 EWMA bands (causal, state_at same ts), walk-forward-by-date logistic. AUC/lead vs own-6 baseline 0.777/2221s.",
+ "horizon_min": 10,
+ "samples": 68001,
+ "own6_auc": 0.777,
+ "own_plus_sibling12_auc": 0.794,
+ "auc_delta": 0.016,
+ "baseline_p2_auc": 0.777,
+ "lead_median_s_12feat": 2070.0,
+ "baseline_lead_s": 2221,
+ "per_category": {
+  "ATP_CHALL": {
+   "own6": 0.759,
+   "own_plus_sib12": 0.785,
+   "delta": 0.026
+  },
+  "ATP_MAIN": {
+   "own6": 0.635,
+   "own_plus_sib12": 0.652,
+   "delta": 0.017
+  },
+  "WTA_CHALL": {
+   "own6": 0.691,
+   "own_plus_sib12": 0.72,
+   "delta": 0.029
+  },
+  "WTA_MAIN": {
+   "own6": 0.702,
+   "own_plus_sib12": 0.627,
+   "delta": -0.075
+  }
+ },
+ "verdict": "SIBLING_BANDS_ADD_HELDOUT_LIFT_V31.1_FEATURE_SPEC"
+}

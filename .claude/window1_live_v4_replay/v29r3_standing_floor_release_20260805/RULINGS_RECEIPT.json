@@ -1,0 +1,19 @@
+{
+  "overlay_law": "NEVER_BLOCKS_R2; ABSENT_STANDING_AUTHORITY_LEAVES_R2_LEG_STREAM_BYTE_IDENTICAL",
+  "aim": "min(99-first_fill, own_lawful_live_book_floor)",
+  "arm_time_release": "QUALIFYING_CURRENT_BOOK_RELEASES_IMMEDIATELY_AT_ARM",
+  "post_arm_release": "UNCHANGED_FROM_R2",
+  "crossed_book": {
+    "law": "BID_GE_ASK_AT_OR_BELOW_AIM_IS_MAXIMAL_URGENCY_AND_RELEASES_AT_STANDING_ASK",
+    "ordinary_spread_gate_bypassed": true,
+    "ordinary_five_contract_displayed_ask_gate_bypassed_when_crossed": true,
+    "dwell_gate_preserved": true
+  },
+  "read_law": {
+    "dwell_seconds": 10,
+    "displayed_capacity_contracts_for_non_crossed_books": 5,
+    "ordinary_max_spread_cents": 1
+  },
+  "ordinal": "LOGGED_CONFIRMATION_ONLY_NEVER_GATE",
+  "pair_carry_clock": "PROHIBITED"
+}

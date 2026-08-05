@@ -1,0 +1,99 @@
+{
+  "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+  "before": {
+    "source_commit": "2eb87fb91d14a3abeaf33c5d1389cf433d7770ef",
+    "disposition": "NEVER_RELEASED",
+    "binding_reason": "OWN_ASK_NEVER_AT_OR_BELOW_AIM",
+    "arm_timestamp_epoch": 1783896551,
+    "aim_cents": 56,
+    "live_book_at_arm": {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35666",
+      "timestamp_epoch": 1783896157,
+      "bid": 56,
+      "ask": 56,
+      "spread": 0,
+      "top_ask_size": 2,
+      "qualified_ask_descent_count": 0
+    }
+  },
+  "after": {
+    "disposition": "RELEASED_AND_FILLED",
+    "binding_reason": "STANDING_QUALIFYING_FLOOR_RELEASED_AT_ARM",
+    "arm_timestamp_epoch": 1783896551,
+    "aim_cents": 56,
+    "standing_book": {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35693",
+      "timestamp_epoch": 1783896551,
+      "bid": 57,
+      "ask": 56,
+      "spread": -1,
+      "ask_dwell_seconds": 519,
+      "top_ask_size": 2,
+      "top5_ask_depth": 4822,
+      "qualified_ask_descent_count": 0,
+      "crossed_or_locked": true
+    },
+    "release": {
+      "state": "PLACE",
+      "reason": "STANDING_QUALIFYING_FLOOR_RELEASED_AT_ARM",
+      "action_timestamp_epoch": 1783896551,
+      "decision": {
+        "state": "PLACE",
+        "reason": "STANDING_QUALIFYING_FLOOR_RELEASED_AT_ARM",
+        "release_origin": "STANDING_AT_ARM",
+        "price_cents": 56,
+        "fill_class": "PROVEN_TAKER_DISPLAYED_ASK_SIZE_AT_SUBMISSION",
+        "pair_cap_preserved": true,
+        "crossed_or_locked_maximal_urgency": true,
+        "ordinary_five_contract_displayed_ask_gate_bypassed_by_crossed_urgency": true,
+        "evaluation_cadence": "ARM_SNAPSHOT_THEN_EVERY_CAUSAL_OWN_BOOK_RECEIPT",
+        "elapsed_time_inputs": [],
+        "coherent_decline_ordinal_role": "LOGGED_CONFIRMATION_ONLY_NEVER_GATE"
+      },
+      "row": {
+        "ts": 1783896551,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35693",
+        "bid": 57,
+        "ask": 56,
+        "spread": -1,
+        "ask_dwell_seconds": 519,
+        "top_ask_size": 2,
+        "top5_ask_depth": 4822,
+        "qualified_ask_descent_count": 0,
+        "clocks": {
+          "timestamp_epoch": 1783896551,
+          "t_minus_scheduled_seconds": -42551,
+          "t_minus_actual_bell_seconds": 49549
+        },
+        "book_clocks": {
+          "timestamp_epoch": 1783896551,
+          "t_minus_scheduled_seconds": -42551,
+          "t_minus_actual_bell_seconds": 49549
+        }
+      },
+      "surviving_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+        "ATP_CHALL_51_75_INTERIM_PATH_UNUSABLE_REMAINDER"
+      ],
+      "usable_shape_ids": [
+        "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+        "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3"
+      ],
+      "coherent_decline_ordinal_confirmation": "MIXED",
+      "ordinal_verdicts": [
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_01_ORD_0_1",
+          "verdict": "UNKNOWN",
+          "reason": "ADJACENT_ORDINAL_PATH_MEMBERS_DISAGREE"
+        },
+        {
+          "shape_id": "ATP_CHALL_51_75_INTERIM_PATH_02_ORD_2_3",
+          "verdict": "LOWER",
+          "reason": "COHERENT_PATH_REQUIRES_MORE_QUALIFIED_DESCENTS"
+        }
+      ]
+    }
+  },
+  "flipped": true
+}

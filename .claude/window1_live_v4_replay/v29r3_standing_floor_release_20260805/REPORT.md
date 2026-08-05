@@ -1,0 +1,3 @@
+# V29-R3 — standing floor releases
+
+V29-R3 is one additive correction on frozen V29-R2 (JOINT 68): the current own-book state is evaluated at arm before later receipts. An ordinary standing ask at or below aim releases when dwell is at least ten seconds, displayed size is at least five, and spread is at most one cent. Under the explicit crossed-book ruling, bid >= ask at/below aim is maximal urgency: dwell remains mandatory, while the ordinary spread and displayed-ask-size gates are bypassed and the action releases at the standing ask. If the arm snapshot does not release, the R2 post-arm path remains unchanged. No clock, close, future floor, holdout, or live input enters the decision.

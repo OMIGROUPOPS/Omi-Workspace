@@ -1,0 +1,7 @@
+{
+  "cadence": "ARM_SNAPSHOT_THEN_EVERY_CAUSAL_OWN_BOOK_RECEIPT_IN_EVENT_ORDER",
+  "polling_interval_seconds": null,
+  "wall_clock_policy_inputs": [],
+  "standing_arm_releases": 11,
+  "post_arm_R2_releases_preserved": 22
+}

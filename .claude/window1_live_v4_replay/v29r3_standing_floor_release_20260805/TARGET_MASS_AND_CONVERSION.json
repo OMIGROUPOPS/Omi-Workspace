@@ -1,0 +1,25 @@
+{
+  "R2_target_legs": 371,
+  "R2_own_ask_never_at_or_below_aim_defect_rows": 128,
+  "R3_standing_arm_conversion_mass": 3,
+  "R3_truly_never_offered": 125,
+  "dispositions": {
+    "INCUMBENT_FIRST": 200,
+    "NEVER_RELEASED": 138,
+    "RELEASED_AND_FILLED": 33
+  },
+  "score_effect_vs_R2": {
+    "D": 0,
+    "legs": 0,
+    "acted_legs": 5,
+    "credited_legs": 6,
+    "completed_pairs": 6,
+    "pairs_under_par": 6,
+    "completed_pairs_close_unavailable": 0,
+    "both_legs_strictly_below_audited_close": 0,
+    "joint_objective_pairs": 0,
+    "strict_carried_pairs": 4,
+    "execution_floor_pair_passes": 1
+  },
+  "ruling": "ARM_SNAPSHOT_IS_EVALUATED_FIRST; POST_ARM_R2_PATH_REMAINS_BYTE_IDENTICAL_WHEN_STANDING_FLOOR_DOES_NOT_RELEASE"
+}

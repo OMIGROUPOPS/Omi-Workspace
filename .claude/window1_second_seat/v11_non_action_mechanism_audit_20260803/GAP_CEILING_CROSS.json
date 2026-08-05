@@ -1,0 +1,454 @@
+{
+  "method": "Cross of 39 CAPTURE-GAP games (CAPTURE_GAP_CENSUS.json) against V28 trace 3339f30 (v28_anchor_cap_stack_20260804 EVENT_LEDGER). Item1: membership in completed_pair(307) and joint_objective_pass_audited_close(65). Item2: achievable-ceiling verdict = both legs maker_floor_cents < audited_close_cents (strict) AND maker_floor sum<100 (the 390 definition, 50ce0f49, computed from V28 leg fields). WINNABLE if so; else NOT_WINNABLE/UNDETERMINED and stamped CEILING_UNPROVEN_CAPTURE_GAP because the negative rests on a tape carrying a synchronized recorder-down silence (a qualifying ask may have printed unseen).",
+  "v28_totals": {
+    "events": 804,
+    "completions_307": 307,
+    "joint_pairs_65": 65
+  },
+  "achievable_ceiling_reconstruction": {
+    "NOT_WINNABLE": 383,
+    "WINNABLE": 390,
+    "UNDETERMINED_CLOSE_OR_FLOOR_UNAVAILABLE": 31
+  },
+  "conservation": {
+    "gap_games": 39,
+    "in_completions": 24,
+    "in_joint_pairs": 5,
+    "ceiling": {
+      "NOT_WINNABLE": 11,
+      "WINNABLE": 28
+    },
+    "stamped": 11
+  },
+  "per_game": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 5831
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 97,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 7829
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5943
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 6152
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "cat": "ATP_CHALL",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 35,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 4911
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "cat": "ATP_CHALL",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 50,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5487
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5092
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "cat": "ATP_CHALL",
+      "completed_pair": true,
+      "joint65": true,
+      "maker_floor_sum": 62,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5795
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 99,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5201
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "cat": "ATP_CHALL",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 47,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5522
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+      "cat": "ATP_CHALL",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 99,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 3964
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 100,
+      "both_below_close": true,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 4730
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+      "cat": "ATP_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 5972
+    },
+    {
+      "event": "KXATPMATCH-26JUL19ALTCOL",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": true,
+      "maker_floor_sum": 94,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 4251
+    },
+    {
+      "event": "KXATPMATCH-26JUL19BAEKEC",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 95,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 6305
+    },
+    {
+      "event": "KXATPMATCH-26JUL19CERTRU",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 91,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 3731
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "cat": "ATP_MAIN",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 97,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 6150
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 92,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5155
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GAUCAR",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 95,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5628
+    },
+    {
+      "event": "KXATPMATCH-26JUL19KOPBUS",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 95,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5803
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": true,
+      "maker_floor_sum": 92,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5989
+    },
+    {
+      "event": "KXATPMATCH-26JUL19VANFAR",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 90,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 4058
+    },
+    {
+      "event": "KXATPMATCH-26JUL19WAWBUR",
+      "cat": "ATP_MAIN",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 91,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5969
+    },
+    {
+      "event": "KXATPMATCH-26JUL20ROCMAR",
+      "cat": "ATP_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 95,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 6054
+    },
+    {
+      "event": "KXATPMATCH-26JUL20SCHROD",
+      "cat": "ATP_MAIN",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5726
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+      "cat": "WTA_CHALL",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 100,
+      "both_below_close": true,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 3905
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "cat": "WTA_CHALL",
+      "completed_pair": true,
+      "joint65": true,
+      "maker_floor_sum": 99,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5909
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20AKSCOS",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 87,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5270
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BARYUA",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 95,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 5562
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BONUCH",
+      "cat": "WTA_MAIN",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 97,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5428
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20GAOTAG",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 5583
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHAV",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 97,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 5402
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHON",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 94,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 6365
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": true,
+      "maker_floor_sum": 97,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5372
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20QUEKAL",
+      "cat": "WTA_MAIN",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 3606
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20RUZSAL",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 50,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5119
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SAMJOI",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 3810
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SEMKRA",
+      "cat": "WTA_MAIN",
+      "completed_pair": true,
+      "joint65": false,
+      "maker_floor_sum": 97,
+      "both_below_close": false,
+      "ceiling_verdict": "NOT_WINNABLE",
+      "stamp": "CEILING_UNPROVEN_CAPTURE_GAP",
+      "gap_s": 5416
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20TIMSAS",
+      "cat": "WTA_MAIN",
+      "completed_pair": false,
+      "joint65": false,
+      "maker_floor_sum": 98,
+      "both_below_close": true,
+      "ceiling_verdict": "WINNABLE",
+      "stamp": null,
+      "gap_s": 5669
+    }
+  ]
+}

@@ -141,12 +141,56 @@ could be understated (an ask we never saw), which is conservative for a
 maker-reachability ceiling — it can only *lower* our measured opportunity, never
 inflate it. No GAP game is in the 45 joint-completable pairs.
 
+## 4b. GAP × V28 ceiling cross (3339f30)
+
+The 39 GAP games crossed against **V28's trace at 3339f30**
+(`v28_anchor_cap_stack_20260804/EVENT_LEDGER`) — not V23. V28 totals reproduce
+exactly: **307 completions** (`completed_pair`) and **65 joint pairs**
+(`joint_objective_pass_audited_close`). Recomputing the achievable ceiling from V28's
+own leg fields (both `maker_floor_cents` < `audited_close_cents` strict AND floor sum
+< 100) reconstructs the canonical surface exactly: **390 WINNABLE / 383 NOT_WINNABLE
+/ 31 UNDETERMINED** over 804 — self-check against the 390 (50ce0f49) and the 31
+executable-overlap set. Machine artifact: `GAP_CEILING_CROSS.json`.
+
+**Item 1 — 39 GAP vs V28:** **24 / 39** are in the 307 completions, **5 / 39** are in
+the 65 joint pairs (MONNES, ALTCOL, STRSHE, LANRAD, PODSTU — all WINNABLE, gap
+immaterial to the positive verdict). 18 GAP games are both WINNABLE *and*
+V28-completed, so their capture gap can't have hidden the win.
+
+**Item 2 — ceiling verdict cross:** **28 WINNABLE / 11 NOT_WINNABLE**. The 11
+not-winnable GAP games are **stamped `CEILING_UNPROVEN_CAPTURE_GAP`** — their negative
+verdict rests on a tape carrying a 1–2h synchronized recorder-down silence, so a
+qualifying ask may have printed unseen. All 11 are single-cent-fragile, which is why
+the gap matters:
+
+| game | cat | floor sum | blocker | gap |
+|---|---|---:|---|---:|
+| KXATPCHALLENGERMATCH-26JUL20SEYKOL | ATP_CHALL | 100 | sum by 1c (both below close) | 4,730s |
+| KXWTACHALLENGERMATCH-26JUL20KABCHI | WTA_CHALL | 100 | sum by 1c (both below close) | 3,905s |
+| KXATPCHALLENGERMATCH-26JUL20PIRNAP | ATP_CHALL | 99 | a leg floor ≥ close | 3,964s |
+| KXATPCHALLENGERMATCH-26JUL20ALKFIC | ATP_CHALL | 98 | a leg floor ≥ close | 5,831s |
+| KXATPCHALLENGERMATCH-26JUL20ZHOGEE | ATP_CHALL | 98 | a leg floor ≥ close | 5,972s |
+| KXWTAMATCH-26JUL20GAOTAG | WTA_MAIN | 98 | a leg floor ≥ close | 5,583s |
+| KXATPCHALLENGERMATCH-26JUL20CRECOP | ATP_CHALL | 97 | a leg floor ≥ close | 7,829s |
+| KXWTAMATCH-26JUL20PARHAV | WTA_MAIN | 97 | a leg floor ≥ close | 5,402s |
+| KXWTAMATCH-26JUL20SEMKRA | WTA_MAIN | 97 | a leg floor ≥ close | 5,416s |
+| KXWTAMATCH-26JUL20BARYUA | WTA_MAIN | 95 | a leg floor ≥ close | 5,562s |
+| KXATPCHALLENGERMATCH-26JUL20GALARN | ATP_CHALL | 35 | a leg floor ≥ close | 4,911s |
+
+Nine fail only on `both-below-close` (sum already < 100); two (SEYKOL, KABCHI) fail
+the sum by exactly one cent with both legs already below close. A single unseen
+lower ask on one leg flips any of them — hence *unproven*, not *proven-lost*.
+ARNROM is CAPTURE_CLEAN (not a GAP game) and is WINNABLE in V28, so it carries no
+stamp.
+
 ## Conservation
 
 1a: 2 channels, both LOSSLESS_BY_DESIGN. 1b: 21 games, 21 PRINTS_FAITHFUL, 0 defect.
 2: 52 + 21 = 73 ARNROM prints located. 3: 390 denominator clean, 7 timing artifacts
 stamped. 4: **804 games = 765 CAPTURE_CLEAN + 39 GAP + 0 NO_TAPE**; 39 GAPs = 10
-(Jul19 main) + 29 (Jul20 challenger); ARNROM CAPTURE_CLEAN.
+(Jul19 main) + 29 (Jul20 challenger); ARNROM CAPTURE_CLEAN. 4b: **39 GAP = 28 WINNABLE
++ 11 NOT_WINNABLE(stamped CEILING_UNPROVEN_CAPTURE_GAP)**; 24 in completions, 5 in the
+65 joint pairs; achievable ceiling reconstructs 390/383/31.
 
 ## Artifacts
 

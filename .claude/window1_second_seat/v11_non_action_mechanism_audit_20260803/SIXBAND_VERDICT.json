@@ -1,0 +1,1039 @@
+{
+ "summary": {
+  "method": "Six-band ARNROM-method autopsy on 12 Tier B2 events (4 TIE,4 MISCALLED,4 CORRECT). Per game, scan the FULL WS-delta tape between call_moment and patient_floor on six depth bands: CROSSED_BID_SIZE, LOCK_EPISODES, BID_DEPTH_DOM, ASK_DEPTH_DOM, ASK_STAIRCASE_DOWN, BID_STAIRCASE_UP. Role-consistent = chased leg shows crossed/bid-dom/bid-staircase/locks; patient leg shows ask-dom/ask-staircase. Verdict per game; charts = exchange re-pulled prints + WS-delta rails, both legs one clock, marks at call & patient-floor.",
+  "conservation": {
+   "n": 12,
+   "by_bucket": {
+    "TIE": 4,
+    "MISCALLED": 4,
+    "CORRECT": 4
+   },
+   "by_verdict": {
+    "SIGNATURE_VISIBLE_COUNTER_BLIND": 5,
+    "SIGNATURE_ABSENT": 3,
+    "SIGNATURE_VISIBLE": 4
+   }
+  },
+  "failures_ties_and_miscalls": {
+   "n": 8,
+   "COUNTER_BLIND": 5,
+   "GENUINELY_FLAT": 0,
+   "SIGNATURE_ABSENT": 3,
+   "genuinely_flat_both_legs": 0,
+   "signature_absent_but_strong_inverted_asymmetry": 3
+  },
+  "DECISION": "SIGNAL_DEFINITION_IS_THE_CORPSE_ARCH_REOPENS",
+  "interpretation": "0/8 failures are genuinely flat. 5/8 carry a role-CONSISTENT signature the +/-180s counter missed (all precede the patient floor, lead 88-1332min => race-won). 3/8 carry STRONG but role-INCONSISTENT asymmetries (90-100% depth dominance or 170 crossed-with-size rows) that indict the band->role MAPPING, not book flatness. The dead component is the signal DEFINITION (snapshot window + rigid mapping), not the game-row architecture."
+ },
+ "per_game": [
+  {
+   "bucket": "TIE",
+   "event": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+   "cat": "ATP_CHALL",
+   "region": "26_50/51_75",
+   "patient": "ROM",
+   "chased": "ARN",
+   "Dp": 0,
+   "Dc": 0,
+   "call_moment": 1783930024,
+   "patient_floor_ts": 1783935978,
+   "verdict": "SIGNATURE_VISIBLE_COUNTER_BLIND",
+   "bands_carrying": [
+    "ASK_STAIRCASE_DOWN",
+    "CROSSED_BID_SIZE",
+    "LOCK_EPISODES"
+   ],
+   "first_visible_ts": 1783930662,
+   "first_visible_et": "07-13 04:17:42",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 88.6,
+   "patient_bands": {
+    "rows": 1201,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.183,
+      "first": 1783930031
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.057,
+      "first": 1783934814
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 4,
+      "first": 1783930662
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 1064,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 10,
+      "first": 1783935968
+     },
+     "LOCK_EPISODES": {
+      "hits": 10,
+      "first": 1783935968
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.097,
+      "first": 1783934866
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.082,
+      "first": 1783930031
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 0,
+      "first": null
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 1,
+      "first": 1783935968
+     }
+    }
+   },
+   "chart": "TIE_26JUL12ARNROM.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "TIE",
+   "event": "KXATPMATCH-26JUL12CARSAN",
+   "cat": "ATP_MAIN",
+   "region": "le25/ge76",
+   "patient": "SAN",
+   "chased": "CAR",
+   "Dp": 0,
+   "Dc": 0,
+   "call_moment": 1783825254,
+   "patient_floor_ts": 1783845939,
+   "verdict": "SIGNATURE_VISIBLE_COUNTER_BLIND",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM",
+    "CROSSED_BID_SIZE",
+    "LOCK_EPISODES"
+   ],
+   "first_visible_ts": 1783825267,
+   "first_visible_et": "07-11 23:01:07",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 344.5,
+   "patient_bands": {
+    "rows": 1797,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 3,
+      "first": 1783845929
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.0,
+      "first": null
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.219,
+      "first": 1783825267
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 1,
+      "first": 1783845929
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 1182,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 851,
+      "first": 1783835346
+     },
+     "LOCK_EPISODES": {
+      "hits": 851,
+      "first": 1783835346
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.0,
+      "first": null
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.284,
+      "first": 1783826142
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 0,
+      "first": null
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 2,
+      "first": 1783835346
+     }
+    }
+   },
+   "chart": "TIE_26JUL12CARSAN.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "TIE",
+   "event": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+   "cat": "WTA_CHALL",
+   "region": "26_50/51_75",
+   "patient": "AKS",
+   "chased": "VAL",
+   "Dp": 0,
+   "Dc": 0,
+   "call_moment": 1784009549,
+   "patient_floor_ts": 1784038104,
+   "verdict": "SIGNATURE_VISIBLE_COUNTER_BLIND",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM",
+    "ASK_STAIRCASE_DOWN",
+    "BID_STAIRCASE_UP",
+    "CROSSED_BID_SIZE",
+    "LOCK_EPISODES"
+   ],
+   "first_visible_ts": 1784009561,
+   "first_visible_et": "07-14 02:12:41",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 475.7,
+   "patient_bands": {
+    "rows": 49591,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 5168,
+      "first": 1784035174
+     },
+     "LOCK_EPISODES": {
+      "hits": 9142,
+      "first": 1784035174
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.028,
+      "first": 1784030407
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.63,
+      "first": 1784009561
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 29,
+      "first": 1784034544
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 7,
+      "first": 1784034697
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 52128,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 7755,
+      "first": 1784036138
+     },
+     "LOCK_EPISODES": {
+      "hits": 7765,
+      "first": 1784036138
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.019,
+      "first": 1784030419
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.677,
+      "first": 1784009549
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 7,
+      "first": 1784034697
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 30,
+      "first": 1784025270
+     }
+    }
+   },
+   "chart": "TIE_26JUL14AKSVAL.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "TIE",
+   "event": "KXWTAMATCH-26JUL12HODYAS",
+   "cat": "WTA_MAIN",
+   "region": "le25/ge76",
+   "patient": "YAS",
+   "chased": "HOD",
+   "Dp": 0,
+   "Dc": 0,
+   "call_moment": 1783851075,
+   "patient_floor_ts": 1783861749,
+   "verdict": "SIGNATURE_ABSENT",
+   "bands_carrying": [],
+   "first_visible_ts": null,
+   "first_visible_et": null,
+   "precedes_patient_floor": false,
+   "lead_before_floor_min": null,
+   "patient_bands": {
+    "rows": 1849,
+    "flat": true,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.0,
+      "first": null
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.144,
+      "first": 1783851285
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 1,
+      "first": 1783861739
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 1,
+      "first": 1783851285
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 1077,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.0,
+      "first": null
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.902,
+      "first": 1783851086
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 1,
+      "first": 1783854520
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chart": "TIE_26JUL12HODYAS.png",
+   "absent_note": "NOT_FLAT: strong asymmetry present but role-inconsistent with the simple band->role map: chased:ASK_DEPTH_DOM=0.902",
+   "strong_but_inverted": true
+  },
+  {
+   "bucket": "MISCALLED",
+   "event": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+   "cat": "ATP_CHALL",
+   "region": "le25/ge76",
+   "patient": "VIS",
+   "chased": "BAR",
+   "Dp": -3,
+   "Dc": 3,
+   "call_moment": 1783972861,
+   "patient_floor_ts": 1784030174,
+   "verdict": "SIGNATURE_VISIBLE_COUNTER_BLIND",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM"
+   ],
+   "first_visible_ts": 1783976486,
+   "first_visible_et": "07-13 17:01:26",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 894.8,
+   "patient_bands": {
+    "rows": 3184,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.03,
+      "first": 1784016845
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.171,
+      "first": 1783976486
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 2,
+      "first": 1783973164
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 1,
+      "first": 1783980114
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 6175,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.004,
+      "first": 1784014718
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.217,
+      "first": 1783973166
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 1,
+      "first": 1783980025
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 2,
+      "first": 1783973164
+     }
+    }
+   },
+   "chart": "MISCALLED_26JUL12BARVIS.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "MISCALLED",
+   "event": "KXATPMATCH-26JUL12BUDPEL",
+   "cat": "ATP_MAIN",
+   "region": "26_50/51_75",
+   "patient": "BUD",
+   "chased": "PEL",
+   "Dp": -4,
+   "Dc": 3,
+   "call_moment": 1783832539,
+   "patient_floor_ts": 1783850450,
+   "verdict": "SIGNATURE_ABSENT",
+   "bands_carrying": [],
+   "first_visible_ts": null,
+   "first_visible_et": null,
+   "precedes_patient_floor": false,
+   "lead_before_floor_min": null,
+   "patient_bands": {
+    "rows": 247,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 170,
+      "first": 1783832645
+     },
+     "LOCK_EPISODES": {
+      "hits": 170,
+      "first": 1783832645
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.036,
+      "first": 1783843201
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.069,
+      "first": 1783848964
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 1,
+      "first": 1783850440
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 152,
+    "flat": true,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.0,
+      "first": null
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.125,
+      "first": 1783846046
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 0,
+      "first": null
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 2,
+      "first": 1783832645
+     }
+    }
+   },
+   "chart": "MISCALLED_26JUL12BUDPEL.png",
+   "absent_note": "NOT_FLAT: strong asymmetry present but role-inconsistent with the simple band->role map: patient:CROSSED_BID_SIZE=170; patient:LOCK_EPISODES=170",
+   "strong_but_inverted": true
+  },
+  {
+   "bucket": "MISCALLED",
+   "event": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+   "cat": "WTA_CHALL",
+   "region": "le25/ge76",
+   "patient": "KOV",
+   "chased": "BOS",
+   "Dp": -1,
+   "Dc": 0,
+   "call_moment": 1783829708,
+   "patient_floor_ts": 1783837451,
+   "verdict": "SIGNATURE_ABSENT",
+   "bands_carrying": [],
+   "first_visible_ts": null,
+   "first_visible_et": null,
+   "precedes_patient_floor": false,
+   "lead_before_floor_min": null,
+   "patient_bands": {
+    "rows": 932,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.792,
+      "first": 1783829710
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.0,
+      "first": null
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 1,
+      "first": 1783837441
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 118,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.0,
+      "first": null
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 1.0,
+      "first": 1783829744
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 0,
+      "first": null
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chart": "MISCALLED_26JUL12BOSKOV.png",
+   "absent_note": "NOT_FLAT: strong asymmetry present but role-inconsistent with the simple band->role map: patient:BID_DEPTH_DOM=0.792; chased:ASK_DEPTH_DOM=1.0",
+   "strong_but_inverted": true
+  },
+  {
+   "bucket": "MISCALLED",
+   "event": "KXWTAMATCH-26JUL13BLISAS",
+   "cat": "WTA_MAIN",
+   "region": "26_50/51_75",
+   "patient": "BLI",
+   "chased": "SAS",
+   "Dp": -2,
+   "Dc": 2,
+   "call_moment": 1783968893,
+   "patient_floor_ts": 1784049618,
+   "verdict": "SIGNATURE_VISIBLE_COUNTER_BLIND",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM",
+    "ASK_STAIRCASE_DOWN",
+    "BID_DEPTH_DOM",
+    "CROSSED_BID_SIZE",
+    "LOCK_EPISODES"
+   ],
+   "first_visible_ts": 1783969691,
+   "first_visible_et": "07-13 15:08:11",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 1332.1,
+   "patient_bands": {
+    "rows": 5539,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.005,
+      "first": 1783968898
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.571,
+      "first": 1783972426
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 3,
+      "first": 1784017746
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 1,
+      "first": 1783968960
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 5539,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 360,
+      "first": 1784000202
+     },
+     "LOCK_EPISODES": {
+      "hits": 360,
+      "first": 1784000202
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.344,
+      "first": 1783969691
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.098,
+      "first": 1783991042
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 3,
+      "first": 1783968929
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 2,
+      "first": 1784039699
+     }
+    }
+   },
+   "chart": "MISCALLED_26JUL13BLISAS.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "CORRECT",
+   "event": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+   "cat": "ATP_CHALL",
+   "region": "26_50/51_75",
+   "patient": "FAN",
+   "chased": "BIG",
+   "Dp": 0,
+   "Dc": -1,
+   "call_moment": 1783850854,
+   "patient_floor_ts": 1783868432,
+   "verdict": "SIGNATURE_VISIBLE",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM",
+    "ASK_STAIRCASE_DOWN",
+    "BID_DEPTH_DOM",
+    "BID_STAIRCASE_UP"
+   ],
+   "first_visible_ts": 1783851544,
+   "first_visible_et": "07-12 06:19:04",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 281.5,
+   "patient_bands": {
+    "rows": 440,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.032,
+      "first": 1783852185
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.225,
+      "first": 1783854544
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 5,
+      "first": 1783851544
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 534,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 0,
+      "first": null
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.326,
+      "first": 1783854540
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.217,
+      "first": 1783850855
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 0,
+      "first": null
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 4,
+      "first": 1783854010
+     }
+    }
+   },
+   "chart": "CORRECT_26JUL12FANBIG.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "CORRECT",
+   "event": "KXATPMATCH-26JUL12MULSHE",
+   "cat": "ATP_MAIN",
+   "region": "26_50/51_75",
+   "patient": "MUL",
+   "chased": "SHE",
+   "Dp": 0,
+   "Dc": -2,
+   "call_moment": 1783825232,
+   "patient_floor_ts": 1783999328,
+   "verdict": "SIGNATURE_VISIBLE",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM",
+    "ASK_STAIRCASE_DOWN",
+    "BID_DEPTH_DOM",
+    "BID_STAIRCASE_UP",
+    "CROSSED_BID_SIZE",
+    "LOCK_EPISODES"
+   ],
+   "first_visible_ts": 1783825282,
+   "first_visible_et": "07-11 23:01:22",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 2900.8,
+   "patient_bands": {
+    "rows": 130593,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 2,
+      "first": 1783999318
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.36,
+      "first": 1783825282
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.18,
+      "first": 1783864669
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 9,
+      "first": 1783864942
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 1,
+      "first": 1783827701
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 165171,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 96,
+      "first": 1783831642
+     },
+     "LOCK_EPISODES": {
+      "hits": 173,
+      "first": 1783825282
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.399,
+      "first": 1783853579
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.104,
+      "first": 1783825282
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 0,
+      "first": null
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 9,
+      "first": 1783864768
+     }
+    }
+   },
+   "chart": "CORRECT_26JUL12MULSHE.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "CORRECT",
+   "event": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+   "cat": "WTA_CHALL",
+   "region": "26_50/51_75",
+   "patient": "VAN",
+   "chased": "SHE",
+   "Dp": 0,
+   "Dc": -1,
+   "call_moment": 1783843424,
+   "patient_floor_ts": 1783871859,
+   "verdict": "SIGNATURE_VISIBLE",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM",
+    "ASK_STAIRCASE_DOWN",
+    "BID_DEPTH_DOM",
+    "BID_STAIRCASE_UP",
+    "CROSSED_BID_SIZE",
+    "LOCK_EPISODES"
+   ],
+   "first_visible_ts": 1783848011,
+   "first_visible_et": "07-12 05:20:11",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 397.5,
+   "patient_bands": {
+    "rows": 90019,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 22044,
+      "first": 1783845710
+     },
+     "LOCK_EPISODES": {
+      "hits": 59083,
+      "first": 1783845710
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.164,
+      "first": 1783863152
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.455,
+      "first": 1783848011
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 17,
+      "first": 1783863211
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 48,
+      "first": 1783845710
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 88938,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 24689,
+      "first": 1783863213
+     },
+     "LOCK_EPISODES": {
+      "hits": 55091,
+      "first": 1783863213
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.192,
+      "first": 1783862978
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.409,
+      "first": 1783845162
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 46,
+      "first": 1783849069
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 18,
+      "first": 1783863176
+     }
+    }
+   },
+   "chart": "CORRECT_26JUL12SHEVAN.png",
+   "strong_but_inverted": false
+  },
+  {
+   "bucket": "CORRECT",
+   "event": "KXWTAMATCH-26JUL12KOZIBR",
+   "cat": "WTA_MAIN",
+   "region": "le25/ge76",
+   "patient": "KOZ",
+   "chased": "IBR",
+   "Dp": 0,
+   "Dc": -1,
+   "call_moment": 1783822352,
+   "patient_floor_ts": 1783828346,
+   "verdict": "SIGNATURE_VISIBLE",
+   "bands_carrying": [
+    "ASK_DEPTH_DOM",
+    "BID_STAIRCASE_UP",
+    "CROSSED_BID_SIZE",
+    "LOCK_EPISODES"
+   ],
+   "first_visible_ts": 1783822531,
+   "first_visible_et": "07-11 22:15:31",
+   "precedes_patient_floor": true,
+   "lead_before_floor_min": 96.9,
+   "patient_bands": {
+    "rows": 310,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 0,
+      "first": null
+     },
+     "LOCK_EPISODES": {
+      "hits": 5,
+      "first": 1783828336
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.31,
+      "first": 1783822783
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.203,
+      "first": 1783823875
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": 2,
+      "first": 1783826072
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 0,
+      "first": null
+     }
+    }
+   },
+   "chased_bands": {
+    "rows": 269,
+    "flat": false,
+    "bands": {
+     "CROSSED_BID_SIZE": {
+      "hits": 134,
+      "first": 1783823062
+     },
+     "LOCK_EPISODES": {
+      "hits": 134,
+      "first": 1783823062
+     },
+     "BID_DEPTH_DOM": {
+      "frac": 0.007,
+      "first": 1783822531
+     },
+     "ASK_DEPTH_DOM": {
+      "frac": 0.781,
+      "first": 1783822531
+     },
+     "ASK_STAIRCASE_DOWN": {
+      "steps": -1,
+      "first": null
+     },
+     "BID_STAIRCASE_UP": {
+      "steps": 3,
+      "first": 1783822531
+     }
+    }
+   },
+   "chart": "CORRECT_26JUL12KOZIBR.png",
+   "strong_but_inverted": false
+  }
+ ]
+}

@@ -1525,3 +1525,14 @@ Findable forever; never a new insight. Newest kills first.
 | Constructed mids as analysis anchors | 0A: only bid/ask/last exist | standing |
 
 *(Analysis-artifact graves live in `arb-executor/analysis/dead_ends/README.md` — same law, code-side.)*
+### 2026-08-05 - V34 FULL-LIFE MACHINE BLOCKED ON ACTUAL-BELL COVERAGE
+
+V34 was stopped before policy construction or replay. Its new law requires
+every game to run from first two-sided formation to the exact actual bell, but
+the frozen D=804 guard ledger binds only 234 exact bells; 570 rows remain
+proxy, interval, contradictory, live-by-only, or schedule-only. No scheduled
+edge or non-exact endpoint was substituted, and the 234-game subset was not
+misreported as D=804. No V34 score exists; V29-R3 remains operative at 68.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4450de974d855605f51816049bcc5b693502c6d4/arb-executor/docs/research/window1/WINDOW1_V34_FULL_LIFE_BLOCK_ADDENDUM.md

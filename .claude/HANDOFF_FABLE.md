@@ -1571,3 +1571,13 @@ BOT_DOWN phone (plumbing live, dormant).
 git fetch → read BOARD top-to-bottom → report (a) live state, (b) the
 open queue in order, (c) the one recommended next send. Nothing
 dispatches without operator word.
+## V34 FULL-LIFE MACHINE - BLOCKED BEFORE CONSTRUCTION - 2026-08-05
+
+V34 requires a full-life state interval ending at the exact actual bell for
+all D=804 games. The frozen bell law has 234 exact event bells and 570
+non-exact boundaries. Scheduled time, proxy points, live-by bounds, and chosen
+interval endpoints are forbidden substitutes. No policy, replay, score, or
+partial-population comparison was produced. R3 remains operative at 68.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4450de974d855605f51816049bcc5b693502c6d4/arb-executor/docs/research/window1/WINDOW1_V34_FULL_LIFE_BLOCK_ADDENDUM.md

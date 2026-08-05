@@ -1,5 +1,35 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-05 - V34 FULL-MARKET-LIFE MACHINE BUILT; TERMINAL-CLOSE RULER MAKES JOINT ZERO
+
+The operator restated full market life as the earlier of first two-sided book
+or first true exchange print through the market's own final exchange activity.
+Each leg's true close is its final ordered exchange print; schedule is never a
+boundary, and the 234 exact actual-bell rows are timing metadata only. V34's
+one-game/two-output residency machine acts on all 1,608 legs. Strict law
+credits 1,336 legs (287 maker / 1,049 taker), completes 539 under-par pairs,
+and census pricing credits 1,355 legs (49 strict maker / 1,020 taker / 286
+one-cent conversions), completing 557 under-par pairs. Both JOINT results are
+zero versus R3's operative 68 and the aggregate 603 comparison.
+
+The zero is the close ruler, not a hidden exclusion: 1,606/1,608 final ordered
+leg prints are available, 769 are at 1 and 774 at 99; 766/802 events with both
+closes available sum to 100. A positive-cent entry cannot be strictly below a
+terminal 1-cent close. V34 therefore does not supersede R3 without a separate
+objective/ruler ruling. Both builds are byte-identical across 24 core files;
+804 market-own-close boundaries conserve. Book coverage and print-only
+remainders are reported per game. The earlier exact-bell block is superseded.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e0fb6a312d8bbc52806603fbc143bf2bcebb3df2/arb-executor/docs/research/window1/WINDOW1_V34_DUAL_SIDE_RESIDENCY_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e0fb6a312d8bbc52806603fbc143bf2bcebb3df2/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_20260805/SCORECARD_TWO_COLUMN.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e0fb6a312d8bbc52806603fbc143bf2bcebb3df2/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_20260805/CLOSE_RULER_CONSEQUENCE_RECEIPT.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e0fb6a312d8bbc52806603fbc143bf2bcebb3df2/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_20260805/FULL_MARKET_LIFE_SPAN_804.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e0fb6a312d8bbc52806603fbc143bf2bcebb3df2/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_20260805/DETERMINISM_RECEIPT.json
+
 ### 2026-08-05 - V32 EXECUTABLE NO-CHASE REJECTED; R3 REMAINS OPERATIVE
 
 V32 makes the `6f2c3f82` model-free no-chase discipline executable with

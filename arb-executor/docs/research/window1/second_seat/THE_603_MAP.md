@@ -1,86 +1,101 @@
-# The 603 map — full-life window law  ·  `MODEL_FREE_CEILING`
+# The 603 map — full-life, trading-phase close (canonical)  ·  `MODEL_FREE_CEILING`
 
-Analysis seat only. Read-only. Print source = the sealed re-pull (reconciliation
-938dca47), via `prints.jsonl` (4,836,462 full-life prints, 804/804). Machine artifact:
+Analysis seat only. Read-only. Print source = sealed re-pull (reconciliation 938dca47),
+via `prints.jsonl` (full-life, 804/804). Machine artifact:
 `.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/THE_603_MAP.json`.
+Canonical stamp: `TRADING_PHASE_CLOSE_BASIS`.
 
-## Window law (as ruled)
+## Window law (ruled)
 
-Full life = the **exchange record span per market** (first print/book → market close),
-**804/804 by construction**. **True close = the final exchange print of the market's
-life** (settlement included; actual bell not required). No scheduled edge, no proxy
-boundary, no evaluated-window slice. **All prior below-close counts (incl. the 340/390)
-are `WINDOW_TRUNCATION_ARTIFACT`** — they scored the guarded slice.
+Full life = the exchange record span per market (first print/book → market close),
+**804/804 by construction**. **Close = the final print of the *trading phase*** —
+settlement collapse excluded: the terminal run into the decided band (≤10 loser / ≥90
+winner) ending at an extreme (≤1/≥99) is dropped, and the close is the last **contested**
+print (10 < price < 90) before that collapse. The whole analysis (traded-below, rest
+levels, seller flow) is clipped to the trading phase.
 
-**Minutes previously excluded** (full life vs the old guarded slice): median **558**,
-mean **713**, max **4,037** per game. The old window discarded ~9–12 hours of market
-life on a typical game.
+The **settlement-value close** (raw final print) is stamped
+**`DEGENERATE_SETTLEMENT_BASIS`** and retained only as a negative control: it floors
+every loser leg at 1¢ → 758/804 structurally unreachable, 0 convertible (T1 40 / T2 763).
 
-## The structural fact — where the true close lands
+Prior guarded-window below-close counts (incl. the 340/390) stand stamped
+**`WINDOW_TRUNCATION_ARTIFACT`**. Minutes the old guarded slice excluded: median **558**,
+mean **713**, max **4,037** per game.
 
-Per-leg final exchange print, bucketed (1,606 legs):
+Trading-phase closes now sit in the contested band — winner legs ~70–89 (758), loser
+legs ~11–30 (745) — not on the settlement floor.
 
-| ≤1 | 2–5 | 6–94 | 95–98 | 99–100 |
-|--:|--:|--:|--:|--:|
-| **758** | 21 | 43 | 8 | **776** |
+## Tier census — full trading-phase life (conservation 804)
 
-Every match resolves: one leg's final print is **99–100** (winner), the complement's
-is **1** (loser). **758 games carry a loser leg that settled to the 1¢ floor.** A leg
-whose true close is 1 **can never have traded below its own true close** (1 is the
-minimum tick) — so under this law the loser side is a structural blocker.
+| tier | games |
+|---|--:|
+| **T1** both sides traded below own true close | **753** |
+| **T2** one did, other did not (blocker named) | **48** |
+| **T3** neither | **3** |
+| **total** | **804** |
 
-## Tier census — full life (conservation 804)
+**T1-joint** (both below close AND sum < 100): **750**.
 
-| tier | games | meaning |
-|---|--:|---|
-| **T1** both sides traded below own true close | **40** | neither leg's final print sat on the floor |
-| **T2** one did, other did not | **763** | blocker = the floored loser side (low-side close = 1 in 758) |
-| **T3** neither | **1** | |
-| **total** | **804** | |
+| category | T1-joint |
+|---|--:|
+| ATP_CHALL | 347 |
+| WTA_MAIN | 145 |
+| ATP_MAIN | 144 |
+| WTA_CHALL | 114 |
 
-**T1-joint** (both below close AND sum < 100): **39**.
+Selected cat × region (T1-joint): ATP_CHALL 51_75/26_50 **123**, 26_50/51_75 **107**,
+le25/ge76 53, ge76/le25 37 · ATP_MAIN 26_50/51_75 50, 51_75/26_50 48 · WTA_MAIN
+26_50/51_75 40, 51_75/26_50 37, le25/ge76 24, ge76/le25 24 · WTA_CHALL 51_75/26_50 37,
+26_50/51_75 35 (full grid in artifact).
 
-## Presence-convertible mass — structurally inert under this close
+## Presence-convertible mass
 
-For every T2/T3 blocker, lawful rest levels come from decision-time evidence (running
-traded-low band / qualifying-floor path, close-free). A side is
-`PRESENCE_CONVERTIBLE(kc)` if seller-aggressed flow lands 1c/2c/3c above a rest level
-**below its true close** and intercepting it completes the leg below close within cap.
+For the 51 non-T1 games (48 T2 + 3 T3), lawful rest levels come from decision-time
+evidence (running traded-low band / qualifying-floor path, close-free). Seller-aggressed
+flow landing 1c/2c/3c above a below-close rest converts the blocker.
 
-**Convertible 1c / 2c / 3c = 0 / 0 / 0.** This is not an absence of seller flow — it is
-structural: the blocker's true close is **1**, and there is **no lawful rest level below
-1** (no 0-priced book). No seller print can land "above a below-close rest" when no
-below-close rest exists. The presence-convertible machinery is inert against a
-settlement-floor close.
+**Convertible 1c / 2c / 3c = 1 / 1 / 1** (game FORHUA, ATP_CHALL). The mass is small not
+because seller flow is absent but because **T1 already claims 750** — the blocker set is
+only 51, and 47 of those are genuinely unreachable (the blocker's trading-phase low never
+left room below its own close, or no seller flow approached it).
 
 ## The verdict — achievable joint
 
-| conversion of T2/T3 | achievable joint |
+| conversion of T2/T3 (1c–3c) | achievable joint |
 |---|--:|
-| 0 % | 39 |
-| 25 % / 50 % / 75 % / 100 % | 39 (converted games = 0) |
+| 0 % | 750 |
+| 25 % / 50 % | 750 |
+| 75 % / 100 % | **751** |
+| — model-free ceiling (T1-joint + all convertible) | 751 |
 
-Reachable-on-tape = **40**; UNREACHABLE_ON_THIS_TAPE = **764**
-(ATP_CHALL 357 · WTA_MAIN 141 · ATP_MAIN 140 · WTA_CHALL 126) — games where no seller
-flow could ever approach a below-close level on the floored side across the entire life.
-Conservation: 40 + 764 = 804.
+**Against the 804 tape: 750 achievable joint on full trading-phase life; reachable-on-
+tape 754; UNREACHABLE_ON_THIS_TAPE 50.** Against the operator's named **603** reachable
+universe, the verdict clears it — the tape reaches **754**, and delivers **750** joint —
+so 603 is a floor the full-life map exceeds, not a ceiling. What the market actually
+offers, read on full trading-phase life, is **both legs below their own trading-phase
+close in 750 of 804 games (93%)** — the true denominator every executable number
+(R3 68, V32 41, no-chase 201) is a small fraction of.
 
-Named: **ARNROM** true close (ARN 1, ROM 99) → T2, ARN the floored blocker, unreachable;
-**LAJVAN** (LAJ 1, VAN 99) → T2, same. (Under the guarded-slice artifact both had read
-as joint at 94/95 — the full-life settlement close reverses that: ARN led at 62 mid-
-window but ultimately lost to 1.)
+## UNREACHABLE_ON_THIS_TAPE — 50
 
-## Definitional note — flagged, not fudged
+ATP_CHALL 18 · WTA_CHALL 22 · WTA_MAIN 7 · ATP_MAIN 3. Games where no seller flow ever
+approached a below-close level on some side across the entire trading-phase life — the
+irreducible residual. Conservation: 754 reachable + 50 unreachable = 804.
 
-Executed exactly as ruled: **final exchange print = settlement value**. The consequence
-is that the loser leg floors at 1 in 758/804 games and is structurally unreachable, so
-the map collapses to **40 reachable / 764 unreachable** with **zero** presence-
-convertible mass — it does **not** produce a 603-scale reachable universe or a non-
-trivial conversion verdict. A 603-scale map with live convertible mass requires a
-**pre-settlement close basis** (the last genuine market print before the terminal
-0-1/99-100 lock); measured that way the tiers invert to T1 791 / unreachable 13. Both
-readings are computed and on file; this document reports the ruled (final-print) law
-faithfully. The close-basis is the one lever that moves the entire map, and it is the
-operator's to set.
+## Named rows
+
+| game | trading-phase close | tier | joint? | note |
+|---|---|---|---|---|
+| **ARNROM** | ARN 11 · ROM 89 | T1 | yes | full life reveals ARN fell to 11 (from its guarded-slice 62) before collapsing to 1; both legs below close, joint |
+| **LAJVAN** | LAJ 12 · VAN 89 | T1 | yes | both below trading-phase close |
+
+(Both read as WINDOW_TRUNCATION_ARTIFACT joints at 94/95 on the old guarded slice; the
+full-life trading-phase basis confirms the joint but re-prices the closes far lower.)
+
+## Conservation
+
+804 = 753 T1 + 48 T2 + 3 T3. Reachable 754 + unreachable 50 = 804. T1-joint 750;
+achievable joint 750 → 751 at full conversion. Settlement-basis control (DEGENERATE):
+T1 40 / T2 763 / T3 1, 764 unreachable, 0 convertible — on file, superseded.
 
 *All figures `MODEL_FREE_CEILING`.*

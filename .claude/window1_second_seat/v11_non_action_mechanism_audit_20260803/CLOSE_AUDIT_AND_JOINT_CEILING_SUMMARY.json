@@ -103,6 +103,7 @@
       "ATP_MAIN": 92,
       "WTA_MAIN": 75,
       "WTA_CHALL": 39
-    }
+    },
+    "SIMULTANEITY_AUDIT": "DENOMINATOR_PRICE_ONLY_NO_SIMULTANEITY_TERM: the 390 is defined purely on price (both maker floors strictly below own audited close AND maker-floor sum < 100). No time-coincidence / overlap / carry / dwell term enters the count. Confirmed 2026-08-04."
   }
 }

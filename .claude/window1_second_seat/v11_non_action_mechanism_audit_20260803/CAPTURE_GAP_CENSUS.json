@@ -1,0 +1,5451 @@
+{
+  "method": "Per-tape max intra-window inter-row silence + corpus-wide active-tapes per 30-min wall-clock bin. A GAP is flagged only when a >=1h intra-window silence COINCIDES with a corpus recorder-down window (active tapes collapse <=25% of local 3h median while >=8 neighbors active) -- distinguishing a recorder-down gap from an ordinary quiet-book overnight silence. Window-1 data is Jul 12-20, entirely after the Jul-6 disk crash (crash pre-dates the corpus).",
+  "conservation": {
+    "games": 804,
+    "CAPTURE_CLEAN": 765,
+    "GAP": 39,
+    "NO_TAPE": 0
+  },
+  "recorder_down_candidate_bins": 6,
+  "arnrom": {
+    "event": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+    "verdict": "CAPTURE_CLEAN",
+    "max_gap_s": 8996,
+    "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+  },
+  "gaps": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "verdict": "GAP(5831s)",
+      "leg": "ALK",
+      "span": [
+        1784543297,
+        1784549128
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5831
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "verdict": "GAP(7829s)",
+      "leg": "COP",
+      "span": [
+        1784543003,
+        1784550832
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 7829
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "verdict": "GAP(5943s)",
+      "leg": "FAU",
+      "span": [
+        1784543139,
+        1784549082
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5943
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+      "verdict": "GAP(6152s)",
+      "leg": "GAD",
+      "span": [
+        1784542941,
+        1784549093
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6152
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "verdict": "GAP(4911s)",
+      "leg": "ARN",
+      "span": [
+        1784544142,
+        1784549053
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4911
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "verdict": "GAP(5487s)",
+      "leg": "TOB",
+      "span": [
+        1784543566,
+        1784549053
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5487
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+      "verdict": "GAP(5092s)",
+      "leg": "YOU",
+      "span": [
+        1784543958,
+        1784549050
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5092
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "verdict": "GAP(5795s)",
+      "leg": "NES",
+      "span": [
+        1784543254,
+        1784549049
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5795
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "verdict": "GAP(5201s)",
+      "leg": "AJD",
+      "span": [
+        1784543900,
+        1784549101
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5201
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "verdict": "GAP(5522s)",
+      "leg": "PAL",
+      "span": [
+        1784543538,
+        1784549060
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5522
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+      "verdict": "GAP(3964s)",
+      "leg": "NAP",
+      "span": [
+        1784545390,
+        1784549354
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3964
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+      "verdict": "GAP(4730s)",
+      "leg": "KOL",
+      "span": [
+        1784544321,
+        1784549051
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4730
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+      "verdict": "GAP(5972s)",
+      "leg": "ZHO",
+      "span": [
+        1784543164,
+        1784549136
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5972
+    },
+    {
+      "event": "KXATPMATCH-26JUL19ALTCOL",
+      "verdict": "GAP(4251s)",
+      "leg": "ALT",
+      "span": [
+        1784544947,
+        1784549198
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4251
+    },
+    {
+      "event": "KXATPMATCH-26JUL19BAEKEC",
+      "verdict": "GAP(6305s)",
+      "leg": "BAE",
+      "span": [
+        1784542746,
+        1784549051
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6305
+    },
+    {
+      "event": "KXATPMATCH-26JUL19CERTRU",
+      "verdict": "GAP(3731s)",
+      "leg": "TRU",
+      "span": [
+        1784545568,
+        1784549299
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3731
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "verdict": "GAP(6150s)",
+      "leg": "UGO",
+      "span": [
+        1784542901,
+        1784549051
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6150
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "verdict": "GAP(5155s)",
+      "leg": "DZU",
+      "span": [
+        1784544300,
+        1784549455
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5155
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GAUCAR",
+      "verdict": "GAP(5628s)",
+      "leg": "CAR",
+      "span": [
+        1784544753,
+        1784550381
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5628
+    },
+    {
+      "event": "KXATPMATCH-26JUL19KOPBUS",
+      "verdict": "GAP(5803s)",
+      "leg": "BUS",
+      "span": [
+        1784543245,
+        1784549048
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5803
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "verdict": "GAP(5989s)",
+      "leg": "STR",
+      "span": [
+        1784543299,
+        1784549288
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5989
+    },
+    {
+      "event": "KXATPMATCH-26JUL19VANFAR",
+      "verdict": "GAP(4058s)",
+      "leg": "VAN",
+      "span": [
+        1784545287,
+        1784549345
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4058
+    },
+    {
+      "event": "KXATPMATCH-26JUL19WAWBUR",
+      "verdict": "GAP(5969s)",
+      "leg": "WAW",
+      "span": [
+        1784506432,
+        1784512401
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5969
+    },
+    {
+      "event": "KXATPMATCH-26JUL20ROCMAR",
+      "verdict": "GAP(6054s)",
+      "leg": "ROC",
+      "span": [
+        1784542998,
+        1784549052
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6054
+    },
+    {
+      "event": "KXATPMATCH-26JUL20SCHROD",
+      "verdict": "GAP(5726s)",
+      "leg": "SCH",
+      "span": [
+        1784543323,
+        1784549049
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5726
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+      "verdict": "GAP(3905s)",
+      "leg": "CHI",
+      "span": [
+        1784545450,
+        1784549355
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3905
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "verdict": "GAP(5909s)",
+      "leg": "LAN",
+      "span": [
+        1784543208,
+        1784549117
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5909
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20AKSCOS",
+      "verdict": "GAP(5270s)",
+      "leg": "AKS",
+      "span": [
+        1784543841,
+        1784549111
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5270
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BARYUA",
+      "verdict": "GAP(5562s)",
+      "leg": "YUA",
+      "span": [
+        1784543500,
+        1784549062
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5562
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BONUCH",
+      "verdict": "GAP(5428s)",
+      "leg": "UCH",
+      "span": [
+        1784543629,
+        1784549057
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5428
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20GAOTAG",
+      "verdict": "GAP(5583s)",
+      "leg": "TAG",
+      "span": [
+        1784543588,
+        1784549171
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5583
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHAV",
+      "verdict": "GAP(5402s)",
+      "leg": "PAR",
+      "span": [
+        1784543670,
+        1784549072
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5402
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHON",
+      "verdict": "GAP(6365s)",
+      "leg": "PAR",
+      "span": [
+        1784542931,
+        1784549296
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6365
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "verdict": "GAP(5372s)",
+      "leg": "POD",
+      "span": [
+        1784543696,
+        1784549068
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5372
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20QUEKAL",
+      "verdict": "GAP(3606s)",
+      "leg": "KAL",
+      "span": [
+        1784545452,
+        1784549058
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3606
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20RUZSAL",
+      "verdict": "GAP(5119s)",
+      "leg": "SAL",
+      "span": [
+        1784543958,
+        1784549077
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5119
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SAMJOI",
+      "verdict": "GAP(3810s)",
+      "leg": "SAM",
+      "span": [
+        1784545518,
+        1784549328
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3810
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SEMKRA",
+      "verdict": "GAP(5416s)",
+      "leg": "SEM",
+      "span": [
+        1784543778,
+        1784549194
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5416
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20TIMSAS",
+      "verdict": "GAP(5669s)",
+      "leg": "TIM",
+      "span": [
+        1784543430,
+        1784549099
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5669
+    }
+  ],
+  "per_game": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1806,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 8996,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 234,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1539,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1170,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 9948,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 7843,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2651,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 6789,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 6451,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1719,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BROBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 14035,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 778,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1068,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5140,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12CALRAD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1254,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2252,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 864,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12CHOGAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1212,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1638,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5166,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1344,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1434,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 727,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 150,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12ECHMUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1392,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2063,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 330,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 728,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2310,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2540,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 850,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 433,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 558,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1732,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1887,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HECISO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2307,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 364,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1174,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 9637,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12KARMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1208,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1240,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 793,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12KUZDE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1122,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1378,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12LANKOB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 575,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 683,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MARARS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2889,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MARFOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1920,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 110,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1151,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4669,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MORPET",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3739,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1484,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 945,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1082,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1675,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 415,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1238,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2013,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2008,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1558,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1503,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2493,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12SALARN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1592,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5173,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1320,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1401,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2433,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2998,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 681,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1392,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1320,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2836,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WINROB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 531,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1693,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12YIBMAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1334,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1209,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 376,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2524,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1142,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 601,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2462,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1019,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 292,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1185,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4399,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1233,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1281,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2723,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 614,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 460,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2410,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 318,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 781,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 835,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2291,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 870,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 614,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3160,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 248,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13MONANG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 268,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1520,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1163,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 313,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 703,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2083,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 649,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 422,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1339,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13PRICRI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1115,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 600,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 320,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13RODALK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 598,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 714,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13SANLOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 551,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 484,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1104,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 738,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2760,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1952,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13WINKIR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 311,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 564,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13WONTUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 606,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1685,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 140,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 261,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1509,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ALCTAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1141,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 771,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2171,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 744,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 641,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 688,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2122,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1353,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 660,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1608,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2016,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1818,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 867,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 685,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1323,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2596,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 921,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 598,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1684,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 573,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 713,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1764,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 716,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1829,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1903,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 479,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1513,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAGSAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 721,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1777,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1827,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1292,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1080,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1847,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2123,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1649,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2356,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 410,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2887,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14OUAFIC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2299,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 561,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1403,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ROZRIC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1649,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 639,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14SQUKUM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1091,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1959,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2306,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1373,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 414,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1314,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14VUKARS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2146,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2243,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1882,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1919,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15GENDE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1070,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15HOLMAY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 638,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15IVACRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 647,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15LAJKRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 557,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3955,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 825,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 371,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 572,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1087,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 600,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 430,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 425,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 839,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1491,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 484,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 424,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1321,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15ZHOPER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1141,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15ZINGAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 681,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 548,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1538,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 664,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 531,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 645,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16DENBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3376,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 933,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 595,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FUESEY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 607,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 583,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 586,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 678,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3492,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 417,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1844,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1278,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 588,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 533,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2716,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 614,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 551,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 329,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 521,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 468,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 598,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 598,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 665,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 907,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2161,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 667,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1014,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 483,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 565,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 644,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17SANALM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 838,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 510,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 563,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 389,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 477,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 899,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 624,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 322,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18FUEBON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 739,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18GENKUM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 860,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 410,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 736,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18RODSAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 591,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 583,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 717,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3570,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1136,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 854,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 712,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1895,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 917,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 971,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 977,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BONALC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 498,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1385,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1239,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1271,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 549,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2560,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 929,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 872,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1068,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3312,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19GIUDEV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1301,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HERECH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1301,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 765,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 758,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19JOHGEO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 821,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19JONISO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 806,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1031,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 557,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 693,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19KUZOPI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1253,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1206,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1312,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1111,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1877,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 867,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4045,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 857,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MONTHO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1017,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 781,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1193,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19PALMUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3765,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1324,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19PETALO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1188,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19PIENES",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1732,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1730,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2186,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2113,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19REJWES",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1732,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 976,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 710,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 615,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 13834,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1030,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 914,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19TOKMIY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 614,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 310,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19TORSEN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1088,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1125,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VALCAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2638,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VANGOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 694,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1339,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VARBOI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3696,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VASTAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1108,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 931,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 494,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 600,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1058,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 784,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "verdict": "GAP(5831s)",
+      "leg": "ALK",
+      "span": [
+        1784543297,
+        1784549128
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5831
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1243,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 216,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 948,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 522,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "verdict": "GAP(7829s)",
+      "leg": "COP",
+      "span": [
+        1784543003,
+        1784550832
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 7829
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2000,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 692,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "verdict": "GAP(5943s)",
+      "leg": "FAU",
+      "span": [
+        1784543139,
+        1784549082
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5943
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+      "verdict": "GAP(6152s)",
+      "leg": "GAD",
+      "span": [
+        1784542941,
+        1784549093
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6152
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "verdict": "GAP(4911s)",
+      "leg": "ARN",
+      "span": [
+        1784544142,
+        1784549053
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4911
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 640,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GIUHER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 598,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "verdict": "GAP(5487s)",
+      "leg": "TOB",
+      "span": [
+        1784543566,
+        1784549053
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5487
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+      "verdict": "GAP(5092s)",
+      "leg": "YOU",
+      "span": [
+        1784543958,
+        1784549050
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5092
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 548,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3344,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2398,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2851,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 767,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20KYMCLA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 438,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2025,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1638,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2697,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2770,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3589,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "verdict": "GAP(5795s)",
+      "leg": "NES",
+      "span": [
+        1784543254,
+        1784549049
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5795
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 285,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 642,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "verdict": "GAP(5201s)",
+      "leg": "AJD",
+      "span": [
+        1784543900,
+        1784549101
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5201
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "verdict": "GAP(5522s)",
+      "leg": "PAL",
+      "span": [
+        1784543538,
+        1784549060
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5522
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1445,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+      "verdict": "GAP(3964s)",
+      "leg": "NAP",
+      "span": [
+        1784545390,
+        1784549354
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3964
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 257,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20POLBRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1549,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+      "verdict": "GAP(4730s)",
+      "leg": "KOL",
+      "span": [
+        1784544321,
+        1784549051
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4730
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1530,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3212,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 688,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1014,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20TROISO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 679,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1127,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 795,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 721,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1155,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 217,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WATILA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 317,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2607,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 384,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+      "verdict": "GAP(5972s)",
+      "leg": "ZHO",
+      "span": [
+        1784543164,
+        1784549136
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5972
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3231,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1116,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 7147,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BORKOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4973,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUDPEL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4837,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUEMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 768,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CARSAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 898,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CECOLI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 350,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CERKOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2073,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CHOBAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5128,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CINHEM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 606,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CORDAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 467,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DAHBAE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4788,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DEJGAU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 7144,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DIEMON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 509,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DODCAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4819,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DROBLO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3012,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DZUROC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1337,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12FARWAW",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3455,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12FELKEC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3397,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12GUEGOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 484,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12JACTRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1152,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KOPPRI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1343,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KRUFER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 929,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12LAJVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1621,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12MARHAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3690,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12MOLFAU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 535,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12MOLROY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4420,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12MULSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3053,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12NEUTOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 389,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 6910,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12PASKAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 954,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12PRASAI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 492,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12REJMID",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 883,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SESMER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3446,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SKASAC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 569,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SLADAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 440,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SONSCH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2317,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12STRMUN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3100,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SVRDIM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5270,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12TABHUE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 504,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12TSIBUS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2847,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL13COLSKA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 450,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL13FAUDAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 464,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL13MARMID",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 749,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL13PASKRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 394,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL13SANDAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 499,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL13TABROD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 287,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14CECBUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1935,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14CINHAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 126,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14DIAMID",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 126,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14GOMMCD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1563,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14KYMDIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 126,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14MARPRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1208,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14NEUPRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 350,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14RINTAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2044,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14TOPUGO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 152,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14TRAKRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 120,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14VALDAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 127,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14VANDAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 127,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15ALTDAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 838,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15BASTIR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1873,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15BORDIM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 870,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15BUBHAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3655,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15CARUGO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 523,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15CERKEC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1411,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15COBBUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 308,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15COLSON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 825,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15ETCMER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 523,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15GOMARN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 312,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15HANVAC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 886,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15KYMTSI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 889,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRADZU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 940,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRIMOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 647,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15RUBPEL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2273,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15TABMID",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5279,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15TRANAV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 947,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15TRUDAV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 327,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANDRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 525,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANVAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 838,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16BURUGO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 515,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16DEJBAE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1605,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16DZUARN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 530,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16FARRUU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3330,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16MERDRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 329,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16MOLDAV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 145,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16SHESTR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2623,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17BORDAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 377,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17BURMER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 352,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17CERRUU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 422,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17COLVAC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 384,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17DZUMOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 335,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17HALSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 339,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17RINTSI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 395,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17RUBBAE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 347,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17TABTIR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 393,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17VALTRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 223,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18BUTTAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 589,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18CINMIC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 331,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18COLCER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 308,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18CORSAC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 466,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 971,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DELRIB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 588,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DOMSKA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 795,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18GAUTSE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1560,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18HEIFEL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 677,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18HIPGIU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 675,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18JACDA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1522,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18KOPHER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 570,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18LUZTSE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 637,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18MARJOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 599,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18MERDZU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 388,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18PELSIL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 998,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18ROCBUE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 785,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18RODCHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 564,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18RUBTAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 484,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18SHETSI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 253,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18VALDAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 121,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18WALDJE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 701,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19ALTCOL",
+      "verdict": "GAP(4251s)",
+      "leg": "ALT",
+      "span": [
+        1784544947,
+        1784549198
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4251
+    },
+    {
+      "event": "KXATPMATCH-26JUL19BAEKEC",
+      "verdict": "GAP(6305s)",
+      "leg": "BAE",
+      "span": [
+        1784542746,
+        1784549051
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6305
+    },
+    {
+      "event": "KXATPMATCH-26JUL19CERTRU",
+      "verdict": "GAP(3731s)",
+      "leg": "TRU",
+      "span": [
+        1784545568,
+        1784549299
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3731
+    },
+    {
+      "event": "KXATPMATCH-26JUL19CHODEJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1503,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19CINGIU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DELDJE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "verdict": "GAP(6150s)",
+      "leg": "UGO",
+      "span": [
+        1784542901,
+        1784549051
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6150
+    },
+    {
+      "event": "KXATPMATCH-26JUL19FELKOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 672,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19FERVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1381,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "verdict": "GAP(5155s)",
+      "leg": "DZU",
+      "span": [
+        1784544300,
+        1784549455
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5155
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GAUCAR",
+      "verdict": "GAP(5628s)",
+      "leg": "CAR",
+      "span": [
+        1784544753,
+        1784550381
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5628
+    },
+    {
+      "event": "KXATPMATCH-26JUL19JACDAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL19KOPBUS",
+      "verdict": "GAP(5803s)",
+      "leg": "BUS",
+      "span": [
+        1784543245,
+        1784549048
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5803
+    },
+    {
+      "event": "KXATPMATCH-26JUL19LUZTAB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 199,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19MARSKA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 497,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19MOLOFN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2204,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19MULNAV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1909,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19NEUHAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 6367,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19PELBUE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL19RODSAC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL19RUBDAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "verdict": "GAP(5989s)",
+      "leg": "STR",
+      "span": [
+        1784543299,
+        1784549288
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5989
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TORBAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 938,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TSICOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 153,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19VANFAR",
+      "verdict": "GAP(4058s)",
+      "leg": "VAN",
+      "span": [
+        1784545287,
+        1784549345
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 4058
+    },
+    {
+      "event": "KXATPMATCH-26JUL19WAWBUR",
+      "verdict": "GAP(5969s)",
+      "leg": "WAW",
+      "span": [
+        1784506432,
+        1784512401
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5969
+    },
+    {
+      "event": "KXATPMATCH-26JUL20DIACIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 309,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL20DJECIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5270,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXATPMATCH-26JUL20ROCMAR",
+      "verdict": "GAP(6054s)",
+      "leg": "ROC",
+      "span": [
+        1784542998,
+        1784549052
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6054
+    },
+    {
+      "event": "KXATPMATCH-26JUL20SCHROD",
+      "verdict": "GAP(5726s)",
+      "leg": "SCH",
+      "span": [
+        1784543323,
+        1784549049
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5726
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 991,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 297,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BASABB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3022,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1523,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2736,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3494,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1116,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1131,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2759,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1744,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3766,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1523,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2091,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2147,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12SAIETO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1228,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1913,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1408,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3145,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 284,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1678,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 397,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13BAIPRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 737,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 608,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 494,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13GRABER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2007,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 465,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1098,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1744,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1816,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1002,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 540,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 423,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 452,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2128,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1496,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1928,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1415,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 287,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RINAST",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1521,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3494,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2989,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 387,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2251,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1551,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 937,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1053,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 646,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2083,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2266,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2002,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3682,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1109,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2171,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 938,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2488,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1756,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1596,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2550,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1109,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 661,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1304,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1603,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1793,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1578,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 903,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 412,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14SHUSHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 648,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1405,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14TREGRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2014,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1659,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1805,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1037,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1315,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1137,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1355,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1553,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15JONURG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1044,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1062,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1557,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1085,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1070,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2096,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 838,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4794,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1832,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 687,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5217,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1558,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4983,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4983,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1215,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 592,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 595,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1035,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4989,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 451,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 788,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 966,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17CHIBRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 658,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 677,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 678,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 829,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 906,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 809,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1148,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 623,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 785,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 844,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1076,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18BROBRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 631,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2033,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1297,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1423,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18RENGIA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3197,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18SERBER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1147,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 7050,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18TREJON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1132,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1804,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 704,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18WEBHOD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 789,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1040,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1525,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 836,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 878,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1280,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL19RENTON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 725,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 918,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL19VANTAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 736,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 650,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3283,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 586,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+      "verdict": "GAP(3905s)",
+      "leg": "CHI",
+      "span": [
+        1784545450,
+        1784549355
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3905
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "verdict": "GAP(5909s)",
+      "leg": "LAN",
+      "span": [
+        1784543208,
+        1784549117
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5909
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 762,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 711,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 923,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12AVASEI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 644,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12FETPIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1175,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12GARPRI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 521,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12HERKAZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1368,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12HIBTON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1540,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12HODYAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 155,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12ITOMAN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 632,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12KOZIBR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2048,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12KULZAA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1022,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12LEPBUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1911,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12LIUPOP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1016,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12MICKUL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 122,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12MORNEP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 144,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12OKAIPE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2523,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12PRIION",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1494,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12ROMTOD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 474,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12TAGSIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1559,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12WERAMA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 867,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13AMAHER",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 662,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13ARAZID",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2371,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13ARGTAG",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 263,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13AVAFET",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 127,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13BADKAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2579,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13BLISAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3598,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13BONSOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 547,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13BURLEP",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 279,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13BURPUT",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2460,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13CHAJIM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 800,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13CRIJEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3077,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13GRAPAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2807,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13HODDAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 173,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13ITOKOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2437,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KAWWAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2823,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KRETOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2906,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KUDSAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2258,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LEPIBR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 424,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LINHON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1164,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LIUIPE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 260,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MATMIC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 320,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MONMAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5019,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MORBEJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 179,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13PODMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2717,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13PRIGAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 264,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13QUERUS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1688,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13ROMKUL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 855,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13SAKTON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2167,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13SHEGAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2517,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13TAUHIB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4751,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13TAUTOM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13TIMANN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2863,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13VALCOS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2751,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13ZHEBOU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 797,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14AMAJAC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2273,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14AVAUCH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 885,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14BULPRI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 269,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14OLIIPE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 420,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14PUTJEA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14PUTLIU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 127,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14SALIBR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 929,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14UDVROM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 682,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15AVAMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 839,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15BONZID",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1170,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15BURJAC",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 503,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15DARSAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 385,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15HONPAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 760,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15IBRBAD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4638,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15KREMON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4636,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15MICZHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 395,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15OLIPRI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 4545,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15PUTCHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 920,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15SHEQUE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2456,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15TAGBEJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 375,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16KORANN",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 355,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16TAUTON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 867,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16UDVKAW",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2339,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16VALSAS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 505,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17KREZHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 376,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17OLIBUR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 362,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PARSAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 384,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PUTSHE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 536,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17TAUBEJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 342,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17UDVBAD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 412,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17VALKOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 350,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17ZIDMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 893,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18BADZID",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 306,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18BANGAO",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 526,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18BERSAI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1225,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18COSHIB",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1185,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18HONTHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 308,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18ITOKNU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 629,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MASRYS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 688,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MICFRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 416,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MORAKS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 967,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18OKALEE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 807,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18PALHON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 347,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18PODKRE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 911,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18SAKKOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 355,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18SALZOL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 455,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18SHEOLI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 270,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18TAUKRE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 274,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19AVDNIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 589,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19BRAVON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 261,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19COSAKS",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1441,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19EIGCAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 738,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19GAOFRU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 994,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19HONLEE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19JAKAVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19KRESAK",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 189,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19LEPPET",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19MALZAA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19MONPIE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 690,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19PODSAI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 816,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19PRIMAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 583,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19RUSKAZ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1232,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19RYSHON",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19SALKNU",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19SHEBAD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 311,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19STRPAQ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 564,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19VEDGAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 680,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19YASBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 776,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20AKSCOS",
+      "verdict": "GAP(5270s)",
+      "leg": "AKS",
+      "span": [
+        1784543841,
+        1784549111
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5270
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BARYUA",
+      "verdict": "GAP(5562s)",
+      "leg": "YUA",
+      "span": [
+        1784543500,
+        1784549062
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5562
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BLIBEJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3575,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BONUCH",
+      "verdict": "GAP(5428s)",
+      "leg": "UCH",
+      "span": [
+        1784543629,
+        1784549057
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5428
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20BOUBOU2",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 442,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20FRUKRE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3574,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20GAOTAG",
+      "verdict": "GAP(5583s)",
+      "leg": "TAG",
+      "span": [
+        1784543588,
+        1784549171
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5583
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KORJIM",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3559,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KOVTAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 2774,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 0
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20LEPAVA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 96,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20LYSVAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 1009,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20NIEMAL",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 134,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20OKTDOD",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 506,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20OLISCH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 5134,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHAV",
+      "verdict": "GAP(5402s)",
+      "leg": "PAR",
+      "span": [
+        1784543670,
+        1784549072
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5402
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHON",
+      "verdict": "GAP(6365s)",
+      "leg": "PAR",
+      "span": [
+        1784542931,
+        1784549296
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 6365
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PIECAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 130,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODLEE",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 428,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "verdict": "GAP(5372s)",
+      "leg": "POD",
+      "span": [
+        1784543696,
+        1784549068
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5372
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PRIBRA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 174,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20QUEKAL",
+      "verdict": "GAP(3606s)",
+      "leg": "KAL",
+      "span": [
+        1784545452,
+        1784549058
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3606
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20ROMERJ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3598,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20RUSPAQ",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 409,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20RUZSAL",
+      "verdict": "GAP(5119s)",
+      "leg": "SAL",
+      "span": [
+        1784543958,
+        1784549077
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5119
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SAMJOI",
+      "verdict": "GAP(3810s)",
+      "leg": "SAM",
+      "span": [
+        1784545518,
+        1784549328
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 3810
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SEISNI",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 418,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SEMKRA",
+      "verdict": "GAP(5416s)",
+      "leg": "SEM",
+      "span": [
+        1784543778,
+        1784549194
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5416
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20SORCHA",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3524,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20STENOH",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 3987,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20TIMSAS",
+      "verdict": "GAP(5669s)",
+      "leg": "TIM",
+      "span": [
+        1784543430,
+        1784549099
+      ],
+      "coincides_recorder_down": true,
+      "max_gap_s": 5669
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20VEDBAR",
+      "verdict": "CAPTURE_CLEAN",
+      "max_gap_s": 596,
+      "note": "longest silence is an isolated quiet-book stretch (no corpus-wide recorder-down coincidence)"
+    }
+  ]
+}

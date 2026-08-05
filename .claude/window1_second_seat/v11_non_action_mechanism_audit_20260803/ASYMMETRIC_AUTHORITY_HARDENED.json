@@ -900,5 +900,7 @@
       "p90_shortfall": 0.0,
       "max_shortfall": 0
     }
-  }
+  },
+  "NON_DENOMINATOR_SIMULTANEITY_FRAMED": "This artifact frames a TIMING/simultaneity question (overlap, carry, release, or harvest window). It is NOT the achievable denominator; the price denominator is the 390 in CLOSE_AUDIT_AND_JOINT_CEILING_SUMMARY.json. Do not read overlap/lockable counts as the ceiling.",
+  "FEES_IMMATERIAL_MAKER_MODE": "All floors/entries here are residency-maker (rest-and-be-hit); maker-mode fees are immaterial to the price comparisons and are not modeled. No taker fee tier applies."
 }

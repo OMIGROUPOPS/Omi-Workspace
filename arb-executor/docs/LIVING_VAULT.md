@@ -1,5 +1,25 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-05 - V29-R3: THE STANDING FLOOR RELEASES
+
+At arm, evaluate the current own-book snapshot before waiting for future
+formations. An ordinary standing ask at/below aim releases with spread <=1,
+ask dwell >=10 seconds, and displayed ask size >=5. A locked/crossed
+`bid >= ask` at/below aim is maximal urgency: dwell remains mandatory, while
+ordinary spread and displayed-ask-size gates are bypassed and the order
+releases at the standing ask. The R2 post-arm path remains byte-identical when
+the arm snapshot lacks authority. The 128-row R2 defect cohort contains three
+standing-arm releases and 125 genuinely never-offered legs. ARNROM|ARN flips,
+but the frozen row is `57/56`, 519 seconds dwell, ask size 2—not the shorthand
+four-hour/five-lot description. R3 changes 11 streams, completes six more
+pairs, adds zero JOINT, and leaves the V29-R2 JOINT floor at 68.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/49f6501561c5d99a7f36c68ec41e0ea7250680e5/arb-executor/docs/research/window1/WINDOW1_V29R3_STANDING_FLOOR_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/49f6501561c5d99a7f36c68ec41e0ea7250680e5/.claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805/ARNROM_ARN_REGRESSION_RECEIPT.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/49f6501561c5d99a7f36c68ec41e0ea7250680e5/.claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805/SCORECARD.json
+
 ### 2026-08-04 - V29-R2: ARM THE UNCAPTURED SIBLING, FLOOR RELEASE IS NOT ORDINAL-GATED
 
 V29-R targeted the credited completion-trace row; the actual activation

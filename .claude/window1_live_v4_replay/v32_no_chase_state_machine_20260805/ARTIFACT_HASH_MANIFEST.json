@@ -1,0 +1,88 @@
+{
+  "files": {
+    "ARNROM_REGRESSION_RECEIPT.json": {
+      "sha256": "b36daa0709aebbc9c4b3236a47473492192698e8852ec8593c4fe6f6b2aab63f",
+      "bytes": 11139
+    },
+    "CARRIED_PAIR_CENSUS.json": {
+      "sha256": "d6a0c2b54ac0cd45cbfe9f1f774b5f73d8f1c28bab07a6b613b40d9f705016e5",
+      "bytes": 14769
+    },
+    "DECISION_TRACE_1608.json": {
+      "sha256": "d2e0a52e2be7463194a9c3108dc107a10373e40cbceb9842662ab8c3fba9f66d",
+      "bytes": 5456088
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "6cc0c1662cc1471865b570c52837d1ac13c6fcd4b61a31eba51391718c8021a6",
+      "bytes": 929
+    },
+    "DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "c6f6a2c16131cd74985093c5c7efa50f28b31fbee37eafcf9d4ca6b20a197013",
+      "bytes": 27420
+    },
+    "EVENT_LEDGER.jsonl.gz": {
+      "sha256": "edd315b1d16956801d22d7287e5ee054439fd0b917d2439575451e83a1b16be1",
+      "bytes": 382835
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "266089a3c304facb0ea33b4325cdc38e4956ca6c8bd96a6685ebf007b1f2bbfd",
+      "bytes": 413
+    },
+    "FRONTIER.json": {
+      "sha256": "df462913f79b44a5297f0f66ff33e9d28c8843676ff0ea4418a3918b262ac548",
+      "bytes": 22456
+    },
+    "FULL_DECISION_TRACE.jsonl.gz.part001": {
+      "sha256": "602640b162d7b795fb179167ffa593e2c4750c3caf5f97178d3b9fdc87dccf58",
+      "bytes": 83886080
+    },
+    "FULL_DECISION_TRACE.jsonl.gz.part002": {
+      "sha256": "e0cee4ff92bdc18d4bdb4b109ab363b5eb52b09c7795056c01f3fa061fb846cb",
+      "bytes": 55638994
+    },
+    "LEG_LEDGER.jsonl.gz": {
+      "sha256": "55b23b1c4f9a0db52be3d0615eb12749b27489390204b7258c6fadcd77dbb990",
+      "bytes": 366668
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "857e02654f5c10874d59a28682eb075930dc7ff61b9e9c316db973bd323e3df6",
+      "bytes": 6747
+    },
+    "REGRET_LEDGER.jsonl.gz": {
+      "sha256": "998a3be998c0ba9b3fd0c1574c4bf8b969784c51cb97cc86e36879588184f906",
+      "bytes": 18839
+    },
+    "REPORT.md": {
+      "sha256": "ac77b9d415177b527b090b314acaf7ad43551e93456b082b6fd143d28a85c076",
+      "bytes": 785
+    },
+    "SCORECARD.json": {
+      "sha256": "fb9c9be87a10f35f827f7c2e302d17a7bf7d36b66b628adb6a750bbc1e2c9ec2",
+      "bytes": 15936
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "75c9ec1987d11ea05601e26d2cc9401fcac8e0de9c87d6ae5f2a9e8e2559bb9b",
+      "bytes": 255391
+    },
+    "SPEC_BINDING.json": {
+      "sha256": "e58e87c04a3fbe73f919cb5b82629a2af35016b12ba379ce2fbb8dcda7bb9cd8",
+      "bytes": 473
+    },
+    "STATE_DISAGREEMENT_RECEIPT.json": {
+      "sha256": "555d0b3bb27dca1429eebc12185bb08016c96129f83fcaf9b6bb47dc801c4b8e",
+      "bytes": 545
+    },
+    "STATE_MACHINE_CONTRACT.json": {
+      "sha256": "47aedcde7f079bfec5888925281959367751ee2b4f08c333f050899b45984c13",
+      "bytes": 1056
+    },
+    "TRACE_PACKAGING_RECEIPT.json": {
+      "sha256": "5169db7ebd4061528d8571591e10f748ff1b14b67181100c305738c0e0585039",
+      "bytes": 1083
+    },
+    "WAITED_AND_LOST_COST.json": {
+      "sha256": "24eb45ec5e8bb4da7ba4f94337d5cfc1a962ac033245e2c5b1680ab11377fc64",
+      "bytes": 40497
+    }
+  }
+}

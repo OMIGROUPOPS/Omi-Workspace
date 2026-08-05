@@ -1,0 +1,32 @@
+{
+  "law": "FIXED_80_MIB_BYTE_SLICING_OF_ALREADY_TWO_BUILD_IDENTICAL_GZIP_STREAM",
+  "semantic_change": false,
+  "source_trace": {
+    "logical_path": "FULL_DECISION_TRACE.jsonl.gz",
+    "sha256": "07db47509b949d41bc82662ddd20bf02a2c0c06e58da3ded5f51bd4e56518f4e",
+    "bytes": 139525074
+  },
+  "packaging_runs": 2,
+  "byte_identical_parts_across_packaging_runs": true,
+  "part_size_bytes": 83886080,
+  "parts": {
+    "FULL_DECISION_TRACE.jsonl.gz.part001": {
+      "sha256": "602640b162d7b795fb179167ffa593e2c4750c3caf5f97178d3b9fdc87dccf58",
+      "bytes": 83886080
+    },
+    "FULL_DECISION_TRACE.jsonl.gz.part002": {
+      "sha256": "e0cee4ff92bdc18d4bdb4b109ab363b5eb52b09c7795056c01f3fa061fb846cb",
+      "bytes": 55638994
+    }
+  },
+  "reassembly": {
+    "sha256": "07db47509b949d41bc82662ddd20bf02a2c0c06e58da3ded5f51bd4e56518f4e",
+    "bytes": 139525074,
+    "exact": true
+  },
+  "packaging_source": {
+    "path": "arb-executor/analysis/package_window1_v32_trace.js",
+    "sha256": "906635ead90d268208f75390aa03d30f95d296c8a68f88f75a935e988dfefa10",
+    "bytes": 3869
+  }
+}

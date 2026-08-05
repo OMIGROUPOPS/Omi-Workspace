@@ -1,0 +1,1217 @@
+{
+  "comparison_ceiling_joint": 201,
+  "V32_executable_joint": 41,
+  "executable_gap_is_execution_price": 160,
+  "rows": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HECISO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12KARMAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12LANKOB",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MARFOR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14OUAFIC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14VUKARS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15IVACRA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19JOHGEO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19PALMUN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19TOKMIY",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VALCAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VANGOR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20POLBRU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WATILA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BORKOU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUDPEL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CARSAN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CHOBAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CORDAN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DAHBAE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DODCAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DZUROC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12FARWAW",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KOPPRI",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12MARHAN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12MOLROY",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12MULSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SKASAC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SONSCH",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12STRMUN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL12TSIBUS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL13TABROD",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14CINHAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL14TRAKRU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15ALTDAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15BUBHAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15COBBUR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15COLSON",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRADZU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15RUBPEL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANDRO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL16BURUGO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL17HALSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DOMSKA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18KOPHER",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL18PELSIL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19ALTCOL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19BAEKEC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19CERTRU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19KOPBUS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19LUZTAB",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19MARSKA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19MULNAV",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TORBAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TSICOL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXATPMATCH-26JUL20DIACIN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": true,
+      "execution_cost": "EXECUTED"
+    },
+    {
+      "event": "KXATPMATCH-26JUL20DJECIN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12HERKAZ",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12KOZIBR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12LEPBUR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13BLISAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13GRAPAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13ITOKOR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LINHON",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13SAKTON",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14AMAJAC",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL15IBRBAD",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17KREZHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PUTSHE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18HONTHA",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18PODKRE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19EIGCAR",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20AKSCOS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20FRUKRE",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KORJIM",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20OLISCH",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PARHON",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20QUEKAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20RUZSAL",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20TIMSAS",
+      "model_free_ceiling_joint": true,
+      "V32_executable_joint": false,
+      "execution_cost": "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL"
+    }
+  ],
+  "disposition": {
+    "WAITED_AND_LOST_OR_NO_CONSERVATIVE_FILL": 169,
+    "EXECUTED": 32
+  }
+}

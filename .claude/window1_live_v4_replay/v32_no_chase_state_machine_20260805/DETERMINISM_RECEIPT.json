@@ -1,0 +1,33 @@
+{
+  "builds": 2,
+  "byte_identical_core_artifacts": true,
+  "compared_against": ".v32-no-chase-run1",
+  "compared_files": [
+    "ARNROM_REGRESSION_RECEIPT.json",
+    "CARRIED_PAIR_CENSUS.json",
+    "DECISION_TRACE_1608.json",
+    "DIFFERENTIAL_RECEIPT.json",
+    "EVENT_LEDGER.jsonl.gz",
+    "FORBIDDEN_ACCESS_RECEIPT.json",
+    "FRONTIER.json",
+    "FULL_DECISION_TRACE.jsonl.gz",
+    "LEG_LEDGER.jsonl.gz",
+    "REGRET_GAUGE.json",
+    "REGRET_LEDGER.jsonl.gz",
+    "REPORT.md",
+    "SCORECARD.json",
+    "SOURCE_HASH_MANIFEST.json",
+    "SPEC_BINDING.json",
+    "STATE_DISAGREEMENT_RECEIPT.json",
+    "STATE_MACHINE_CONTRACT.json",
+    "WAITED_AND_LOST_COST.json"
+  ],
+  "mismatches": [],
+  "postbuild_trace_packaging": {
+    "packaging_runs": 2,
+    "byte_identical": true,
+    "exact_reassembly": true,
+    "source_trace_sha256": "07db47509b949d41bc82662ddd20bf02a2c0c06e58da3ded5f51bd4e56518f4e",
+    "part_count": 2
+  }
+}

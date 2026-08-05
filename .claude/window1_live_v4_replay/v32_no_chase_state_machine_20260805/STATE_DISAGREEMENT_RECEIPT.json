@@ -1,0 +1,26 @@
+{
+  "receipts": 8255711,
+  "disagreements": 2888398,
+  "by_category": {
+    "ATP_CHALL": {
+      "receipts": 3678912,
+      "disagreements": 1325165,
+      "rate": 0.3602056803750674
+    },
+    "ATP_MAIN": {
+      "receipts": 1928687,
+      "disagreements": 694211,
+      "rate": 0.3599396895400861
+    },
+    "WTA_CHALL": {
+      "receipts": 1487862,
+      "disagreements": 487175,
+      "rate": 0.3274329205262316
+    },
+    "WTA_MAIN": {
+      "receipts": 1160250,
+      "disagreements": 381847,
+      "rate": 0.32910751993104936
+    }
+  }
+}

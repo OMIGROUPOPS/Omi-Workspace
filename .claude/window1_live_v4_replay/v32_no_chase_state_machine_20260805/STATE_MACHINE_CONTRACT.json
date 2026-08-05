@@ -1,0 +1,34 @@
+{
+  "state_scope": "ONE_STATE_PER_LEG_FROM_BOTH_EVIDENCE_TYPES",
+  "quote_path": {
+    "authority": "PRIMARY",
+    "trailing_receipt_lookback_seconds": 300,
+    "falling": [
+      "NEW_LOW_ASK",
+      "SELLER_HIT_PRINT"
+    ],
+    "rising": [
+      "NEW_HIGH_BID",
+      "BUYER_LIFT_PRINT"
+    ],
+    "otherwise": "SETTLED"
+  },
+  "pressure": {
+    "authority": "SECONDARY_WHEN_QUOTE_PATH_SETTLED",
+    "depth_ratio_rising_at_or_above": 0.6,
+    "depth_ratio_falling_at_or_below": 0.4
+  },
+  "discipline": {
+    "FALLING": "REST_ONE_CENT_UNDER_BEST_BID_AND_ONLY_REPRICE_DOWN",
+    "RISING": "NO_CHASE_HOLD",
+    "SETTLED": "QUALIFIED_STANDING_ASK_TAKEABLE"
+  },
+  "read_law": {
+    "spread_max_cents": 1,
+    "dwell_min_seconds": 10,
+    "displayed_size_min_contracts": 5
+  },
+  "maker_fill_law": "STRICTLY_LATER_SELLER_AGGRESSED_TRUE_PRINT_SIZE_AT_LEAST_FIVE_AT_OR_BELOW_RESTING_LIMIT",
+  "pair_cap": "99_MINUS_FIRST_CREDITED_FILL",
+  "clock_law": "NO_ELAPSED_TIME_ACTION_TRIGGER; 300S_ONLY_CAUSAL_EVIDENCE_LOOKBACK; ORDERS_CARRY_TO_GUARDED_RIGHT_EDGE"
+}

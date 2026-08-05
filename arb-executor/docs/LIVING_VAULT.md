@@ -1,5 +1,24 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-05 - V32 EXECUTABLE NO-CHASE REJECTED; R3 REMAINS OPERATIVE
+
+V32 makes the `6f2c3f82` model-free no-chase discipline executable with
+quote-path primary, July-6 pressure secondary, a down-only maker rest during
+FALLING, qualified standing-ask takes during SETTLED, immediate sibling cap
+at `99 - fill`, no clock trigger, and carry to the guarded edge. Conservative
+maker credit requires a strictly later seller-aggressed true print of at least
+five contracts at or below the resting limit. D=804; V32 acts on 1,564 legs,
+credits 957 (116 maker / 841 taker), completes 202 pairs, and grades 41 JOINT.
+It regresses the operative R3 floor of 68 and is rejected. The gap from the
+model-free 201 comparison ceiling is 160 pairs: the executable price, not
+market absence. ARNROM is 61+38=99, both explicit taker credits, and JOINT.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/da36ba822a22437e58bbc361948a55c7d1a1f3a3/arb-executor/docs/research/window1/WINDOW1_V32_NO_CHASE_STATE_MACHINE_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a3429cad6719f96a25a900812e0f360b71a5607e/.claude/window1_live_v4_replay/v32_no_chase_state_machine_20260805/SCORECARD.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a3429cad6719f96a25a900812e0f360b71a5607e/.claude/window1_live_v4_replay/v32_no_chase_state_machine_20260805/TRACE_PACKAGING_RECEIPT.json
+
 ### 2026-08-05 - V31 DIP-PRESSURE GOVERNOR REJECTED; R3 REMAINS OPERATIVE
 
 V31 lawfully earned repair authority only in WTA_CHALL under the stated

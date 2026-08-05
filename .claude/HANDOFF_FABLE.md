@@ -1,6 +1,23 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## V32 EXECUTABLE NO-CHASE - REJECTED, R3 OPERATIVE - 2026-08-05
+
+Frozen V32 implements the `6f2c3f82` no-chase state machine causally on all
+804 development events. Maker credit is no longer inferred from residency: it
+requires a strictly later seller-aggressed true print, size at least five, at
+or below the active rest. V32 result is 41 JOINT versus operative R3 at 68;
+the executable gap to the separately labelled 201 model-free ceiling is 160.
+R3 remains operative. ARNROM executes at 61+38=99, both taker-class credits.
+Two builds reproduce all core bytes; the exact full trace reassembles from two
+Git-safe parts to SHA-256 `07db47509b949d41bc82662ddd20bf02a2c0c06e58da3ded5f51bd4e56518f4e`.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/da36ba822a22437e58bbc361948a55c7d1a1f3a3/arb-executor/docs/research/window1/WINDOW1_V32_NO_CHASE_STATE_MACHINE_VAULT_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a3429cad6719f96a25a900812e0f360b71a5607e/.claude/window1_live_v4_replay/v32_no_chase_state_machine_20260805/SCORECARD.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a3429cad6719f96a25a900812e0f360b71a5607e/.claude/window1_live_v4_replay/v32_no_chase_state_machine_20260805/DETERMINISM_RECEIPT.json
+
 ## LIVE EXIT-BAND AUTHORITY AUDIT - 2026-08-04
 
 The stopped live lane is bound to the sealed gated-optima exit parquets, not

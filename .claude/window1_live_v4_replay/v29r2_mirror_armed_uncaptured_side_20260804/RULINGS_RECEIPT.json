@@ -1,0 +1,33 @@
+{
+  "overlay_law": "NEVER_BLOCKS_V28; INCUMBENT_FIRST_STANDS_OVERLAY_DOWN; ALL_UNCHANGED_STREAMS_HASH_IDENTICAL",
+  "dwell_10_seconds": {
+    "status": "RATIFIED_PROVISIONALLY_AS_IS",
+    "reason": "COMPARABILITY_WITH_ALL_PRIOR_RESULTS",
+    "sensitivity_study": "DEFERRED_TO_HOLDOUT_ERA"
+  },
+  "pair_carry_clock": {
+    "status": "PROHIBITED",
+    "wall_clock_limit": null,
+    "elapsed_time_policy_inputs": []
+  },
+  "V29R2": {
+    "activation_population": "UNCREDITED_SIBLING_OF_CREDITED_COMPLETION_FLAG_PLUS_SEPARATE_CARRIED_POSITIVE_CLASS",
+    "close_bar": "REMOVED_EX_POST_NOT_BOUND",
+    "aim": "min(99-first_fill, own_lawful_live_book_floor)",
+    "release_authority": "FIRST_STRICTLY_LATER_OWN_BOOK_ASK_AT_OR_BELOW_AIM_WITH_SPREAD_LE_1_DWELL_GE_10_CAPACITY_GE_5",
+    "coherent_decline_ordinal": "LOGGED_CONFIRMATION_ONLY_NEVER_GATE",
+    "joint_law": "EX_POST_GRADE_ONLY"
+  },
+  "orphans_unchanged": [
+    {
+      "name": "DEAD_SPREAD_THRESHOLD",
+      "value": 20,
+      "status": "AWAITING_RULING"
+    },
+    {
+      "name": "SPREAD_LE_2_POSTING_GATE",
+      "value": 2,
+      "status": "AWAITING_RULING"
+    }
+  ]
+}

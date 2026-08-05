@@ -1,0 +1,41 @@
+{
+  "defect_fingerprint_V29R": {
+    "completion_trace_rows": 237,
+    "completion_trace_rows_already_credited_in_V28": 237,
+    "completion_rows_currently_uncredited_in_V28": 0,
+    "diagnosis": "V29R_TARGETED_THE_CREDITED_TRACE_ROW_THE_POPULATION_WAS_THE_MIRROR_OF_THE_MIRROR"
+  },
+  "corrected_target_mass": {
+    "V28_uncaptured_completion_siblings": 227,
+    "V28_carried_positive_legs": 144,
+    "total_unique_armed_leg_targets": 371
+  },
+  "causal_eligibility": {
+    "carried_armed": 95,
+    "carried_released_and_filled": 18,
+    "carried_incumbent_first": 126,
+    "uncaptured_sibling_rows_already_credited_in_V28": 0,
+    "uncaptured_sibling_rows_currently_uncredited_in_V28": 227,
+    "uncaptured_siblings_armed": 210,
+    "uncaptured_siblings_released_and_filled": 9
+  },
+  "dispositions": {
+    "INCUMBENT_FIRST": 201,
+    "NEVER_RELEASED": 143,
+    "RELEASED_AND_FILLED": 27
+  },
+  "score_effect": {
+    "D": 0,
+    "legs": 0,
+    "acted_legs": 9,
+    "credited_legs": 9,
+    "completed_pairs": 9,
+    "pairs_under_par": 9,
+    "completed_pairs_close_unavailable": 0,
+    "both_legs_strictly_below_audited_close": 3,
+    "joint_objective_pairs": 3,
+    "strict_carried_pairs": 4,
+    "execution_floor_pair_passes": 1
+  },
+  "ruling": "TARGET_IS_THE_UNCREDITED_SIBLING_OF_EACH_CREDITED_COMPLETION_FLAG; INCUMBENT_FIRST_STANDS_OVERLAY_DOWN; QUALIFYING_FLOOR_RELEASE_NEVER_BLOCKS_V28"
+}

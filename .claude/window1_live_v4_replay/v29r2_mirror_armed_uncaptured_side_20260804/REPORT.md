@@ -1,0 +1,3 @@
+# V29-R2 — mirror-armed uncaptured side
+
+V29-R2 is an additive overlay on immutable V28 (JOINT 65). It corrects V29-R's mirrored activation population: the 237 completion flags sit on credited rows, while the actual opposite-side uncaptured population is 227 unique legs. Each credited first side arms its uncredited sibling at min(99-first_fill, its own causal live ask at arm). The first strictly later own-book floor at or below that aim releases when spread <=1, ask dwell >=10 seconds, and displayed ask size >=5. Coherent decline ordinal is logged confirmation only and never a release precondition. The incumbent path wins any earlier race and is never blocked. Audited close is grading-only; time is not a policy input.

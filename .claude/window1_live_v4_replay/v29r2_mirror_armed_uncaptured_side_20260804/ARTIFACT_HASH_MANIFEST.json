@@ -1,0 +1,80 @@
+{
+  "files": {
+    "ARMED_LEG_DISPOSITION.json": {
+      "sha256": "4b2959a25048b7d754993d3aa2c7b34b47a0d9bb1809c7ee4cf418f8b3ef2b27",
+      "bytes": 230837
+    },
+    "CONTINUOUS_EVALUATION_RECEIPT.json": {
+      "sha256": "07eabddbc1b5625b32d820e72190481532b2a9ceb4f9bf04165d861a168fea94",
+      "bytes": 762
+    },
+    "DECISION_TRACE_1608.json": {
+      "sha256": "24bdef418cb8cb5d2af565a678ad112ae446698604caeb282a46944fd6e688fb",
+      "bytes": 8715327
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "a84677f0ccf4b4dfd803b5030dfc6a3b8a938d377f4c31dadc1f0e522ad62727",
+      "bytes": 184
+    },
+    "DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "e1d884d21a555a0ccb81e1c2723c8a5a1ff68ba5e360cf65dbb81fb4f423099b",
+      "bytes": 471313
+    },
+    "EVENT_LEDGER.jsonl.gz": {
+      "sha256": "b2605f917073e977015be2e53c24cfce2129dc8a603d4811dd82f063b5561f0c",
+      "bytes": 3518034
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "89919e77e5389602ebfb0ea17513635133efb2cb2aa2049619ef505af3227929",
+      "bytes": 327
+    },
+    "FRONTIER.json": {
+      "sha256": "4bc3b8e51ad86be1d0376e4ab41339f31bee874d16c3410dbfb5f41fb20f1b82",
+      "bytes": 23646
+    },
+    "INDEPENDENT_CEILING_COMPARISON.json": {
+      "sha256": "bcea5c3add710511b2752af53831d877113a1d165d012f889ca073526d725d55",
+      "bytes": 165341
+    },
+    "LEG_LEDGER.jsonl.gz": {
+      "sha256": "4da7aa4df569c9df49850c46f3ddbb88d10d569903e6527e9b3d817ebb0377a4",
+      "bytes": 3343739
+    },
+    "MIRROR_ARM_RECEIPTS.jsonl.gz": {
+      "sha256": "2a3a7a938d55ffe87ab5e64c826397663eb12fcbb013e6aa2c798fd25a8bea4a",
+      "bytes": 55690
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "ff7727205015086496cb69c4001489982a74346338f0c32b47be0960eab452e4",
+      "bytes": 16209
+    },
+    "REGRET_LEG_LEDGER.jsonl.gz": {
+      "sha256": "16741651f3e4d96cc024c4fe6b53de7ad925e6c990b67b19d8ca800677ec706b",
+      "bytes": 29073
+    },
+    "REPORT.md": {
+      "sha256": "a2721ece6d897494ffd3c9e89401b1b0f18057c83ac97fe8e7a4ee941c60e254",
+      "bytes": 730
+    },
+    "RULINGS_RECEIPT.json": {
+      "sha256": "d1ad77b5338a9598b0088cc67739dc4743cd231113f68e5874cc6213308c2b20",
+      "bytes": 1131
+    },
+    "SCORECARD.json": {
+      "sha256": "881525f97c3cf74d38636716c08c5abf9a9d74f9ec0f176f93759539788b1f94",
+      "bytes": 35558
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "797bb57ba698b63d276653e36892efbd12ad3dc336706d7d9879d1835e93b5f5",
+      "bytes": 85180
+    },
+    "TARGET_MASS_AND_CONVERSION.json": {
+      "sha256": "3528bca7972265642de8f846d262064c4115a7040346d28d842ba5b5ef658c76",
+      "bytes": 1399
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "024d9ab54b952bcac642a96dd185c5522537ef7b7dca4774b9856fa13651d12f",
+      "bytes": 337
+    }
+  }
+}

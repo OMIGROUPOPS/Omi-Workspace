@@ -1,0 +1,22 @@
+{
+  "cadence": "EVERY_CAUSAL_OWN_BOOK_RECEIPT_IN_EVENT_ORDER_FROM_ARM_UNTIL_INCUMBENT_ACTION_OR_GUARDED_RIGHT_EDGE",
+  "polling_interval_seconds": null,
+  "wall_clock_policy_inputs": [],
+  "armed_receipts": 305,
+  "released_receipts": 27,
+  "release_delay_minutes": {
+    "denominator": 27,
+    "numeric_n": 27,
+    "null_n": 0,
+    "min": 0.21666666666666667,
+    "p25": 18.683333333333334,
+    "median": 101.25,
+    "p75": 221.03333333333333,
+    "p90": 388.53333333333336,
+    "max": 850.8833333333333,
+    "total_minutes": 4832.7
+  },
+  "independent_FN_convertible_median_minutes": 0.9,
+  "independent_source_commit": "44eab76f0caefbba6bab3315416e51e292fbdb1e",
+  "statement": "0.9 minutes is a grading comparator only; it is never a trigger or threshold"
+}

@@ -1,0 +1,18 @@
+{
+  "source_sha256": "57dc1de99aca035e55e57d43f4f8c982325fb57610b9c6c4ee057bb161b97197",
+  "source_bytes": 12347514,
+  "max_part_bytes": 67108864,
+  "parts": [
+    {
+      "name": "ACTION_AND_FILL_TRACE.jsonl.gz.part000",
+      "bytes": 12347514,
+      "sha256": "57dc1de99aca035e55e57d43f4f8c982325fb57610b9c6c4ee057bb161b97197"
+    }
+  ],
+  "concatenation_law": "BINARY_CONCATENATION_IN_ASCENDING_PART_NAME_ORDER_REPRODUCES_SOURCE_BYTE_FOR_BYTE",
+  "conservation": {
+    "part_bytes_sum": 12347514,
+    "source_bytes": 12347514,
+    "pass": true
+  }
+}

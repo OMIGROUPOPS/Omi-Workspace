@@ -1,0 +1,50 @@
+{
+  "schema_version": "window1-v36-state-directional-rest-mature-floor-control-v1",
+  "machine": {
+    "architecture": "V35_WITH_STATE_DIRECTIONAL_REST_AND_MATURE_FLOOR_TAKE",
+    "V35_baseline_commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+    "V34_W1_baseline_commit": "e56d79a2aee1f392b3bee5a0adad099c7f011976",
+    "V32_lineage_commit": "a3429cad6719f96a25a900812e0f360b71a5607e",
+    "policy_path": "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js",
+    "policy_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+    "clock_decision_inputs": [],
+    "state_transitions_and_maturity_evaluated_only_on_receipts": true
+  },
+  "unchanged_from_V35": {
+    "strict_fill_law": "UNCHANGED",
+    "evidence_gate": "UNCHANGED_EXCEPT_TAKE_AUTHORITY_REQUIRES_CAUSAL_FLOOR_MATURITY",
+    "pair_cap": "UNCHANGED",
+    "hard_pre_bell_edge": "UNCHANGED",
+    "close_free_grading": "UNCHANGED"
+  },
+  "repair": {
+    "FALLING_rest": "V32_NO_CHASE_MIN(PRIOR_REST,BEST_BID_MINUS_1,PAIR_CAP); NEVER_TRACK_UP_IN_LIVE_DECLINE",
+    "RISING_or_SETTLED_rest": "V35_LIVING_REST_MIN(BEST_BID_MINUS_1,PAIR_CAP)_TRACK_UP_AND_DOWN_BYTE_SEMANTIC_UNCHANGED",
+    "mature_floor_take": "NO_NEW_LOW_RECEIPT_INSIDE_EXISTING_300S_TRAILING_HORIZON; MATURITY_REASKED_ONLY_ON_BOOK_RECEIPTS; NEW_LOW_RESETS; NO_TIMER_NO_WALL_CLOCK_TRIGGER",
+    "reformed_floor_authority": "A_NONFALLING_QUALIFYING_ASK_FLOOR_MAY_REPLACE_AN_OLDER_MINIMUM_ONLY_AFTER_MATURITY; A DESCENT_ORIGIN_SHELF_CANNOT RELABEL ITSELF"
+  },
+  "window_law": {
+    "left": "FIRST_TWO_SIDED_BOOK_ON_EITHER_EXPRESSION",
+    "right_precedence": [
+      "exact_start_utc",
+      "known_live_by_utc",
+      "schedule_bound_utc"
+    ],
+    "hard_edge": "NO_REST_WALK_NO_TAKE_NO_FILL_NO_CAP_ARM_NO_STATE_UPDATE_AFTER_EDGE",
+    "boundary_is_reporting_and_admission_only_not_AIM_input": true
+  },
+  "close_law": {
+    "role": "TELEMETRY_ONLY",
+    "grading_reads": 0,
+    "settlement_close_reads": 0
+  },
+  "comparisons": {
+    "V35_strict_completed_under_par": 264,
+    "V35_census_completed_under_par": 550,
+    "V34_W1_strict_completed_under_par": 254,
+    "V34_W1_census_completed_under_par": 279,
+    "R3_original_joint_reference_only": 68,
+    "R3_same_V3_window_artifact": "R3_SAME_WINDOW_COMPARISON.json",
+    "operator_named_under_par_offer_census_adjusted": 680
+  }
+}

@@ -1,0 +1,1307 @@
+{
+  "STRICT_LAW": {
+    "mode": "STRICT_LAW",
+    "baseline_commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+    "disposition_counts": {
+      "ENTRY_STREAM_IDENTICAL": 1353,
+      "ENTRY_STREAM_CHANGED_OTHER": 73,
+      "NEWLY_CREDITED": 58,
+      "CREDITED_DEEPER_THAN_V35": 51,
+      "V35_CREDIT_LOST": 40,
+      "CREDITED_SHALLOWER_THAN_V35": 33
+    },
+    "category_x_price_region_x_bell_confidence": [
+      {
+        "cell": "ATP_CHALL|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|contradictory",
+        "legs": 14,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 10,
+          "NEWLY_CREDITED": 2,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|exact",
+        "legs": 82,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 66,
+          "CREDITED_DEEPER_THAN_V35": 5,
+          "ENTRY_STREAM_CHANGED_OTHER": 4,
+          "V35_CREDIT_LOST": 4,
+          "NEWLY_CREDITED": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|live_by_only",
+        "legs": 153,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 135,
+          "CREDITED_DEEPER_THAN_V35": 6,
+          "ENTRY_STREAM_CHANGED_OTHER": 6,
+          "V35_CREDIT_LOST": 5,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|schedule_only",
+        "legs": 10,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 9,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|contradictory",
+        "legs": 15,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 14,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|exact",
+        "legs": 74,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 62,
+          "NEWLY_CREDITED": 4,
+          "ENTRY_STREAM_CHANGED_OTHER": 3,
+          "CREDITED_SHALLOWER_THAN_V35": 2,
+          "V35_CREDIT_LOST": 2,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|live_by_only",
+        "legs": 151,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 138,
+          "ENTRY_STREAM_CHANGED_OTHER": 6,
+          "CREDITED_DEEPER_THAN_V35": 2,
+          "NEWLY_CREDITED": 2,
+          "V35_CREDIT_LOST": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 8,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 27,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|live_by_only",
+        "legs": 52,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 47,
+          "CREDITED_SHALLOWER_THAN_V35": 2,
+          "V35_CREDIT_LOST": 2,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|schedule_only",
+        "legs": 15,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 14,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|clean_interval",
+        "legs": 5,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|exact",
+        "legs": 31,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 20,
+          "NEWLY_CREDITED": 5,
+          "ENTRY_STREAM_CHANGED_OTHER": 4,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|live_by_only",
+        "legs": 68,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 60,
+          "CREDITED_DEEPER_THAN_V35": 3,
+          "CREDITED_SHALLOWER_THAN_V35": 2,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|schedule_only",
+        "legs": 18,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 14,
+          "CREDITED_DEEPER_THAN_V35": 3,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 23,
+          "ENTRY_STREAM_CHANGED_OTHER": 3,
+          "NEWLY_CREDITED": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|live_by_only",
+        "legs": 70,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 51,
+          "NEWLY_CREDITED": 7,
+          "ENTRY_STREAM_CHANGED_OTHER": 5,
+          "CREDITED_SHALLOWER_THAN_V35": 3,
+          "CREDITED_DEEPER_THAN_V35": 2,
+          "V35_CREDIT_LOST": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|schedule_only",
+        "legs": 8,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 6,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 25,
+          "CREDITED_DEEPER_THAN_V35": 3,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|live_by_only",
+        "legs": 71,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 57,
+          "CREDITED_DEEPER_THAN_V35": 4,
+          "CREDITED_SHALLOWER_THAN_V35": 3,
+          "V35_CREDIT_LOST": 3,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "NEWLY_CREDITED": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 5,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|exact",
+        "legs": 8,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 6,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|live_by_only",
+        "legs": 16,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 14,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|schedule_only",
+        "legs": 1,
+        "dispositions": {
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|clean_interval",
+        "legs": 13,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 12,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|exact",
+        "legs": 8,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 5,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 17,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "NEWLY_CREDITED": 2,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|schedule_only",
+        "legs": 2,
+        "dispositions": {
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 27,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|live_by_only",
+        "legs": 61,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 54,
+          "V35_CREDIT_LOST": 3,
+          "CREDITED_SHALLOWER_THAN_V35": 2,
+          "ENTRY_STREAM_CHANGED_OTHER": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 26,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "NEWLY_CREDITED": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|live_by_only",
+        "legs": 53,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 47,
+          "V35_CREDIT_LOST": 2,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|exact",
+        "legs": 10,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 9,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 21,
+          "NEWLY_CREDITED": 1,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 7,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|exact",
+        "legs": 11,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 10,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 23
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 8,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|exact",
+        "legs": 27,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 16,
+          "ENTRY_STREAM_CHANGED_OTHER": 4,
+          "NEWLY_CREDITED": 3,
+          "CREDITED_DEEPER_THAN_V35": 2,
+          "V35_CREDIT_LOST": 2
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|live_by_only",
+        "legs": 46,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 35,
+          "CREDITED_DEEPER_THAN_V35": 4,
+          "ENTRY_STREAM_CHANGED_OTHER": 4,
+          "NEWLY_CREDITED": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|schedule_only",
+        "legs": 5,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2,
+          "ENTRY_STREAM_CHANGED_OTHER": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 25,
+          "V35_CREDIT_LOST": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|live_by_only",
+        "legs": 42,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 30,
+          "NEWLY_CREDITED": 5,
+          "ENTRY_STREAM_CHANGED_OTHER": 3,
+          "V35_CREDIT_LOST": 3,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|exact",
+        "legs": 18,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 17,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 21,
+          "ENTRY_STREAM_CHANGED_OTHER": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|schedule_only",
+        "legs": 6,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 5,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|clean_interval",
+        "legs": 16,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 13,
+          "NEWLY_CREDITED": 2,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|exact",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 16,
+          "ENTRY_STREAM_CHANGED_OTHER": 4,
+          "NEWLY_CREDITED": 2,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|live_by_only",
+        "legs": 25,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 22,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|schedule_only",
+        "legs": 14,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 12,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      }
+    ],
+    "conservation": {
+      "rows": 1608,
+      "expected_legs": 1608,
+      "cell_leg_sum": 1608,
+      "pass": true
+    }
+  },
+  "CENSUS_PRICED": {
+    "mode": "CENSUS_PRICED",
+    "baseline_commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+    "disposition_counts": {
+      "ENTRY_STREAM_IDENTICAL": 1490,
+      "ENTRY_STREAM_CHANGED_OTHER": 55,
+      "CREDITED_DEEPER_THAN_V35": 34,
+      "CREDITED_SHALLOWER_THAN_V35": 13,
+      "V35_CREDIT_LOST": 9,
+      "NEWLY_CREDITED": 7
+    },
+    "category_x_price_region_x_bell_confidence": [
+      {
+        "cell": "ATP_CHALL|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|contradictory",
+        "legs": 14,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 12,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|exact",
+        "legs": 82,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 75,
+          "CREDITED_DEEPER_THAN_V35": 3,
+          "ENTRY_STREAM_CHANGED_OTHER": 3,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|live_by_only",
+        "legs": 153,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 141,
+          "CREDITED_DEEPER_THAN_V35": 5,
+          "ENTRY_STREAM_CHANGED_OTHER": 3,
+          "V35_CREDIT_LOST": 3,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|schedule_only",
+        "legs": 10,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 9,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|contradictory",
+        "legs": 15,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 15
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|exact",
+        "legs": 74,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 70,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|live_by_only",
+        "legs": 151,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 141,
+          "ENTRY_STREAM_CHANGED_OTHER": 6,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 8,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 27,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|live_by_only",
+        "legs": 52,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 52
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|schedule_only",
+        "legs": 15,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 15
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|clean_interval",
+        "legs": 5,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 5
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|exact",
+        "legs": 31,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 27,
+          "CREDITED_DEEPER_THAN_V35": 2,
+          "ENTRY_STREAM_CHANGED_OTHER": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|live_by_only",
+        "legs": 68,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 63,
+          "CREDITED_DEEPER_THAN_V35": 2,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|schedule_only",
+        "legs": 18,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 14,
+          "CREDITED_DEEPER_THAN_V35": 3,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 26,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|live_by_only",
+        "legs": 70,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 64,
+          "ENTRY_STREAM_CHANGED_OTHER": 3,
+          "CREDITED_DEEPER_THAN_V35": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|schedule_only",
+        "legs": 8,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 7,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 29
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|live_by_only",
+        "legs": 71,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 66,
+          "CREDITED_DEEPER_THAN_V35": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 2,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 7
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|exact",
+        "legs": 8,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 8
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|live_by_only",
+        "legs": 16,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 16
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|schedule_only",
+        "legs": 1,
+        "dispositions": {
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|clean_interval",
+        "legs": 13,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 13
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|exact",
+        "legs": 8,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 6,
+          "ENTRY_STREAM_CHANGED_OTHER": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 22,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|schedule_only",
+        "legs": 2,
+        "dispositions": {
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 28,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|live_by_only",
+        "legs": 61,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 58,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 28,
+          "ENTRY_STREAM_CHANGED_OTHER": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|live_by_only",
+        "legs": 53,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 49,
+          "V35_CREDIT_LOST": 2,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|exact",
+        "legs": 10,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 10
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 22,
+          "V35_CREDIT_LOST": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 7,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "CREDITED_SHALLOWER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|exact",
+        "legs": 11,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 11
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 23
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 8,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|exact",
+        "legs": 27,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 20,
+          "ENTRY_STREAM_CHANGED_OTHER": 5,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|live_by_only",
+        "legs": 46,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 43,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|schedule_only",
+        "legs": 5,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 5
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 3,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 27,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|live_by_only",
+        "legs": 42,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 38,
+          "ENTRY_STREAM_CHANGED_OTHER": 2,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 6,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|exact",
+        "legs": 18,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 17,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 22,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|schedule_only",
+        "legs": 6,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 5,
+          "CREDITED_DEEPER_THAN_V35": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|clean_interval",
+        "legs": 16,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 14,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "NEWLY_CREDITED": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|exact",
+        "legs": 23,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 21,
+          "ENTRY_STREAM_CHANGED_OTHER": 2
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|live_by_only",
+        "legs": 25,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 23,
+          "CREDITED_SHALLOWER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|schedule_only",
+        "legs": 14,
+        "dispositions": {
+          "ENTRY_STREAM_IDENTICAL": 12,
+          "CREDITED_DEEPER_THAN_V35": 1,
+          "ENTRY_STREAM_CHANGED_OTHER": 1
+        }
+      }
+    ],
+    "conservation": {
+      "rows": 1608,
+      "expected_legs": 1608,
+      "cell_leg_sum": 1608,
+      "pass": true
+    }
+  },
+  "conservation": {
+    "strict_rows": 1608,
+    "census_rows": 1608,
+    "expected_each": 1608,
+    "pass": true
+  }
+}

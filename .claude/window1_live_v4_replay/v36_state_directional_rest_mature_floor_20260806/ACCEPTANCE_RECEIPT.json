@@ -1,0 +1,37 @@
+{
+  "status": "REJECTED_V36_BAR_V35_REMAINS_OPERATIVE",
+  "checks": {
+    "strict_completed_at_least_V35_264": true,
+    "strict_LE93_recovers_to_V34_23": false,
+    "strict_LE95_recovers_to_V34_34": false,
+    "strict_LE97_preserves_V34_68": true,
+    "named_regressions_all_pass": false
+  },
+  "named_regression_checks": {
+    "GANJAN_recovers_toward_23": false,
+    "FETPIE_completes": false,
+    "JONSPI_completes": false,
+    "ARNROM_38_plus_56_equals_94": true,
+    "KRALOR_LOR_keeps_5": true,
+    "BOSCOP_BOS_keeps_32": true,
+    "ARNROM_ROM_38_zero_regret": true
+  },
+  "required_floor": {
+    "strict_completed_pairs": 264,
+    "strict_frontier": {
+      "LE_93": 23,
+      "LE_95": 34,
+      "LE_97": 68
+    },
+    "rule": "COMPLETION_BAR_AND_DEEP_FRONTIER_BAR_MUST_BOTH_PASS"
+  },
+  "observed": {
+    "strict_completed_pairs": 270,
+    "strict_frontier": {
+      "LE_93": 9,
+      "LE_95": 20,
+      "LE_97": 77
+    }
+  },
+  "ruling": "BOTH_STRICT_COMPLETED_GE_264_AND_DEEP_FRONTIER_RECOVERY_TO_THE_V34_23_34_68_BAR_ARE_REQUIRED; NAMED_REGRESSIONS_DO_NOT_OVERRIDE_POPULATION_REGRESSION"
+}

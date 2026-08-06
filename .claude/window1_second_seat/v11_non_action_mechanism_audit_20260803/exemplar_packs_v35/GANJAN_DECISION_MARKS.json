@@ -1,0 +1,567 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+ "category": "ATP_CHALL",
+ "bell_confidence": "schedule_only",
+ "w1": {
+  "left": 1783800646,
+  "left_et": "2026-07-11 16:10:46",
+  "right": 1783854000,
+  "right_et": "2026-07-12 07:00:00"
+ },
+ "v34": {
+  "completed": true,
+  "combined": 23
+ },
+ "v35": {
+  "strict_completed": true,
+  "strict_combined": 99,
+  "census_completed": true,
+  "census_combined": 99
+ },
+ "legs": {
+  "GAN": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN",
+   "v34": {
+    "cred": true,
+    "entry": 20,
+    "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+    "fill_ts": 1783826594
+   },
+   "v35": {
+    "cred": true,
+    "entry": 20,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+    "fill_ts": 1783828978,
+    "rest_edge": false,
+    "rest_tgt": null,
+    "seller_hit_low": null,
+    "qfloor": 18,
+    "pbfloor": 18,
+    "cap": 20,
+    "pb_receipts": [
+     {
+      "receipt": "d4c48335-e946-75f0-9fe1-b27cae506c05",
+      "timestamp_epoch": 1783844031.3538349,
+      "ordinal": 134748,
+      "price_cents": 18,
+      "size": 1,
+      "aggressor_side": "BUYER"
+     }
+    ],
+    "terminal": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK"
+   },
+   "census": {
+    "cred": true,
+    "entry": 20,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK"
+   },
+   "rest_trajectory": [
+    {
+     "ts": 1783800646,
+     "et": "2026-07-11 16:10:46",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783803154,
+     "et": "2026-07-11 16:52:34",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783806369,
+     "et": "2026-07-11 17:46:09",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783806688,
+     "et": "2026-07-11 17:51:28",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783809968,
+     "et": "2026-07-11 18:46:08",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783810308,
+     "et": "2026-07-11 18:51:48",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783811163,
+     "et": "2026-07-11 19:06:03",
+     "level": 20,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783812970,
+     "et": "2026-07-11 19:36:10",
+     "level": 21,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783813033,
+     "et": "2026-07-11 19:37:13",
+     "level": 20,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817432,
+     "et": "2026-07-11 20:50:32",
+     "level": 16,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783817434,
+     "et": "2026-07-11 20:50:34",
+     "level": 17,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817838,
+     "et": "2026-07-11 20:57:18",
+     "level": 18,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783818467,
+     "et": "2026-07-11 21:07:47",
+     "level": 17,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783820355,
+     "et": "2026-07-11 21:39:15",
+     "level": 18,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783821901,
+     "et": "2026-07-11 22:05:01",
+     "level": 17,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783822133,
+     "et": "2026-07-11 22:08:53",
+     "level": 18,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783826924,
+     "et": "2026-07-11 23:28:44",
+     "level": 17,
+     "state": "SETTLED"
+    }
+   ],
+   "settled_windows": [
+    {
+     "start": 1783800646,
+     "start_et": "2026-07-11 16:10:46",
+     "end": 1783803154,
+     "dwell_s": 2508
+    },
+    {
+     "start": 1783806369,
+     "start_et": "2026-07-11 17:46:09",
+     "end": 1783806688,
+     "dwell_s": 319
+    },
+    {
+     "start": 1783809968,
+     "start_et": "2026-07-11 18:46:08",
+     "end": 1783810308,
+     "dwell_s": 340
+    },
+    {
+     "start": 1783826924,
+     "start_et": "2026-07-11 23:28:44",
+     "end": 1783826924,
+     "dwell_s": 0
+    }
+   ],
+   "fill": {
+    "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN.csv.gz#row-709",
+    "entry": 20,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+    "ts": 1783828978,
+    "et": "2026-07-12 00:02:58",
+    "gate_saw": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+    "evidence_floor": 20,
+    "displayed_ask": {
+     "price_cents": 20,
+     "size": 21,
+     "spread": 2,
+     "dwell_seconds": 2797,
+     "crossed_or_locked": false
+    },
+    "state_label_ignored": true
+   }
+  },
+  "JAN": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN",
+   "v34": {
+    "cred": true,
+    "entry": 3,
+    "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+    "fill_ts": 1783849624.9716458
+   },
+   "v35": {
+    "cred": true,
+    "entry": 79,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+    "fill_ts": 1783818955,
+    "rest_edge": false,
+    "rest_tgt": null,
+    "seller_hit_low": null,
+    "qfloor": 1,
+    "pbfloor": 1,
+    "cap": 79,
+    "pb_receipts": [
+     {
+      "receipt": "e559987a-7ffe-6792-1979-081e82b34c65",
+      "timestamp_epoch": 1783850270.25783,
+      "ordinal": 134773,
+      "price_cents": 1,
+      "size": 1,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "e0d30f66-4a3c-6f2f-0dc1-1df2efd241c6",
+      "timestamp_epoch": 1783850270.25783,
+      "ordinal": 134774,
+      "price_cents": 1,
+      "size": 229,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "d997c285-1320-6547-2f9b-4f44eb83feda",
+      "timestamp_epoch": 1783850270.25783,
+      "ordinal": 134775,
+      "price_cents": 1,
+      "size": 500,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "d37cd828-68a1-6c50-3a34-fb3b04e93f49",
+      "timestamp_epoch": 1783850270.25783,
+      "ordinal": 134776,
+      "price_cents": 1,
+      "size": 200,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "bcf61269-9647-698f-3a1f-247aa54a965b",
+      "timestamp_epoch": 1783850270.25783,
+      "ordinal": 134777,
+      "price_cents": 1,
+      "size": 12,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "774e344a-8c18-6613-12e5-7835325d961a",
+      "timestamp_epoch": 1783850270.25783,
+      "ordinal": 134778,
+      "price_cents": 1,
+      "size": 5,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "0056a5b1-bb10-669f-0ccb-630cbdebeb6b",
+      "timestamp_epoch": 1783850270.25783,
+      "ordinal": 134779,
+      "price_cents": 1,
+      "size": 20,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "df899816-12be-48de-ffb6-5da8d34d70ad",
+      "timestamp_epoch": 1783850315.024416,
+      "ordinal": 134771,
+      "price_cents": 1,
+      "size": 1915.57,
+      "aggressor_side": "BUYER"
+     },
+     {
+      "receipt": "dc95c0ea-7e4e-4df4-f657-d08afa6f06cb",
+      "timestamp_epoch": 1783850315.024416,
+      "ordinal": 134772,
+      "price_cents": 1,
+      "size": 890,
+      "aggressor_side": "BUYER"
+     }
+    ],
+    "terminal": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK"
+   },
+   "census": {
+    "cred": true,
+    "entry": 79,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK"
+   },
+   "rest_trajectory": [
+    {
+     "ts": 1783800646,
+     "et": "2026-07-11 16:10:46",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783803154,
+     "et": "2026-07-11 16:52:34",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783806369,
+     "et": "2026-07-11 17:46:09",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783806688,
+     "et": "2026-07-11 17:51:28",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783809968,
+     "et": "2026-07-11 18:46:08",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783810308,
+     "et": "2026-07-11 18:51:48",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783811163,
+     "et": "2026-07-11 19:06:03",
+     "level": 68,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783812941,
+     "et": "2026-07-11 19:35:41",
+     "level": 69,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783813033,
+     "et": "2026-07-11 19:37:13",
+     "level": 68,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783813035,
+     "et": "2026-07-11 19:37:15",
+     "level": 71,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783813053,
+     "et": "2026-07-11 19:37:33",
+     "level": 68,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783813095,
+     "et": "2026-07-11 19:38:15",
+     "level": 71,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783813695,
+     "et": "2026-07-11 19:48:15",
+     "level": 68,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783813708,
+     "et": "2026-07-11 19:48:28",
+     "level": 69,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783814308,
+     "et": "2026-07-11 19:58:28",
+     "level": 68,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783814316,
+     "et": "2026-07-11 19:58:36",
+     "level": 69,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783814916,
+     "et": "2026-07-11 20:08:36",
+     "level": 68,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783814928,
+     "et": "2026-07-11 20:08:48",
+     "level": 69,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783815528,
+     "et": "2026-07-11 20:18:48",
+     "level": 68,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783815543,
+     "et": "2026-07-11 20:19:03",
+     "level": 70,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783816143,
+     "et": "2026-07-11 20:29:03",
+     "level": 68,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783816161,
+     "et": "2026-07-11 20:29:21",
+     "level": 70,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783816761,
+     "et": "2026-07-11 20:39:21",
+     "level": 68,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783817421,
+     "et": "2026-07-11 20:50:21",
+     "level": 69,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817433,
+     "et": "2026-07-11 20:50:33",
+     "level": 72,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783818455,
+     "et": "2026-07-11 21:07:35",
+     "level": 75,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783818564,
+     "et": "2026-07-11 21:09:24",
+     "level": 76,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783818865,
+     "et": "2026-07-11 21:14:25",
+     "level": 72,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783818865,
+     "et": "2026-07-11 21:14:25",
+     "level": 74,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783818865,
+     "et": "2026-07-11 21:14:25",
+     "level": 75,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783818865,
+     "et": "2026-07-11 21:14:25",
+     "level": 73,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783818929,
+     "et": "2026-07-11 21:15:29",
+     "level": 76,
+     "state": "RISING"
+    }
+   ],
+   "settled_windows": [
+    {
+     "start": 1783800646,
+     "start_et": "2026-07-11 16:10:46",
+     "end": 1783803154,
+     "dwell_s": 2508
+    },
+    {
+     "start": 1783806369,
+     "start_et": "2026-07-11 17:46:09",
+     "end": 1783806688,
+     "dwell_s": 319
+    },
+    {
+     "start": 1783809968,
+     "start_et": "2026-07-11 18:46:08",
+     "end": 1783810308,
+     "dwell_s": 340
+    }
+   ],
+   "fill": {
+    "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN.csv.gz#row-265",
+    "entry": 79,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+    "ts": 1783818955,
+    "et": "2026-07-11 21:15:55",
+    "gate_saw": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+    "evidence_floor": 79,
+    "displayed_ask": {
+     "price_cents": 79,
+     "size": 18,
+     "spread": 1,
+     "dwell_seconds": 90,
+     "crossed_or_locked": false
+    },
+    "state_label_ignored": true
+   }
+  }
+ },
+ "divergence": {
+  "kind": "76C_GIVEAWAY",
+  "bleed_leg": "JAN",
+  "v34_maker_at": 3,
+  "v34_maker_ts": 1783849624.9716458,
+  "v34_maker_et": "2026-07-12 05:47:04",
+  "v35_take_at": 79,
+  "v35_take_receipt": {
+   "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN.csv.gz#row-265",
+   "entry": 79,
+   "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+   "ts": 1783818955,
+   "et": "2026-07-11 21:15:55",
+   "gate_saw": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+   "evidence_floor": 79,
+   "displayed_ask": {
+    "price_cents": 79,
+    "size": 18,
+    "spread": 1,
+    "dwell_seconds": 90,
+    "crossed_or_locked": false
+   },
+   "state_label_ignored": true
+  },
+  "giveaway_cents": 76,
+  "note": "JAN: V34's living rest waited and a SELLER-aggressed print hit 3 at 2026-07-12 05:47:04 (deep maker fill). V35's evidence-floor gate instead fired a TAKE at 79 (+76c) -- gate saw 'EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED'. The 76c giveaway is take-vs-wait."
+ },
+ "csv_rows": 2902
+}

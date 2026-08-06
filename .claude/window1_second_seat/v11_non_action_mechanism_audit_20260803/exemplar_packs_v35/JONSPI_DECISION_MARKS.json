@@ -1,0 +1,485 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+ "category": "WTA_CHALL",
+ "bell_confidence": "live_by_only",
+ "w1": {
+  "left": 1783888888,
+  "left_et": "2026-07-12 16:41:28",
+  "right": 1783903905.228,
+  "right_et": "2026-07-12 20:51:45"
+ },
+ "v34": {
+  "completed": true,
+  "combined": 63
+ },
+ "v35": {
+  "strict_completed": false,
+  "strict_combined": null,
+  "census_completed": false,
+  "census_combined": null
+ },
+ "legs": {
+  "JON": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13JONSPI-JON",
+   "v34": {
+    "cred": true,
+    "entry": 51,
+    "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+    "fill_ts": 1783903623
+   },
+   "v35": {
+    "cred": false,
+    "entry": null,
+    "fill_class": null,
+    "fill_ts": null,
+    "rest_edge": true,
+    "rest_tgt": 87,
+    "seller_hit_low": null,
+    "qfloor": 51,
+    "pbfloor": 51,
+    "cap": null,
+    "pb_receipts": [
+     {
+      "receipt": "c1ba24aa-a665-758c-a6b1-ba83cc2f3714",
+      "timestamp_epoch": 1783902223.592782,
+      "ordinal": 3733145,
+      "price_cents": 51,
+      "size": 10,
+      "aggressor_side": "BUYER"
+     },
+     {
+      "receipt": "1c8e2de4-9b09-73ec-222d-a09a3d7b1504",
+      "timestamp_epoch": 1783902223.6634579,
+      "ordinal": 3733144,
+      "price_cents": 51,
+      "size": 0.48,
+      "aggressor_side": "BUYER"
+     }
+    ],
+    "terminal": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED"
+   },
+   "census": {
+    "cred": false,
+    "entry": null,
+    "fill_class": null
+   },
+   "rest_trajectory": [
+    {
+     "ts": 1783888888,
+     "et": "2026-07-12 16:41:28",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783892773,
+     "et": "2026-07-12 17:46:13",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783892990,
+     "et": "2026-07-12 17:49:50",
+     "level": 3,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783893394,
+     "et": "2026-07-12 17:56:34",
+     "level": 5,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783898835,
+     "et": "2026-07-12 19:27:15",
+     "level": 45,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901428,
+     "et": "2026-07-12 20:10:28",
+     "level": 46,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902223,
+     "et": "2026-07-12 20:23:43",
+     "level": 75,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902224,
+     "et": "2026-07-12 20:23:44",
+     "level": 82,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902229,
+     "et": "2026-07-12 20:23:49",
+     "level": 85,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902240,
+     "et": "2026-07-12 20:24:00",
+     "level": 86,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902328,
+     "et": "2026-07-12 20:25:28",
+     "level": 87,
+     "state": "RISING"
+    }
+   ],
+   "settled_windows": [
+    {
+     "start": 1783888888,
+     "start_et": "2026-07-12 16:41:28",
+     "end": 1783892773,
+     "dwell_s": 3885
+    }
+   ],
+   "fill": null
+  },
+  "SPI": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13JONSPI-SPI",
+   "v34": {
+    "cred": true,
+    "entry": 12,
+    "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+    "fill_ts": 1783902647
+   },
+   "v35": {
+    "cred": false,
+    "entry": null,
+    "fill_class": null,
+    "fill_ts": null,
+    "rest_edge": true,
+    "rest_tgt": 9,
+    "seller_hit_low": 7,
+    "qfloor": 12,
+    "pbfloor": 7,
+    "cap": null,
+    "pb_receipts": [
+     {
+      "receipt": "0414704d-2b52-757e-928b-1b5bea232766",
+      "timestamp_epoch": 1783902223.7033,
+      "ordinal": 3733927,
+      "price_cents": 7,
+      "size": 1,
+      "aggressor_side": "SELLER"
+     }
+    ],
+    "terminal": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED"
+   },
+   "census": {
+    "cred": false,
+    "entry": null,
+    "fill_class": null
+   },
+   "rest_trajectory": [
+    {
+     "ts": 1783888888,
+     "et": "2026-07-12 16:41:28",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783893064,
+     "et": "2026-07-12 17:51:04",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783893389,
+     "et": "2026-07-12 17:56:29",
+     "level": 5,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783898835,
+     "et": "2026-07-12 19:27:15",
+     "level": 8,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901428,
+     "et": "2026-07-12 20:10:28",
+     "level": 9,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901429,
+     "et": "2026-07-12 20:10:29",
+     "level": 12,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901430,
+     "et": "2026-07-12 20:10:30",
+     "level": 13,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901432,
+     "et": "2026-07-12 20:10:32",
+     "level": 5,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783901432,
+     "et": "2026-07-12 20:10:32",
+     "level": 6,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783901432,
+     "et": "2026-07-12 20:10:32",
+     "level": 8,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901434,
+     "et": "2026-07-12 20:10:34",
+     "level": 9,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901436,
+     "et": "2026-07-12 20:10:36",
+     "level": 12,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901436,
+     "et": "2026-07-12 20:10:36",
+     "level": 13,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901438,
+     "et": "2026-07-12 20:10:38",
+     "level": 5,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783901438,
+     "et": "2026-07-12 20:10:38",
+     "level": 6,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901439,
+     "et": "2026-07-12 20:10:39",
+     "level": 9,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901458,
+     "et": "2026-07-12 20:10:58",
+     "level": 10,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901460,
+     "et": "2026-07-12 20:11:00",
+     "level": 6,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901460,
+     "et": "2026-07-12 20:11:00",
+     "level": 13,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901462,
+     "et": "2026-07-12 20:11:02",
+     "level": 14,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901464,
+     "et": "2026-07-12 20:11:04",
+     "level": 6,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901490,
+     "et": "2026-07-12 20:11:30",
+     "level": 9,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901492,
+     "et": "2026-07-12 20:11:32",
+     "level": 10,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901494,
+     "et": "2026-07-12 20:11:34",
+     "level": 6,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783901494,
+     "et": "2026-07-12 20:11:34",
+     "level": 13,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901496,
+     "et": "2026-07-12 20:11:36",
+     "level": 14,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901498,
+     "et": "2026-07-12 20:11:38",
+     "level": 6,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901523,
+     "et": "2026-07-12 20:12:03",
+     "level": 9,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901524,
+     "et": "2026-07-12 20:12:04",
+     "level": 10,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901526,
+     "et": "2026-07-12 20:12:06",
+     "level": 6,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783901529,
+     "et": "2026-07-12 20:12:09",
+     "level": 9,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901531,
+     "et": "2026-07-12 20:12:11",
+     "level": 10,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783901533,
+     "et": "2026-07-12 20:12:13",
+     "level": 6,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902223,
+     "et": "2026-07-12 20:23:43",
+     "level": 7,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902224,
+     "et": "2026-07-12 20:23:44",
+     "level": 6,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783902226,
+     "et": "2026-07-12 20:23:46",
+     "level": 7,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902229,
+     "et": "2026-07-12 20:23:49",
+     "level": 9,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902233,
+     "et": "2026-07-12 20:23:53",
+     "level": 10,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902244,
+     "et": "2026-07-12 20:24:04",
+     "level": 9,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783902295,
+     "et": "2026-07-12 20:24:55",
+     "level": 10,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783902922,
+     "et": "2026-07-12 20:35:22",
+     "level": 9,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783903026,
+     "et": "2026-07-12 20:37:06",
+     "level": 10,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783903619,
+     "et": "2026-07-12 20:46:59",
+     "level": 9,
+     "state": "SETTLED"
+    }
+   ],
+   "settled_windows": [
+    {
+     "start": 1783888888,
+     "start_et": "2026-07-12 16:41:28",
+     "end": 1783893064,
+     "dwell_s": 4176
+    },
+    {
+     "start": 1783903619,
+     "start_et": "2026-07-12 20:46:59",
+     "end": 1783903619,
+     "dwell_s": 0
+    }
+   ],
+   "fill": null
+  }
+ },
+ "divergence": {
+  "kind": "V34_COMPLETED_V35_LOST",
+  "legs": [
+   {
+    "leg": "JON",
+    "mechanism": "REST_UNFILLED_V34_TOOK",
+    "v34_entry": 51,
+    "v34_fill_ts": 1783903623,
+    "v34_fill_et": "2026-07-12 20:47:03",
+    "v35_rest_target": 87,
+    "v35_seller_hit_low": null,
+    "v35_terminal": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "note": "JON: V34 took a qualified settled ask at 51; V35's living rest sat at 87 and the lowest seller-hit was None -> rest never reached, unfilled."
+   },
+   {
+    "leg": "SPI",
+    "mechanism": "REST_UNFILLED_V34_TOOK",
+    "v34_entry": 12,
+    "v34_fill_ts": 1783902647,
+    "v34_fill_et": "2026-07-12 20:30:47",
+    "v35_rest_target": 9,
+    "v35_seller_hit_low": 7,
+    "v35_terminal": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "note": "SPI: V34 took a qualified settled ask at 12; V35's living rest sat at 9 and the lowest seller-hit was 7 -> rest never reached, unfilled."
+   }
+  ]
+ },
+ "csv_rows": 136
+}

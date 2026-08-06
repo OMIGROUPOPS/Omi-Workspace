@@ -1,0 +1,593 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+ "category": "ATP_CHALL",
+ "bell_confidence": "schedule_only",
+ "w1": {
+  "left": 1783804893,
+  "left_et": "2026-07-11 17:21:33",
+  "right": 1783858200,
+  "right_et": "2026-07-12 08:10:00"
+ },
+ "v34": {
+  "completed": true,
+  "combined": 97
+ },
+ "v35": {
+  "strict_completed": true,
+  "strict_combined": 99,
+  "census_completed": true,
+  "census_combined": 99
+ },
+ "legs": {
+  "BAL": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-BAL",
+   "v34": {
+    "cred": true,
+    "entry": 1,
+    "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+    "fill_ts": 1783852726.6634898
+   },
+   "v35": {
+    "cred": true,
+    "entry": 3,
+    "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+    "fill_ts": 1783852185.319885,
+    "rest_edge": false,
+    "rest_tgt": null,
+    "seller_hit_low": 4,
+    "qfloor": 2,
+    "pbfloor": 1,
+    "cap": 3,
+    "pb_receipts": [
+     {
+      "receipt": "f26c5b22-a1cd-7fae-abb2-1866399a4531",
+      "timestamp_epoch": 1783852726.6634898,
+      "ordinal": 230787,
+      "price_cents": 1,
+      "size": 500,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "d17f6d23-3d95-733e-a7b4-3c7b9a04c147",
+      "timestamp_epoch": 1783852726.6634898,
+      "ordinal": 230788,
+      "price_cents": 1,
+      "size": 1,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "b43aaec6-789b-7781-83d9-fc375db98ba0",
+      "timestamp_epoch": 1783852726.6634898,
+      "ordinal": 230789,
+      "price_cents": 1,
+      "size": 204.22,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "a0822cea-fa7c-75dc-9fdf-4a87703c9c2f",
+      "timestamp_epoch": 1783852726.6634898,
+      "ordinal": 230790,
+      "price_cents": 1,
+      "size": 750,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "95745395-8715-76a3-b261-477bf1779bc9",
+      "timestamp_epoch": 1783852726.6634898,
+      "ordinal": 230791,
+      "price_cents": 1,
+      "size": 12,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "81501d37-e214-72b7-b355-913290cd38cc",
+      "timestamp_epoch": 1783852726.6634898,
+      "ordinal": 230792,
+      "price_cents": 1,
+      "size": 5,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "478087f7-e243-7790-b301-2609d4d46e22",
+      "timestamp_epoch": 1783852726.6634898,
+      "ordinal": 230793,
+      "price_cents": 1,
+      "size": 30,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "3212df04-ec33-5da9-0d74-e141a2832de8",
+      "timestamp_epoch": 1783853171.230182,
+      "ordinal": 230772,
+      "price_cents": 1,
+      "size": 79.02,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "bc2d8600-1e28-758e-caf5-602ca7eaf3ea",
+      "timestamp_epoch": 1783853297.1051118,
+      "ordinal": 230767,
+      "price_cents": 1,
+      "size": 17.19,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "32604a27-9793-7bf9-dccc-fc123bf6add0",
+      "timestamp_epoch": 1783853297.1051118,
+      "ordinal": 230768,
+      "price_cents": 1,
+      "size": 216.76,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "d4c19012-c76e-5dca-ee0b-c179eef11ccd",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230757,
+      "price_cents": 1,
+      "size": 100,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "b64d2ec4-f5e2-50fd-ee28-d726212d01dc",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230758,
+      "price_cents": 1,
+      "size": 23,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "b4d3878c-7a5b-5f17-e118-d7a4a348d1db",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230759,
+      "price_cents": 1,
+      "size": 24,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "aa87fa0b-5942-54d9-f440-8958ffb24e38",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230760,
+      "price_cents": 1,
+      "size": 100,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "a641269c-100c-5263-edce-94a04bf5a335",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230761,
+      "price_cents": 1,
+      "size": 279,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "86d9dbdc-2b9a-5d5b-e4b8-1e4042401a97",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230762,
+      "price_cents": 1,
+      "size": 571,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "59ef89d3-93dc-5566-c8e5-fa227428cc16",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230763,
+      "price_cents": 1,
+      "size": 102.81,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "428d090d-15ce-59dd-c471-18a3f89398b2",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230764,
+      "price_cents": 1,
+      "size": 500,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "38c765cd-758b-5740-c69f-8c27f5c694e6",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230765,
+      "price_cents": 1,
+      "size": 23,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "21a7dd7f-99f1-51dd-fd28-c10efedc951b",
+      "timestamp_epoch": 1783853405.464638,
+      "ordinal": 230766,
+      "price_cents": 1,
+      "size": 23,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "d4e4b399-d19d-71f1-6eb2-5945d3066ebc",
+      "timestamp_epoch": 1783854090.2034478,
+      "ordinal": 230740,
+      "price_cents": 1,
+      "size": 100,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "a6a88fff-4b83-71af-5413-4f4c9ab5ce98",
+      "timestamp_epoch": 1783854090.2034478,
+      "ordinal": 230741,
+      "price_cents": 1,
+      "size": 24,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "968063a3-ffc3-74f2-5fca-cecc366474e9",
+      "timestamp_epoch": 1783854090.2034478,
+      "ordinal": 230742,
+      "price_cents": 1,
+      "size": 1.2,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "6e26bf71-adc2-70a2-6aa8-49158b472305",
+      "timestamp_epoch": 1783854090.2034478,
+      "ordinal": 230743,
+      "price_cents": 1,
+      "size": 100,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "9b714143-739d-6ca0-035c-66234309e845",
+      "timestamp_epoch": 1783854255.1411018,
+      "ordinal": 230735,
+      "price_cents": 1,
+      "size": 100,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "8128d958-c74b-6b15-362e-c15caaa92875",
+      "timestamp_epoch": 1783854255.1411018,
+      "ordinal": 230736,
+      "price_cents": 1,
+      "size": 24,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "8004f182-ba6e-7de4-a34f-83f3f4dcc3fe",
+      "timestamp_epoch": 1783854588.232231,
+      "ordinal": 230729,
+      "price_cents": 1,
+      "size": 100,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "78ad2404-ea3d-7fa3-8461-f4fdf53c952e",
+      "timestamp_epoch": 1783854588.232231,
+      "ordinal": 230730,
+      "price_cents": 1,
+      "size": 150,
+      "aggressor_side": "SELLER"
+     },
+     {
+      "receipt": "bcc917e9-22a9-7d32-fcaf-4338a5736c78",
+      "timestamp_epoch": 1783855775.4961638,
+      "ordinal": 230727,
+      "price_cents": 1,
+      "size": 103,
+      "aggressor_side": "BUYER"
+     },
+     {
+      "receipt": "990fb623-8bcf-7e7b-3317-b3ddd7e04d54",
+      "timestamp_epoch": 1783855783.575165,
+      "ordinal": 230725,
+      "price_cents": 1,
+      "size": 70,
+      "aggressor_side": "BUYER"
+     },
+     {
+      "receipt": "72a9f28f-b2ed-713e-2fa0-63780572d0dc",
+      "timestamp_epoch": 1783855783.575165,
+      "ordinal": 230726,
+      "price_cents": 1,
+      "size": 97,
+      "aggressor_side": "BUYER"
+     },
+     {
+      "receipt": "a5795f51-343b-5cd3-d779-50a087059af4",
+      "timestamp_epoch": 1783855889.729606,
+      "ordinal": 230724,
+      "price_cents": 1,
+      "size": 18.7,
+      "aggressor_side": "BUYER"
+     },
+     {
+      "receipt": "c3aee9e7-5edb-47f7-1aeb-664455a53c50",
+      "timestamp_epoch": 1783855996.285311,
+      "ordinal": 230723,
+      "price_cents": 1,
+      "size": 9.35,
+      "aggressor_side": "BUYER"
+     }
+    ],
+    "terminal": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST"
+   },
+   "census": {
+    "cred": true,
+    "entry": 3,
+    "fill_class": "CENSUS_PRICED_ONE_CENT_RESIDENCY_CONVERSION"
+   },
+   "rest_trajectory": [
+    {
+     "ts": 1783804893,
+     "et": "2026-07-11 17:21:33",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783806690,
+     "et": "2026-07-11 17:51:30",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783809967,
+     "et": "2026-07-11 18:46:07",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783810310,
+     "et": "2026-07-11 18:51:50",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783813573,
+     "et": "2026-07-11 19:46:13",
+     "level": 3,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817676,
+     "et": "2026-07-11 20:54:36",
+     "level": 1,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783817697,
+     "et": "2026-07-11 20:54:57",
+     "level": 3,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783847324,
+     "et": "2026-07-12 05:08:44",
+     "level": 2,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783848133,
+     "et": "2026-07-12 05:22:13",
+     "level": 3,
+     "state": "RISING"
+    }
+   ],
+   "settled_windows": [
+    {
+     "start": 1783804893,
+     "start_et": "2026-07-11 17:21:33",
+     "end": 1783806690,
+     "dwell_s": 1797
+    },
+    {
+     "start": 1783809967,
+     "start_et": "2026-07-11 18:46:07",
+     "end": 1783810310,
+     "dwell_s": 343
+    },
+    {
+     "start": 1783847324,
+     "start_et": "2026-07-12 05:08:44",
+     "end": 1783848133,
+     "dwell_s": 809
+    }
+   ],
+   "fill": {
+    "receipt": "f5445aaf-7b13-5a54-4cd0-3f8b8baa6f76",
+    "entry": 3,
+    "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+    "ts": 1783852185.319885,
+    "et": "2026-07-12 06:29:45",
+    "gate_saw": null,
+    "evidence_floor": null,
+    "displayed_ask": null,
+    "state_label_ignored": null
+   }
+  },
+  "PRI": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-PRI",
+   "v34": {
+    "cred": true,
+    "entry": 96,
+    "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+    "fill_ts": 1783829324
+   },
+   "v35": {
+    "cred": true,
+    "entry": 96,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+    "fill_ts": 1783828795,
+    "rest_edge": false,
+    "rest_tgt": null,
+    "seller_hit_low": null,
+    "qfloor": 96,
+    "pbfloor": 94,
+    "cap": 96,
+    "pb_receipts": [
+     {
+      "receipt": "7690df92-9a7c-5f20-aaac-002e79b5a9ed",
+      "timestamp_epoch": 1783852178.865731,
+      "ordinal": 230936,
+      "price_cents": 94,
+      "size": 1,
+      "aggressor_side": "SELLER"
+     }
+    ],
+    "terminal": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK"
+   },
+   "census": {
+    "cred": true,
+    "entry": 96,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK"
+   },
+   "rest_trajectory": [
+    {
+     "ts": 1783804893,
+     "et": "2026-07-11 17:21:33",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783806690,
+     "et": "2026-07-11 17:51:30",
+     "level": 4,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783809967,
+     "et": "2026-07-11 18:46:07",
+     "level": 3,
+     "state": "SETTLED"
+    },
+    {
+     "ts": 1783810092,
+     "et": "2026-07-11 18:48:12",
+     "level": 85,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817543,
+     "et": "2026-07-11 20:52:23",
+     "level": 86,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817550,
+     "et": "2026-07-11 20:52:30",
+     "level": 88,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817551,
+     "et": "2026-07-11 20:52:31",
+     "level": 89,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817650,
+     "et": "2026-07-11 20:54:10",
+     "level": 86,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817650,
+     "et": "2026-07-11 20:54:10",
+     "level": 90,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817719,
+     "et": "2026-07-11 20:55:19",
+     "level": 88,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783817814,
+     "et": "2026-07-11 20:56:54",
+     "level": 86,
+     "state": "FALLING"
+    },
+    {
+     "ts": 1783817814,
+     "et": "2026-07-11 20:56:54",
+     "level": 89,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783817958,
+     "et": "2026-07-11 20:59:18",
+     "level": 86,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783821926,
+     "et": "2026-07-11 22:05:26",
+     "level": 90,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783821985,
+     "et": "2026-07-11 22:06:25",
+     "level": 91,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783823541,
+     "et": "2026-07-11 22:32:21",
+     "level": 92,
+     "state": "RISING"
+    },
+    {
+     "ts": 1783824269,
+     "et": "2026-07-11 22:44:29",
+     "level": 93,
+     "state": "RISING"
+    }
+   ],
+   "settled_windows": [
+    {
+     "start": 1783804893,
+     "start_et": "2026-07-11 17:21:33",
+     "end": 1783806690,
+     "dwell_s": 1797
+    },
+    {
+     "start": 1783809967,
+     "start_et": "2026-07-11 18:46:07",
+     "end": 1783810092,
+     "dwell_s": 125
+    }
+   ],
+   "fill": {
+    "receipt": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-PRI.csv.gz#row-1289",
+    "entry": 96,
+    "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+    "ts": 1783828795,
+    "et": "2026-07-11 23:59:55",
+    "gate_saw": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+    "evidence_floor": 96,
+    "displayed_ask": {
+     "price_cents": 96,
+     "size": 327,
+     "spread": 1,
+     "dwell_seconds": 10292,
+     "crossed_or_locked": false
+    },
+    "state_label_ignored": true
+   }
+  }
+ },
+ "divergence": {
+  "kind": "DEEPEST_RISING_MAKER_FILL",
+  "leg": "BAL",
+  "entry": 3,
+  "state_at_fill": "RISING",
+  "sweep_that_paid": {
+   "receipt": "f26c5b22-a1cd-7fae-abb2-1866399a4531",
+   "price": 1,
+   "size": 500,
+   "aggressor": "SELLER",
+   "ts": 1783852726,
+   "et": "2026-07-12 06:38:46"
+  },
+  "other_leg": "PRI",
+  "other_leg_entry": 96,
+  "note": "BAL: living rest RISING-side maker fill at 3 -- a SELLER dumped 500 lots at 1 into our rest while the book was RISING (favorite PRI strengthening to 96). The golden pattern: rest caught the sweep at the floor."
+ },
+ "csv_rows": 3248
+}

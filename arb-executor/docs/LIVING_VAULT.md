@@ -1675,4 +1675,4 @@ shows 171 were already touched. Only `KXATPMATCH-26JUL28MICMCD` remains sealed;
 did not activate: zero brain invocations, zero retries, and zero score rows.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/2db2f84f6a3251e6f823ab017ee8e7d287b75db6/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_SEAL_20260806_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bd4ca66518d7aa60f9981a35c347d48e5a2d75c3/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_SEAL_20260806_ADDENDUM.md

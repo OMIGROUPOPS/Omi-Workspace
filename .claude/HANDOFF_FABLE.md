@@ -1662,4 +1662,4 @@ so `N=1 < 60`; V36, V35, and R3 were not run. There are zero runner
 invocations, retries, and score rows. The exam waits for more games.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/2db2f84f6a3251e6f823ab017ee8e7d287b75db6/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_SEAL_20260806_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bd4ca66518d7aa60f9981a35c347d48e5a2d75c3/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_SEAL_20260806_ADDENDUM.md

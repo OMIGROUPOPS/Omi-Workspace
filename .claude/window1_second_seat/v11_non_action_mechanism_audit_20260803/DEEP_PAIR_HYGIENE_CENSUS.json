@@ -1,0 +1,2087 @@
+{
+ "LABEL": "DEEP_PAIR_HYGIENE_CENSUS",
+ "binding": "V34-W1 e56d79a2, V35 0799fba, V36 3f... (state_directional). Deep pair = strict completed, combined<=95.",
+ "per_model": {
+  "V34": {
+   "deep_pairs": 34,
+   "by_bell": {
+    "exact": 9,
+    "schedule_only": 11,
+    "live_by_only": 14
+   },
+   "exact_bell": 9,
+   "with_terminal_collapse": 6,
+   "exact_and_clean": 9,
+   "median_dist_min_of_cheap_leg": null
+  },
+  "V35": {
+   "deep_pairs": 25,
+   "by_bell": {
+    "schedule_only": 6,
+    "live_by_only": 12,
+    "exact": 5,
+    "clean_interval": 1,
+    "contradictory": 1
+   },
+   "exact_bell": 5,
+   "with_terminal_collapse": 0,
+   "exact_and_clean": 5,
+   "median_dist_min_of_cheap_leg": null
+  },
+  "V36": {
+   "deep_pairs": 20,
+   "by_bell": {
+    "exact": 7,
+    "schedule_only": 6,
+    "live_by_only": 6,
+    "contradictory": 1
+   },
+   "exact_bell": 7,
+   "with_terminal_collapse": 0,
+   "exact_and_clean": 7,
+   "median_dist_min_of_cheap_leg": null
+  }
+ },
+ "note": "terminal_collapse = a leg's fill (<=9c) sits in a monotone seller-dump run of >=3 descending prints spanning >=10c into single digits within 30min of the fill (settlement-collapse catch, not a pre-bell arbitrage).",
+ "VERDICT": {
+  "V34_deep": 34,
+  "V34_exact_bell": 9,
+  "V34_exact_clean": 9,
+  "V35_deep": 25,
+  "V35_exact_bell": 5,
+  "V35_exact_clean": 5,
+  "V36_deep": 20,
+  "V36_exact_bell": 7,
+  "V36_exact_clean": 7,
+  "reading": "Deep pairs surviving on exact-bell games with no terminal-collapse catch are the schedule-uncontaminated deep bar.",
+  "V34_min_dist_from_right_edge_min_median": 149.1,
+  "V35_min_dist_from_right_edge_min_median": 290.3,
+  "V36_min_dist_from_right_edge_min_median": 229.4
+ },
+ "risen_top_takes_V35": {
+  "threshold_cents": 5,
+  "n": 85,
+  "combined_damage": {
+   "n": 85,
+   "median": 13,
+   "p90": 52,
+   "max": 85,
+   "sum": 1808
+  },
+  "ganjan_jan_present": true,
+  "examples": [
+   {
+    "event": "26JUL18JACDA",
+    "leg": "JAC",
+    "entry": 93,
+    "print_backed_floor": 8,
+    "risen_cents": 85,
+    "combined": 99,
+    "bell": "live_by_only"
+   },
+   {
+    "event": "26JUL12GANJAN",
+    "leg": "JAN",
+    "entry": 79,
+    "print_backed_floor": 1,
+    "risen_cents": 78,
+    "combined": 99,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12PALCOL",
+    "leg": "PAL",
+    "entry": 74,
+    "print_backed_floor": 1,
+    "risen_cents": 73,
+    "combined": 96,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12HERALM",
+    "leg": "ALM",
+    "entry": 71,
+    "print_backed_floor": 7,
+    "risen_cents": 64,
+    "combined": 99,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12BUEMAR",
+    "leg": "BUE",
+    "entry": 59,
+    "print_backed_floor": 1,
+    "risen_cents": 58,
+    "combined": 98,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12LINMAL",
+    "leg": "MAL",
+    "entry": 55,
+    "print_backed_floor": 1,
+    "risen_cents": 54,
+    "combined": 65,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12MICKUL",
+    "leg": "KUL",
+    "entry": 55,
+    "print_backed_floor": 1,
+    "risen_cents": 54,
+    "combined": 96,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12BROGIU",
+    "leg": "GIU",
+    "entry": 54,
+    "print_backed_floor": 1,
+    "risen_cents": 53,
+    "combined": 99,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12PRASAI",
+    "leg": "SAI",
+    "entry": 53,
+    "print_backed_floor": 1,
+    "risen_cents": 52,
+    "combined": 98,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12SKASAC",
+    "leg": "SAC",
+    "entry": 52,
+    "print_backed_floor": 1,
+    "risen_cents": 51,
+    "combined": 98,
+    "bell": "schedule_only"
+   },
+   {
+    "event": "26JUL12DODDEL",
+    "leg": "DEL",
+    "entry": 62,
+    "print_backed_floor": 13,
+    "risen_cents": 49,
+    "combined": 99,
+    "bell": "live_by_only"
+   },
+   {
+    "event": "26JUL12GIUBAR",
+    "leg": "GIU",
+    "entry": 69,
+    "print_backed_floor": 21,
+    "risen_cents": 48,
+    "combined": 97,
+    "bell": "live_by_only"
+   }
+  ]
+ },
+ "per_pair": {
+  "V34": [
+   {
+    "event": "26JUL12DEGEE",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 94,
+    "legs": {
+     "DE": {
+      "entry": 35,
+      "fill_ts": 1783864247,
+      "dist_from_right_edge_s": 85153,
+      "dist_min": 1419.2,
+      "terminal_collapse": false
+     },
+     "GEE": {
+      "entry": 59,
+      "fill_ts": 1783901345,
+      "dist_from_right_edge_s": 48055,
+      "dist_min": 800.9,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL12GANJAN",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 23,
+    "legs": {
+     "GAN": {
+      "entry": 20,
+      "fill_ts": 1783826594,
+      "dist_from_right_edge_s": 27406,
+      "dist_min": 456.8,
+      "terminal_collapse": false
+     },
+     "JAN": {
+      "entry": 3,
+      "fill_ts": 1783849624.9716458,
+      "dist_from_right_edge_s": 4375,
+      "dist_min": 72.9,
+      "terminal_collapse": true
+     }
+    },
+    "any_terminal_collapse": true,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12GURDAL",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 94,
+    "legs": {
+     "DAL": {
+      "entry": 93,
+      "fill_ts": 1783853426,
+      "dist_from_right_edge_s": 22174,
+      "dist_min": 369.6,
+      "terminal_collapse": false
+     },
+     "GUR": {
+      "entry": 1,
+      "fill_ts": 1783869666.262383,
+      "dist_from_right_edge_s": 5933,
+      "dist_min": 98.9,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12KUMTUR",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 89,
+    "legs": {
+     "KUM": {
+      "entry": 71,
+      "fill_ts": 1783849954,
+      "dist_from_right_edge_s": 38846,
+      "dist_min": 647.4,
+      "terminal_collapse": false
+     },
+     "TUR": {
+      "entry": 18,
+      "fill_ts": 1783881004.1795979,
+      "dist_from_right_edge_s": 7795,
+      "dist_min": 129.9,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12RAQKUM",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 56,
+    "legs": {
+     "KUM": {
+      "entry": 55,
+      "fill_ts": 1783836884,
+      "dist_from_right_edge_s": 17116,
+      "dist_min": 285.3,
+      "terminal_collapse": false
+     },
+     "RAQ": {
+      "entry": 1,
+      "fill_ts": 1783852470.2385309,
+      "dist_from_right_edge_s": 1529,
+      "dist_min": 25.5,
+      "terminal_collapse": true
+     }
+    },
+    "any_terminal_collapse": true,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12VILRAH",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 72,
+    "legs": {
+     "RAH": {
+      "entry": 3,
+      "fill_ts": 1783850708.0242069,
+      "dist_from_right_edge_s": 3291,
+      "dist_min": 54.9,
+      "terminal_collapse": true
+     },
+     "VIL": {
+      "entry": 69,
+      "fill_ts": 1783833234,
+      "dist_from_right_edge_s": 20766,
+      "dist_min": 346.1,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": true,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL13BOUGAN",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "BOU": {
+      "entry": 62,
+      "fill_ts": 1783922646,
+      "dist_from_right_edge_s": 29154,
+      "dist_min": 485.9,
+      "terminal_collapse": false
+     },
+     "GAN": {
+      "entry": 33,
+      "fill_ts": 1783942303,
+      "dist_from_right_edge_s": 9497,
+      "dist_min": 158.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL13MUNLEO",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 90,
+    "legs": {
+     "LEO": {
+      "entry": 59,
+      "fill_ts": 1783925772,
+      "dist_from_right_edge_s": 40128,
+      "dist_min": 668.8,
+      "terminal_collapse": false
+     },
+     "MUN": {
+      "entry": 31,
+      "fill_ts": 1783938770,
+      "dist_from_right_edge_s": 27130,
+      "dist_min": 452.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL13ROZISO",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "ISO": {
+      "entry": 28,
+      "fill_ts": 1783956443,
+      "dist_from_right_edge_s": 3757,
+      "dist_min": 62.6,
+      "terminal_collapse": false
+     },
+     "ROZ": {
+      "entry": 67,
+      "fill_ts": 1783925976,
+      "dist_from_right_edge_s": 34224,
+      "dist_min": 570.4,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL14SMIILA",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "ILA": {
+      "entry": 27,
+      "fill_ts": 1784034682,
+      "dist_from_right_edge_s": 7298,
+      "dist_min": 121.6,
+      "terminal_collapse": false
+     },
+     "SMI": {
+      "entry": 68,
+      "fill_ts": 1784041884.5505168,
+      "dist_from_right_edge_s": 95,
+      "dist_min": 1.6,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL15SANERE",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 92,
+    "legs": {
+     "ERE": {
+      "entry": 48,
+      "fill_ts": 1784133780.509635,
+      "dist_from_right_edge_s": 59,
+      "dist_min": 1.0,
+      "terminal_collapse": false
+     },
+     "SAN": {
+      "entry": 44,
+      "fill_ts": 1784103829,
+      "dist_from_right_edge_s": 30011,
+      "dist_min": 500.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19DJOMAT",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 92,
+    "legs": {
+     "DJO": {
+      "entry": 4,
+      "fill_ts": 1784435991.0210419,
+      "dist_from_right_edge_s": 32465,
+      "dist_min": 541.1,
+      "terminal_collapse": false
+     },
+     "MAT": {
+      "entry": 88,
+      "fill_ts": 1784455421,
+      "dist_from_right_edge_s": 13035,
+      "dist_min": 217.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19HURBIG",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "BIG": {
+      "entry": 57,
+      "fill_ts": 1784463948,
+      "dist_from_right_edge_s": 41652,
+      "dist_min": 694.2,
+      "terminal_collapse": false
+     },
+     "HUR": {
+      "entry": 38,
+      "fill_ts": 1784499171,
+      "dist_from_right_edge_s": 6429,
+      "dist_min": 107.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL19YEVSTR",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 91,
+    "legs": {
+     "STR": {
+      "entry": 87,
+      "fill_ts": 1784437171,
+      "dist_from_right_edge_s": 30929,
+      "dist_min": 515.5,
+      "terminal_collapse": false
+     },
+     "YEV": {
+      "entry": 4,
+      "fill_ts": 1784435972.8375568,
+      "dist_from_right_edge_s": 32127,
+      "dist_min": 535.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19ZAMKIN",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 84,
+    "legs": {
+     "KIN": {
+      "entry": 81,
+      "fill_ts": 1784493369.019115,
+      "dist_from_right_edge_s": 5823,
+      "dist_min": 97.1,
+      "terminal_collapse": false
+     },
+     "ZAM": {
+      "entry": 3,
+      "fill_ts": 1784494942.489954,
+      "dist_from_right_edge_s": 4250,
+      "dist_min": 70.8,
+      "terminal_collapse": true
+     }
+    },
+    "any_terminal_collapse": true,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20GALARN",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 91,
+    "legs": {
+     "ARN": {
+      "entry": 40,
+      "fill_ts": 1784508517,
+      "dist_from_right_edge_s": 51658,
+      "dist_min": 861.0,
+      "terminal_collapse": false
+     },
+     "GAL": {
+      "entry": 51,
+      "fill_ts": 1784549825.721992,
+      "dist_from_right_edge_s": 10349,
+      "dist_min": 172.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12FARWAW",
+    "cat": "ATP_MAIN",
+    "bell": "exact",
+    "combined": 94,
+    "legs": {
+     "FAR": {
+      "entry": 61,
+      "fill_ts": 1783786489,
+      "dist_from_right_edge_s": 257711,
+      "dist_min": 4295.2,
+      "terminal_collapse": false
+     },
+     "WAW": {
+      "entry": 33,
+      "fill_ts": 1783834426,
+      "dist_from_right_edge_s": 209774,
+      "dist_min": 3496.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL12NEUTOP",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 36,
+    "legs": {
+     "NEU": {
+      "entry": 5,
+      "fill_ts": 1783876889.089779,
+      "dist_from_right_edge_s": 103088,
+      "dist_min": 1718.1,
+      "terminal_collapse": false
+     },
+     "TOP": {
+      "entry": 31,
+      "fill_ts": 1783806440,
+      "dist_from_right_edge_s": 173538,
+      "dist_min": 2892.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12PRASAI",
+    "cat": "ATP_MAIN",
+    "bell": "schedule_only",
+    "combined": 50,
+    "legs": {
+     "PRA": {
+      "entry": 45,
+      "fill_ts": 1783809592,
+      "dist_from_right_edge_s": 69608,
+      "dist_min": 1160.1,
+      "terminal_collapse": false
+     },
+     "SAI": {
+      "entry": 5,
+      "fill_ts": 1783877406.179627,
+      "dist_from_right_edge_s": 1793,
+      "dist_min": 29.9,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL15BORDIM",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 90,
+    "legs": {
+     "BOR": {
+      "entry": 53,
+      "fill_ts": 1784047574,
+      "dist_from_right_edge_s": 63876,
+      "dist_min": 1064.6,
+      "terminal_collapse": false
+     },
+     "DIM": {
+      "entry": 37,
+      "fill_ts": 1784058025,
+      "dist_from_right_edge_s": 53425,
+      "dist_min": 890.4,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL16MERDRO",
+    "cat": "ATP_MAIN",
+    "bell": "exact",
+    "combined": 93,
+    "legs": {
+     "DRO": {
+      "entry": 44,
+      "fill_ts": 1784163839,
+      "dist_from_right_edge_s": 46861,
+      "dist_min": 781.0,
+      "terminal_collapse": false
+     },
+     "MER": {
+      "entry": 49,
+      "fill_ts": 1784157585,
+      "dist_from_right_edge_s": 53115,
+      "dist_min": 885.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL18DELRIB",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "DEL": {
+      "entry": 70,
+      "fill_ts": 1784350901,
+      "dist_from_right_edge_s": 33559,
+      "dist_min": 559.3,
+      "terminal_collapse": false
+     },
+     "RIB": {
+      "entry": 25,
+      "fill_ts": 1784335607,
+      "dist_from_right_edge_s": 48853,
+      "dist_min": 814.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12MAZGAN",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "combined": 73,
+    "legs": {
+     "GAN": {
+      "entry": 1,
+      "fill_ts": 1783868830.9427679,
+      "dist_from_right_edge_s": 111147,
+      "dist_min": 1852.5,
+      "terminal_collapse": true
+     },
+     "MAZ": {
+      "entry": 72,
+      "fill_ts": 1783860746,
+      "dist_from_right_edge_s": 119232,
+      "dist_min": 1987.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": true,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12PALCOL",
+    "cat": "WTA_CHALL",
+    "bell": "schedule_only",
+    "combined": 40,
+    "legs": {
+     "COL": {
+      "entry": 22,
+      "fill_ts": 1783851654,
+      "dist_from_right_edge_s": 11346,
+      "dist_min": 189.1,
+      "terminal_collapse": false
+     },
+     "PAL": {
+      "entry": 18,
+      "fill_ts": 1783856212.267452,
+      "dist_from_right_edge_s": 6787,
+      "dist_min": 113.1,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12SHEVAN",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "combined": 74,
+    "legs": {
+     "SHE": {
+      "entry": 31,
+      "fill_ts": 1783865386.0446298,
+      "dist_from_right_edge_s": 3493,
+      "dist_min": 58.2,
+      "terminal_collapse": false
+     },
+     "VAN": {
+      "entry": 43,
+      "fill_ts": 1783822414,
+      "dist_from_right_edge_s": 46466,
+      "dist_min": 774.4,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12SHITUR",
+    "cat": "WTA_CHALL",
+    "bell": "schedule_only",
+    "combined": 86,
+    "legs": {
+     "SHI": {
+      "entry": 84,
+      "fill_ts": 1783838520,
+      "dist_from_right_edge_s": 22680,
+      "dist_min": 378.0,
+      "terminal_collapse": false
+     },
+     "TUR": {
+      "entry": 2,
+      "fill_ts": 1783852814.2727158,
+      "dist_from_right_edge_s": 8385,
+      "dist_min": 139.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL13JONSPI",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "combined": 63,
+    "legs": {
+     "JON": {
+      "entry": 51,
+      "fill_ts": 1783903623,
+      "dist_from_right_edge_s": 282,
+      "dist_min": 4.7,
+      "terminal_collapse": false
+     },
+     "SPI": {
+      "entry": 12,
+      "fill_ts": 1783902647,
+      "dist_from_right_edge_s": 1258,
+      "dist_min": 21.0,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19KOTHOD",
+    "cat": "WTA_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "HOD": {
+      "entry": 57,
+      "fill_ts": 1784441552,
+      "dist_from_right_edge_s": 39148,
+      "dist_min": 652.5,
+      "terminal_collapse": false
+     },
+     "KOT": {
+      "entry": 38,
+      "fill_ts": 1784442137,
+      "dist_from_right_edge_s": 38563,
+      "dist_min": 642.7,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL12FETPIE",
+    "cat": "WTA_MAIN",
+    "bell": "live_by_only",
+    "combined": 87,
+    "legs": {
+     "FET": {
+      "entry": 35,
+      "fill_ts": 1783812705,
+      "dist_from_right_edge_s": 36855,
+      "dist_min": 614.2,
+      "terminal_collapse": false
+     },
+     "PIE": {
+      "entry": 52,
+      "fill_ts": 1783812178,
+      "dist_from_right_edge_s": 37382,
+      "dist_min": 623.0,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12GARPRI",
+    "cat": "WTA_MAIN",
+    "bell": "schedule_only",
+    "combined": 47,
+    "legs": {
+     "GAR": {
+      "entry": 40,
+      "fill_ts": 1783814245,
+      "dist_from_right_edge_s": 36155,
+      "dist_min": 602.6,
+      "terminal_collapse": false
+     },
+     "PRI": {
+      "entry": 7,
+      "fill_ts": 1783845821.2905848,
+      "dist_from_right_edge_s": 4578,
+      "dist_min": 76.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12HERKAZ",
+    "cat": "WTA_MAIN",
+    "bell": "live_by_only",
+    "combined": 93,
+    "legs": {
+     "HER": {
+      "entry": 46,
+      "fill_ts": 1783833694,
+      "dist_from_right_edge_s": 13106,
+      "dist_min": 218.4,
+      "terminal_collapse": false
+     },
+     "KAZ": {
+      "entry": 47,
+      "fill_ts": 1783833784,
+      "dist_from_right_edge_s": 13016,
+      "dist_min": 216.9,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12KULZAA",
+    "cat": "WTA_MAIN",
+    "bell": "schedule_only",
+    "combined": 39,
+    "legs": {
+     "KUL": {
+      "entry": 32,
+      "fill_ts": 1783814215,
+      "dist_from_right_edge_s": 36185,
+      "dist_min": 603.1,
+      "terminal_collapse": false
+     },
+     "ZAA": {
+      "entry": 7,
+      "fill_ts": 1783846733.81368,
+      "dist_from_right_edge_s": 3666,
+      "dist_min": 61.1,
+      "terminal_collapse": true
+     }
+    },
+    "any_terminal_collapse": true,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL13PRIGAR",
+    "cat": "WTA_MAIN",
+    "bell": "schedule_only",
+    "combined": 94,
+    "legs": {
+     "GAR": {
+      "entry": 7,
+      "fill_ts": 1783895606.4859948,
+      "dist_from_right_edge_s": 41193,
+      "dist_min": 686.6,
+      "terminal_collapse": false
+     },
+     "PRI": {
+      "entry": 87,
+      "fill_ts": 1783872433,
+      "dist_from_right_edge_s": 64367,
+      "dist_min": 1072.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20BONUCH",
+    "cat": "WTA_MAIN",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "BON": {
+      "entry": 65,
+      "fill_ts": 1784474355,
+      "dist_from_right_edge_s": 94545,
+      "dist_min": 1575.8,
+      "terminal_collapse": false
+     },
+     "UCH": {
+      "entry": 30,
+      "fill_ts": 1784484356,
+      "dist_from_right_edge_s": 84544,
+      "dist_min": 1409.1,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   }
+  ],
+  "V35": [
+   {
+    "event": "26JUL12BALPET",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 95,
+    "legs": {
+     "BAL": {
+      "entry": 17,
+      "fill_ts": 1783825506,
+      "dist_from_right_edge_s": 28494,
+      "dist_min": 474.9,
+      "terminal_collapse": false
+     },
+     "PET": {
+      "entry": 78,
+      "fill_ts": 1783847627.8545928,
+      "dist_from_right_edge_s": 6372,
+      "dist_min": 106.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12KUMTUR",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 92,
+    "legs": {
+     "KUM": {
+      "entry": 62,
+      "fill_ts": 1783878438.887812,
+      "dist_from_right_edge_s": 10361,
+      "dist_min": 172.7,
+      "terminal_collapse": false
+     },
+     "TUR": {
+      "entry": 30,
+      "fill_ts": 1783862279,
+      "dist_from_right_edge_s": 26521,
+      "dist_min": 442.0,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12LINMAL",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 65,
+    "legs": {
+     "LIN": {
+      "entry": 10,
+      "fill_ts": 1783851722,
+      "dist_from_right_edge_s": 32878,
+      "dist_min": 548.0,
+      "terminal_collapse": false
+     },
+     "MAL": {
+      "entry": 55,
+      "fill_ts": 1783876680,
+      "dist_from_right_edge_s": 7920,
+      "dist_min": 132.0,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12MARARS",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "ARS": {
+      "entry": 32,
+      "fill_ts": 1783872798.9641469,
+      "dist_from_right_edge_s": 4241,
+      "dist_min": 70.7,
+      "terminal_collapse": false
+     },
+     "MAR": {
+      "entry": 63,
+      "fill_ts": 1783839053,
+      "dist_from_right_edge_s": 37987,
+      "dist_min": 633.1,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12RAFAGU",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 93,
+    "legs": {
+     "AGU": {
+      "entry": 81,
+      "fill_ts": 1783872262.7450619,
+      "dist_from_right_edge_s": 6937,
+      "dist_min": 115.6,
+      "terminal_collapse": false
+     },
+     "RAF": {
+      "entry": 12,
+      "fill_ts": 1783840221,
+      "dist_from_right_edge_s": 38979,
+      "dist_min": 649.6,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12RAQKUM",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 94,
+    "legs": {
+     "KUM": {
+      "entry": 55,
+      "fill_ts": 1783836884,
+      "dist_from_right_edge_s": 17116,
+      "dist_min": 285.3,
+      "terminal_collapse": false
+     },
+     "RAQ": {
+      "entry": 39,
+      "fill_ts": 1783848352,
+      "dist_from_right_edge_s": 5648,
+      "dist_min": 94.1,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL13BOUGAN",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "BOU": {
+      "entry": 62,
+      "fill_ts": 1783922183,
+      "dist_from_right_edge_s": 29617,
+      "dist_min": 493.6,
+      "terminal_collapse": false
+     },
+     "GAN": {
+      "entry": 33,
+      "fill_ts": 1783942303,
+      "dist_from_right_edge_s": 9497,
+      "dist_min": 158.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL14KIRSEK",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 32,
+    "legs": {
+     "KIR": {
+      "entry": 15,
+      "fill_ts": 1784003371.206847,
+      "dist_from_right_edge_s": 34828,
+      "dist_min": 580.5,
+      "terminal_collapse": false
+     },
+     "SEK": {
+      "entry": 17,
+      "fill_ts": 1783999660.33948,
+      "dist_from_right_edge_s": 38539,
+      "dist_min": 642.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL15SANERE",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 93,
+    "legs": {
+     "ERE": {
+      "entry": 49,
+      "fill_ts": 1784133780.509635,
+      "dist_from_right_edge_s": 59,
+      "dist_min": 1.0,
+      "terminal_collapse": false
+     },
+     "SAN": {
+      "entry": 44,
+      "fill_ts": 1784103521,
+      "dist_from_right_edge_s": 30319,
+      "dist_min": 505.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19BARSTA",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "BAR": {
+      "entry": 36,
+      "fill_ts": 1784438520,
+      "dist_from_right_edge_s": 17415,
+      "dist_min": 290.3,
+      "terminal_collapse": false
+     },
+     "STA": {
+      "entry": 59,
+      "fill_ts": 1784431410,
+      "dist_from_right_edge_s": 24525,
+      "dist_min": 408.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19CLAKUZ",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "CLA": {
+      "entry": 38,
+      "fill_ts": 1784440860,
+      "dist_from_right_edge_s": 43440,
+      "dist_min": 724.0,
+      "terminal_collapse": false
+     },
+     "KUZ": {
+      "entry": 57,
+      "fill_ts": 1784440641,
+      "dist_from_right_edge_s": 43659,
+      "dist_min": 727.6,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL19POLSCH",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 94,
+    "legs": {
+     "POL": {
+      "entry": 63,
+      "fill_ts": 1784431366,
+      "dist_from_right_edge_s": 24569,
+      "dist_min": 409.5,
+      "terminal_collapse": false
+     },
+     "SCH": {
+      "entry": 31,
+      "fill_ts": 1784433687,
+      "dist_from_right_edge_s": 22248,
+      "dist_min": 370.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20GIUHER",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "GIU": {
+      "entry": 73,
+      "fill_ts": 1784535869,
+      "dist_from_right_edge_s": 2191,
+      "dist_min": 36.5,
+      "terminal_collapse": false
+     },
+     "HER": {
+      "entry": 22,
+      "fill_ts": 1784513402,
+      "dist_from_right_edge_s": 24658,
+      "dist_min": 411.0,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20NOGSHI",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "NOG": {
+      "entry": 51,
+      "fill_ts": 1784563853,
+      "dist_from_right_edge_s": 20947,
+      "dist_min": 349.1,
+      "terminal_collapse": false
+     },
+     "SHI": {
+      "entry": 44,
+      "fill_ts": 1784583313.192627,
+      "dist_from_right_edge_s": 1486,
+      "dist_min": 24.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL12MARHAN",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 94,
+    "legs": {
+     "HAN": {
+      "entry": 68,
+      "fill_ts": 1783800953,
+      "dist_from_right_edge_s": 107533,
+      "dist_min": 1792.2,
+      "terminal_collapse": false
+     },
+     "MAR": {
+      "entry": 26,
+      "fill_ts": 1783810056,
+      "dist_from_right_edge_s": 98430,
+      "dist_min": 1640.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL15BORDIM",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "BOR": {
+      "entry": 52,
+      "fill_ts": 1784045564,
+      "dist_from_right_edge_s": 65886,
+      "dist_min": 1098.1,
+      "terminal_collapse": false
+     },
+     "DIM": {
+      "entry": 43,
+      "fill_ts": 1784050638,
+      "dist_from_right_edge_s": 60812,
+      "dist_min": 1013.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL18GAUTSE",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 93,
+    "legs": {
+     "GAU": {
+      "entry": 50,
+      "fill_ts": 1784332745,
+      "dist_from_right_edge_s": 45055,
+      "dist_min": 750.9,
+      "terminal_collapse": false
+     },
+     "TSE": {
+      "entry": 43,
+      "fill_ts": 1784332885,
+      "dist_from_right_edge_s": 44915,
+      "dist_min": 748.6,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19FELKOP",
+    "cat": "ATP_MAIN",
+    "bell": "clean_interval",
+    "combined": 94,
+    "legs": {
+     "FEL": {
+      "entry": 69,
+      "fill_ts": 1784400625,
+      "dist_from_right_edge_s": 68830,
+      "dist_min": 1147.2,
+      "terminal_collapse": false
+     },
+     "KOP": {
+      "entry": 25,
+      "fill_ts": 1784424247,
+      "dist_from_right_edge_s": 45208,
+      "dist_min": 753.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19TSICOL",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "COL": {
+      "entry": 45,
+      "fill_ts": 1784384236.9749799,
+      "dist_from_right_edge_s": 69434,
+      "dist_min": 1157.2,
+      "terminal_collapse": false
+     },
+     "TSI": {
+      "entry": 50,
+      "fill_ts": 1784385447,
+      "dist_from_right_edge_s": 68224,
+      "dist_min": 1137.1,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12MAZGAN",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "combined": 86,
+    "legs": {
+     "GAN": {
+      "entry": 14,
+      "fill_ts": 1783865799,
+      "dist_from_right_edge_s": 114179,
+      "dist_min": 1903.0,
+      "terminal_collapse": false
+     },
+     "MAZ": {
+      "entry": 72,
+      "fill_ts": 1783860746,
+      "dist_from_right_edge_s": 119232,
+      "dist_min": 1987.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12PANYOR",
+    "cat": "WTA_CHALL",
+    "bell": "schedule_only",
+    "combined": 95,
+    "legs": {
+     "PAN": {
+      "entry": 77,
+      "fill_ts": 1783854576,
+      "dist_from_right_edge_s": 10824,
+      "dist_min": 180.4,
+      "terminal_collapse": false
+     },
+     "YOR": {
+      "entry": 18,
+      "fill_ts": 1783833631,
+      "dist_from_right_edge_s": 31769,
+      "dist_min": 529.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL13PANFAL",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "combined": 92,
+    "legs": {
+     "FAL": {
+      "entry": 47,
+      "fill_ts": 1783937393,
+      "dist_from_right_edge_s": 32,
+      "dist_min": 0.5,
+      "terminal_collapse": false
+     },
+     "PAN": {
+      "entry": 45,
+      "fill_ts": 1783925697,
+      "dist_from_right_edge_s": 11728,
+      "dist_min": 195.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL15SHEQUE",
+    "cat": "WTA_MAIN",
+    "bell": "live_by_only",
+    "combined": 66,
+    "legs": {
+     "QUE": {
+      "entry": 29,
+      "fill_ts": 1784036392.331733,
+      "dist_from_right_edge_s": 159686,
+      "dist_min": 2661.4,
+      "terminal_collapse": false
+     },
+     "SHE": {
+      "entry": 37,
+      "fill_ts": 1784035944,
+      "dist_from_right_edge_s": 160134,
+      "dist_min": 2668.9,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20BONUCH",
+    "cat": "WTA_MAIN",
+    "bell": "exact",
+    "combined": 94,
+    "legs": {
+     "BON": {
+      "entry": 65,
+      "fill_ts": 1784473866,
+      "dist_from_right_edge_s": 95034,
+      "dist_min": 1583.9,
+      "terminal_collapse": false
+     },
+     "UCH": {
+      "entry": 29,
+      "fill_ts": 1784481255,
+      "dist_from_right_edge_s": 87645,
+      "dist_min": 1460.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL20PODLEE",
+    "cat": "WTA_MAIN",
+    "bell": "contradictory",
+    "combined": 95,
+    "legs": {
+     "LEE": {
+      "entry": 55,
+      "fill_ts": 1784523606.331529,
+      "dist_from_right_edge_s": 18353,
+      "dist_min": 305.9,
+      "terminal_collapse": false
+     },
+     "POD": {
+      "entry": 40,
+      "fill_ts": 1784500956,
+      "dist_from_right_edge_s": 41004,
+      "dist_min": 683.4,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   }
+  ],
+  "V36": [
+   {
+    "event": "26JUL12ARNROM",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 94,
+    "legs": {
+     "ARN": {
+      "entry": 56,
+      "fill_ts": 1783896032,
+      "dist_from_right_edge_s": 50068,
+      "dist_min": 834.5,
+      "terminal_collapse": false
+     },
+     "ROM": {
+      "entry": 38,
+      "fill_ts": 1783936336,
+      "dist_from_right_edge_s": 9764,
+      "dist_min": 162.7,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL12BALPET",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 95,
+    "legs": {
+     "BAL": {
+      "entry": 17,
+      "fill_ts": 1783825506,
+      "dist_from_right_edge_s": 28494,
+      "dist_min": 474.9,
+      "terminal_collapse": false
+     },
+     "PET": {
+      "entry": 78,
+      "fill_ts": 1783847627.8545928,
+      "dist_from_right_edge_s": 6372,
+      "dist_min": 106.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12KUMTUR",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 92,
+    "legs": {
+     "KUM": {
+      "entry": 62,
+      "fill_ts": 1783878438.887812,
+      "dist_from_right_edge_s": 10361,
+      "dist_min": 172.7,
+      "terminal_collapse": false
+     },
+     "TUR": {
+      "entry": 30,
+      "fill_ts": 1783862279,
+      "dist_from_right_edge_s": 26521,
+      "dist_min": 442.0,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12RAFAGU",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 92,
+    "legs": {
+     "AGU": {
+      "entry": 81,
+      "fill_ts": 1783872262.7450619,
+      "dist_from_right_edge_s": 6937,
+      "dist_min": 115.6,
+      "terminal_collapse": false
+     },
+     "RAF": {
+      "entry": 11,
+      "fill_ts": 1783840663,
+      "dist_from_right_edge_s": 38537,
+      "dist_min": 642.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12RAQKUM",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "combined": 91,
+    "legs": {
+     "KUM": {
+      "entry": 55,
+      "fill_ts": 1783836884,
+      "dist_from_right_edge_s": 17116,
+      "dist_min": 285.3,
+      "terminal_collapse": false
+     },
+     "RAQ": {
+      "entry": 36,
+      "fill_ts": 1783848370.3430378,
+      "dist_from_right_edge_s": 5629,
+      "dist_min": 93.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL13BOUGAN",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "BOU": {
+      "entry": 62,
+      "fill_ts": 1783922183,
+      "dist_from_right_edge_s": 29617,
+      "dist_min": 493.6,
+      "terminal_collapse": false
+     },
+     "GAN": {
+      "entry": 33,
+      "fill_ts": 1783942303,
+      "dist_from_right_edge_s": 9497,
+      "dist_min": 158.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL14KIRSEK",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 32,
+    "legs": {
+     "KIR": {
+      "entry": 15,
+      "fill_ts": 1784003371.206847,
+      "dist_from_right_edge_s": 34828,
+      "dist_min": 580.5,
+      "terminal_collapse": false
+     },
+     "SEK": {
+      "entry": 17,
+      "fill_ts": 1783999660.33948,
+      "dist_from_right_edge_s": 38539,
+      "dist_min": 642.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL15SANERE",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 93,
+    "legs": {
+     "ERE": {
+      "entry": 49,
+      "fill_ts": 1784133780.509635,
+      "dist_from_right_edge_s": 59,
+      "dist_min": 1.0,
+      "terminal_collapse": false
+     },
+     "SAN": {
+      "entry": 44,
+      "fill_ts": 1784103521,
+      "dist_from_right_edge_s": 30319,
+      "dist_min": 505.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19BARSTA",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "BAR": {
+      "entry": 36,
+      "fill_ts": 1784438520,
+      "dist_from_right_edge_s": 17415,
+      "dist_min": 290.3,
+      "terminal_collapse": false
+     },
+     "STA": {
+      "entry": 59,
+      "fill_ts": 1784431410,
+      "dist_from_right_edge_s": 24525,
+      "dist_min": 408.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20NOGSHI",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "NOG": {
+      "entry": 51,
+      "fill_ts": 1784563853,
+      "dist_from_right_edge_s": 20947,
+      "dist_min": 349.1,
+      "terminal_collapse": false
+     },
+     "SHI": {
+      "entry": 44,
+      "fill_ts": 1784583313.192627,
+      "dist_from_right_edge_s": 1486,
+      "dist_min": 24.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL12JACTRU",
+    "cat": "ATP_MAIN",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "JAC": {
+      "entry": 45,
+      "fill_ts": 1783848617,
+      "dist_from_right_edge_s": 111583,
+      "dist_min": 1859.7,
+      "terminal_collapse": false
+     },
+     "TRU": {
+      "entry": 50,
+      "fill_ts": 1783859655,
+      "dist_from_right_edge_s": 100545,
+      "dist_min": 1675.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL12MARHAN",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 94,
+    "legs": {
+     "HAN": {
+      "entry": 68,
+      "fill_ts": 1783800953,
+      "dist_from_right_edge_s": 107533,
+      "dist_min": 1792.2,
+      "terminal_collapse": false
+     },
+     "MAR": {
+      "entry": 26,
+      "fill_ts": 1783810056,
+      "dist_from_right_edge_s": 98430,
+      "dist_min": 1640.5,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL15BORDIM",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 95,
+    "legs": {
+     "BOR": {
+      "entry": 52,
+      "fill_ts": 1784045682,
+      "dist_from_right_edge_s": 65768,
+      "dist_min": 1096.1,
+      "terminal_collapse": false
+     },
+     "DIM": {
+      "entry": 43,
+      "fill_ts": 1784051130,
+      "dist_from_right_edge_s": 60320,
+      "dist_min": 1005.3,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20DJECIN",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "combined": 91,
+    "legs": {
+     "CIN": {
+      "entry": 32,
+      "fill_ts": 1784536701.985131,
+      "dist_from_right_edge_s": 17171,
+      "dist_min": 286.2,
+      "terminal_collapse": false
+     },
+     "DJE": {
+      "entry": 59,
+      "fill_ts": 1784511324,
+      "dist_from_right_edge_s": 42549,
+      "dist_min": 709.2,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12PALCOL",
+    "cat": "WTA_CHALL",
+    "bell": "schedule_only",
+    "combined": 60,
+    "legs": {
+     "COL": {
+      "entry": 22,
+      "fill_ts": 1783851654,
+      "dist_from_right_edge_s": 11346,
+      "dist_min": 189.1,
+      "terminal_collapse": false
+     },
+     "PAL": {
+      "entry": 38,
+      "fill_ts": 1783855763.399484,
+      "dist_from_right_edge_s": 7236,
+      "dist_min": 120.6,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL12SHITUR",
+    "cat": "WTA_CHALL",
+    "bell": "schedule_only",
+    "combined": 86,
+    "legs": {
+     "SHI": {
+      "entry": 84,
+      "fill_ts": 1783837965,
+      "dist_from_right_edge_s": 23235,
+      "dist_min": 387.2,
+      "terminal_collapse": false
+     },
+     "TUR": {
+      "entry": 2,
+      "fill_ts": 1783852814.2727158,
+      "dist_from_right_edge_s": 8385,
+      "dist_min": 139.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL19KOTHOD",
+    "cat": "WTA_CHALL",
+    "bell": "exact",
+    "combined": 95,
+    "legs": {
+     "HOD": {
+      "entry": 56,
+      "fill_ts": 1784441144,
+      "dist_from_right_edge_s": 39556,
+      "dist_min": 659.3,
+      "terminal_collapse": false
+     },
+     "KOT": {
+      "entry": 39,
+      "fill_ts": 1784441781,
+      "dist_from_right_edge_s": 38919,
+      "dist_min": 648.6,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL15SHEQUE",
+    "cat": "WTA_MAIN",
+    "bell": "live_by_only",
+    "combined": 93,
+    "legs": {
+     "QUE": {
+      "entry": 29,
+      "fill_ts": 1784036392.331733,
+      "dist_from_right_edge_s": 159686,
+      "dist_min": 2661.4,
+      "terminal_collapse": false
+     },
+     "SHE": {
+      "entry": 64,
+      "fill_ts": 1784121152.0472958,
+      "dist_from_right_edge_s": 74926,
+      "dist_min": 1248.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   },
+   {
+    "event": "26JUL20BONUCH",
+    "cat": "WTA_MAIN",
+    "bell": "exact",
+    "combined": 94,
+    "legs": {
+     "BON": {
+      "entry": 65,
+      "fill_ts": 1784473866,
+      "dist_from_right_edge_s": 95034,
+      "dist_min": 1583.9,
+      "terminal_collapse": false
+     },
+     "UCH": {
+      "entry": 29,
+      "fill_ts": 1784481255,
+      "dist_from_right_edge_s": 87645,
+      "dist_min": 1460.8,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": true
+   },
+   {
+    "event": "26JUL20PODLEE",
+    "cat": "WTA_MAIN",
+    "bell": "contradictory",
+    "combined": 95,
+    "legs": {
+     "LEE": {
+      "entry": 55,
+      "fill_ts": 1784523606.331529,
+      "dist_from_right_edge_s": 18353,
+      "dist_min": 305.9,
+      "terminal_collapse": false
+     },
+     "POD": {
+      "entry": 40,
+      "fill_ts": 1784500956,
+      "dist_from_right_edge_s": 41004,
+      "dist_min": 683.4,
+      "terminal_collapse": false
+     }
+    },
+    "any_terminal_collapse": false,
+    "exact_bell": false
+   }
+  ]
+ }
+}

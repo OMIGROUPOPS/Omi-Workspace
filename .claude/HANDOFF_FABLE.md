@@ -1616,4 +1616,4 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4450de974d855605f518
 The operator restated Window 1 as first two-sided book through the V3 PRE-MATCH boundary. The unchanged V34 machine now has a close-free D=804 measurement: STRICT 254 completed/under-par pairs; CENSUS_PRICED 279 completed/under-par pairs; R3 on the same spans 229 completed and 217 under par. Hard-edge violations are zero. The supplied `84b455c5` short identity was unresolved and is correction-receipted; the actual 804-row V3 ledger is Git-bound at `224417da642a9f378a0d83f76edffe9890cb4a6f`.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e56d79a2aee1f392b3bee5a0adad099c7f011976/arb-executor/docs/research/window1/WINDOW1_V34_W1_CAUSAL_CAPTURE_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/81cb27e337f34d11ead43070ad3103a71d856922/arb-executor/docs/research/window1/WINDOW1_V34_W1_CAUSAL_CAPTURE_ADDENDUM.md

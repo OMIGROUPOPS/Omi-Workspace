@@ -1624,4 +1624,4 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4450de974d855605f518
 The operator's V3 PRE-MATCH window ruling supersedes the earlier full-life block only for this measurement. The unchanged V34 dual-side residency machine ran D=804 from first two-sided book to exact-start, else known-live-by, else schedule-bound. STRICT produced 254 completed and under-par pairs; CENSUS_PRICED produced 279. R3 on the same spans produced 229 completed and 217 under par. Closes are telemetry only and all close-based grade fields remain null. Zero machine activity occurred after the hard edge. The supplied `84b455c5` identity did not resolve; the actual ledger is bound at `224417da642a9f378a0d83f76edffe9890cb4a6f` with a named correction receipt.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e56d79a2aee1f392b3bee5a0adad099c7f011976/arb-executor/docs/research/window1/WINDOW1_V34_W1_CAUSAL_CAPTURE_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/81cb27e337f34d11ead43070ad3103a71d856922/arb-executor/docs/research/window1/WINDOW1_V34_W1_CAUSAL_CAPTURE_ADDENDUM.md

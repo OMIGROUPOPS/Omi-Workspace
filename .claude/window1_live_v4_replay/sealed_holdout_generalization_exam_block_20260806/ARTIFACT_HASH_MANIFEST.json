@@ -1,0 +1,39 @@
+{
+  "artifacts": [
+    {
+      "path": "DETERMINISM_RECEIPT.json",
+      "bytes": 177,
+      "sha256": "a4f515b2e81fd7990cca9309fc7aa479fc6faeeb94d36914bc16a628d23bdd1b"
+    },
+    {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 329,
+      "sha256": "5d412531ac96c319204a6d01f38270a0a11d0ce7d9a4fc556bccab0c4542728b"
+    },
+    {
+      "path": "HOLDOUT_EVENT_LIST.jsonl",
+      "bytes": 29964,
+      "sha256": "8f3d650e72b9efcd2a0694ac2c2752b8ef934f5cca8aa6928dcd251442b1ca30"
+    },
+    {
+      "path": "REPORT.md",
+      "bytes": 1081,
+      "sha256": "c3cc79a3da14f66403e1fc55a12d385966dc698cab1c920264b86847bfc87b27"
+    },
+    {
+      "path": "RUN_CONSUMPTION_RECEIPT.json",
+      "bytes": 390,
+      "sha256": "3fa9d37a5589a90b4c2cfca0b06e4e1d568489762b6e75529515ffe9ac4158a4"
+    },
+    {
+      "path": "SEAL_PREFLIGHT_FAILURE.json",
+      "bytes": 3803,
+      "sha256": "f1b0c4593eadbbecdd3eafe32239b02430de074854ec638a74badedda1bf1285"
+    },
+    {
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "bytes": 1970,
+      "sha256": "db54b8bd9902c280be44c31d98ee9784d043f43bceed801a94bfb6d35a792a43"
+    }
+  ]
+}

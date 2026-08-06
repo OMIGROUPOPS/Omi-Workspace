@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "network_access": false,
+  "private_holdout_tape_access": false,
+  "policy_execution": false,
+  "scorer_execution": false,
+  "live_access": false,
+  "order_access": false,
+  "position_access": false,
+  "exit_access": false,
+  "settlement_access": false,
+  "DCA_access": false,
+  "Window2_access": false
+}

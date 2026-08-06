@@ -1,0 +1,9 @@
+{
+  "status": "NOT_STARTED",
+  "reason": "POPULATION_IS_NOT_SEALED_AND_HAS_INFLUENCED_THE_REQUESTED_BRAINS",
+  "policy_evaluation_invocations": 0,
+  "policy_evaluation_retries": 0,
+  "output_scorecards": 0,
+  "holdout_tape_reads_by_this_audit": 0,
+  "note": "Event identities were reconstructed from the already-committed prior event ledger; no private tape or policy runner was opened."
+}

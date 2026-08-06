@@ -1,0 +1,111 @@
+{
+  "schema_version": "WINDOW1_HOLDOUT_SEAL_PREFLIGHT_FAILURE_V1",
+  "status": "BLOCKED_BEFORE_POLICY_EVALUATION",
+  "requested_exam": [
+    "V35",
+    "V34_W1",
+    "R3"
+  ],
+  "frozen_brains": {
+    "R3": "49f6501561c5d99a7f36c68ec41e0ea7250680e5",
+    "V34_W1": "e56d79a2aee1f392b3bee5a0adad099c7f011976",
+    "V35": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e"
+  },
+  "population": {
+    "dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
+    "events": 228,
+    "legs": 456,
+    "event_list_path": "HOLDOUT_EVENT_LIST.jsonl",
+    "event_list_sha256": "8f3d650e72b9efcd2a0694ac2c2752b8ef934f5cca8aa6928dcd251442b1ca30"
+  },
+  "failed_precondition": "POPULATION_IS_NOT_SEALED_AND_HAS_INFLUENCED_THE_REQUESTED_BRAINS",
+  "controlling_facts": {
+    "declaration_evaluation_count_allowed": 1,
+    "prior_policy_evaluation_attempts": 1,
+    "prior_runner_invocations_that_reached_policy": 1,
+    "prior_versions": [
+      "V11",
+      "V13",
+      "V14"
+    ],
+    "prior_holdout_dates": [
+      "2026-07-24",
+      "2026-07-25",
+      "2026-07-26"
+    ],
+    "later_diagnostic_target_events": 124,
+    "later_diagnostic_compared_target_legs": 144,
+    "fix_a_provenance": "ONE_CENT_STARTING_TOLERANCE_EXPLICITLY_AUTHORIZED_FROM_FROZEN_2026_08_03_HOLDOUT_GATE_LAG_DIAGNOSTIC",
+    "requested_brain_ancestry": {
+      "fix_a_stack_v28_is_ancestor_of_R3": true,
+      "R3_is_ancestor_of_V34_W1": true,
+      "V34_W1_is_ancestor_of_V35": true
+    }
+  },
+  "execution_conservation": {
+    "requested_brain_evaluations": 0,
+    "requested_runner_invocations": 0,
+    "requested_scores_created": 0,
+    "retries": 0,
+    "authorization_consumed": false
+  },
+  "ruling": "The requested numbers cannot be represented as a sealed generalization exam. A future operator may authorize a clearly labeled reused-validation replay, but it cannot restore holdout status.",
+  "git_object_checks": [
+    {
+      "commit": "eac3b2e76206d361228196814fe62e5f2fd08b12",
+      "object_type": "commit"
+    },
+    {
+      "commit": "3339f30dc9d3136788617bf0e5456708008b845b",
+      "object_type": "commit"
+    },
+    {
+      "commit": "49f6501561c5d99a7f36c68ec41e0ea7250680e5",
+      "object_type": "commit"
+    },
+    {
+      "commit": "e56d79a2aee1f392b3bee5a0adad099c7f011976",
+      "object_type": "commit"
+    },
+    {
+      "commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+      "object_type": "commit"
+    }
+  ],
+  "source_evidence": [
+    {
+      "path": ".claude/window1_live_v4_replay/v11_v13_v14_holdout_20260803/V11_HOLDOUT_EVENT_LEDGER.jsonl.gz",
+      "bytes": 149030,
+      "sha256": "72be580e83203accd51da6cc1a286abf885a738a374fd9dd810f407e04e1c3ea"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v11_v13_v14_holdout_20260803/ONE_EXECUTION_RECEIPT.json",
+      "bytes": 944,
+      "sha256": "e747a3b9361df6068fe16ee34a7a35f773a9c072585268b1f72bffc5398d642d"
+    },
+    {
+      "path": ".claude/window1_20260721/FIT_HOLDOUT_DECLARATION.json",
+      "bytes": 2027,
+      "sha256": "4de85ad36721586cd9813b6a7bb982f19e7cea409f0fec1c0b6a99ef3cb7e3cb"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/holdout_gate_lag_diagnostic_20260803/ABOVE_OBSERVED_LOW_83_CENSUS.json",
+      "bytes": 28001,
+      "sha256": "02779f9bcce580b5e452cbe250f64d721dbb92e40df24080ff9dd54afaf8ed6b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/holdout_gate_lag_diagnostic_20260803/TRACE_REPLAY_IDENTITY_RECEIPT.json",
+      "bytes": 924,
+      "sha256": "9ef409eff9edc25f5d4d60a14e5c6f283e8bd2e7d32d65f2b519e587f3097098"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/isolated_fix_a_anchor_freshness_v20_20260804/CAUSAL_ADDITION_RECEIPT.json",
+      "bytes": 14181,
+      "sha256": "646166886cd989be86cd7e8199e7dea8df88b4a8483674efe76faa676348dff4"
+    }
+  ]
+}

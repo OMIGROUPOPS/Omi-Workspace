@@ -1,0 +1,6 @@
+{
+  "scope": "seal-audit artifacts only; no policy evaluation",
+  "build_count": 2,
+  "result": "BYTE_IDENTICAL_DIRECTORY_TREES",
+  "policy_evaluations_across_both_builds": 0
+}

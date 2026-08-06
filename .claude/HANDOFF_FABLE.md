@@ -1631,3 +1631,13 @@ is not a deployment or an operative-baseline ratification.
 
 Canonical package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0799fba887f1d1e84f9c0ef3e73096fd9d76019e/.claude/window1_live_v4_replay/v35_living_rest_evidence_gate_20260806/REPORT.md
+
+## V35.1 DIRECTIONAL EVIDENCE AGING - REJECTED - 2026-08-06
+
+V35.1 fixed ARNROM locally at 38+56=94, while retaining KRALOR|LOR 5,
+BOSCOP|BOS 32, and ARNROM|ROM 38. It is rejected at population scale:
+STRICT completions rose 264->283, but the deep frontier regressed from
+9/25/82 to 7/24/82. V35 remains operative. No deployment or live access.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3f073c443aafb6c30509d69e22f02aac1eb8f6a5/arb-executor/docs/research/window1/WINDOW1_V351_DIRECTIONAL_EVIDENCE_AGING_ADDENDUM.md

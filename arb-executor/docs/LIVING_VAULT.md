@@ -1618,3 +1618,10 @@ misreported as D=804. No V34 score exists; V29-R3 remains operative at 68.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4450de974d855605f51816049bcc5b693502c6d4/arb-executor/docs/research/window1/WINDOW1_V34_FULL_LIFE_BLOCK_ADDENDUM.md
+
+### 2026-08-05 - V34-W1 CAUSAL CAPTURE MEASUREMENT
+
+The operator's V3 PRE-MATCH window ruling supersedes the earlier full-life block only for this measurement. The unchanged V34 dual-side residency machine ran D=804 from first two-sided book to exact-start, else known-live-by, else schedule-bound. STRICT produced 254 completed and under-par pairs; CENSUS_PRICED produced 279. R3 on the same spans produced 229 completed and 217 under par. Closes are telemetry only and all close-based grade fields remain null. Zero machine activity occurred after the hard edge. The supplied `84b455c5` identity did not resolve; the actual ledger is bound at `224417da642a9f378a0d83f76edffe9890cb4a6f` with a named correction receipt.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/e56d79a2aee1f392b3bee5a0adad099c7f011976/arb-executor/docs/research/window1/WINDOW1_V34_W1_CAUSAL_CAPTURE_ADDENDUM.md

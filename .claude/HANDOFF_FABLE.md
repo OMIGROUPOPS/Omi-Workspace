@@ -1641,3 +1641,15 @@ STRICT completions rose 264->283, but the deep frontier regressed from
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a2f094498bbb06c4f9bbc4326b8edb6a753077b1/arb-executor/docs/research/window1/WINDOW1_V351_DIRECTIONAL_EVIDENCE_AGING_ADDENDUM.md
+
+## V36 RE-ADJUDICATED OPERATIVE; V37 REJECTED - 2026-08-06
+
+The exact-bell, collapse-clean deep ruler is V34/V35/V36 = 9/5/7; the former
+23/34/68 bar is retired as schedule-contaminated. V36 is OPERATIVE with 270
+strict completions and 7 clean-deep pairs. V37's decision-time
+floor-arithmetic take bound is REJECTED at 242 completions and 5 clean-deep.
+ARN 56 saw causal ROM floors 49 then 45; ROM 38 arrived 40,304 seconds later
+and was not backdated. No deployment or live access occurred.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a76377d7e9e9085c14b3b396a008fddddbb6e627/arb-executor/docs/research/window1/WINDOW1_V36_READJUDICATION_V37_ADDENDUM.md

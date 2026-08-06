@@ -1652,3 +1652,17 @@ V35 remains operative. No deployment or live access occurred.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a2f094498bbb06c4f9bbc4326b8edb6a753077b1/arb-executor/docs/research/window1/WINDOW1_V351_DIRECTIONAL_EVIDENCE_AGING_ADDENDUM.md
+
+### 2026-08-06 - V36 RE-ADJUDICATED OPERATIVE; V37 REJECTED
+
+The `03bac97b` hygiene census retires the schedule-contaminated V34 deep bar:
+only 9 of V34's 34 `<=95` deep pairs are exact-bell and collapse-clean. The
+clean V34/V35/V36 ruler is 9/5/7. With 270 strict completions against V35's
+264 and ARNROM 94 preserved, V36 is re-adjudicated OPERATIVE. V37's causal,
+zero-parameter floor-arithmetic take bound produced only 242 strict
+completions and 5 clean-deep pairs, so it is REJECTED and V36 remains the
+floor. ARN 56 could be saved only by backdating ROM 38 by 40,304 seconds;
+that future leak was refused.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a76377d7e9e9085c14b3b396a008fddddbb6e627/arb-executor/docs/research/window1/WINDOW1_V36_READJUDICATION_V37_ADDENDUM.md

@@ -10,7 +10,7 @@
 - **Par is 100; fees are immaterial only to the sealed maker-floor ceiling:** the price-only denominator has no fee term; this does not erase fees from execution-mode accounting. (`f2e4bdc3876e54de58a84dc55ea6ddaf3d970828`, `40d0561bc3735f65533ffcb9c0a862b05817fe6b`)
 - **Ten-second dwell is provisional:** retain 10s for comparability; sensitivity waits for a future holdout-era ruling. (`07541b48b246155294939ac28808b70655b25b69`)
 - **The denominator is 391:** 390 audited price-only opportunities plus CRECOP recovered by gap-span seller-aggressed print evidence; ten gap cases remain unproven. (`40d0561bc3735f65533ffcb9c0a862b05817fe6b`)
-- **V29-R3 is operative at JOINT 68:** later V31 regressed to 67 and is rejected. (`390df08ef588313d348f4bd87aae4b8682abd2c5`)
+- **V36 is operative:** the clean exact-bell, collapse-clean deep ruler is V34/V35/V36 = 9/5/7 and V36 has 270 strict completions; V37 regressed to 242/5 and is rejected. (`a76377d7e9e9085c14b3b396a008fddddbb6e627`)
 - **Boot gates:** paginated exchange truth must show no same-side buy stacks; resting exit quantity equals held quantity; no held >=1-share side lacks an exit except the named hold/ITM handling; no resting buy exceeds the lot on an owned/ordered side; and out-of-[5,95] bids are flagged; any failed assertion halts conceptions while exits remain live. (`053c42a5f619b9a8f486662e07c1f94a9d063eaf`)
 - **CANON.md is the single check surface:** every supersession stamp points here, and anything conflicting with it does not ship from any seat. (`63e463183803e69f17b778f10db8e5e0319b5469`)
 

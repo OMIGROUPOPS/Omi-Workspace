@@ -1,0 +1,1188 @@
+{
+  "STRICT_LAW": {
+    "mode": "STRICT_LAW",
+    "disposition_counts": {
+      "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1286,
+      "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 318,
+      "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 3,
+      "OTHER_CAUSAL_WINDOW_DIFFERENCE": 1
+    },
+    "waited_and_lost_legs": 318,
+    "category_x_price_region_x_bell_confidence": [
+      {
+        "cell": "ATP_CHALL|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|contradictory",
+        "legs": 14,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 12,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|exact",
+        "legs": 82,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 63,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 19
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|live_by_only",
+        "legs": 153,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 104,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 48,
+          "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|schedule_only",
+        "legs": 10,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 10
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|contradictory",
+        "legs": 15,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 10,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 5
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|exact",
+        "legs": 74,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 60,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 14
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|live_by_only",
+        "legs": 151,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 112,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 38,
+          "OTHER_CAUSAL_WINDOW_DIFFERENCE": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 4
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 24,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 5
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|live_by_only",
+        "legs": 52,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 40,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 12
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|schedule_only",
+        "legs": 15,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 13,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|clean_interval",
+        "legs": 5,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 5
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|exact",
+        "legs": 31,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 25,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 6
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|live_by_only",
+        "legs": 68,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 54,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 14
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|schedule_only",
+        "legs": 18,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 18
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 25,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 4
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|live_by_only",
+        "legs": 70,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 53,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 16,
+          "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|schedule_only",
+        "legs": 8,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 8
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 29
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|live_by_only",
+        "legs": 71,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 52,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 18,
+          "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 7
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|exact",
+        "legs": 8,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 8
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|live_by_only",
+        "legs": 16,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 13,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 3
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|schedule_only",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|clean_interval",
+        "legs": 13,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 13
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|exact",
+        "legs": 8,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 6,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 21,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|schedule_only",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 24,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 5
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|live_by_only",
+        "legs": 61,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 43,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 18
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 24,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 6
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|live_by_only",
+        "legs": 53,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 42,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 11
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|exact",
+        "legs": 10,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 8,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 19,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 4
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|exact",
+        "legs": 11,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 15,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 8
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|exact",
+        "legs": 27,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 20,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|live_by_only",
+        "legs": 46,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 37,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 9
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|schedule_only",
+        "legs": 5,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 5
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 23,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|live_by_only",
+        "legs": 42,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 34,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 8
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|exact",
+        "legs": 18,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 17,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 21,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|schedule_only",
+        "legs": 6,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 6
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|clean_interval",
+        "legs": 16,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 15,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|exact",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 21,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|live_by_only",
+        "legs": 25,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 24,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|schedule_only",
+        "legs": 14,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 14
+        }
+      }
+    ],
+    "conservation": {
+      "row_count": 1608,
+      "expected_legs": 1608,
+      "pass": true,
+      "cell_leg_sum": 1608
+    }
+  },
+  "CENSUS_PRICED": {
+    "mode": "CENSUS_PRICED",
+    "disposition_counts": {
+      "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1293,
+      "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 311,
+      "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 3,
+      "OTHER_CAUSAL_WINDOW_DIFFERENCE": 1
+    },
+    "waited_and_lost_legs": 311,
+    "category_x_price_region_x_bell_confidence": [
+      {
+        "cell": "ATP_CHALL|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|contradictory",
+        "legs": 14,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 12,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|exact",
+        "legs": 82,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 65,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 17
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|live_by_only",
+        "legs": 153,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 106,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 46,
+          "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50|schedule_only",
+        "legs": 10,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 10
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|contradictory",
+        "legs": 15,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 8,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 7
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|exact",
+        "legs": 74,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 60,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 14
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|live_by_only",
+        "legs": 151,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 114,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 36,
+          "OTHER_CAUSAL_WINDOW_DIFFERENCE": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 4
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 23,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 6
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|live_by_only",
+        "legs": 52,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 41,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 11
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76|schedule_only",
+        "legs": 15,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 13,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|clean_interval",
+        "legs": 5,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 5
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|exact",
+        "legs": 31,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 26,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 5
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|live_by_only",
+        "legs": 68,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 54,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 14
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25|schedule_only",
+        "legs": 18,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 18
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|clean_interval",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 25,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 4
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|live_by_only",
+        "legs": 70,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 53,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 16,
+          "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50|schedule_only",
+        "legs": 8,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 8
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|clean_interval",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 28,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|live_by_only",
+        "legs": 71,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 53,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 17,
+          "FULL_LIFE_ONLY_POST_EDGE_ACTION_OR_FILL": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 7
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|exact",
+        "legs": 8,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 8
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|live_by_only",
+        "legs": 16,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 13,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 3
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76|schedule_only",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|clean_interval",
+        "legs": 13,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 13
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|exact",
+        "legs": 8,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 6,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 20,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 3
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25|schedule_only",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|exact",
+        "legs": 29,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 23,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 6
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|live_by_only",
+        "legs": 61,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 44,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 17
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|clean_interval",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 24,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 6
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|live_by_only",
+        "legs": 53,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 43,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 10
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75|schedule_only",
+        "legs": 3,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|exact",
+        "legs": 10,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 7,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 19,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 4
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|contradictory",
+        "legs": 2,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|exact",
+        "legs": 11,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 15,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 8
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25|schedule_only",
+        "legs": 9,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 9
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 2,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|exact",
+        "legs": 27,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 20,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|live_by_only",
+        "legs": 46,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 37,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 9
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50|schedule_only",
+        "legs": 5,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 5
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|contradictory",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 3,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|exact",
+        "legs": 30,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 23,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|live_by_only",
+        "legs": 42,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 35,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75|schedule_only",
+        "legs": 7,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|clean_interval",
+        "legs": 4,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 4
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|exact",
+        "legs": 18,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 17,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|live_by_only",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 20,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 3
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76|schedule_only",
+        "legs": 6,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 6
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|clean_interval",
+        "legs": 16,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 15,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|contradictory",
+        "legs": 1,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|exact",
+        "legs": 23,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 21,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 2
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|live_by_only",
+        "legs": 25,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 24,
+          "WAITED_AND_LOST_TO_HARD_RIGHT_EDGE_FULL_LIFE_FILLED_LATER": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25|schedule_only",
+        "legs": 14,
+        "dispositions": {
+          "BYTE_SEMANTIC_IDENTICAL_ENTRY_STREAM": 14
+        }
+      }
+    ],
+    "conservation": {
+      "row_count": 1608,
+      "expected_legs": 1608,
+      "pass": true,
+      "cell_leg_sum": 1608
+    }
+  },
+  "conservation": {
+    "strict_rows": 1608,
+    "census_rows": 1608,
+    "expected_each": 1608,
+    "pass": true
+  }
+}

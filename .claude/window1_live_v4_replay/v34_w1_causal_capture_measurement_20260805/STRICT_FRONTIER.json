@@ -1,0 +1,1775 @@
+{
+  "grading_law": "CLOSE_FREE_RAW_INTEGER_COMPLETION_FRONTIER",
+  "fixed_denominator": 804,
+  "cumulative_frontier": {
+    "LE_93": {
+      "fixed_denominator": 804,
+      "completed_pairs": 23
+    },
+    "LE_95": {
+      "fixed_denominator": 804,
+      "completed_pairs": 34
+    },
+    "LE_97": {
+      "fixed_denominator": 804,
+      "completed_pairs": 68
+    },
+    "LT_100": {
+      "fixed_denominator": 804,
+      "completed_pairs": 254
+    },
+    "ANY_PRICE": {
+      "fixed_denominator": 804,
+      "completed_pairs": 254
+    }
+  },
+  "category_x_starting_price_region_x_bell_confidence": [
+    {
+      "cell": "ATP_CHALL|26_50+26_50|live_by_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75|clean_interval",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75|contradictory",
+      "D": 15,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 15,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 15,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 15,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 15,
+          "completed_pairs": 4
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 15,
+          "completed_pairs": 4
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75|exact",
+      "D": 72,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 72,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 72,
+          "completed_pairs": 4
+        },
+        "LE_97": {
+          "fixed_denominator": 72,
+          "completed_pairs": 7
+        },
+        "LT_100": {
+          "fixed_denominator": 72,
+          "completed_pairs": 26
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 72,
+          "completed_pairs": 26
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75|live_by_only",
+      "D": 141,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 141,
+          "completed_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 141,
+          "completed_pairs": 3
+        },
+        "LE_97": {
+          "fixed_denominator": 141,
+          "completed_pairs": 9
+        },
+        "LT_100": {
+          "fixed_denominator": 141,
+          "completed_pairs": 49
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 141,
+          "completed_pairs": 49
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75|schedule_only",
+      "D": 8,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 8,
+          "completed_pairs": 3
+        },
+        "LE_95": {
+          "fixed_denominator": 8,
+          "completed_pairs": 3
+        },
+        "LE_97": {
+          "fixed_denominator": 8,
+          "completed_pairs": 3
+        },
+        "LT_100": {
+          "fixed_denominator": 8,
+          "completed_pairs": 4
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 8,
+          "completed_pairs": 4
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+ge75|exact",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+ge75|live_by_only",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+ge75|schedule_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+le25|exact",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+51_75|live_by_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+ge75|live_by_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+le25|live_by_only",
+      "D": 5,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 5,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 5,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 5,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 5,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 5,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+le25|schedule_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25|clean_interval",
+      "D": 5,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 5,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 5,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 5,
+          "completed_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 5,
+          "completed_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 5,
+          "completed_pairs": 2
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25|contradictory",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25|exact",
+      "D": 28,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 28,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 28,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 28,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 28,
+          "completed_pairs": 5
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 28,
+          "completed_pairs": 5
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25|live_by_only",
+      "D": 56,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 56,
+          "completed_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 56,
+          "completed_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 56,
+          "completed_pairs": 4
+        },
+        "LT_100": {
+          "fixed_denominator": 56,
+          "completed_pairs": 11
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 56,
+          "completed_pairs": 11
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25|schedule_only",
+      "D": 12,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 12,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 12,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 12,
+          "completed_pairs": 3
+        },
+        "LT_100": {
+          "fixed_denominator": 12,
+          "completed_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 12,
+          "completed_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25+le25|exact",
+      "D": 6,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 6,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 6,
+          "completed_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 6,
+          "completed_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25+le25|live_by_only",
+      "D": 5,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 5,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 5,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 5,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 5,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 5,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25+le25|schedule_only",
+      "D": 4,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+26_50|exact",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75|clean_interval",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75|contradictory",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75|exact",
+      "D": 28,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 28,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 28,
+          "completed_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 28,
+          "completed_pairs": 4
+        },
+        "LT_100": {
+          "fixed_denominator": 28,
+          "completed_pairs": 15
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 28,
+          "completed_pairs": 15
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75|live_by_only",
+      "D": 65,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 65,
+          "completed_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 65,
+          "completed_pairs": 3
+        },
+        "LE_97": {
+          "fixed_denominator": 65,
+          "completed_pairs": 6
+        },
+        "LT_100": {
+          "fixed_denominator": 65,
+          "completed_pairs": 27
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 65,
+          "completed_pairs": 27
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75|schedule_only",
+      "D": 7,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 7,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 7,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 7,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 7,
+          "completed_pairs": 5
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 7,
+          "completed_pairs": 5
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+ge75|live_by_only",
+      "D": 4,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 2
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+51_75|schedule_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+le25|live_by_only",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+ge75|contradictory",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+le25|clean_interval",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+le25|exact",
+      "D": 8,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 8,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 8,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 8,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 8,
+          "completed_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 8,
+          "completed_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+le25|live_by_only",
+      "D": 19,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 19,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 19,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 19,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 19,
+          "completed_pairs": 5
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 19,
+          "completed_pairs": 5
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+le25|schedule_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25+le25|clean_interval",
+      "D": 6,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 6,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 6,
+          "completed_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 6,
+          "completed_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+26_50|live_by_only",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75|clean_interval",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75|contradictory",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75|exact",
+      "D": 29,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 29,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 29,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 29,
+          "completed_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 29,
+          "completed_pairs": 7
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 29,
+          "completed_pairs": 7
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75|live_by_only",
+      "D": 54,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 54,
+          "completed_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 54,
+          "completed_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 54,
+          "completed_pairs": 5
+        },
+        "LT_100": {
+          "fixed_denominator": 54,
+          "completed_pairs": 9
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 54,
+          "completed_pairs": 9
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75|schedule_only",
+      "D": 3,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75+le25|live_by_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge75+le25|contradictory",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge75+le25|exact",
+      "D": 11,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 11,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 11,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 11,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 11,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 11,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge75+le25|live_by_only",
+      "D": 22,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 22,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 22,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 22,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 22,
+          "completed_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 22,
+          "completed_pairs": 2
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge75+le25|schedule_only",
+      "D": 9,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 9,
+          "completed_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 9,
+          "completed_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 9,
+          "completed_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 9,
+          "completed_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 9,
+          "completed_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25+le25|live_by_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75|clean_interval",
+      "D": 3,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 3,
+          "completed_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 3,
+          "completed_pairs": 2
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75|contradictory",
+      "D": 4,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75|exact",
+      "D": 24,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 24,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 24,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 24,
+          "completed_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 24,
+          "completed_pairs": 9
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 24,
+          "completed_pairs": 9
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75|live_by_only",
+      "D": 40,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 40,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 40,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 40,
+          "completed_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 40,
+          "completed_pairs": 15
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 40,
+          "completed_pairs": 15
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75|schedule_only",
+      "D": 6,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 6,
+          "completed_pairs": 4
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 6,
+          "completed_pairs": 4
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+ge75|exact",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+le25|clean_interval",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+le25|live_by_only",
+      "D": 2,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+51_75|live_by_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+le25|exact",
+      "D": 3,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+le25|live_by_only",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25|clean_interval",
+      "D": 3,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25|contradictory",
+      "D": 1,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25|exact",
+      "D": 21,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 21,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 21,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 21,
+          "completed_pairs": 3
+        },
+        "LT_100": {
+          "fixed_denominator": 21,
+          "completed_pairs": 8
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 21,
+          "completed_pairs": 8
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25|live_by_only",
+      "D": 24,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 24,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 24,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 24,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 24,
+          "completed_pairs": 8
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 24,
+          "completed_pairs": 8
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25|schedule_only",
+      "D": 7,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 7,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 7,
+          "completed_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 7,
+          "completed_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 7,
+          "completed_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 7,
+          "completed_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25+le25|clean_interval",
+      "D": 7,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 7,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 7,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 7,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 7,
+          "completed_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 7,
+          "completed_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25+le25|schedule_only",
+      "D": 3,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0
+        }
+      }
+    }
+  ],
+  "conservation": {
+    "cell_D_sum": 804,
+    "expected_D": 804,
+    "pass": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "actions": 7704,
+  "decisions": 4508577,
+  "post_edge_action_or_fill_or_cap_arm_rows": 0,
+  "post_edge_state_update_rows": 0,
+  "hard_edge_pass": true,
+  "non_positive_spans": 2,
+  "left_edge_counts": {
+    "events": 804,
+    "first_two_sided_book_events": 804
+  },
+  "right_edge_counts": {
+    "known_live_by_utc": 507,
+    "exact_start_utc": 234,
+    "schedule_bound_utc": 63
+  },
+  "conservation": {
+    "spans": 804,
+    "expected_D": 804,
+    "pass": true
+  }
+}

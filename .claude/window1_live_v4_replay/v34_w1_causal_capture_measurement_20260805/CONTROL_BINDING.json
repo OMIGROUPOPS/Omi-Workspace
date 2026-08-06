@@ -1,0 +1,32 @@
+{
+  "schema_version": "window1-v34-w1-causal-control-v1",
+  "machine": {
+    "architecture": "EXACT_V34_DUAL_SIDE_RESIDENCY_MACHINE",
+    "V32_lineage_commit": "a3429cad6719f96a25a900812e0f360b71a5607e",
+    "V34_full_life_package_commit": "e0fb6a312d8bbc52806603fbc143bf2bcebb3df2",
+    "V34_trading_phase_package_commit": "b430bcfff51f89c9466e77b798d4ac5d9fff15ea",
+    "policy_path": "arb-executor/analysis/window1_v34_dual_side_residency_machine.js",
+    "policy_sha256": "e26802f5bcfeab74b77d2b3201386fb527e1d543967c71d05679c2b1d44bc81a",
+    "clock_decision_inputs": []
+  },
+  "window_law": {
+    "left": "FIRST_TWO_SIDED_BOOK_ON_EITHER_EXPRESSION",
+    "right_precedence": [
+      "exact_start_utc",
+      "known_live_by_utc",
+      "schedule_bound_utc"
+    ],
+    "hard_edge": "NO_REST_WALK_NO_TAKE_NO_FILL_NO_CAP_ARM_NO_STATE_UPDATE_AFTER_EDGE",
+    "boundary_is_reporting_and_admission_only_not_AIM_input": true
+  },
+  "close_law": {
+    "role": "TELEMETRY_ONLY",
+    "grading_reads": 0,
+    "settlement_close_reads": 0
+  },
+  "comparisons": {
+    "R3_original_joint_reference_only": 68,
+    "R3_same_V3_window_artifact": "R3_SAME_WINDOW_COMPARISON.json",
+    "operator_named_under_par_offer_census_adjusted": 680
+  }
+}

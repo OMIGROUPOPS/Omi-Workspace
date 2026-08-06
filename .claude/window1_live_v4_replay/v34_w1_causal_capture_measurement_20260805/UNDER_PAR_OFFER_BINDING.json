@@ -1,0 +1,14 @@
+{
+  "operator_named_under_par_offer_census_adjusted": 680,
+  "operator_binding_role": "COMPARISON_CONSTANT_FROM_V34_W1_ORDER",
+  "historical_tape_completability_binding": {
+    "commit": "72512cd259ad9e3d077f7fc15af94dc2d6f72a90",
+    "path": ".claude/window1_t2_iteration_history/WINDOW1_FULL_LAWFUL_CEILING.json",
+    "sha256": "08eff497aab0f39f5284907fbc967539de65edc8ea3be3ce020bde52366a1030",
+    "bytes": 2052106,
+    "strict_sequential_any_price": 680,
+    "strict_sequential_lt_100": 451,
+    "independent_touch_any_price": 680
+  },
+  "semantic_fence": "THE HISTORICAL SOURCE CALLS 680 ANY-PRICE TAPE COMPLETABILITY AND 451 LT100; THE OPERATOR-SUPPLIED CENSUS-ADJUSTED UNDER-PAR OFFER IS PRINTED AS 680 BUT NOT SILENTLY ATTRIBUTED TO THE HISTORICAL LT100 FIELD"
+}

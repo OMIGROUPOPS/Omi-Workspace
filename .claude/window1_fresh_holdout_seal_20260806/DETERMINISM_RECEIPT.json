@@ -1,0 +1,7 @@
+{
+  "schema_version": "window1-fresh-holdout-seal-determinism-v1",
+  "method": "TWO_CONSECUTIVE_CLEAN_REGENERATIONS_FROM_HASH_BOUND_REMOTE_TAPE_CENSUS_AND_GIT_TOUCH_AUDIT",
+  "regenerable_artifacts_byte_identical": true,
+  "brain_runner_invocations_during_regeneration": 0,
+  "stage_2_results_generated": false
+}

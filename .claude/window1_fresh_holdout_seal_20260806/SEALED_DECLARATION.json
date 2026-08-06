@@ -1,0 +1,85 @@
+{
+  "schema_version": "window1-fresh-holdout-sealed-declaration-v1",
+  "status": "STOPPED_N_LT_60_STAGE2_FORBIDDEN",
+  "construction_parent": "19da991c2e266443a0061fc49f779bc915ed1a6e",
+  "date_law": "EVENT_ID_DATE_STRICTLY_AFTER_2026-07-26",
+  "source": {
+    "access": "READ_ONLY_SSH",
+    "host": "104.131.191.95",
+    "root": "/root/Omi-Workspace/arb-executor/analysis/premarket_ticks"
+  },
+  "candidate_census": {
+    "events": 172,
+    "leg_files": 344,
+    "paired": 172,
+    "floor_pass_admissible": 172
+  },
+  "git_touch_audit": {
+    "excluded_touched": 171,
+    "sealed_untouched": 1
+  },
+  "sealed_N": 1,
+  "minimum_required_N": 60,
+  "shortfall": 59,
+  "event_list_sha256": "bd5900ef5d0102ddbc7c166081f2d82a711d975dc9fcb653b93f1df8ab09c488",
+  "event_list_bytes": 25,
+  "floor_pass_admission_law": {
+    "source_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+    "source_path": "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js",
+    "source_function": "loadFullTape",
+    "admission": "FOR_EACH_LEVEL_1_TO_5_INTEGER_PRICE_AND_STRICTLY_POSITIVE_SIZE; REQUIRE_AT_LEAST_ONE_BID_AND_ONE_ASK; SORT_BIDS_DESC_AND_ASKS_ASC; PRESERVE_RECEIPT_TIMESTAMP_AND_ORDINAL",
+    "event_pass": "EXACTLY_TWO_BIG4_LEG_TAPES_AND_EACH_LEG_HAS_AT_LEAST_ONE_ADMISSIBLE_TWO_SIDED_RECEIPT",
+    "tuning_changes": 0
+  },
+  "events": [
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPMATCH-26JUL28MICMCD",
+      "first_timestamp_epoch": 1785178572,
+      "last_timestamp_epoch": 1785182981,
+      "leg_count": 2,
+      "legs": [
+        {
+          "bytes": 567,
+          "category": "ATP_MAIN",
+          "csv_rows": 21,
+          "event_date": "2026-07-28",
+          "event_id": "KXATPMATCH-26JUL28MICMCD",
+          "first_timestamp_epoch": 1785178572,
+          "first_timestamp_et": "2026-07-27 02:56:12 PM",
+          "last_timestamp_epoch": 1785182981,
+          "last_timestamp_et": "2026-07-27 04:09:41 PM",
+          "leg_id": "MCD",
+          "parsed_timestamp_rows": 21,
+          "remote_path": "/root/Omi-Workspace/arb-executor/analysis/premarket_ticks/KXATPMATCH-26JUL28MICMCD-MCD.csv.gz",
+          "sha256": "19d1ed43a0cdec158ed6f896efd541b3d79a9c397523c508788c40859afd3ce3",
+          "span_seconds": 4409,
+          "ticker": "KXATPMATCH-26JUL28MICMCD-MCD",
+          "v36_admission_witness_rows": 1
+        },
+        {
+          "bytes": 472,
+          "category": "ATP_MAIN",
+          "csv_rows": 16,
+          "event_date": "2026-07-28",
+          "event_id": "KXATPMATCH-26JUL28MICMCD",
+          "first_timestamp_epoch": 1785178572,
+          "first_timestamp_et": "2026-07-27 02:56:12 PM",
+          "last_timestamp_epoch": 1785182980,
+          "last_timestamp_et": "2026-07-27 04:09:40 PM",
+          "leg_id": "MIC",
+          "parsed_timestamp_rows": 16,
+          "remote_path": "/root/Omi-Workspace/arb-executor/analysis/premarket_ticks/KXATPMATCH-26JUL28MICMCD-MIC.csv.gz",
+          "sha256": "9d865aeba6eb46555318ca90bff461cd93767439c7d5eb6979ae5c822a332048",
+          "span_seconds": 4408,
+          "ticker": "KXATPMATCH-26JUL28MICMCD-MIC",
+          "v36_admission_witness_rows": 1
+        }
+      ],
+      "paired": true,
+      "span_seconds": 4409,
+      "v36_floor_pass_admissible": true
+    }
+  ]
+}

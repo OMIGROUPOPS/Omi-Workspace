@@ -1,0 +1,13 @@
+{
+  "schema_version": "window1-fresh-holdout-source-hash-manifest-v1",
+  "files": {
+    "REMOTE_TAPE_CENSUS.json": {
+      "sha256": "75eb26057f50ce1e48c4b26fd825fca4fadb30168df26503154a1dcaf84f86f6",
+      "bytes": 348169
+    },
+    "GIT_TOUCH_AUDIT.json": {
+      "sha256": "06157cda7e37a982047f37c8fc143d63eb6a3182eec60d55d0064faec3450b11",
+      "bytes": 75462
+    }
+  }
+}

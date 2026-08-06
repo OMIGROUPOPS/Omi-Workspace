@@ -1,0 +1,41 @@
+{
+  "schema_version": "window1-fresh-holdout-artifact-hash-manifest-v1",
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "32febeae306912a2da728fc8950fbfb20ac36395fe108f2e172b921853162f76",
+      "bytes": 313
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4b94def44fae9089e1ed335db0b7cc902cd9d51518da096f7a3f2924db22d39b",
+      "bytes": 467
+    },
+    "GIT_TOUCH_AUDIT.json": {
+      "sha256": "06157cda7e37a982047f37c8fc143d63eb6a3182eec60d55d0064faec3450b11",
+      "bytes": 75462
+    },
+    "ONE_RUN_GATE_RECEIPT.json": {
+      "sha256": "c3106384187419b92c13c68f435cc7b0c61f999969213bf20174d17e99441545",
+      "bytes": 861
+    },
+    "REMOTE_TAPE_CENSUS.json": {
+      "sha256": "75eb26057f50ce1e48c4b26fd825fca4fadb30168df26503154a1dcaf84f86f6",
+      "bytes": 348169
+    },
+    "REPORT.md": {
+      "sha256": "69986871e937af964ea65edf04b9fdc28f5c7243c1bfa7a24d29341856ab87f2",
+      "bytes": 789
+    },
+    "SEALED_DECLARATION.json": {
+      "sha256": "e465ef37e4eb3d08012df237ff6480d1c67faf350a8f3fb113665cbf31cb4dfb",
+      "bytes": 3313
+    },
+    "SEALED_EVENT_LIST.txt": {
+      "sha256": "bd5900ef5d0102ddbc7c166081f2d82a711d975dc9fcb653b93f1df8ab09c488",
+      "bytes": 25
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "774ba5a9bd25afa6ff18d3f760f773898f5ef4924b50e37818c9dfc4c7d83d0f",
+      "bytes": 377
+    }
+  }
+}

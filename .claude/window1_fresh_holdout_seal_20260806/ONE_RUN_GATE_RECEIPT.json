@@ -1,0 +1,33 @@
+{
+  "schema_version": "window1-fresh-holdout-one-run-gate-v1",
+  "stage_1": {
+    "status": "STOPPED_N_LT_60_STAGE2_FORBIDDEN",
+    "N": 1,
+    "required_N": 60,
+    "declaration": "SEALED_DECLARATION.json"
+  },
+  "stage_2": {
+    "status": "NOT_INVOKED_CONDITIONAL_AUTHORIZATION_UNSATISFIED",
+    "brain_runner_invocations": {
+      "V36": 0,
+      "V35": 0,
+      "R3": 0,
+      "total": 0
+    },
+    "retries": 0,
+    "score_rows": 0,
+    "brains": {
+      "V36": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+      "V35": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+      "R3": "49f6501561c5d99a7f36c68ec41e0ea7250680e5"
+    },
+    "performance_fields": null
+  },
+  "forbidden_access": {
+    "scorer_or_replay_invocation": 0,
+    "holdout_tape_contents_consumed_by_brains": 0,
+    "live_orders_positions_or_services": 0,
+    "tuning": 0,
+    "retry": 0
+  }
+}

@@ -1,0 +1,2168 @@
+{
+  "schema_version": "window1-fresh-holdout-git-touch-audit-v1",
+  "construction_parent": "19da991c2e266443a0061fc49f779bc915ed1a6e",
+  "audit_commands": {
+    "current_tree": "git grep -n -I -E 'KX(ATPCHALLENGERMATCH|ATPMATCH|WTACHALLENGERMATCH|WTAMATCH)-26JUL(27|28)[A-Z0-9]+' 19da991c2e266443a0061fc49f779bc915ed1a6e -- .",
+    "citation_identity": "git blame --porcelain -L <line>,<line> 19da991c2e266443a0061fc49f779bc915ed1a6e -- <path>",
+    "absent_from_current_tree": "git log --all --reflog -S <event_id> --format=%H (executed and frozen before package generation on 2026-08-06)",
+    "object_validation": [
+      "git rev-parse --verify 19da991c2e266443a0061fc49f779bc915ed1a6e^{commit}",
+      "git cat-file -e 19da991c2e266443a0061fc49f779bc915ed1a6e^{commit}"
+    ]
+  },
+  "fetched_ref_snapshot": [
+    "refs/heads/audit/window1-independent 8743939745e25f090d69dfd4d56906a93671f331",
+    "refs/heads/b-convergence-fix-and-cells c0fad72a9a0f1fd38f73635191c5b3f854d167a1",
+    "refs/heads/blend/abort-orphan-carve 47fa2ff07de2907bbeca8af884f73a9588a0a2d6",
+    "refs/heads/blend/agent-derivation 25c566dc3da61ae5f10e05a17af179a1b05a0a3b",
+    "refs/heads/blend/fv-anchor-corrected 482bbd4b37c9899633bbaefa5f8278e85ad1031f",
+    "refs/heads/blend/kalshi-occ-fallback b8cbbaf9aff92fd89c682d49809c10ab32603dab",
+    "refs/heads/codex/casuka-live-safety-deployment-control-v2 135f3efae1c3d6f4e7fbcbab658f41b4733a403c",
+    "refs/heads/codex/casuka-live-safety-deployment-prerun ccf95e464ead48ca99cef0be62bc65c6ae8ba832",
+    "refs/heads/codex/casuka-live-safety-integration-v2 164f13f70b9c8c89faf26dfc4c65767ab1265404",
+    "refs/heads/codex/casuka-live-safety-repair 94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+    "refs/heads/codex/casuka-live-safety-rollback-v2 a6dd0686c7406f2211e60f32ce8d85e74aebb90f",
+    "refs/heads/codex/integrated-p0v4-casuka-file-only 11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "refs/heads/codex/integrated-p0v4-casuka-prerun 1dd5787cfe00f8c69488fff1c9c93fbb7c3eb0a1",
+    "refs/heads/codex/integrated-p0v4-casuka-rollback 904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+    "refs/heads/codex/ops-schedule-liar-containment-20260728 fd623dd042da2f1dfb9479c8a759c8c610672215",
+    "refs/heads/codex/p0-real-start-v4-prerun 765083b9bce6940d11a778a862bbd7df14967da4",
+    "refs/heads/codex/window1-analysis-seat 03bac97b12777d751fbb334fa6ae0f605445498a",
+    "refs/heads/codex/window1-cell-refit 2afc3081ccd9c3767dfbf9f62983df33c7baaf12",
+    "refs/heads/codex/window1-definition 87ac9382c23b586f536cf457883c507ebf366ba3",
+    "refs/heads/codex/window1-fresh-holdout-seal-exam 19da991c2e266443a0061fc49f779bc915ed1a6e",
+    "refs/heads/codex/window1-holdout-seal-audit-20260806 93eb27a4c096642e361837bec43be73389ab9063",
+    "refs/heads/codex/window1-live-consolidated eac3b2e76206d361228196814fe62e5f2fd08b12",
+    "refs/heads/codex/window1-recognition-laps 72a55a41afb0dde46e4046ddbf3bfef04e31d40c",
+    "refs/heads/codex/window1-t2-scoring-package-prerun 3800416669e75e2ed2a7f1a075f360aec92c2ea6",
+    "refs/heads/codex/window1-t2-scoring-package-v2-prerun b73679edc9186eb72236cd1bee5f886ac141cac4",
+    "refs/heads/codex/window1-t2-scoring-package-v3-prerun a758279184ab0f367a3ce74a69da851608645e19",
+    "refs/heads/codex/window1-t2-scoring-package-v4-prerun 9cc8f1cc7b0693e00ce0f537532d41aab0a5ef7c",
+    "refs/heads/codex/window1-t2-scoring-package-v5-prerun 2c5a730ac7fc2f87a2de33fd0ea2aa8f2cfafdae",
+    "refs/heads/codex/window1-t2-scoring-results-v2 3f8fa0fb372c9e89fa97f89fd26156892745afe1",
+    "refs/heads/codex/window1-t2-scoring-results-v3 9cd2bea5487d8e558c42c8950263b44179054a68",
+    "refs/heads/codex/window1-t2-scoring-results-v5 e76a72d76f1476019aafaf33230e6e75087a05ab",
+    "refs/heads/codex/window1-table-free-full-os d1ac94973252e2f8c28ba32374c29ff7bd605a7e",
+    "refs/heads/codex/window1-v37-floor-arithmetic-take-bound 19da991c2e266443a0061fc49f779bc915ed1a6e",
+    "refs/heads/enable-atp-leader-cells 32feda76417d54e50be7a407118795f4792739b5",
+    "refs/heads/entry-window-4h 76527f7b2e4bc057e93b8ffe5baef904b4fcacaa",
+    "refs/heads/exit-recalibration 808998aca83b9d5846a06365eea218bfe26cee28",
+    "refs/heads/fv-anchored-cells 12651c344de5c8a2fd28f9287fd95124471186bd",
+    "refs/heads/fv-stability-fixes c0c3960bdd735ec097abca22eb6ee4c5afb54027",
+    "refs/heads/lane-a/live-safety-repairs bb085ce06db5932049af85f927a7f9316ad76816",
+    "refs/heads/main 2424cf1e53f7abd5960c26c0dd912c46210dec4e",
+    "refs/heads/ops/producer-keepalive 3a476b5c21d1862a2746eb1ffd7f4fa666d8cf80",
+    "refs/heads/p0/real-start-entry-guard a4996dd00e82ed3534f97a09251697f1d82dbbab",
+    "refs/heads/race-and-tombstone-fixes e9bb324f0583d7933923791cd090fd034a5d6093",
+    "refs/heads/schedule-fallback-fix 42a24614a0926c656d9ccb09e394de644f92d934",
+    "refs/remotes/origin/HEAD fc3876fc8ba56b0dc0a828ba278c6906eff6ff37",
+    "refs/remotes/origin/add-ask-tracking 04f913e8563363e80759b6d5318f634150894b9a",
+    "refs/remotes/origin/audit/window1-independent 37a1c07c25d630f6ff99da4e0e79f584ffc4e8dd",
+    "refs/remotes/origin/b-convergence-fix-and-cells c0fad72a9a0f1fd38f73635191c5b3f854d167a1",
+    "refs/remotes/origin/blend/abort-orphan-carve 47fa2ff07de2907bbeca8af884f73a9588a0a2d6",
+    "refs/remotes/origin/blend/abort-rearm 389983f214b295cabcc827923474cf3f227de5ae",
+    "refs/remotes/origin/blend/agent-derivation 9aea01fe736416c91fb06da18a7e50fadff8c451",
+    "refs/remotes/origin/blend/bestbid-repost 3de4fc458cfc3d93c7d7062bfe1e94e2e076585d",
+    "refs/remotes/origin/blend/c1-staircase-hold 03c1a60d3085a649b00979bfed852d18be295b92",
+    "refs/remotes/origin/blend/complete-all 706cb3c062ab10b26e879442e9965b586251a293",
+    "refs/remotes/origin/blend/completion-ceiling 7c6a6a493b9a091c9577f1f0c1dcca501c9a902a",
+    "refs/remotes/origin/blend/depth-governor 2a5caed5a074cf10efb72809a5e71ca5c7dee1df",
+    "refs/remotes/origin/blend/eng-depth 5bf355b58d835e87b4e454f78e93c64fdaeefed7",
+    "refs/remotes/origin/blend/event-cat-override 9760b133fa01e51cf8c3075abe4398d7010ba41b",
+    "refs/remotes/origin/blend/fv-anchor 0bfd5470fa5a58cf79742a48f5c224d010cddb76",
+    "refs/remotes/origin/blend/fv-anchor-corrected 482bbd4b37c9899633bbaefa5f8278e85ad1031f",
+    "refs/remotes/origin/blend/grace-kill b308084192a3d04d590a130c94007ce9039169e6",
+    "refs/remotes/origin/blend/join-the-bid da9f6acd475ee25b507ea6bb5106be18a3559ae4",
+    "refs/remotes/origin/blend/kalshi-occ-fallback 7036ace045c6ee0e45b9c4bdc956c54906d21afa",
+    "refs/remotes/origin/blend/liquid-repost 7c7e058ff2ffcc07e605b009e1a5f2a3a467e7ba",
+    "refs/remotes/origin/blend/pair-governor 4d7980d2a65130b3c06ecac528a679c1a84ac7d8",
+    "refs/remotes/origin/blend/pair-governor-rev f99823175b351aa94df2ae8ca30e2ede194ffa17",
+    "refs/remotes/origin/blend/sf-obs 617ab98a42bac8b66af1fb6b665f1318c52bb77f",
+    "refs/remotes/origin/blend/sustained-flow 1660b3618d85fda339cd2c645656d46cd0826606",
+    "refs/remotes/origin/blend/vol-gate fa324d47b1b79ba4d9ec6c952d6f094672497b09",
+    "refs/remotes/origin/codex/casuka-live-safety-deployment-control-v2 135f3efae1c3d6f4e7fbcbab658f41b4733a403c",
+    "refs/remotes/origin/codex/casuka-live-safety-deployment-prerun ccf95e464ead48ca99cef0be62bc65c6ae8ba832",
+    "refs/remotes/origin/codex/casuka-live-safety-integration-v2 164f13f70b9c8c89faf26dfc4c65767ab1265404",
+    "refs/remotes/origin/codex/casuka-live-safety-repair 94be41137c0b64bfa448546c8bc3ee7c4ae32a60",
+    "refs/remotes/origin/codex/casuka-live-safety-rollback-v2 a6dd0686c7406f2211e60f32ce8d85e74aebb90f",
+    "refs/remotes/origin/codex/integrated-p0v4-casuka-file-only 11e70454863e3508d5a7cbc8e83162232e3a4a09",
+    "refs/remotes/origin/codex/integrated-p0v4-casuka-prerun 1dd5787cfe00f8c69488fff1c9c93fbb7c3eb0a1",
+    "refs/remotes/origin/codex/integrated-p0v4-casuka-rollback 904a1993030c09c839a56ff78d5a7dc0dfd13b99",
+    "refs/remotes/origin/codex/ops-schedule-liar-containment-20260728 fd623dd042da2f1dfb9479c8a759c8c610672215",
+    "refs/remotes/origin/codex/p0-real-start-v4-prerun 765083b9bce6940d11a778a862bbd7df14967da4",
+    "refs/remotes/origin/codex/window1-analysis-seat 03bac97b12777d751fbb334fa6ae0f605445498a",
+    "refs/remotes/origin/codex/window1-cell-refit 2afc3081ccd9c3767dfbf9f62983df33c7baaf12",
+    "refs/remotes/origin/codex/window1-definition 87ac9382c23b586f536cf457883c507ebf366ba3",
+    "refs/remotes/origin/codex/window1-holdout-seal-audit-20260806 93eb27a4c096642e361837bec43be73389ab9063",
+    "refs/remotes/origin/codex/window1-live-consolidated eac3b2e76206d361228196814fe62e5f2fd08b12",
+    "refs/remotes/origin/codex/window1-recognition-laps 72a55a41afb0dde46e4046ddbf3bfef04e31d40c",
+    "refs/remotes/origin/codex/window1-t2-scoring-package-prerun 3800416669e75e2ed2a7f1a075f360aec92c2ea6",
+    "refs/remotes/origin/codex/window1-t2-scoring-package-v2-prerun b73679edc9186eb72236cd1bee5f886ac141cac4",
+    "refs/remotes/origin/codex/window1-t2-scoring-package-v3-prerun a758279184ab0f367a3ce74a69da851608645e19",
+    "refs/remotes/origin/codex/window1-t2-scoring-package-v4-prerun 9cc8f1cc7b0693e00ce0f537532d41aab0a5ef7c",
+    "refs/remotes/origin/codex/window1-t2-scoring-package-v5-prerun 2c5a730ac7fc2f87a2de33fd0ea2aa8f2cfafdae",
+    "refs/remotes/origin/codex/window1-t2-scoring-results-v2 3f8fa0fb372c9e89fa97f89fd26156892745afe1",
+    "refs/remotes/origin/codex/window1-t2-scoring-results-v3 9cd2bea5487d8e558c42c8950263b44179054a68",
+    "refs/remotes/origin/codex/window1-t2-scoring-results-v5 e76a72d76f1476019aafaf33230e6e75087a05ab",
+    "refs/remotes/origin/codex/window1-table-free-full-os d1ac94973252e2f8c28ba32374c29ff7bd605a7e",
+    "refs/remotes/origin/codex/window1-v37-floor-arithmetic-take-bound 19da991c2e266443a0061fc49f779bc915ed1a6e",
+    "refs/remotes/origin/cycle1/graze-zone-placement bd5fb67097965aca3b3aebc9816cef559a20f263",
+    "refs/remotes/origin/entry-window-4h 76527f7b2e4bc057e93b8ffe5baef904b4fcacaa",
+    "refs/remotes/origin/exit-recalibration 808998aca83b9d5846a06365eea218bfe26cee28",
+    "refs/remotes/origin/fable/crawford-rodionov-tick 74c111bc5d8a2d33d475a4f57451ad72f6c15f14",
+    "refs/remotes/origin/fable/fill-timing da1805d10e903ba02c95823ce114bc1efbd6e5cf",
+    "refs/remotes/origin/fable/omqs-harness 7706c9ad44854751ea165a987f0e74ae24f4c45d",
+    "refs/remotes/origin/fable/premarket-fv-check f00bb8196d39d1ee0d70ee25605212379d1182a3",
+    "refs/remotes/origin/fable/progress-4day 1192864ebf76546076417f267b92e66efd7d3565",
+    "refs/remotes/origin/fable/today-bands a364404993a5958bcb604d7d562afb9d6301dce1",
+    "refs/remotes/origin/fable/today-latch-diag 7819a0619d2aea71604957e0c9ba9598c40fcb37",
+    "refs/remotes/origin/fv-anchored-cells 12651c344de5c8a2fd28f9287fd95124471186bd",
+    "refs/remotes/origin/fv-stability-fixes c0c3960bdd735ec097abca22eb6ee4c5afb54027",
+    "refs/remotes/origin/lane-a/live-safety-repairs bb085ce06db5932049af85f927a7f9316ad76816",
+    "refs/remotes/origin/main fc3876fc8ba56b0dc0a828ba278c6906eff6ff37",
+    "refs/remotes/origin/ops/producer-keepalive 3a476b5c21d1862a2746eb1ffd7f4fa666d8cf80",
+    "refs/remotes/origin/p0/real-start-entry-guard a4996dd00e82ed3534f97a09251697f1d82dbbab",
+    "refs/remotes/origin/plex/daysheet-digit-grammar a8d9345397e8e7761c42f106dd1bd91091f021a6",
+    "refs/remotes/origin/plex/daysheet-live-panel 9b39fd821e8a4403410ea0a1085be554977b43dd",
+    "refs/remotes/origin/plex/daysheet-panel 261467e0df9d28405f9783400a9a79c0c0dc240d",
+    "refs/remotes/origin/plex/daysheet-render-ownership ed83ba2fa6218b6652e70aa45e4d96c87661f636",
+    "refs/remotes/origin/race-and-tombstone-fixes e9bb324f0583d7933923791cd090fd034a5d6093",
+    "refs/remotes/origin/schedule-fallback-fix 42a24614a0926c656d9ccb09e394de644f92d934",
+    "refs/remotes/origin/scratch/ship2-09ebdb29 c9f6572bb300b6f3c02a153efbc60dae328887af"
+  ],
+  "candidate_events": 172,
+  "excluded_touched": 171,
+  "sealed_untouched": 1,
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27ALBHAS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27AMBKIC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27ANDPOP",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BASNAK",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BLACOM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BOIDEB",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BONBIC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BOSROD",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BRASUL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27CHOPAS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27DALBRU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27DJEBAS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27GADMAC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "daa1be9f23d8e38f9ff5296b386ac5100836d8e3"
+      ],
+      "first_current_tree_citation": {
+        "path": ".claude/audit_halt/AUDIT_HALT_20260727_041442.md",
+        "line": 31
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27GALPET",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27GOMBER",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27HOLGRE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27HSUMMO",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27KOLKUM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27KRANIC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27KUZBIN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27LAPIE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MARBEC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MILVAN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MIYANA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MOCBRO",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MONMAZ",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MONNAG",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MULNAP",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27PDANIK",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27PINSAM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27POLKOV",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27RICLLA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27RINPRA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SAHTUR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "daa1be9f23d8e38f9ff5296b386ac5100836d8e3"
+      ],
+      "first_current_tree_citation": {
+        "path": ".claude/audit_halt/AUDIT_HALT_20260727_041442.md",
+        "line": 9
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SAKMAR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SEKCHI",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SINMAT",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SINREJ",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SWECHA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27TOPABO",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27VARFOR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27VRBJAN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27VRBMAR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27WALDON",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27WENCAS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27WOLZHA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ADDPOU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2677
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28AJDSUL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2674
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ALKSIN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ARNPIE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2687
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28AZKERE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2681
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28BARNED",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2675
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28BASRAW",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28BITILK",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2699
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28CANPEL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2790
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28CECAGA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2678
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28CORFOR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28DAHMAR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2686
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28DENPDA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28DIACOM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28FELMAY",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "030e5d534a6b6bced9b6d360eb9b36ef18defa55"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2624
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28GAUPAV",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2679
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28GENREI",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2682
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28GOMCER",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2676
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28HARCHU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "e7004235c342a2ddaaa53610d85a76c32fb93fdc"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28HOUCAR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28JUSGUE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KASFER",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KIRDHA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KIRINC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KOTGAL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2689
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KRUHEN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KUMBAX",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MAENEU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2680
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MARBUE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "030e5d534a6b6bced9b6d360eb9b36ef18defa55"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2629
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MARDEL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MARSEY",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MATTRO",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+        "e7004235c342a2ddaaa53610d85a76c32fb93fdc"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MIYNAK",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MOLTOP",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MONJOR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2690
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28NIKBAR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28OLITAB",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "030e5d534a6b6bced9b6d360eb9b36ef18defa55"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2642
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28POLDAL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28REHTRA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2704
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28REJBRU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28RIBTOR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ROMVIR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2720
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28RONNIC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2691
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SAKMCD",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SCHGOM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SCHMRV",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SHITOK",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SKAFAU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28TABSQU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "030e5d534a6b6bced9b6d360eb9b36ef18defa55"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2643
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28TOKPAN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28TURURS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28VASVAR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2649
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28VRBBAS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28WALGIU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28YEVDUR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ZHULAN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ZINPOL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+        "e7004235c342a2ddaaa53610d85a76c32fb93fdc",
+        "fd623dd042da2f1dfb9479c8a759c8c610672215"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27ARNMUS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27DAMSHE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27DETSI",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27DIABOY",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27FILJOD",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27FRIBER",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27GIRHEW",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27HERTOM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27HUMMAR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27MAJPAU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27MANTIE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27MICDRA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27NAKETC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27NISSHA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27QUISHE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27SVAMEN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27TABGRI",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27TIAATM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27VUKSVA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL28KOUWIN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL28KWONGEA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "226cd5e7cccc57ccb81d3634de255aaeb035d11d",
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL28MAYDUC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL28MICMCD",
+      "status": "SEALED_UNTOUCHED",
+      "proof_class": "NO_CURRENT_TREE_OR_ALL_REF_REFLOG_PICKAXE_HIT",
+      "touching_commits": [],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27BURLAN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27CIRPOP",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27HENPOH",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27KAZROU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27MALBER",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27PRIKOT",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27QUEFET",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27RAMSTR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27ROMSOR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27SZATON",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28BULMON",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2685
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28CIRGAI",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28IBRBUR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28JANSOB",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28JONPAQ",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28KOTSPI",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28RISSEM",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28ROURAD",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28SAMBRE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28TONBRO",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27ALELIU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27COCTAU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27EALZHE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27FERLIN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27FREANN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27KRUBOU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27NAVKEN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27OSOHUN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27POTWIL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27SAMKEY",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27SEBKAL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27SHYBRA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27SIEPRO",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27SONBRA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27STASTE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27STOSTE",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27TJESRA",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27VIDBAS",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27VOLGOL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27WANMCC",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27YEXBIR",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "HISTORICAL_REF_OR_REFLOG_PICKAXE_HIT",
+      "touching_commits": [
+        "63e7f4d652564f19ea9da8b0404fe6371ea23f80"
+      ],
+      "first_current_tree_citation": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27ZAKFRU",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL27ZARKES",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL28BUCKUD",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL28KASKAL",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "5cc332539e644b13a94350150bc71537927f8b1f"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/state/milestone_shadow.jsonl",
+        "line": 2797
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL28PARWAN",
+      "status": "EXCLUDED_TOUCHED",
+      "proof_class": "PRESENT_AT_CONSTRUCTION_PARENT",
+      "touching_commits": [
+        "dac5f1a7be94870e247e645cd85c376c6698d182"
+      ],
+      "first_current_tree_citation": {
+        "path": "arb-executor/data/shape_corpus/manifest.json",
+        "line": 1
+      }
+    }
+  ]
+}

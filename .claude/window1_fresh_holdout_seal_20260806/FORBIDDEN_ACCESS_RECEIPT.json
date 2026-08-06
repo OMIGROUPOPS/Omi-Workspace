@@ -1,0 +1,18 @@
+{
+  "schema_version": "window1-fresh-holdout-forbidden-access-receipt-v1",
+  "remote_actions": [
+    "READ_ONLY_TAPE_METADATA_HASH_AND_ROW_CENSUS"
+  ],
+  "brain_runner_invocations": 0,
+  "scorer_invocations": 0,
+  "result_rows": 0,
+  "order_reads": 0,
+  "order_writes": 0,
+  "position_reads": 0,
+  "position_writes": 0,
+  "service_reads": 0,
+  "service_writes": 0,
+  "network_order_calls": 0,
+  "tuning_changes": 0,
+  "stage_2_forbidden_reason": "SEALED_N_1_LT_60"
+}

@@ -1652,3 +1652,18 @@ V35 remains operative. No deployment or live access occurred.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a2f094498bbb06c4f9bbc4326b8edb6a753077b1/arb-executor/docs/research/window1/WINDOW1_V351_DIRECTIONAL_EVIDENCE_AGING_ADDENDUM.md
+
+### 2026-08-06 - V36 STATE-DIRECTIONAL REST + MATURE-FLOOR TAKE REJECTED
+
+V36 is frozen as rejected evidence. It clears the strict completion bar at
+270 versus V35's 264, but fails the required deep frontier: `<=93/<=95/<=97`
+is `9/20/77` versus the V34 recovery bar `23/34/68`. ARNROM, KRALOR, BOSCOP,
+and ROM named checks pass; GANJAN remains 99 and FETPIE/JONSPI remain
+incomplete. The FALLING maker adverse tail does not collapse. V35 remains
+operative. No deployment or live access occurred.
+
+Acceptance:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a5f3d619ab30050efab83/.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/ACCEPTANCE_RECEIPT.json
+
+Report:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a5f3d619ab30050efab83/.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/REPORT.md

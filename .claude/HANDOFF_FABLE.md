@@ -1641,3 +1641,17 @@ STRICT completions rose 264->283, but the deep frontier regressed from
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a2f094498bbb06c4f9bbc4326b8edb6a753077b1/arb-executor/docs/research/window1/WINDOW1_V351_DIRECTIONAL_EVIDENCE_AGING_ADDENDUM.md
+
+## V36 STATE-DIRECTIONAL REST + MATURE-FLOOR TAKE - REJECTED - 2026-08-06
+
+V36 clears strict completion at 270 but fails the two-part population bar: its
+deep `<=93/<=95/<=97` frontier is `9/20/77`, not the required `23/34/68`.
+GANJAN remains 99; FETPIE and JONSPI remain incomplete; the FALLING-maker
+adverse tail does not collapse. V35 remains operative. This is replay evidence
+only—no deployment, live access, or live mutation occurred.
+
+Acceptance:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a5f3d619ab30050efab83/.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/ACCEPTANCE_RECEIPT.json
+
+Report:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a5f3d619ab30050efab83/.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/REPORT.md

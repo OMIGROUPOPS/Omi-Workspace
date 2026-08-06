@@ -1,5 +1,31 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-05 - V34 SCORING REBOUND TO CANONICAL TRADING-PHASE CLOSES
+
+V34's state machine is unchanged. Joint, frontier, and regret now consume the
+hash-bound per-leg `true_close` values from THE_603_MAP at `4f35ddea`, and all
+decision, fill, floor, frontier, and regret evidence is clipped to that same
+trading phase. Settlement-basis closes are never consumed. The map binds 804
+events, 1,606 available closes, two explicit null closes, zero identity
+mismatches, and a T1-joint comparison universe of 750 printed in every
+scorecard cell.
+
+STRICT-LAW completes 441 pairs and grades 63 JOINT. CENSUS-PRICED completes
+481 pairs and grades 89 JOINT. Two clean builds are byte-identical across 25
+core artifacts; 26 manifested artifacts have zero hash mismatches. The prior
+terminal settlement-close V34 package is preserved byte-for-byte as a negative
+control and is superseded only as a scoring ruler.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/2cfdf1ce9da55983956a2a3d4ca71b29d0f63a18/arb-executor/docs/research/window1/WINDOW1_V34_CANONICAL_TRADING_PHASE_SCORING_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b430bcfff51f89c9466e77b798d4ac5d9fff15ea/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/SCORECARD_TWO_COLUMN.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b430bcfff51f89c9466e77b798d4ac5d9fff15ea/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/CANONICAL_CLOSE_BINDING.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b430bcfff51f89c9466e77b798d4ac5d9fff15ea/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/SETTLEMENT_EVIDENCE_EXCLUSION_RECEIPT.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b430bcfff51f89c9466e77b798d4ac5d9fff15ea/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/DETERMINISM_RECEIPT.json
+
 ### 2026-08-05 - V34 FULL-MARKET-LIFE MACHINE BUILT; TERMINAL-CLOSE RULER MAKES JOINT ZERO
 
 The operator restated full market life as the earlier of first two-sided book

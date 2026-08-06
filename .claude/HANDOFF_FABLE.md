@@ -1,6 +1,22 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## V34 CANONICAL TRADING-PHASE SCORING BINDING - 2026-08-05
+
+V34's state machine is unchanged. Its operative score now uses the hash-bound
+THE_603_MAP per-leg `true_close` values from `4f35ddea` and clips all decisions,
+fills, floors, frontier, and regret to that trading phase. Settlement-basis
+closes are forbidden. STRICT-LAW is 441 completions / 63 JOINT;
+CENSUS-PRICED is 481 / 89. Every scorecard prints the canonical T1-joint
+comparison universe of 750. The earlier terminal-close score is preserved as
+a negative control and is superseded as a ruler.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/2cfdf1ce9da55983956a2a3d4ca71b29d0f63a18/arb-executor/docs/research/window1/WINDOW1_V34_CANONICAL_TRADING_PHASE_SCORING_ADDENDUM.md
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b430bcfff51f89c9466e77b798d4ac5d9fff15ea/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/SCORECARD_TWO_COLUMN.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b430bcfff51f89c9466e77b798d4ac5d9fff15ea/.claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/CANONICAL_CLOSE_BINDING.json
+
 ## V32 EXECUTABLE NO-CHASE - REJECTED, R3 OPERATIVE - 2026-08-05
 
 Frozen V32 implements the `6f2c3f82` no-chase state machine causally on all

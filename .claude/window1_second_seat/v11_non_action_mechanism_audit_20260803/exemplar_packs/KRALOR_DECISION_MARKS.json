@@ -1,0 +1,494 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+ "category": "ATP_CHALL",
+ "bell_confidence": "exact",
+ "census_verdict": "TAKE_PREEMPT",
+ "w1_span": {
+  "left": 1783809087,
+  "left_et": "2026-07-11 18:31:27",
+  "right": 1783860600,
+  "right_et": "2026-07-12 08:50:00",
+  "pre_match_boundary_source": "exact_start_utc"
+ },
+ "legs": {
+  "KRA": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12KRALOR-KRA",
+   "credited": false,
+   "entry_cents": null,
+   "qualifying_ask_floor_cents": 95,
+   "print_backed_floor_cents": 95,
+   "pair_cap_cents": 93,
+   "fill_ts": null,
+   "fill_et": null,
+   "terminal_reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+   "state_counts": {
+    "FALLING": 101,
+    "RISING": 41,
+    "SETTLED": 5
+   },
+   "resting_target_at_hard_edge": 3,
+   "qualifying_ask_floor_receipts": {
+    "count": 64,
+    "first": {
+     "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-KRA.csv.gz#row-351",
+     "timestamp_epoch": 1783819428,
+     "ordinal": 351,
+     "bid": 94,
+     "ask": 95,
+     "spread": 1,
+     "dwell_seconds": 2164,
+     "displayed_size": 45
+    },
+    "last": {
+     "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-KRA.csv.gz#row-2910",
+     "timestamp_epoch": 1783860592,
+     "ordinal": 2910,
+     "bid": 94,
+     "ask": 95,
+     "spread": 1,
+     "dwell_seconds": 108,
+     "displayed_size": 50
+    }
+   },
+   "print_backed_floor_receipts": [
+    {
+     "receipt": "98a9b204-50be-7f0e-b4f9-141f996ac31d",
+     "timestamp_epoch": 1783831214.075629,
+     "ordinal": 174746,
+     "price_cents": 95,
+     "size": 1.04,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "277e8257-5cb6-610a-315d-59442a530a41",
+     "timestamp_epoch": 1783831844.3229299,
+     "ordinal": 174745,
+     "price_cents": 95,
+     "size": 0.19,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "c9d17ef4-eb1a-4607-6e9e-66161365a8fc",
+     "timestamp_epoch": 1783836502.102062,
+     "ordinal": 174742,
+     "price_cents": 95,
+     "size": 1.96,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "9d130fdb-2a9a-4826-5c9b-48453ed41755",
+     "timestamp_epoch": 1783836502.102062,
+     "ordinal": 174743,
+     "price_cents": 95,
+     "size": 5.77,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "4d901410-d851-4c94-7dc7-34d978af4723",
+     "timestamp_epoch": 1783836502.102062,
+     "ordinal": 174744,
+     "price_cents": 95,
+     "size": 8,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "8d1200dc-b852-726f-7786-173728e0378c",
+     "timestamp_epoch": 1783851443.824082,
+     "ordinal": 174741,
+     "price_cents": 95,
+     "size": 24.39,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "dd2fd19b-97c5-6d87-c893-fad9e4c444d6",
+     "timestamp_epoch": 1783855241.0929968,
+     "ordinal": 174739,
+     "price_cents": 95,
+     "size": 68.72,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "743c2faa-d1f2-6503-dd4b-b50f6156db68",
+     "timestamp_epoch": 1783855241.0929968,
+     "ordinal": 174740,
+     "price_cents": 95,
+     "size": 3.65,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "1a77d93f-24a0-56e6-3f33-7d0ad00c663e",
+     "timestamp_epoch": 1783857501.120636,
+     "ordinal": 174738,
+     "price_cents": 95,
+     "size": 0.23,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "62f96ca4-b2a4-51ce-ec2a-31ed0fb11db6",
+     "timestamp_epoch": 1783857539.8281388,
+     "ordinal": 174737,
+     "price_cents": 95,
+     "size": 147.77,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "bd42df5f-edcc-432e-1327-2d8a9d3f9361",
+     "timestamp_epoch": 1783858676.32716,
+     "ordinal": 174734,
+     "price_cents": 95,
+     "size": 50,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "bdf8b758-6446-5464-175c-4ec59c402054",
+     "timestamp_epoch": 1783858907.25441,
+     "ordinal": 174733,
+     "price_cents": 95,
+     "size": 15,
+     "aggressor_side": "BUYER"
+    },
+    {
+     "receipt": "98152342-993c-5872-33b3-79338bad6a56",
+     "timestamp_epoch": 1783860291.3630629,
+     "ordinal": 174732,
+     "price_cents": 95,
+     "size": 6.29,
+     "aggressor_side": "BUYER"
+    }
+   ],
+   "decision_marks": {
+    "rest_trajectory": [
+     {
+      "ts": 1783809087,
+      "et": "2026-07-11 18:31:27",
+      "level": 3,
+      "action": "PLACE_REST"
+     }
+    ],
+    "settled_windows": [
+     {
+      "start": 1783809087,
+      "start_et": "2026-07-11 18:31:27",
+      "end": 1783810310,
+      "end_et": "2026-07-11 18:51:50",
+      "dwell_s": 1223
+     },
+     {
+      "start": 1783812709,
+      "start_et": "2026-07-11 19:31:49",
+      "end": 1783812709,
+      "end_et": "2026-07-11 19:31:49",
+      "dwell_s": 0
+     },
+     {
+      "start": 1783812709,
+      "start_et": "2026-07-11 19:31:49",
+      "end": 1783812709,
+      "end_et": "2026-07-11 19:31:49",
+      "dwell_s": 0
+     },
+     {
+      "start": 1783814565,
+      "start_et": "2026-07-11 20:02:45",
+      "end": 1783814565,
+      "end_et": "2026-07-11 20:02:45",
+      "dwell_s": 0
+     },
+     {
+      "start": 1783814565,
+      "start_et": "2026-07-11 20:02:45",
+      "end": 1783814565,
+      "end_et": "2026-07-11 20:02:45",
+      "dwell_s": 0
+     },
+     {
+      "start": 1783815798,
+      "start_et": "2026-07-11 20:23:18",
+      "end": 1783817242,
+      "end_et": "2026-07-11 20:47:22",
+      "dwell_s": 1444
+     }
+    ],
+    "settled_window_count": 6,
+    "take_moments": [],
+    "pair_cap_over_time": [
+     {
+      "ts": 1783851467,
+      "et": "2026-07-12 06:17:47",
+      "cap": 96
+     },
+     {
+      "ts": 1783859655,
+      "et": "2026-07-12 08:34:15",
+      "cap": 93
+     },
+     {
+      "ts": 1783859655,
+      "et": "2026-07-12 08:34:15",
+      "cap": 96
+     },
+     {
+      "ts": 1783860293,
+      "et": "2026-07-12 08:44:53",
+      "cap": 93
+     },
+     {
+      "ts": 1783860293,
+      "et": "2026-07-12 08:44:53",
+      "cap": 96
+     },
+     {
+      "ts": 1783860484,
+      "et": "2026-07-12 08:48:04",
+      "cap": 93
+     },
+     {
+      "ts": 1783860484,
+      "et": "2026-07-12 08:48:04",
+      "cap": 96
+     },
+     {
+      "ts": 1783860487,
+      "et": "2026-07-12 08:48:07",
+      "cap": 93
+     },
+     {
+      "ts": 1783860487,
+      "et": "2026-07-12 08:48:07",
+      "cap": 96
+     },
+     {
+      "ts": 1783860490,
+      "et": "2026-07-12 08:48:10",
+      "cap": 93
+     },
+     {
+      "ts": 1783860490,
+      "et": "2026-07-12 08:48:10",
+      "cap": 96
+     },
+     {
+      "ts": 1783860494,
+      "et": "2026-07-12 08:48:14",
+      "cap": 93
+     },
+     {
+      "ts": 1783860494,
+      "et": "2026-07-12 08:48:14",
+      "cap": 96
+     },
+     {
+      "ts": 1783860508,
+      "et": "2026-07-12 08:48:28",
+      "cap": 93
+     },
+     {
+      "ts": 1783860508,
+      "et": "2026-07-12 08:48:28",
+      "cap": 96
+     },
+     {
+      "ts": 1783860511,
+      "et": "2026-07-12 08:48:31",
+      "cap": 93
+     },
+     {
+      "ts": 1783860511,
+      "et": "2026-07-12 08:48:31",
+      "cap": 96
+     },
+     {
+      "ts": 1783860517,
+      "et": "2026-07-12 08:48:37",
+      "cap": 93
+     },
+     {
+      "ts": 1783860517,
+      "et": "2026-07-12 08:48:37",
+      "cap": 96
+     },
+     {
+      "ts": 1783860523,
+      "et": "2026-07-12 08:48:43",
+      "cap": 93
+     },
+     {
+      "ts": 1783860523,
+      "et": "2026-07-12 08:48:43",
+      "cap": 96
+     },
+     {
+      "ts": 1783860548,
+      "et": "2026-07-12 08:49:08",
+      "cap": 93
+     },
+     {
+      "ts": 1783860548,
+      "et": "2026-07-12 08:49:08",
+      "cap": 96
+     },
+     {
+      "ts": 1783860553,
+      "et": "2026-07-12 08:49:13",
+      "cap": 93
+     },
+     {
+      "ts": 1783860553,
+      "et": "2026-07-12 08:49:13",
+      "cap": 96
+     },
+     {
+      "ts": 1783860591,
+      "et": "2026-07-12 08:49:51",
+      "cap": 93
+     },
+     {
+      "ts": 1783860591,
+      "et": "2026-07-12 08:49:51",
+      "cap": 96
+     },
+     {
+      "ts": 1783860592,
+      "et": "2026-07-12 08:49:52",
+      "cap": 93
+     },
+     {
+      "ts": 1783860592,
+      "et": "2026-07-12 08:49:52",
+      "cap": 96
+     }
+    ]
+   }
+  },
+  "LOR": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR",
+   "credited": true,
+   "entry_cents": 6,
+   "qualifying_ask_floor_cents": 5,
+   "print_backed_floor_cents": 4,
+   "pair_cap_cents": null,
+   "fill_ts": 1783859568,
+   "fill_et": "2026-07-12 08:32:48",
+   "terminal_reason": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+   "state_counts": {
+    "FALLING": 44,
+    "RISING": 268,
+    "SETTLED": 4
+   },
+   "resting_target_at_hard_edge": null,
+   "qualifying_ask_floor_receipts": {
+    "count": 35,
+    "first": {
+     "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR.csv.gz#row-339",
+     "timestamp_epoch": 1783822193,
+     "ordinal": 339,
+     "bid": 4,
+     "ask": 5,
+     "spread": 1,
+     "dwell_seconds": 53,
+     "displayed_size": 938
+    },
+    "last": {
+     "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR.csv.gz#row-791",
+     "timestamp_epoch": 1783850014,
+     "ordinal": 791,
+     "bid": 4,
+     "ask": 5,
+     "spread": 1,
+     "dwell_seconds": 27874,
+     "displayed_size": 1211
+    }
+   },
+   "print_backed_floor_receipts": [
+    {
+     "receipt": "b0859141-6ede-67d8-4cec-d71f296291be",
+     "timestamp_epoch": 1783838412.048641,
+     "ordinal": 175671,
+     "price_cents": 4,
+     "size": 0.01,
+     "aggressor_side": "SELLER"
+    },
+    {
+     "receipt": "5825f82f-79b6-76d4-b32b-ad3e01358982",
+     "timestamp_epoch": 1783856952.5588138,
+     "ordinal": 175653,
+     "price_cents": 4,
+     "size": 42,
+     "aggressor_side": "SELLER"
+    }
+   ],
+   "decision_marks": {
+    "rest_trajectory": [
+     {
+      "ts": 1783809087,
+      "et": "2026-07-11 18:31:27",
+      "level": 3,
+      "action": "PLACE_REST"
+     },
+     {
+      "ts": 1783859568,
+      "et": "2026-07-12 08:32:48",
+      "level": 6,
+      "action": "TAKE"
+     }
+    ],
+    "settled_windows": [
+     {
+      "start": 1783809087,
+      "start_et": "2026-07-11 18:31:27",
+      "end": 1783810310,
+      "end_et": "2026-07-11 18:51:50",
+      "dwell_s": 1223
+     },
+     {
+      "start": 1783815602,
+      "start_et": "2026-07-11 20:20:02",
+      "end": 1783815602,
+      "end_et": "2026-07-11 20:20:02",
+      "dwell_s": 0
+     },
+     {
+      "start": 1783815602,
+      "start_et": "2026-07-11 20:20:02",
+      "end": 1783815603,
+      "end_et": "2026-07-11 20:20:03",
+      "dwell_s": 1
+     },
+     {
+      "start": 1783859568,
+      "start_et": "2026-07-12 08:32:48",
+      "end": 1783859568,
+      "end_et": "2026-07-12 08:32:48",
+      "dwell_s": 0
+     }
+    ],
+    "settled_window_count": 4,
+    "take_moments": [
+     {
+      "ts": 1783859568,
+      "et": "2026-07-12 08:32:48",
+      "ask": 6,
+      "price": 6
+     }
+    ],
+    "pair_cap_over_time": []
+   }
+  }
+ },
+ "bleed_moment": {
+  "verdict": "TAKE_PREEMPT",
+  "bleed": "OVERPAY_TAKE",
+  "leg": "LOR",
+  "take_ts": 1783859568,
+  "take_et": "2026-07-12 08:32:48",
+  "paid": 6,
+  "own_floor": 4,
+  "overpay_cents": 2,
+  "blocker": "KRA",
+  "blocker_floor": 95,
+  "cap_after_paid": 93,
+  "cap_if_floor_paid": 95,
+  "note": "LOR took 6 vs floor 4 (+2c); cap fell to 93 so KRA floor 95 no longer fit (would fit at cap 95)."
+ },
+ "csv_rows": 301
+}

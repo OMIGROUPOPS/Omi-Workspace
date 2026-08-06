@@ -1,0 +1,702 @@
+{
+  "STRICT_LAW": {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+    "category": "ATP_CHALL",
+    "starting_price_split": "le25+le25",
+    "mode": "STRICT_LAW",
+    "market_life_start_epoch": 1783801048,
+    "trading_phase_close_epoch": 1783955569.069481,
+    "legs": {
+      "ARN": {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "category": "ATP_CHALL",
+        "starting_price_split": "le25+le25",
+        "price_region": "51_75",
+        "leg_id": "ARN",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+        "R3": {
+          "acted": true,
+          "credited": true,
+          "entry_cents": 56
+        },
+        "canonical_true_close_cents": 11,
+        "trading_phase_close_status": "AVAILABLE_HASH_BOUND_CANONICAL_TRADING_PHASE_CLOSE",
+        "own_trading_phase_close_cents": 11,
+        "own_trading_phase_close_timestamp_epoch": 1783955566.6820638,
+        "own_trading_phase_close_ordinal": 739,
+        "own_trading_phase_close_receipts": [
+          "5032537c-8f9f-5e3b-8076-76206f8c2d3e"
+        ],
+        "own_trading_phase_close_same_timestamp_prices": [
+          11
+        ],
+        "own_trading_phase_close_boundary_derivation": "LATEST_ORDERED_EXCHANGE_TIMESTAMP_CONTAINING_HASH_BOUND_TRUE_CLOSE",
+        "own_trading_phase_traded_low_cents": 7,
+        "own_trading_phase_qualifying_ask_floor_cents": 56,
+        "acted": true,
+        "credited": true,
+        "entry_cents": 56,
+        "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "action_timestamp_epoch": 1783897339,
+        "fill_timestamp_epoch": 1783897339,
+        "pair_cap_cents": 58,
+        "running_trade_low": 50,
+        "running_qualified_ask_low": 56,
+        "decisions": 28869,
+        "state_counts": {
+          "FALLING": 28613,
+          "RISING": 225,
+          "SETTLED": 31
+        },
+        "action_counts": {
+          "PLACE_REST": 1,
+          "HOLD_REST": 28867,
+          "TAKE": 1
+        },
+        "disagreement_count": 28524,
+        "maker_reprices": 0,
+        "first_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154518.68206381798,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 6254,
+            "ask_depth_5": 6488,
+            "depth_ratio": 0.4908177680113012
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "last_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35724",
+          "timestamp_epoch": 1783897339,
+          "t_minus_scheduled_seconds": -43339,
+          "t_minus_actual_bell_seconds": 48761,
+          "seconds_to_market_close": 58227.68206381798,
+          "observation": {
+            "bid": 58,
+            "ask": 56,
+            "last_traded": 56,
+            "spread": -2,
+            "ask_dwell_seconds": 16705,
+            "top_ask_size": 2,
+            "bid_depth_5": 5808,
+            "ask_depth_5": 4376,
+            "depth_ratio": 0.5703063629222309
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": 50,
+            "running_qualifying_ask_low_cents": 56
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "TAKE",
+            "target_cents": 56,
+            "reason": "R3_QUALIFIED_SETTLED_FLOOR_TAKE_PATH"
+          }
+        },
+        "first_action": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154518.68206381798,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 6254,
+            "ask_depth_5": 6488,
+            "depth_ratio": 0.4908177680113012
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "terminal_reason": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "first_book_epoch": 1783801048,
+        "last_book_epoch": 1783955566,
+        "first_print_epoch": 1783875370.5782108,
+        "last_print_epoch": 1783955566.6820638,
+        "entry_minus_trading_phase_close_cents": 45,
+        "entry_minus_qualifying_ask_floor_cents": 0,
+        "entry_minus_traded_low_cents": 49,
+        "first_action_timestamp_epoch": 1783801048
+      },
+      "ROM": {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "category": "ATP_CHALL",
+        "starting_price_split": "le25+le25",
+        "price_region": "26_50",
+        "leg_id": "ROM",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+        "R3": {
+          "acted": true,
+          "credited": true,
+          "entry_cents": 42
+        },
+        "canonical_true_close_cents": 89,
+        "trading_phase_close_status": "AVAILABLE_HASH_BOUND_CANONICAL_TRADING_PHASE_CLOSE",
+        "own_trading_phase_close_cents": 89,
+        "own_trading_phase_close_timestamp_epoch": 1783955569.069481,
+        "own_trading_phase_close_ordinal": 5573,
+        "own_trading_phase_close_receipts": [
+          "54c36e4b-cf75-6e3b-1c6c-5975143ab5ba"
+        ],
+        "own_trading_phase_close_same_timestamp_prices": [
+          89
+        ],
+        "own_trading_phase_close_boundary_derivation": "LATEST_ORDERED_EXCHANGE_TIMESTAMP_CONTAINING_HASH_BOUND_TRUE_CLOSE",
+        "own_trading_phase_traded_low_cents": 6,
+        "own_trading_phase_qualifying_ask_floor_cents": 41,
+        "acted": true,
+        "credited": true,
+        "entry_cents": 41,
+        "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "action_timestamp_epoch": 1783932645,
+        "fill_timestamp_epoch": 1783932645,
+        "pair_cap_cents": 43,
+        "running_trade_low": 39,
+        "running_qualified_ask_low": 41,
+        "decisions": 343,
+        "state_counts": {
+          "FALLING": 261,
+          "RISING": 55,
+          "SETTLED": 27
+        },
+        "action_counts": {
+          "PLACE_REST": 1,
+          "HOLD_REST": 341,
+          "TAKE": 1
+        },
+        "disagreement_count": 35,
+        "maker_reprices": 0,
+        "first_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154521.069480896,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 5742,
+            "ask_depth_5": 5988,
+            "depth_ratio": 0.4895140664961637
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "last_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-1653",
+          "timestamp_epoch": 1783932645,
+          "t_minus_scheduled_seconds": -78645,
+          "t_minus_actual_bell_seconds": 13455,
+          "seconds_to_market_close": 22924.069480895996,
+          "observation": {
+            "bid": 40,
+            "ask": 41,
+            "last_traded": 42,
+            "spread": 1,
+            "ask_dwell_seconds": 1983,
+            "top_ask_size": 1087,
+            "bid_depth_5": 9480,
+            "ask_depth_5": 8122,
+            "depth_ratio": 0.5385751619134189
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": 39,
+            "running_qualifying_ask_low_cents": 41
+          },
+          "pair_cap_cents": 43,
+          "decision": {
+            "action": "TAKE",
+            "target_cents": 41,
+            "reason": "R3_QUALIFIED_SETTLED_FLOOR_TAKE_PATH"
+          }
+        },
+        "first_action": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154521.069480896,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 5742,
+            "ask_depth_5": 5988,
+            "depth_ratio": 0.4895140664961637
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "terminal_reason": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "first_book_epoch": 1783801048,
+        "last_book_epoch": 1783955569,
+        "first_print_epoch": 1783860591.0450208,
+        "last_print_epoch": 1783955569.069481,
+        "entry_minus_trading_phase_close_cents": -48,
+        "entry_minus_qualifying_ask_floor_cents": 0,
+        "entry_minus_traded_low_cents": 35,
+        "first_action_timestamp_epoch": 1783801048
+      }
+    },
+    "completed_pair": true,
+    "combined_entry_cents": 97,
+    "pair_under_par": true,
+    "both_legs_strictly_below_trading_phase_close": false,
+    "joint_objective_pass": false,
+    "execution_floor_pair_pass": true
+  },
+  "CENSUS_PRICED": {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+    "category": "ATP_CHALL",
+    "starting_price_split": "le25+le25",
+    "mode": "CENSUS_PRICED",
+    "market_life_start_epoch": 1783801048,
+    "trading_phase_close_epoch": 1783955569.069481,
+    "legs": {
+      "ARN": {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "category": "ATP_CHALL",
+        "starting_price_split": "le25+le25",
+        "price_region": "51_75",
+        "leg_id": "ARN",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+        "R3": {
+          "acted": true,
+          "credited": true,
+          "entry_cents": 56
+        },
+        "canonical_true_close_cents": 11,
+        "trading_phase_close_status": "AVAILABLE_HASH_BOUND_CANONICAL_TRADING_PHASE_CLOSE",
+        "own_trading_phase_close_cents": 11,
+        "own_trading_phase_close_timestamp_epoch": 1783955566.6820638,
+        "own_trading_phase_close_ordinal": 739,
+        "own_trading_phase_close_receipts": [
+          "5032537c-8f9f-5e3b-8076-76206f8c2d3e"
+        ],
+        "own_trading_phase_close_same_timestamp_prices": [
+          11
+        ],
+        "own_trading_phase_close_boundary_derivation": "LATEST_ORDERED_EXCHANGE_TIMESTAMP_CONTAINING_HASH_BOUND_TRUE_CLOSE",
+        "own_trading_phase_traded_low_cents": 7,
+        "own_trading_phase_qualifying_ask_floor_cents": 56,
+        "acted": true,
+        "credited": true,
+        "entry_cents": 56,
+        "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "action_timestamp_epoch": 1783897339,
+        "fill_timestamp_epoch": 1783897339,
+        "pair_cap_cents": 58,
+        "running_trade_low": 50,
+        "running_qualified_ask_low": 56,
+        "decisions": 28869,
+        "state_counts": {
+          "FALLING": 28613,
+          "RISING": 225,
+          "SETTLED": 31
+        },
+        "action_counts": {
+          "PLACE_REST": 1,
+          "HOLD_REST": 28867,
+          "TAKE": 1
+        },
+        "disagreement_count": 28524,
+        "maker_reprices": 0,
+        "first_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154518.68206381798,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 6254,
+            "ask_depth_5": 6488,
+            "depth_ratio": 0.4908177680113012
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "last_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35724",
+          "timestamp_epoch": 1783897339,
+          "t_minus_scheduled_seconds": -43339,
+          "t_minus_actual_bell_seconds": 48761,
+          "seconds_to_market_close": 58227.68206381798,
+          "observation": {
+            "bid": 58,
+            "ask": 56,
+            "last_traded": 56,
+            "spread": -2,
+            "ask_dwell_seconds": 16705,
+            "top_ask_size": 2,
+            "bid_depth_5": 5808,
+            "ask_depth_5": 4376,
+            "depth_ratio": 0.5703063629222309
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": 50,
+            "running_qualifying_ask_low_cents": 56
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "TAKE",
+            "target_cents": 56,
+            "reason": "R3_QUALIFIED_SETTLED_FLOOR_TAKE_PATH"
+          }
+        },
+        "first_action": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154518.68206381798,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 6254,
+            "ask_depth_5": 6488,
+            "depth_ratio": 0.4908177680113012
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "terminal_reason": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "first_book_epoch": 1783801048,
+        "last_book_epoch": 1783955566,
+        "first_print_epoch": 1783875370.5782108,
+        "last_print_epoch": 1783955566.6820638,
+        "entry_minus_trading_phase_close_cents": 45,
+        "entry_minus_qualifying_ask_floor_cents": 0,
+        "entry_minus_traded_low_cents": 49,
+        "first_action_timestamp_epoch": 1783801048
+      },
+      "ROM": {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "category": "ATP_CHALL",
+        "starting_price_split": "le25+le25",
+        "price_region": "26_50",
+        "leg_id": "ROM",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+        "R3": {
+          "acted": true,
+          "credited": true,
+          "entry_cents": 42
+        },
+        "canonical_true_close_cents": 89,
+        "trading_phase_close_status": "AVAILABLE_HASH_BOUND_CANONICAL_TRADING_PHASE_CLOSE",
+        "own_trading_phase_close_cents": 89,
+        "own_trading_phase_close_timestamp_epoch": 1783955569.069481,
+        "own_trading_phase_close_ordinal": 5573,
+        "own_trading_phase_close_receipts": [
+          "54c36e4b-cf75-6e3b-1c6c-5975143ab5ba"
+        ],
+        "own_trading_phase_close_same_timestamp_prices": [
+          89
+        ],
+        "own_trading_phase_close_boundary_derivation": "LATEST_ORDERED_EXCHANGE_TIMESTAMP_CONTAINING_HASH_BOUND_TRUE_CLOSE",
+        "own_trading_phase_traded_low_cents": 6,
+        "own_trading_phase_qualifying_ask_floor_cents": 41,
+        "acted": true,
+        "credited": true,
+        "entry_cents": 41,
+        "fill_class": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "action_timestamp_epoch": 1783932645,
+        "fill_timestamp_epoch": 1783932645,
+        "pair_cap_cents": 43,
+        "running_trade_low": 39,
+        "running_qualified_ask_low": 41,
+        "decisions": 343,
+        "state_counts": {
+          "FALLING": 261,
+          "RISING": 55,
+          "SETTLED": 27
+        },
+        "action_counts": {
+          "PLACE_REST": 1,
+          "HOLD_REST": 341,
+          "TAKE": 1
+        },
+        "disagreement_count": 35,
+        "maker_reprices": 0,
+        "first_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154521.069480896,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 5742,
+            "ask_depth_5": 5988,
+            "depth_ratio": 0.4895140664961637
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "last_decision": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-1653",
+          "timestamp_epoch": 1783932645,
+          "t_minus_scheduled_seconds": -78645,
+          "t_minus_actual_bell_seconds": 13455,
+          "seconds_to_market_close": 22924.069480895996,
+          "observation": {
+            "bid": 40,
+            "ask": 41,
+            "last_traded": 42,
+            "spread": 1,
+            "ask_dwell_seconds": 1983,
+            "top_ask_size": 1087,
+            "bid_depth_5": 9480,
+            "ask_depth_5": 8122,
+            "depth_ratio": 0.5385751619134189
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": 39,
+            "running_qualifying_ask_low_cents": 41
+          },
+          "pair_cap_cents": 43,
+          "decision": {
+            "action": "TAKE",
+            "target_cents": 41,
+            "reason": "R3_QUALIFIED_SETTLED_FLOOR_TAKE_PATH"
+          }
+        },
+        "first_action": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+          "timestamp_epoch": 1783801048,
+          "t_minus_scheduled_seconds": 52952,
+          "t_minus_actual_bell_seconds": 145052,
+          "seconds_to_market_close": 154521.069480896,
+          "observation": {
+            "bid": 4,
+            "ask": 96,
+            "last_traded": 0,
+            "spread": 92,
+            "ask_dwell_seconds": 0,
+            "top_ask_size": 500,
+            "bid_depth_5": 5742,
+            "ask_depth_5": 5988,
+            "depth_ratio": 0.4895140664961637
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": null,
+            "running_qualifying_ask_low_cents": null
+          },
+          "pair_cap_cents": null,
+          "decision": {
+            "action": "PLACE_REST",
+            "target_cents": 3,
+            "reason": "FORMATION_STANDING_REST_ONE_CENT_UNDER_BID_BOUNDED_BY_CAUSAL_DISCOUNT_EVIDENCE"
+          }
+        },
+        "terminal_reason": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+        "first_book_epoch": 1783801048,
+        "last_book_epoch": 1783955569,
+        "first_print_epoch": 1783860591.0450208,
+        "last_print_epoch": 1783955569.069481,
+        "entry_minus_trading_phase_close_cents": -48,
+        "entry_minus_qualifying_ask_floor_cents": 0,
+        "entry_minus_traded_low_cents": 35,
+        "first_action_timestamp_epoch": 1783801048
+      }
+    },
+    "completed_pair": true,
+    "combined_entry_cents": 97,
+    "pair_under_par": true,
+    "both_legs_strictly_below_trading_phase_close": false,
+    "joint_objective_pass": false,
+    "execution_floor_pair_pass": true
+  }
+}

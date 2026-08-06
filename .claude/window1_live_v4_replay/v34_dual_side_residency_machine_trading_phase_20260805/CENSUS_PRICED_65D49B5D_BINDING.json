@@ -1,0 +1,12 @@
+{
+  "commit": "65d49b5d623d99fb1d8ad3ef7eee6be9225c328e",
+  "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V32_NEARMISS_CENSUS.json",
+  "source_sha256": "926ef775a96c81a6268d5b80518e68e4a5269dff54edbbb1fc0e72095260cb8d",
+  "source": {
+    "waited_and_lost": 607,
+    "one_cent_near_miss_rests": 247,
+    "v32_joint": 41,
+    "model_free_ceiling": 201
+  },
+  "V34_application": "DYNAMIC_ACTIVE_V34_REST_TRAJECTORY; FIRST_LAWFUL_ONE_CENT_SELLER_PRINT_CONVERTS_AT_REST_IN_CENSUS_COLUMN"
+}

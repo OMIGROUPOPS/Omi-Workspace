@@ -1,0 +1,359 @@
+{
+  "law": "regret=entry-minus-lowest-true-exchange-print-clipped-to-canonical-trading-phase; incomplete numeric regret remains null; settlement evidence forbidden",
+  "canonical_T1_joint_comparison_universe": 750,
+  "aggregate": {
+    "denominator": 1608,
+    "numeric_n": 1270,
+    "null_n": 338,
+    "min": -1,
+    "p25": 6,
+    "median": 19,
+    "p75": 37,
+    "p90": 51,
+    "max": 82,
+    "total": 29206,
+    "total_cents": 29206
+  },
+  "loss_attribution": {
+    "CREDITED": 1270,
+    "RESTED_UNFILLED": 338
+  },
+  "category_x_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 261,
+        "numeric_n": 225,
+        "null_n": 36,
+        "min": -1,
+        "p25": 10,
+        "median": 24,
+        "p75": 34,
+        "p90": 40,
+        "max": 50,
+        "total": 5086,
+        "total_cents": 5086
+      },
+      "loss_attribution": {
+        "CREDITED": 225,
+        "RESTED_UNFILLED": 36
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 252,
+        "numeric_n": 203,
+        "null_n": 49,
+        "min": -1,
+        "p25": 15,
+        "median": 38,
+        "p75": 51,
+        "p90": 60,
+        "max": 77,
+        "total": 6903,
+        "total_cents": 6903
+      },
+      "loss_attribution": {
+        "CREDITED": 203,
+        "RESTED_UNFILLED": 49
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 101,
+        "numeric_n": 48,
+        "null_n": 53,
+        "min": -1,
+        "p25": 3,
+        "median": 10,
+        "p75": 40,
+        "p90": 73,
+        "max": 82,
+        "total": 1163,
+        "total_cents": 1163
+      },
+      "loss_attribution": {
+        "RESTED_UNFILLED": 53,
+        "CREDITED": 48
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 124,
+        "numeric_n": 105,
+        "null_n": 19,
+        "min": -1,
+        "p25": 3,
+        "median": 9,
+        "p75": 14,
+        "p90": 19,
+        "max": 25,
+        "total": 961,
+        "total_cents": 961
+      },
+      "loss_attribution": {
+        "CREDITED": 105,
+        "RESTED_UNFILLED": 19
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 110,
+        "numeric_n": 101,
+        "null_n": 9,
+        "min": -1,
+        "p25": 8,
+        "median": 27,
+        "p75": 36,
+        "p90": 42,
+        "max": 51,
+        "total": 2343,
+        "total_cents": 2343
+      },
+      "loss_attribution": {
+        "CREDITED": 101,
+        "RESTED_UNFILLED": 9
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 111,
+        "numeric_n": 90,
+        "null_n": 21,
+        "min": -1,
+        "p25": 4,
+        "median": 23,
+        "p75": 52,
+        "p90": 62,
+        "max": 71,
+        "total": 2610,
+        "total_cents": 2610
+      },
+      "loss_attribution": {
+        "CREDITED": 90,
+        "RESTED_UNFILLED": 21
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 27,
+        "numeric_n": 14,
+        "null_n": 13,
+        "min": 0,
+        "p25": 3,
+        "median": 8,
+        "p75": 34,
+        "p90": 69,
+        "max": 70,
+        "total": 352,
+        "total_cents": 352
+      },
+      "loss_attribution": {
+        "CREDITED": 14,
+        "RESTED_UNFILLED": 13
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 46,
+        "numeric_n": 38,
+        "null_n": 8,
+        "min": -1,
+        "p25": 6,
+        "median": 16,
+        "p75": 24,
+        "p90": 29,
+        "max": 63,
+        "total": 666,
+        "total_cents": 666
+      },
+      "loss_attribution": {
+        "CREDITED": 38,
+        "RESTED_UNFILLED": 8
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 96,
+        "numeric_n": 81,
+        "null_n": 15,
+        "min": -1,
+        "p25": 11,
+        "median": 23,
+        "p75": 34,
+        "p90": 42,
+        "max": 47,
+        "total": 1830,
+        "total_cents": 1830
+      },
+      "loss_attribution": {
+        "CREDITED": 81,
+        "RESTED_UNFILLED": 15
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 87,
+        "numeric_n": 61,
+        "null_n": 26,
+        "min": -1,
+        "p25": 5,
+        "median": 26,
+        "p75": 49,
+        "p90": 57,
+        "max": 73,
+        "total": 1712,
+        "total_cents": 1712
+      },
+      "loss_attribution": {
+        "CREDITED": 61,
+        "RESTED_UNFILLED": 26
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 44,
+        "numeric_n": 22,
+        "null_n": 22,
+        "min": 0,
+        "p25": 3,
+        "median": 14,
+        "p75": 32,
+        "p90": 37,
+        "max": 71,
+        "total": 458,
+        "total_cents": 458
+      },
+      "loss_attribution": {
+        "CREDITED": 22,
+        "RESTED_UNFILLED": 22
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 45,
+        "numeric_n": 40,
+        "null_n": 5,
+        "min": -1,
+        "p25": 3,
+        "median": 8,
+        "p75": 14,
+        "p90": 16,
+        "max": 20,
+        "total": 354,
+        "total_cents": 354
+      },
+      "loss_attribution": {
+        "CREDITED": 40,
+        "RESTED_UNFILLED": 5
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 86,
+        "numeric_n": 77,
+        "null_n": 9,
+        "min": -1,
+        "p25": 7,
+        "median": 28,
+        "p75": 35,
+        "p90": 41,
+        "max": 64,
+        "total": 1768,
+        "total_cents": 1768
+      },
+      "loss_attribution": {
+        "CREDITED": 77,
+        "RESTED_UNFILLED": 9
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 87,
+        "numeric_n": 69,
+        "null_n": 18,
+        "min": -1,
+        "p25": 6,
+        "median": 14,
+        "p75": 48,
+        "p90": 57,
+        "max": 68,
+        "total": 1658,
+        "total_cents": 1658
+      },
+      "loss_attribution": {
+        "CREDITED": 69,
+        "RESTED_UNFILLED": 18
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 52,
+        "numeric_n": 28,
+        "null_n": 24,
+        "min": -1,
+        "p25": 1,
+        "median": 11,
+        "p75": 27,
+        "p90": 62,
+        "max": 82,
+        "total": 600,
+        "total_cents": 600
+      },
+      "loss_attribution": {
+        "CREDITED": 28,
+        "RESTED_UNFILLED": 24
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "regret": {
+        "denominator": 79,
+        "numeric_n": 68,
+        "null_n": 11,
+        "min": -1,
+        "p25": 4,
+        "median": 10,
+        "p75": 17,
+        "p90": 22,
+        "max": 27,
+        "total": 742,
+        "total_cents": 742
+      },
+      "loss_attribution": {
+        "CREDITED": 68,
+        "RESTED_UNFILLED": 11
+      }
+    }
+  ]
+}

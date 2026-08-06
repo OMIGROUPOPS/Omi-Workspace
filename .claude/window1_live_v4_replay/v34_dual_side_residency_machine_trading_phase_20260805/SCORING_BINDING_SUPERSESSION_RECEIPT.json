@@ -1,0 +1,7 @@
+{
+  "supersedes_settlement_scoring_commit": "e0fb6a312d8bbc52806603fbc143bf2bcebb3df2",
+  "preserved_negative_control_package": ".claude/window1_live_v4_replay/v34_dual_side_residency_machine_20260805",
+  "defect": "RAW_FINAL_EXCHANGE_PRINT_CONSUMED_AS_CLOSE",
+  "correction": "HASH_BOUND_THE_603_MAP_TRADING_PHASE_TRUE_CLOSE_AND_CLIP_ALL_SCORING_EVIDENCE_TO_OWN_PHASE_BOUNDARY",
+  "settlement_basis_never_consumed": true
+}

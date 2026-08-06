@@ -1,0 +1,12 @@
+{
+  "holdout_accesses": 0,
+  "live_accesses": 0,
+  "network_runtime_accesses": 0,
+  "order_accesses": 0,
+  "position_accesses": 0,
+  "live_settlement_accesses": 0,
+  "settlement_basis_scoring_reads": 0,
+  "deployment_accesses": 0,
+  "scorer_external_invocations": 0,
+  "private_scope": "FIT_DEVELOPMENT_804_ONLY"
+}

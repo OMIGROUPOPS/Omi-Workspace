@@ -1,0 +1,30 @@
+{
+  "schema_version": "window1-v34-control-v3-canonical-trading-phase",
+  "construction_parent": "6bb460416f490fb5c3c91b47c29a7fb66065ab3d",
+  "architecture": "DUAL_SIDE_RESIDENCY_MACHINE_NOT_OVERLAY",
+  "window_law": {
+    "left": "EARLIER_OF_FIRST_TWO_SIDED_BOOK_OR_FIRST_TRUE_EXCHANGE_PRINT",
+    "right": "HASH_BOUND_THE_603_MAP_TRADING_PHASE_BOUNDARY_PER_LEG; NULL_CLOSE_STREAM_USES_SIBLING_GAME_BOUNDARY_WITH_GRADE_UNAVAILABLE",
+    "close": "THE_603_MAP_PER_LEG_TRUE_CLOSE_HASH_BOUND_AND_VALIDATED_AGAINST_ORDERED_EXCHANGE_PRINTS",
+    "scheduled_edge_role": "NONE",
+    "actual_bell_role": "OPTIONAL_TIMING_METADATA_ONLY_NEVER_BOUNDARY",
+    "settlement_basis_role": "FORBIDDEN_NEGATIVE_CONTROL_ONLY",
+    "book_chain_after_end": "ACTIVE_REST_PERSISTS_TO_OWN_TRADING_PHASE_CLOSE; PRINT_EVIDENCE_CONTINUES; NO_BOOK_DEPENDENT_TRANSITION_IS_FABRICATED"
+  },
+  "source_seal": {
+    "commit": "938dca474e8bc4d96b17095e2aaa7cbb2fe97a87",
+    "receipt": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECONCILIATION_SEAL_804.json",
+    "scope_note": "same sealed 4,836,462-row public archive; scoring clipped before terminal settlement collapse"
+  },
+  "canonical_close_binding": {
+    "commit": "4f35ddea00a877c9b1129702a523abe2d689adb8",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/THE_603_MAP.json",
+    "sha256": "9188a771a9a8c6ec671485f8d4c1c61ffd60372b0df742cf4ab66ad1afa98c58",
+    "bytes": 277256
+  },
+  "comparisons": {
+    "R3_joint_floor": 68,
+    "named_603": 603,
+    "canonical_T1_joint_comparison_universe": 750
+  }
+}

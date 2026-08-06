@@ -1,0 +1,932 @@
+{
+  "fixed_denominator": 804,
+  "canonical_T1_joint_comparison_universe": 750,
+  "cumulative_frontier": {
+    "LE_93": {
+      "fixed_denominator": 804,
+      "completed_pairs": 146,
+      "joint_objective_pairs": 82
+    },
+    "LE_95": {
+      "fixed_denominator": 804,
+      "completed_pairs": 170,
+      "joint_objective_pairs": 83
+    },
+    "LE_97": {
+      "fixed_denominator": 804,
+      "completed_pairs": 241,
+      "joint_objective_pairs": 83
+    },
+    "LT_100": {
+      "fixed_denominator": 804,
+      "completed_pairs": 481,
+      "joint_objective_pairs": 89
+    },
+    "ANY_PRICE": {
+      "fixed_denominator": 804,
+      "completed_pairs": 481,
+      "joint_objective_pairs": 89
+    }
+  },
+  "category_x_starting_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50+26_50",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 238,
+          "completed_pairs": 41,
+          "joint_objective_pairs": 21
+        },
+        "LE_95": {
+          "fixed_denominator": 238,
+          "completed_pairs": 50,
+          "joint_objective_pairs": 21
+        },
+        "LE_97": {
+          "fixed_denominator": 238,
+          "completed_pairs": 76,
+          "joint_objective_pairs": 21
+        },
+        "LT_100": {
+          "fixed_denominator": 238,
+          "completed_pairs": 164,
+          "joint_objective_pairs": 21
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 238,
+          "completed_pairs": 164,
+          "joint_objective_pairs": 21
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+ge75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+ge75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 6,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 102,
+          "completed_pairs": 10,
+          "joint_objective_pairs": 3
+        },
+        "LE_95": {
+          "fixed_denominator": 102,
+          "completed_pairs": 11,
+          "joint_objective_pairs": 3
+        },
+        "LE_97": {
+          "fixed_denominator": 102,
+          "completed_pairs": 24,
+          "joint_objective_pairs": 3
+        },
+        "LT_100": {
+          "fixed_denominator": 102,
+          "completed_pairs": 44,
+          "joint_objective_pairs": 5
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 102,
+          "completed_pairs": 44,
+          "joint_objective_pairs": 5
+        }
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 15,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 15,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 15,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 15,
+          "completed_pairs": 5,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 15,
+          "completed_pairs": 5,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+26_50",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 103,
+          "completed_pairs": 22,
+          "joint_objective_pairs": 15
+        },
+        "LE_95": {
+          "fixed_denominator": 103,
+          "completed_pairs": 26,
+          "joint_objective_pairs": 15
+        },
+        "LE_97": {
+          "fixed_denominator": 103,
+          "completed_pairs": 33,
+          "joint_objective_pairs": 15
+        },
+        "LT_100": {
+          "fixed_denominator": 103,
+          "completed_pairs": 78,
+          "joint_objective_pairs": 15
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 103,
+          "completed_pairs": 78,
+          "joint_objective_pairs": 15
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+ge75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 1
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+ge75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 29,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 29,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 29,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 29,
+          "completed_pairs": 11,
+          "joint_objective_pairs": 3
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 29,
+          "completed_pairs": 11,
+          "joint_objective_pairs": 3
+        }
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 6,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 6,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 6,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 6,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+26_50",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 2,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 2,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 88,
+          "completed_pairs": 19,
+          "joint_objective_pairs": 7
+        },
+        "LE_95": {
+          "fixed_denominator": 88,
+          "completed_pairs": 23,
+          "joint_objective_pairs": 7
+        },
+        "LE_97": {
+          "fixed_denominator": 88,
+          "completed_pairs": 34,
+          "joint_objective_pairs": 7
+        },
+        "LT_100": {
+          "fixed_denominator": 88,
+          "completed_pairs": 50,
+          "joint_objective_pairs": 7
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 88,
+          "completed_pairs": 50,
+          "joint_objective_pairs": 7
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 44,
+          "completed_pairs": 12,
+          "joint_objective_pairs": 6
+        },
+        "LE_95": {
+          "fixed_denominator": 44,
+          "completed_pairs": 13,
+          "joint_objective_pairs": 6
+        },
+        "LE_97": {
+          "fixed_denominator": 44,
+          "completed_pairs": 14,
+          "joint_objective_pairs": 6
+        },
+        "LT_100": {
+          "fixed_denominator": 44,
+          "completed_pairs": 20,
+          "joint_objective_pairs": 6
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 44,
+          "completed_pairs": 20,
+          "joint_objective_pairs": 6
+        }
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 77,
+          "completed_pairs": 27,
+          "joint_objective_pairs": 20
+        },
+        "LE_95": {
+          "fixed_denominator": 77,
+          "completed_pairs": 29,
+          "joint_objective_pairs": 20
+        },
+        "LE_97": {
+          "fixed_denominator": 77,
+          "completed_pairs": 31,
+          "joint_objective_pairs": 20
+        },
+        "LT_100": {
+          "fixed_denominator": 77,
+          "completed_pairs": 57,
+          "joint_objective_pairs": 20
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 77,
+          "completed_pairs": 57,
+          "joint_objective_pairs": 20
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+ge75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 3,
+          "completed_pairs": 0,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 3,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+51_75",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_95": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LE_97": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "LT_100": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 1,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 0
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 4,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "LE_95": {
+          "fixed_denominator": 4,
+          "completed_pairs": 2,
+          "joint_objective_pairs": 2
+        },
+        "LE_97": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 2
+        },
+        "LT_100": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 2
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 4,
+          "completed_pairs": 3,
+          "joint_objective_pairs": 2
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 56,
+          "completed_pairs": 6,
+          "joint_objective_pairs": 3
+        },
+        "LE_95": {
+          "fixed_denominator": 56,
+          "completed_pairs": 7,
+          "joint_objective_pairs": 4
+        },
+        "LE_97": {
+          "fixed_denominator": 56,
+          "completed_pairs": 13,
+          "joint_objective_pairs": 4
+        },
+        "LT_100": {
+          "fixed_denominator": 56,
+          "completed_pairs": 27,
+          "joint_objective_pairs": 6
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 56,
+          "completed_pairs": 27,
+          "joint_objective_pairs": 6
+        }
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25+le25",
+      "canonical_T1_joint_comparison_universe": 750,
+      "frontier": {
+        "LE_93": {
+          "fixed_denominator": 10,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        },
+        "LE_95": {
+          "fixed_denominator": 10,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        },
+        "LE_97": {
+          "fixed_denominator": 10,
+          "completed_pairs": 1,
+          "joint_objective_pairs": 1
+        },
+        "LT_100": {
+          "fixed_denominator": 10,
+          "completed_pairs": 4,
+          "joint_objective_pairs": 1
+        },
+        "ANY_PRICE": {
+          "fixed_denominator": 10,
+          "completed_pairs": 4,
+          "joint_objective_pairs": 1
+        }
+      }
+    }
+  ]
+}

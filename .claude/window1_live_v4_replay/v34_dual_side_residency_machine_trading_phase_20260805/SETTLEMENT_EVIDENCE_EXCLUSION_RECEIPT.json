@@ -1,0 +1,22 @@
+{
+  "scoring_basis": "CANONICAL_TRADING_PHASE_ONLY",
+  "settlement_basis_close_reads": 0,
+  "settlement_basis_floor_reads": 0,
+  "settlement_basis_fill_reads": 0,
+  "full_archive_rows_used_only_to_locate_and_exclude_terminal_settlement_phase": true,
+  "excluded_post_trading_phase_print_rows": 423266,
+  "excluded_seconds_by_leg": {
+    "denominator": 1608,
+    "numeric_n": 1606,
+    "null_n": 2,
+    "min": 0,
+    "p25": 246.91443800926208,
+    "median": 535.2357199192047,
+    "p75": 1219.3541181087494,
+    "p90": 2125.323230981827,
+    "max": 93113.04496407509,
+    "total": 2506723.1593663692,
+    "total_seconds": 2506723.1593663692
+  },
+  "negative_control_stamp": "DEGENERATE_SETTLEMENT_BASIS: using the raw final exchange print (settlement value) floors every loser leg at 1c -> 758/804 structurally unreachable, 0 convertible mass. Superseded by the trading-phase basis; retained only as a negative control."
+}

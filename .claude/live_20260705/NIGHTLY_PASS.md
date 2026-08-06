@@ -408,3 +408,13 @@ slate: 0 big-4 events · 0 scored pairs · skips {'thin_tape': 0, 'one_leg_file'
 - SEAL-DECAY TRIPWIRE: completion: insufficient n (games 0 < 10), said · quality: insufficient n (duals 0 < 5), said (floor 70% both axes)
 
 GUN SCORECARD 20260805:  | FIRES-vs-SLATE: fires=0 tracked_events=0 ratio=0% | NON-MAINS (deletion-gate denominator, MAINS-OFF excluded by design): fires=0/0 ratio=0% | MULTI-SOURCE events=0 | SELF-FILL fires=0 unconfirmed-by-any-other-source=0 | BELLS-MISSING=0 | HALT-MIN=0.0 UNBOOKED-FILLS-BOOKED=0 (watch: night-over-night drops + uncovered live matches are named here, not a week later)
+
+OS SHADOW 2026-08-05: n=0 sites={} | placement agree(±1c)=0 diverge=0 | divergence classes: {} | hold: {'reviews': 0, 'quiet': 0, 'floor_miss': 0, 'both': 0, 'diverge': 0, 'floor_unevaluable': 0, 'pre_instrument': 0} | cap-sensitivity: DEFERRED (joint-shadow n>=30 gate, operator 07-09)
+
+## PERCLASS 20260805 (era post-seal-20260720) — COMBINED PRIMARY (ruling 07-20 PM): sub-par(<=97)=pass; dual-negative=mastery meter
+slate: 0 big-4 events · 0 scored pairs · skips {'thin_tape': 0, 'one_leg_file': 0, 'dead_band': 0, 'no_tape': 0}
+- FLAT-FLAT (SEALED b2f0b670; capture standard): **COMPLETION 0/0 = 0% x QUALITY 0/0 = 0% -> JOINT FAIL (bar 70/70)** · tiers {} · MASTERY dual-neg 0% · medPairD +0
+- MIRROR (REFUSE; fader drill on the mastery meter): pairs 0 duals 0 — NO DUALS
+- NEITHER (counted apart): pairs 0 duals 0 — NO DUALS
+- COMPLETION (volume drill): sub-par duals 0 / 1 slate pairs = 0.0%
+- SEAL-DECAY TRIPWIRE: completion: insufficient n (games 0 < 10), said · quality: insufficient n (duals 0 < 5), said (floor 70% both axes)

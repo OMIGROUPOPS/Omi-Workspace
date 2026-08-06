@@ -418,3 +418,5 @@ slate: 0 big-4 events · 0 scored pairs · skips {'thin_tape': 0, 'one_leg_file'
 - NEITHER (counted apart): pairs 0 duals 0 — NO DUALS
 - COMPLETION (volume drill): sub-par duals 0 / 1 slate pairs = 0.0%
 - SEAL-DECAY TRIPWIRE: completion: insufficient n (games 0 < 10), said · quality: insufficient n (duals 0 < 5), said (floor 70% both axes)
+
+GUN SCORECARD 20260806:  | FIRES-vs-SLATE: fires=0 tracked_events=0 ratio=0% | NON-MAINS (deletion-gate denominator, MAINS-OFF excluded by design): fires=0/0 ratio=0% | MULTI-SOURCE events=0 | SELF-FILL fires=0 unconfirmed-by-any-other-source=0 | BELLS-MISSING=0 | HALT-MIN=0.0 UNBOOKED-FILLS-BOOKED=0 (watch: night-over-night drops + uncovered live matches are named here, not a week later)

@@ -1,0 +1,5479 @@
+{
+ "LABEL": "DEEP_PAIR_AUTOPSY_V35_V351_vs_V34W1",
+ "bindings": {
+  "V34_W1": "e56d79a2",
+  "V35": "0799fba",
+  "V351": "3f073c4",
+  "offer_680": "WINDOW1_FULL_LAWFUL_CEILING (strict_sequential_any_price 680)"
+ },
+ "headline": {
+  "strict_completed": {
+   "V34": 254,
+   "V35": 264,
+   "V351": 283
+  },
+  "strict_deep_le95": {
+   "V34": 34,
+   "V35": 25,
+   "V351": 24
+  },
+  "census_completed": {
+   "V34": 279,
+   "V35": 550,
+   "V351": 552
+  },
+  "census_deep_le95": {
+   "V34": 39,
+   "V35": 91,
+   "V351": 89
+  }
+ },
+ "part1_vanished_deep": {
+  "v34_deep_pairs": 34,
+  "vanished_or_degraded": 32,
+  "lost": 8,
+  "worse": 24,
+  "by_cat": {
+   "WTA_CHALL": 6,
+   "WTA_MAIN": 5,
+   "ATP_CHALL": 15,
+   "ATP_MAIN": 6
+  },
+  "mechanism_tally": {
+   "LOST_FILL": 10,
+   "TAKE_FIRED_SHALLOWER": 18,
+   "REST_SWEPT_SHALLOWER": 13
+  },
+  "games": [
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 63,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "JON:LOST_FILL; SPI:LOST_FILL",
+    "legs": {
+     "JON": {
+      "v34_entry": 51,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": null
+     },
+     "SPI": {
+      "v34_entry": 12,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 7
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12FETPIE",
+    "cat": "WTA_MAIN",
+    "bell": "live_by_only",
+    "v34_combined": 87,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "FET:TAKE_FIRED_SHALLOWER(+23); PIE:LOST_FILL",
+    "legs": {
+     "FET": {
+      "v34_entry": 35,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 58,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "PIE": {
+      "v34_entry": 52,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 45
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "v34_combined": 90,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "LEO:LOST_FILL",
+    "legs": {
+     "LEO": {
+      "v34_entry": 59,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 64
+     },
+     "MUN": {
+      "v34_entry": 31,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 31,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12HERKAZ",
+    "cat": "WTA_MAIN",
+    "bell": "live_by_only",
+    "v34_combined": 93,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "HER:LOST_FILL; KAZ:LOST_FILL",
+    "legs": {
+     "HER": {
+      "v34_entry": 46,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 52
+     },
+     "KAZ": {
+      "v34_entry": 47,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 46
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "v34_combined": 94,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "DE:LOST_FILL; GEE:REST_SWEPT_SHALLOWER(+7)",
+    "legs": {
+     "DE": {
+      "v34_entry": 35,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 37
+     },
+     "GEE": {
+      "v34_entry": 59,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 66,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 67
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL12FARWAW",
+    "cat": "ATP_MAIN",
+    "bell": "exact",
+    "v34_combined": 94,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "FAR:LOST_FILL",
+    "legs": {
+     "FAR": {
+      "v34_entry": 61,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 65
+     },
+     "WAW": {
+      "v34_entry": 33,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 33,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13PRIGAR",
+    "cat": "WTA_MAIN",
+    "bell": "schedule_only",
+    "v34_combined": 94,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "GAR:TAKE_FIRED_SHALLOWER(+6); PRI:LOST_FILL",
+    "legs": {
+     "GAR": {
+      "v34_entry": 7,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 13,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "PRI": {
+      "v34_entry": 87,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 87
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "v34_combined": 95,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "ISO:TAKE_FIRED_SHALLOWER(+8); ROZ:LOST_FILL",
+    "legs": {
+     "ISO": {
+      "v34_entry": 28,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 36,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 37
+     },
+     "ROZ": {
+      "v34_entry": 67,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": null,
+      "v351_fill": null,
+      "v351_credited": false,
+      "seller_hit_low": 66
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "v34_combined": 23,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "JAN:TAKE_FIRED_SHALLOWER(+76)",
+    "legs": {
+     "GAN": {
+      "v34_entry": 20,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 20,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "JAN": {
+      "v34_entry": 3,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 79,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL12NEUTOP",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "v34_combined": 36,
+    "v351_combined": 96,
+    "status": "WORSE",
+    "mechanism": "NEU:REST_SWEPT_SHALLOWER(+60)",
+    "legs": {
+     "NEU": {
+      "v34_entry": 5,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 65,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 66
+     },
+     "TOP": {
+      "v34_entry": 31,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 31,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12KULZAA",
+    "cat": "WTA_MAIN",
+    "bell": "schedule_only",
+    "v34_combined": 39,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "ZAA:REST_SWEPT_SHALLOWER(+60)",
+    "legs": {
+     "KUL": {
+      "v34_entry": 32,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 32,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "ZAA": {
+      "v34_entry": 7,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 67,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 11
+     }
+    }
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+    "cat": "WTA_CHALL",
+    "bell": "schedule_only",
+    "v34_combined": 40,
+    "v351_combined": 96,
+    "status": "WORSE",
+    "mechanism": "PAL:TAKE_FIRED_SHALLOWER(+56)",
+    "legs": {
+     "COL": {
+      "v34_entry": 22,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 22,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "PAL": {
+      "v34_entry": 18,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 74,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 75
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12GARPRI",
+    "cat": "WTA_MAIN",
+    "bell": "schedule_only",
+    "v34_combined": 47,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "PRI:TAKE_FIRED_SHALLOWER(+55)",
+    "legs": {
+     "GAR": {
+      "v34_entry": 40,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 37,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 38
+     },
+     "PRI": {
+      "v34_entry": 7,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 62,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 61
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL12PRASAI",
+    "cat": "ATP_MAIN",
+    "bell": "schedule_only",
+    "v34_combined": 50,
+    "v351_combined": 98,
+    "status": "WORSE",
+    "mechanism": "SAI:TAKE_FIRED_SHALLOWER(+48)",
+    "legs": {
+     "PRA": {
+      "v34_entry": 45,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 45,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "SAI": {
+      "v34_entry": 5,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 53,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 53
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "v34_combined": 56,
+    "v351_combined": 94,
+    "status": "WORSE",
+    "mechanism": "RAQ:TAKE_FIRED_SHALLOWER(+38)",
+    "legs": {
+     "KUM": {
+      "v34_entry": 55,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 55,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "RAQ": {
+      "v34_entry": 1,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 39,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 40
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "v34_combined": 72,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "RAH:TAKE_FIRED_SHALLOWER(+28)",
+    "legs": {
+     "RAH": {
+      "v34_entry": 3,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 31,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "VIL": {
+      "v34_entry": 69,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 68,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 68
+     }
+    }
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 73,
+    "v351_combined": 86,
+    "status": "WORSE",
+    "mechanism": "GAN:TAKE_FIRED_SHALLOWER(+13)",
+    "legs": {
+     "GAN": {
+      "v34_entry": 1,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 14,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 14
+     },
+     "MAZ": {
+      "v34_entry": 72,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 72,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+    "cat": "WTA_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 74,
+    "v351_combined": 98,
+    "status": "WORSE",
+    "mechanism": "SHE:TAKE_FIRED_SHALLOWER(+26)",
+    "legs": {
+     "SHE": {
+      "v34_entry": 31,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 57,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 56
+     },
+     "VAN": {
+      "v34_entry": 43,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 41,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 42
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 84,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "KIN:REST_SWEPT_SHALLOWER(+8); ZAM:TAKE_FIRED_SHALLOWER(+7)",
+    "legs": {
+     "KIN": {
+      "v34_entry": 81,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 89,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 91
+     },
+     "ZAM": {
+      "v34_entry": 3,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 10,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+    "cat": "WTA_CHALL",
+    "bell": "schedule_only",
+    "v34_combined": 86,
+    "v351_combined": 98,
+    "status": "WORSE",
+    "mechanism": "TUR:TAKE_FIRED_SHALLOWER(+12)",
+    "legs": {
+     "SHI": {
+      "v34_entry": 84,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 84,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "TUR": {
+      "v34_entry": 2,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 14,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 14
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "v34_combined": 89,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "TUR:TAKE_FIRED_SHALLOWER(+12)",
+    "legs": {
+     "KUM": {
+      "v34_entry": 71,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 69,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 72
+     },
+     "TUR": {
+      "v34_entry": 18,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 30,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL15BORDIM",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "v34_combined": 90,
+    "v351_combined": 95,
+    "status": "WORSE",
+    "mechanism": "DIM:TAKE_FIRED_SHALLOWER(+6)",
+    "legs": {
+     "BOR": {
+      "v34_entry": 53,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 52,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 52
+     },
+     "DIM": {
+      "v34_entry": 37,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 43,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 47
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 91,
+    "v351_combined": 97,
+    "status": "WORSE",
+    "mechanism": "STR:REST_SWEPT_SHALLOWER(+2); YEV:REST_SWEPT_SHALLOWER(+4)",
+    "legs": {
+     "STR": {
+      "v34_entry": 87,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 89,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 90
+     },
+     "YEV": {
+      "v34_entry": 4,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 8,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 7
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 91,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "GAL:REST_SWEPT_SHALLOWER(+8)",
+    "legs": {
+     "ARN": {
+      "v34_entry": 40,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 40,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "GAL": {
+      "v34_entry": 51,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 59,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 60
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 92,
+    "v351_combined": 93,
+    "status": "WORSE",
+    "mechanism": "ERE:REST_SWEPT_SHALLOWER(+1)",
+    "legs": {
+     "ERE": {
+      "v34_entry": 48,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 49,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 52
+     },
+     "SAN": {
+      "v34_entry": 44,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 44,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 92,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "DJO:REST_SWEPT_SHALLOWER(+6); MAT:REST_SWEPT_SHALLOWER(+1)",
+    "legs": {
+     "DJO": {
+      "v34_entry": 4,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 10,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 11
+     },
+     "MAT": {
+      "v34_entry": 88,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 89,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 90
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL16MERDRO",
+    "cat": "ATP_MAIN",
+    "bell": "exact",
+    "v34_combined": 93,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "MER:REST_SWEPT_SHALLOWER(+6)",
+    "legs": {
+     "DRO": {
+      "v34_entry": 44,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 44,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 6
+     },
+     "MER": {
+      "v34_entry": 49,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 55,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 6
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+    "cat": "ATP_CHALL",
+    "bell": "schedule_only",
+    "v34_combined": 94,
+    "v351_combined": 97,
+    "status": "WORSE",
+    "mechanism": "GUR:TAKE_FIRED_SHALLOWER(+6)",
+    "legs": {
+     "DAL": {
+      "v34_entry": 93,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 90,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 92
+     },
+     "GUR": {
+      "v34_entry": 1,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 7,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+    "cat": "ATP_CHALL",
+    "bell": "live_by_only",
+    "v34_combined": 95,
+    "v351_combined": 96,
+    "status": "WORSE",
+    "mechanism": "SMI:REST_SWEPT_SHALLOWER(+3)",
+    "legs": {
+     "ILA": {
+      "v34_entry": 27,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 25,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 24
+     },
+     "SMI": {
+      "v34_entry": 68,
+      "v34_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_entry": 71,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 72
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "cat": "ATP_CHALL",
+    "bell": "exact",
+    "v34_combined": 95,
+    "v351_combined": 97,
+    "status": "WORSE",
+    "mechanism": "HUR:REST_SWEPT_SHALLOWER(+6)",
+    "legs": {
+     "BIG": {
+      "v34_entry": 57,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 53,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "HUR": {
+      "v34_entry": 38,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 44,
+      "v351_fill": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+      "v351_credited": true,
+      "seller_hit_low": 45
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL18DELRIB",
+    "cat": "ATP_MAIN",
+    "bell": "live_by_only",
+    "v34_combined": 95,
+    "v351_combined": 96,
+    "status": "WORSE",
+    "mechanism": "RIB:TAKE_FIRED_SHALLOWER(+1)",
+    "legs": {
+     "DEL": {
+      "v34_entry": 70,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 70,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 71
+     },
+     "RIB": {
+      "v34_entry": 25,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 26,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     }
+    }
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+    "cat": "WTA_CHALL",
+    "bell": "exact",
+    "v34_combined": 95,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "KOT:TAKE_FIRED_SHALLOWER(+5)",
+    "legs": {
+     "HOD": {
+      "v34_entry": 57,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 56,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": null
+     },
+     "KOT": {
+      "v34_entry": 38,
+      "v34_fill": "PROVEN_TAKER_R3_QUALIFIED_SETTLED_ASK",
+      "v351_entry": 43,
+      "v351_fill": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+      "v351_credited": true,
+      "seller_hit_low": 43
+     }
+    }
+   }
+  ],
+  "exemplars": [
+   {
+    "event": "26JUL13JONSPI",
+    "cat": "WTA_CHALL",
+    "v34_combined": 63,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "JON:LOST_FILL; SPI:LOST_FILL"
+   },
+   {
+    "event": "26JUL12FETPIE",
+    "cat": "WTA_MAIN",
+    "v34_combined": 87,
+    "v351_combined": null,
+    "status": "LOST",
+    "mechanism": "FET:TAKE_FIRED_SHALLOWER(+23); PIE:LOST_FILL"
+   },
+   {
+    "event": "26JUL12GANJAN",
+    "cat": "ATP_CHALL",
+    "v34_combined": 23,
+    "v351_combined": 99,
+    "status": "WORSE",
+    "mechanism": "JAN:TAKE_FIRED_SHALLOWER(+76)"
+   }
+  ]
+ },
+ "part2_rest_adverse_selection": {
+  "strict_maker_rest_fills": 143,
+  "overall": {
+   "n": 125,
+   "median": -1,
+   "p90": 5,
+   "max": 56,
+   "mean": 1.52,
+   "zero_or_neg": 95
+  },
+  "by_category": {
+   "ATP_CHALL": {
+    "n": 51,
+    "median": -1,
+    "p90": 1,
+    "max": 9,
+    "mean": -0.47,
+    "zero_or_neg": 42
+   },
+   "ATP_MAIN": {
+    "n": 37,
+    "median": -1,
+    "p90": 19,
+    "max": 49,
+    "mean": 3.62,
+    "zero_or_neg": 26
+   },
+   "WTA_CHALL": {
+    "n": 9,
+    "median": 0,
+    "p90": 5,
+    "max": 5,
+    "mean": 0.0,
+    "zero_or_neg": 8
+   },
+   "WTA_MAIN": {
+    "n": 28,
+    "median": -1,
+    "p90": 8,
+    "max": 56,
+    "mean": 2.86,
+    "zero_or_neg": 19
+   }
+  },
+  "note": "adverse_cents = fill entry - the leg's eventual pre-bell seller-hit low; >0 means the rest was hit ABOVE where the leg later traded (adverse selection).",
+  "detail": [
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+    "leg": "PET",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12BALPET-PET",
+    "cat": "ATP_CHALL",
+    "entry": 78,
+    "eventual_low": 79,
+    "adverse_cents": -1,
+    "fill_ts": 1783847627.8545928
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+    "leg": "VIS",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12BARVIS-VIS",
+    "cat": "ATP_CHALL",
+    "entry": 13,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1783946101.1583228
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+    "leg": "BRO",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12BROGIU-BRO",
+    "cat": "ATP_CHALL",
+    "entry": 45,
+    "eventual_low": 47,
+    "adverse_cents": -2,
+    "fill_ts": 1783860167.8065648
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+    "leg": "HUA",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12BROHUA-HUA",
+    "cat": "ATP_CHALL",
+    "entry": 32,
+    "eventual_low": 31,
+    "adverse_cents": 1,
+    "fill_ts": 1783838734.863138
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+    "leg": "GEE",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12DEGEE-GEE",
+    "cat": "ATP_CHALL",
+    "entry": 66,
+    "eventual_low": 67,
+    "adverse_cents": -1,
+    "fill_ts": 1783862196.4684749
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+    "leg": "FOR",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12FORPAM-FOR",
+    "cat": "ATP_CHALL",
+    "entry": 92,
+    "eventual_low": 93,
+    "adverse_cents": -1,
+    "fill_ts": 1783848329.973281
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+    "leg": "SHE",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12GIESHE-SHE",
+    "cat": "ATP_CHALL",
+    "entry": 84,
+    "eventual_low": 87,
+    "adverse_cents": -3,
+    "fill_ts": 1783880135.3428319
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+    "leg": "DAL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12GURDAL-DAL",
+    "cat": "ATP_CHALL",
+    "entry": 90,
+    "eventual_low": 92,
+    "adverse_cents": -2,
+    "fill_ts": 1783865652.795822
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+    "leg": "HER",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12HERALM-HER",
+    "cat": "ATP_CHALL",
+    "entry": 28,
+    "eventual_low": 36,
+    "adverse_cents": -8,
+    "fill_ts": 1783880305.3465369
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12MARARS",
+    "leg": "ARS",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12MARARS-ARS",
+    "cat": "ATP_CHALL",
+    "entry": 32,
+    "eventual_low": 27,
+    "adverse_cents": 5,
+    "fill_ts": 1783872798.9641469
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+    "leg": "MIY",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ-MIY",
+    "cat": "ATP_CHALL",
+    "entry": 62,
+    "eventual_low": 64,
+    "adverse_cents": -2,
+    "fill_ts": 1783883020.773139
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+    "leg": "BAL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-BAL",
+    "cat": "ATP_CHALL",
+    "entry": 3,
+    "eventual_low": 4,
+    "adverse_cents": -1,
+    "fill_ts": 1783852185.319885
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+    "leg": "AGU",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-AGU",
+    "cat": "ATP_CHALL",
+    "entry": 81,
+    "eventual_low": 80,
+    "adverse_cents": 1,
+    "fill_ts": 1783872262.7450619
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+    "leg": "GAN",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12ROUGAN-GAN",
+    "cat": "ATP_CHALL",
+    "entry": 94,
+    "eventual_low": 95,
+    "adverse_cents": -1,
+    "fill_ts": 1783869514.8229089
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+    "leg": "SAN",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12SANSCH-SAN",
+    "cat": "ATP_CHALL",
+    "entry": 42,
+    "eventual_low": 43,
+    "adverse_cents": -1,
+    "fill_ts": 1783896119.97788
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+    "leg": "VIL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12VILRAH-VIL",
+    "cat": "ATP_CHALL",
+    "entry": 68,
+    "eventual_low": 68,
+    "adverse_cents": 0,
+    "fill_ts": 1783844437.834712
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+    "leg": "FOR",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL13FORHUA-FOR",
+    "cat": "ATP_CHALL",
+    "entry": 71,
+    "eventual_low": 72,
+    "adverse_cents": -1,
+    "fill_ts": 1783897775.0179708
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+    "leg": "VAN",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL13GREVAN-VAN",
+    "cat": "ATP_CHALL",
+    "entry": 33,
+    "eventual_low": 34,
+    "adverse_cents": -1,
+    "fill_ts": 1783932398.64405
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+    "leg": "ERE",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14EREPAV-ERE",
+    "cat": "ATP_CHALL",
+    "entry": 45,
+    "eventual_low": 46,
+    "adverse_cents": -1,
+    "fill_ts": 1783992185.775403
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+    "leg": "ZIN",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14GANZIN-ZIN",
+    "cat": "ATP_CHALL",
+    "entry": 67,
+    "eventual_low": 59,
+    "adverse_cents": 8,
+    "fill_ts": 1784017995.9656239
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+    "leg": "KIR",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR",
+    "cat": "ATP_CHALL",
+    "entry": 15,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784003371.206847
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+    "leg": "SEK",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK",
+    "cat": "ATP_CHALL",
+    "entry": 17,
+    "eventual_low": 8,
+    "adverse_cents": 9,
+    "fill_ts": 1783999660.33948
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+    "leg": "TOR",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14KRATOR-TOR",
+    "cat": "ATP_CHALL",
+    "entry": 55,
+    "eventual_low": 55,
+    "adverse_cents": 0,
+    "fill_ts": 1783994762.1058738
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+    "leg": "YIB",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14LANYIB-YIB",
+    "cat": "ATP_CHALL",
+    "entry": 84,
+    "eventual_low": 83,
+    "adverse_cents": 1,
+    "fill_ts": 1784064159.3607938
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+    "leg": "ILA",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14SMIILA-ILA",
+    "cat": "ATP_CHALL",
+    "entry": 25,
+    "eventual_low": 24,
+    "adverse_cents": 1,
+    "fill_ts": 1784041734.89696
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+    "leg": "SMI",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL14SMIILA-SMI",
+    "cat": "ATP_CHALL",
+    "entry": 71,
+    "eventual_low": 72,
+    "adverse_cents": -1,
+    "fill_ts": 1784041884.5505168
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+    "leg": "ERE",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL15SANERE-ERE",
+    "cat": "ATP_CHALL",
+    "entry": 49,
+    "eventual_low": 52,
+    "adverse_cents": -3,
+    "fill_ts": 1784133780.509635
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+    "leg": "MIL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL16DRAMIL-MIL",
+    "cat": "ATP_CHALL",
+    "entry": 30,
+    "eventual_low": 31,
+    "adverse_cents": -1,
+    "fill_ts": 1784231832.5388398
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+    "leg": "CUI",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL16FORCUI-CUI",
+    "cat": "ATP_CHALL",
+    "entry": 52,
+    "eventual_low": 54,
+    "adverse_cents": -2,
+    "fill_ts": 1784209358.9213119
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+    "leg": "NAP",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL17NAPVIL-NAP",
+    "cat": "ATP_CHALL",
+    "entry": 59,
+    "eventual_low": 59,
+    "adverse_cents": 0,
+    "fill_ts": 1784297933.0376759
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17SANALM",
+    "leg": "SAN",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-SAN",
+    "cat": "ATP_CHALL",
+    "entry": 51,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784272857.686343
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+    "leg": "VUK",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL17VUKGAL-VUK",
+    "cat": "ATP_CHALL",
+    "entry": 47,
+    "eventual_low": 47,
+    "adverse_cents": 0,
+    "fill_ts": 1784324076.55001
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+    "leg": "HOL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL18VUKHOL-HOL",
+    "cat": "ATP_CHALL",
+    "entry": 52,
+    "eventual_low": 53,
+    "adverse_cents": -1,
+    "fill_ts": 1784385542.476249
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+    "leg": "BOH",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOH",
+    "cat": "ATP_CHALL",
+    "entry": 3,
+    "eventual_low": 4,
+    "adverse_cents": -1,
+    "fill_ts": 1784480369.5111399
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+    "leg": "BOU",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19BOHBOU-BOU",
+    "cat": "ATP_CHALL",
+    "entry": 95,
+    "eventual_low": 95,
+    "adverse_cents": 0,
+    "fill_ts": 1784472159.8432958
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+    "leg": "DJO",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO",
+    "cat": "ATP_CHALL",
+    "entry": 10,
+    "eventual_low": 11,
+    "adverse_cents": -1,
+    "fill_ts": 1784435977.29665
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+    "leg": "MAT",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-MAT",
+    "cat": "ATP_CHALL",
+    "entry": 89,
+    "eventual_low": 90,
+    "adverse_cents": -1,
+    "fill_ts": 1784454994.116629
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "leg": "BIG",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG",
+    "cat": "ATP_CHALL",
+    "entry": 53,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784456522.9728918
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+    "leg": "HUR",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR",
+    "cat": "ATP_CHALL",
+    "entry": 44,
+    "eventual_low": 45,
+    "adverse_cents": -1,
+    "fill_ts": 1784486038.286417
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+    "leg": "TRA",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19IMATRA-TRA",
+    "cat": "ATP_CHALL",
+    "entry": 31,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784473862.4084759
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+    "leg": "COL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19MARCOL-COL",
+    "cat": "ATP_CHALL",
+    "entry": 6,
+    "eventual_low": 7,
+    "adverse_cents": -1,
+    "fill_ts": 1784435143.9227629
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+    "leg": "GOM",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19RITGOM-GOM",
+    "cat": "ATP_CHALL",
+    "entry": 58,
+    "eventual_low": 59,
+    "adverse_cents": -1,
+    "fill_ts": 1784457898.821694
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+    "leg": "PER",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19SURPER-PER",
+    "cat": "ATP_CHALL",
+    "entry": 3,
+    "eventual_low": 3,
+    "adverse_cents": 0,
+    "fill_ts": 1784495547.3783438
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+    "leg": "STR",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19YEVSTR-STR",
+    "cat": "ATP_CHALL",
+    "entry": 89,
+    "eventual_low": 90,
+    "adverse_cents": -1,
+    "fill_ts": 1784436028.155608
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+    "leg": "YEV",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19YEVSTR-YEV",
+    "cat": "ATP_CHALL",
+    "entry": 8,
+    "eventual_low": 7,
+    "adverse_cents": 1,
+    "fill_ts": 1784435963.7430198
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+    "leg": "KIN",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN-KIN",
+    "cat": "ATP_CHALL",
+    "entry": 89,
+    "eventual_low": 91,
+    "adverse_cents": -2,
+    "fill_ts": 1784492871.701371
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+    "leg": "COP",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20CRECOP-COP",
+    "cat": "ATP_CHALL",
+    "entry": 63,
+    "eventual_low": 64,
+    "adverse_cents": -1,
+    "fill_ts": 1784540638.172899
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+    "leg": "GAD",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20GADGUI-GAD",
+    "cat": "ATP_CHALL",
+    "entry": 46,
+    "eventual_low": 47,
+    "adverse_cents": -1,
+    "fill_ts": 1784557873.09741
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+    "leg": "GAL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL",
+    "cat": "ATP_CHALL",
+    "entry": 59,
+    "eventual_low": 60,
+    "adverse_cents": -1,
+    "fill_ts": 1784549699.675613
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+    "leg": "YOU",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20GORYOU-YOU",
+    "cat": "ATP_CHALL",
+    "entry": 46,
+    "eventual_low": 47,
+    "adverse_cents": -1,
+    "fill_ts": 1784546192.3559718
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+    "leg": "MAY",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY",
+    "cat": "ATP_CHALL",
+    "entry": 66,
+    "eventual_low": 67,
+    "adverse_cents": -1,
+    "fill_ts": 1784526722.829589
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+    "leg": "MIL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20MILSHE-MIL",
+    "cat": "ATP_CHALL",
+    "entry": 53,
+    "eventual_low": 54,
+    "adverse_cents": -1,
+    "fill_ts": 1784550047.466596
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+    "leg": "SHI",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20NOGSHI-SHI",
+    "cat": "ATP_CHALL",
+    "entry": 44,
+    "eventual_low": 43,
+    "adverse_cents": 1,
+    "fill_ts": 1784583313.192627
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+    "leg": "PET",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20PETTAB-PET",
+    "cat": "ATP_CHALL",
+    "entry": 68,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784509725.8147879
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+    "leg": "SUR",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20SURKUZ-SUR",
+    "cat": "ATP_CHALL",
+    "entry": 67,
+    "eventual_low": 67,
+    "adverse_cents": 0,
+    "fill_ts": 1784555069.12632
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+    "leg": "NIK",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20VISNIK-NIK",
+    "cat": "ATP_CHALL",
+    "entry": 24,
+    "eventual_low": 25,
+    "adverse_cents": -1,
+    "fill_ts": 1784542475.8046439
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+    "leg": "MAL",
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL-MAL",
+    "cat": "ATP_CHALL",
+    "entry": 61,
+    "eventual_low": 63,
+    "adverse_cents": -2,
+    "fill_ts": 1784520574.661422
+   },
+   {
+    "event": "KXATPMATCH-26JUL12CINHEM",
+    "leg": "CIN",
+    "ticker": "KXATPMATCH-26JUL12CINHEM-CIN",
+    "cat": "ATP_MAIN",
+    "entry": 69,
+    "eventual_low": 68,
+    "adverse_cents": 1,
+    "fill_ts": 1783836604.0324118
+   },
+   {
+    "event": "KXATPMATCH-26JUL12DAHBAE",
+    "leg": "BAE",
+    "ticker": "KXATPMATCH-26JUL12DAHBAE-BAE",
+    "cat": "ATP_MAIN",
+    "entry": 93,
+    "eventual_low": 94,
+    "adverse_cents": -1,
+    "fill_ts": 1783869241.746142
+   },
+   {
+    "event": "KXATPMATCH-26JUL12DAHBAE",
+    "leg": "DAH",
+    "ticker": "KXATPMATCH-26JUL12DAHBAE-DAH",
+    "cat": "ATP_MAIN",
+    "entry": 5,
+    "eventual_low": 6,
+    "adverse_cents": -1,
+    "fill_ts": 1783796991.2158098
+   },
+   {
+    "event": "KXATPMATCH-26JUL12DEJGAU",
+    "leg": "DEJ",
+    "ticker": "KXATPMATCH-26JUL12DEJGAU-DEJ",
+    "cat": "ATP_MAIN",
+    "entry": 65,
+    "eventual_low": 66,
+    "adverse_cents": -1,
+    "fill_ts": 1783902726.415375
+   },
+   {
+    "event": "KXATPMATCH-26JUL12DIEMON",
+    "leg": "DIE",
+    "ticker": "KXATPMATCH-26JUL12DIEMON-DIE",
+    "cat": "ATP_MAIN",
+    "entry": 60,
+    "eventual_low": 61,
+    "adverse_cents": -1,
+    "fill_ts": 1783786497.185092
+   },
+   {
+    "event": "KXATPMATCH-26JUL12FELKEC",
+    "leg": "FEL",
+    "ticker": "KXATPMATCH-26JUL12FELKEC-FEL",
+    "cat": "ATP_MAIN",
+    "entry": 26,
+    "eventual_low": 27,
+    "adverse_cents": -1,
+    "fill_ts": 1783915635.309295
+   },
+   {
+    "event": "KXATPMATCH-26JUL12GUEGOM",
+    "leg": "GUE",
+    "ticker": "KXATPMATCH-26JUL12GUEGOM-GUE",
+    "cat": "ATP_MAIN",
+    "entry": 56,
+    "eventual_low": 59,
+    "adverse_cents": -3,
+    "fill_ts": 1783869613.977233
+   },
+   {
+    "event": "KXATPMATCH-26JUL12KRUFER",
+    "leg": "KRU",
+    "ticker": "KXATPMATCH-26JUL12KRUFER-KRU",
+    "cat": "ATP_MAIN",
+    "entry": 55,
+    "eventual_low": 55,
+    "adverse_cents": 0,
+    "fill_ts": 1783845551.624137
+   },
+   {
+    "event": "KXATPMATCH-26JUL12MULSHE",
+    "leg": "MUL",
+    "ticker": "KXATPMATCH-26JUL12MULSHE-MUL",
+    "cat": "ATP_MAIN",
+    "entry": 41,
+    "eventual_low": 42,
+    "adverse_cents": -1,
+    "fill_ts": 1783909595.9703279
+   },
+   {
+    "event": "KXATPMATCH-26JUL12NEUTOP",
+    "leg": "NEU",
+    "ticker": "KXATPMATCH-26JUL12NEUTOP-NEU",
+    "cat": "ATP_MAIN",
+    "entry": 65,
+    "eventual_low": 66,
+    "adverse_cents": -1,
+    "fill_ts": 1783870888.231381
+   },
+   {
+    "event": "KXATPMATCH-26JUL12SKASAC",
+    "leg": "SKA",
+    "ticker": "KXATPMATCH-26JUL12SKASAC-SKA",
+    "cat": "ATP_MAIN",
+    "entry": 46,
+    "eventual_low": 47,
+    "adverse_cents": -1,
+    "fill_ts": 1783853659.23471
+   },
+   {
+    "event": "KXATPMATCH-26JUL12TSIBUS",
+    "leg": "TSI",
+    "ticker": "KXATPMATCH-26JUL12TSIBUS-TSI",
+    "cat": "ATP_MAIN",
+    "entry": 44,
+    "eventual_low": 44,
+    "adverse_cents": 0,
+    "fill_ts": 1783911147.5837748
+   },
+   {
+    "event": "KXATPMATCH-26JUL14MARPRA",
+    "leg": "MAR",
+    "ticker": "KXATPMATCH-26JUL14MARPRA-MAR",
+    "cat": "ATP_MAIN",
+    "entry": 73,
+    "eventual_low": 74,
+    "adverse_cents": -1,
+    "fill_ts": 1784036256.699823
+   },
+   {
+    "event": "KXATPMATCH-26JUL14NEUPRA",
+    "leg": "NEU",
+    "ticker": "KXATPMATCH-26JUL14NEUPRA-NEU",
+    "cat": "ATP_MAIN",
+    "entry": 65,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784050331.463002
+   },
+   {
+    "event": "KXATPMATCH-26JUL14RINTAB",
+    "leg": "RIN",
+    "ticker": "KXATPMATCH-26JUL14RINTAB-RIN",
+    "cat": "ATP_MAIN",
+    "entry": 64,
+    "eventual_low": 66,
+    "adverse_cents": -2,
+    "fill_ts": 1783961837.5989048
+   },
+   {
+    "event": "KXATPMATCH-26JUL15BASTIR",
+    "leg": "BAS",
+    "ticker": "KXATPMATCH-26JUL15BASTIR-BAS",
+    "cat": "ATP_MAIN",
+    "entry": 30,
+    "eventual_low": 30,
+    "adverse_cents": 0,
+    "fill_ts": 1784129088.7261848
+   },
+   {
+    "event": "KXATPMATCH-26JUL15ETCMER",
+    "leg": "MER",
+    "ticker": "KXATPMATCH-26JUL15ETCMER-MER",
+    "cat": "ATP_MAIN",
+    "entry": 46,
+    "eventual_low": 47,
+    "adverse_cents": -1,
+    "fill_ts": 1784056258.400733
+   },
+   {
+    "event": "KXATPMATCH-26JUL15HANVAC",
+    "leg": "HAN",
+    "ticker": "KXATPMATCH-26JUL15HANVAC-HAN",
+    "cat": "ATP_MAIN",
+    "entry": 62,
+    "eventual_low": 57,
+    "adverse_cents": 5,
+    "fill_ts": 1784123677.9300718
+   },
+   {
+    "event": "KXATPMATCH-26JUL15PRIMOL",
+    "leg": "PRI",
+    "ticker": "KXATPMATCH-26JUL15PRIMOL-PRI",
+    "cat": "ATP_MAIN",
+    "entry": 68,
+    "eventual_low": 69,
+    "adverse_cents": -1,
+    "fill_ts": 1784081632.782759
+   },
+   {
+    "event": "KXATPMATCH-26JUL15TABMID",
+    "leg": "MID",
+    "ticker": "KXATPMATCH-26JUL15TABMID-MID",
+    "cat": "ATP_MAIN",
+    "entry": 23,
+    "eventual_low": 24,
+    "adverse_cents": -1,
+    "fill_ts": 1784125923.820667
+   },
+   {
+    "event": "KXATPMATCH-26JUL15VANDRO",
+    "leg": "VAN",
+    "ticker": "KXATPMATCH-26JUL15VANDRO-VAN",
+    "cat": "ATP_MAIN",
+    "entry": 44,
+    "eventual_low": 45,
+    "adverse_cents": -1,
+    "fill_ts": 1784100539.5201669
+   },
+   {
+    "event": "KXATPMATCH-26JUL16MERDRO",
+    "leg": "DRO",
+    "ticker": "KXATPMATCH-26JUL16MERDRO-DRO",
+    "cat": "ATP_MAIN",
+    "entry": 44,
+    "eventual_low": 6,
+    "adverse_cents": 38,
+    "fill_ts": 1784165851.4756348
+   },
+   {
+    "event": "KXATPMATCH-26JUL16MERDRO",
+    "leg": "MER",
+    "ticker": "KXATPMATCH-26JUL16MERDRO-MER",
+    "cat": "ATP_MAIN",
+    "entry": 55,
+    "eventual_low": 6,
+    "adverse_cents": 49,
+    "fill_ts": 1784158780.509922
+   },
+   {
+    "event": "KXATPMATCH-26JUL16MOLDAV",
+    "leg": "MOL",
+    "ticker": "KXATPMATCH-26JUL16MOLDAV-MOL",
+    "cat": "ATP_MAIN",
+    "entry": 38,
+    "eventual_low": 40,
+    "adverse_cents": -2,
+    "fill_ts": 1784163609.769914
+   },
+   {
+    "event": "KXATPMATCH-26JUL17BURMER",
+    "leg": "BUR",
+    "ticker": "KXATPMATCH-26JUL17BURMER-BUR",
+    "cat": "ATP_MAIN",
+    "entry": 41,
+    "eventual_low": 41,
+    "adverse_cents": 0,
+    "fill_ts": 1784246854.708869
+   },
+   {
+    "event": "KXATPMATCH-26JUL17COLVAC",
+    "leg": "COL",
+    "ticker": "KXATPMATCH-26JUL17COLVAC-COL",
+    "cat": "ATP_MAIN",
+    "entry": 56,
+    "eventual_low": 57,
+    "adverse_cents": -1,
+    "fill_ts": 1784258742.9378989
+   },
+   {
+    "event": "KXATPMATCH-26JUL17RUBBAE",
+    "leg": "RUB",
+    "ticker": "KXATPMATCH-26JUL17RUBBAE-RUB",
+    "cat": "ATP_MAIN",
+    "entry": 63,
+    "eventual_low": 62,
+    "adverse_cents": 1,
+    "fill_ts": 1784248402.8918219
+   },
+   {
+    "event": "KXATPMATCH-26JUL17TABTIR",
+    "leg": "TAB",
+    "ticker": "KXATPMATCH-26JUL17TABTIR-TAB",
+    "cat": "ATP_MAIN",
+    "entry": 55,
+    "eventual_low": 52,
+    "adverse_cents": 3,
+    "fill_ts": 1784289542.95515
+   },
+   {
+    "event": "KXATPMATCH-26JUL18COLCER",
+    "leg": "CER",
+    "ticker": "KXATPMATCH-26JUL18COLCER-CER",
+    "cat": "ATP_MAIN",
+    "entry": 39,
+    "eventual_low": 38,
+    "adverse_cents": 1,
+    "fill_ts": 1784304722.908766
+   },
+   {
+    "event": "KXATPMATCH-26JUL18JACDA",
+    "leg": "DA",
+    "ticker": "KXATPMATCH-26JUL18JACDA-DA",
+    "cat": "ATP_MAIN",
+    "entry": 6,
+    "eventual_low": 8,
+    "adverse_cents": -2,
+    "fill_ts": 1784321766.491083
+   },
+   {
+    "event": "KXATPMATCH-26JUL18LUZTSE",
+    "leg": "LUZ",
+    "ticker": "KXATPMATCH-26JUL18LUZTSE-LUZ",
+    "cat": "ATP_MAIN",
+    "entry": 78,
+    "eventual_low": 41,
+    "adverse_cents": 37,
+    "fill_ts": 1784375174.897148
+   },
+   {
+    "event": "KXATPMATCH-26JUL18ROCBUE",
+    "leg": "ROC",
+    "ticker": "KXATPMATCH-26JUL18ROCBUE-ROC",
+    "cat": "ATP_MAIN",
+    "entry": 73,
+    "eventual_low": 74,
+    "adverse_cents": -1,
+    "fill_ts": 1784332590.48835
+   },
+   {
+    "event": "KXATPMATCH-26JUL18RUBTAB",
+    "leg": "RUB",
+    "ticker": "KXATPMATCH-26JUL18RUBTAB-RUB",
+    "cat": "ATP_MAIN",
+    "entry": 70,
+    "eventual_low": 71,
+    "adverse_cents": -1,
+    "fill_ts": 1784318901.7888088
+   },
+   {
+    "event": "KXATPMATCH-26JUL18WALDJE",
+    "leg": "WAL",
+    "ticker": "KXATPMATCH-26JUL18WALDJE-WAL",
+    "cat": "ATP_MAIN",
+    "entry": 11,
+    "eventual_low": 6,
+    "adverse_cents": 5,
+    "fill_ts": 1784328239.452525
+   },
+   {
+    "event": "KXATPMATCH-26JUL19CERTRU",
+    "leg": "CER",
+    "ticker": "KXATPMATCH-26JUL19CERTRU-CER",
+    "cat": "ATP_MAIN",
+    "entry": 68,
+    "eventual_low": 49,
+    "adverse_cents": 19,
+    "fill_ts": 1784470302.050257
+   },
+   {
+    "event": "KXATPMATCH-26JUL19CERTRU",
+    "leg": "TRU",
+    "ticker": "KXATPMATCH-26JUL19CERTRU-TRU",
+    "cat": "ATP_MAIN",
+    "entry": 31,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784470396.744649
+   },
+   {
+    "event": "KXATPMATCH-26JUL19MULNAV",
+    "leg": "MUL",
+    "ticker": "KXATPMATCH-26JUL19MULNAV-MUL",
+    "cat": "ATP_MAIN",
+    "entry": 16,
+    "eventual_low": 15,
+    "adverse_cents": 1,
+    "fill_ts": 1784470961.9027538
+   },
+   {
+    "event": "KXATPMATCH-26JUL19STRSHE",
+    "leg": "STR",
+    "ticker": "KXATPMATCH-26JUL19STRSHE-STR",
+    "cat": "ATP_MAIN",
+    "entry": 57,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784394697.5533118
+   },
+   {
+    "event": "KXATPMATCH-26JUL19TSICOL",
+    "leg": "COL",
+    "ticker": "KXATPMATCH-26JUL19TSICOL-COL",
+    "cat": "ATP_MAIN",
+    "entry": 45,
+    "eventual_low": 46,
+    "adverse_cents": -1,
+    "fill_ts": 1784384236.9749799
+   },
+   {
+    "event": "KXATPMATCH-26JUL20SCHROD",
+    "leg": "SCH",
+    "ticker": "KXATPMATCH-26JUL20SCHROD-SCH",
+    "cat": "ATP_MAIN",
+    "entry": 40,
+    "eventual_low": 40,
+    "adverse_cents": 0,
+    "fill_ts": 1784519047.475502
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+    "leg": "ZHA",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12ARIZHA-ZHA",
+    "cat": "WTA_CHALL",
+    "entry": 63,
+    "eventual_low": 65,
+    "adverse_cents": -2,
+    "fill_ts": 1783852943.166415
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+    "leg": "BAL",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL",
+    "cat": "WTA_CHALL",
+    "entry": 16,
+    "eventual_low": 11,
+    "adverse_cents": 5,
+    "fill_ts": 1783858806.473616
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+    "leg": "HUA",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA",
+    "cat": "WTA_CHALL",
+    "entry": 81,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1783857494.336524
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12BASABB",
+    "leg": "BAS",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12BASABB-BAS",
+    "cat": "WTA_CHALL",
+    "entry": 76,
+    "eventual_low": 77,
+    "adverse_cents": -1,
+    "fill_ts": 1783871740.450734
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+    "leg": "VAN",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12SHEVAN-VAN",
+    "cat": "WTA_CHALL",
+    "entry": 41,
+    "eventual_low": 42,
+    "adverse_cents": -1,
+    "fill_ts": 1783863206.357781
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+    "leg": "VAL",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL14AKSVAL-VAL",
+    "cat": "WTA_CHALL",
+    "entry": 53,
+    "eventual_low": 53,
+    "adverse_cents": 0,
+    "fill_ts": 1784034694.172437
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+    "leg": "KOL",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL14BARKOL-KOL",
+    "cat": "WTA_CHALL",
+    "entry": 6,
+    "eventual_low": 6,
+    "adverse_cents": 0,
+    "fill_ts": 1784019755.315713
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+    "leg": "PIE",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL14BRAPIE-PIE",
+    "cat": "WTA_CHALL",
+    "entry": 20,
+    "eventual_low": 21,
+    "adverse_cents": -1,
+    "fill_ts": 1784046899.151602
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+    "leg": "SAM",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL14PIGSAM-SAM",
+    "cat": "WTA_CHALL",
+    "entry": 79,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784034885.402274
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+    "leg": "NOH",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL15ASTNOH-NOH",
+    "cat": "WTA_CHALL",
+    "entry": 57,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784128583.825356
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+    "leg": "TOT",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL18CIRTOT-TOT",
+    "cat": "WTA_CHALL",
+    "entry": 57,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784385393.8056378
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+    "leg": "BAS",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL19BASSHI-BAS",
+    "cat": "WTA_CHALL",
+    "entry": 81,
+    "eventual_low": 81,
+    "adverse_cents": 0,
+    "fill_ts": 1784448415.082715
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+    "leg": "GOR",
+    "ticker": "KXWTACHALLENGERMATCH-26JUL20GORMIN-GOR",
+    "cat": "WTA_CHALL",
+    "entry": 44,
+    "eventual_low": 44,
+    "adverse_cents": 0,
+    "fill_ts": 1784569731.272395
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12GARPRI",
+    "leg": "GAR",
+    "ticker": "KXWTAMATCH-26JUL12GARPRI-GAR",
+    "cat": "WTA_MAIN",
+    "entry": 37,
+    "eventual_low": 38,
+    "adverse_cents": -1,
+    "fill_ts": 1783839864.307471
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12KULZAA",
+    "leg": "ZAA",
+    "ticker": "KXWTAMATCH-26JUL12KULZAA-ZAA",
+    "cat": "WTA_MAIN",
+    "entry": 67,
+    "eventual_low": 11,
+    "adverse_cents": 56,
+    "fill_ts": 1783833831.1516209
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12LEPBUR",
+    "leg": "BUR",
+    "ticker": "KXWTAMATCH-26JUL12LEPBUR-BUR",
+    "cat": "WTA_MAIN",
+    "entry": 24,
+    "eventual_low": 20,
+    "adverse_cents": 4,
+    "fill_ts": 1783838331.304246
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12MORNEP",
+    "leg": "MOR",
+    "ticker": "KXWTAMATCH-26JUL12MORNEP-MOR",
+    "cat": "WTA_MAIN",
+    "entry": 70,
+    "eventual_low": 70,
+    "adverse_cents": 0,
+    "fill_ts": 1783872844.398654
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12OKAIPE",
+    "leg": "OKA",
+    "ticker": "KXWTAMATCH-26JUL12OKAIPE-OKA",
+    "cat": "WTA_MAIN",
+    "entry": 18,
+    "eventual_low": 10,
+    "adverse_cents": 8,
+    "fill_ts": 1783812307.359354
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12PRIION",
+    "leg": "ION",
+    "ticker": "KXWTAMATCH-26JUL12PRIION-ION",
+    "cat": "WTA_MAIN",
+    "entry": 10,
+    "eventual_low": 11,
+    "adverse_cents": -1,
+    "fill_ts": 1783810388.9673848
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12ROMTOD",
+    "leg": "TOD",
+    "ticker": "KXWTAMATCH-26JUL12ROMTOD-TOD",
+    "cat": "WTA_MAIN",
+    "entry": 9,
+    "eventual_low": 10,
+    "adverse_cents": -1,
+    "fill_ts": 1783810433.5961518
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13AMAHER",
+    "leg": "HER",
+    "ticker": "KXWTAMATCH-26JUL13AMAHER-HER",
+    "cat": "WTA_MAIN",
+    "entry": 64,
+    "eventual_low": 60,
+    "adverse_cents": 4,
+    "fill_ts": 1783927877.4069269
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13ARGTAG",
+    "leg": "ARG",
+    "ticker": "KXWTAMATCH-26JUL13ARGTAG-ARG",
+    "cat": "WTA_MAIN",
+    "entry": 6,
+    "eventual_low": 7,
+    "adverse_cents": -1,
+    "fill_ts": 1783896539.10439
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13MATMIC",
+    "leg": "MIC",
+    "ticker": "KXWTAMATCH-26JUL13MATMIC-MIC",
+    "cat": "WTA_MAIN",
+    "entry": 57,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1783901659.253083
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13PODMAR",
+    "leg": "POD",
+    "ticker": "KXWTAMATCH-26JUL13PODMAR-POD",
+    "cat": "WTA_MAIN",
+    "entry": 58,
+    "eventual_low": 65,
+    "adverse_cents": -7,
+    "fill_ts": 1783863124.779578
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13ZHEBOU",
+    "leg": "BOU",
+    "ticker": "KXWTAMATCH-26JUL13ZHEBOU-BOU",
+    "cat": "WTA_MAIN",
+    "entry": 32,
+    "eventual_low": 32,
+    "adverse_cents": 0,
+    "fill_ts": 1783898233.548641
+   },
+   {
+    "event": "KXWTAMATCH-26JUL14UDVROM",
+    "leg": "ROM",
+    "ticker": "KXWTAMATCH-26JUL14UDVROM-ROM",
+    "cat": "WTA_MAIN",
+    "entry": 47,
+    "eventual_low": 49,
+    "adverse_cents": -2,
+    "fill_ts": 1783995258.921109
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15SHEQUE",
+    "leg": "QUE",
+    "ticker": "KXWTAMATCH-26JUL15SHEQUE-QUE",
+    "cat": "WTA_MAIN",
+    "entry": 29,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784036392.331733
+   },
+   {
+    "event": "KXWTAMATCH-26JUL16TAUTON",
+    "leg": "TON",
+    "ticker": "KXWTAMATCH-26JUL16TAUTON-TON",
+    "cat": "WTA_MAIN",
+    "entry": 8,
+    "eventual_low": 9,
+    "adverse_cents": -1,
+    "fill_ts": 1784140366.841136
+   },
+   {
+    "event": "KXWTAMATCH-26JUL17PARSAK",
+    "leg": "PAR",
+    "ticker": "KXWTAMATCH-26JUL17PARSAK-PAR",
+    "cat": "WTA_MAIN",
+    "entry": 23,
+    "eventual_low": 24,
+    "adverse_cents": -1,
+    "fill_ts": 1784285826.31775
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18HONTHA",
+    "leg": "THA",
+    "ticker": "KXWTAMATCH-26JUL18HONTHA-THA",
+    "cat": "WTA_MAIN",
+    "entry": 19,
+    "eventual_low": 20,
+    "adverse_cents": -1,
+    "fill_ts": 1784339424.522065
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18MASRYS",
+    "leg": "RYS",
+    "ticker": "KXWTAMATCH-26JUL18MASRYS-RYS",
+    "cat": "WTA_MAIN",
+    "entry": 24,
+    "eventual_low": 25,
+    "adverse_cents": -1,
+    "fill_ts": 1784332428.9359539
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18SAKKOR",
+    "leg": "KOR",
+    "ticker": "KXWTAMATCH-26JUL18SAKKOR-KOR",
+    "cat": "WTA_MAIN",
+    "entry": 30,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784318935.965317
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18TAUKRE",
+    "leg": "KRE",
+    "ticker": "KXWTAMATCH-26JUL18TAUKRE-KRE",
+    "cat": "WTA_MAIN",
+    "entry": 58,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784329939.432719
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19BRAVON",
+    "leg": "VON",
+    "ticker": "KXWTAMATCH-26JUL19BRAVON-VON",
+    "cat": "WTA_MAIN",
+    "entry": 89,
+    "eventual_low": 75,
+    "adverse_cents": 14,
+    "fill_ts": 1784436865.355186
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19EIGCAR",
+    "leg": "EIG",
+    "ticker": "KXWTAMATCH-26JUL19EIGCAR-EIG",
+    "cat": "WTA_MAIN",
+    "entry": 9,
+    "eventual_low": 10,
+    "adverse_cents": -1,
+    "fill_ts": 1784414380.60828
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19KRESAK",
+    "leg": "SAK",
+    "ticker": "KXWTAMATCH-26JUL19KRESAK-SAK",
+    "cat": "WTA_MAIN",
+    "entry": 51,
+    "eventual_low": 52,
+    "adverse_cents": -1,
+    "fill_ts": 1784443224.371537
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19SHEBAD",
+    "leg": "BAD",
+    "ticker": "KXWTAMATCH-26JUL19SHEBAD-BAD",
+    "cat": "WTA_MAIN",
+    "entry": 63,
+    "eventual_low": 64,
+    "adverse_cents": -1,
+    "fill_ts": 1784426756.6244738
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20BARYUA",
+    "leg": "YUA",
+    "ticker": "KXWTAMATCH-26JUL20BARYUA-YUA",
+    "cat": "WTA_MAIN",
+    "entry": 29,
+    "eventual_low": 23,
+    "adverse_cents": 6,
+    "fill_ts": 1784561887.030674
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20FRUKRE",
+    "leg": "FRU",
+    "ticker": "KXWTAMATCH-26JUL20FRUKRE-FRU",
+    "cat": "WTA_MAIN",
+    "entry": 22,
+    "eventual_low": 15,
+    "adverse_cents": 7,
+    "fill_ts": 1784489082.588471
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20FRUKRE",
+    "leg": "KRE",
+    "ticker": "KXWTAMATCH-26JUL20FRUKRE-KRE",
+    "cat": "WTA_MAIN",
+    "entry": 76,
+    "eventual_low": 76,
+    "adverse_cents": 0,
+    "fill_ts": 1784516741.559
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20KUDKOR",
+    "leg": "KOR",
+    "ticker": "KXWTAMATCH-26JUL20KUDKOR-KOR",
+    "cat": "WTA_MAIN",
+    "entry": 64,
+    "eventual_low": 65,
+    "adverse_cents": -1,
+    "fill_ts": 1784460301.4300458
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20NIEMAL",
+    "leg": "MAL",
+    "ticker": "KXWTAMATCH-26JUL20NIEMAL-MAL",
+    "cat": "WTA_MAIN",
+    "entry": 42,
+    "eventual_low": 41,
+    "adverse_cents": 1,
+    "fill_ts": 1784526431.0173419
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20OKTDOD",
+    "leg": "DOD",
+    "ticker": "KXWTAMATCH-26JUL20OKTDOD-DOD",
+    "cat": "WTA_MAIN",
+    "entry": 37,
+    "eventual_low": null,
+    "adverse_cents": null,
+    "fill_ts": 1784448969.240453
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20OLISCH",
+    "leg": "OLI",
+    "ticker": "KXWTAMATCH-26JUL20OLISCH-OLI",
+    "cat": "WTA_MAIN",
+    "entry": 72,
+    "eventual_low": 70,
+    "adverse_cents": 2,
+    "fill_ts": 1784609186.788621
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20PODLEE",
+    "leg": "LEE",
+    "ticker": "KXWTAMATCH-26JUL20PODLEE-LEE",
+    "cat": "WTA_MAIN",
+    "entry": 55,
+    "eventual_low": 55,
+    "adverse_cents": 0,
+    "fill_ts": 1784523606.331529
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20PRIBRA",
+    "leg": "BRA",
+    "ticker": "KXWTAMATCH-26JUL20PRIBRA-BRA",
+    "cat": "WTA_MAIN",
+    "entry": 11,
+    "eventual_low": 12,
+    "adverse_cents": -1,
+    "fill_ts": 1784503093.4775698
+   }
+  ],
+  "state_at_fill_maker": {
+   "total_maker_fills_incl_census": 169,
+   "strict_maker": 143,
+   "RISING": 140,
+   "FALLING": 23,
+   "SETTLED": 6,
+   "note": "RISING at fill = rest caught a seller dumping into strength (non-adverse; price rose after). FALLING at fill (23) = rest swept mid-decline (adverse; the 56c tail lives here)."
+  }
+ },
+ "part3_census_only_deep": {
+  "n": 50,
+  "over_1c_assumption": 1,
+  "games": [
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+    "cat": "ATP_CHALL",
+    "combined": 80,
+    "over_1c_assumption": false,
+    "legs": {
+     "BOS": {
+      "census_entry": 32,
+      "print_backed_floor": 28,
+      "near_miss_print_price": 28,
+      "near_miss_print_size": 11,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -4
+     },
+     "COP": {
+      "census_entry": 48,
+      "print_backed_floor": 47,
+      "near_miss_print_price": 47,
+      "near_miss_print_size": 2,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+    "cat": "ATP_CHALL",
+    "combined": 94,
+    "over_1c_assumption": false,
+    "legs": {
+     "LEO": {
+      "census_entry": 63,
+      "print_backed_floor": 59,
+      "near_miss_print_price": 59,
+      "near_miss_print_size": 32.95,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -4
+     },
+     "MUN": {
+      "census_entry": 31,
+      "print_backed_floor": 31,
+      "near_miss_print_price": 31,
+      "near_miss_print_size": 53,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+    "cat": "ATP_CHALL",
+    "combined": 20,
+    "over_1c_assumption": false,
+    "legs": {
+     "LIN": {
+      "census_entry": 16,
+      "print_backed_floor": 17,
+      "near_miss_print_price": 17,
+      "near_miss_print_size": 8.12,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "OUA": {
+      "census_entry": 4,
+      "print_backed_floor": 5,
+      "near_miss_print_price": 5,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+    "cat": "ATP_CHALL",
+    "combined": 89,
+    "over_1c_assumption": true,
+    "legs": {
+     "ALM": {
+      "census_entry": 18,
+      "print_backed_floor": 21,
+      "near_miss_print_price": 21,
+      "near_miss_print_size": 8,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 3
+     },
+     "GRA": {
+      "census_entry": 71,
+      "print_backed_floor": 72,
+      "near_miss_print_price": 72,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+    "cat": "ATP_CHALL",
+    "combined": 94,
+    "over_1c_assumption": false,
+    "legs": {
+     "CAS": {
+      "census_entry": 32,
+      "print_backed_floor": 33,
+      "near_miss_print_price": 33,
+      "near_miss_print_size": 26.05,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 1
+     },
+     "GHI": {
+      "census_entry": 62,
+      "print_backed_floor": 61,
+      "near_miss_print_price": 61,
+      "near_miss_print_size": 41.4,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+    "cat": "ATP_CHALL",
+    "combined": 62,
+    "over_1c_assumption": false,
+    "legs": {
+     "GAN": {
+      "census_entry": 4,
+      "print_backed_floor": 5,
+      "near_miss_print_price": 5,
+      "near_miss_print_size": 2.46,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "ZIN": {
+      "census_entry": 58,
+      "print_backed_floor": 59,
+      "near_miss_print_price": 59,
+      "near_miss_print_size": 1.24,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+    "cat": "ATP_CHALL",
+    "combined": 94,
+    "over_1c_assumption": false,
+    "legs": {
+     "GIU": {
+      "census_entry": 42,
+      "print_backed_floor": 43,
+      "near_miss_print_price": 43,
+      "near_miss_print_size": 10,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 1
+     },
+     "IVA": {
+      "census_entry": 52,
+      "print_backed_floor": 53,
+      "near_miss_print_price": 53,
+      "near_miss_print_size": 288,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+    "cat": "ATP_CHALL",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "ECH": {
+      "census_entry": 30,
+      "print_backed_floor": 29,
+      "near_miss_print_price": 29,
+      "near_miss_print_size": 48,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -1
+     },
+     "HAR": {
+      "census_entry": 65,
+      "print_backed_floor": 66,
+      "near_miss_print_price": 66,
+      "near_miss_print_size": 70,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+    "cat": "ATP_CHALL",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "GOR": {
+      "census_entry": 49,
+      "print_backed_floor": 50,
+      "near_miss_print_price": 50,
+      "near_miss_print_size": 18.79,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "YOU": {
+      "census_entry": 46,
+      "print_backed_floor": 46,
+      "near_miss_print_price": 46,
+      "near_miss_print_size": 415.45,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 0
+     }
+    }
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20WATILA",
+    "cat": "ATP_CHALL",
+    "combined": 94,
+    "over_1c_assumption": false,
+    "legs": {
+     "ILA": {
+      "census_entry": 35,
+      "print_backed_floor": 35,
+      "near_miss_print_price": 35,
+      "near_miss_print_size": 34,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 0
+     },
+     "WAT": {
+      "census_entry": 59,
+      "print_backed_floor": 60,
+      "near_miss_print_price": 60,
+      "near_miss_print_size": 0.08,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL12MOLROY",
+    "cat": "ATP_MAIN",
+    "combined": 69,
+    "over_1c_assumption": false,
+    "legs": {
+     "MOL": {
+      "census_entry": 58,
+      "print_backed_floor": 58,
+      "near_miss_print_price": 58,
+      "near_miss_print_size": 8,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     },
+     "ROY": {
+      "census_entry": 11,
+      "print_backed_floor": 12,
+      "near_miss_print_price": 12,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL12OFNTIR",
+    "cat": "ATP_MAIN",
+    "combined": 55,
+    "over_1c_assumption": false,
+    "legs": {
+     "OFN": {
+      "census_entry": 5,
+      "print_backed_floor": 6,
+      "near_miss_print_price": 6,
+      "near_miss_print_size": 106.03,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "TIR": {
+      "census_entry": 50,
+      "print_backed_floor": 51,
+      "near_miss_print_price": 51,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL14DIAMID",
+    "cat": "ATP_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "DIA": {
+      "census_entry": 69,
+      "print_backed_floor": 70,
+      "near_miss_print_price": 70,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "MID": {
+      "census_entry": 24,
+      "print_backed_floor": 21,
+      "near_miss_print_price": 21,
+      "near_miss_print_size": 1.55,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -3
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL14MARPRA",
+    "cat": "ATP_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "MAR": {
+      "census_entry": 73,
+      "print_backed_floor": 71,
+      "near_miss_print_price": 71,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -2
+     },
+     "PRA": {
+      "census_entry": 22,
+      "print_backed_floor": 23,
+      "near_miss_print_price": 23,
+      "near_miss_print_size": 38,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL14VALDAM",
+    "cat": "ATP_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "DAM": {
+      "census_entry": 20,
+      "print_backed_floor": 18,
+      "near_miss_print_price": 18,
+      "near_miss_print_size": 6.02,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -2
+     },
+     "VAL": {
+      "census_entry": 73,
+      "print_backed_floor": 74,
+      "near_miss_print_price": 74,
+      "near_miss_print_size": 9,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL15KYMTSI",
+    "cat": "ATP_MAIN",
+    "combined": 36,
+    "over_1c_assumption": false,
+    "legs": {
+     "KYM": {
+      "census_entry": 26,
+      "print_backed_floor": 26,
+      "near_miss_print_price": 26,
+      "near_miss_print_size": 2,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 0
+     },
+     "TSI": {
+      "census_entry": 10,
+      "print_backed_floor": 11,
+      "near_miss_print_price": 11,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL18BUTTAB",
+    "cat": "ATP_MAIN",
+    "combined": 81,
+    "over_1c_assumption": false,
+    "legs": {
+     "BUT": {
+      "census_entry": 32,
+      "print_backed_floor": 20,
+      "near_miss_print_price": 20,
+      "near_miss_print_size": 2,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -12
+     },
+     "TAB": {
+      "census_entry": 49,
+      "print_backed_floor": 50,
+      "near_miss_print_price": 50,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL18CINMIC",
+    "cat": "ATP_MAIN",
+    "combined": 94,
+    "over_1c_assumption": false,
+    "legs": {
+     "CIN": {
+      "census_entry": 74,
+      "print_backed_floor": 73,
+      "near_miss_print_price": 73,
+      "near_miss_print_size": 1.34,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -1
+     },
+     "MIC": {
+      "census_entry": 20,
+      "print_backed_floor": 21,
+      "near_miss_print_price": 21,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL18HIPGIU",
+    "cat": "ATP_MAIN",
+    "combined": 94,
+    "over_1c_assumption": false,
+    "legs": {
+     "GIU": {
+      "census_entry": 68,
+      "print_backed_floor": 69,
+      "near_miss_print_price": 69,
+      "near_miss_print_size": 0.53,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "HIP": {
+      "census_entry": 26,
+      "print_backed_floor": 22,
+      "near_miss_print_price": 22,
+      "near_miss_print_size": 0.53,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -4
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL18MARJOR",
+    "cat": "ATP_MAIN",
+    "combined": 34,
+    "over_1c_assumption": false,
+    "legs": {
+     "JOR": {
+      "census_entry": 27,
+      "print_backed_floor": 28,
+      "near_miss_print_price": 28,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "MAR": {
+      "census_entry": 7,
+      "print_backed_floor": 8,
+      "near_miss_print_price": 8,
+      "near_miss_print_size": 11,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL19DROUGO",
+    "cat": "ATP_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "DRO": {
+      "census_entry": 44,
+      "print_backed_floor": 45,
+      "near_miss_print_price": 45,
+      "near_miss_print_size": 500,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "UGO": {
+      "census_entry": 51,
+      "print_backed_floor": 51,
+      "near_miss_print_price": 51,
+      "near_miss_print_size": 70.14,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL19MULNAV",
+    "cat": "ATP_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "MUL": {
+      "census_entry": 14,
+      "print_backed_floor": 15,
+      "near_miss_print_price": 15,
+      "near_miss_print_size": 0.39,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "NAV": {
+      "census_entry": 79,
+      "print_backed_floor": 80,
+      "near_miss_print_price": 80,
+      "near_miss_print_size": 104,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXATPMATCH-26JUL19WAWBUR",
+    "cat": "ATP_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "BUR": {
+      "census_entry": 61,
+      "print_backed_floor": 60,
+      "near_miss_print_price": 60,
+      "near_miss_print_size": 2,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     },
+     "WAW": {
+      "census_entry": 32,
+      "print_backed_floor": 31,
+      "near_miss_print_price": 31,
+      "near_miss_print_size": 11,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+    "cat": "WTA_CHALL",
+    "combined": 70,
+    "over_1c_assumption": false,
+    "legs": {
+     "BOS": {
+      "census_entry": 20,
+      "print_backed_floor": 18,
+      "near_miss_print_price": 18,
+      "near_miss_print_size": 6.02,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -2
+     },
+     "ERJ": {
+      "census_entry": 50,
+      "print_backed_floor": 51,
+      "near_miss_print_price": 51,
+      "near_miss_print_size": 15.61,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12LEPBUR",
+    "cat": "WTA_MAIN",
+    "combined": 88,
+    "over_1c_assumption": false,
+    "legs": {
+     "BUR": {
+      "census_entry": 19,
+      "print_backed_floor": 20,
+      "near_miss_print_price": 20,
+      "near_miss_print_size": 100,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "LEP": {
+      "census_entry": 69,
+      "print_backed_floor": 70,
+      "near_miss_print_price": 70,
+      "near_miss_print_size": 11.36,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12OKAIPE",
+    "cat": "WTA_MAIN",
+    "combined": 79,
+    "over_1c_assumption": false,
+    "legs": {
+     "IPE": {
+      "census_entry": 70,
+      "print_backed_floor": 71,
+      "near_miss_print_price": 71,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "OKA": {
+      "census_entry": 9,
+      "print_backed_floor": 10,
+      "near_miss_print_price": 10,
+      "near_miss_print_size": 18,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12TAGSIE",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "SIE": {
+      "census_entry": 15,
+      "print_backed_floor": 1,
+      "near_miss_print_price": 1,
+      "near_miss_print_size": 0.46,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -14
+     },
+     "TAG": {
+      "census_entry": 80,
+      "print_backed_floor": 81,
+      "near_miss_print_price": 81,
+      "near_miss_print_size": 12,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL14AVAUCH",
+    "cat": "WTA_MAIN",
+    "combined": 62,
+    "over_1c_assumption": false,
+    "legs": {
+     "AVA": {
+      "census_entry": 55,
+      "print_backed_floor": 54,
+      "near_miss_print_price": 54,
+      "near_miss_print_size": 40,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     },
+     "UCH": {
+      "census_entry": 7,
+      "print_backed_floor": 8,
+      "near_miss_print_price": 8,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL14OLIIPE",
+    "cat": "WTA_MAIN",
+    "combined": 85,
+    "over_1c_assumption": false,
+    "legs": {
+     "IPE": {
+      "census_entry": 7,
+      "print_backed_floor": 8,
+      "near_miss_print_price": 8,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "OLI": {
+      "census_entry": 78,
+      "print_backed_floor": 79,
+      "near_miss_print_price": 79,
+      "near_miss_print_size": 32.72,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL14PUTJEA",
+    "cat": "WTA_MAIN",
+    "combined": 71,
+    "over_1c_assumption": false,
+    "legs": {
+     "JEA": {
+      "census_entry": 63,
+      "print_backed_floor": 64,
+      "near_miss_print_price": 64,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "PUT": {
+      "census_entry": 8,
+      "print_backed_floor": 9,
+      "near_miss_print_price": 9,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL14SALIBR",
+    "cat": "WTA_MAIN",
+    "combined": 51,
+    "over_1c_assumption": false,
+    "legs": {
+     "IBR": {
+      "census_entry": 44,
+      "print_backed_floor": 44,
+      "near_miss_print_price": 44,
+      "near_miss_print_size": 39.36,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     },
+     "SAL": {
+      "census_entry": 7,
+      "print_backed_floor": 8,
+      "near_miss_print_price": 8,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15PUTCHA",
+    "cat": "WTA_MAIN",
+    "combined": 14,
+    "over_1c_assumption": false,
+    "legs": {
+     "CHA": {
+      "census_entry": 7,
+      "print_backed_floor": 8,
+      "near_miss_print_price": 8,
+      "near_miss_print_size": 15,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "PUT": {
+      "census_entry": 7,
+      "print_backed_floor": 8,
+      "near_miss_print_price": 8,
+      "near_miss_print_size": 15,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL16TAUTON",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "TAU": {
+      "census_entry": 87,
+      "print_backed_floor": 88,
+      "near_miss_print_price": 88,
+      "near_miss_print_size": 0.5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "TON": {
+      "census_entry": 8,
+      "print_backed_floor": 5,
+      "near_miss_print_price": 5,
+      "near_miss_print_size": 6.7,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -3
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL17UDVBAD",
+    "cat": "WTA_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "BAD": {
+      "census_entry": 71,
+      "print_backed_floor": 66,
+      "near_miss_print_price": 66,
+      "near_miss_print_size": 100,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -5
+     },
+     "UDV": {
+      "census_entry": 22,
+      "print_backed_floor": 23,
+      "near_miss_print_price": 23,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18MORAKS",
+    "cat": "WTA_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "AKS": {
+      "census_entry": 64,
+      "print_backed_floor": 65,
+      "near_miss_print_price": 65,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "MOR": {
+      "census_entry": 29,
+      "print_backed_floor": 30,
+      "near_miss_print_price": 30,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19EIGCAR",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "CAR": {
+      "census_entry": 85,
+      "print_backed_floor": 84,
+      "near_miss_print_price": 84,
+      "near_miss_print_size": 1,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -1
+     },
+     "EIG": {
+      "census_entry": 10,
+      "print_backed_floor": 5,
+      "near_miss_print_price": 5,
+      "near_miss_print_size": 300,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -5
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19PODSAI",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "POD": {
+      "census_entry": 70,
+      "print_backed_floor": 71,
+      "near_miss_print_price": 71,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "SAI": {
+      "census_entry": 25,
+      "print_backed_floor": 24,
+      "near_miss_print_price": 24,
+      "near_miss_print_size": 10,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19RYSHON",
+    "cat": "WTA_MAIN",
+    "combined": 94,
+    "over_1c_assumption": false,
+    "legs": {
+     "HON": {
+      "census_entry": 56,
+      "print_backed_floor": 57,
+      "near_miss_print_price": 57,
+      "near_miss_print_size": 5.4,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "RYS": {
+      "census_entry": 38,
+      "print_backed_floor": 37,
+      "near_miss_print_price": 37,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20AKSCOS",
+    "cat": "WTA_MAIN",
+    "combined": 91,
+    "over_1c_assumption": false,
+    "legs": {
+     "AKS": {
+      "census_entry": 30,
+      "print_backed_floor": 29,
+      "near_miss_print_price": 29,
+      "near_miss_print_size": 127.7,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     },
+     "COS": {
+      "census_entry": 61,
+      "print_backed_floor": 62,
+      "near_miss_print_price": 62,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20BARYUA",
+    "cat": "WTA_MAIN",
+    "combined": 92,
+    "over_1c_assumption": false,
+    "legs": {
+     "BAR": {
+      "census_entry": 70,
+      "print_backed_floor": 70,
+      "near_miss_print_price": 70,
+      "near_miss_print_size": 9,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     },
+     "YUA": {
+      "census_entry": 22,
+      "print_backed_floor": 23,
+      "near_miss_print_price": 23,
+      "near_miss_print_size": 20,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20KOVTAR",
+    "cat": "WTA_MAIN",
+    "combined": 92,
+    "over_1c_assumption": false,
+    "legs": {
+     "KOV": {
+      "census_entry": 23,
+      "print_backed_floor": 23,
+      "near_miss_print_price": 23,
+      "near_miss_print_size": 41.25,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     },
+     "TAR": {
+      "census_entry": 69,
+      "print_backed_floor": 70,
+      "near_miss_print_price": 70,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20LYSVAL",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "LYS": {
+      "census_entry": 29,
+      "print_backed_floor": 29,
+      "near_miss_print_price": 29,
+      "near_miss_print_size": 9.85,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     },
+     "VAL": {
+      "census_entry": 66,
+      "print_backed_floor": 67,
+      "near_miss_print_price": 67,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20OKTDOD",
+    "cat": "WTA_MAIN",
+    "combined": 92,
+    "over_1c_assumption": false,
+    "legs": {
+     "DOD": {
+      "census_entry": 37,
+      "print_backed_floor": 29,
+      "near_miss_print_price": 29,
+      "near_miss_print_size": 5,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -8
+     },
+     "OKT": {
+      "census_entry": 55,
+      "print_backed_floor": 56,
+      "near_miss_print_price": 56,
+      "near_miss_print_size": 0.97,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20OLISCH",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "OLI": {
+      "census_entry": 70,
+      "print_backed_floor": 68,
+      "near_miss_print_price": 68,
+      "near_miss_print_size": 6,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -2
+     },
+     "SCH": {
+      "census_entry": 25,
+      "print_backed_floor": 26,
+      "near_miss_print_price": 26,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20PARHON",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "HON": {
+      "census_entry": 29,
+      "print_backed_floor": 30,
+      "near_miss_print_price": 30,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "PAR": {
+      "census_entry": 66,
+      "print_backed_floor": 62,
+      "near_miss_print_price": 62,
+      "near_miss_print_size": 152.4,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -4
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20PODSTU",
+    "cat": "WTA_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "POD": {
+      "census_entry": 71,
+      "print_backed_floor": 69,
+      "near_miss_print_price": 69,
+      "near_miss_print_size": 49,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -2
+     },
+     "STU": {
+      "census_entry": 22,
+      "print_backed_floor": 21,
+      "near_miss_print_price": 21,
+      "near_miss_print_size": 54,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20SAMJOI",
+    "cat": "WTA_MAIN",
+    "combined": 95,
+    "over_1c_assumption": false,
+    "legs": {
+     "JOI": {
+      "census_entry": 55,
+      "print_backed_floor": 56,
+      "near_miss_print_price": 56,
+      "near_miss_print_size": 112,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "SAM": {
+      "census_entry": 40,
+      "print_backed_floor": 39,
+      "near_miss_print_price": 39,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20SEISNI",
+    "cat": "WTA_MAIN",
+    "combined": 93,
+    "over_1c_assumption": false,
+    "legs": {
+     "SEI": {
+      "census_entry": 23,
+      "print_backed_floor": 18,
+      "near_miss_print_price": 18,
+      "near_miss_print_size": 14.85,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -5
+     },
+     "SNI": {
+      "census_entry": 70,
+      "print_backed_floor": 71,
+      "near_miss_print_price": 71,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20SEMKRA",
+    "cat": "WTA_MAIN",
+    "combined": 92,
+    "over_1c_assumption": false,
+    "legs": {
+     "KRA": {
+      "census_entry": 66,
+      "print_backed_floor": 67,
+      "near_miss_print_price": 67,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "SEM": {
+      "census_entry": 26,
+      "print_backed_floor": 24,
+      "near_miss_print_price": 24,
+      "near_miss_print_size": 4,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -2
+     }
+    }
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20STENOH",
+    "cat": "WTA_MAIN",
+    "combined": 91,
+    "over_1c_assumption": false,
+    "legs": {
+     "NOH": {
+      "census_entry": 69,
+      "print_backed_floor": 70,
+      "near_miss_print_price": 70,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "STE": {
+      "census_entry": 22,
+      "print_backed_floor": 21,
+      "near_miss_print_price": 21,
+      "near_miss_print_size": 451.21,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -1
+     }
+    }
+   }
+  ],
+  "exemplars": [
+   {
+    "event": "26JUL12BOSCOP",
+    "combined": 80,
+    "over_1c": false,
+    "legs": {
+     "BOS": {
+      "census_entry": 32,
+      "print_backed_floor": 28,
+      "near_miss_print_price": 28,
+      "near_miss_print_size": 11,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -4
+     },
+     "COP": {
+      "census_entry": 48,
+      "print_backed_floor": 47,
+      "near_miss_print_price": 47,
+      "near_miss_print_size": 2,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": -1
+     }
+    }
+   },
+   {
+    "event": "26JUL13MUNLEO",
+    "combined": 94,
+    "over_1c": false,
+    "legs": {
+     "LEO": {
+      "census_entry": 63,
+      "print_backed_floor": 59,
+      "near_miss_print_price": 59,
+      "near_miss_print_size": 32.95,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": -4
+     },
+     "MUN": {
+      "census_entry": 31,
+      "print_backed_floor": 31,
+      "near_miss_print_price": 31,
+      "near_miss_print_size": 53,
+      "aggressor": "BUYER",
+      "assumed_gap_cents": 0
+     }
+    }
+   },
+   {
+    "event": "26JUL13OUALIN",
+    "combined": 20,
+    "over_1c": false,
+    "legs": {
+     "LIN": {
+      "census_entry": 16,
+      "print_backed_floor": 17,
+      "near_miss_print_price": 17,
+      "near_miss_print_size": 8.12,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     },
+     "OUA": {
+      "census_entry": 4,
+      "print_backed_floor": 5,
+      "near_miss_print_price": 5,
+      "near_miss_print_size": 1,
+      "aggressor": "SELLER",
+      "assumed_gap_cents": 1
+     }
+    }
+   }
+  ]
+ },
+ "part4_untouched": {
+  "neither_strict_nor_census": 248,
+  "in_680_offer": 248,
+  "blocker_reason_tally": {
+   "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED": 246,
+   "NO_OWN_TWO_SIDED_BOOK_ACTION_INSIDE_WINDOW1": 2
+  },
+  "games": [
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+    "cat": "ATP_CHALL",
+    "blocker": "BAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+    "cat": "ATP_CHALL",
+    "blocker": "BIN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+    "cat": "ATP_CHALL",
+    "blocker": "ONC",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12CALRAD",
+    "cat": "ATP_CHALL",
+    "blocker": "CAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+    "cat": "ATP_CHALL",
+    "blocker": "CRI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+    "cat": "ATP_CHALL",
+    "blocker": "DE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+    "cat": "ATP_CHALL",
+    "blocker": "MAK",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+    "cat": "ATP_CHALL",
+    "blocker": "WAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+    "cat": "ATP_CHALL",
+    "blocker": "FUE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+    "cat": "ATP_CHALL",
+    "blocker": "GUT",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+    "cat": "ATP_CHALL",
+    "blocker": "SUR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+    "cat": "ATP_CHALL",
+    "blocker": "HOU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+    "cat": "ATP_CHALL",
+    "blocker": "KRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+    "cat": "ATP_CHALL",
+    "blocker": "LAG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+    "cat": "ATP_CHALL",
+    "blocker": "MEJ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+    "cat": "ATP_CHALL",
+    "blocker": "KUZ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+    "cat": "ATP_CHALL",
+    "blocker": "MOL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+    "cat": "ATP_CHALL",
+    "blocker": "OUA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+    "cat": "ATP_CHALL",
+    "blocker": "ZHU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12SALARN",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+    "cat": "ATP_CHALL",
+    "blocker": "SCH",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+    "cat": "ATP_CHALL",
+    "blocker": "TRO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+    "cat": "ATP_CHALL",
+    "blocker": "YEV",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+    "cat": "ATP_CHALL",
+    "blocker": "YOU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+    "cat": "ATP_CHALL",
+    "blocker": "ALV",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+    "cat": "ATP_CHALL",
+    "blocker": "SUR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+    "cat": "ATP_CHALL",
+    "blocker": "ALM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+    "cat": "ATP_CHALL",
+    "blocker": "GRE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+    "cat": "ATP_CHALL",
+    "blocker": "WAT",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+    "cat": "ATP_CHALL",
+    "blocker": "JON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+    "cat": "ATP_CHALL",
+    "blocker": "KEN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+    "cat": "ATP_CHALL",
+    "blocker": "LAG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+    "cat": "ATP_CHALL",
+    "blocker": "SHE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+    "cat": "ATP_CHALL",
+    "blocker": "FAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+    "cat": "ATP_CHALL",
+    "blocker": "BRO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+    "cat": "ATP_CHALL",
+    "blocker": "ROZ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13WONTUN",
+    "cat": "ATP_CHALL",
+    "blocker": "WON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+    "cat": "ATP_CHALL",
+    "blocker": "ZHU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+    "cat": "ATP_CHALL",
+    "blocker": "ADD",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+    "cat": "ATP_CHALL",
+    "blocker": "BIC",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+    "cat": "ATP_CHALL",
+    "blocker": "TOM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+    "cat": "ATP_CHALL",
+    "blocker": "CLA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+    "cat": "ATP_CHALL",
+    "blocker": "FAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+    "cat": "ATP_CHALL",
+    "blocker": "MAY",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+    "cat": "ATP_CHALL",
+    "blocker": "FOR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+    "cat": "ATP_CHALL",
+    "blocker": "PRI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+    "cat": "ATP_CHALL",
+    "blocker": "BON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+    "cat": "ATP_CHALL",
+    "blocker": "JOH",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14LAGSAN",
+    "cat": "ATP_CHALL",
+    "blocker": "LAG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+    "cat": "ATP_CHALL",
+    "blocker": "SVA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+    "cat": "ATP_CHALL",
+    "blocker": "SEY",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+    "cat": "ATP_CHALL",
+    "blocker": "MAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "NO_OWN_TWO_SIDED_BOOK_ACTION_INSIDE_WINDOW1",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+    "cat": "ATP_CHALL",
+    "blocker": "NAG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+    "cat": "ATP_CHALL",
+    "blocker": "RON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+    "cat": "ATP_CHALL",
+    "blocker": "SUN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+    "cat": "ATP_CHALL",
+    "blocker": "GAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+    "cat": "ATP_CHALL",
+    "blocker": "YUN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15HOLMAY",
+    "cat": "ATP_CHALL",
+    "blocker": "MAY",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15LAJKRU",
+    "cat": "ATP_CHALL",
+    "blocker": "KRU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+    "cat": "ATP_CHALL",
+    "blocker": "ROD",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+    "cat": "ATP_CHALL",
+    "blocker": "BOU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+    "cat": "ATP_CHALL",
+    "blocker": "VIL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+    "cat": "ATP_CHALL",
+    "blocker": "WON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+    "cat": "ATP_CHALL",
+    "blocker": "CAM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+    "cat": "ATP_CHALL",
+    "blocker": "DAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+    "cat": "ATP_CHALL",
+    "blocker": "GLI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+    "cat": "ATP_CHALL",
+    "blocker": "BRO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+    "cat": "ATP_CHALL",
+    "blocker": "TOM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+    "cat": "ATP_CHALL",
+    "blocker": "MRV",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+    "cat": "ATP_CHALL",
+    "blocker": "ALM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+    "cat": "ATP_CHALL",
+    "blocker": "SMI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+    "cat": "ATP_CHALL",
+    "blocker": "GEA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+    "cat": "ATP_CHALL",
+    "blocker": "LAJ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+    "cat": "ATP_CHALL",
+    "blocker": "DEN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+    "cat": "ATP_CHALL",
+    "blocker": "WON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+    "cat": "ATP_CHALL",
+    "blocker": "GEA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+    "cat": "ATP_CHALL",
+    "blocker": "COP",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+    "cat": "ATP_CHALL",
+    "blocker": "YUN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+    "cat": "ATP_CHALL",
+    "blocker": "PER",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL18RODSAN",
+    "cat": "ATP_CHALL",
+    "blocker": "ROD",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+    "cat": "ATP_CHALL",
+    "blocker": "JOH",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+    "cat": "ATP_CHALL",
+    "blocker": "POH",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+    "cat": "ATP_CHALL",
+    "blocker": "AVE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+    "cat": "ATP_CHALL",
+    "blocker": "LEO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+    "cat": "ATP_CHALL",
+    "blocker": "YOU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+    "cat": "ATP_CHALL",
+    "blocker": "KRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+    "cat": "ATP_CHALL",
+    "blocker": "MAG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+    "cat": "ATP_CHALL",
+    "blocker": "GEN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+    "cat": "ATP_CHALL",
+    "blocker": "TOP",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19GIUDEV",
+    "cat": "ATP_CHALL",
+    "blocker": "GIU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+    "cat": "ATP_CHALL",
+    "blocker": "KIR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+    "cat": "ATP_CHALL",
+    "blocker": "KOZ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+    "cat": "ATP_CHALL",
+    "blocker": "LAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+    "cat": "ATP_CHALL",
+    "blocker": "MOR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+    "cat": "ATP_CHALL",
+    "blocker": "MAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+    "cat": "ATP_CHALL",
+    "blocker": "MAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+    "cat": "ATP_CHALL",
+    "blocker": "MIL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+    "cat": "ATP_CHALL",
+    "blocker": "VRB",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+    "cat": "ATP_CHALL",
+    "blocker": "OLI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+    "cat": "ATP_CHALL",
+    "blocker": "ROS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+    "cat": "ATP_CHALL",
+    "blocker": "JAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+    "cat": "ATP_CHALL",
+    "blocker": "ROZ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+    "cat": "ATP_CHALL",
+    "blocker": "MAT",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+    "cat": "ATP_CHALL",
+    "blocker": "TOM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+    "cat": "ATP_CHALL",
+    "blocker": "DAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+    "cat": "ATP_CHALL",
+    "blocker": "RAD",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19VARBOI",
+    "cat": "ATP_CHALL",
+    "blocker": "BOI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+    "cat": "ATP_CHALL",
+    "blocker": "WIN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+    "cat": "ATP_CHALL",
+    "blocker": "WAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+    "cat": "ATP_CHALL",
+    "blocker": "CHA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+    "cat": "ATP_CHALL",
+    "blocker": "GAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+    "cat": "ATP_CHALL",
+    "blocker": "HAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+    "cat": "ATP_CHALL",
+    "blocker": "BIT",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+    "cat": "ATP_CHALL",
+    "blocker": "AJD",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+    "cat": "ATP_CHALL",
+    "blocker": "TOK",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+    "cat": "ATP_CHALL",
+    "blocker": "STR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+    "cat": "ATP_CHALL",
+    "blocker": "ARS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+    "cat": "ATP_CHALL",
+    "blocker": "ZHA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12ALTGAS",
+    "cat": "ATP_MAIN",
+    "blocker": "ALT",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12CECOLI",
+    "cat": "ATP_MAIN",
+    "blocker": "CEC",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12DODCAR",
+    "cat": "ATP_MAIN",
+    "blocker": "CAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12DROBLO",
+    "cat": "ATP_MAIN",
+    "blocker": "BLO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12KOPPRI",
+    "cat": "ATP_MAIN",
+    "blocker": "PRI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12MOLFAU",
+    "cat": "ATP_MAIN",
+    "blocker": "MOL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12PASKAS",
+    "cat": "ATP_MAIN",
+    "blocker": "KAS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL12REJMID",
+    "cat": "ATP_MAIN",
+    "blocker": "MID",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL13PASKRU",
+    "cat": "ATP_MAIN",
+    "blocker": "PAS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL13SANDAN",
+    "cat": "ATP_MAIN",
+    "blocker": "DAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL14CINHAL",
+    "cat": "ATP_MAIN",
+    "blocker": "CIN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL14GOMMCD",
+    "cat": "ATP_MAIN",
+    "blocker": "GOM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL14KYMDIE",
+    "cat": "ATP_MAIN",
+    "blocker": "KYM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL14NEUPRA",
+    "cat": "ATP_MAIN",
+    "blocker": "PRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL14TRAKRU",
+    "cat": "ATP_MAIN",
+    "blocker": "KRU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL15COBBUR",
+    "cat": "ATP_MAIN",
+    "blocker": "BUR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL15ETCMER",
+    "cat": "ATP_MAIN",
+    "blocker": "ETC",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL15TRUDAV",
+    "cat": "ATP_MAIN",
+    "blocker": "DAV",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL15VANVAL",
+    "cat": "ATP_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL16BURUGO",
+    "cat": "ATP_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL17HALSHE",
+    "cat": "ATP_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL17VALTRA",
+    "cat": "ATP_MAIN",
+    "blocker": "VAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL18CORSAC",
+    "cat": "ATP_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "NO_OWN_TWO_SIDED_BOOK_ACTION_INSIDE_WINDOW1",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL18LUZTSE",
+    "cat": "ATP_MAIN",
+    "blocker": "TSE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL18ROCBUE",
+    "cat": "ATP_MAIN",
+    "blocker": "BUE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL19ALTCOL",
+    "cat": "ATP_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL19CINGIU",
+    "cat": "ATP_MAIN",
+    "blocker": "CIN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL19GASDZU",
+    "cat": "ATP_MAIN",
+    "blocker": "GAS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL19MARSKA",
+    "cat": "ATP_MAIN",
+    "blocker": "MAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXATPMATCH-26JUL19MOLOFN",
+    "cat": "ATP_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+    "cat": "WTA_CHALL",
+    "blocker": "HUA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+    "cat": "WTA_CHALL",
+    "blocker": "FEI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+    "cat": "WTA_CHALL",
+    "blocker": "JAK",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+    "cat": "WTA_CHALL",
+    "blocker": "AVD",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+    "cat": "WTA_CHALL",
+    "blocker": "CHI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+    "cat": "WTA_CHALL",
+    "blocker": "JAK",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+    "cat": "WTA_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+    "cat": "WTA_CHALL",
+    "blocker": "PER",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+    "cat": "WTA_CHALL",
+    "blocker": "KNU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+    "cat": "WTA_CHALL",
+    "blocker": "LAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+    "cat": "WTA_CHALL",
+    "blocker": "OKA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+    "cat": "WTA_CHALL",
+    "blocker": "AND",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+    "cat": "WTA_CHALL",
+    "blocker": "PEN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+    "cat": "WTA_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+    "cat": "WTA_CHALL",
+    "blocker": "RAM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+    "cat": "WTA_CHALL",
+    "blocker": "RIS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+    "cat": "WTA_CHALL",
+    "blocker": "SAI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+    "cat": "WTA_CHALL",
+    "blocker": "SEL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+    "cat": "WTA_CHALL",
+    "blocker": "HUA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+    "cat": "WTA_CHALL",
+    "blocker": "BEN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+    "cat": "WTA_CHALL",
+    "blocker": "LEE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+    "cat": "WTA_CHALL",
+    "blocker": "CAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+    "cat": "WTA_CHALL",
+    "blocker": "PAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+    "cat": "WTA_CHALL",
+    "blocker": "YUA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+    "cat": "WTA_CHALL",
+    "blocker": "KRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+    "cat": "WTA_CHALL",
+    "blocker": "BUY",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+    "cat": "WTA_CHALL",
+    "blocker": "NUG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+    "cat": "WTA_CHALL",
+    "blocker": "VED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+    "cat": "WTA_CHALL",
+    "blocker": "VAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+    "cat": "WTA_CHALL",
+    "blocker": "ZAK",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+    "cat": "WTA_CHALL",
+    "blocker": "BAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL15JONURG",
+    "cat": "WTA_CHALL",
+    "blocker": "JON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+    "cat": "WTA_CHALL",
+    "blocker": "CHI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+    "cat": "WTA_CHALL",
+    "blocker": "KRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+    "cat": "WTA_CHALL",
+    "blocker": "SAM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+    "cat": "WTA_CHALL",
+    "blocker": "VAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+    "cat": "WTA_CHALL",
+    "blocker": "VAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+    "cat": "WTA_CHALL",
+    "blocker": "PRO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+    "cat": "WTA_CHALL",
+    "blocker": "KRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+    "cat": "WTA_CHALL",
+    "blocker": "GRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+    "cat": "WTA_CHALL",
+    "blocker": "PRO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+    "cat": "WTA_CHALL",
+    "blocker": "GRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+    "cat": "WTA_CHALL",
+    "blocker": "MCA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL18SERBER",
+    "cat": "WTA_CHALL",
+    "blocker": "BER",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+    "cat": "WTA_CHALL",
+    "blocker": "TON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+    "cat": "WTA_CHALL",
+    "blocker": "TAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+    "cat": "WTA_CHALL",
+    "blocker": "GRA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+    "cat": "WTA_CHALL",
+    "blocker": "BRO",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+    "cat": "WTA_CHALL",
+    "blocker": "FER",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+    "cat": "WTA_CHALL",
+    "blocker": "MAZ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+    "cat": "WTA_CHALL",
+    "blocker": "URG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12AVASEI",
+    "cat": "WTA_MAIN",
+    "blocker": "AVA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL12FETPIE",
+    "cat": "WTA_MAIN",
+    "blocker": "PIE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13ARAZID",
+    "cat": "WTA_MAIN",
+    "blocker": "ZID",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13ARGTAG",
+    "cat": "WTA_MAIN",
+    "blocker": "TAG",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13AVAFET",
+    "cat": "WTA_MAIN",
+    "blocker": "AVA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13BONSOR",
+    "cat": "WTA_MAIN",
+    "blocker": "BON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13CRIJEA",
+    "cat": "WTA_MAIN",
+    "blocker": "JEA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13KAWWAL",
+    "cat": "WTA_MAIN",
+    "blocker": "WAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13MORBEJ",
+    "cat": "WTA_MAIN",
+    "blocker": "BEJ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13PODMAR",
+    "cat": "WTA_MAIN",
+    "blocker": "MAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13QUERUS",
+    "cat": "WTA_MAIN",
+    "blocker": "RUS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13ROMKUL",
+    "cat": "WTA_MAIN",
+    "blocker": "ROM",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13SAKTON",
+    "cat": "WTA_MAIN",
+    "blocker": "SAK",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL13TAUHIB",
+    "cat": "WTA_MAIN",
+    "blocker": "TAU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15AVAMAR",
+    "cat": "WTA_MAIN",
+    "blocker": "MAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15BONZID",
+    "cat": "WTA_MAIN",
+    "blocker": "BON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15BURJAC",
+    "cat": "WTA_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15HONPAR",
+    "cat": "WTA_MAIN",
+    "blocker": "HON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15MICZHE",
+    "cat": "WTA_MAIN",
+    "blocker": "ZHE",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL15OLIPRI",
+    "cat": "WTA_MAIN",
+    "blocker": "OLI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL16UDVKAW",
+    "cat": "WTA_MAIN",
+    "blocker": "UDV",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL17OLIBUR",
+    "cat": "WTA_MAIN",
+    "blocker": "BUR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18BANGAO",
+    "cat": "WTA_MAIN",
+    "blocker": "BAN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18COSHIB",
+    "cat": "WTA_MAIN",
+    "blocker": "COS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL18SHEOLI",
+    "cat": "WTA_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19COSAKS",
+    "cat": "WTA_MAIN",
+    "blocker": "COS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19HONLEE",
+    "cat": "WTA_MAIN",
+    "blocker": "HON",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19MALZAA",
+    "cat": "WTA_MAIN",
+    "blocker": "ZAA",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19PRIMAR",
+    "cat": "WTA_MAIN",
+    "blocker": "PRI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19SALKNU",
+    "cat": "WTA_MAIN",
+    "blocker": "KNU",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL19STRPAQ",
+    "cat": "WTA_MAIN",
+    "blocker": "PAQ",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20PRIBRA",
+    "cat": "WTA_MAIN",
+    "blocker": "PRI",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20QUEKAL",
+    "cat": "WTA_MAIN",
+    "blocker": "KAL",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20RUSPAQ",
+    "cat": "WTA_MAIN",
+    "blocker": "RUS",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "KXWTAMATCH-26JUL20RUZSAL",
+    "cat": "WTA_MAIN",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   }
+  ],
+  "exemplars": [
+   {
+    "event": "26JUL12BARREI",
+    "cat": "ATP_CHALL",
+    "blocker": "BOTH_UNCREDITED",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "26JUL12BARVIS",
+    "cat": "ATP_CHALL",
+    "blocker": "BAR",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   },
+   {
+    "event": "26JUL12BINGIL",
+    "cat": "ATP_CHALL",
+    "blocker": "BIN",
+    "reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+    "in_offer": true
+   }
+  ]
+ },
+ "conservation": {
+  "games": 804,
+  "V351_strict": 283,
+  "V351_census_only": 50,
+  "untouched": 248,
+  "check": 804
+ }
+}

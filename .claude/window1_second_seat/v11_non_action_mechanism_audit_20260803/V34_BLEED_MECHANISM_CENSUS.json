@@ -1,0 +1,5610 @@
+{
+ "summary": {
+  "LABEL": "V34_W1_CAUSAL_BLEED_CENSUS",
+  "binding": "V34-W1 causal e56d79a2 STRICT_EVENT_LEDGER; the 254 = STRICT completed pairs.",
+  "conservation": {
+   "games": 804,
+   "completed_254": 254,
+   "non_254": 550,
+   "assigned": 550,
+   "check": 804
+  },
+  "method": "Per non-254 game, ONE primary bleed mechanism by causal priority. na=credited count. na==2 (both filled, over par): TAKE_PREEMPT if a credited leg regret>=2c vs its qualifying floor (a later shelf existed) else CAP_STRANGLED. na==1: NAKED_PAIR (blocker=uncredited leg) with sub-mechanism NO_OFFER(blocker had no floor)/CAP_STRANGLED(blocker floor+filled entry>=100)/REST_STARVED(resting_at_hard_edge or RESTING/NEVER_RECEIVED terminal)/STATE_MISLABEL(takeable qualified ask<=cap but SETTLED-share<10% so state forbade the take)/OTHER. na==0: NO_OFFER(a leg never offered a floor)/CAP_STRANGLED(floors sum>=100)/REST_STARVED/STATE_MISLABEL/ZERO_FILL.",
+  "mechanism_by_category": {
+   "STATE_MISLABEL": {
+    "ATP_CHALL": 39,
+    "ATP_MAIN": 23,
+    "WTA_CHALL": 15,
+    "WTA_MAIN": 13
+   },
+   "TAKE_PREEMPT": {
+    "ATP_CHALL": 74,
+    "ATP_MAIN": 31,
+    "WTA_CHALL": 27,
+    "WTA_MAIN": 37
+   },
+   "REST_STARVED": {
+    "ATP_CHALL": 90,
+    "ATP_MAIN": 23,
+    "WTA_CHALL": 42,
+    "WTA_MAIN": 35
+   },
+   "CAP_STRANGLED": {
+    "ATP_CHALL": 48,
+    "ATP_MAIN": 4,
+    "WTA_CHALL": 31,
+    "WTA_MAIN": 9
+   },
+   "NO_OFFER": {
+    "ATP_CHALL": 5,
+    "ATP_MAIN": 2,
+    "WTA_MAIN": 2
+   },
+   "ZERO_FILL": {}
+  },
+  "naked_pair_overlay": {
+   "STATE_MISLABEL": 72,
+   "TAKE_PREEMPT": 169,
+   "REST_STARVED": 183,
+   "CAP_STRANGLED": 83,
+   "NO_OFFER": 0,
+   "ZERO_FILL": 0
+  },
+  "mechanism_totals": {
+   "STATE_MISLABEL": 90,
+   "TAKE_PREEMPT": 169,
+   "REST_STARVED": 190,
+   "CAP_STRANGLED": 92,
+   "NO_OFFER": 9,
+   "ZERO_FILL": 0
+  },
+  "implied_pairs_recovered_if_fixed": {
+   "STATE_MISLABEL": 90,
+   "TAKE_PREEMPT": 169,
+   "REST_STARVED": 190,
+   "CAP_STRANGLED": 0,
+   "NO_OFFER": 0,
+   "ZERO_FILL": 0
+  },
+  "exemplars_prefer_exact_bell": {
+   "STATE_MISLABEL": [
+    "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+    "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+    "KXATPCHALLENGERMATCH-26JUL12LAGTEP"
+   ],
+   "TAKE_PREEMPT": [
+    "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+    "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+    "KXATPCHALLENGERMATCH-26JUL13NOGBRO"
+   ],
+   "REST_STARVED": [
+    "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+    "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+    "KXATPCHALLENGERMATCH-26JUL12POLKUH"
+   ],
+   "CAP_STRANGLED": [
+    "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+    "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+    "KXATPCHALLENGERMATCH-26JUL12HOHSUR"
+   ],
+   "NO_OFFER": [
+    "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+    "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR"
+   ],
+   "ZERO_FILL": []
+  },
+  "settled_decision_share_distribution_1608": {
+   "n": 1604,
+   "mean": 0.1382,
+   "p10": 0.0147,
+   "median": 0.1144,
+   "p90": 0.3,
+   "max": 1.0,
+   "legs_settled_share_under_5pct": 398,
+   "legs_settled_share_under_10pct": 708
+  }
+ },
+ "per_game": [
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "PET",
+   "settled_flicker": 75,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 23,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 43,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BIN",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BOO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "COP",
+   "settled_flicker": 90,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 250,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CHA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "SEA",
+   "settled_flicker": 59,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CRI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "MAK",
+   "settled_flicker": 12,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "DEV",
+   "settled_flicker": 27,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "PIR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "ECH",
+   "settled_flicker": 27,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12ECHMUN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "WAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "FOR",
+   "settled_flicker": 14,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "FUE",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "SHE",
+   "settled_flicker": 59,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "GUT",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "ISO",
+   "settled_flicker": 44,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12HECISO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "ALM",
+   "settled_flicker": 16,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SUR",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "HOU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "LAG",
+   "settled_flicker": 40,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "LIN",
+   "settled_flicker": 7,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MEJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KUZ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MOL",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "MOR",
+   "settled_flicker": 42,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12MORPET",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "OUA",
+   "settled_flicker": 8,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "PAL",
+   "settled_flicker": 120,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "KIR",
+   "settled_flicker": 34,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "POL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 108,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "AGU",
+   "settled_flicker": 4,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ZHU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL12SALARN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "IVA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "TRO",
+   "settled_flicker": 39,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "VAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "WES",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SEL",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "WIN",
+   "settled_flicker": 1,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12WINROB",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "YIB",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12YIBMAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "YOU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "ALV",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "ARS",
+   "settled_flicker": 34,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "FUE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SUR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 1,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SHE",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KRU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KUM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13MONANG",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "FAN",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "POL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "REH",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ROD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13RODALK",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "LOP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13SANLOP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "HAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "TAB",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 2,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "WIN",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13WINKIR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "FEN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "WON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13WONTUN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "YEV",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "ZHU",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "LEO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ALC",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14ALCTAB",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ALM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "TOM",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BRU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SCH",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CLA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "FAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MAY",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "DEL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "DEN",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PAV",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "FOR",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "PRI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 5,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GIU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BER",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "JON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "LAG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14LAGSAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SVA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SEY",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "NAG",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "CRA",
+   "settled_flicker": 10,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "RON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SUN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "ECH",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "PAL",
+   "settled_flicker": 402,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "VIL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 2,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL14VUKARS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KOZ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GEN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15GENDE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MAY",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15HOLMAY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "NAP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "INC",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ROM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BOU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "VIL",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "COP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "JOH",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "WON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "YUN",
+   "settled_flicker": 74,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GHI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ANG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CAM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "DAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MIL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "FOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "FUE",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16FUESEY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GLI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "IVA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TOM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MRV",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ALM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "RIC",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "NIJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ADD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "RON",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "DEL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "DRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TOM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "COP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "GEN",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BOU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KUM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "NAG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "NAP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ROD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SEK",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SMI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "WON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GEA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "COP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GEN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18GENKUM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "YUN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PER",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "ROD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18RODSAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TOM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "HOL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ARN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ARS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "AVE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ZHU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "LEO",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BIA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "BOU",
+   "settled_flicker": 2,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "DEM",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GEN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TOP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "GIU",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19GIUDEV",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ISO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19JONISO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "KIR",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KOZ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "schedule_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "PAS",
+   "settled_flicker": 6,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "KUZ",
+   "settled_flicker": 4,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19KUZOPI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MAY",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "KUM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "FAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19MONTHO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "VRB",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "OLI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "ROS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "PET",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19PETALO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SCH",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "ZIE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "JAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "REJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19REJWES",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RIT",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ROZ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "schedule_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "PER",
+   "settled_flicker": 13,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TOM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19TORSEN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "DAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RAD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL19VARBOI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TAB",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19VASTAB",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "VIS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "WIN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ALK",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ARS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "WAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CHA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "COP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "HAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "AGU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KOZ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KUZ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ROS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MIL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "NES",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "SHI",
+   "settled_flicker": 77,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ONC",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "LEO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "WES",
+   "settled_flicker": 21,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "STA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TOK",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "STR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20TROISO",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GOM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "OUA",
+   "settled_flicker": 27,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "VIS",
+   "settled_flicker": 3,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "WIN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SHE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ZHO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ZHA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+   "cat": "ATP_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ALT",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12ALTGAS",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12CARSAN",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KOL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12CERKOL",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CHO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12CHOBAS",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "CIN",
+   "settled_flicker": 124,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12CINHEM",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "BAE",
+   "settled_flicker": 5,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12DAHBAE",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12DODCAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "DRO",
+   "settled_flicker": 571,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12DROBLO",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KEC",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12FELKEC",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PRI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12KOPPRI",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "HAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12MARHAN",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MOL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12MOLROY",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SHE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12MULSHE",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TIR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12OFNTIR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MID",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12REJMID",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "SES",
+   "settled_flicker": 99,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12SESMER",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "DAM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12SLADAM",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "TAB",
+   "settled_flicker": 39,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL12TABHUE",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "DAM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL13FAUDAM",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MID",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL13MARMID",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CIN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL14CINHAL",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "DIA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL14DIAMID",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL14NEUPRA",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RIN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL14RINTAB",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "DAM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL14VALDAM",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ALT",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15ALTDAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15BASTIR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15CARUGO",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CER",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15CERKEC",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BUR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15COBBUR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15COLSON",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ARN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15GOMARN",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TSI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15KYMTSI",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "DZU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15PRADZU",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "NAV",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15TRANAV",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "DAV",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15TRUDAV",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "VAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL15VANDRO",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL15VANVAL",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL16BURUGO",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "DAV",
+   "settled_flicker": 62,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL16MOLDAV",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "STR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL16SHESTR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "DAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL17BORDAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "CER",
+   "settled_flicker": 27,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL17CERRUU",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "COL",
+   "settled_flicker": 39,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL17COLVAC",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "MOL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL17DZUMOL",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 1,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL17HALSHE",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "RIN",
+   "settled_flicker": 43,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL17RINTSI",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TIR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL17TABTIR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "VAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL17VALTRA",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CIN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18CINMIC",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 1,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL18COLCER",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL18CORSAC",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "HEI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18HEIFEL",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GIU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18HIPGIU",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "JAC",
+   "settled_flicker": 12,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18JACDA",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 6,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL18LUZTSE",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "JOR",
+   "settled_flicker": 39,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18MARJOR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "DZU",
+   "settled_flicker": 60,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18MERDZU",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CHE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18RODCHE",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "RUB",
+   "settled_flicker": 7,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18RUBTAB",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "TSI",
+   "settled_flicker": 42,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18SHETSI",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "VAL",
+   "settled_flicker": 5,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18VALDAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "DJE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL18WALDJE",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 17,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL19ALTCOL",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TRU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19CERTRU",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "CHO",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19CHODEJ",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CIN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19CINGIU",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "FEL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19FELKOP",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "VAN",
+   "settled_flicker": 300,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19FERVAN",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19GASDZU",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GAU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19GAUCAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TAB",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19LUZTAB",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19MARSKA",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL19MOLOFN",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "HAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19NEUHAN",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ROD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19RODSAC",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "RUB",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19RUBDAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19TORBAS",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "VAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL19VANFAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 62,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL19WAWBUR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 40,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXATPMATCH-26JUL20DJECIN",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "MAR",
+   "settled_flicker": 25,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL20ROCMAR",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ROD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXATPMATCH-26JUL20SCHROD",
+   "cat": "ATP_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "ZHA",
+   "settled_flicker": 49,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "HUA",
+   "settled_flicker": 0,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "BAS",
+   "settled_flicker": 20,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12BASABB",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BOS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "HUA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ERJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "FEI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "HES",
+   "settled_flicker": 46,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KHO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "PAN",
+   "settled_flicker": 19,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "JAK",
+   "settled_flicker": 27,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SOK",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "FAL",
+   "settled_flicker": 46,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "FEI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CHI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13GRABER",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "JAK",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "KAB",
+   "settled_flicker": 16,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 4,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KNU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MAL",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "TAR",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "FAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "PAP",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "THA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RAD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "RAM",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "RIS",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SAI",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SEL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "HUA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BEN",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "LEE",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "VAL",
+   "settled_flicker": 21,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "FRI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "BRA",
+   "settled_flicker": 179,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "PAL",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "DIL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "YUA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ZAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "FRU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "KRA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BUY",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "ZVO",
+   "settled_flicker": 37,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "NUG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RUG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "VED",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "SAM",
+   "settled_flicker": 32,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RUS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXWTACHALLENGERMATCH-26JUL14SHUSHI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14TREGRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "VAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "RIS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "NOH",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "PER",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "JON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15JONURG",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "FAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "CHI",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "GAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "VAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "LAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "RUS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "BRA",
+   "settled_flicker": 18,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SAM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "VAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "VAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RIE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SHU",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "TRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ZVO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "KRA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "RIE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "CHI",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17CHIBRO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ERJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "JON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BOE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18BROBRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 56,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": false,
+   "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "GRA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MCA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "SER",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18SERBER",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "JON",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18TREJON",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "TAR",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "WEB",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18WEBHOD",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "VAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SHI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "GRA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BRO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TOT",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL19VANTAR",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "FER",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "AND",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CHI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "LAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MAZ",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TOT",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "URG",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+   "cat": "WTA_CHALL"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "AVA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12AVASEI",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "HOD",
+   "settled_flicker": 49,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12HODYAS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "IBR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12KOZIBR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "LIU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12LIUPOP",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "MOR",
+   "settled_flicker": 39,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12MORNEP",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PRI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12PRIION",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ROM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12ROMTOD",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "TAG",
+   "settled_flicker": 26,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12TAGSIE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "WER",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL12WERAMA",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "HER",
+   "settled_flicker": 21,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13AMAHER",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "AVA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13AVAFET",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13BADKAL",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 9,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": false,
+   "event": "KXWTAMATCH-26JUL13BURLEP",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "PUT",
+   "settled_flicker": 94,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13BURPUT",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "CHA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13CHAJIM",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "JEA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13CRIJEA",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13GRAPAR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ITO",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13ITOKOR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "WAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13KAWWAL",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13KRETOM",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "LEP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13LEPIBR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "LIN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13LINHON",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "LIU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13LIUIPE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BEJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13MORBEJ",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "MAR",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13PODMAR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "QUE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13QUERUS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SAK",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13SAKTON",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "GAL",
+   "settled_flicker": 88,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL13SHEGAL",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": false,
+   "event": "KXWTAMATCH-26JUL13TAUTOM",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "JAC",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL14AMAJAC",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BUL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL14BULPRI",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "OLI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL14OLIIPE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": null,
+   "settled_flicker": 5,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": false,
+   "event": "KXWTAMATCH-26JUL14PUTJEA",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL14SALIBR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "ROM",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL14UDVROM",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "MAR",
+   "settled_flicker": 49,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15AVAMAR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15BONZID",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXWTAMATCH-26JUL15BURJAC",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "HON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15HONPAR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "BAD",
+   "settled_flicker": 59,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15IBRBAD",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KRE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15KREMON",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ZHE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15MICZHE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "PRI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15OLIPRI",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "PUT",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15PUTCHA",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BEJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL15TAGBEJ",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "ANN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL16KORANN",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TAU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL16TAUTON",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "UDV",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL16UDVKAW",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL16VALSAS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "OLI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL17OLIBUR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SHE",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL17PUTSHE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BEJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL17TAUBEJ",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BAD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL17UDVBAD",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL17VALKOR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "BAD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18BADZID",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BAN",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18BANGAO",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18MASRYS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "FRU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18MICFRU",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "MOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18MORAKS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "HON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18PALHON",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "POD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18PODKRE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18SAKKOR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "SAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18SALZOL",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "live_by_only",
+   "naked": false,
+   "event": "KXWTAMATCH-26JUL18SHEOLI",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "TAU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL18TAUKRE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "AVD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19AVDNIE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "COS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19COSAKS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "CAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19EIGCAR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "FRU",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19GAOFRU",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "AVA",
+   "settled_flicker": 23,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19JAKAVA",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "LEP",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19LEPPET",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "ZAA",
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19MALZAA",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "POD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19PODSAI",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "PRI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19PRIMAR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KAZ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19RUSKAZ",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19SALKNU",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "PAQ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19STRPAQ",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL19YASBAR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "AKS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20AKSCOS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "BEJ",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20BLIBEJ",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "KRE",
+   "settled_flicker": 132,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20FRUKRE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "TAG",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20GAOTAG",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "KOR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20KORJIM",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "STATE_MISLABEL",
+   "blocker": "KOR",
+   "settled_flicker": 6,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20KUDKOR",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "LYS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "schedule_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20LYSVAL",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "OLI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20OLISCH",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "HON",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20PARHON",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "POD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20PODLEE",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "POD",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "contradictory",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20PODSTU",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "KAL",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20QUEKAL",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "NO_OFFER",
+   "blocker": null,
+   "settled_flicker": null,
+   "under_par_priceable": false,
+   "bell": "contradictory",
+   "naked": false,
+   "event": "KXWTAMATCH-26JUL20RUZSAL",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SNI",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20SEISNI",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "TAKE_PREEMPT",
+   "blocker": "CHA",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "clean_interval",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20SORCHA",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "NOH",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20STENOH",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "REST_STARVED",
+   "blocker": "SAS",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "live_by_only",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20TIMSAS",
+   "cat": "WTA_MAIN"
+  },
+  {
+   "mech": "CAP_STRANGLED",
+   "blocker": "BAR",
+   "settled_flicker": null,
+   "under_par_priceable": true,
+   "bell": "exact",
+   "naked": true,
+   "event": "KXWTAMATCH-26JUL20VEDBAR",
+   "cat": "WTA_MAIN"
+  }
+ ]
+}

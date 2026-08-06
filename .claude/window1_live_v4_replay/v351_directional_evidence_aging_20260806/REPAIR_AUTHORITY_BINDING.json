@@ -1,0 +1,41 @@
+{
+  "V35_baseline": {
+    "commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+    "strict_path": ".claude/window1_live_v4_replay/v35_living_rest_evidence_gate_20260806/STRICT_EVENT_LEDGER.jsonl.gz",
+    "strict_sha256": "e76f0ae09aed68bde2dd00aa04c05d9582732ad057be8565e0cc372e6bcdfb73",
+    "census_path": ".claude/window1_live_v4_replay/v35_living_rest_evidence_gate_20260806/CENSUS_PRICED_EVENT_LEDGER.jsonl.gz",
+    "census_sha256": "e78f23dc289505be4eddbc4f0ce6716922aa14b55756e0828926e166b5323c81"
+  },
+  "V34_W1_baseline": {
+    "commit": "e56d79a2aee1f392b3bee5a0adad099c7f011976",
+    "strict_path": ".claude/window1_live_v4_replay/v34_w1_causal_capture_measurement_20260805/STRICT_EVENT_LEDGER.jsonl.gz",
+    "strict_sha256": "630cf3a28dcd819b518b33c495a0144339408ceb803c589173bc95e55fdd3a50",
+    "census_path": ".claude/window1_live_v4_replay/v34_w1_causal_capture_measurement_20260805/CENSUS_PRICED_EVENT_LEDGER.jsonl.gz",
+    "census_sha256": "7d6d844ff2e36cb06407ea8bf3654c183c57cd51dec677b18abef4024eed5e6e"
+  },
+  "bleed_census": {
+    "commit": "219c7ad118c0d4eb7daf9d7f55df6239548aaabc",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V34_BLEED_MECHANISM_CENSUS.json",
+    "sha256": "6e778ba9671d3175ff413cf64f18565b19c66a5d3cbb5c25ced28d3ff343d8b7",
+    "mechanism_totals": {
+      "STATE_MISLABEL": 90,
+      "TAKE_PREEMPT": 169,
+      "REST_STARVED": 190,
+      "CAP_STRANGLED": 92,
+      "NO_OFFER": 9,
+      "ZERO_FILL": 0
+    }
+  },
+  "exemplar_render_pack": {
+    "commit": "1fd0328231dcff8bf03e470153deb26b84168e26",
+    "paths": [
+      ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/BOSCOP_DECISION_MARKS.json",
+      ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/KRALOR_DECISION_MARKS.json",
+      ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/POLKUH_DECISION_MARKS.json"
+    ]
+  },
+  "CC_sanity_census": {
+    "binding_status": "OPERATOR_NAMED_WITHOUT_SEPARATE_GIT_IDENTITY_IN_ORDER",
+    "treatment": "NOT_FABRICATED; V35.1 REST_SANITY IS RECOMPUTED_FROM_RAW_RECEIPTS"
+  }
+}

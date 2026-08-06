@@ -1,0 +1,27 @@
+{
+  "status": "REJECTED_DEEP_FRONTIER_REGRESSION_V35_REMAINS_OPERATIVE",
+  "checks": {
+    "strict_completed_at_least_V35_264": true,
+    "strict_LE93_at_least_V35_9": false,
+    "strict_LE95_at_least_V35_25": false,
+    "strict_LE97_at_least_V35_82": true,
+    "at_least_one_strict_deep_tier_improves": false
+  },
+  "required_floor": {
+    "strict_completed_pairs": 264,
+    "strict_frontier": {
+      "LE_93": 9,
+      "LE_95": 25,
+      "LE_97": 82
+    }
+  },
+  "observed": {
+    "strict_completed_pairs": 283,
+    "strict_frontier": {
+      "LE_93": 7,
+      "LE_95": 24,
+      "LE_97": 82
+    }
+  },
+  "ruling": "A_NAMED_REGRESSION_PASS_DOES_NOT_OVERRIDE_POPULATION_FRONTIER_REGRESSION; V35.1_IS_FROZEN_AS_A_REJECTED_VARIANT_AND_V35_REMAINS_OPERATIVE"
+}

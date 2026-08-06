@@ -1688,4 +1688,4 @@ hash; and the operator's 17-exit premise conflicts with the controlling
 Stage C were not started. Restart readiness is NOT_READY.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/322a170ea7ad1e9431a26e375540eb75277ae29b/arb-executor/docs/research/window1/BOOT_GATE_STAGE_A_AUDIT_20260806_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/733cef57c7dbe951883d719d21d5fbadce4b50ca/arb-executor/docs/research/window1/BOOT_GATE_STAGE_A_AUDIT_20260806_ADDENDUM.md

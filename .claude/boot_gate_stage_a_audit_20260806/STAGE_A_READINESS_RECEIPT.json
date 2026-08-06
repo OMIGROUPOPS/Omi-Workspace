@@ -1,0 +1,43 @@
+{
+  "inheritance": {
+    "git_drift_rows": 12431,
+    "git_drift_summary": {
+      "deleted": 0,
+      "modified": 13,
+      "untracked": 12418
+    },
+    "live_v4_processes": 0,
+    "position_exit_exact": 0,
+    "position_exit_over": 0,
+    "position_exit_under": 0,
+    "recorder_processes": 1,
+    "resting_entry_buys": 0,
+    "resting_exit_quantity": 0,
+    "resting_exit_sells": 0,
+    "unsettled_positions": 0,
+    "vps_head": "7036ace045c6ee0e45b9c4bdc956c54906d21afa"
+  },
+  "mutations": {
+    "balance": 0,
+    "cron": 0,
+    "filesystem": 0,
+    "git": 0,
+    "orders": 0,
+    "positions": 0,
+    "process": 0,
+    "service": 0
+  },
+  "restart_blockers": [
+    "VPS_WORKTREE_DIRTY",
+    "LIVE_V4_WORKING_BYTES_DIFFER_FROM_HEAD_PREIMAGE",
+    "CRONTAB_DRIFT_FROM_CONTROLLED_STOP",
+    "OPERATOR_17_EXIT_COUNT_CONFLICTS_WITH_CONTROLLING_12_EXIT_RECEIPT"
+  ],
+  "restart_readiness": "NOT_READY",
+  "schema_version": "boot-gate-stage-a-readiness-v1",
+  "snapshot_sha256": "3f02f0a4631bf1e95047a7e08faeec1ea26ec98fd65b20f1e76133d16ab9e2af",
+  "stage_A": "COMPLETED_READ_ONLY",
+  "stage_B": "NOT_AUTHORIZED_NOT_STARTED",
+  "stage_C": "NOT_AUTHORIZED_NOT_STARTED",
+  "status": "STAGE_A_COMPLETE_AWAITING_EXPLICIT_STAGE_B_WORD"
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "boot-gate-stage-a-artifact-manifest-v1",
+  "files": {
+    "NONMUTATION_RECEIPT.json": {
+      "bytes": 298,
+      "sha256": "9c52c1585b161e17ac2bbf3371806177f0ec48552ee42da2826cb62bb4e7e1c9"
+    },
+    "STAGE_A_READINESS_RECEIPT.json": {
+      "bytes": 1232,
+      "sha256": "8a031705fa8f468f993c85ee730b8d9e7c76a6847a8586f035cdcf46c0ea9160"
+    },
+    "STAGE_A_REPORT.md": {
+      "bytes": 1735,
+      "sha256": "6d7a8b08ff5c44a3123b8743f5ceeb64bb3b294edfecee5c60d1139b88aa36e9"
+    },
+    "VPS_AND_EXCHANGE_READONLY_SNAPSHOT.json": {
+      "bytes": 1063133,
+      "sha256": "3f02f0a4631bf1e95047a7e08faeec1ea26ec98fd65b20f1e76133d16ab9e2af"
+    }
+  }
+}

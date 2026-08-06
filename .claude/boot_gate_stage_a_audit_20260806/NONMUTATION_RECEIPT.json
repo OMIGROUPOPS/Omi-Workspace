@@ -1,0 +1,12 @@
+{
+  "deployment": 0,
+  "order_mutations": 0,
+  "position_mutations": 0,
+  "read_only_exchange_GETs": true,
+  "restart": 0,
+  "schema_version": "boot-gate-stage-a-nonmutation-v1",
+  "source_or_config_mutations": 0,
+  "stage_B_cron_changes": 0,
+  "stage_B_recorder_start": 0,
+  "stage_C_builds": 0
+}

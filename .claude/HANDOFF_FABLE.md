@@ -1655,3 +1655,15 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a
 
 Report:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a5f3d619ab30050efab83/.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/REPORT.md
+
+## HOLDOUT SEAL AUDIT - RUN BLOCKED - 2026-08-06
+
+The July 24-26 population is N=228 / 456 legs and is no longer sealed. Its one
+allowed policy evaluation was consumed by V11/V13/V14; subsequent holdout
+diagnostics informed Fix A, which is ancestral to R3, V34-W1, and V35. The
+requested three-brain run therefore stopped before policy evaluation. It may
+only proceed under a new ruling as reused validation, never as an untouched
+generalization exam.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/34a153490eb4a2ad8776c32a0567d6b1c7a8e060/arb-executor/docs/research/window1/WINDOW1_HOLDOUT_SEAL_AUDIT_ADDENDUM_20260806.md

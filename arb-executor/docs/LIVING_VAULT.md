@@ -1667,3 +1667,16 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a
 
 Report:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bfde0d8d1135f5c5f48a5f3d619ab30050efab83/.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/REPORT.md
+
+### 2026-08-06 - SEALED HOLDOUT GENERALIZATION EXAM BLOCKED BEFORE RUN
+
+The July 24-26 population is N=228 / 456 legs, event-list SHA-256
+`8f3d650e72b9efcd2a0694ac2c2752b8ef934f5cca8aa6928dcd251442b1ca30`.
+It is not sealed: the one allowed evaluation was consumed by the committed
+V11/V13/V14 run; a later 124-event / 144-leg diagnostic informed Fix A's
+one-cent anchor re-arm; and Git proves V28 -> R3 -> V34-W1 -> V35. Therefore
+V35/V34-W1/R3 cannot be presented as an untouched generalization exam on this
+population. Zero requested policy runs, retries, or scorecards were produced.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/34a153490eb4a2ad8776c32a0567d6b1c7a8e060/arb-executor/docs/research/window1/WINDOW1_HOLDOUT_SEAL_AUDIT_ADDENDUM_20260806.md

@@ -1676,3 +1676,16 @@ did not activate: zero brain invocations, zero retries, and zero score rows.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bd4ca66518d7aa60f9981a35c347d48e5a2d75c3/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_SEAL_20260806_ADDENDUM.md
+
+### 2026-08-06 - BOOT GATE STAGE A COMPLETE; RESTART NOT READY
+
+The read-only VPS/Kalshi inheritance audit is complete. `live_v4.py` remains
+stopped and Kalshi has zero resting orders and zero unsettled positions, but
+the VPS tree has 13 modified and 12,418 untracked paths; the working
+`live_v4.py` bytes differ from HEAD; cron has drifted from the controlled-stop
+hash; and the operator's 17-exit premise conflicts with the controlling
+12-exit receipt. One `depth_recorder.py` process is already active. Stage B and
+Stage C were not started. Restart readiness is NOT_READY.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/322a170ea7ad1e9431a26e375540eb75277ae29b/arb-executor/docs/research/window1/BOOT_GATE_STAGE_A_AUDIT_20260806_ADDENDUM.md

@@ -1663,3 +1663,15 @@ invocations, retries, and score rows. The exam waits for more games.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/bd4ca66518d7aa60f9981a35c347d48e5a2d75c3/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_SEAL_20260806_ADDENDUM.md
+
+## BOOT GATE STAGE A COMPLETE; RESTART NOT READY - 2026-08-06
+
+Stage A's read-only VPS/Kalshi audit is frozen. The engine is stopped and the
+exchange has zero resting orders and zero unsettled positions. Restart remains
+NOT_READY because the VPS worktree is heavily dirty, working `live_v4.py`
+differs from HEAD, cron drifted from the stop receipt, and the prompt's 17
+exits conflict with the controlling 12. A `depth_recorder.py` process is
+already running. Stage B/C were not authorized or started.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/322a170ea7ad1e9431a26e375540eb75277ae29b/arb-executor/docs/research/window1/BOOT_GATE_STAGE_A_AUDIT_20260806_ADDENDUM.md

@@ -1,0 +1,37 @@
+{
+  "live_v4_process_count": 0,
+  "pre_restart_log_census": {
+    "log_lines": 10908,
+    "ping_timeouts_since_20260730_start": 2718,
+    "subscriptions_since_20260730_start": 4491,
+    "ws_connected_since_20260730_start": 3558,
+    "ws_errors_since_20260730_start": 2861
+  },
+  "restart": {
+    "new_pid": 3459414,
+    "new_stream": "/root/Omi-Workspace/arb-executor/data/durable/ws_depth_recorder/ws_20260806_23_20260806T235443Z_3459414.jsonl.gz",
+    "old_pid": 325602,
+    "old_stream": "/root/Omi-Workspace/arb-executor/data/durable/ws_depth_recorder/ws_20260806_23_20260730T124949Z_325602.jsonl.gz",
+    "sigint_count": 1,
+    "sigint_exit_within_20_seconds": false,
+    "sigterm_count": 1,
+    "sigterm_exit_seconds": 1
+  },
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-recorder-restart",
+  "signals": "one SIGINT did not exit in 20s; one SIGTERM exited in 1s; no further signal",
+  "supervisor": {
+    "backup": {
+      "bytes": 200,
+      "exists": true,
+      "mode": "0o755",
+      "mtime_epoch": 1782193210.0021315,
+      "path": "/root/ws_capture_guard.pre_stage_b_20260806.sh",
+      "sha256": "44ac3b1087d683ff8376b60459fa1886ebbc36a1eeab70db279990d1e72a2802"
+    },
+    "defect": "substring pgrep also matched capture-registry arguments",
+    "installed_sha256": "dd4839009fa3a8140337100e581d1030802078ae5a17d95a4abf7786620fe275",
+    "preimage_sha256": "44ac3b1087d683ff8376b60459fa1886ebbc36a1eeab70db279990d1e72a2802",
+    "repair": "exact process identity ^python3 -u ws_depth_recorder.py$"
+  },
+  "trading_access": 0
+}

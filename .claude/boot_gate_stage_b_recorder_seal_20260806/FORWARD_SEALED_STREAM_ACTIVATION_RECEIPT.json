@@ -1,0 +1,12 @@
+{
+  "activation_utc": "2026-08-06T23:31:32Z",
+  "all_capture_only": true,
+  "all_untouched_at_capture": true,
+  "decision_relevant_consumption": 0,
+  "registry_events": 60,
+  "registry_sha256": "ce43659f92950f7caef8b16225b5cbb9908beae38fb5e36eba359724de86fc69",
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-forward-activation",
+  "single_writer_lock": "fcntl.LOCK_EX|LOCK_NB; overlap exits SKIP_ALREADY_RUNNING",
+  "trading_access": 0,
+  "unique_events": 60
+}

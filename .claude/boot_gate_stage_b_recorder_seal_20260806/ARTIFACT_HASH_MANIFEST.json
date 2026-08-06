@@ -1,0 +1,115 @@
+{
+  "files": [
+    {
+      "bytes": 2361,
+      "path": "CAPTURE_COVERAGE_20260728_TO_20260806.json",
+      "sha256": "23b4050aac6885508650d3618fec5abf325ab4a6e668736dbaf4c3fae0f279b7"
+    },
+    {
+      "bytes": 346670,
+      "path": "CORRECTED_SEALED_DECLARATION.json",
+      "sha256": "5ee87b786c1bbed2f794e57c2d3e239ebcf80abe5bf4dcdbb9672f2707639b7b"
+    },
+    {
+      "bytes": 123182,
+      "path": "CORRECTED_TOUCH_AUDIT.json",
+      "sha256": "20e850a030fb84760cb7e23e3614b3997a8d73911d6f5a37cd6acb8c41a5eb13"
+    },
+    {
+      "bytes": 1729,
+      "path": "CRON_INSTALL_RECEIPT.json",
+      "sha256": "479466e37b4e12821594b1651113cc85eb6e220ca44d0575dd22a4831104101a"
+    },
+    {
+      "bytes": 222,
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "2a671968ae478d555074222a8e0b6ef7935b531957299bd6e95d22ab4b5c3bb2"
+    },
+    {
+      "bytes": 352,
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "36aac1a4d58d6f9b32bb0d5e47350d9dccbcb763c3ffde52a3e0a2d34b510bb7"
+    },
+    {
+      "bytes": 471,
+      "path": "FORWARD_SEALED_STREAM_ACTIVATION_RECEIPT.json",
+      "sha256": "c6a583ed68d82c5d11508eeeeb9fb1f8b72e15c0a82c2a268db2549b259f60ad"
+    },
+    {
+      "bytes": 1216,
+      "path": "FORWARD_SEALED_STREAM_POLICY.json",
+      "sha256": "1799b6adb3dacabd3fda965f76966843faa783b21241a97827374aa6d8d80341"
+    },
+    {
+      "bytes": 467,
+      "path": "INDEPENDENT_REVIEW_INSTRUCTION.md",
+      "sha256": "11ae23c45318b9f48d69fb0a3823a24fd247f887098434b9e887be3524b3e4d9"
+    },
+    {
+      "bytes": 1176,
+      "path": "LIVE_V4_DRIFT_READONLY_REVIEW.json",
+      "sha256": "454b15659182403a700916095ead3464bab434e46d388576ef04af10fceb2e66"
+    },
+    {
+      "bytes": 47335,
+      "path": "LIVE_V4_UNCOMMITTED_DIFF.patch",
+      "sha256": "6a53d968de2b7ade6f8696bc5ffa68b08121c5f30afacb210b50c02a04d8be55"
+    },
+    {
+      "bytes": 459,
+      "path": "NIGHTLY_RECONCILIATION_CONTRACT.json",
+      "sha256": "f4d25930e1ad0edd055c58c8f7f581c52b2506ee74ac7f389330bd63a33c4555"
+    },
+    {
+      "bytes": 9387,
+      "path": "NIGHTLY_RECONCILIATION_FIRST_PASS.json",
+      "sha256": "c1f37db2d30752299bd2d3145b4ba07397826910def686eecc6b2aa70b0d1f08"
+    },
+    {
+      "bytes": 1322,
+      "path": "RECORDER_ADOPTION_RECEIPT.json",
+      "sha256": "85d44adbd0a956a962093d36cba856c634a806f15767c90b860fe7e15a993fb7"
+    },
+    {
+      "bytes": 1551,
+      "path": "RECORDER_RESTART_RECEIPT.json",
+      "sha256": "83835ee1c9bf691f2d51b8dab28114d33223ae73cc851afa2ae5f21fd4692ee0"
+    },
+    {
+      "bytes": 1100,
+      "path": "RECORDER_RUNTIME_CENSUS.json",
+      "sha256": "b8d39b0ad072f64fda3d388e50f1f9e4a817596dacefb3606df0269eefa90388"
+    },
+    {
+      "bytes": 5494,
+      "path": "SEALED_EVENT_LIST.txt",
+      "sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313"
+    },
+    {
+      "bytes": 325,
+      "path": "SHAPE_ACCUMULATOR_TOUCH_CLASS_RECEIPT.json",
+      "sha256": "daaa08b69b7618f3ae39ba2fcfd7e5e31821eeda8867a5a204717cad94f5f065"
+    },
+    {
+      "bytes": 1435,
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "d39cab1711a5d0824ec615259d47c43937d3c2e37f184667204c736270945338"
+    },
+    {
+      "bytes": 2907,
+      "path": "STAGE_B_REPORT.md",
+      "sha256": "d29eb4c40e7426058487bf4dda881118134969118c3ad2c11253a7125a269510"
+    },
+    {
+      "bytes": 626,
+      "path": "TEST_RESULTS.json",
+      "sha256": "a4acfbaad258c11d9e82f880270fb20ef09e3dd88a5becea57cada82a2d7a1ba"
+    },
+    {
+      "bytes": 511,
+      "path": "TOUCH_LAW.json",
+      "sha256": "2161cfcb6dc36d7865ed2f84883fbb323c51acbc76cf100dabb433267c8f7166"
+    }
+  ],
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-artifacts"
+}

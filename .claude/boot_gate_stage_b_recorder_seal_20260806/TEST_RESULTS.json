@@ -1,0 +1,28 @@
+{
+  "compile": [
+    "window1_holdout_capture_registry.py",
+    "window1_nightly_reconciliation.py",
+    "ws_depth_recorder.py"
+  ],
+  "failed": 0,
+  "passed": 13,
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-tests",
+  "suites": [
+    {
+      "passed": 8,
+      "path": "arb-executor/tests/test_window1_stage_b_recorder_seal.py",
+      "tests": 8
+    },
+    {
+      "passed": 3,
+      "path": "arb-executor/tests/test_ws_depth_retention_contract.py",
+      "tests": 3
+    },
+    {
+      "passed": 2,
+      "path": "arb-executor/tests/test_ws_depth_recorder_contract.py",
+      "tests": 2
+    }
+  ],
+  "total": 13
+}

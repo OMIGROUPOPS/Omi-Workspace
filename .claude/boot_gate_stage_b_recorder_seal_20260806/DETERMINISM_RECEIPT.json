@@ -1,0 +1,7 @@
+{
+  "builds": 2,
+  "byte_identical_regenerable_artifacts": true,
+  "clean_output_directories": 2,
+  "comparison": "relative path, byte size, SHA-256",
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-determinism"
+}

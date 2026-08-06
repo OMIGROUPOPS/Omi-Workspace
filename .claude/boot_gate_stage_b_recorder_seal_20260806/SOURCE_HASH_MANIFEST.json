@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "bytes": 9844,
+      "path": "arb-executor/analysis/window1_holdout_capture_registry.py",
+      "sha256": "2a6c4cb04b3f1071e9fcf63eaaff314673201051f6608f09188672154fa0cb65"
+    },
+    {
+      "bytes": 14210,
+      "path": "arb-executor/analysis/window1_nightly_reconciliation.py",
+      "sha256": "7c992366c8a8bd2cf96b2d11414c7f1b505d96b4038ee626da17bbdbad8a9442"
+    },
+    {
+      "bytes": 20891,
+      "path": "arb-executor/analysis/build_boot_gate_stage_b_recorder_seal.py",
+      "sha256": "1773f6f176ad8161342013a8de63024fe9db3acde099c6f5d2b845f427e9be58"
+    },
+    {
+      "bytes": 6256,
+      "path": "arb-executor/tests/test_window1_stage_b_recorder_seal.py",
+      "sha256": "8434cc4753bb141b23ffa4cdad49a74a6e18ac482cb25e73c13b643aa859c057"
+    },
+    {
+      "bytes": 360,
+      "path": "arb-executor/deploy/ws_capture_guard.sh",
+      "sha256": "dd4839009fa3a8140337100e581d1030802078ae5a17d95a4abf7786620fe275"
+    },
+    {
+      "bytes": 348169,
+      "path": ".claude/window1_fresh_holdout_seal_20260806/REMOTE_TAPE_CENSUS.json",
+      "sha256": "75eb26057f50ce1e48c4b26fd825fca4fadb30168df26503154a1dcaf84f86f6"
+    },
+    {
+      "bytes": 75462,
+      "path": ".claude/window1_fresh_holdout_seal_20260806/GIT_TOUCH_AUDIT.json",
+      "sha256": "06157cda7e37a982047f37c8fc143d63eb6a3182eec60d55d0064faec3450b11"
+    }
+  ],
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-sources"
+}

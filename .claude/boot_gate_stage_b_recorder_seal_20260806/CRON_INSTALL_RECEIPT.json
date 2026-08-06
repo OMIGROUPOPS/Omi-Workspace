@@ -1,0 +1,24 @@
+{
+  "added_active_lines": [
+    "* * * * * cd /root/Omi-Workspace/arb-executor && python3 -B analysis/window1_holdout_capture_registry.py --registry data/durable/holdout_seal/HOLDOUT_CAPTURE_REGISTRY.jsonl --state data/durable/holdout_seal/REGISTRY_STATE.json --policy data/durable/holdout_seal/POLICY.json --recorder-source ws_depth_recorder.py --activation-utc 2026-08-06T23:31:32Z >> /tmp/window1_holdout_capture_registry.log 2>&1 # WINDOW1_CAPTURE_ONLY_HOLDOUT_TAG",
+    "0 2 * * * cd /root/Omi-Workspace/arb-executor && python3 -B analysis/window1_nightly_reconciliation.py --events /srv/omi-research/window1-nightly-938dca47/IMMUTABLE_EVENT_LEDGER.jsonl --boundaries /srv/omi-research/window1-nightly-938dca47/GUARDED_BOUNDARY_LEDGER.jsonl --prints /srv/omi-research/window1-nightly-938dca47/PRINTS_804.jsonl.gz --output-dir data/durable/window1_reconciliation --sample-size 20 >> /tmp/window1_nightly_reconciliation.log 2>&1 # WINDOW1_CAPTURE_RECONCILIATION_N20_938DCA47"
+  ],
+  "added_marker": "# STAGE_B_RECORDER_SEALED_STREAM_20260806_CAPTURE_ONLY",
+  "backup": {
+    "absence_before_creation": true,
+    "bytes": 5948,
+    "mode": "0o600",
+    "path": "/root/root.crontab.pre_stage_b_recorder_seal_20260806.raw",
+    "sha256": "a0476a5698250e5c00cb8d5b5eadcf8fbb927c518ce44d1002b14e7ae184deeb"
+  },
+  "live_v4_launch_lines_active": 0,
+  "live_v4_lines_byte_identical": true,
+  "nightly_schedule": "02:00 ET",
+  "post_bytes": 6941,
+  "post_sha256": "405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149",
+  "pre_bytes": 5948,
+  "pre_sha256": "a0476a5698250e5c00cb8d5b5eadcf8fbb927c518ce44d1002b14e7ae184deeb",
+  "status": "PASS",
+  "timezone": "America/New_York",
+  "unrelated_lines_byte_identical": true
+}

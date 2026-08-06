@@ -1,0 +1,36 @@
+{
+  "activation_utc": "2026-08-06T23:31:32Z",
+  "exam_gate": {
+    "authorization": "existing one-run authorization only after an independently clean seal",
+    "minimum_floor_passing_events": 60,
+    "retry": "FORBIDDEN"
+  },
+  "forbidden": [
+    "trading",
+    "live_v4_launch",
+    "live_v4_source_change",
+    "engine_cron_change",
+    "stage_C"
+  ],
+  "pipeline_exclusion": "sealed events may not enter any decision-relevant evaluation, replay, diagnostic, fitting, tuning, or fix-motivating citation before the authorized one-run exam",
+  "population": "newly_discovered_big4_tennis_events_from_capture_activation_forward",
+  "schema_version": "window1-forward-sealed-stream-policy-v1",
+  "shape_accumulator_class": "CAPTURE_CLASS_NOT_TOUCH_CLASS_UNLESS_LATER_CONSUMED_BY_A_DECISION_RELEVANT_ARTIFACT",
+  "tag": "HOLDOUT_ELIGIBLE_CAPTURE_ONLY",
+  "touch_classes": {
+    "NOT_TOUCH": [
+      "raw_capture",
+      "storage_commit",
+      "mechanical_accumulator_output",
+      "capture_integrity_reconciliation",
+      "seal_metadata"
+    ],
+    "TOUCHED": [
+      "evaluation",
+      "replay",
+      "diagnostic",
+      "fix_motivating_citation"
+    ]
+  },
+  "touch_law": "DECISION_RELEVANT_CONSUMPTION_ONLY"
+}

@@ -1,0 +1,14 @@
+{
+  "active_live_v4_cron_lines": 0,
+  "containment_marker_preserved": true,
+  "engine_cron_line_change": 0,
+  "holdout_replay_or_score": 0,
+  "live_v4_launch": 0,
+  "live_v4_source_change": 0,
+  "orders": 0,
+  "positions": 0,
+  "recorder_restart": 1,
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-forbidden",
+  "stage_c": 0,
+  "trading": 0
+}

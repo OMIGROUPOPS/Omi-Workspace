@@ -1,0 +1,15 @@
+{
+  "access": "public /markets/trades GET only",
+  "alarm": "any mismatch or UNPULLABLE; freeze downstream and escalate full 804",
+  "fields": [
+    "price",
+    "size",
+    "taker_side"
+  ],
+  "identity": "exchange trade_id",
+  "sample_N": 20,
+  "schedule": "0 2 * * * in America/New_York",
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-nightly-contract",
+  "seed": "ET calendar date",
+  "spec_commit": "938dca474e8bc4d96b17095e2aaa7cbb2fe97a87"
+}

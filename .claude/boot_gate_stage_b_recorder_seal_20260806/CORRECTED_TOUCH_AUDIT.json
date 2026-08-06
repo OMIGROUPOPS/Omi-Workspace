@@ -1,0 +1,2784 @@
+{
+  "input_candidates": 172,
+  "rows": [
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27ALBHAS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27AMBKIC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27ANDPOP",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BASNAK",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BLACOM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BOIDEB",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BONBIC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BOSROD",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27BRASUL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27CHOPAS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27DALBRU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27DJEBAS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27GADMAC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "AUDIT_HALT_REPORT",
+          "commit": "daa1be9f23d8e38f9ff5296b386ac5100836d8e3",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27GALPET",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27GOMBER",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27HOLGRE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27HSUMMO",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27KOLKUM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27KRANIC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27KUZBIN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27LAPIE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MARBEC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MILVAN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MIYANA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MOCBRO",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MONMAZ",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MONNAG",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MULNAP",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27PDANIK",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27PINSAM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27POLKOV",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27RICLLA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27RINPRA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SAHTUR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [
+        {
+          "artifact_class": "AUDIT_HALT_REPORT",
+          "commit": "daa1be9f23d8e38f9ff5296b386ac5100836d8e3",
+          "decision_relevant_consumption": true,
+          "reason": "SAHTUR was explicitly diagnosed as a held five-lot no-exit case with band and bid values in the audit-halt report."
+        }
+      ],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "AUDIT_HALT_REPORT",
+          "commit": "daa1be9f23d8e38f9ff5296b386ac5100836d8e3",
+          "decision_relevant_consumption": true,
+          "reason": "SAHTUR was explicitly diagnosed as a held five-lot no-exit case with band and bid values in the audit-halt report."
+        }
+      ],
+      "status": "TOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SAKMAR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SEKCHI",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SINMAT",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SINREJ",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27SWECHA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27TOPABO",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27VARFOR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27VRBJAN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27VRBMAR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27WALDON",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27WENCAS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27WOLZHA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ADDPOU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28AJDSUL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ALKSIN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ARNPIE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28AZKERE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28BARNED",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28BASRAW",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28BITILK",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28CANPEL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28CECAGA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28CORFOR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28DAHMAR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28DENPDA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28DIACOM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28FELMAY",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "030e5d534a6b6bced9b6d360eb9b36ef18defa55",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28GAUPAV",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28GENREI",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28GOMCER",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28HARCHU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "OPERATIONAL_RAW_STATE_SNAPSHOT",
+          "commit": "e7004235c342a2ddaaa53610d85a76c32fb93fdc",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28HOUCAR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28JUSGUE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KASFER",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KIRDHA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KIRINC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KOTGAL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KRUHEN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28KUMBAX",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MAENEU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MARBUE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "030e5d534a6b6bced9b6d360eb9b36ef18defa55",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MARDEL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MARSEY",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MATTRO",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        },
+        {
+          "artifact_class": "OPERATIONAL_RAW_STATE_SNAPSHOT",
+          "commit": "e7004235c342a2ddaaa53610d85a76c32fb93fdc",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MIYNAK",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MOLTOP",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28MONJOR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28NIKBAR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28OLITAB",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "030e5d534a6b6bced9b6d360eb9b36ef18defa55",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28POLDAL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28REHTRA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28REJBRU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28RIBTOR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ROMVIR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28RONNIC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SAKMCD",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SCHGOM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SCHMRV",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SHITOK",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28SKAFAU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28TABSQU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "030e5d534a6b6bced9b6d360eb9b36ef18defa55",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28TOKPAN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28TURURS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28VASVAR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28VRBBAS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28WALGIU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28YEVDUR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ZHULAN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ZINPOL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        },
+        {
+          "artifact_class": "OPERATIONAL_RAW_STATE_SNAPSHOT",
+          "commit": "e7004235c342a2ddaaa53610d85a76c32fb93fdc",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        },
+        {
+          "artifact_class": "OPERATIONAL_RAW_STATE_SNAPSHOT",
+          "commit": "fd623dd042da2f1dfb9479c8a759c8c610672215",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27ARNMUS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27DAMSHE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27DETSI",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27DIABOY",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27FILJOD",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27FRIBER",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27GIRHEW",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27HERTOM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27HUMMAR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27MAJPAU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27MANTIE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27MICDRA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27NAKETC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27NISSHA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27QUISHE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27SVAMEN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27TABGRI",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27TIAATM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXATPMATCH-26JUL27VUKSVA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPMATCH-26JUL28KOUWIN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPMATCH-26JUL28KWONGEA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "226cd5e7cccc57ccb81d3634de255aaeb035d11d",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        },
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPMATCH-26JUL28MAYDUC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "ATP_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXATPMATCH-26JUL28MICMCD",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27BURLAN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27CIRPOP",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27HENPOH",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27KAZROU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27MALBER",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27PRIKOT",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27QUEFET",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27RAMSTR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27ROMSOR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27SZATON",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28BULMON",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28CIRGAI",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28IBRBUR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28JANSOB",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28JONPAQ",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28KOTSPI",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28RISSEM",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28ROURAD",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28SAMBRE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_CHALL",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28TONBRO",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27ALELIU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27COCTAU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27EALZHE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27FERLIN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27FREANN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27KRUBOU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27NAVKEN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27OSOHUN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27POTWIL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27SAMKEY",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27SEBKAL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27SHYBRA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27SIEPRO",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27SONBRA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27STASTE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27STOSTE",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27TJESRA",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27VIDBAS",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27VOLGOL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27WANMCC",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27YEXBIR",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "63e7f4d652564f19ea9da8b0404fe6371ea23f80",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27ZAKFRU",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-27",
+      "event_id": "KXWTAMATCH-26JUL27ZARKES",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTAMATCH-26JUL28BUCKUD",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTAMATCH-26JUL28KASKAL",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_MILESTONE_CAPTURE_OUTPUT",
+          "commit": "5cc332539e644b13a94350150bc71537927f8b1f",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    },
+    {
+      "category": "WTA_MAIN",
+      "event_date": "2026-07-28",
+      "event_id": "KXWTAMATCH-26JUL28PARWAN",
+      "floor_pass_admissible": true,
+      "genuine_consuming_artifacts": [],
+      "prior_git_identity_hits": [
+        {
+          "artifact_class": "MECHANICAL_SHAPE_ACCUMULATOR_OUTPUT",
+          "commit": "dac5f1a7be94870e247e645cd85c376c6698d182",
+          "decision_relevant_consumption": false,
+          "reason": "Identity occurred only in capture/storage/mechanical output or an incidental operational raw-state row; no decision evaluation, replay, diagnostic, or fix-motivating argument consumed this event."
+        }
+      ],
+      "status": "SEALED_UNTOUCHED"
+    }
+  ],
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-corrected-touch-audit",
+  "sealed_untouched": 171,
+  "touched": 1
+}

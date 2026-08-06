@@ -1,0 +1,36 @@
+{
+  "access": "READ_ONLY",
+  "diff_bytes": 47335,
+  "diff_numstat": "692\t39\tarb-executor/live_v4.py",
+  "diff_sha256": "6a53d968de2b7ade6f8696bc5ffa68b08121c5f30afacb210b50c02a04d8be55",
+  "head_blob": "f1857199164664037fef41b024e60f27fa373548",
+  "ruling": "MIXED_UNCOMMITTED_DRIFT_NOT_ADOPTED_NOT_STAGE_C_READY",
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-live-v4-drift",
+  "stage_b_source_mutation": 0,
+  "surface_classes": {
+    "capture_provenance": [
+      "WS source/receive timestamps",
+      "frame hashes",
+      "trade IDs",
+      "BBO/trade retention"
+    ],
+    "decision_affecting": [
+      "bulk entry-fill polling defaults on",
+      "authority-order contract",
+      "optional recognition gate",
+      "initial-entry aim modes"
+    ],
+    "observe_only": [
+      "wrongness monitor",
+      "consultation lineage"
+    ],
+    "paper_replay": [
+      "PaperApi filters",
+      "paper fill receipts"
+    ]
+  },
+  "vps_head": "7036ace045eaf16d822939ceabdad23a683ae82e",
+  "working_blob": "c25cd3129248710a665d77eb815a9df6a93c9009",
+  "working_bytes": 1025887,
+  "working_sha256": "25698d80642524c70f39d850ef0a7041edda6df9c4d2dbac0c666d58aab56a63"
+}

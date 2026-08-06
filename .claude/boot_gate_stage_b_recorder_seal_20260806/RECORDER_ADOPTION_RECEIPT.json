@@ -1,0 +1,29 @@
+{
+  "authoritative": {
+    "action": "ONE_CLEAN_RECORDER_RESTART_AFTER_DEGRADED_RECONNECT_CENSUS",
+    "command": "python3 -u ws_depth_recorder.py",
+    "open_streams": [
+      "/root/Omi-Workspace/arb-executor/data/durable/ws_depth_recorder/ws_20260806_23_20260806T235443Z_3459414.jsonl.gz"
+    ],
+    "output": "/root/Omi-Workspace/arb-executor/data/durable/ws_depth_recorder/ws_*.jsonl.gz",
+    "pid": 3459414,
+    "process_count_final": 1,
+    "source_sha256": "8d895e6fdf8431546069cac2c6a72b1f68daecec101f65def4dc8db1d62a4efb",
+    "started_et": "2026-08-06 19:54:41 ET",
+    "supervisor": "/root/ws_capture_guard.sh (root cron every minute)",
+    "supervisor_sha256": "dd4839009fa3a8140337100e581d1030802078ae5a17d95a4abf7786620fe275"
+  },
+  "engine_process_count": 0,
+  "health_after": "ONE_PROCESS_SUBSCRIBED_AND_WRITING_NEW_SESSION_STREAM",
+  "health_before": "DEGRADED_REPEATED_SHORT_RECONNECT_BLIND_INTERVALS",
+  "restart_count_stage_b": 1,
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-recorder-runtime",
+  "secondary_legacy": {
+    "action": "LEFT_RUNNING_UNCHANGED",
+    "command": "python3 /root/Omi-Workspace/arb-executor/depth_recorder.py",
+    "pid": 1213728,
+    "process_count_final": 1,
+    "role": "NON_AUTHORITATIVE_CAPPED_REST_RECORDER"
+  },
+  "source_byte_identity_local_remote": true
+}

@@ -1,0 +1,1019 @@
+diff --git a/arb-executor/live_v4.py b/arb-executor/live_v4.py
+index f1857199..c25cd312 100644
+--- a/arb-executor/live_v4.py
++++ b/arb-executor/live_v4.py
+@@ -21,6 +21,7 @@ live_v3.py @366d8aa -- DO NOT modify those paths.
+ import asyncio
+ import aiohttp
+ import base64
++import hashlib
+ import json
+ import math
+ import os
+@@ -44,6 +45,16 @@ from cryptography.hazmat.primitives.asymmetric import padding
+ 
+ from fv import get_consensus_fv, check_fv_stability
+ 
++try:
++    from wrongness_monitor import (
++        VerdictMonitor,
++        WrongnessAlarm,
++        audit_surface_consult,
++    )
++    WRONGNESS_MONITOR_AVAILABLE = True
++except ImportError:
++    WRONGNESS_MONITOR_AVAILABLE = False
++
+ try:
+     from intelligence import recommended_window_seconds, kalshi_price_anchor
+     INTELLIGENCE_AVAILABLE = True
+@@ -268,6 +279,8 @@ ENGAGEMENT_INCIDENT_FILE = STATE_DIR / "engagement_incident.json"  # [C-JOINBID
+ SCHEDULE_FILE = STATE_DIR / "schedule.json"
+ TICK_DIR = Path(__file__).resolve().parent / "analysis" / "premarket_ticks"
+ TRADE_DIR = Path(__file__).resolve().parent / "analysis" / "trades"
++RETENTION_DIR = Path(__file__).resolve().parent / "state" / \
++    "window1_decision_inputs_v2"
+ 
+ SERIES_MAP = {
+     'ATP_MAIN': ['KXATPMATCH'],
+@@ -470,11 +483,59 @@ class Book:
+     last_trade_price: int = 0
+     last_trade_ts: float = 0.0
+     last_trade_side: str = ""
++    bbo_source_ts: float = 0.0
++    bbo_receive_ts: float = 0.0
++    bbo_raw_sha256: str = ""
++    last_trade_source_ts: float = 0.0
++    last_trade_receive_ts: float = 0.0
++    last_trade_raw_sha256: str = ""
++    last_trade_id: str = ""
+ 
+ def recalc_bbo(b):
+     b.best_bid = max(b.bids.keys()) if b.bids else 0
+     b.best_ask = min(b.asks.keys()) if b.asks else 100
+ 
++
++def _ws_source_epoch(message):
++    """Extract a source timestamp without pretending receive-time is source."""
++    candidates = []
++    if isinstance(message, dict):
++        candidates.append(message)
++        if isinstance(message.get("msg"), dict):
++            candidates.append(message["msg"])
++    for row in candidates:
++        for field_name in ("ts", "timestamp", "created_time", "created_at"):
++            value = row.get(field_name)
++            if value in (None, ""):
++                continue
++            try:
++                if isinstance(value, str) and not value.replace(
++                        ".", "", 1).isdigit():
++                    return datetime.fromisoformat(
++                        value.replace("Z", "+00:00")).timestamp()
++                epoch = float(value)
++                if epoch > 10_000_000_000:
++                    epoch /= 1000.0
++                return epoch
++            except (TypeError, ValueError):
++                continue
++    return None
++
++
++def _ws_frame_meta(raw, message, received_ts=None):
++    received_ts = float(received_ts or time.time())
++    raw_bytes = raw if isinstance(raw, bytes) else str(raw).encode("utf-8")
++    source_ts = _ws_source_epoch(message)
++    return {
++        "received_ts": received_ts,
++        "source_ts": source_ts,
++        "staleness_ms": (
++            round(max(0.0, received_ts - source_ts) * 1000.0, 3)
++            if source_ts is not None else None
++        ),
++        "raw_sha256": hashlib.sha256(raw_bytes).hexdigest(),
++    }
++
+ # -------------------------------------------------------------------------
+ # Position state per ticker
+ # -------------------------------------------------------------------------
+@@ -900,7 +961,25 @@ class PaperApi:
+             order = self.paper_orders.get(oid)
+             if not order:
+                 return {"order": None, "_error": "not_found"}
+-            return {"order": order.to_kalshi_dict()}
++            row = order.to_kalshi_dict()
++            # Replay-only fault injection for the observed VAN class: the
++            # single-order status read is stale while account position/fill
++            # truth is current.  Never enabled by a deployed configuration.
++            if (self.bot.config.get(
++                    "replay_stale_single_order_fill_status", False)
++                    and order.filled_count > 0):
++                row = dict(row)
++                row.update({
++                    "status": "resting",
++                    "fill_count_fp": 0.0,
++                    "count_filled": 0,
++                    "average_fill_price_fp": 0.0,
++                })
++                self._emit("paper_stale_order_status_injected", {
++                    "order_id": oid,
++                    "actual_fill_count": order.filled_count,
++                }, ticker=order.ticker)
++            return {"order": row}
+ 
+         # List orders
+         if path_only == "/trade-api/v2/portfolio/orders":
+@@ -915,6 +994,38 @@ class PaperApi:
+                 orders.append(o.to_kalshi_dict())
+             return {"orders": orders}
+ 
++        # Fill receipts.  Paper mode exposes the same account-level shape the
++        # live receipt-first poll consumes.  One paper order has one terminal
++        # receipt because the named replay fill model is all-or-nothing.
++        if path_only == "/trade-api/v2/portfolio/fills":
++            ticker_filter = query.get("ticker", [None])[0]
++            order_filter = query.get("order_id", [None])[0]
++            min_ts = float(query.get("min_ts", ["0"])[0] or 0)
++            fills = []
++            for o in self.paper_orders.values():
++                if o.filled_count <= 0:
++                    continue
++                if ticker_filter and o.ticker != ticker_filter:
++                    continue
++                if order_filter and o.order_id != order_filter:
++                    continue
++                if o.last_event_ts < min_ts:
++                    continue
++                fills.append({
++                    "fill_id": "PAPER-FILL-%s" % o.order_id,
++                    "order_id": o.order_id,
++                    "ticker": o.ticker,
++                    "action": o.action,
++                    "side": o.side,
++                    "count_fp": float(o.filled_count),
++                    "yes_price_dollars": o.yes_price / 100.0,
++                    "created_time": datetime.fromtimestamp(
++                        o.last_event_ts, tz=timezone.utc).isoformat(),
++                    "ts": int(o.last_event_ts),
++                })
++            fills.sort(key=lambda row: (row["ts"], row["fill_id"]))
++            return {"fills": fills, "cursor": ""}
++
+         # Positions
+         if path_only == "/trade-api/v2/portfolio/positions":
+             ticker_filter = query.get("ticker", [None])[0]
+@@ -1927,11 +2038,14 @@ class LiveV3:
+         # Tick logging
+         TICK_DIR.mkdir(parents=True, exist_ok=True)
+         TRADE_DIR.mkdir(parents=True, exist_ok=True)
++        RETENTION_DIR.mkdir(parents=True, exist_ok=True)
+         self._tick_files: Dict[str, object] = {}
+         self._tick_writers: Dict[str, object] = {}
+         self._tick_last_bbo: Dict[str, tuple] = {}  # dedup unchanged ticks
+         self._trade_files: Dict[str, object] = {}
+         self._trade_writers: Dict[str, object] = {}
++        self._retention_files: Dict[tuple, object] = {}
++        self._anchor_consultation: Dict[str, dict] = {}
+ 
+         self.n_matches_seen = 0
+         self.n_entries = 0
+@@ -3164,9 +3278,21 @@ class LiveV3:
+         (Part 3). Never raises; never places."""
+         try:
+             D = {}
++            D["consultation_lineage"] = (
++                dict(self._anchor_consultation.get(tk) or {
++                    "schema": "window1_consultation_key_v2",
++                    "status": "MISSING",
++                    "why": "anchor consultation was not retained",
++                })
++            )
+             bot9 = (sv9 or {}).get("bottom") or {}
+             # 1) the atlas page (prices the aim)
+-            D["atlas_page"] = {"status": "CONSULTED",
++            _aim_mode = str(self.config.get(
++                "interim_entry_aim_mode", "ATLAS")).upper()
++            D["atlas_page"] = {
++                               "status": ("CONSULTED"
++                                          if _aim_mode == "ATLAS"
++                                          else "OBSERVED_NOT_AUTHORITY"),
+                                "page": (sv9 or {}).get("page"),
+                                "n": (sv9 or {}).get("n"),
+                                "bottom_p25_50_75": [bot9.get("depth_p25"),
+@@ -3275,16 +3401,36 @@ class LiveV3:
+                 "nearest_at_mid": ({"n": _rc9.get("n"),
+                                     "w2_reach": _rc9.get("w2_reach")}
+                                    if _rc9 else None)}
+-            # 6) fitted dip timing (+ the timing SHADOW variant)
+-            D["dip_timing"] = {"status": "CONSULTED",
+-                               "bottom_t_med_min": bot9.get("t_med_min"),
+-                               "shadow_would_delay_min":
+-                                   (max(0, round((tts_min or 0)
+-                                                 - (bot9.get("t_med_min")
+-                                                    or 0)))
+-                                    if tts_min is not None and
+-                                    bot9.get("t_med_min") is not None
+-                                    else None)}
++            # 6) fitted dip timing (+ the timing SHADOW variant).
++            # [C-ATLAS-CLOCK-CONTRACT 2026-07-29] Legacy ``t_med_min`` is
++            # minutes from the fitted -0k onset.  ``tts_min`` is minutes to
++            # the scheduled bell.  They are not subtractable.  Refuse the
++            # old field until a bell-fitted surface supplies the explicit
++            # T-minus field; the false comparison was telemetry-only but
++            # taught operators the wrong zero.
++            _bell_t9 = bot9.get("tminus_actual_bell_med_min")
++            if self.config.get("atlas_clock_contract_v2", True):
++                D["dip_timing"] = (
++                    {"status": "CONSULTED",
++                     "axis": "tminus_actual_bell",
++                     "bottom_tminus_actual_bell_med_min": _bell_t9,
++                     "schedule_translation": "UNRESOLVED"}
++                    if _bell_t9 is not None else
++                    {"status": "REFUSED_AXIS_MISMATCH",
++                     "field_present": "t_med_min",
++                     "field_axis": "minutes_from_minus_0k_onset",
++                     "consumer_axis": "tminus_scheduled_start",
++                     "law": "different zeros are never subtracted"})
++            else:
++                D["dip_timing"] = {"status": "LEGACY_AXIS_MISMATCH",
++                                   "bottom_t_med_min": bot9.get("t_med_min"),
++                                   "shadow_would_delay_min":
++                                       (max(0, round((tts_min or 0)
++                                                     - (bot9.get("t_med_min")
++                                                        or 0)))
++                                        if tts_min is not None and
++                                        bot9.get("t_med_min") is not None
++                                        else None)}
+             # 7) flow-state harvest rate (the HARVESTABLE MAP)
+             _h5 = (Lw9 or {}).get("rate_per_hr", {}).get("5")
+             D["flow_state"] = {"status": ("CONSULTED" if fb9 else
+@@ -3515,19 +3661,35 @@ class LiveV3:
+                 pages9 = self._trendpath_atlas()
+                 pg9 = pages9.get((sv9 or {}).get("page") or "")
+                 if pg9 and tts_min is not None:
+-                    sl9 = min((pg9.get("path") or {}).keys(),
++                    if self.config.get("atlas_clock_contract_v2", True):
++                        _path9 = pg9.get("path_tminus_actual_bell") or {}
++                    else:
++                        _path9 = pg9.get("path") or {}
++                    sl9 = min(_path9.keys(),
+                               key=lambda s: abs(int(s) - int(tts_min)),
+                               default=None)
+                     if sl9:
+-                        p25s = (pg9["path"][sl9] or {}).get("p25")
++                        p25s = (_path9[sl9] or {}).get("p25")
+                         if p25s is not None:
+                             rs9 = {"slice_min": int(sl9),
++                                   "axis": ("tminus_actual_bell"
++                                            if self.config.get(
++                                                "atlas_clock_contract_v2",
++                                                True)
++                                            else "legacy_minus_0k_onset"),
+                                    "shadow_aim": max(1, int(round(
+                                        current_price + p25s)))}
+             except Exception:
+                 rs9 = None
+             D["shadow_range_shape"] = {"status": "SHADOW", **(rs9 or
+-                                       {"why": "no path slice at this clock"})}
++                                       {"why": ("bell-axis path absent or "
++                                                "schedule translation "
++                                                "unresolved"
++                                                if self.config.get(
++                                                    "atlas_clock_contract_v2",
++                                                    True)
++                                                else "no path slice at this "
++                                                     "clock")})}
+             # [ONE-AUTHORITY LAW 07-20 PM] the dossier NAMES the leg's
+             # single pricing authority — always.
+             try:
+@@ -3543,9 +3705,108 @@ class LiveV3:
+                 "surfaces": D,
+                 "law": "C-VAULT-WIRED-ENTRY v1 (a silently-ignored "
+                        "surface is a named violation)"}, ticker=tk)
++            self._observe_wrongness(
++                tk=tk,
++                event_ticker=et,
++                category=cat,
++                decision=decision,
++                selector=sv9 or {},
++                dossier=D,
++            )
+         except Exception:
+             pass
+ 
++    def _emit_wrongness_alarms(self, alarms, context):
++        """Log semantic-contract failures without changing the decision."""
++        if str(self.config.get(
++                "wrongness_monitor_mode", "off")).lower() != "observe_only":
++            return
++        for alarm in alarms or ():
++            payload = (
++                alarm.as_dict()
++                if hasattr(alarm, "as_dict")
++                else dict(alarm)
++            )
++            self._log("wrongness_alarm", {
++                "mode": "observe_only",
++                "would_severity": payload.get("severity"),
++                "code": payload.get("code"),
++                "details": payload.get("details") or {},
++                **context,
++            }, ticker=context.get("ticker") or "")
++
++    def _observe_wrongness(self, tk, event_ticker, category, decision,
++                           selector, dossier):
++        """Observe current surface/key and verdict/effect mismatches.
++
++        This is deliberately non-enforcing.  It measures how often the
++        existing path consults a surface on a different key than its fit,
++        consumes a thin/contractless row, or posts after a computed refusal.
++        """
++        if (
++            str(self.config.get(
++                "wrongness_monitor_mode", "off")).lower() != "observe_only"
++            or not WRONGNESS_MONITOR_AVAILABLE
++        ):
++            return
++        lineage = dossier.get("consultation_lineage") or {}
++        page = selector.get("page")
++        base_context = {
++            "event": event_ticker,
++            "ticker": tk,
++            "category": category,
++            "consulted_at_ts": lineage.get("consulted_at_ts"),
++        }
++        if page:
++            alarms = audit_surface_consult(
++                "ATLAS_V1:" + str(page),
++                {
++                    "price_source": "first_hour_median",
++                    "timestamp_semantics": "first_hour_discovery_interval",
++                },
++                {
++                    "price_source": lineage.get("anchor_source"),
++                    "timestamp_semantics": "exact_consultation_time",
++                },
++                selector.get("n"),
++            )
++            self._emit_wrongness_alarms(alarms, base_context)
++
++        cohort = dossier.get("cohort") or {}
++        if cohort.get("status") in {"CONSULTED", "THIN"}:
++            alarms = audit_surface_consult(
++                "COHORT:" + str(cohort.get("cell")),
++                None,
++                {
++                    "price_source": lineage.get("anchor_source"),
++                    "timestamp_semantics": "exact_consultation_time",
++                },
++                cohort.get("n"),
++            )
++            self._emit_wrongness_alarms(alarms, base_context)
++
++        verdict = selector.get("selector")
++        actual_effect = (
++            "POST" if str(decision).startswith("placed:") else "REFUSE"
++        )
++        expected_effect = "REFUSE" if verdict == "DROP" else actual_effect
++        monitor = VerdictMonitor()
++        decision_id = "%s|%s|%s|contention" % (
++            event_ticker,
++            tk,
++            lineage.get("consulted_at_ts"),
++        )
++        monitor.record(
++            decision_id,
++            tk,
++            verdict,
++            expected_effect=expected_effect,
++        )
++        self._emit_wrongness_alarms(
++            monitor.observe(decision_id, effect=actual_effect),
++            base_context,
++        )
++
+     def _orient_table(self):
+         """ORIENT_V1 hot-reload (refits nightly with the atlas)."""
+         _op = Path(__file__).resolve().parent.parent / \
+@@ -3767,10 +4028,16 @@ class LiveV3:
+         if not bmap:
+             return
+         C = self.__dict__.setdefault("_bcasc_state", {})
++        tracked = set(self.positions)
++        if self.config.get("recognition_before_place", False):
++            tracked.update(
++                tk for tk in self._window_open
++                if self.get_category(tk) is not None
++            )
+         # purge legs the engine no longer tracks
+-        for tk in [t for t in C if t not in self.positions]:
++        for tk in [t for t in C if t not in tracked]:
+             C.pop(tk, None)
+-        for tk, pos in list(self.positions.items()):
++        for tk in sorted(tracked):
+             try:
+                 cat = self.get_category(tk)
+                 cm = (bmap or {}).get(cat)
+@@ -4488,6 +4755,7 @@ class LiveV3:
+ 
+         ROLLBACK: running_mid_anchor=True restores the legacy 30-min-mean + BBO-mid path
+         (anchor_src running_mid / bbo_mid_fallback). Default OFF; one-line config rollback."""
++        consulted_at = time.time()
+         # (4c) freeze_at_gun: once the tape is live, no FRESH entry post -- resting bids stay
+         # static (dip-fillable), we never open a new leg into the gun. Default OFF => no gate.
+         if self.freeze_at_gun and self._is_match_live(tk.rsplit("-", 1)[0]):
+@@ -4503,7 +4771,7 @@ class LiveV3:
+         else:
+             # --- DEFAULT: last-traded reference ---
+             lt = book.last_trade_price
+-            lt_age = (time.time() - book.last_trade_ts) if book.last_trade_ts else float("inf")
++            lt_age = (consulted_at - book.last_trade_ts) if book.last_trade_ts else float("inf")
+             # [C-STALE-ANCHOR-ALLOWANCE 07-10, operator THRESHOLD ruling --
+             # RULING_STALE_ANCHOR_ALLOWANCE.md]: an event with an OPEN
+             # early-unlock (realized >= the staged floor, ITF only) widens
+@@ -4535,6 +4803,40 @@ class LiveV3:
+             else:
+                 # no fresh print -> skip (no BBO-mid fallback by design). Caller logs skip_no_trade.
+                 return None
++        self._anchor_consultation[tk] = {
++            "schema": "window1_consultation_key_v2",
++            "consulted_at_ts": consulted_at,
++            "ticker": tk,
++            "event_ticker": self.ticker_to_event.get(
++                tk, tk.rsplit("-", 1)[0]),
++            "category": cat,
++            "anchor_source": anchor_src,
++            "anchor_price_cents": int(anchor_price),
++            "last_trade_price_cents": (
++                int(book.last_trade_price)
++                if book.last_trade_price else None
++            ),
++            "last_trade_source_ts": book.last_trade_source_ts or None,
++            "last_trade_received_ts": book.last_trade_receive_ts or (
++                book.last_trade_ts or None),
++            "last_trade_staleness_sec": (
++                round(consulted_at - book.last_trade_source_ts, 3)
++                if book.last_trade_source_ts else None
++            ),
++            "last_trade_raw_sha256": (
++                book.last_trade_raw_sha256 or None),
++            "last_trade_id": book.last_trade_id or None,
++            "best_bid_cents": int(book.best_bid),
++            "best_ask_cents": int(book.best_ask),
++            "bbo_source_ts": book.bbo_source_ts or None,
++            "bbo_received_ts": book.bbo_receive_ts or (
++                book.updated or None),
++            "bbo_staleness_sec": (
++                round(consulted_at - book.bbo_source_ts, 3)
++                if book.bbo_source_ts else None
++            ),
++            "bbo_raw_sha256": book.bbo_raw_sha256 or None,
++        }
+         cell = self.cell_lookup(self._entry_cat(cat), anchor_price)
+         regime = self.regime_lookup(self._entry_cat(cat), anchor_price)
+         row, table_src = None, None
+@@ -4592,7 +4894,10 @@ class LiveV3:
+         # with the reason on the dossier. Every steer logs old-vs-cohort,
+         # cohort named. Downstream clamps (band, caps, floors) unchanged.
+         if (self.config.get("cohort_steer_live", False)
+-                and not _role_riser):
++                and (
++                    not _role_riser
++                    or self.config.get("cohort_steer_riser", False)
++                )):
+             try:
+                 _cc, _ck = self._cohort_read(cat, False, anchor_price)
+                 if _cc and _cc.get("refuse"):
+@@ -4701,6 +5006,71 @@ class LiveV3:
+         return (anchor_price, anchor_src, cell, regime, placement_min, offset,
+                 exp_fill, exp_roi, target_bid, table_src)
+ 
++    def _initial_entry_aim(self, tk, current_price, atlas_depth):
++        """Resolve exactly one initial-entry aim authority.
++
++        ``ATLAS`` preserves the deployed path.  The three table-free modes are
++        explicit counterfactual/interim authorities: they read only the
++        synchronous BBO already captured for this decision and never borrow a
++        fitted row.  A missing or crossed denominator refuses instead of
++        falling back to a cent line.
++        """
++        mode = str(self.config.get(
++            "interim_entry_aim_mode", "ATLAS")).upper()
++        if mode == "ATLAS":
++            if atlas_depth is None:
++                return None, {
++                    "mode": mode,
++                    "status": "NO_ATLAS_PAGE",
++                }
++            return max(1, int(round(
++                float(current_price) - float(atlas_depth)
++            ))), {
++                "mode": mode,
++                "status": "AVAILABLE",
++                "atlas_depth_cents": float(atlas_depth),
++            }
++        if mode not in {
++            "JOIN",
++            "TOUCH_MINUS_1",
++            "ONE_SPREAD_BELOW_MID",
++        }:
++            return None, {
++                "mode": mode,
++                "status": "UNKNOWN_AUTHORITY",
++            }
++        book = self.books.get(tk)
++        bid = int(book.best_bid) if book is not None else 0
++        ask = int(book.best_ask) if book is not None else 100
++        spread = ask - bid
++        if bid <= 0 or ask >= 100 or spread <= 0:
++            return None, {
++                "mode": mode,
++                "status": "NO_DENOMINATOR",
++                "best_bid_cents": bid,
++                "best_ask_cents": ask,
++            }
++        if mode == "JOIN":
++            target = bid
++        elif mode == "TOUCH_MINUS_1":
++            target = bid - 1
++        else:
++            target = math.floor((bid + ask) / 2.0 - spread)
++        return max(1, int(target)), {
++            "mode": mode,
++            "status": "AVAILABLE",
++            "best_bid_cents": bid,
++            "best_ask_cents": ask,
++            "spread_cents": spread,
++            "formula": {
++                "JOIN": "best_bid",
++                "TOUCH_MINUS_1": "best_bid-1",
++                "ONE_SPREAD_BELOW_MID": (
++                    "floor((best_bid+best_ask)/2-spread)"
++                ),
++            }[mode],
++        }
++
+     def _load_exit_table(self):
+         """Load the 4 {category}_adaptive_exit_bands.parquet into
+         self.exit_table[category] = {cell_id -> (band_x|None, "exit"|"hold")}.
+@@ -5154,6 +5524,71 @@ class LiveV3:
+         asks = tuple(sorted(book.asks.items())[:5])
+         return (bids, asks)
+ 
++    def _retention_write(self, stream, payload):
++        """Append compact causal input lineage, daily-rotated and fail-soft."""
++        if not self.config.get("decision_input_retention_v2", False):
++            return
++        try:
++            day = datetime.now(timezone.utc).strftime("%Y%m%d")
++            key = (stream, day)
++            fh = self._retention_files.get(key)
++            if fh is None:
++                path = RETENTION_DIR / ("%s_%s.jsonl" % (stream, day))
++                fh = open(path, "a", encoding="utf-8")
++                self._retention_files[key] = fh
++            fh.write(json.dumps(payload, sort_keys=True,
++                                separators=(",", ":")) + "\n")
++            fh.flush()
++        except OSError:
++            self._log_write_errors = getattr(
++                self, "_log_write_errors", 0) + 1
++
++    def _log_bbo_retention(self, ticker, book, channel):
++        source_ts = book.bbo_source_ts or None
++        received_ts = book.bbo_receive_ts or book.updated or time.time()
++        self._retention_write("bbo", {
++            "schema": "window1_bbo_v2",
++            "ticker": ticker,
++            "event_ticker": self.ticker_to_event.get(
++                ticker, ticker.rsplit("-", 1)[0]),
++            "channel": channel,
++            "received_ts": received_ts,
++            "source_ts": source_ts,
++            "staleness_ms": (
++                round(max(0.0, received_ts - source_ts) * 1000.0, 3)
++                if source_ts is not None else None
++            ),
++            "raw_sha256": book.bbo_raw_sha256 or None,
++            "best_bid_cents": book.best_bid,
++            "best_ask_cents": book.best_ask,
++            "last_trade_cents": book.last_trade_price or None,
++            "last_trade_source_ts": book.last_trade_source_ts or None,
++            "last_trade_received_ts": book.last_trade_receive_ts or None,
++            "last_trade_raw_sha256": book.last_trade_raw_sha256 or None,
++            "last_trade_id": book.last_trade_id or None,
++        })
++
++    def _log_trade_retention(self, ticker, book, price, count, side):
++        received_ts = book.last_trade_receive_ts or time.time()
++        source_ts = book.last_trade_source_ts or None
++        self._retention_write("trade", {
++            "schema": "window1_trade_v2",
++            "ticker": ticker,
++            "event_ticker": self.ticker_to_event.get(
++                ticker, ticker.rsplit("-", 1)[0]),
++            "received_ts": received_ts,
++            "source_ts": source_ts,
++            "staleness_ms": (
++                round(max(0.0, received_ts - source_ts) * 1000.0, 3)
++                if source_ts is not None else None
++            ),
++            "raw_sha256": book.last_trade_raw_sha256 or None,
++            "trade_id": book.last_trade_id or None,
++            "price_cents": price,
++            "count": count,
++            "taker_side": side,
++        })
++
+     def _log_tick(self, ticker, book):
+         """Write depth tick to per-ticker CSV. Dedup on top-5 depth change."""
+         bid, ask = book.best_bid, book.best_ask
+@@ -5210,7 +5645,7 @@ class LiveV3:
+         except OSError:
+             self._log_write_errors = getattr(self, "_log_write_errors", 0) + 1
+ 
+-    def apply_trade(self, ticker, msg):
++    def apply_trade(self, ticker, msg, envelope=None):
+         """Process a trade event from WebSocket."""
+         if ticker not in self.books:
+             self.books[ticker] = Book()
+@@ -5235,9 +5670,21 @@ class LiveV3:
+             self._tape_basis[ticker] = "ws_live"
+         except Exception:
+             pass
++        envelope = envelope or {
++            "received_ts": time.time(), "source_ts": None,
++            "raw_sha256": "",
++        }
+         book.last_trade_price = price
+-        book.last_trade_ts = time.time()
++        # Preserve the legacy behavior clock on receive-time. Source-time is
++        # retained separately and is never silently substituted.
++        book.last_trade_ts = float(envelope["received_ts"])
+         book.last_trade_side = side
++        book.last_trade_receive_ts = float(envelope["received_ts"])
++        book.last_trade_source_ts = float(
++            envelope.get("source_ts") or 0.0)
++        book.last_trade_raw_sha256 = envelope.get("raw_sha256") or ""
++        book.last_trade_id = str(
++            msg.get("trade_id", msg.get("id", "")) or "")
+         # T51: feed the volume-acceleration live detector (per-ticker trade times).
+         dq = self._trade_times[ticker]
+         dq.append(book.last_trade_ts)
+@@ -5270,6 +5717,7 @@ class LiveV3:
+         if _PAPER_API is not None:
+             _PAPER_API.on_trade(ticker, book.last_trade_ts, price, count, side)
+         self._log_trade(ticker, price, count, side)
++        self._log_trade_retention(ticker, book, price, count, side)
+ 
+     def _log_trade(self, ticker, price, count, taker_side):
+         """Write trade to per-ticker CSV."""
+@@ -5898,7 +6346,11 @@ class LiveV3:
+                 self._log("ws_subscribe_error", {"error": str(e)})
+         self._log("ws_subscribed", {"new": len(new), "total": len(self.subscribed)})
+ 
+-    def apply_snapshot(self, ticker, msg):
++    def apply_snapshot(self, ticker, msg, envelope=None):
++        envelope = envelope or {
++            "received_ts": time.time(), "source_ts": None,
++            "raw_sha256": "",
++        }
+         book = Book()
+         for level in msg.get("yes_dollars_fp", msg.get("yes", [])):
+             if isinstance(level, list) and len(level) >= 2:
+@@ -5911,7 +6363,10 @@ class LiveV3:
+                 if size > 0:
+                     book.asks[100 - no_price] = size
+         recalc_bbo(book)
+-        book.updated = time.time()
++        book.updated = float(envelope["received_ts"])
++        book.bbo_receive_ts = float(envelope["received_ts"])
++        book.bbo_source_ts = float(envelope.get("source_ts") or 0.0)
++        book.bbo_raw_sha256 = envelope.get("raw_sha256") or ""
+         # [C-TAPE-SEED 07-10] a snapshot replaces the BOOK, not the TAPE:
+         # carry last-trade memory (live or REST-seeded) across the rebuild.
+         # Every ws (re)connect snapshot was wiping it -- the amnesia's second
+@@ -5922,12 +6377,21 @@ class LiveV3:
+             book.last_trade_price = prev.last_trade_price
+             book.last_trade_ts = prev.last_trade_ts
+             book.last_trade_side = prev.last_trade_side
++            book.last_trade_source_ts = prev.last_trade_source_ts
++            book.last_trade_receive_ts = prev.last_trade_receive_ts
++            book.last_trade_raw_sha256 = prev.last_trade_raw_sha256
++            book.last_trade_id = prev.last_trade_id
+         self.books[ticker] = book
+         self._log_tick(ticker, book)
++        self._log_bbo_retention(ticker, book, "orderbook_snapshot")
+         if _PAPER_API is not None:
+             _PAPER_API.on_book_update(ticker)
+ 
+-    def apply_delta(self, ticker, msg):
++    def apply_delta(self, ticker, msg, envelope=None):
++        envelope = envelope or {
++            "received_ts": time.time(), "source_ts": None,
++            "raw_sha256": "",
++        }
+         if ticker not in self.books:
+             self.books[ticker] = Book()
+         book = self.books[ticker]
+@@ -5947,7 +6411,10 @@ class LiveV3:
+             if book.asks[ap] <= 0:
+                 book.asks.pop(ap, None)
+         recalc_bbo(book)
+-        book.updated = time.time()
++        book.updated = float(envelope["received_ts"])
++        book.bbo_receive_ts = float(envelope["received_ts"])
++        book.bbo_source_ts = float(envelope.get("source_ts") or 0.0)
++        book.bbo_raw_sha256 = envelope.get("raw_sha256") or ""
+         self._log_tick(ticker, book)
+         if _PAPER_API is not None:
+             _PAPER_API.on_book_update(ticker)
+@@ -6006,30 +6473,35 @@ class LiveV3:
+         tickers dirty for the worker. No awaits -> work is bounded to one frame
+         between recv yields, so a flood can never starve the keepalive."""
+         msg = json.loads(raw)
++        envelope = _ws_frame_meta(raw, msg)
+         typ = msg.get("type", "")
+         if typ == "orderbook_snapshot":
+             tk = msg.get("msg", {}).get("market_ticker", "")
+             if tk:
+-                self.apply_snapshot(tk, msg.get("msg", {}))
++                self.apply_snapshot(tk, msg.get("msg", {}), envelope)
+                 self._mark_bbo_dirty(tk)
+         elif typ == "orderbook_delta":
+             tk = msg.get("msg", {}).get("market_ticker", "")
+             if tk:
+                 bk_before = self.books.get(tk)
+                 old_bbo = (bk_before.best_bid, bk_before.best_ask) if bk_before else None
+-                self.apply_delta(tk, msg.get("msg", {}))
++                self.apply_delta(tk, msg.get("msg", {}), envelope)
+                 bk_after = self.books.get(tk)
+                 new_bbo = (bk_after.best_bid, bk_after.best_ask) if bk_after else None
+                 # Only flag dirty on an actual BBO change (matches tennis_stb):
+                 # a delta that doesn't move best_bid/best_ask can't change any
+                 # placement decision.
+                 if new_bbo != old_bbo:
++                    self._log_bbo_retention(
++                        tk, bk_after, "orderbook_delta")
+                     self._mark_bbo_dirty(tk)
+         elif typ == "trade":
+             # Trades are NOT coalesceable -- every print matters for the tape and
+             # VolumeTracker. Applied synchronously in-order; fast, low volume.
+-            self.apply_trade(msg.get("msg", {}).get("market_ticker", msg.get("msg", {}).get("ticker", "")),
+-                            msg.get("msg", {}))
++            self.apply_trade(
++                msg.get("msg", {}).get(
++                    "market_ticker", msg.get("msg", {}).get("ticker", "")),
++                msg.get("msg", {}), envelope)
+         elif typ == "market_lifecycle_v2":
+             # Bug 4 §6.2: rare and must NEVER be dropped. Dispatch directly (the
+             # settled payload is minimal; the REST value-hop is its own
+@@ -9694,9 +10166,113 @@ class LiveV3:
+                 "verdict": (res or {}).get("verdict"),
+                 "outcome": "error", "error": str(e)[:200]}, ticker=tk)
+ 
++    async def _poll_entry_fills_bulk(self):
++        """Book tracked entry fills from the account fill receipt ledger.
++
++        This is deliberately limited to currently tracked ``entry_resting``
++        orders.  It neither adopts foreign fills nor replaces the normal
++        order-status/cancel paths.
++        """
++        tracked = {
++            pos.entry_order_id: (tk, pos)
++            for tk, pos in list(self.positions.items())
++            if (not pos.settled and pos.phase == "entry_resting"
++                and pos.entry_order_id)
++        }
++        if not tracked:
++            return
++
++        posted = [
++            float(pos.entry_posted_ts)
++            for _tk, pos in tracked.values()
++            if float(pos.entry_posted_ts or 0) > 0
++        ]
++        # Include a one-minute overlap so a fill whose exchange timestamp is
++        # rounded or arrives on a page boundary cannot fall through the seam.
++        min_ts = max(0, int(min(posted) - 60)) if posted else \
++            max(0, int(time.time() - 86400))
++        path = ("/trade-api/v2/portfolio/fills?limit=1000"
++                "&min_ts=%d" % min_ts)
++        rows, cursor = [], None
++        while True:
++            data = await api_get(
++                self.session, self.ak, self.pk,
++                path + ("&cursor=%s" % cursor if cursor else ""), self.rl)
++            page = (data or {}).get("fills", [])
++            rows.extend(page)
++            cursor = (data or {}).get("cursor")
++            if not cursor or not page:
++                break
++
++        by_order = {}
++        for fill in rows:
++            oid = fill.get("order_id")
++            if oid not in tracked:
++                continue
++            action = str(fill.get("action") or "buy").lower()
++            if action != "buy":
++                continue
++            qty_raw = fill.get(
++                "count_fp", fill.get("count", fill.get("count_filled", 0)))
++            try:
++                qty = int(float(qty_raw or 0))
++            except (TypeError, ValueError):
++                qty = 0
++            if qty <= 0:
++                continue
++            price_raw = fill.get(
++                "yes_price_dollars",
++                fill.get("yes_price", fill.get("price", 0)))
++            try:
++                price_num = float(price_raw or 0)
++            except (TypeError, ValueError):
++                price_num = 0
++            price = (round(price_num * 100)
++                     if 0 < price_num < 1.5 else int(price_num))
++            acc = by_order.setdefault(oid, {
++                "qty": 0, "weighted_price": 0, "receipts": 0})
++            acc["qty"] += qty
++            acc["weighted_price"] += qty * price
++            acc["receipts"] += 1
++
++        for oid, acc in by_order.items():
++            tk, pos = tracked[oid]
++            if pos.phase != "entry_resting" or pos.entry_order_id != oid:
++                continue
++            filled = int(acc["qty"])
++            if filled <= int(pos.entry_qty or 0):
++                continue
++            fill_price = (
++                round(acc["weighted_price"] / filled)
++                if acc["weighted_price"] > 0 else int(pos.entry_price))
++            self._log("bulk_fill_receipt", {
++                "order_id": oid,
++                "filled": filled,
++                "fill_price": fill_price,
++                "receipt_rows": acc["receipts"],
++                "min_ts": min_ts,
++            }, ticker=tk)
++            if pos.is_v4:
++                await self._book_v4_entry_fill(
++                    tk, pos, filled, fill_price, "executed")
++
+     async def check_fills(self):
+         """Poll Kalshi for fill status on all active orders."""
+         _cs_now = time.time()
++        # [C-FILL-RECEIPT-FIRST 2026-07-29] One account-level fill-ledger
++        # read precedes the legacy per-order status loop.  The latter can
++        # starve a specific order behind a large book; /portfolio/fills is
++        # the exchange's receipt stream and lets us book every tracked entry
++        # seen in the interval in one paginated pass.  The per-order reads
++        # remain as a fallback and for order status/cancel handling.
++        if self.config.get("bulk_fill_poll_enabled", True):
++            try:
++                await self._poll_entry_fills_bulk()
++            except Exception as _bfe:
++                self._log("bulk_fill_poll_error", {
++                    "err": str(_bfe)[:200],
++                    "fallback": "per_order_status_poll",
++                })
+         for tk, pos in list(self.positions.items()):
+             if pos.settled:
+                 continue
+@@ -11365,13 +11941,33 @@ class LiveV3:
+                 # prices another entry. Orientation layers in when its own
+                 # bar clears (orientation_live, dark); sizing dark pending
+                 # the operator's separate word.
++                if self.config.get("recognition_before_place", False):
++                    _bc_leg9 = self.__dict__.setdefault(
++                        "_bcasc_state", {}).get(tk) or {}
++                    _bc_pair9 = self.__dict__.setdefault(
++                        "_bcasc_pair", {}).get(et)
++                    if not (_bc_leg9.get("band") and _bc_pair9):
++                        _rw9 = self.__dict__.setdefault(
++                            "_recognition_wait_logged", set())
++                        if tk not in _rw9:
++                            _rw9.add(tk)
++                            self._log("recognition_wait_before_place", {
++                                "event": et,
++                                "leg_band_ready": bool(_bc_leg9.get("band")),
++                                "pair_ready": bool(_bc_pair9),
++                                "law": "wait for drift/band recognition "
++                                       "before PATH placement",
++                            }, ticker=tk)
++                        continue
+                 if _sv9 is None:
+                     try:
+                         _sv9 = self._selector_verdict(cat, current_price)
+                     except Exception:
+                         _sv9 = None
+                 _d509 = ((_sv9 or {}).get("bottom") or {}).get("depth_p50")
+-                if _d509 is None:
++                _aim_mode9 = str(self.config.get(
++                    "interim_entry_aim_mode", "ATLAS")).upper()
++                if _d509 is None and _aim_mode9 == "ATLAS":
+                     self._log("no_path_page_refused", {
+                         "event": et, "cat": cat,
+                         "discovery": current_price,
+@@ -11388,10 +11984,51 @@ class LiveV3:
+                                         anchor_src=anchor_src,
+                                         lt_age=round(lt_age_sec, 1))
+                     continue
++                if (self.config.get("contention_drop_enforced", False)
++                        and (_sv9 or {}).get("selector") == "DROP"):
++                    self._log("contention_drop_refused", {
++                        "event": et,
++                        "cat": cat,
++                        "discovery": current_price,
++                        "selector": "DROP",
++                        "page": (_sv9 or {}).get("page"),
++                        "law": "selector DROP is a placement veto",
++                    }, ticker=tk)
++                    self._entry_dossier(
++                        tk, et, cat, current_price, None,
++                        "refused:contention_drop", sv9=_sv9,
++                        pl9=None, regime=regime,
++                        tts_min=round(time_to_start / 60),
++                        anchor_src=anchor_src,
++                        lt_age=round(lt_age_sec, 1))
++                    continue
+                 if True:
+-                    _pa9 = max(1, int(round(current_price - _d509)))
+-                    _mode9 = "no_call_posture"
+-                    if self.config.get("orientation_live", False):
++                    _pa9, _aim_contract9 = self._initial_entry_aim(
++                        tk, current_price, _d509)
++                    if _pa9 is None:
++                        self._log("entry_aim_refused", {
++                            "event": et,
++                            "cat": cat,
++                            "authority": _aim_mode9,
++                            **_aim_contract9,
++                        }, ticker=tk)
++                        self._entry_dossier(
++                            tk, et, cat, current_price, None,
++                            "refused:entry_aim_contract", sv9=_sv9,
++                            pl9=None, regime=regime,
++                            tts_min=round(time_to_start / 60),
++                            anchor_src=anchor_src,
++                            lt_age=round(lt_age_sec, 1))
++                        continue
++                    _mode9 = (
++                        "no_call_posture"
++                        if _aim_mode9 == "ATLAS"
++                        else "table_free_" + _aim_mode9.lower()
++                    )
++                    if (
++                        _aim_mode9 == "ATLAS"
++                        and self.config.get("orientation_live", False)
++                    ):
+                         _orr9 = self._orient_read(tk, et, cat)
+                         if _orr9 and _orr9.get("orientation") == \
+                                 "TRADE-ORIENTED":
+@@ -11438,15 +12075,23 @@ class LiveV3:
+                         self._log("trendpath_live_aim", {
+                             "event": et, "from_target": target_bid,
+                             "path_aim": _pa9, "mode": _mode9,
+-                            "page": _sv9.get("page"),
+-                            "page_n": _sv9.get("n"),
++                            "authority": _aim_mode9,
++                            "aim_contract": _aim_contract9,
++                            "page": (_sv9 or {}).get("page"),
++                            "page_n": (_sv9 or {}).get("n"),
+                             **({"leg_range_clamped": True,
+                                 "clamp_cite": "operator 5-95 adjudication "
+                                               "07-05"} if _clamped9 else {}),
+-                            "citation": "ATLAS_V1 %s (path bottom p50; "
+-                                        "cutover 07-14 operator word)"
+-                                        % _sv9.get("page"),
+-                            "entry_governor": "trendpath_path_aim"},
++                            "citation": (
++                                "ATLAS_V1 %s (path bottom p50; "
++                                "cutover 07-14 operator word)"
++                                % (_sv9 or {}).get("page")
++                                if _aim_mode9 == "ATLAS"
++                                else "TABLE_FREE_SPREAD_RELATIVE_V1"),
++                            "entry_governor": (
++                                "trendpath_path_aim"
++                                if _aim_mode9 == "ATLAS"
++                                else "table_free_spread_relative")},
+                             ticker=tk)
+                         entry_price = target_bid = _pa9
+                         _plc[et] = (tk, _pa9)
+@@ -15981,6 +16626,14 @@ class LiveV3:
+         # occurs: touched/held/retreated/orphans/cents removed.
+         if self.config.get("one_authority_enabled", False):
+             seen_a = seen.setdefault("authority", {})
++            # Reconcile emits canonical ``order_id``/``price``.  The legacy
++            # readers are retained only as an explicit replay control.
++            _canon14 = self.config.get(
++                "authority_order_contract_v2", True)
++            _oid14_read = (lambda row: row.get("order_id")) if _canon14 \
++                else (lambda row: row.get("oid"))
++            _px14_read = (lambda row: row.get("price")) if _canon14 \
++                else (lambda row: row.get("px"))
+             # exempt ids (probe guinea pigs) — mtime-cached, shared
+             # attr with the book audit's loader
+             try:

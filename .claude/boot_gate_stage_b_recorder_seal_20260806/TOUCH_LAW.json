@@ -1,0 +1,18 @@
+{
+  "law": "TOUCHED_IFF_CONSUMED_BY_DECISION_RELEVANT_ARTIFACT",
+  "not_touch": [
+    "raw_capture",
+    "storage_commit",
+    "mechanical_accumulator_output",
+    "capture_integrity_reconciliation",
+    "seal_metadata"
+  ],
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-touch-law",
+  "shape_accumulator": "CAPTURE_CLASS; becomes touch only if a later decision-relevant artifact consumes its event",
+  "touched": [
+    "evaluation",
+    "replay",
+    "diagnostic",
+    "fix_motivating_citation"
+  ]
+}

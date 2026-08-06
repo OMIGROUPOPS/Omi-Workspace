@@ -1,0 +1,7 @@
+{
+  "class": "CAPTURE_CLASS_NOT_TOUCH_CLASS",
+  "condition": "A later evaluation/replay/diagnostic/fix-motivating citation of an event is genuine touch.",
+  "cron": "45 4 * * * analysis/shape_accumulator.py",
+  "cron_changed_stage_b": false,
+  "schema_version": "boot-gate-stage-b-recorder-seal-v1-shape-accumulator-class"
+}

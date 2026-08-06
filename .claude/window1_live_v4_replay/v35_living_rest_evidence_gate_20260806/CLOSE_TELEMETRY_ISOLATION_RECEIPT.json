@@ -1,0 +1,13 @@
+{
+  "close_fields_present_as_telemetry_only": true,
+  "close_fields_consumed_by_scorecard": 0,
+  "close_fields_consumed_by_frontier": 0,
+  "close_fields_consumed_by_regret": 0,
+  "strict_grade_digest_with_telemetry": "8db4e51f7417a996e2c4d7ce8f1d022d6c77346ab85431d2173ab695d15feacf",
+  "strict_grade_digest_without_close_named_fields": "8db4e51f7417a996e2c4d7ce8f1d022d6c77346ab85431d2173ab695d15feacf",
+  "census_grade_digest_with_telemetry": "c54b9367175bb4f930d21fdd2a5e43546796215399b92ecf505e336d491a3158",
+  "census_grade_digest_without_close_named_fields": "c54b9367175bb4f930d21fdd2a5e43546796215399b92ecf505e336d491a3158",
+  "strict_invariant": true,
+  "census_invariant": true,
+  "settlement_basis_reads": 0
+}

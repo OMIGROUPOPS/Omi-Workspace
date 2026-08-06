@@ -1,0 +1,15 @@
+{
+  "decision_rows": 3610317,
+  "strict_decisions": 2006150,
+  "census_decisions": 1604167,
+  "action_and_fill_rows": 1126455,
+  "strict_compact_leg_rows": 1608,
+  "census_compact_leg_rows": 1608,
+  "post_edge_rows": 0,
+  "both_clocks": {
+    "scheduled_clock_non_null": 3610317,
+    "actual_bell_clock_non_null": 1203025,
+    "boundary_clock_non_null": 3610317
+  },
+  "conservation_pass": true
+}

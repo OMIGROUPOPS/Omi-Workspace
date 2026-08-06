@@ -1,0 +1,1592 @@
+{
+  "BOSCOP_COP": {
+    "rest_actions_45_to_66": {
+      "count": 42562,
+      "kinds": {
+        "REPRICE_REST": 42562
+      },
+      "target_cents": {
+        "denominator": 42562,
+        "numeric_n": 42562,
+        "null_n": 0,
+        "min": 45,
+        "p25": 46,
+        "median": 47,
+        "p75": 48,
+        "p90": 50,
+        "max": 66,
+        "total": 2022552,
+        "total_cents": 2022552
+      },
+      "first": {
+        "mode": "STRICT_LAW",
+        "kind": "REPRICE_REST",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+        "target_cents": 63,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-86636",
+        "state": "RISING",
+        "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+        "timestamp_epoch": 1783858820,
+        "t_minus_scheduled_seconds": -4820,
+        "t_minus_actual_bell_seconds": 159580,
+        "t_minus_pre_match_boundary_seconds": 159580,
+        "pre_match_boundary_epoch": 1784018400,
+        "pre_match_boundary_source": "exact_start_utc",
+        "bell_confidence": "exact"
+      },
+      "last": {
+        "mode": "STRICT_LAW",
+        "kind": "REPRICE_REST",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+        "target_cents": 66,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-164694",
+        "state": "RISING",
+        "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+        "timestamp_epoch": 1783951778,
+        "t_minus_scheduled_seconds": -97778,
+        "t_minus_actual_bell_seconds": 66622,
+        "t_minus_pre_match_boundary_seconds": 66622,
+        "pre_match_boundary_epoch": 1784018400,
+        "pre_match_boundary_source": "exact_start_utc",
+        "bell_confidence": "exact"
+      },
+      "ordered_jsonl_sha256": "f7a9afceae8b76f6ef2661eb76abade6f1ad344728064e419a9e7791ab987b82"
+    },
+    "seller_sweep_fill_rows_47_to_51": {
+      "count": 0,
+      "kinds": {},
+      "target_cents": {
+        "denominator": 0,
+        "numeric_n": 0,
+        "null_n": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "first": null,
+      "last": null,
+      "ordered_jsonl_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "any_rest_in_required_band": true,
+    "complete_rows_source": "ACTION_AND_FILL_TRACE_PARTS.json"
+  },
+  "POLKUH_POL": {
+    "named_seller_timestamp_epoch": 1783872979,
+    "last_rest_action_at_or_before_seller": {
+      "mode": "STRICT_LAW",
+      "kind": "REPRICE_REST",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+      "target_cents": 79,
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-138",
+      "state": "RISING",
+      "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+      "timestamp_epoch": 1783835069,
+      "t_minus_scheduled_seconds": 48931,
+      "t_minus_actual_bell_seconds": 44131,
+      "t_minus_pre_match_boundary_seconds": 44131,
+      "pre_match_boundary_epoch": 1783879200,
+      "pre_match_boundary_source": "exact_start_utc",
+      "bell_confidence": "exact"
+    }
+  },
+  "NO_FIRST_FLICKER_OVERPAY": {
+    "KXATPCHALLENGERMATCH-26JUL12KRALOR|LOR": {
+      "prohibited_taker_entry_cents": 6,
+      "prohibited_taker_count": 0,
+      "fills": [
+        {
+          "mode": "STRICT_LAW",
+          "kind": "FILL",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12KRALOR|LOR",
+          "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+          "entry_cents": 5,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR.csv.gz#row-348",
+          "decision_reason": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+          "state_label_ignored_for_take_authority": true,
+          "active_evidence_floor_cents": 5,
+          "active_evidence_receipts": 1,
+          "displayed_ask": {
+            "price_cents": 5,
+            "size": 938,
+            "spread": 1,
+            "dwell_seconds": 420,
+            "crossed_or_locked": false
+          },
+          "timestamp_epoch": 1783822560,
+          "t_minus_scheduled_seconds": 39840,
+          "t_minus_actual_bell_seconds": 38040,
+          "t_minus_pre_match_boundary_seconds": 38040,
+          "pre_match_boundary_epoch": 1783860600,
+          "pre_match_boundary_source": "exact_start_utc",
+          "bell_confidence": "exact"
+        }
+      ]
+    },
+    "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM": {
+      "prohibited_taker_entry_cents": 41,
+      "prohibited_taker_count": 0,
+      "fills": [
+        {
+          "mode": "STRICT_LAW",
+          "kind": "FILL",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+          "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+          "entry_cents": 38,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2834",
+          "decision_reason": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+          "state_label_ignored_for_take_authority": true,
+          "active_evidence_floor_cents": 38,
+          "active_evidence_receipts": 2,
+          "displayed_ask": {
+            "price_cents": 38,
+            "size": 1013,
+            "spread": 1,
+            "dwell_seconds": 368,
+            "crossed_or_locked": false
+          },
+          "timestamp_epoch": 1783936336,
+          "t_minus_scheduled_seconds": -82336,
+          "t_minus_actual_bell_seconds": 9764,
+          "t_minus_pre_match_boundary_seconds": 9764,
+          "pre_match_boundary_epoch": 1783946100,
+          "pre_match_boundary_source": "exact_start_utc",
+          "bell_confidence": "exact"
+        }
+      ]
+    },
+    "KXATPCHALLENGERMATCH-26JUL12BOSCOP|BOS": {
+      "prohibited_taker_entry_cents_while_downward_evidence_live": 32,
+      "prohibited_taker_count_while_downward_evidence_live": 0,
+      "later_take_after_evidence_absorbed": [
+        {
+          "mode": "STRICT_LAW",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|BOS",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-BOS",
+          "category": "ATP_CHALL",
+          "price_region": "26_50",
+          "starting_price_split": "le25+le25",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-BOS.csv.gz#row-6139",
+          "ordinal": 6139,
+          "timestamp_epoch": 1783868647,
+          "t_minus_scheduled_seconds": -14647,
+          "t_minus_actual_bell_seconds": 149753,
+          "t_minus_pre_match_boundary_seconds": 149753,
+          "pre_match_boundary_epoch": 1784018400,
+          "pre_match_boundary_source": "exact_start_utc",
+          "bell_confidence": "exact",
+          "observation": {
+            "bid": 31,
+            "ask": 32,
+            "last_traded": 34,
+            "spread": 1,
+            "ask_dwell_seconds": 1538,
+            "top_ask_size": 27,
+            "bid_depth_5": 104,
+            "ask_depth_5": 149,
+            "depth_ratio": 0.41106719367588934
+          },
+          "quote_path": {
+            "state": "SETTLED",
+            "receipt": null,
+            "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+          },
+          "pressure_state": "SETTLED",
+          "combined_state": "SETTLED",
+          "disagreement": false,
+          "causal_discount_evidence": {
+            "running_trade_low_cents": 34,
+            "running_seller_hit_low_cents": null,
+            "running_qualifying_ask_low_cents": 32,
+            "running_price_bearing_evidence_floor_cents": 32,
+            "receipt_local_evidence_floor_cents": 32,
+            "falling_state_carry_floor_cents": null,
+            "falling_state_carry_authority": null,
+            "active_evidence_floor_cents": 32,
+            "active_trailing_evidence_receipts": 1,
+            "transient_directional_horizon_seconds": 300,
+            "floor_first_flicker_live": false,
+            "floor_creation_directional_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-BOS.csv.gz#row-5960",
+            "latest_downward_evidence_timestamp_epoch": 1783867749,
+            "latest_downward_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-BOS.csv.gz#row-6043"
+          },
+          "pair_cap_cents": null,
+          "order_before_cents": 30,
+          "decision": {
+            "action": "TAKE",
+            "target_cents": 32,
+            "reason": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+            "take_permission": {
+              "permitted": true,
+              "reason": "ASK_AT_OR_BELOW_ACTIVE_EVIDENCE_FLOOR"
+            }
+          },
+          "order_after_cents": 32
+        }
+      ],
+      "semantic_note": "THE ORDER PROHIBITS BOS_32_WHILE_28_TO_30_DOWNWARD_EVIDENCE_IS_FORMING; THE SAME_32_AFTER_THE_EXISTING_STATE_HORIZON_EXPIRES_WITH_NO_NEW_LOW_IS_LAWFULLY_TAKEABLE_PER THE EXPLICIT AGE_OUT CLAUSE"
+    }
+  },
+  "ARNROM": {
+    "span": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "category": "ATP_CHALL",
+      "starting_price_split": "le25+le25",
+      "w1_left_epoch": 1783801048,
+      "w1_right_epoch": 1783946100,
+      "edge_source_field": "exact_start_utc",
+      "precision_class": "exact",
+      "selected_source": "official_provider_match_start",
+      "selected_source_family": "exact_official_provider_match_start",
+      "selected_timestamp_precision": "second",
+      "conflict_status": "none",
+      "interval_contradiction": false,
+      "non_positive_span": false,
+      "span_seconds": 145052,
+      "formation_clock": {
+        "timestamp_epoch": 1783801048,
+        "t_minus_scheduled_seconds": 52952,
+        "t_minus_actual_bell_seconds": 145052,
+        "t_minus_pre_match_boundary_seconds": 145052,
+        "pre_match_boundary_epoch": 1783946100,
+        "pre_match_boundary_source": "exact_start_utc",
+        "bell_confidence": "exact"
+      },
+      "edge_clock": {
+        "timestamp_epoch": 1783946100,
+        "t_minus_scheduled_seconds": -92100,
+        "t_minus_actual_bell_seconds": 0,
+        "t_minus_pre_match_boundary_seconds": 0,
+        "pre_match_boundary_epoch": 1783946100,
+        "pre_match_boundary_source": "exact_start_utc",
+        "bell_confidence": "exact"
+      },
+      "per_leg": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+          "first_two_sided_book_epoch": 1783801048,
+          "first_book_inside_window_epoch": 1783801048,
+          "last_book_inside_window_epoch": 1783946080,
+          "w1_two_sided_book_receipts": 29211,
+          "w1_true_prints": 53,
+          "print_backed_achievable_floor_cents": 50,
+          "qualifying_ask_floor_cents": 56,
+          "w1_close_telemetry": {
+            "status": "AVAILABLE_TELEMETRY_ONLY",
+            "price_cents": 62,
+            "timestamp_epoch": 1783946071.296273,
+            "ordinal": 5229,
+            "receipt": "5ef22dea-976c-6f1f-d55b-5c3f920bdaa7",
+            "size": 0.15,
+            "aggressor_side": "BUYER"
+          },
+          "book_receipts_after_edge_excluded": 4198,
+          "print_receipts_after_edge_excluded": 4602
+        },
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+          "first_two_sided_book_epoch": 1783801048,
+          "first_book_inside_window_epoch": 1783801048,
+          "last_book_inside_window_epoch": 1783946079,
+          "w1_two_sided_book_receipts": 614,
+          "w1_true_prints": 21,
+          "print_backed_achievable_floor_cents": 38,
+          "qualifying_ask_floor_cents": 38,
+          "w1_close_telemetry": {
+            "status": "AVAILABLE_TELEMETRY_ONLY",
+            "price_cents": 39,
+            "timestamp_epoch": 1783946040.188695,
+            "ordinal": 9409,
+            "receipt": "edd2cf62-2030-4e80-e12d-6a084618c884",
+            "size": 23,
+            "aggressor_side": "BUYER"
+          },
+          "book_receipts_after_edge_excluded": 5020,
+          "print_receipts_after_edge_excluded": 4127
+        }
+      ]
+    },
+    "STRICT_LAW": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "category": "ATP_CHALL",
+      "starting_price_split": "le25+le25",
+      "bell_confidence": "exact",
+      "edge_source_field": "exact_start_utc",
+      "mode": "STRICT_LAW",
+      "w1_left_epoch": 1783801048,
+      "w1_right_epoch": 1783946100,
+      "legs": {
+        "ARN": {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "le25+le25",
+          "price_region": "51_75",
+          "leg_id": "ARN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+          "R3": {
+            "acted": true,
+            "credited": true,
+            "entry_cents": 56
+          },
+          "w1_print_backed_achievable_floor_cents": 50,
+          "w1_print_backed_floor_receipts": [
+            {
+              "receipt": "97aa41d3-acef-438c-6f1d-7a533d39565f",
+              "timestamp_epoch": 1783875407.2936049,
+              "ordinal": 5279,
+              "price_cents": 50,
+              "size": 6.59,
+              "aggressor_side": "SELLER"
+            },
+            {
+              "receipt": "5c29f6c3-cac0-44cf-7bb0-4588f6c9f7c8",
+              "timestamp_epoch": 1783875407.2936049,
+              "ordinal": 5280,
+              "price_cents": 50,
+              "size": 9,
+              "aggressor_side": "SELLER"
+            }
+          ],
+          "w1_qualifying_ask_floor_cents": 56,
+          "w1_qualifying_ask_floor_receipts": {
+            "count": 30,
+            "first": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35562",
+              "timestamp_epoch": 1783896032,
+              "ordinal": 35562,
+              "bid": 55,
+              "ask": 56,
+              "spread": 1,
+              "dwell_seconds": 15398,
+              "displayed_size": 57
+            },
+            "last": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-36869",
+              "timestamp_epoch": 1783902650,
+              "ordinal": 36869,
+              "bid": 58,
+              "ask": 56,
+              "spread": -2,
+              "dwell_seconds": 22016,
+              "displayed_size": 2
+            }
+          },
+          "w1_close_telemetry": {
+            "status": "AVAILABLE_TELEMETRY_ONLY",
+            "price_cents": 62,
+            "timestamp_epoch": 1783946071.296273,
+            "ordinal": 5229,
+            "receipt": "5ef22dea-976c-6f1f-d55b-5c3f920bdaa7",
+            "size": 0.15,
+            "aggressor_side": "BUYER"
+          },
+          "w1_true_print_count": 53,
+          "w1_two_sided_book_receipts": 29211,
+          "acted": true,
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "action_timestamp_epoch": null,
+          "fill_timestamp_epoch": null,
+          "pair_cap_cents": 61,
+          "running_trade_low": 50,
+          "running_seller_hit_low": 50,
+          "running_qualified_ask_low": 56,
+          "decision_count": 29211,
+          "state_counts": {
+            "FALLING": 28673,
+            "RISING": 386,
+            "SETTLED": 152
+          },
+          "action_counts": {
+            "PLACE_REST": 1,
+            "HOLD_REST": 29044,
+            "REPRICE_REST": 166
+          },
+          "disagreement_count": 28537,
+          "maker_reprices": 166,
+          "rest_sanity": {
+            "tracked_book_receipts": 29211,
+            "exact_target_receipts": 29211,
+            "gap_abs_max_cents": 0,
+            "reprice_up": 126,
+            "reprice_down": 40,
+            "target_min_cents": 3,
+            "target_max_cents": 60,
+            "best_bid_min_cents": 4,
+            "best_bid_max_cents": 61
+          },
+          "first_decision": {
+            "mode": "STRICT_LAW",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 6254,
+              "ask_depth_5": 6488,
+              "depth_ratio": 0.4908177680113012
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "last_decision": {
+            "mode": "STRICT_LAW",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-39156",
+            "ordinal": 39156,
+            "timestamp_epoch": 1783946080,
+            "t_minus_scheduled_seconds": -92080,
+            "t_minus_actual_bell_seconds": 20,
+            "t_minus_pre_match_boundary_seconds": 20,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 61,
+              "ask": 62,
+              "last_traded": 62,
+              "spread": 1,
+              "ask_dwell_seconds": 212,
+              "top_ask_size": 6091,
+              "bid_depth_5": 13100,
+              "ask_depth_5": 19621,
+              "depth_ratio": 0.400354512392653
+            },
+            "quote_path": {
+              "state": "RISING",
+              "receipt": "5ef22dea-976c-6f1f-d55b-5c3f920bdaa7",
+              "evidence": "BUYER_LIFT_PRINT"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "RISING",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": 50,
+              "running_seller_hit_low_cents": 50,
+              "running_qualifying_ask_low_cents": 56,
+              "running_price_bearing_evidence_floor_cents": 50,
+              "receipt_local_evidence_floor_cents": 61,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": 50,
+              "active_trailing_evidence_receipts": 14,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": 1783946080,
+              "latest_downward_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-39155"
+            },
+            "pair_cap_cents": 61,
+            "order_before_cents": 60,
+            "decision": {
+              "action": "HOLD_REST",
+              "target_cents": 60,
+              "reason": "DISPLAYED_ASK_ABOVE_PAIR_CAP",
+              "take_permission": {
+                "permitted": false,
+                "reason": "DISPLAYED_ASK_ABOVE_PAIR_CAP"
+              }
+            },
+            "order_after_cents": 60
+          },
+          "first_action": {
+            "mode": "STRICT_LAW",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 6254,
+              "ask_depth_5": 6488,
+              "depth_ratio": 0.4908177680113012
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "terminal_reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+          "entry_minus_print_backed_floor_cents": null,
+          "entry_minus_qualifying_ask_floor_cents": null,
+          "resting_at_hard_edge": true,
+          "resting_target_at_hard_edge_cents": 60,
+          "first_action_timestamp_epoch": 1783801048
+        },
+        "ROM": {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "le25+le25",
+          "price_region": "26_50",
+          "leg_id": "ROM",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+          "R3": {
+            "acted": true,
+            "credited": true,
+            "entry_cents": 42
+          },
+          "w1_print_backed_achievable_floor_cents": 38,
+          "w1_print_backed_floor_receipts": [
+            {
+              "receipt": "a1014925-6aed-471a-a2f7-4588702ea904",
+              "timestamp_epoch": 1783941185.25247,
+              "ordinal": 9417,
+              "price_cents": 38,
+              "size": 5,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "74db96d5-6e3b-4eba-9a6a-7d27119f45df",
+              "timestamp_epoch": 1783941185.25247,
+              "ordinal": 9418,
+              "price_cents": 38,
+              "size": 100,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "16b520e6-9df9-427b-8e7e-4054e3d86140",
+              "timestamp_epoch": 1783941185.25247,
+              "ordinal": 9419,
+              "price_cents": 38,
+              "size": 100,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "ceb09561-c86a-6b2f-d6ee-365382588151",
+              "timestamp_epoch": 1783945426.066083,
+              "ordinal": 9415,
+              "price_cents": 38,
+              "size": 55.05,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "7492e150-da99-62ca-e92e-20f7de4cc2d8",
+              "timestamp_epoch": 1783945426.066083,
+              "ordinal": 9416,
+              "price_cents": 38,
+              "size": 8,
+              "aggressor_side": "BUYER"
+            }
+          ],
+          "w1_qualifying_ask_floor_cents": 38,
+          "w1_qualifying_ask_floor_receipts": {
+            "count": 76,
+            "first": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2814",
+              "timestamp_epoch": 1783935997,
+              "ordinal": 2814,
+              "bid": 37,
+              "ask": 38,
+              "spread": 1,
+              "dwell_seconds": 29,
+              "displayed_size": 800
+            },
+            "last": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-3381",
+              "timestamp_epoch": 1783946002,
+              "ordinal": 3381,
+              "bid": 38,
+              "ask": 38,
+              "spread": 0,
+              "dwell_seconds": 10034,
+              "displayed_size": 1
+            }
+          },
+          "w1_close_telemetry": {
+            "status": "AVAILABLE_TELEMETRY_ONLY",
+            "price_cents": 39,
+            "timestamp_epoch": 1783946040.188695,
+            "ordinal": 9409,
+            "receipt": "edd2cf62-2030-4e80-e12d-6a084618c884",
+            "size": 23,
+            "aggressor_side": "BUYER"
+          },
+          "w1_true_print_count": 21,
+          "w1_two_sided_book_receipts": 614,
+          "acted": true,
+          "credited": true,
+          "entry_cents": 38,
+          "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+          "action_timestamp_epoch": 1783936336,
+          "fill_timestamp_epoch": 1783936336,
+          "pair_cap_cents": null,
+          "running_trade_low": 39,
+          "running_seller_hit_low": 39,
+          "running_qualified_ask_low": 38,
+          "decision_count": 534,
+          "state_counts": {
+            "FALLING": 389,
+            "RISING": 77,
+            "SETTLED": 68
+          },
+          "action_counts": {
+            "PLACE_REST": 1,
+            "HOLD_REST": 490,
+            "REPRICE_REST": 42,
+            "TAKE": 1
+          },
+          "disagreement_count": 72,
+          "maker_reprices": 42,
+          "rest_sanity": {
+            "tracked_book_receipts": 533,
+            "exact_target_receipts": 533,
+            "gap_abs_max_cents": 0,
+            "reprice_up": 20,
+            "reprice_down": 22,
+            "target_min_cents": 3,
+            "target_max_cents": 43,
+            "best_bid_min_cents": 4,
+            "best_bid_max_cents": 44
+          },
+          "first_decision": {
+            "mode": "STRICT_LAW",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 5742,
+              "ask_depth_5": 5988,
+              "depth_ratio": 0.4895140664961637
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "last_decision": {
+            "mode": "STRICT_LAW",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2834",
+            "ordinal": 2834,
+            "timestamp_epoch": 1783936336,
+            "t_minus_scheduled_seconds": -82336,
+            "t_minus_actual_bell_seconds": 9764,
+            "t_minus_pre_match_boundary_seconds": 9764,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 37,
+              "ask": 38,
+              "last_traded": 42,
+              "spread": 1,
+              "ask_dwell_seconds": 368,
+              "top_ask_size": 1013,
+              "bid_depth_5": 21574,
+              "ask_depth_5": 15714,
+              "depth_ratio": 0.578577558463849
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": 39,
+              "running_seller_hit_low_cents": 39,
+              "running_qualifying_ask_low_cents": 38,
+              "running_price_bearing_evidence_floor_cents": 38,
+              "receipt_local_evidence_floor_cents": 38,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": 38,
+              "active_trailing_evidence_receipts": 2,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2811",
+              "latest_downward_evidence_timestamp_epoch": 1783935997,
+              "latest_downward_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2814"
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": 36,
+            "decision": {
+              "action": "TAKE",
+              "target_cents": 38,
+              "reason": "EVIDENCE_FLOOR_TAKE_STATE_LABEL_IGNORED",
+              "take_permission": {
+                "permitted": true,
+                "reason": "ASK_AT_OR_BELOW_ACTIVE_EVIDENCE_FLOOR"
+              }
+            },
+            "order_after_cents": 38
+          },
+          "first_action": {
+            "mode": "STRICT_LAW",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 5742,
+              "ask_depth_5": 5988,
+              "depth_ratio": 0.4895140664961637
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "terminal_reason": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+          "entry_minus_print_backed_floor_cents": 0,
+          "entry_minus_qualifying_ask_floor_cents": 0,
+          "resting_at_hard_edge": false,
+          "resting_target_at_hard_edge_cents": null,
+          "first_action_timestamp_epoch": 1783801048
+        }
+      },
+      "completed_pair": false,
+      "combined_entry_cents": null,
+      "pair_under_par": false,
+      "close_based_grade": null
+    },
+    "CENSUS_PRICED": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "category": "ATP_CHALL",
+      "starting_price_split": "le25+le25",
+      "bell_confidence": "exact",
+      "edge_source_field": "exact_start_utc",
+      "mode": "CENSUS_PRICED",
+      "w1_left_epoch": 1783801048,
+      "w1_right_epoch": 1783946100,
+      "legs": {
+        "ARN": {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "le25+le25",
+          "price_region": "51_75",
+          "leg_id": "ARN",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+          "R3": {
+            "acted": true,
+            "credited": true,
+            "entry_cents": 56
+          },
+          "w1_print_backed_achievable_floor_cents": 50,
+          "w1_print_backed_floor_receipts": [
+            {
+              "receipt": "97aa41d3-acef-438c-6f1d-7a533d39565f",
+              "timestamp_epoch": 1783875407.2936049,
+              "ordinal": 5279,
+              "price_cents": 50,
+              "size": 6.59,
+              "aggressor_side": "SELLER"
+            },
+            {
+              "receipt": "5c29f6c3-cac0-44cf-7bb0-4588f6c9f7c8",
+              "timestamp_epoch": 1783875407.2936049,
+              "ordinal": 5280,
+              "price_cents": 50,
+              "size": 9,
+              "aggressor_side": "SELLER"
+            }
+          ],
+          "w1_qualifying_ask_floor_cents": 56,
+          "w1_qualifying_ask_floor_receipts": {
+            "count": 30,
+            "first": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35562",
+              "timestamp_epoch": 1783896032,
+              "ordinal": 35562,
+              "bid": 55,
+              "ask": 56,
+              "spread": 1,
+              "dwell_seconds": 15398,
+              "displayed_size": 57
+            },
+            "last": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-36869",
+              "timestamp_epoch": 1783902650,
+              "ordinal": 36869,
+              "bid": 58,
+              "ask": 56,
+              "spread": -2,
+              "dwell_seconds": 22016,
+              "displayed_size": 2
+            }
+          },
+          "w1_close_telemetry": {
+            "status": "AVAILABLE_TELEMETRY_ONLY",
+            "price_cents": 62,
+            "timestamp_epoch": 1783946071.296273,
+            "ordinal": 5229,
+            "receipt": "5ef22dea-976c-6f1f-d55b-5c3f920bdaa7",
+            "size": 0.15,
+            "aggressor_side": "BUYER"
+          },
+          "w1_true_print_count": 53,
+          "w1_two_sided_book_receipts": 29211,
+          "acted": true,
+          "credited": true,
+          "entry_cents": 49,
+          "fill_class": "CENSUS_PRICED_ONE_CENT_RESIDENCY_CONVERSION",
+          "action_timestamp_epoch": 1783868100,
+          "fill_timestamp_epoch": 1783875407.2936049,
+          "pair_cap_cents": 61,
+          "running_trade_low": 56,
+          "running_seller_hit_low": null,
+          "running_qualified_ask_low": null,
+          "decision_count": 28815,
+          "state_counts": {
+            "FALLING": 28599,
+            "RISING": 193,
+            "SETTLED": 23
+          },
+          "action_counts": {
+            "PLACE_REST": 1,
+            "HOLD_REST": 28658,
+            "REPRICE_REST": 156
+          },
+          "disagreement_count": 28520,
+          "maker_reprices": 156,
+          "rest_sanity": {
+            "tracked_book_receipts": 28815,
+            "exact_target_receipts": 28815,
+            "gap_abs_max_cents": 0,
+            "reprice_up": 117,
+            "reprice_down": 39,
+            "target_min_cents": 3,
+            "target_max_cents": 49,
+            "best_bid_min_cents": 4,
+            "best_bid_max_cents": 50
+          },
+          "first_decision": {
+            "mode": "CENSUS_PRICED",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 6254,
+              "ask_depth_5": 6488,
+              "depth_ratio": 0.4908177680113012
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "last_decision": {
+            "mode": "CENSUS_PRICED",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35489",
+            "ordinal": 35489,
+            "timestamp_epoch": 1783875371,
+            "t_minus_scheduled_seconds": -21371,
+            "t_minus_actual_bell_seconds": 70729,
+            "t_minus_pre_match_boundary_seconds": 70729,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 50,
+              "ask": 56,
+              "last_traded": 56,
+              "spread": 6,
+              "ask_dwell_seconds": 13631,
+              "top_ask_size": 28,
+              "bid_depth_5": 849,
+              "ask_depth_5": 982,
+              "depth_ratio": 0.4636810486073184
+            },
+            "quote_path": {
+              "state": "RISING",
+              "receipt": "14c3ac5c-762c-4218-b159-74819d997ff1",
+              "evidence": "BUYER_LIFT_PRINT"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "RISING",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": 56,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": 1783861750,
+              "latest_downward_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35457"
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": 49,
+            "decision": {
+              "action": "HOLD_REST",
+              "target_cents": 49,
+              "reason": "NO_ACTIVE_DISCOUNT_EVIDENCE_FLOOR",
+              "take_permission": {
+                "permitted": false,
+                "reason": "NO_ACTIVE_DISCOUNT_EVIDENCE_FLOOR"
+              }
+            },
+            "order_after_cents": 49
+          },
+          "first_action": {
+            "mode": "CENSUS_PRICED",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 6254,
+              "ask_depth_5": 6488,
+              "depth_ratio": 0.4908177680113012
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "terminal_reason": "CENSUS_PRICED_ONE_CENT_RESIDENCY_CONVERSION",
+          "entry_minus_print_backed_floor_cents": -1,
+          "entry_minus_qualifying_ask_floor_cents": -7,
+          "resting_at_hard_edge": false,
+          "resting_target_at_hard_edge_cents": null,
+          "first_action_timestamp_epoch": 1783801048
+        },
+        "ROM": {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "le25+le25",
+          "price_region": "26_50",
+          "leg_id": "ROM",
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+          "R3": {
+            "acted": true,
+            "credited": true,
+            "entry_cents": 42
+          },
+          "w1_print_backed_achievable_floor_cents": 38,
+          "w1_print_backed_floor_receipts": [
+            {
+              "receipt": "a1014925-6aed-471a-a2f7-4588702ea904",
+              "timestamp_epoch": 1783941185.25247,
+              "ordinal": 9417,
+              "price_cents": 38,
+              "size": 5,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "74db96d5-6e3b-4eba-9a6a-7d27119f45df",
+              "timestamp_epoch": 1783941185.25247,
+              "ordinal": 9418,
+              "price_cents": 38,
+              "size": 100,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "16b520e6-9df9-427b-8e7e-4054e3d86140",
+              "timestamp_epoch": 1783941185.25247,
+              "ordinal": 9419,
+              "price_cents": 38,
+              "size": 100,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "ceb09561-c86a-6b2f-d6ee-365382588151",
+              "timestamp_epoch": 1783945426.066083,
+              "ordinal": 9415,
+              "price_cents": 38,
+              "size": 55.05,
+              "aggressor_side": "BUYER"
+            },
+            {
+              "receipt": "7492e150-da99-62ca-e92e-20f7de4cc2d8",
+              "timestamp_epoch": 1783945426.066083,
+              "ordinal": 9416,
+              "price_cents": 38,
+              "size": 8,
+              "aggressor_side": "BUYER"
+            }
+          ],
+          "w1_qualifying_ask_floor_cents": 38,
+          "w1_qualifying_ask_floor_receipts": {
+            "count": 76,
+            "first": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2814",
+              "timestamp_epoch": 1783935997,
+              "ordinal": 2814,
+              "bid": 37,
+              "ask": 38,
+              "spread": 1,
+              "dwell_seconds": 29,
+              "displayed_size": 800
+            },
+            "last": {
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-3381",
+              "timestamp_epoch": 1783946002,
+              "ordinal": 3381,
+              "bid": 38,
+              "ask": 38,
+              "spread": 0,
+              "dwell_seconds": 10034,
+              "displayed_size": 1
+            }
+          },
+          "w1_close_telemetry": {
+            "status": "AVAILABLE_TELEMETRY_ONLY",
+            "price_cents": 39,
+            "timestamp_epoch": 1783946040.188695,
+            "ordinal": 9409,
+            "receipt": "edd2cf62-2030-4e80-e12d-6a084618c884",
+            "size": 23,
+            "aggressor_side": "BUYER"
+          },
+          "w1_true_print_count": 21,
+          "w1_two_sided_book_receipts": 614,
+          "acted": true,
+          "credited": true,
+          "entry_cents": 38,
+          "fill_class": "CENSUS_PRICED_ONE_CENT_RESIDENCY_CONVERSION",
+          "action_timestamp_epoch": 1783899855,
+          "fill_timestamp_epoch": 1783899899.019425,
+          "pair_cap_cents": 50,
+          "running_trade_low": 42,
+          "running_seller_hit_low": null,
+          "running_qualified_ask_low": null,
+          "decision_count": 326,
+          "state_counts": {
+            "FALLING": 258,
+            "RISING": 44,
+            "SETTLED": 24
+          },
+          "action_counts": {
+            "PLACE_REST": 1,
+            "HOLD_REST": 293,
+            "REPRICE_REST": 32
+          },
+          "disagreement_count": 32,
+          "maker_reprices": 32,
+          "rest_sanity": {
+            "tracked_book_receipts": 326,
+            "exact_target_receipts": 326,
+            "gap_abs_max_cents": 0,
+            "reprice_up": 16,
+            "reprice_down": 16,
+            "target_min_cents": 3,
+            "target_max_cents": 43,
+            "best_bid_min_cents": 4,
+            "best_bid_max_cents": 44
+          },
+          "first_decision": {
+            "mode": "CENSUS_PRICED",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 5742,
+              "ask_depth_5": 5988,
+              "depth_ratio": 0.4895140664961637
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "last_decision": {
+            "mode": "CENSUS_PRICED",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-1333",
+            "ordinal": 1333,
+            "timestamp_epoch": 1783899855,
+            "t_minus_scheduled_seconds": -45855,
+            "t_minus_actual_bell_seconds": 46245,
+            "t_minus_pre_match_boundary_seconds": 46245,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 39,
+              "ask": 42,
+              "last_traded": 42,
+              "spread": 3,
+              "ask_dwell_seconds": 3367,
+              "top_ask_size": 910,
+              "bid_depth_5": 19779,
+              "ask_depth_5": 7054,
+              "depth_ratio": 0.7371147467670406
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "RISING",
+            "combined_state": "RISING",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": 42,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": 1783896551,
+              "latest_downward_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-1218"
+            },
+            "pair_cap_cents": 50,
+            "order_before_cents": 39,
+            "decision": {
+              "action": "REPRICE_REST",
+              "target_cents": 38,
+              "direction": "DOWN",
+              "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+              "take_permission": {
+                "permitted": false,
+                "reason": "NO_ACTIVE_DISCOUNT_EVIDENCE_FLOOR"
+              }
+            },
+            "order_after_cents": 38
+          },
+          "first_action": {
+            "mode": "CENSUS_PRICED",
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "starting_price_split": "le25+le25",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-2",
+            "ordinal": 2,
+            "timestamp_epoch": 1783801048,
+            "t_minus_scheduled_seconds": 52952,
+            "t_minus_actual_bell_seconds": 145052,
+            "t_minus_pre_match_boundary_seconds": 145052,
+            "pre_match_boundary_epoch": 1783946100,
+            "pre_match_boundary_source": "exact_start_utc",
+            "bell_confidence": "exact",
+            "observation": {
+              "bid": 4,
+              "ask": 96,
+              "last_traded": 0,
+              "spread": 92,
+              "ask_dwell_seconds": 0,
+              "top_ask_size": 500,
+              "bid_depth_5": 5742,
+              "ask_depth_5": 5988,
+              "depth_ratio": 0.4895140664961637
+            },
+            "quote_path": {
+              "state": "SETTLED",
+              "receipt": null,
+              "evidence": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE"
+            },
+            "pressure_state": "SETTLED",
+            "combined_state": "SETTLED",
+            "disagreement": false,
+            "causal_discount_evidence": {
+              "running_trade_low_cents": null,
+              "running_seller_hit_low_cents": null,
+              "running_qualifying_ask_low_cents": null,
+              "running_price_bearing_evidence_floor_cents": null,
+              "receipt_local_evidence_floor_cents": null,
+              "falling_state_carry_floor_cents": null,
+              "falling_state_carry_authority": null,
+              "active_evidence_floor_cents": null,
+              "active_trailing_evidence_receipts": 0,
+              "transient_directional_horizon_seconds": 300,
+              "floor_first_flicker_live": false,
+              "floor_creation_directional_receipt": null,
+              "latest_downward_evidence_timestamp_epoch": null,
+              "latest_downward_evidence_receipt": null
+            },
+            "pair_cap_cents": null,
+            "order_before_cents": null,
+            "decision": {
+              "action": "PLACE_REST",
+              "target_cents": 3,
+              "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+              "take_permission": null
+            },
+            "order_after_cents": 3
+          },
+          "terminal_reason": "CENSUS_PRICED_ONE_CENT_RESIDENCY_CONVERSION",
+          "entry_minus_print_backed_floor_cents": 0,
+          "entry_minus_qualifying_ask_floor_cents": 0,
+          "resting_at_hard_edge": false,
+          "resting_target_at_hard_edge_cents": null,
+          "first_action_timestamp_epoch": 1783801048
+        }
+      },
+      "completed_pair": true,
+      "combined_entry_cents": 87,
+      "pair_under_par": true,
+      "close_based_grade": null
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "supplied_identity": "84b455c5",
+  "supplied_identity_git_resolution": "UNRESOLVED_AFTER_FETCH_PRUNE_AND_FULL_OBJECT_CENSUS",
+  "operative_commit_derived_by_git_path_history": "224417da642a9f378a0d83f76edffe9890cb4a6f",
+  "operative_path": ".claude/window1_start_recovery_20260724/REAL_START_LEDGER_V3.jsonl",
+  "sha256": "1d7fe6a56837ceb0c0b8c932a05daecacc0cefbea94384e16c84975f2ed98ce5",
+  "bytes": 1732159,
+  "rows": 804,
+  "edge_precedence_counts": {
+    "known_live_by_utc": 507,
+    "exact_start_utc": 234,
+    "schedule_bound_utc": 63
+  },
+  "precision_class_counts": {
+    "live_by_only": 450,
+    "exact": 234,
+    "schedule_only": 63,
+    "clean_interval": 31,
+    "contradictory": 26
+  },
+  "combined_edge_source_precision_counts": {
+    "known_live_by_utc|live_by_only": 450,
+    "exact_start_utc|exact": 234,
+    "schedule_bound_utc|schedule_only": 63,
+    "known_live_by_utc|clean_interval": 31,
+    "known_live_by_utc|contradictory": 26
+  },
+  "conservation": {
+    "rows": 804,
+    "unique_events": 804,
+    "expected_D": 804,
+    "pass": true
+  }
+}

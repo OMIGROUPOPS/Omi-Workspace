@@ -1,0 +1,39 @@
+{
+  "schema_version": "window1-v35-living-rest-evidence-gate-control-v1",
+  "machine": {
+    "architecture": "V34_DUAL_SIDE_RESIDENCY_WITH_THREE_AUTHORIZED_V35_REPAIRS",
+    "V34_W1_baseline_commit": "e56d79a2aee1f392b3bee5a0adad099c7f011976",
+    "V32_lineage_commit": "a3429cad6719f96a25a900812e0f360b71a5607e",
+    "policy_path": "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js",
+    "policy_sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+    "clock_decision_inputs": [],
+    "receipt_driven_evidence_aging_only": true
+  },
+  "repairs": {
+    "living_rest": "EVERY_BOOK_RECEIPT_REANCHORS_TO_MIN(BEST_BID_MINUS_1,PAIR_CAP)_UP_OR_DOWN_NO_SPREAD_GATE",
+    "evidence_take_gate": "DWELL_10_SIZE_5_CAP_AND_ASK_AT_OR_BELOW_RUNNING_PRICE_BEARING_EVIDENCE_FLOOR_STATE_LABEL_IGNORED",
+    "no_first_flicker_overpay": "A_NEW_QUALIFYING_ASK_FLOOR_CANNOT_AUTHORIZE_ITS_OWN_TAKE_WHILE_FALLING_QUOTE_OR_PRESSURE_EVIDENCE_REMAINS_UNABSORBED_INSIDE_THE_EXISTING_300S_RECEIPT_HORIZON; ESTABLISHED_FLOORS_TAKE_IMMEDIATELY; REASK_ON_EACH_BOOK_RECEIPT; NO_TIMER"
+  },
+  "window_law": {
+    "left": "FIRST_TWO_SIDED_BOOK_ON_EITHER_EXPRESSION",
+    "right_precedence": [
+      "exact_start_utc",
+      "known_live_by_utc",
+      "schedule_bound_utc"
+    ],
+    "hard_edge": "NO_REST_WALK_NO_TAKE_NO_FILL_NO_CAP_ARM_NO_STATE_UPDATE_AFTER_EDGE",
+    "boundary_is_reporting_and_admission_only_not_AIM_input": true
+  },
+  "close_law": {
+    "role": "TELEMETRY_ONLY",
+    "grading_reads": 0,
+    "settlement_close_reads": 0
+  },
+  "comparisons": {
+    "V34_W1_strict_completed_under_par": 254,
+    "V34_W1_census_completed_under_par": 279,
+    "R3_original_joint_reference_only": 68,
+    "R3_same_V3_window_artifact": "R3_SAME_WINDOW_COMPARISON.json",
+    "operator_named_under_par_offer_census_adjusted": 680
+  }
+}

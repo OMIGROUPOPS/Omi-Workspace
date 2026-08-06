@@ -1,0 +1,56 @@
+{
+  "schema_version": "window1-v37-floor-arithmetic-take-bound-control-v1",
+  "machine": {
+    "architecture": "V36_PLUS_ZERO_PARAMETER_FLOOR_ARITHMETIC_TAKE_BOUND",
+    "V36_baseline_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+    "V35_lineage_commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+    "V34_W1_baseline_commit": "e56d79a2aee1f392b3bee5a0adad099c7f011976",
+    "V32_lineage_commit": "a3429cad6719f96a25a900812e0f360b71a5607e",
+    "policy_path": "arb-executor/analysis/window1_v37_floor_arithmetic_take_bound.js",
+    "policy_sha256": "3184c4d15868f154a10770d9f01f857b5712287e172dab46b7ecb7764ce7bb09",
+    "clock_decision_inputs": [],
+    "state_transitions_and_maturity_evaluated_only_on_receipts": true
+  },
+  "unchanged_from_V36": {
+    "state_directional_rest": "BYTE_SEMANTIC_UNCHANGED",
+    "mature_floor_take_permission": "UNCHANGED_BEFORE_ARITHMETIC_BOUND",
+    "strict_fill_law": "UNCHANGED",
+    "evidence_gate": "UNCHANGED",
+    "pair_cap": "UNCHANGED",
+    "hard_pre_bell_edge": "UNCHANGED",
+    "close_free_grading": "UNCHANGED"
+  },
+  "repair": {
+    "authority": "ONLY_ON_A_V36_TAKE_WHEN_OTHER_EXPRESSION_RUNNING_TRUE_PRINT_LOW_IS_CAUSALLY_BOUND",
+    "formula": "other_under_par_budget = 100 - entry; TAKE iff other_under_par_budget > other_running_print_backed_floor",
+    "forbidden_equality": true,
+    "fitted_parameters": 0,
+    "missing_other_floor": "NO_AUTHORITY_V36_DECISION_UNCHANGED",
+    "forbidden_take_disposition": "HOLD_EXISTING_REST_AND_REASK_ON_EVERY_OWN_BOOK_RECEIPT",
+    "other_floor_updates": "TRUE_PRINT_RECEIPTS_ONLY_AT_OR_BEFORE_CURRENT_DECISION; CONTINUES_AFTER_OTHER_LEG_FILL"
+  },
+  "hygiene_ruler": {
+    "commit": "03bac97b12777d751fbb334fa6ae0f605445498a",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DEEP_PAIR_HYGIENE_CENSUS.json",
+    "clean_deep_definition": "COMPLETED_LE95_EXACT_BELL_NO_TERMINAL_COLLAPSE",
+    "V34": 9,
+    "V35": 5,
+    "V36": 7,
+    "contaminated_23_34_68_bar": "RETIRED"
+  },
+  "window_law": {
+    "left": "FIRST_TWO_SIDED_BOOK_ON_EITHER_EXPRESSION",
+    "right_precedence": [
+      "exact_start_utc",
+      "known_live_by_utc",
+      "schedule_bound_utc"
+    ],
+    "hard_edge": "NO_REST_WALK_NO_TAKE_NO_FILL_NO_CAP_ARM_NO_STATE_UPDATE_AFTER_EDGE",
+    "boundary_is_reporting_and_admission_only_not_AIM_input": true
+  },
+  "close_law": {
+    "role": "TELEMETRY_ONLY",
+    "grading_reads": 0,
+    "settlement_close_reads": 0
+  }
+}

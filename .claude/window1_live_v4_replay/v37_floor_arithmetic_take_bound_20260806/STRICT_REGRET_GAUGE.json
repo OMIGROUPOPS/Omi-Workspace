@@ -1,0 +1,1711 @@
+{
+  "law": "REGRET=FROZEN_CREDITED_ENTRY_MINUS_DEEPEST_TRUE_PRINT_PRICE_INSIDE_FIRST_TWO_SIDED_BOOK_TO_V3_PRE_MATCH_EDGE; UNCREDITED_NUMERIC_REGRET_NULL",
+  "denominator_legs": 1608,
+  "aggregate": {
+    "denominator": 1608,
+    "numeric_n": 926,
+    "null_n": 682,
+    "min": -5,
+    "p25": 0,
+    "median": 2,
+    "p75": 4,
+    "p90": 14,
+    "max": 85,
+    "total": 5174,
+    "total_cents": 5174
+  },
+  "category_x_price_region_x_bell_confidence": [
+    {
+      "cell": "ATP_CHALL|26_50|clean_interval",
+      "legs": 2,
+      "credited_legs": 2,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 2,
+        "null_n": 0,
+        "min": 6,
+        "p25": 6,
+        "median": 6,
+        "p75": 6,
+        "p90": 6,
+        "max": 10,
+        "total": 16,
+        "total_cents": 16
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 2
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50|contradictory",
+      "legs": 14,
+      "credited_legs": 11,
+      "regret": {
+        "denominator": 14,
+        "numeric_n": 11,
+        "null_n": 3,
+        "min": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 29,
+        "total": 39,
+        "total_cents": 39
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 10,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 3,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50|exact",
+      "legs": 82,
+      "credited_legs": 51,
+      "regret": {
+        "denominator": 82,
+        "numeric_n": 51,
+        "null_n": 31,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 7,
+        "max": 11,
+        "total": 132,
+        "total_cents": 132
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 42,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 31,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 9
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50|live_by_only",
+      "legs": 153,
+      "credited_legs": 80,
+      "regret": {
+        "denominator": 153,
+        "numeric_n": 80,
+        "null_n": 73,
+        "min": -1,
+        "p25": 0,
+        "median": 2,
+        "p75": 4,
+        "p90": 12,
+        "max": 36,
+        "total": 356,
+        "total_cents": 356
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 73,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 72,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 7,
+        "NEVER_PLACED_INSIDE_WINDOW1": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50|schedule_only",
+      "legs": 10,
+      "credited_legs": 9,
+      "regret": {
+        "denominator": 10,
+        "numeric_n": 9,
+        "null_n": 1,
+        "min": 0,
+        "p25": 27,
+        "median": 29,
+        "p75": 31,
+        "p90": 32,
+        "max": 35,
+        "total": 234,
+        "total_cents": 234
+      },
+      "loss_attribution": {
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 5,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 4,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|clean_interval",
+      "legs": 3,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 3,
+        "numeric_n": 1,
+        "null_n": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 2,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|contradictory",
+      "legs": 15,
+      "credited_legs": 5,
+      "regret": {
+        "denominator": 15,
+        "numeric_n": 5,
+        "null_n": 10,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 48,
+        "total": 48,
+        "total_cents": 48
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 10,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 4,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|exact",
+      "legs": 74,
+      "credited_legs": 36,
+      "regret": {
+        "denominator": 74,
+        "numeric_n": 36,
+        "null_n": 38,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 15,
+        "total": 72,
+        "total_cents": 72
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 38,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 26,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 10
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|live_by_only",
+      "legs": 151,
+      "credited_legs": 85,
+      "regret": {
+        "denominator": 151,
+        "numeric_n": 85,
+        "null_n": 66,
+        "min": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 9,
+        "max": 60,
+        "total": 450,
+        "total_cents": 450
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 73,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 65,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 12,
+        "NEVER_PLACED_INSIDE_WINDOW1": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|schedule_only",
+      "legs": 9,
+      "credited_legs": 9,
+      "regret": {
+        "denominator": 9,
+        "numeric_n": 9,
+        "null_n": 0,
+        "min": -1,
+        "p25": 2,
+        "median": 12,
+        "p75": 38,
+        "p90": 53,
+        "max": 64,
+        "total": 191,
+        "total_cents": 191
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 7,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|clean_interval",
+      "legs": 4,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 4,
+        "numeric_n": 1,
+        "null_n": 3,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "total": 1,
+        "total_cents": 1
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 3,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|contradictory",
+      "legs": 1,
+      "credited_legs": 0,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 0,
+        "null_n": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|exact",
+      "legs": 29,
+      "credited_legs": 9,
+      "regret": {
+        "denominator": 29,
+        "numeric_n": 9,
+        "null_n": 20,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 2,
+        "max": 7,
+        "total": 11,
+        "total_cents": 11
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 20,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 6,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 3
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|live_by_only",
+      "legs": 52,
+      "credited_legs": 23,
+      "regret": {
+        "denominator": 52,
+        "numeric_n": 23,
+        "null_n": 29,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 18,
+        "total": 57,
+        "total_cents": 57
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 29,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 16,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 7
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|schedule_only",
+      "legs": 15,
+      "credited_legs": 9,
+      "regret": {
+        "denominator": 15,
+        "numeric_n": 9,
+        "null_n": 6,
+        "min": 0,
+        "p25": 1,
+        "median": 7,
+        "p75": 48,
+        "p90": 78,
+        "max": 85,
+        "total": 246,
+        "total_cents": 246
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 6,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 5,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 4
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|clean_interval",
+      "legs": 5,
+      "credited_legs": 4,
+      "regret": {
+        "denominator": 5,
+        "numeric_n": 4,
+        "null_n": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 4,
+        "total": 8,
+        "total_cents": 8
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 4,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|contradictory",
+      "legs": 2,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 1,
+        "null_n": 1,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "total": 2,
+        "total_cents": 2
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|exact",
+      "legs": 31,
+      "credited_legs": 23,
+      "regret": {
+        "denominator": 31,
+        "numeric_n": 23,
+        "null_n": 8,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 3,
+        "p90": 4,
+        "max": 5,
+        "total": 44,
+        "total_cents": 44
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 22,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 8,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|live_by_only",
+      "legs": 68,
+      "credited_legs": 40,
+      "regret": {
+        "denominator": 68,
+        "numeric_n": 40,
+        "null_n": 28,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 4,
+        "p90": 4,
+        "max": 27,
+        "total": 124,
+        "total_cents": 124
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 33,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 28,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 7
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|schedule_only",
+      "legs": 18,
+      "credited_legs": 13,
+      "regret": {
+        "denominator": 18,
+        "numeric_n": 13,
+        "null_n": 5,
+        "min": 0,
+        "p25": 3,
+        "median": 6,
+        "p75": 9,
+        "p90": 10,
+        "max": 20,
+        "total": 93,
+        "total_cents": 93
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 11,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 5,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50|clean_interval",
+      "legs": 2,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 1,
+        "null_n": 1,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4,
+        "total": 4,
+        "total_cents": 4
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50|contradictory",
+      "legs": 1,
+      "credited_legs": 0,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 0,
+        "null_n": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50|exact",
+      "legs": 29,
+      "credited_legs": 25,
+      "regret": {
+        "denominator": 29,
+        "numeric_n": 25,
+        "null_n": 4,
+        "min": 0,
+        "p25": 1,
+        "median": 3,
+        "p75": 7,
+        "p90": 8,
+        "max": 38,
+        "total": 134,
+        "total_cents": 134
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 17,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 8,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 4
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50|live_by_only",
+      "legs": 70,
+      "credited_legs": 50,
+      "regret": {
+        "denominator": 70,
+        "numeric_n": 50,
+        "null_n": 20,
+        "min": -1,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 12,
+        "max": 37,
+        "total": 241,
+        "total_cents": 241
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 38,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 19,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 12,
+        "NEVER_PLACED_INSIDE_WINDOW1": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50|schedule_only",
+      "legs": 8,
+      "credited_legs": 8,
+      "regret": {
+        "denominator": 8,
+        "numeric_n": 8,
+        "null_n": 0,
+        "min": 1,
+        "p25": 4,
+        "median": 13,
+        "p75": 41,
+        "p90": 43,
+        "max": 51,
+        "total": 190,
+        "total_cents": 190
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 6,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75|clean_interval",
+      "legs": 3,
+      "credited_legs": 0,
+      "regret": {
+        "denominator": 3,
+        "numeric_n": 0,
+        "null_n": 3,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 3
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75|contradictory",
+      "legs": 1,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "total": 2,
+        "total_cents": 2
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75|exact",
+      "legs": 29,
+      "credited_legs": 19,
+      "regret": {
+        "denominator": 29,
+        "numeric_n": 19,
+        "null_n": 10,
+        "min": 0,
+        "p25": 1,
+        "median": 4,
+        "p75": 4,
+        "p90": 16,
+        "max": 49,
+        "total": 146,
+        "total_cents": 146
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 14,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 10,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 5
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75|live_by_only",
+      "legs": 71,
+      "credited_legs": 45,
+      "regret": {
+        "denominator": 71,
+        "numeric_n": 45,
+        "null_n": 26,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 8,
+        "max": 64,
+        "total": 272,
+        "total_cents": 272
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 30,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 25,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 15,
+        "NEVER_PLACED_INSIDE_WINDOW1": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75|schedule_only",
+      "legs": 7,
+      "credited_legs": 7,
+      "regret": {
+        "denominator": 7,
+        "numeric_n": 7,
+        "null_n": 0,
+        "min": 2,
+        "p25": 6,
+        "median": 16,
+        "p75": 52,
+        "p90": 53,
+        "max": 55,
+        "total": 192,
+        "total_cents": 192
+      },
+      "loss_attribution": {
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 4,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 3
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76|contradictory",
+      "legs": 2,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 1,
+        "null_n": 1,
+        "min": 68,
+        "p25": 68,
+        "median": 68,
+        "p75": 68,
+        "p90": 68,
+        "max": 68,
+        "total": 68,
+        "total_cents": 68
+      },
+      "loss_attribution": {
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76|exact",
+      "legs": 8,
+      "credited_legs": 7,
+      "regret": {
+        "denominator": 8,
+        "numeric_n": 7,
+        "null_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 8,
+        "max": 29,
+        "total": 40,
+        "total_cents": 40
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 6,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76|live_by_only",
+      "legs": 16,
+      "credited_legs": 6,
+      "regret": {
+        "denominator": 16,
+        "numeric_n": 6,
+        "null_n": 10,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 3,
+        "max": 5,
+        "total": 10,
+        "total_cents": 10
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 10,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 6
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76|schedule_only",
+      "legs": 1,
+      "credited_legs": 0,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 0,
+        "null_n": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25|clean_interval",
+      "legs": 13,
+      "credited_legs": 10,
+      "regret": {
+        "denominator": 13,
+        "numeric_n": 10,
+        "null_n": 3,
+        "min": -1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 4,
+        "total": 16,
+        "total_cents": 16
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 8,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 3,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25|exact",
+      "legs": 8,
+      "credited_legs": 7,
+      "regret": {
+        "denominator": 8,
+        "numeric_n": 7,
+        "null_n": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 6,
+        "max": 11,
+        "total": 25,
+        "total_cents": 25
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 6,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25|live_by_only",
+      "legs": 23,
+      "credited_legs": 16,
+      "regret": {
+        "denominator": 23,
+        "numeric_n": 16,
+        "null_n": 7,
+        "min": 0,
+        "p25": 1,
+        "median": 3,
+        "p75": 4,
+        "p90": 7,
+        "max": 57,
+        "total": 116,
+        "total_cents": 116
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 10,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 7,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 6
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25|schedule_only",
+      "legs": 2,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 1,
+        "null_n": 1,
+        "min": 24,
+        "p25": 24,
+        "median": 24,
+        "p75": 24,
+        "p90": 24,
+        "max": 24,
+        "total": 24,
+        "total_cents": 24
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|clean_interval",
+      "legs": 1,
+      "credited_legs": 0,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 0,
+        "null_n": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|contradictory",
+      "legs": 2,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 1,
+        "null_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|exact",
+      "legs": 29,
+      "credited_legs": 12,
+      "regret": {
+        "denominator": 29,
+        "numeric_n": 12,
+        "null_n": 17,
+        "min": -1,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total": 9,
+        "total_cents": 9
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 17,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 11,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|live_by_only",
+      "legs": 61,
+      "credited_legs": 26,
+      "regret": {
+        "denominator": 61,
+        "numeric_n": 26,
+        "null_n": 35,
+        "min": -1,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 18,
+        "total": 55,
+        "total_cents": 55
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 35,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 24,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|schedule_only",
+      "legs": 3,
+      "credited_legs": 2,
+      "regret": {
+        "denominator": 3,
+        "numeric_n": 2,
+        "null_n": 1,
+        "min": 13,
+        "p25": 13,
+        "median": 13,
+        "p75": 13,
+        "p90": 13,
+        "max": 46,
+        "total": 59,
+        "total_cents": 59
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 2,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75|clean_interval",
+      "legs": 1,
+      "credited_legs": 0,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 0,
+        "null_n": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75|exact",
+      "legs": 30,
+      "credited_legs": 23,
+      "regret": {
+        "denominator": 30,
+        "numeric_n": 23,
+        "null_n": 7,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 4,
+        "total": 29,
+        "total_cents": 29
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 19,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 7,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 4
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75|live_by_only",
+      "legs": 53,
+      "credited_legs": 21,
+      "regret": {
+        "denominator": 53,
+        "numeric_n": 21,
+        "null_n": 32,
+        "min": 0,
+        "p25": 1,
+        "median": 3,
+        "p75": 4,
+        "p90": 6,
+        "max": 56,
+        "total": 109,
+        "total_cents": 109
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 32,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 19,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75|schedule_only",
+      "legs": 3,
+      "credited_legs": 2,
+      "regret": {
+        "denominator": 3,
+        "numeric_n": 2,
+        "null_n": 1,
+        "min": 19,
+        "p25": 19,
+        "median": 19,
+        "p75": 19,
+        "p90": 19,
+        "max": 51,
+        "total": 70,
+        "total_cents": 70
+      },
+      "loss_attribution": {
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76|contradictory",
+      "legs": 2,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 1,
+        "null_n": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "total": 1,
+        "total_cents": 1
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76|exact",
+      "legs": 10,
+      "credited_legs": 4,
+      "regret": {
+        "denominator": 10,
+        "numeric_n": 4,
+        "null_n": 6,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "total": 5,
+        "total_cents": 5
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 6,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 4
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76|live_by_only",
+      "legs": 23,
+      "credited_legs": 9,
+      "regret": {
+        "denominator": 23,
+        "numeric_n": 9,
+        "null_n": 14,
+        "min": -2,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 3,
+        "total": 4,
+        "total_cents": 4
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 14,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 7,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76|schedule_only",
+      "legs": 9,
+      "credited_legs": 5,
+      "regret": {
+        "denominator": 9,
+        "numeric_n": 5,
+        "null_n": 4,
+        "min": 1,
+        "p25": 8,
+        "median": 15,
+        "p75": 27,
+        "p90": 27,
+        "max": 37,
+        "total": 88,
+        "total_cents": 88
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 4,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 3,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 2
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25|contradictory",
+      "legs": 2,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 2,
+        "numeric_n": 1,
+        "null_n": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1,
+        "total": 1,
+        "total_cents": 1
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25|exact",
+      "legs": 11,
+      "credited_legs": 6,
+      "regret": {
+        "denominator": 11,
+        "numeric_n": 6,
+        "null_n": 5,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total": 7,
+        "total_cents": 7
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 5,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 5,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25|live_by_only",
+      "legs": 23,
+      "credited_legs": 10,
+      "regret": {
+        "denominator": 23,
+        "numeric_n": 10,
+        "null_n": 13,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 5,
+        "total": 18,
+        "total_cents": 18
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 13,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 9,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25|schedule_only",
+      "legs": 9,
+      "credited_legs": 8,
+      "regret": {
+        "denominator": 9,
+        "numeric_n": 8,
+        "null_n": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 3,
+        "p75": 15,
+        "p90": 18,
+        "max": 20,
+        "total": 68,
+        "total_cents": 68
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 5,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 3,
+        "NEVER_PLACED_INSIDE_WINDOW1": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50|clean_interval",
+      "legs": 4,
+      "credited_legs": 4,
+      "regret": {
+        "denominator": 4,
+        "numeric_n": 4,
+        "null_n": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 3,
+        "total": 5,
+        "total_cents": 5
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 3,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50|contradictory",
+      "legs": 4,
+      "credited_legs": 2,
+      "regret": {
+        "denominator": 4,
+        "numeric_n": 2,
+        "null_n": 2,
+        "min": -1,
+        "p25": -1,
+        "median": -1,
+        "p75": -1,
+        "p90": -1,
+        "max": 1,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 2,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 2
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50|exact",
+      "legs": 27,
+      "credited_legs": 18,
+      "regret": {
+        "denominator": 27,
+        "numeric_n": 18,
+        "null_n": 9,
+        "min": -2,
+        "p25": 0,
+        "median": 3,
+        "p75": 6,
+        "p90": 8,
+        "max": 10,
+        "total": 64,
+        "total_cents": 64
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 12,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 9,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 6
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50|live_by_only",
+      "legs": 46,
+      "credited_legs": 32,
+      "regret": {
+        "denominator": 46,
+        "numeric_n": 32,
+        "null_n": 14,
+        "min": -1,
+        "p25": 0,
+        "median": 2,
+        "p75": 5,
+        "p90": 9,
+        "max": 27,
+        "total": 145,
+        "total_cents": 145
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 27,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 14,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 5
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50|schedule_only",
+      "legs": 5,
+      "credited_legs": 4,
+      "regret": {
+        "denominator": 5,
+        "numeric_n": 4,
+        "null_n": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 4,
+        "p75": 12,
+        "p90": 12,
+        "max": 30,
+        "total": 46,
+        "total_cents": 46
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 3,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75|clean_interval",
+      "legs": 4,
+      "credited_legs": 2,
+      "regret": {
+        "denominator": 4,
+        "numeric_n": 2,
+        "null_n": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 8,
+        "total": 8,
+        "total_cents": 8
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 2,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 2
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75|contradictory",
+      "legs": 4,
+      "credited_legs": 2,
+      "regret": {
+        "denominator": 4,
+        "numeric_n": 2,
+        "null_n": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 4,
+        "total": 4,
+        "total_cents": 4
+      },
+      "loss_attribution": {
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 2
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75|exact",
+      "legs": 30,
+      "credited_legs": 13,
+      "regret": {
+        "denominator": 30,
+        "numeric_n": 13,
+        "null_n": 17,
+        "min": -5,
+        "p25": 0,
+        "median": 2,
+        "p75": 2,
+        "p90": 3,
+        "max": 13,
+        "total": 27,
+        "total_cents": 27
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 17,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 12,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75|live_by_only",
+      "legs": 42,
+      "credited_legs": 19,
+      "regret": {
+        "denominator": 42,
+        "numeric_n": 19,
+        "null_n": 23,
+        "min": 0,
+        "p25": 1,
+        "median": 4,
+        "p75": 5,
+        "p90": 42,
+        "max": 58,
+        "total": 201,
+        "total_cents": 201
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 23,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 14,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 5
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75|schedule_only",
+      "legs": 7,
+      "credited_legs": 5,
+      "regret": {
+        "denominator": 7,
+        "numeric_n": 5,
+        "null_n": 2,
+        "min": 3,
+        "p25": 5,
+        "median": 52,
+        "p75": 59,
+        "p90": 59,
+        "max": 66,
+        "total": 185,
+        "total_cents": 185
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 3,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 2,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 2
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76|clean_interval",
+      "legs": 4,
+      "credited_legs": 2,
+      "regret": {
+        "denominator": 4,
+        "numeric_n": 2,
+        "null_n": 2,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 14,
+        "total": 15,
+        "total_cents": 15
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 2,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76|contradictory",
+      "legs": 1,
+      "credited_legs": 0,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 0,
+        "null_n": 1,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null,
+        "total": 0,
+        "total_cents": 0
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76|exact",
+      "legs": 18,
+      "credited_legs": 7,
+      "regret": {
+        "denominator": 18,
+        "numeric_n": 7,
+        "null_n": 11,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 3,
+        "total": 10,
+        "total_cents": 10
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 11,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 7
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76|live_by_only",
+      "legs": 23,
+      "credited_legs": 9,
+      "regret": {
+        "denominator": 23,
+        "numeric_n": 9,
+        "null_n": 14,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 6,
+        "max": 9,
+        "total": 21,
+        "total_cents": 21
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 14,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 9
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76|schedule_only",
+      "legs": 6,
+      "credited_legs": 4,
+      "regret": {
+        "denominator": 6,
+        "numeric_n": 4,
+        "null_n": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 9,
+        "p90": 9,
+        "max": 23,
+        "total": 32,
+        "total_cents": 32
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 3,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 2,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|clean_interval",
+      "legs": 16,
+      "credited_legs": 9,
+      "regret": {
+        "denominator": 16,
+        "numeric_n": 9,
+        "null_n": 7,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 5,
+        "total": 19,
+        "total_cents": 19
+      },
+      "loss_attribution": {
+        "WAITED_WITH_REST_TO_HARD_EDGE": 7,
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 6,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 3
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|contradictory",
+      "legs": 1,
+      "credited_legs": 1,
+      "regret": {
+        "denominator": 1,
+        "numeric_n": 1,
+        "null_n": 0,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2,
+        "total": 2,
+        "total_cents": 2
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|exact",
+      "legs": 23,
+      "credited_legs": 17,
+      "regret": {
+        "denominator": 23,
+        "numeric_n": 17,
+        "null_n": 6,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 34,
+        "total": 78,
+        "total_cents": 78
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 13,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 6,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 4
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|live_by_only",
+      "legs": 25,
+      "credited_legs": 18,
+      "regret": {
+        "denominator": 25,
+        "numeric_n": 18,
+        "null_n": 7,
+        "min": 0,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 6,
+        "max": 18,
+        "total": 70,
+        "total_cents": 70
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 10,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 8,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 7
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|schedule_only",
+      "legs": 14,
+      "credited_legs": 11,
+      "regret": {
+        "denominator": 14,
+        "numeric_n": 11,
+        "null_n": 3,
+        "min": 0,
+        "p25": 3,
+        "median": 12,
+        "p75": 14,
+        "p90": 20,
+        "max": 25,
+        "total": 115,
+        "total_cents": 115
+      },
+      "loss_attribution": {
+        "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 8,
+        "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 3,
+        "WAITED_WITH_REST_TO_HARD_EDGE": 3
+      }
+    }
+  ],
+  "conservation": {
+    "cell_leg_sum": 1608,
+    "expected_legs": 1608,
+    "pass": true
+  }
+}

@@ -1,0 +1,2909 @@
+{
+  "source": {
+    "commit": "03bac97b12777d751fbb334fa6ae0f605445498a",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DEEP_PAIR_HYGIENE_CENSUS.json",
+    "sha256": "f7e3b57a667dbd9f08e0e0f42aab330c6737e03ad56a4c936c7897ee63651e81"
+  },
+  "baseline": {
+    "V34": {
+      "deep_pairs": 34,
+      "by_bell": {
+        "exact": 9,
+        "schedule_only": 11,
+        "live_by_only": 14
+      },
+      "exact_bell": 9,
+      "with_terminal_collapse": 6,
+      "exact_and_clean": 9,
+      "median_dist_min_of_cheap_leg": null
+    },
+    "V35": {
+      "deep_pairs": 25,
+      "by_bell": {
+        "schedule_only": 6,
+        "live_by_only": 12,
+        "exact": 5,
+        "clean_interval": 1,
+        "contradictory": 1
+      },
+      "exact_bell": 5,
+      "with_terminal_collapse": 0,
+      "exact_and_clean": 5,
+      "median_dist_min_of_cheap_leg": null
+    },
+    "V36": {
+      "deep_pairs": 20,
+      "by_bell": {
+        "exact": 7,
+        "schedule_only": 6,
+        "live_by_only": 6,
+        "contradictory": 1
+      },
+      "exact_bell": 7,
+      "with_terminal_collapse": 0,
+      "exact_and_clean": 7,
+      "median_dist_min_of_cheap_leg": null
+    }
+  },
+  "V37": {
+    "STRICT_LAW": {
+      "mode": "STRICT_LAW",
+      "deep_definition": "COMPLETED_PAIR_COMBINED_ENTRY_LE_95",
+      "terminal_collapse_method": "03bac97b: credited single-digit leg inside monotone seller-aggressed run of >=3 descending prints spanning >=10c into single digits within 30 minutes",
+      "deep_pairs": 21,
+      "by_bell_confidence": {
+        "schedule_only": 10,
+        "exact": 5,
+        "live_by_only": 5,
+        "contradictory": 1
+      },
+      "with_terminal_collapse": 0,
+      "exact_bell": 5,
+      "exact_bell_collapse_clean": 5,
+      "rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PET": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KUM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TUR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "AGU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "RAF": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 89,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KUM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "RAQ": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 32,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "KIR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SEK": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20GIUHER",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "GIU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "HER": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12BUEMAR",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 93,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BUE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12JACTRU",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "JAC": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TRU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12MARHAN",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 94,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "HAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL15BORDIM",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BOR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "DIM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL20DJECIN",
+          "category": "ATP_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 91,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "CIN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "DJE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "ARI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "ZHA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12BASABB",
+          "category": "WTA_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "ABB": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "BAS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "category": "WTA_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 60,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "COL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+          "category": "WTA_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 87,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "PAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "YOR": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783855973.960331,
+                  "ordinal": 3689880,
+                  "receipt": "f76fd670-1052-6721-39ff-d2c970d5e38b",
+                  "price_cents": 4,
+                  "size": 500,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783856178.1385078,
+                  "ordinal": 3689876,
+                  "receipt": "e3229842-aa50-75fb-7f95-f424b3046c26",
+                  "price_cents": 3,
+                  "size": 1.33,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783856611.925833,
+                  "ordinal": 3689870,
+                  "receipt": "7c21af38-7d5d-53b2-c38b-ca976b809771",
+                  "price_cents": 2,
+                  "size": 6.31,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+          "category": "WTA_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 86,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "SHI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TUR": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783851149.2993178,
+                  "ordinal": 3703889,
+                  "receipt": "e9b1ce05-deea-75f5-d8c5-1339d946e243",
+                  "price_cents": 9,
+                  "size": 1,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783851350.1327128,
+                  "ordinal": 3703886,
+                  "receipt": "d21c0134-49d0-52b3-c973-75c9215bb533",
+                  "price_cents": 6,
+                  "size": 5,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783851780.78969,
+                  "ordinal": 3703874,
+                  "receipt": "ea644103-b106-75b9-fbdb-0bfafe719cf4",
+                  "price_cents": 5,
+                  "size": 100,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783852124.582728,
+                  "ordinal": 3703867,
+                  "receipt": "d0d3ac95-c547-5f0d-91ef-9ef82c2d42b9",
+                  "price_cents": 4,
+                  "size": 23,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783852403.9859328,
+                  "ordinal": 3703864,
+                  "receipt": "1c7f2c38-25fb-4885-8ff6-266d576a92ec",
+                  "price_cents": 3,
+                  "size": 3,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783852814.2727158,
+                  "ordinal": 3703856,
+                  "receipt": "bc55f75a-83f4-70e3-f794-9ea796caf01b",
+                  "price_cents": 2,
+                  "size": 23,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783852903.046216,
+                  "ordinal": 3703843,
+                  "receipt": "f4dd8887-e722-62f7-b21d-61cae37b926e",
+                  "price_cents": 1,
+                  "size": 150,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "BAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "GAS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "HOD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "KOT": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL15SHEQUE",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 93,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "QUE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SHE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20BONUCH",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "BON": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "UCH": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20PODLEE",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "contradictory",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "LEE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "POD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        }
+      ]
+    },
+    "CENSUS_PRICED": {
+      "mode": "CENSUS_PRICED",
+      "deep_definition": "COMPLETED_PAIR_COMBINED_ENTRY_LE_95",
+      "terminal_collapse_method": "03bac97b: credited single-digit leg inside monotone seller-aggressed run of >=3 descending prints spanning >=10c into single digits within 30 minutes",
+      "deep_pairs": 91,
+      "by_bell_confidence": {
+        "live_by_only": 37,
+        "exact": 29,
+        "schedule_only": 14,
+        "contradictory": 6,
+        "clean_interval": 5
+      },
+      "with_terminal_collapse": 1,
+      "exact_bell": 29,
+      "exact_bell_collapse_clean": 29,
+      "rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "le25+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 87,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "ARN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "ROM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PET": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+          "category": "ATP_CHALL",
+          "starting_price_split": "le25+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 80,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "BOS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "COP": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KUM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TUR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 90,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "AGU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "RAF": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 89,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KUM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "RAQ": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "RAH": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "VIL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "FOR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "RAF": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "LEO": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MUN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+ge75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 20,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "LIN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "OUA": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783892138.043022,
+                  "ordinal": 570140,
+                  "receipt": "84151ff2-2292-6207-4749-b1c832b144e8",
+                  "price_cents": 5,
+                  "size": 1,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13PRICRI",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "CRI": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783907873.48118,
+                  "ordinal": 612185,
+                  "receipt": "c57716ac-f5f1-558a-2eec-a3f155d84bc4",
+                  "price_cents": 8,
+                  "size": 0.01,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "PRI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+          "category": "ATP_CHALL",
+          "starting_price_split": "51_75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 89,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "ALM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "GRA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "CAS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "GHI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 62,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "GAN": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784001394.2435,
+                  "ordinal": 858120,
+                  "receipt": "833a11af-c8b6-6e8b-3564-da4efed987e8",
+                  "price_cents": 5,
+                  "size": 2.46,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "ZIN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 22,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "KIR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SEK": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783998703.17148,
+                  "ordinal": 899428,
+                  "receipt": "75b7c77c-2e7f-649a-b615-f8f8bd6238b8",
+                  "price_cents": 18,
+                  "size": 3.75,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783998802.280555,
+                  "ordinal": 899427,
+                  "receipt": "2149e6e6-bc4f-61b2-6ad9-42d65160ac94",
+                  "price_cents": 15,
+                  "size": 0.76,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "LAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "YIB": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 94,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "ILA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SMI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "contradictory",
+          "combined_entry_cents": 20,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "YIB": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784089508.019377,
+                  "ordinal": 1184040,
+                  "receipt": "7fde7044-9909-563f-5fd3-0b655f2c4a66",
+                  "price_cents": 7,
+                  "size": 7.02,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "YUN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "ECH": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "HAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "contradictory",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "GON": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TOB": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "GOR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "YOU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+          "category": "ATP_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "clean_interval",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "GOM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "VAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20WATILA",
+          "category": "ATP_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "ILA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "WAT": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12JACTRU",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 90,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "JAC": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TRU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12MOLROY",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 69,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "MOL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "ROY": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL12OFNTIR",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 55,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "OFN": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783780645.3470259,
+                  "ordinal": 2734576,
+                  "receipt": "47f1fa08-74ee-49f8-cbd5-32035926ad09",
+                  "price_cents": 6,
+                  "size": 106.03,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "TIR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL14DIAMID",
+          "category": "ATP_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 93,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "DIA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MID": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL14MARPRA",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "MAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PRA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL14VALDAM",
+          "category": "ATP_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 93,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "DAM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "VAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL15ALTDAR",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "ALT": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "DAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL15HANVAC",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "HAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "VAC": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL15KYMTSI",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 36,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KYM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TSI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 10,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "DRO": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784150892.090358,
+                  "ordinal": 3195562,
+                  "receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a",
+                  "price_cents": 6,
+                  "size": 57.21,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "MER": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784150225.790824,
+                  "ordinal": 3197676,
+                  "receipt": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+                  "price_cents": 6,
+                  "size": 26.56,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18BUTTAB",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 81,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BUT": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TAB": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18CINMIC",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 94,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "CIN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MIC": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18HIPGIU",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 94,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "GIU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "HIP": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18JACDA",
+          "category": "ATP_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 76,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "DA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "JAC": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784321673.099743,
+                  "ordinal": 3392973,
+                  "receipt": "e5a0f872-4db6-4bb5-7513-7ce0b004693d",
+                  "price_cents": 93,
+                  "size": 90,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1784321693.1363559,
+                  "ordinal": 3392972,
+                  "receipt": "d4fb1ac2-f21f-779b-142b-a81c70c2efc6",
+                  "price_cents": 8,
+                  "size": 90,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18MARJOR",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 34,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "JOR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MAR": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784330837.3519468,
+                  "ordinal": 3401395,
+                  "receipt": "dd2c4e6e-2d82-57c0-1a42-104e6874f1fb",
+                  "price_cents": 8,
+                  "size": 11,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18PELSIL",
+          "category": "ATP_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 78,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "PEL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SIL": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784340891.354198,
+                  "ordinal": 3416444,
+                  "receipt": "78dfd100-a396-7dce-3b7c-7f3ddef02478",
+                  "price_cents": 9,
+                  "size": 1,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL18SHETSI",
+          "category": "ATP_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 90,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "SHE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TSI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL19CERTRU",
+          "category": "ATP_MAIN",
+          "starting_price_split": "51_75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 79,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "CER": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TRU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL19DROUGO",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "DRO": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "UGO": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL19MULNAV",
+          "category": "ATP_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 93,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "MUL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "NAV": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL19TSICOL",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 91,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "COL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TSI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL19WAWBUR",
+          "category": "ATP_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BUR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "WAW": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+          "category": "WTA_CHALL",
+          "starting_price_split": "le25+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 70,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BOS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "ERJ": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 83,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "GAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MAZ": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "category": "WTA_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "COL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+          "category": "WTA_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 89,
+          "exact_bell": false,
+          "any_terminal_collapse": true,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "SHI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TUR": {
+              "terminal_collapse": true,
+              "reason": "MONOTONE_SELLER_DUMP_GE3_SPAN_GE10_INTO_SINGLE_DIGITS_WITHIN_30M_OF_FILL",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783850816.966311,
+                  "ordinal": 3703893,
+                  "receipt": "b198d389-7966-4bd1-cb26-ad5ff0d33f79",
+                  "price_cents": 17,
+                  "size": 5,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783850854.4358199,
+                  "ordinal": 3703892,
+                  "receipt": "7dff7b8a-834f-45d3-f085-4997f3a28582",
+                  "price_cents": 14,
+                  "size": 27,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783851149.2993178,
+                  "ordinal": 3703889,
+                  "receipt": "e9b1ce05-deea-75f5-d8c5-1339d946e243",
+                  "price_cents": 9,
+                  "size": 1,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783851350.1327128,
+                  "ordinal": 3703886,
+                  "receipt": "d21c0134-49d0-52b3-c973-75c9215bb533",
+                  "price_cents": 6,
+                  "size": 5,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783851780.78969,
+                  "ordinal": 3703874,
+                  "receipt": "ea644103-b106-75b9-fbdb-0bfafe719cf4",
+                  "price_cents": 5,
+                  "size": 100,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783852124.582728,
+                  "ordinal": 3703867,
+                  "receipt": "d0d3ac95-c547-5f0d-91ef-9ef82c2d42b9",
+                  "price_cents": 4,
+                  "size": 23,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1783852403.9859328,
+                  "ordinal": 3703864,
+                  "receipt": "1c7f2c38-25fb-4885-8ff6-266d576a92ec",
+                  "price_cents": 3,
+                  "size": 3,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "BAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "GAS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 93,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "FER": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "ZAN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+          "category": "WTA_CHALL",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "FAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PEN": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "BRA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "VED": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+          "category": "WTA_CHALL",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "HOD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "KOT": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL12HERKAZ",
+          "category": "WTA_MAIN",
+          "starting_price_split": "51_75+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 91,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "HER": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "KAZ": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL12KULZAA",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 42,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KUL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "ZAA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL12LEPBUR",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 88,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BUR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "LEP": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL12MICKUL",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 76,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KUL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MIC": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 79,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "IPE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "OKA": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783808967.7047698,
+                  "ordinal": 4156607,
+                  "receipt": "880de6f2-e16f-42d9-0f9b-bdffef50b653",
+                  "price_cents": 10,
+                  "size": 18,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL12TAGSIE",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "SIE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TAG": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL13AMAHER",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 89,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "AMA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "HER": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14AVAUCH",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 62,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "AVA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "UCH": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783961311.2772028,
+                  "ordinal": 4307687,
+                  "receipt": "d170b577-4e4a-5910-f516-0ade8098e120",
+                  "price_cents": 8,
+                  "size": 10,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14OLIIPE",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 85,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "IPE": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783959902.7131839,
+                  "ordinal": 4310384,
+                  "receipt": "c237188d-b6f9-71f9-c9fc-78441b7d615d",
+                  "price_cents": 8,
+                  "size": 10,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "OLI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "category": "WTA_MAIN",
+          "starting_price_split": "le25+le25",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 71,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "JEA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PUT": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783941897.283666,
+                  "ordinal": 4312099,
+                  "receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3",
+                  "price_cents": 9,
+                  "size": 1,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14SALIBR",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 51,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "IBR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SAL": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1783962494.6310358,
+                  "ordinal": 4319643,
+                  "receipt": "93979943-3af1-4362-9d7e-d2425c63cb1b",
+                  "price_cents": 8,
+                  "size": 10,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL15IBRBAD",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BAD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "IBR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL15PUTCHA",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 14,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "CHA": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784036983.965515,
+                  "ordinal": 4396396,
+                  "receipt": "8e2fe6bb-7f27-778d-5654-e2541ffa7749",
+                  "price_cents": 14,
+                  "size": 15,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1784037003.997762,
+                  "ordinal": 4396395,
+                  "receipt": "1e02d5b0-0428-76c8-8caf-945bbf8b0226",
+                  "price_cents": 8,
+                  "size": 15,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "PUT": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784036746.102306,
+                  "ordinal": 4397578,
+                  "receipt": "26f0617a-e2fa-7ac4-faac-d8da85e7d0db",
+                  "price_cents": 8,
+                  "size": 15,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL15SHEQUE",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "QUE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SHE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL16TAUTON",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "TAU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TON": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784126448.208767,
+                  "ordinal": 4408176,
+                  "receipt": "1ab6d513-a718-78d5-1313-e4857cb67bd1",
+                  "price_cents": 9,
+                  "size": 54,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 93,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BAD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "UDV": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL17VALKOR",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KOR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "VAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL18MORAKS",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 93,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "AKS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "MOR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL19BRAVON",
+          "category": "WTA_MAIN",
+          "starting_price_split": "le25+le25",
+          "bell_confidence": "clean_interval",
+          "combined_entry_cents": 83,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BRA": {
+              "terminal_collapse": false,
+              "reason": "NO_QUALIFYING_TERMINAL_COLLAPSE",
+              "evidence": [
+                {
+                  "timestamp_epoch": 1784401676.4202268,
+                  "ordinal": 4610414,
+                  "receipt": "eeffb47d-2eed-7964-4006-7054a8b0e64f",
+                  "price_cents": 11,
+                  "size": 200,
+                  "aggressor_side": "SELLER"
+                },
+                {
+                  "timestamp_epoch": 1784403142.1312149,
+                  "ordinal": 4610402,
+                  "receipt": "d8a127ad-bd99-738c-122c-d32c29f8a1c6",
+                  "price_cents": 10,
+                  "size": 1,
+                  "aggressor_side": "SELLER"
+                }
+              ]
+            },
+            "VON": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "CAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "EIG": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL19PODSAI",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 95,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "POD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SAI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL19RYSHON",
+          "category": "WTA_MAIN",
+          "starting_price_split": "le25+le25",
+          "bell_confidence": "clean_interval",
+          "combined_entry_cents": 94,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "HON": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "RYS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20AKSCOS",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "contradictory",
+          "combined_entry_cents": 91,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "AKS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "COS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20BARYUA",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "BAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "YUA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20BONUCH",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 94,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "BON": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "UCH": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20KOVTAR",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 92,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "KOV": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "TAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20LEPAVA",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "clean_interval",
+          "combined_entry_cents": 89,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "AVA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "LEP": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20LYSVAL",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "schedule_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "LYS": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "VAL": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20OKTDOD",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 92,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "DOD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "OKT": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20OLISCH",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "contradictory",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "OLI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SCH": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20PARHON",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 95,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "HON": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20PIECAR",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "clean_interval",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "CAR": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "PIE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20PODLEE",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "contradictory",
+          "combined_entry_cents": 94,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "LEE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "POD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20PODSTU",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "contradictory",
+          "combined_entry_cents": 93,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "POD": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "STU": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20SEISNI",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "exact",
+          "combined_entry_cents": 93,
+          "exact_bell": true,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": true,
+          "leg_receipts": {
+            "SEI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SNI": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20SEMKRA",
+          "category": "WTA_MAIN",
+          "starting_price_split": "26_50+51_75",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 92,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "KRA": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "SEM": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL20STENOH",
+          "category": "WTA_MAIN",
+          "starting_price_split": "ge75+le25",
+          "bell_confidence": "live_by_only",
+          "combined_entry_cents": 91,
+          "exact_bell": false,
+          "any_terminal_collapse": false,
+          "exact_bell_collapse_clean": false,
+          "leg_receipts": {
+            "NOH": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            },
+            "STE": {
+              "terminal_collapse": false,
+              "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+              "evidence": []
+            }
+          }
+        }
+      ]
+    }
+  },
+  "contaminated_bar_retired": [
+    23,
+    34,
+    68
+  ],
+  "operative_bar": {
+    "strict_completed_pairs": 270,
+    "exact_bell_collapse_clean_LE95": 7
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "prior_status": "REJECTED_BY_CONTAMINATED_23_34_68_DEEP_FRONTIER_BAR",
+  "new_status": "OPERATIVE",
+  "controlling_census": {
+    "commit": "03bac97b12777d751fbb334fa6ae0f605445498a",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DEEP_PAIR_HYGIENE_CENSUS.json",
+    "sha256": "f7e3b57a667dbd9f08e0e0f42aab330c6737e03ad56a4c936c7897ee63651e81",
+    "V34_deep_LE95": 34,
+    "V34_exact_bell": 9,
+    "V34_exact_and_clean": 9,
+    "schedule_contaminated_share": "25/34=73.5% estimated right edges",
+    "V35_exact_and_clean": 5,
+    "V36_exact_and_clean": 7
+  },
+  "comparison": {
+    "V35_strict_completed": 264,
+    "V36_strict_completed": 270,
+    "V35_clean_deep": 5,
+    "V36_clean_deep": 7,
+    "ARNROM_94": true
+  },
+  "ruling": "V36_DOMINATES_V35_ON_CLEAN_INSTRUMENTS_AND_IS_THE_OPERATIVE_V37_FLOOR"
+}

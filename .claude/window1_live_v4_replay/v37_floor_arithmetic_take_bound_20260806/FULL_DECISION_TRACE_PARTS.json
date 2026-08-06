@@ -1,0 +1,28 @@
+{
+  "source_sha256": "29d549f9411d6e85490bcf2930d70fde310e68a632ff33deda67f671c20498dc",
+  "source_bytes": 169902351,
+  "max_part_bytes": 67108864,
+  "parts": [
+    {
+      "name": "FULL_DECISION_TRACE.jsonl.gz.part000",
+      "bytes": 67108864,
+      "sha256": "32f7b771c878d06c1498550dcc1ed1b68aac75798d373c3b88fe7ae7ef54d239"
+    },
+    {
+      "name": "FULL_DECISION_TRACE.jsonl.gz.part001",
+      "bytes": 67108864,
+      "sha256": "65222e087af712a967962feabfebc443b6307685b639b50d5e9ab1ee9bed43a3"
+    },
+    {
+      "name": "FULL_DECISION_TRACE.jsonl.gz.part002",
+      "bytes": 35684623,
+      "sha256": "344167b6d38517fb12150e39bdf2cf849a43211fe4cad5a1f61f8969d951363d"
+    }
+  ],
+  "concatenation_law": "BINARY_CONCATENATION_IN_ASCENDING_PART_NAME_ORDER_REPRODUCES_SOURCE_BYTE_FOR_BYTE",
+  "conservation": {
+    "part_bytes_sum": 169902351,
+    "source_bytes": 169902351,
+    "pass": true
+  }
+}

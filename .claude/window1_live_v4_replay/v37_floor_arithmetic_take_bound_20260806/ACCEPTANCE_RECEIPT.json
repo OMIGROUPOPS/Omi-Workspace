@@ -1,0 +1,40 @@
+{
+  "status": "REJECTED_V37_BAR_V36_REMAINS_OPERATIVE",
+  "checks": {
+    "strict_completed_at_least_V36_270": false,
+    "strict_exact_bell_collapse_clean_LE95_at_least_V36_7": false,
+    "named_regressions_all_pass": false
+  },
+  "named_regression_checks": {
+    "GANJAN_recovers_toward_23": false,
+    "FETPIE_completes": false,
+    "JONSPI_completes": false,
+    "ARNROM_38_plus_56_equals_94": false,
+    "KRALOR_LOR_keeps_5": true,
+    "BOSCOP_BOS_keeps_32": true,
+    "ARNROM_ROM_38_zero_regret": true
+  },
+  "required_floor": {
+    "strict_completed_pairs": 270,
+    "strict_exact_bell_collapse_clean_LE95": 7,
+    "rule": "V36_RE_ADJUDICATED_OPERATIVE_FLOOR; BOTH_COMPLETION_AND_03bac97b_CLEAN_DEEP_BAR_MUST_PASS"
+  },
+  "observed": {
+    "strict_completed_pairs": 242,
+    "strict_exact_bell_collapse_clean_LE95": 5,
+    "strict_frontier_telemetry": {
+      "LE_93": 10,
+      "LE_95": 21,
+      "LE_97": 69
+    }
+  },
+  "retired_bar": {
+    "V34_LE93_LE95_LE97": [
+      23,
+      34,
+      68
+    ],
+    "reason": "03bac97b_SCHEDULE_CONTAMINATION"
+  },
+  "ruling": "STRICT_COMPLETED_GE_270_AND_EXACT_BELL_COLLAPSE_CLEAN_LE95_GE_7; NAMED_REGRESSIONS_ALL_PASS"
+}

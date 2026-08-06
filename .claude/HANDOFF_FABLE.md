@@ -1617,3 +1617,17 @@ The operator restated Window 1 as first two-sided book through the V3 PRE-MATCH 
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/81cb27e337f34d11ead43070ad3103a71d856922/arb-executor/docs/research/window1/WINDOW1_V34_W1_CAUSAL_CAPTURE_ADDENDUM.md
+
+## V35 LIVING REST + EVIDENCE GATE - 2026-08-06
+
+V35 is a frozen, undeployed replay variant on V34-W1. Living rests track
+`min(best_bid-1c, pair_cap)` on every own-book receipt in both directions;
+take authority is a ten-second, five-lot ask at/below the running evidence
+floor; and a newly formed floor cannot self-authorize while downward evidence
+remains unabsorbed. STRICT produced 264 completed/under-par pairs versus V34's
+254. CENSUS_PRICED produced 550 versus V34's 279. Exact rest tracking holds on
+2,004,999 strict and 1,603,420 census receipts with zero gap. This measurement
+is not a deployment or an operative-baseline ratification.
+
+Canonical package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0799fba887f1d1e84f9c0ef3e73096fd9d76019e/.claude/window1_live_v4_replay/v35_living_rest_evidence_gate_20260806/REPORT.md

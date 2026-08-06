@@ -1625,3 +1625,18 @@ The operator's V3 PRE-MATCH window ruling supersedes the earlier full-life block
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/81cb27e337f34d11ead43070ad3103a71d856922/arb-executor/docs/research/window1/WINDOW1_V34_W1_CAUSAL_CAPTURE_ADDENDUM.md
+
+### 2026-08-06 - V35 LIVING REST + EVIDENCE GATE MEASUREMENT
+
+V35 is a frozen, undeployed replay variant on V34-W1. Living rests track
+`min(best_bid-1c, pair_cap)` on every own-book receipt, up and down. Take
+authority requires a ten-second, five-lot ask at/below the running evidence
+floor and no longer depends on SETTLED flicker; first-flicker overpay remains
+blocked while downward evidence is unabsorbed. STRICT produced 264 completed
+and under-par pairs versus V34-W1's 254; CENSUS_PRICED produced 550 versus 279.
+The rest target is exact on all 2,004,999 strict and 1,603,420 census tracked
+book receipts. V35 is not deployed and is not ratified as the operative floor
+by this measurement alone.
+
+Canonical package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0799fba887f1d1e84f9c0ef3e73096fd9d76019e/.claude/window1_live_v4_replay/v35_living_rest_evidence_gate_20260806/REPORT.md

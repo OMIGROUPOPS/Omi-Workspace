@@ -1,0 +1,64 @@
+{
+  "files": {
+    "CENSUS_PRICED_REGRADE_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "ccc369350f1555bba12ddf1830dd74e7cce09024f2a418e49e608393d0023986",
+      "bytes": 90872
+    },
+    "CENSUS_PRICED_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "9c75e8c835cee39973d6cc97cc950762b864c5fc0c8b42cc8f2e40d24842dbdf",
+      "bytes": 24582
+    },
+    "CLAIM_FENCE.json": {
+      "sha256": "1b4a62dc70ae90587383b6f078cdf97ae9b086311c16b93851a03f923f97f006",
+      "bytes": 373
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "8f0f9e850743afefdc9046a68a118954d436abe38abc6945278163d35effeb57",
+      "bytes": 465
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "5edf5a8f9562e7df1fb54214508ab28da55dfc7fe83859b70ff742807ec12884",
+      "bytes": 88
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "25b1142568059bde570b4de9575774b7212596759e95737a3107aab86069cb35",
+      "bytes": 316
+    },
+    "FRONTIER_TWO_COLUMN.json": {
+      "sha256": "957c6680f6f93310e443668b2ce3113b93d6738f53db93db2eb12ed2deef3495",
+      "bytes": 85567
+    },
+    "FROZEN_FILL_IDENTITY_RECEIPT.json": {
+      "sha256": "093e6450cb86be970e4d6e575a481b51e8df76f1b2f41418e3a8435cd4c50058",
+      "bytes": 1068
+    },
+    "PREBELL_CLOSE_AND_OFFER_BINDING.json": {
+      "sha256": "1d6d621f034dfc060d798770e16d247835bf0cfd1c65f797e4f86f400a2fdb17",
+      "bytes": 1500
+    },
+    "REGRET_GAUGE_TWO_COLUMN.json": {
+      "sha256": "023132db830ad6066081d1ded6ebfd2c233298876d322371c203f3e003e780ca",
+      "bytes": 17971
+    },
+    "REPORT.md": {
+      "sha256": "dd4e958c4420ffb92596eca0ca0eb3bcb1ac9dacd4271f60ecbaafa7428469cb",
+      "bytes": 691
+    },
+    "SCORECARD_TWO_COLUMN.json": {
+      "sha256": "185833f0e9495fdbbad91278cac69c635dd22263ee6cf71cd20d455d29ce371a",
+      "bytes": 46351
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "b1152c93273aca1338672c49bbf11f7384442faef196294f6ccbe5362055acdb",
+      "bytes": 3066
+    },
+    "STRICT_REGRADE_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "2010db867b853639e323b69ac547126ff9ddc5393e8fa58f3cab96043a29c0a5",
+      "bytes": 89384
+    },
+    "STRICT_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "ebaccdb59ee6f07a892ab69f3c1e313c20b1dab88c3c9cb113c537d96e2e7dde",
+      "bytes": 24436
+    }
+  }
+}

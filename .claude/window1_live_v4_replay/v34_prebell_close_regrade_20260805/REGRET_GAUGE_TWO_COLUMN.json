@@ -1,0 +1,696 @@
+{
+  "STRICT_LAW": {
+    "label": "STRICT_LAW",
+    "law": "grade-only regret = frozen credited entry minus pre-bell maker_floor=min(qualifying ask floor,seller-aggressed traded low); uncredited legs remain null; no fill or policy reconstruction",
+    "aggregate": {
+      "denominator": 1608,
+      "numeric_n": 1208,
+      "null_n": 400,
+      "min": -85,
+      "p25": -1,
+      "median": 1,
+      "p75": 3,
+      "p90": 5,
+      "max": 57,
+      "total_cents": -558
+    },
+    "loss_attribution": {
+      "CREDITED_VS_PREBELL_MAKER_FLOOR": 893,
+      "RESTED_UNFILLED": 381,
+      "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 315,
+      "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 19
+    },
+    "category_x_price_region": [
+      {
+        "cell": "ATP_CHALL|26_50",
+        "regret": {
+          "denominator": 261,
+          "numeric_n": 220,
+          "null_n": 41,
+          "min": -44,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 4,
+          "max": 41,
+          "total_cents": -184
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 168,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 52,
+          "RESTED_UNFILLED": 41
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75",
+        "regret": {
+          "denominator": 252,
+          "numeric_n": 200,
+          "null_n": 52,
+          "min": -70,
+          "p25": -1,
+          "median": 0,
+          "p75": 2,
+          "p90": 4,
+          "max": 49,
+          "total_cents": -74
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 137,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 63,
+          "RESTED_UNFILLED": 52
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76",
+        "regret": {
+          "denominator": 101,
+          "numeric_n": 43,
+          "null_n": 58,
+          "min": -75,
+          "p25": 0,
+          "median": 1,
+          "p75": 3,
+          "p90": 5,
+          "max": 47,
+          "total_cents": 19
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 58,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 35,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 8
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25",
+        "regret": {
+          "denominator": 124,
+          "numeric_n": 99,
+          "null_n": 25,
+          "min": -21,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 4,
+          "max": 12,
+          "total_cents": 86
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 84,
+          "RESTED_UNFILLED": 24,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 15,
+          "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50",
+        "regret": {
+          "denominator": 110,
+          "numeric_n": 100,
+          "null_n": 10,
+          "min": -40,
+          "p25": 0,
+          "median": 2,
+          "p75": 4,
+          "p90": 6,
+          "max": 42,
+          "total_cents": 30
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 79,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 21,
+          "RESTED_UNFILLED": 10
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75",
+        "regret": {
+          "denominator": 111,
+          "numeric_n": 86,
+          "null_n": 25,
+          "min": -62,
+          "p25": -2,
+          "median": 1,
+          "p75": 3,
+          "p90": 6,
+          "max": 57,
+          "total_cents": -132
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 53,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 33,
+          "RESTED_UNFILLED": 25
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76",
+        "regret": {
+          "denominator": 27,
+          "numeric_n": 14,
+          "null_n": 13,
+          "min": -85,
+          "p25": -2,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 5,
+          "total_cents": -77
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 13,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 9,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 5
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25",
+        "regret": {
+          "denominator": 46,
+          "numeric_n": 28,
+          "null_n": 18,
+          "min": -15,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 6,
+          "max": 12,
+          "total_cents": 55
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 25,
+          "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 9,
+          "RESTED_UNFILLED": 9,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50",
+        "regret": {
+          "denominator": 96,
+          "numeric_n": 78,
+          "null_n": 18,
+          "min": -45,
+          "p25": -1,
+          "median": 1,
+          "p75": 4,
+          "p90": 33,
+          "max": 51,
+          "total_cents": 273
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 58,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 20,
+          "RESTED_UNFILLED": 18
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75",
+        "regret": {
+          "denominator": 87,
+          "numeric_n": 59,
+          "null_n": 28,
+          "min": -63,
+          "p25": -3,
+          "median": 0,
+          "p75": 1,
+          "p90": 4,
+          "max": 48,
+          "total_cents": -179
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 39,
+          "RESTED_UNFILLED": 28,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 20
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76",
+        "regret": {
+          "denominator": 44,
+          "numeric_n": 20,
+          "null_n": 24,
+          "min": -48,
+          "p25": -2,
+          "median": 1,
+          "p75": 4,
+          "p90": 27,
+          "max": 47,
+          "total_cents": 15
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 24,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 14,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 6
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25",
+        "regret": {
+          "denominator": 45,
+          "numeric_n": 38,
+          "null_n": 7,
+          "min": -15,
+          "p25": 0,
+          "median": 1,
+          "p75": 3,
+          "p90": 14,
+          "max": 19,
+          "total_cents": 96
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 30,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 8,
+          "RESTED_UNFILLED": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50",
+        "regret": {
+          "denominator": 86,
+          "numeric_n": 76,
+          "null_n": 10,
+          "min": -43,
+          "p25": 0,
+          "median": 1,
+          "p75": 3,
+          "p90": 8,
+          "max": 44,
+          "total_cents": -133
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 58,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 18,
+          "RESTED_UNFILLED": 10
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75",
+        "regret": {
+          "denominator": 87,
+          "numeric_n": 66,
+          "null_n": 21,
+          "min": -67,
+          "p25": -3,
+          "median": 0,
+          "p75": 2,
+          "p90": 4,
+          "max": 41,
+          "total_cents": -412
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 40,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 26,
+          "RESTED_UNFILLED": 21
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76",
+        "regret": {
+          "denominator": 52,
+          "numeric_n": 24,
+          "null_n": 28,
+          "min": -20,
+          "p25": -4,
+          "median": -2,
+          "p75": 0,
+          "p90": 1,
+          "max": 5,
+          "total_cents": -55
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 28,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 15,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 9
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25",
+        "regret": {
+          "denominator": 79,
+          "numeric_n": 57,
+          "null_n": 22,
+          "min": -17,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 5,
+          "max": 11,
+          "total_cents": 114
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 55,
+          "RESTED_UNFILLED": 13,
+          "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 9,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 2
+        }
+      }
+    ]
+  },
+  "CENSUS_PRICED": {
+    "label": "CENSUS_PRICED",
+    "law": "grade-only regret = frozen credited entry minus pre-bell maker_floor=min(qualifying ask floor,seller-aggressed traded low); uncredited legs remain null; no fill or policy reconstruction",
+    "aggregate": {
+      "denominator": 1608,
+      "numeric_n": 1250,
+      "null_n": 358,
+      "min": -89,
+      "p25": -1,
+      "median": 1,
+      "p75": 3,
+      "p90": 5,
+      "max": 57,
+      "total_cents": -1486
+    },
+    "loss_attribution": {
+      "CREDITED_VS_PREBELL_MAKER_FLOOR": 892,
+      "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 358,
+      "RESTED_UNFILLED": 338,
+      "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 20
+    },
+    "category_x_price_region": [
+      {
+        "cell": "ATP_CHALL|26_50",
+        "regret": {
+          "denominator": 261,
+          "numeric_n": 225,
+          "null_n": 36,
+          "min": -44,
+          "p25": -1,
+          "median": 1,
+          "p75": 2,
+          "p90": 4,
+          "max": 41,
+          "total_cents": -341
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 167,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 58,
+          "RESTED_UNFILLED": 36
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75",
+        "regret": {
+          "denominator": 252,
+          "numeric_n": 203,
+          "null_n": 49,
+          "min": -70,
+          "p25": -1,
+          "median": 0,
+          "p75": 2,
+          "p90": 4,
+          "max": 56,
+          "total_cents": -115
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 137,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 66,
+          "RESTED_UNFILLED": 49
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge76",
+        "regret": {
+          "denominator": 101,
+          "numeric_n": 48,
+          "null_n": 53,
+          "min": -89,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 5,
+          "max": 54,
+          "total_cents": -153
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 53,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 37,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 11
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25",
+        "regret": {
+          "denominator": 124,
+          "numeric_n": 104,
+          "null_n": 20,
+          "min": -21,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 4,
+          "max": 15,
+          "total_cents": 61
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 83,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 21,
+          "RESTED_UNFILLED": 19,
+          "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 1
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50",
+        "regret": {
+          "denominator": 110,
+          "numeric_n": 101,
+          "null_n": 9,
+          "min": -39,
+          "p25": 0,
+          "median": 2,
+          "p75": 4,
+          "p90": 6,
+          "max": 42,
+          "total_cents": -63
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 77,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 24,
+          "RESTED_UNFILLED": 9
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75",
+        "regret": {
+          "denominator": 111,
+          "numeric_n": 90,
+          "null_n": 21,
+          "min": -69,
+          "p25": -2,
+          "median": 1,
+          "p75": 3,
+          "p90": 6,
+          "max": 57,
+          "total_cents": -320
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 54,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 36,
+          "RESTED_UNFILLED": 21
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge76",
+        "regret": {
+          "denominator": 27,
+          "numeric_n": 14,
+          "null_n": 13,
+          "min": -85,
+          "p25": -2,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 5,
+          "total_cents": -77
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 13,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 9,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 5
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25",
+        "regret": {
+          "denominator": 46,
+          "numeric_n": 29,
+          "null_n": 17,
+          "min": -13,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 6,
+          "max": 12,
+          "total_cents": 54
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 25,
+          "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 9,
+          "RESTED_UNFILLED": 8,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 4
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50",
+        "regret": {
+          "denominator": 96,
+          "numeric_n": 81,
+          "null_n": 15,
+          "min": -45,
+          "p25": -1,
+          "median": 1,
+          "p75": 4,
+          "p90": 35,
+          "max": 51,
+          "total_cents": 330
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 59,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 22,
+          "RESTED_UNFILLED": 15
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75",
+        "regret": {
+          "denominator": 87,
+          "numeric_n": 61,
+          "null_n": 26,
+          "min": -62,
+          "p25": -2,
+          "median": 0,
+          "p75": 1,
+          "p90": 3,
+          "max": 52,
+          "total_cents": -95
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 39,
+          "RESTED_UNFILLED": 26,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 22
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge76",
+        "regret": {
+          "denominator": 44,
+          "numeric_n": 22,
+          "null_n": 22,
+          "min": -48,
+          "p25": -2,
+          "median": 1,
+          "p75": 3,
+          "p90": 26,
+          "max": 47,
+          "total_cents": 62
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 22,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 15,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 7
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25",
+        "regret": {
+          "denominator": 45,
+          "numeric_n": 40,
+          "null_n": 5,
+          "min": -22,
+          "p25": 0,
+          "median": 1,
+          "p75": 4,
+          "p90": 14,
+          "max": 19,
+          "total_cents": 86
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 32,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 8,
+          "RESTED_UNFILLED": 5
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50",
+        "regret": {
+          "denominator": 86,
+          "numeric_n": 77,
+          "null_n": 9,
+          "min": -42,
+          "p25": -1,
+          "median": 1,
+          "p75": 3,
+          "p90": 8,
+          "max": 44,
+          "total_cents": -212
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 57,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 20,
+          "RESTED_UNFILLED": 9
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75",
+        "regret": {
+          "denominator": 87,
+          "numeric_n": 69,
+          "null_n": 18,
+          "min": -67,
+          "p25": -6,
+          "median": 0,
+          "p75": 2,
+          "p90": 4,
+          "max": 41,
+          "total_cents": -589
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 39,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 30,
+          "RESTED_UNFILLED": 18
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge76",
+        "regret": {
+          "denominator": 52,
+          "numeric_n": 28,
+          "null_n": 24,
+          "min": -77,
+          "p25": -5,
+          "median": -2,
+          "p75": 0,
+          "p90": 1,
+          "max": 5,
+          "total_cents": -194
+        },
+        "loss_attribution": {
+          "RESTED_UNFILLED": 24,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 18,
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 10
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25",
+        "regret": {
+          "denominator": 79,
+          "numeric_n": 58,
+          "null_n": 21,
+          "min": -17,
+          "p25": 0,
+          "median": 2,
+          "p75": 3,
+          "p90": 5,
+          "max": 11,
+          "total_cents": 80
+        },
+        "loss_attribution": {
+          "CREDITED_VS_PREBELL_MAKER_FLOOR": 52,
+          "RESTED_UNFILLED": 11,
+          "CREDITED_PREBELL_FLOOR_UNAVAILABLE": 10,
+          "CREDITED_BETTER_THAN_RECORDED_PREBELL_MAKER_FLOOR": 6
+        }
+      }
+    ]
+  }
+}

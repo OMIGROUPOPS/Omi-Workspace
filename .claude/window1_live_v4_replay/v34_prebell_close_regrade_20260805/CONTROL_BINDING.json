@@ -1,0 +1,16 @@
+{
+  "V34_source": "b430bcfff51f89c9466e77b798d4ac5d9fff15ea",
+  "close_source": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+  "floor_source": "452eb3354ee08afe0c94cfa3bedb996f73d8b248",
+  "operation": "REGRADE_ONLY_NO_REBUILD",
+  "R3_joint_floor": 68,
+  "comparison_offer": {
+    "D": 804,
+    "both_close_and_floor_available": 773,
+    "both_floors_strictly_below_close_any_price": 422,
+    "LE_93": 59,
+    "LE_95": 104,
+    "LE_97": 217,
+    "LT_100": 390
+  }
+}

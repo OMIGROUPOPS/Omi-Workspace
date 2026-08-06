@@ -1,0 +1,13 @@
+{
+  "policy_replay_invocations": 0,
+  "fill_model_invocations": 0,
+  "tape_reads": 0,
+  "private_input_reads": 0,
+  "holdout_accesses": 0,
+  "live_accesses": 0,
+  "network_runtime_accesses": 0,
+  "order_accesses": 0,
+  "position_accesses": 0,
+  "settlement_basis_close_reads": 0,
+  "decision_or_fill_mutations": 0
+}

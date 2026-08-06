@@ -1,0 +1,24 @@
+{
+  "source_commit": "b430bcfff51f89c9466e77b798d4ac5d9fff15ea",
+  "strict_source": {
+    "path": ".claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/STRICT_EVENT_LEDGER.jsonl.gz",
+    "sha256": "cd69ab5deec743ca5e91b59cb9673c7513205554d20f3e4ecf75c0710e2f8d54",
+    "bytes": 562967,
+    "events": 804
+  },
+  "census_source": {
+    "path": ".claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/CENSUS_PRICED_EVENT_LEDGER.jsonl.gz",
+    "sha256": "9f472700b773cd2789a6f836283016e931737dd2cb1af37eca431745c735a364",
+    "bytes": 564369,
+    "events": 804
+  },
+  "policy_replay_invocations": 0,
+  "tape_reads": 0,
+  "action_changes": 0,
+  "fill_changes": 0,
+  "fill_class_changes": 0,
+  "event_identity_changes": 0,
+  "strict_source_semantic_hash": "ff86a495b6813aaf0537b971580e595e4c1245812f7475d498f056809556ae36",
+  "census_source_semantic_hash": "1d1538549cbd41154156782e398e2b5324950c440fd44a8de797000173f47648",
+  "rule": "GRADE_ONLY; FROZEN_B430BCF_ACTIONS_FILLS_PRICES_TIMESTAMPS_AND_CLASSES"
+}

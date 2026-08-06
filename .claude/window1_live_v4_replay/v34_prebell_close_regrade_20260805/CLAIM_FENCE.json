@@ -1,0 +1,9 @@
+{
+  "frozen_fills_not_replayed": true,
+  "grading_ruler_changed_only": true,
+  "prebell_close_is_ex_post_grade_only": true,
+  "recut_offer_is_benchmark_not_candidate_capture": true,
+  "fill_admissibility_not_revisited": true,
+  "full_life_V34_fill_horizon_and_guarded_prebell_offer_have_different_horizons": true,
+  "category_and_price_region_partitions_preserved": true
+}

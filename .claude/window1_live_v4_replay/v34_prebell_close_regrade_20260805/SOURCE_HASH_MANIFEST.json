@@ -1,0 +1,66 @@
+{
+  "git_bound": {
+    ".claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/STRICT_EVENT_LEDGER.jsonl.gz": {
+      "path": ".claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/STRICT_EVENT_LEDGER.jsonl.gz",
+      "sha256": "cd69ab5deec743ca5e91b59cb9673c7513205554d20f3e4ecf75c0710e2f8d54",
+      "bytes": 562967,
+      "events": 804
+    },
+    ".claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/CENSUS_PRICED_EVENT_LEDGER.jsonl.gz": {
+      "path": ".claude/window1_live_v4_replay/v34_dual_side_residency_machine_trading_phase_20260805/CENSUS_PRICED_EVENT_LEDGER.jsonl.gz",
+      "sha256": "9f472700b773cd2789a6f836283016e931737dd2cb1af37eca431745c735a364",
+      "bytes": 564369,
+      "events": 804
+    },
+    ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INDEPENDENT_CLOSE_AUDIT_1608.csv": {
+      "commit": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INDEPENDENT_CLOSE_AUDIT_1608.csv",
+      "sha256": "51d542d9c1f18c6b30b6bb5e8f458d9cf3adeebf1895399f8f7b2ba416836303",
+      "bytes": 253158,
+      "rows": 1608,
+      "available": 1557,
+      "unavailable": 51,
+      "law": "last true print inside guarded pre-bell Window 1 [left,right]"
+    },
+    ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CLOSE_AUDIT_AND_JOINT_CEILING_SUMMARY.json": {
+      "commit": "50ce0f4940c461cf0b6fa1b79000d96b335cd601",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CLOSE_AUDIT_AND_JOINT_CEILING_SUMMARY.json",
+      "sha256": "a1b9047684f2be1a1942d40cae9c326501fbe3ad4219852bfedf586e1ecb67cf",
+      "bytes": 2407,
+      "reproduced_from_bound_rows": {
+        "D": 804,
+        "both_close_and_floor_available": 773,
+        "both_floors_strictly_below_close_any_price": 422,
+        "LE_93": 59,
+        "LE_95": 104,
+        "LE_97": 217,
+        "LT_100": 390
+      },
+      "expected_summary": {
+        "LE_93": 59,
+        "LE_95": 104,
+        "LE_97": 217,
+        "LT_100": 390
+      },
+      "mismatches": 0
+    },
+    ".claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/DUAL_FLOOR_LEG_LEDGER.jsonl.gz": {
+      "commit": "452eb3354ee08afe0c94cfa3bedb996f73d8b248",
+      "path": ".claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/DUAL_FLOOR_LEG_LEDGER.jsonl.gz",
+      "sha256": "e5e4069ba44efaeb24c646b6ebb5d4e6d5a15b30c7cc8961efdae1695905d7a0",
+      "bytes": 949936,
+      "rows": 1608,
+      "law": "min(qualifying ask floor,seller-aggressed traded low)"
+    }
+  },
+  "local_sources": {
+    "arb-executor/analysis/build_window1_v34_prebell_close_regrade.js": {
+      "sha256": "eb7c767e17c0ee038e02d20ba6c78b855b004f2e080d5b6d9d6fff846fa37d68",
+      "bytes": 22112
+    },
+    "arb-executor/tests/test_window1_v34_prebell_close_regrade.js": {
+      "sha256": "8091b9d6580c52b6e5e9ba7a3ea3750086b3a37d94f3f60c7f79f7b7d84d919a",
+      "bytes": 1799
+    }
+  }
+}

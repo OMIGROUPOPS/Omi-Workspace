@@ -1,0 +1,2726 @@
+{
+  "STRICT_LAW": {
+    "label": "STRICT_LAW",
+    "R3_joint_floor": 68,
+    "recut_map_offer": {
+      "D": 804,
+      "both_close_and_floor_available": 773,
+      "both_floors_strictly_below_close_any_price": 422,
+      "LE_93": 59,
+      "LE_95": 104,
+      "LE_97": 217,
+      "LT_100": 390
+    },
+    "aggregate": {
+      "LE_93": {
+        "fixed_denominator": 804,
+        "completed_pairs": 131,
+        "joint_objective_pairs": 52,
+        "recut_map_offer": 59,
+        "joint_gap_to_offer": 7,
+        "joint_capture_of_offer_rate": 0.8813559322033898
+      },
+      "LE_95": {
+        "fixed_denominator": 804,
+        "completed_pairs": 157,
+        "joint_objective_pairs": 63,
+        "recut_map_offer": 104,
+        "joint_gap_to_offer": 41,
+        "joint_capture_of_offer_rate": 0.6057692307692307
+      },
+      "LE_97": {
+        "fixed_denominator": 804,
+        "completed_pairs": 217,
+        "joint_objective_pairs": 82,
+        "recut_map_offer": 217,
+        "joint_gap_to_offer": 135,
+        "joint_capture_of_offer_rate": 0.3778801843317972
+      },
+      "LT_100": {
+        "fixed_denominator": 804,
+        "completed_pairs": 441,
+        "joint_objective_pairs": 121,
+        "recut_map_offer": 390,
+        "joint_gap_to_offer": 269,
+        "joint_capture_of_offer_rate": 0.31025641025641026
+      },
+      "ANY_PRICE": {
+        "fixed_denominator": 804,
+        "completed_pairs": 441,
+        "joint_objective_pairs": 121,
+        "recut_map_offer": 422,
+        "joint_gap_to_offer": 301,
+        "joint_capture_of_offer_rate": 0.28672985781990523
+      }
+    },
+    "category_x_starting_price_region": [
+      {
+        "cell": "ATP_CHALL|26_50+26_50",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 238,
+            "completed_pairs": 39,
+            "joint_objective_pairs": 20,
+            "recut_map_offer": 15,
+            "joint_gap_to_offer": -5,
+            "joint_capture_of_offer_rate": 1.3333333333333333
+          },
+          "LE_95": {
+            "fixed_denominator": 238,
+            "completed_pairs": 50,
+            "joint_objective_pairs": 25,
+            "recut_map_offer": 31,
+            "joint_gap_to_offer": 6,
+            "joint_capture_of_offer_rate": 0.8064516129032258
+          },
+          "LE_97": {
+            "fixed_denominator": 238,
+            "completed_pairs": 76,
+            "joint_objective_pairs": 35,
+            "recut_map_offer": 69,
+            "joint_gap_to_offer": 34,
+            "joint_capture_of_offer_rate": 0.5072463768115942
+          },
+          "LT_100": {
+            "fixed_denominator": 238,
+            "completed_pairs": 156,
+            "joint_objective_pairs": 56,
+            "recut_map_offer": 126,
+            "joint_gap_to_offer": 70,
+            "joint_capture_of_offer_rate": 0.4444444444444444
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 238,
+            "completed_pairs": 156,
+            "joint_objective_pairs": 56,
+            "recut_map_offer": 142,
+            "joint_gap_to_offer": 86,
+            "joint_capture_of_offer_rate": 0.39436619718309857
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0.5
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0.5
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 102,
+            "completed_pairs": 9,
+            "joint_objective_pairs": 3,
+            "recut_map_offer": 3,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "LE_95": {
+            "fixed_denominator": 102,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 5,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": -1,
+            "joint_capture_of_offer_rate": 1.25
+          },
+          "LE_97": {
+            "fixed_denominator": 102,
+            "completed_pairs": 21,
+            "joint_objective_pairs": 8,
+            "recut_map_offer": 20,
+            "joint_gap_to_offer": 12,
+            "joint_capture_of_offer_rate": 0.4
+          },
+          "LT_100": {
+            "fixed_denominator": 102,
+            "completed_pairs": 38,
+            "joint_objective_pairs": 10,
+            "recut_map_offer": 46,
+            "joint_gap_to_offer": 36,
+            "joint_capture_of_offer_rate": 0.21739130434782608
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 102,
+            "completed_pairs": 38,
+            "joint_objective_pairs": 10,
+            "recut_map_offer": 51,
+            "joint_gap_to_offer": 41,
+            "joint_capture_of_offer_rate": 0.19607843137254902
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 15,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 7,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 15,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 8,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 15,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 8,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 15,
+            "completed_pairs": 4,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0.125
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 15,
+            "completed_pairs": 4,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0.125
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+26_50",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 103,
+            "completed_pairs": 17,
+            "joint_objective_pairs": 10,
+            "recut_map_offer": 12,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0.8333333333333334
+          },
+          "LE_95": {
+            "fixed_denominator": 103,
+            "completed_pairs": 22,
+            "joint_objective_pairs": 12,
+            "recut_map_offer": 22,
+            "joint_gap_to_offer": 10,
+            "joint_capture_of_offer_rate": 0.5454545454545454
+          },
+          "LE_97": {
+            "fixed_denominator": 103,
+            "completed_pairs": 29,
+            "joint_objective_pairs": 14,
+            "recut_map_offer": 50,
+            "joint_gap_to_offer": 36,
+            "joint_capture_of_offer_rate": 0.28
+          },
+          "LT_100": {
+            "fixed_denominator": 103,
+            "completed_pairs": 73,
+            "joint_objective_pairs": 19,
+            "recut_map_offer": 67,
+            "joint_gap_to_offer": 48,
+            "joint_capture_of_offer_rate": 0.2835820895522388
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 103,
+            "completed_pairs": 73,
+            "joint_objective_pairs": 19,
+            "recut_map_offer": 69,
+            "joint_gap_to_offer": 50,
+            "joint_capture_of_offer_rate": 0.2753623188405797
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 4,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 4,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 4,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 29,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 29,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 7,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 29,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 11,
+            "joint_gap_to_offer": 11,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 29,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 17,
+            "joint_gap_to_offer": 15,
+            "joint_capture_of_offer_rate": 0.11764705882352941
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 29,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 17,
+            "joint_gap_to_offer": 15,
+            "joint_capture_of_offer_rate": 0.11764705882352941
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+26_50",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 88,
+            "completed_pairs": 24,
+            "joint_objective_pairs": 9,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": -5,
+            "joint_capture_of_offer_rate": 2.25
+          },
+          "LE_95": {
+            "fixed_denominator": 88,
+            "completed_pairs": 27,
+            "joint_objective_pairs": 10,
+            "recut_map_offer": 5,
+            "joint_gap_to_offer": -5,
+            "joint_capture_of_offer_rate": 2
+          },
+          "LE_97": {
+            "fixed_denominator": 88,
+            "completed_pairs": 33,
+            "joint_objective_pairs": 11,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": -3,
+            "joint_capture_of_offer_rate": 1.375
+          },
+          "LT_100": {
+            "fixed_denominator": 88,
+            "completed_pairs": 45,
+            "joint_objective_pairs": 13,
+            "recut_map_offer": 23,
+            "joint_gap_to_offer": 10,
+            "joint_capture_of_offer_rate": 0.5652173913043478
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 88,
+            "completed_pairs": 45,
+            "joint_objective_pairs": 13,
+            "recut_map_offer": 26,
+            "joint_gap_to_offer": 13,
+            "joint_capture_of_offer_rate": 0.5
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 44,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 3,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0.3333333333333333
+          },
+          "LE_95": {
+            "fixed_denominator": 44,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 3,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0.3333333333333333
+          },
+          "LE_97": {
+            "fixed_denominator": 44,
+            "completed_pairs": 12,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0.5
+          },
+          "LT_100": {
+            "fixed_denominator": 44,
+            "completed_pairs": 16,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 13,
+            "joint_gap_to_offer": 11,
+            "joint_capture_of_offer_rate": 0.15384615384615385
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 44,
+            "completed_pairs": 16,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 15,
+            "joint_gap_to_offer": 13,
+            "joint_capture_of_offer_rate": 0.13333333333333333
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 77,
+            "completed_pairs": 22,
+            "joint_objective_pairs": 9,
+            "recut_map_offer": 5,
+            "joint_gap_to_offer": -4,
+            "joint_capture_of_offer_rate": 1.8
+          },
+          "LE_95": {
+            "fixed_denominator": 77,
+            "completed_pairs": 24,
+            "joint_objective_pairs": 9,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": -1,
+            "joint_capture_of_offer_rate": 1.125
+          },
+          "LE_97": {
+            "fixed_denominator": 77,
+            "completed_pairs": 26,
+            "joint_objective_pairs": 9,
+            "recut_map_offer": 16,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0.5625
+          },
+          "LT_100": {
+            "fixed_denominator": 77,
+            "completed_pairs": 53,
+            "joint_objective_pairs": 12,
+            "recut_map_offer": 38,
+            "joint_gap_to_offer": 26,
+            "joint_capture_of_offer_rate": 0.3157894736842105
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 77,
+            "completed_pairs": 53,
+            "joint_objective_pairs": 12,
+            "recut_map_offer": 38,
+            "joint_gap_to_offer": 26,
+            "joint_capture_of_offer_rate": 0.3157894736842105
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 56,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 56,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0.5
+          },
+          "LE_97": {
+            "fixed_denominator": 56,
+            "completed_pairs": 6,
+            "joint_objective_pairs": 3,
+            "recut_map_offer": 15,
+            "joint_gap_to_offer": 12,
+            "joint_capture_of_offer_rate": 0.2
+          },
+          "LT_100": {
+            "fixed_denominator": 56,
+            "completed_pairs": 22,
+            "joint_objective_pairs": 4,
+            "recut_map_offer": 32,
+            "joint_gap_to_offer": 28,
+            "joint_capture_of_offer_rate": 0.125
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 56,
+            "completed_pairs": 22,
+            "joint_objective_pairs": 4,
+            "recut_map_offer": 36,
+            "joint_gap_to_offer": 32,
+            "joint_capture_of_offer_rate": 0.1111111111111111
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 10,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 10,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 10,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      }
+    ]
+  },
+  "CENSUS_PRICED": {
+    "label": "CENSUS_PRICED",
+    "R3_joint_floor": 68,
+    "recut_map_offer": {
+      "D": 804,
+      "both_close_and_floor_available": 773,
+      "both_floors_strictly_below_close_any_price": 422,
+      "LE_93": 59,
+      "LE_95": 104,
+      "LE_97": 217,
+      "LT_100": 390
+    },
+    "aggregate": {
+      "LE_93": {
+        "fixed_denominator": 804,
+        "completed_pairs": 146,
+        "joint_objective_pairs": 58,
+        "recut_map_offer": 59,
+        "joint_gap_to_offer": 1,
+        "joint_capture_of_offer_rate": 0.9830508474576272
+      },
+      "LE_95": {
+        "fixed_denominator": 804,
+        "completed_pairs": 170,
+        "joint_objective_pairs": 66,
+        "recut_map_offer": 104,
+        "joint_gap_to_offer": 38,
+        "joint_capture_of_offer_rate": 0.6346153846153846
+      },
+      "LE_97": {
+        "fixed_denominator": 804,
+        "completed_pairs": 241,
+        "joint_objective_pairs": 91,
+        "recut_map_offer": 217,
+        "joint_gap_to_offer": 126,
+        "joint_capture_of_offer_rate": 0.41935483870967744
+      },
+      "LT_100": {
+        "fixed_denominator": 804,
+        "completed_pairs": 481,
+        "joint_objective_pairs": 137,
+        "recut_map_offer": 390,
+        "joint_gap_to_offer": 253,
+        "joint_capture_of_offer_rate": 0.35128205128205126
+      },
+      "ANY_PRICE": {
+        "fixed_denominator": 804,
+        "completed_pairs": 481,
+        "joint_objective_pairs": 137,
+        "recut_map_offer": 422,
+        "joint_gap_to_offer": 285,
+        "joint_capture_of_offer_rate": 0.3246445497630332
+      }
+    },
+    "category_x_starting_price_region": [
+      {
+        "cell": "ATP_CHALL|26_50+26_50",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 238,
+            "completed_pairs": 41,
+            "joint_objective_pairs": 20,
+            "recut_map_offer": 15,
+            "joint_gap_to_offer": -5,
+            "joint_capture_of_offer_rate": 1.3333333333333333
+          },
+          "LE_95": {
+            "fixed_denominator": 238,
+            "completed_pairs": 50,
+            "joint_objective_pairs": 24,
+            "recut_map_offer": 31,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0.7741935483870968
+          },
+          "LE_97": {
+            "fixed_denominator": 238,
+            "completed_pairs": 76,
+            "joint_objective_pairs": 34,
+            "recut_map_offer": 69,
+            "joint_gap_to_offer": 35,
+            "joint_capture_of_offer_rate": 0.4927536231884058
+          },
+          "LT_100": {
+            "fixed_denominator": 238,
+            "completed_pairs": 164,
+            "joint_objective_pairs": 60,
+            "recut_map_offer": 126,
+            "joint_gap_to_offer": 66,
+            "joint_capture_of_offer_rate": 0.47619047619047616
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 238,
+            "completed_pairs": 164,
+            "joint_objective_pairs": 60,
+            "recut_map_offer": 142,
+            "joint_gap_to_offer": 82,
+            "joint_capture_of_offer_rate": 0.4225352112676056
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0.5
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0.5
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 102,
+            "completed_pairs": 10,
+            "joint_objective_pairs": 3,
+            "recut_map_offer": 3,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "LE_95": {
+            "fixed_denominator": 102,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 4,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "LE_97": {
+            "fixed_denominator": 102,
+            "completed_pairs": 24,
+            "joint_objective_pairs": 10,
+            "recut_map_offer": 20,
+            "joint_gap_to_offer": 10,
+            "joint_capture_of_offer_rate": 0.5
+          },
+          "LT_100": {
+            "fixed_denominator": 102,
+            "completed_pairs": 44,
+            "joint_objective_pairs": 14,
+            "recut_map_offer": 46,
+            "joint_gap_to_offer": 32,
+            "joint_capture_of_offer_rate": 0.30434782608695654
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 102,
+            "completed_pairs": 44,
+            "joint_objective_pairs": 14,
+            "recut_map_offer": 51,
+            "joint_gap_to_offer": 37,
+            "joint_capture_of_offer_rate": 0.27450980392156865
+          }
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 15,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 7,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 15,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 8,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 15,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 8,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 15,
+            "completed_pairs": 5,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0.125
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 15,
+            "completed_pairs": 5,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0.125
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+26_50",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 103,
+            "completed_pairs": 22,
+            "joint_objective_pairs": 12,
+            "recut_map_offer": 12,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "LE_95": {
+            "fixed_denominator": 103,
+            "completed_pairs": 26,
+            "joint_objective_pairs": 13,
+            "recut_map_offer": 22,
+            "joint_gap_to_offer": 9,
+            "joint_capture_of_offer_rate": 0.5909090909090909
+          },
+          "LE_97": {
+            "fixed_denominator": 103,
+            "completed_pairs": 33,
+            "joint_objective_pairs": 16,
+            "recut_map_offer": 50,
+            "joint_gap_to_offer": 34,
+            "joint_capture_of_offer_rate": 0.32
+          },
+          "LT_100": {
+            "fixed_denominator": 103,
+            "completed_pairs": 78,
+            "joint_objective_pairs": 21,
+            "recut_map_offer": 67,
+            "joint_gap_to_offer": 46,
+            "joint_capture_of_offer_rate": 0.31343283582089554
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 103,
+            "completed_pairs": 78,
+            "joint_objective_pairs": 21,
+            "recut_map_offer": 69,
+            "joint_gap_to_offer": 48,
+            "joint_capture_of_offer_rate": 0.30434782608695654
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 4,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 4,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 4,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 29,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 29,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 7,
+            "joint_gap_to_offer": 7,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 29,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 11,
+            "joint_gap_to_offer": 11,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 29,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 17,
+            "joint_gap_to_offer": 15,
+            "joint_capture_of_offer_rate": 0.11764705882352941
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 29,
+            "completed_pairs": 11,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 17,
+            "joint_gap_to_offer": 15,
+            "joint_capture_of_offer_rate": 0.11764705882352941
+          }
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 6,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 6,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 6,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 6,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+26_50",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 2,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 2,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 88,
+            "completed_pairs": 19,
+            "joint_objective_pairs": 9,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": -5,
+            "joint_capture_of_offer_rate": 2.25
+          },
+          "LE_95": {
+            "fixed_denominator": 88,
+            "completed_pairs": 23,
+            "joint_objective_pairs": 10,
+            "recut_map_offer": 5,
+            "joint_gap_to_offer": -5,
+            "joint_capture_of_offer_rate": 2
+          },
+          "LE_97": {
+            "fixed_denominator": 88,
+            "completed_pairs": 34,
+            "joint_objective_pairs": 12,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": -4,
+            "joint_capture_of_offer_rate": 1.5
+          },
+          "LT_100": {
+            "fixed_denominator": 88,
+            "completed_pairs": 50,
+            "joint_objective_pairs": 14,
+            "recut_map_offer": 23,
+            "joint_gap_to_offer": 9,
+            "joint_capture_of_offer_rate": 0.6086956521739131
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 88,
+            "completed_pairs": 50,
+            "joint_objective_pairs": 14,
+            "recut_map_offer": 26,
+            "joint_gap_to_offer": 12,
+            "joint_capture_of_offer_rate": 0.5384615384615384
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 44,
+            "completed_pairs": 12,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 3,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0.6666666666666666
+          },
+          "LE_95": {
+            "fixed_denominator": 44,
+            "completed_pairs": 13,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 3,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0.6666666666666666
+          },
+          "LE_97": {
+            "fixed_denominator": 44,
+            "completed_pairs": 14,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 4,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0.5
+          },
+          "LT_100": {
+            "fixed_denominator": 44,
+            "completed_pairs": 20,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 13,
+            "joint_gap_to_offer": 11,
+            "joint_capture_of_offer_rate": 0.15384615384615385
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 44,
+            "completed_pairs": 20,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 15,
+            "joint_gap_to_offer": 13,
+            "joint_capture_of_offer_rate": 0.13333333333333333
+          }
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 77,
+            "completed_pairs": 27,
+            "joint_objective_pairs": 11,
+            "recut_map_offer": 5,
+            "joint_gap_to_offer": -6,
+            "joint_capture_of_offer_rate": 2.2
+          },
+          "LE_95": {
+            "fixed_denominator": 77,
+            "completed_pairs": 29,
+            "joint_objective_pairs": 11,
+            "recut_map_offer": 8,
+            "joint_gap_to_offer": -3,
+            "joint_capture_of_offer_rate": 1.375
+          },
+          "LE_97": {
+            "fixed_denominator": 77,
+            "completed_pairs": 31,
+            "joint_objective_pairs": 11,
+            "recut_map_offer": 16,
+            "joint_gap_to_offer": 5,
+            "joint_capture_of_offer_rate": 0.6875
+          },
+          "LT_100": {
+            "fixed_denominator": 77,
+            "completed_pairs": 57,
+            "joint_objective_pairs": 14,
+            "recut_map_offer": 38,
+            "joint_gap_to_offer": 24,
+            "joint_capture_of_offer_rate": 0.3684210526315789
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 77,
+            "completed_pairs": 57,
+            "joint_objective_pairs": 14,
+            "recut_map_offer": 38,
+            "joint_gap_to_offer": 24,
+            "joint_capture_of_offer_rate": 0.3684210526315789
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+ge75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 3,
+            "completed_pairs": 0,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 3,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+51_75",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_95": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 1,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 1,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 4,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 4,
+            "completed_pairs": 2,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LE_97": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "LT_100": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 4,
+            "completed_pairs": 3,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 2,
+            "joint_capture_of_offer_rate": 0
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge75+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 56,
+            "completed_pairs": 6,
+            "joint_objective_pairs": 1,
+            "recut_map_offer": 1,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "LE_95": {
+            "fixed_denominator": 56,
+            "completed_pairs": 7,
+            "joint_objective_pairs": 2,
+            "recut_map_offer": 2,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": 1
+          },
+          "LE_97": {
+            "fixed_denominator": 56,
+            "completed_pairs": 13,
+            "joint_objective_pairs": 6,
+            "recut_map_offer": 15,
+            "joint_gap_to_offer": 9,
+            "joint_capture_of_offer_rate": 0.4
+          },
+          "LT_100": {
+            "fixed_denominator": 56,
+            "completed_pairs": 27,
+            "joint_objective_pairs": 7,
+            "recut_map_offer": 32,
+            "joint_gap_to_offer": 25,
+            "joint_capture_of_offer_rate": 0.21875
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 56,
+            "completed_pairs": 27,
+            "joint_objective_pairs": 7,
+            "recut_map_offer": 36,
+            "joint_gap_to_offer": 29,
+            "joint_capture_of_offer_rate": 0.19444444444444445
+          }
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25",
+        "frontier": {
+          "LE_93": {
+            "fixed_denominator": 10,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_95": {
+            "fixed_denominator": 10,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LE_97": {
+            "fixed_denominator": 10,
+            "completed_pairs": 1,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "LT_100": {
+            "fixed_denominator": 10,
+            "completed_pairs": 4,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          },
+          "ANY_PRICE": {
+            "fixed_denominator": 10,
+            "completed_pairs": 4,
+            "joint_objective_pairs": 0,
+            "recut_map_offer": 0,
+            "joint_gap_to_offer": 0,
+            "joint_capture_of_offer_rate": null
+          }
+        }
+      }
+    ]
+  }
+}

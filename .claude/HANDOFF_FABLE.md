@@ -1653,3 +1653,13 @@ and was not backdated. No deployment or live access occurred.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a76377d7e9e9085c14b3b396a008fddddbb6e627/arb-executor/docs/research/window1/WINDOW1_V36_READJUDICATION_V37_ADDENDUM.md
+
+## FRESH HOLDOUT EXAM STOPPED AT SEAL - 2026-08-06
+
+The read-only post-July-26 census found 172 paired big-4 events. Git history
+excludes 171 as previously touched. Only `KXATPMATCH-26JUL28MICMCD` is sealed,
+so `N=1 < 60`; V36, V35, and R3 were not run. There are zero runner
+invocations, retries, and score rows. The exam waits for more games.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/2db2f84f6a3251e6f823ab017ee8e7d287b75db6/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_SEAL_20260806_ADDENDUM.md

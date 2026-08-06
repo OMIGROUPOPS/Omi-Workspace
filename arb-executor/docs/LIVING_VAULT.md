@@ -1,5 +1,31 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-05 - V34 FROZEN FILLS REGRADED ON CC PRE-BELL CLOSES
+
+No V34 decision or fill was rebuilt. The exact `b430bcf` STRICT/CENSUS event
+ledgers were joined to CC's hash-bound `50ce0f49` independent pre-bell close
+audit. CC's re-cut offer reproduces exactly at 59 / 104 / 217 / 390 for <=93 /
+<=95 / <=97 / <100. STRICT keeps 441 completions and grades 121 JOINT (+53 vs
+R3 68; 269 short of offer 390). CENSUS keeps 481 completions and grades 137
+JOINT (+69 vs R3; 253 short of offer).
+
+This is a grading-only cross-ruler comparison, not a causal W1 replay. The
+frozen V34 fills have a full-life horizon while the close and offer surface is
+the guarded pre-bell window; 181 STRICT and 198 CENSUS credited legs occur
+after the guarded right edge. Fill admissibility was not revisited. Two builds
+are byte-identical; all action/fill/class changes and replay invocations are
+zero.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/78cac3c429eb457f1deee756e72af41fb36224df/.claude/window1_live_v4_replay/v34_prebell_close_regrade_20260805/SCORECARD_TWO_COLUMN.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/78cac3c429eb457f1deee756e72af41fb36224df/.claude/window1_live_v4_replay/v34_prebell_close_regrade_20260805/FRONTIER_TWO_COLUMN.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/78cac3c429eb457f1deee756e72af41fb36224df/.claude/window1_live_v4_replay/v34_prebell_close_regrade_20260805/REGRET_GAUGE_TWO_COLUMN.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/78cac3c429eb457f1deee756e72af41fb36224df/.claude/window1_live_v4_replay/v34_prebell_close_regrade_20260805/PREBELL_CLOSE_AND_OFFER_BINDING.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/78cac3c429eb457f1deee756e72af41fb36224df/.claude/window1_live_v4_replay/v34_prebell_close_regrade_20260805/FROZEN_FILL_IDENTITY_RECEIPT.json
+
 ### 2026-08-05 - V34 SCORING REBOUND TO CANONICAL TRADING-PHASE CLOSES
 
 V34's state machine is unchanged. Joint, frontier, and regret now consume the

@@ -1,6 +1,19 @@
 # FABLE SEAT HANDOFF (session-zero read; maintained via C50 — every
 close-out that changes state updates THIS file's State paragraph)
 
+## V34 FROZEN-FILL PRE-BELL REGRADE - 2026-08-05
+
+The exact `b430bcf` fills were regraded without replay against CC's independent
+pre-bell close audit at `50ce0f49`. STRICT is 441 completions / 121 JOINT;
+CENSUS is 481 / 137. R3 is 68. The re-cut offer is 59 / 104 / 217 / 390 at
+<=93 / <=95 / <=97 / <100. No action, fill, price, timestamp, or fill class
+changed. Claim fence: V34's frozen horizon is full life, while this close/offer
+ruler is guarded pre-bell; this is grade-only and not a W1 causal rerun.
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/78cac3c429eb457f1deee756e72af41fb36224df/.claude/window1_live_v4_replay/v34_prebell_close_regrade_20260805/SCORECARD_TWO_COLUMN.json
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/78cac3c429eb457f1deee756e72af41fb36224df/.claude/window1_live_v4_replay/v34_prebell_close_regrade_20260805/PREBELL_CLOSE_AND_OFFER_BINDING.json
+
 ## V34 CANONICAL TRADING-PHASE SCORING BINDING - 2026-08-05
 
 V34's state machine is unchanged. Its operative score now uses the hash-bound

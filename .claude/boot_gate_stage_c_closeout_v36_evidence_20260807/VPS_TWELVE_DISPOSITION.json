@@ -1,0 +1,166 @@
+{
+  "schema_version": "stage-c-vps-twelve-disposition-v1",
+  "classification_timestamp_et": "2026-08-07T12:34:30.8940228-04:00",
+  "vps": {
+    "host": "104.131.191.95",
+    "repository": "/root/Omi-Workspace",
+    "branch": "codex/stage-c-v36-cutover-prep-20260807",
+    "head_before_closeout": "dd3f024bc8ece51b57dd20b209d234ed93efd9f7",
+    "engine_process_count": 0,
+    "inhibited_crontab_sha256": "405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149"
+  },
+  "law": "A pre-existing tracked VPS modification is KEEP only when its exact bytes have a named, reviewable provenance that authorizes them as restart inheritance. Otherwise it is RETIRE and is restored to the exact Git HEAD blob after its complete preimage patch is frozen.",
+  "complete_preimage_patch": {
+    "path": ".claude/boot_gate_stage_c_closeout_v36_evidence_20260807/VPS_TWELVE_PREIMAGE.patch.gz",
+    "sha256": "fa6407a1a25ed150497348398cea46173aeb64ddea813136b010a10be6263cf6",
+    "bytes": 48448,
+    "scope": "git diff --binary over exactly the twelve paths below at dd3f024b"
+  },
+  "summary": {
+    "paths": 12,
+    "KEEP": 0,
+    "RETIRE": 12,
+    "unclassified": 0,
+    "mixed_state_permitted": false
+  },
+  "rows": [
+    {
+      "path": ".claude/BOARD.md",
+      "disposition": "RETIRE",
+      "head_blob": "681c127c04c568f4b57e911b5a49fd9e2d51a7f9",
+      "working_blob": "835007b0772699462b91b3595084a93522a455ca",
+      "working_sha256": "6e6d84e482ef0d992d15040b2cac150fe72736128d1a90bd0b82554e706e56a6",
+      "working_bytes": 99865,
+      "numstat": {"added": 4, "deleted": 0},
+      "provenance": "uncommitted auto-gap append; no exact working blob in reachable Git history",
+      "reason": "runtime/generated board intake is evidence, not authorized restart source; complete bytes remain in the frozen patch"
+    },
+    {
+      "path": ".claude/live_20260705/NIGHTLY_PASS.md",
+      "disposition": "RETIRE",
+      "head_blob": "0954c662b49a63db12e0a5565e89e48fe3093d4d",
+      "working_blob": "12e2363cae4a985b16ac88bb1ab68ed8cd397d1e",
+      "working_sha256": "426877173ffdd263ae1c4cb80b4f79412dd73b2deb958e19484a5ba188c99aa5",
+      "working_bytes": 70814,
+      "numstat": {"added": 2, "deleted": 0},
+      "provenance": "runtime OS-shadow append at 2026-08-07; no exact working blob in reachable Git history",
+      "reason": "generated nightly output must not remain as tracked source drift"
+    },
+    {
+      "path": ".claude/render/knob_census_artifact.json",
+      "disposition": "RETIRE",
+      "head_blob": "ec1133a26f18a3017a9120a28a6ad6d62d34de12",
+      "working_blob": "d8811e8b18f3363f0d3e0b9e8fbc3fc4c47a8ba3",
+      "working_sha256": "417eea2a95ac47ca63c554767447efedadae0642610f1ee5addc1bb41826d5f2",
+      "working_bytes": 36960,
+      "numstat": {"added": 47, "deleted": 7},
+      "provenance": "locally regenerated knob census over uncommitted config/source drift; no exact working blob in reachable Git history",
+      "reason": "derived output inherits unaudited decision-config mutations and cannot authorize them"
+    },
+    {
+      "path": ".claude/trendpath/ATLAS_V1.json",
+      "disposition": "RETIRE",
+      "head_blob": "9e04a5061d8a9018fcedf4b923834310ba4cf268",
+      "working_blob": "16a53793d0f5b66ba68a4c86fc43d67f3882d35b",
+      "working_sha256": "98b5c1645beeac61b961ea74478cddfa5b9de01a928021765940dbe06684bdcb",
+      "working_bytes": 59812,
+      "numstat": {"added": 560, "deleted": 765},
+      "provenance": "partial local trendpath regeneration; no exact working blob in reachable Git history",
+      "reason": "large unratified derived-surface rewrite is not restart authority"
+    },
+    {
+      "path": ".claude/trendpath/LAWFUL_HARVEST_MAP.txt",
+      "disposition": "RETIRE",
+      "head_blob": "0a98df9edce0bd4cbb4256693d49b7e49a3575b4",
+      "working_blob": "791d1359298769ad592feab27a01dc6bd66880c5",
+      "working_sha256": "aa8339dde4eb23ca457fa1ad684b20613d7350e800923d14aef19d8400861934",
+      "working_bytes": 65,
+      "numstat": {"added": 0, "deleted": 3},
+      "provenance": "local trendpath regeneration deleted ratified ITF rows; no exact working blob in reachable Git history",
+      "reason": "regresses the committed lawful-harvest surface"
+    },
+    {
+      "path": ".claude/trendpath/LIBRARY_V1.json",
+      "disposition": "RETIRE",
+      "head_blob": "b753531586f830f09fddb0a1305a447d34cc60f5",
+      "working_blob": "cc353bcd89cc26c74d36e3bac7b35ed72af64383",
+      "working_sha256": "b6e565d7f5b2fac7cbee4fcc997968c213cddd0a5770c70156f19b9637a84513",
+      "working_bytes": 15102,
+      "numstat": {"added": 187, "deleted": 283},
+      "provenance": "partial local trendpath regeneration; no exact working blob in reachable Git history",
+      "reason": "unratified derived-library rewrite is not restart authority"
+    },
+    {
+      "path": ".claude/trendpath/ORIENT_V1.json",
+      "disposition": "RETIRE",
+      "head_blob": "8971516ed0e248fed7a744d3ee4c7f90a27c833f",
+      "working_blob": "5664e0bf0d444b94ee91009f75494301035aa645",
+      "working_sha256": "639975c3bb642e4cc8295e09592c8a17fda333671825af7c602f17d5580edaf5",
+      "working_bytes": 1568,
+      "numstat": {"added": 2, "deleted": 28},
+      "provenance": "exactly matches superseded commit d2ba84539835515ef1158e12bf4bbad7a0f3cb7b, older than the authoritative HEAD artifact",
+      "reason": "working copy is a proven regression that deletes committed ITF orientation cells"
+    },
+    {
+      "path": "arb-executor/audit_log.json",
+      "disposition": "RETIRE",
+      "head_blob": "def9b7239e421cc694fd10b2aa9f66a2823fb34a",
+      "working_blob": "ee353d0bccabfa8d296f5c611ecda418addf7852",
+      "working_sha256": "f9cd6f3a2166e721eb0770b3bec16fe965279d653b40d04cc580554ec9320bf6",
+      "working_bytes": 3059716,
+      "numstat": {"added": 125940, "deleted": 36},
+      "provenance": "runtime append-only audit output through 2026-08-07; no exact working blob in reachable Git history",
+      "reason": "runtime log bytes are preserved in the patch but cannot remain tracked source drift"
+    },
+    {
+      "path": "arb-executor/config/deploy_v5_live.json",
+      "disposition": "RETIRE",
+      "head_blob": "d36e9e76e3608a300cebf59e9487b49bef4f930b",
+      "working_blob": "38bd5d6383da7b217ad8bd643bfa74448a747f5a",
+      "working_sha256": "46607d2404d6794c30c6c61fd52d08c9e787a613a1984d8c21204457d5d2472f",
+      "working_bytes": 5305,
+      "numstat": {"added": 10, "deleted": 3},
+      "provenance": "uncommitted mixed decision switches including disabled entry-table, pair steer, and one-authority paths; no exact working blob in reachable Git history",
+      "reason": "decision-affecting config bundle has no controlling audit and cannot be inherited by restart"
+    },
+    {
+      "path": "arb-executor/deploy/respawn_tennis_odds.sh",
+      "disposition": "RETIRE",
+      "head_blob": "7fdca770113d2ffbda446bb96e47c099c3ae2b7e",
+      "working_blob": "eacd9665c4a77b8f98c9b162953f87465783c04a",
+      "working_sha256": "ce9f0637cb0faed5734c26f996836b2e107d5d981823803b2bbda2a0032b53dc",
+      "working_bytes": 1188,
+      "numstat": {"added": 1, "deleted": 0},
+      "provenance": "uncommitted mountpoint guard; no exact working blob or ratifying receipt in reachable Git history",
+      "reason": "operational safety idea requires its own review rather than accidental adoption in Stage C"
+    },
+    {
+      "path": "arb-executor/kalshi_price_scraper.py",
+      "disposition": "RETIRE",
+      "head_blob": "c290f6108363e16c552afd9d9f5dd0000a1b7e84",
+      "working_blob": "2e272c580c139854846feb42557665a44a79f420",
+      "working_sha256": "e1e119f56d8453bbd417ef61a167b875c9212c142a71da325217be897b9ff01e",
+      "working_bytes": 7492,
+      "numstat": {"added": 59, "deleted": 3},
+      "provenance": "uncommitted ITF and schedule-revision retention extension; unique kalshi_schedule_revisions signature is absent from reachable Git history",
+      "reason": "capture-schema and series-scope changes require a separate reviewed capture migration"
+    },
+    {
+      "path": "arb-executor/te_live.py",
+      "disposition": "RETIRE",
+      "head_blob": "81115864ff6817bb8cdd2b3dc5089b9b028d5118",
+      "working_blob": "9f39e73799387f787420a8bdb25e1f41c9c83138",
+      "working_sha256": "3e51797bb2de514e5628278c22eb04c2da506591b93dd8cf1157d7c39e930654",
+      "working_bytes": 22275,
+      "numstat": {"added": 104, "deleted": 3},
+      "provenance": "uncommitted full-event start-bank extension; unique observed_start_events signature is absent from reachable Git history",
+      "reason": "new identity/storage schema requires a separate reviewed migration and cannot ride Stage C"
+    }
+  ],
+  "execution_law": {
+    "precondition": "all twelve working blobs and dd3f024b HEAD reverified immediately before restore",
+    "operation": "git restore --source=HEAD --worktree -- exactly the twelve named paths",
+    "forbidden": ["live_v4 launch", "shadow launch", "cron restoration", "orders", "positions", "live capital"],
+    "postcondition": "tracked worktree clean, engine process count zero, inhibited cron hash unchanged"
+  }
+}

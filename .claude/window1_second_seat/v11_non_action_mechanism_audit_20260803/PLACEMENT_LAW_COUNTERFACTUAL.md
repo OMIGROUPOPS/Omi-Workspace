@@ -1,3 +1,5 @@
+> **SUPERSEDED by PLACEMENT_LAW_COUNTERFACTUAL_V2.** The riser clause below tested a parked-**ASK** trigger, falsified by the ARN render: no ask ever stood at 50 — the **bid** parked at 50 for 9.1h and was seller-hit twice. Output discarded per operator STOP; retained for lineage only.
+
 # Placement-law counterfactual — the composed law vs the union reach
 
 Analysis seat only. Read-only. **Law scored against the union reach answer key** (`57daf3c1`): a rest at price R is credited iff the leg's union reach reached ≤ R, filled at R; pair lock = 100−combined when both legs credit and combined < 100. Baseline beside = the **V38 pulse-floor maker-only** realized (`2c54d724`); **V36** (`bfde0d8`, prior directional-rest machine, its own looser ledger) shown as lineage. Machine artifact: `.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PLACEMENT_LAW_COUNTERFACTUAL.json`.

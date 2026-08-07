@@ -1,0 +1,99 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+ "category": "ATP_CHALL",
+ "bell_confidence": "exact",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing exemplar template)",
+ "law": "PLACEMENT_LAW_COUNTERFACTUAL_V2 (persistent-level JOIN / pulse / WTA-hold / sanity rest<ask)",
+ "w1_span": {
+  "left": 1784449800,
+  "left_et": "2026-07-19 08:30:00",
+  "right": 1784478840,
+  "right_et": "2026-07-19 16:34:00"
+ },
+ "legs": {
+  "NIK": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-NIK",
+   "global_direction": "FALLING",
+   "close_cents": 19,
+   "v38_branch": "RISING",
+   "union_reach_cents": 18,
+   "reach_sources": [
+    "TRADED_AT_LEVEL",
+    "QUOTE_TOUCH_10S"
+   ],
+   "v38_credited": true,
+   "v38_entry_cents": 27,
+   "gap_to_reach_cents": 9,
+   "terminal_pulse_floor_cents": 27,
+   "reach_snapshot": {
+    "ts": 1784461893,
+    "bid": 25,
+    "ask": 27,
+    "last_traded": 28,
+    "spread": 2,
+    "ask_dwell_s": 11,
+    "combined_state": "RISING"
+   },
+   "v36_state_counts": {
+    "FALLING": 14,
+    "RISING": 19,
+    "SETTLED": 3
+   },
+   "law_v2": {
+    "rule": "transient_base",
+    "law_fill": 27,
+    "base_fill": 27,
+    "bid_persist_hrs": 0.0,
+    "seller_hits": 0,
+    "v36_rest": 29,
+    "v36_ask": 29,
+    "v36_sanity_viol": 0
+   }
+  },
+  "VRB": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB",
+   "global_direction": "CLIMBING",
+   "close_cents": 83,
+   "v38_branch": "RISING",
+   "union_reach_cents": 68,
+   "reach_sources": [
+    "QUOTE_TOUCH_10S"
+   ],
+   "v38_credited": true,
+   "v38_entry_cents": 70,
+   "gap_to_reach_cents": 2,
+   "terminal_pulse_floor_cents": 70,
+   "reach_snapshot": {
+    "ts": 1784459540,
+    "bid": 67,
+    "ask": 68,
+    "last_traded": 0,
+    "spread": 1,
+    "ask_dwell_s": 9,
+    "combined_state": "FALLING"
+   },
+   "v36_state_counts": {
+    "FALLING": 769,
+    "RISING": 564,
+    "SETTLED": 75
+   },
+   "law_v2": {
+    "rule": "transient_base",
+    "law_fill": 70,
+    "base_fill": 70,
+    "bid_persist_hrs": 0.0,
+    "seller_hits": 0,
+    "v36_rest": 70,
+    "v36_ask": 83,
+    "v36_sanity_viol": 0
+   }
+  }
+ },
+ "combined": {
+  "base": 97,
+  "law": 97,
+  "base_lock": 3,
+  "law_lock": 3
+ },
+ "decision_narrative": "Both risers are TRANSIENT (no bid persisted >=300s at the union reach; NIK/VRB dips were fresh short-dwell descents) -> the v2 law leaves them on the pulse floor unchanged (NIK 27, VRB 70; combined 97, 3c). Contrast the JOIN class (ARN/COP) where a bid parked hours at the reach and was seller-hit. NIKVRB is the exemplar of when NOT to override the pulse floor."
+}

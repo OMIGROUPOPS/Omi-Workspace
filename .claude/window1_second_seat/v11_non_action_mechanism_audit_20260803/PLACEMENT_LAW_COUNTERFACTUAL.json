@@ -259,5 +259,6 @@
   "law_1c_under_lock": 456,
   "parked_at_traded_level_lock": 574,
   "gap_left_by_1c_under": 118
- }
+ },
+ "SUPERSEDED_BY": "PLACEMENT_LAW_COUNTERFACTUAL_V2 (riser clause tested a parked-ASK trigger; falsified by ARN render \u2014 the BID parked at 50 for 9.1h and was seller-hit twice, no ask ever stood at 50). Output discarded per operator STOP."
 }

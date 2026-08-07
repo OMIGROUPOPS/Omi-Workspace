@@ -1,0 +1,732 @@
+{
+ "LABEL": "GAME_READ_ADAPTIVE_REST_TAPE_BID",
+ "binding": "V36 trace bfde0d8 for state+evidence; TAPE best-bid (comparable to sealed d40bc010 k=1 $20.03). Adaptive: FALLING->evidence_low-1 else bid-1. Scored vs certified seller flow >=5 lots, lazy-leg-1, identical to k-curve.",
+ "adaptive": {
+  "legs_filled": 583,
+  "pairs_under_par": 102,
+  "dollars_1lot": 16.17,
+  "dollars_5lot": 80.85,
+  "frontier": {
+   "<=93": 47,
+   "<=95": 52,
+   "<=97": 73,
+   "<100": 102
+  },
+  "by_category": {
+   "ATP_CHALL": {
+    "legs": 251,
+    "pairs": 42,
+    "dollars_1lot": 7.27,
+    "native_n_ok": true
+   },
+   "ATP_MAIN": {
+    "legs": 154,
+    "pairs": 32,
+    "dollars_1lot": 4.19,
+    "native_n_ok": true
+   },
+   "WTA_CHALL": {
+    "legs": 66,
+    "pairs": 10,
+    "dollars_1lot": 3.05,
+    "native_n_ok": false
+   },
+   "WTA_MAIN": {
+    "legs": 112,
+    "pairs": 18,
+    "dollars_1lot": 1.66,
+    "native_n_ok": false
+   }
+  }
+ },
+ "fixed_k": {
+  "1": {
+   "legs_filled": 412,
+   "pairs": 106,
+   "dollars_1lot": 20.03,
+   "frontier": {
+    "<=93": 54,
+    "<=95": 62,
+    "<=97": 84,
+    "<100": 106
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "legs": 165,
+     "pairs": 46,
+     "dollars_1lot": 9.71,
+     "native_n_ok": true
+    },
+    "ATP_MAIN": {
+     "legs": 123,
+     "pairs": 32,
+     "dollars_1lot": 4.8,
+     "native_n_ok": true
+    },
+    "WTA_CHALL": {
+     "legs": 38,
+     "pairs": 11,
+     "dollars_1lot": 3.05,
+     "native_n_ok": false
+    },
+    "WTA_MAIN": {
+     "legs": 86,
+     "pairs": 17,
+     "dollars_1lot": 2.47,
+     "native_n_ok": false
+    }
+   }
+  },
+  "2": {
+   "legs_filled": 226,
+   "pairs": 59,
+   "dollars_1lot": 15.39,
+   "frontier": {
+    "<=93": 42,
+    "<=95": 48,
+    "<=97": 54,
+    "<100": 59
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "legs": 95,
+     "pairs": 27,
+     "dollars_1lot": 7.46,
+     "native_n_ok": false
+    },
+    "ATP_MAIN": {
+     "legs": 60,
+     "pairs": 14,
+     "dollars_1lot": 3.96,
+     "native_n_ok": false
+    },
+    "WTA_CHALL": {
+     "legs": 27,
+     "pairs": 9,
+     "dollars_1lot": 2.5,
+     "native_n_ok": false
+    },
+    "WTA_MAIN": {
+     "legs": 44,
+     "pairs": 9,
+     "dollars_1lot": 1.47,
+     "native_n_ok": false
+    }
+   }
+  },
+  "3": {
+   "legs_filled": 166,
+   "pairs": 48,
+   "dollars_1lot": 13.25,
+   "frontier": {
+    "<=93": 38,
+    "<=95": 41,
+    "<=97": 47,
+    "<100": 48
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "legs": 69,
+     "pairs": 21,
+     "dollars_1lot": 6.3,
+     "native_n_ok": false
+    },
+    "ATP_MAIN": {
+     "legs": 39,
+     "pairs": 12,
+     "dollars_1lot": 3.57,
+     "native_n_ok": false
+    },
+    "WTA_CHALL": {
+     "legs": 24,
+     "pairs": 7,
+     "dollars_1lot": 1.98,
+     "native_n_ok": false
+    },
+    "WTA_MAIN": {
+     "legs": 34,
+     "pairs": 8,
+     "dollars_1lot": 1.4,
+     "native_n_ok": false
+    }
+   }
+  },
+  "5": {
+   "legs_filled": 114,
+   "pairs": 37,
+   "dollars_1lot": 11.72,
+   "frontier": {
+    "<=93": 34,
+    "<=95": 35,
+    "<=97": 36,
+    "<100": 37
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "legs": 54,
+     "pairs": 18,
+     "dollars_1lot": 5.26,
+     "native_n_ok": false
+    },
+    "ATP_MAIN": {
+     "legs": 27,
+     "pairs": 9,
+     "dollars_1lot": 3.65,
+     "native_n_ok": false
+    },
+    "WTA_CHALL": {
+     "legs": 15,
+     "pairs": 5,
+     "dollars_1lot": 1.57,
+     "native_n_ok": false
+    },
+    "WTA_MAIN": {
+     "legs": 18,
+     "pairs": 5,
+     "dollars_1lot": 1.24,
+     "native_n_ok": false
+    }
+   }
+  },
+  "8": {
+   "legs_filled": 86,
+   "pairs": 27,
+   "dollars_1lot": 10.01,
+   "frontier": {
+    "<=93": 27,
+    "<=95": 27,
+    "<=97": 27,
+    "<100": 27
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "legs": 43,
+     "pairs": 15,
+     "dollars_1lot": 5.31,
+     "native_n_ok": false
+    },
+    "ATP_MAIN": {
+     "legs": 20,
+     "pairs": 6,
+     "dollars_1lot": 2.62,
+     "native_n_ok": false
+    },
+    "WTA_CHALL": {
+     "legs": 10,
+     "pairs": 3,
+     "dollars_1lot": 1.22,
+     "native_n_ok": false
+    },
+    "WTA_MAIN": {
+     "legs": 13,
+     "pairs": 3,
+     "dollars_1lot": 0.86,
+     "native_n_ok": false
+    }
+   }
+  }
+ },
+ "side_by_side": {
+  "k=1": 20.03,
+  "k=2": 15.39,
+  "k=3": 13.25,
+  "k=5": 11.72,
+  "k=8": 10.01,
+  "ADAPTIVE": 16.17
+ },
+ "boscop_class": {
+  "n": 26,
+  "games": [
+   [
+    "26JUL12ECHMUN",
+    20,
+    "beats_15"
+   ],
+   [
+    "26JUL12KUMTUR",
+    35,
+    "beats_34"
+   ],
+   [
+    "26JUL12MARARS",
+    21,
+    "beats_20"
+   ],
+   [
+    "26JUL12OUAFER",
+    3,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL12PALMAR",
+    4,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL12SIAIVA",
+    4,
+    "beats_3"
+   ],
+   [
+    "26JUL14OUAFIC",
+    3,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL18GENKUM",
+    2,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL19TORSEN",
+    1,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL20SURKUZ",
+    2,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL20VISNIK",
+    20,
+    "beats_14"
+   ],
+   [
+    "26JUL12MULSHE",
+    6,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL12SKASAC",
+    55,
+    "beats_52"
+   ],
+   [
+    "26JUL13FAUDAM",
+    1,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL15CERKEC",
+    1,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL17BORDAR",
+    4,
+    "beats_0"
+   ],
+   [
+    "26JUL18JACDA",
+    1,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL19LUZTAB",
+    7,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL19MULNAV",
+    2,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL19PELBUE",
+    1,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL20DJECIN",
+    47,
+    "beats_39"
+   ],
+   [
+    "26JUL12ARIZHA",
+    32,
+    "beats_30"
+   ],
+   [
+    "26JUL12ZELFAL",
+    21,
+    "beats_20"
+   ],
+   [
+    "26JUL12KOZIBR",
+    1,
+    "NO_FIXED_K"
+   ],
+   [
+    "26JUL19BRAVON",
+    1,
+    "beats_-4"
+   ],
+   [
+    "26JUL20PARHAV",
+    2,
+    "NO_FIXED_K"
+   ]
+  ]
+ },
+ "losses": {
+  "n": 39,
+  "games": [
+   [
+    "26JUL12BALPET",
+    "k1_only",
+    9
+   ],
+   [
+    "26JUL12BROGIU",
+    "worse_43_vs_65",
+    22
+   ],
+   [
+    "26JUL12FORPAM",
+    "k1_only",
+    8
+   ],
+   [
+    "26JUL12GURDAL",
+    "worse_4_vs_6",
+    2
+   ],
+   [
+    "26JUL12HECISO",
+    "worse_33_vs_58",
+    25
+   ],
+   [
+    "26JUL12HERALM",
+    "worse_66_vs_92",
+    26
+   ],
+   [
+    "26JUL12LANKOB",
+    "worse_3_vs_4",
+    1
+   ],
+   [
+    "26JUL12LINMAL",
+    "k1_only",
+    83
+   ],
+   [
+    "26JUL12MORPET",
+    "k1_only",
+    20
+   ],
+   [
+    "26JUL12RAFAGU",
+    "worse_9_vs_54",
+    45
+   ],
+   [
+    "26JUL12RAQKUM",
+    "k1_only",
+    29
+   ],
+   [
+    "26JUL18VUKHOL",
+    "k1_only",
+    4
+   ],
+   [
+    "26JUL19BOHBOU",
+    "k1_only",
+    2
+   ],
+   [
+    "26JUL19DJOMAT",
+    "k1_only",
+    1
+   ],
+   [
+    "26JUL19HURBIG",
+    "worse_1_vs_3",
+    2
+   ],
+   [
+    "26JUL19IMATRA",
+    "k1_only",
+    2
+   ],
+   [
+    "26JUL19YEVSTR",
+    "worse_1_vs_3",
+    2
+   ],
+   [
+    "26JUL20NOGSHI",
+    "k1_only",
+    3
+   ],
+   [
+    "26JUL12CINHEM",
+    "worse_28_vs_30",
+    2
+   ],
+   [
+    "26JUL12DAHBAE",
+    "k1_only",
+    2
+   ],
+   [
+    "26JUL12FELKEC",
+    "worse_1_vs_2",
+    1
+   ],
+   [
+    "26JUL12KOPPRI",
+    "k1_only",
+    3
+   ],
+   [
+    "26JUL12NEUTOP",
+    "worse_17_vs_62",
+    45
+   ],
+   [
+    "26JUL12PRASAI",
+    "k1_only",
+    36
+   ],
+   [
+    "26JUL12STRMUN",
+    "worse_4_vs_5",
+    1
+   ],
+   [
+    "26JUL15COLSON",
+    "k1_only",
+    1
+   ],
+   [
+    "26JUL16MERDRO",
+    "k1_only",
+    6
+   ],
+   [
+    "26JUL17BURMER",
+    "k1_only",
+    3
+   ],
+   [
+    "26JUL17COLVAC",
+    "worse_2_vs_4",
+    2
+   ],
+   [
+    "26JUL19CERTRU",
+    "k1_only",
+    1
+   ],
+   [
+    "26JUL19DROUGO",
+    "k1_only",
+    2
+   ],
+   [
+    "26JUL12MAZGAN",
+    "worse_11_vs_19",
+    8
+   ],
+   [
+    "26JUL12SHITUR",
+    "k1_only",
+    1
+   ],
+   [
+    "26JUL12HODYAS",
+    "worse_2_vs_14",
+    12
+   ],
+   [
+    "26JUL12MICKUL",
+    "worse_14_vs_47",
+    33
+   ],
+   [
+    "26JUL12MORNEP",
+    "worse_3_vs_27",
+    24
+   ],
+   [
+    "26JUL12TAGSIE",
+    "worse_2_vs_5",
+    3
+   ],
+   [
+    "26JUL19KRESAK",
+    "k1_only",
+    2
+   ],
+   [
+    "26JUL20FRUKRE",
+    "k1_only",
+    11
+   ]
+  ]
+ },
+ "per_category_winner": {
+  "ATP_CHALL": "FIXED_k1",
+  "ATP_MAIN": "FIXED_k1",
+  "WTA_CHALL": "ADAPTIVE",
+  "WTA_MAIN": "FIXED_k1"
+ },
+ "per_category_detail": {
+  "ATP_CHALL": {
+   "ADAPTIVE": {
+    "legs": 251,
+    "pairs": 42,
+    "dollars_1lot": 7.27,
+    "native_n_ok": true
+   },
+   "k=1": {
+    "legs": 165,
+    "pairs": 46,
+    "dollars_1lot": 9.71,
+    "native_n_ok": true
+   },
+   "k=2": {
+    "legs": 95,
+    "pairs": 27,
+    "dollars_1lot": 7.46,
+    "native_n_ok": false
+   },
+   "k=3": {
+    "legs": 69,
+    "pairs": 21,
+    "dollars_1lot": 6.3,
+    "native_n_ok": false
+   },
+   "k=5": {
+    "legs": 54,
+    "pairs": 18,
+    "dollars_1lot": 5.26,
+    "native_n_ok": false
+   },
+   "k=8": {
+    "legs": 43,
+    "pairs": 15,
+    "dollars_1lot": 5.31,
+    "native_n_ok": false
+   }
+  },
+  "ATP_MAIN": {
+   "ADAPTIVE": {
+    "legs": 154,
+    "pairs": 32,
+    "dollars_1lot": 4.19,
+    "native_n_ok": true
+   },
+   "k=1": {
+    "legs": 123,
+    "pairs": 32,
+    "dollars_1lot": 4.8,
+    "native_n_ok": true
+   },
+   "k=2": {
+    "legs": 60,
+    "pairs": 14,
+    "dollars_1lot": 3.96,
+    "native_n_ok": false
+   },
+   "k=3": {
+    "legs": 39,
+    "pairs": 12,
+    "dollars_1lot": 3.57,
+    "native_n_ok": false
+   },
+   "k=5": {
+    "legs": 27,
+    "pairs": 9,
+    "dollars_1lot": 3.65,
+    "native_n_ok": false
+   },
+   "k=8": {
+    "legs": 20,
+    "pairs": 6,
+    "dollars_1lot": 2.62,
+    "native_n_ok": false
+   }
+  },
+  "WTA_CHALL": {
+   "ADAPTIVE": {
+    "legs": 66,
+    "pairs": 10,
+    "dollars_1lot": 3.05,
+    "native_n_ok": false
+   },
+   "k=1": {
+    "legs": 38,
+    "pairs": 11,
+    "dollars_1lot": 3.05,
+    "native_n_ok": false
+   },
+   "k=2": {
+    "legs": 27,
+    "pairs": 9,
+    "dollars_1lot": 2.5,
+    "native_n_ok": false
+   },
+   "k=3": {
+    "legs": 24,
+    "pairs": 7,
+    "dollars_1lot": 1.98,
+    "native_n_ok": false
+   },
+   "k=5": {
+    "legs": 15,
+    "pairs": 5,
+    "dollars_1lot": 1.57,
+    "native_n_ok": false
+   },
+   "k=8": {
+    "legs": 10,
+    "pairs": 3,
+    "dollars_1lot": 1.22,
+    "native_n_ok": false
+   }
+  },
+  "WTA_MAIN": {
+   "ADAPTIVE": {
+    "legs": 112,
+    "pairs": 18,
+    "dollars_1lot": 1.66,
+    "native_n_ok": false
+   },
+   "k=1": {
+    "legs": 86,
+    "pairs": 17,
+    "dollars_1lot": 2.47,
+    "native_n_ok": false
+   },
+   "k=2": {
+    "legs": 44,
+    "pairs": 9,
+    "dollars_1lot": 1.47,
+    "native_n_ok": false
+   },
+   "k=3": {
+    "legs": 34,
+    "pairs": 8,
+    "dollars_1lot": 1.4,
+    "native_n_ok": false
+   },
+   "k=5": {
+    "legs": 18,
+    "pairs": 5,
+    "dollars_1lot": 1.24,
+    "native_n_ok": false
+   },
+   "k=8": {
+    "legs": 13,
+    "pairs": 3,
+    "dollars_1lot": 0.86,
+    "native_n_ok": false
+   }
+  }
+ }
+}

@@ -1689,3 +1689,28 @@ Stage C were not started. Restart readiness is NOT_READY.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/733cef57c7dbe951883d719d21d5fbadce4b50ca/arb-executor/docs/research/window1/BOOT_GATE_STAGE_A_AUDIT_20260806_ADDENDUM.md
+
+### 2026-08-06 - BOOT GATE STAGE B: TOUCH LAW CORRECTED; RECORDER SEALED
+
+**TOUCHED means decision-relevant consumption only:** evaluation, replay,
+diagnostic, or fix-motivating citation. Raw capture, storage commits,
+mechanical accumulator output, capture-integrity reconciliation, and seal
+metadata are NOT TOUCH. Shape-accumulator output stays capture-class until a
+later decision artifact consumes it. This supersedes the earlier Git-string
+presence rule: of the same 172 floor-passing candidates, only SAHTUR was
+genuinely consumed; 171 are sealed untouched (event-list SHA-256
+`06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313`).
+The N>=60 numerical condition is met, but Stage B ran no exam because it did
+not invent a corrected-population boundary package or replay executable.
+
+The authoritative WS recorder was degraded (2,861 WS errors; 2,718 ping
+timeouts), so it received one recorder-only restart. PID 325602 ignored one
+SIGINT; one SIGTERM exited it in one second; PID 3459414 subscribed and writes
+a new immutable stream. The recorder guard now matches the exact recorder
+command. The engine remained stopped and its containment cron marker stayed.
+Forward events are append-only capture-only; the nightly 938dca47 N=20 first
+pass is 20/20 faithful, 4,127=4,127 trade IDs, zero mismatches. Existing
+`live_v4.py` +692/-39 drift was reviewed read-only and is not Stage-C ready.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/7ad8f850cdc4b49cbd6afcc05ed2e1139831ce51/arb-executor/docs/research/window1/BOOT_GATE_STAGE_B_RECORDER_SEAL_20260806_ADDENDUM.md

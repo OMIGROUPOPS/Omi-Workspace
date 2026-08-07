@@ -1,5 +1,5 @@
 {
-  "schema_version": "stage-c-vps-twelve-disposition-v1",
+  "schema_version": "stage-c-vps-twelve-disposition-v2-final",
   "classification_timestamp_et": "2026-08-07T12:34:30.8940228-04:00",
   "vps": {
     "host": "104.131.191.95",
@@ -11,10 +11,16 @@
   },
   "law": "A pre-existing tracked VPS modification is KEEP only when its exact bytes have a named, reviewable provenance that authorizes them as restart inheritance. Otherwise it is RETIRE and is restored to the exact Git HEAD blob after its complete preimage patch is frozen.",
   "complete_preimage_patch": {
+    "path": ".claude/boot_gate_stage_c_closeout_v36_evidence_20260807/VPS_TWELVE_PREIMAGE_FINAL.patch.gz",
+    "sha256": "3c18133d83a1465813d458f019cf1f28191cfc12fc9c0ef7ee2c807e70432121",
+    "bytes": 48444,
+    "scope": "git diff --binary over exactly the twelve paths below immediately before the successful restore at dd3f024b"
+  },
+  "superseded_preliminary_patch": {
     "path": ".claude/boot_gate_stage_c_closeout_v36_evidence_20260807/VPS_TWELVE_PREIMAGE.patch.gz",
     "sha256": "fa6407a1a25ed150497348398cea46173aeb64ddea813136b010a10be6263cf6",
     "bytes": 48448,
-    "scope": "git diff --binary over exactly the twelve paths below at dd3f024b"
+    "reason": "audit_log.json appended after the classification census; the final stable preimage above is controlling"
   },
   "summary": {
     "paths": 12,
@@ -105,8 +111,8 @@
       "path": "arb-executor/audit_log.json",
       "disposition": "RETIRE",
       "head_blob": "def9b7239e421cc694fd10b2aa9f66a2823fb34a",
-      "working_blob": "ee353d0bccabfa8d296f5c611ecda418addf7852",
-      "working_sha256": "f9cd6f3a2166e721eb0770b3bec16fe965279d653b40d04cc580554ec9320bf6",
+      "working_blob": "0ad363d62e83030f6e0c5966383f4799a3146f50",
+      "working_sha256": "6de78d53c7da618593587ff7b358a6e3af6552e5d75d0731698fb2a9bc292380",
       "working_bytes": 3059716,
       "numstat": {"added": 125940, "deleted": 36},
       "provenance": "runtime append-only audit output through 2026-08-07; no exact working blob in reachable Git history",
@@ -161,6 +167,12 @@
     "precondition": "all twelve working blobs and dd3f024b HEAD reverified immediately before restore",
     "operation": "git restore --source=HEAD --worktree -- exactly the twelve named paths",
     "forbidden": ["live_v4 launch", "shadow launch", "cron restoration", "orders", "positions", "live capital"],
-    "postcondition": "tracked worktree clean, engine process count zero, inhibited cron hash unchanged"
+    "postcondition": "tracked worktree clean, engine process count zero, inhibited cron hash unchanged",
+    "outcome": "PASS",
+    "closeout_commit_on_vps": "27596166f03e040a5e38824748dcd88d70bed93b",
+    "restored_paths": 12,
+    "tracked_status_after": "",
+    "engine_process_count_after": 0,
+    "inhibited_crontab_sha256_after": "405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149"
   }
 }

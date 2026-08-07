@@ -1,0 +1,12 @@
+{
+  "cron_mutations": 0,
+  "live_capital_accesses": 0,
+  "live_engine_launches": 0,
+  "network_runtime_accesses": 0,
+  "order_accesses": 0,
+  "policy_invocations": 0,
+  "position_accesses": 0,
+  "score_invocations": 0,
+  "shadow_launches": 0,
+  "source": "FROZEN_V36_COMMITTED_TRACE_PLUS_CERTIFIED_PRIVATE_FIT_BBO_AND_PRINT_INPUTS"
+}

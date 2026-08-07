@@ -1,0 +1,5569 @@
+{
+  "category": "ATP_MAIN",
+  "event_id": "KXATPMATCH-26JUL12DAHBAE",
+  "layers_in_execution_order": [
+    "SOURCE_BOOK_OR_PRINT",
+    "MACRO_QUOTE_PATH",
+    "PAIR_MICRO_PRESSURE",
+    "MICRO_POSITION_EVIDENCE_FLOOR_OR_REST",
+    "MICRO_MICRO_ACTION",
+    "PAIR_CAP_ARM",
+    "STRICT_FILL_PROOF"
+  ],
+  "legs": {
+    "BAE": {
+      "all_frozen_action_marks": [
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "PLACE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-2",
+          "state": "SETTLED",
+          "t_minus_actual_bell_seconds": 264067,
+          "t_minus_pre_match_boundary_seconds": 264067,
+          "t_minus_scheduled_seconds": 76267,
+          "target_cents": 5,
+          "timestamp_epoch": 1783777733
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-8",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 256702,
+          "t_minus_pre_match_boundary_seconds": 256702,
+          "t_minus_scheduled_seconds": 68902,
+          "target_cents": 6,
+          "timestamp_epoch": 1783785098
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-13",
+          "state": "SETTLED",
+          "t_minus_actual_bell_seconds": 253105,
+          "t_minus_pre_match_boundary_seconds": 253105,
+          "t_minus_scheduled_seconds": 65305,
+          "target_cents": 7,
+          "timestamp_epoch": 1783788695
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-19",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 249464,
+          "t_minus_pre_match_boundary_seconds": 249464,
+          "t_minus_scheduled_seconds": 61664,
+          "target_cents": 8,
+          "timestamp_epoch": 1783792336
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-26",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 246235,
+          "t_minus_pre_match_boundary_seconds": 246235,
+          "t_minus_scheduled_seconds": 58435,
+          "target_cents": 9,
+          "timestamp_epoch": 1783795565
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-29",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245851,
+          "t_minus_pre_match_boundary_seconds": 245851,
+          "t_minus_scheduled_seconds": 58051,
+          "target_cents": 10,
+          "timestamp_epoch": 1783795949
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-32",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245307,
+          "t_minus_pre_match_boundary_seconds": 245307,
+          "t_minus_scheduled_seconds": 57507,
+          "target_cents": 13,
+          "timestamp_epoch": 1783796493
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-34",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245306,
+          "t_minus_pre_match_boundary_seconds": 245306,
+          "t_minus_scheduled_seconds": 57506,
+          "target_cents": 14,
+          "timestamp_epoch": 1783796494
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-37",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245304,
+          "t_minus_pre_match_boundary_seconds": 245304,
+          "t_minus_scheduled_seconds": 57504,
+          "target_cents": 9,
+          "timestamp_epoch": 1783796496
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-38",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245304,
+          "t_minus_pre_match_boundary_seconds": 245304,
+          "t_minus_scheduled_seconds": 57504,
+          "target_cents": 10,
+          "timestamp_epoch": 1783796496
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-39",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245295,
+          "t_minus_pre_match_boundary_seconds": 245295,
+          "t_minus_scheduled_seconds": 57495,
+          "target_cents": 85,
+          "timestamp_epoch": 1783796505
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-41",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245294,
+          "t_minus_pre_match_boundary_seconds": 245294,
+          "t_minus_scheduled_seconds": 57494,
+          "target_cents": 86,
+          "timestamp_epoch": 1783796506
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-52",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 245164,
+          "t_minus_pre_match_boundary_seconds": 245164,
+          "t_minus_scheduled_seconds": 57364,
+          "target_cents": 87,
+          "timestamp_epoch": 1783796636
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-96",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244826,
+          "t_minus_pre_match_boundary_seconds": 244826,
+          "t_minus_scheduled_seconds": 57026,
+          "target_cents": 94,
+          "timestamp_epoch": 1783796974
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-101",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244814,
+          "t_minus_pre_match_boundary_seconds": 244814,
+          "t_minus_scheduled_seconds": 57014,
+          "target_cents": 93,
+          "timestamp_epoch": 1783796986
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-109",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244812,
+          "t_minus_pre_match_boundary_seconds": 244812,
+          "t_minus_scheduled_seconds": 57012,
+          "target_cents": 88,
+          "timestamp_epoch": 1783796988
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-110",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244812,
+          "t_minus_pre_match_boundary_seconds": 244812,
+          "t_minus_scheduled_seconds": 57012,
+          "target_cents": 89,
+          "timestamp_epoch": 1783796988
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-114",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244810,
+          "t_minus_pre_match_boundary_seconds": 244810,
+          "t_minus_scheduled_seconds": 57010,
+          "target_cents": 86,
+          "timestamp_epoch": 1783796990
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-115",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244810,
+          "t_minus_pre_match_boundary_seconds": 244810,
+          "t_minus_scheduled_seconds": 57010,
+          "target_cents": 87,
+          "timestamp_epoch": 1783796990
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "PAIR_ARM",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pair_cap_cents": 94,
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "receipt": "e53f386e-0fc1-67a4-955a-9c4a7b9fd7d9",
+          "same_receipt_fill_forbidden": true,
+          "sibling_fill_cents": 5,
+          "t_minus_actual_bell_seconds": 244808.78419017792,
+          "t_minus_pre_match_boundary_seconds": 244808.78419017792,
+          "t_minus_scheduled_seconds": 57008.78419017792,
+          "timestamp_epoch": 1783796991.2158098
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-153",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244192,
+          "t_minus_pre_match_boundary_seconds": 244192,
+          "t_minus_scheduled_seconds": 56392,
+          "target_cents": 88,
+          "timestamp_epoch": 1783797608
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-156",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244101,
+          "t_minus_pre_match_boundary_seconds": 244101,
+          "t_minus_scheduled_seconds": 56301,
+          "target_cents": 89,
+          "timestamp_epoch": 1783797699
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-158",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 244100,
+          "t_minus_pre_match_boundary_seconds": 244100,
+          "t_minus_scheduled_seconds": 56300,
+          "target_cents": 90,
+          "timestamp_epoch": 1783797700
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-161",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 243602,
+          "t_minus_pre_match_boundary_seconds": 243602,
+          "t_minus_scheduled_seconds": 55802,
+          "target_cents": 91,
+          "timestamp_epoch": 1783798198
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-163",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 243601,
+          "t_minus_pre_match_boundary_seconds": 243601,
+          "t_minus_scheduled_seconds": 55801,
+          "target_cents": 92,
+          "timestamp_epoch": 1783798199
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-171",
+          "state": "FALLING",
+          "t_minus_actual_bell_seconds": 243101,
+          "t_minus_pre_match_boundary_seconds": 243101,
+          "t_minus_scheduled_seconds": 55301,
+          "target_cents": 90,
+          "timestamp_epoch": 1783798699
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-172",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 243101,
+          "t_minus_pre_match_boundary_seconds": 243101,
+          "t_minus_scheduled_seconds": 55301,
+          "target_cents": 91,
+          "timestamp_epoch": 1783798699
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-180",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 243099,
+          "t_minus_pre_match_boundary_seconds": 243099,
+          "t_minus_scheduled_seconds": 55299,
+          "target_cents": 90,
+          "timestamp_epoch": 1783798701
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-185",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 242602,
+          "t_minus_pre_match_boundary_seconds": 242602,
+          "t_minus_scheduled_seconds": 54802,
+          "target_cents": 91,
+          "timestamp_epoch": 1783799198
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-187",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 242601,
+          "t_minus_pre_match_boundary_seconds": 242601,
+          "t_minus_scheduled_seconds": 54801,
+          "target_cents": 92,
+          "timestamp_epoch": 1783799199
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-192",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 242295,
+          "t_minus_pre_match_boundary_seconds": 242295,
+          "t_minus_scheduled_seconds": 54495,
+          "target_cents": 93,
+          "timestamp_epoch": 1783799505
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-203",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 241708,
+          "t_minus_pre_match_boundary_seconds": 241708,
+          "t_minus_scheduled_seconds": 53908,
+          "target_cents": 94,
+          "timestamp_epoch": 1783800092
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-470",
+          "state": "FALLING",
+          "t_minus_actual_bell_seconds": 220109,
+          "t_minus_pre_match_boundary_seconds": 220109,
+          "t_minus_scheduled_seconds": 32309,
+          "target_cents": 93,
+          "timestamp_epoch": 1783821691
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-551",
+          "state": "FALLING",
+          "t_minus_actual_bell_seconds": 219552,
+          "t_minus_pre_match_boundary_seconds": 219552,
+          "t_minus_scheduled_seconds": 31752,
+          "target_cents": 92,
+          "timestamp_epoch": 1783822248
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-644",
+          "state": "FALLING",
+          "t_minus_actual_bell_seconds": 218511,
+          "t_minus_pre_match_boundary_seconds": 218511,
+          "t_minus_scheduled_seconds": 30711,
+          "target_cents": 91,
+          "timestamp_epoch": 1783823289
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-678",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 217885,
+          "t_minus_pre_match_boundary_seconds": 217885,
+          "t_minus_scheduled_seconds": 30085,
+          "target_cents": 92,
+          "timestamp_epoch": 1783823915
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-692",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 217282,
+          "t_minus_pre_match_boundary_seconds": 217282,
+          "t_minus_scheduled_seconds": 29482,
+          "target_cents": 93,
+          "timestamp_epoch": 1783824518
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1787",
+          "state": "FALLING",
+          "t_minus_actual_bell_seconds": 172576,
+          "t_minus_pre_match_boundary_seconds": 172576,
+          "t_minus_scheduled_seconds": -15224,
+          "target_cents": 92,
+          "timestamp_epoch": 1783869224
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "REPRICE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1819",
+          "state": "RISING",
+          "t_minus_actual_bell_seconds": 172569,
+          "t_minus_pre_match_boundary_seconds": 172569,
+          "t_minus_scheduled_seconds": -15231,
+          "target_cents": 93,
+          "timestamp_epoch": 1783869231
+        },
+        {
+          "action_timestamp_epoch": 1783869231,
+          "bell_confidence": "exact",
+          "entry_cents": 93,
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+          "kind": "FILL",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "print": {
+            "price_cents": 93,
+            "size": 6,
+            "taker_side": "no"
+          },
+          "receipt": "8d02c099-e4e0-721e-3c76-422ea0d3131a",
+          "t_minus_actual_bell_seconds": 172558.25385808945,
+          "t_minus_pre_match_boundary_seconds": 172558.25385808945,
+          "t_minus_scheduled_seconds": -15241.746141910553,
+          "timestamp_epoch": 1783869241.746142
+        }
+      ],
+      "conservation": {
+        "extracted_decision_count": 106,
+        "frozen_decision_count": 106,
+        "pass": true
+      },
+      "frozen_result": {
+        "acted": true,
+        "close_telemetry_only_cents": 95,
+        "credited": true,
+        "entry_cents": 93,
+        "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+        "fill_timestamp_epoch": 1783869241.746142,
+        "print_backed_floor_cents": 92,
+        "qualifying_ask_floor_cents": 92,
+        "resting_target_at_hard_edge_cents": null,
+        "terminal_reason": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST"
+      },
+      "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+      "maker_fill_moments": [
+        {
+          "action_timestamp_epoch": 1783869231,
+          "bell_confidence": "exact",
+          "entry_cents": 93,
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+          "kind": "FILL",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "print": {
+            "price_cents": 93,
+            "size": 6,
+            "taker_side": "no"
+          },
+          "receipt": "8d02c099-e4e0-721e-3c76-422ea0d3131a",
+          "t_minus_actual_bell_seconds": 172558.25385808945,
+          "t_minus_pre_match_boundary_seconds": 172558.25385808945,
+          "t_minus_scheduled_seconds": -15241.746141910553,
+          "timestamp_epoch": 1783869241.746142
+        }
+      ],
+      "pair_arms": [
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "PAIR_ARM",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+          "mode": "STRICT_LAW",
+          "pair_cap_cents": 94,
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "receipt": "e53f386e-0fc1-67a4-955a-9c4a7b9fd7d9",
+          "same_receipt_fill_forbidden": true,
+          "sibling_fill_cents": 5,
+          "t_minus_actual_bell_seconds": 244808.78419017792,
+          "t_minus_pre_match_boundary_seconds": 244808.78419017792,
+          "t_minus_scheduled_seconds": 57008.78419017792,
+          "timestamp_epoch": 1783796991.2158098
+        }
+      ],
+      "rest_walks": [
+        {
+          "action": "PLACE_REST",
+          "book": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.4983108108108108,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "combined_state": "SETTLED",
+          "from_cents": null,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-2",
+          "timestamp_epoch": 1783777733,
+          "timestamp_et": "2026-07-11 09:48:53.000",
+          "to_cents": 5
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 324,
+            "bid": 7,
+            "bid_depth_5": 1084,
+            "depth_ratio": 0.34260429835651074,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 200
+          },
+          "combined_state": "RISING",
+          "from_cents": 5,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-8",
+          "timestamp_epoch": 1783785098,
+          "timestamp_et": "2026-07-11 11:51:38.000",
+          "to_cents": 6
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 8,
+            "bid_depth_5": 970,
+            "depth_ratio": 0.4918864097363083,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "combined_state": "SETTLED",
+          "from_cents": 6,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-13",
+          "timestamp_epoch": 1783788695,
+          "timestamp_et": "2026-07-11 12:51:35.000",
+          "to_cents": 7
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 41,
+            "bid": 9,
+            "bid_depth_5": 1157,
+            "depth_ratio": 0.5358962482630848,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 7,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-19",
+          "timestamp_epoch": 1783792336,
+          "timestamp_et": "2026-07-11 13:52:16.000",
+          "to_cents": 8
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 10,
+            "bid_depth_5": 262,
+            "depth_ratio": 0.11187019641332195,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 200
+          },
+          "combined_state": "RISING",
+          "from_cents": 8,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-26",
+          "timestamp_epoch": 1783795565,
+          "timestamp_et": "2026-07-11 14:46:05.000",
+          "to_cents": 9
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 15,
+            "bid": 11,
+            "bid_depth_5": 62,
+            "depth_ratio": 0.05827067669172932,
+            "last_traded": 0,
+            "spread": 82,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 9,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-29",
+          "timestamp_epoch": 1783795949,
+          "timestamp_et": "2026-07-11 14:52:29.000",
+          "to_cents": 10
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 559,
+            "bid": 14,
+            "bid_depth_5": 145,
+            "depth_ratio": 0.12641673931996514,
+            "last_traded": 0,
+            "spread": 79,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 10,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-32",
+          "timestamp_epoch": 1783796493,
+          "timestamp_et": "2026-07-11 15:01:33.000",
+          "to_cents": 13
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 560,
+            "bid": 15,
+            "bid_depth_5": 141,
+            "depth_ratio": 0.12335958005249344,
+            "last_traded": 0,
+            "spread": 78,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 13,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-34",
+          "timestamp_epoch": 1783796494,
+          "timestamp_et": "2026-07-11 15:01:34.000",
+          "to_cents": 14
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 562,
+            "bid": 10,
+            "bid_depth_5": 269,
+            "depth_ratio": 0.2116443745082612,
+            "last_traded": 0,
+            "spread": 83,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 14,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-37",
+          "timestamp_epoch": 1783796496,
+          "timestamp_et": "2026-07-11 15:01:36.000",
+          "to_cents": 9
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 562,
+            "bid": 11,
+            "bid_depth_5": 125,
+            "depth_ratio": 0.11091393078970718,
+            "last_traded": 0,
+            "spread": 82,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 9,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-38",
+          "timestamp_epoch": 1783796496,
+          "timestamp_et": "2026-07-11 15:01:36.000",
+          "to_cents": 10
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 571,
+            "bid": 86,
+            "bid_depth_5": 267,
+            "depth_ratio": 0.21040189125295508,
+            "last_traded": 0,
+            "spread": 7,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 10,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-39",
+          "timestamp_epoch": 1783796505,
+          "timestamp_et": "2026-07-11 15:01:45.000",
+          "to_cents": 85
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 572,
+            "bid": 87,
+            "bid_depth_5": 220,
+            "depth_ratio": 0.18003273322422259,
+            "last_traded": 0,
+            "spread": 6,
+            "top_ask_size": 10
+          },
+          "combined_state": "RISING",
+          "from_cents": 85,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-41",
+          "timestamp_epoch": 1783796506,
+          "timestamp_et": "2026-07-11 15:01:46.000",
+          "to_cents": 86
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1347,
+            "ask_dwell_seconds": 117,
+            "bid": 88,
+            "bid_depth_5": 265,
+            "depth_ratio": 0.16439205955334987,
+            "last_traded": 0,
+            "spread": 4,
+            "top_ask_size": 400
+          },
+          "combined_state": "RISING",
+          "from_cents": 86,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-52",
+          "timestamp_epoch": 1783796636,
+          "timestamp_et": "2026-07-11 15:03:56.000",
+          "to_cents": 87
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 462,
+            "ask_dwell_seconds": 455,
+            "bid": 95,
+            "bid_depth_5": 332,
+            "depth_ratio": 0.4181360201511335,
+            "last_traded": 95,
+            "spread": -3,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 87,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-96",
+          "timestamp_epoch": 1783796974,
+          "timestamp_et": "2026-07-11 15:09:34.000",
+          "to_cents": 94
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 372,
+            "ask_dwell_seconds": 467,
+            "bid": 94,
+            "bid_depth_5": 278,
+            "depth_ratio": 0.4276923076923077,
+            "last_traded": 95,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 94,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-101",
+          "timestamp_epoch": 1783796986,
+          "timestamp_et": "2026-07-11 15:09:46.000",
+          "to_cents": 93
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 417,
+            "ask_dwell_seconds": 469,
+            "bid": 89,
+            "bid_depth_5": 324,
+            "depth_ratio": 0.43724696356275305,
+            "last_traded": 95,
+            "spread": 3,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 93,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-109",
+          "timestamp_epoch": 1783796988,
+          "timestamp_et": "2026-07-11 15:09:48.000",
+          "to_cents": 88
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 417,
+            "ask_dwell_seconds": 469,
+            "bid": 90,
+            "bid_depth_5": 304,
+            "depth_ratio": 0.42163661581137307,
+            "last_traded": 95,
+            "spread": 2,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 88,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-110",
+          "timestamp_epoch": 1783796988,
+          "timestamp_et": "2026-07-11 15:09:48.000",
+          "to_cents": 89
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 417,
+            "ask_dwell_seconds": 471,
+            "bid": 87,
+            "bid_depth_5": 321,
+            "depth_ratio": 0.4349593495934959,
+            "last_traded": 95,
+            "spread": 5,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 89,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-114",
+          "timestamp_epoch": 1783796990,
+          "timestamp_et": "2026-07-11 15:09:50.000",
+          "to_cents": 86
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 417,
+            "ask_dwell_seconds": 471,
+            "bid": 88,
+            "bid_depth_5": 374,
+            "depth_ratio": 0.47281921618204803,
+            "last_traded": 95,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 86,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-115",
+          "timestamp_epoch": 1783796990,
+          "timestamp_et": "2026-07-11 15:09:50.000",
+          "to_cents": 87
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1339,
+            "ask_dwell_seconds": 1089,
+            "bid": 89,
+            "bid_depth_5": 382,
+            "depth_ratio": 0.2219639744334689,
+            "last_traded": 97,
+            "spread": 3,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 87,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-153",
+          "timestamp_epoch": 1783797608,
+          "timestamp_et": "2026-07-11 15:20:08.000",
+          "to_cents": 88
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1180,
+            "bid": 90,
+            "bid_depth_5": 386,
+            "depth_ratio": 0.22976190476190475,
+            "last_traded": 97,
+            "spread": 2,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 88,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-156",
+          "timestamp_epoch": 1783797699,
+          "timestamp_et": "2026-07-11 15:21:39.000",
+          "to_cents": 89
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1181,
+            "bid": 91,
+            "bid_depth_5": 359,
+            "depth_ratio": 0.21718088324258925,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 89,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-158",
+          "timestamp_epoch": 1783797700,
+          "timestamp_et": "2026-07-11 15:21:40.000",
+          "to_cents": 90
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1679,
+            "bid": 92,
+            "bid_depth_5": 180,
+            "depth_ratio": 0.12211668928086838,
+            "last_traded": 97,
+            "spread": 0,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 90,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-161",
+          "timestamp_epoch": 1783798198,
+          "timestamp_et": "2026-07-11 15:29:58.000",
+          "to_cents": 91
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1680,
+            "bid": 93,
+            "bid_depth_5": 153,
+            "depth_ratio": 0.10573600552868002,
+            "last_traded": 97,
+            "spread": -1,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 91,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-163",
+          "timestamp_epoch": 1783798199,
+          "timestamp_et": "2026-07-11 15:29:59.000",
+          "to_cents": 92
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2180,
+            "bid": 91,
+            "bid_depth_5": 249,
+            "depth_ratio": 0.16137394685677253,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "combined_state": "FALLING",
+          "from_cents": 92,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-171",
+          "timestamp_epoch": 1783798699,
+          "timestamp_et": "2026-07-11 15:38:19.000",
+          "to_cents": 90
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2180,
+            "bid": 92,
+            "bid_depth_5": 280,
+            "depth_ratio": 0.17789072426937738,
+            "last_traded": 97,
+            "spread": 0,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 90,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-172",
+          "timestamp_epoch": 1783798699,
+          "timestamp_et": "2026-07-11 15:38:19.000",
+          "to_cents": 91
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2182,
+            "bid": 91,
+            "bid_depth_5": 209,
+            "depth_ratio": 0.13905522288755823,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 91,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-180",
+          "timestamp_epoch": 1783798701,
+          "timestamp_et": "2026-07-11 15:38:21.000",
+          "to_cents": 90
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2679,
+            "bid": 92,
+            "bid_depth_5": 171,
+            "depth_ratio": 0.1167235494880546,
+            "last_traded": 97,
+            "spread": 0,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 90,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-185",
+          "timestamp_epoch": 1783799198,
+          "timestamp_et": "2026-07-11 15:46:38.000",
+          "to_cents": 91
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2680,
+            "bid": 93,
+            "bid_depth_5": 157,
+            "depth_ratio": 0.1082012405237767,
+            "last_traded": 97,
+            "spread": -1,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 91,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-187",
+          "timestamp_epoch": 1783799199,
+          "timestamp_et": "2026-07-11 15:46:39.000",
+          "to_cents": 92
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2986,
+            "bid": 94,
+            "bid_depth_5": 205,
+            "depth_ratio": 0.13675783855903936,
+            "last_traded": 97,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 92,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-192",
+          "timestamp_epoch": 1783799505,
+          "timestamp_et": "2026-07-11 15:51:45.000",
+          "to_cents": 93
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 3573,
+            "bid": 95,
+            "bid_depth_5": 204,
+            "depth_ratio": 0.13618157543391188,
+            "last_traded": 97,
+            "spread": -3,
+            "top_ask_size": 1
+          },
+          "combined_state": "RISING",
+          "from_cents": 93,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-203",
+          "timestamp_epoch": 1783800092,
+          "timestamp_et": "2026-07-11 16:01:32.000",
+          "to_cents": 94
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 96,
+            "ask_depth_5": 38520,
+            "ask_dwell_seconds": 2915,
+            "bid": 94,
+            "bid_depth_5": 945,
+            "depth_ratio": 0.02394526795895097,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 600
+          },
+          "combined_state": "FALLING",
+          "from_cents": 94,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-470",
+          "timestamp_epoch": 1783821691,
+          "timestamp_et": "2026-07-11 22:01:31.000",
+          "to_cents": 93
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 96,
+            "ask_depth_5": 43521,
+            "ask_dwell_seconds": 3472,
+            "bid": 93,
+            "bid_depth_5": 1057,
+            "depth_ratio": 0.023711247700659518,
+            "last_traded": 96,
+            "spread": 3,
+            "top_ask_size": 601
+          },
+          "combined_state": "FALLING",
+          "from_cents": 93,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-551",
+          "timestamp_epoch": 1783822248,
+          "timestamp_et": "2026-07-11 22:10:48.000",
+          "to_cents": 92
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 96,
+            "ask_depth_5": 43521,
+            "ask_dwell_seconds": 4513,
+            "bid": 92,
+            "bid_depth_5": 1273,
+            "depth_ratio": 0.028418984685448945,
+            "last_traded": 96,
+            "spread": 4,
+            "top_ask_size": 600
+          },
+          "combined_state": "FALLING",
+          "from_cents": 92,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-644",
+          "timestamp_epoch": 1783823289,
+          "timestamp_et": "2026-07-11 22:28:09.000",
+          "to_cents": 91
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 96,
+            "ask_depth_5": 35000,
+            "ask_dwell_seconds": 5139,
+            "bid": 93,
+            "bid_depth_5": 1394,
+            "depth_ratio": 0.03830301698082102,
+            "last_traded": 96,
+            "spread": 3,
+            "top_ask_size": 55
+          },
+          "combined_state": "RISING",
+          "from_cents": 91,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-678",
+          "timestamp_epoch": 1783823915,
+          "timestamp_et": "2026-07-11 22:38:35.000",
+          "to_cents": 92
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 96,
+            "ask_depth_5": 34900,
+            "ask_dwell_seconds": 5742,
+            "bid": 94,
+            "bid_depth_5": 1794,
+            "depth_ratio": 0.04889082683817518,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 55
+          },
+          "combined_state": "RISING",
+          "from_cents": 92,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-692",
+          "timestamp_epoch": 1783824518,
+          "timestamp_et": "2026-07-11 22:48:38.000",
+          "to_cents": 93
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 96,
+            "ask_depth_5": 27386,
+            "ask_dwell_seconds": 50448,
+            "bid": 93,
+            "bid_depth_5": 813,
+            "depth_ratio": 0.028830809603177417,
+            "last_traded": 94,
+            "spread": 3,
+            "top_ask_size": 500
+          },
+          "combined_state": "FALLING",
+          "from_cents": 93,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "FALLING",
+          "reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1787",
+          "timestamp_epoch": 1783869224,
+          "timestamp_et": "2026-07-12 11:13:44.000",
+          "to_cents": 92
+        },
+        {
+          "action": "REPRICE_REST",
+          "book": {
+            "ask": 95,
+            "ask_depth_5": 37627,
+            "ask_dwell_seconds": 7,
+            "bid": 94,
+            "bid_depth_5": 1292,
+            "depth_ratio": 0.03319715306148668,
+            "last_traded": 94,
+            "spread": 1,
+            "top_ask_size": 360
+          },
+          "combined_state": "RISING",
+          "from_cents": 92,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1819",
+          "timestamp_epoch": 1783869231,
+          "timestamp_et": "2026-07-12 11:13:51.000",
+          "to_cents": 93
+        }
+      ],
+      "source": {
+        "book": {
+          "bytes": 846809,
+          "sha256": "9efcdb4b2911535b9bc9a2a64cde7c49b6e09e6e7109759789c688d0238e64cf"
+        },
+        "certified_print_rows_inside_window": 185,
+        "v36_frozen_print_count_inside_window": 185
+      },
+      "state_strip": [
+        {
+          "actions": {
+            "PLACE_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.4983108108108108,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-2",
+          "end_ts": 1783777733,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.4983108108108108,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-2",
+          "start_ts": 1783777733
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": true,
+          "duration_seconds": 39,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 39,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.6732963808281709,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-4",
+          "end_ts": 1783777936,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1001,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.6735159817351598,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-3",
+          "start_ts": 1783777897
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.49819059107358266,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-5",
+          "end_ts": 1783781170,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.49819059107358266,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-5",
+          "start_ts": 1783781170
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.6732963808281709,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-6",
+          "end_ts": 1783781505,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.6732963808281709,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-6",
+          "start_ts": 1783781505
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.49819059107358266,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-7",
+          "end_ts": 1783784774,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2065,
+            "depth_ratio": 0.49819059107358266,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-7",
+          "start_ts": 1783784774
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 324,
+            "bid": 7,
+            "bid_depth_5": 1084,
+            "depth_ratio": 0.34260429835651074,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-8",
+          "end_ts": 1783785098,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 6,
+          "order_start_cents": 5,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 324,
+            "bid": 7,
+            "bid_depth_5": 1084,
+            "depth_ratio": 0.34260429835651074,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-8",
+          "start_ts": 1783785098
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 38,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 38,
+            "bid": 7,
+            "bid_depth_5": 1085,
+            "depth_ratio": 0.5198850023957834,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-10",
+          "end_ts": 1783785136,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 6,
+          "order_start_cents": 6,
+          "pressure_state": "SETTLED",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 7,
+            "bid_depth_5": 1084,
+            "depth_ratio": 0.5196548418024928,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-9",
+          "start_ts": 1783785098
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 7,
+            "bid_depth_5": 1090,
+            "depth_ratio": 0.3438485804416404,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-12",
+          "end_ts": 1783788389,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 6,
+          "order_start_cents": 6,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 7,
+            "bid_depth_5": 1090,
+            "depth_ratio": 0.3438485804416404,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-12",
+          "start_ts": 1783788389
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1,
+            "REPRICE_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 52,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 52,
+            "bid": 8,
+            "bid_depth_5": 983,
+            "depth_ratio": 0.4952141057934509,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-14",
+          "end_ts": 1783788747,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 7,
+          "order_start_cents": 6,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 8,
+            "bid_depth_5": 970,
+            "depth_ratio": 0.4918864097363083,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-13",
+          "start_ts": 1783788695
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 8,
+            "bid_depth_5": 983,
+            "depth_ratio": 0.32092719555990856,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-15",
+          "end_ts": 1783791971,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 7,
+          "order_start_cents": 7,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 8,
+            "bid_depth_5": 983,
+            "depth_ratio": 0.32092719555990856,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-15",
+          "start_ts": 1783791971
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 25,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 25,
+            "bid": 8,
+            "bid_depth_5": 1473,
+            "depth_ratio": 0.5951515151515151,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-18",
+          "end_ts": 1783792320,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 7,
+          "order_start_cents": 7,
+          "pressure_state": "SETTLED",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 8,
+            "bid_depth_5": 973,
+            "depth_ratio": 0.49265822784810126,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-17",
+          "start_ts": 1783792295
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 41,
+            "bid": 9,
+            "bid_depth_5": 1157,
+            "depth_ratio": 0.5358962482630848,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-19",
+          "end_ts": 1783792336,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 8,
+          "order_start_cents": 7,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 41,
+            "bid": 9,
+            "bid_depth_5": 1157,
+            "depth_ratio": 0.5358962482630848,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-19",
+          "start_ts": 1783792336
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 41,
+            "bid": 9,
+            "bid_depth_5": 657,
+            "depth_ratio": 0.3960216998191682,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-20",
+          "end_ts": 1783792336,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 8,
+          "order_start_cents": 8,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 41,
+            "bid": 9,
+            "bid_depth_5": 657,
+            "depth_ratio": 0.3960216998191682,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-20",
+          "start_ts": 1783792336
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 78,
+            "bid": 9,
+            "bid_depth_5": 669,
+            "depth_ratio": 0.400359066427289,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-21",
+          "end_ts": 1783792373,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 8,
+          "order_start_cents": 8,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 78,
+            "bid": 9,
+            "bid_depth_5": 669,
+            "depth_ratio": 0.400359066427289,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-21",
+          "start_ts": 1783792373
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 9,
+            "bid_depth_5": 671,
+            "depth_ratio": 0.24391130498000727,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-24",
+          "end_ts": 1783795565,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 8,
+          "order_start_cents": 8,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 9,
+            "bid_depth_5": 671,
+            "depth_ratio": 0.24391130498000727,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-24",
+          "start_ts": 1783795565
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1,
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 2,
+          "disagreement": true,
+          "duration_seconds": 43,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 43,
+            "bid": 10,
+            "bid_depth_5": 272,
+            "depth_ratio": 0.11564625850340136,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-27",
+          "end_ts": 1783795608,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 9,
+          "order_start_cents": 8,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2080,
+            "ask_dwell_seconds": 0,
+            "bid": 10,
+            "bid_depth_5": 262,
+            "depth_ratio": 0.11187019641332195,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-26",
+          "start_ts": 1783795565
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 10,
+            "bid_depth_5": 272,
+            "depth_ratio": 0.21350078492935637,
+            "last_traded": 0,
+            "spread": 83,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-28",
+          "end_ts": 1783795934,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 9,
+          "order_start_cents": 9,
+          "pressure_state": "FALLING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 0,
+            "bid": 10,
+            "bid_depth_5": 272,
+            "depth_ratio": 0.21350078492935637,
+            "last_traded": 0,
+            "spread": 83,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-28",
+          "start_ts": 1783795934
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 7
+          },
+          "combined_state": "RISING",
+          "decision_rows": 7,
+          "disagreement": true,
+          "duration_seconds": 557,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 572,
+            "bid": 87,
+            "bid_depth_5": 220,
+            "depth_ratio": 0.18003273322422259,
+            "last_traded": 0,
+            "spread": 6,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-41",
+          "end_ts": 1783796506,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 86,
+          "order_start_cents": 9,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1002,
+            "ask_dwell_seconds": 15,
+            "bid": 11,
+            "bid_depth_5": 62,
+            "depth_ratio": 0.05827067669172932,
+            "last_traded": 0,
+            "spread": 82,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-29",
+          "start_ts": 1783795949
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 66,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1347,
+            "ask_dwell_seconds": 66,
+            "bid": 87,
+            "bid_depth_5": 323,
+            "depth_ratio": 0.19341317365269461,
+            "last_traded": 0,
+            "spread": 5,
+            "top_ask_size": 400
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-48",
+          "end_ts": 1783796585,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 86,
+          "order_start_cents": 86,
+          "pressure_state": "FALLING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1046,
+            "ask_dwell_seconds": 0,
+            "bid": 87,
+            "bid_depth_5": 220,
+            "depth_ratio": 0.17377567140600317,
+            "last_traded": 0,
+            "spread": 5,
+            "top_ask_size": 100
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-42",
+          "start_ts": 1783796519
+        },
+        {
+          "actions": {
+            "HOLD_REST": 6,
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 7,
+          "disagreement": true,
+          "duration_seconds": 327,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 649,
+            "ask_dwell_seconds": 444,
+            "bid": 88,
+            "bid_depth_5": 271,
+            "depth_ratio": 0.29456521739130437,
+            "last_traded": 95,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-91",
+          "end_ts": 1783796963,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 87,
+          "order_start_cents": 86,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1347,
+            "ask_dwell_seconds": 117,
+            "bid": 88,
+            "bid_depth_5": 265,
+            "depth_ratio": 0.16439205955334987,
+            "last_traded": 0,
+            "spread": 4,
+            "top_ask_size": 400
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-52",
+          "start_ts": 1783796636
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1,
+            "REPRICE_REST": 2
+          },
+          "combined_state": "RISING",
+          "decision_rows": 3,
+          "disagreement": false,
+          "duration_seconds": 12,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 372,
+            "ask_dwell_seconds": 467,
+            "bid": 94,
+            "bid_depth_5": 278,
+            "depth_ratio": 0.4276923076923077,
+            "last_traded": 95,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-101",
+          "end_ts": 1783796986,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 87,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 462,
+            "ask_dwell_seconds": 455,
+            "bid": 95,
+            "bid_depth_5": 332,
+            "depth_ratio": 0.4181360201511335,
+            "last_traded": 95,
+            "spread": -3,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-96",
+          "start_ts": 1783796974
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 417,
+            "ask_dwell_seconds": 467,
+            "bid": 94,
+            "bid_depth_5": 278,
+            "depth_ratio": 0.4,
+            "last_traded": 95,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-102",
+          "end_ts": 1783796986,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 417,
+            "ask_dwell_seconds": 467,
+            "bid": 94,
+            "bid_depth_5": 278,
+            "depth_ratio": 0.4,
+            "last_traded": 95,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-102",
+          "start_ts": 1783796986
+        },
+        {
+          "actions": {
+            "HOLD_REST": 4,
+            "REPRICE_REST": 4
+          },
+          "combined_state": "RISING",
+          "decision_rows": 8,
+          "disagreement": false,
+          "duration_seconds": 216,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 352,
+            "ask_dwell_seconds": 685,
+            "bid": 88,
+            "bid_depth_5": 375,
+            "depth_ratio": 0.515818431911967,
+            "last_traded": 96,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-131",
+          "end_ts": 1783797204,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 87,
+          "order_start_cents": 93,
+          "pressure_state": "SETTLED",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 417,
+            "ask_dwell_seconds": 469,
+            "bid": 89,
+            "bid_depth_5": 324,
+            "depth_ratio": 0.43724696356275305,
+            "last_traded": 95,
+            "spread": 3,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-109",
+          "start_ts": 1783796988
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 62,
+            "ask_dwell_seconds": 749,
+            "bid": 88,
+            "bid_depth_5": 367,
+            "depth_ratio": 0.8554778554778555,
+            "last_traded": 96,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-135",
+          "end_ts": 1783797268,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 87,
+          "order_start_cents": 87,
+          "pressure_state": "RISING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 62,
+            "ask_dwell_seconds": 749,
+            "bid": 88,
+            "bid_depth_5": 367,
+            "depth_ratio": 0.8554778554778555,
+            "last_traded": 96,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-135",
+          "start_ts": 1783797268
+        },
+        {
+          "actions": {
+            "HOLD_REST": 4
+          },
+          "combined_state": "RISING",
+          "decision_rows": 4,
+          "disagreement": true,
+          "duration_seconds": 217,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1339,
+            "ask_dwell_seconds": 966,
+            "bid": 88,
+            "bid_depth_5": 384,
+            "depth_ratio": 0.2228670922809054,
+            "last_traded": 97,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-149",
+          "end_ts": 1783797485,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 87,
+          "order_start_cents": 87,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1147,
+            "ask_dwell_seconds": 749,
+            "bid": 88,
+            "bid_depth_5": 367,
+            "depth_ratio": 0.24240422721268165,
+            "last_traded": 96,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-137",
+          "start_ts": 1783797268
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1339,
+            "ask_dwell_seconds": 1088,
+            "bid": 88,
+            "bid_depth_5": 381,
+            "depth_ratio": 0.22151162790697673,
+            "last_traded": 97,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-151",
+          "end_ts": 1783797607,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 87,
+          "order_start_cents": 87,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1339,
+            "ask_dwell_seconds": 1088,
+            "bid": 88,
+            "bid_depth_5": 381,
+            "depth_ratio": 0.22151162790697673,
+            "last_traded": 97,
+            "spread": 4,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-151",
+          "start_ts": 1783797607
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 3
+          },
+          "combined_state": "RISING",
+          "decision_rows": 3,
+          "disagreement": true,
+          "duration_seconds": 92,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1181,
+            "bid": 91,
+            "bid_depth_5": 359,
+            "depth_ratio": 0.21718088324258925,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-158",
+          "end_ts": 1783797700,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 90,
+          "order_start_cents": 87,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1339,
+            "ask_dwell_seconds": 1089,
+            "bid": 89,
+            "bid_depth_5": 382,
+            "depth_ratio": 0.2219639744334689,
+            "last_traded": 97,
+            "spread": 3,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-153",
+          "start_ts": 1783797608
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1679,
+            "bid": 91,
+            "bid_depth_5": 124,
+            "depth_ratio": 0.08744710860366714,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-160",
+          "end_ts": 1783798198,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 90,
+          "order_start_cents": 90,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1679,
+            "bid": 91,
+            "bid_depth_5": 124,
+            "depth_ratio": 0.08744710860366714,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-160",
+          "start_ts": 1783798198
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 2
+          },
+          "combined_state": "RISING",
+          "decision_rows": 2,
+          "disagreement": true,
+          "duration_seconds": 1,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1680,
+            "bid": 93,
+            "bid_depth_5": 153,
+            "depth_ratio": 0.10573600552868002,
+            "last_traded": 97,
+            "spread": -1,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-163",
+          "end_ts": 1783798199,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 92,
+          "order_start_cents": 90,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 1679,
+            "bid": 92,
+            "bid_depth_5": 180,
+            "depth_ratio": 0.12211668928086838,
+            "last_traded": 97,
+            "spread": 0,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-161",
+          "start_ts": 1783798198
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1,
+            "REPRICE_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 160,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2180,
+            "bid": 91,
+            "bid_depth_5": 249,
+            "depth_ratio": 0.16137394685677253,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-171",
+          "end_ts": 1783798699,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 90,
+          "order_start_cents": 92,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2020,
+            "bid": 93,
+            "bid_depth_5": 200,
+            "depth_ratio": 0.13386880856760375,
+            "last_traded": 97,
+            "spread": -1,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-165",
+          "start_ts": 1783798539
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 2
+          },
+          "combined_state": "RISING",
+          "decision_rows": 2,
+          "disagreement": true,
+          "duration_seconds": 2,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2182,
+            "bid": 91,
+            "bid_depth_5": 209,
+            "depth_ratio": 0.13905522288755823,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-180",
+          "end_ts": 1783798701,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 90,
+          "order_start_cents": 90,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2180,
+            "bid": 92,
+            "bid_depth_5": 280,
+            "depth_ratio": 0.17789072426937738,
+            "last_traded": 97,
+            "spread": 0,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-172",
+          "start_ts": 1783798699
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2679,
+            "bid": 91,
+            "bid_depth_5": 276,
+            "depth_ratio": 0.17579617834394903,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-184",
+          "end_ts": 1783799198,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 90,
+          "order_start_cents": 90,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2679,
+            "bid": 91,
+            "bid_depth_5": 276,
+            "depth_ratio": 0.17579617834394903,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-184",
+          "start_ts": 1783799198
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 3
+          },
+          "combined_state": "RISING",
+          "decision_rows": 3,
+          "disagreement": true,
+          "duration_seconds": 307,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2986,
+            "bid": 94,
+            "bid_depth_5": 205,
+            "depth_ratio": 0.13675783855903936,
+            "last_traded": 97,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-192",
+          "end_ts": 1783799505,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 90,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 2679,
+            "bid": 92,
+            "bid_depth_5": 171,
+            "depth_ratio": 0.1167235494880546,
+            "last_traded": 97,
+            "spread": 0,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-185",
+          "start_ts": 1783799198
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 3452,
+            "bid": 94,
+            "bid_depth_5": 225,
+            "depth_ratio": 0.14812376563528637,
+            "last_traded": 97,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-201",
+          "end_ts": 1783799971,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 3452,
+            "bid": 94,
+            "bid_depth_5": 225,
+            "depth_ratio": 0.14812376563528637,
+            "last_traded": 97,
+            "spread": -2,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-201",
+          "start_ts": 1783799971
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 3573,
+            "bid": 95,
+            "bid_depth_5": 204,
+            "depth_ratio": 0.13618157543391188,
+            "last_traded": 97,
+            "spread": -3,
+            "top_ask_size": 1
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-203",
+          "end_ts": 1783800092,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 1294,
+            "ask_dwell_seconds": 3573,
+            "bid": 95,
+            "bid_depth_5": 204,
+            "depth_ratio": 0.13618157543391188,
+            "last_traded": 97,
+            "spread": -3,
+            "top_ask_size": 1
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-203",
+          "start_ts": 1783800092
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 422,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 16025,
+            "ask_dwell_seconds": 422,
+            "bid": 95,
+            "bid_depth_5": 88,
+            "depth_ratio": 0.005461428660088127,
+            "last_traded": 97,
+            "spread": 2,
+            "top_ask_size": 22
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-211",
+          "end_ts": 1783801395,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 16025,
+            "ask_dwell_seconds": 0,
+            "bid": 95,
+            "bid_depth_5": 87,
+            "depth_ratio": 0.005399702085402185,
+            "last_traded": 97,
+            "spread": 2,
+            "top_ask_size": 22
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-210",
+          "start_ts": 1783800973
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 30025,
+            "ask_dwell_seconds": 2130,
+            "bid": 96,
+            "bid_depth_5": 115,
+            "depth_ratio": 0.0038155275381552755,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 2022
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-233",
+          "end_ts": 1783803103,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 30025,
+            "ask_dwell_seconds": 2130,
+            "bid": 96,
+            "bid_depth_5": 115,
+            "depth_ratio": 0.0038155275381552755,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 2022
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-233",
+          "start_ts": 1783803103
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 2869,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 48788,
+            "ask_dwell_seconds": 5398,
+            "bid": 95,
+            "bid_depth_5": 67,
+            "depth_ratio": 0.0013714051785897042,
+            "last_traded": 97,
+            "spread": 2,
+            "top_ask_size": 1522
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-245",
+          "end_ts": 1783806371,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 20025,
+            "ask_dwell_seconds": 2529,
+            "bid": 96,
+            "bid_depth_5": 114,
+            "depth_ratio": 0.005660658423953523,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 2022
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-237",
+          "start_ts": 1783803502
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 49789,
+            "ask_dwell_seconds": 5661,
+            "bid": 96,
+            "bid_depth_5": 76,
+            "depth_ratio": 0.0015241151107991578,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 2523
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-251",
+          "end_ts": 1783806634,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 49789,
+            "ask_dwell_seconds": 5661,
+            "bid": 96,
+            "bid_depth_5": 76,
+            "depth_ratio": 0.0015241151107991578,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 2523
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-251",
+          "start_ts": 1783806634
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 2981,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 45688,
+            "ask_dwell_seconds": 8998,
+            "bid": 95,
+            "bid_depth_5": 501,
+            "depth_ratio": 0.010846738400917967,
+            "last_traded": 97,
+            "spread": 2,
+            "top_ask_size": 22
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-274",
+          "end_ts": 1783809971,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 49788,
+            "ask_dwell_seconds": 6017,
+            "bid": 96,
+            "bid_depth_5": 76,
+            "depth_ratio": 0.0015241456762393711,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 2522
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-254",
+          "start_ts": 1783806990
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 51196,
+            "ask_dwell_seconds": 9282,
+            "bid": 96,
+            "bid_depth_5": 93,
+            "depth_ratio": 0.0018132543040418024,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 131
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-288",
+          "end_ts": 1783810255,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 51196,
+            "ask_dwell_seconds": 9282,
+            "bid": 96,
+            "bid_depth_5": 93,
+            "depth_ratio": 0.0018132543040418024,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 131
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-288",
+          "start_ts": 1783810255
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 540,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 52829,
+            "ask_dwell_seconds": 10370,
+            "bid": 95,
+            "bid_depth_5": 461,
+            "depth_ratio": 0.008650778757740665,
+            "last_traded": 97,
+            "spread": 2,
+            "top_ask_size": 336
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-319",
+          "end_ts": 1783811343,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 52303,
+            "ask_dwell_seconds": 9830,
+            "bid": 96,
+            "bid_depth_5": 442,
+            "depth_ratio": 0.008379941226656555,
+            "last_traded": 97,
+            "spread": 1,
+            "top_ask_size": 335
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-309",
+          "start_ts": 1783810803
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 52829,
+            "ask_dwell_seconds": 10371,
+            "bid": 95,
+            "bid_depth_5": 454,
+            "depth_ratio": 0.008520541260814894,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 336
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-322",
+          "end_ts": 1783811344,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 52829,
+            "ask_dwell_seconds": 10371,
+            "bid": 95,
+            "bid_depth_5": 454,
+            "depth_ratio": 0.008520541260814894,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 336
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-322",
+          "start_ts": 1783811344
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 97,
+            "ask_depth_5": 52829,
+            "ask_dwell_seconds": 10768,
+            "bid": 95,
+            "bid_depth_5": 978,
+            "depth_ratio": 0.01817607374505176,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 336
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-339",
+          "end_ts": 1783811741,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 97,
+            "ask_depth_5": 52829,
+            "ask_dwell_seconds": 10768,
+            "bid": 95,
+            "bid_depth_5": 978,
+            "depth_ratio": 0.01817607374505176,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 336
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-339",
+          "start_ts": 1783811741
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 179,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 38467,
+            "ask_dwell_seconds": 179,
+            "bid": 95,
+            "bid_depth_5": 982,
+            "depth_ratio": 0.02489289969327486,
+            "last_traded": 96,
+            "spread": 1,
+            "top_ask_size": 546
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-431",
+          "end_ts": 1783818955,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 94,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 59822,
+            "ask_dwell_seconds": 0,
+            "bid": 95,
+            "bid_depth_5": 982,
+            "depth_ratio": 0.016150253272811,
+            "last_traded": 96,
+            "spread": 1,
+            "top_ask_size": 100
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-424",
+          "start_ts": 1783818776
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1,
+            "REPRICE_REST": 3
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 4,
+          "disagreement": false,
+          "duration_seconds": 4136,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 43521,
+            "ask_dwell_seconds": 4513,
+            "bid": 92,
+            "bid_depth_5": 1273,
+            "depth_ratio": 0.028418984685448945,
+            "last_traded": 96,
+            "spread": 4,
+            "top_ask_size": 600
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-644",
+          "end_ts": 1783823289,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 91,
+          "order_start_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 38521,
+            "ask_dwell_seconds": 377,
+            "bid": 95,
+            "bid_depth_5": 981,
+            "depth_ratio": 0.024834185610855146,
+            "last_traded": 96,
+            "spread": 1,
+            "top_ask_size": 600
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-433",
+          "start_ts": 1783819153
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1,
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 2,
+          "disagreement": true,
+          "duration_seconds": 158,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 35000,
+            "ask_dwell_seconds": 5139,
+            "bid": 93,
+            "bid_depth_5": 1394,
+            "depth_ratio": 0.03830301698082102,
+            "last_traded": 96,
+            "spread": 3,
+            "top_ask_size": 55
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-678",
+          "end_ts": 1783823915,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 92,
+          "order_start_cents": 91,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 47975,
+            "ask_dwell_seconds": 4981,
+            "bid": 92,
+            "bid_depth_5": 1263,
+            "depth_ratio": 0.025650920021121897,
+            "last_traded": 96,
+            "spread": 4,
+            "top_ask_size": 55
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-659",
+          "start_ts": 1783823757
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 34900,
+            "ask_dwell_seconds": 5560,
+            "bid": 93,
+            "bid_depth_5": 1967,
+            "depth_ratio": 0.05335394797515393,
+            "last_traded": 96,
+            "spread": 3,
+            "top_ask_size": 55
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-689",
+          "end_ts": 1783824336,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 92,
+          "order_start_cents": 92,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 34900,
+            "ask_dwell_seconds": 5560,
+            "bid": 93,
+            "bid_depth_5": 1967,
+            "depth_ratio": 0.05335394797515393,
+            "last_traded": 96,
+            "spread": 3,
+            "top_ask_size": 55
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-689",
+          "start_ts": 1783824336
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 34900,
+            "ask_dwell_seconds": 5742,
+            "bid": 94,
+            "bid_depth_5": 1794,
+            "depth_ratio": 0.04889082683817518,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 55
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-692",
+          "end_ts": 1783824518,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 92,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 34900,
+            "ask_dwell_seconds": 5742,
+            "bid": 94,
+            "bid_depth_5": 1794,
+            "depth_ratio": 0.04889082683817518,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 55
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-692",
+          "start_ts": 1783824518
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 44901,
+            "ask_dwell_seconds": 6069,
+            "bid": 94,
+            "bid_depth_5": 1750,
+            "depth_ratio": 0.03751259351353669,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 55
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-705",
+          "end_ts": 1783824845,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 44901,
+            "ask_dwell_seconds": 6069,
+            "bid": 94,
+            "bid_depth_5": 1750,
+            "depth_ratio": 0.03751259351353669,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 55
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-705",
+          "start_ts": 1783824845
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 27150,
+            "ask_dwell_seconds": 13098,
+            "bid": 94,
+            "bid_depth_5": 1922,
+            "depth_ratio": 0.0661117226197028,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 54
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-854",
+          "end_ts": 1783831874,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 27150,
+            "ask_dwell_seconds": 13098,
+            "bid": 94,
+            "bid_depth_5": 1922,
+            "depth_ratio": 0.0661117226197028,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 54
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-854",
+          "start_ts": 1783831874
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 27365,
+            "ask_dwell_seconds": 13391,
+            "bid": 94,
+            "bid_depth_5": 1922,
+            "depth_ratio": 0.06562638713422338,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 54
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-863",
+          "end_ts": 1783832167,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 27365,
+            "ask_dwell_seconds": 13391,
+            "bid": 94,
+            "bid_depth_5": 1922,
+            "depth_ratio": 0.06562638713422338,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 54
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-863",
+          "start_ts": 1783832167
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 36789,
+            "ask_dwell_seconds": 24459,
+            "bid": 94,
+            "bid_depth_5": 2894,
+            "depth_ratio": 0.07292795403573318,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 53
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-977",
+          "end_ts": 1783843235,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 36789,
+            "ask_dwell_seconds": 24459,
+            "bid": 94,
+            "bid_depth_5": 2894,
+            "depth_ratio": 0.07292795403573318,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 53
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-977",
+          "start_ts": 1783843235
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 36789,
+            "ask_dwell_seconds": 24910,
+            "bid": 94,
+            "bid_depth_5": 2894,
+            "depth_ratio": 0.07292795403573318,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 53
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-979",
+          "end_ts": 1783843686,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 36789,
+            "ask_dwell_seconds": 24910,
+            "bid": 94,
+            "bid_depth_5": 2894,
+            "depth_ratio": 0.07292795403573318,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 53
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-979",
+          "start_ts": 1783843686
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 27303,
+            "ask_dwell_seconds": 48155,
+            "bid": 94,
+            "bid_depth_5": 11307,
+            "depth_ratio": 0.29285159285159285,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 431
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1662",
+          "end_ts": 1783866931,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 27303,
+            "ask_dwell_seconds": 48155,
+            "bid": 94,
+            "bid_depth_5": 11307,
+            "depth_ratio": 0.29285159285159285,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 431
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1662",
+          "start_ts": 1783866931
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 96,
+            "ask_depth_5": 27273,
+            "ask_dwell_seconds": 48446,
+            "bid": 94,
+            "bid_depth_5": 11312,
+            "depth_ratio": 0.2931709213424906,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 400
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1674",
+          "end_ts": 1783867222,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 27273,
+            "ask_dwell_seconds": 48446,
+            "bid": 94,
+            "bid_depth_5": 11312,
+            "depth_ratio": 0.2931709213424906,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 400
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1674",
+          "start_ts": 1783867222
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2,
+            "REPRICE_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 3,
+          "disagreement": false,
+          "duration_seconds": 2,
+          "end_observation": {
+            "ask": 95,
+            "ask_depth_5": 27386,
+            "ask_dwell_seconds": 0,
+            "bid": 93,
+            "bid_depth_5": 1151,
+            "depth_ratio": 0.04033360199039843,
+            "last_traded": 94,
+            "spread": 2,
+            "top_ask_size": 360
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1791",
+          "end_ts": 1783869224,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 92,
+          "order_start_cents": 93,
+          "pressure_state": "FALLING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 96,
+            "ask_depth_5": 37286,
+            "ask_dwell_seconds": 50446,
+            "bid": 94,
+            "bid_depth_5": 1289,
+            "depth_ratio": 0.03341542449773169,
+            "last_traded": 96,
+            "spread": 2,
+            "top_ask_size": 400
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1775",
+          "start_ts": 1783869222
+        },
+        {
+          "actions": {
+            "REPRICE_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 95,
+            "ask_depth_5": 37627,
+            "ask_dwell_seconds": 7,
+            "bid": 94,
+            "bid_depth_5": 1292,
+            "depth_ratio": 0.03319715306148668,
+            "last_traded": 94,
+            "spread": 1,
+            "top_ask_size": 360
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1819",
+          "end_ts": 1783869231,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 93,
+          "order_start_cents": 92,
+          "pressure_state": "FALLING",
+          "quote_state": "RISING",
+          "start_observation": {
+            "ask": 95,
+            "ask_depth_5": 37627,
+            "ask_dwell_seconds": 7,
+            "bid": 94,
+            "bid_depth_5": 1292,
+            "depth_ratio": 0.03319715306148668,
+            "last_traded": 94,
+            "spread": 1,
+            "top_ask_size": 360
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-1819",
+          "start_ts": 1783869231
+        }
+      ],
+      "take_moments": [],
+      "ticker": "KXATPMATCH-26JUL12DAHBAE-BAE"
+    },
+    "DAH": {
+      "all_frozen_action_marks": [
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "PLACE_REST",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|DAH",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-2",
+          "state": "SETTLED",
+          "t_minus_actual_bell_seconds": 264067,
+          "t_minus_pre_match_boundary_seconds": 264067,
+          "t_minus_scheduled_seconds": 76267,
+          "target_cents": 5,
+          "timestamp_epoch": 1783777733
+        },
+        {
+          "action_timestamp_epoch": 1783777733,
+          "bell_confidence": "exact",
+          "entry_cents": 5,
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+          "kind": "FILL",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|DAH",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "print": {
+            "price_cents": 5,
+            "size": 103,
+            "taker_side": "no"
+          },
+          "receipt": "e53f386e-0fc1-67a4-955a-9c4a7b9fd7d9",
+          "t_minus_actual_bell_seconds": 244808.78419017792,
+          "t_minus_pre_match_boundary_seconds": 244808.78419017792,
+          "t_minus_scheduled_seconds": 57008.78419017792,
+          "timestamp_epoch": 1783796991.2158098
+        },
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "PAIR_ARM",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|DAH",
+          "mode": "STRICT_LAW",
+          "pair_cap_cents": 6,
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "receipt": "8d02c099-e4e0-721e-3c76-422ea0d3131a",
+          "same_receipt_fill_forbidden": true,
+          "sibling_fill_cents": 93,
+          "t_minus_actual_bell_seconds": 172558.25385808945,
+          "t_minus_pre_match_boundary_seconds": 172558.25385808945,
+          "t_minus_scheduled_seconds": -15241.746141910553,
+          "timestamp_epoch": 1783869241.746142
+        }
+      ],
+      "conservation": {
+        "extracted_decision_count": 28,
+        "frozen_decision_count": 28,
+        "pass": true
+      },
+      "frozen_result": {
+        "acted": true,
+        "close_telemetry_only_cents": 6,
+        "credited": true,
+        "entry_cents": 5,
+        "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+        "fill_timestamp_epoch": 1783796991.2158098,
+        "print_backed_floor_cents": 4,
+        "qualifying_ask_floor_cents": 5,
+        "resting_target_at_hard_edge_cents": null,
+        "terminal_reason": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST"
+      },
+      "leg_identity": "KXATPMATCH-26JUL12DAHBAE|DAH",
+      "maker_fill_moments": [
+        {
+          "action_timestamp_epoch": 1783777733,
+          "bell_confidence": "exact",
+          "entry_cents": 5,
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+          "kind": "FILL",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|DAH",
+          "mode": "STRICT_LAW",
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "print": {
+            "price_cents": 5,
+            "size": 103,
+            "taker_side": "no"
+          },
+          "receipt": "e53f386e-0fc1-67a4-955a-9c4a7b9fd7d9",
+          "t_minus_actual_bell_seconds": 244808.78419017792,
+          "t_minus_pre_match_boundary_seconds": 244808.78419017792,
+          "t_minus_scheduled_seconds": 57008.78419017792,
+          "timestamp_epoch": 1783796991.2158098
+        }
+      ],
+      "pair_arms": [
+        {
+          "bell_confidence": "exact",
+          "event_id": "KXATPMATCH-26JUL12DAHBAE",
+          "kind": "PAIR_ARM",
+          "leg_identity": "KXATPMATCH-26JUL12DAHBAE|DAH",
+          "mode": "STRICT_LAW",
+          "pair_cap_cents": 6,
+          "pre_match_boundary_epoch": 1784041800,
+          "pre_match_boundary_source": "exact_start_utc",
+          "receipt": "8d02c099-e4e0-721e-3c76-422ea0d3131a",
+          "same_receipt_fill_forbidden": true,
+          "sibling_fill_cents": 93,
+          "t_minus_actual_bell_seconds": 172558.25385808945,
+          "t_minus_pre_match_boundary_seconds": 172558.25385808945,
+          "t_minus_scheduled_seconds": -15241.746141910553,
+          "timestamp_epoch": 1783869241.746142
+        }
+      ],
+      "rest_walks": [
+        {
+          "action": "PLACE_REST",
+          "book": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.49843184559710496,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "combined_state": "SETTLED",
+          "from_cents": null,
+          "layer_tags": [
+            "SOURCE_BOOK",
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION_REST",
+            "MICRO_MICRO_ACTION"
+          ],
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "reason": "FIRST_TWO_SIDED_BOOK_LIVING_REST_ONE_CENT_UNDER_BID",
+          "receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-2",
+          "timestamp_epoch": 1783777733,
+          "timestamp_et": "2026-07-11 09:48:53.000",
+          "to_cents": 5
+        }
+      ],
+      "source": {
+        "book": {
+          "bytes": 516899,
+          "sha256": "28ec5347b9ed32076c812edcbfbffd97074bd457e20351b78fabfbab5e795d1f"
+        },
+        "certified_print_rows_inside_window": 629,
+        "v36_frozen_print_count_inside_window": 629
+      },
+      "state_strip": [
+        {
+          "actions": {
+            "PLACE_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.49843184559710496,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-2",
+          "end_ts": 1783777733,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.49843184559710496,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-2",
+          "start_ts": 1783777733
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1001,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6736224323443104,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-3",
+          "end_ts": 1783777897,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1001,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6736224323443104,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-3",
+          "start_ts": 1783777897
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.49843184559710496,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-4",
+          "end_ts": 1783781170,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 94,
+            "ask_depth_5": 2079,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.49843184559710496,
+            "last_traded": 0,
+            "spread": 88,
+            "top_ask_size": 200
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-4",
+          "start_ts": 1783781170
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1001,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6736224323443104,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-5",
+          "end_ts": 1783781505,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1001,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6736224323443104,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-5",
+          "start_ts": 1783781505
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 93,
+            "ask_depth_5": 1417,
+            "ask_dwell_seconds": 2591,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5931668102210738,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-6",
+          "end_ts": 1783784096,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 93,
+            "ask_depth_5": 1417,
+            "ask_dwell_seconds": 2591,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5931668102210738,
+            "last_traded": 0,
+            "spread": 87,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-6",
+          "start_ts": 1783784096
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 2031,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5042714181108128,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 313
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-8",
+          "end_ts": 1783784096,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 2031,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5042714181108128,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 313
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-8",
+          "start_ts": 1783784096
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 92,
+            "ask_depth_5": 2021,
+            "ask_dwell_seconds": 678,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5055052605823342,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 313
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-9",
+          "end_ts": 1783784774,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 92,
+            "ask_depth_5": 2021,
+            "ask_dwell_seconds": 678,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5055052605823342,
+            "last_traded": 0,
+            "spread": 86,
+            "top_ask_size": 313
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-9",
+          "start_ts": 1783784774
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 91,
+            "ask_depth_5": 1729,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5444005270092227,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-10",
+          "end_ts": 1783792295,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 91,
+            "ask_depth_5": 1729,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5444005270092227,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-10",
+          "start_ts": 1783792295
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 91,
+            "ask_depth_5": 1258,
+            "ask_dwell_seconds": 9,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6215403128760529,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-12",
+          "end_ts": 1783792304,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 91,
+            "ask_depth_5": 1258,
+            "ask_dwell_seconds": 9,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6215403128760529,
+            "last_traded": 0,
+            "spread": 85,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-12",
+          "start_ts": 1783792304
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 15,
+          "end_observation": {
+            "ask": 90,
+            "ask_depth_5": 1495,
+            "ask_dwell_seconds": 15,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5801741083965178,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 250
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-14",
+          "end_ts": 1783792336,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 90,
+            "ask_depth_5": 1483,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5821358129050437,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 250
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-13",
+          "start_ts": 1783792321
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "SETTLED",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 90,
+            "ask_depth_5": 1484,
+            "ask_dwell_seconds": 2044,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5819718309859155,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 250
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-16",
+          "end_ts": 1783794365,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 90,
+            "ask_depth_5": 1484,
+            "ask_dwell_seconds": 2044,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5819718309859155,
+            "last_traded": 0,
+            "spread": 84,
+            "top_ask_size": 250
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-16",
+          "start_ts": 1783794365
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 89,
+            "ask_depth_5": 1051,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6628168110362528,
+            "last_traded": 0,
+            "spread": 83,
+            "top_ask_size": 10
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-18",
+          "end_ts": 1783795934,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 89,
+            "ask_depth_5": 1051,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.6628168110362528,
+            "last_traded": 0,
+            "spread": 83,
+            "top_ask_size": 10
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-18",
+          "start_ts": 1783795934
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 89,
+            "ask_depth_5": 1423,
+            "ask_dwell_seconds": 8,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5921467469188879,
+            "last_traded": 0,
+            "spread": 83,
+            "top_ask_size": 237
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-21",
+          "end_ts": 1783795942,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 89,
+            "ask_depth_5": 1423,
+            "ask_dwell_seconds": 8,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.5921467469188879,
+            "last_traded": 0,
+            "spread": 83,
+            "top_ask_size": 237
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-21",
+          "start_ts": 1783795942
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 1,
+          "disagreement": true,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 88,
+            "ask_depth_5": 1329,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.608541973490427,
+            "last_traded": 0,
+            "spread": 82,
+            "top_ask_size": 208
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-22",
+          "end_ts": 1783795942,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 88,
+            "ask_depth_5": 1329,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 2066,
+            "depth_ratio": 0.608541973490427,
+            "last_traded": 0,
+            "spread": 82,
+            "top_ask_size": 208
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-22",
+          "start_ts": 1783795942
+        },
+        {
+          "actions": {
+            "HOLD_REST": 2
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 2,
+          "disagreement": false,
+          "duration_seconds": 3,
+          "end_observation": {
+            "ask": 88,
+            "ask_depth_5": 1338,
+            "ask_dwell_seconds": 184,
+            "bid": 6,
+            "bid_depth_5": 1871,
+            "depth_ratio": 0.5830476784044873,
+            "last_traded": 6,
+            "spread": 82,
+            "top_ask_size": 208
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-26",
+          "end_ts": 1783796126,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "SETTLED",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 88,
+            "ask_depth_5": 1338,
+            "ask_dwell_seconds": 181,
+            "bid": 6,
+            "bid_depth_5": 1866,
+            "depth_ratio": 0.5823970037453183,
+            "last_traded": 0,
+            "spread": 82,
+            "top_ask_size": 208
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-24",
+          "start_ts": 1783796123
+        },
+        {
+          "actions": {
+            "HOLD_REST": 5
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 5,
+          "disagreement": true,
+          "duration_seconds": 215,
+          "end_observation": {
+            "ask": 11,
+            "ask_depth_5": 200,
+            "ask_dwell_seconds": 208,
+            "bid": 6,
+            "bid_depth_5": 1868,
+            "depth_ratio": 0.9032882011605415,
+            "last_traded": 6,
+            "spread": 5,
+            "top_ask_size": 34
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-55",
+          "end_ts": 1783796387,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 12,
+            "ask_depth_5": 920,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 1871,
+            "depth_ratio": 0.6703690433536367,
+            "last_traded": 6,
+            "spread": 6,
+            "top_ask_size": 15
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-27",
+          "start_ts": 1783796172
+        },
+        {
+          "actions": {
+            "HOLD_REST": 1
+          },
+          "combined_state": "RISING",
+          "decision_rows": 1,
+          "disagreement": false,
+          "duration_seconds": 0,
+          "end_observation": {
+            "ask": 11,
+            "ask_depth_5": 201,
+            "ask_dwell_seconds": 550,
+            "bid": 6,
+            "bid_depth_5": 1959,
+            "depth_ratio": 0.9069444444444444,
+            "last_traded": 6,
+            "spread": 5,
+            "top_ask_size": 35
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-57",
+          "end_ts": 1783796729,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "SETTLED",
+          "start_observation": {
+            "ask": 11,
+            "ask_depth_5": 201,
+            "ask_dwell_seconds": 550,
+            "bid": 6,
+            "bid_depth_5": 1959,
+            "depth_ratio": 0.9069444444444444,
+            "last_traded": 6,
+            "spread": 5,
+            "top_ask_size": 35
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-57",
+          "start_ts": 1783796729
+        },
+        {
+          "actions": {
+            "HOLD_REST": 5
+          },
+          "combined_state": "FALLING",
+          "decision_rows": 5,
+          "disagreement": true,
+          "duration_seconds": 14,
+          "end_observation": {
+            "ask": 8,
+            "ask_depth_5": 222,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 1866,
+            "depth_ratio": 0.8936781609195402,
+            "last_traded": 6,
+            "spread": 2,
+            "top_ask_size": 28
+          },
+          "end_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-218",
+          "end_ts": 1783796990,
+          "layer_tags": [
+            "MACRO_QUOTE_PATH",
+            "PAIR_MICRO_PRESSURE",
+            "MICRO_POSITION",
+            "MICRO_MICRO_TIMING"
+          ],
+          "order_end_cents": 5,
+          "order_start_cents": 5,
+          "pressure_state": "RISING",
+          "quote_state": "FALLING",
+          "start_observation": {
+            "ask": 10,
+            "ask_depth_5": 357,
+            "ask_dwell_seconds": 0,
+            "bid": 6,
+            "bid_depth_5": 1866,
+            "depth_ratio": 0.8394062078272605,
+            "last_traded": 6,
+            "spread": 4,
+            "top_ask_size": 69
+          },
+          "start_receipt": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-195",
+          "start_ts": 1783796976
+        }
+      ],
+      "take_moments": [],
+      "ticker": "KXATPMATCH-26JUL12DAHBAE-DAH"
+    }
+  },
+  "policy_invocations": 0,
+  "read_only_extraction": true,
+  "schema_version": "v36-evidence-decision-marks-v1",
+  "score_invocations": 0,
+  "selection": {
+    "event_id": "KXATPMATCH-26JUL12DAHBAE",
+    "role": "WIDE_SPREAD_MAKER_ONLY_COMPLETION",
+    "short": "DAHBAE",
+    "why": "BOSCOP-class 88-cent formation spreads; both legs fill by strict seller-aggressed maker evidence and complete 93 plus 5 equals 98."
+  },
+  "starting_price_split": "ge75+le25",
+  "window": {
+    "left_epoch": 1783777733,
+    "precision_class": "exact",
+    "right_edge_source": "exact_start_utc",
+    "right_epoch": 1784041800
+  }
+}

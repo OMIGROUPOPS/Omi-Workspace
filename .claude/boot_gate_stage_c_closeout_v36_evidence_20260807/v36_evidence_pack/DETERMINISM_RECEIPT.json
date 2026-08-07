@@ -1,0 +1,7 @@
+{
+  "comparison_scope": "ALL_GENERATED_FILES",
+  "core_file_count": 16,
+  "cross_build_result_location": "../V36_EVIDENCE_DETERMINISM_RECEIPT.json",
+  "required_clean_builds": 2,
+  "schema_version": "v36-evidence-pack-regeneration-contract-v1"
+}

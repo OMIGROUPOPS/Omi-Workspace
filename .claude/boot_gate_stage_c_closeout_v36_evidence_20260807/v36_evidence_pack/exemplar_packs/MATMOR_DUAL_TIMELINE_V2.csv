@@ -1,0 +1,5 @@
+ts_epoch,ts_et,t_minus_scheduled_s,t_minus_actual_bell_s,t_minus_pre_match_boundary_s,leg,ticker,row_type,best_bid,bid_size,best_ask,ask_size,spread,ask_dwell_s,bid_depth_5,ask_depth_5,depth_ratio,last_traded,print_price,print_size,taker_side,trade_id,receipt,resting_bid,combined_state,quote_state,pressure_state,pair_cap,decision_action,decision_reason,layer_tags
+1783979978,2026-07-13 17:59:38.000,76222.0,,0,MAT,KXATPCHALLENGERMATCH-26JUL14MATMOR-MAT,WINDOW_RIGHT,,,,,,,,,,,,,,,WINDOW_RIGHT,,,,,,,,WINDOW_BOUNDARY
+1783979978,2026-07-13 17:59:38.000,76222.0,,0,MOR,KXATPCHALLENGERMATCH-26JUL14MATMOR-MOR,WINDOW_RIGHT,,,,,,,,,,,,,,,WINDOW_RIGHT,,,,,,,,WINDOW_BOUNDARY
+1784002927,2026-07-14 00:22:07.000,53273.0,,-22949,MAT,KXATPCHALLENGERMATCH-26JUL14MATMOR-MAT,WINDOW_LEFT,,,,,,,,,,,,,,,WINDOW_LEFT,,,,,,,,WINDOW_BOUNDARY
+1784002927,2026-07-14 00:22:07.000,53273.0,,-22949,MOR,KXATPCHALLENGERMATCH-26JUL14MATMOR-MOR,WINDOW_LEFT,,,,,,,,,,,,,,,WINDOW_LEFT,,,,,,,,WINDOW_BOUNDARY

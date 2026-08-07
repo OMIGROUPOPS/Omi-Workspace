@@ -1,0 +1,102 @@
+{
+  "category": "ATP_CHALL",
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+  "layers_in_execution_order": [
+    "SOURCE_BOOK_OR_PRINT",
+    "MACRO_QUOTE_PATH",
+    "PAIR_MICRO_PRESSURE",
+    "MICRO_POSITION_EVIDENCE_FLOOR_OR_REST",
+    "MICRO_MICRO_ACTION",
+    "PAIR_CAP_ARM",
+    "STRICT_FILL_PROOF"
+  ],
+  "legs": {
+    "MAT": {
+      "all_frozen_action_marks": [],
+      "conservation": {
+        "extracted_decision_count": 0,
+        "frozen_decision_count": 0,
+        "pass": true
+      },
+      "frozen_result": {
+        "acted": false,
+        "close_telemetry_only_cents": null,
+        "credited": false,
+        "entry_cents": null,
+        "fill_class": null,
+        "fill_timestamp_epoch": null,
+        "print_backed_floor_cents": null,
+        "qualifying_ask_floor_cents": null,
+        "resting_target_at_hard_edge_cents": null,
+        "terminal_reason": "NO_OWN_TWO_SIDED_BOOK_ACTION_INSIDE_WINDOW1"
+      },
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14MATMOR|MAT",
+      "maker_fill_moments": [],
+      "pair_arms": [],
+      "rest_walks": [],
+      "source": {
+        "book": {
+          "bytes": 929301,
+          "sha256": "9bb60332732ffce6249c282c572bd77a7977991a07ed832b4fb7ae5d9d189db0"
+        },
+        "certified_print_rows_inside_window": 0,
+        "v36_frozen_print_count_inside_window": 0
+      },
+      "state_strip": [],
+      "take_moments": [],
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14MATMOR-MAT"
+    },
+    "MOR": {
+      "all_frozen_action_marks": [],
+      "conservation": {
+        "extracted_decision_count": 0,
+        "frozen_decision_count": 0,
+        "pass": true
+      },
+      "frozen_result": {
+        "acted": false,
+        "close_telemetry_only_cents": null,
+        "credited": false,
+        "entry_cents": null,
+        "fill_class": null,
+        "fill_timestamp_epoch": null,
+        "print_backed_floor_cents": null,
+        "qualifying_ask_floor_cents": null,
+        "resting_target_at_hard_edge_cents": null,
+        "terminal_reason": "NO_OWN_TWO_SIDED_BOOK_ACTION_INSIDE_WINDOW1"
+      },
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14MATMOR|MOR",
+      "maker_fill_moments": [],
+      "pair_arms": [],
+      "rest_walks": [],
+      "source": {
+        "book": {
+          "bytes": 883154,
+          "sha256": "a8f89f2c8c231fce93f2b4a846ff47cd3b84a5bf209d4f9ce7aded3299f308dc"
+        },
+        "certified_print_rows_inside_window": 0,
+        "v36_frozen_print_count_inside_window": 0
+      },
+      "state_strip": [],
+      "take_moments": [],
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14MATMOR-MOR"
+    }
+  },
+  "policy_invocations": 0,
+  "read_only_extraction": true,
+  "schema_version": "v36-evidence-decision-marks-v1",
+  "score_invocations": 0,
+  "selection": {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+    "role": "SKIPPED_ENTIRELY",
+    "short": "MATMOR",
+    "why": "Neither expression forms an actionable two-sided book inside the frozen Window-1 span; both decision counts are zero."
+  },
+  "starting_price_split": "26_50+51_75",
+  "window": {
+    "left_epoch": 1784002927,
+    "precision_class": "live_by_only",
+    "right_edge_source": "known_live_by_utc",
+    "right_epoch": 1783979978
+  }
+}

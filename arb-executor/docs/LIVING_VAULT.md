@@ -8,6 +8,14 @@
 
 ---
 
+### 2026-08-07 · STAGE C CLOSE-OUT — the twelve are retired; frozen V36 evidence is inspectable without shadow or capital
+
+The twelve pre-existing tracked VPS modifications are closed with **KEEP 0 / RETIRE 12 / unclassified 0** under the same provenance law as the Stage C `live_v4.py` drift. Their final stable binary preimage is sealed before restore (`VPS_TWELVE_PREIMAGE_FINAL.patch.gz`, SHA-256 `3c18133d83a1465813d458f019cf1f28191cfc12fc9c0ef7ee2c807e70432121`, 48,444 bytes); the earlier patch is superseded because `audit_log.json` appended after classification. The VPS fast-forwarded to `27596166f03e040a5e38824748dcd88d70bed93b`, restored exactly the twelve paths to HEAD, and ended with empty tracked status. Engine process count stayed zero; inhibited cron stayed `405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149`; live-capital, shadow, order, position, and cron actions were all zero.
+
+The V36 evidence pack is a read-only extraction from frozen V36 `bfde0d8d1135f5c5f48a5f3d619ab30050efab83`, policy SHA-256 `5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73`, the package-bound BBO tapes, and certified prints SHA-256 `e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55`. Six standing-template exemplars span ARNROM, KIRSEK, DAHBAE, LAJVAN, WESPAA, and MATMOR. Two clean builds produced 18 files / 95,420,227 bytes byte-identically; focused tests passed 11/11. This receipt is evidence only: no policy/scorer invocation and no shadow or live launch. Canonical package: `.claude/boot_gate_stage_c_closeout_v36_evidence_20260807/`.
+
+---
+
 # FRONT PAGE — THE ENTRY DOCTRINE
 
 **This page IS the contract AIM_V2's arm gets judged against.** (AIM_V2 state: built + operationalized under the Plex ruling, GATED-OFF, ramp forecast pending honest n≥30 per tier — see ledger 07-06.)

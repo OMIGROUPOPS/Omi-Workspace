@@ -1,0 +1,76 @@
+{
+  "books": {
+    "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN": {
+      "bytes": 915234,
+      "sha256": "167aafbe042971be5217eff0721a2ef28040b8b40193348a2605804f6d7d7d93"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM": {
+      "bytes": 958865,
+      "sha256": "e8422c54aeb3699145f74ea11b74f4053445e3c5eea2d3131b1b91329b1efb6f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12WESPAA-PAA": {
+      "bytes": 888929,
+      "sha256": "b48a7f4e5f591f48de26b42e9a3208b598a9ef47f68bfe58302ac47f0803766f"
+    },
+    "KXATPCHALLENGERMATCH-26JUL12WESPAA-WES": {
+      "bytes": 771190,
+      "sha256": "db169873072def1d2b447183970dc69f873d9be7b56e15dcb29cb3eca664e169"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR": {
+      "bytes": 394163,
+      "sha256": "cd01629a82aefe5f8da4f0fb7e8746a340ac4b4ab1062b0d7ea4c51eb64ac192"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK": {
+      "bytes": 244096,
+      "sha256": "a46f219494fa961f3f73a7f7cbee1833d7bb4bce0cc2c9a4e3acea7bbc595df0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR-MAT": {
+      "bytes": 929301,
+      "sha256": "9bb60332732ffce6249c282c572bd77a7977991a07ed832b4fb7ae5d9d189db0"
+    },
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR-MOR": {
+      "bytes": 883154,
+      "sha256": "a8f89f2c8c231fce93f2b4a846ff47cd3b84a5bf209d4f9ce7aded3299f308dc"
+    },
+    "KXATPMATCH-26JUL12DAHBAE-BAE": {
+      "bytes": 846809,
+      "sha256": "9efcdb4b2911535b9bc9a2a64cde7c49b6e09e6e7109759789c688d0238e64cf"
+    },
+    "KXATPMATCH-26JUL12DAHBAE-DAH": {
+      "bytes": 516899,
+      "sha256": "28ec5347b9ed32076c812edcbfbffd97074bd457e20351b78fabfbab5e795d1f"
+    },
+    "KXATPMATCH-26JUL12LAJVAN-LAJ": {
+      "bytes": 997665,
+      "sha256": "3b1ba81645882ba60da26492a7c48ac6c51350274f79cfcdc6ad4a26d0e0b0cd"
+    },
+    "KXATPMATCH-26JUL12LAJVAN-VAN": {
+      "bytes": 990960,
+      "sha256": "fef54cb1411e159d31874c4e127355c4d84debef8745544e30e4e35ece9e333d"
+    }
+  },
+  "certified_prints": {
+    "admitted_unique_window1_prints": 1726,
+    "bytes": 1766090446,
+    "contiguous_ticker_spool_count": 12,
+    "duplicate_trade_id_rows_rejected": 0,
+    "path_class": "PRIVATE_FIT_DEVELOPMENT_PRINTS_HASH_ONLY",
+    "raw_rows": 4836462,
+    "required_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "role": "READ_ONLY_EVIDENCE_JOIN",
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "template": {
+    "commit": "1fd0328231dcff8bf03e470153deb26b84168e26",
+    "marks_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/BOSCOP_DECISION_MARKS.json",
+    "timeline_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/BOSCOP_DUAL_TIMELINE_V2.csv"
+  },
+  "v36": {
+    "action_and_fill_trace_part_sha256": "57dc1de99aca035e55e57d43f4f8c982325fb57610b9c6c4ee057bb161b97197",
+    "commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+    "full_decision_trace_parts_manifest_sha256": "efc724ef31c0f36dadaae38a6bb488d1c65c19eb5201d75ed93c535eea828b38",
+    "policy_path": "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js",
+    "policy_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+    "strict_event_ledger_sha256": "2cdbc27c2bf8a7709d37c221591f66f0eb0b5e059526be51135aeaf92fbf8687"
+  }
+}

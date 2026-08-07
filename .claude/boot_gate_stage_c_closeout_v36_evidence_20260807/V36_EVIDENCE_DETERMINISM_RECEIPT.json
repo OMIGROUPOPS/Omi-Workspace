@@ -1,0 +1,24 @@
+{
+  "schema_version": "stage-c-v36-evidence-determinism-v1",
+  "clean_builds": 2,
+  "byte_identical": true,
+  "compared_generated_files": 18,
+  "mismatches": [],
+  "build_1": "C:/tmp/v36-evidence-build1",
+  "build_2": ".claude/boot_gate_stage_c_closeout_v36_evidence_20260807/v36_evidence_pack",
+  "artifact_hash_manifest_sha256": "63ae8f24a0f9a4185c2d52af36c67d17956ce60d4cfe2b746a6c490af4dfa38d",
+  "evidence_selection_sha256": "4bf68bae7b5d76be0b30ec5437dd9faba8f1fedb0b7e708ca40b6a85aff08027",
+  "generated_bytes": 95420227,
+  "focused_tests": {
+    "collected": 11,
+    "passed": 11,
+    "failed": 0,
+    "errors": 0,
+    "omitted": 0,
+    "deselected": 0
+  },
+  "policy_invocations": 0,
+  "score_invocations": 0,
+  "shadow_launches": 0,
+  "live_capital_accesses": 0
+}

@@ -1,0 +1,22 @@
+{
+  "schema_version": "stage-c-v36-evidence-source-v1",
+  "frozen_v36_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "v36_policy_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+  "certified_print_archive_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+  "certified_print_archive_bytes": 1766090446,
+  "standing_template_commit": "1fd0328231dcff8bf03e470153deb26b84168e26",
+  "builder": {
+    "path": "arb-executor/analysis/build_stage_c_v36_evidence_pack.py",
+    "sha256": "1a74c62d96ed151db5446a4d3153706f48570b6134b9c2f57279660116e3e5f5"
+  },
+  "focused_test": {
+    "path": "arb-executor/tests/test_stage_c_v36_evidence_pack.py",
+    "sha256": "85882a6af7d05f21d6c305aa4fff1877ca2e5f60a1d920a1be3873b8d80b661c",
+    "passed": 11
+  },
+  "selection_count": 6,
+  "timeline_and_marks_files": 12,
+  "generated_file_count": 18,
+  "generated_bytes": 95420227,
+  "read_only_extraction": true
+}

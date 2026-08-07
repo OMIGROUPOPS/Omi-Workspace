@@ -1,0 +1,59 @@
+{
+  "schema_version": "stage-c-vps-twelve-clean-receipt-v1",
+  "host": "104.131.191.95",
+  "repository": "/root/Omi-Workspace",
+  "branch": "codex/stage-c-v36-cutover-prep-20260807",
+  "head_before": "dd3f024bc8ece51b57dd20b209d234ed93efd9f7",
+  "classification_commit": "27596166f03e040a5e38824748dcd88d70bed93b",
+  "guard_attempts": [
+    {
+      "outcome": "NO_MUTATION",
+      "reason": "expected classification commit was typed incorrectly; command stopped before restore"
+    },
+    {
+      "outcome": "NO_MUTATION",
+      "reason": "audit_log.json changed after the first census; blob guard stopped before restore"
+    },
+    {
+      "outcome": "NO_TREE_MUTATION",
+      "reason": "git pull inherited pull.rebase=true and stopped before fast-forward"
+    }
+  ],
+  "successful_operation": {
+    "git_fast_forward": "dd3f024bc8ece51b57dd20b209d234ed93efd9f7..27596166f03e040a5e38824748dcd88d70bed93b",
+    "restore_source": "HEAD",
+    "restored_path_count": 12,
+    "restored_paths": [
+      ".claude/BOARD.md",
+      ".claude/live_20260705/NIGHTLY_PASS.md",
+      ".claude/render/knob_census_artifact.json",
+      ".claude/trendpath/ATLAS_V1.json",
+      ".claude/trendpath/LAWFUL_HARVEST_MAP.txt",
+      ".claude/trendpath/LIBRARY_V1.json",
+      ".claude/trendpath/ORIENT_V1.json",
+      "arb-executor/audit_log.json",
+      "arb-executor/config/deploy_v5_live.json",
+      "arb-executor/deploy/respawn_tennis_odds.sh",
+      "arb-executor/kalshi_price_scraper.py",
+      "arb-executor/te_live.py"
+    ]
+  },
+  "final_preimage_patch": {
+    "path": ".claude/boot_gate_stage_c_closeout_v36_evidence_20260807/VPS_TWELVE_PREIMAGE_FINAL.patch.gz",
+    "sha256": "3c18133d83a1465813d458f019cf1f28191cfc12fc9c0ef7ee2c807e70432121",
+    "bytes": 48444
+  },
+  "postconditions": {
+    "tracked_status": "",
+    "tracked_tree_clean": true,
+    "engine_process_count": 0,
+    "inhibited_crontab_sha256": "405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149",
+    "live_capital_actions": 0,
+    "shadow_launches": 0,
+    "engine_launches": 0,
+    "order_actions": 0,
+    "position_actions": 0,
+    "cron_mutations": 0
+  },
+  "result": "PASS_ZERO_MIXED_TRACKED_STATE"
+}

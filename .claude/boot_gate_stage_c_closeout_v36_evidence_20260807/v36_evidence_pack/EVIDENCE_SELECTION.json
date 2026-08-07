@@ -1,0 +1,104 @@
+{
+  "count": 6,
+  "games": [
+    {
+      "action_and_fill_rows": 206,
+      "bell_confidence": "exact",
+      "category": "ATP_CHALL",
+      "combined_entry_cents": 94,
+      "decision_rows": 29376,
+      "entries_cents": {
+        "ARN": 56,
+        "ROM": 38
+      },
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "role": "LIVING_REST_PLUS_EVIDENCE_TAKE",
+      "short": "ARNROM",
+      "timeline_rows": 42638,
+      "why": "Named V36 regression: ROM 38 plus ARN 56 equals 94 under par."
+    },
+    {
+      "action_and_fill_rows": 1125,
+      "bell_confidence": "exact",
+      "category": "ATP_CHALL",
+      "combined_entry_cents": 32,
+      "decision_rows": 2396,
+      "entries_cents": {
+        "KIR": 15,
+        "SEK": 17
+      },
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "role": "DEEPEST_CLEAN_MAKER_FILL",
+      "short": "KIRSEK",
+      "timeline_rows": 28438,
+      "why": "Exact-bell, both-maker completion; KIR rests and fills at its exact 15-cent print floor, 18 cents below its own close telemetry."
+    },
+    {
+      "action_and_fill_rows": 43,
+      "bell_confidence": "exact",
+      "category": "ATP_MAIN",
+      "combined_entry_cents": 98,
+      "decision_rows": 134,
+      "entries_cents": {
+        "BAE": 93,
+        "DAH": 5
+      },
+      "event_id": "KXATPMATCH-26JUL12DAHBAE",
+      "role": "WIDE_SPREAD_MAKER_ONLY_COMPLETION",
+      "short": "DAHBAE",
+      "timeline_rows": 166314,
+      "why": "BOSCOP-class 88-cent formation spreads; both legs fill by strict seller-aggressed maker evidence and complete 93 plus 5 equals 98."
+    },
+    {
+      "action_and_fill_rows": 4638,
+      "bell_confidence": "exact",
+      "category": "ATP_MAIN",
+      "combined_entry_cents": 99,
+      "decision_rows": 8327,
+      "entries_cents": {
+        "LAJ": 49,
+        "VAN": 50
+      },
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "role": "CARRIED_PAIR_HONEST_WART",
+      "short": "LAJVAN",
+      "timeline_rows": 48280,
+      "why": "Exact-bell under-par pair with LAJ four cents above its own close and VAN eight cents below; one side carries the other."
+    },
+    {
+      "action_and_fill_rows": 41,
+      "bell_confidence": "exact",
+      "category": "ATP_CHALL",
+      "combined_entry_cents": null,
+      "decision_rows": 234,
+      "entries_cents": {
+        "PAA": null,
+        "WES": null
+      },
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "role": "REST_STARVED_LOSS",
+      "short": "WESPAA",
+      "timeline_rows": 1145,
+      "why": "Exact-bell no-fill pair; WES stands at its 60-cent ask/print floor but no qualifying seller print pays the rest."
+    },
+    {
+      "action_and_fill_rows": 0,
+      "bell_confidence": "live_by_only",
+      "category": "ATP_CHALL",
+      "combined_entry_cents": null,
+      "decision_rows": 0,
+      "entries_cents": {
+        "MAT": null,
+        "MOR": null
+      },
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+      "role": "SKIPPED_ENTIRELY",
+      "short": "MATMOR",
+      "timeline_rows": 4,
+      "why": "Neither expression forms an actionable two-sided book inside the frozen Window-1 span; both decision counts are zero."
+    }
+  ],
+  "schema_version": "stage-c-v36-evidence-selection-v1",
+  "source_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "standing_template_commit": "1fd0328231dcff8bf03e470153deb26b84168e26"
+}

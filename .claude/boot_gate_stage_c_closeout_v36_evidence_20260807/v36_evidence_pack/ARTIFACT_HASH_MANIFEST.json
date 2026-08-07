@@ -1,0 +1,73 @@
+{
+  "file_count": 17,
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "bytes": 246,
+      "sha256": "01e47871c8eca66d8fc076a7a9c9da0aefbf98fb79061d3516a65239bfbb0916"
+    },
+    "EVIDENCE_SELECTION.json": {
+      "bytes": 3378,
+      "sha256": "4bf68bae7b5d76be0b30ec5437dd9faba8f1fedb0b7e708ca40b6a85aff08027"
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "bytes": 334,
+      "sha256": "77d607ab66f010c347516f18a9e55da95ec0795f81a18cb818eee9cb8adeb868"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 3321,
+      "sha256": "f7a75d26c9b2aabeebaaf6236cab4b84078ab78407bf3da3d686d8957189d8e4"
+    },
+    "V36_EVIDENCE_PACK_REPORT.md": {
+      "bytes": 1862,
+      "sha256": "36fdb2b73ffdd0415a76725790fd9b2ff94091187041031fdbe8fab9e3173096"
+    },
+    "exemplar_packs/ARNROM_DECISION_MARKS.json": {
+      "bytes": 1208467,
+      "sha256": "d29d3bfc56572fb8f0fbffd8bc88b296793392f0c1c0e7700bb00487d52d8801"
+    },
+    "exemplar_packs/ARNROM_DUAL_TIMELINE_V2.csv": {
+      "bytes": 14722501,
+      "sha256": "f6b46bb7787d70ef65057fe6201176879d27bcf6ab25a976779a5c5b295661cd"
+    },
+    "exemplar_packs/DAHBAE_DECISION_MARKS.json": {
+      "bytes": 183755,
+      "sha256": "381880d417bca6db8bcbaccb734dff90311ac2d14cbd431cef20d2369f3a606c"
+    },
+    "exemplar_packs/DAHBAE_DUAL_TIMELINE_V2.csv": {
+      "bytes": 40796189,
+      "sha256": "7d7d94ab330529321c5b78cea45396afa257d0f5142dbf2cc98b734c4114d29f"
+    },
+    "exemplar_packs/KIRSEK_DECISION_MARKS.json": {
+      "bytes": 3448721,
+      "sha256": "22f829461911882070a3b160969223b7b07f78caef1b195e82946b8f512550d8"
+    },
+    "exemplar_packs/KIRSEK_DUAL_TIMELINE_V2.csv": {
+      "bytes": 7726344,
+      "sha256": "c0070422800d75b3a1e31ddb261a53b1ce09eb88f6e7b37658bd5e845e8505da"
+    },
+    "exemplar_packs/LAJVAN_DECISION_MARKS.json": {
+      "bytes": 13799773,
+      "sha256": "2f661acaa9e35b97bb0b224b892147d8b522cb9bfff16d57728e331e1b73a921"
+    },
+    "exemplar_packs/LAJVAN_DUAL_TIMELINE_V2.csv": {
+      "bytes": 12908454,
+      "sha256": "6d3dcc85b78b0fda67ccd97fb0256b6da2f52ee029a1c0d7bd3939c49ece2f62"
+    },
+    "exemplar_packs/MATMOR_DECISION_MARKS.json": {
+      "bytes": 3216,
+      "sha256": "08eddf5b3bd41f5bf242e4c623a7e1c44e2f4b4a52426baa9d03221b933b01c6"
+    },
+    "exemplar_packs/MATMOR_DUAL_TIMELINE_V2.csv": {
+      "bytes": 980,
+      "sha256": "4a40429b72fe695ba95da5e0039bc3a4cfd817391d7fe6eac335fcd23b9bbb7e"
+    },
+    "exemplar_packs/WESPAA_DECISION_MARKS.json": {
+      "bytes": 284313,
+      "sha256": "5533644b59279afd68276e3d2112339bab78b63d327b105b5e2c16d73d9132a2"
+    },
+    "exemplar_packs/WESPAA_DUAL_TIMELINE_V2.csv": {
+      "bytes": 325622,
+      "sha256": "753199768d029cad1a0fd6fb4ff6ed6eddfb58239ce1cf236dbccb67cffd1644"
+    }
+  }
+}

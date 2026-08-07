@@ -1,0 +1,21 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-serializer-source-manifest-v1",
+  "files": {
+    "arb-executor/analysis/window1_fresh_holdout_exam_adapter.js": {
+      "bytes": 38739,
+      "sha256": "b2e152a77b6cc4aa3d86fcb3efdf357ea59d67f41cf622773e24dc8f22e36753"
+    },
+    "arb-executor/analysis/window1_streaming_gzip_jsonl.js": {
+      "bytes": 589,
+      "sha256": "277e24411400a4d4fc0766e4118ac693ff9abf76772e66a693adc4518ee4837e"
+    },
+    "arb-executor/tests/test_window1_fresh_holdout_exam_adapter.js": {
+      "bytes": 1580,
+      "sha256": "da24f43ae82e770e99d27b5d89f1a74928f6e645de8342082772cb4b3c3b1c20"
+    },
+    "arb-executor/tests/test_window1_streaming_gzip_jsonl.js": {
+      "bytes": 2643,
+      "sha256": "f4ea23bb47d196bb359df84ad9ce7a980d1862558232d1f58d40bb8bd15d5848"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "window1-streaming-gzip-over-1gib-test-v1",
+  "pass": true,
+  "rows": 1025,
+  "uncompressed_bytes": 1074817990,
+  "compressed_bytes": 1069588,
+  "bounded_memory": true,
+  "peak_rss_delta_bytes": 109858816,
+  "byte_identity": true,
+  "pattern": "ASYNC_JSONL_ROW_GENERATOR_TO_CREATE_GZIP_TO_FILE_STREAM"
+}

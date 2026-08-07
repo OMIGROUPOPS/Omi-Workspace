@@ -1,0 +1,29 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-streaming-serializer-repair-v1",
+  "prior_consumed_failure_commit": "a746d17582284736f9b3a9e6c8db2bf61e9204e1",
+  "prior_error": "RangeError: Invalid string length",
+  "prior_error_site": "window1_fresh_holdout_exam_adapter.js:62 gzipRows/Array.join",
+  "scope": "SERIALIZATION_ONLY",
+  "adapter": {
+    "path": "arb-executor/analysis/window1_fresh_holdout_exam_adapter.js",
+    "before_sha256": "1e08d44ac8db355a048e470359ba670427d9a773bf917c25b970bfba541a279e",
+    "after_sha256": "b2e152a77b6cc4aa3d86fcb3efdf357ea59d67f41cf622773e24dc8f22e36753"
+  },
+  "streaming_helper": {
+    "path": "arb-executor/analysis/window1_streaming_gzip_jsonl.js",
+    "bytes": 589,
+    "sha256": "277e24411400a4d4fc0766e4118ac693ff9abf76772e66a693adc4518ee4837e",
+    "pattern": "ASYNC_JSONL_ROW_GENERATOR_TO_CREATE_GZIP_TO_FILE_STREAM"
+  },
+  "proven_pattern": {
+    "commit": "a3429cad6719f96a25a900812e0f360b71a5607e",
+    "path": "arb-executor/analysis/build_window1_v32_no_chase_state_machine.js",
+    "bytes": 39499,
+    "sha256": "090d89e697f8dc66dee6dc2462672811ec2e6de697b7f43db5f1f9efbf162926",
+    "implementation": "createTraceCollector writes each JSON row to createGzip and awaits output finish"
+  },
+  "removed_failure_path": "FULL_DECISION_TRACE no longer calls gzipRows/Array.join",
+  "determinism_law": "full trace streamed twice from the same immutable decisions and compared by SHA-256 and byte size",
+  "policy_files_modified": 0,
+  "pass": true
+}

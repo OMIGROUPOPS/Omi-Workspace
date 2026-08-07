@@ -16,7 +16,10 @@ const crypto = require("crypto");
 const fs = require("fs");
 const Module = require("module");
 const path = require("path");
+const { Writable } = require("stream");
+const stream = require("stream/promises");
 const zlib = require("zlib");
+const { writeGzipRowsFile } = require("./window1_streaming_gzip_jsonl.js");
 
 const argv = process.argv.slice(2);
 const arg = (name, fallback = null) => { const i = argv.indexOf(name); return i < 0 ? fallback : argv[i + 1]; };
@@ -255,6 +258,22 @@ function devBinding(api, brainName, scratch) {
 
 function byteEqualObject(left, right) { return Buffer.from(canonical(left)).equals(Buffer.from(canonical(right))); }
 
+function orderedJsonlDigest(rows) {
+  const digest = crypto.createHash("sha256"); let bytes = 0;
+  for (const row of rows) { const line = `${JSON.stringify(row)}\n`; digest.update(line); bytes += Buffer.byteLength(line); }
+  return { rows: rows.length, bytes, sha256: digest.digest("hex") };
+}
+
+async function frozenFullTraceDigest(directory) {
+  const parts = fs.readdirSync(directory).filter((name) => /^FULL_DECISION_TRACE\.jsonl\.gz\.part\d+$/.test(name)).sort();
+  ensure(parts.length > 0, `frozen full-trace parts absent: ${directory}`);
+  async function* compressedParts() { for (const name of parts) for await (const chunk of fs.createReadStream(path.join(directory, name))) yield chunk; }
+  const digest = crypto.createHash("sha256"); let bytes = 0;
+  const sink = new Writable({ write(chunk, _encoding, callback) { digest.update(chunk); bytes += chunk.length; callback(); } });
+  await stream.pipeline(compressedParts(), zlib.createGunzip(), sink);
+  return { parts: parts.length, bytes, sha256: digest.digest("hex") };
+}
+
 function fullScorecardForParity(name, result) {
   const frozen = readJson(path.join(repo, BRAINS[name].frozen, "SCORECARD_TWO_COLUMN.json"));
   frozen.STRICT_LAW = result.strictScore;
@@ -272,7 +291,7 @@ function fullScorecardForParity(name, result) {
   return frozen;
 }
 
-function runDevInertness() {
+async function runDevInertness() {
   ensure(!fs.existsSync(output), "DEV inertness output must be absent");
   fs.mkdirSync(output, { recursive: true });
   const rows = {};
@@ -287,14 +306,17 @@ function runDevInertness() {
     const frozenCensusTrace = readJson(path.join(repo, BRAINS[name].frozen, "CENSUS_PRICED_DECISION_TRACE_1608.json"));
     const frozenScorecard = readJson(path.join(repo, BRAINS[name].frozen, "SCORECARD_TWO_COLUMN.json"));
     const candidateScorecard = fullScorecardForParity(name, result);
+    const candidateFullTrace = orderedJsonlDigest(result.decisions);
+    const frozenFullTrace = await frozenFullTraceDigest(path.join(repo, BRAINS[name].frozen));
     const checks = {
       strict_trace_byte_identical: byteEqualObject({ rows: result.strictTrace, conservation: { rows: result.strictTrace.length, expected: 1608, pass: result.strictTrace.length === 1608 } }, frozenStrictTrace),
       census_trace_byte_identical: byteEqualObject({ rows: result.censusTrace, conservation: { rows: result.censusTrace.length, expected: 1608, pass: result.censusTrace.length === 1608 } }, frozenCensusTrace),
       full_scorecard_byte_identical: byteEqualObject(candidateScorecard, frozenScorecard),
       strict_frontier_byte_identical: byteEqualObject(result.strictFrontier, readJson(path.join(repo, BRAINS[name].frozen, "STRICT_FRONTIER.json"))),
       census_frontier_byte_identical: byteEqualObject(result.censusFrontier, readJson(path.join(repo, BRAINS[name].frozen, "CENSUS_PRICED_FRONTIER.json"))),
+      full_decision_trace_jsonl_byte_identical: candidateFullTrace.bytes === frozenFullTrace.bytes && candidateFullTrace.sha256 === frozenFullTrace.sha256,
     };
-    rows[name] = { commit: BRAINS[name].commit, checks, pass: Object.values(checks).every(Boolean), decisions_inspected: result.decisions.length, strict_events: result.strictEvents.length, census_events: result.censusEvents.length };
+    rows[name] = { commit: BRAINS[name].commit, checks, pass: Object.values(checks).every(Boolean), decisions_inspected: result.decisions.length, full_decision_trace_jsonl: { candidate: candidateFullTrace, frozen: frozenFullTrace }, strict_events: result.strictEvents.length, census_events: result.censusEvents.length };
     fs.rmSync(scratch, { recursive: true, force: true });
     ensure(rows[name].pass, `${name} DEV inertness mismatch`);
   }
@@ -360,7 +382,6 @@ function buildBrainArtifacts(name, api, result, binding) {
     "CENSUS_PRICED_EVENT_LEDGER.jsonl.gz": gzipRows(result.censusEvents),
     "STRICT_DECISION_TRACE_342.json": canonical({ rows: result.strictTrace, conservation: { rows: result.strictTrace.length, expected: 342, pass: result.strictTrace.length === 342 } }),
     "CENSUS_PRICED_DECISION_TRACE_342.json": canonical({ rows: result.censusTrace, conservation: { rows: result.censusTrace.length, expected: 342, pass: result.censusTrace.length === 342 } }),
-    "FULL_DECISION_TRACE.jsonl.gz": gzipRows(result.decisions),
     "ACTION_AND_FILL_TRACE.jsonl.gz": gzipRows(result.actions),
     "WINDOW1_SPAN_171.json": canonical({ rows: result.spans, precision_class_counts: countBy(result.spans, (row) => row.precision_class), conservation: { rows: result.spans.length, expected: 171, pass: result.spans.length === 171 } }),
     "STRICT_FILL_SPLIT.json": canonical(result.strictFillSplit),
@@ -372,7 +393,7 @@ function buildBrainArtifacts(name, api, result, binding) {
   };
 }
 
-function runExam() {
+async function runExam() {
   const inertnessFile = path.resolve(required("--dev-inertness-receipt"));
   const declarationFile = path.resolve(required("--sealed-declaration"));
   const eventListFile = path.resolve(required("--event-list"));
@@ -385,7 +406,7 @@ function runExam() {
   ensure(inertness.pass === true && inertness.sealed_exam_invocations === 0, "DEV inertness gate not PASS");
   ensure(readJson(printsReceiptFile).nightly_method_spot_reconciliation.pass === true, "print re-pull receipt not PASS");
   fs.mkdirSync(output, { recursive: true });
-  writeJson(output, "EXECUTION_START_RECEIPT.json", { schema_version: "window1-fresh-holdout-exam-start-v1", authorization: "OPERATOR_PROMPT_EXAM_UNBLOCK_20260807", authorization_consumed: true, invocation_count: 1, retries: 0, brains: ["V36", "V35"], R3_excluded: true, event_N: 171, event_list_sha256: hashFile(eventListFile), boundary_sha256: hashFile(boundaryFile), prints_sha256: hashFile(printsFile), started_at_utc: new Date().toISOString() });
+  writeJson(output, "EXECUTION_START_RECEIPT.json", { schema_version: "window1-fresh-holdout-exam-start-v2", authorization: "OPERATOR_PROMPT_SERIALIZER_REPAIR_FRESH_EXAM_20260807", authorization_consumed: true, invocation_count: 1, retries: 0, prior_consumed_failure_commit: "a746d17582284736f9b3a9e6c8db2bf61e9204e1", brains: ["V36", "V35"], R3_excluded: true, event_N: 171, event_list_sha256: hashFile(eventListFile), boundary_sha256: hashFile(boundaryFile), prints_sha256: hashFile(printsFile), started_at_utc: new Date().toISOString() });
   const policyBefore = Object.fromEntries(Object.entries(BRAINS).map(([name, brain]) => [name, { builder_sha256: hashFile(path.join(repo, brain.builder)), policy_sha256: hashFile(path.join(repo, brain.policy)) }]));
   const results = {}, artifactBuilds = {};
   for (const name of ["V36", "V35"]) {
@@ -401,13 +422,19 @@ function runExam() {
   ensure(JSON.stringify(policyBefore) === JSON.stringify(policyAfter), "policy bytes changed during exam");
   for (const [name, artifacts] of Object.entries(artifactBuilds)) {
     const brainDir = path.join(output, name); fs.mkdirSync(brainDir);
-    const build2 = buildBrainArtifacts(name, compileFrozenBrain(name, privateRoot, path.join(output, `.scratch-serialize-${name.toLowerCase()}`)), results[name].result, results[name].binding);
+    const serializationScratch = path.join(output, `.scratch-serialize-${name.toLowerCase()}`); fs.mkdirSync(serializationScratch, { recursive: true });
+    const build2 = buildBrainArtifacts(name, compileFrozenBrain(name, privateRoot, serializationScratch), results[name].result, results[name].binding);
     const names = Object.keys(artifacts).sort();
     const mismatch = names.filter((artifact) => !Buffer.from(artifacts[artifact]).equals(Buffer.from(build2[artifact])));
-    ensure(mismatch.length === 0, `${name} artifact serialization determinism mismatch`);
     for (const artifact of names) fs.writeFileSync(path.join(brainDir, artifact), artifacts[artifact]);
-    fs.rmSync(path.join(output, `.scratch-serialize-${name.toLowerCase()}`), { recursive: true, force: true });
-    writeJson(brainDir, "DETERMINISM_RECEIPT.json", { builds_from_single_authorized_in_memory_replay: 2, replay_invocations: 1, byte_identical: true, compared_files: names.length, mismatches: [] });
+    const traceName = "FULL_DECISION_TRACE.jsonl.gz";
+    const traceFile = path.join(brainDir, traceName), traceCheck = path.join(serializationScratch, traceName);
+    await writeGzipRowsFile(traceFile, results[name].result.decisions);
+    await writeGzipRowsFile(traceCheck, results[name].result.decisions);
+    if (hashFile(traceFile) !== hashFile(traceCheck) || fs.statSync(traceFile).size !== fs.statSync(traceCheck).size) mismatch.push(traceName);
+    ensure(mismatch.length === 0, `${name} artifact serialization determinism mismatch`);
+    fs.rmSync(serializationScratch, { recursive: true, force: true });
+    writeJson(brainDir, "DETERMINISM_RECEIPT.json", { builds_from_single_authorized_in_memory_replay: 2, replay_invocations: 1, byte_identical: true, compared_files: names.length + 1, streaming_full_trace: true, mismatches: [] });
     const files = fs.readdirSync(brainDir).sort();
     writeJson(brainDir, "ARTIFACT_HASH_MANIFEST.json", { files: Object.fromEntries(files.map((file) => [file, { sha256: hashFile(path.join(brainDir, file)), bytes: fs.statSync(path.join(brainDir, file)).size }])) });
   }
@@ -442,6 +469,13 @@ function runExam() {
   process.stdout.write(canonical({ status: "COMPLETE", invocation_count: 1, retries: 0, exact_headline: bellRows.filter((row) => row.headline) }));
 }
 
-if (mode === "dev-inertness") runDevInertness();
-else if (mode === "exam-execute") runExam();
-else throw new Error(`unsupported mode ${mode}`);
+async function main() {
+  if (mode === "dev-inertness") await runDevInertness();
+  else if (mode === "exam-execute") await runExam();
+  else throw new Error(`unsupported mode ${mode}`);
+}
+
+main().catch((error) => {
+  process.stderr.write(`${error.stack || error}\n`);
+  process.exitCode = 1;
+});

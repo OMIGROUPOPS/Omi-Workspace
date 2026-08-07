@@ -1,0 +1,18 @@
+{
+  "schema_version": "window1-fresh-holdout-dev-inertness-timeout-v1",
+  "status": "EXTERNAL_WATCHDOG_TIMEOUT_NO_PASS_RECEIPT",
+  "process_exit_code": 124,
+  "watchdog_seconds": 1800,
+  "V36_replay_events_completed": 804,
+  "V35_replay_events_completed": 804,
+  "combined_pass_receipt_written": false,
+  "sealed_exam_invocations": 0,
+  "score_rows_written": 0,
+  "policy_mismatch_reported": false,
+  "serializer_mismatch_reported": false,
+  "partial_content": [
+    "DEV_INERTNESS_REPAIR/.scratch-v35 (empty runtime directory)"
+  ],
+  "disposition": "VERIFIED_RUNTIME_SCRATCH_REMOVED_BEFORE_IDENTICAL_LONGER_WATCHDOG_RERUN",
+  "authorization_consumed": false
+}

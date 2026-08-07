@@ -1,0 +1,41 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-policy-byte-identity-repair-v1",
+  "policy_files_modified": 0,
+  "brains": {
+    "V36": {
+      "commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+      "builder": {
+        "path": "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js",
+        "bytes": 145886,
+        "before_sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+        "after_sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+        "byte_identical": true
+      },
+      "policy": {
+        "path": "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js",
+        "bytes": 3796,
+        "before_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+        "after_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+        "byte_identical": true
+      }
+    },
+    "V35": {
+      "commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+      "builder": {
+        "path": "arb-executor/analysis/build_window1_v35_living_rest_evidence_gate.js",
+        "bytes": 129672,
+        "before_sha256": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+        "after_sha256": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+        "byte_identical": true
+      },
+      "policy": {
+        "path": "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js",
+        "bytes": 3467,
+        "before_sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+        "after_sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+        "byte_identical": true
+      }
+    }
+  },
+  "pass": true
+}

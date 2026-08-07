@@ -1748,3 +1748,20 @@ The corrected N=171 declaration/list still verifies at SHA-256
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4f4d546421043f187bc73e2d9ad1eca0b9cf7f36/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_EXAM_ADAPTER_BLOCK_ADDENDUM.md
+
+
+### 2026-08-07 - SEALED-171 EXAM AUTHORIZATION CONSUMED; SERIALIZATION FAILURE
+
+The 342-leg public-trade re-pull passed with 1,062,870 canonical positive-size
+prints and the nightly-method N=20 sample matched 155,463/155,463 prints with
+zero identity, price, size, or side mismatch. The adapted DEV-804 harness then
+proved byte-identical V36 and V35 decision traces, scorecards, and frontiers.
+The one authorized sealed process evaluated all 171 V36 events but failed
+before V35 and before any score artifact at full-trace serialization:
+`RangeError: Invalid string length` in `gzipRows/Array.join`. Authorization is
+consumed; attempts=1, retries=0, V36=171, V35=0, R3=0, scorecards=0. No
+performance conclusion exists. A new authorization and independently audited
+streaming-serialization repair are required for any future run.
+
+Canonical package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a746d17582284736f9b3a9e6c8db2bf61e9204e1/.claude/window1_fresh_holdout_exam_unblock_20260807/REPORT.md

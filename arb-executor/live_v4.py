@@ -43,6 +43,7 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 
 from fv import get_consensus_fv, check_fv_stability
+from v36_shadow_brain import V36ShadowBrain, POLICY_COMMIT as V36_POLICY_COMMIT
 
 try:
     from intelligence import recommended_window_seconds, kalshi_price_anchor
@@ -1999,6 +2000,20 @@ class LiveV3:
             if _on4:
                 self._log("arm_evidence", {"flag": _flag4, "armed": True,
                                            **_ev4})
+        # [STAGE-C V36 SHADOW] Migration-doctrine shadow only. The brain is
+        # deliberately passed only the log emitter and has no API/session/order
+        # capability. Its return values are never consumed by the incumbent
+        # live-capital path; every decision is a v36_shadow_* receipt.
+        self._v36_shadow = V36ShadowBrain(self._log)
+        self._v36_shadow_receipt_ordinal = 0
+        self._log("v36_shadow_armed", {
+            "policy_commit": V36_POLICY_COMMIT,
+            "mode": "SHADOW_DECISIONS_ONLY",
+            "order_authority": False,
+            "cancel_authority": False,
+            "position_authority": False,
+            "cutover_requires_explicit_operator_word": True,
+        })
         self._load_schedule()
 
         # Paper mode init (spec §2.2)
@@ -5045,19 +5060,53 @@ class LiveV3:
 
     def exit_rule_for(self, category, price_cents):
         """v4 exit lookup: returns (band_x|None, rule) for the 1c cell of
-        price_cents. rule in {"exit","hold"}. Falls back to ("exit", default)
-        if the category/cell is somehow absent (never expected for the 4
-        enabled categories).
+        price_cents. rule in {"exit","hold"}. A missing cell is a loud data
+        defect: receipt the miss, alarm, then borrow the deterministic nearest
+        cell from the same category. An absent category/table cannot be
+        borrowed safely and raises instead of inventing a constant.
 
         [C-COPILOT ITF] ITF_M/ITF_W BORROW the Challenger exit surface at the
         fill cent (lookup-only translation; the position keeps its ITF
         category, so ledger/cell attribution never pollutes native CHALL)."""
+        requested_category = category
         category = ITF_EXIT_BORROW.get(category, category)
         cid = self.cell_lookup(category, price_cents)
         cmap = self.exit_table.get(category)
         if cmap and cid in cmap:
             return cmap[cid]
-        return (15, "exit")  # defensive default; logged by caller if hit
+        available = sorted(cmap) if cmap else []
+        nearest = min(available, key=lambda cell: (abs(cell - cid), cell)) \
+            if available else None
+        receipt = {
+            "requested_category": requested_category,
+            "borrowed_category": category,
+            "price_cents": price_cents,
+            "requested_cell": cid,
+            "available_cell_count": len(available),
+            "nearest_cell": nearest,
+            "distance_cents": abs(nearest - cid) if nearest is not None else None,
+            "tie_break": "MIN_ABSOLUTE_DISTANCE_THEN_LOWER_CELL",
+            "action": "BORROW_NEAREST_SAME_CATEGORY" if nearest is not None
+                      else "RAISE_NO_BORROW_SURFACE",
+        }
+        self._log("CRITICAL_exit_cell_missing", receipt)
+        try:
+            print("[CRITICAL] EXIT CELL MISSING: %s" % json.dumps(receipt),
+                  flush=True)
+        except OSError:
+            self._log_write_errors = getattr(self, "_log_write_errors", 0) + 1
+        if nearest is None:
+            raise RuntimeError(
+                "exit cell missing and no same-category borrow surface: %s/%s"
+                % (category, cid)
+            )
+        borrowed = cmap[nearest]
+        self._log("exit_cell_nearest_borrowed", {
+            **receipt,
+            "borrowed_band_x": borrowed[0],
+            "borrowed_rule": borrowed[1],
+        })
+        return borrowed
 
     def get_category(self, ticker):
         # [C-EVENT-CAT-OVERRIDE] per-event override wins over the prefix SERIES_MAP, so a single
@@ -5238,6 +5287,22 @@ class LiveV3:
         book.last_trade_price = price
         book.last_trade_ts = time.time()
         book.last_trade_side = side
+        self._v36_shadow_receipt_ordinal += 1
+        _v36_receipt = "trade:%s:%d" % (
+            ticker, self._v36_shadow_receipt_ordinal)
+        try:
+            self._v36_shadow.on_trade(
+                ticker, self.ticker_to_event.get(ticker),
+                book.last_trade_ts, int(price), int(count or 0), str(side),
+                _v36_receipt)
+        except Exception as _v36_exc:
+            self._log("v36_shadow_error", {
+                "policy_commit": V36_POLICY_COMMIT,
+                "stage": "trade_receipt",
+                "receipt": _v36_receipt,
+                "error": str(_v36_exc),
+                "shadow_only": True,
+            }, ticker=ticker)
         # T51: feed the volume-acceleration live detector (per-ticker trade times).
         dq = self._trade_times[ticker]
         dq.append(book.last_trade_ts)
@@ -5924,6 +5989,7 @@ class LiveV3:
             book.last_trade_side = prev.last_trade_side
         self.books[ticker] = book
         self._log_tick(ticker, book)
+        self._v36_shadow_observe_book(ticker, book, "snapshot")
         if _PAPER_API is not None:
             _PAPER_API.on_book_update(ticker)
 
@@ -5949,8 +6015,30 @@ class LiveV3:
         recalc_bbo(book)
         book.updated = time.time()
         self._log_tick(ticker, book)
+        self._v36_shadow_observe_book(ticker, book, "delta")
         if _PAPER_API is not None:
             _PAPER_API.on_book_update(ticker)
+
+    def _v36_shadow_observe_book(self, ticker, book, source):
+        """Feed a causal BBO/depth receipt to V36 shadow; never act on it."""
+        self._v36_shadow_receipt_ordinal += 1
+        receipt = "%s:%s:%d" % (
+            source, ticker, self._v36_shadow_receipt_ordinal)
+        try:
+            bids = sorted(book.bids.items(), reverse=True)[:5]
+            asks = sorted(book.asks.items())[:5]
+            self._v36_shadow.on_book(
+                ticker, self.ticker_to_event.get(ticker), float(book.updated),
+                bids, asks, receipt)
+        except Exception as exc:
+            self._log("v36_shadow_error", {
+                "policy_commit": V36_POLICY_COMMIT,
+                "stage": "book_receipt",
+                "source": source,
+                "receipt": receipt,
+                "error": str(exc),
+                "shadow_only": True,
+            }, ticker=ticker)
 
     async def _ws_reconnect(self):
         """Reconnect WebSocket with exponential backoff. Never gives up."""

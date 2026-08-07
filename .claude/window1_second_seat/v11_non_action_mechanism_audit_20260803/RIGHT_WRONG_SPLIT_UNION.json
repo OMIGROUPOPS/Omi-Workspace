@@ -1,0 +1,135 @@
+{
+ "LABEL": "RIGHT_WRONG_SPLIT_UNION",
+ "binding": "union maker book 57daf3c1; GAP = fill - cheapest traded price in W1 span. right=gap<=1c.",
+ "union_book": {
+  "both_sides_games": 785,
+  "under_par_games": 637,
+  "classes": {
+   "BOTH_RIGHT": 773,
+   "ONE_RIGHT": 11,
+   "BOTH_WRONG": 1
+  },
+  "gap_union": {
+   "gt0": 0,
+   "eq0": 1441,
+   "lt0": 116,
+   "max": 0,
+   "note": "union is BOTTOM-OPTIMAL: TRADED_AT_LEVEL guarantees the cheapest trade -> 0 sides leave cents; 116 sides BEAT the bottom via ask-dwell below any trade (to -18c)."
+  },
+  "recoverable_cents_if_wrong": 0,
+  "verdict": "BOTH_RIGHT on every credited game; zero cents recoverable; no wrong sides on the union book."
+ },
+ "quote_channel_wrong_side": {
+  "note": "the informative wrong-side pattern lives in the narrower QUOTE_TOUCH channel, which the union's TRADED_AT_LEVEL channel fixes.",
+  "classes": {
+   "BOTH_RIGHT": 593,
+   "ONE_RIGHT": 95,
+   "BOTH_WRONG": 4
+  },
+  "both_sides": 692,
+  "under_par": 392,
+  "gap_quote_by_category": {
+   "ATP_CHALL": {
+    "n": 674,
+    "median": 0,
+    "p75": 1,
+    "p90": 1,
+    "total": 171
+   },
+   "ATP_MAIN": {
+    "n": 250,
+    "median": 1,
+    "p75": 1,
+    "p90": 2,
+    "total": 146
+   },
+   "WTA_CHALL": {
+    "n": 186,
+    "median": 0,
+    "p75": 1,
+    "p90": 1,
+    "total": 82
+   },
+   "WTA_MAIN": {
+    "n": 261,
+    "median": 1,
+    "p75": 1,
+    "p90": 1,
+    "total": 110
+   }
+  },
+  "pattern": {
+   "n_wrong_sides": 90,
+   "riser": 30,
+   "faller_settled": 60,
+   "favorite": 37,
+   "dog": 53,
+   "gap_median": 2,
+   "gap_total": 256
+  },
+  "recoverable_cents_traded_over_quote": 729,
+  "recoverable_dollars": 7.29
+ },
+ "named_rows": {
+  "ARNROM": {
+   "ARN": {
+    "dir": "UNKNOWN",
+    "close": 62,
+    "cheapest_traded": 50,
+    "union_fill": 50,
+    "gap_union": 0,
+    "quote": 55,
+    "gap_quote": 5
+   },
+   "ROM": {
+    "dir": "UNKNOWN",
+    "close": 39,
+    "cheapest_traded": 38,
+    "union_fill": 38,
+    "gap_union": 0,
+    "quote": 38,
+    "gap_quote": 0
+   }
+  },
+  "BOSCOP": {
+   "BOS": {
+    "dir": "UNKNOWN",
+    "close": 28,
+    "cheapest_traded": 28,
+    "union_fill": 28,
+    "gap_union": 0,
+    "quote": 28,
+    "gap_quote": 0
+   },
+   "COP": {
+    "dir": "UNKNOWN",
+    "close": 72,
+    "cheapest_traded": 47,
+    "union_fill": 47,
+    "gap_union": 0,
+    "quote": 63,
+    "gap_quote": 16
+   }
+  },
+  "NIKVRB": {
+   "NIK": {
+    "dir": "FALLING",
+    "close": 19,
+    "cheapest_traded": 18,
+    "union_fill": 18,
+    "gap_union": 0,
+    "quote": 18,
+    "gap_quote": 0
+   },
+   "VRB": {
+    "dir": "CLIMBING",
+    "close": 83,
+    "cheapest_traded": 70,
+    "union_fill": 68,
+    "gap_union": -2,
+    "quote": 68,
+    "gap_quote": -2
+   }
+  }
+ }
+}

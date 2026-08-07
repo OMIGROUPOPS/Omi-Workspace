@@ -1765,3 +1765,23 @@ streaming-serialization repair are required for any future run.
 
 Canonical package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a746d17582284736f9b3a9e6c8db2bf61e9204e1/.claude/window1_fresh_holdout_exam_unblock_20260807/REPORT.md
+
+### 2026-08-07 - SEALED-171 EXAM COMPLETE AFTER BOUNDED SERIALIZER REPAIR
+
+All JSONL result paths now use bounded row-wise deterministic gzip and each
+brain is released before the next loads. V36 and V35 retained exact policy
+bytes and passed fresh DEV-804 byte identity for full decision traces,
+scorecards, and frontiers. One newly authorized process attempt failed
+mechanically at the heap limit before any score row; the prompt's explicit
+pre-score repair/re-attempt clause applied. Total process attempts=2,
+permitted mechanical retries=1, score-emitting runs=1, R3 invocations=0.
+
+On the sealed D=171 set, V36 strict completed/under-par is 58/58 and V35 is
+59/59; both census columns are 128/128. The exact-bell headline D=11 is
+identical: strict 3/3 and census 10/10 for both brains. Schedule-only D=146 is
+V36 strict/census 50/105 and V35 49/105, with collapse-clean <=95 counts
+5/15 and 4/16 respectively. No tuning or policy edit occurred; exam-runtime
+network, live-engine, account, order, position, and trading accesses are zero.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/f1b98daf907e674672386991b3d0fa6cf488acc5/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_EXAM_SERIALIZER_REPAIR_RESULTS_20260807_ADDENDUM.md

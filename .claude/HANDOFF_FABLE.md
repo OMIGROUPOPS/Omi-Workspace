@@ -1675,3 +1675,19 @@ already running. Stage B/C were not authorized or started.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/733cef57c7dbe951883d719d21d5fbadce4b50ca/arb-executor/docs/research/window1/BOOT_GATE_STAGE_A_AUDIT_20260806_ADDENDUM.md
+
+## FRESH HOLDOUT EXAM - STAGE 1/2 FROZEN; STAGE 3 FAIL-CLOSED - 2026-08-06
+
+The corrected touch-law seal supplies 171 untouched events, all admitted by
+the unchanged V36 floor-pass law. Boundary precision is 11 exact, 14
+live-by-only, 146 schedule-only; boundary SHA-256 is
+`70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a` and
+the admitted list SHA-256 is
+`06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313`.
+The exam was not started: exact-source inspection proves V35/V36 hard-bind
+D=804 development inputs and R3 consumes frozen development result ledgers.
+There is no frozen three-brain external-population executable. Authorization
+is unconsumed; exam and brain invocations, retries and score rows are zero.
+
+Canonical package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/5117da019238aec517bbe0e3bf56e511f5e2797b/.claude/window1_fresh_holdout_exam_20260806/REPORT.md

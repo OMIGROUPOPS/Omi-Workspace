@@ -1714,3 +1714,20 @@ pass is 20/20 faithful, 4,127=4,127 trade IDs, zero mismatches. Existing
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/7ad8f850cdc4b49cbd6afcc05ed2e1139831ce51/arb-executor/docs/research/window1/BOOT_GATE_STAGE_B_RECORDER_SEAL_20260806_ADDENDUM.md
+
+### 2026-08-06 - FRESH HOLDOUT EXAM BOUNDARY/ADMISSION FROZEN; ONE RUN UNCONSUMED
+
+The corrected touch-law seal supersedes the earlier Git-string seal and binds
+171 untouched events (event-list SHA-256 `06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313`).
+Stage 1 froze 171 pre-match boundaries: 11 exact, 14 live-by-only and 146
+schedule-only; boundary-ledger SHA-256
+`70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a`.
+Stage 2 admitted all 171 under the unchanged V36 floor-pass law, with zero
+exclusions and zero degraded-reconnect overlap flags. Stage 3 is fail-closed:
+V35/V36 hard-bind the development D=804 inputs and R3 transforms frozen
+development ledgers; none exposes a sealed-population runner. No substitute
+was built. Exam/brain invocations, retries and score rows are all zero; the
+standing one-run authorization remains unconsumed.
+
+Canonical package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/5117da019238aec517bbe0e3bf56e511f5e2797b/.claude/window1_fresh_holdout_exam_20260806/REPORT.md

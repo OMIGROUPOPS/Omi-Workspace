@@ -1,0 +1,351 @@
+{
+ "LABEL": "MAKER_RESULTS_THREE_CHANNELS",
+ "fill_channels": "PRINT_CROSS (seller-aggressed print at<=L) | QUOTE_TOUCH (ask descends to<=L & dwells 10s, sealed quote_reachability_20260730) | TRADED_AT_LEVEL (ANY trade prints at<=L, any aggressor). UNION = a leg credits once, deepest evidence (lowest price) wins. Placements: RISER=>divot floor, FALLER/SETTLED=>bid-1. Lazy-leg-1, cap law, no clock.",
+ "conservation": {
+  "games": 804,
+  "legs": 1608
+ },
+ "channels": {
+  "PRINT_CROSS": {
+   "games": {
+    "both": 501,
+    "one": 198,
+    "none": 105
+   },
+   "sides_filled": 1200,
+   "fill_price": {
+    "n": 1200,
+    "p25": 28,
+    "median": 45,
+    "p75": 63,
+    "total": 54688,
+    "mean": 45.57
+   },
+   "discount": {
+    "n": 975,
+    "p25": -2,
+    "median": -1,
+    "p75": -1,
+    "total": -1795,
+    "mean": -1.84
+   },
+   "discount_total": -1795,
+   "both_sides": 501,
+   "under_par": 456,
+   "delta_to_par": {
+    "n": 456,
+    "p25": 2,
+    "median": 3,
+    "p75": 5,
+    "total": 4541,
+    "mean": 9.96
+   },
+   "frontier": {
+    "<=93": 97,
+    "<=95": 140,
+    "<=97": 237,
+    "<100": 456
+   },
+   "locked_cents": 4541,
+   "locked_dollars": 45.41,
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 168,
+     "locked": 1326
+    },
+    "ATP_MAIN": {
+     "pairs": 117,
+     "locked": 841
+    },
+    "WTA_CHALL": {
+     "pairs": 69,
+     "locked": 1879
+    },
+    "WTA_MAIN": {
+     "pairs": 102,
+     "locked": 495
+    }
+   }
+  },
+  "QUOTE_TOUCH": {
+   "games": {
+    "both": 692,
+    "one": 0,
+    "none": 112
+   },
+   "sides_filled": 1384,
+   "fill_price": {
+    "n": 1384,
+    "p25": 32,
+    "median": 49,
+    "p75": 66,
+    "total": 68143,
+    "mean": 49.24
+   },
+   "discount": {
+    "n": 1307,
+    "p25": -2,
+    "median": -1,
+    "p75": 0,
+    "total": -1930,
+    "mean": -1.48
+   },
+   "discount_total": -1930,
+   "both_sides": 692,
+   "under_par": 392,
+   "delta_to_par": {
+    "n": 392,
+    "p25": 1,
+    "median": 2,
+    "p75": 4,
+    "total": 1171,
+    "mean": 2.99
+   },
+   "frontier": {
+    "<=93": 37,
+    "<=95": 74,
+    "<=97": 154,
+    "<100": 392
+   },
+   "locked_cents": 1171,
+   "locked_dollars": 11.71,
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 202,
+     "locked": 605
+    },
+    "ATP_MAIN": {
+     "pairs": 94,
+     "locked": 316
+    },
+    "WTA_CHALL": {
+     "pairs": 24,
+     "locked": 45
+    },
+    "WTA_MAIN": {
+     "pairs": 72,
+     "locked": 205
+    }
+   }
+  },
+  "TRADED_AT_LEVEL": {
+   "games": {
+    "both": 773,
+    "one": 11,
+    "none": 20
+   },
+   "sides_filled": 1557,
+   "fill_price": {
+    "n": 1557,
+    "p25": 30,
+    "median": 46,
+    "p75": 64,
+    "total": 72870,
+    "mean": 46.8
+   },
+   "discount": {
+    "n": 1307,
+    "p25": -2,
+    "median": -1,
+    "p75": 0,
+    "total": -2395,
+    "mean": -1.83
+   },
+   "discount_total": -2395,
+   "both_sides": 773,
+   "under_par": 604,
+   "delta_to_par": {
+    "n": 604,
+    "p25": 1,
+    "median": 3,
+    "p75": 5,
+    "total": 5057,
+    "mean": 8.37
+   },
+   "frontier": {
+    "<=93": 117,
+    "<=95": 167,
+    "<=97": 312,
+    "<100": 604
+   },
+   "locked_cents": 5057,
+   "locked_dollars": 50.57,
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 267,
+     "locked": 1646
+    },
+    "ATP_MAIN": {
+     "pairs": 127,
+     "locked": 904
+    },
+    "WTA_CHALL": {
+     "pairs": 95,
+     "locked": 1956
+    },
+    "WTA_MAIN": {
+     "pairs": 115,
+     "locked": 551
+    }
+   }
+  },
+  "UNION": {
+   "games": {
+    "both": 785,
+    "one": 0,
+    "none": 19
+   },
+   "sides_filled": 1570,
+   "fill_price": {
+    "n": 1570,
+    "p25": 30,
+    "median": 46,
+    "p75": 64,
+    "total": 73300,
+    "mean": 46.69
+   },
+   "discount": {
+    "n": 1307,
+    "p25": -3,
+    "median": -1,
+    "p75": -1,
+    "total": -2606,
+    "mean": -1.99
+   },
+   "discount_total": -2606,
+   "both_sides": 785,
+   "under_par": 637,
+   "delta_to_par": {
+    "n": 637,
+    "p25": 2,
+    "median": 3,
+    "p75": 5,
+    "total": 5253,
+    "mean": 8.25
+   },
+   "frontier": {
+    "<=93": 120,
+    "<=95": 183,
+    "<=97": 345,
+    "<100": 637
+   },
+   "locked_cents": 5253,
+   "locked_dollars": 52.53,
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 295,
+     "locked": 1762
+    },
+    "ATP_MAIN": {
+     "pairs": 128,
+     "locked": 926
+    },
+    "WTA_CHALL": {
+     "pairs": 98,
+     "locked": 1976
+    },
+    "WTA_MAIN": {
+     "pairs": 116,
+     "locked": 589
+    }
+   }
+  }
+ },
+ "side_by_side": {
+  "under_par_games": {
+   "PRINT_CROSS": 456,
+   "QUOTE_TOUCH": 392,
+   "TRADED_AT_LEVEL": 604,
+   "UNION": 637
+  },
+  "locked_cents": {
+   "PRINT_CROSS": 4541,
+   "QUOTE_TOUCH": 1171,
+   "TRADED_AT_LEVEL": 5057,
+   "UNION": 5253
+  },
+  "sides_filled": {
+   "PRINT_CROSS": 1200,
+   "QUOTE_TOUCH": 1384,
+   "TRADED_AT_LEVEL": 1557,
+   "UNION": 1570
+  }
+ },
+ "named_rows": {
+  "NIKVRB": {
+   "NIK": {
+    "dir": "FALLING",
+    "close": 19,
+    "PRINT_CROSS": 19,
+    "QUOTE_TOUCH": 18,
+    "TRADED_AT_LEVEL": 18,
+    "UNION": 18
+   },
+   "VRB": {
+    "dir": "CLIMBING",
+    "close": 83,
+    "PRINT_CROSS": 81,
+    "QUOTE_TOUCH": 68,
+    "TRADED_AT_LEVEL": 70,
+    "UNION": 68
+   },
+   "_combined": {
+    "print_cross": 100,
+    "quote": 86,
+    "traded_at_level": 88,
+    "union": 86
+   },
+   "_locked_union": 14
+  },
+  "BOSCOP": {
+   "BOS": {
+    "dir": "UNKNOWN",
+    "close": 28,
+    "PRINT_CROSS": 28,
+    "QUOTE_TOUCH": 28,
+    "TRADED_AT_LEVEL": 28,
+    "UNION": 28
+   },
+   "COP": {
+    "dir": "UNKNOWN",
+    "close": 72,
+    "PRINT_CROSS": 47,
+    "QUOTE_TOUCH": 63,
+    "TRADED_AT_LEVEL": 47,
+    "UNION": 47
+   },
+   "_combined": {
+    "print_cross": 75,
+    "quote": 91,
+    "traded_at_level": 75,
+    "union": 75
+   },
+   "_locked_union": 25
+  },
+  "ARNROM": {
+   "ARN": {
+    "dir": "UNKNOWN",
+    "close": 62,
+    "PRINT_CROSS": 50,
+    "QUOTE_TOUCH": 55,
+    "TRADED_AT_LEVEL": 50,
+    "UNION": 50
+   },
+   "ROM": {
+    "dir": "UNKNOWN",
+    "close": 39,
+    "PRINT_CROSS": 39,
+    "QUOTE_TOUCH": 38,
+    "TRADED_AT_LEVEL": 38,
+    "UNION": 38
+   },
+   "_combined": {
+    "print_cross": 89,
+    "quote": 93,
+    "traded_at_level": 88,
+    "union": 88
+   },
+   "_locked_union": 12
+  }
+ }
+}

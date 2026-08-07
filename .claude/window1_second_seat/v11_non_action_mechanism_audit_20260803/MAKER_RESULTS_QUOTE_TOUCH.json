@@ -1,0 +1,759 @@
+{
+ "LABEL": "MAKER_RESULTS_QUOTE_TOUCH",
+ "fill_law": "Jul-30 divot doctrine: resting bid at L credited when the leg ask descends to <=L and dwells (tiers 10/30/60s). Placement per vaulted schedule hypothesis: RISER=>recurring ask-divot floor; FALLER/SETTLED=>tracking bid-1. Reuses sealed quote_reachability_20260730 floor limits. Print-model results (d40bc010/be8f8d18) = PRINT_MODEL_UNDERFLOOR.",
+ "conservation": {
+  "games": 804,
+  "legs": 1608
+ },
+ "baseline_print_model": {
+  "operator_stated": "106 games / 2003c",
+  "computed_print_floor": {
+   "both_sides": 680,
+   "under_par": 519,
+   "locked_cents": 1632
+  }
+ },
+ "results_by_model": {
+  "print_floor": {
+   "games": {
+    "both": 680,
+    "one": 11,
+    "none": 113
+   },
+   "sides_filled": 1371,
+   "fill_price_dist": {
+    "n": 1371,
+    "p25": 32,
+    "median": 48,
+    "p75": 66,
+    "total": 66987,
+    "mean": 48.86
+   },
+   "discount_dist": {
+    "n": 1307,
+    "p25": -2,
+    "median": -1,
+    "p75": 0,
+    "total": -2392,
+    "mean": -1.83
+   },
+   "discount_total": -2392,
+   "both_sides_games": 680,
+   "under_par_games": 519,
+   "delta_to_par_dist": {
+    "n": 519,
+    "p25": 1,
+    "median": 2,
+    "p75": 4,
+    "total": 1632,
+    "mean": 3.14
+   },
+   "frontier": {
+    "<=93": 51,
+    "<=95": 99,
+    "<=97": 235,
+    "<100": 519
+   },
+   "locked_cents_total": 1632,
+   "locked_dollars_1lot": 16.32,
+   "by_cat_bell": {
+    "ATP_CHALL|clean_interval": {
+     "pairs": 7,
+     "locked_cents": 10,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|contradictory": {
+     "pairs": 6,
+     "locked_cents": 20,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|exact": {
+     "pairs": 107,
+     "locked_cents": 300,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|live_by_only": {
+     "pairs": 194,
+     "locked_cents": 413,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|schedule_only": {
+     "pairs": 19,
+     "locked_cents": 26,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|clean_interval": {
+     "pairs": 3,
+     "locked_cents": 3,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|contradictory": {
+     "pairs": 1,
+     "locked_cents": 5,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|exact": {
+     "pairs": 37,
+     "locked_cents": 170,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|live_by_only": {
+     "pairs": 77,
+     "locked_cents": 260,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|schedule_only": {
+     "pairs": 7,
+     "locked_cents": 17,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|clean_interval": {
+     "pairs": 1,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|contradictory": {
+     "pairs": 2,
+     "locked_cents": 5,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|exact": {
+     "pairs": 39,
+     "locked_cents": 48,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|live_by_only": {
+     "pairs": 47,
+     "locked_cents": 58,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|schedule_only": {
+     "pairs": 3,
+     "locked_cents": 4,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|clean_interval": {
+     "pairs": 6,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|contradictory": {
+     "pairs": 3,
+     "locked_cents": 9,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|exact": {
+     "pairs": 49,
+     "locked_cents": 103,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|live_by_only": {
+     "pairs": 61,
+     "locked_cents": 152,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|schedule_only": {
+     "pairs": 11,
+     "locked_cents": 26,
+     "native_n_ok": false
+    }
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 245,
+     "locked_cents": 769
+    },
+    "ATP_MAIN": {
+     "pairs": 114,
+     "locked_cents": 455
+    },
+    "WTA_CHALL": {
+     "pairs": 53,
+     "locked_cents": 116
+    },
+    "WTA_MAIN": {
+     "pairs": 107,
+     "locked_cents": 292
+    }
+   }
+  },
+  "q10": {
+   "games": {
+    "both": 692,
+    "one": 0,
+    "none": 112
+   },
+   "sides_filled": 1384,
+   "fill_price_dist": {
+    "n": 1384,
+    "p25": 32,
+    "median": 49,
+    "p75": 66,
+    "total": 68143,
+    "mean": 49.24
+   },
+   "discount_dist": {
+    "n": 1307,
+    "p25": -2,
+    "median": -1,
+    "p75": 0,
+    "total": -1930,
+    "mean": -1.48
+   },
+   "discount_total": -1930,
+   "both_sides_games": 692,
+   "under_par_games": 392,
+   "delta_to_par_dist": {
+    "n": 392,
+    "p25": 1,
+    "median": 2,
+    "p75": 4,
+    "total": 1171,
+    "mean": 2.99
+   },
+   "frontier": {
+    "<=93": 37,
+    "<=95": 74,
+    "<=97": 154,
+    "<100": 392
+   },
+   "locked_cents_total": 1171,
+   "locked_dollars_1lot": 11.71,
+   "by_cat_bell": {
+    "ATP_CHALL|clean_interval": {
+     "pairs": 7,
+     "locked_cents": 11,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|contradictory": {
+     "pairs": 6,
+     "locked_cents": 10,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|exact": {
+     "pairs": 108,
+     "locked_cents": 232,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|live_by_only": {
+     "pairs": 198,
+     "locked_cents": 328,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|schedule_only": {
+     "pairs": 22,
+     "locked_cents": 24,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|clean_interval": {
+     "pairs": 3,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|contradictory": {
+     "pairs": 1,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|exact": {
+     "pairs": 37,
+     "locked_cents": 128,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|live_by_only": {
+     "pairs": 77,
+     "locked_cents": 173,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|schedule_only": {
+     "pairs": 7,
+     "locked_cents": 12,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|clean_interval": {
+     "pairs": 1,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|contradictory": {
+     "pairs": 2,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|exact": {
+     "pairs": 40,
+     "locked_cents": 24,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|live_by_only": {
+     "pairs": 48,
+     "locked_cents": 17,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|schedule_only": {
+     "pairs": 3,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|clean_interval": {
+     "pairs": 8,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|contradictory": {
+     "pairs": 3,
+     "locked_cents": 5,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|exact": {
+     "pairs": 49,
+     "locked_cents": 62,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|live_by_only": {
+     "pairs": 61,
+     "locked_cents": 114,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|schedule_only": {
+     "pairs": 11,
+     "locked_cents": 22,
+     "native_n_ok": false
+    }
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 202,
+     "locked_cents": 605
+    },
+    "ATP_MAIN": {
+     "pairs": 94,
+     "locked_cents": 316
+    },
+    "WTA_CHALL": {
+     "pairs": 24,
+     "locked_cents": 45
+    },
+    "WTA_MAIN": {
+     "pairs": 72,
+     "locked_cents": 205
+    }
+   }
+  },
+  "q30": {
+   "games": {
+    "both": 692,
+    "one": 0,
+    "none": 112
+   },
+   "sides_filled": 1384,
+   "fill_price_dist": {
+    "n": 1384,
+    "p25": 32,
+    "median": 49,
+    "p75": 67,
+    "total": 68187,
+    "mean": 49.27
+   },
+   "discount_dist": {
+    "n": 1307,
+    "p25": -2,
+    "median": -1,
+    "p75": 0,
+    "total": -1887,
+    "mean": -1.44
+   },
+   "discount_total": -1887,
+   "both_sides_games": 692,
+   "under_par_games": 384,
+   "delta_to_par_dist": {
+    "n": 384,
+    "p25": 1,
+    "median": 2,
+    "p75": 4,
+    "total": 1129,
+    "mean": 2.94
+   },
+   "frontier": {
+    "<=93": 35,
+    "<=95": 72,
+    "<=97": 149,
+    "<100": 384
+   },
+   "locked_cents_total": 1129,
+   "locked_dollars_1lot": 11.29,
+   "by_cat_bell": {
+    "ATP_CHALL|clean_interval": {
+     "pairs": 7,
+     "locked_cents": 11,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|contradictory": {
+     "pairs": 6,
+     "locked_cents": 9,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|exact": {
+     "pairs": 108,
+     "locked_cents": 218,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|live_by_only": {
+     "pairs": 198,
+     "locked_cents": 315,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|schedule_only": {
+     "pairs": 22,
+     "locked_cents": 22,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|clean_interval": {
+     "pairs": 3,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|contradictory": {
+     "pairs": 1,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|exact": {
+     "pairs": 37,
+     "locked_cents": 126,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|live_by_only": {
+     "pairs": 77,
+     "locked_cents": 171,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|schedule_only": {
+     "pairs": 7,
+     "locked_cents": 12,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|clean_interval": {
+     "pairs": 1,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|contradictory": {
+     "pairs": 2,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|exact": {
+     "pairs": 40,
+     "locked_cents": 21,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|live_by_only": {
+     "pairs": 48,
+     "locked_cents": 15,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|schedule_only": {
+     "pairs": 3,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|clean_interval": {
+     "pairs": 8,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|contradictory": {
+     "pairs": 3,
+     "locked_cents": 5,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|exact": {
+     "pairs": 49,
+     "locked_cents": 61,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|live_by_only": {
+     "pairs": 61,
+     "locked_cents": 112,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|schedule_only": {
+     "pairs": 11,
+     "locked_cents": 22,
+     "native_n_ok": false
+    }
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 198,
+     "locked_cents": 575
+    },
+    "ATP_MAIN": {
+     "pairs": 94,
+     "locked_cents": 312
+    },
+    "WTA_CHALL": {
+     "pairs": 23,
+     "locked_cents": 40
+    },
+    "WTA_MAIN": {
+     "pairs": 69,
+     "locked_cents": 202
+    }
+   }
+  },
+  "q60": {
+   "games": {
+    "both": 692,
+    "one": 0,
+    "none": 112
+   },
+   "sides_filled": 1384,
+   "fill_price_dist": {
+    "n": 1384,
+    "p25": 32,
+    "median": 49,
+    "p75": 67,
+    "total": 68237,
+    "mean": 49.3
+   },
+   "discount_dist": {
+    "n": 1307,
+    "p25": -2,
+    "median": -1,
+    "p75": 0,
+    "total": -1838,
+    "mean": -1.41
+   },
+   "discount_total": -1838,
+   "both_sides_games": 692,
+   "under_par_games": 378,
+   "delta_to_par_dist": {
+    "n": 378,
+    "p25": 1,
+    "median": 2,
+    "p75": 4,
+    "total": 1082,
+    "mean": 2.86
+   },
+   "frontier": {
+    "<=93": 33,
+    "<=95": 70,
+    "<=97": 142,
+    "<100": 378
+   },
+   "locked_cents_total": 1082,
+   "locked_dollars_1lot": 10.82,
+   "by_cat_bell": {
+    "ATP_CHALL|clean_interval": {
+     "pairs": 7,
+     "locked_cents": 8,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|contradictory": {
+     "pairs": 6,
+     "locked_cents": 9,
+     "native_n_ok": false
+    },
+    "ATP_CHALL|exact": {
+     "pairs": 108,
+     "locked_cents": 212,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|live_by_only": {
+     "pairs": 198,
+     "locked_cents": 303,
+     "native_n_ok": true
+    },
+    "ATP_CHALL|schedule_only": {
+     "pairs": 22,
+     "locked_cents": 15,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|clean_interval": {
+     "pairs": 3,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|contradictory": {
+     "pairs": 1,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "ATP_MAIN|exact": {
+     "pairs": 37,
+     "locked_cents": 122,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|live_by_only": {
+     "pairs": 77,
+     "locked_cents": 165,
+     "native_n_ok": true
+    },
+    "ATP_MAIN|schedule_only": {
+     "pairs": 7,
+     "locked_cents": 12,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|clean_interval": {
+     "pairs": 1,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|contradictory": {
+     "pairs": 2,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "WTA_CHALL|exact": {
+     "pairs": 40,
+     "locked_cents": 19,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|live_by_only": {
+     "pairs": 48,
+     "locked_cents": 15,
+     "native_n_ok": true
+    },
+    "WTA_CHALL|schedule_only": {
+     "pairs": 3,
+     "locked_cents": 1,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|clean_interval": {
+     "pairs": 8,
+     "locked_cents": 2,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|contradictory": {
+     "pairs": 3,
+     "locked_cents": 5,
+     "native_n_ok": false
+    },
+    "WTA_MAIN|exact": {
+     "pairs": 49,
+     "locked_cents": 58,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|live_by_only": {
+     "pairs": 61,
+     "locked_cents": 112,
+     "native_n_ok": true
+    },
+    "WTA_MAIN|schedule_only": {
+     "pairs": 11,
+     "locked_cents": 18,
+     "native_n_ok": false
+    }
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "pairs": 193,
+     "locked_cents": 547
+    },
+    "ATP_MAIN": {
+     "pairs": 93,
+     "locked_cents": 302
+    },
+    "WTA_CHALL": {
+     "pairs": 23,
+     "locked_cents": 38
+    },
+    "WTA_MAIN": {
+     "pairs": 69,
+     "locked_cents": 195
+    }
+   }
+  }
+ },
+ "side_by_side_locked_cents": {
+  "print_floor": 1632,
+  "quote_10s": 1171,
+  "quote_30s": 1129,
+  "quote_60s": 1082
+ },
+ "named_rows": {
+  "NIKVRB": {
+   "NIK": {
+    "dir": "FALLING",
+    "close": 19,
+    "print_floor": 18,
+    "q10": 18,
+    "q30": 18,
+    "q60": 18,
+    "q10_discount": -1
+   },
+   "VRB": {
+    "dir": "CLIMBING",
+    "close": 83,
+    "print_floor": 70,
+    "q10": 68,
+    "q30": 68,
+    "q60": 68,
+    "q10_discount": -15
+   },
+   "_combined": {
+    "print_floor": 88,
+    "q10": 86,
+    "q30": 86,
+    "q60": 86
+   },
+   "_locked_q10": 14
+  },
+  "BOSCOP": {
+   "BOS": {
+    "dir": "UNKNOWN",
+    "close": 28,
+    "print_floor": 28,
+    "q10": 28,
+    "q30": 29,
+    "q60": 29,
+    "q10_discount": 0
+   },
+   "COP": {
+    "dir": "UNKNOWN",
+    "close": 72,
+    "print_floor": 47,
+    "q10": 63,
+    "q30": 71,
+    "q60": 71,
+    "q10_discount": -9
+   },
+   "_combined": {
+    "print_floor": 75,
+    "q10": 91,
+    "q30": 100,
+    "q60": 100
+   },
+   "_locked_q10": 9
+  },
+  "ARNROM": {
+   "ARN": {
+    "dir": "UNKNOWN",
+    "close": 62,
+    "print_floor": 50,
+    "q10": 55,
+    "q30": 56,
+    "q60": 56,
+    "q10_discount": -7
+   },
+   "ROM": {
+    "dir": "UNKNOWN",
+    "close": 39,
+    "print_floor": 38,
+    "q10": 38,
+    "q30": 38,
+    "q60": 38,
+    "q10_discount": -1
+   },
+   "_combined": {
+    "print_floor": 88,
+    "q10": 93,
+    "q30": 94,
+    "q60": 94
+   },
+   "_locked_q10": 7
+  }
+ }
+}

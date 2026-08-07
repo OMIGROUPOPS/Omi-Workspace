@@ -1,5 +1,11 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-07 · V36 FALLER-SIDE MIRROR ANATOMY — state-label disagreement owns the largest measured faller damage
+
+Read-only anatomy of the 511 sides V36 read as FALLING at their union-reach bottom: 399 issue sides / 112 captured controls / 1,567 measured cents. Mutually exclusive ownership is state mislabeled 157/835¢, cap-bound 125/412¢, rest too shallow 54/273¢, rest walked too slow 28/47¢, and strict fill seam 35/0¢. The strict seam remains build verification, never policy damage. Candidate-signal lift is frozen per category and category×price region from both books, both pressure reads, spread+dwell, and cap room; descriptive only, no fitted authority. GANJAN is the captured control, KRALOR cap-bound, WESPAA state-mislabeled. Two clean builds are byte-identical; no policy/replay/live path ran. Canonical package: `.claude/window1_live_v4_replay/v36_faller_side_mirror_anatomy_20260807/`; addendum: `arb-executor/docs/research/window1/V36_FALLER_SIDE_MIRROR_ANATOMY_20260807_ADDENDUM.md`.
+
+---
+
 > **THE CHRONOLOGY LAW: entries closer to today trump anything prior; older entries are context, never instruction.** When two entries collide, the newer one governs and the older one belongs in RETIRED. Nothing in this file is append-anywhere — new entries go ON TOP.
 >
 > **READ ORDER, every session:** `.claude/BOARD.md` (the standing queue) → **this file, top down until you hit dates you've already lived** → `docs/LESSONS.md` (A–G principles + C-law arc) → `.claude/rulings/` (verbatim law). The prior-art gate (C45) greps ALL FOUR surfaces.

@@ -1,0 +1,571 @@
+{
+  "population": {
+    "all_legs": 1608,
+    "captured_controls": 112,
+    "faller_sides_with_union_reach": 511,
+    "issue_owner_x_kind": {
+      "DIVOT_CLASS_NOT_IMPLEMENTED|MISSING": {
+        "measured_cents": 107,
+        "sides": 39
+      },
+      "FILL_MODEL_SEAM_NOT_V36_ORGAN|MISSING": {
+        "measured_cents": 0,
+        "sides": 35
+      },
+      "PAIR_CAP_ARITHMETIC|MISSING": {
+        "measured_cents": 411,
+        "sides": 124
+      },
+      "REST_PLACED_OFF_REACH_LEVEL|MISSING": {
+        "measured_cents": 297,
+        "sides": 75
+      },
+      "REST_PLACED_OFF_REACH_LEVEL|SHALLOW": {
+        "measured_cents": 455,
+        "sides": 54
+      },
+      "TAKE_FIRED_ABOVE_REACH|SHALLOW": {
+        "measured_cents": 297,
+        "sides": 72
+      }
+    },
+    "issue_sides": 399,
+    "measured_issue_cents": 1567
+  },
+  "schema_version": "v36-faller-side-mirror-anatomy-v1",
+  "taxonomy_conservation": {
+    "classified_sides": 399,
+    "issue_sides": 399,
+    "pass": true
+  },
+  "taxonomy_rows": [
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 58,
+      "miss_class": "CAP_BOUND",
+      "price_region": "26_50",
+      "sides": 22,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 48,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "26_50",
+      "sides": 11,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 18,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "26_50",
+      "sides": 9,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 146,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "26_50",
+      "sides": 28,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "26_50",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 30,
+      "miss_class": "CAP_BOUND",
+      "price_region": "51_75",
+      "sides": 14,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 17,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "51_75",
+      "sides": 5,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 4,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "51_75",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 102,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "51_75",
+      "sides": 30,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "51_75",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 53,
+      "miss_class": "CAP_BOUND",
+      "price_region": "ge76",
+      "sides": 17,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 8,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "ge76",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 7,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "ge76",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 50,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "ge76",
+      "sides": 12,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "ge76",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 6,
+      "miss_class": "CAP_BOUND",
+      "price_region": "le25",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 11,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "le25",
+      "sides": 5,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 33,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "le25",
+      "sides": 10,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "le25",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 23,
+      "miss_class": "CAP_BOUND",
+      "price_region": "26_50",
+      "sides": 9,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 37,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "26_50",
+      "sides": 7,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 1,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "26_50",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 57,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "26_50",
+      "sides": 7,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "26_50",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 45,
+      "miss_class": "CAP_BOUND",
+      "price_region": "51_75",
+      "sides": 12,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 29,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "51_75",
+      "sides": 7,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 2,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "51_75",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 89,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "51_75",
+      "sides": 8,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 21,
+      "miss_class": "CAP_BOUND",
+      "price_region": "ge76",
+      "sides": 6,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 71,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "ge76",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 67,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "le25",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 2,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "le25",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 34,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "le25",
+      "sides": 5,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "ATP_MAIN",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "le25",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 13,
+      "miss_class": "CAP_BOUND",
+      "price_region": "26_50",
+      "sides": 7,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 5,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "26_50",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 1,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "26_50",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 31,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "26_50",
+      "sides": 5,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "26_50",
+      "sides": 7,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 23,
+      "miss_class": "CAP_BOUND",
+      "price_region": "51_75",
+      "sides": 8,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 2,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "51_75",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 20,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "51_75",
+      "sides": 9,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "51_75",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 6,
+      "miss_class": "CAP_BOUND",
+      "price_region": "ge76",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 2,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "ge76",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 5,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "ge76",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 64,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "ge76",
+      "sides": 10,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "ge76",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 5,
+      "miss_class": "CAP_BOUND",
+      "price_region": "le25",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 24,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "le25",
+      "sides": 6,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_CHALL",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "le25",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 17,
+      "miss_class": "CAP_BOUND",
+      "price_region": "26_50",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 23,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "26_50",
+      "sides": 5,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 5,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "26_50",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 15,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "26_50",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "26_50",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 76,
+      "miss_class": "CAP_BOUND",
+      "price_region": "51_75",
+      "sides": 8,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 5,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "51_75",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 69,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "51_75",
+      "sides": 8,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 0,
+      "miss_class": "STRICT_FILL_SEAM_NOT_POLICY",
+      "price_region": "51_75",
+      "sides": 1,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 33,
+      "miss_class": "CAP_BOUND",
+      "price_region": "ge76",
+      "sides": 10,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 4,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "ge76",
+      "sides": 3,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 3,
+      "miss_class": "CAP_BOUND",
+      "price_region": "le25",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 19,
+      "miss_class": "REST_TOO_SHALLOW",
+      "price_region": "le25",
+      "sides": 4,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 2,
+      "miss_class": "REST_WALKED_TOO_SLOW",
+      "price_region": "le25",
+      "sides": 2,
+      "unpriced_sides": 0
+    },
+    {
+      "category": "WTA_MAIN",
+      "measured_cents": 26,
+      "miss_class": "STATE_MISLABELED",
+      "price_region": "le25",
+      "sides": 8,
+      "unpriced_sides": 0
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "commits": {
+    "gap": "b581cbb58f660939ed9b0c2e88ddc42163dbab9a",
+    "v36": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+  },
+  "files": [
+    {
+      "bytes": 341733,
+      "label": "V36_GAP_TO_REACH_LEG_LEDGER",
+      "path": "b581cbb58f660939ed9b0c2e88ddc42163dbab9a:.claude/window1_live_v4_replay/v36_gap_to_union_reach_20260807/V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz",
+      "sha256": "5826b3cd32dd025d925b55282edfd33e256fba8041c02b846102a7b80f5dbfb3"
+    },
+    {
+      "bytes": 905,
+      "label": "V36_FULL_TRACE_PARTS_MANIFEST",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/FULL_DECISION_TRACE_PARTS.json",
+      "sha256": "efc724ef31c0f36dadaae38a6bb488d1c65c19eb5201d75ed93c535eea828b38"
+    },
+    {
+      "bytes": 13279633,
+      "label": "V36_STRICT_DECISION_TRACE_1608",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/STRICT_DECISION_TRACE_1608.json",
+      "sha256": "7160b4d872a2289820443e9380ee75f4e6ef4fc15877ab64f102c5a93377e91b"
+    },
+    {
+      "bytes": 67108864,
+      "label": "V36_FULL_TRACE_PART_0",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/FULL_DECISION_TRACE.jsonl.gz.part000",
+      "sha256": "e9846f004f51ac0f61dd27efd531668004e044af91f53c5fc674d1c34747060d"
+    },
+    {
+      "bytes": 67108864,
+      "label": "V36_FULL_TRACE_PART_1",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/FULL_DECISION_TRACE.jsonl.gz.part001",
+      "sha256": "affcacc7f5bba66e020e5ec146c21bc567a2efb449339bb39eba71c32618c09c"
+    },
+    {
+      "bytes": 20395576,
+      "label": "V36_FULL_TRACE_PART_2",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/FULL_DECISION_TRACE.jsonl.gz.part002",
+      "sha256": "4964603a6bfb6a200ce1b97489dfeb5e4527219b5b884c52d9bc5ea5a667eed5"
+    },
+    {
+      "bytes": 23606,
+      "label": "BUILDER",
+      "path": "arb-executor/analysis/build_v36_faller_side_mirror_anatomy.js",
+      "sha256": "fc153dd416f236bd4b2b101036fc996b25e2ba90b8d184505427435c8876a861"
+    }
+  ]
+}

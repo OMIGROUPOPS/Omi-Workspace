@@ -1,0 +1,82 @@
+{
+  "files": [
+    {
+      "bytes": 295419,
+      "label": "CANDIDATE_SIGNAL_LIFT.json",
+      "path": "CANDIDATE_SIGNAL_LIFT.json",
+      "sha256": "531bf2ecc6f60704c62a6735c8caf3dda0176e9a826d509b7829f2c0ac34b968"
+    },
+    {
+      "bytes": 612,
+      "label": "CANDIDATE_SLATE_BINDING.json",
+      "path": "CANDIDATE_SLATE_BINDING.json",
+      "sha256": "a01ddad8ccac1fc9331ad0c481bfbb418e93308d7588f253ba46382d0e349e92"
+    },
+    {
+      "bytes": 442,
+      "label": "CONTROL_BINDING.json",
+      "path": "CONTROL_BINDING.json",
+      "sha256": "eb141ecaf927b16ae34103a5a83635b432577641322882fe9d003cc5cb6e2215"
+    },
+    {
+      "bytes": 94,
+      "label": "DETERMINISM_RECEIPT.json",
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "b1448ff414304cb0716c26cf155c4f569289ba78454fcc09195ddeaab0efc56f"
+    },
+    {
+      "bytes": 144896,
+      "label": "FALLER_ISSUE_ANATOMY_399.jsonl.gz",
+      "path": "FALLER_ISSUE_ANATOMY_399.jsonl.gz",
+      "sha256": "4d4210a8c15d8160041b3ef6fc35bde099275df6801bf1f602eb7c557b511033"
+    },
+    {
+      "bytes": 13359,
+      "label": "FALLER_POPULATION_AND_TAXONOMY.json",
+      "path": "FALLER_POPULATION_AND_TAXONOMY.json",
+      "sha256": "d3a4c5f99de5c6e6e098ccfae9951f022ad7919ccd4c63c13bd3a296794e32b1"
+    },
+    {
+      "bytes": 2858704,
+      "label": "FALLER_REST_WALK_HISTORY_399.jsonl.gz",
+      "path": "FALLER_REST_WALK_HISTORY_399.jsonl.gz",
+      "sha256": "73774ca0dc1de553d3f680537c143d4ea3403912db2c771848adc07b51cb5a14"
+    },
+    {
+      "bytes": 184971,
+      "label": "FALLER_SIDE_ANATOMY_511.jsonl.gz",
+      "path": "FALLER_SIDE_ANATOMY_511.jsonl.gz",
+      "sha256": "5bb2d276434eb51844f99bf63187567bbde0600d6d646b8c3b181c87f0c41b78"
+    },
+    {
+      "bytes": 345,
+      "label": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "b82a3c8910837bd06fbfcd3a589da726293c9b16da7c5a3750c749e5e9f5ff54"
+    },
+    {
+      "bytes": 16376,
+      "label": "NAMED_GAMES.json",
+      "path": "NAMED_GAMES.json",
+      "sha256": "c47991869bd60a1f7c529ad2a480aaa5e699c99646dffd712d98eb7024572e52"
+    },
+    {
+      "bytes": 965,
+      "label": "REPORT.md",
+      "path": "REPORT.md",
+      "sha256": "78780b72ec2b2868c694b09dc6050e9ab93dbe2f8de3b1ba480629eb848cd929"
+    },
+    {
+      "bytes": 2376,
+      "label": "SOURCE_HASH_MANIFEST.json",
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "520e1dc69ac20a0500cbfc6577d337cec15fcc9a221bfcc00994ebf4e255072b"
+    },
+    {
+      "bytes": 177,
+      "label": "TRACE_RECONSTRUCTION_RECEIPT.json",
+      "path": "TRACE_RECONSTRUCTION_RECEIPT.json",
+      "sha256": "076e29dee2cc8882cbf0cd32673ee31d09606a2858e1893773d2f80e59c6b531"
+    }
+  ]
+}

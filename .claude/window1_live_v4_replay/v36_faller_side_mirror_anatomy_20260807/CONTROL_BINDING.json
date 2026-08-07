@@ -1,0 +1,7 @@
+{
+  "gap_commit": "b581cbb58f660939ed9b0c2e88ddc42163dbab9a",
+  "gap_ledger": ".claude/window1_live_v4_replay/v36_gap_to_union_reach_20260807/V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz",
+  "schema_version": "v36-faller-side-mirror-anatomy-v1",
+  "v36_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "v36_full_trace_manifest": ".claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/FULL_DECISION_TRACE_PARTS.json"
+}

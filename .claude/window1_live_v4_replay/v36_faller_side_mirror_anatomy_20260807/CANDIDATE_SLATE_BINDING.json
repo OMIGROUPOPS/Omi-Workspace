@@ -1,0 +1,15 @@
+{
+  "control": "all 511 sides V36 read as FALLING at the union-reach moment; captured control means V36 credited at-or-better than reach",
+  "fields": [
+    "own combined state",
+    "other expression combined state",
+    "own pressure state",
+    "other pressure state",
+    "joint pressure read",
+    "own spread+dwell",
+    "other spread+dwell",
+    "pair-cap room"
+  ],
+  "note": "No separately committed riser-exam schema was found on the fetched analysis ref. The candidate slate is therefore frozen exactly to the named fields rather than inferred.",
+  "status": "EXPLICITLY_BOUND_FROM_OPERATOR_FIELDS"
+}

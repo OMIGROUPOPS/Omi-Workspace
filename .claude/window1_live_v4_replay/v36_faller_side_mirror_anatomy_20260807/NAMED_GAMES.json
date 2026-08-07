@@ -1,0 +1,455 @@
+{
+  "GANJAN": {
+    "finding": "FALLER_SIDE_FOUND",
+    "rows": [
+      {
+        "bell_confidence": "schedule_only",
+        "captured_control": true,
+        "category": "ATP_CHALL",
+        "entry_minus_reach_cents": 0,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+        "leg_id": "GAN",
+        "measured_damage_cents": null,
+        "miss_taxonomy": {
+          "class": "CONTROL_CAPTURED_AT_OR_BETTER_THAN_REACH",
+          "reason": "V36 credited at-or-better than union reach"
+        },
+        "original_gap_owner": null,
+        "original_issue_kind": null,
+        "own_at_reach": {
+          "combined_state": "FALLING",
+          "decision_action": "HOLD_REST",
+          "decision_reason": "DISPLAYED_ASK_NOT_DWELL_AND_FIVE_LOT_QUALIFIED",
+          "decision_target_cents": 18,
+          "observation": {
+            "ask": 20,
+            "ask_depth_5": 3336,
+            "ask_dwell_seconds": 0,
+            "bid": 19,
+            "bid_depth_5": 2499,
+            "depth_ratio": 0.4282776349614396,
+            "last_traded": 21,
+            "spread": 1,
+            "top_ask_size": 25
+          },
+          "order_after_cents": 18,
+          "order_before_cents": 18,
+          "ordinal": 670,
+          "pair_cap_cents": 20,
+          "pressure_state": "SETTLED",
+          "quote_path_state": "FALLING",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN.csv.gz#row-670",
+          "t_minus_actual_bell_seconds": null,
+          "t_minus_scheduled_seconds": 27819,
+          "timestamp_epoch": 1783826181
+        },
+        "price_region": "le25",
+        "reach_bottom_cents": 20,
+        "reach_evidence_timestamp_epoch": 1783826191,
+        "reach_quote_evidence": {
+          "dwell_threshold_seconds": 10,
+          "max_ask_cents": 20,
+          "min_ask_cents": 20,
+          "span_end_epoch": 1783829217,
+          "span_start_epoch": 1783826181,
+          "state_count": 2,
+          "timestamp_epoch": 1783826191
+        },
+        "reach_sources": [
+          "TRADED_AT_LEVEL",
+          "QUOTE_TOUCH_10S"
+        ],
+        "reach_trade_evidence": {
+          "aggressor_side": "SELLER",
+          "price_cents": 20,
+          "receipt_id": "42411297-f2a6-4360-d3bf-93a8937f71b6",
+          "size": 4,
+          "taker_book_side": "bid",
+          "timestamp_epoch": 1783828940.60383,
+          "trade_id": "42411297-f2a6-4360-d3bf-93a8937f71b6"
+        },
+        "rest_minus_reach_cents": -2,
+        "schema_version": "v36-faller-side-mirror-anatomy-v1",
+        "sibling_at_reach": {
+          "combined_state": "RISING",
+          "decision_action": "TAKE",
+          "decision_reason": "MATURE_EVIDENCE_FLOOR_TAKE",
+          "decision_target_cents": 79,
+          "observation": {
+            "ask": 79,
+            "ask_depth_5": 3631,
+            "ask_dwell_seconds": 90,
+            "bid": 78,
+            "bid_depth_5": 2846,
+            "depth_ratio": 0.43940095723328704,
+            "last_traded": 0,
+            "spread": 1,
+            "top_ask_size": 18
+          },
+          "order_after_cents": 79,
+          "order_before_cents": 76,
+          "ordinal": 265,
+          "pair_cap_cents": null,
+          "pressure_state": "SETTLED",
+          "quote_path_state": "RISING",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN.csv.gz#row-265",
+          "t_minus_actual_bell_seconds": null,
+          "t_minus_scheduled_seconds": 35045,
+          "timestamp_epoch": 1783818955
+        },
+        "sibling_ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN",
+        "signals": {
+          "joint_pressure_read": "SETTLED|SETTLED",
+          "own_combined_state": "FALLING",
+          "own_pressure_state": "SETTLED",
+          "own_spread_dwell": "EQ_1|DWELL_LT_10_OR_UNKNOWN",
+          "pair_cap_room": "AT_REACH",
+          "sibling_combined_state": "RISING",
+          "sibling_pressure_state": "SETTLED",
+          "sibling_spread_dwell": "EQ_1|DWELL_GE_10"
+        },
+        "snapshot_age_seconds": 10,
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN",
+        "v36_credited": true,
+        "v36_entry_cents": 20,
+        "v36_fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+        "v36_rest_at_reach_cents": 18,
+        "walk_summary": {
+          "downward_walks": 12,
+          "first_rest_cents": 3,
+          "last_walk_before_reach": {
+            "combined_state": "RISING",
+            "decision_action": "REPRICE_REST",
+            "decision_reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+            "decision_target_cents": 18,
+            "observation": {
+              "ask": 22,
+              "ask_depth_5": 3091,
+              "ask_dwell_seconds": 53,
+              "bid": 19,
+              "bid_depth_5": 1590,
+              "depth_ratio": 0.33967101046784876,
+              "last_traded": 22,
+              "spread": 3,
+              "top_ask_size": 1482
+            },
+            "order_after_cents": 18,
+            "order_before_cents": 17,
+            "ordinal": 576,
+            "pair_cap_cents": 20,
+            "pressure_state": "FALLING",
+            "quote_path_state": "RISING",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN.csv.gz#row-576",
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_scheduled_seconds": 31867,
+            "timestamp_epoch": 1783822133
+          },
+          "recorded_order_transitions": 32,
+          "upward_walks": 18
+        }
+      }
+    ]
+  },
+  "KRALOR": {
+    "finding": "FALLER_SIDE_FOUND",
+    "rows": [
+      {
+        "bell_confidence": "exact",
+        "captured_control": false,
+        "category": "ATP_CHALL",
+        "entry_minus_reach_cents": null,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+        "leg_id": "KRA",
+        "measured_damage_cents": 1,
+        "miss_taxonomy": {
+          "class": "CAP_BOUND",
+          "reason": "pair cap 94 sat below reach 95"
+        },
+        "original_gap_owner": "PAIR_CAP_ARITHMETIC",
+        "original_issue_kind": "MISSING",
+        "own_at_reach": {
+          "combined_state": "FALLING",
+          "decision_action": "HOLD_REST",
+          "decision_reason": "DISPLAYED_ASK_ABOVE_PAIR_CAP",
+          "decision_target_cents": 93,
+          "observation": {
+            "ask": 95,
+            "ask_depth_5": 34443,
+            "ask_dwell_seconds": 15570,
+            "bid": 94,
+            "bid_depth_5": 803,
+            "depth_ratio": 0.022782727117970834,
+            "last_traded": 95,
+            "spread": 1,
+            "top_ask_size": 44
+          },
+          "order_after_cents": 93,
+          "order_before_cents": 93,
+          "ordinal": 619,
+          "pair_cap_cents": 94,
+          "pressure_state": "FALLING",
+          "quote_path_state": "SETTLED",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-KRA.csv.gz#row-619",
+          "t_minus_actual_bell_seconds": 27766,
+          "t_minus_scheduled_seconds": 29566,
+          "timestamp_epoch": 1783832834
+        },
+        "price_region": "ge76",
+        "reach_bottom_cents": 95,
+        "reach_evidence_timestamp_epoch": 1783833610,
+        "reach_quote_evidence": {
+          "dwell_threshold_seconds": 10,
+          "max_ask_cents": 95,
+          "min_ask_cents": 95,
+          "span_end_epoch": 1783855800,
+          "span_start_epoch": 1783833600,
+          "state_count": 1,
+          "timestamp_epoch": 1783833610
+        },
+        "reach_sources": [
+          "TRADED_AT_LEVEL",
+          "QUOTE_TOUCH_10S"
+        ],
+        "reach_trade_evidence": {
+          "aggressor_side": "SELLER",
+          "price_cents": 95,
+          "receipt_id": "c9d17ef4-eb1a-4607-6e9e-66161365a8fc",
+          "size": 1.96,
+          "taker_book_side": "bid",
+          "timestamp_epoch": 1783836502.102062,
+          "trade_id": "c9d17ef4-eb1a-4607-6e9e-66161365a8fc"
+        },
+        "rest_minus_reach_cents": -2,
+        "schema_version": "v36-faller-side-mirror-anatomy-v1",
+        "sibling_at_reach": {
+          "combined_state": "RISING",
+          "decision_action": "TAKE",
+          "decision_reason": "MATURE_EVIDENCE_FLOOR_TAKE",
+          "decision_target_cents": 5,
+          "observation": {
+            "ask": 5,
+            "ask_depth_5": 7161,
+            "ask_dwell_seconds": 420,
+            "bid": 4,
+            "bid_depth_5": 15532,
+            "depth_ratio": 0.6844401357246728,
+            "last_traded": 6,
+            "spread": 1,
+            "top_ask_size": 938
+          },
+          "order_after_cents": 5,
+          "order_before_cents": 3,
+          "ordinal": 348,
+          "pair_cap_cents": null,
+          "pressure_state": "RISING",
+          "quote_path_state": "SETTLED",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR.csv.gz#row-348",
+          "t_minus_actual_bell_seconds": 38040,
+          "t_minus_scheduled_seconds": 39840,
+          "timestamp_epoch": 1783822560
+        },
+        "sibling_ticker": "KXATPCHALLENGERMATCH-26JUL12KRALOR-LOR",
+        "signals": {
+          "joint_pressure_read": "FALLING|RISING",
+          "own_combined_state": "FALLING",
+          "own_pressure_state": "FALLING",
+          "own_spread_dwell": "EQ_1|DWELL_GE_10",
+          "pair_cap_room": "BLOCKED_BELOW_REACH",
+          "sibling_combined_state": "RISING",
+          "sibling_pressure_state": "RISING",
+          "sibling_spread_dwell": "EQ_1|DWELL_GE_10"
+        },
+        "snapshot_age_seconds": 776,
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12KRALOR-KRA",
+        "v36_credited": false,
+        "v36_entry_cents": null,
+        "v36_fill_class": null,
+        "v36_rest_at_reach_cents": 93,
+        "walk_summary": {
+          "downward_walks": 12,
+          "first_rest_cents": 3,
+          "last_walk_before_reach": {
+            "combined_state": "RISING",
+            "decision_action": "REPRICE_REST",
+            "decision_reason": "LIVING_REST_REANCHOR_EVERY_BOOK_RECEIPT",
+            "decision_target_cents": 93,
+            "observation": {
+              "ask": 95,
+              "ask_depth_5": 34267,
+              "ask_dwell_seconds": 2604,
+              "bid": 94,
+              "bid_depth_5": 1404,
+              "depth_ratio": 0.039359703961200976,
+              "last_traded": 0,
+              "spread": 1,
+              "top_ask_size": 45
+            },
+            "order_after_cents": 93,
+            "order_before_cents": 88,
+            "ordinal": 402,
+            "pair_cap_cents": null,
+            "pressure_state": "FALLING",
+            "quote_path_state": "RISING",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12KRALOR-KRA.csv.gz#row-402",
+            "t_minus_actual_bell_seconds": 40732,
+            "t_minus_scheduled_seconds": 42532,
+            "timestamp_epoch": 1783819868
+          },
+          "recorded_order_transitions": 40,
+          "upward_walks": 26
+        }
+      }
+    ]
+  },
+  "WESPAA": {
+    "finding": "FALLER_SIDE_FOUND",
+    "rows": [
+      {
+        "bell_confidence": "exact",
+        "captured_control": false,
+        "category": "ATP_CHALL",
+        "entry_minus_reach_cents": null,
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+        "leg_id": "PAA",
+        "measured_damage_cents": 1,
+        "miss_taxonomy": {
+          "class": "STATE_MISLABELED",
+          "reason": "V36 read FALLING at reach while the frozen reach-path direction was CLIMBING"
+        },
+        "original_gap_owner": "DIVOT_CLASS_NOT_IMPLEMENTED",
+        "original_issue_kind": "MISSING",
+        "own_at_reach": {
+          "combined_state": "FALLING",
+          "decision_action": "HOLD_REST",
+          "decision_reason": "CURRENT_ASK_CREATED_FLOOR_WHILE_DOWNWARD_SEQUENCE_UNABSORBED",
+          "decision_target_cents": 37,
+          "observation": {
+            "ask": 39,
+            "ask_depth_5": 1201,
+            "ask_dwell_seconds": 24,
+            "bid": 38,
+            "bid_depth_5": 2167,
+            "depth_ratio": 0.6434085510688836,
+            "last_traded": 0,
+            "spread": 1,
+            "top_ask_size": 79
+          },
+          "order_after_cents": 37,
+          "order_before_cents": 37,
+          "ordinal": 430,
+          "pair_cap_cents": null,
+          "pressure_state": "RISING",
+          "quote_path_state": "FALLING",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12WESPAA-PAA.csv.gz#row-430",
+          "t_minus_actual_bell_seconds": 2631,
+          "t_minus_scheduled_seconds": 12531,
+          "timestamp_epoch": 1783866669
+        },
+        "price_region": "26_50",
+        "reach_bottom_cents": 38,
+        "reach_evidence_timestamp_epoch": 1783866685.336546,
+        "reach_quote_evidence": {
+          "dwell_threshold_seconds": 10,
+          "max_ask_cents": 38,
+          "min_ask_cents": 38,
+          "span_end_epoch": 1783867927,
+          "span_start_epoch": 1783867774,
+          "state_count": 1,
+          "timestamp_epoch": 1783867784
+        },
+        "reach_sources": [
+          "TRADED_AT_LEVEL",
+          "QUOTE_TOUCH_10S"
+        ],
+        "reach_trade_evidence": {
+          "aggressor_side": "BUYER",
+          "price_cents": 38,
+          "receipt_id": "dfb12136-bc9a-758b-9ef5-91c1b5648d80",
+          "size": 7,
+          "taker_book_side": "ask",
+          "timestamp_epoch": 1783866685.336546,
+          "trade_id": "dfb12136-bc9a-758b-9ef5-91c1b5648d80"
+        },
+        "rest_minus_reach_cents": -1,
+        "schema_version": "v36-faller-side-mirror-anatomy-v1",
+        "sibling_at_reach": {
+          "combined_state": "RISING",
+          "decision_action": "HOLD_REST",
+          "decision_reason": "CURRENT_ASK_CREATED_FLOOR_WHILE_DOWNWARD_SEQUENCE_UNABSORBED",
+          "decision_target_cents": 58,
+          "observation": {
+            "ask": 60,
+            "ask_depth_5": 1444,
+            "ask_dwell_seconds": 1231,
+            "bid": 59,
+            "bid_depth_5": 829,
+            "depth_ratio": 0.3647162340519138,
+            "last_traded": 61,
+            "spread": 1,
+            "top_ask_size": 253
+          },
+          "order_after_cents": 58,
+          "order_before_cents": 58,
+          "ordinal": 411,
+          "pair_cap_cents": null,
+          "pressure_state": "FALLING",
+          "quote_path_state": "RISING",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12WESPAA-WES.csv.gz#row-411",
+          "t_minus_actual_bell_seconds": 2655,
+          "t_minus_scheduled_seconds": 12555,
+          "timestamp_epoch": 1783866645
+        },
+        "sibling_ticker": "KXATPCHALLENGERMATCH-26JUL12WESPAA-WES",
+        "signals": {
+          "joint_pressure_read": "RISING|FALLING",
+          "own_combined_state": "FALLING",
+          "own_pressure_state": "RISING",
+          "own_spread_dwell": "EQ_1|DWELL_GE_10",
+          "pair_cap_room": "UNCAPPED",
+          "sibling_combined_state": "RISING",
+          "sibling_pressure_state": "FALLING",
+          "sibling_spread_dwell": "EQ_1|DWELL_GE_10"
+        },
+        "snapshot_age_seconds": 16.336546,
+        "ticker": "KXATPCHALLENGERMATCH-26JUL12WESPAA-PAA",
+        "v36_credited": false,
+        "v36_entry_cents": null,
+        "v36_fill_class": null,
+        "v36_rest_at_reach_cents": 37,
+        "walk_summary": {
+          "downward_walks": 14,
+          "first_rest_cents": 3,
+          "last_walk_before_reach": {
+            "combined_state": "FALLING",
+            "decision_action": "REPRICE_REST",
+            "decision_reason": "FALLING_REST_ONE_CENT_UNDER_BEST_BID_NO_UPWARD_CHASE",
+            "decision_target_cents": 37,
+            "observation": {
+              "ask": 42,
+              "ask_depth_5": 1820,
+              "ask_dwell_seconds": 9365,
+              "bid": 38,
+              "bid_depth_5": 1136,
+              "depth_ratio": 0.38430311231393777,
+              "last_traded": 0,
+              "spread": 4,
+              "top_ask_size": 264
+            },
+            "order_after_cents": 37,
+            "order_before_cents": 38,
+            "ordinal": 297,
+            "pair_cap_cents": null,
+            "pressure_state": "FALLING",
+            "quote_path_state": "SETTLED",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12WESPAA-PAA.csv.gz#row-297",
+            "t_minus_actual_bell_seconds": 4915,
+            "t_minus_scheduled_seconds": 14815,
+            "timestamp_epoch": 1783864385
+          },
+          "recorded_order_transitions": 26,
+          "upward_walks": 10
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,726 @@
+{
+ "LABEL": "MAKER_BOOK_DEPTH_CURVE",
+ "binding": "Built on sealed: near-miss 65d49b5d, REST_SANITY 4c52b6bf, census case 9051d4de, V36 ledger bfde0d8. Nothing sealed refit; depth curve is a fresh tape+prints measurement.",
+ "part1_honest_maker_book": {
+  "pairs": 459,
+  "dropped_flagged": 89,
+  "margin": {
+   "n": 459,
+   "p25": 1,
+   "median": 2,
+   "p75": 3,
+   "total": 2060,
+   "mean": 4.49
+  },
+  "frontier": {
+   "<=93": 51,
+   "<=95": 73,
+   "<=97": 147,
+   "<100": 459
+  },
+  "gross_cents": 2060,
+  "dollars_maker_only": {
+   "lot1": 20.6,
+   "lot5": 103.0,
+   "lot25": 515.0
+  },
+  "by_category": {
+   "ATP_CHALL": {
+    "pairs": 198,
+    "gross_cents": 699,
+    "dollars_1lot": 6.99
+   },
+   "ATP_MAIN": {
+    "pairs": 99,
+    "gross_cents": 563,
+    "dollars_1lot": 5.63
+   },
+   "WTA_CHALL": {
+    "pairs": 65,
+    "gross_cents": 199,
+    "dollars_1lot": 1.99
+   },
+   "WTA_MAIN": {
+    "pairs": 97,
+    "gross_cents": 599,
+    "dollars_1lot": 5.99
+   }
+  },
+  "by_bell": {
+   "clean_interval": {
+    "pairs": 21,
+    "gross_cents": 73
+   },
+   "contradictory": {
+    "pairs": 12,
+    "gross_cents": 118
+   },
+   "exact": {
+    "pairs": 127,
+    "gross_cents": 618
+   },
+   "live_by_only": {
+    "pairs": 251,
+    "gross_cents": 1003
+   },
+   "schedule_only": {
+    "pairs": 48,
+    "gross_cents": 248
+   }
+  },
+  "by_cat_bell": {
+   "ATP_CHALL|clean_interval": {
+    "pairs": 4,
+    "gross_cents": 6
+   },
+   "ATP_CHALL|contradictory": {
+    "pairs": 8,
+    "gross_cents": 98
+   },
+   "ATP_CHALL|exact": {
+    "pairs": 51,
+    "gross_cents": 281
+   },
+   "ATP_CHALL|live_by_only": {
+    "pairs": 116,
+    "gross_cents": 259
+   },
+   "ATP_CHALL|schedule_only": {
+    "pairs": 19,
+    "gross_cents": 55
+   },
+   "ATP_MAIN|clean_interval": {
+    "pairs": 5,
+    "gross_cents": 11
+   },
+   "ATP_MAIN|contradictory": {
+    "pairs": 1,
+    "gross_cents": 4
+   },
+   "ATP_MAIN|exact": {
+    "pairs": 25,
+    "gross_cents": 171
+   },
+   "ATP_MAIN|live_by_only": {
+    "pairs": 60,
+    "gross_cents": 368
+   },
+   "ATP_MAIN|schedule_only": {
+    "pairs": 8,
+    "gross_cents": 9
+   },
+   "WTA_CHALL|clean_interval": {
+    "pairs": 1,
+    "gross_cents": 2
+   },
+   "WTA_CHALL|contradictory": {
+    "pairs": 1,
+    "gross_cents": 1
+   },
+   "WTA_CHALL|exact": {
+    "pairs": 21,
+    "gross_cents": 63
+   },
+   "WTA_CHALL|live_by_only": {
+    "pairs": 35,
+    "gross_cents": 106
+   },
+   "WTA_CHALL|schedule_only": {
+    "pairs": 7,
+    "gross_cents": 27
+   },
+   "WTA_MAIN|clean_interval": {
+    "pairs": 11,
+    "gross_cents": 54
+   },
+   "WTA_MAIN|contradictory": {
+    "pairs": 2,
+    "gross_cents": 15
+   },
+   "WTA_MAIN|exact": {
+    "pairs": 30,
+    "gross_cents": 103
+   },
+   "WTA_MAIN|live_by_only": {
+    "pairs": 40,
+    "gross_cents": 270
+   },
+   "WTA_MAIN|schedule_only": {
+    "pairs": 14,
+    "gross_cents": 157
+   }
+  },
+  "fee_ruling": "MAKER_ONLY_ZERO_FEE (resting fills exempt on Kalshi); gross == net."
+ },
+ "part2_depth_curve": {
+  "k_values": [
+   1,
+   2,
+   3,
+   5,
+   8
+  ],
+  "note": "rest=min(best_bid-k,99), tracked continuously; level-touched fill = a seller-aggressed print >=5 lots landed at-or-through the rest (queue-independent). Pair coupling lazy-leg-1: each leg vs its OWN walked path, no sibling accounting. THE CATEGORY LAW: no cross-category aggregation; min-n=30 flagged per cell.",
+  "curve": {
+   "1": {
+    "legs_filled": 412,
+    "pairs_under_par": 106,
+    "total_gross_cents": 2003,
+    "by_category": {
+     "ATP_CHALL": {
+      "legs_filled": 165,
+      "pairs_under_par": 46,
+      "margin": {
+       "n": 46,
+       "p25": 4,
+       "median": 9,
+       "p75": 30,
+       "total": 971,
+       "mean": 21.11
+      },
+      "frontier": {
+       "<=93": 26,
+       "<=95": 28,
+       "<=97": 41,
+       "<100": 46
+      },
+      "gross_cents": 971,
+      "dollars_1lot": 9.71,
+      "dollars_5lot": 48.55,
+      "margin_per_fill": 5.88,
+      "native_n_ok": true
+     },
+     "ATP_MAIN": {
+      "legs_filled": 123,
+      "pairs_under_par": 32,
+      "margin": {
+       "n": 32,
+       "p25": 2,
+       "median": 5,
+       "p75": 30,
+       "total": 480,
+       "mean": 15.0
+      },
+      "frontier": {
+       "<=93": 11,
+       "<=95": 16,
+       "<=97": 23,
+       "<100": 32
+      },
+      "gross_cents": 480,
+      "dollars_1lot": 4.8,
+      "dollars_5lot": 24.0,
+      "margin_per_fill": 3.9,
+      "native_n_ok": true
+     },
+     "WTA_CHALL": {
+      "legs_filled": 38,
+      "pairs_under_par": 11,
+      "margin": {
+       "n": 11,
+       "p25": 19,
+       "median": 27,
+       "p75": 31,
+       "total": 305,
+       "mean": 27.73
+      },
+      "frontier": {
+       "<=93": 9,
+       "<=95": 9,
+       "<=97": 9,
+       "<100": 11
+      },
+      "gross_cents": 305,
+      "dollars_1lot": 3.05,
+      "dollars_5lot": 15.25,
+      "margin_per_fill": 8.03,
+      "native_n_ok": false
+     },
+     "WTA_MAIN": {
+      "legs_filled": 86,
+      "pairs_under_par": 17,
+      "margin": {
+       "n": 17,
+       "p25": 2,
+       "median": 5,
+       "p75": 22,
+       "total": 247,
+       "mean": 14.53
+      },
+      "frontier": {
+       "<=93": 8,
+       "<=95": 9,
+       "<=97": 11,
+       "<100": 17
+      },
+      "gross_cents": 247,
+      "dollars_1lot": 2.47,
+      "dollars_5lot": 12.35,
+      "margin_per_fill": 2.87,
+      "native_n_ok": false
+     }
+    }
+   },
+   "2": {
+    "legs_filled": 226,
+    "pairs_under_par": 59,
+    "total_gross_cents": 1539,
+    "by_category": {
+     "ATP_CHALL": {
+      "legs_filled": 95,
+      "pairs_under_par": 27,
+      "margin": {
+       "n": 27,
+       "p25": 8,
+       "median": 19,
+       "p75": 44,
+       "total": 746,
+       "mean": 27.63
+      },
+      "frontier": {
+       "<=93": 21,
+       "<=95": 24,
+       "<=97": 26,
+       "<100": 27
+      },
+      "gross_cents": 746,
+      "dollars_1lot": 7.46,
+      "dollars_5lot": 37.3,
+      "margin_per_fill": 7.85,
+      "native_n_ok": false
+     },
+     "ATP_MAIN": {
+      "legs_filled": 60,
+      "pairs_under_par": 14,
+      "margin": {
+       "n": 14,
+       "p25": 6,
+       "median": 32,
+       "p75": 37,
+       "total": 396,
+       "mean": 28.29
+      },
+      "frontier": {
+       "<=93": 10,
+       "<=95": 11,
+       "<=97": 13,
+       "<100": 14
+      },
+      "gross_cents": 396,
+      "dollars_1lot": 3.96,
+      "dollars_5lot": 19.8,
+      "margin_per_fill": 6.6,
+      "native_n_ok": false
+     },
+     "WTA_CHALL": {
+      "legs_filled": 27,
+      "pairs_under_par": 9,
+      "margin": {
+       "n": 9,
+       "p25": 11,
+       "median": 28,
+       "p75": 33,
+       "total": 250,
+       "mean": 27.78
+      },
+      "frontier": {
+       "<=93": 7,
+       "<=95": 8,
+       "<=97": 8,
+       "<100": 9
+      },
+      "gross_cents": 250,
+      "dollars_1lot": 2.5,
+      "dollars_5lot": 12.5,
+      "margin_per_fill": 9.26,
+      "native_n_ok": false
+     },
+     "WTA_MAIN": {
+      "legs_filled": 44,
+      "pairs_under_par": 9,
+      "margin": {
+       "n": 9,
+       "p25": 3,
+       "median": 5,
+       "p75": 31,
+       "total": 147,
+       "mean": 16.33
+      },
+      "frontier": {
+       "<=93": 4,
+       "<=95": 5,
+       "<=97": 7,
+       "<100": 9
+      },
+      "gross_cents": 147,
+      "dollars_1lot": 1.47,
+      "dollars_5lot": 7.35,
+      "margin_per_fill": 3.34,
+      "native_n_ok": false
+     }
+    }
+   },
+   "3": {
+    "legs_filled": 166,
+    "pairs_under_par": 48,
+    "total_gross_cents": 1325,
+    "by_category": {
+     "ATP_CHALL": {
+      "legs_filled": 69,
+      "pairs_under_par": 21,
+      "margin": {
+       "n": 21,
+       "p25": 11,
+       "median": 24,
+       "p75": 46,
+       "total": 630,
+       "mean": 30.0
+      },
+      "frontier": {
+       "<=93": 18,
+       "<=95": 19,
+       "<=97": 21,
+       "<100": 21
+      },
+      "gross_cents": 630,
+      "dollars_1lot": 6.3,
+      "dollars_5lot": 31.5,
+      "margin_per_fill": 9.13,
+      "native_n_ok": false
+     },
+     "ATP_MAIN": {
+      "legs_filled": 39,
+      "pairs_under_par": 12,
+      "margin": {
+       "n": 12,
+       "p25": 18,
+       "median": 29,
+       "p75": 49,
+       "total": 357,
+       "mean": 29.75
+      },
+      "frontier": {
+       "<=93": 10,
+       "<=95": 10,
+       "<=97": 12,
+       "<100": 12
+      },
+      "gross_cents": 357,
+      "dollars_1lot": 3.57,
+      "dollars_5lot": 17.85,
+      "margin_per_fill": 9.15,
+      "native_n_ok": false
+     },
+     "WTA_CHALL": {
+      "legs_filled": 24,
+      "pairs_under_par": 7,
+      "margin": {
+       "n": 7,
+       "p25": 11,
+       "median": 32,
+       "p75": 35,
+       "total": 198,
+       "mean": 28.29
+      },
+      "frontier": {
+       "<=93": 6,
+       "<=95": 7,
+       "<=97": 7,
+       "<100": 7
+      },
+      "gross_cents": 198,
+      "dollars_1lot": 1.98,
+      "dollars_5lot": 9.9,
+      "margin_per_fill": 8.25,
+      "native_n_ok": false
+     },
+     "WTA_MAIN": {
+      "legs_filled": 34,
+      "pairs_under_par": 8,
+      "margin": {
+       "n": 8,
+       "p25": 3,
+       "median": 7,
+       "p75": 40,
+       "total": 140,
+       "mean": 17.5
+      },
+      "frontier": {
+       "<=93": 4,
+       "<=95": 5,
+       "<=97": 7,
+       "<100": 8
+      },
+      "gross_cents": 140,
+      "dollars_1lot": 1.4,
+      "dollars_5lot": 7.0,
+      "margin_per_fill": 4.12,
+      "native_n_ok": false
+     }
+    }
+   },
+   "5": {
+    "legs_filled": 114,
+    "pairs_under_par": 37,
+    "total_gross_cents": 1172,
+    "by_category": {
+     "ATP_CHALL": {
+      "legs_filled": 54,
+      "pairs_under_par": 18,
+      "margin": {
+       "n": 18,
+       "p25": 12,
+       "median": 21,
+       "p75": 55,
+       "total": 526,
+       "mean": 29.22
+      },
+      "frontier": {
+       "<=93": 17,
+       "<=95": 18,
+       "<=97": 18,
+       "<100": 18
+      },
+      "gross_cents": 526,
+      "dollars_1lot": 5.26,
+      "dollars_5lot": 26.3,
+      "margin_per_fill": 9.74,
+      "native_n_ok": false
+     },
+     "ATP_MAIN": {
+      "legs_filled": 27,
+      "pairs_under_par": 9,
+      "margin": {
+       "n": 9,
+       "p25": 33,
+       "median": 43,
+       "p75": 53,
+       "total": 365,
+       "mean": 40.56
+      },
+      "frontier": {
+       "<=93": 9,
+       "<=95": 9,
+       "<=97": 9,
+       "<100": 9
+      },
+      "gross_cents": 365,
+      "dollars_1lot": 3.65,
+      "dollars_5lot": 18.25,
+      "margin_per_fill": 13.52,
+      "native_n_ok": false
+     },
+     "WTA_CHALL": {
+      "legs_filled": 15,
+      "pairs_under_par": 5,
+      "margin": {
+       "n": 5,
+       "p25": 15,
+       "median": 35,
+       "p75": 39,
+       "total": 157,
+       "mean": 31.4
+      },
+      "frontier": {
+       "<=93": 4,
+       "<=95": 4,
+       "<=97": 5,
+       "<100": 5
+      },
+      "gross_cents": 157,
+      "dollars_1lot": 1.57,
+      "dollars_5lot": 7.85,
+      "margin_per_fill": 10.47,
+      "native_n_ok": false
+     },
+     "WTA_MAIN": {
+      "legs_filled": 18,
+      "pairs_under_par": 5,
+      "margin": {
+       "n": 5,
+       "p25": 11,
+       "median": 26,
+       "p75": 41,
+       "total": 124,
+       "mean": 24.8
+      },
+      "frontier": {
+       "<=93": 4,
+       "<=95": 4,
+       "<=97": 4,
+       "<100": 5
+      },
+      "gross_cents": 124,
+      "dollars_1lot": 1.24,
+      "dollars_5lot": 6.2,
+      "margin_per_fill": 6.89,
+      "native_n_ok": false
+     }
+    }
+   },
+   "8": {
+    "legs_filled": 86,
+    "pairs_under_par": 27,
+    "total_gross_cents": 1001,
+    "by_category": {
+     "ATP_CHALL": {
+      "legs_filled": 43,
+      "pairs_under_par": 15,
+      "margin": {
+       "n": 15,
+       "p25": 16,
+       "median": 26,
+       "p75": 56,
+       "total": 531,
+       "mean": 35.4
+      },
+      "frontier": {
+       "<=93": 15,
+       "<=95": 15,
+       "<=97": 15,
+       "<100": 15
+      },
+      "gross_cents": 531,
+      "dollars_1lot": 5.31,
+      "dollars_5lot": 26.55,
+      "margin_per_fill": 12.35,
+      "native_n_ok": false
+     },
+     "ATP_MAIN": {
+      "legs_filled": 20,
+      "pairs_under_par": 6,
+      "margin": {
+       "n": 6,
+       "p25": 26,
+       "median": 46,
+       "p75": 63,
+       "total": 262,
+       "mean": 43.67
+      },
+      "frontier": {
+       "<=93": 6,
+       "<=95": 6,
+       "<=97": 6,
+       "<100": 6
+      },
+      "gross_cents": 262,
+      "dollars_1lot": 2.62,
+      "dollars_5lot": 13.1,
+      "margin_per_fill": 13.1,
+      "native_n_ok": false
+     },
+     "WTA_CHALL": {
+      "legs_filled": 10,
+      "pairs_under_par": 3,
+      "margin": {
+       "n": 3,
+       "p25": 17,
+       "median": 35,
+       "p75": 70,
+       "total": 122,
+       "mean": 40.67
+      },
+      "frontier": {
+       "<=93": 3,
+       "<=95": 3,
+       "<=97": 3,
+       "<100": 3
+      },
+      "gross_cents": 122,
+      "dollars_1lot": 1.22,
+      "dollars_5lot": 6.1,
+      "margin_per_fill": 12.2,
+      "native_n_ok": false
+     },
+     "WTA_MAIN": {
+      "legs_filled": 13,
+      "pairs_under_par": 3,
+      "margin": {
+       "n": 3,
+       "p25": 8,
+       "median": 39,
+       "p75": 39,
+       "total": 86,
+       "mean": 28.67
+      },
+      "frontier": {
+       "<=93": 3,
+       "<=95": 3,
+       "<=97": 3,
+       "<100": 3
+      },
+      "gross_cents": 86,
+      "dollars_1lot": 0.86,
+      "dollars_5lot": 4.3,
+      "margin_per_fill": 6.62,
+      "native_n_ok": false
+     }
+    }
+   }
+  },
+  "best_k_per_category": {
+   "ATP_CHALL": {
+    "best_k": 1,
+    "gross_cents": 971,
+    "dollars_1lot": 9.71,
+    "evidence": "native_n>=30"
+   },
+   "ATP_MAIN": {
+    "best_k": 1,
+    "gross_cents": 480,
+    "dollars_1lot": 4.8,
+    "evidence": "native_n>=30"
+   },
+   "WTA_CHALL": {
+    "best_k": 1,
+    "gross_cents": 305,
+    "dollars_1lot": 3.05,
+    "evidence": "POOLED_min_n_unmet"
+   },
+   "WTA_MAIN": {
+    "best_k": 1,
+    "gross_cents": 247,
+    "dollars_1lot": 2.47,
+    "evidence": "POOLED_min_n_unmet"
+   }
+  }
+ },
+ "part3_sweep_interaction": {
+  "total_sweeps": 1587,
+  "sweep_reach_by_depth": {
+   "1": {
+    "sweeps_reaching": 1587,
+    "of_total": 1587,
+    "pct": 100.0
+   },
+   "2": {
+    "sweeps_reaching": 1587,
+    "of_total": 1587,
+    "pct": 100.0
+   },
+   "3": {
+    "sweeps_reaching": 1210,
+    "of_total": 1587,
+    "pct": 76.2
+   },
+   "5": {
+    "sweeps_reaching": 743,
+    "of_total": 1587,
+    "pct": 46.8
+   },
+   "8": {
+    "sweeps_reaching": 318,
+    "of_total": 1587,
+    "pct": 20.0
+   }
+  },
+  "note": "a sweep 'reaches depth k' if its price span >=k -- a rest k-under the sweep top fills on the SAME flow. Fill decay with depth is buffered by sweeps: deeper rests ride the multi-level events."
+ },
+ "part4_pilot_spec": {
+  "measure_per_cat_per_k": "count seller prints >=5 lots landing at-or-through our standing best_bid-k level (level touches) vs actual FILLS after queue = queue yield; conversion = fills/touches.",
+  "min_games": 30,
+  "min_armed_levels": 200,
+  "kill_number_per_k": "refute depth k in a category if observed queue-yield * margin_per_fill(k) - 0 (maker fee) <= 0, i.e. yield below the point where k's book value falls under a shallower k's proven value.",
+  "best_k_selection": "per category, pick k maximizing gross book value with native_n>=30; where a cell has <30 pairs, mark POOLED (hierarchical pooling to the category-tour parent per the June blending law) and downgrade evidence quality."
+ }
+}

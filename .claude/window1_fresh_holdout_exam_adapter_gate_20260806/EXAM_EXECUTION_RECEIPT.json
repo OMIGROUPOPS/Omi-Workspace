@@ -1,0 +1,12 @@
+{
+  "exam_process_invocations": 0,
+  "brain_invocations": {
+    "V36": 0,
+    "V35": 0,
+    "R3": 0,
+    "total": 0
+  },
+  "retries": 0,
+  "score_rows": 0,
+  "authorization_consumed": false
+}

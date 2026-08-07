@@ -1,0 +1,81 @@
+{
+  "files": {
+    "arb-executor/analysis/build_window1_fresh_holdout_exam_adapter_gate.js": {
+      "sha256": "fe79505eec113e438a0e1c5591115b6390bfdddb2f1b5efecc3cd2575f396c5d",
+      "bytes": 16947
+    }
+  },
+  "frozen_policy_files": {
+    "V36": {
+      "commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+      "builder": {
+        "path": "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js",
+        "sha256_before": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+        "sha256_after": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+        "bytes_before": 145886,
+        "bytes_after": 145886,
+        "byte_identical": true
+      },
+      "policies": [
+        {
+          "path": "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js",
+          "sha256_before": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+          "sha256_after": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+          "bytes_before": 3796,
+          "bytes_after": 3796,
+          "byte_identical": true
+        }
+      ]
+    },
+    "V35": {
+      "commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+      "builder": {
+        "path": "arb-executor/analysis/build_window1_v35_living_rest_evidence_gate.js",
+        "sha256_before": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+        "sha256_after": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+        "bytes_before": 129672,
+        "bytes_after": 129672,
+        "byte_identical": true
+      },
+      "policies": [
+        {
+          "path": "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js",
+          "sha256_before": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+          "sha256_after": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+          "bytes_before": 3467,
+          "bytes_after": 3467,
+          "byte_identical": true
+        }
+      ]
+    },
+    "R3": {
+      "commit": "49f6501561c5d99a7f36c68ec41e0ea7250680e5",
+      "builder": {
+        "path": "arb-executor/analysis/build_window1_v29r3_standing_floor_release.js",
+        "sha256_before": "a5d6cb242e806136fd63cadd0ef7b092a6cbf83fd068c908fa8bd2f61cd342b2",
+        "sha256_after": "a5d6cb242e806136fd63cadd0ef7b092a6cbf83fd068c908fa8bd2f61cd342b2",
+        "bytes_before": 61858,
+        "bytes_after": 61858,
+        "byte_identical": true
+      },
+      "policies": [
+        {
+          "path": "arb-executor/analysis/window1_v29r3_standing_floor_release_policy.js",
+          "sha256_before": "12c223e7e62bd22888aee6cec31d7a44ed4dcc644bd1e432e9604f6ba0864663",
+          "sha256_after": "12c223e7e62bd22888aee6cec31d7a44ed4dcc644bd1e432e9604f6ba0864663",
+          "bytes_before": 3367,
+          "bytes_after": 3367,
+          "byte_identical": true
+        },
+        {
+          "path": "arb-executor/analysis/window1_interim_elimination_v13.js",
+          "sha256_before": "742b15305ddd0653637cc6a3a31f5221fd926538aabe8b0720dccc50d81a3e06",
+          "sha256_after": "742b15305ddd0653637cc6a3a31f5221fd926538aabe8b0720dccc50d81a3e06",
+          "bytes_before": 5669,
+          "bytes_after": 5669,
+          "byte_identical": true
+        }
+      ]
+    }
+  }
+}

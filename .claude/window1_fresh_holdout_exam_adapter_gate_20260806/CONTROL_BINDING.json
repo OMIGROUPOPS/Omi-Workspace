@@ -1,0 +1,13 @@
+{
+  "construction_parent": "ccac8aa9d944c061c00b0866dc026d57b246f5b3",
+  "population_N": 171,
+  "population_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+  "boundary_sha256": "70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a",
+  "brains": {
+    "V36": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+    "V35": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+    "R3": "49f6501561c5d99a7f36c68ec41e0ea7250680e5"
+  },
+  "standing_authorization": "OPERATOR_PROMPT_THIS_TASK",
+  "authorization_consumed": false
+}

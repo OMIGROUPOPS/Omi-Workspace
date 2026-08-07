@@ -1,0 +1,128 @@
+{
+  "schema_version": "window1-exam-input-interface-audit-v1",
+  "brains": {
+    "V36": {
+      "fixed_development_denominator": [
+        {
+          "line": 315,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        },
+        {
+          "line": 930,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        }
+      ],
+      "fixed_development_leg_denominator": [
+        {
+          "line": 320,
+          "value": "  const sources = loadSources(), bells = new Map(JSON.parse(fs.readFileSync(bellFile)).leg_rows.map((x) => [x.event_id, x.exact_bell_ts])), tickers = new Set(baseEvents.flatMap((e) => Object.values(e.legs).map((x) => x.ticker))); ensure(tickers.size === 1608, \"1608 legs required\");"
+        },
+        {
+          "line": 937,
+          "value": "  const tickers = new Set(baseEvents.flatMap((event) => Object.values(event.legs).map((leg) => leg.ticker))); ensure(tickers.size === 1608, \"1608 legs required\");"
+        }
+      ],
+      "fixed_input_bindings": [
+        {
+          "line": 18,
+          "value": "const base = path.join(repo, \".claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805\");"
+        },
+        {
+          "line": 43,
+          "value": "const START_LEDGER_PATH = \".claude/window1_start_recovery_20260724/REAL_START_LEDGER_V3.jsonl\";"
+        },
+        {
+          "line": 45,
+          "value": "const R3_EVENT_PATH = \".claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805/EVENT_LEDGER.jsonl.gz\";"
+        }
+      ],
+      "external_population_argument": []
+    },
+    "V35": {
+      "fixed_development_denominator": [
+        {
+          "line": 310,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        },
+        {
+          "line": 836,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        }
+      ],
+      "fixed_development_leg_denominator": [
+        {
+          "line": 315,
+          "value": "  const sources = loadSources(), bells = new Map(JSON.parse(fs.readFileSync(bellFile)).leg_rows.map((x) => [x.event_id, x.exact_bell_ts])), tickers = new Set(baseEvents.flatMap((e) => Object.values(e.legs).map((x) => x.ticker))); ensure(tickers.size === 1608, \"1608 legs required\");"
+        },
+        {
+          "line": 843,
+          "value": "  const tickers = new Set(baseEvents.flatMap((event) => Object.values(event.legs).map((leg) => leg.ticker))); ensure(tickers.size === 1608, \"1608 legs required\");"
+        }
+      ],
+      "fixed_input_bindings": [
+        {
+          "line": 18,
+          "value": "const base = path.join(repo, \".claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805\");"
+        },
+        {
+          "line": 42,
+          "value": "const START_LEDGER_PATH = \".claude/window1_start_recovery_20260724/REAL_START_LEDGER_V3.jsonl\";"
+        },
+        {
+          "line": 44,
+          "value": "const R3_EVENT_PATH = \".claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805/EVENT_LEDGER.jsonl.gz\";"
+        }
+      ],
+      "external_population_argument": []
+    },
+    "R3": {
+      "fixed_development_denominator": [
+        {
+          "line": 145,
+          "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && v28Legs.length === 1608 && baseTrace.rows.length === 1608 && baseReceipts.length === 371, \"R2 conservation failed\");"
+        },
+        {
+          "line": 213,
+          "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && baseTrace.rows.length === 1608, \"V28 conservation failed\"); ensure(baseScore.V28_score.joint_objective_pairs === 65, \"V28 floor mismatch\");"
+        }
+      ],
+      "fixed_development_leg_denominator": [
+        {
+          "line": 145,
+          "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && v28Legs.length === 1608 && baseTrace.rows.length === 1608 && baseReceipts.length === 371, \"R2 conservation failed\");"
+        },
+        {
+          "line": 213,
+          "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && baseTrace.rows.length === 1608, \"V28 conservation failed\"); ensure(baseScore.V28_score.joint_objective_pairs === 65, \"V28 floor mismatch\");"
+        }
+      ],
+      "fixed_input_bindings": [
+        {
+          "line": 22,
+          "value": "const eventPath = path.join(r2, \"EVENT_LEDGER.jsonl.gz\");"
+        },
+        {
+          "line": 23,
+          "value": "const legPath = path.join(r2, \"LEG_LEDGER.jsonl.gz\");"
+        },
+        {
+          "line": 24,
+          "value": "const tracePath = path.join(r2, \"DECISION_TRACE_1608.json\");"
+        },
+        {
+          "line": 25,
+          "value": "const scorePath = path.join(r2, \"SCORECARD.json\");"
+        },
+        {
+          "line": 26,
+          "value": "const receiptPath = path.join(r2, \"MIRROR_ARM_RECEIPTS.jsonl.gz\");"
+        },
+        {
+          "line": 27,
+          "value": "const dispositionPath = path.join(r2, \"ARMED_LEG_DISPOSITION.json\");"
+        }
+      ],
+      "external_population_argument": []
+    }
+  }
+}

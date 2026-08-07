@@ -1,0 +1,15 @@
+{
+  "census_location": "VPS_READ_ONLY_FROM_STAGE12_ADMISSION_LEDGER",
+  "tapes": 342,
+  "unique_headers": 1,
+  "header": "ts_et,ticker,bid_1,bid_1_sz,bid_2,bid_2_sz,bid_3,bid_3_sz,bid_4,bid_4_sz,bid_5,bid_5_sz,ask_1,ask_1_sz,ask_2,ask_2_sz,ask_3,ask_3_sz,ask_4,ask_4_sz,ask_5,ask_5_sz,mid,bid_depth_5,ask_depth_5,depth_ratio,last_trade",
+  "required_strict_fill_fields": [
+    "trade_id",
+    "taker_side",
+    "trade_size",
+    "exchange_trade_timestamp"
+  ],
+  "headers_with_all_required_fields": 0,
+  "carried_last_trade_is_not_true_print_identity": true,
+  "blocker": "STRICT_FILL_LAW_CANNOT_BE_EVALUATED_FROM_SEALED_BOOK_SNAPSHOTS"
+}

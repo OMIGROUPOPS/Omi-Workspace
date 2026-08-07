@@ -1,0 +1,31 @@
+{
+  "status": "BLOCKED_BEFORE_DEV_INERTNESS_AND_STAGE3",
+  "input_binding_only_adapter_constructible": false,
+  "blockers": [
+    "R3_REQUIRES_FROZEN_V29R2_DECISION_STATE_NOT_RAW_TAPES",
+    "STRICT_FILL_LAW_CANNOT_BE_EVALUATED_FROM_SEALED_BOOK_SNAPSHOTS"
+  ],
+  "dev_inertness": {
+    "V36": "NOT_STARTED_COMPLETE_THREE_BRAIN_ADAPTER_ABSENT",
+    "V35": "NOT_STARTED_COMPLETE_THREE_BRAIN_ADAPTER_ABSENT",
+    "R3": "NOT_STARTABLE_WITH_SEALED_RAW_INPUT_CONTRACT",
+    "decision_trace_comparisons": 0,
+    "scorecard_comparisons": 0
+  },
+  "stage3": {
+    "exam_process_invocations": 0,
+    "brain_invocations": {
+      "V36": 0,
+      "V35": 0,
+      "R3": 0,
+      "total": 0
+    },
+    "retries": 0,
+    "score_rows": 0,
+    "authorization_consumed": false
+  },
+  "required_operator_resolution": [
+    "Authorize and freeze an exchange true-print ledger for all 342 sealed legs, or provide an already sealed hash-bound one.",
+    "Provide or independently audit the complete V28->V29R2->R3 raw-tape replay lineage; an R3-only path adapter cannot synthesize predecessor decisions."
+  ]
+}

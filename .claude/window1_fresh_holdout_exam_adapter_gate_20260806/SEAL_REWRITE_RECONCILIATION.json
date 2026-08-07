@@ -1,0 +1,100 @@
+{
+  "changed_paths": [
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/ARTIFACT_HASH_MANIFEST.json",
+      "committed_sha256": "a3ab0443748683ae8cc248504c2c95534cbc63c4df7e60e05627e77048d16ce2",
+      "working_sha256": "4424480024a089d4fd7754f25dc54efdd9150413e6400479d1cc8cf55e8a0291",
+      "committed_bytes": 1375,
+      "working_bytes": 1374,
+      "changed": true
+    },
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/FORBIDDEN_ACCESS_RECEIPT.json",
+      "committed_sha256": "4b94def44fae9089e1ed335db0b7cc902cd9d51518da096f7a3f2924db22d39b",
+      "working_sha256": "c09b02f2e9f4dcb3ccf9c7170815a8cd38f7264e9864feb93c122419ee9065fd",
+      "committed_bytes": 467,
+      "working_bytes": 467,
+      "changed": true
+    },
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/GIT_TOUCH_AUDIT.json",
+      "committed_sha256": "06157cda7e37a982047f37c8fc143d63eb6a3182eec60d55d0064faec3450b11",
+      "working_sha256": "8828f3dd40021f87e451f8f0fffa0fe6dc02e5aba56766159d80f7749f42e5fa",
+      "committed_bytes": 75462,
+      "working_bytes": 96585,
+      "changed": true
+    },
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/ONE_RUN_GATE_RECEIPT.json",
+      "committed_sha256": "c3106384187419b92c13c68f435cc7b0c61f999969213bf20174d17e99441545",
+      "working_sha256": "28bef4825fc6e2b227967040c3fb97974f9d528c58ccda4f9cf484d0c5e70eea",
+      "committed_bytes": 861,
+      "working_bytes": 861,
+      "changed": true
+    },
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/REPORT.md",
+      "committed_sha256": "69986871e937af964ea65edf04b9fdc28f5c7243c1bfa7a24d29341856ab87f2",
+      "working_sha256": "eea7fb20d5e0582cba25d420d4574d2b7dd3e7f06e6d8bc6ef1dd61da9c2d4e1",
+      "committed_bytes": 789,
+      "working_bytes": 789,
+      "changed": true
+    },
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/SEALED_DECLARATION.json",
+      "committed_sha256": "e465ef37e4eb3d08012df237ff6480d1c67faf350a8f3fb113665cbf31cb4dfb",
+      "working_sha256": "f9bcbf826e60a73eaed26160dab8e746688d5038590c93228c86cbbae3b42ccc",
+      "committed_bytes": 3313,
+      "working_bytes": 1360,
+      "changed": true
+    },
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/SEALED_EVENT_LIST.txt",
+      "committed_sha256": "bd5900ef5d0102ddbc7c166081f2d82a711d975dc9fcb653b93f1df8ab09c488",
+      "working_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "committed_bytes": 25,
+      "working_bytes": 0,
+      "changed": true
+    },
+    {
+      "path": ".claude/window1_fresh_holdout_seal_20260806/SOURCE_HASH_MANIFEST.json",
+      "committed_sha256": "774ba5a9bd25afa6ff18d3f760f773898f5ef4924b50e37818c9dfc4c7d83d0f",
+      "working_sha256": "bf3e0f2c85b06502c0a3d75e80d2e96ecebe8a15fc106772cd5655dc2cbb5303",
+      "committed_bytes": 377,
+      "working_bytes": 377,
+      "changed": true
+    }
+  ],
+  "common_write_timestamp_utc_observed": "2026-08-07T00:28:50Z",
+  "process_observation": {
+    "process_name": "node",
+    "pid": 10140,
+    "observed_before_exit": true,
+    "exact_command_line_captured": false
+  },
+  "writer_attribution": {
+    "path": "arb-executor/analysis/build_window1_fresh_holdout_seal_exam.js",
+    "confidence": "HIGH_SCHEMA_AND_DEFAULT_OUTPUT_PATH_MATCH; EXACT_EXITED_PROCESS_COMMAND_LINE_NOT_RECOVERABLE",
+    "reason": "The builder's default output, schema names, current-ref touch audit, N=0 rewrite and all-eight common write time match the observed files."
+  },
+  "rewritten_obsolete_package_self_verifies": {
+    "entries": 9,
+    "mismatches": [],
+    "pass": true
+  },
+  "rewritten_obsolete_declaration": {
+    "N": 0,
+    "list_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "controlling": false,
+    "reason": "Superseded by the corrected decision-relevant TOUCH law package."
+  },
+  "controlling_corrected_declaration": {
+    "N": 171,
+    "declared_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+    "actual_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+    "exam_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+    "byte_identical_to_exam_list": true,
+    "verifies": true
+  },
+  "disposition": "PRESERVED_UNSTAGED_NOT_COMMITTED_NOT_USED_BY_EXAM"
+}

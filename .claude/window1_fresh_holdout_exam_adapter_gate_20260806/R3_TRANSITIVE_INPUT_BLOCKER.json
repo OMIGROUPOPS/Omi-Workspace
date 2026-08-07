@@ -1,0 +1,52 @@
+{
+  "code": "R3_REQUIRES_FROZEN_V29R2_DECISION_STATE_NOT_RAW_TAPES",
+  "evidence": {
+    "input_bindings": [
+      {
+        "line": 22,
+        "value": "const eventPath = path.join(r2, \"EVENT_LEDGER.jsonl.gz\");"
+      },
+      {
+        "line": 23,
+        "value": "const legPath = path.join(r2, \"LEG_LEDGER.jsonl.gz\");"
+      },
+      {
+        "line": 24,
+        "value": "const tracePath = path.join(r2, \"DECISION_TRACE_1608.json\");"
+      },
+      {
+        "line": 25,
+        "value": "const scorePath = path.join(r2, \"SCORECARD.json\");"
+      },
+      {
+        "line": 26,
+        "value": "const receiptPath = path.join(r2, \"MIRROR_ARM_RECEIPTS.jsonl.gz\");"
+      },
+      {
+        "line": 27,
+        "value": "const dispositionPath = path.join(r2, \"ARMED_LEG_DISPOSITION.json\");"
+      }
+    ],
+    "consumption": [
+      {
+        "line": 144,
+        "value": "  const events = readRows(eventPath), inputLegs = readRows(legPath), v28Legs = readRows(v28LegPath), baseTrace = JSON.parse(fs.readFileSync(tracePath)), baseScore = JSON.parse(fs.readFileSync(scorePath)), baseReceipts = readRows(receiptPath), baseDisposition = JSON.parse(fs.readFileSync(dispositionPath));"
+      }
+    ],
+    "denominator": [
+      {
+        "line": 145,
+        "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && v28Legs.length === 1608 && baseTrace.rows.length === 1608 && baseReceipts.length === 371, \"R2 conservation failed\");"
+      }
+    ],
+    "raw_tape_boundary_entry_point": []
+  },
+  "missing_sealed_inputs": [
+    "V29R2 EVENT_LEDGER for the sealed population",
+    "V29R2 LEG_LEDGER for the sealed population",
+    "V29R2 DECISION_TRACE for the sealed population",
+    "V29R2 MIRROR_ARM_RECEIPTS for the sealed population",
+    "V28 predecessor state for the sealed population"
+  ],
+  "ruling": "Generating these upstream decisions is policy reconstruction, not path/population/ledger rebinding."
+}

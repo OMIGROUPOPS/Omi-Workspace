@@ -14,7 +14,7 @@
     ],
     "brain_lifetime": "Each brain is replayed, streamed, determinism-checked, receipted, and released before the next brain is loaded",
     "monolithic_join_paths_remaining": 0,
-    "adapter_after_sha256": "efe83be58c4bd7e9caeb021982b91bb2a649911c5f3a7f9b0c54d60279313b0b"
+    "adapter_after_sha256": "e2cda70e16d14d65bdea793c95242eac0e56786e5d3995948169d65849c9c617"
   },
   "focused_test": {
     "uncompressed_bytes": 1074817990,

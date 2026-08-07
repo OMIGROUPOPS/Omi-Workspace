@@ -1,0 +1,263 @@
+{
+ "LABEL": "PLACEMENT_LAW_COUNTERFACTUAL",
+ "ruler": "union reach 57daf3c1 (credited iff reach_cents<=rest; fill at rest). pair lock=100-combined when both credited & <100.",
+ "law": "RISER: (i) PARKED [ask_dwell>300s & TRADED_AT_LEVEL] -> rest 1c under standing ask (A-1), override pulse floor; (ii) else pulse floor, except WTA & paired-leg-FALLING -> hold deeper of (pulse floor, own reach low). FALLER: V36 walk unchanged.",
+ "conservation": {
+  "games": 637,
+  "riser_sides": 409,
+  "parked": 151,
+  "transient": 258
+ },
+ "totals": {
+  "gained": 163,
+  "forfeited": 15,
+  "net": 148,
+  "base_lock": 308,
+  "law_lock": 456
+ },
+ "per_category": {
+  "ATP_CHALL": {
+   "gained": 31,
+   "forfeited": 3,
+   "net": 28,
+   "base_lock": 114,
+   "law_lock": 142,
+   "games": 295,
+   "parked_games": 70,
+   "wta_hold_games": 0
+  },
+  "ATP_MAIN": {
+   "gained": 20,
+   "forfeited": 7,
+   "net": 13,
+   "base_lock": 121,
+   "law_lock": 134,
+   "games": 128,
+   "parked_games": 18,
+   "wta_hold_games": 0
+  },
+  "WTA_CHALL": {
+   "gained": 14,
+   "forfeited": 4,
+   "net": 10,
+   "base_lock": 46,
+   "law_lock": 56,
+   "games": 98,
+   "parked_games": 17,
+   "wta_hold_games": 6
+  },
+  "WTA_MAIN": {
+   "gained": 98,
+   "forfeited": 1,
+   "net": 97,
+   "base_lock": 27,
+   "law_lock": 124,
+   "games": 116,
+   "parked_games": 33,
+   "wta_hold_games": 8
+  }
+ },
+ "by_category_class": {
+  "ATP_CHALL|unchanged": {
+   "gained": 0,
+   "forfeited": 0,
+   "n": 225
+  },
+  "ATP_CHALL|parked": {
+   "gained": 31,
+   "forfeited": 3,
+   "n": 70
+  },
+  "ATP_MAIN|unchanged": {
+   "gained": 0,
+   "forfeited": 0,
+   "n": 110
+  },
+  "ATP_MAIN|parked": {
+   "gained": 20,
+   "forfeited": 7,
+   "n": 18
+  },
+  "WTA_CHALL|unchanged": {
+   "gained": 0,
+   "forfeited": 0,
+   "n": 75
+  },
+  "WTA_CHALL|parked": {
+   "gained": 6,
+   "forfeited": 4,
+   "n": 17
+  },
+  "WTA_CHALL|wta_hold": {
+   "gained": 8,
+   "forfeited": 0,
+   "n": 6
+  },
+  "WTA_MAIN|unchanged": {
+   "gained": 0,
+   "forfeited": 0,
+   "n": 75
+  },
+  "WTA_MAIN|parked": {
+   "gained": 37,
+   "forfeited": 1,
+   "n": 33
+  },
+  "WTA_MAIN|wta_hold": {
+   "gained": 61,
+   "forfeited": 0,
+   "n": 8
+  }
+ },
+ "riser_side_changes": {
+  "parked_fill_gained": 67,
+  "parked_deepened_c": 78,
+  "parked_forfeit": 17,
+  "wta_hold_deepened_c": 129,
+  "wta_hold_gained": 2
+ },
+ "gained_price_med": 55,
+ "forfeit_price_med": 49,
+ "faller_mislabel": {
+  "op_stated": 157,
+  "measured_ran_faller_on_nonfaller": 115,
+  "credited": 15,
+  "shallow_gap_recoverable_cents": 60,
+  "forfeited_sides": 100,
+  "alt_def_quote_ne_pressure": 160,
+  "alt_def_missed_fallers": 298,
+  "note": "no cut equals 157 exactly; scored the actionable set (ran V36 faller-walk on a leg whose sealed corrected direction != FALLING, FLAT=SETTLED)."
+ },
+ "v36_baseline": {
+  "completed_pairs": 270,
+  "under_par": 270,
+  "locked_cents": 670
+ },
+ "named": {
+  "ARNROM": {
+   "combined": {
+    "base": null,
+    "law": 94,
+    "base_lock": 0,
+    "law_lock": 6
+   },
+   "ARN": {
+    "dir": "UNKNOWN",
+    "branch": "RISING",
+    "reach": 50,
+    "snap_ask": 56,
+    "dwell": 13667,
+    "base_fill": null,
+    "law_fill": 55,
+    "rule": "parked",
+    "pulse": null
+   },
+   "ROM": {
+    "dir": "UNKNOWN",
+    "branch": "FALLING",
+    "reach": 38,
+    "snap_ask": 42,
+    "dwell": 3411,
+    "base_fill": 39,
+    "law_fill": 39,
+    "rule": "unchanged",
+    "pulse": null
+   }
+  },
+  "BOSCOP": {
+   "combined": {
+    "base": null,
+    "law": 102,
+    "base_lock": 0,
+    "law_lock": 0
+   },
+   "BOS": {
+    "dir": "UNKNOWN",
+    "branch": "FALLING",
+    "reach": 28,
+    "snap_ask": 32,
+    "dwell": 6912,
+    "base_fill": 30,
+    "law_fill": 30,
+    "rule": "unchanged",
+    "pulse": null
+   },
+   "COP": {
+    "dir": "UNKNOWN",
+    "branch": "RISING",
+    "reach": 47,
+    "snap_ask": 73,
+    "dwell": 25956,
+    "base_fill": null,
+    "law_fill": 72,
+    "rule": "parked",
+    "pulse": 71
+   }
+  },
+  "NIKVRB": {
+   "combined": {
+    "base": 97,
+    "law": 97,
+    "base_lock": 3,
+    "law_lock": 3
+   },
+   "NIK": {
+    "dir": "FALLING",
+    "branch": "RISING",
+    "reach": 18,
+    "snap_ask": 27,
+    "dwell": 11,
+    "base_fill": 27,
+    "law_fill": 27,
+    "rule": "transient_base",
+    "pulse": 27
+   },
+   "VRB": {
+    "dir": "CLIMBING",
+    "branch": "RISING",
+    "reach": 68,
+    "snap_ask": 68,
+    "dwell": 9,
+    "base_fill": 70,
+    "law_fill": 70,
+    "rule": "transient_base",
+    "pulse": 70
+   }
+  },
+  "WESPAA": {
+   "combined": {
+    "base": null,
+    "law": null,
+    "base_lock": 0,
+    "law_lock": 0
+   },
+   "PAA": {
+    "dir": "CLIMBING",
+    "branch": "FALLING",
+    "reach": 38,
+    "snap_ask": 39,
+    "dwell": 34,
+    "base_fill": null,
+    "law_fill": null,
+    "rule": "unchanged",
+    "pulse": null
+   },
+   "WES": {
+    "dir": "CLIMBING",
+    "branch": "RISING",
+    "reach": 60,
+    "snap_ask": 60,
+    "dwell": 286,
+    "base_fill": null,
+    "law_fill": null,
+    "rule": "transient_base",
+    "pulse": null
+   }
+  }
+ },
+ "parked_rule_sensitivity": {
+  "law_1c_under_lock": 456,
+  "parked_at_traded_level_lock": 574,
+  "gap_left_by_1c_under": 118
+ }
+}

@@ -1,5 +1,11 @@
 # THE LIVING VAULT — the one chronological ledger (est. 2026-07-07)
 
+### 2026-08-07 · V38 MAKER-ONLY MACHINE — take path deleted; riser-rest placement owns the remaining damage
+
+V38 is a rests-only development-804 replay rooted at `b581cbb58f660939ed9b0c2e88ddc42163dbab9a`: FALLING preserves V36 no-chase, SETTLED tracks bid-minus-one, and RISING rests at the deepest ask level revisited at least twice inside the inherited 300-second receipt horizon. The executable policy contains no take action or take-named function. The CANON market ruler grades 150/150 completed/under-par; strict print-crossing reports 91/91 only as build verification. Against the sealed 637-game / 5,253-cent union-reach key, V38 is MATCHED 17 / SHALLOW 113 / MISSING 507 with 4,505 cents measurable residual. The largest owner is `RISING_REST_FILLED_SHALLOW` (298 sides / 2,190 cents), so removing takes does not by itself solve the placement gap. Two clean builds are byte-identical; focused tests pass 18/18; forbidden access is zero. Canonical package: `.claude/window1_live_v4_replay/v38_maker_only_machine_20260807/`; addendum: `arb-executor/docs/research/window1/WINDOW1_V38_MAKER_ONLY_20260807_ADDENDUM.md`. No live action occurred.
+
+---
+
 > **THE CHRONOLOGY LAW: entries closer to today trump anything prior; older entries are context, never instruction.** When two entries collide, the newer one governs and the older one belongs in RETIRED. Nothing in this file is append-anywhere — new entries go ON TOP.
 >
 > **READ ORDER, every session:** `.claude/BOARD.md` (the standing queue) → **this file, top down until you hit dates you've already lived** → `docs/LESSONS.md` (A–G principles + C-law arc) → `.claude/rulings/` (verbatim law). The prior-art gate (C45) greps ALL FOUR surfaces.

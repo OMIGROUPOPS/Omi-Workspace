@@ -1,0 +1,1412 @@
+{
+  "MARKET_UNION_REACH": [
+    {
+      "cell": "ATP_CHALL|clean_interval",
+      "category": "ATP_CHALL",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 7,
+      "reach_locked_cents": 14,
+      "grades": {
+        "MISSING": 7
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 5,
+        "null_n": 0,
+        "sum": 13,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 8,
+        "max": 8
+      },
+      "measurable_residual_cents": {
+        "n": 7,
+        "null_n": 0,
+        "sum": 36,
+        "min": 1,
+        "p25": 2,
+        "median": 2,
+        "p75": 8,
+        "p90": 16,
+        "max": 16
+      }
+    },
+    {
+      "cell": "ATP_CHALL|contradictory",
+      "category": "ATP_CHALL",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 14,
+      "reach_locked_cents": 446,
+      "grades": {
+        "MISSING": 14
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 11,
+        "null_n": 0,
+        "sum": 234,
+        "min": 1,
+        "p25": 2,
+        "median": 26,
+        "p75": 31,
+        "p90": 33,
+        "max": 42
+      },
+      "measurable_residual_cents": {
+        "n": 11,
+        "null_n": 0,
+        "sum": 237,
+        "min": 1,
+        "p25": 4,
+        "median": 26,
+        "p75": 31,
+        "p90": 33,
+        "max": 42
+      }
+    },
+    {
+      "cell": "ATP_CHALL|exact",
+      "category": "ATP_CHALL",
+      "bell_confidence": "exact",
+      "answer_key_games": 89,
+      "reach_locked_cents": 333,
+      "grades": {
+        "MISSING": 70,
+        "SHALLOW": 16,
+        "MATCHED": 3
+      },
+      "completed_pairs": 19,
+      "under_par_pairs": 19,
+      "shallow_cents": {
+        "n": 52,
+        "null_n": 0,
+        "sum": 264,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 9,
+        "max": 61
+      },
+      "measurable_residual_cents": {
+        "n": 86,
+        "null_n": 0,
+        "sum": 534,
+        "min": 1,
+        "p25": 3,
+        "median": 4,
+        "p75": 6,
+        "p90": 11,
+        "max": 61
+      }
+    },
+    {
+      "cell": "ATP_CHALL|live_by_only",
+      "category": "ATP_CHALL",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 168,
+      "reach_locked_cents": 928,
+      "grades": {
+        "MISSING": 145,
+        "SHALLOW": 21,
+        "MATCHED": 2
+      },
+      "completed_pairs": 23,
+      "under_par_pairs": 23,
+      "shallow_cents": {
+        "n": 72,
+        "null_n": 0,
+        "sum": 350,
+        "min": 1,
+        "p25": 1,
+        "median": 3,
+        "p75": 5,
+        "p90": 8,
+        "max": 75
+      },
+      "measurable_residual_cents": {
+        "n": 140,
+        "null_n": 0,
+        "sum": 848,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 11,
+        "max": 75
+      }
+    },
+    {
+      "cell": "ATP_CHALL|schedule_only",
+      "category": "ATP_CHALL",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 17,
+      "reach_locked_cents": 41,
+      "grades": {
+        "SHALLOW": 9,
+        "MISSING": 5,
+        "MATCHED": 3
+      },
+      "completed_pairs": 12,
+      "under_par_pairs": 12,
+      "shallow_cents": {
+        "n": 12,
+        "null_n": 0,
+        "sum": 34,
+        "min": 1,
+        "p25": 2,
+        "median": 2,
+        "p75": 3,
+        "p90": 5,
+        "max": 7
+      },
+      "measurable_residual_cents": {
+        "n": 13,
+        "null_n": 0,
+        "sum": 40,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 5,
+        "max": 7
+      }
+    },
+    {
+      "cell": "ATP_MAIN|clean_interval",
+      "category": "ATP_MAIN",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 1,
+      "reach_locked_cents": 3,
+      "grades": {
+        "SHALLOW": 1
+      },
+      "completed_pairs": 1,
+      "under_par_pairs": 1,
+      "shallow_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 2,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      },
+      "measurable_residual_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 2,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      }
+    },
+    {
+      "cell": "ATP_MAIN|contradictory",
+      "category": "ATP_MAIN",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 2,
+      "reach_locked_cents": 94,
+      "grades": {
+        "MISSING": 2
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 84,
+        "min": 5,
+        "p25": 5,
+        "median": 5,
+        "p75": 79,
+        "p90": 79,
+        "max": 79
+      },
+      "measurable_residual_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 85,
+        "min": 6,
+        "p25": 6,
+        "median": 6,
+        "p75": 79,
+        "p90": 79,
+        "max": 79
+      }
+    },
+    {
+      "cell": "ATP_MAIN|exact",
+      "category": "ATP_MAIN",
+      "bell_confidence": "exact",
+      "answer_key_games": 36,
+      "reach_locked_cents": 177,
+      "grades": {
+        "MISSING": 24,
+        "SHALLOW": 12
+      },
+      "completed_pairs": 12,
+      "under_par_pairs": 12,
+      "shallow_cents": {
+        "n": 34,
+        "null_n": 0,
+        "sum": 193,
+        "min": 1,
+        "p25": 2,
+        "median": 4,
+        "p75": 7,
+        "p90": 12,
+        "max": 33
+      },
+      "measurable_residual_cents": {
+        "n": 36,
+        "null_n": 0,
+        "sum": 284,
+        "min": 1,
+        "p25": 2,
+        "median": 4,
+        "p75": 7,
+        "p90": 14,
+        "max": 66
+      }
+    },
+    {
+      "cell": "ATP_MAIN|live_by_only",
+      "category": "ATP_MAIN",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 80,
+      "reach_locked_cents": 579,
+      "grades": {
+        "MISSING": 64,
+        "SHALLOW": 13,
+        "MATCHED": 3
+      },
+      "completed_pairs": 16,
+      "under_par_pairs": 16,
+      "shallow_cents": {
+        "n": 52,
+        "null_n": 0,
+        "sum": 428,
+        "min": 1,
+        "p25": 2,
+        "median": 4,
+        "p75": 6,
+        "p90": 11,
+        "max": 97
+      },
+      "measurable_residual_cents": {
+        "n": 71,
+        "null_n": 0,
+        "sum": 564,
+        "min": 1,
+        "p25": 2,
+        "median": 4,
+        "p75": 7,
+        "p90": 15,
+        "max": 97
+      }
+    },
+    {
+      "cell": "ATP_MAIN|schedule_only",
+      "category": "ATP_MAIN",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 9,
+      "reach_locked_cents": 73,
+      "grades": {
+        "SHALLOW": 8,
+        "MATCHED": 1
+      },
+      "completed_pairs": 9,
+      "under_par_pairs": 9,
+      "shallow_cents": {
+        "n": 8,
+        "null_n": 0,
+        "sum": 72,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 47,
+        "max": 47
+      },
+      "measurable_residual_cents": {
+        "n": 8,
+        "null_n": 0,
+        "sum": 72,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 47,
+        "max": 47
+      }
+    },
+    {
+      "cell": "WTA_CHALL|clean_interval",
+      "category": "WTA_CHALL",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 1,
+      "reach_locked_cents": 1,
+      "grades": {
+        "MISSING": 1
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "measurable_residual_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 2,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      }
+    },
+    {
+      "cell": "WTA_CHALL|contradictory",
+      "category": "WTA_CHALL",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 3,
+      "reach_locked_cents": 65,
+      "grades": {
+        "MISSING": 3
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "measurable_residual_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 3,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      }
+    },
+    {
+      "cell": "WTA_CHALL|exact",
+      "category": "WTA_CHALL",
+      "bell_confidence": "exact",
+      "answer_key_games": 28,
+      "reach_locked_cents": 62,
+      "grades": {
+        "MISSING": 24,
+        "SHALLOW": 3,
+        "MATCHED": 1
+      },
+      "completed_pairs": 4,
+      "under_par_pairs": 4,
+      "shallow_cents": {
+        "n": 11,
+        "null_n": 0,
+        "sum": 69,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 6,
+        "max": 39
+      },
+      "measurable_residual_cents": {
+        "n": 27,
+        "null_n": 0,
+        "sum": 172,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 7,
+        "max": 77
+      }
+    },
+    {
+      "cell": "WTA_CHALL|live_by_only",
+      "category": "WTA_CHALL",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 54,
+      "reach_locked_cents": 1625,
+      "grades": {
+        "MISSING": 45,
+        "SHALLOW": 9
+      },
+      "completed_pairs": 9,
+      "under_par_pairs": 9,
+      "shallow_cents": {
+        "n": 25,
+        "null_n": 0,
+        "sum": 625,
+        "min": 1,
+        "p25": 2,
+        "median": 14,
+        "p75": 44,
+        "p90": 57,
+        "max": 92
+      },
+      "measurable_residual_cents": {
+        "n": 37,
+        "null_n": 0,
+        "sum": 722,
+        "min": 1,
+        "p25": 2,
+        "median": 4,
+        "p75": 26,
+        "p90": 55,
+        "max": 114
+      }
+    },
+    {
+      "cell": "WTA_CHALL|schedule_only",
+      "category": "WTA_CHALL",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 12,
+      "reach_locked_cents": 223,
+      "grades": {
+        "SHALLOW": 7,
+        "MISSING": 4,
+        "MATCHED": 1
+      },
+      "completed_pairs": 8,
+      "under_par_pairs": 8,
+      "shallow_cents": {
+        "n": 9,
+        "null_n": 0,
+        "sum": 206,
+        "min": 1,
+        "p25": 3,
+        "median": 18,
+        "p75": 30,
+        "p90": 84,
+        "max": 84
+      },
+      "measurable_residual_cents": {
+        "n": 10,
+        "null_n": 0,
+        "sum": 299,
+        "min": 1,
+        "p25": 3,
+        "median": 18,
+        "p75": 36,
+        "p90": 84,
+        "max": 91
+      }
+    },
+    {
+      "cell": "WTA_MAIN|clean_interval",
+      "category": "WTA_MAIN",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 1,
+      "reach_locked_cents": 2,
+      "grades": {
+        "MISSING": 1
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 4,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4
+      },
+      "measurable_residual_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 7,
+        "min": 7,
+        "p25": 7,
+        "median": 7,
+        "p75": 7,
+        "p90": 7,
+        "max": 7
+      }
+    },
+    {
+      "cell": "WTA_MAIN|contradictory",
+      "category": "WTA_MAIN",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 5,
+      "reach_locked_cents": 75,
+      "grades": {
+        "MISSING": 5
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 1,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      },
+      "measurable_residual_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 11,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 10,
+        "p90": 10,
+        "max": 10
+      }
+    },
+    {
+      "cell": "WTA_MAIN|exact",
+      "category": "WTA_MAIN",
+      "bell_confidence": "exact",
+      "answer_key_games": 42,
+      "reach_locked_cents": 107,
+      "grades": {
+        "MISSING": 38,
+        "MATCHED": 2,
+        "SHALLOW": 2
+      },
+      "completed_pairs": 4,
+      "under_par_pairs": 4,
+      "shallow_cents": {
+        "n": 24,
+        "null_n": 0,
+        "sum": 71,
+        "min": 1,
+        "p25": 2,
+        "median": 2,
+        "p75": 4,
+        "p90": 5,
+        "max": 8
+      },
+      "measurable_residual_cents": {
+        "n": 39,
+        "null_n": 0,
+        "sum": 148,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 7,
+        "max": 9
+      }
+    },
+    {
+      "cell": "WTA_MAIN|live_by_only",
+      "category": "WTA_MAIN",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 57,
+      "reach_locked_cents": 369,
+      "grades": {
+        "MISSING": 52,
+        "SHALLOW": 5
+      },
+      "completed_pairs": 5,
+      "under_par_pairs": 5,
+      "shallow_cents": {
+        "n": 39,
+        "null_n": 0,
+        "sum": 232,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 18,
+        "max": 40
+      },
+      "measurable_residual_cents": {
+        "n": 55,
+        "null_n": 0,
+        "sum": 359,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 6,
+        "p90": 14,
+        "max": 46
+      }
+    },
+    {
+      "cell": "WTA_MAIN|schedule_only",
+      "category": "WTA_MAIN",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 11,
+      "reach_locked_cents": 36,
+      "grades": {
+        "SHALLOW": 7,
+        "MISSING": 3,
+        "MATCHED": 1
+      },
+      "completed_pairs": 8,
+      "under_par_pairs": 8,
+      "shallow_cents": {
+        "n": 10,
+        "null_n": 0,
+        "sum": 76,
+        "min": 1,
+        "p25": 2,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 54
+      },
+      "measurable_residual_cents": {
+        "n": 10,
+        "null_n": 0,
+        "sum": 80,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 5,
+        "max": 54
+      }
+    }
+  ],
+  "STRICT_PRINT_CROSS": [
+    {
+      "cell": "ATP_CHALL|clean_interval",
+      "category": "ATP_CHALL",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 7,
+      "reach_locked_cents": 14,
+      "grades": {
+        "MISSING": 7
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 2,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      },
+      "measurable_residual_cents": {
+        "n": 7,
+        "null_n": 0,
+        "sum": 24,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 8,
+        "max": 8
+      }
+    },
+    {
+      "cell": "ATP_CHALL|contradictory",
+      "category": "ATP_CHALL",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 14,
+      "reach_locked_cents": 446,
+      "grades": {
+        "MISSING": 14
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 3,
+        "null_n": 0,
+        "sum": 87,
+        "min": 14,
+        "p25": 14,
+        "median": 31,
+        "p75": 42,
+        "p90": 42,
+        "max": 42
+      },
+      "measurable_residual_cents": {
+        "n": 6,
+        "null_n": 0,
+        "sum": 95,
+        "min": 2,
+        "p25": 2,
+        "median": 4,
+        "p75": 31,
+        "p90": 42,
+        "max": 42
+      }
+    },
+    {
+      "cell": "ATP_CHALL|exact",
+      "category": "ATP_CHALL",
+      "bell_confidence": "exact",
+      "answer_key_games": 89,
+      "reach_locked_cents": 333,
+      "grades": {
+        "MISSING": 81,
+        "SHALLOW": 5,
+        "MATCHED": 3
+      },
+      "completed_pairs": 8,
+      "under_par_pairs": 8,
+      "shallow_cents": {
+        "n": 25,
+        "null_n": 0,
+        "sum": 158,
+        "min": 1,
+        "p25": 2,
+        "median": 4,
+        "p75": 5,
+        "p90": 10,
+        "max": 59
+      },
+      "measurable_residual_cents": {
+        "n": 86,
+        "null_n": 0,
+        "sum": 501,
+        "min": 1,
+        "p25": 3,
+        "median": 4,
+        "p75": 6,
+        "p90": 10,
+        "max": 59
+      }
+    },
+    {
+      "cell": "ATP_CHALL|live_by_only",
+      "category": "ATP_CHALL",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 168,
+      "reach_locked_cents": 928,
+      "grades": {
+        "MISSING": 156,
+        "SHALLOW": 10,
+        "MATCHED": 2
+      },
+      "completed_pairs": 12,
+      "under_par_pairs": 12,
+      "shallow_cents": {
+        "n": 32,
+        "null_n": 0,
+        "sum": 194,
+        "min": 1,
+        "p25": 1,
+        "median": 3,
+        "p75": 5,
+        "p90": 9,
+        "max": 75
+      },
+      "measurable_residual_cents": {
+        "n": 134,
+        "null_n": 0,
+        "sum": 811,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 9,
+        "max": 75
+      }
+    },
+    {
+      "cell": "ATP_CHALL|schedule_only",
+      "category": "ATP_CHALL",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 17,
+      "reach_locked_cents": 41,
+      "grades": {
+        "MISSING": 10,
+        "SHALLOW": 5,
+        "MATCHED": 2
+      },
+      "completed_pairs": 7,
+      "under_par_pairs": 7,
+      "shallow_cents": {
+        "n": 11,
+        "null_n": 0,
+        "sum": 58,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 9,
+        "p90": 11,
+        "max": 15
+      },
+      "measurable_residual_cents": {
+        "n": 15,
+        "null_n": 0,
+        "sum": 84,
+        "min": 2,
+        "p25": 2,
+        "median": 3,
+        "p75": 8,
+        "p90": 15,
+        "max": 22
+      }
+    },
+    {
+      "cell": "ATP_MAIN|clean_interval",
+      "category": "ATP_MAIN",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 1,
+      "reach_locked_cents": 3,
+      "grades": {
+        "MISSING": 1
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 2,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      },
+      "measurable_residual_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 3,
+        "min": 3,
+        "p25": 3,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 3
+      }
+    },
+    {
+      "cell": "ATP_MAIN|contradictory",
+      "category": "ATP_MAIN",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 2,
+      "reach_locked_cents": 94,
+      "grades": {
+        "MISSING": 2
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 72,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 68,
+        "p90": 68,
+        "max": 68
+      },
+      "measurable_residual_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 73,
+        "min": 5,
+        "p25": 5,
+        "median": 5,
+        "p75": 68,
+        "p90": 68,
+        "max": 68
+      }
+    },
+    {
+      "cell": "ATP_MAIN|exact",
+      "category": "ATP_MAIN",
+      "bell_confidence": "exact",
+      "answer_key_games": 36,
+      "reach_locked_cents": 177,
+      "grades": {
+        "MISSING": 29,
+        "SHALLOW": 7
+      },
+      "completed_pairs": 7,
+      "under_par_pairs": 7,
+      "shallow_cents": {
+        "n": 24,
+        "null_n": 0,
+        "sum": 93,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 7,
+        "max": 8
+      },
+      "measurable_residual_cents": {
+        "n": 36,
+        "null_n": 0,
+        "sum": 282,
+        "min": 1,
+        "p25": 3,
+        "median": 4,
+        "p75": 6,
+        "p90": 13,
+        "max": 86
+      }
+    },
+    {
+      "cell": "ATP_MAIN|live_by_only",
+      "category": "ATP_MAIN",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 80,
+      "reach_locked_cents": 579,
+      "grades": {
+        "MISSING": 68,
+        "SHALLOW": 10,
+        "MATCHED": 2
+      },
+      "completed_pairs": 12,
+      "under_par_pairs": 12,
+      "shallow_cents": {
+        "n": 33,
+        "null_n": 0,
+        "sum": 225,
+        "min": 1,
+        "p25": 1,
+        "median": 3,
+        "p75": 5,
+        "p90": 12,
+        "max": 45
+      },
+      "measurable_residual_cents": {
+        "n": 71,
+        "null_n": 0,
+        "sum": 358,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 7,
+        "max": 45
+      }
+    },
+    {
+      "cell": "ATP_MAIN|schedule_only",
+      "category": "ATP_MAIN",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 9,
+      "reach_locked_cents": 73,
+      "grades": {
+        "SHALLOW": 7,
+        "MATCHED": 1,
+        "MISSING": 1
+      },
+      "completed_pairs": 8,
+      "under_par_pairs": 8,
+      "shallow_cents": {
+        "n": 7,
+        "null_n": 0,
+        "sum": 56,
+        "min": 1,
+        "p25": 2,
+        "median": 2,
+        "p75": 3,
+        "p90": 43,
+        "max": 43
+      },
+      "measurable_residual_cents": {
+        "n": 8,
+        "null_n": 0,
+        "sum": 58,
+        "min": 1,
+        "p25": 2,
+        "median": 2,
+        "p75": 3,
+        "p90": 43,
+        "max": 43
+      }
+    },
+    {
+      "cell": "WTA_CHALL|clean_interval",
+      "category": "WTA_CHALL",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 1,
+      "reach_locked_cents": 1,
+      "grades": {
+        "MISSING": 1
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "measurable_residual_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 4,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4
+      }
+    },
+    {
+      "cell": "WTA_CHALL|contradictory",
+      "category": "WTA_CHALL",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 3,
+      "reach_locked_cents": 65,
+      "grades": {
+        "MISSING": 3
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "measurable_residual_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 2,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|exact",
+      "category": "WTA_CHALL",
+      "bell_confidence": "exact",
+      "answer_key_games": 28,
+      "reach_locked_cents": 62,
+      "grades": {
+        "MISSING": 26,
+        "SHALLOW": 2
+      },
+      "completed_pairs": 2,
+      "under_par_pairs": 2,
+      "shallow_cents": {
+        "n": 6,
+        "null_n": 0,
+        "sum": 20,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 6
+      },
+      "measurable_residual_cents": {
+        "n": 28,
+        "null_n": 0,
+        "sum": 99,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 7,
+        "max": 8
+      }
+    },
+    {
+      "cell": "WTA_CHALL|live_by_only",
+      "category": "WTA_CHALL",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 54,
+      "reach_locked_cents": 1625,
+      "grades": {
+        "MISSING": 53,
+        "SHALLOW": 1
+      },
+      "completed_pairs": 1,
+      "under_par_pairs": 1,
+      "shallow_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 85,
+        "min": 7,
+        "p25": 7,
+        "median": 7,
+        "p75": 78,
+        "p90": 78,
+        "max": 78
+      },
+      "measurable_residual_cents": {
+        "n": 23,
+        "null_n": 0,
+        "sum": 189,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 7,
+        "max": 78
+      }
+    },
+    {
+      "cell": "WTA_CHALL|schedule_only",
+      "category": "WTA_CHALL",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 12,
+      "reach_locked_cents": 223,
+      "grades": {
+        "SHALLOW": 6,
+        "MISSING": 5,
+        "MATCHED": 1
+      },
+      "completed_pairs": 7,
+      "under_par_pairs": 7,
+      "shallow_cents": {
+        "n": 8,
+        "null_n": 0,
+        "sum": 159,
+        "min": 1,
+        "p25": 3,
+        "median": 20,
+        "p75": 30,
+        "p90": 47,
+        "max": 47
+      },
+      "measurable_residual_cents": {
+        "n": 11,
+        "null_n": 0,
+        "sum": 255,
+        "min": 1,
+        "p25": 2,
+        "median": 20,
+        "p75": 32,
+        "p90": 47,
+        "max": 91
+      }
+    },
+    {
+      "cell": "WTA_MAIN|clean_interval",
+      "category": "WTA_MAIN",
+      "bell_confidence": "clean_interval",
+      "answer_key_games": 1,
+      "reach_locked_cents": 2,
+      "grades": {
+        "MISSING": 1
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "measurable_residual_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 3,
+        "min": 3,
+        "p25": 3,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 3
+      }
+    },
+    {
+      "cell": "WTA_MAIN|contradictory",
+      "category": "WTA_MAIN",
+      "bell_confidence": "contradictory",
+      "answer_key_games": 5,
+      "reach_locked_cents": 75,
+      "grades": {
+        "MISSING": 5
+      },
+      "completed_pairs": 0,
+      "under_par_pairs": 0,
+      "shallow_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 6,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 5,
+        "p90": 5,
+        "max": 5
+      },
+      "measurable_residual_cents": {
+        "n": 3,
+        "null_n": 0,
+        "sum": 9,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 7,
+        "p90": 7,
+        "max": 7
+      }
+    },
+    {
+      "cell": "WTA_MAIN|exact",
+      "category": "WTA_MAIN",
+      "bell_confidence": "exact",
+      "answer_key_games": 42,
+      "reach_locked_cents": 107,
+      "grades": {
+        "MISSING": 41,
+        "SHALLOW": 1
+      },
+      "completed_pairs": 1,
+      "under_par_pairs": 1,
+      "shallow_cents": {
+        "n": 10,
+        "null_n": 0,
+        "sum": 31,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 8
+      },
+      "measurable_residual_cents": {
+        "n": 40,
+        "null_n": 0,
+        "sum": 147,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 5,
+        "max": 16
+      }
+    },
+    {
+      "cell": "WTA_MAIN|live_by_only",
+      "category": "WTA_MAIN",
+      "bell_confidence": "live_by_only",
+      "answer_key_games": 57,
+      "reach_locked_cents": 369,
+      "grades": {
+        "MISSING": 55,
+        "MATCHED": 1,
+        "SHALLOW": 1
+      },
+      "completed_pairs": 2,
+      "under_par_pairs": 2,
+      "shallow_cents": {
+        "n": 24,
+        "null_n": 0,
+        "sum": 127,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 12,
+        "max": 25
+      },
+      "measurable_residual_cents": {
+        "n": 52,
+        "null_n": 0,
+        "sum": 254,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 5,
+        "p90": 10,
+        "max": 36
+      }
+    },
+    {
+      "cell": "WTA_MAIN|schedule_only",
+      "category": "WTA_MAIN",
+      "bell_confidence": "schedule_only",
+      "answer_key_games": 11,
+      "reach_locked_cents": 36,
+      "grades": {
+        "MATCHED": 4,
+        "SHALLOW": 4,
+        "MISSING": 3
+      },
+      "completed_pairs": 8,
+      "under_par_pairs": 8,
+      "shallow_cents": {
+        "n": 6,
+        "null_n": 0,
+        "sum": 14,
+        "min": 1,
+        "p25": 2,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 4
+      },
+      "measurable_residual_cents": {
+        "n": 7,
+        "null_n": 0,
+        "sum": 20,
+        "min": 1,
+        "p25": 2,
+        "median": 3,
+        "p75": 4,
+        "p90": 5,
+        "max": 5
+      }
+    }
+  ],
+  "conservation": {
+    "market_answer_key_D": 637,
+    "strict_answer_key_D": 637,
+    "expected": 637,
+    "pass": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v38_maker_only_machine.js",
+  "policy_sha256": "e4a628a5ff2edf488ab1e9ed46850b19bb238094c4361bdf90a5443e98a52414",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "pass": true
+}

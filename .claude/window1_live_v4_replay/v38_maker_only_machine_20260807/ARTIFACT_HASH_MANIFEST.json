@@ -1,0 +1,80 @@
+{
+  "files": {
+    "ACTION_TRACE.jsonl.gz": {
+      "sha256": "ea2c71dc2e2160d09b9fcadc8fecc970cc5ad09c072d08f525bf31da43eabf01",
+      "bytes": 1687044
+    },
+    "CATEGORY_X_BELL_CONFIDENCE.json": {
+      "sha256": "92e249be130edd90907c3a49321044a594571f7df3a4d3bf607c0bbe9e2ac6a9",
+      "bytes": 29322
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "0cec5852231344ee413a4e92564730c3b1674da731deb482ebe989a9d3aab3de",
+      "bytes": 1105
+    },
+    "DECISION_TRACE_1608.jsonl.gz": {
+      "sha256": "da23955d6f4e1f8e1e608f03a9c62b7bb0864b908095be3503d76000a5e79837",
+      "bytes": 250191
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "32ae0daa629cf8a23840829f90e392f43b5525cbbaa302537343936085f57c86",
+      "bytes": 94
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4dbc29834ae9c63717b35f1b548fdc5369620462ae4afc5deb518b6845848c08",
+      "bytes": 327
+    },
+    "LAYER_BIND_RANKING.json": {
+      "sha256": "0c393fa83559ed4fa7d7e7e1ea870e361a7766fefb5a070a1b031bd8a75e13a3",
+      "bytes": 6435
+    },
+    "MARKET_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "87312ddbc277f8222420476100d01ae7e96227f1948305265a19d7b1cabe058d",
+      "bytes": 392595
+    },
+    "MARKET_GRADE_SCORECARD.json": {
+      "sha256": "d6e2eeb523692987e904e31da6fe48cabec78b2f911566d0353f14e8798ddfe7",
+      "bytes": 1353
+    },
+    "NAMED_GAMES.json": {
+      "sha256": "0dda6c102462fd95c0adc4408ee88d6ac4e62f00c0329d7d3476045b98ba423b",
+      "bytes": 7356020
+    },
+    "PULSE_FLOOR_BINDING.json": {
+      "sha256": "004b3bbfa6f5c5a0dc3bff3929923ad7f1cf4f5143a607419955a8a73fa29953",
+      "bytes": 571
+    },
+    "REACH_GRADE_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "eb7645c6c572569ad689c1bec0c31feebc219cccbc18cc5da56c86e3169fd0b2",
+      "bytes": 24311
+    },
+    "REACH_GRADE_LEG_LEDGER.jsonl.gz": {
+      "sha256": "3c23024e7e054edd1bc1a4f6f65cb8d1f7744db27801a20e8733ff003168f6e7",
+      "bytes": 154835
+    },
+    "REPORT.md": {
+      "sha256": "91b2ddef77a005be11ea13ec79d90152def97386b68ee6331ab0e615e7cec3a0",
+      "bytes": 899
+    },
+    "RESIDUAL_LAYER_BIND_LEDGER.jsonl.gz": {
+      "sha256": "55437d962962c332978ffefbd3a3707d879038041d25b6b398151dec4f3bc4c8",
+      "bytes": 136834
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "398f98130f55c24baf6656c9a92e13a3f3cf1a0a932eb66dad9b489b2d9a411e",
+      "bytes": 254755
+    },
+    "STRICT_BUILD_VERIFICATION_SCORECARD.json": {
+      "sha256": "7e62944a3db105acd0da3413de94dbe41849a9597fd893e4ab72f5eeab2c0fd5",
+      "bytes": 1123
+    },
+    "STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "11a3990953889f10aa842beee0a10852158527043a6d2705cd2875074c298775",
+      "bytes": 388587
+    },
+    "TAKE_PATH_DELETION_RECEIPT.json": {
+      "sha256": "2b5d9d2cd5cbf1c2e449364e5b9ed00e348317dbca735b6a979113c4352ca782",
+      "bytes": 332
+    }
+  }
+}

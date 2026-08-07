@@ -1,0 +1,25 @@
+{
+  "schema_version": "window1-v38-maker-only-control-v1",
+  "parent": "b581cbb58f660939ed9b0c2e88ddc42163dbab9a",
+  "frozen_V36": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "sealed_divot_census": "d1ac94973252e2f8c28ba32374c29ff7bd605a7e",
+  "architecture": {
+    "entry_actions": [
+      "PLACE_REST",
+      "REPRICE_REST"
+    ],
+    "take_path": "REMOVED_FROM_POLICY_SOURCE_NOT_GATED",
+    "FALLING": "V36_NO_CHASE_WALKING_REST_UNCHANGED",
+    "RISING": "REST_AT_LOWEST_ASK_LEVEL_WITH_AT_LEAST_2_DISTINCT_VISITS_INSIDE_EXISTING_300S_RECEIPT_HORIZON; POST_ONLY_REQUIRES_STANDING_ASK_ABOVE_NEW_REST",
+    "SETTLED": "BID_MINUS_ONE_TRACKING",
+    "pair_cap": "99_MINUS_FIRST_FILL",
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V36_WINDOW1_SPAN_804_UNCHANGED"
+  },
+  "fill_rulers": {
+    "market_scoring": "UNION_REACH_CHANNELS_QUOTE_TOUCH_10S_SIZE5_PLUS_TRADED_AT_LEVEL_PLUS_STRICT_PRINT_CROSS",
+    "build_verification": "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST",
+    "never_swapped": true
+  }
+}

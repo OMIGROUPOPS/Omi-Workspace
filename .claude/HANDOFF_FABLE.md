@@ -1691,3 +1691,20 @@ is unconsumed; exam and brain invocations, retries and score rows are zero.
 
 Canonical package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/5117da019238aec517bbe0e3bf56e511f5e2797b/.claude/window1_fresh_holdout_exam_20260806/REPORT.md
+
+## FRESH HOLDOUT EXAM ADAPTER BLOCKED; AUTHORIZATION UNCONSUMED - 2026-08-06
+
+The exact V36/V35/R3 sources remain byte-identical. The three-brain adapter
+cannot be completed by input rebinding alone: R3 consumes V29-R2 predecessor
+decision artifacts, and the 342 sealed book tapes lack seller-aggressor true
+print identity required for strict fills. DEV inertness and Stage 3 did not
+start. All invocation, retry, trace-comparison, score-comparison, and score-row
+counts are zero. The standing one-run authorization is unconsumed.
+
+Eight non-controlling old-seal files were externally regenerated to an
+obsolete self-consistent N=0 package and remain unstaged. The corrected N=171
+list and exam list remain byte-identical at SHA-256
+`06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313`.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4f4d546421043f187bc73e2d9ad1eca0b9cf7f36/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_EXAM_ADAPTER_BLOCK_ADDENDUM.md

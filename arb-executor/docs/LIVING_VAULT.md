@@ -1731,3 +1731,20 @@ standing one-run authorization remains unconsumed.
 
 Canonical package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/5117da019238aec517bbe0e3bf56e511f5e2797b/.claude/window1_fresh_holdout_exam_20260806/REPORT.md
+
+### 2026-08-06 - FRESH HOLDOUT EXAM ADAPTER BLOCKED; ONE RUN UNCONSUMED
+
+Policy/build bytes remain exact for V36 `bfde0d8`, V35 `0799fba`, and R3
+`49f6501`, but no input-only three-brain adapter is constructible from the
+sealed package. R3 requires V29-R2 decision-state artifacts rather than raw
+tapes, and all 342 sealed tapes omit exchange trade identity, aggressor side,
+trade size, and exchange timestamp required by the strict fill law. DEV
+inertness and Stage 3 did not start: zero trace/score comparisons, brain
+invocations, retries, and score rows. Authorization remains unconsumed.
+
+The eight external old-seal rewrites are preserved unstaged and non-controlling.
+The corrected N=171 declaration/list still verifies at SHA-256
+`06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313`.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/4f4d546421043f187bc73e2d9ad1eca0b9cf7f36/arb-executor/docs/research/window1/WINDOW1_FRESH_HOLDOUT_EXAM_ADAPTER_BLOCK_ADDENDUM.md

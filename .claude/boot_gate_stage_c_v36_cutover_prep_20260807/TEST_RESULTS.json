@@ -1,0 +1,16 @@
+{
+  "schema_version": "stage-c-v36-cutover-test-results-v1",
+  "environment": "isolated VPS /tmp followed by committed stopped-VPS source",
+  "tests": [
+    {"name":"python_compile_live_v4_and_shadow","result":"PASS"},
+    {"name":"stage_c_v36_shadow","tests":4,"parity_cases":3456,"result":"PASS"},
+    {"name":"exit_cell_fail_loud","tests":6,"result":"PASS"},
+    {"name":"R3_standing_floor_behavior","assertions":18,"result":"PASS","availability":"AVAILABLE"},
+    {"name":"node_v36_policy_syntax","result":"PASS"},
+    {"name":"inherited_d18_placement_exit","result":"KNOWN_PARENT_FAILURE_PARITY","candidate_failures":7,"parent_failures":7,"new_failures":0}
+  ],
+  "required_r3_behavioral_test": "PASS",
+  "silent_15c_constant_scan": "PASS_ABSENT",
+  "policy_byte_identity": "PASS_5_OF_5",
+  "new_failures": 0
+}

@@ -1,0 +1,12 @@
+{
+  "schema_version":"stage-c-determinism-receipt-v1",
+  "builder":"arb-executor/analysis/build_boot_gate_stage_c_receipts.js",
+  "builds":2,
+  "clean_output_directories":["C:/tmp/stagec-receipt-build-5","C:/tmp/stagec-receipt-build-6"],
+  "source_manifest_sha256_build_1":"bf101bd3720cd57470fe491035a418ecf43307d5a0ad7fc835202cf64eab318b",
+  "source_manifest_sha256_build_2":"bf101bd3720cd57470fe491035a418ecf43307d5a0ad7fc835202cf64eab318b",
+  "artifact_manifest_sha256_build_1":"590385d3acda90f06b0ca8ec4084bc65c756e8ff4c3e61a798e73724ace32b69",
+  "artifact_manifest_sha256_build_2":"590385d3acda90f06b0ca8ec4084bc65c756e8ff4c3e61a798e73724ace32b69",
+  "byte_identical":true,
+  "nondeterministic_fields":[]
+}

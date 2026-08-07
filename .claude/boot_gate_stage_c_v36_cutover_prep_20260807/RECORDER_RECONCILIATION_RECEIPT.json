@@ -1,0 +1,10 @@
+{
+  "schema_version": "stage-c-recorder-reconciliation-health-v1",
+  "checked_utc": "2026-08-07T15:58:03Z",
+  "authoritative_recorder": {"pid":3459414,"started_et":"2026-08-06 19:54:41 ET","command":"python3 -u ws_depth_recorder.py","supervisor":"/root/ws_capture_guard.sh","supervisor_sha256":"dd4839009fa3a8140337100e581d1030802078ae5a17d95a4abf7786620fe275","latest_stream":"/root/Omi-Workspace/arb-executor/data/durable/ws_depth_recorder/ws_20260807_15_20260806T235443Z_3459414.jsonl.gz","writing":true},
+  "legacy_recorder": {"pid":1213728,"started_et":"2026-07-22 17:21:05 ET","role":"NON_AUTHORITATIVE_CAPPED_REST_RECORDER","unchanged":true},
+  "nightly_reconciliation": {"cron":"0 2 * * *","spec_commit":"938dca474e8bc4d96b17095e2aaa7cbb2fe97a87","sample_size":20,"latest_path":"/root/Omi-Workspace/arb-executor/data/durable/window1_reconciliation/LATEST.json","latest_sha256":"2c8e7208410a583c41c812b00a75ba948c9a3d5b673acc81e283d18ffd48ef77","status":"PASS","exchange_trades":1779,"our_prints":1779,"mismatches":0},
+  "sealed_stream": {"registry_path":"/root/Omi-Workspace/arb-executor/data/durable/holdout_seal/HOLDOUT_CAPTURE_REGISTRY.jsonl","registry_sha256":"9f5dfb2a89d3ccd150a627faf077239f991d8d18291c3dec09a16b2501619044","registry_events":77,"state_sha256":"f7326217f4ea269c88bbb3aa55822297d9d7311d5dcf4a1e690fd54bebf99038","policy_sha256":"ba545fa2c88fb4af0b7a2a4183a2f99368fc7ef79979060b40452cc9c0f208aa","decision_relevant_consumption":0,"tag":"HOLDOUT_ELIGIBLE_CAPTURE_ONLY","intact":true},
+  "cron_sha256":"405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149",
+  "verdict":"GREEN"
+}

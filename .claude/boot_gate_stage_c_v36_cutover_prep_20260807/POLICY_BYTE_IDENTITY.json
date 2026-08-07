@@ -1,0 +1,14 @@
+{
+  "schema_version": "stage-c-v36-policy-byte-identity-v1",
+  "authority_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "all_five_files_byte_identical": true,
+  "files": [
+    {"path":"arb-executor/analysis/window1_v29r3_standing_floor_release_policy.js","git_blob":"ed35616df0878bca7bc554eaa8030963f18fa609","sha256":"12c223e7e62bd22888aee6cec31d7a44ed4dcc644bd1e432e9604f6ba0864663"},
+    {"path":"arb-executor/analysis/window1_v32_no_chase_state_machine.js","git_blob":"0e48776cd6b92c1ec4e428e0abff6eab35563d94","sha256":"414b1079a03ad1938a2b2dcc80f230e72a928662176582a68af788c997d0631a"},
+    {"path":"arb-executor/analysis/window1_v34_dual_side_residency_machine.js","git_blob":"1dfeade2282264159709f09eb71f7ef2d95f92c4","sha256":"e26802f5bcfeab74b77d2b3201386fb527e1d543967c71d05679c2b1d44bc81a"},
+    {"path":"arb-executor/analysis/window1_v35_living_rest_evidence_gate.js","git_blob":"7cc2e1e74253874e2b79200f14950e43aa180cbe","sha256":"14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f"},
+    {"path":"arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js","git_blob":"9427b9053a9c26281dd9b257f28f54c233aa37b5","sha256":"5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73"}
+  ],
+  "adapter": {"path":"arb-executor/v36_shadow_brain.py","git_blob":"11d919bdef7d57359de2a9eac6909a701fbb40d0","sha256":"5fb311a2237a6d435d0991209166ab64c6c8f3c990ab4b53e38ab2e2a7fd4a9a","size":13396,"role":"causal shadow state and exact pure-decision port","exchange_mutation_capability":false},
+  "parity_grid": {"cases":3456,"result":"PASS","comparison":"Python pure decision seam equals frozen JavaScript object-for-object"}
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "stage-c-vps-source-application-v1",
+  "mutation_scope": ["retire verified arb-executor/live_v4.py working diff","fast-forward to prepared source commit"],
+  "before": {"head":"1631c32f6b50eb5b81d712f688163318d746e2f6","live_v4_blob":"c25cd3129248710a665d77eb815a9df6a93c9009","live_v4_sha256":"25698d80642524c70f39d850ef0a7041edda6df9c4d2dbac0c666d58aab56a63","diff_sha256":"6a53d968de2b7ade6f8696bc5ffa68b08121c5f30afacb210b50c02a04d8be55","engine_process_count":0},
+  "after": {"head":"896de4108a855abb75fd6bc31330445579f2f2fb","branch":"codex/stage-c-v36-cutover-prep-20260807","live_v4_blob":"b1ca505c659e8ef92024b124b6caf96c612a1e3b","live_v4_sha256":"9818ab042854c881a3ae53f5f1f437845d2d11a01102b00df76e4a5d8b8d238a","live_v4_size":1001368,"runtime_paths_clean":true,"engine_process_count":0},
+  "conservation": {"restart_count":0,"engine_boot_count":0,"cron_edits":0,"configuration_edits":0,"order_mutations":0,"position_mutations":0,"live_capital_switch":0},
+  "repository_wide_preexisting_tracked_modifications": [".claude/BOARD.md",".claude/live_20260705/NIGHTLY_PASS.md",".claude/render/knob_census_artifact.json",".claude/trendpath/ATLAS_V1.json",".claude/trendpath/LAWFUL_HARVEST_MAP.txt",".claude/trendpath/LIBRARY_V1.json",".claude/trendpath/ORIENT_V1.json","arb-executor/audit_log.json","arb-executor/config/deploy_v5_live.json","arb-executor/deploy/respawn_tennis_odds.sh","arb-executor/kalshi_price_scraper.py","arb-executor/te_live.py"],
+  "repository_wide_clean": false,
+  "scope_note": "Authorized live_v4 runtime paths are committed and clean. The twelve pre-existing unrelated tracked modifications were preserved read-only and remain an explicit launch blocker."
+}

@@ -1183,3 +1183,7 @@ Findable forever; never a new insight. Newest kills first.
 | Constructed mids as analysis anchors | 0A: only bid/ask/last exist | standing |
 
 *(Analysis-artifact graves live in `arb-executor/analysis/dead_ends/README.md` — same law, code-side.)*
+
+### 2026-08-07 · BOOT GATE STAGE C — V36 shadow prepared, exit fallback fail-loud, engine remains parked
+
+Operator-authorized build-don't-switch completed from the exact stopped VPS parent `1631c32f6b50eb5b81d712f688163318d746e2f6`. The audited `live_v4.py` working drift (`c25cd312`, `+692/-39`, 31 hunks) was conserved in its immutable patch receipt and retired in full: zero hunks silently survived. Prepared source commit `896de4108a855abb75fd6bc31330445579f2f2fb` installs the byte-frozen V36 policy as a **shadow-only** receipt brain—no order, cancel, or position authority—and applies the `07541b48` fail-loud nearest-cell exit fallback; the silent 15c constant is absent. R3 behavioral test: PASS (18 assertions). Recorder guard, nightly N20 reconciliation, and capture-only holdout tagging remain green. Engine starts/restarts `0/0`; cron remains inhibited at SHA-256 `405bd4cf...`; no orders/positions/configuration were touched. **Launch stays NO-GO** until a separate explicit operator word and resolution/adoption of twelve pre-existing unrelated VPS tracked modifications. Stage-C receipt: `.claude/boot_gate_stage_c_v36_cutover_prep_20260807/STAGE_C_REPORT.md`.

@@ -1,0 +1,55 @@
+{
+  "schema_version": "stage-c-artifact-hash-manifest-v1",
+  "files": [
+    {
+      "path": "CONTROL_BINDING.json",
+      "bytes": 1838,
+      "sha256": "ca9f9c18ee6ac0bf8b7e68f9225430751a0108193d70518f15a9db44808c2c11"
+    },
+    {
+      "path": "DRIFT_DISPOSITION.json",
+      "bytes": 6683,
+      "sha256": "9b4431201ef2bfca4849d2394cfeae30f63880b9100b93c8035c34643d7a2f75"
+    },
+    {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "bytes": 531,
+      "sha256": "306f8ffa0c724c002cf45298dc3ff3690d69925a90ab4083a47d15c29a9e6b33"
+    },
+    {
+      "path": "INDEPENDENT_REVIEW_INSTRUCTION.md",
+      "bytes": 1158,
+      "sha256": "3833632869680c6c7ddddf6b5828843e95f818c82164ff74168aa4af95bf0127"
+    },
+    {
+      "path": "POLICY_BYTE_IDENTITY.json",
+      "bytes": 1675,
+      "sha256": "0c403936ec9bea872229d1bb2ed70855784e6d1e65629033b7b617f3bbc25312"
+    },
+    {
+      "path": "RECORDER_RECONCILIATION_RECEIPT.json",
+      "bytes": 1619,
+      "sha256": "6215b0303eea2ded7583666684b094493d6ee3a0f3e128b25c2f028b948a7f42"
+    },
+    {
+      "path": "RUNTIME_READINESS_RECEIPT.json",
+      "bytes": 2612,
+      "sha256": "de7074924616f6f06f70d3dc16e0a2effd6789c8cef35f7d46a933489a1c0061"
+    },
+    {
+      "path": "STAGE_C_REPORT.md",
+      "bytes": 4091,
+      "sha256": "32807592c080a6f5e276166dab270b629795ed7d8197a7bf2a02f45f481b0e41"
+    },
+    {
+      "path": "TEST_RESULTS.json",
+      "bytes": 816,
+      "sha256": "c88b9287fae3a8e75999ecd63b168368bcddec9a080fe776a4f61f3429df5e53"
+    },
+    {
+      "path": "VPS_SOURCE_APPLICATION_RECEIPT.json",
+      "bytes": 1712,
+      "sha256": "9a34b4b59b9d0b9f91807a3ff7dd47060faaea404de2b8914948ba967e79acee"
+    }
+  ]
+}

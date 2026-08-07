@@ -1,0 +1,26 @@
+{
+  "schema_version": "stage-c-runtime-readiness-v1",
+  "table": [
+    {"gate":"engine stopped","status":"GO","evidence":"process count 0 before and after source preparation"},
+    {"gate":"keepalive inhibited","status":"GO","evidence":"installed crontab SHA-256 405bd4cf... unchanged; only live_v4 launch line remains commented"},
+    {"gate":"authorized runtime paths committed and clean","status":"GO","evidence":"HEAD 896de410; live_v4 blob b1ca505c; zero status rows for all Stage-C runtime paths"},
+    {"gate":"repository-wide source clean","status":"NO_GO","evidence":"12 unrelated pre-existing tracked modifications remain; Stage C did not have authority to resolve them"},
+    {"gate":"V36 brain shadowed","status":"GO","evidence":"every causal book/trade receipt can emit v36_shadow_*; adapter has no order/cancel/position surface"},
+    {"gate":"V36 policy identity","status":"GO","evidence":"five policy/dependency files byte-identical to bfde0d8; 3,456-case parity grid PASS"},
+    {"gate":"exit fallback hardening present","status":"GO","evidence":"07541b48 behavior; silent 15c default absent; 6 tests PASS"},
+    {"gate":"R3 behavioral test","status":"GO","evidence":"PASS (18 assertions), not unavailable"},
+    {"gate":"recorder guard","status":"GO","evidence":"PID 3459414 writing; guard cron every minute"},
+    {"gate":"nightly reconciliation","status":"GO","evidence":"latest N=20 PASS, 1779 exchange = 1779 recorder prints, zero mismatches"},
+    {"gate":"sealed stream tagging","status":"GO","evidence":"77 capture-only events; registry/state/policy hashes bound; zero decision-relevant consumption"},
+    {"gate":"live-capital cutover authority","status":"NO_GO","evidence":"explicit operator cutover/boot word absent by construction"}
+  ],
+  "stage_c_prep_verdict":"PREPARED_SOURCE_ONLY_ENGINE_PARKED",
+  "launch_verdict":"NO_GO",
+  "launch_blockers":["explicit operator word absent","repository-wide unrelated source drift remains"],
+  "containment_marker_semantics": {
+    "marker":"TEMP_MAINTENANCE_SCHEDULE_LIAR_CONTAINMENT_20260728",
+    "current_effect":"the only root-cron live_v4 launch command is commented; keepalive cannot resurrect the engine",
+    "future_launch_law":"A separately audited operator ceremony must verify zero entry buys and exits/holdings, boot the prepared candidate exactly once with cron still inhibited, validate shadow/hardening health, and restore the original crontab byte-for-byte only after PASS.",
+    "failure_law":"stop candidate, restore f1857199 source if authorized, leave engine stopped and cron inhibited, never retry automatically"
+  }
+}

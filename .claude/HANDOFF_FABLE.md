@@ -1482,3 +1482,7 @@ BOT_DOWN phone (plumbing live, dormant).
 git fetch → read BOARD top-to-bottom → report (a) live state, (b) the
 open queue in order, (c) the one recommended next send. Nothing
 dispatches without operator word.
+
+## 2026-08-07 STAGE C HANDOFF
+
+V36 cutover preparation is source-complete but not launch-authorized. VPS HEAD is the committed runtime preparation `896de4108a855abb75fd6bc31330445579f2f2fb`; engine count remains zero and the live_v4 keepalive cron line remains inhibited. V36 runs only as a no-order shadow receipt path. Missing exit cells fail loud and borrow nearest same-category; the silent 15c fallback is gone. Recorder guard and nightly N20 reconciliation are green; sealed-stream tagging remains capture-only. Do not boot, restore cron, or switch capital without a separate operator ceremony. Twelve unrelated pre-existing tracked VPS modifications remain an explicit repository-wide clean-state blocker. Canonical receipt: `.claude/boot_gate_stage_c_v36_cutover_prep_20260807/STAGE_C_REPORT.md`.

@@ -1,0 +1,78 @@
+{
+  "schema_version": "stage-c-source-hash-manifest-v1",
+  "runtime_commit": "896de4108a855abb75fd6bc31330445579f2f2fb",
+  "files": [
+    {
+      "path": "arb-executor/live_v4.py",
+      "bytes": 1001368,
+      "sha256": "9818ab042854c881a3ae53f5f1f437845d2d11a01102b00df76e4a5d8b8d238a",
+      "git_blob": "b1ca505c659e8ef92024b124b6caf96c612a1e3b"
+    },
+    {
+      "path": "arb-executor/v36_shadow_brain.py",
+      "bytes": 13396,
+      "sha256": "5fb311a2237a6d435d0991209166ab64c6c8f3c990ab4b53e38ab2e2a7fd4a9a",
+      "git_blob": "11d919bdef7d57359de2a9eac6909a701fbb40d0"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v29r3_standing_floor_release_policy.js",
+      "bytes": 3367,
+      "sha256": "12c223e7e62bd22888aee6cec31d7a44ed4dcc644bd1e432e9604f6ba0864663",
+      "git_blob": "ed35616df0878bca7bc554eaa8030963f18fa609"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v32_no_chase_state_machine.js",
+      "bytes": 4187,
+      "sha256": "414b1079a03ad1938a2b2dcc80f230e72a928662176582a68af788c997d0631a",
+      "git_blob": "0e48776cd6b92c1ec4e428e0abff6eab35563d94"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v34_dual_side_residency_machine.js",
+      "bytes": 3866,
+      "sha256": "e26802f5bcfeab74b77d2b3201386fb527e1d543967c71d05679c2b1d44bc81a",
+      "git_blob": "1dfeade2282264159709f09eb71f7ef2d95f92c4"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js",
+      "bytes": 3467,
+      "sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+      "git_blob": "7cc2e1e74253874e2b79200f14950e43aa180cbe"
+    },
+    {
+      "path": "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js",
+      "bytes": 3796,
+      "sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+      "git_blob": "9427b9053a9c26281dd9b257f28f54c233aa37b5"
+    },
+    {
+      "path": "arb-executor/tests/test_exit_cell_fail_loud.py",
+      "bytes": 3281,
+      "sha256": "5699814be4795e0c430ad1195e92882cc458005d527fbaa7fad62dfe7efaebea",
+      "git_blob": "a49c885261f65dfadd84fb045363a0538f3525c1"
+    },
+    {
+      "path": "arb-executor/tests/test_stage_c_v36_shadow.py",
+      "bytes": 5129,
+      "sha256": "9cd0f94641740fe82fa53f199489f035df0a485b03df4ea8bfe63fc11ba86857",
+      "git_blob": "b6e86c368966f83a9a0eec708fec2f235b7ce572"
+    },
+    {
+      "path": "arb-executor/tests/test_window1_v29r3_standing_floor_release_policy.js",
+      "bytes": 2326,
+      "sha256": "c120fde464e346f3c9fc0b6923ce56c24bcd86dcdde459038fce0fed2d8ff123",
+      "git_blob": "4046f8ea267668566ea5cc0599fa2607abd9e64c"
+    },
+    {
+      "path": "arb-executor/tests/test_boot_gate_stage_c_cutover_prep.js",
+      "bytes": 2287,
+      "sha256": "05c2dbdedcd03aef2d69d7685ba0e3634c58d5def537b64917ceef0dc367826e",
+      "git_blob": "c15dcbb7ba0cf190d6e6419cf8a60dd584585b6f"
+    },
+    {
+      "path": "arb-executor/analysis/build_boot_gate_stage_c_receipts.js",
+      "bytes": 2542,
+      "sha256": "7f67b575a698032dea4d27be8efc152df2f36d75a7e35e63f285ad081442de58",
+      "git_blob": "47271d368ec51c122bc14d2d93d0e46792c10353"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version":"stage-c-forbidden-access-v1",
+  "engine_starts":0,
+  "engine_restarts":0,
+  "cron_restorations":0,
+  "cron_edits":0,
+  "order_reads":0,
+  "order_mutations":0,
+  "position_reads":0,
+  "position_mutations":0,
+  "configuration_mutations":0,
+  "live_capital_switches":0,
+  "live_v4_source_mutations":1,
+  "authorized_source_mutation":"retire hash-verified drift and install committed V36-shadow plus 07541b48 hardening while process count remained zero",
+  "recorder_mutations":0,
+  "sealed_stream_mutations":0
+}

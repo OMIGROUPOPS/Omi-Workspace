@@ -1,0 +1,12 @@
+{
+  "schema_version": "boot-gate-stage-c-v36-cutover-prep-v1",
+  "constructed_utc": "2026-08-07T16:00:00Z",
+  "vps": {"host":"root@104.131.191.95","repository":"/root/Omi-Workspace","parent_commit":"1631c32f6b50eb5b81d712f688163318d746e2f6","prepared_commit":"896de4108a855abb75fd6bc31330445579f2f2fb","branch":"codex/stage-c-v36-cutover-prep-20260807"},
+  "preimage": {"blob":"f1857199164664037fef41b024e60f27fa373548","sha256":"834b9e04e2cd1781b7f55fdcf80ed90555bd12341b6e98ec75ad4b06d77f1d54","size":997352},
+  "retired_working_source": {"blob":"c25cd3129248710a665d77eb815a9df6a93c9009","sha256":"25698d80642524c70f39d850ef0a7041edda6df9c4d2dbac0c666d58aab56a63","diff_sha256":"6a53d968de2b7ade6f8696bc5ffa68b08121c5f30afacb210b50c02a04d8be55"},
+  "prepared_source": {"blob":"b1ca505c659e8ef92024b124b6caf96c612a1e3b","sha256":"9818ab042854c881a3ae53f5f1f437845d2d11a01102b00df76e4a5d8b8d238a","size":1001368},
+  "v36": {"policy_commit":"bfde0d8d1135f5c5f48a5f3d619ab30050efab83","operative_readjudication":"a76377d7e9e9085c14b3b396a008fddddbb6e627","mode":"SHADOW_DECISIONS_ONLY","order_authority":false,"cancel_authority":false,"position_authority":false},
+  "exit_hardening": {"commit":"07541b48b246155294939ac28808b70655b25b69","silent_15c_fallback_present":false,"nearest_cell_borrow":"FAIL_LOUD_RECEIPTED","no_surface":"RAISE"},
+  "containment": {"engine_process_count":0,"inhibited_crontab_sha256":"405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149","original_crontab_backup":"/root/root.crontab.pre_schedule_liar_stop_20260728_e7004235.raw","original_crontab_sha256":"4c38967f85112908020b7207f491a8486cbfc9c70a8b9d6c8cc5d0a2500c98f4","launch_authorized":false},
+  "forbidden_mutations": {"engine_start":0,"engine_restart":0,"cron_restore":0,"orders":0,"positions":0,"configuration":0,"live_capital_switch":0}
+}

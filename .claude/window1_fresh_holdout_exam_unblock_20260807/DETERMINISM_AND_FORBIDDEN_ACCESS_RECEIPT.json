@@ -1,0 +1,20 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-determinism-access-v1",
+  "dev_804_determinism": {
+    "V36": "PASS_BYTE_IDENTICAL",
+    "V35": "PASS_BYTE_IDENTICAL"
+  },
+  "sealed_exam_artifact_determinism": "NOT_REACHED_DUE_TO_CONSUMED_SERIALIZATION_FAILURE",
+  "sealed_replay_invocations": 1,
+  "retries": 0,
+  "policy_file_mutations": 0,
+  "live_engine_access": 0,
+  "account_access": 0,
+  "order_access": 0,
+  "position_access": 0,
+  "trading_access": 0,
+  "tuning": 0,
+  "R3_invocations": 0,
+  "network_during_exam_replay": 0,
+  "authorized_pre_exam_network": "PUBLIC_TRADE_REPULL_AND_N20_RECONCILIATION_ONLY"
+}

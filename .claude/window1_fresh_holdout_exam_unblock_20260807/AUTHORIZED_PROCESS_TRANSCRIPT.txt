@@ -1,0 +1,24 @@
+V36_SEALED171_ADAPTER events=25/171
+V36_SEALED171_ADAPTER events=50/171
+V36_SEALED171_ADAPTER events=75/171
+V36_SEALED171_ADAPTER events=100/171
+V36_SEALED171_ADAPTER events=125/171
+V36_SEALED171_ADAPTER events=150/171
+V36_SEALED171_ADAPTER events=171/171
+C:\Users\omigr\OMI-Workspace-codex-window1\arb-executor\analysis\window1_fresh_holdout_exam_adapter.js:62
+function gzipRows(rows) { return zlib.gzipSync(Buffer.from(`${rows.map(JSON.stringify).join("\n")}\n`), { level: 9, mtime: 0 }); }
+                                                                                       ^
+
+RangeError: Invalid string length
+    at Array.join (<anonymous>)
+    at gzipRows (C:\Users\omigr\OMI-Workspace-codex-window1\arb-executor\analysis\window1_fresh_holdout_exam_adapter.js:62:88)
+    at buildBrainArtifacts (C:\Users\omigr\OMI-Workspace-codex-window1\arb-executor\analysis\window1_fresh_holdout_exam_adapter.js:363:37)
+    at runExam (C:\Users\omigr\OMI-Workspace-codex-window1\arb-executor\analysis\window1_fresh_holdout_exam_adapter.js:397:28)
+    at Object.<anonymous> (C:\Users\omigr\OMI-Workspace-codex-window1\arb-executor\analysis\window1_fresh_holdout_exam_adapter.js:446:35)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Module._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+
+Node.js v24.11.1

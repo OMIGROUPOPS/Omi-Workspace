@@ -1,0 +1,25 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-source-manifest-v1",
+  "files": {
+    "arb-executor/analysis/window1_fresh_holdout_exam_adapter.js": {
+      "bytes": 36392,
+      "sha256": "1e08d44ac8db355a048e470359ba670427d9a773bf917c25b970bfba541a279e"
+    },
+    "arb-executor/analysis/window1_sealed_print_repull.py": {
+      "bytes": 13095,
+      "sha256": "8d8add49f90e3b1b5934838588edafd784b22a85a9711dca669ab15736aeb802"
+    },
+    "arb-executor/analysis/window1_sealed_tape_bundle.py": {
+      "bytes": 1742,
+      "sha256": "e1cd7016368262c409b7eeee872532313be43bf91bdfa01bede354e3f6f5e4a9"
+    },
+    "arb-executor/tests/test_window1_fresh_holdout_exam_adapter.js": {
+      "bytes": 835,
+      "sha256": "dd75cb79f689cdebcdbd06b0ad3fe4d0adf890793b99a8215d9c07dc52720edd"
+    },
+    "arb-executor/tests/test_window1_sealed_print_repull.py": {
+      "bytes": 1851,
+      "sha256": "99602a8e1f2a6ccf5528974ed61855e2f2bd6d6ea3508c26b06e31630b2350ab"
+    }
+  }
+}

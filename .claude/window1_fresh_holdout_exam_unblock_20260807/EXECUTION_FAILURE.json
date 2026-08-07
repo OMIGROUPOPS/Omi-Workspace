@@ -1,0 +1,50 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-consumed-failure-v1",
+  "status": "FAILED_NO_RETRY",
+  "authorization": "OPERATOR_PROMPT_EXAM_UNBLOCK_20260807",
+  "authorization_consumed": true,
+  "process_exit_code": 1,
+  "invocation_count": 1,
+  "retries": 0,
+  "event_population": 171,
+  "brains_authorized": [
+    "V36",
+    "V35"
+  ],
+  "brain_policy_evaluations": {
+    "V36_events": 171,
+    "V35_events": 0,
+    "R3_events": 0
+  },
+  "failure_stage": "V36_ARTIFACT_SERIALIZATION_BEFORE_SCORE_OUTPUT",
+  "error_type": "RangeError",
+  "error": "Invalid string length",
+  "error_site": "arb-executor/analysis/window1_fresh_holdout_exam_adapter.js:62:88 gzipRows Array.join",
+  "completed_scorecards": 0,
+  "completed_frontiers": 0,
+  "completed_regret_outputs": 0,
+  "performance_conclusions_available": false,
+  "partial_results_directory": ".claude/window1_fresh_holdout_exam_results_20260807",
+  "partial_directory_files": [
+    {
+      "path": "EXECUTION_START_RECEIPT.json",
+      "bytes": 593,
+      "sha256": "0300555adaf9ae5b0c37b9bac89023972057815c11d84bec164e7c088cc04e48"
+    }
+  ],
+  "empty_runtime_directories_observed": [
+    ".scratch-v36"
+  ],
+  "partial_outputs_modified_after_failure": false,
+  "retry_permitted": false,
+  "network_during_policy_replay": 0,
+  "live_engine_access": 0,
+  "order_access": 0,
+  "position_access": 0,
+  "trading_access": 0,
+  "R3_exclusion": {
+    "status": "EXCLUDED",
+    "blocker_commit": "4f4d546421043f187bc73e2d9ad1eca0b9cf7f36",
+    "dev_context_only": true
+  }
+}

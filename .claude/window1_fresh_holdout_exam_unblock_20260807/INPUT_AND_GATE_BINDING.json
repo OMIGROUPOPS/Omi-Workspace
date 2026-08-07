@@ -1,0 +1,40 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-input-gate-binding-v1",
+  "events": 171,
+  "legs": 342,
+  "event_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+  "boundary_ledger_sha256": "70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a",
+  "public_prints": {
+    "rows": 1062870,
+    "positive_size_rows": 1062870,
+    "bytes": 386455418,
+    "sha256": "f3924d1274e9b79bab2cbba133cc80d2ccd5622e0fa28a5c09bc0ec9448325a2",
+    "fully_paginated_pages": 1231,
+    "failed_tickers": 0
+  },
+  "sealed_tapes": {
+    "files": 342,
+    "declared_hash_mismatches": 0,
+    "tar_bytes": 86937600,
+    "tar_sha256": "8c6c00cdb721040db8dfa2d5436d594501c9109a5f0994af7433064bd77d9605"
+  },
+  "nightly_method_spot_reconciliation": {
+    "sample_events": 20,
+    "exchange_trades": 155463,
+    "canonical_prints": 155463,
+    "missing_from_capture": 0,
+    "missing_from_exchange": 0,
+    "price_mismatches": 0,
+    "size_mismatches": 0,
+    "side_mismatches": 0,
+    "pass": true
+  },
+  "dev_inertness": {
+    "receipt_sha256": "9c5eea815a049c4744a6d321fbf829c02e18ea0e13b86c51a80ea32672aef3e0",
+    "V36_decisions": 3631920,
+    "V35_decisions": 3610317,
+    "trace_scorecard_frontier_byte_identical": true,
+    "sealed_exam_invocations_before_authorized_process": 0,
+    "pass": true
+  }
+}

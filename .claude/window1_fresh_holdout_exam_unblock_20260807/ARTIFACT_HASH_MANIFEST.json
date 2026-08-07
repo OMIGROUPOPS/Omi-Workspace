@@ -1,0 +1,50 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-artifact-manifest-v1",
+  "manifest_self_excluded": true,
+  "files": {
+    "AUTHORIZED_PROCESS_TRANSCRIPT.txt": {
+      "bytes": 1516,
+      "sha256": "8f428f5508ed6ccfcd2bc2d0ed855a0ebe5333ceab5f952589126dad7f610137"
+    },
+    "DETERMINISM_AND_FORBIDDEN_ACCESS_RECEIPT.json": {
+      "bytes": 620,
+      "sha256": "235025cd81d58ae4c47a9a0c6b176e120bb3f5cdc9cebe2f80e84330b296cd47"
+    },
+    "DEV_INERTNESS/ARTIFACT_HASH_MANIFEST.json": {
+      "bytes": 167,
+      "sha256": "b1df19eeee3f56f6357910048e1e79b80d7855202082b211c199b072ceae88ab"
+    },
+    "DEV_INERTNESS/DEV_INERTNESS_RECEIPT.json": {
+      "bytes": 1068,
+      "sha256": "9c5eea815a049c4744a6d321fbf829c02e18ea0e13b86c51a80ea32672aef3e0"
+    },
+    "EXECUTION_FAILURE.json": {
+      "bytes": 1525,
+      "sha256": "6684f472612524a60c0690f9d1381201935263a0010525ee8cbcf08168162ad5"
+    },
+    "INDEPENDENT_AUDIT_INSTRUCTION.md": {
+      "bytes": 564,
+      "sha256": "7bc3254b49f44030280efba0319663678d27fdfcd3185aef84ea7f76288c6ee7"
+    },
+    "INPUT_AND_GATE_BINDING.json": {
+      "bytes": 1331,
+      "sha256": "77a66494951bfac9aa8923b8a0ebde1c585bfa6de11a7fb8b261324d40568608"
+    },
+    "PRINT_REPULL_RECEIPT.json": {
+      "bytes": 235789,
+      "sha256": "722e6de741d82f458a1ebcde2c5a4eabc4cbc20ae0d0abe8ccf745b9fc1890d9"
+    },
+    "REPORT.md": {
+      "bytes": 1920,
+      "sha256": "5dfab63d7491806c60eda8bbd42f3b3f81606c4d31fec1db690312e014d1d7f1"
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "bytes": 972,
+      "sha256": "cdbb3a38d44b7c9c5ce4430b0526e957b9a830fa221dd5f4ec3b31481831162a"
+    },
+    "../window1_fresh_holdout_exam_results_20260807/EXECUTION_START_RECEIPT.json": {
+      "bytes": 593,
+      "sha256": "0300555adaf9ae5b0c37b9bac89023972057815c11d84bec164e7c088cc04e48"
+    }
+  }
+}

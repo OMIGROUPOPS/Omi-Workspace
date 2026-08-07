@@ -1,0 +1,36 @@
+{
+  "schema_version": "window1-sealed-exam-dev-inertness-v1",
+  "brains": {
+    "V36": {
+      "commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+      "checks": {
+        "strict_trace_byte_identical": true,
+        "census_trace_byte_identical": true,
+        "full_scorecard_byte_identical": true,
+        "strict_frontier_byte_identical": true,
+        "census_frontier_byte_identical": true
+      },
+      "pass": true,
+      "decisions_inspected": 3631920,
+      "strict_events": 804,
+      "census_events": 804
+    },
+    "V35": {
+      "commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+      "checks": {
+        "strict_trace_byte_identical": true,
+        "census_trace_byte_identical": true,
+        "full_scorecard_byte_identical": true,
+        "strict_frontier_byte_identical": true,
+        "census_frontier_byte_identical": true
+      },
+      "pass": true,
+      "decisions_inspected": 3610317,
+      "strict_events": 804,
+      "census_events": 804
+    }
+  },
+  "pass": true,
+  "scorer_or_policy_mutations": 0,
+  "sealed_exam_invocations": 0
+}

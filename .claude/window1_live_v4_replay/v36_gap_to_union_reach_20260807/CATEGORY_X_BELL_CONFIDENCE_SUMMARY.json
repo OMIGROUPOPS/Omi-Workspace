@@ -1,0 +1,1745 @@
+{
+  "conservation": {
+    "expected": 804,
+    "games": 804,
+    "pass": true
+  },
+  "rows": [
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_CHALL",
+      "games": 5,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 5,
+      "shallow_gap_cents_per_game": {
+        "max": 9,
+        "median": 3,
+        "min": 1,
+        "n": 5,
+        "p25": 2,
+        "p75": 5,
+        "p90": 9,
+        "sum": 20
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 9,
+        "median": 3,
+        "min": 1,
+        "n": 5,
+        "p25": 2,
+        "p75": 5,
+        "p90": 9,
+        "sum": 20
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_CHALL",
+      "games": 2,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 4,
+        "median": 1,
+        "min": 1,
+        "n": 2,
+        "p25": 1,
+        "p75": 4,
+        "p90": 4,
+        "sum": 5
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 4,
+        "median": 1,
+        "min": 1,
+        "n": 2,
+        "p25": 1,
+        "p75": 4,
+        "p90": 4,
+        "sum": 5
+      },
+      "v36_completed_games": 2
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "ATP_CHALL",
+      "games": 1,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "ATP_CHALL",
+      "games": 12,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 12,
+      "shallow_gap_cents_per_game": {
+        "max": 44,
+        "median": 14,
+        "min": 1,
+        "n": 11,
+        "p25": 2,
+        "p75": 29,
+        "p90": 33,
+        "sum": 192
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 44,
+        "median": 14,
+        "min": 1,
+        "n": 11,
+        "p25": 2,
+        "p75": 29,
+        "p90": 33,
+        "sum": 192
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "ATP_CHALL",
+      "games": 3,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 50,
+        "median": 5,
+        "min": 2,
+        "n": 3,
+        "p25": 2,
+        "p75": 50,
+        "p90": 50,
+        "sum": 57
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 30,
+        "median": 5,
+        "min": 2,
+        "n": 4,
+        "p25": 2,
+        "p75": 20,
+        "p90": 30,
+        "sum": 57
+      },
+      "v36_completed_games": 3
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "ATP_CHALL",
+      "games": 3,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 6,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "ATP_CHALL",
+      "games": 5,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 5
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "ATP_CHALL",
+      "games": 72,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 72,
+      "shallow_gap_cents_per_game": {
+        "max": 15,
+        "median": 3,
+        "min": 1,
+        "n": 53,
+        "p25": 1,
+        "p75": 4,
+        "p90": 7,
+        "sum": 190
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 15,
+        "median": 3,
+        "min": 1,
+        "n": 53,
+        "p25": 1,
+        "p75": 4,
+        "p90": 7,
+        "sum": 190
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "ATP_CHALL",
+      "games": 28,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 10,
+        "median": 2,
+        "min": 1,
+        "n": 28,
+        "p25": 1,
+        "p75": 5,
+        "p90": 8,
+        "sum": 97
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 9,
+        "median": 2,
+        "min": 1,
+        "n": 37,
+        "p25": 1,
+        "p75": 3,
+        "p90": 6,
+        "sum": 97
+      },
+      "v36_completed_games": 28
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_CHALL",
+      "games": 15,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 30,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_CHALL",
+      "games": 15,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 15
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_CHALL",
+      "games": 2,
+      "grade_class": "NO_REACH",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_CHALL",
+      "games": 132,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 132,
+      "shallow_gap_cents_per_game": {
+        "max": 31,
+        "median": 3,
+        "min": 1,
+        "n": 99,
+        "p25": 2,
+        "p75": 4,
+        "p90": 5,
+        "sum": 336
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 31,
+        "median": 3,
+        "min": 1,
+        "n": 99,
+        "p25": 2,
+        "p75": 4,
+        "p90": 5,
+        "sum": 336
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_CHALL",
+      "games": 48,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 85,
+        "median": 2,
+        "min": 1,
+        "n": 48,
+        "p25": 1,
+        "p75": 4,
+        "p90": 7,
+        "sum": 314
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 60,
+        "median": 2,
+        "min": 1,
+        "n": 58,
+        "p25": 1,
+        "p75": 4,
+        "p90": 7,
+        "sum": 314
+      },
+      "v36_completed_games": 48
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "ATP_CHALL",
+      "games": 7,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 7
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "ATP_CHALL",
+      "games": 2,
+      "grade_class": "NO_REACH",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "ATP_CHALL",
+      "games": 6,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 6,
+      "shallow_gap_cents_per_game": {
+        "max": 9,
+        "median": 7,
+        "min": 1,
+        "n": 5,
+        "p25": 5,
+        "p75": 9,
+        "p90": 9,
+        "sum": 31
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 9,
+        "median": 7,
+        "min": 1,
+        "n": 5,
+        "p25": 5,
+        "p75": 9,
+        "p90": 9,
+        "sum": 31
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "ATP_CHALL",
+      "games": 11,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 3,
+        "median": 2,
+        "min": 1,
+        "n": 11,
+        "p25": 1,
+        "p75": 3,
+        "p90": 3,
+        "sum": 22
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 3,
+        "median": 1,
+        "min": 1,
+        "n": 12,
+        "p25": 1,
+        "p75": 3,
+        "p90": 3,
+        "sum": 22
+      },
+      "v36_completed_games": 11
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_MAIN",
+      "games": 6,
+      "grade_class": "NO_REACH",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 3
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_MAIN",
+      "games": 2,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 2,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_MAIN",
+      "games": 1,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 1,
+        "median": 1,
+        "min": 1,
+        "n": 1,
+        "p25": 1,
+        "p75": 1,
+        "p90": 1,
+        "sum": 1
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 1,
+        "median": 1,
+        "min": 1,
+        "n": 1,
+        "p25": 1,
+        "p75": 1,
+        "p90": 1,
+        "sum": 1
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "ATP_MAIN",
+      "games": 2,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 2,
+      "shallow_gap_cents_per_game": {
+        "max": 68,
+        "median": 2,
+        "min": 2,
+        "n": 2,
+        "p25": 2,
+        "p75": 68,
+        "p90": 68,
+        "sum": 70
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 68,
+        "median": 2,
+        "min": 2,
+        "n": 2,
+        "p25": 2,
+        "p75": 68,
+        "p90": 68,
+        "sum": 70
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "ATP_MAIN",
+      "games": 1,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "ATP_MAIN",
+      "games": 17,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 17,
+      "shallow_gap_cents_per_game": {
+        "max": 24,
+        "median": 6,
+        "min": 1,
+        "n": 17,
+        "p25": 2,
+        "p75": 9,
+        "p90": 11,
+        "sum": 111
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 24,
+        "median": 6,
+        "min": 1,
+        "n": 17,
+        "p25": 2,
+        "p75": 9,
+        "p90": 11,
+        "sum": 111
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "ATP_MAIN",
+      "games": 19,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 8,
+        "median": 4,
+        "min": 1,
+        "n": 19,
+        "p25": 2,
+        "p75": 6,
+        "p90": 7,
+        "sum": 78
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 8,
+        "median": 2,
+        "min": 1,
+        "n": 28,
+        "p25": 1,
+        "p75": 4,
+        "p90": 6,
+        "sum": 78
+      },
+      "v36_completed_games": 19
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_MAIN",
+      "games": 7,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 14,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_MAIN",
+      "games": 3,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 3
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_MAIN",
+      "games": 48,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 48,
+      "shallow_gap_cents_per_game": {
+        "max": 57,
+        "median": 3,
+        "min": 1,
+        "n": 45,
+        "p25": 2,
+        "p75": 5,
+        "p90": 9,
+        "sum": 230
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 57,
+        "median": 3,
+        "min": 1,
+        "n": 45,
+        "p25": 2,
+        "p75": 5,
+        "p90": 9,
+        "sum": 230
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_MAIN",
+      "games": 32,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 97,
+        "median": 4,
+        "min": 1,
+        "n": 32,
+        "p25": 2,
+        "p75": 6,
+        "p90": 10,
+        "sum": 315
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 59,
+        "median": 3,
+        "min": 1,
+        "n": 43,
+        "p25": 1,
+        "p75": 5,
+        "p90": 26,
+        "sum": 315
+      },
+      "v36_completed_games": 32
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "ATP_MAIN",
+      "games": 1,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 1,
+      "shallow_gap_cents_per_game": {
+        "max": 2,
+        "median": 2,
+        "min": 2,
+        "n": 1,
+        "p25": 2,
+        "p75": 2,
+        "p90": 2,
+        "sum": 2
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 2,
+        "median": 2,
+        "min": 2,
+        "n": 1,
+        "p25": 2,
+        "p75": 2,
+        "p90": 2,
+        "sum": 2
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "ATP_MAIN",
+      "games": 8,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 49,
+        "median": 2,
+        "min": 1,
+        "n": 8,
+        "p25": 2,
+        "p75": 4,
+        "p90": 49,
+        "sum": 68
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 43,
+        "median": 2,
+        "min": 1,
+        "n": 11,
+        "p25": 1,
+        "p75": 4,
+        "p90": 6,
+        "sum": 68
+      },
+      "v36_completed_games": 8
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "WTA_CHALL",
+      "games": 1,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 1,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "WTA_CHALL",
+      "games": 3,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 3,
+      "shallow_gap_cents_per_game": {
+        "max": 11,
+        "median": 2,
+        "min": 1,
+        "n": 3,
+        "p25": 1,
+        "p75": 11,
+        "p90": 11,
+        "sum": 14
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 11,
+        "median": 2,
+        "min": 1,
+        "n": 3,
+        "p25": 1,
+        "p75": 11,
+        "p90": 11,
+        "sum": 14
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_CHALL",
+      "games": 1,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 2,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_CHALL",
+      "games": 4,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 4
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_CHALL",
+      "games": 29,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 29,
+      "shallow_gap_cents_per_game": {
+        "max": 4,
+        "median": 2,
+        "min": 1,
+        "n": 17,
+        "p25": 1,
+        "p75": 3,
+        "p90": 4,
+        "sum": 36
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 4,
+        "median": 2,
+        "min": 1,
+        "n": 17,
+        "p25": 1,
+        "p75": 3,
+        "p90": 4,
+        "sum": 36
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_CHALL",
+      "games": 6,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 5,
+        "median": 2,
+        "min": 1,
+        "n": 6,
+        "p25": 1,
+        "p75": 2,
+        "p90": 5,
+        "sum": 13
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 3,
+        "median": 2,
+        "min": 1,
+        "n": 7,
+        "p25": 1,
+        "p75": 2,
+        "p90": 3,
+        "sum": 13
+      },
+      "v36_completed_games": 6
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_CHALL",
+      "games": 2,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 4,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_CHALL",
+      "games": 4,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 4
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_CHALL",
+      "games": 65,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 65,
+      "shallow_gap_cents_per_game": {
+        "max": 55,
+        "median": 4,
+        "min": 1,
+        "n": 49,
+        "p25": 2,
+        "p75": 15,
+        "p90": 44,
+        "sum": 612
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 55,
+        "median": 4,
+        "min": 1,
+        "n": 49,
+        "p25": 2,
+        "p75": 15,
+        "p90": 44,
+        "sum": 612
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_CHALL",
+      "games": 9,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 77,
+        "median": 2,
+        "min": 1,
+        "n": 9,
+        "p25": 1,
+        "p75": 33,
+        "p90": 77,
+        "sum": 162
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 56,
+        "median": 2,
+        "min": 1,
+        "n": 11,
+        "p25": 1,
+        "p75": 33,
+        "p90": 37,
+        "sum": 162
+      },
+      "v36_completed_games": 9
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "WTA_CHALL",
+      "games": 1,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "WTA_CHALL",
+      "games": 6,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 6,
+      "shallow_gap_cents_per_game": {
+        "max": 20,
+        "median": 1,
+        "min": 1,
+        "n": 5,
+        "p25": 1,
+        "p75": 3,
+        "p90": 20,
+        "sum": 26
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 20,
+        "median": 1,
+        "min": 1,
+        "n": 5,
+        "p25": 1,
+        "p75": 3,
+        "p90": 20,
+        "sum": 26
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "WTA_CHALL",
+      "games": 5,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 45,
+        "median": 30,
+        "min": 2,
+        "n": 5,
+        "p25": 22,
+        "p75": 36,
+        "p90": 45,
+        "sum": 135
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 37,
+        "median": 8,
+        "min": 1,
+        "n": 10,
+        "p25": 1,
+        "p75": 17,
+        "p90": 35,
+        "sum": 135
+      },
+      "v36_completed_games": 5
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "WTA_MAIN",
+      "games": 4,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 4
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "WTA_MAIN",
+      "games": 6,
+      "grade_class": "NO_REACH",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "WTA_MAIN",
+      "games": 2,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 2,
+      "shallow_gap_cents_per_game": {
+        "max": 2,
+        "median": 2,
+        "min": 2,
+        "n": 1,
+        "p25": 2,
+        "p75": 2,
+        "p90": 2,
+        "sum": 2
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 2,
+        "median": 2,
+        "min": 2,
+        "n": 1,
+        "p25": 2,
+        "p75": 2,
+        "p90": 2,
+        "sum": 2
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "WTA_MAIN",
+      "games": 2,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 1,
+        "median": 1,
+        "min": 1,
+        "n": 2,
+        "p25": 1,
+        "p75": 1,
+        "p90": 1,
+        "sum": 2
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 1,
+        "median": 1,
+        "min": 1,
+        "n": 2,
+        "p25": 1,
+        "p75": 1,
+        "p90": 1,
+        "sum": 2
+      },
+      "v36_completed_games": 2
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "WTA_MAIN",
+      "games": 1,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 2,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "WTA_MAIN",
+      "games": 1,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "contradictory",
+      "category": "WTA_MAIN",
+      "games": 3,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 3,
+      "shallow_gap_cents_per_game": {
+        "max": 12,
+        "median": 3,
+        "min": 2,
+        "n": 3,
+        "p25": 2,
+        "p75": 12,
+        "p90": 12,
+        "sum": 17
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 12,
+        "median": 3,
+        "min": 2,
+        "n": 3,
+        "p25": 2,
+        "p75": 12,
+        "p90": 12,
+        "sum": 17
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_MAIN",
+      "games": 3,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 6,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_MAIN",
+      "games": 2,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 2
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_MAIN",
+      "games": 31,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 31,
+      "shallow_gap_cents_per_game": {
+        "max": 34,
+        "median": 3,
+        "min": 1,
+        "n": 27,
+        "p25": 2,
+        "p75": 5,
+        "p90": 8,
+        "sum": 128
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 34,
+        "median": 3,
+        "min": 1,
+        "n": 27,
+        "p25": 2,
+        "p75": 5,
+        "p90": 8,
+        "sum": 128
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "exact",
+      "category": "WTA_MAIN",
+      "games": 13,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 13,
+        "median": 2,
+        "min": 1,
+        "n": 13,
+        "p25": 2,
+        "p75": 6,
+        "p90": 8,
+        "sum": 53
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 13,
+        "median": 2,
+        "min": 1,
+        "n": 14,
+        "p25": 2,
+        "p75": 6,
+        "p90": 8,
+        "sum": 53
+      },
+      "v36_completed_games": 13
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_MAIN",
+      "games": 3,
+      "grade_class": "BOTH_MISSING",
+      "missing_sides": 6,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_MAIN",
+      "games": 4,
+      "grade_class": "MATCHED",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 4
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_MAIN",
+      "games": 43,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 43,
+      "shallow_gap_cents_per_game": {
+        "max": 42,
+        "median": 4,
+        "min": 1,
+        "n": 36,
+        "p25": 2,
+        "p75": 7,
+        "p90": 11,
+        "sum": 227
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 42,
+        "median": 4,
+        "min": 1,
+        "n": 36,
+        "p25": 2,
+        "p75": 7,
+        "p90": 11,
+        "sum": 227
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "live_by_only",
+      "category": "WTA_MAIN",
+      "games": 18,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 18,
+        "median": 2,
+        "min": 1,
+        "n": 18,
+        "p25": 1,
+        "p75": 4,
+        "p90": 13,
+        "sum": 68
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 17,
+        "median": 2,
+        "min": 1,
+        "n": 21,
+        "p25": 1,
+        "p75": 4,
+        "p90": 6,
+        "sum": 68
+      },
+      "v36_completed_games": 18
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "WTA_MAIN",
+      "games": 3,
+      "grade_class": "NO_REACH",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 1
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "WTA_MAIN",
+      "games": 6,
+      "grade_class": "ONE_MISSING",
+      "missing_sides": 6,
+      "shallow_gap_cents_per_game": {
+        "max": 7,
+        "median": 5,
+        "min": 2,
+        "n": 5,
+        "p25": 4,
+        "p75": 5,
+        "p90": 7,
+        "sum": 23
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 7,
+        "median": 5,
+        "min": 2,
+        "n": 5,
+        "p25": 4,
+        "p75": 5,
+        "p90": 7,
+        "sum": 23
+      },
+      "v36_completed_games": 0
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "WTA_MAIN",
+      "games": 7,
+      "grade_class": "SHALLOW",
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 4,
+        "median": 2,
+        "min": 1,
+        "n": 7,
+        "p25": 1,
+        "p75": 4,
+        "p90": 4,
+        "sum": 16
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 4,
+        "median": 1,
+        "min": 1,
+        "n": 8,
+        "p25": 1,
+        "p75": 2,
+        "p90": 4,
+        "sum": 16
+      },
+      "v36_completed_games": 7
+    }
+  ]
+}

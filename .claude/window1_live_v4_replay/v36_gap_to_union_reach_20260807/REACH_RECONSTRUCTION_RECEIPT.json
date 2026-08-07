@@ -1,0 +1,80 @@
+{
+  "controlling_commit": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "exact_match": true,
+  "expected": {
+    "print_rows": 373203,
+    "quote": {
+      "both": 692,
+      "legs": 1384,
+      "none": 112,
+      "one": 0,
+      "sum": 68143
+    },
+    "trade": {
+      "both": 773,
+      "legs": 1557,
+      "none": 20,
+      "one": 11,
+      "sum": 72870
+    },
+    "union": {
+      "both": 785,
+      "frontier": {
+        "LE_93": 120,
+        "LE_95": 183,
+        "LE_97": 345,
+        "LT_100": 637
+      },
+      "legs": 1570,
+      "locked_cents": 5253,
+      "none": 19,
+      "one": 0,
+      "sum": 73300,
+      "under_par": 637
+    }
+  },
+  "law": "per-leg union reach = min(10-second quote-touch floor, lowest lawful true trade in the whole-second-inclusive reach interval)",
+  "named_rows_checked_by_controlling_artifact": [
+    "ARNROM",
+    "BOSCOP",
+    "NIKVRB"
+  ],
+  "prints": {
+    "accepted_rows": 373203,
+    "all_private_rows_scanned": 4836462,
+    "per_event_reconciliation_mismatches": [],
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "reconstructed": {
+    "quote": {
+      "both": 692,
+      "legs": 1384,
+      "none": 112,
+      "one": 0,
+      "sum": 68143
+    },
+    "trade": {
+      "both": 773,
+      "legs": 1557,
+      "none": 20,
+      "one": 11,
+      "sum": 72870
+    },
+    "union": {
+      "both": 785,
+      "frontier": {
+        "LE_93": 120,
+        "LE_95": 183,
+        "LE_97": 345,
+        "LT_100": 637
+      },
+      "legs": 1570,
+      "locked_cents": 5253,
+      "none": 19,
+      "one": 0,
+      "sum": 73300,
+      "under_par": 637
+    }
+  },
+  "schema_version": "57daf3c1-union-reach-reconstruction-v1"
+}

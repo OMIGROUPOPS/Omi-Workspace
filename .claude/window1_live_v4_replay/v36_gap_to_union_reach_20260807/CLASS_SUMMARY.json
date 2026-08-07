@@ -1,0 +1,142 @@
+{
+  "aggregate": {
+    "BOTH_MISSING": {
+      "games": 35,
+      "missing_sides": 70,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 0
+    },
+    "MATCHED": {
+      "games": 52,
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 52
+    },
+    "NO_REACH": {
+      "games": 19,
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": null,
+        "median": null,
+        "min": null,
+        "n": 0,
+        "p25": null,
+        "p75": null,
+        "p90": null,
+        "sum": 0
+      },
+      "v36_completed_games": 6
+    },
+    "ONE_MISSING": {
+      "games": 486,
+      "missing_sides": 486,
+      "shallow_gap_cents_per_game": {
+        "max": 68,
+        "median": 3,
+        "min": 1,
+        "n": 384,
+        "p25": 2,
+        "p75": 5,
+        "p90": 11,
+        "sum": 2267
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 68,
+        "median": 3,
+        "min": 1,
+        "n": 384,
+        "p25": 2,
+        "p75": 5,
+        "p90": 11,
+        "sum": 2267
+      },
+      "v36_completed_games": 0
+    },
+    "SHALLOW": {
+      "games": 212,
+      "missing_sides": 0,
+      "shallow_gap_cents_per_game": {
+        "max": 97,
+        "median": 3,
+        "min": 1,
+        "n": 212,
+        "p25": 1,
+        "p75": 5,
+        "p90": 9,
+        "sum": 1406
+      },
+      "shallow_gap_cents_per_leg": {
+        "max": 60,
+        "median": 2,
+        "min": 1,
+        "n": 269,
+        "p25": 1,
+        "p75": 4,
+        "p90": 9,
+        "sum": 1406
+      },
+      "v36_completed_games": 212
+    }
+  },
+  "conservation": {
+    "class_sum": 804,
+    "games": 804,
+    "pass": true
+  },
+  "definition": {
+    "BOTH_MISSING": "the union answer key had both levels and V36 credited neither leg",
+    "MATCHED": "V36 credited both legs and each entry was at-or-better than its 57daf3c1 union reach",
+    "NO_REACH": "the 57daf3c1 union answer key had no level on either leg; no grade inferred",
+    "ONE_MISSING": "the union answer key had both levels and V36 credited exactly one leg",
+    "SHALLOW": "V36 credited both legs but at least one entry was above union reach"
+  },
+  "schema_version": "v36-gap-to-union-reach-grade-v1"
+}

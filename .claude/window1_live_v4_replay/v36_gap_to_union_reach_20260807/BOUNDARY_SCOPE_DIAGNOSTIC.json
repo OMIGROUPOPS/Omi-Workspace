@@ -1,0 +1,109 @@
+{
+  "finding": "57daf3c1 reach and bfde0d8 V36 bind different window edges on some games; NO_REACH remains ungradeable rather than coerced",
+  "no_reach_games": 19,
+  "no_reach_v36_completed_games": 6,
+  "rows": [
+    {
+      "bell_confidence": "live_by_only",
+      "category": "ATP_CHALL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+      "reach_window": {
+        "left": 1784470200.0,
+        "right": 1784489100.0
+      },
+      "v36_entries": {
+        "KXATPCHALLENGERMATCH-26JUL19ZAMKIN|KIN": 92,
+        "KXATPCHALLENGERMATCH-26JUL19ZAMKIN|ZAM": 5
+      },
+      "v36_window": {
+        "left": 1784492051,
+        "right": 1784499192.961
+      }
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_MAIN",
+      "event_id": "KXATPMATCH-26JUL19DELDJE",
+      "reach_window": {
+        "left": 1784439000.0,
+        "right": 1784429059.41888
+      },
+      "v36_entries": {
+        "KXATPMATCH-26JUL19DELDJE|DEL": 37,
+        "KXATPMATCH-26JUL19DELDJE|DJE": 59
+      },
+      "v36_window": {
+        "left": 1784395707,
+        "right": 1784461926.227
+      }
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_MAIN",
+      "event_id": "KXATPMATCH-26JUL19JACDAN",
+      "reach_window": {
+        "left": 1784440800.0,
+        "right": 1784431766.16585
+      },
+      "v36_entries": {
+        "KXATPMATCH-26JUL19JACDAN|DAN": 46,
+        "KXATPMATCH-26JUL19JACDAN|JAC": 53
+      },
+      "v36_window": {
+        "left": 1784379566,
+        "right": 1784458909.892
+      }
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "ATP_MAIN",
+      "event_id": "KXATPMATCH-26JUL19PELBUE",
+      "reach_window": {
+        "left": 1784440800.0,
+        "right": 1784430860.538882
+      },
+      "v36_entries": {
+        "KXATPMATCH-26JUL19PELBUE|BUE": 30,
+        "KXATPMATCH-26JUL19PELBUE|PEL": 66
+      },
+      "v36_window": {
+        "left": 1784391952,
+        "right": 1784458909.89
+      }
+    },
+    {
+      "bell_confidence": "clean_interval",
+      "category": "WTA_MAIN",
+      "event_id": "KXWTAMATCH-26JUL19HONLEE",
+      "reach_window": {
+        "left": 1784430000.0,
+        "right": 1784426374.677057
+      },
+      "v36_entries": {
+        "KXWTAMATCH-26JUL19HONLEE|HON": 27,
+        "KXWTAMATCH-26JUL19HONLEE|LEE": 72
+      },
+      "v36_window": {
+        "left": 1784378635,
+        "right": 1784451817.818
+      }
+    },
+    {
+      "bell_confidence": "schedule_only",
+      "category": "WTA_MAIN",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "reach_window": {
+        "left": 1784516400.0,
+        "right": 1784545200.0
+      },
+      "v36_entries": {
+        "KXWTAMATCH-26JUL20KUDKOR|KOR": 64,
+        "KXWTAMATCH-26JUL20KUDKOR|KUD": 33
+      },
+      "v36_window": {
+        "left": 1784448385,
+        "right": 1784545200
+      }
+    }
+  ]
+}

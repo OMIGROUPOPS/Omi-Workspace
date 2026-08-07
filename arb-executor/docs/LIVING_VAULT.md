@@ -8,6 +8,12 @@
 
 ---
 
+### 2026-08-07 · V36 GAP-TO-REACH — 52 matched; take-above-reach is the largest measured owner
+
+Frozen V36 STRICT output (`bfde0d8d1135f5c5f48a5f3d619ab30050efab83`) is graded read-only against the exact reconstructed union maker book (`57daf3c15ad618098a810566d24127df8f17f3f9`). The ruler reproduces 373,203 prints, 785/0/19 both/one/none, 637 under-par games, frontier 120/183/345/637, and 5,253¢ locked. V36 grades: MATCHED 52, SHALLOW 212, ONE_MISSING 486, BOTH_MISSING 35, NO_REACH 19. Shallow credited sides lose 3,673¢ to reach across 653 sides. Ranked measured ownership: take fired above reach 3,046¢ / 539 games; rest off reach 1,078¢ / 185; cap arithmetic 866¢ / 270; unimplemented riser-divot class 152¢ / 64. A separate 86-side seam had V36 resting at/above union reach but remained uncredited only under the strict print-crossing build-verification ruler; it is not a policy organ and must not be misreported as tune damage under the two-ruler fill-model law. Six NO_REACH games are V36-complete only under bfde0d8's different window edge and remain ungradeable, never coerced. Canonical package: `.claude/window1_live_v4_replay/v36_gap_to_union_reach_20260807/`; addendum: `arb-executor/docs/research/window1/V36_GAP_TO_UNION_REACH_20260807_ADDENDUM.md`.
+
+---
+
 ### 2026-08-07 · STAGE C CLOSE-OUT — the twelve are retired; frozen V36 evidence is inspectable without shadow or capital
 
 The twelve pre-existing tracked VPS modifications are closed with **KEEP 0 / RETIRE 12 / unclassified 0** under the same provenance law as the Stage C `live_v4.py` drift. Their final stable binary preimage is sealed before restore (`VPS_TWELVE_PREIMAGE_FINAL.patch.gz`, SHA-256 `3c18133d83a1465813d458f019cf1f28191cfc12fc9c0ef7ee2c807e70432121`, 48,444 bytes); the earlier patch is superseded because `audit_log.json` appended after classification. The VPS fast-forwarded to `27596166f03e040a5e38824748dcd88d70bed93b`, restored exactly the twelve paths to HEAD, and ended with empty tracked status. Engine process count stayed zero; inhibited cron stayed `405bd4cf5bf9cc59f26f413c07388b35e595f868201af6f10349a878bfecb149`; live-capital, shadow, order, position, and cron actions were all zero.

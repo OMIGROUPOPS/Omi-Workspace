@@ -1,0 +1,202 @@
+{
+  "coarse_organ_ranking": [
+    {
+      "games": 539,
+      "issue_sides": 569,
+      "measured_damage_cents": 3046,
+      "missing_sides": 0,
+      "organ": "TAKE_FIRED_ABOVE_REACH",
+      "shallow_sides": 569,
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 185,
+      "issue_sides": 214,
+      "measured_damage_cents": 1078,
+      "missing_sides": 130,
+      "organ": "REST_PLACED_OFF_REACH_LEVEL",
+      "shallow_sides": 84,
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 270,
+      "issue_sides": 270,
+      "measured_damage_cents": 866,
+      "missing_sides": 270,
+      "organ": "PAIR_CAP_ARITHMETIC",
+      "shallow_sides": 0,
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 64,
+      "issue_sides": 66,
+      "measured_damage_cents": 152,
+      "missing_sides": 66,
+      "organ": "DIVOT_CLASS_NOT_IMPLEMENTED",
+      "shallow_sides": 0,
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 83,
+      "issue_sides": 86,
+      "measured_damage_cents": 0,
+      "missing_sides": 86,
+      "organ": "FILL_MODEL_SEAM_NOT_V36_ORGAN",
+      "shallow_sides": 0,
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 2,
+      "issue_sides": 4,
+      "measured_damage_cents": 0,
+      "missing_sides": 4,
+      "organ": "ADMISSION_NO_TWO_SIDED_BOOK",
+      "shallow_sides": 0,
+      "unpriced_issue_sides": 4
+    }
+  ],
+  "damage_definition": "SHALLOW: entry minus reach. MISSING: positive cents that contemporaneous rest/cap sat below reach. No fabricated penalty is assigned where no comparable price exists; those sides remain unpriced_issue_sides.",
+  "issue_conservation": {
+    "issue_sides": 1209,
+    "missing_sides": 556,
+    "shallow_sides": 653
+  },
+  "organ_x_state_ranking": [
+    {
+      "games": 273,
+      "issue_sides": 280,
+      "measured_damage_cents": 1647,
+      "organ": "TAKE_FIRED_ABOVE_REACH",
+      "state_at_reach": "RISING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 216,
+      "issue_sides": 217,
+      "measured_damage_cents": 1102,
+      "organ": "TAKE_FIRED_ABOVE_REACH",
+      "state_at_reach": "SETTLED",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 120,
+      "issue_sides": 129,
+      "measured_damage_cents": 752,
+      "organ": "REST_PLACED_OFF_REACH_LEVEL",
+      "state_at_reach": "FALLING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 124,
+      "issue_sides": 124,
+      "measured_damage_cents": 411,
+      "organ": "PAIR_CAP_ARITHMETIC",
+      "state_at_reach": "FALLING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 69,
+      "issue_sides": 72,
+      "measured_damage_cents": 297,
+      "organ": "TAKE_FIRED_ABOVE_REACH",
+      "state_at_reach": "FALLING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 63,
+      "issue_sides": 65,
+      "measured_damage_cents": 287,
+      "organ": "REST_PLACED_OFF_REACH_LEVEL",
+      "state_at_reach": "RISING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 92,
+      "issue_sides": 92,
+      "measured_damage_cents": 274,
+      "organ": "PAIR_CAP_ARITHMETIC",
+      "state_at_reach": "RISING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 54,
+      "issue_sides": 54,
+      "measured_damage_cents": 181,
+      "organ": "PAIR_CAP_ARITHMETIC",
+      "state_at_reach": "SETTLED",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 39,
+      "issue_sides": 39,
+      "measured_damage_cents": 107,
+      "organ": "DIVOT_CLASS_NOT_IMPLEMENTED",
+      "state_at_reach": "FALLING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 18,
+      "issue_sides": 19,
+      "measured_damage_cents": 38,
+      "organ": "REST_PLACED_OFF_REACH_LEVEL",
+      "state_at_reach": "SETTLED",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 17,
+      "issue_sides": 17,
+      "measured_damage_cents": 28,
+      "organ": "DIVOT_CLASS_NOT_IMPLEMENTED",
+      "state_at_reach": "RISING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 10,
+      "issue_sides": 10,
+      "measured_damage_cents": 17,
+      "organ": "DIVOT_CLASS_NOT_IMPLEMENTED",
+      "state_at_reach": "SETTLED",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 1,
+      "issue_sides": 1,
+      "measured_damage_cents": 1,
+      "organ": "REST_PLACED_OFF_REACH_LEVEL",
+      "state_at_reach": "NO_SNAPSHOT",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 43,
+      "issue_sides": 44,
+      "measured_damage_cents": 0,
+      "organ": "FILL_MODEL_SEAM_NOT_V36_ORGAN",
+      "state_at_reach": "RISING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 35,
+      "issue_sides": 35,
+      "measured_damage_cents": 0,
+      "organ": "FILL_MODEL_SEAM_NOT_V36_ORGAN",
+      "state_at_reach": "FALLING",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 6,
+      "issue_sides": 7,
+      "measured_damage_cents": 0,
+      "organ": "FILL_MODEL_SEAM_NOT_V36_ORGAN",
+      "state_at_reach": "SETTLED",
+      "unpriced_issue_sides": 0
+    },
+    {
+      "games": 2,
+      "issue_sides": 4,
+      "measured_damage_cents": 0,
+      "organ": "ADMISSION_NO_TWO_SIDED_BOOK",
+      "state_at_reach": "NO_SNAPSHOT",
+      "unpriced_issue_sides": 4
+    }
+  ]
+}

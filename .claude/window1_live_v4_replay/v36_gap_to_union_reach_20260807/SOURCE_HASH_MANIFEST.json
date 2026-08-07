@@ -1,0 +1,50 @@
+{
+  "commits": {
+    "UNION_REACH": "57daf3c15ad618098a810566d24127df8f17f3f9",
+    "V36": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+  },
+  "files": [
+    {
+      "bytes": 13279633,
+      "label": "V36_STRICT_DECISION_TRACE_1608",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/STRICT_DECISION_TRACE_1608.json",
+      "sha256": "7160b4d872a2289820443e9380ee75f4e6ef4fc15877ab64f102c5a93377e91b"
+    },
+    {
+      "bytes": 69163,
+      "label": "V36_SCORECARD_TWO_COLUMN",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/SCORECARD_TWO_COLUMN.json",
+      "sha256": "874892b210cd995bc3ab15fe29cbd1acf145d1d9aa2d28cfc42000b0f3b0942e"
+    },
+    {
+      "bytes": 905,
+      "label": "V36_FULL_TRACE_PARTS_MANIFEST",
+      "path": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83:.claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806/FULL_DECISION_TRACE_PARTS.json",
+      "sha256": "efc724ef31c0f36dadaae38a6bb488d1c65c19eb5201d75ed93c535eea828b38"
+    },
+    {
+      "bytes": 5621994,
+      "label": "QUOTE_TOUCH_CENSUS",
+      "path": "57daf3c15ad618098a810566d24127df8f17f3f9:.claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_REACHABILITY_CENSUS.json",
+      "sha256": "fd205926fed1a727e9029d02155f9eb718717af9f218713ecc4d16802e6027bc"
+    },
+    {
+      "bytes": 6436,
+      "label": "MAKER_RESULTS_THREE_CHANNELS",
+      "path": "57daf3c15ad618098a810566d24127df8f17f3f9:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MAKER_RESULTS_THREE_CHANNELS.json",
+      "sha256": "f14b0d8f482396d820232e8b7b263c4b35ad32cd7edb16e06c646b03e432aacf"
+    },
+    {
+      "bytes": 199158,
+      "label": "RECONCILIATION_SEAL_804",
+      "path": "57daf3c15ad618098a810566d24127df8f17f3f9:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECONCILIATION_SEAL_804.json",
+      "sha256": "2150e3c1d864c6ba2e3cd08c07e180269b1a3f94f57e596627b56982984f6ee7"
+    },
+    {
+      "bytes": 1766090446,
+      "label": "PRIVATE_PRINTS",
+      "path": "PRIVATE:fit-local/prints.jsonl",
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+    }
+  ]
+}

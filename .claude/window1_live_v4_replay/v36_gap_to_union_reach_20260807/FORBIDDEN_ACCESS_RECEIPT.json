@@ -1,0 +1,9 @@
+{
+  "holdout_access": false,
+  "live_access": false,
+  "network_access": false,
+  "orders_positions_exits_mutated": false,
+  "policy_or_replay_invoked": false,
+  "scoring_change": false,
+  "statement": "Only frozen local dev artifacts and the hash-bound private print ledger were read."
+}

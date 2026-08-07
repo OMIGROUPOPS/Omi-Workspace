@@ -1,0 +1,495 @@
+{
+ "LABEL": "RISER_DEPTH_SIGNAL_RANK",
+ "binding": "V38 maker-only 2c54d724; spike=riser deep-excursion moments = 298 RISING_REST_FILLED_SHALLOW + 38 one-off union-reach bottoms (30 RISER_NO_TWO_VISIT + 8 UNION_REACH_PRECEDED). control=same legs, 3 non-spike receipts/side (|dt|>=120s, W1 span). signals from sealed reach_snapshot (own) + paired tape (mirror) + sealed divot census (pulse). AUC=P(spike>ctl); lift=tercile lift oriented. NO placement counterfactual.",
+ "conservation": {
+  "spike_sides": 336,
+  "control_rows": 1008,
+  "ctl_per_spike": 3,
+  "scope_owner_counts": {
+   "RISING_REST_FILLED_SHALLOW": 298,
+   "RISER_NO_TWO_VISIT_TRAILING_PULSE_FLOOR": 30,
+   "UNION_REACH_PRECEDED_RESIDENCY_OR_CHANNEL_NOT_REPEATED": 8
+  }
+ },
+ "overall_rank": [
+  {
+   "signal": "other_slide",
+   "bucket": "(a) other expr slide depth",
+   "auc": 0.314,
+   "auc_oriented": 0.686,
+   "direction": "lower@spike",
+   "lift": 1.53,
+   "spike_med": 0.0,
+   "ctl_med": 0.5
+  },
+  {
+   "signal": "dwell",
+   "bucket": "(e) dwell",
+   "auc": 0.326,
+   "auc_oriented": 0.674,
+   "direction": "lower@spike",
+   "lift": 1.7,
+   "spike_med": 52.0,
+   "ctl_med": 1488.0
+  },
+  {
+   "signal": "spread",
+   "bucket": "(e) spread",
+   "auc": 0.58,
+   "auc_oriented": 0.58,
+   "direction": "higher@spike",
+   "lift": 1.03,
+   "spike_med": 1.0,
+   "ctl_med": 1.0
+  },
+  {
+   "signal": "own_dr",
+   "bucket": "(b) own-book pressure",
+   "auc": 0.572,
+   "auc_oriented": 0.572,
+   "direction": "higher@spike",
+   "lift": 1.21,
+   "spike_med": 0.416,
+   "ctl_med": 0.382
+  },
+  {
+   "signal": "other_dr",
+   "bucket": "(c) other-book pressure mirror",
+   "auc": 0.541,
+   "auc_oriented": 0.541,
+   "direction": "higher@spike",
+   "lift": 1.17,
+   "spike_med": 0.408,
+   "ctl_med": 0.387
+  },
+  {
+   "signal": "cap_room",
+   "bucket": "(f) cap room",
+   "auc": 0.521,
+   "auc_oriented": 0.521,
+   "direction": "higher@spike",
+   "lift": 1.04,
+   "spike_med": 99.0,
+   "ctl_med": 99.0
+  },
+  {
+   "signal": "pulse_depth",
+   "bucket": "(d) own pulse rhythm",
+   "auc": 0.517,
+   "auc_oriented": 0.517,
+   "direction": "higher@spike",
+   "lift": 1.0,
+   "spike_med": 0.0,
+   "ctl_med": 0.0
+  },
+  {
+   "signal": "pulse_freq",
+   "bucket": "(d) own pulse rhythm",
+   "auc": 0.486,
+   "auc_oriented": 0.514,
+   "direction": "lower@spike",
+   "lift": 0.99,
+   "spike_med": 0,
+   "ctl_med": 0
+  }
+ ],
+ "combined_logistic_auc_in_sample": 0.7080439814814815,
+ "combined_coefs": {
+  "own_dr": 0.256,
+  "other_dr": 0.266,
+  "other_slide": -0.839,
+  "pulse_freq": -0.587,
+  "spread": 0.8,
+  "cap_room": 0.099
+ },
+ "per_category": {
+  "ATP_CHALL": {
+   "n_spike": 152,
+   "rank": [
+    {
+     "signal": "dwell",
+     "bucket": "(e) dwell",
+     "auc": 0.329,
+     "auc_oriented": 0.671,
+     "direction": "lower@spike",
+     "lift": 1.66,
+     "spike_med": 59.0,
+     "ctl_med": 1069.0
+    },
+    {
+     "signal": "other_slide",
+     "bucket": "(a) other expr slide depth",
+     "auc": 0.333,
+     "auc_oriented": 0.667,
+     "direction": "lower@spike",
+     "lift": 1.5,
+     "spike_med": 0.0,
+     "ctl_med": 0.5
+    },
+    {
+     "signal": "own_dr",
+     "bucket": "(b) own-book pressure",
+     "auc": 0.567,
+     "auc_oriented": 0.567,
+     "direction": "higher@spike",
+     "lift": 1.2,
+     "spike_med": 0.436,
+     "ctl_med": 0.402
+    },
+    {
+     "signal": "spread",
+     "bucket": "(e) spread",
+     "auc": 0.56,
+     "auc_oriented": 0.56,
+     "direction": "higher@spike",
+     "lift": 1.14,
+     "spike_med": 1.0,
+     "ctl_med": 1.0
+    },
+    {
+     "signal": "other_dr",
+     "bucket": "(c) other-book pressure mirror",
+     "auc": 0.552,
+     "auc_oriented": 0.552,
+     "direction": "higher@spike",
+     "lift": 1.16,
+     "spike_med": 0.444,
+     "ctl_med": 0.421
+    },
+    {
+     "signal": "cap_room",
+     "bucket": "(f) cap room",
+     "auc": 0.539,
+     "auc_oriented": 0.539,
+     "direction": "higher@spike",
+     "lift": 1.07,
+     "spike_med": 99.0,
+     "ctl_med": 99.0
+    },
+    {
+     "signal": "pulse_depth",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.535,
+     "auc_oriented": 0.535,
+     "direction": "higher@spike",
+     "lift": 1.05,
+     "spike_med": 0.0,
+     "ctl_med": 0.0
+    },
+    {
+     "signal": "pulse_freq",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.485,
+     "auc_oriented": 0.515,
+     "direction": "lower@spike",
+     "lift": 0.97,
+     "spike_med": 0,
+     "ctl_med": 0
+    }
+   ]
+  },
+  "ATP_MAIN": {
+   "n_spike": 75,
+   "rank": [
+    {
+     "signal": "dwell",
+     "bucket": "(e) dwell",
+     "auc": 0.222,
+     "auc_oriented": 0.778,
+     "direction": "lower@spike",
+     "lift": 2.28,
+     "spike_med": 44.0,
+     "ctl_med": 2204.0
+    },
+    {
+     "signal": "other_slide",
+     "bucket": "(a) other expr slide depth",
+     "auc": 0.31,
+     "auc_oriented": 0.69,
+     "direction": "lower@spike",
+     "lift": 1.5,
+     "spike_med": 0.0,
+     "ctl_med": 0.5
+    },
+    {
+     "signal": "spread",
+     "bucket": "(e) spread",
+     "auc": 0.636,
+     "auc_oriented": 0.636,
+     "direction": "higher@spike",
+     "lift": 1.03,
+     "spike_med": 1.0,
+     "ctl_med": 1.0
+    },
+    {
+     "signal": "own_dr",
+     "bucket": "(b) own-book pressure",
+     "auc": 0.569,
+     "auc_oriented": 0.569,
+     "direction": "higher@spike",
+     "lift": 1.24,
+     "spike_med": 0.388,
+     "ctl_med": 0.357
+    },
+    {
+     "signal": "pulse_depth",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.543,
+     "auc_oriented": 0.543,
+     "direction": "higher@spike",
+     "lift": 1.0,
+     "spike_med": 0.0,
+     "ctl_med": 0.0
+    },
+    {
+     "signal": "cap_room",
+     "bucket": "(f) cap room",
+     "auc": 0.525,
+     "auc_oriented": 0.525,
+     "direction": "higher@spike",
+     "lift": 1.05,
+     "spike_med": 99.0,
+     "ctl_med": 99.0
+    },
+    {
+     "signal": "other_dr",
+     "bucket": "(c) other-book pressure mirror",
+     "auc": 0.504,
+     "auc_oriented": 0.504,
+     "direction": "higher@spike",
+     "lift": 1.24,
+     "spike_med": 0.356,
+     "ctl_med": 0.368
+    },
+    {
+     "signal": "pulse_freq",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.501,
+     "auc_oriented": 0.501,
+     "direction": "higher@spike",
+     "lift": 1.0,
+     "spike_med": 0,
+     "ctl_med": 0
+    }
+   ]
+  },
+  "WTA_CHALL": {
+   "n_spike": 55,
+   "rank": [
+    {
+     "signal": "other_slide",
+     "bucket": "(a) other expr slide depth",
+     "auc": 0.275,
+     "auc_oriented": 0.725,
+     "direction": "lower@spike",
+     "lift": 1.71,
+     "spike_med": 0.0,
+     "ctl_med": 1.0
+    },
+    {
+     "signal": "other_dr",
+     "bucket": "(c) other-book pressure mirror",
+     "auc": 0.656,
+     "auc_oriented": 0.656,
+     "direction": "higher@spike",
+     "lift": 1.46,
+     "spike_med": 0.462,
+     "ctl_med": 0.387
+    },
+    {
+     "signal": "own_dr",
+     "bucket": "(b) own-book pressure",
+     "auc": 0.551,
+     "auc_oriented": 0.551,
+     "direction": "higher@spike",
+     "lift": 1.14,
+     "spike_med": 0.413,
+     "ctl_med": 0.392
+    },
+    {
+     "signal": "spread",
+     "bucket": "(e) spread",
+     "auc": 0.55,
+     "auc_oriented": 0.55,
+     "direction": "higher@spike",
+     "lift": 1.04,
+     "spike_med": 1.0,
+     "ctl_med": 1.0
+    },
+    {
+     "signal": "dwell",
+     "bucket": "(e) dwell",
+     "auc": 0.464,
+     "auc_oriented": 0.536,
+     "direction": "lower@spike",
+     "lift": 1.24,
+     "spike_med": 44.0,
+     "ctl_med": 232.0
+    },
+    {
+     "signal": "cap_room",
+     "bucket": "(f) cap room",
+     "auc": 0.475,
+     "auc_oriented": 0.525,
+     "direction": "lower@spike",
+     "lift": 1.0,
+     "spike_med": 99.0,
+     "ctl_med": 99.0
+    },
+    {
+     "signal": "pulse_freq",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.499,
+     "auc_oriented": 0.501,
+     "direction": "lower@spike",
+     "lift": 0.99,
+     "spike_med": 0,
+     "ctl_med": 0
+    },
+    {
+     "signal": "pulse_depth",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.501,
+     "auc_oriented": 0.501,
+     "direction": "higher@spike",
+     "lift": 1.0,
+     "spike_med": 0.0,
+     "ctl_med": 0.0
+    }
+   ]
+  },
+  "WTA_MAIN": {
+   "n_spike": 54,
+   "rank": [
+    {
+     "signal": "other_slide",
+     "bucket": "(a) other expr slide depth",
+     "auc": 0.298,
+     "auc_oriented": 0.702,
+     "direction": "lower@spike",
+     "lift": 1.5,
+     "spike_med": 0.0,
+     "ctl_med": 0.5
+    },
+    {
+     "signal": "dwell",
+     "bucket": "(e) dwell",
+     "auc": 0.316,
+     "auc_oriented": 0.684,
+     "direction": "lower@spike",
+     "lift": 1.89,
+     "spike_med": 59.0,
+     "ctl_med": 4086.0
+    },
+    {
+     "signal": "own_dr",
+     "bucket": "(b) own-book pressure",
+     "auc": 0.622,
+     "auc_oriented": 0.622,
+     "direction": "higher@spike",
+     "lift": 1.39,
+     "spike_med": 0.417,
+     "ctl_med": 0.371
+    },
+    {
+     "signal": "other_dr",
+     "bucket": "(c) other-book pressure mirror",
+     "auc": 0.428,
+     "auc_oriented": 0.572,
+     "direction": "lower@spike",
+     "lift": 1.11,
+     "spike_med": 0.357,
+     "ctl_med": 0.372
+    },
+    {
+     "signal": "spread",
+     "bucket": "(e) spread",
+     "auc": 0.572,
+     "auc_oriented": 0.572,
+     "direction": "higher@spike",
+     "lift": 0.98,
+     "spike_med": 1.0,
+     "ctl_med": 1.0
+    },
+    {
+     "signal": "pulse_freq",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.445,
+     "auc_oriented": 0.555,
+     "direction": "lower@spike",
+     "lift": 1.09,
+     "spike_med": 0,
+     "ctl_med": 0
+    },
+    {
+     "signal": "pulse_depth",
+     "bucket": "(d) own pulse rhythm",
+     "auc": 0.457,
+     "auc_oriented": 0.543,
+     "direction": "lower@spike",
+     "lift": 1.09,
+     "spike_med": 0.0,
+     "ctl_med": 0.0
+    },
+    {
+     "signal": "cap_room",
+     "bucket": "(f) cap room",
+     "auc": 0.515,
+     "auc_oriented": 0.515,
+     "direction": "higher@spike",
+     "lift": 1.03,
+     "spike_med": 99.0,
+     "ctl_med": 99.0
+    }
+   ]
+  }
+ },
+ "named": {
+  "ARNROM": {
+   "riser_leg": "ARN",
+   "global_leg_direction": "UNKNOWN",
+   "v38_owner": "RISER_PULSE_REST_OFF_REACH",
+   "in_336_scope": false,
+   "reach_cents": 50,
+   "entry_cents": null,
+   "gap_to_reach": null,
+   "credited": false,
+   "excursion_dwell_seconds": 13667,
+   "spread": 6,
+   "own_dr": 0.438,
+   "pulse_visits": 0,
+   "pair_cap_room": 60
+  },
+  "BOSCOP": {
+   "riser_leg": "COP",
+   "global_leg_direction": "UNKNOWN",
+   "v38_owner": "RISER_PULSE_REST_OFF_REACH",
+   "in_336_scope": false,
+   "reach_cents": 47,
+   "entry_cents": null,
+   "gap_to_reach": null,
+   "credited": false,
+   "excursion_dwell_seconds": 25956,
+   "spread": 26,
+   "own_dr": 0.232,
+   "pulse_visits": 0,
+   "pair_cap_room": 69
+  },
+  "NIKVRB": {
+   "riser_leg": "NIK",
+   "global_leg_direction": "FALLING",
+   "v38_owner": "RISING_REST_FILLED_SHALLOW",
+   "in_336_scope": true,
+   "reach_cents": 18,
+   "entry_cents": 27,
+   "gap_to_reach": 9,
+   "credited": true,
+   "excursion_dwell_seconds": 11,
+   "spread": 2,
+   "own_dr": 0.709,
+   "pulse_visits": 5,
+   "pair_cap_room": 29
+  }
+ },
+ "confound_note": "Control=same legs at non-spike receipts (per spec), sampled across the W1 span; it is not time-matched, so dwell and other_slide separations partly reflect that the deep riser dip lands on a FRESH short-dwell ask rather than the leg's long-parked typical quote. That co-occurrence IS the announcement.  V38 'RISING' ownership is per the policy branch governing the leg AT the excursion instant (combined_state), which can differ from the global leg_direction (e.g. NIK is FALLING by close but RISING-owned at its dip)."
+}

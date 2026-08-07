@@ -1,15 +1,19 @@
 {
-  "schema_version": "window1-fresh-holdout-exam-serializer-artifact-manifest-v1",
+  "schema_version": "window1-fresh-holdout-exam-serializer-artifact-manifest-v2",
   "manifest_self_excluded": true,
   "files": {
+    "DEV_INERTNESS_POST_ALL_STREAMING/ARTIFACT_HASH_MANIFEST.json": { "bytes": 167, "sha256": "7ca28975176641854c3d8051c9d8194ae79e91c884de212f55b84b7afba97ad0" },
+    "DEV_INERTNESS_POST_ALL_STREAMING/DEV_INERTNESS_RECEIPT.json": { "bytes": 1974, "sha256": "c2a78adaa0f117124f77baa9419c920d034c07fb4707e05c9e4880414a27df89" },
     "DEV_INERTNESS_REPAIR/ARTIFACT_HASH_MANIFEST.json": { "bytes": 167, "sha256": "7ca28975176641854c3d8051c9d8194ae79e91c884de212f55b84b7afba97ad0" },
     "DEV_INERTNESS_REPAIR/DEV_INERTNESS_RECEIPT.json": { "bytes": 1974, "sha256": "c2a78adaa0f117124f77baa9419c920d034c07fb4707e05c9e4880414a27df89" },
     "DEV_INERTNESS_TIMEOUT_RECEIPT.json": { "bytes": 662, "sha256": "01bcbc05fd8e84a0ea606517ea7921bae680f8b35d95b5629739110ddc2660fe" },
     "INDEPENDENT_REPAIR_AUDIT_INSTRUCTION.md": { "bytes": 471, "sha256": "4e1a58409077bdba1d650ce8923d7c4b5e11704ba1c059a66401550c03da4c62" },
+    "MECHANICAL_FAILURE_ATTEMPT1_RECEIPT.json": { "bytes": 975, "sha256": "7f5a2761fefad2a15bfce47e0374d0db26e63da32d60ee3498e3492b18fc6d8f" },
     "POLICY_BYTE_IDENTITY_REPAIR_RECEIPT.json": { "bytes": 1736, "sha256": "4cdfb11e50393d98ff2d6eae3f2cf73cc48f53de3d6478f9a54efec8c352677c" },
-    "REPAIR_AUDIT_REPORT.md": { "bytes": 1823, "sha256": "d391bd687bf4ab45e718d2e1679e7767b77c15673280399936629cbcad3da6f6" },
+    "REPAIR_AUDIT_REPORT.md": { "bytes": 2648, "sha256": "97b410feff42a1f3becfa9ea0908c0793f021a605aefe5a73715e4e6c7000906" },
     "SERIALIZER_REPAIR_RECEIPT.json": { "bytes": 1504, "sha256": "010a761fb5042f7c087c519816c41be4ad27e12972077faefc640111ba35124c" },
-    "SOURCE_HASH_MANIFEST.json": { "bytes": 812, "sha256": "fbf9fbd1c7671bad8da9321dc70f2e3309300e66dd17232914a08920f6b337f1" },
+    "SERIALIZER_REPAIR_V2_RECEIPT.json": { "bytes": 1443, "sha256": "2408e9bdb57a36e118f940a79b1644350186affbb8f3097338afba9b49284b4b" },
+    "SOURCE_HASH_MANIFEST.json": { "bytes": 812, "sha256": "13e2b14b026b0c5bba0f781cb4b9ab43e2796021645522027476018fd6cd67db" },
     "SYNTHETIC_OVER_1GIB_STREAM_TEST.json": { "bytes": 326, "sha256": "0511f642c49266342fddac6d16f7ee53aa2a2398cc791e24b9d47febec835e53" }
   }
 }

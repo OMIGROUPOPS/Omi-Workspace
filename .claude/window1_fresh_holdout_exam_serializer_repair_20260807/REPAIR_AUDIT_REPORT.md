@@ -10,4 +10,8 @@ The strengthened DEV-804 audit passed for both brains. V36 matched its frozen co
 
 The first DEV audit process completed both replays but hit an external 1,800-second watchdog before its combined receipt; it wrote no PASS receipt and never invoked the sealed exam. The identical audit then passed under a longer watchdog. This was pre-exam audit work and did not consume the fresh authorization.
 
-Policy SHA-256 remains `5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73` for V36 and `14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f` for V35. Sealed exam invocations at this package point are zero.
+Policy SHA-256 remains `5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73` for V36 and `14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f` for V35.
+
+The first newly authorized exam attempt then reached all 171 V36 policy evaluations but exhausted Node's 4 GiB heap before any score row or result artifact was written. Its only output was the 688-byte start receipt, preserved by SHA-256 `c51ea3f1512701aafcf33e2a3a56dcb6741f702074170c81cdbc40deb8298c8b`. This is the authorization's explicitly retryable mechanical-failure class.
+
+The follow-up repair removed every remaining `gzipRows/Array.join` JSONL path and processes one brain through replay, streaming serialization, two-build comparison, and release before loading the next. The >1 GiB focused test again passed, this time with 110,624,768 bytes of peak RSS delta. A fresh post-change DEV-804 audit again proved both complete decision streams, scorecards, and frontiers byte-identical. No policy byte changed and no exam score row exists before the permitted re-attempt.

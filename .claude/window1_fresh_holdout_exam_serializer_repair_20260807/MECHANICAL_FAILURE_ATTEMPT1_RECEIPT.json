@@ -1,0 +1,22 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-mechanical-failure-v1",
+  "authorization": "OPERATOR_PROMPT_SERIALIZER_REPAIR_FRESH_EXAM_20260807",
+  "attempt": 1,
+  "started_at_utc": "2026-08-07T07:11:14.871Z",
+  "duration_seconds": 108.9,
+  "exit_code": 1,
+  "error": "FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory",
+  "last_progress": "V36_SEALED171_ADAPTER events=171/171",
+  "V35_policy_evaluations": 0,
+  "R3_policy_evaluations": 0,
+  "score_rows_written": 0,
+  "result_artifacts_written": 0,
+  "only_output": {
+    "path": "EXECUTION_START_RECEIPT.json",
+    "bytes": 688,
+    "sha256": "c51ea3f1512701aafcf33e2a3a56dcb6741f702074170c81cdbc40deb8298c8b"
+  },
+  "classification": "MECHANICAL_FAILURE_BEFORE_ANY_SCORE_ROW",
+  "reattempt_law": "Operator authorization expressly permits repair and re-attempt only for a mechanical failure before any score row is written",
+  "policy_or_scoring_change": false
+}

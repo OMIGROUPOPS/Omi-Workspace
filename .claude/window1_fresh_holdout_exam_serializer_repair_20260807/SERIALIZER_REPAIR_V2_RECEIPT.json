@@ -1,0 +1,34 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-streaming-serializer-repair-v2",
+  "trigger": "MECHANICAL_FAILURE_ATTEMPT1_RECEIPT.json",
+  "scope": "SERIALIZATION_AND_RESULT_LIFETIME_ONLY",
+  "defect": "Five non-full-trace JSONL ledgers still used gzipRows/Array.join and both brains were retained before serialization",
+  "repair": {
+    "all_jsonl_ledgers_streamed": [
+      "STRICT_REGRET_LEDGER.jsonl.gz",
+      "CENSUS_PRICED_REGRET_LEDGER.jsonl.gz",
+      "STRICT_EVENT_LEDGER.jsonl.gz",
+      "CENSUS_PRICED_EVENT_LEDGER.jsonl.gz",
+      "ACTION_AND_FILL_TRACE.jsonl.gz",
+      "FULL_DECISION_TRACE.jsonl.gz"
+    ],
+    "brain_lifetime": "Each brain is replayed, streamed, determinism-checked, receipted, and released before the next brain is loaded",
+    "monolithic_join_paths_remaining": 0,
+    "adapter_after_sha256": "efe83be58c4bd7e9caeb021982b91bb2a649911c5f3a7f9b0c54d60279313b0b"
+  },
+  "focused_test": {
+    "uncompressed_bytes": 1074817990,
+    "byte_identity": true,
+    "bounded_memory": true,
+    "peak_rss_delta_bytes": 110624768
+  },
+  "post_repair_dev_inertness": {
+    "receipt": "DEV_INERTNESS_POST_ALL_STREAMING/DEV_INERTNESS_RECEIPT.json",
+    "sha256": "c2a78adaa0f117124f77baa9419c920d034c07fb4707e05c9e4880414a27df89",
+    "V36_full_trace_byte_identical": true,
+    "V35_full_trace_byte_identical": true,
+    "scorecards_and_frontiers_byte_identical": true
+  },
+  "policy_files_modified": 0,
+  "pass": true
+}

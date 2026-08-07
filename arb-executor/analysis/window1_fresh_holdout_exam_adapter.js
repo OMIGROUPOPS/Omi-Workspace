@@ -62,7 +62,6 @@ function hashFile(file) { return sha(fs.readFileSync(file)); }
 function canonical(value) { return `${JSON.stringify(value, null, 2)}\n`; }
 function readJson(file) { return JSON.parse(fs.readFileSync(file, "utf8")); }
 function readJsonl(file) { const text = fs.readFileSync(file, "utf8").trim(); return text ? text.split(/\r?\n/).map(JSON.parse) : []; }
-function gzipRows(rows) { return zlib.gzipSync(Buffer.from(`${rows.map(JSON.stringify).join("\n")}\n`), { level: 9, mtime: 0 }); }
 function gitShow(commit, rel) { return child.execFileSync("git", ["show", `${commit}:${rel}`], { cwd: repo, maxBuffer: 512 * 1024 * 1024 }); }
 function countBy(rows, fn) { const out = {}; for (const row of rows) { const key = String(fn(row)); out[key] = (out[key] || 0) + 1; } return Object.fromEntries(Object.entries(out).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))); }
 function group(rows, fn) { const out = new Map(); for (const row of rows) { const key = fn(row); if (!out.has(key)) out.set(key, []); out.get(key).push(row); } return out; }
@@ -376,13 +375,8 @@ function buildBrainArtifacts(name, api, result, binding) {
     "CENSUS_PRICED_FRONTIER.json": canonical(result.censusFrontier),
     "STRICT_REGRET_GAUGE.json": canonical({ ...result.strictRegret, rows: undefined }),
     "CENSUS_PRICED_REGRET_GAUGE.json": canonical({ ...result.censusRegret, rows: undefined }),
-    "STRICT_REGRET_LEDGER.jsonl.gz": gzipRows(result.strictRegret.rows),
-    "CENSUS_PRICED_REGRET_LEDGER.jsonl.gz": gzipRows(result.censusRegret.rows),
-    "STRICT_EVENT_LEDGER.jsonl.gz": gzipRows(result.strictEvents),
-    "CENSUS_PRICED_EVENT_LEDGER.jsonl.gz": gzipRows(result.censusEvents),
     "STRICT_DECISION_TRACE_342.json": canonical({ rows: result.strictTrace, conservation: { rows: result.strictTrace.length, expected: 342, pass: result.strictTrace.length === 342 } }),
     "CENSUS_PRICED_DECISION_TRACE_342.json": canonical({ rows: result.censusTrace, conservation: { rows: result.censusTrace.length, expected: 342, pass: result.censusTrace.length === 342 } }),
-    "ACTION_AND_FILL_TRACE.jsonl.gz": gzipRows(result.actions),
     "WINDOW1_SPAN_171.json": canonical({ rows: result.spans, precision_class_counts: countBy(result.spans, (row) => row.precision_class), conservation: { rows: result.spans.length, expected: 171, pass: result.spans.length === 171 } }),
     "STRICT_FILL_SPLIT.json": canonical(result.strictFillSplit),
     "CENSUS_PRICED_FILL_SPLIT.json": canonical(result.censusFillSplit),
@@ -391,6 +385,61 @@ function buildBrainArtifacts(name, api, result, binding) {
     "STRICT_CLEAN_DEEP.json": canonical(strictClean),
     "CENSUS_PRICED_CLEAN_DEEP.json": canonical(censusClean),
   };
+}
+
+function brainRowArtifacts(result) {
+  return {
+    "STRICT_REGRET_LEDGER.jsonl.gz": result.strictRegret.rows,
+    "CENSUS_PRICED_REGRET_LEDGER.jsonl.gz": result.censusRegret.rows,
+    "STRICT_EVENT_LEDGER.jsonl.gz": result.strictEvents,
+    "CENSUS_PRICED_EVENT_LEDGER.jsonl.gz": result.censusEvents,
+    "ACTION_AND_FILL_TRACE.jsonl.gz": result.actions,
+    "FULL_DECISION_TRACE.jsonl.gz": result.decisions,
+  };
+}
+
+async function materializeBrainArtifacts(target, name, api, result, binding) {
+  fs.mkdirSync(target, { recursive: true });
+  const textArtifacts = buildBrainArtifacts(name, api, result, binding);
+  for (const [artifact, bytes] of Object.entries(textArtifacts)) fs.writeFileSync(path.join(target, artifact), bytes);
+  for (const [artifact, rows] of Object.entries(brainRowArtifacts(result))) await writeGzipRowsFile(path.join(target, artifact), rows);
+  return [...Object.keys(textArtifacts), ...Object.keys(brainRowArtifacts(result))].sort();
+}
+
+function bellConfidenceRows(name, result, binding) {
+  const rows = [];
+  for (const column of ["STRICT_LAW", "CENSUS_PRICED"]) {
+    const events = column === "STRICT_LAW" ? result.strictEvents : result.censusEvents;
+    for (const confidence of ["exact", "live_by_only", "schedule_only"]) {
+      const subset = events.filter((event) => event.bell_confidence === confidence);
+      const completed = subset.filter((event) => event.completed_pair);
+      const deep = cleanDeep(subset, binding.prints, column);
+      rows.push({ brain: name, column, bell_confidence: confidence, headline: confidence === "exact", D: subset.length, completed_pairs: completed.length, under_par_pairs: completed.filter((event) => event.pair_under_par).length, frontier: { LE_93: completed.filter((event) => event.combined_entry_cents <= 93).length, LE_95: completed.filter((event) => event.combined_entry_cents <= 95).length, LE_97: completed.filter((event) => event.combined_entry_cents <= 97).length, LT_100: completed.filter((event) => event.combined_entry_cents < 100).length, ANY_PRICE: completed.length }, collapse_clean_LE95: confidence === "exact" ? deep.exact_bell_collapse_clean : confidence === "schedule_only" ? deep.schedule_only_collapse_clean : deep.deep_pairs - deep.with_terminal_collapse });
+    }
+  }
+  return rows;
+}
+
+async function runAndMaterializeBrain(name, declarationFile, eventListFile, boundaryFile, tapeRoot, printsFile) {
+  const scratch = path.join(output, `.scratch-${name.toLowerCase()}`); fs.mkdirSync(scratch);
+  const api = compileFrozenBrain(name, privateRoot, scratch);
+  const binding = createSealedBinding(api, declarationFile, eventListFile, boundaryFile, tapeRoot, printsFile);
+  const result = runPopulation(api, binding, name + "_SEALED171");
+  const brainDir = path.join(output, name);
+  const serializationScratch = path.join(output, `.scratch-serialize-${name.toLowerCase()}`);
+  const names = await materializeBrainArtifacts(brainDir, name, api, result, binding);
+  const checkApi = compileFrozenBrain(name, privateRoot, serializationScratch);
+  const checkNames = await materializeBrainArtifacts(serializationScratch, name, checkApi, result, binding);
+  ensure(JSON.stringify(names) === JSON.stringify(checkNames), `${name} artifact file-set determinism mismatch`);
+  const mismatch = names.filter((artifact) => hashFile(path.join(brainDir, artifact)) !== hashFile(path.join(serializationScratch, artifact)) || fs.statSync(path.join(brainDir, artifact)).size !== fs.statSync(path.join(serializationScratch, artifact)).size);
+  ensure(mismatch.length === 0, `${name} artifact serialization determinism mismatch`);
+  const bellRows = bellConfidenceRows(name, result, binding);
+  fs.rmSync(serializationScratch, { recursive: true, force: true });
+  fs.rmSync(scratch, { recursive: true, force: true });
+  writeJson(brainDir, "DETERMINISM_RECEIPT.json", { builds_from_single_authorized_in_memory_replay: 2, replay_invocations: 1, byte_identical: true, compared_files: names.length, all_jsonl_ledgers_streamed: true, mismatches: [] });
+  const files = fs.readdirSync(brainDir).sort();
+  writeJson(brainDir, "ARTIFACT_HASH_MANIFEST.json", { files: Object.fromEntries(files.map((file) => [file, { sha256: hashFile(path.join(brainDir, file)), bytes: fs.statSync(path.join(brainDir, file)).size }])) });
+  return bellRows;
 }
 
 async function runExam() {
@@ -408,48 +457,12 @@ async function runExam() {
   fs.mkdirSync(output, { recursive: true });
   writeJson(output, "EXECUTION_START_RECEIPT.json", { schema_version: "window1-fresh-holdout-exam-start-v2", authorization: "OPERATOR_PROMPT_SERIALIZER_REPAIR_FRESH_EXAM_20260807", authorization_consumed: true, invocation_count: 1, retries: 0, prior_consumed_failure_commit: "a746d17582284736f9b3a9e6c8db2bf61e9204e1", brains: ["V36", "V35"], R3_excluded: true, event_N: 171, event_list_sha256: hashFile(eventListFile), boundary_sha256: hashFile(boundaryFile), prints_sha256: hashFile(printsFile), started_at_utc: new Date().toISOString() });
   const policyBefore = Object.fromEntries(Object.entries(BRAINS).map(([name, brain]) => [name, { builder_sha256: hashFile(path.join(repo, brain.builder)), policy_sha256: hashFile(path.join(repo, brain.policy)) }]));
-  const results = {}, artifactBuilds = {};
+  const bellRows = [];
   for (const name of ["V36", "V35"]) {
-    const scratch = path.join(output, `.scratch-${name.toLowerCase()}`); fs.mkdirSync(scratch);
-    const api = compileFrozenBrain(name, privateRoot, scratch);
-    const binding = createSealedBinding(api, declarationFile, eventListFile, boundaryFile, tapeRoot, printsFile);
-    const result = runPopulation(api, binding, name + "_SEALED171");
-    results[name] = { result, binding };
-    artifactBuilds[name] = buildBrainArtifacts(name, api, result, binding);
-    fs.rmSync(scratch, { recursive: true, force: true });
+    bellRows.push(...await runAndMaterializeBrain(name, declarationFile, eventListFile, boundaryFile, tapeRoot, printsFile));
   }
   const policyAfter = Object.fromEntries(Object.entries(BRAINS).map(([name, brain]) => [name, { builder_sha256: hashFile(path.join(repo, brain.builder)), policy_sha256: hashFile(path.join(repo, brain.policy)) }]));
   ensure(JSON.stringify(policyBefore) === JSON.stringify(policyAfter), "policy bytes changed during exam");
-  for (const [name, artifacts] of Object.entries(artifactBuilds)) {
-    const brainDir = path.join(output, name); fs.mkdirSync(brainDir);
-    const serializationScratch = path.join(output, `.scratch-serialize-${name.toLowerCase()}`); fs.mkdirSync(serializationScratch, { recursive: true });
-    const build2 = buildBrainArtifacts(name, compileFrozenBrain(name, privateRoot, serializationScratch), results[name].result, results[name].binding);
-    const names = Object.keys(artifacts).sort();
-    const mismatch = names.filter((artifact) => !Buffer.from(artifacts[artifact]).equals(Buffer.from(build2[artifact])));
-    for (const artifact of names) fs.writeFileSync(path.join(brainDir, artifact), artifacts[artifact]);
-    const traceName = "FULL_DECISION_TRACE.jsonl.gz";
-    const traceFile = path.join(brainDir, traceName), traceCheck = path.join(serializationScratch, traceName);
-    await writeGzipRowsFile(traceFile, results[name].result.decisions);
-    await writeGzipRowsFile(traceCheck, results[name].result.decisions);
-    if (hashFile(traceFile) !== hashFile(traceCheck) || fs.statSync(traceFile).size !== fs.statSync(traceCheck).size) mismatch.push(traceName);
-    ensure(mismatch.length === 0, `${name} artifact serialization determinism mismatch`);
-    fs.rmSync(serializationScratch, { recursive: true, force: true });
-    writeJson(brainDir, "DETERMINISM_RECEIPT.json", { builds_from_single_authorized_in_memory_replay: 2, replay_invocations: 1, byte_identical: true, compared_files: names.length + 1, streaming_full_trace: true, mismatches: [] });
-    const files = fs.readdirSync(brainDir).sort();
-    writeJson(brainDir, "ARTIFACT_HASH_MANIFEST.json", { files: Object.fromEntries(files.map((file) => [file, { sha256: hashFile(path.join(brainDir, file)), bytes: fs.statSync(path.join(brainDir, file)).size }])) });
-  }
-  const bellRows = [];
-  for (const name of ["V36", "V35"]) {
-    for (const column of ["STRICT_LAW", "CENSUS_PRICED"]) {
-      const events = column === "STRICT_LAW" ? results[name].result.strictEvents : results[name].result.censusEvents;
-      for (const confidence of ["exact", "live_by_only", "schedule_only"]) {
-        const subset = events.filter((event) => event.bell_confidence === confidence);
-        const completed = subset.filter((event) => event.completed_pair);
-        const deep = cleanDeep(subset, results[name].binding.prints, column);
-        bellRows.push({ brain: name, column, bell_confidence: confidence, headline: confidence === "exact", D: subset.length, completed_pairs: completed.length, under_par_pairs: completed.filter((event) => event.pair_under_par).length, frontier: { LE_93: completed.filter((event) => event.combined_entry_cents <= 93).length, LE_95: completed.filter((event) => event.combined_entry_cents <= 95).length, LE_97: completed.filter((event) => event.combined_entry_cents <= 97).length, LT_100: completed.filter((event) => event.combined_entry_cents < 100).length, ANY_PRICE: completed.length }, collapse_clean_LE95: confidence === "exact" ? deep.exact_bell_collapse_clean : confidence === "schedule_only" ? deep.schedule_only_collapse_clean : deep.deep_pairs - deep.with_terminal_collapse });
-      }
-    }
-  }
   writeJson(output, "BELL_CONFIDENCE_SCORECARD.json", { exact_bell_headline_D: 11, schedule_only_D: 146, rows: bellRows, conservation: { rows: bellRows.length, expected: 12, pass: bellRows.length === 12 } });
   writeJson(output, "POLICY_BYTE_IDENTITY_RECEIPT.json", { before: policyBefore, after: policyAfter, byte_identical: JSON.stringify(policyBefore) === JSON.stringify(policyAfter), ephemeral_adapter_operation: "TERMINAL_RUNNER_INVOCATION_REPLACED_BY_INTERNAL_FUNCTION_EXPORT_IN_MEMORY_ONLY", policy_files_modified: 0 });
   writeJson(output, "CONTROL_BINDING.json", { event_N: 171, legs: 342, event_list_sha256: hashFile(eventListFile), boundary_sha256: hashFile(boundaryFile), prints_sha256: hashFile(printsFile), brains: Object.fromEntries(Object.entries(BRAINS).map(([name, brain]) => [name, brain.commit])), R3: { status: "EXCLUDED", dev_context_only: true, blocker_commit: "4f4d546421043f187bc73e2d9ad1eca0b9cf7f36" }, clean_deep: { commit: CLEAN_DEEP_COMMIT, path: CLEAN_DEEP_PATH, sha256: sha(gitShow(CLEAN_DEEP_COMMIT, CLEAN_DEEP_PATH)) }, one_run: { invocations: 1, retries: 0, authorization_consumed: true } });

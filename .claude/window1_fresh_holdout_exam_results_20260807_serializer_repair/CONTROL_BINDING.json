@@ -1,0 +1,27 @@
+{
+  "event_N": 171,
+  "legs": 342,
+  "event_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+  "boundary_sha256": "70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a",
+  "prints_sha256": "f3924d1274e9b79bab2cbba133cc80d2ccd5622e0fa28a5c09bc0ec9448325a2",
+  "brains": {
+    "V36": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+    "V35": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e"
+  },
+  "R3": {
+    "status": "EXCLUDED",
+    "dev_context_only": true,
+    "blocker_commit": "4f4d546421043f187bc73e2d9ad1eca0b9cf7f36"
+  },
+  "clean_deep": {
+    "commit": "03bac97b12777d751fbb334fa6ae0f605445498a",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DEEP_PAIR_HYGIENE_CENSUS.json",
+    "sha256": "f7e3b57a667dbd9f08e0e0f42aab330c6737e03ad56a4c936c7897ee63651e81"
+  },
+  "one_run": {
+    "authorized_process_attempts": 2,
+    "permitted_mechanical_retries_before_score_rows": 1,
+    "score_emitting_runs": 1,
+    "authorization_consumed": true
+  }
+}

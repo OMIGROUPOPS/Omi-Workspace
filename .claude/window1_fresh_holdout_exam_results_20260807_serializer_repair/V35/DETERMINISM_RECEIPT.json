@@ -1,0 +1,8 @@
+{
+  "builds_from_single_authorized_in_memory_replay": 2,
+  "replay_invocations": 1,
+  "byte_identical": true,
+  "compared_files": 20,
+  "all_jsonl_ledgers_streamed": true,
+  "mismatches": []
+}

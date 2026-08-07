@@ -1,0 +1,208 @@
+{
+  "files": {
+    "BELL_CONFIDENCE_SCORECARD.json": {
+      "sha256": "037c789fbe12a359418b492f0839b986abd189c2d61b5ef0eadf71418130a3e2",
+      "bytes": 4590
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "27ef78960923445b8f1a3d23d3761ef1e88eaa835c623a7b19d754f7aeb1c124",
+      "bytes": 1022
+    },
+    "EXECUTION_COMPLETE_RECEIPT.json": {
+      "sha256": "904fc3351013f9e409ebd614f6ceb22697db8a33048608f88b886e3c6ef7b67f",
+      "bytes": 333
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "sha256": "87e1fce33c4d702b2fc3881d2a2d3bc8fdf539cdd33f1ef17d75a40a45ecec2e",
+      "bytes": 926
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "7003e97896c177e157f57cacb0c69563d24efd960d64d4d73a2d47d937a17464",
+      "bytes": 312
+    },
+    "POLICY_BYTE_IDENTITY_RECEIPT.json": {
+      "sha256": "2b7474ca40f279c132028d5bfc0164b648c8ec80ffae04a60f0917a65db1fc3f",
+      "bytes": 1017
+    },
+    "REPORT.md": {
+      "sha256": "69703d460252905726a26a478f2cdff99c3226991f848209048fbba5d7ac47d2",
+      "bytes": 967
+    },
+    "V35/ACTION_AND_FILL_TRACE.jsonl.gz": {
+      "sha256": "94caffbabbd517eb213c08b48a0e3b7fa9802d403805425110129d04f2aa44a4",
+      "bytes": 627188
+    },
+    "V35/ARTIFACT_HASH_MANIFEST.json": {
+      "sha256": "37cef55edd8065b73702960dfb7f444bacc8d58251119d007af721d3f4d3fc9c",
+      "bytes": 3167
+    },
+    "V35/CENSUS_PRICED_CLEAN_DEEP.json": {
+      "sha256": "b16a72f115a2830f084c6c71e1820e8df38b7969cb646c5ee691b55f21620be2",
+      "bytes": 13780
+    },
+    "V35/CENSUS_PRICED_DECISION_TRACE_342.json": {
+      "sha256": "80f06b571616a2b2a0aa0f9746cbc5264329971710ef3eb06fcdba8eae28b356",
+      "bytes": 2303676
+    },
+    "V35/CENSUS_PRICED_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "c17635fe3064842d7b0bb1c1a267ad4d11fd6d86903438c2fd43eed01f24a639",
+      "bytes": 252868
+    },
+    "V35/CENSUS_PRICED_FILL_SPLIT.json": {
+      "sha256": "e28685ab2ac4098a116e169953bf2193687ebd1a91a68d8d29c9422b1ea9f3a2",
+      "bytes": 6832
+    },
+    "V35/CENSUS_PRICED_FRONTIER.json": {
+      "sha256": "0c56a538417b2ca4dc484aa507e806fa57123c4aed77df6078bb73cbfecb0426",
+      "bytes": 18815
+    },
+    "V35/CENSUS_PRICED_REGRET_GAUGE.json": {
+      "sha256": "4008a9e014f0c39a8dd38a6611944dcf14582c2075dce1e763219334c4d41592",
+      "bytes": 15521
+    },
+    "V35/CENSUS_PRICED_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "190c9d1c8ba35da31b999ed0e3fbdbf4ae0acc4ba64f9050415d7bdb2c1d919a",
+      "bytes": 6010
+    },
+    "V35/CENSUS_PRICED_REST_SANITY.json": {
+      "sha256": "0d3ba04a97d0f32b5bd2da942531dd93ceb43ac73231fa7a1baf794c285df0cc",
+      "bytes": 266901
+    },
+    "V35/DETERMINISM_RECEIPT.json": {
+      "sha256": "cdbc94c6f0600cd14fb53eb53b0928b030ae295bf093ea5546e84e43fc58e739",
+      "bytes": 193
+    },
+    "V35/FULL_DECISION_TRACE.jsonl.gz": {
+      "sha256": "50cff1aa37cb60f03f85f0f85b8a837a23270dd0e1a8f16052f931b2d000dc47",
+      "bytes": 9519164
+    },
+    "V35/SCORECARD_TWO_COLUMN.json": {
+      "sha256": "3bcfb847620ba9bfc5bf702918638a11211d799887c7af3282938f04e2f765c5",
+      "bytes": 33884
+    },
+    "V35/STRICT_CLEAN_DEEP.json": {
+      "sha256": "154c1160cd043cacbdc015f0c871d8539a40645296ac9066d5f0ab7087d75aa0",
+      "bytes": 5109
+    },
+    "V35/STRICT_DECISION_TRACE_342.json": {
+      "sha256": "6ecc46ed5091651f48e474279b4823607ec8e2b9544dc893dff8eebcc28a5538",
+      "bytes": 2299462
+    },
+    "V35/STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "fbc6c7ec91a13156a4b3539ba55a1cd65ee7cfd654545c6d2f90c3663f907665",
+      "bytes": 251621
+    },
+    "V35/STRICT_FILL_SPLIT.json": {
+      "sha256": "a8008a23433443a829bcda517d9180e2f9152345a9e6ed9b254fe993a5472699",
+      "bytes": 6830
+    },
+    "V35/STRICT_FRONTIER.json": {
+      "sha256": "0b0c1394019d80870fd911e43b4b5a2c0cf35ea08ee9c7cf54795142b9a2cd37",
+      "bytes": 18803
+    },
+    "V35/STRICT_REGRET_GAUGE.json": {
+      "sha256": "09a362097c81152b85f2b2dba2127493342abbdc7b9bdcc6eb0e522b1a6a0447",
+      "bytes": 15122
+    },
+    "V35/STRICT_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "1e2c13c0322d2632d4d50a98783b4234754d3889ed1104c3d9d9ca14dc983cca",
+      "bytes": 5841
+    },
+    "V35/STRICT_REST_SANITY.json": {
+      "sha256": "3659aeec6ffe017c3c908e356a8bce2a7cd07c0dcd57e0c709975e5dffbcbcbc",
+      "bytes": 263660
+    },
+    "V35/WINDOW1_SPAN_171.json": {
+      "sha256": "0cc98a6909807e7a0b34b72b2f8f792ab9cab53178330220de7854fec253d7aa",
+      "bytes": 108495
+    },
+    "V36/ACTION_AND_FILL_TRACE.jsonl.gz": {
+      "sha256": "a0a8763be8b4658ccd881b01c0f60888cf74869bf769b07be32dab54b5db9f72",
+      "bytes": 670074
+    },
+    "V36/ARTIFACT_HASH_MANIFEST.json": {
+      "sha256": "5dcff0eb03ff4de6fc3af785d0b8718639dd1e3bd759758e61fa7efb450e152b",
+      "bytes": 3168
+    },
+    "V36/CENSUS_PRICED_CLEAN_DEEP.json": {
+      "sha256": "ef0ab76bb47491eb2d24682a3d850eedc6daa23e04541b61828769afcf2f5288",
+      "bytes": 13128
+    },
+    "V36/CENSUS_PRICED_DECISION_TRACE_342.json": {
+      "sha256": "d5b90b4642e10e56b8a8b38e8e6044fe7c8833c4bc11e1238bef2bb9e8c19aea",
+      "bytes": 2840877
+    },
+    "V36/CENSUS_PRICED_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "dd85e571742b28dcaa2ba8bcb656305ec00110714efeadeee66dc78bd87438e5",
+      "bytes": 286019
+    },
+    "V36/CENSUS_PRICED_FILL_SPLIT.json": {
+      "sha256": "aa245a4914b8ae1ea082017d88731597785c51a4f8d90fb97ca7c1b1b7b96183",
+      "bytes": 6833
+    },
+    "V36/CENSUS_PRICED_FRONTIER.json": {
+      "sha256": "d656a75f937ac0d7aa395ad67abd79239c74b9c6f4cbec28aa7e0b4be66891b0",
+      "bytes": 18815
+    },
+    "V36/CENSUS_PRICED_REGRET_GAUGE.json": {
+      "sha256": "a07dd2d9021d5195659df494dbacfb46fe960d4177e6e938c1c75824352b37ee",
+      "bytes": 15597
+    },
+    "V36/CENSUS_PRICED_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "32bc9354ea03d8d7dfa658234b19a3fd86fc27effaf760aafe873d8feac76f18",
+      "bytes": 6014
+    },
+    "V36/CENSUS_PRICED_REST_SANITY.json": {
+      "sha256": "6326bc6bc0cdab4a2e5550e0e2567004b038fa32c7764d20fb02452a066606a2",
+      "bytes": 357447
+    },
+    "V36/DETERMINISM_RECEIPT.json": {
+      "sha256": "cdbc94c6f0600cd14fb53eb53b0928b030ae295bf093ea5546e84e43fc58e739",
+      "bytes": 193
+    },
+    "V36/FULL_DECISION_TRACE.jsonl.gz": {
+      "sha256": "24906eab101e172e23532148b189b9a7a507c69568f5c117f37606fc5102efb0",
+      "bytes": 11863654
+    },
+    "V36/SCORECARD_TWO_COLUMN.json": {
+      "sha256": "8d22bfdb6e366911b16294705071cab9d99b75c6e3875a467eb697bfd19a8d1d",
+      "bytes": 33884
+    },
+    "V36/STRICT_CLEAN_DEEP.json": {
+      "sha256": "e0a0c7d7323aecb3bcd34dc7e4b745e2285ddaf7c926a4ce6526087b66130fb8",
+      "bytes": 4460
+    },
+    "V36/STRICT_DECISION_TRACE_342.json": {
+      "sha256": "390e79b5e19f364146c8da4003ef4c10547a031b8d24f7f10ae79ad87c20b321",
+      "bytes": 2838622
+    },
+    "V36/STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "c3cd63a3991d7cbcbc661dbe0604e29e469b9d9d5cb39e0dbce2af33fdb341df",
+      "bytes": 285806
+    },
+    "V36/STRICT_FILL_SPLIT.json": {
+      "sha256": "dcc6153cfe1f155b2a158b50660953a8c3c6b9dd1dff113e2bcbd67cba6ea07e",
+      "bytes": 6829
+    },
+    "V36/STRICT_FRONTIER.json": {
+      "sha256": "87553045bbba03fddfe03575f90e0484a55e342e5cf69e09aa8a33faf672c4c5",
+      "bytes": 18803
+    },
+    "V36/STRICT_REGRET_GAUGE.json": {
+      "sha256": "81899dd6d40eda4c0e21ec004c4fd42aecc531645293a42c0f5aabb26830385e",
+      "bytes": 15252
+    },
+    "V36/STRICT_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "f684400c87b74232929acc5f2f35c8bb598a3d63ab73921e409b0c903d00d759",
+      "bytes": 5831
+    },
+    "V36/STRICT_REST_SANITY.json": {
+      "sha256": "facaed4bf18cf1119805794737be59a6f195e781c290be4c1d2df96b73e43833",
+      "bytes": 354481
+    },
+    "V36/WINDOW1_SPAN_171.json": {
+      "sha256": "0cc98a6909807e7a0b34b72b2f8f792ab9cab53178330220de7854fec253d7aa",
+      "bytes": 108495
+    }
+  }
+}

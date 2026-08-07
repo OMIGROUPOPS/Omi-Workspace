@@ -1,0 +1,215 @@
+{
+  "exact_bell_headline_D": 11,
+  "schedule_only_D": 146,
+  "rows": [
+    {
+      "brain": "V36",
+      "column": "STRICT_LAW",
+      "bell_confidence": "exact",
+      "headline": true,
+      "D": 11,
+      "completed_pairs": 3,
+      "under_par_pairs": 3,
+      "frontier": {
+        "LE_93": 0,
+        "LE_95": 0,
+        "LE_97": 0,
+        "LT_100": 3,
+        "ANY_PRICE": 3
+      },
+      "collapse_clean_LE95": 0
+    },
+    {
+      "brain": "V36",
+      "column": "STRICT_LAW",
+      "bell_confidence": "live_by_only",
+      "headline": false,
+      "D": 14,
+      "completed_pairs": 5,
+      "under_par_pairs": 5,
+      "frontier": {
+        "LE_93": 1,
+        "LE_95": 1,
+        "LE_97": 2,
+        "LT_100": 5,
+        "ANY_PRICE": 5
+      },
+      "collapse_clean_LE95": 1
+    },
+    {
+      "brain": "V36",
+      "column": "STRICT_LAW",
+      "bell_confidence": "schedule_only",
+      "headline": false,
+      "D": 146,
+      "completed_pairs": 50,
+      "under_par_pairs": 50,
+      "frontier": {
+        "LE_93": 2,
+        "LE_95": 5,
+        "LE_97": 13,
+        "LT_100": 50,
+        "ANY_PRICE": 50
+      },
+      "collapse_clean_LE95": 5
+    },
+    {
+      "brain": "V36",
+      "column": "CENSUS_PRICED",
+      "bell_confidence": "exact",
+      "headline": true,
+      "D": 11,
+      "completed_pairs": 10,
+      "under_par_pairs": 10,
+      "frontier": {
+        "LE_93": 1,
+        "LE_95": 2,
+        "LE_97": 2,
+        "LT_100": 10,
+        "ANY_PRICE": 10
+      },
+      "collapse_clean_LE95": 2
+    },
+    {
+      "brain": "V36",
+      "column": "CENSUS_PRICED",
+      "bell_confidence": "live_by_only",
+      "headline": false,
+      "D": 14,
+      "completed_pairs": 13,
+      "under_par_pairs": 13,
+      "frontier": {
+        "LE_93": 1,
+        "LE_95": 1,
+        "LE_97": 4,
+        "LT_100": 13,
+        "ANY_PRICE": 13
+      },
+      "collapse_clean_LE95": 1
+    },
+    {
+      "brain": "V36",
+      "column": "CENSUS_PRICED",
+      "bell_confidence": "schedule_only",
+      "headline": false,
+      "D": 146,
+      "completed_pairs": 105,
+      "under_par_pairs": 105,
+      "frontier": {
+        "LE_93": 12,
+        "LE_95": 15,
+        "LE_97": 24,
+        "LT_100": 105,
+        "ANY_PRICE": 105
+      },
+      "collapse_clean_LE95": 15
+    },
+    {
+      "brain": "V35",
+      "column": "STRICT_LAW",
+      "bell_confidence": "exact",
+      "headline": true,
+      "D": 11,
+      "completed_pairs": 3,
+      "under_par_pairs": 3,
+      "frontier": {
+        "LE_93": 0,
+        "LE_95": 0,
+        "LE_97": 0,
+        "LT_100": 3,
+        "ANY_PRICE": 3
+      },
+      "collapse_clean_LE95": 0
+    },
+    {
+      "brain": "V35",
+      "column": "STRICT_LAW",
+      "bell_confidence": "live_by_only",
+      "headline": false,
+      "D": 14,
+      "completed_pairs": 7,
+      "under_par_pairs": 7,
+      "frontier": {
+        "LE_93": 2,
+        "LE_95": 3,
+        "LE_97": 3,
+        "LT_100": 7,
+        "ANY_PRICE": 7
+      },
+      "collapse_clean_LE95": 3
+    },
+    {
+      "brain": "V35",
+      "column": "STRICT_LAW",
+      "bell_confidence": "schedule_only",
+      "headline": false,
+      "D": 146,
+      "completed_pairs": 49,
+      "under_par_pairs": 49,
+      "frontier": {
+        "LE_93": 2,
+        "LE_95": 4,
+        "LE_97": 12,
+        "LT_100": 49,
+        "ANY_PRICE": 49
+      },
+      "collapse_clean_LE95": 4
+    },
+    {
+      "brain": "V35",
+      "column": "CENSUS_PRICED",
+      "bell_confidence": "exact",
+      "headline": true,
+      "D": 11,
+      "completed_pairs": 10,
+      "under_par_pairs": 10,
+      "frontier": {
+        "LE_93": 1,
+        "LE_95": 2,
+        "LE_97": 2,
+        "LT_100": 10,
+        "ANY_PRICE": 10
+      },
+      "collapse_clean_LE95": 2
+    },
+    {
+      "brain": "V35",
+      "column": "CENSUS_PRICED",
+      "bell_confidence": "live_by_only",
+      "headline": false,
+      "D": 14,
+      "completed_pairs": 13,
+      "under_par_pairs": 13,
+      "frontier": {
+        "LE_93": 1,
+        "LE_95": 1,
+        "LE_97": 3,
+        "LT_100": 13,
+        "ANY_PRICE": 13
+      },
+      "collapse_clean_LE95": 1
+    },
+    {
+      "brain": "V35",
+      "column": "CENSUS_PRICED",
+      "bell_confidence": "schedule_only",
+      "headline": false,
+      "D": 146,
+      "completed_pairs": 105,
+      "under_par_pairs": 105,
+      "frontier": {
+        "LE_93": 13,
+        "LE_95": 16,
+        "LE_97": 23,
+        "LT_100": 105,
+        "ANY_PRICE": 105
+      },
+      "collapse_clean_LE95": 16
+    }
+  ],
+  "conservation": {
+    "rows": 12,
+    "expected": 12,
+    "pass": true
+  }
+}

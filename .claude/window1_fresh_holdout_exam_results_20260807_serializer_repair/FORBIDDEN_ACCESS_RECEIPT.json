@@ -1,0 +1,12 @@
+{
+  "exam_replay_network_access": 0,
+  "live_engine_access": 0,
+  "account_access": 0,
+  "order_access": 0,
+  "position_access": 0,
+  "trading_access": 0,
+  "tuning": 0,
+  "policy_edits": 0,
+  "R3_invocations": 0,
+  "input_network_access_before_exam": "PUBLIC_TRADE_REPULL_AND_N20_CAPTURE_RECONCILIATION_ONLY"
+}

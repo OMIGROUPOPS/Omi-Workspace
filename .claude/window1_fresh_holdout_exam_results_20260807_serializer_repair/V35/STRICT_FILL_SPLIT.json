@@ -1,0 +1,337 @@
+{
+  "strict_fill_law": "MAKER_REQUIRES_STRICTLY_LATER_SELLER_AGGRESSED_PRINT_SIZE_GE_5_AT_OR_BELOW_LIVING_REST; TAKER_REQUIRES_DWELL_10_SIZE_5_PAIR_CAP_AND_ASK_AT_OR_BELOW_ACTIVE_TRAILING_EVIDENCE_FLOOR; STATE_LABEL_IGNORED",
+  "aggregate": {
+    "legs": 342,
+    "credited": 224,
+    "maker": 25,
+    "taker": 199,
+    "census_priced": 0,
+    "uncredited": 118
+  },
+  "category_x_price_region_x_bell_confidence": [
+    {
+      "cell": "ATP_CHALL|26_50|exact",
+      "counts": {
+        "legs": 7,
+        "credited": 5,
+        "maker": 0,
+        "taker": 5,
+        "census_priced": 0,
+        "uncredited": 2
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50|live_by_only",
+      "counts": {
+        "legs": 5,
+        "credited": 3,
+        "maker": 0,
+        "taker": 3,
+        "census_priced": 0,
+        "uncredited": 2
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50|schedule_only",
+      "counts": {
+        "legs": 62,
+        "credited": 38,
+        "maker": 0,
+        "taker": 38,
+        "census_priced": 0,
+        "uncredited": 24
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|exact",
+      "counts": {
+        "legs": 2,
+        "credited": 2,
+        "maker": 0,
+        "taker": 2,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|live_by_only",
+      "counts": {
+        "legs": 3,
+        "credited": 3,
+        "maker": 0,
+        "taker": 3,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75|schedule_only",
+      "counts": {
+        "legs": 43,
+        "credited": 26,
+        "maker": 0,
+        "taker": 26,
+        "census_priced": 0,
+        "uncredited": 17
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|exact",
+      "counts": {
+        "legs": 2,
+        "credited": 0,
+        "maker": 0,
+        "taker": 0,
+        "census_priced": 0,
+        "uncredited": 2
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|live_by_only",
+      "counts": {
+        "legs": 2,
+        "credited": 1,
+        "maker": 0,
+        "taker": 1,
+        "census_priced": 0,
+        "uncredited": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76|schedule_only",
+      "counts": {
+        "legs": 4,
+        "credited": 4,
+        "maker": 1,
+        "taker": 3,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|exact",
+      "counts": {
+        "legs": 5,
+        "credited": 4,
+        "maker": 0,
+        "taker": 4,
+        "census_priced": 0,
+        "uncredited": 1
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|live_by_only",
+      "counts": {
+        "legs": 6,
+        "credited": 4,
+        "maker": 1,
+        "taker": 3,
+        "census_priced": 0,
+        "uncredited": 2
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25|schedule_only",
+      "counts": {
+        "legs": 63,
+        "credited": 35,
+        "maker": 4,
+        "taker": 31,
+        "census_priced": 0,
+        "uncredited": 28
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50|schedule_only",
+      "counts": {
+        "legs": 2,
+        "credited": 2,
+        "maker": 0,
+        "taker": 2,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75|schedule_only",
+      "counts": {
+        "legs": 2,
+        "credited": 2,
+        "maker": 2,
+        "taker": 0,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25|live_by_only",
+      "counts": {
+        "legs": 6,
+        "credited": 6,
+        "maker": 1,
+        "taker": 5,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25|schedule_only",
+      "counts": {
+        "legs": 36,
+        "credited": 25,
+        "maker": 6,
+        "taker": 19,
+        "census_priced": 0,
+        "uncredited": 11
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|exact",
+      "counts": {
+        "legs": 1,
+        "credited": 1,
+        "maker": 0,
+        "taker": 1,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|live_by_only",
+      "counts": {
+        "legs": 2,
+        "credited": 1,
+        "maker": 0,
+        "taker": 1,
+        "census_priced": 0,
+        "uncredited": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50|schedule_only",
+      "counts": {
+        "legs": 9,
+        "credited": 6,
+        "maker": 1,
+        "taker": 5,
+        "census_priced": 0,
+        "uncredited": 3
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75|exact",
+      "counts": {
+        "legs": 1,
+        "credited": 0,
+        "maker": 0,
+        "taker": 0,
+        "census_priced": 0,
+        "uncredited": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75|schedule_only",
+      "counts": {
+        "legs": 1,
+        "credited": 1,
+        "maker": 1,
+        "taker": 0,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76|schedule_only",
+      "counts": {
+        "legs": 2,
+        "credited": 1,
+        "maker": 0,
+        "taker": 1,
+        "census_priced": 0,
+        "uncredited": 1
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25|live_by_only",
+      "counts": {
+        "legs": 2,
+        "credited": 2,
+        "maker": 0,
+        "taker": 2,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25|schedule_only",
+      "counts": {
+        "legs": 22,
+        "credited": 15,
+        "maker": 2,
+        "taker": 13,
+        "census_priced": 0,
+        "uncredited": 7
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50|schedule_only",
+      "counts": {
+        "legs": 6,
+        "credited": 5,
+        "maker": 2,
+        "taker": 3,
+        "census_priced": 0,
+        "uncredited": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75|schedule_only",
+      "counts": {
+        "legs": 2,
+        "credited": 2,
+        "maker": 0,
+        "taker": 2,
+        "census_priced": 0,
+        "uncredited": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|exact",
+      "counts": {
+        "legs": 4,
+        "credited": 2,
+        "maker": 1,
+        "taker": 1,
+        "census_priced": 0,
+        "uncredited": 2
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|live_by_only",
+      "counts": {
+        "legs": 2,
+        "credited": 1,
+        "maker": 0,
+        "taker": 1,
+        "census_priced": 0,
+        "uncredited": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25|schedule_only",
+      "counts": {
+        "legs": 38,
+        "credited": 27,
+        "maker": 3,
+        "taker": 24,
+        "census_priced": 0,
+        "uncredited": 11
+      }
+    }
+  ],
+  "conservation": {
+    "cell_leg_sum": 342,
+    "expected_legs": 342,
+    "pass": true
+  }
+}

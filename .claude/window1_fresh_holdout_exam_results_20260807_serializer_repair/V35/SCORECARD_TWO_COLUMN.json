@@ -1,0 +1,1182 @@
+{
+  "schema_version": "window1-fresh-holdout-v35-score-v1",
+  "brain_commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+  "R3_excluded_context_only": {
+    "commit": "49f6501561c5d99a7f36c68ec41e0ea7250680e5",
+    "original_joint_reference_only": 68,
+    "reason": "TRANSITIVE_INPUT_BLOCKER_4f4d546"
+  },
+  "development_context": {
+    "STRICT_LAW": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1604,
+      "credited_legs": 1017,
+      "proven_maker_legs": 155,
+      "proven_taker_legs": 862,
+      "census_priced_conversion_legs": 0,
+      "completed_pairs": 264,
+      "pairs_under_par": 264,
+      "naked_credited_legs": 489,
+      "rests_unfilled_at_edge": 586,
+      "close_based_grade": null
+    },
+    "CENSUS_PRICED": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1604,
+      "credited_legs": 1337,
+      "proven_maker_legs": 27,
+      "proven_taker_legs": 707,
+      "census_priced_conversion_legs": 603,
+      "completed_pairs": 550,
+      "pairs_under_par": 550,
+      "naked_credited_legs": 237,
+      "rests_unfilled_at_edge": 267,
+      "close_based_grade": null
+    }
+  },
+  "STRICT_LAW": {
+    "label": "STRICT_LAW",
+    "grading_law": "CLOSE_FREE_COMPLETION_AND_SUM_STRICTLY_BELOW_100",
+    "aggregate": {
+      "D": 171,
+      "legs": 342,
+      "acted_legs": 342,
+      "credited_legs": 224,
+      "proven_maker_legs": 25,
+      "proven_taker_legs": 199,
+      "census_priced_conversion_legs": 0,
+      "completed_pairs": 59,
+      "pairs_under_par": 59,
+      "naked_credited_legs": 106,
+      "rests_unfilled_at_edge": 118,
+      "close_based_grade": null
+    },
+    "category_x_starting_price_region_x_bell_confidence": [
+      {
+        "cell": "ATP_CHALL|26_50+26_50|exact",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 5,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 5,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+26_50|schedule_only",
+        "metrics": {
+          "D": 9,
+          "legs": 18,
+          "acted_legs": 18,
+          "credited_legs": 12,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 12,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 6,
+          "rests_unfilled_at_edge": 6,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 1,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75|live_by_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 4,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 2,
+          "rests_unfilled_at_edge": 2,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75|schedule_only",
+        "metrics": {
+          "D": 36,
+          "legs": 72,
+          "acted_legs": 72,
+          "credited_legs": 41,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 41,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 7,
+          "pairs_under_par": 7,
+          "naked_credited_legs": 27,
+          "rests_unfilled_at_edge": 31,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+26_50|live_by_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 3,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+26_50|schedule_only",
+        "metrics": {
+          "D": 8,
+          "legs": 16,
+          "acted_legs": 16,
+          "credited_legs": 11,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 11,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 5,
+          "rests_unfilled_at_edge": 5,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+51_75|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 1,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+51_75|schedule_only",
+        "metrics": {
+          "D": 7,
+          "legs": 14,
+          "acted_legs": 14,
+          "credited_legs": 8,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 8,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 6,
+          "rests_unfilled_at_edge": 6,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+ge76|exact",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 2,
+          "rests_unfilled_at_edge": 2,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+ge76|live_by_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 3,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+ge76|schedule_only",
+        "metrics": {
+          "D": 4,
+          "legs": 8,
+          "acted_legs": 8,
+          "credited_legs": 7,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 6,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25|live_by_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 1,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25|schedule_only",
+        "metrics": {
+          "D": 22,
+          "legs": 44,
+          "acted_legs": 44,
+          "credited_legs": 24,
+          "proven_maker_legs": 4,
+          "proven_taker_legs": 20,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 6,
+          "pairs_under_par": 6,
+          "naked_credited_legs": 12,
+          "rests_unfilled_at_edge": 20,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+51_75|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 2,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25|live_by_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 6,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 5,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25|schedule_only",
+        "metrics": {
+          "D": 18,
+          "legs": 36,
+          "acted_legs": 36,
+          "credited_legs": 25,
+          "proven_maker_legs": 6,
+          "proven_taker_legs": 19,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 7,
+          "pairs_under_par": 7,
+          "naked_credited_legs": 11,
+          "rests_unfilled_at_edge": 11,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+26_50|schedule_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 4,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 2,
+          "rests_unfilled_at_edge": 2,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+51_75|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 1,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+26_50|live_by_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 3,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+26_50|schedule_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 4,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 2,
+          "rests_unfilled_at_edge": 2,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+51_75|schedule_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+ge76|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 2,
+          "rests_unfilled_at_edge": 2,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+le25|schedule_only",
+        "metrics": {
+          "D": 8,
+          "legs": 16,
+          "acted_legs": 16,
+          "credited_legs": 11,
+          "proven_maker_legs": 2,
+          "proven_taker_legs": 9,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 5,
+          "rests_unfilled_at_edge": 5,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+26_50|schedule_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 1,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 0,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+51_75|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+26_50|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 3,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25|exact",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 2,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 2,
+          "rests_unfilled_at_edge": 2,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25|live_by_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 1,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25|schedule_only",
+        "metrics": {
+          "D": 18,
+          "legs": 36,
+          "acted_legs": 36,
+          "credited_legs": 26,
+          "proven_maker_legs": 3,
+          "proven_taker_legs": 23,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 8,
+          "pairs_under_par": 8,
+          "naked_credited_legs": 10,
+          "rests_unfilled_at_edge": 10,
+          "close_based_grade": null
+        }
+      }
+    ],
+    "conservation": {
+      "cell_D_sum": 171,
+      "expected_D": 171,
+      "pass": true
+    }
+  },
+  "CENSUS_PRICED": {
+    "label": "CENSUS_PRICED_ONE_CENT_RESIDENCY",
+    "grading_law": "CLOSE_FREE_COMPLETION_AND_SUM_STRICTLY_BELOW_100",
+    "aggregate": {
+      "D": 171,
+      "legs": 342,
+      "acted_legs": 342,
+      "credited_legs": 298,
+      "proven_maker_legs": 9,
+      "proven_taker_legs": 161,
+      "census_priced_conversion_legs": 128,
+      "completed_pairs": 128,
+      "pairs_under_par": 128,
+      "naked_credited_legs": 42,
+      "rests_unfilled_at_edge": 44,
+      "close_based_grade": null
+    },
+    "category_x_starting_price_region_x_bell_confidence": [
+      {
+        "cell": "ATP_CHALL|26_50+26_50|exact",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 6,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 4,
+          "census_priced_conversion_legs": 2,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+26_50|schedule_only",
+        "metrics": {
+          "D": 9,
+          "legs": 18,
+          "acted_legs": 18,
+          "credited_legs": 14,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 9,
+          "census_priced_conversion_legs": 5,
+          "completed_pairs": 5,
+          "pairs_under_par": 5,
+          "naked_credited_legs": 4,
+          "rests_unfilled_at_edge": 4,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75|live_by_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 6,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 3,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75|schedule_only",
+        "metrics": {
+          "D": 36,
+          "legs": 72,
+          "acted_legs": 72,
+          "credited_legs": 59,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 34,
+          "census_priced_conversion_legs": 25,
+          "completed_pairs": 24,
+          "pairs_under_par": 24,
+          "naked_credited_legs": 11,
+          "rests_unfilled_at_edge": 13,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+26_50|live_by_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 3,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+26_50|schedule_only",
+        "metrics": {
+          "D": 8,
+          "legs": 16,
+          "acted_legs": 16,
+          "credited_legs": 13,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 7,
+          "census_priced_conversion_legs": 6,
+          "completed_pairs": 5,
+          "pairs_under_par": 5,
+          "naked_credited_legs": 3,
+          "rests_unfilled_at_edge": 3,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+51_75|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+51_75|schedule_only",
+        "metrics": {
+          "D": 7,
+          "legs": 14,
+          "acted_legs": 14,
+          "credited_legs": 14,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 6,
+          "census_priced_conversion_legs": 8,
+          "completed_pairs": 7,
+          "pairs_under_par": 7,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+ge76|exact",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 2,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+ge76|live_by_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 2,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+ge76|schedule_only",
+        "metrics": {
+          "D": 4,
+          "legs": 8,
+          "acted_legs": 8,
+          "credited_legs": 7,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 5,
+          "census_priced_conversion_legs": 2,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25|live_by_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25|schedule_only",
+        "metrics": {
+          "D": 22,
+          "legs": 44,
+          "acted_legs": 44,
+          "credited_legs": 38,
+          "proven_maker_legs": 3,
+          "proven_taker_legs": 17,
+          "census_priced_conversion_legs": 18,
+          "completed_pairs": 16,
+          "pairs_under_par": 16,
+          "naked_credited_legs": 6,
+          "rests_unfilled_at_edge": 6,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+51_75|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 2,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25|live_by_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 6,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 5,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25|schedule_only",
+        "metrics": {
+          "D": 18,
+          "legs": 36,
+          "acted_legs": 36,
+          "credited_legs": 32,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 12,
+          "census_priced_conversion_legs": 19,
+          "completed_pairs": 14,
+          "pairs_under_par": 14,
+          "naked_credited_legs": 4,
+          "rests_unfilled_at_edge": 4,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+26_50|schedule_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 6,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 3,
+          "completed_pairs": 3,
+          "pairs_under_par": 3,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+51_75|exact",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 1,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 0,
+          "pairs_under_par": 0,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+26_50|live_by_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+26_50|schedule_only",
+        "metrics": {
+          "D": 3,
+          "legs": 6,
+          "acted_legs": 6,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 2,
+          "rests_unfilled_at_edge": 2,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+51_75|schedule_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 0,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+ge76|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 3,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 2,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+le25|schedule_only",
+        "metrics": {
+          "D": 8,
+          "legs": 16,
+          "acted_legs": 16,
+          "credited_legs": 13,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 7,
+          "census_priced_conversion_legs": 5,
+          "completed_pairs": 5,
+          "pairs_under_par": 5,
+          "naked_credited_legs": 3,
+          "rests_unfilled_at_edge": 3,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+26_50|schedule_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 0,
+          "census_priced_conversion_legs": 2,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+51_75|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 3,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 1,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 1,
+          "rests_unfilled_at_edge": 1,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+26_50|schedule_only",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 3,
+          "census_priced_conversion_legs": 1,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25|exact",
+        "metrics": {
+          "D": 2,
+          "legs": 4,
+          "acted_legs": 4,
+          "credited_legs": 4,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 0,
+          "census_priced_conversion_legs": 3,
+          "completed_pairs": 2,
+          "pairs_under_par": 2,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25|live_by_only",
+        "metrics": {
+          "D": 1,
+          "legs": 2,
+          "acted_legs": 2,
+          "credited_legs": 2,
+          "proven_maker_legs": 0,
+          "proven_taker_legs": 0,
+          "census_priced_conversion_legs": 2,
+          "completed_pairs": 1,
+          "pairs_under_par": 1,
+          "naked_credited_legs": 0,
+          "rests_unfilled_at_edge": 0,
+          "close_based_grade": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25|schedule_only",
+        "metrics": {
+          "D": 18,
+          "legs": 36,
+          "acted_legs": 36,
+          "credited_legs": 32,
+          "proven_maker_legs": 1,
+          "proven_taker_legs": 22,
+          "census_priced_conversion_legs": 9,
+          "completed_pairs": 14,
+          "pairs_under_par": 14,
+          "naked_credited_legs": 4,
+          "rests_unfilled_at_edge": 4,
+          "close_based_grade": null
+        }
+      }
+    ],
+    "conservation": {
+      "cell_D_sum": 171,
+      "expected_D": 171,
+      "pass": true
+    }
+  },
+  "clean_deep": {
+    "STRICT_LAW": {
+      "mode": "STRICT_LAW",
+      "deep_definition": "COMPLETED_PAIR_COMBINED_ENTRY_LE_95",
+      "terminal_collapse_method": "03bac97b: credited single-digit leg inside monotone seller-aggressed run of >=3 descending prints spanning >=10c into single digits within 30 minutes",
+      "deep_pairs": 7,
+      "by_bell_confidence": {
+        "schedule_only": 4,
+        "live_by_only": 3
+      },
+      "with_terminal_collapse": 0,
+      "exact_bell": 0,
+      "exact_bell_collapse_clean": 0,
+      "schedule_only_collapse_clean": 4
+    },
+    "CENSUS_PRICED": {
+      "mode": "CENSUS_PRICED",
+      "deep_definition": "COMPLETED_PAIR_COMBINED_ENTRY_LE_95",
+      "terminal_collapse_method": "03bac97b: credited single-digit leg inside monotone seller-aggressed run of >=3 descending prints spanning >=10c into single digits within 30 minutes",
+      "deep_pairs": 19,
+      "by_bell_confidence": {
+        "schedule_only": 16,
+        "exact": 2,
+        "live_by_only": 1
+      },
+      "with_terminal_collapse": 0,
+      "exact_bell": 2,
+      "exact_bell_collapse_clean": 2,
+      "schedule_only_collapse_clean": 16
+    }
+  },
+  "conservation": {
+    "D_each_column": [
+      171,
+      171
+    ],
+    "expected_D": 171,
+    "pass": true
+  }
+}

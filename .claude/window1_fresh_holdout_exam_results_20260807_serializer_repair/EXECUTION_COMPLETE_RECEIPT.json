@@ -1,0 +1,14 @@
+{
+  "status": "COMPLETE",
+  "authorized_process_attempts": 2,
+  "permitted_mechanical_retries_before_score_rows": 1,
+  "score_emitting_runs": 1,
+  "brain_invocations_in_final_run": {
+    "V36": 1,
+    "V35": 1,
+    "R3": 0
+  },
+  "score_rows": 12,
+  "authorization_consumed": true,
+  "completed_at_utc": "2026-08-07T07:53:37.897Z"
+}

@@ -1,0 +1,170 @@
+{
+  "mode": "STRICT_LAW",
+  "deep_definition": "COMPLETED_PAIR_COMBINED_ENTRY_LE_95",
+  "terminal_collapse_method": "03bac97b: credited single-digit leg inside monotone seller-aggressed run of >=3 descending prints spanning >=10c into single digits within 30 minutes",
+  "deep_pairs": 7,
+  "by_bell_confidence": {
+    "schedule_only": 4,
+    "live_by_only": 3
+  },
+  "with_terminal_collapse": 0,
+  "exact_bell": 0,
+  "exact_bell_collapse_clean": 0,
+  "schedule_only_collapse_clean": 4,
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27MARBEC",
+      "category": "ATP_CHALL",
+      "starting_price_split": "le25+ge76",
+      "bell_confidence": "live_by_only",
+      "combined_entry_cents": 95,
+      "exact_bell": false,
+      "any_terminal_collapse": false,
+      "exact_bell_collapse_clean": false,
+      "leg_receipts": {
+        "BEC": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        },
+        "MAR": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL28ZHULAN",
+      "category": "ATP_CHALL",
+      "starting_price_split": "le25+le25",
+      "bell_confidence": "schedule_only",
+      "combined_entry_cents": 95,
+      "exact_bell": false,
+      "any_terminal_collapse": false,
+      "exact_bell_collapse_clean": false,
+      "leg_receipts": {
+        "LAN": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        },
+        "ZHU": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27DIABOY",
+      "category": "ATP_MAIN",
+      "starting_price_split": "le25+le25",
+      "bell_confidence": "schedule_only",
+      "combined_entry_cents": 78,
+      "exact_bell": false,
+      "any_terminal_collapse": false,
+      "exact_bell_collapse_clean": false,
+      "leg_receipts": {
+        "BOY": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        },
+        "DIA": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27MICDRA",
+      "category": "ATP_MAIN",
+      "starting_price_split": "le25+le25",
+      "bell_confidence": "schedule_only",
+      "combined_entry_cents": 74,
+      "exact_bell": false,
+      "any_terminal_collapse": false,
+      "exact_bell_collapse_clean": false,
+      "leg_receipts": {
+        "DRA": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        },
+        "MIC": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL27VUKSVA",
+      "category": "ATP_MAIN",
+      "starting_price_split": "le25+le25",
+      "bell_confidence": "live_by_only",
+      "combined_entry_cents": 79,
+      "exact_bell": false,
+      "any_terminal_collapse": false,
+      "exact_bell_collapse_clean": false,
+      "leg_receipts": {
+        "SVA": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        },
+        "VUK": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL27SZATON",
+      "category": "WTA_CHALL",
+      "starting_price_split": "le25+26_50",
+      "bell_confidence": "live_by_only",
+      "combined_entry_cents": 91,
+      "exact_bell": false,
+      "any_terminal_collapse": false,
+      "exact_bell_collapse_clean": false,
+      "leg_receipts": {
+        "SZA": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        },
+        "TON": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL28TONBRO",
+      "category": "WTA_CHALL",
+      "starting_price_split": "le25+le25",
+      "bell_confidence": "schedule_only",
+      "combined_entry_cents": 95,
+      "exact_bell": false,
+      "any_terminal_collapse": false,
+      "exact_bell_collapse_clean": false,
+      "leg_receipts": {
+        "BRO": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        },
+        "TON": {
+          "terminal_collapse": false,
+          "reason": "ENTRY_NOT_SINGLE_DIGIT_OR_NOT_CREDITED",
+          "evidence": []
+        }
+      }
+    }
+  ]
+}

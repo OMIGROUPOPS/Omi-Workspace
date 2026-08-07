@@ -1,0 +1,25 @@
+{
+  "before": {
+    "V36": {
+      "builder_sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+      "policy_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73"
+    },
+    "V35": {
+      "builder_sha256": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+      "policy_sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f"
+    }
+  },
+  "after": {
+    "V36": {
+      "builder_sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+      "policy_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73"
+    },
+    "V35": {
+      "builder_sha256": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+      "policy_sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f"
+    }
+  },
+  "byte_identical": true,
+  "ephemeral_adapter_operation": "TERMINAL_RUNNER_INVOCATION_REPLACED_BY_INTERNAL_FUNCTION_EXPORT_IN_MEMORY_ONLY",
+  "policy_files_modified": 0
+}

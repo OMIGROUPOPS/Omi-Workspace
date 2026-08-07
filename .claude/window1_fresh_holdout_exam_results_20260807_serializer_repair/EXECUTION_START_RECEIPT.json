@@ -1,0 +1,20 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-start-v3",
+  "authorization": "OPERATOR_PROMPT_SERIALIZER_REPAIR_FRESH_EXAM_20260807",
+  "authorization_consumed": true,
+  "authorized_process_attempt": 2,
+  "prior_mechanical_attempts_before_score_row": 1,
+  "score_rows_before_this_attempt": 0,
+  "prior_consumed_failure_commit": "a746d17582284736f9b3a9e6c8db2bf61e9204e1",
+  "prior_retryable_mechanical_failure_receipt": ".claude/window1_fresh_holdout_exam_serializer_repair_20260807/MECHANICAL_FAILURE_ATTEMPT1_RECEIPT.json",
+  "brains": [
+    "V36",
+    "V35"
+  ],
+  "R3_excluded": true,
+  "event_N": 171,
+  "event_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+  "boundary_sha256": "70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a",
+  "prints_sha256": "f3924d1274e9b79bab2cbba133cc80d2ccd5622e0fa28a5c09bc0ec9448325a2",
+  "started_at_utc": "2026-08-07T07:50:49.781Z"
+}

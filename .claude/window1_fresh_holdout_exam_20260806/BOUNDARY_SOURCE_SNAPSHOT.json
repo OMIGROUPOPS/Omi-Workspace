@@ -1,0 +1,2059 @@
+{
+  "daysheet_rows": {
+    "KXATPCHALLENGERMATCH-26JUL27ALBHAS": {
+      "bell_ts": 1785151802.4622622,
+      "gun_ts": 1785152912.4622622,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27AMBKIC": {
+      "bell_ts": 1785153597.8190234,
+      "gun_ts": 1785157287.8190234,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BASNAK": {
+      "bell_ts": 1785140999.6149979,
+      "gun_ts": 1785142043.6149979,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BLACOM": {
+      "bell_ts": 1785139197.7559917,
+      "gun_ts": 1785139569.7559917,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BOIDEB": {
+      "bell_ts": 1785151798.01212,
+      "gun_ts": 1785152854.01212,
+      "source": "milestone_official"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BOSROD": {
+      "bell_ts": 1785164399.0108292,
+      "gun_ts": 1785164963.0108292,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BRASUL": {
+      "bell_ts": 1785146401.4295764,
+      "gun_ts": 1785150523.4295764,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27CHOPAS": {
+      "bell_ts": 1785153600.560482,
+      "gun_ts": 1785154410.560482,
+      "source": "tape_flow"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27DALBRU": {
+      "bell_ts": 1785144599.361051,
+      "gun_ts": 1785145649.361051,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27DJEBAS": {
+      "bell_ts": 1785153598.9691696,
+      "gun_ts": 1785154210.9691696,
+      "source": "tape_flow"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27GADMAC": {
+      "bell_ts": 1785153599.044862,
+      "gun_ts": 1785153899.044862,
+      "source": "price_divergence"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27GALPET": {
+      "bell_ts": 1785148199.414346,
+      "gun_ts": 1785149693.414346,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27GOMBER": {
+      "bell_ts": 1785146402.0461788,
+      "gun_ts": 1785147230.0461788,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KOLKUM": {
+      "bell_ts": 1785153599.0845335,
+      "gun_ts": 1785153899.0845335,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KRANIC": {
+      "bell_ts": 1785140997.129203,
+      "gun_ts": 1785142329.129203,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KUZBIN": {
+      "bell_ts": 1785167100.432995,
+      "gun_ts": 1785167274.432995,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27LAPIE": {
+      "bell_ts": 1785142797.397144,
+      "gun_ts": 1785144165.397144,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MARBEC": {
+      "bell_ts": 1785146400.4350193,
+      "gun_ts": 1785151656.4350193,
+      "source": "price_divergence"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MIYANA": {
+      "bell_ts": 1785140999.6133962,
+      "gun_ts": 1785142043.6133962,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MONMAZ": {
+      "bell_ts": 1785144599.3605444,
+      "gun_ts": 1785145649.3605444,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MONNAG": {
+      "bell_ts": 1785159002.877152,
+      "gun_ts": 1785159632.877152,
+      "source": "tape_flow"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MULNAP": {
+      "bell_ts": 1785160799.4902203,
+      "gun_ts": 1785161189.4902203,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27PDANIK": {
+      "bell_ts": 1785158469.8628309,
+      "gun_ts": 1785158469.8628309,
+      "source": "tape_flow"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27POLKOV": {
+      "bell_ts": 1785139197.7543237,
+      "gun_ts": 1785139569.7543237,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27RICLLA": {
+      "bell_ts": 1785257997.9788253,
+      "gun_ts": 1785217959.9788253,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27RINPRA": {
+      "bell_ts": 1785150001.4462767,
+      "gun_ts": 1785150523.4462767,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SAKMAR": {
+      "bell_ts": 1785142797.396834,
+      "gun_ts": 1785144165.396834,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SINMAT": {
+      "bell_ts": 1785151802.466821,
+      "gun_ts": 1785152912.466821,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SINREJ": {
+      "bell_ts": 1785141001.9974313,
+      "gun_ts": 1785143359.9974313,
+      "source": "tape_flow"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27TOPABO": {
+      "bell_ts": 1785148199.2778752,
+      "gun_ts": 1785151277.2778752,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27VARFOR": {
+      "bell_ts": 1785144599.361329,
+      "gun_ts": 1785145649.361329,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27VRBJAN": {
+      "bell_ts": 1785139197.756121,
+      "gun_ts": 1785139569.756121,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27VRBMAR": {
+      "bell_ts": 1785141000.525085,
+      "gun_ts": 1785141216.525085,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27WALDON": {
+      "bell_ts": 1785142802.1271348,
+      "gun_ts": 1785144164.1271348,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27WOLZHA": {
+      "bell_ts": 1785257998.8584635,
+      "gun_ts": 1785219484.8584635,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28ALKSIN": {
+      "bell_ts": 1785237299.8262608,
+      "gun_ts": 1785237719.8262608,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28BASRAW": {
+      "bell_ts": 1785223798.779466,
+      "gun_ts": 1785223972.779466,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28CORFOR": {
+      "bell_ts": 1785234602.0850255,
+      "gun_ts": 1785236762.0850255,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28DIACOM": {
+      "bell_ts": 1785234602.0735707,
+      "gun_ts": 1785236762.0735707,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28HOUCAR": {
+      "bell_ts": 1785227399.750126,
+      "gun_ts": 1785227981.750126,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28JUSGUE": {
+      "bell_ts": 1785231000.5225415,
+      "gun_ts": 1785231054.5225415,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KASFER": {
+      "bell_ts": 1785237057.5179715,
+      "gun_ts": 1785237057.5179715,
+      "source": "tape_flow"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KIRDHA": {
+      "bell_ts": 1785237299.9873717,
+      "gun_ts": 1785240263.9873717,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KIRINC": {
+      "bell_ts": 1785223797.6484592,
+      "gun_ts": 1785223971.6484592,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KRUHEN": {
+      "bell_ts": 1785225601.172481,
+      "gun_ts": 1785226057.172481,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KUMBAX": {
+      "bell_ts": 1785223798.7796319,
+      "gun_ts": 1785223972.7796319,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MARDEL": {
+      "bell_ts": 1785234599.0958457,
+      "gun_ts": 1785235115.0958457,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MARSEY": {
+      "bell_ts": 1785231000.744226,
+      "gun_ts": 1785231540.744226,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MIYNAK": {
+      "bell_ts": 1785229199.7177696,
+      "gun_ts": 1785230249.7177696,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MOLTOP": {
+      "bell_ts": 1785227399.4645853,
+      "gun_ts": 1785228413.4645853,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28NIKBAR": {
+      "bell_ts": 1785227398.4891956,
+      "gun_ts": 1785228202.4891956,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28OLITAB": {
+      "bell_ts": 1785239998.9219084,
+      "gun_ts": 1785240112.9219084,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28POLDAL": {
+      "bell_ts": 1785229198.084384,
+      "gun_ts": 1785229324.084384,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28REJBRU": {
+      "bell_ts": 1785231001.797129,
+      "gun_ts": 1785231277.797129,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28RIBTOR": {
+      "bell_ts": 1785225597.692457,
+      "gun_ts": 1785225645.692457,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SAKMCD": {
+      "bell_ts": 1785232800.0023909,
+      "gun_ts": 1785235836.0023909,
+      "source": "price_divergence"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SCHGOM": {
+      "bell_ts": 1785238200.6830707,
+      "gun_ts": 1785240024.6830707,
+      "source": "percat_fitted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SCHMRV": {
+      "bell_ts": 1785239999.6447785,
+      "gun_ts": 1785241349.6447785,
+      "source": "tape_flow"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SKAFAU": {
+      "bell_ts": 1785229197.5548716,
+      "gun_ts": 1785229797.5548716,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28TABSQU": {
+      "bell_ts": 1785238199.990109,
+      "gun_ts": 1785240263.990109,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28TOKPAN": {
+      "bell_ts": 1785231901.2171926,
+      "gun_ts": 1785233593.2171926,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28TURURS": {
+      "bell_ts": 1785236402.383272,
+      "gun_ts": 1785237032.383272,
+      "source": "fallback_bell"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28VRBBAS": {
+      "bell_ts": 1785229202.5331163,
+      "gun_ts": 1785229604.5331163,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28WALGIU": {
+      "bell_ts": 1785232800.1549575,
+      "gun_ts": 1785232932.1549575,
+      "source": "self_fill"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28YEVDUR": {
+      "bell_ts": 1785231901.3920557,
+      "gun_ts": 1785232537.3920557,
+      "source": "self_fill"
+    },
+    "KXATPMATCH-26JUL27ARNMUS": {
+      "bell_ts": 1785169799.642061,
+      "gun_ts": 1785170189.642061,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27DAMSHE": {
+      "bell_ts": 1785074697.39619,
+      "gun_ts": 1785107067.39619,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27DETSI": {
+      "bell_ts": 1785247200.1441972,
+      "gun_ts": 1785172416.1441972,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27DIABOY": {
+      "bell_ts": 1785200401.2722082,
+      "gun_ts": 1785200557.2722082,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27FILJOD": {
+      "bell_ts": 1785179254.7678976,
+      "gun_ts": 1785179254.7678976,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27FRIBER": {
+      "bell_ts": 1785178800.143738,
+      "gun_ts": 1785172416.143738,
+      "source": "self_fill"
+    },
+    "KXATPMATCH-26JUL27GIRHEW": {
+      "bell_ts": 1785177070.7399838,
+      "gun_ts": 1785177070.7399838,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27HERTOM": {
+      "bell_ts": 1785200401.2724295,
+      "gun_ts": 1785200557.2724295,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27MANTIE": {
+      "bell_ts": 1785178165.3818505,
+      "gun_ts": 1785178165.3818505,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27MICDRA": {
+      "bell_ts": 1785177885.7846658,
+      "gun_ts": 1785177885.7846658,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27NISSHA": {
+      "bell_ts": 1785185999.8775342,
+      "gun_ts": 1785184691.8775342,
+      "source": "tape_latch"
+    },
+    "KXATPMATCH-26JUL27SVAMEN": {
+      "bell_ts": 1785183852.5636938,
+      "gun_ts": 1785183852.5636938,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27TABGRI": {
+      "bell_ts": 1785164398.9658666,
+      "gun_ts": 1785164962.9658666,
+      "source": "fallback_bell"
+    },
+    "KXATPMATCH-26JUL27TIAATM": {
+      "bell_ts": 1785195001.8584073,
+      "gun_ts": 1785186817.8584073,
+      "source": "te_scoreboard"
+    },
+    "KXATPMATCH-26JUL27VUKSVA": {
+      "bell_ts": 1785187799.0583806,
+      "gun_ts": 1785186455.0583806,
+      "source": "tape_latch"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27BURLAN": {
+      "bell_ts": 1785150001.4465668,
+      "gun_ts": 1785150523.4465668,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27CIRPOP": {
+      "bell_ts": 1785139197.7564728,
+      "gun_ts": 1785139569.7564728,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27HENPOH": {
+      "bell_ts": 1785144600.8722906,
+      "gun_ts": 1785145134.8722906,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27KAZROU": {
+      "bell_ts": 1785139197.7562273,
+      "gun_ts": 1785139569.7562273,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27MALBER": {
+      "bell_ts": 1785144600.872041,
+      "gun_ts": 1785145134.872041,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27PRIKOT": {
+      "bell_ts": 1785139197.7563324,
+      "gun_ts": 1785139569.7563324,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27QUEFET": {
+      "bell_ts": 1785150001.4464414,
+      "gun_ts": 1785150523.4464414,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27RAMSTR": {
+      "bell_ts": 1785150000.4259305,
+      "gun_ts": 1785153246.4259305,
+      "source": "tape_flow"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27ROMSOR": {
+      "bell_ts": 1785155398.4430254,
+      "gun_ts": 1785157648.4430254,
+      "source": "milestone_official"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27SZATON": {
+      "bell_ts": 1785144602.0049548,
+      "gun_ts": 1785145898.0049548,
+      "source": "price_divergence"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28CIRGAI": {
+      "bell_ts": 1785232799.4590435,
+      "gun_ts": 1785236693.4590435,
+      "source": "self_fill"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28IBRBUR": {
+      "bell_ts": 1785236398.7354276,
+      "gun_ts": 1785239626.7354276,
+      "source": "self_fill"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28JANSOB": {
+      "bell_ts": 1785236401.976771,
+      "gun_ts": 1785237811.976771,
+      "source": "self_fill"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28JONPAQ": {
+      "bell_ts": 1785236401.2011354,
+      "gun_ts": 1785238411.2011354,
+      "source": "self_fill"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28KOTSPI": {
+      "bell_ts": 1785225597.8955019,
+      "gun_ts": 1785226293.8955019,
+      "source": "self_fill"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28RISSEM": {
+      "bell_ts": 1785225601.2801995,
+      "gun_ts": 1785226393.2801995,
+      "source": "self_fill"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28ROURAD": {
+      "bell_ts": 1785232797.415926,
+      "gun_ts": 1785234111.415926,
+      "source": "self_fill"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28SAMBRE": {
+      "bell_ts": 1785225598.5373514,
+      "gun_ts": 1785226906.5373514,
+      "source": "fallback_bell"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28TONBRO": {
+      "bell_ts": 1785231001.627903,
+      "gun_ts": 1785231115.627903,
+      "source": "self_fill"
+    },
+    "KXWTAMATCH-26JUL27ALELIU": {
+      "bell_ts": 1785250797.9005268,
+      "gun_ts": 1785196017.9005268,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27COCTAU": {
+      "bell_ts": 1785164398.9660854,
+      "gun_ts": 1785164962.9660854,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27FERLIN": {
+      "bell_ts": 1785164398.9662468,
+      "gun_ts": 1785164962.9662468,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27KRUBOU": {
+      "bell_ts": 1785191401.5720155,
+      "gun_ts": 1785191743.5720155,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27NAVKEN": {
+      "bell_ts": 1785169799.642392,
+      "gun_ts": 1785170189.642392,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27OSOHUN": {
+      "bell_ts": 1785196799.5083337,
+      "gun_ts": 1785197507.5083337,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27POTWIL": {
+      "bell_ts": 1785177803.7143545,
+      "gun_ts": 1785177803.7143545,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27SAMKEY": {
+      "bell_ts": 1785189598.3079555,
+      "gun_ts": 1785189670.3079555,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27SEBKAL": {
+      "bell_ts": 1785196802.5268326,
+      "gun_ts": 1785197954.5268326,
+      "source": "tape_flow"
+    },
+    "KXWTAMATCH-26JUL27SHYBRA": {
+      "bell_ts": 1785189598.8016603,
+      "gun_ts": 1785176698.8016603,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27SIEPRO": {
+      "bell_ts": 1785189598.308406,
+      "gun_ts": 1785189670.308406,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27TJESRA": {
+      "bell_ts": 1785193200.0625494,
+      "gun_ts": 1785193110.0625494,
+      "source": "milestone_official"
+    },
+    "KXWTAMATCH-26JUL27VOLGOL": {
+      "bell_ts": 1785164398.9665542,
+      "gun_ts": 1785164962.9665542,
+      "source": "fallback_bell"
+    },
+    "KXWTAMATCH-26JUL27ZAKFRU": {
+      "bell_ts": 1785164398.9699528,
+      "gun_ts": 1785164962.9699528,
+      "source": "fallback_bell"
+    }
+  },
+  "files": {
+    "daysheet_bells.json": {
+      "bytes": 504168,
+      "sha256": "904e43b95ba0abe0f02c0f3fe5400ef4f2d2ee745f1ed1a3b8981f5c60d9c5e2"
+    },
+    "daysheet_bells_official.json": {
+      "bytes": 87697,
+      "sha256": "aff74e14cdabe376d5c40e2f45a85360564d365671f959fe38cf5a7efaf04896"
+    },
+    "market_metadata.json": {
+      "bytes": 25160,
+      "sha256": "bac8795226a994fc64e440ac0f29167763f8f3fc461e7ecfc3e313fb43b77774"
+    },
+    "milestone_shadow.jsonl": {
+      "bytes": 989343,
+      "sha256": "8085cab892edcb7834d2fb6b74e9f05356e0f2c6de44236e9fc96287a1381410"
+    }
+  },
+  "market_metadata_for_official_gaps": {
+    "KXATPCHALLENGERMATCH-26JUL27ANDPOP": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27ANDPOP",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27ANDPOP-AND"
+      },
+      "raw_bytes": 2546,
+      "raw_sha256": "2f69709e30d9f5b5786dd7f423e61d2c58b7174448e9408cf7c7b20739bd6a5b",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27ANDPOP-AND",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27ANDPOP-AND"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BONBIC": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27BONBIC",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27BONBIC-BIC"
+      },
+      "raw_bytes": 2547,
+      "raw_sha256": "2f6351dea5065d8e0c7d47ae8bc5607b1e2b57757b37cebca1475f92bde25f62",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27BONBIC-BIC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27BONBIC-BIC"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27HOLGRE": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27HOLGRE",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27HOLGRE-GRE"
+      },
+      "raw_bytes": 2527,
+      "raw_sha256": "e6833f401561d5deca60c0053278f6f86c3e66038dc5883db664deffb1b9e5a5",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27HOLGRE-GRE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27HOLGRE-GRE"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27HSUMMO": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27HSUMMO",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27HSUMMO-HSU"
+      },
+      "raw_bytes": 2515,
+      "raw_sha256": "dc0eac77e8f66ab44daf011d749677cd1047637994a0cfe160c5121df72976f3",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27HSUMMO-HSU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27HSUMMO-HSU"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MILVAN": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27MILVAN",
+        "expected_expiration_time": "2026-07-28T05:30:00Z",
+        "occurrence_datetime": "2026-07-28T05:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27MILVAN-MIL"
+      },
+      "raw_bytes": 2596,
+      "raw_sha256": "019a8f5f4095e40b25ea9e8cddf24dde9499a4b6ecc5261ccd5e89bbb9de01e0",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27MILVAN-MIL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27MILVAN-MIL"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MOCBRO": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27MOCBRO",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27MOCBRO-BRO"
+      },
+      "raw_bytes": 2545,
+      "raw_sha256": "6bf396523ecb855a14747dc62c2e764045e27f24ac9f847899ad90ac402ceb31",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27MOCBRO-BRO",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27MOCBRO-BRO"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27PDANIK": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27PDANIK",
+        "expected_expiration_time": "2026-07-27T13:10:00Z",
+        "occurrence_datetime": "2026-07-27T13:10:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27PDANIK-NIK"
+      },
+      "raw_bytes": 2600,
+      "raw_sha256": "ca68d830b5333c6541f6009dc2915739ad8c765a3b90918b37bb13520383c26f",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27PDANIK-NIK",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27PDANIK-NIK"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27PINSAM": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27PINSAM",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27PINSAM-PIN"
+      },
+      "raw_bytes": 2594,
+      "raw_sha256": "b3a1a105dcccba2a6f5d4e69a90db9b573cf386924f61cd8667d479c61969c03",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27PINSAM-PIN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27PINSAM-PIN"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27RICLLA": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27RICLLA",
+        "expected_expiration_time": "2026-07-29T11:55:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27RICLLA-LLA"
+      },
+      "raw_bytes": 2559,
+      "raw_sha256": "2a791917ae1694be149a03daae1dabdfe9a96e7e4a39ba2538407d8ec6d30e47",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27RICLLA-LLA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27RICLLA-LLA"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SEKCHI": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27SEKCHI",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27SEKCHI-CHI"
+      },
+      "raw_bytes": 2550,
+      "raw_sha256": "e3f5cd230aa5080bd8eeaae6c784bf78d8d40aff370239be006e8a6af69dce9c",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27SEKCHI-CHI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27SEKCHI-CHI"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SWECHA": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27SWECHA",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27SWECHA-CHA"
+      },
+      "raw_bytes": 2519,
+      "raw_sha256": "1710cc070e554f728bbc6e65ce8d92bdd018c521d778676ffe884d34fba84f50",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27SWECHA-CHA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27SWECHA-CHA"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27WENCAS": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27WENCAS",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27WENCAS-CAS"
+      },
+      "raw_bytes": 2553,
+      "raw_sha256": "56f4b8b7ef0786648d6fbddc9a46a7a56ff9b5fb38ae718e9c23fb433ba4977d",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27WENCAS-CAS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27WENCAS-CAS"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27WOLZHA": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL27WOLZHA",
+        "expected_expiration_time": "2026-07-28T04:30:00Z",
+        "occurrence_datetime": "2026-07-28T04:30:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL27WOLZHA-WOL"
+      },
+      "raw_bytes": 2546,
+      "raw_sha256": "6a28c4f626405d0c3a7bc89a799d0acd20cba33d7121eaeb73284b152e3186c9",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL27WOLZHA-WOL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL27WOLZHA-WOL"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28DENPDA": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL28DENPDA",
+        "expected_expiration_time": "2026-07-28T12:40:00Z",
+        "occurrence_datetime": "2026-07-28T12:40:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL28DENPDA-DEN"
+      },
+      "raw_bytes": 2591,
+      "raw_sha256": "0e2c082fc436968314921137eb70f4718c05aa993de7f5061d978770910dd7ec",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28DENPDA-DEN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL28DENPDA-DEN"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28HARCHU": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL28HARCHU",
+        "expected_expiration_time": "2026-07-28T20:00:00Z",
+        "occurrence_datetime": "2026-07-28T20:00:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL28HARCHU-CHU"
+      },
+      "raw_bytes": 2530,
+      "raw_sha256": "b778f80700f1cf2a790df03ef71b1be1e4334cd1e1fe6f5140b15485fe3bded7",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28HARCHU-CHU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL28HARCHU-CHU"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MATTRO": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL28MATTRO",
+        "expected_expiration_time": "2026-07-28T21:10:00Z",
+        "occurrence_datetime": "2026-07-28T21:10:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL28MATTRO-MAT"
+      },
+      "raw_bytes": 2554,
+      "raw_sha256": "6291ebcff6f61ea170c69ad00dcab7b9d440199e3be27ce00b7758424b82fe08",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28MATTRO-MAT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL28MATTRO-MAT"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SHITOK": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL28SHITOK",
+        "expected_expiration_time": "2026-07-28T20:00:00Z",
+        "occurrence_datetime": "2026-07-28T20:00:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL28SHITOK-SHI"
+      },
+      "raw_bytes": 2537,
+      "raw_sha256": "eb4e3be282fc56504981cae87ec20bcf8b008310fb103970e4a2a3ff280f3df3",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28SHITOK-SHI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL28SHITOK-SHI"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28ZHULAN": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL28ZHULAN",
+        "expected_expiration_time": "2026-07-28T20:00:00Z",
+        "occurrence_datetime": "2026-07-28T20:00:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL28ZHULAN-LAN"
+      },
+      "raw_bytes": 2557,
+      "raw_sha256": "65b5936913fe5d826d568ee4b4a3f05cb312b09638afbb650c1efea2cb9d897f",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28ZHULAN-LAN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL28ZHULAN-LAN"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28ZINPOL": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPCHALLENGERMATCH-26JUL28ZINPOL",
+        "expected_expiration_time": "2026-07-28T21:10:00Z",
+        "occurrence_datetime": "2026-07-28T21:10:00Z",
+        "ticker": "KXATPCHALLENGERMATCH-26JUL28ZINPOL-POL"
+      },
+      "raw_bytes": 2543,
+      "raw_sha256": "d9a3e59abd71178aba10bfa1b765d4beff32a61445f62438772a2c66f6cef246",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL28ZINPOL-POL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26JUL28ZINPOL-POL"
+    },
+    "KXATPMATCH-26JUL27ARNMUS": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27ARNMUS",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27ARNMUS-ARN"
+      },
+      "raw_bytes": 2509,
+      "raw_sha256": "157d0a62f0e3e9a73e6aa306d201479cc1a71f217a263fd118e2541b84f2245c",
+      "ticker": "KXATPMATCH-26JUL27ARNMUS-ARN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27ARNMUS-ARN"
+    },
+    "KXATPMATCH-26JUL27DAMSHE": {
+      "attempts": 2,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27DAMSHE",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27DAMSHE-DAM"
+      },
+      "raw_bytes": 2504,
+      "raw_sha256": "7cb15d5e4448de05b2ae4785202073e3b91045f4b31552c2a22362173c0ef256",
+      "ticker": "KXATPMATCH-26JUL27DAMSHE-DAM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27DAMSHE-DAM"
+    },
+    "KXATPMATCH-26JUL27DETSI": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27DETSI",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27DETSI-DE"
+      },
+      "raw_bytes": 2518,
+      "raw_sha256": "d8e152fc3176ce45dd72fcdc9cc38d45b36ad476086a98d2f92e2ea722b0bcbc",
+      "ticker": "KXATPMATCH-26JUL27DETSI-DE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27DETSI-DE"
+    },
+    "KXATPMATCH-26JUL27FILJOD": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27FILJOD",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27FILJOD-FIL"
+      },
+      "raw_bytes": 2479,
+      "raw_sha256": "b27d13c0789d296307be745a37ce5c8d0e14daeeead6107bd6af5292463537c4",
+      "ticker": "KXATPMATCH-26JUL27FILJOD-FIL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27FILJOD-FIL"
+    },
+    "KXATPMATCH-26JUL27GIRHEW": {
+      "attempts": 2,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27GIRHEW",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27GIRHEW-GIR"
+      },
+      "raw_bytes": 2487,
+      "raw_sha256": "0ca48e8b085a59637e66e905102d4ddcea909ba59a303ffb2c7fd0d4449596b5",
+      "ticker": "KXATPMATCH-26JUL27GIRHEW-GIR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27GIRHEW-GIR"
+    },
+    "KXATPMATCH-26JUL27HUMMAR": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27HUMMAR",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27HUMMAR-HUM"
+      },
+      "raw_bytes": 2489,
+      "raw_sha256": "8ed6701e035eece93c7f471ef5f996f94863940b58e2ca197a96d6e7bf4eae2f",
+      "ticker": "KXATPMATCH-26JUL27HUMMAR-HUM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27HUMMAR-HUM"
+    },
+    "KXATPMATCH-26JUL27MAJPAU": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27MAJPAU",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27MAJPAU-MAJ"
+      },
+      "raw_bytes": 2510,
+      "raw_sha256": "5e36693d45d58ed3f3ac4acfb0bdcf8dbbe29e1c17b56641a1ecf2acf5d29b43",
+      "ticker": "KXATPMATCH-26JUL27MAJPAU-MAJ",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27MAJPAU-MAJ"
+    },
+    "KXATPMATCH-26JUL27MANTIE": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27MANTIE",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27MANTIE-MAN"
+      },
+      "raw_bytes": 2515,
+      "raw_sha256": "a90fc5f3a292a0d6c4b470ca6dc443038d4a6980fdf93b5687a169c8025076e6",
+      "ticker": "KXATPMATCH-26JUL27MANTIE-MAN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27MANTIE-MAN"
+    },
+    "KXATPMATCH-26JUL27MICDRA": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27MICDRA",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27MICDRA-DRA"
+      },
+      "raw_bytes": 2483,
+      "raw_sha256": "93ae034b17adcf54cbe74d0b3967d73c3a6e8dd96d03161960f16f87fc8b6f2a",
+      "ticker": "KXATPMATCH-26JUL27MICDRA-DRA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27MICDRA-DRA"
+    },
+    "KXATPMATCH-26JUL27NAKETC": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27NAKETC",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27NAKETC-ETC"
+      },
+      "raw_bytes": 2558,
+      "raw_sha256": "91e49b097bb4d0f46fee52886db2469e62b33dd8a27100202eaa58b200f9a6d0",
+      "ticker": "KXATPMATCH-26JUL27NAKETC-ETC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27NAKETC-ETC"
+    },
+    "KXATPMATCH-26JUL27QUISHE": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27QUISHE",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27QUISHE-QUI"
+      },
+      "raw_bytes": 2467,
+      "raw_sha256": "5e20648a91cff9fd0cc2f3426203c6026d171e66a223aac4b29763ecfc4a2e1a",
+      "ticker": "KXATPMATCH-26JUL27QUISHE-QUI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27QUISHE-QUI"
+    },
+    "KXATPMATCH-26JUL27SVAMEN": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL27SVAMEN",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXATPMATCH-26JUL27SVAMEN-MEN"
+      },
+      "raw_bytes": 2492,
+      "raw_sha256": "0b1292caa3d7458eceb459887447ddd366a9b55f6491deb794812716c8a500cd",
+      "ticker": "KXATPMATCH-26JUL27SVAMEN-MEN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL27SVAMEN-MEN"
+    },
+    "KXATPMATCH-26JUL28KOUWIN": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL28KOUWIN",
+        "expected_expiration_time": "2026-07-29T04:00:00Z",
+        "occurrence_datetime": "2026-07-29T04:00:00Z",
+        "ticker": "KXATPMATCH-26JUL28KOUWIN-KOU"
+      },
+      "raw_bytes": 2489,
+      "raw_sha256": "3aa4414c89eb5c70bf6892ff5c1fca15bffa4a332034b51bd5daa0e1c869700c",
+      "ticker": "KXATPMATCH-26JUL28KOUWIN-KOU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL28KOUWIN-KOU"
+    },
+    "KXATPMATCH-26JUL28KWONGEA": {
+      "attempts": 2,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL28KWONGEA",
+        "expected_expiration_time": "2026-07-29T11:30:00Z",
+        "occurrence_datetime": "2026-07-29T05:10:00Z",
+        "ticker": "KXATPMATCH-26JUL28KWONGEA-GEA"
+      },
+      "raw_bytes": 2466,
+      "raw_sha256": "54b9987135456070811e7b28854030bfcd05587145da30f96b0f0d832055a127",
+      "ticker": "KXATPMATCH-26JUL28KWONGEA-GEA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL28KWONGEA-GEA"
+    },
+    "KXATPMATCH-26JUL28MAYDUC": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL28MAYDUC",
+        "expected_expiration_time": "2026-07-29T04:00:00Z",
+        "occurrence_datetime": "2026-07-29T04:00:00Z",
+        "ticker": "KXATPMATCH-26JUL28MAYDUC-DUC"
+      },
+      "raw_bytes": 2508,
+      "raw_sha256": "fbe78d5936b403300343fb14b9e38cf22aeae6772097cd40b549cc7b1a1bf1c7",
+      "ticker": "KXATPMATCH-26JUL28MAYDUC-DUC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL28MAYDUC-DUC"
+    },
+    "KXATPMATCH-26JUL28MICMCD": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXATPMATCH-26JUL28MICMCD",
+        "expected_expiration_time": "2026-07-28T18:00:00Z",
+        "occurrence_datetime": "2026-07-28T18:00:00Z",
+        "ticker": "KXATPMATCH-26JUL28MICMCD-MCD"
+      },
+      "raw_bytes": 2511,
+      "raw_sha256": "7ed38a831f0e2f66e879e6db62542378f7444f100be7ef30946f973640ae7afd",
+      "ticker": "KXATPMATCH-26JUL28MICMCD-MCD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26JUL28MICMCD-MCD"
+    },
+    "KXWTAMATCH-26JUL27EALZHE": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27EALZHE",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27EALZHE-EAL"
+      },
+      "raw_bytes": 2494,
+      "raw_sha256": "28fc9a935e6fa5d09775e2b795b500870200cff11519beb86cb99bef49ef591e",
+      "ticker": "KXWTAMATCH-26JUL27EALZHE-EAL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27EALZHE-EAL"
+    },
+    "KXWTAMATCH-26JUL27FREANN": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27FREANN",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27FREANN-ANN"
+      },
+      "raw_bytes": 2453,
+      "raw_sha256": "968a1672fc8bf4bea9193e0815480845409362d079e75a8ddd5e72e7a3e8d49e",
+      "ticker": "KXWTAMATCH-26JUL27FREANN-ANN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27FREANN-ANN"
+    },
+    "KXWTAMATCH-26JUL27POTWIL": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27POTWIL",
+        "expected_expiration_time": "2026-07-27T17:00:00Z",
+        "occurrence_datetime": "2026-07-27T17:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27POTWIL-POT"
+      },
+      "raw_bytes": 2533,
+      "raw_sha256": "1222a84f00d948941461610e749fbb5df18e58c7cd90573051ae03f62248e240",
+      "ticker": "KXWTAMATCH-26JUL27POTWIL-POT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27POTWIL-POT"
+    },
+    "KXWTAMATCH-26JUL27SONBRA": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27SONBRA",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27SONBRA-BRA"
+      },
+      "raw_bytes": 2486,
+      "raw_sha256": "ef9834bf24e2f6f0b20aa16c79a6e288beba42153120e92562bb0d92839a592f",
+      "ticker": "KXWTAMATCH-26JUL27SONBRA-BRA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27SONBRA-BRA"
+    },
+    "KXWTAMATCH-26JUL27STASTE": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27STASTE",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27STASTE-STA"
+      },
+      "raw_bytes": 2546,
+      "raw_sha256": "f67975655072b9d162ad5e8bce4407cbfe09609783bdb50e647c9ad7e6445e72",
+      "ticker": "KXWTAMATCH-26JUL27STASTE-STA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27STASTE-STA"
+    },
+    "KXWTAMATCH-26JUL27STOSTE": {
+      "attempts": 2,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27STOSTE",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27STOSTE-STE"
+      },
+      "raw_bytes": 2501,
+      "raw_sha256": "9e92d5ce25f34e1dde461d32628682b0a8ef9c94050a833e65ab56c8555970e6",
+      "ticker": "KXWTAMATCH-26JUL27STOSTE-STE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27STOSTE-STE"
+    },
+    "KXWTAMATCH-26JUL27VIDBAS": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27VIDBAS",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27VIDBAS-BAS"
+      },
+      "raw_bytes": 2556,
+      "raw_sha256": "253052f4d4bfc76bced5858f178f13a640b41d9380f859b8aa71527a61084153",
+      "ticker": "KXWTAMATCH-26JUL27VIDBAS-BAS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27VIDBAS-BAS"
+    },
+    "KXWTAMATCH-26JUL27WANMCC": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27WANMCC",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27WANMCC-MCC"
+      },
+      "raw_bytes": 2483,
+      "raw_sha256": "dc7f557900b6d8468e15c7bdbbbf6248f1a631f361c75524ba495fab21ccd4cf",
+      "ticker": "KXWTAMATCH-26JUL27WANMCC-MCC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27WANMCC-MCC"
+    },
+    "KXWTAMATCH-26JUL27YEXBIR": {
+      "attempts": 1,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27YEXBIR",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27YEXBIR-BIR"
+      },
+      "raw_bytes": 2487,
+      "raw_sha256": "1b5bd964d0411aea949ac5248f002a281c7fb67890e8ef1aac6f952f4db7ab0c",
+      "ticker": "KXWTAMATCH-26JUL27YEXBIR-BIR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27YEXBIR-BIR"
+    },
+    "KXWTAMATCH-26JUL27ZARKES": {
+      "attempts": 2,
+      "market": {
+        "event_ticker": "KXWTAMATCH-26JUL27ZARKES",
+        "expected_expiration_time": "2026-07-27T18:00:00Z",
+        "occurrence_datetime": "2026-07-27T18:00:00Z",
+        "ticker": "KXWTAMATCH-26JUL27ZARKES-KES"
+      },
+      "raw_bytes": 2512,
+      "raw_sha256": "0cf2ae199f25e53b66a40ba1835848722ba811df6f31afe6926d08bab6e950a0",
+      "ticker": "KXWTAMATCH-26JUL27ZARKES-KES",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26JUL27ZARKES-KES"
+    }
+  },
+  "official_rows": {
+    "KXATPCHALLENGERMATCH-26JUL27ALBHAS": {
+      "fetched_at": 1785152713.599612,
+      "final": false,
+      "start_date": "2026-07-27T12:00:00Z",
+      "start_ep": 1785153600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27AMBKIC": {
+      "fetched_at": 1785157218.9694083,
+      "final": false,
+      "start_date": "2026-07-27T12:55:00Z",
+      "start_ep": 1785156900.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BASNAK": {
+      "fetched_at": 1785141916.3012106,
+      "final": false,
+      "start_date": "2026-07-27T08:30:00Z",
+      "start_ep": 1785141000.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BLACOM": {
+      "fetched_at": 1785139221.0183,
+      "final": false,
+      "start_date": "2026-07-27T08:00:00Z",
+      "start_ep": 1785139200.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BOIDEB": {
+      "fetched_at": 1785152714.3498743,
+      "final": false,
+      "start_date": "2026-07-27T11:45:00Z",
+      "start_ep": 1785152700.0,
+      "status": "live"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BOSROD": {
+      "fetched_at": 1785164420.934608,
+      "final": false,
+      "start_date": "2026-07-27T15:00:00Z",
+      "start_ep": 1785164400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27BRASUL": {
+      "fetched_at": 1785150019.4970276,
+      "final": false,
+      "start_date": "2026-07-27T11:10:00Z",
+      "start_ep": 1785150600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27CHOPAS": {
+      "fetched_at": 1785153622.289951,
+      "final": false,
+      "start_date": "2026-07-27T12:10:00Z",
+      "start_ep": 1785154200.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27DALBRU": {
+      "fetched_at": 1785145514.3649323,
+      "final": false,
+      "start_date": "2026-07-27T09:50:00Z",
+      "start_ep": 1785145800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27DJEBAS": {
+      "fetched_at": 1785153622.727946,
+      "final": false,
+      "start_date": "2026-07-27T12:00:00Z",
+      "start_ep": 1785153600.0,
+      "status": "cancelled"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27GADMAC": {
+      "fetched_at": 1785296706.0405443,
+      "final": false,
+      "start_date": "2026-07-27T13:30:00Z",
+      "start_ep": 1785159000.0,
+      "status": "live"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27GALPET": {
+      "fetched_at": 1785149115.7809575,
+      "final": false,
+      "start_date": "2026-07-27T11:00:00Z",
+      "start_ep": 1785150000.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27GOMBER": {
+      "fetched_at": 1785146420.7142599,
+      "final": false,
+      "start_date": "2026-07-27T10:50:00Z",
+      "start_ep": 1785149400.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KOLKUM": {
+      "fetched_at": 1785296706.4694057,
+      "final": false,
+      "start_date": "2026-07-27T13:55:00Z",
+      "start_ep": 1785160500.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KRANIC": {
+      "fetched_at": 1785141920.6074297,
+      "final": false,
+      "start_date": "2026-07-27T08:30:00Z",
+      "start_ep": 1785141000.0,
+      "status": "interrupted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KUZBIN": {
+      "fetched_at": 1785167112.9078536,
+      "final": false,
+      "start_date": "2026-07-27T15:30:00Z",
+      "start_ep": 1785166200.0,
+      "status": "live"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27LAPIE": {
+      "fetched_at": 1785143716.5219674,
+      "final": false,
+      "start_date": "2026-07-27T09:00:00Z",
+      "start_ep": 1785142800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MARBEC": {
+      "fetched_at": 1785121222.6792715,
+      "final": false,
+      "start_date": "2026-07-27T09:40:00Z",
+      "start_ep": 1785145200.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MIYANA": {
+      "fetched_at": 1785141921.7410793,
+      "final": false,
+      "start_date": "2026-07-27T08:45:00Z",
+      "start_ep": 1785141900.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MONMAZ": {
+      "fetched_at": 1785145516.1050785,
+      "final": false,
+      "start_date": "2026-07-27T09:50:00Z",
+      "start_ep": 1785145800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MONNAG": {
+      "fetched_at": 1785159017.5697558,
+      "final": false,
+      "start_date": "2026-07-27T14:50:00Z",
+      "start_ep": 1785163800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27MULNAP": {
+      "fetched_at": 1785160822.1210983,
+      "final": false,
+      "start_date": "2026-07-27T14:10:00Z",
+      "start_ep": 1785161400.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27POLKOV": {
+      "fetched_at": 1785139227.2003937,
+      "final": false,
+      "start_date": "2026-07-27T08:00:00Z",
+      "start_ep": 1785139200.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27RINPRA": {
+      "fetched_at": 1785150022.7354908,
+      "final": false,
+      "start_date": "2026-07-27T11:10:00Z",
+      "start_ep": 1785150600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SAKMAR": {
+      "fetched_at": 1785143717.9866977,
+      "final": false,
+      "start_date": "2026-07-27T09:00:00Z",
+      "start_ep": 1785142800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SINMAT": {
+      "fetched_at": 1785152717.281013,
+      "final": false,
+      "start_date": "2026-07-27T12:00:00Z",
+      "start_ep": 1785153600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27SINREJ": {
+      "fetched_at": 1785142825.4030805,
+      "final": false,
+      "start_date": "2026-07-27T08:30:00Z",
+      "start_ep": 1785141000.0,
+      "status": "interrupted"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27TOPABO": {
+      "fetched_at": 1785150916.497758,
+      "final": false,
+      "start_date": "2026-07-27T11:30:00Z",
+      "start_ep": 1785151800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27VARFOR": {
+      "fetched_at": 1785145517.6183999,
+      "final": false,
+      "start_date": "2026-07-27T09:50:00Z",
+      "start_ep": 1785145800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL27VRBJAN": {
+      "fetched_at": 1785139229.1512973,
+      "final": false,
+      "start_date": "2026-07-27T08:00:00Z",
+      "start_ep": 1785139200.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27VRBMAR": {
+      "fetched_at": 1785141025.814232,
+      "final": false,
+      "start_date": "2026-07-27T08:30:00Z",
+      "start_ep": 1785141000.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL27WALDON": {
+      "fetched_at": 1785144623.369848,
+      "final": false,
+      "start_date": "2026-07-27T09:00:00Z",
+      "start_ep": 1785142800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28ADDPOU": {
+      "fetched_at": 1785232813.2980561,
+      "final": false,
+      "start_date": "2026-07-28T12:30:00Z",
+      "start_ep": 1785241800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28AJDSUL": {
+      "fetched_at": 1785232813.8244123,
+      "final": false,
+      "start_date": "2026-07-28T12:30:00Z",
+      "start_ep": 1785241800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28ALKSIN": {
+      "fetched_at": 1785237309.1154134,
+      "final": false,
+      "start_date": "2026-07-28T11:20:00Z",
+      "start_ep": 1785237600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28ARNPIE": {
+      "fetched_at": 1785232814.993335,
+      "final": false,
+      "start_date": "2026-07-28T11:20:00Z",
+      "start_ep": 1785237600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28AZKERE": {
+      "fetched_at": 1785232815.6002452,
+      "final": false,
+      "start_date": "2026-07-28T13:00:00Z",
+      "start_ep": 1785243600.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28BARNED": {
+      "fetched_at": 1785232816.0857437,
+      "final": false,
+      "start_date": "2026-07-28T12:30:00Z",
+      "start_ep": 1785241800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28BASRAW": {
+      "fetched_at": 1785223813.334022,
+      "final": false,
+      "start_date": "2026-07-28T07:30:00Z",
+      "start_ep": 1785223800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28BITILK": {
+      "fetched_at": 1785383106.552804,
+      "final": false,
+      "start_date": "2026-07-28T15:10:00Z",
+      "start_ep": 1785251400.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28CANPEL": {
+      "fetched_at": 1785241812.7954574,
+      "final": false,
+      "start_date": "2026-07-28T18:30:00Z",
+      "start_ep": 1785263400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28CECAGA": {
+      "fetched_at": 1785232817.3845606,
+      "final": false,
+      "start_date": "2026-07-28T11:25:00Z",
+      "start_ep": 1785237900.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28CORFOR": {
+      "fetched_at": 1785236414.8014195,
+      "final": false,
+      "start_date": "2026-07-28T11:10:00Z",
+      "start_ep": 1785237000.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28DAHMAR": {
+      "fetched_at": 1785241813.3009539,
+      "final": false,
+      "start_date": "2026-07-28T15:00:00Z",
+      "start_ep": 1785250800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28DIACOM": {
+      "fetched_at": 1785236416.143795,
+      "final": false,
+      "start_date": "2026-07-28T11:10:00Z",
+      "start_ep": 1785237000.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28FELMAY": {
+      "fetched_at": 1785214814.354064,
+      "final": false,
+      "start_date": "2026-07-28T10:20:00Z",
+      "start_ep": 1785234000.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28GAUPAV": {
+      "fetched_at": 1785241813.8608224,
+      "final": false,
+      "start_date": "2026-07-28T13:50:00Z",
+      "start_ep": 1785246600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28GENREI": {
+      "fetched_at": 1785232819.511404,
+      "final": false,
+      "start_date": "2026-07-28T12:30:00Z",
+      "start_ep": 1785241800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28GOMCER": {
+      "fetched_at": 1785232820.012526,
+      "final": false,
+      "start_date": "2026-07-28T13:10:00Z",
+      "start_ep": 1785244200.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28HOUCAR": {
+      "fetched_at": 1785383107.054308,
+      "final": false,
+      "start_date": "2026-07-28T08:30:00Z",
+      "start_ep": 1785227400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28JUSGUE": {
+      "fetched_at": 1785231016.3458142,
+      "final": false,
+      "start_date": "2026-07-28T09:40:00Z",
+      "start_ep": 1785231600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KASFER": {
+      "fetched_at": 1785383107.5193892,
+      "final": false,
+      "start_date": "2026-07-28T08:00:00Z",
+      "start_ep": 1785225600.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KIRDHA": {
+      "fetched_at": 1785383107.9482708,
+      "final": false,
+      "start_date": "2026-07-28T12:00:00Z",
+      "start_ep": 1785240000.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KIRINC": {
+      "fetched_at": 1785223816.595561,
+      "final": false,
+      "start_date": "2026-07-28T07:30:00Z",
+      "start_ep": 1785223800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KOTGAL": {
+      "fetched_at": 1785232822.0259097,
+      "final": false,
+      "start_date": "2026-07-28T12:30:00Z",
+      "start_ep": 1785241800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KRUHEN": {
+      "fetched_at": 1785383108.5013855,
+      "final": false,
+      "start_date": "2026-07-28T08:00:00Z",
+      "start_ep": 1785225600.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28KUMBAX": {
+      "fetched_at": 1785383108.9669983,
+      "final": false,
+      "start_date": "2026-07-28T07:30:00Z",
+      "start_ep": 1785223800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MAENEU": {
+      "fetched_at": 1785232823.6132767,
+      "final": false,
+      "start_date": "2026-07-28T12:35:00Z",
+      "start_ep": 1785242100.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MARBUE": {
+      "fetched_at": 1785214818.0303977,
+      "final": false,
+      "start_date": "2026-07-28T10:20:00Z",
+      "start_ep": 1785234000.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MARDEL": {
+      "fetched_at": 1785232824.093295,
+      "final": false,
+      "start_date": "2026-07-28T10:15:00Z",
+      "start_ep": 1785233700.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MARSEY": {
+      "fetched_at": 1785231019.5585625,
+      "final": false,
+      "start_date": "2026-07-28T09:40:00Z",
+      "start_ep": 1785231600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MIYNAK": {
+      "fetched_at": 1785383109.4391582,
+      "final": false,
+      "start_date": "2026-07-28T09:20:00Z",
+      "start_ep": 1785230400.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MOLTOP": {
+      "fetched_at": 1785229222.4085586,
+      "final": false,
+      "start_date": "2026-07-28T08:30:00Z",
+      "start_ep": 1785227400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28MONJOR": {
+      "fetched_at": 1785241817.7777128,
+      "final": false,
+      "start_date": "2026-07-28T15:00:00Z",
+      "start_ep": 1785250800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28NIKBAR": {
+      "fetched_at": 1785383109.9104688,
+      "final": false,
+      "start_date": "2026-07-28T08:30:00Z",
+      "start_ep": 1785227400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28OLITAB": {
+      "fetched_at": 1785240913.3340743,
+      "final": false,
+      "start_date": "2026-07-28T12:30:00Z",
+      "start_ep": 1785241800.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28POLDAL": {
+      "fetched_at": 1785230119.9832299,
+      "final": false,
+      "start_date": "2026-07-28T09:05:00Z",
+      "start_ep": 1785229500.0,
+      "status": "live"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28REHTRA": {
+      "fetched_at": 1785232826.1404154,
+      "final": false,
+      "start_date": "2026-07-28T15:00:00Z",
+      "start_ep": 1785250800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28REJBRU": {
+      "fetched_at": 1785214821.4240978,
+      "final": false,
+      "start_date": "2026-07-28T09:10:00Z",
+      "start_ep": 1785229800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28RIBTOR": {
+      "fetched_at": 1785225624.8706827,
+      "final": false,
+      "start_date": "2026-07-28T08:00:00Z",
+      "start_ep": 1785225600.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28ROMVIR": {
+      "fetched_at": 1785241818.839656,
+      "final": false,
+      "start_date": "2026-07-28T16:00:00Z",
+      "start_ep": 1785254400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28RONNIC": {
+      "fetched_at": 1785232826.822477,
+      "final": false,
+      "start_date": "2026-07-28T14:20:00Z",
+      "start_ep": 1785248400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SAKMCD": {
+      "fetched_at": 1785383110.3634622,
+      "final": false,
+      "start_date": "2026-07-28T10:30:00Z",
+      "start_ep": 1785234600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SCHGOM": {
+      "fetched_at": 1785232827.3570426,
+      "final": false,
+      "start_date": "2026-07-28T11:20:00Z",
+      "start_ep": 1785237600.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SCHMRV": {
+      "fetched_at": 1785232827.6027126,
+      "final": false,
+      "start_date": "2026-07-28T12:00:00Z",
+      "start_ep": 1785240000.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28SKAFAU": {
+      "fetched_at": 1785230121.750068,
+      "final": false,
+      "start_date": "2026-07-28T09:05:00Z",
+      "start_ep": 1785229500.0,
+      "status": "live"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28TABSQU": {
+      "fetched_at": 1785214823.0594878,
+      "final": false,
+      "start_date": "2026-07-28T10:50:00Z",
+      "start_ep": 1785235800.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28TOKPAN": {
+      "fetched_at": 1785232827.8753774,
+      "final": false,
+      "start_date": "2026-07-28T10:10:00Z",
+      "start_ep": 1785233400.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28TURURS": {
+      "fetched_at": 1785236423.771039,
+      "final": false,
+      "start_date": "2026-07-28T11:00:00Z",
+      "start_ep": 1785236400.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28VASVAR": {
+      "fetched_at": 1785214823.5818074,
+      "final": false,
+      "start_date": "2026-07-28T11:20:00Z",
+      "start_ep": 1785237600.0,
+      "status": null
+    },
+    "KXATPCHALLENGERMATCH-26JUL28VRBBAS": {
+      "fetched_at": 1785383110.7873926,
+      "final": false,
+      "start_date": "2026-07-28T09:05:00Z",
+      "start_ep": 1785229500.0,
+      "status": "live"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28WALGIU": {
+      "fetched_at": 1785232828.7292163,
+      "final": false,
+      "start_date": "2026-07-28T10:10:00Z",
+      "start_ep": 1785233400.0,
+      "status": "not_started"
+    },
+    "KXATPCHALLENGERMATCH-26JUL28YEVDUR": {
+      "fetched_at": 1785383111.2280207,
+      "final": false,
+      "start_date": "2026-07-28T09:40:00Z",
+      "start_ep": 1785231600.0,
+      "status": "not_started"
+    },
+    "KXATPMATCH-26JUL27DIABOY": {
+      "fetched_at": 1785172516.934714,
+      "final": false,
+      "start_date": "2026-07-28T01:00:00Z",
+      "start_ep": 1785200400.0,
+      "status": "not_started"
+    },
+    "KXATPMATCH-26JUL27FRIBER": {
+      "fetched_at": 1785171625.4240432,
+      "final": false,
+      "start_date": "2026-07-27T19:00:00Z",
+      "start_ep": 1785178800.0,
+      "status": "not_started"
+    },
+    "KXATPMATCH-26JUL27HERTOM": {
+      "fetched_at": 1785200421.2501404,
+      "final": false,
+      "start_date": "2026-07-28T01:00:00Z",
+      "start_ep": 1785200400.0,
+      "status": "not_started"
+    },
+    "KXATPMATCH-26JUL27NISSHA": {
+      "fetched_at": 1785184219.2934215,
+      "final": false,
+      "start_date": "2026-07-27T21:00:00Z",
+      "start_ep": 1785186000.0,
+      "status": "not_started"
+    },
+    "KXATPMATCH-26JUL27TABGRI": {
+      "fetched_at": 1785164426.2033215,
+      "final": false,
+      "start_date": "2026-07-27T15:00:00Z",
+      "start_ep": 1785164400.0,
+      "status": "not_started"
+    },
+    "KXATPMATCH-26JUL27TIAATM": {
+      "fetched_at": 1785186021.0351956,
+      "final": false,
+      "start_date": "2026-07-27T23:10:00Z",
+      "start_ep": 1785193800.0,
+      "status": "not_started"
+    },
+    "KXATPMATCH-26JUL27VUKSVA": {
+      "fetched_at": 1785186021.4294505,
+      "final": false,
+      "start_date": "2026-07-27T21:30:00Z",
+      "start_ep": 1785187800.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27BURLAN": {
+      "fetched_at": 1785150030.0504127,
+      "final": false,
+      "start_date": "2026-07-27T11:10:00Z",
+      "start_ep": 1785150600.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27CIRPOP": {
+      "fetched_at": 1785138325.310944,
+      "final": false,
+      "start_date": "2026-07-27T08:00:00Z",
+      "start_ep": 1785139200.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL27HENPOH": {
+      "fetched_at": 1785144629.6285813,
+      "final": false,
+      "start_date": "2026-07-27T09:40:00Z",
+      "start_ep": 1785145200.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27KAZROU": {
+      "fetched_at": 1785139236.1432393,
+      "final": false,
+      "start_date": "2026-07-27T08:00:00Z",
+      "start_ep": 1785139200.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL27MALBER": {
+      "fetched_at": 1785144629.8573594,
+      "final": false,
+      "start_date": "2026-07-27T09:40:00Z",
+      "start_ep": 1785145200.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27PRIKOT": {
+      "fetched_at": 1785139236.6227396,
+      "final": false,
+      "start_date": "2026-07-27T08:00:00Z",
+      "start_ep": 1785139200.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL27QUEFET": {
+      "fetched_at": 1785150030.3277328,
+      "final": false,
+      "start_date": "2026-07-27T11:10:00Z",
+      "start_ep": 1785150600.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27RAMSTR": {
+      "fetched_at": 1785152723.5791793,
+      "final": false,
+      "start_date": "2026-07-27T12:05:00Z",
+      "start_ep": 1785153900.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27ROMSOR": {
+      "fetched_at": 1785157230.420157,
+      "final": false,
+      "start_date": "2026-07-27T13:10:00Z",
+      "start_ep": 1785157800.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL27SZATON": {
+      "fetched_at": 1785145523.9477208,
+      "final": false,
+      "start_date": "2026-07-27T09:35:00Z",
+      "start_ep": 1785144900.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28BULMON": {
+      "fetched_at": 1785232836.5025008,
+      "final": false,
+      "start_date": "2026-07-28T14:00:00Z",
+      "start_ep": 1785247200.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL28CIRGAI": {
+      "fetched_at": 1785232836.7422032,
+      "final": false,
+      "start_date": "2026-07-28T10:10:00Z",
+      "start_ep": 1785233400.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28IBRBUR": {
+      "fetched_at": 1785240034.100413,
+      "final": false,
+      "start_date": "2026-07-28T11:40:00Z",
+      "start_ep": 1785238800.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28JANSOB": {
+      "fetched_at": 1785232837.2530303,
+      "final": false,
+      "start_date": "2026-07-28T11:20:00Z",
+      "start_ep": 1785237600.0,
+      "status": "not_started"
+    },
+    "KXWTACHALLENGERMATCH-26JUL28JONPAQ": {
+      "fetched_at": 1785214830.6866677,
+      "final": false,
+      "start_date": "2026-07-28T11:10:00Z",
+      "start_ep": 1785237000.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL28KOTSPI": {
+      "fetched_at": 1785225634.2714832,
+      "final": false,
+      "start_date": "2026-07-28T08:00:00Z",
+      "start_ep": 1785225600.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL28RISSEM": {
+      "fetched_at": 1785225634.4974785,
+      "final": false,
+      "start_date": "2026-07-28T08:00:00Z",
+      "start_ep": 1785225600.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL28ROURAD": {
+      "fetched_at": 1785232837.4875271,
+      "final": false,
+      "start_date": "2026-07-28T10:00:00Z",
+      "start_ep": 1785232800.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL28SAMBRE": {
+      "fetched_at": 1785226525.284891,
+      "final": false,
+      "start_date": "2026-07-28T08:00:00Z",
+      "start_ep": 1785225600.0,
+      "status": null
+    },
+    "KXWTACHALLENGERMATCH-26JUL28TONBRO": {
+      "fetched_at": 1785231031.3504667,
+      "final": false,
+      "start_date": "2026-07-28T09:40:00Z",
+      "start_ep": 1785231600.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27ALELIU": {
+      "fetched_at": 1785173427.8205276,
+      "final": false,
+      "start_date": "2026-07-28T15:00:00Z",
+      "start_ep": 1785250800.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27COCTAU": {
+      "fetched_at": 1785164433.6381958,
+      "final": false,
+      "start_date": "2026-07-27T15:00:00Z",
+      "start_ep": 1785164400.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27FERLIN": {
+      "fetched_at": 1785164433.8753257,
+      "final": false,
+      "start_date": "2026-07-27T15:00:00Z",
+      "start_ep": 1785164400.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27KRUBOU": {
+      "fetched_at": 1785191428.070226,
+      "final": false,
+      "start_date": "2026-07-27T22:40:00Z",
+      "start_ep": 1785192000.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27NAVKEN": {
+      "fetched_at": 1785169828.0108755,
+      "final": false,
+      "start_date": "2026-07-27T16:30:00Z",
+      "start_ep": 1785169800.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27OSOHUN": {
+      "fetched_at": 1785196834.7422118,
+      "final": false,
+      "start_date": "2026-07-27T23:55:00Z",
+      "start_ep": 1785196500.0,
+      "status": "live"
+    },
+    "KXWTAMATCH-26JUL27SAMKEY": {
+      "fetched_at": 1785189630.262122,
+      "final": false,
+      "start_date": "2026-07-27T22:00:00Z",
+      "start_ep": 1785189600.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27SEBKAL": {
+      "fetched_at": 1785197722.7770033,
+      "final": false,
+      "start_date": "2026-07-28T00:30:00Z",
+      "start_ep": 1785198600.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27SHYBRA": {
+      "fetched_at": 1785176123.1385725,
+      "final": false,
+      "start_date": "2026-07-27T22:00:00Z",
+      "start_ep": 1785189600.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27SIEPRO": {
+      "fetched_at": 1785189630.8444304,
+      "final": false,
+      "start_date": "2026-07-27T22:10:00Z",
+      "start_ep": 1785190200.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27TJESRA": {
+      "fetched_at": 1785192322.304142,
+      "final": false,
+      "start_date": "2026-07-27T23:00:00Z",
+      "start_ep": 1785193200.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27VOLGOL": {
+      "fetched_at": 1785164435.5479498,
+      "final": false,
+      "start_date": "2026-07-27T15:00:00Z",
+      "start_ep": 1785164400.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL27ZAKFRU": {
+      "fetched_at": 1785141035.3273418,
+      "final": false,
+      "start_date": "2026-07-27T15:00:00Z",
+      "start_ep": 1785164400.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL28BUCKUD": {
+      "fetched_at": 1785241830.333338,
+      "final": false,
+      "start_date": "2026-07-28T15:00:00Z",
+      "start_ep": 1785250800.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL28KASKAL": {
+      "fetched_at": 1785241830.5871882,
+      "final": false,
+      "start_date": "2026-07-28T19:00:00Z",
+      "start_ep": 1785265200.0,
+      "status": "not_started"
+    },
+    "KXWTAMATCH-26JUL28PARWAN": {
+      "fetched_at": 1785232837.9597194,
+      "final": false,
+      "start_date": "2026-07-28T15:00:00Z",
+      "start_ep": 1785250800.0,
+      "status": "not_started"
+    }
+  },
+  "schema_version": "window1-fresh-holdout-exam-stage12-v1-sources"
+}

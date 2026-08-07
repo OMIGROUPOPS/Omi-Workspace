@@ -1,0 +1,115 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-brain-audit-v1",
+  "brains": {
+    "V36": {
+      "commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+      "source_path": "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js",
+      "source_sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+      "source_bytes": 145886,
+      "fixed_development_denominator_assertions": [
+        {
+          "line": 315,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        },
+        {
+          "line": 930,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        }
+      ],
+      "frozen_input_bindings": [
+        {
+          "line": 18,
+          "value": "const base = path.join(repo, \".claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805\");"
+        },
+        {
+          "line": 19,
+          "value": "const floorFile = path.join(repo, \".claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/DUAL_FLOOR_LEG_LEDGER.jsonl.gz\");"
+        },
+        {
+          "line": 20,
+          "value": "const baseTraceFile = path.join(base, \"DECISION_TRACE_1608.json\");"
+        }
+      ],
+      "accepts_external_event_list": false,
+      "accepts_external_boundary_ledger": false,
+      "accepts_external_population_tape_root": false
+    },
+    "V35": {
+      "commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+      "source_path": "arb-executor/analysis/build_window1_v35_living_rest_evidence_gate.js",
+      "source_sha256": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+      "source_bytes": 129672,
+      "fixed_development_denominator_assertions": [
+        {
+          "line": 310,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        },
+        {
+          "line": 836,
+          "value": "  const baseEvents = loadBaseEvents(); ensure(baseEvents.length === 804, \"D must be 804\");"
+        }
+      ],
+      "frozen_input_bindings": [
+        {
+          "line": 18,
+          "value": "const base = path.join(repo, \".claude/window1_live_v4_replay/v29r3_standing_floor_release_20260805\");"
+        },
+        {
+          "line": 19,
+          "value": "const floorFile = path.join(repo, \".claude/window1_live_v4_replay/trade_floor_correction_v8_20260802/DUAL_FLOOR_LEG_LEDGER.jsonl.gz\");"
+        },
+        {
+          "line": 20,
+          "value": "const baseTraceFile = path.join(base, \"DECISION_TRACE_1608.json\");"
+        }
+      ],
+      "accepts_external_event_list": false,
+      "accepts_external_boundary_ledger": false,
+      "accepts_external_population_tape_root": false
+    },
+    "R3": {
+      "commit": "49f6501561c5d99a7f36c68ec41e0ea7250680e5",
+      "source_path": "arb-executor/analysis/build_window1_v29r3_standing_floor_release.js",
+      "source_sha256": "a5d6cb242e806136fd63cadd0ef7b092a6cbf83fd068c908fa8bd2f61cd342b2",
+      "source_bytes": 61858,
+      "fixed_development_denominator_assertions": [
+        {
+          "line": 145,
+          "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && v28Legs.length === 1608 && baseTrace.rows.length === 1608 && baseReceipts.length === 371, \"R2 conservation failed\");"
+        },
+        {
+          "line": 213,
+          "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && baseTrace.rows.length === 1608, \"V28 conservation failed\"); ensure(baseScore.V28_score.joint_objective_pairs === 65, \"V28 floor mismatch\");"
+        }
+      ],
+      "frozen_input_bindings": [
+        {
+          "line": 22,
+          "value": "const eventPath = path.join(r2, \"EVENT_LEDGER.jsonl.gz\");"
+        }
+      ],
+      "accepts_external_event_list": false,
+      "accepts_external_boundary_ledger": false,
+      "accepts_external_population_tape_root": false,
+      "posthoc_transformer_proof": {
+        "input_event_path": [
+          {
+            "line": 22,
+            "value": "const eventPath = path.join(r2, \"EVENT_LEDGER.jsonl.gz\");"
+          }
+        ],
+        "input_v28_conservation": [
+          {
+            "line": 145,
+            "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && v28Legs.length === 1608 && baseTrace.rows.length === 1608 && baseReceipts.length === 371, \"R2 conservation failed\");"
+          },
+          {
+            "line": 213,
+            "value": "  ensure(events.length === 804 && inputLegs.length === 1608 && baseTrace.rows.length === 1608, \"V28 conservation failed\"); ensure(baseScore.V28_score.joint_objective_pairs === 65, \"V28 floor mismatch\");"
+          }
+        ],
+        "finding": "R3 consumes frozen V28/R2 development result ledgers; it does not reconstruct its incumbent path from arbitrary raw tapes."
+      }
+    }
+  }
+}

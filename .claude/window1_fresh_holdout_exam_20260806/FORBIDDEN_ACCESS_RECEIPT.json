@@ -1,0 +1,12 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-forbidden-access-v1",
+  "holdout_brain_consumption": 0,
+  "live_engine_access": 0,
+  "order_access": 0,
+  "position_access": 0,
+  "service_mutation": 0,
+  "tuning": 0,
+  "retry": 0,
+  "boundary_network_access": "PUBLIC_EXCHANGE_MARKET_METADATA_FOR_MISSING_SCHEDULE_BOUNDS_ONLY",
+  "tape_access": "READ_ONLY_FROZEN_SEALED_TAPE_ADMISSION_CENSUS"
+}

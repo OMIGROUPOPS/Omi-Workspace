@@ -1,0 +1,12 @@
+{
+  "commit": "03bac97b12777d751fbb334fa6ae0f605445498a",
+  "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DEEP_PAIR_HYGIENE_CENSUS.json",
+  "sha256": "f7e3b57a667dbd9f08e0e0f42aab330c6737e03ad56a4c936c7897ee63651e81",
+  "method": "terminal_collapse = a leg's fill (<=9c) sits in a monotone seller-dump run of >=3 descending prints spanning >=10c into single digits within 30min of the fill (settlement-collapse catch, not a pre-bell arbitrage).",
+  "exact_clean_dev_reference": {
+    "V36": 7,
+    "V35": 5,
+    "R3": null
+  },
+  "holdout_rows": null
+}

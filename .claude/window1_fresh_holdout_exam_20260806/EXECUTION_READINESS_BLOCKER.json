@@ -1,0 +1,22 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-execution-readiness-v1",
+  "stage_1_boundary": "PASS_FROZEN",
+  "stage_2_admission": "PASS_FROZEN_N_GE_60",
+  "stage_3": "NOT_STARTED_FAIL_CLOSED",
+  "authorization_consumed": false,
+  "exam_process_invocations": 0,
+  "brain_invocations": {
+    "V36": 0,
+    "V35": 0,
+    "R3": 0,
+    "total": 0
+  },
+  "retries": 0,
+  "score_rows": 0,
+  "performance_fields": null,
+  "blocker": {
+    "code": "NO_FROZEN_THREE_BRAIN_POPULATION_PARAMETRIC_EXECUTABLE",
+    "detail": "V35 and V36 hard-assert the 804 development base; R3 is a posthoc transform of frozen V28/R2 development ledgers. Calling a newly reimplemented adapter on the sealed population would not be the three frozen brains unchanged and would irreversibly spend the one run without parity proof.",
+    "required_resolution": "Freeze and independently verify a reusable tape-input adapter for each exact commit, with byte/semantic parity on the development corpus, before issuing a fresh one-run command."
+  }
+}

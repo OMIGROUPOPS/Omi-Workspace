@@ -1,0 +1,17 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-preparation-process-v1",
+  "policy_blind_stage12_processes_started": 7,
+  "authoritative_clean_builds": [
+    "stage12_e",
+    "stage12_f"
+  ],
+  "authoritative_clean_builds_byte_identical": true,
+  "discarded_preparation_builds": {
+    "slow_full_rescan": "terminated before admission output after boundary generation; zero brain calls and zero scores",
+    "stage12_a_b": "discarded because request-attempt counters in the metadata source snapshot were refreshed between builds; boundary, admission, population and forbidden-access artifacts were already byte-identical"
+  },
+  "exam_process_invocations": 0,
+  "brain_invocations": 0,
+  "retries_after_exam_start": 0,
+  "authorization_consumed": false
+}

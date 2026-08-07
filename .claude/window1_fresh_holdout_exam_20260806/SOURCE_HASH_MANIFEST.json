@@ -1,0 +1,32 @@
+{
+  "files": {
+    "arb-executor/analysis/build_window1_fresh_holdout_exam_stage12.py": {
+      "sha256": "e704367fe722189f7e47b804067e2baa3e005891094d34e0033575202a4971bd",
+      "bytes": 18567
+    },
+    "arb-executor/analysis/build_window1_fresh_holdout_exam_package.js": {
+      "sha256": "bd7a45fd77fe6bff414b42590db020bea789b8996760fb3a91448ce1b35520fb",
+      "bytes": 11053
+    }
+  },
+  "git_objects": {
+    "V36": {
+      "commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+      "path": "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js",
+      "sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+      "bytes": 145886
+    },
+    "V35": {
+      "commit": "0799fba887f1d1e84f9c0ef3e73096fd9d76019e",
+      "path": "arb-executor/analysis/build_window1_v35_living_rest_evidence_gate.js",
+      "sha256": "ffff1aa3027f8bee17dba77905eaa13edd3e12292f6b849d733afe75652735c6",
+      "bytes": 129672
+    },
+    "R3": {
+      "commit": "49f6501561c5d99a7f36c68ec41e0ea7250680e5",
+      "path": "arb-executor/analysis/build_window1_v29r3_standing_floor_release.js",
+      "sha256": "a5d6cb242e806136fd63cadd0ef7b092a6cbf83fd068c908fa8bd2f61cd342b2",
+      "bytes": 61858
+    }
+  }
+}

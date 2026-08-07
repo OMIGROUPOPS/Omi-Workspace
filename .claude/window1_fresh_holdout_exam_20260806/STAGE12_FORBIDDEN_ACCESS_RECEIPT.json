@@ -1,0 +1,10 @@
+{
+  "brain_invocations": 0,
+  "live_engine_access": 0,
+  "network_access": "PUBLIC_MARKET_METADATA_FOR_MISSING_SCHEDULE_BOUNDS_ONLY",
+  "order_access": 0,
+  "position_access": 0,
+  "schema_version": "window1-fresh-holdout-exam-stage12-v1-forbidden",
+  "score_rows": 0,
+  "service_mutation": 0
+}

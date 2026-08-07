@@ -1,0 +1,25 @@
+{
+  "admission_ledger_sha256": "f55355a6bb45a882de6110f79db487e4a75cf5ef65ecd0325df8118e6aefe9d9",
+  "admitted_N": 171,
+  "boundary_ledger_sha256": "70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a",
+  "capture_gap_flagged_events": [],
+  "exam_event_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+  "excluded_N": 0,
+  "exclusions": [],
+  "floor_pass_law": {
+    "capture_quality_role": "flagged; exclusion only if the unchanged law itself fails",
+    "law": "two big4 leg tapes; each leg has at least one exact-integer, positive-size, two-sided level-1-to-5 receipt",
+    "source_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+    "source_path": "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js"
+  },
+  "gate_pass": true,
+  "minimum_N": 60,
+  "precision_classes": {
+    "exact": 11,
+    "live_by_only": 14,
+    "schedule_only": 146
+  },
+  "schema_version": "window1-fresh-holdout-exam-stage12-v1-population",
+  "sealed_input_N": 171,
+  "sealed_input_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313"
+}

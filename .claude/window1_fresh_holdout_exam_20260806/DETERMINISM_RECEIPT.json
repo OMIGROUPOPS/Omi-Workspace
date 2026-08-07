@@ -1,0 +1,8 @@
+{
+  "schema_version": "window1-fresh-holdout-exam-determinism-v1",
+  "stage12_clean_builds": 2,
+  "stage12_byte_identical_files": 6,
+  "exam_brain_runs": 0,
+  "score_render_builds": 0,
+  "reason_score_determinism_not_applicable": "NO_FROZEN_THREE_BRAIN_POPULATION_PARAMETRIC_EXECUTABLE"
+}

@@ -1,0 +1,68 @@
+{
+  "files": {
+    "BOUNDARY_SOURCE_SNAPSHOT.json": {
+      "sha256": "79f783af7c9384b864464f11cd46f04d49f6f257919a1ab8dc5660d413231c65",
+      "bytes": 71137
+    },
+    "CLEAN_DEEP_METHOD_BINDING.json": {
+      "sha256": "ea26efe7a9fb6c35eb48a742329a1efdf70a77d307cc3491d8d5afbc026a84bb",
+      "bytes": 584
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "8bdd67c1f4d85fe4ddf8312c75206f62510c9438a24392863b5e50e81a3c6aaf",
+      "bytes": 676
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "80ecc4be71af27ccfc47b6e300850eb7672e5f8f69fd959965794a1930cafc36",
+      "bytes": 289
+    },
+    "EXAM_EVENT_LIST.txt": {
+      "sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+      "bytes": 5494
+    },
+    "EXAM_POPULATION.json": {
+      "sha256": "c799ba0fc1d2b073f7dfcbb9ab08d113b404b9051fc55a75a46a1533b4177aa5",
+      "bytes": 1121
+    },
+    "EXECUTION_READINESS_BLOCKER.json": {
+      "sha256": "6f6930a56c3a668029167a3cfc4ce05ba07407e8e89bfc16efa7622f5305d3ef",
+      "bytes": 1019
+    },
+    "FLOOR_PASS_ADMISSION_LEDGER.jsonl": {
+      "sha256": "f55355a6bb45a882de6110f79db487e4a75cf5ef65ecd0325df8118e6aefe9d9",
+      "bytes": 174759
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "04b613c3cd482a3c5e56284dea655d146346c3db8dd05465c30c57979f394a8a",
+      "bytes": 396
+    },
+    "FROZEN_BRAIN_EXECUTABILITY_AUDIT.json": {
+      "sha256": "2a1efe5a83a2e52c0c0419aa6163a70a93a0f5e2bb1e4b1af0b52a0684400f35",
+      "bytes": 4938
+    },
+    "INDEPENDENT_REVIEW_INSTRUCTION.md": {
+      "sha256": "db4bd1bcc18504844ad269f344cf97941e74ebbf3810658f9926c333d987dd49",
+      "bytes": 415
+    },
+    "PREPARATION_PROCESS_RECEIPT.json": {
+      "sha256": "75e3ba67f07f4bb1de8c1ee7326fea1fbd41249e413110c2b5311bfd92c478c9",
+      "bytes": 756
+    },
+    "PRE_MATCH_BOUNDARY_LEDGER.jsonl": {
+      "sha256": "70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a",
+      "bytes": 182211
+    },
+    "REPORT.md": {
+      "sha256": "993198a8849d0317dabb020ca68005e51fc87a20691205654d4760f0b55db0e1",
+      "bytes": 967
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "606c934870e387c9992112a2ceb47eeab091ffcb11b6331eb6d2264659a201f2",
+      "bytes": 1240
+    },
+    "STAGE12_FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "5118d51141e501dea2e06bd3440874c8368e4446f012f66de2af022392043b69",
+      "bytes": 295
+    }
+  }
+}

@@ -1680,3 +1680,28 @@ seller hits means the pair remains incomplete, not retrospectively credited.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/85a34e6de1175824b3581a94a7af3bfd638977a3/arb-executor/docs/research/window1/WINDOW1_V40_INCUMBENT_DIRECTION_PLACEMENT_20260808_ADDENDUM.md
+
+### 2026-08-08 - V41 MAKER MACHINE FROZEN
+
+The maker-only ruling is now explicit in CANON: V41 deletes the take path,
+arms every leg from its first two-sided book, retains the V36 FALLING/SETTLED
+walking-rest laws, and uses a single persistence-only RISING join after 300
+seconds with no seller-hit arming gate. Market grading uses the union channels;
+strict seller-aggressed print crossing is build verification only.
+
+V41 completes 243/804 under-par pairs and locks 732 cents per contract with
+zero entry fees. Frozen V36 completes 270 gross but, after charging its 882
+taker legs by the exact Kalshi formula, locks -976 cents across all credited
+entries; only 47 completed pairs remain net-positive. V41 therefore wins the
+net locked-cents comparison while V36 retains the gross-completion lead. This
+evidence does not authorize deployment or live cutover.
+
+ARNROM lands 50+40=90; the requested 88 is not retro-credited. BOSCOP lands
+30+64=94 on the market ruler, NIKVRB and WESPAA remain incomplete, and KRUFER
+lands 43+53=96. Two builds are byte-identical and forbidden access is zero.
+
+Canonical evidence package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/20a8be31082be357b62bf217e842b09a01c8ee11/.claude/window1_live_v4_replay/v41_maker_machine_20260808/REPORT.md
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/20a8be31082be357b62bf217e842b09a01c8ee11/arb-executor/docs/research/window1/WINDOW1_V41_MAKER_MACHINE_20260808_ADDENDUM.md

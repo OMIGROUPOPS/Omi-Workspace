@@ -1,0 +1,38 @@
+{
+  "schema_version": "window1-v41-maker-machine-control-v1",
+  "base": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "controlling_receipts": [
+    "d3db740f143646614bc10778c0b4e27fa519dcd8",
+    "084df12553928677869bd2857516caa3f0490416",
+    "cca7c6c1554344711e2ddb32f3d3e2175c44711e",
+    "2b45d14688a0ec05d14ab4975759f1a986398da5"
+  ],
+  "architecture": {
+    "entry_unit": "ONE_GAME_STATE_TWO_SINGLE_REST_OUTPUTS",
+    "T5_arming": "EVERY_LEG_PLACES_FROM_FIRST_TWO_SIDED_BOOK_WITH_NO_PRE_PLACEMENT_EVIDENCE_GATE",
+    "direction": "V36_INCUMBENT_QUOTE_PATH_PLUS_JUL6_PRESSURE_STATE_MACHINE",
+    "FALLING": "V36_CAUSAL_NO_CHASE_WALKING_REST",
+    "SETTLED": "V36_BID_MINUS_ONE_TRACKING",
+    "RISING": "BID_MINUS_ONE_TRACKER_UNTIL_CURRENT_BID_LEVEL_PERSISTS_300S_THEN_SINGLE_REST_JOINS_DEEPEST_PERSISTENT_LEVEL; SELLER_HIT_NOT_REQUIRED; P2_OVERRIDES_P1",
+    "WTA_inverse_falling_hold": "WTA_RISING_SIDE_WITH_OTHER_EXPRESSION_FALLING_HOLDS_DEEPER_CAUSAL_OWN_LEVEL",
+    "sanity_bound": "REST_STRICTLY_BELOW_CURRENT_BEST_ASK",
+    "take_path": "DELETED_NOT_GATED",
+    "pair_cap": "99_MINUS_FIRST_FILL_LAZY_LEG_1",
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V36_WINDOW1_SPAN_804_UNCHANGED"
+  },
+  "fill_rulers": {
+    "market_scoring": "CANON_UNION_CHANNELS_QUOTE_TOUCH_10S_SIZE5_PLUS_TRADED_AT_LEVEL_PLUS_STRICT_PRINT_CROSS",
+    "build_verification": "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST",
+    "never_swapped": true
+  },
+  "comparison": {
+    "V36_gross": "FROZEN_STRICT_EVENT_LEDGER",
+    "V36_net": "TAKER_PER_CONTRACT_CEIL_0_07_P_1_MINUS_P; MAKER_ZERO",
+    "causal_reach": {
+      "under_par": 504,
+      "locked_cents": 3319
+    }
+  }
+}

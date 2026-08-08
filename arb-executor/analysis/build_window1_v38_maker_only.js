@@ -13,6 +13,9 @@ const GAP_COMMIT = "b581cbb58f660939ed9b0c2e88ddc42163dbab9a";
 const DIVOT_COMMIT = "d1ac94973252e2f8c28ba32374c29ff7bd605a7e";
 const COUNTERFACTUAL_COMMIT = "2b45d14688a0ec05d14ab4975759f1a986398da5";
 const FALLER_ANATOMY_COMMIT = "c3961e2c2134aac7ea977d7ab4bb65bf7a263cc4";
+const CAUSAL_REACH_COMMIT = "d3db740f143646614bc10778c0b4e27fa519dcd8";
+const RISER_FRONTIER_COMMIT = "084df12553928677869bd2857516caa3f0490416";
+const LEVEL_POLICY_COMMIT = "cca7c6c1554344711e2ddb32f3d3e2175c44711e";
 const V36_PACKAGE = ".claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806";
 const GAP_PACKAGE = ".claude/window1_live_v4_replay/v36_gap_to_union_reach_20260807";
 const OUT_REL = ".claude/window1_live_v4_replay/v38_maker_only_machine_20260807";
@@ -23,15 +26,16 @@ const arg = (name, fallback) => { const i = argv.indexOf(name); return i < 0 ? f
 const variant = arg("--variant", "v38");
 const isV39 = variant === "v39";
 const isV40 = variant === "v40";
-const isPlacementStack = isV39 || isV40;
-if (!["v38", "v39", "v40"].includes(variant)) throw new Error(`unknown variant ${variant}`);
-const policy = require(isV40 ? "./window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "./window1_v39_corrected_placement_stack.js" : "./window1_v38_maker_only_machine.js");
+const isV41 = variant === "v41";
+const isPlacementStack = isV39 || isV40 || isV41;
+if (!["v38", "v39", "v40", "v41"].includes(variant)) throw new Error(`unknown variant ${variant}`);
+const policy = require(isV41 ? "./window1_v41_maker_machine.js" : isV40 ? "./window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "./window1_v39_corrected_placement_stack.js" : "./window1_v38_maker_only_machine.js");
 const repo = path.resolve(arg("--repo", "."));
 const v36Root = path.resolve(arg("--v36-root", "C:/tmp/omi-v36-frozen-bfde"));
 const reachRoot = path.resolve(arg("--reach-root", "C:/tmp/omi-reach-57daf3"));
 const gapRoot = path.resolve(arg("--gap-root", isPlacementStack ? "C:/tmp/omi-v36-gap-reach-20260807" : repo));
 const privateRoot = path.resolve(arg("--private-root", process.env.W1_PRIVATE_ROOT || "C:/Users/omigr/OMI-Window1-private"));
-const output = path.resolve(arg("--output", path.join(repo, isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
+const output = path.resolve(arg("--output", path.join(repo, isV41 ? ".claude/window1_live_v4_replay/v41_maker_machine_20260808" : isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
 const compare = arg("--compare", null) ? path.resolve(arg("--compare", null)) : null;
 
 function ensure(value, message) { if (!value) throw new Error(message); }
@@ -67,7 +71,7 @@ function gitShow(commit, relativePath) {
 }
 function safeOutput(dir) {
   const resolved = path.resolve(dir);
-  ensure(path.basename(resolved).includes(isV40 ? "v40" : isV39 ? "v39" : "v38"), `unsafe output ${resolved}`);
+  ensure(path.basename(resolved).includes(isV41 ? "v41" : isV40 ? "v40" : isV39 ? "v39" : "v38"), `unsafe output ${resolved}`);
   ensure(resolved !== repo && resolved !== path.parse(resolved).root, `unsafe output ${resolved}`);
   fs.rmSync(resolved, { recursive: true, force: true });
   fs.mkdirSync(resolved, { recursive: true });
@@ -203,7 +207,7 @@ function simulate(base, tapes, prints, mode) {
   for (const row of timeline) {
     if (row.ts < base.left || row.ts > base.right) continue;
     const leg = event.legs[row.leg_id], sibling = event.legs[ids.find((id) => id !== row.leg_id)];
-    if (isV40 && Number.isFinite(leg.persistent_join_timestamp_epoch) && row.ts > leg.persistent_join_timestamp_epoch) {
+    if ((isV40 || isV41) && Number.isFinite(leg.persistent_join_timestamp_epoch) && row.ts > leg.persistent_join_timestamp_epoch) {
       if (row.kind === "PRINT" && row.taker_side === "no" && row.price === leg.persistent_join_level) leg.post_join_certified_seller_hits_at_level += 1;
       if (row.kind === "BOOK" && row.bid === leg.persistent_join_level && row.last_trade === leg.persistent_join_level) leg.post_join_book_last_trade_receipts += 1;
     }
@@ -256,11 +260,13 @@ function simulate(base, tapes, prints, mode) {
     leg.classifier_state_counts[combined.state] += 1;
     if (combined.disagreement) leg.classifier_opposed_rows += 1;
     if (combined.authority === "QUOTE_PATH_AND_JUL6_PRESSURE_AGREE") leg.classifier_agreement_rows += 1;
-    if (isPlacementStack && row.ts - leg.current_bid_since >= policy.PERSISTENT_LEVEL_SECONDS && leg.current_bid_last_trade_hit) {
-      if (leg.persistent_join_level === null || row.bid < leg.persistent_join_level) {
+    const v41Join = isV41 ? policy.persistenceJoinUpdate({ state: combined.state, bid: row.bid, residencySeconds: row.ts - leg.current_bid_since, currentJoinLevel: leg.persistent_join_level }) : null;
+    const persistentLevelTrigger = isV41 ? v41Join.armed : isPlacementStack && row.ts - leg.current_bid_since >= policy.PERSISTENT_LEVEL_SECONDS && leg.current_bid_last_trade_hit;
+    if (isPlacementStack && persistentLevelTrigger) {
+      if (isV41 ? v41Join.changed : leg.persistent_join_level === null || row.bid < leg.persistent_join_level) {
         leg.persistent_join_level = row.bid;
         leg.persistent_join_receipt = row.receipt;
-        leg.persistent_join_evidence_receipt = leg.current_bid_last_trade_hit_receipt;
+        leg.persistent_join_evidence_receipt = isV41 ? row.receipt : leg.current_bid_last_trade_hit_receipt;
         leg.persistent_join_timestamp_epoch = row.ts;
         leg.post_join_book_last_trade_receipts = 0;
         leg.post_join_certified_seller_hits_at_level = 0;
@@ -326,7 +332,55 @@ function score(events) {
   const completed = events.filter((event) => event.completed_pair), under = completed.filter((event) => event.pair_under_par);
   const frontier = {};
   for (const [name, predicate] of Object.entries({ LE_93: (x) => x <= 93, LE_95: (x) => x <= 95, LE_97: (x) => x <= 97, LT_100: (x) => x < 100, ANY_PRICE: () => true })) frontier[name] = completed.filter((event) => predicate(event.combined_entry_cents)).length;
-  return { D: events.length, legs: legs.length, acted_legs: legs.filter((leg) => leg.first_action_timestamp_epoch !== null).length, credited_legs: legs.filter((leg) => leg.credited).length, completed_pairs: completed.length, under_par_pairs: under.length, maker_fill_classes: countBy(legs.filter((leg) => leg.credited), (leg) => leg.fill_class), frontier, conservation: { D: events.length, legs: legs.length, pass: events.length === 804 && legs.length === 1608 } };
+  return { D: events.length, legs: legs.length, acted_legs: legs.filter((leg) => leg.first_action_timestamp_epoch !== null).length, credited_legs: legs.filter((leg) => leg.credited).length, completed_pairs: completed.length, under_par_pairs: under.length, locked_cents_per_contract: under.reduce((sum, event) => sum + 100 - event.combined_entry_cents, 0), locked_cents_five_lot: under.reduce((sum, event) => sum + (100 - event.combined_entry_cents) * 5, 0), maker_fill_classes: countBy(legs.filter((leg) => leg.credited), (leg) => leg.fill_class), frontier, conservation: { D: events.length, legs: legs.length, pass: events.length === 804 && legs.length === 1608 } };
+}
+
+function kalshiTakerFeePerContractCents(priceCents) {
+  ensure(Number.isInteger(priceCents) && priceCents >= 1 && priceCents <= 99, `invalid taker price ${priceCents}`);
+  const p = priceCents / 100;
+  return Math.ceil(0.07 * p * (1 - p) * 100);
+}
+
+function frozenV36NetScore(events) {
+  const summarize = (rows) => {
+    const legs = rows.flatMap((event) => Object.values(event.legs));
+    const takers = legs.filter((leg) => leg.credited && String(leg.fill_class).startsWith("PROVEN_TAKER"));
+    const makers = legs.filter((leg) => leg.credited && String(leg.fill_class).startsWith("PROVEN_MAKER"));
+    const completed = rows.filter((event) => Object.values(event.legs).every((leg) => leg.credited));
+    const grossUnder = completed.filter((event) => Object.values(event.legs).reduce((sum, leg) => sum + leg.entry_cents, 0) < 100);
+    const grossLocked = grossUnder.reduce((sum, event) => sum + 100 - Object.values(event.legs).reduce((s, leg) => s + leg.entry_cents, 0), 0);
+    const completedNet = completed.map((event) => {
+      const eventLegs = Object.values(event.legs), grossCost = eventLegs.reduce((sum, leg) => sum + leg.entry_cents, 0);
+      const fees = eventLegs.reduce((sum, leg) => sum + (String(leg.fill_class).startsWith("PROVEN_TAKER") ? kalshiTakerFeePerContractCents(leg.entry_cents) : 0), 0);
+      return { gross_cost: grossCost, fee: fees, net_locked: 100 - grossCost - fees };
+    });
+    const feeAll = takers.reduce((sum, leg) => sum + kalshiTakerFeePerContractCents(leg.entry_cents), 0);
+    const feeCompleted = completedNet.reduce((sum, row) => sum + row.fee, 0);
+    return {
+      events: rows.length,
+      credited_legs: takers.length + makers.length,
+      maker_legs_fee_exempt: makers.length,
+      taker_legs_charged: takers.length,
+      completed_pairs: completed.length,
+      gross_under_par_pairs: grossUnder.length,
+      net_positive_completed_pairs: completedNet.filter((row) => row.net_locked > 0).length,
+      games_flipped_negative_by_fees: completedNet.filter((row) => row.gross_cost < 100 && row.net_locked < 0).length,
+      games_flipped_to_zero_by_fees: completedNet.filter((row) => row.gross_cost < 100 && row.net_locked === 0).length,
+      gross_locked_cents_per_contract: grossLocked,
+      gross_locked_cents_five_lot: grossLocked * 5,
+      taker_fees_all_credited_legs_cents_per_contract: feeAll,
+      taker_fees_all_credited_legs_five_lot: feeAll * 5,
+      taker_fees_completed_pairs_cents_per_contract: feeCompleted,
+      taker_fees_completed_pairs_five_lot: feeCompleted * 5,
+      net_locked_after_all_entry_taker_fees_cents_per_contract: grossLocked - feeAll,
+      net_locked_after_all_entry_taker_fees_five_lot: (grossLocked - feeAll) * 5,
+      completed_pair_net_locked_cents_per_contract: completedNet.reduce((sum, row) => sum + row.net_locked, 0),
+      completed_pair_net_locked_cents_five_lot: completedNet.reduce((sum, row) => sum + row.net_locked, 0) * 5,
+    };
+  };
+  const groups = new Map();
+  for (const event of events) { if (!groups.has(event.category)) groups.set(event.category, []); groups.get(event.category).push(event); }
+  return { fee_law: "TAKER=CEIL(0.07*P*(1-P)*100)_CENTS_PER_CONTRACT; MAKER=0; FIVE_CONTRACTS_PER_LEG", aggregate: summarize(events), per_category: [...groups].sort(([a], [b]) => a.localeCompare(b)).map(([category, rows]) => ({ category, ...summarize(rows) })) };
 }
 
 function frozenV36Score(reachRows) {
@@ -428,6 +482,8 @@ async function main() {
   ensure(isPlacementStack || gitHead(repo) === GAP_COMMIT || compare, "V38 must build from b581cbb parent before commit");
   safeOutput(output);
   const v36Package = path.join(v36Root, V36_PACKAGE), gapPackage = path.join(gapRoot, GAP_PACKAGE);
+  const v36StrictFrozenEvents = readRows(path.join(v36Package, "STRICT_EVENT_LEDGER.jsonl.gz"));
+  ensure(v36StrictFrozenEvents.length === 804, "frozen V36 strict ledger must contain 804 events");
   const spans = JSON.parse(fs.readFileSync(path.join(v36Package, "WINDOW1_SPAN_804.json"), "utf8")).rows;
   const v36Trace = JSON.parse(fs.readFileSync(path.join(v36Package, "STRICT_DECISION_TRACE_1608.json"), "utf8")).rows;
   const reachRows = readRows(path.join(gapPackage, "V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz"));
@@ -456,7 +512,7 @@ async function main() {
   const printLoad = await loadPrints(tickerBounds), marketEvents = [], strictEvents = [], allActions = [], tapeHashes = {};
   let index = 0;
   for (const base of [...baseByEvent.values()].sort((a, b) => a.event_id.localeCompare(b.event_id))) {
-    index += 1; if (index % 50 === 0) process.stderr.write(`${isV40 ? "V40" : isV39 ? "V39" : "V38"} replay ${index}/804\n`);
+    index += 1; if (index % 50 === 0) process.stderr.write(`${isV41 ? "V41" : isV40 ? "V40" : isV39 ? "V39" : "V38"} replay ${index}/804\n`);
     const tapes = new Map(), prints = new Map();
     for (const [id, leg] of Object.entries(base.legs)) {
       const loaded = loadTape(leg.ticker); tapeHashes[leg.ticker] = { sha256: loaded.sha256, bytes: loaded.bytes };
@@ -467,12 +523,13 @@ async function main() {
     for (const row of market.actions) allActions.push({ mode: "MARKET_UNION_REACH", ...row });
     for (const row of strict.actions) allActions.push({ mode: "STRICT_PRINT_CROSS", ...row });
   }
-  const marketScore = score(marketEvents), strictScore = score(strictEvents), marketGrades = gradeAgainstReach(marketEvents, reachByEvent, baseByEvent), strictGrades = gradeAgainstReach(strictEvents, reachByEvent, baseByEvent), v36Score = frozenV36Score(reachRows);
+  const marketScore = score(marketEvents), strictScore = score(strictEvents), marketGrades = gradeAgainstReach(marketEvents, reachByEvent, baseByEvent), strictGrades = gradeAgainstReach(strictEvents, reachByEvent, baseByEvent), v36Score = frozenV36Score(reachRows), v36NetScore = frozenV36NetScore(v36StrictFrozenEvents);
+  ensure(v36NetScore.aggregate.taker_legs_charged === 882, "V36 taker-leg fee population changed");
   const layerGroups = new Map();
   for (const row of marketGrades.residuals) { const key = row.layer_bind.owner; if (!layerGroups.has(key)) layerGroups.set(key, []); layerGroups.get(key).push(row); }
   const layerRanking = [...layerGroups].map(([owner, rows]) => ({ owner, games: new Set(rows.map((row) => row.event_id)).size, sides: rows.length, measurable_cents: rows.reduce((sum, row) => sum + (row.layer_bind.measurable_cents || 0), 0), category_x_bell_confidence: countBy(rows, (row) => `${row.category}|${row.bell_confidence}`) })).sort((a, b) => b.measurable_cents - a.measurable_cents || b.games - a.games || a.owner.localeCompare(b.owner));
   const named = {};
-  for (const label of ["ARNROM", "BOSCOP", "WESPAA", "NIKVRB", "GANJAN"]) {
+  for (const label of isV41 ? ["ARNROM", "BOSCOP", "NIKVRB", "WESPAA", "KRUFER"] : ["ARNROM", "BOSCOP", "WESPAA", "NIKVRB", "GANJAN"]) {
     const market = marketEvents.find((event) => event.event_id.includes(label)), strict = strictEvents.find((event) => event.event_id.includes(label));
     ensure(market && strict, `named game absent ${label}`);
     const reach = reachByEvent.get(market.event_id), reachLevels = Object.values(reach.legs).map((leg) => leg.union_reach_cents);
@@ -480,16 +537,37 @@ async function main() {
     named[label] = { event_id: market.event_id, reach_levels: Object.fromEntries(Object.entries(reach.legs).map(([id, leg]) => [id, leg.union_reach_cents])), reach_combined_cents: reachLevels.every(Number.isInteger) ? reachLevels.reduce((a, b) => a + b, 0) : null, MARKET_UNION_REACH: { completed: market.completed_pair, combined_entry_cents: market.combined_entry_cents, under_par: market.pair_under_par, legs: legView(market) }, STRICT_PRINT_CROSS: { completed: strict.completed_pair, combined_entry_cents: strict.combined_entry_cents, under_par: strict.pair_under_par, legs: legView(strict) } };
   }
   ensure(named.ARNROM.reach_combined_cents === 88 && named.BOSCOP.reach_combined_cents === 75 && named.NIKVRB.reach_combined_cents === 86, "named reach identities changed");
-  const policyFile = path.join(repo, isV40 ? "arb-executor/analysis/window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "arb-executor/analysis/window1_v39_corrected_placement_stack.js" : "arb-executor/analysis/window1_v38_maker_only_machine.js"), builderFile = __filename;
-  const wrapperFile = path.join(repo, isV40 ? "arb-executor/analysis/build_window1_v40_incumbent_direction_placement_stack.js" : "arb-executor/analysis/build_window1_v39_corrected_placement_stack.js");
+  const policyFile = path.join(repo, isV41 ? "arb-executor/analysis/window1_v41_maker_machine.js" : isV40 ? "arb-executor/analysis/window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "arb-executor/analysis/window1_v39_corrected_placement_stack.js" : "arb-executor/analysis/window1_v38_maker_only_machine.js"), builderFile = __filename;
+  const wrapperFile = path.join(repo, isV41 ? "arb-executor/analysis/build_window1_v41_maker_machine.js" : isV40 ? "arb-executor/analysis/build_window1_v40_incumbent_direction_placement_stack.js" : "arb-executor/analysis/build_window1_v39_corrected_placement_stack.js");
   const policyText = fs.readFileSync(policyFile, "utf8");
-  if (!isPlacementStack) ensure(!/action:\s*["']TAKE["']/.test(policyText) && !/function\s+.*take/i.test(policyText), "take path survived in V38 policy");
+  if (!isPlacementStack || isV41) ensure(!/action:\s*["']TAKE["']/.test(policyText) && !/function\s+.*take/i.test(policyText) && !/matureFloorTakePermission/.test(policyText), `take path survived in ${variant.toUpperCase()} policy`);
   if (isV39) ensure(/V36_MATURE_EVIDENCE_FLOOR_TAKE_UNCHANGED/.test(policyText), "V36 take path missing from V39");
   if (isV40) {
     ensure(!/window1_v39|agreementWeightedDirection/.test(policyText), "V39 classifier survived in V40 policy");
     ensure(/MATURE_EVIDENCE_FLOOR_TAKE/.test(policyText), "V36 take path missing from V40");
   }
-  const control = isV40
+  if (isV41) {
+    ensure(!/window1_v39|window1_v40|action:\s*["']TAKE["']|matureFloorTakePermission/.test(policyText), "V41 imported a forbidden classifier or take path");
+    ensure(/PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1/.test(policyText), "V41 persistence-only join authority absent");
+    ensure(policy.combineState === require("./window1_v36_state_directional_rest_mature_floor.js").combineState, "V41 state machine is not V36 incumbent");
+  }
+  const causalReachPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAUSAL_REACH.json";
+  const riserFrontierPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_TRIGGER_FRONTIER.json";
+  const levelPolicyPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LEVEL_POLICY_REALIZATION.json";
+  const causalReachBytes = isV41 ? gitShow(CAUSAL_REACH_COMMIT, causalReachPath) : null;
+  const riserFrontierBytes = isV41 ? gitShow(RISER_FRONTIER_COMMIT, riserFrontierPath) : null;
+  const levelPolicyBytes = isV41 ? gitShow(LEVEL_POLICY_COMMIT, levelPolicyPath) : null;
+  const causalReachReceipt = isV41 ? JSON.parse(causalReachBytes) : null;
+  const riserFrontierReceipt = isV41 ? JSON.parse(riserFrontierBytes) : null;
+  const levelPolicyReceipt = isV41 ? JSON.parse(levelPolicyBytes) : null;
+  if (isV41) {
+    ensure(causalReachReceipt.CAUSAL_REACH.under_par === 504 && causalReachReceipt.CAUSAL_REACH.locked === 3319, "causal reach binding changed");
+    ensure(riserFrontierReceipt.per_trigger.T4_persist300.under_par === 631, "persistence-only trigger frontier changed");
+    ensure(levelPolicyReceipt.per_policy.P2_join.under_par === 480, "P2 realization binding changed");
+  }
+  const control = isV41
+    ? { schema_version: "window1-v41-maker-machine-control-v1", base: V36_COMMIT, frozen_union_reach: REACH_COMMIT, controlling_receipts: [CAUSAL_REACH_COMMIT, RISER_FRONTIER_COMMIT, LEVEL_POLICY_COMMIT, COUNTERFACTUAL_COMMIT], architecture: { entry_unit: "ONE_GAME_STATE_TWO_SINGLE_REST_OUTPUTS", T5_arming: "EVERY_LEG_PLACES_FROM_FIRST_TWO_SIDED_BOOK_WITH_NO_PRE_PLACEMENT_EVIDENCE_GATE", direction: "V36_INCUMBENT_QUOTE_PATH_PLUS_JUL6_PRESSURE_STATE_MACHINE", FALLING: "V36_CAUSAL_NO_CHASE_WALKING_REST", SETTLED: "V36_BID_MINUS_ONE_TRACKING", RISING: `BID_MINUS_ONE_TRACKER_UNTIL_CURRENT_BID_LEVEL_PERSISTS_${policy.PERSISTENT_LEVEL_SECONDS}S_THEN_SINGLE_REST_JOINS_DEEPEST_PERSISTENT_LEVEL; SELLER_HIT_NOT_REQUIRED; P2_OVERRIDES_P1`, WTA_inverse_falling_hold: "WTA_RISING_SIDE_WITH_OTHER_EXPRESSION_FALLING_HOLDS_DEEPER_CAUSAL_OWN_LEVEL", sanity_bound: "REST_STRICTLY_BELOW_CURRENT_BEST_ASK", take_path: "DELETED_NOT_GATED", pair_cap: "99_MINUS_FIRST_FILL_LAZY_LEG_1", clocks_as_decision_inputs: [], hard_prebell_edge: "V36_WINDOW1_SPAN_804_UNCHANGED" }, fill_rulers: { market_scoring: "CANON_UNION_CHANNELS_QUOTE_TOUCH_10S_SIZE5_PLUS_TRADED_AT_LEVEL_PLUS_STRICT_PRINT_CROSS", build_verification: "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST", never_swapped: true }, comparison: { V36_gross: "FROZEN_STRICT_EVENT_LEDGER", V36_net: "TAKER_PER_CONTRACT_CEIL_0_07_P_1_MINUS_P; MAKER_ZERO", causal_reach: { under_par: 504, locked_cents: 3319 } } }
+    : isV40
     ? { schema_version: "window1-v40-incumbent-direction-placement-stack-control-v1", base: V36_COMMIT, frozen_union_reach: REACH_COMMIT, controlling_receipts: [COUNTERFACTUAL_COMMIT, "2c54d724186d2f8b152205379aef88499c457a7a", FALLER_ANATOMY_COMMIT, "ff5880d11a88b0d12415f5371d7cbb61331957e4"], architecture: { direction: "V36_INCUMBENT_QUOTE_PATH_PLUS_JUL6_PRESSURE_STATE_MACHINE_BYTE_FOR_FUNCTION_INHERITED", classifier_research_status: "V39_CAUSAL_CLASSIFIER_SEVERED_CLASSIFIER_RESEARCH_OPEN", persistent_level_join: `V36_INCUMBENT_RISING_CURRENT_BID_RESIDENCY_GE_${policy.PERSISTENT_LEVEL_SECONDS}S_AND_LAST_TRADED_AT_LEVEL_THEN_REST_AT_LEVEL`, WTA_inverse_falling_hold: "WTA_V36_INCUMBENT_RISING_SIDE_ONLY_DEEPER_OF_TRAILING_PULSE_FLOOR_AND_CAUSAL_RUNNING_OWN_REACH_LOW", sanity_bound: "EVERY_REST_STRICTLY_BELOW_CURRENT_BEST_ASK", take_path: "V36_MATURE_FLOOR_TAKE_INTACT", pair_cap: "99_MINUS_FIRST_FILL", clocks_as_decision_inputs: [], hard_prebell_edge: "V36_WINDOW1_SPAN_804_UNCHANGED" }, acceptance_bar: { completed_pairs_min: 270, LE_93_min: 12, LE_95_min: 24 }, fill_rulers: { market_scoring: "UNION_REACH_CHANNELS_QUOTE_TOUCH_10S_SIZE5_PLUS_TRADED_AT_LEVEL_PLUS_STRICT_PRINT_CROSS", build_verification: "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST_PLUS_PROVEN_TAKER", never_swapped: true } }
     : isV39
     ? { schema_version: "window1-v39-corrected-placement-stack-control-v1", base: V36_COMMIT, frozen_union_reach: REACH_COMMIT, controlling_receipts: [COUNTERFACTUAL_COMMIT, "2c54d724186d2f8b152205379aef88499c457a7a", FALLER_ANATOMY_COMMIT], architecture: { causal_direction: "DECISION_TIME_QUOTE_PATH_PLUS_JUL6_PRESSURE_AGREEMENT_WEIGHTED; OPPOSED_DIRECTIONAL_VOTES_SETTLE; NO_EX_POST_LABEL_INPUT", persistent_level_join: `RISING_CURRENT_BID_RESIDENCY_GE_${policy.PERSISTENT_LEVEL_SECONDS}S_AND_SELLER_HIT_AT_LEVEL_THEN_REST_AT_LEVEL`, WTA_inverse_falling_hold: "WTA_RISING_SIDE_ONLY_DEEPER_OF_TRAILING_PULSE_FLOOR_AND_CAUSAL_RUNNING_OWN_REACH_LOW", sanity_bound: "EVERY_REST_STRICTLY_BELOW_CURRENT_BEST_ASK", take_path: "V36_MATURE_FLOOR_TAKE_INTACT", pair_cap: "99_MINUS_FIRST_FILL", clocks_as_decision_inputs: [], hard_prebell_edge: "V36_WINDOW1_SPAN_804_UNCHANGED" }, fill_rulers: { market_scoring: "UNION_REACH_CHANNELS_QUOTE_TOUCH_10S_SIZE5_PLUS_TRADED_AT_LEVEL_PLUS_STRICT_PRINT_CROSS", build_verification: "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST_PLUS_PROVEN_TAKER", never_swapped: true } }
@@ -510,9 +588,9 @@ async function main() {
   const mislabelRecovery = isV39 ? { controlling_counterfactual_denominator: counterReceipt.faller_mislabel.measured_ran_faller_on_nonfaller, controlling_counterfactual_forfeited: counterReceipt.faller_mislabel.forfeited, controlling_counterfactual_credited: counterReceipt.faller_mislabel.credited, identity_binding_status: "NOT_BOUND_IN_2B45D146_AGGREGATE_RECEIPT_SO_NO_FALSE_115_SIDE_NUMERATOR_IS_EMITTED", independently_reconstructable_c396_cohort: { sides: reconstructedRecovery.length, recovered_credited: reconstructedRecovery.filter((row) => row.v39_credited && !row.v36_credited).length, recovered_at_or_better_than_reach: reconstructedRecovery.filter((row) => row.recovered_at_or_better_than_reach && !row.v36_credited).length }, telemetry_law: "FROZEN_EX_POST_DIRECTION_USED_ONLY_AFTER_REPLAY; NEVER_PASSED_TO_POLICY" } : null;
   const marketLegs = marketEvents.flatMap((event) => Object.values(event.legs).map((leg) => ({ ...leg, category: event.category, bell_confidence: event.bell_confidence })));
   const sanity = isPlacementStack ? { legs: marketLegs.length, bound_application_receipts: marketLegs.reduce((sum, leg) => sum + leg.sanity_bound_rows, 0), post_decision_rest_at_or_above_ask_violations: marketLegs.reduce((sum, leg) => sum + leg.sanity_violation_rows, 0), legs_with_violation: marketLegs.filter((leg) => leg.sanity_violation_rows > 0).length, violations_by_category_x_bell_confidence: countBy(marketLegs.filter((leg) => leg.sanity_violation_rows > 0), (leg) => `${leg.category}|${leg.bell_confidence}`) } : null;
-  const v36Comparison = isPlacementStack ? { frozen_commit: V36_COMMIT, frozen_score: v36Score, reach_answer_key_grade_from_b581cbb: { matched: 52, shallow: 212, one_missing: 486, both_missing: 35, no_reach: 19, completed_on_637_answer_key: 264 }, [`${variant.toUpperCase()}_market_union_reach`]: marketScore, [`${variant.toUpperCase()}_strict_build_verification`]: strictScore } : null;
+  const v36Comparison = isPlacementStack ? { frozen_commit: V36_COMMIT, frozen_gross_score: v36Score, frozen_net_of_taker_fee_score: v36NetScore, V41_maker_fee: isV41 ? { maker_fills_fee_exempt: true, taker_fills: 0, total_entry_fees_cents: 0, net_equals_gross: true } : null, causal_reach_reference: isV41 ? { commit: CAUSAL_REACH_COMMIT, under_par: causalReachReceipt.CAUSAL_REACH.under_par, locked_cents: causalReachReceipt.CAUSAL_REACH.locked } : null, reach_answer_key_grade_from_b581cbb: { matched: 52, shallow: 212, one_missing: 486, both_missing: 35, no_reach: 19, completed_on_637_answer_key: 264 }, [`${variant.toUpperCase()}_market_union_reach`]: marketScore, [`${variant.toUpperCase()}_strict_build_verification`]: strictScore } : null;
   const strictLegByIdentity = new Map(strictEvents.flatMap((event) => Object.values(event.legs).map((leg) => [leg.leg_identity, leg])));
-  const joinRows = isV40 ? marketLegs.filter((leg) => Number.isInteger(leg.persistent_join_level)).map((leg) => {
+  const joinRows = (isV40 || isV41) ? marketLegs.filter((leg) => Number.isInteger(leg.persistent_join_level)).map((leg) => {
     const strictLeg = strictLegByIdentity.get(leg.leg_identity);
     return {
       event_id: leg.event_id,
@@ -538,7 +616,7 @@ async function main() {
       strict_fill_class: strictLeg?.fill_class ?? null,
     };
   }).sort((a, b) => a.event_id.localeCompare(b.event_id) || a.leg_identity.localeCompare(b.leg_identity)) : [];
-  const joinReceipt = isV40 ? {
+  const joinReceipt = (isV40 || isV41) ? {
     join_legs: joinRows.length,
     market_credited_after_join: joinRows.filter((row) => row.market_credited && row.market_fill_timestamp_epoch > row.join_timestamp_epoch).length,
     strict_credited_after_join: joinRows.filter((row) => row.strict_credited && row.strict_fill_timestamp_epoch > row.join_timestamp_epoch).length,
@@ -589,9 +667,23 @@ async function main() {
     WESPAA: { ordered: "EXPECT_V36_BEHAVIOR_CLASSIFIER_SEVERED", result: named.WESPAA.MARKET_UNION_REACH },
     NIKVRB: { ordered: "NEGATIVE_CONTROL", result: named.NIKVRB.MARKET_UNION_REACH },
   } : null;
+  const namedV41 = isV41 ? {
+    ordered: { ARNROM: "maker rests should approach ARN~50 plus ROM38=88; report causal truth without retro-credit", BOSCOP: "named maker machine regression", NIKVRB: "named pulse/tracker regression", WESPAA: "named empty/forfeit regression", KRUFER: "named placement-stack regression" },
+    ARNROM: {
+      result: named.ARNROM.MARKET_UNION_REACH,
+      exact_rest_and_fill_sequence: allActions.filter((row) => row.mode === "MARKET_UNION_REACH" && row.event_id.includes("ARNROM") && ["PLACE_REST", "REPRICE_REST", "PAIR_ARM", "PAIR_CAP_REPRICE", "FILL"].includes(row.kind)),
+      observed_combined_entry_cents: named.ARNROM.MARKET_UNION_REACH.combined_entry_cents,
+      near_88: Number.isInteger(named.ARNROM.MARKET_UNION_REACH.combined_entry_cents) && named.ARNROM.MARKET_UNION_REACH.combined_entry_cents <= 90,
+      no_fabricated_target_credit: true,
+    },
+    BOSCOP: named.BOSCOP,
+    NIKVRB: named.NIKVRB,
+    WESPAA: named.WESPAA,
+    KRUFER: named.KRUFER,
+  } : null;
   const core = {
     "CONTROL_BINDING.json": canonical(control),
-    ...(isPlacementStack ? { "TAKE_PATH_INTACT_RECEIPT.json": canonical({ frozen_V36_commit: V36_COMMIT, V36_policy_path: "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js", V36_policy_sha256: fileHash(path.join(v36Root, "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js")), variant_policy_path: path.relative(repo, policyFile).replaceAll("\\", "/"), variant_policy_sha256: fileHash(policyFile), decision_reason: isV40 ? "MATURE_EVIDENCE_FLOOR_TAKE" : "V36_MATURE_EVIDENCE_FLOOR_TAKE_UNCHANGED", market_taker_fills: marketLegs.filter((leg) => String(leg.fill_class).includes("TAKER")).length, strict_taker_fills: strictEvents.flatMap((event) => Object.values(event.legs)).filter((leg) => String(leg.fill_class).includes("TAKER")).length, V38_tombstone_role: "REJECTED_MAKER_ONLY_NEGATIVE_CONTROL_NOT_INHERITED" }) } : { "TAKE_PATH_DELETION_RECEIPT.json": canonical({ policy_path: path.relative(repo, policyFile).replaceAll("\\", "/"), policy_sha256: fileHash(policyFile), forbidden_action_literal_TAKE_count: (policyText.match(/action:\s*["']TAKE["']/g) || []).length, take_named_function_count: (policyText.match(/function\s+\w*take\w*/gi) || []).length, entry_actions_exported: ["PLACE_REST", "REPRICE_REST"], pass: true }) }),
+    ...((isPlacementStack && !isV41) ? { "TAKE_PATH_INTACT_RECEIPT.json": canonical({ frozen_V36_commit: V36_COMMIT, V36_policy_path: "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js", V36_policy_sha256: fileHash(path.join(v36Root, "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js")), variant_policy_path: path.relative(repo, policyFile).replaceAll("\\", "/"), variant_policy_sha256: fileHash(policyFile), decision_reason: isV40 ? "MATURE_EVIDENCE_FLOOR_TAKE" : "V36_MATURE_EVIDENCE_FLOOR_TAKE_UNCHANGED", market_taker_fills: marketLegs.filter((leg) => String(leg.fill_class).includes("TAKER")).length, strict_taker_fills: strictEvents.flatMap((event) => Object.values(event.legs)).filter((leg) => String(leg.fill_class).includes("TAKER")).length, V38_tombstone_role: "REJECTED_MAKER_ONLY_NEGATIVE_CONTROL_NOT_INHERITED" }) } : { "TAKE_PATH_DELETION_RECEIPT.json": canonical({ policy_path: path.relative(repo, policyFile).replaceAll("\\", "/"), policy_sha256: fileHash(policyFile), forbidden_action_literal_TAKE_count: (policyText.match(/action:\s*["']TAKE["']/g) || []).length, take_named_function_count: (policyText.match(/function\s+\w*take\w*/gi) || []).length, market_taker_fills: marketLegs.filter((leg) => String(leg.fill_class).includes("TAKER")).length, strict_taker_fills: strictEvents.flatMap((event) => Object.values(event.legs)).filter((leg) => String(leg.fill_class).includes("TAKER")).length, entry_actions_exported: ["PLACE_REST", "REPRICE_REST"], maker_fees_cents: 0, pass: true }) }),
     "PULSE_FLOOR_BINDING.json": canonical(pulseBinding),
     "MARKET_GRADE_SCORECARD.json": canonical({ score: marketScore, reach_grade: marketGrades.aggregate, comparison_answer_key: EXPECTED_REACH }),
     "STRICT_BUILD_VERIFICATION_SCORECARD.json": canonical({ score: strictScore, reach_grade: strictGrades.aggregate, role: "BUILD_VERIFICATION_ONLY_NOT_MARKET_VALUE" }),
@@ -603,32 +695,39 @@ async function main() {
     ...(isV39 ? { "CAUSAL_DIRECTION_CLASSIFIER_TELEMETRY.json": canonical(directionTelemetry), "MISLABEL_RECOVERY_RECEIPT.json": canonical(mislabelRecovery), "MISLABEL_RECOVERY_LEDGER.jsonl.gz": gzipRows(reconstructedRecovery) } : {}),
     ...(isPlacementStack ? { "REST_SANITY.json": canonical(sanity), "V36_COMPARISON.json": canonical(v36Comparison) } : {}),
     ...(isV40 ? { "CLASSIFIER_RESEARCH_OPEN_RECEIPT.json": canonical(classifierResearchOpen), "ACCEPTANCE_BAR.json": canonical(acceptance), "PERSISTENT_JOIN_POST_EVIDENCE_RECEIPT.json": canonical(joinReceipt), "PERSISTENT_JOIN_POST_EVIDENCE_LEDGER.jsonl.gz": gzipRows(joinRows) } : {}),
+    ...(isV41 ? { "PERSISTENCE_ONLY_JOIN_RECEIPT.json": canonical({ controlling_frontier: { commit: RISER_FRONTIER_COMMIT, sha256: shaBytes(riserFrontierBytes), T4_persist300: riserFrontierReceipt.per_trigger.T4_persist300 }, controlling_level_policy: { commit: LEVEL_POLICY_COMMIT, sha256: shaBytes(levelPolicyBytes), P2_join: levelPolicyReceipt.per_policy.P2_join, P3_join_track: levelPolicyReceipt.per_policy.P3_join_track }, seller_hit_gate_removed: true, first_two_sided_tracker_until_join: true, join_overrides_tracker: true, join_census: joinReceipt }), "PERSISTENT_JOIN_LEDGER.jsonl.gz": gzipRows(joinRows), "CAUSAL_REACH_BINDING.json": canonical({ commit: CAUSAL_REACH_COMMIT, path: causalReachPath, sha256: shaBytes(causalReachBytes), CAUSAL_REACH: causalReachReceipt.CAUSAL_REACH, conservation: causalReachReceipt.conservation }), "NAMED_V41_RECEIPT.json": canonical(namedV41) } : {}),
     "MARKET_EVENT_LEDGER.jsonl.gz": gzipRows(marketEvents),
     "STRICT_EVENT_LEDGER.jsonl.gz": gzipRows(strictEvents),
     "DECISION_TRACE_1608.jsonl.gz": gzipRows(marketGrades.rows.map((row) => ({ ...row, reach_snapshot: row.reach_snapshot, first_decision: marketEvents.find((event) => event.event_id === row.event_id).legs[row.leg_identity.split("|").at(-1)].first_decision, last_decision: marketEvents.find((event) => event.event_id === row.event_id).legs[row.leg_identity.split("|").at(-1)].last_decision }))),
-    "NAMED_GAMES.json": canonical({ games: named, action_rows: allActions.filter((row) => ["ARNROM", "BOSCOP", "WESPAA", "NIKVRB", "GANJAN"].some((name) => row.event_id.includes(name)) && (row.kind === "FILL" || String(row.reason).includes("PERSISTENT_LEVEL_JOIN") || String(row.reason).includes("WTA_OTHER_EXPRESSION_FALLING"))) }),
+    "NAMED_GAMES.json": canonical({ games: named, action_rows: allActions.filter((row) => (isV41 ? ["ARNROM", "BOSCOP", "WESPAA", "NIKVRB", "KRUFER"] : ["ARNROM", "BOSCOP", "WESPAA", "NIKVRB", "GANJAN"]).some((name) => row.event_id.includes(name)) && (row.kind === "FILL" || String(row.reason).includes("PERSISTENT") || String(row.reason).includes("WTA_OTHER_EXPRESSION_FALLING"))) }),
     ...(isV39 ? { "NAMED_CAUSALITY_RECEIPT.json": canonical(namedCausality) } : {}),
     ...(isV40 ? { "NAMED_V40_RECEIPT.json": canonical(namedV40) } : {}),
     "FORBIDDEN_ACCESS_RECEIPT.json": canonical({ holdout_accesses: 0, live_accesses: 0, network_runtime_accesses: 0, order_accesses: 0, position_accesses: 0, exit_accesses: 0, settlement_accesses: 0, DCA_accesses: 0, deployment_accesses: 0, private_scope: "FIT_DEVELOPMENT_804_TAPE_AND_CERTIFIED_PRINT_CACHE_ONLY", mutations: 0 }),
     "SOURCE_HASH_MANIFEST.json": canonical({
-      commits: { V36: V36_COMMIT, UNION_REACH: REACH_COMMIT, GAP_GRADE_PARENT: GAP_COMMIT, DIVOT_CENSUS: DIVOT_COMMIT, ...(isPlacementStack ? { COUNTERFACTUAL: COUNTERFACTUAL_COMMIT } : {}), ...(isV39 ? { FALLER_ANATOMY: FALLER_ANATOMY_COMMIT } : {}), ...(isV40 ? { V39_EVIDENCE_PACKAGE: "ff5880d11a88b0d12415f5371d7cbb61331957e4" } : {}) },
+      commits: { V36: V36_COMMIT, UNION_REACH: REACH_COMMIT, GAP_GRADE_PARENT: GAP_COMMIT, DIVOT_CENSUS: DIVOT_COMMIT, ...(isPlacementStack ? { COUNTERFACTUAL: COUNTERFACTUAL_COMMIT } : {}), ...(isV39 ? { FALLER_ANATOMY: FALLER_ANATOMY_COMMIT } : {}), ...(isV40 ? { V39_EVIDENCE_PACKAGE: "ff5880d11a88b0d12415f5371d7cbb61331957e4" } : {}), ...(isV41 ? { CAUSAL_REACH: CAUSAL_REACH_COMMIT, RISER_TRIGGER_FRONTIER: RISER_FRONTIER_COMMIT, LEVEL_POLICY_REALIZATION: LEVEL_POLICY_COMMIT } : {}) },
       public: {
         [path.relative(repo, policyFile).replaceAll("\\", "/")]: { sha256: fileHash(policyFile), bytes: fs.statSync(policyFile).size },
         [path.relative(repo, builderFile).replaceAll("\\", "/")]: { sha256: fileHash(builderFile), bytes: fs.statSync(builderFile).size },
         ...(isPlacementStack ? { [path.relative(repo, wrapperFile).replaceAll("\\", "/")]: { sha256: fileHash(wrapperFile), bytes: fs.statSync(wrapperFile).size } } : {}),
+        ...(isV41 ? {
+          "arb-executor/tests/test_window1_v41_maker_machine.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v41_maker_machine.js")), bytes: fs.statSync(path.join(repo, "arb-executor/tests/test_window1_v41_maker_machine.js")).size },
+          "arb-executor/tests/test_window1_v41_maker_machine_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v41_maker_machine_package.js")), bytes: fs.statSync(path.join(repo, "arb-executor/tests/test_window1_v41_maker_machine_package.js")).size },
+        } : {}),
         ...(isV40 ? { [v39TelemetryPath]: { sha256: fileHash(path.join(repo, v39TelemetryPath)), bytes: fs.statSync(path.join(repo, v39TelemetryPath)).size } } : {}),
         [`${GAP_PACKAGE}/UNION_REACH_LEG_LEDGER.jsonl.gz`]: { sha256: fileHash(path.join(gapPackage, "UNION_REACH_LEG_LEDGER.jsonl.gz")), bytes: fs.statSync(path.join(gapPackage, "UNION_REACH_LEG_LEDGER.jsonl.gz")).size },
         [`${GAP_PACKAGE}/V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz`]: { sha256: fileHash(path.join(gapPackage, "V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz")), bytes: fs.statSync(path.join(gapPackage, "V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz")).size },
       },
       frozen_V36: { WINDOW1_SPAN_804: { sha256: fileHash(path.join(v36Package, "WINDOW1_SPAN_804.json")), bytes: fs.statSync(path.join(v36Package, "WINDOW1_SPAN_804.json")).size }, STRICT_DECISION_TRACE_1608: { sha256: fileHash(path.join(v36Package, "STRICT_DECISION_TRACE_1608.json")), bytes: fs.statSync(path.join(v36Package, "STRICT_DECISION_TRACE_1608.json")).size } },
-      git_bound_receipts: isPlacementStack ? { [counterPath]: { commit: COUNTERFACTUAL_COMMIT, sha256: shaBytes(counterBytes), bytes: counterBytes.length }, ...(isV39 ? { [anatomyPath]: { commit: FALLER_ANATOMY_COMMIT, sha256: shaBytes(anatomyBytes), bytes: anatomyBytes.length } } : {}) } : {},
+      git_bound_receipts: isPlacementStack ? { [counterPath]: { commit: COUNTERFACTUAL_COMMIT, sha256: shaBytes(counterBytes), bytes: counterBytes.length }, ...(isV39 ? { [anatomyPath]: { commit: FALLER_ANATOMY_COMMIT, sha256: shaBytes(anatomyBytes), bytes: anatomyBytes.length } } : {}), ...(isV41 ? { [causalReachPath]: { commit: CAUSAL_REACH_COMMIT, sha256: shaBytes(causalReachBytes), bytes: causalReachBytes.length }, [riserFrontierPath]: { commit: RISER_FRONTIER_COMMIT, sha256: shaBytes(riserFrontierBytes), bytes: riserFrontierBytes.length }, [levelPolicyPath]: { commit: LEVEL_POLICY_COMMIT, sha256: shaBytes(levelPolicyBytes), bytes: levelPolicyBytes.length } } : {}) } : {},
       private_prints: printLoad.receipt,
       private_tapes: tapeHashes,
     }),
   };
   for (const [name, bytes] of Object.entries(core)) write(name, bytes);
   await writeGzipRowsFile(path.join(output, "ACTION_TRACE.jsonl.gz"), allActions);
-  write("REPORT.md", isV40
+  write("REPORT.md", isV41
+    ? `# V41 maker machine\n\nV41 deletes the take path. Every leg carries one post-only rest from its first two-sided book. FALLING and SETTLED use the V36 incumbent walking laws. RISING tracks bid minus one until a bid level has persisted for ${policy.PERSISTENT_LEVEL_SECONDS} seconds, then the same single rest joins the deepest armed persistent level; the seller-hit trigger is absent. The WTA other-expression-FALLING hold, rest-below-ask sanity bound, lazy first-fill pair cap, no-clock law, and hard pre-bell edge remain in force.\n\nMarket scoring uses CANON union channels; strict seller-aggressed print crossing is build verification only. Maker fees are zero.\n\n- V41 market completed / under par: ${marketScore.completed_pairs} / ${marketScore.under_par_pairs}; locked ${marketScore.locked_cents_per_contract}c per-contract aggregate (${marketScore.locked_cents_five_lot}c at five lots); frontier ${marketScore.frontier.LE_93}/${marketScore.frontier.LE_95}/${marketScore.frontier.LE_97}/${marketScore.frontier.LT_100}.\n- V41 strict verification completed / under par: ${strictScore.completed_pairs} / ${strictScore.under_par_pairs}.\n- V36 gross completed / under par: ${v36Score.completed_pairs} / ${v36Score.under_par_pairs}. V36 taker legs charged: ${v36NetScore.aggregate.taker_legs_charged}; gross locked ${v36NetScore.aggregate.gross_locked_cents_five_lot}c; fees on all credited taker legs ${v36NetScore.aggregate.taker_fees_all_credited_legs_five_lot}c; portfolio net ${v36NetScore.aggregate.net_locked_after_all_entry_taker_fees_five_lot}c.\n- Causal-reach reference: ${causalReachReceipt.CAUSAL_REACH.under_par} under-par / ${causalReachReceipt.CAUSAL_REACH.locked}c locked.\n- Market reach grades across 637 games / 5,253c: ${JSON.stringify(marketGrades.aggregate.grades)}.\n- Persistent JOIN legs: ${joinReceipt.join_legs}; market fills after join: ${joinReceipt.market_credited_after_join}; strict fills after join: ${joinReceipt.strict_credited_after_join}.\n- Rest sanity violations: ${sanity.post_decision_rest_at_or_above_ask_violations}. Market taker fills: ${marketLegs.filter((leg) => String(leg.fill_class).includes("TAKER")).length}.\n- ARNROM observed: ${named.ARNROM.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; exact rest/fill sequence is frozen in NAMED_V41_RECEIPT.json. BOSCOP ${named.BOSCOP.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; NIKVRB ${named.NIKVRB.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; WESPAA ${named.WESPAA.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; KRUFER ${named.KRUFER.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}.\n`
+    : isV40
     ? `# V40 placement stack on incumbent direction\n\nV40 inherits V36's state machine and mature-floor take path. The V39 causal classifier is severed and vaulted CLASSIFIER_RESEARCH_OPEN after 437/1,279 reach-moment calls (34.17%). V40 adds only the persistent-level join gated by V36's own RISING state, the WTA other-expression-FALLING deeper hold, and the universal rest-below-ask sanity bound.\n\nMarket grade uses the CANON union-reach channels; strict seller-print crossing plus proven takes is build verification.\n\n- V36 frozen completed / under par: ${v36Score.completed_pairs} / ${v36Score.under_par_pairs}; frontier ${v36Score.frontier.LE_93}/${v36Score.frontier.LE_95}/${v36Score.frontier.LE_97}.\n- V40 market completed / under par: ${marketScore.completed_pairs} / ${marketScore.under_par_pairs}; frontier ${marketScore.frontier.LE_93}/${marketScore.frontier.LE_95}/${marketScore.frontier.LE_97}.\n- Acceptance bar completed>=270 and <=93/<=95>=12/24: ${acceptance.pass ? "PASS" : "FAIL"}.\n- Market reach grades across 637 games / 5,253c: ${JSON.stringify(marketGrades.aggregate.grades)}; shallow ${marketGrades.aggregate.shallow_gap_cents.sum}c; measurable residual ${marketGrades.aggregate.measurable_residual_cents.sum}c.\n- Strict verification completed / under par: ${strictScore.completed_pairs} / ${strictScore.under_par_pairs}.\n- Persistent JOIN legs: ${joinReceipt.join_legs}; zero later certified seller hits at the joined level: ${joinReceipt.zero_post_join_certified_seller_hits}.\n- Rest sanity: ${sanity.post_decision_rest_at_or_above_ask_violations} violations after ${sanity.bound_application_receipts} bound applications.\n- Named market outcomes: ARNROM ${named.ARNROM.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; BOSCOP ${named.BOSCOP.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; WESPAA ${named.WESPAA.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; NIKVRB ${named.NIKVRB.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}. BOSCOP post-join certified seller hits at COP 47: ${joinReceipt.BOSCOP_COP?.post_join_certified_seller_aggressed_prints_at_level ?? "NOT_JOINED"}.\n`
     : isV39
     ? `# V39 corrected placement stack\n\nV39 runs on frozen V36 with its mature-floor take path intact. The receipt-causal direction classifier combines trailing quote-path and July-6 pressure without reading an ex-post path label; opposing directional votes settle. RISING sides may join a bid only after 300 seconds of continuous residency and a last-traded-at-level book receipt. WTA RISING sides whose other expression reads FALLING hold to the deeper causal pulse/reach level. Every rest is strictly below the current ask.\n\nMarket grade uses the CANON union-reach channels; strict seller-print crossing plus proven takes is build verification.\n\n- V36 frozen completed / under par: ${v36Score.completed_pairs} / ${v36Score.under_par_pairs}.\n- V39 market completed / under par: ${marketScore.completed_pairs} / ${marketScore.under_par_pairs}. This regresses the frozen V36 count and therefore does not supersede V36.\n- Market reach grades across 637 games / 5,253c: ${JSON.stringify(marketGrades.aggregate.grades)}; shallow ${marketGrades.aggregate.shallow_gap_cents.sum}c; measurable residual ${marketGrades.aggregate.measurable_residual_cents.sum}c.\n- Strict verification completed / under par: ${strictScore.completed_pairs} / ${strictScore.under_par_pairs}.\n- Direction telemetry: ${directionTelemetry.aggregate.correct_receipts}/${directionTelemetry.aggregate.eligible_receipts} eligible receipt calls correct and ${directionTelemetry.aggregate.reach_moment_correct_legs}/${directionTelemetry.aggregate.reach_moment_eligible_legs} reach-moment legs correct; ex-post labels consumed by policy: 0.\n- The 2b45d146 115-side cohort has no frozen identity list, so recovery is not fabricated; the independently reproducible c3961e2c cohort has ${mislabelRecovery.independently_reconstructable_c396_cohort.sides} sides and ${mislabelRecovery.independently_reconstructable_c396_cohort.recovered_at_or_better_than_reach} previously uncredited sides recovered at/better than reach.\n- Rest sanity: ${sanity.post_decision_rest_at_or_above_ask_violations} violations after ${sanity.bound_application_receipts} bound applications.\n- Named market outcomes: ARNROM ${named.ARNROM.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; BOSCOP ${named.BOSCOP.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; WESPAA ${named.WESPAA.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; NIKVRB ${named.NIKVRB.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}. BOSCOP causally joined COP at 47 but had no strictly later union-reach receipt; the 2b45d146 counterfactual's pair-77 credit is not replay-causal and is not imported.\n`

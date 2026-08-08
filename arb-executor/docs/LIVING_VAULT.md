@@ -1679,4 +1679,4 @@ joined 47 only after its sole certified seller print at that level; zero later
 seller hits means the pair remains incomplete, not retrospectively credited.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/af3ef0e8b89502700d637c28e1ff42f247b44c4d/arb-executor/docs/research/window1/WINDOW1_V40_INCUMBENT_DIRECTION_PLACEMENT_20260808_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/85a34e6de1175824b3581a94a7af3bfd638977a3/arb-executor/docs/research/window1/WINDOW1_V40_INCUMBENT_DIRECTION_PLACEMENT_20260808_ADDENDUM.md

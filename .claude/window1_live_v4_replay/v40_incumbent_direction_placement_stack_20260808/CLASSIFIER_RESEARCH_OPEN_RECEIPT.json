@@ -1,0 +1,10 @@
+{
+  "status": "CLASSIFIER_RESEARCH_OPEN",
+  "V39_package_commit": "ff5880d11a88b0d12415f5371d7cbb61331957e4",
+  "V39_telemetry_path": ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807/CAUSAL_DIRECTION_CLASSIFIER_TELEMETRY.json",
+  "V39_telemetry_sha256": "e6c605cc137063cd90ee271970f83488c7a2b567c7d2c888ff7216c58f0f7dd6",
+  "V39_reach_moment_accuracy": 0.3416731821735731,
+  "ruling": "NO_BUILD_MAY_GATE_ON_A_NEW_DIRECTION_READ_UNTIL_IT_VALIDATES_ABOVE_THE_INCUMBENT_ON_HELD_OUT_LEGS",
+  "V40_policy_imports_V39": false,
+  "V40_state_combiner_identity": true
+}

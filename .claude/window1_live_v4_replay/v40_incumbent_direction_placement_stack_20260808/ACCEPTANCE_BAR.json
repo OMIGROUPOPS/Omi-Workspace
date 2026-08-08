@@ -1,0 +1,18 @@
+{
+  "completed_pairs": {
+    "value": 249,
+    "minimum": 270,
+    "pass": false
+  },
+  "LE_93": {
+    "value": 12,
+    "minimum": 12,
+    "pass": true
+  },
+  "LE_95": {
+    "value": 23,
+    "minimum": 24,
+    "pass": false
+  },
+  "pass": false
+}

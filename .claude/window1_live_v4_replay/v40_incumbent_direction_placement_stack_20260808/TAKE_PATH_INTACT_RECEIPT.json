@@ -1,0 +1,11 @@
+{
+  "frozen_V36_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "V36_policy_path": "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js",
+  "V36_policy_sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+  "variant_policy_path": "arb-executor/analysis/window1_v40_incumbent_direction_placement_stack.js",
+  "variant_policy_sha256": "f50500b51f8b3334ad136628fc754a365f917793ed4e918cf98ede0273cc9c07",
+  "decision_reason": "MATURE_EVIDENCE_FLOOR_TAKE",
+  "market_taker_fills": 629,
+  "strict_taker_fills": 649,
+  "V38_tombstone_role": "REJECTED_MAKER_ONLY_NEGATIVE_CONTROL_NOT_INHERITED"
+}

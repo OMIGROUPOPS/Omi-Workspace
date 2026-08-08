@@ -1,0 +1,84 @@
+{
+  "frozen_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "frozen_score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 1035,
+    "completed_pairs": 270,
+    "under_par_pairs": 270,
+    "maker_fill_classes": {
+      "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 882,
+      "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 153
+    },
+    "frontier": {
+      "LE_93": 9,
+      "LE_95": 20,
+      "LE_97": 77,
+      "LT_100": 270,
+      "ANY_PRICE": 270
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "reach_answer_key_grade_from_b581cbb": {
+    "matched": 52,
+    "shallow": 212,
+    "one_missing": 486,
+    "both_missing": 35,
+    "no_reach": 19,
+    "completed_on_637_answer_key": 264
+  },
+  "V40_market_union_reach": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 966,
+    "completed_pairs": 249,
+    "under_par_pairs": 249,
+    "maker_fill_classes": {
+      "PROVEN_TAKER_V36_MATURE_EVIDENCE_FLOOR": 629,
+      "MARKET_REACH_PRINT_CROSS": 217,
+      "MARKET_REACH_TRADED_AT_LEVEL": 120
+    },
+    "frontier": {
+      "LE_93": 12,
+      "LE_95": 23,
+      "LE_97": 66,
+      "LT_100": 249,
+      "ANY_PRICE": 249
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "V40_strict_build_verification": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 925,
+    "completed_pairs": 223,
+    "under_par_pairs": 223,
+    "maker_fill_classes": {
+      "PROVEN_TAKER_V36_MATURE_EVIDENCE_FLOOR": 649,
+      "STRICT_PRINT_CROSS_SELLER_AGGRESSED_SIZE_FIVE": 276
+    },
+    "frontier": {
+      "LE_93": 14,
+      "LE_95": 27,
+      "LE_97": 64,
+      "LT_100": 223,
+      "ANY_PRICE": 223
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  }
+}

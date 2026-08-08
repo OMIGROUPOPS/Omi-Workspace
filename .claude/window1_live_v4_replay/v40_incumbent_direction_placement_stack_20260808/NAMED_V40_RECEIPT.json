@@ -1,0 +1,195 @@
+{
+  "ARNROM": {
+    "ordered": "ARN joins 50; pair 89",
+    "result": {
+      "completed": true,
+      "combined_entry_cents": 89,
+      "under_par": true,
+      "legs": {
+        "ARN": {
+          "credited": true,
+          "entry_cents": 50,
+          "fill_class": "MARKET_REACH_PRINT_CROSS",
+          "terminal_rest_cents": null,
+          "final_causal_state": "RISING",
+          "persistent_join_level_cents": 50,
+          "persistent_join_timestamp_epoch": 1783875407,
+          "persistent_join_book_last_trade_receipts": 1,
+          "persistent_join_certified_seller_aggressed_prints": 0,
+          "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35495",
+          "post_join_book_last_trade_receipts": 30,
+          "post_join_certified_seller_hits_at_level": 2,
+          "sanity_bound_receipts": 0,
+          "sanity_violations": 0
+        },
+        "ROM": {
+          "credited": true,
+          "entry_cents": 39,
+          "fill_class": "MARKET_REACH_PRINT_CROSS",
+          "terminal_rest_cents": null,
+          "final_causal_state": "RISING",
+          "persistent_join_level_cents": 39,
+          "persistent_join_timestamp_epoch": 1783900548,
+          "persistent_join_book_last_trade_receipts": 56,
+          "persistent_join_certified_seller_aggressed_prints": 1,
+          "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-1336",
+          "post_join_book_last_trade_receipts": 76,
+          "post_join_certified_seller_hits_at_level": 2,
+          "sanity_bound_receipts": 0,
+          "sanity_violations": 0
+        }
+      }
+    },
+    "pass": true
+  },
+  "BOSCOP": {
+    "ordered": "REPORT_TRIGGER_LATENESS_BOUNDARY",
+    "result": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "BOS": {
+          "credited": true,
+          "entry_cents": 30,
+          "fill_class": "MARKET_REACH_PRINT_CROSS",
+          "terminal_rest_cents": null,
+          "final_causal_state": "SETTLED",
+          "persistent_join_level_cents": null,
+          "persistent_join_timestamp_epoch": null,
+          "persistent_join_book_last_trade_receipts": 0,
+          "persistent_join_certified_seller_aggressed_prints": 0,
+          "persistent_join_evidence_receipt": null,
+          "post_join_book_last_trade_receipts": 0,
+          "post_join_certified_seller_hits_at_level": 0,
+          "sanity_bound_receipts": 0,
+          "sanity_violations": 0
+        },
+        "COP": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_rest_cents": 47,
+          "final_causal_state": "RISING",
+          "persistent_join_level_cents": 47,
+          "persistent_join_timestamp_epoch": 1783896969,
+          "persistent_join_book_last_trade_receipts": 672,
+          "persistent_join_certified_seller_aggressed_prints": 1,
+          "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-127850",
+          "post_join_book_last_trade_receipts": 451,
+          "post_join_certified_seller_hits_at_level": 0,
+          "sanity_bound_receipts": 0,
+          "sanity_violations": 0
+        }
+      }
+    },
+    "COP_join_evidence": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+      "category": "ATP_CHALL",
+      "bell_confidence": "exact",
+      "incumbent_state_at_terminal_decision": "RISING",
+      "join_level_cents": 47,
+      "join_timestamp_epoch": 1783896969,
+      "join_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-127851",
+      "trigger_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-127850",
+      "all_book_last_trade_at_level_receipts": 672,
+      "all_certified_seller_aggressed_prints_at_level": 1,
+      "post_join_book_last_trade_at_level_receipts": 451,
+      "post_join_certified_seller_aggressed_prints_at_level": 0,
+      "market_credited": false,
+      "market_entry_cents": null,
+      "market_fill_timestamp_epoch": null,
+      "market_fill_class": null,
+      "strict_credited": false,
+      "strict_entry_cents": null,
+      "strict_fill_timestamp_epoch": null,
+      "strict_fill_class": null
+    },
+    "boundary": "NO_LATER_CERTIFIED_SELLER_HIT_AFTER_JOIN"
+  },
+  "WESPAA": {
+    "ordered": "EXPECT_V36_BEHAVIOR_CLASSIFIER_SEVERED",
+    "result": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "PAA": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_rest_cents": 38,
+          "final_causal_state": "RISING",
+          "persistent_join_level_cents": 38,
+          "persistent_join_timestamp_epoch": 1783866690,
+          "persistent_join_book_last_trade_receipts": 53,
+          "persistent_join_certified_seller_aggressed_prints": 4,
+          "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12WESPAA-PAA.csv.gz#row-436",
+          "post_join_book_last_trade_receipts": 43,
+          "post_join_certified_seller_hits_at_level": 0,
+          "sanity_bound_receipts": 0,
+          "sanity_violations": 0
+        },
+        "WES": {
+          "credited": true,
+          "entry_cents": 60,
+          "fill_class": "PROVEN_TAKER_V36_MATURE_EVIDENCE_FLOOR",
+          "terminal_rest_cents": null,
+          "final_causal_state": "RISING",
+          "persistent_join_level_cents": null,
+          "persistent_join_timestamp_epoch": null,
+          "persistent_join_book_last_trade_receipts": 0,
+          "persistent_join_certified_seller_aggressed_prints": 0,
+          "persistent_join_evidence_receipt": null,
+          "post_join_book_last_trade_receipts": 0,
+          "post_join_certified_seller_hits_at_level": 0,
+          "sanity_bound_receipts": 0,
+          "sanity_violations": 0
+        }
+      }
+    }
+  },
+  "NIKVRB": {
+    "ordered": "NEGATIVE_CONTROL",
+    "result": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "NIK": {
+          "credited": true,
+          "entry_cents": 29,
+          "fill_class": "PROVEN_TAKER_V36_MATURE_EVIDENCE_FLOOR",
+          "terminal_rest_cents": null,
+          "final_causal_state": "SETTLED",
+          "persistent_join_level_cents": null,
+          "persistent_join_timestamp_epoch": null,
+          "persistent_join_book_last_trade_receipts": 0,
+          "persistent_join_certified_seller_aggressed_prints": 0,
+          "persistent_join_evidence_receipt": null,
+          "post_join_book_last_trade_receipts": 0,
+          "post_join_certified_seller_hits_at_level": 0,
+          "sanity_bound_receipts": 0,
+          "sanity_violations": 0
+        },
+        "VRB": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_rest_cents": 70,
+          "final_causal_state": "FALLING",
+          "persistent_join_level_cents": 73,
+          "persistent_join_timestamp_epoch": 1784467644,
+          "persistent_join_book_last_trade_receipts": 63,
+          "persistent_join_certified_seller_aggressed_prints": 0,
+          "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19NIKVRB-VRB.csv.gz#row-948",
+          "post_join_book_last_trade_receipts": 32,
+          "post_join_certified_seller_hits_at_level": 0,
+          "sanity_bound_receipts": 1807,
+          "sanity_violations": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+ "LABEL": "CAUSAL_REACH",
+ "definition": "Union reach re-cut to COLLECTABLE flow: a level counts toward a leg's reach ONLY on CANON union-channel evidence (TRADED_AT_LEVEL any-trade + PRINT_CROSS seller-print + QUOTE_TOUCH ask-descent-dwell>=10s) timestamped STRICTLY AFTER its placement family's earliest lawful trigger. Families: tracking=first two-sided book; persistent_join=bid persistence>=300s AND first seller-hit at level both stand; pulse_floor=second ask-divot visit. causal_floor=min(deepest post-trigger trade, deepest post-trigger 10s-dwelled ask).",
+ "ANYTIME_CEILING": {
+  "note": "sealed union reach - TELEMETRY ONLY, no build graded on it again",
+  "completable": 637,
+  "under_par": 637,
+  "locked": 5253,
+  "frontier": {
+   "<=93": 120,
+   "<=95": 183,
+   "<=97": 345,
+   "<100": 637
+  }
+ },
+ "anytime_samemodel": {
+  "note": "same 3-channel model, no trigger - clean superset for shrink",
+  "completable": 636,
+  "under_par": 632,
+  "locked": 5228
+ },
+ "CAUSAL_REACH": {
+  "completable": 536,
+  "under_par": 504,
+  "locked": 3319,
+  "frontier": {
+   "<=93": 82,
+   "<=95": 128,
+   "<=97": 252,
+   "<100": 504
+  },
+  "by_cat": {
+   "ATP_CHALL": 222,
+   "ATP_MAIN": 117,
+   "WTA_CHALL": 68,
+   "WTA_MAIN": 97
+  },
+  "lock_by_cat": {
+   "ATP_CHALL": 1070,
+   "ATP_MAIN": 682,
+   "WTA_CHALL": 1060,
+   "WTA_MAIN": 507
+  }
+ },
+ "family_counts": {
+  "tracking": 865,
+  "persistent_join": 203,
+  "pulse_floor": 206
+ },
+ "family_reach_shrink": {
+  "tracking": {
+   "n": 864,
+   "samemodel_depth": 39173,
+   "depth_lost_on_collectable": 8,
+   "uncollectable_legs": 0
+  },
+  "persistent_join": {
+   "n": 203,
+   "samemodel_depth": 9454,
+   "depth_lost_on_collectable": 120,
+   "uncollectable_legs": 4
+  },
+  "pulse_floor": {
+   "n": 206,
+   "samemodel_depth": 9809,
+   "depth_lost_on_collectable": 95,
+   "uncollectable_legs": 105
+  }
+ },
+ "v36_270_graded": {
+  "v36_completed": 270,
+  "out_of_v38_universe": 45,
+  "gradeable": 225,
+  "survive_causal": 90,
+  "killed": 135,
+  "locked_v36_anytime": 670,
+  "locked_survive_causal": 156,
+  "uncollectable_legs": 148,
+  "killed_by_family": {
+   "pulse_floor": 62,
+   "tracking": 73,
+   "persistent_join": 13
+  }
+ },
+ "conservation": {
+  "legs": 1274,
+  "games": 637
+ },
+ "named": {
+  "ARNROM": {
+   "ARN": {
+    "branch": "RISING",
+    "family": "persistent_join",
+    "anytime_reach": 50,
+    "causal_floor": 56,
+    "trade_floor": 56,
+    "quote_floor": 56,
+    "trigger_ts": 1783875407,
+    "join_qualified": true,
+    "reaches_anytime": false
+   },
+   "ROM": {
+    "branch": "FALLING",
+    "family": "tracking",
+    "anytime_reach": 38,
+    "causal_floor": 38,
+    "trade_floor": 38,
+    "quote_floor": 38,
+    "trigger_ts": 1783827974,
+    "join_qualified": false,
+    "reaches_anytime": true
+   },
+   "_combined": {
+    "causal": 94,
+    "anytime": 88
+   }
+  },
+  "BOSCOP": {
+   "BOS": {
+    "branch": "FALLING",
+    "family": "tracking",
+    "anytime_reach": 28,
+    "causal_floor": 28,
+    "trade_floor": 28,
+    "quote_floor": 28,
+    "trigger_ts": 1783825507,
+    "join_qualified": false,
+    "reaches_anytime": true
+   },
+   "COP": {
+    "branch": "RISING",
+    "family": "pulse_floor",
+    "anytime_reach": 47,
+    "causal_floor": 47,
+    "trade_floor": 47,
+    "quote_floor": 71,
+    "trigger_ts": 1783856739,
+    "join_qualified": false,
+    "reaches_anytime": true
+   },
+   "_combined": {
+    "causal": 75,
+    "anytime": 75
+   }
+  },
+  "NIKVRB": {
+   "NIK": {
+    "branch": "RISING",
+    "family": "pulse_floor",
+    "anytime_reach": 18,
+    "causal_floor": 18,
+    "trade_floor": 18,
+    "quote_floor": 18,
+    "trigger_ts": 1784476277,
+    "join_qualified": false,
+    "reaches_anytime": true
+   },
+   "VRB": {
+    "branch": "RISING",
+    "family": "pulse_floor",
+    "anytime_reach": 68,
+    "causal_floor": 68,
+    "trade_floor": 73,
+    "quote_floor": 68,
+    "trigger_ts": 1784459722,
+    "join_qualified": false,
+    "reaches_anytime": true
+   },
+   "_combined": {
+    "causal": 86,
+    "anytime": 86
+   }
+  },
+  "WESPAA": {
+   "PAA": {
+    "branch": "FALLING",
+    "family": "tracking",
+    "anytime_reach": 38,
+    "causal_floor": 38,
+    "trade_floor": 38,
+    "quote_floor": 38,
+    "trigger_ts": 1783850810,
+    "join_qualified": false,
+    "reaches_anytime": true
+   },
+   "WES": {
+    "branch": "RISING",
+    "family": "pulse_floor",
+    "anytime_reach": 60,
+    "causal_floor": null,
+    "trade_floor": null,
+    "quote_floor": null,
+    "trigger_ts": null,
+    "join_qualified": false,
+    "reaches_anytime": false
+   },
+   "_combined": {
+    "causal": null,
+    "anytime": 98
+   }
+  }
+ }
+}

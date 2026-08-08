@@ -1,0 +1,257 @@
+{
+ "LABEL": "DUAL_REST_REALIZATION_COLLISION",
+ "machinery": "two standing riser bids, T5 armed, causal fills (cca7c6c1). Order A=persistence-only join (P2). Order B=bid-1 tracker held >=1c above A (B=max(bid-1, A+1)). FIRST-FILL-WINS: entry=level flow reaches first; sibling cancelled. Fallers fixed.",
+ "bar": {
+  "under_par": 632,
+  "locked": 5217
+ },
+ "P1_bid1": {
+  "under_par": 410,
+  "locked": 3442
+ },
+ "P2_join": {
+  "under_par": 480,
+  "locked": 3493
+ },
+ "orders": {
+  "A": {
+   "completable": 521,
+   "under_par": 480,
+   "locked": 3493,
+   "frontier": {
+    "<=93": 83,
+    "<=95": 120,
+    "<=97": 206,
+    "<100": 480
+   },
+   "by_cat": {
+    "ATP_CHALL": 201,
+    "ATP_MAIN": 102,
+    "WTA_CHALL": 87,
+    "WTA_MAIN": 90
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1159,
+    "ATP_MAIN": 552,
+    "WTA_CHALL": 1321,
+    "WTA_MAIN": 461
+   },
+   "riser_forfeits": 117
+  },
+  "B": {
+   "completable": 604,
+   "under_par": 447,
+   "locked": 3443,
+   "frontier": {
+    "<=93": 83,
+    "<=95": 121,
+    "<=97": 211,
+    "<100": 447
+   },
+   "by_cat": {
+    "ATP_CHALL": 205,
+    "ATP_MAIN": 90,
+    "WTA_CHALL": 72,
+    "WTA_MAIN": 80
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1168,
+    "ATP_MAIN": 556,
+    "WTA_CHALL": 1264,
+    "WTA_MAIN": 455
+   },
+   "riser_forfeits": 32
+  },
+  "DUAL": {
+   "completable": 604,
+   "under_par": 454,
+   "locked": 3471,
+   "frontier": {
+    "<=93": 83,
+    "<=95": 122,
+    "<=97": 214,
+    "<100": 454
+   },
+   "by_cat": {
+    "ATP_CHALL": 210,
+    "ATP_MAIN": 90,
+    "WTA_CHALL": 73,
+    "WTA_MAIN": 81
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1180,
+    "ATP_MAIN": 564,
+    "WTA_CHALL": 1269,
+    "WTA_MAIN": 458
+   },
+   "riser_forfeits": 32
+  }
+ },
+ "overlap_census": {
+  "both": 292,
+  "only_B": 85,
+  "neither": 32
+ },
+ "collision_census": {
+  "both_legs": 292,
+  "within": {
+   "1s": {
+    "ATP_CHALL": 15,
+    "ATP_MAIN": 9,
+    "WTA_CHALL": 6,
+    "WTA_MAIN": 9,
+    "_total": 39
+   },
+   "5s": {
+    "ATP_CHALL": 15,
+    "ATP_MAIN": 9,
+    "WTA_CHALL": 6,
+    "WTA_MAIN": 9,
+    "_total": 39
+   },
+   "30s": {
+    "ATP_CHALL": 17,
+    "ATP_MAIN": 9,
+    "WTA_CHALL": 9,
+    "WTA_MAIN": 10,
+    "_total": 45
+   }
+  },
+  "worst_case_extra_lot_cents": {
+   "1s": {
+    "ATP_CHALL": 747,
+    "ATP_MAIN": 423,
+    "WTA_CHALL": 191,
+    "WTA_MAIN": 449,
+    "_total": 1810
+   },
+   "5s": {
+    "ATP_CHALL": 747,
+    "ATP_MAIN": 423,
+    "WTA_CHALL": 191,
+    "WTA_MAIN": 449,
+    "_total": 1810
+   },
+   "30s": {
+    "ATP_CHALL": 825,
+    "ATP_MAIN": 423,
+    "WTA_CHALL": 304,
+    "WTA_MAIN": 514,
+    "_total": 2066
+   }
+  },
+  "note": "within \u0394 = flow reaches the 2nd (sibling) level within \u0394 of the first fill -> double-fill if cancel latency > \u0394. worst-case cents = sibling-level cents summed (the unwanted extra long lot)."
+ },
+ "conservation": {
+  "risers": 409,
+  "games": 637
+ },
+ "named": {
+  "NIK": {
+   "NIK": {
+    "branch": "RISING",
+    "anytime": 18,
+    "A_join": 29,
+    "A_ts": 1784459328,
+    "B_bid1": 30,
+    "B_ts": 1784459266,
+    "dual_first_fill": 30,
+    "collision_gap_s": 62,
+    "two_lot_avg": 29.5,
+    "overlap": "both"
+   },
+   "VRB": {
+    "branch": "RISING",
+    "anytime": 68,
+    "A_join": null,
+    "A_ts": null,
+    "B_bid1": 68,
+    "B_ts": 1784459543,
+    "dual_first_fill": 68,
+    "collision_gap_s": null,
+    "two_lot_avg": null,
+    "overlap": "only_B"
+   }
+  },
+  "COP": {
+   "BOS": {
+    "branch": "FALLING",
+    "fixed_faller": 28
+   },
+   "COP": {
+    "branch": "RISING",
+    "anytime": 47,
+    "A_join": 64,
+    "A_ts": 1783893035,
+    "B_bid1": 65,
+    "B_ts": 1783893035,
+    "dual_first_fill": 64,
+    "collision_gap_s": 0,
+    "two_lot_avg": 64.5,
+    "overlap": "both"
+   }
+  },
+  "VRB": {
+   "NIK": {
+    "branch": "RISING",
+    "anytime": 18,
+    "A_join": 29,
+    "A_ts": 1784459328,
+    "B_bid1": 30,
+    "B_ts": 1784459266,
+    "dual_first_fill": 30,
+    "collision_gap_s": 62,
+    "two_lot_avg": 29.5,
+    "overlap": "both"
+   },
+   "VRB": {
+    "branch": "RISING",
+    "anytime": 68,
+    "A_join": null,
+    "A_ts": null,
+    "B_bid1": 68,
+    "B_ts": 1784459543,
+    "dual_first_fill": 68,
+    "collision_gap_s": null,
+    "two_lot_avg": null,
+    "overlap": "only_B"
+   }
+  },
+  "ARN": {
+   "ARN": {
+    "branch": "RISING",
+    "anytime": 50,
+    "A_join": null,
+    "A_ts": null,
+    "B_bid1": 56,
+    "B_ts": 1783896157,
+    "dual_first_fill": 56,
+    "collision_gap_s": null,
+    "two_lot_avg": null,
+    "overlap": "only_B"
+   },
+   "ROM": {
+    "branch": "FALLING",
+    "fixed_faller": 38
+   }
+  },
+  "WES": {
+   "PAA": {
+    "branch": "FALLING",
+    "fixed_faller": 38
+   },
+   "WES": {
+    "branch": "RISING",
+    "anytime": 60,
+    "A_join": null,
+    "A_ts": null,
+    "B_bid1": null,
+    "B_ts": null,
+    "dual_first_fill": null,
+    "collision_gap_s": null,
+    "two_lot_avg": null,
+    "overlap": "neither"
+   }
+  }
+ }
+}

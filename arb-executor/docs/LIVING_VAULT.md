@@ -1665,3 +1665,18 @@ V39 reports no fabricated recovery numerator. V36 remains operative.
 
 Canonical evidence package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/ff5880d11a88b0d12415f5371d7cbb61331957e4/.claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807/REPORT.md
+
+### 2026-08-08 - V40 INCUMBENT-DIRECTION PLACEMENT STACK REJECTED
+
+V40 severed V39's chance-level causal direction classifier and proved exact
+identity with V36's incumbent state combiner. `CLASSIFIER_RESEARCH_OPEN` is
+now law: no new direction read may gate a build until it validates above the
+incumbent on held-out legs. The V36-gated persistent join, WTA inverse-FALLING
+hold, and universal rest-below-ask bound produced 249 market-grade under-par
+completions and a `12/23/66` deep frontier. That fails the 270 completion and
+12/24 deep-tier bar, so V40 is rejected and V36 remains operative. BOSCOP|COP
+joined 47 only after its sole certified seller print at that level; zero later
+seller hits means the pair remains incomplete, not retrospectively credited.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/af3ef0e8b89502700d637c28e1ff42f247b44c4d/arb-executor/docs/research/window1/WINDOW1_V40_INCUMBENT_DIRECTION_PLACEMENT_20260808_ADDENDUM.md

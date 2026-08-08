@@ -1652,3 +1652,16 @@ V35 remains operative. No deployment or live access occurred.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a2f094498bbb06c4f9bbc4326b8edb6a753077b1/arb-executor/docs/research/window1/WINDOW1_V351_DIRECTIONAL_EVIDENCE_AGING_ADDENDUM.md
+
+### 2026-08-07 - V39 CORRECTED PLACEMENT STACK REJECTED
+
+V39 preserves V36's take path and causally implements the four ordered
+placement changes. It is rejected as an operative successor: market-grade
+under-par completions are 234 versus frozen V36's 270. ARNROM passes at 89;
+BOSCOP joins COP at 47 but has no strictly later reach receipt, so the
+counterfactual pair-77 credit is not imported. Rest-sanity violations are zero.
+The counterfactual's 115-side mislabel population lacks frozen identities, so
+V39 reports no fabricated recovery numerator. V36 remains operative.
+
+Canonical evidence package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/ff5880d11a88b0d12415f5371d7cbb61331957e4/.claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807/REPORT.md

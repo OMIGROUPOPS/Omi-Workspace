@@ -1641,3 +1641,16 @@ STRICT completions rose 264->283, but the deep frontier regressed from
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a2f094498bbb06c4f9bbc4326b8edb6a753077b1/arb-executor/docs/research/window1/WINDOW1_V351_DIRECTIONAL_EVIDENCE_AGING_ADDENDUM.md
+
+## V39 CORRECTED PLACEMENT STACK - REJECTED - 2026-08-07
+
+V39 ran causally on frozen V36 with the take path intact. Market grade is
+234 completed/under-par pairs versus V36's 270, so V39 is evidence only and
+V36 remains operative. ARNROM completes at 89. BOSCOP causally rests COP at
+47 but does not receive later reach evidence; the retrospective pair-77
+counterfactual is rejected. Rest-sanity violations are zero. The frozen
+2b45d146 receipt does not bind identities for its 115-side mislabel aggregate,
+so no recovery numerator is invented.
+
+Canonical package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/ff5880d11a88b0d12415f5371d7cbb61331957e4/.claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807/REPORT.md

@@ -1704,4 +1704,4 @@ Canonical evidence package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/20a8be31082be357b62bf217e842b09a01c8ee11/.claude/window1_live_v4_replay/v41_maker_machine_20260808/REPORT.md
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/20a8be31082be357b62bf217e842b09a01c8ee11/arb-executor/docs/research/window1/WINDOW1_V41_MAKER_MACHINE_20260808_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b3e5a0d131f33f3163bccb2164bb2cc926236c14/arb-executor/docs/research/window1/WINDOW1_V41_MAKER_MACHINE_20260808_ADDENDUM.md

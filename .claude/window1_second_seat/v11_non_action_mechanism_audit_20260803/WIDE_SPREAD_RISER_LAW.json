@@ -1,0 +1,189 @@
+{
+ "LABEL": "WIDE_SPREAD_RISER_LAW",
+ "machinery": "causal 3-channel realized fills. Wide-spread risers (median spread>3c): ask-anchored - from first descended ask-divot with dwell>=10s, rest at that trough (inside spread), cap-bounded, sanity rest<ask; fills when post-anchor flow returns (<=R trade/print or ask<=R dwell10s). Narrow risers keep V41 join (persistence-only). Fallers fixed.",
+ "population": {
+  "risers": 409,
+  "wide_risers": 9,
+  "wide_over_1608": "9/1608",
+  "wide_over_risers": "9/409",
+  "median_spread_note": "median in-window ask-bid per riser"
+ },
+ "bar": {
+  "under_par": 632,
+  "locked": 5217
+ },
+ "V41_all_join": {
+  "riser_filled": 291,
+  "forfeits": 118,
+  "completable": 521,
+  "under_par": 485,
+  "locked": 3524,
+  "frontier": {
+   "<=93": 83,
+   "<=95": 123,
+   "<=97": 214,
+   "<100": 485
+  },
+  "by_cat": {
+   "ATP_CHALL": 204,
+   "ATP_MAIN": 104,
+   "WTA_CHALL": 87,
+   "WTA_MAIN": 90
+  },
+  "lock_by_cat": {
+   "ATP_CHALL": 1166,
+   "ATP_MAIN": 563,
+   "WTA_CHALL": 1328,
+   "WTA_MAIN": 467
+  }
+ },
+ "HYBRID_wide_ask_anchor": {
+  "riser_filled": 295,
+  "forfeits": 114,
+  "completable": 523,
+  "under_par": 485,
+  "locked": 3515,
+  "frontier": {
+   "<=93": 82,
+   "<=95": 122,
+   "<=97": 213,
+   "<100": 485
+  },
+  "by_cat": {
+   "ATP_CHALL": 205,
+   "ATP_MAIN": 103,
+   "WTA_CHALL": 87,
+   "WTA_MAIN": 90
+  },
+  "lock_by_cat": {
+   "ATP_CHALL": 1163,
+   "ATP_MAIN": 559,
+   "WTA_CHALL": 1328,
+   "WTA_MAIN": 465
+  }
+ },
+ "wide_subset_only": {
+  "V41": {
+   "completable": 4,
+   "under_par": 4,
+   "locked": 23,
+   "frontier": {
+    "<=93": 2,
+    "<=95": 2,
+    "<=97": 3,
+    "<100": 4
+   },
+   "by_cat": {
+    "ATP_CHALL": 2,
+    "ATP_MAIN": 1,
+    "WTA_MAIN": 1
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 9,
+    "ATP_MAIN": 4,
+    "WTA_MAIN": 10
+   }
+  },
+  "HYBRID": {
+   "completable": 6,
+   "under_par": 4,
+   "locked": 14,
+   "frontier": {
+    "<=93": 1,
+    "<=95": 1,
+    "<=97": 2,
+    "<100": 4
+   },
+   "by_cat": {
+    "ATP_CHALL": 3,
+    "WTA_MAIN": 1
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 6,
+    "WTA_MAIN": 8
+   }
+  }
+ },
+ "false_arm": {
+  "wide_anchored_unfilled": 0,
+  "by_category": {},
+  "note": "ask-anchored rests parked at a divot trough that flow never revisited (unfilled); the T2-frontier population false-arm analogue"
+ },
+ "conservation": {
+  "risers": 409,
+  "games": 637
+ },
+ "named": {
+  "VRB": {
+   "NIK": {
+    "branch": "RISING",
+    "anytime": 18,
+    "median_spread": 2,
+    "wide": false,
+    "ask_anchor_fill": 29,
+    "ask_anchor_ts": 1784459328,
+    "join_fill": 29,
+    "hybrid": 29,
+    "v41": 29
+   },
+   "VRB": {
+    "branch": "RISING",
+    "anytime": 68,
+    "median_spread": 2,
+    "wide": false,
+    "ask_anchor_fill": 68,
+    "ask_anchor_ts": 1784459543,
+    "join_fill": null,
+    "hybrid": null,
+    "v41": null
+   },
+   "_combined_hybrid": null,
+   "_combined_v41": null
+  },
+  "COP": {
+   "BOS": {
+    "branch": "FALLING",
+    "fixed_faller": 28
+   },
+   "COP": {
+    "branch": "RISING",
+    "anytime": 47,
+    "median_spread": 41,
+    "wide": true,
+    "ask_anchor_fill": 69,
+    "ask_anchor_ts": 1783893035,
+    "join_fill": 64,
+    "hybrid": 69,
+    "v41": 64
+   },
+   "_combined_hybrid": 97,
+   "_combined_v41": 92
+  },
+  "NIK": {
+   "NIK": {
+    "branch": "RISING",
+    "anytime": 18,
+    "median_spread": 2,
+    "wide": false,
+    "ask_anchor_fill": 29,
+    "ask_anchor_ts": 1784459328,
+    "join_fill": 29,
+    "hybrid": 29,
+    "v41": 29
+   },
+   "VRB": {
+    "branch": "RISING",
+    "anytime": 68,
+    "median_spread": 2,
+    "wide": false,
+    "ask_anchor_fill": 68,
+    "ask_anchor_ts": 1784459543,
+    "join_fill": null,
+    "hybrid": null,
+    "v41": null
+   },
+   "_combined_hybrid": null,
+   "_combined_v41": null
+  }
+ }
+}

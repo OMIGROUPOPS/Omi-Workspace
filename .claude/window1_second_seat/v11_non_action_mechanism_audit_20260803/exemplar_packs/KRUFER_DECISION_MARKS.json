@@ -1,0 +1,74 @@
+{
+ "event": "KXATPMATCH-26JUL12KRUFER",
+ "code": "KRUFER",
+ "category": "ATP_MAIN",
+ "bell_confidence": "schedule_only",
+ "walkthrough_class": "completed",
+ "combined_entry_cents": 99,
+ "pair_under_par": true,
+ "completed_pair": true,
+ "w1_span": {
+  "left": 1783789837,
+  "left_et": "2026-07-11 17:10:37",
+  "right": 1783854000,
+  "right_et": "2026-07-12 11:00:00"
+ },
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing exemplar template)",
+ "legs": {
+  "FER": {
+   "ticker": "KXATPMATCH-26JUL12KRUFER-FER",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": true,
+   "entry_cents": 44,
+   "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+   "fill_ts": 1783801422,
+   "fill_et": "2026-07-11 20:23:42",
+   "terminal_reason": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+   "state_counts": {
+    "FALLING": 16,
+    "RISING": 9,
+    "SETTLED": 9
+   },
+   "running_trade_low": 44,
+   "running_seller_hit_low": null,
+   "running_qualified_ask_low": 44,
+   "resting_target_at_hard_edge_cents": null,
+   "w1_qualifying_ask_floor_cents": 1,
+   "w1_print_backed_achievable_floor_cents": 1,
+   "causal": {
+    "anytime_reach": 1,
+    "causal_floor": 1,
+    "family": "tracking"
+   }
+  },
+  "KRU": {
+   "ticker": "KXATPMATCH-26JUL12KRUFER-KRU",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": true,
+   "entry_cents": 55,
+   "fill_class": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+   "fill_ts": 1783845551.624137,
+   "fill_et": "2026-07-12 08:39:11",
+   "terminal_reason": "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST",
+   "state_counts": {
+    "FALLING": 61,
+    "RISING": 177,
+    "SETTLED": 26
+   },
+   "running_trade_low": 54,
+   "running_seller_hit_low": 55,
+   "running_qualified_ask_low": 54,
+   "resting_target_at_hard_edge_cents": null,
+   "w1_qualifying_ask_floor_cents": 49,
+   "w1_print_backed_achievable_floor_cents": 49,
+   "causal": {
+    "anytime_reach": 49,
+    "causal_floor": 49,
+    "family": "tracking"
+   }
+  }
+ },
+ "decision_narrative": "Both legs credited under V36 \u2014 a completed pair; the timeline shows both fills and the states around them."
+}

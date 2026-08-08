@@ -1,0 +1,74 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+ "code": "ROUJAK",
+ "category": "WTA_CHALL",
+ "bell_confidence": "schedule_only",
+ "walkthrough_class": "carried",
+ "combined_entry_cents": null,
+ "pair_under_par": false,
+ "completed_pair": false,
+ "w1_span": {
+  "left": 1783818706,
+  "left_et": "2026-07-12 01:11:46",
+  "right": 1783872000,
+  "right_et": "2026-07-12 16:00:00"
+ },
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing exemplar template)",
+ "legs": {
+  "JAK": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12ROUJAK-JAK",
+   "global_direction": "CLIMBING",
+   "close_cents": "55",
+   "credited": false,
+   "entry_cents": null,
+   "fill_class": null,
+   "fill_ts": null,
+   "fill_et": null,
+   "terminal_reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+   "state_counts": {
+    "FALLING": 880,
+    "RISING": 2526,
+    "SETTLED": 27
+   },
+   "running_trade_low": 52,
+   "running_seller_hit_low": 62,
+   "running_qualified_ask_low": 54,
+   "resting_target_at_hard_edge_cents": 52,
+   "w1_qualifying_ask_floor_cents": 54,
+   "w1_print_backed_achievable_floor_cents": 52,
+   "causal": {
+    "anytime_reach": 52,
+    "causal_floor": null,
+    "family": "pulse_floor"
+   }
+  },
+  "ROU": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12ROUJAK-ROU",
+   "global_direction": "FLAT",
+   "close_cents": "46",
+   "credited": true,
+   "entry_cents": 47,
+   "fill_class": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+   "fill_ts": 1783834090,
+   "fill_et": "2026-07-12 05:28:10",
+   "terminal_reason": "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK",
+   "state_counts": {
+    "FALLING": 48,
+    "RISING": 13,
+    "SETTLED": 11
+   },
+   "running_trade_low": 47,
+   "running_seller_hit_low": null,
+   "running_qualified_ask_low": 47,
+   "resting_target_at_hard_edge_cents": null,
+   "w1_qualifying_ask_floor_cents": 2,
+   "w1_print_backed_achievable_floor_cents": 1,
+   "causal": {
+    "anytime_reach": 46,
+    "causal_floor": 46,
+    "family": "tracking"
+   }
+  }
+ },
+ "decision_narrative": "Exactly one leg credited \u2014 V36 carried a single (naked) leg; the timeline shows the filled leg and the uncrossed sibling."
+}

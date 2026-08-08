@@ -1,0 +1,66 @@
+{
+ "event": "KXWTAMATCH-26JUL14PUTJEA",
+ "code": "PUTJEA",
+ "category": "WTA_MAIN",
+ "bell_confidence": "schedule_only",
+ "walkthrough_class": "skipped",
+ "combined_entry_cents": null,
+ "pair_under_par": false,
+ "completed_pair": false,
+ "w1_span": {
+  "left": 1783936553,
+  "left_et": "2026-07-13 09:55:53",
+  "right": 1784026800,
+  "right_et": "2026-07-14 11:00:00"
+ },
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing exemplar template)",
+ "legs": {
+  "JEA": {
+   "ticker": "KXWTAMATCH-26JUL14PUTJEA-JEA",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "fill_class": null,
+   "fill_ts": null,
+   "fill_et": null,
+   "terminal_reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+   "state_counts": {
+    "FALLING": 870,
+    "RISING": 31,
+    "SETTLED": 5
+   },
+   "running_trade_low": 64,
+   "running_seller_hit_low": 64,
+   "running_qualified_ask_low": null,
+   "resting_target_at_hard_edge_cents": 18,
+   "w1_qualifying_ask_floor_cents": null,
+   "w1_print_backed_achievable_floor_cents": 64,
+   "causal": null
+  },
+  "PUT": {
+   "ticker": "KXWTAMATCH-26JUL14PUTJEA-PUT",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "fill_class": null,
+   "fill_ts": null,
+   "fill_et": null,
+   "terminal_reason": "HARD_RIGHT_EDGE_REACHED_WITH_REST_UNFILLED",
+   "state_counts": {
+    "FALLING": 297,
+    "RISING": 217,
+    "SETTLED": 23
+   },
+   "running_trade_low": 9,
+   "running_seller_hit_low": 9,
+   "running_qualified_ask_low": null,
+   "resting_target_at_hard_edge_cents": 45,
+   "w1_qualifying_ask_floor_cents": null,
+   "w1_print_backed_achievable_floor_cents": 9,
+   "causal": null
+  }
+ },
+ "decision_narrative": "Neither leg credited \u2014 V36 skipped; the timeline shows why no lawful fill formed in-window."
+}

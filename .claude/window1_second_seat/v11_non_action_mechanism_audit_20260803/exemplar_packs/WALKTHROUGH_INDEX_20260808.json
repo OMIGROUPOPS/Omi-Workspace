@@ -1,0 +1,97 @@
+{
+ "LABEL": "WALKTHROUGH_PACKS_20260808",
+ "selection": "one schedule_only game per V36 class (completed/carried/skipped), deterministic sha1 pick, excluding all previously-opened packs/autopsies",
+ "exclusion": [
+  "ARNROM",
+  "BARREI",
+  "BARVIS",
+  "BINGIL",
+  "BOSCOP",
+  "FETPIE",
+  "GANJAN",
+  "JONSPI",
+  "KRALOR",
+  "LAJVAN",
+  "NIKVRB",
+  "POLKUH",
+  "PRIBAL",
+  "WESPAA"
+ ],
+ "picks": [
+  {
+   "code": "KRUFER",
+   "event": "KXATPMATCH-26JUL12KRUFER",
+   "walkthrough_class": "completed",
+   "bell": "schedule_only",
+   "category": "ATP_MAIN",
+   "combined": 99,
+   "timeline_rows": 49532,
+   "bbo": 48619,
+   "trades": 913,
+   "legs": {
+    "FER": {
+     "credited": true,
+     "entry": 44,
+     "dir": "UNKNOWN",
+     "close": ""
+    },
+    "KRU": {
+     "credited": true,
+     "entry": 55,
+     "dir": "UNKNOWN",
+     "close": ""
+    }
+   }
+  },
+  {
+   "code": "ROUJAK",
+   "event": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+   "walkthrough_class": "carried",
+   "bell": "schedule_only",
+   "category": "WTA_CHALL",
+   "combined": null,
+   "timeline_rows": 145149,
+   "bbo": 144610,
+   "trades": 539,
+   "legs": {
+    "JAK": {
+     "credited": false,
+     "entry": null,
+     "dir": "CLIMBING",
+     "close": "55"
+    },
+    "ROU": {
+     "credited": true,
+     "entry": 47,
+     "dir": "FLAT",
+     "close": "46"
+    }
+   }
+  },
+  {
+   "code": "PUTJEA",
+   "event": "KXWTAMATCH-26JUL14PUTJEA",
+   "walkthrough_class": "skipped",
+   "bell": "schedule_only",
+   "category": "WTA_MAIN",
+   "combined": null,
+   "timeline_rows": 2663,
+   "bbo": 2653,
+   "trades": 10,
+   "legs": {
+    "JEA": {
+     "credited": false,
+     "entry": null,
+     "dir": "UNKNOWN",
+     "close": ""
+    },
+    "PUT": {
+     "credited": false,
+     "entry": null,
+     "dir": "UNKNOWN",
+     "close": ""
+    }
+   }
+  }
+ ]
+}

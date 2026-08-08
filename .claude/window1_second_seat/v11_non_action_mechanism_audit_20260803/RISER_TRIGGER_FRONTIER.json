@@ -1,0 +1,347 @@
+{
+ "LABEL": "RISER_TRIGGER_FRONTIER",
+ "machinery": "3-channel causal reach d3db740f; riser families only vary the trigger; faller legs keep their fixed tracking causal floor.",
+ "triggers": {
+  "T1_pulse2": "pulse 2nd ask-divot visit [incumbent]",
+  "T2_firstresume": "FIRST divot visit + resume (trough seen once, price left it)",
+  "T3_firsthit": "first seller-hit at any level (join immediately, no 300s persistence)",
+  "T4_persist300": "any bid level persisted >=300s (no seller-hit required)",
+  "T5_twosided": "from first two-sided book (earliest possible; tracking-class trigger for risers)"
+ },
+ "anytime_ceiling": {
+  "under_par": 637,
+  "locked": 5253,
+  "note": "telemetry only"
+ },
+ "per_trigger": {
+  "T1_pulse2": {
+   "completable": 469,
+   "under_par": 449,
+   "locked": 3054,
+   "frontier": {
+    "<=93": 78,
+    "<=95": 124,
+    "<=97": 235,
+    "<100": 449
+   },
+   "by_cat": {
+    "ATP_CHALL": 200,
+    "ATP_MAIN": 106,
+    "WTA_CHALL": 66,
+    "WTA_MAIN": 77
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1015,
+    "ATP_MAIN": 586,
+    "WTA_CHALL": 1011,
+    "WTA_MAIN": 442
+   },
+   "riser_empty": 186,
+   "false_arms": 75,
+   "false_arm_overreach_cents": 182,
+   "hard_false_arms": 4
+  },
+  "T2_firstresume": {
+   "completable": 514,
+   "under_par": 482,
+   "locked": 3167,
+   "frontier": {
+    "<=93": 80,
+    "<=95": 130,
+    "<=97": 250,
+    "<100": 482
+   },
+   "by_cat": {
+    "ATP_CHALL": 222,
+    "ATP_MAIN": 108,
+    "WTA_CHALL": 66,
+    "WTA_MAIN": 86
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1082,
+    "ATP_MAIN": 598,
+    "WTA_CHALL": 1015,
+    "WTA_MAIN": 472
+   },
+   "riser_empty": 135,
+   "false_arms": 91,
+   "false_arm_overreach_cents": 181,
+   "hard_false_arms": 6
+  },
+  "T3_firsthit": {
+   "completable": 581,
+   "under_par": 554,
+   "locked": 4918,
+   "frontier": {
+    "<=93": 112,
+    "<=95": 167,
+    "<=97": 296,
+    "<100": 554
+   },
+   "by_cat": {
+    "ATP_CHALL": 233,
+    "ATP_MAIN": 126,
+    "WTA_CHALL": 86,
+    "WTA_MAIN": 109
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1549,
+    "ATP_MAIN": 880,
+    "WTA_CHALL": 1940,
+    "WTA_MAIN": 549
+   },
+   "riser_empty": 56,
+   "false_arms": 89,
+   "false_arm_overreach_cents": 191,
+   "hard_false_arms": 6
+  },
+  "T4_persist300": {
+   "completable": 636,
+   "under_par": 631,
+   "locked": 5211,
+   "frontier": {
+    "<=93": 119,
+    "<=95": 180,
+    "<=97": 337,
+    "<100": 631
+   },
+   "by_cat": {
+    "ATP_CHALL": 291,
+    "ATP_MAIN": 128,
+    "WTA_CHALL": 97,
+    "WTA_MAIN": 115
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1729,
+    "ATP_MAIN": 917,
+    "WTA_CHALL": 1987,
+    "WTA_MAIN": 578
+   },
+   "riser_empty": 0,
+   "false_arms": 7,
+   "false_arm_overreach_cents": 10,
+   "hard_false_arms": 0
+  },
+  "T5_twosided": {
+   "completable": 636,
+   "under_par": 632,
+   "locked": 5217,
+   "frontier": {
+    "<=93": 120,
+    "<=95": 180,
+    "<=97": 338,
+    "<100": 632
+   },
+   "by_cat": {
+    "ATP_CHALL": 291,
+    "ATP_MAIN": 128,
+    "WTA_CHALL": 97,
+    "WTA_MAIN": 116
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1732,
+    "ATP_MAIN": 917,
+    "WTA_CHALL": 1987,
+    "WTA_MAIN": 581
+   },
+   "riser_empty": 0,
+   "false_arms": 4,
+   "false_arm_overreach_cents": 4,
+   "hard_false_arms": 0
+  }
+ },
+ "conservation": {
+  "risers": 409,
+  "games": 637
+ },
+ "named": {
+  "ARN": {
+   "ARN": {
+    "branch": "RISING",
+    "anytime_reach": 50,
+    "per_trigger_causal": {
+     "T1_pulse2": 56,
+     "T2_firstresume": 50,
+     "T3_firsthit": 56,
+     "T4_persist300": 50,
+     "T5_twosided": 50
+    },
+    "false_arm": {
+     "T1_pulse2": [
+      true,
+      6
+     ],
+     "T2_firstresume": [
+      false,
+      0
+     ],
+     "T3_firsthit": [
+      true,
+      6
+     ],
+     "T4_persist300": [
+      false,
+      0
+     ],
+     "T5_twosided": [
+      false,
+      0
+     ]
+    }
+   },
+   "ROM": {
+    "branch": "FALLING",
+    "anytime_reach": 38,
+    "fixed_faller_floor": 38
+   }
+  },
+  "WES": {
+   "PAA": {
+    "branch": "FALLING",
+    "anytime_reach": 38,
+    "fixed_faller_floor": 38
+   },
+   "WES": {
+    "branch": "RISING",
+    "anytime_reach": 60,
+    "per_trigger_causal": {
+     "T1_pulse2": null,
+     "T2_firstresume": 60,
+     "T3_firsthit": null,
+     "T4_persist300": 60,
+     "T5_twosided": 60
+    },
+    "false_arm": {
+     "T1_pulse2": [
+      false,
+      null
+     ],
+     "T2_firstresume": [
+      false,
+      0
+     ],
+     "T3_firsthit": [
+      false,
+      null
+     ],
+     "T4_persist300": [
+      false,
+      0
+     ],
+     "T5_twosided": [
+      false,
+      0
+     ]
+    }
+   }
+  },
+  "COP": {
+   "BOS": {
+    "branch": "FALLING",
+    "anytime_reach": 28,
+    "fixed_faller_floor": 28
+   },
+   "COP": {
+    "branch": "RISING",
+    "anytime_reach": 47,
+    "per_trigger_causal": {
+     "T1_pulse2": 47,
+     "T2_firstresume": 47,
+     "T3_firsthit": 47,
+     "T4_persist300": 47,
+     "T5_twosided": 47
+    },
+    "false_arm": {
+     "T1_pulse2": [
+      false,
+      0
+     ],
+     "T2_firstresume": [
+      false,
+      0
+     ],
+     "T3_firsthit": [
+      false,
+      0
+     ],
+     "T4_persist300": [
+      false,
+      0
+     ],
+     "T5_twosided": [
+      false,
+      0
+     ]
+    }
+   }
+  },
+  "VRB": {
+   "NIK": {
+    "branch": "RISING",
+    "anytime_reach": 18,
+    "per_trigger_causal": {
+     "T1_pulse2": 18,
+     "T2_firstresume": 18,
+     "T3_firsthit": 18,
+     "T4_persist300": 18,
+     "T5_twosided": 18
+    },
+    "false_arm": {
+     "T1_pulse2": [
+      false,
+      0
+     ],
+     "T2_firstresume": [
+      false,
+      0
+     ],
+     "T3_firsthit": [
+      false,
+      0
+     ],
+     "T4_persist300": [
+      false,
+      0
+     ],
+     "T5_twosided": [
+      false,
+      0
+     ]
+    }
+   },
+   "VRB": {
+    "branch": "RISING",
+    "anytime_reach": 68,
+    "per_trigger_causal": {
+     "T1_pulse2": 68,
+     "T2_firstresume": 68,
+     "T3_firsthit": 81,
+     "T4_persist300": 68,
+     "T5_twosided": 68
+    },
+    "false_arm": {
+     "T1_pulse2": [
+      false,
+      0
+     ],
+     "T2_firstresume": [
+      false,
+      0
+     ],
+     "T3_firsthit": [
+      true,
+      13
+     ],
+     "T4_persist300": [
+      false,
+      0
+     ],
+     "T5_twosided": [
+      false,
+      0
+     ]
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,13 @@
+{
+  "holdout_accesses": 0,
+  "live_accesses": 0,
+  "network_runtime_accesses": 0,
+  "order_accesses": 0,
+  "position_accesses": 0,
+  "exit_accesses": 0,
+  "settlement_accesses": 0,
+  "DCA_accesses": 0,
+  "deployment_accesses": 0,
+  "private_scope": "FIT_DEVELOPMENT_804_TAPE_AND_CERTIFIED_PRINT_CACHE_ONLY",
+  "mutations": 0
+}

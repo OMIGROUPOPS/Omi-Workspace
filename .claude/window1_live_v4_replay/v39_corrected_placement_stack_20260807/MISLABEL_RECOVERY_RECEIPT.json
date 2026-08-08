@@ -1,0 +1,12 @@
+{
+  "controlling_counterfactual_denominator": 115,
+  "controlling_counterfactual_forfeited": 100,
+  "controlling_counterfactual_credited": 15,
+  "identity_binding_status": "NOT_BOUND_IN_2B45D146_AGGREGATE_RECEIPT_SO_NO_FALSE_115_SIDE_NUMERATOR_IS_EMITTED",
+  "independently_reconstructable_c396_cohort": {
+    "sides": 157,
+    "recovered_credited": 26,
+    "recovered_at_or_better_than_reach": 9
+  },
+  "telemetry_law": "FROZEN_EX_POST_DIRECTION_USED_ONLY_AFTER_REPLAY; NEVER_PASSED_TO_POLICY"
+}

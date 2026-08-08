@@ -1,0 +1,218 @@
+{
+ "LABEL": "LEVEL_POLICY_REALIZATION",
+ "machinery": "3-channel causal fills (084df125), riser T5 arming (first two-sided book). REALIZED capture: a maker rest fills at the level it actually occupied when flow (trade/seller-print <=R, or ask<=R dwell>=10s) first reached it. Faller legs fixed at their causal floor.",
+ "policies": {
+  "P1_bid1": "bid-1 tracking [V36 incumbent]",
+  "P2_join": "persistent-level join, persistence-only >=300s trigger (2b45d146 with seller-hit gate removed); hold deepest persisted level, no tracking between",
+  "P3_join_track": "P2 + between joins bid-1 tracking (R=min(bid-1, deepest persisted))",
+  "P4_signal_hold": "P3 + during transient-dip signature (fresh-ask <60s dwell + bid-heavy book, 336-class) hold deeper of current level and running excursion low"
+ },
+ "collectable_bar": {
+  "under_par": 632,
+  "locked": 5217,
+  "note": "T5 causal ceiling"
+ },
+ "per_policy": {
+  "P1_bid1": {
+   "completable": 417,
+   "under_par": 410,
+   "locked": 3442,
+   "frontier": {
+    "<=93": 86,
+    "<=95": 125,
+    "<=97": 217,
+    "<100": 410
+   },
+   "by_cat": {
+    "ATP_CHALL": 174,
+    "ATP_MAIN": 96,
+    "WTA_CHALL": 69,
+    "WTA_MAIN": 71
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1145,
+    "ATP_MAIN": 595,
+    "WTA_CHALL": 1278,
+    "WTA_MAIN": 424
+   },
+   "riser_forfeits": 239
+  },
+  "P2_join": {
+   "completable": 521,
+   "under_par": 480,
+   "locked": 3493,
+   "frontier": {
+    "<=93": 83,
+    "<=95": 120,
+    "<=97": 206,
+    "<100": 480
+   },
+   "by_cat": {
+    "ATP_CHALL": 201,
+    "ATP_MAIN": 102,
+    "WTA_CHALL": 87,
+    "WTA_MAIN": 90
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1159,
+    "ATP_MAIN": 552,
+    "WTA_CHALL": 1321,
+    "WTA_MAIN": 461
+   },
+   "riser_forfeits": 117
+  },
+  "P3_join_track": {
+   "completable": 521,
+   "under_par": 480,
+   "locked": 3495,
+   "frontier": {
+    "<=93": 83,
+    "<=95": 120,
+    "<=97": 206,
+    "<100": 480
+   },
+   "by_cat": {
+    "ATP_CHALL": 201,
+    "ATP_MAIN": 102,
+    "WTA_CHALL": 87,
+    "WTA_MAIN": 90
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1159,
+    "ATP_MAIN": 552,
+    "WTA_CHALL": 1322,
+    "WTA_MAIN": 462
+   },
+   "riser_forfeits": 117
+  },
+  "P4_signal_hold": {
+   "completable": 521,
+   "under_par": 480,
+   "locked": 3498,
+   "frontier": {
+    "<=93": 83,
+    "<=95": 120,
+    "<=97": 207,
+    "<100": 480
+   },
+   "by_cat": {
+    "ATP_CHALL": 201,
+    "ATP_MAIN": 102,
+    "WTA_CHALL": 87,
+    "WTA_MAIN": 90
+   },
+   "lock_by_cat": {
+    "ATP_CHALL": 1160,
+    "ATP_MAIN": 552,
+    "WTA_CHALL": 1324,
+    "WTA_MAIN": 462
+   },
+   "riser_forfeits": 117
+  }
+ },
+ "conservation": {
+  "risers": 409,
+  "games": 637
+ },
+ "named": {
+  "ARN": {
+   "ARN": {
+    "branch": "RISING",
+    "anytime": 50,
+    "causal_T5": 56,
+    "realized": {
+     "P1_bid1": 56,
+     "P2_join": null,
+     "P3_join_track": null,
+     "P4_signal_hold": null
+    }
+   },
+   "ROM": {
+    "branch": "FALLING",
+    "fixed_faller": 38
+   }
+  },
+  "COP": {
+   "BOS": {
+    "branch": "FALLING",
+    "fixed_faller": 28
+   },
+   "COP": {
+    "branch": "RISING",
+    "anytime": 47,
+    "causal_T5": 47,
+    "realized": {
+     "P1_bid1": null,
+     "P2_join": 64,
+     "P3_join_track": 64,
+     "P4_signal_hold": 64
+    }
+   }
+  },
+  "VRB": {
+   "NIK": {
+    "branch": "RISING",
+    "anytime": 18,
+    "causal_T5": 18,
+    "realized": {
+     "P1_bid1": 19,
+     "P2_join": 29,
+     "P3_join_track": 29,
+     "P4_signal_hold": 29
+    }
+   },
+   "VRB": {
+    "branch": "RISING",
+    "anytime": 68,
+    "causal_T5": 68,
+    "realized": {
+     "P1_bid1": 73,
+     "P2_join": null,
+     "P3_join_track": null,
+     "P4_signal_hold": null
+    }
+   }
+  },
+  "WES": {
+   "PAA": {
+    "branch": "FALLING",
+    "fixed_faller": 38
+   },
+   "WES": {
+    "branch": "RISING",
+    "anytime": 60,
+    "causal_T5": null,
+    "realized": {
+     "P1_bid1": null,
+     "P2_join": null,
+     "P3_join_track": null,
+     "P4_signal_hold": null
+    }
+   }
+  },
+  "NIK": {
+   "NIK": {
+    "branch": "RISING",
+    "anytime": 18,
+    "causal_T5": 18,
+    "realized": {
+     "P1_bid1": 19,
+     "P2_join": 29,
+     "P3_join_track": 29,
+     "P4_signal_hold": 29
+    }
+   },
+   "VRB": {
+    "branch": "RISING",
+    "anytime": 68,
+    "causal_T5": 68,
+    "realized": {
+     "P1_bid1": 73,
+     "P2_join": null,
+     "P3_join_track": null,
+     "P4_signal_hold": null
+    }
+   }
+  }
+ }
+}

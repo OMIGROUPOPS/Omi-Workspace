@@ -1,0 +1,203 @@
+{
+ "LABEL": "CAP_UNFEASIBLE_CENSUS",
+ "source": "V41 MARKET a30f5ccd; 134 CAP_UNFEASIBLE_AT_ARM naked legs",
+ "conservation": {
+  "cap134": 134
+ },
+ "infeasibility_gap": {
+  "note": "sibling contemporaneous ask at fill MINUS its cap (99-filled_entry); >0 = sibling could never rest feasibly",
+  "distribution": {
+   "n": 134,
+   "min": -3,
+   "p25": 1,
+   "median": 1,
+   "p75": 2,
+   "max": 61,
+   "mean": 2.6
+  },
+  "per_category": {
+   "ATP_CHALL": {
+    "n": 53,
+    "gap": {
+     "n": 53,
+     "min": -2,
+     "p25": 1,
+     "median": 1,
+     "p75": 2,
+     "max": 10,
+     "mean": 1.8
+    },
+    "feasible_then_broken": 2,
+    "infeasible_from_placement": 51,
+    "naked_pnl": -28
+   },
+   "ATP_MAIN": {
+    "n": 32,
+    "gap": {
+     "n": 32,
+     "min": -3,
+     "p25": 1,
+     "median": 1,
+     "p75": 2,
+     "max": 52,
+     "mean": 3.0
+    },
+    "feasible_then_broken": 0,
+    "infeasible_from_placement": 32,
+    "naked_pnl": -138
+   },
+   "WTA_CHALL": {
+    "n": 7,
+    "gap": {
+     "n": 7,
+     "min": 1,
+     "p25": 1,
+     "median": 1,
+     "p75": 1,
+     "max": 1,
+     "mean": 1.0
+    },
+    "feasible_then_broken": 0,
+    "infeasible_from_placement": 7,
+    "naked_pnl": 6
+   },
+   "WTA_MAIN": {
+    "n": 42,
+    "gap": {
+     "n": 42,
+     "min": -1,
+     "p25": 1,
+     "median": 1,
+     "p75": 2,
+     "max": 61,
+     "mean": 3.5
+    },
+    "feasible_then_broken": 0,
+    "infeasible_from_placement": 42,
+    "naked_pnl": -95
+   }
+  }
+ },
+ "time_structure": {
+  "INFEASIBLE_FROM_PLACEMENT": 132,
+  "FEASIBLE_AT_PLACEMENT_THEN_BROKEN": 2
+ },
+ "GUARD": {
+  "rule": "withhold a rest at level L unless 99-L >= sibling_contemporaneous_ask - T (evaluated at the fill/cap-setting instant)",
+  "sweep": {
+   "T=0": {
+    "withheld_of_134": 116,
+    "withheld_naked_loss_cents": -232,
+    "completed_pairs_forfeited": 162,
+    "completed_locked_forfeited_cents": 365,
+    "winning_naked_forfeited": 96,
+    "winning_naked_forfeited_cents": 248
+   },
+   "T=2": {
+    "withheld_of_134": 20,
+    "withheld_naked_loss_cents": -121,
+    "completed_pairs_forfeited": 16,
+    "completed_locked_forfeited_cents": 85,
+    "winning_naked_forfeited": 7,
+    "winning_naked_forfeited_cents": 59
+   },
+   "T=3": {
+    "withheld_of_134": 11,
+    "withheld_naked_loss_cents": -106,
+    "completed_pairs_forfeited": 10,
+    "completed_locked_forfeited_cents": 68,
+    "winning_naked_forfeited": 4,
+    "winning_naked_forfeited_cents": 56
+   },
+   "T=5": {
+    "withheld_of_134": 5,
+    "withheld_naked_loss_cents": -87,
+    "completed_pairs_forfeited": 7,
+    "completed_locked_forfeited_cents": 62,
+    "winning_naked_forfeited": 2,
+    "winning_naked_forfeited_cents": 53
+   },
+   "T=10": {
+    "withheld_of_134": 3,
+    "withheld_naked_loss_cents": -79,
+    "completed_pairs_forfeited": 2,
+    "completed_locked_forfeited_cents": 4,
+    "winning_naked_forfeited": 1,
+    "winning_naked_forfeited_cents": 2
+   }
+  },
+  "two_columns": "benefit = 134 infeasible-cap naked withheld (avoid the -loss); cost = completed pairs forfeited (first-fill blocked though sibling later dropped) + winning naked legs withheld"
+ },
+ "named": {
+  "26JUL18ROCBUE": {
+   "code": "26JUL18ROCBUE",
+   "cat": "ATP_MAIN",
+   "filled": "ROC",
+   "entry": 73,
+   "filled_reach": 16,
+   "filled_seller_low": 74,
+   "filled_qual_low": null,
+   "sibling": "BUE",
+   "sibling_cap": 26,
+   "sibling_ask_fill": 78,
+   "sibling_bid_fill": 8,
+   "sibling_spread": 70,
+   "sibling_reach": 82,
+   "infeasibility_gap": 52,
+   "time_structure": "INFEASIBLE_FROM_PLACEMENT",
+   "naked_pnl": -57
+  },
+  "26JUL17KREZHE": {
+   "code": "26JUL17KREZHE",
+   "cat": "WTA_MAIN",
+   "filled": "KRE",
+   "entry": 74,
+   "filled_reach": 51,
+   "filled_seller_low": 75,
+   "filled_qual_low": null,
+   "sibling": "ZHE",
+   "sibling_cap": 25,
+   "sibling_ask_fill": 86,
+   "sibling_bid_fill": 8,
+   "sibling_spread": 78,
+   "sibling_reach": 48,
+   "infeasibility_gap": 61,
+   "time_structure": "INFEASIBLE_FROM_PLACEMENT",
+   "naked_pnl": -22
+  },
+  "26JUL15BORDIM": {
+   "code": "26JUL15BORDIM",
+   "cat": "ATP_MAIN",
+   "filled": "DIM",
+   "entry": 47,
+   "filled_reach": 33,
+   "filled_seller_low": 47,
+   "filled_qual_low": null,
+   "sibling": "BOR",
+   "sibling_cap": 52,
+   "sibling_ask_fill": 53,
+   "sibling_bid_fill": 50,
+   "sibling_spread": 3,
+   "sibling_reach": 64,
+   "infeasibility_gap": 1,
+   "time_structure": "INFEASIBLE_FROM_PLACEMENT",
+   "naked_pnl": -13
+  },
+  "26JUL14PUTJEA": {
+   "code": "26JUL14PUTJEA",
+   "cat": "WTA_MAIN",
+   "filled": "JEA",
+   "entry": 64,
+   "filled_reach": null,
+   "sibling": "PUT",
+   "sibling_cap": 35,
+   "sibling_ask_fill": 75,
+   "sibling_bid_fill": 21,
+   "sibling_spread": 54,
+   "sibling_reach": null,
+   "infeasibility_gap": 40,
+   "time_structure": "INFEASIBLE_FROM_PLACEMENT",
+   "naked_pnl": null
+  }
+ }
+}

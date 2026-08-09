@@ -1,0 +1,453 @@
+{
+ "LABEL": "CONVICTION_LAG_REMOVAL",
+ "machine": "V41 with confirmation gates removed: (1) ARM at first evidence (riser join from first observation, no 300s/seller-hit/2nd-visit; T5-class, false-arm ~4c pop-wide per 084df125); (2) WALK without lag (faller reprices every receipt to running evidence low). Else V41 byte-identical. CANON crediting; true book per a30f5ccd. Converts the two lag classes (PRETRIGGER 172 via arm-risers/walk-fallers + FLOW_BELOW 94); FLOW_ABOVE/NO_FLOW_NEAR untouched.",
+ "rows": {
+  "V41": {
+   "completed": 243,
+   "under_par": 243,
+   "locked": 732,
+   "naked_pnl": 50,
+   "true_book": 782,
+   "frontier": {
+    "<=93": 15,
+    "<=95": 35,
+    "<=97": 82,
+    "<100": 243
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "comp": 90,
+     "locked": 280,
+     "naked": 145
+    },
+    "ATP_MAIN": {
+     "comp": 66,
+     "locked": 243,
+     "naked": -72
+    },
+    "WTA_CHALL": {
+     "comp": 28,
+     "locked": 85,
+     "naked": 65
+    },
+    "WTA_MAIN": {
+     "comp": 59,
+     "locked": 124,
+     "naked": -88
+    }
+   },
+   "new_fills": 0,
+   "new_naked": 0,
+   "regressions": 0
+  },
+  "ARM": {
+   "completed": 313,
+   "under_par": 313,
+   "locked": 925,
+   "naked_pnl": 76,
+   "true_book": 1001,
+   "frontier": {
+    "<=93": 17,
+    "<=95": 39,
+    "<=97": 95,
+    "<100": 313
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "comp": 129,
+     "locked": 388,
+     "naked": 162
+    },
+    "ATP_MAIN": {
+     "comp": 79,
+     "locked": 296,
+     "naked": -84
+    },
+    "WTA_CHALL": {
+     "comp": 33,
+     "locked": 98,
+     "naked": 67
+    },
+    "WTA_MAIN": {
+     "comp": 72,
+     "locked": 143,
+     "naked": -69
+    }
+   },
+   "new_fills": 133,
+   "new_naked": 59,
+   "regressions": 0
+  },
+  "WALK": {
+   "completed": 284,
+   "under_par": 284,
+   "locked": 803,
+   "naked_pnl": -8,
+   "true_book": 795,
+   "frontier": {
+    "<=93": 15,
+    "<=95": 35,
+    "<=97": 89,
+    "<100": 284
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "comp": 109,
+     "locked": 316,
+     "naked": 128
+    },
+    "ATP_MAIN": {
+     "comp": 75,
+     "locked": 260,
+     "naked": -97
+    },
+    "WTA_CHALL": {
+     "comp": 35,
+     "locked": 96,
+     "naked": 47
+    },
+    "WTA_MAIN": {
+     "comp": 65,
+     "locked": 131,
+     "naked": -86
+    }
+   },
+   "new_fills": 124,
+   "new_naked": 69,
+   "regressions": 0
+  },
+  "BOTH": {
+   "completed": 363,
+   "under_par": 363,
+   "locked": 1010,
+   "naked_pnl": -15,
+   "true_book": 995,
+   "frontier": {
+    "<=93": 17,
+    "<=95": 39,
+    "<=97": 103,
+    "<100": 363
+   },
+   "by_cat": {
+    "ATP_CHALL": {
+     "comp": 155,
+     "locked": 436,
+     "naked": 117
+    },
+    "ATP_MAIN": {
+     "comp": 89,
+     "locked": 314,
+     "naked": -112
+    },
+    "WTA_CHALL": {
+     "comp": 40,
+     "locked": 109,
+     "naked": 51
+    },
+    "WTA_MAIN": {
+     "comp": 79,
+     "locked": 151,
+     "naked": -71
+    }
+   },
+   "new_fills": 250,
+   "new_naked": 103,
+   "regressions": 0
+  }
+ },
+ "cost_columns": {
+  "false_arm_exposure_cents_pop": 4,
+  "false_arm_note": "T5 arming false-arm cost 4c population-wide (frontier 084df125)",
+  "adverse_fill_distribution": {
+   "n": 129,
+   "min": -10,
+   "p25": 0,
+   "median": 1,
+   "p75": 2,
+   "max": 47,
+   "mean": 1.5
+  },
+  "adverse_note": "walk fill (running evidence low Qlow) minus eventual low (union_reach); >0 = filled shallower/earlier than the bottom",
+  "new_naked_by_machine": {
+   "V41": 0,
+   "ARM": 59,
+   "WALK": 69,
+   "BOTH": 103
+  }
+ },
+ "named": {
+  "PENTHA": {
+   "cat": "WTA_CHALL",
+   "PEN": {
+    "dir": "UNKNOWN",
+    "cred0": false,
+    "entry": null,
+    "rest": 76,
+    "reach": 22,
+    "qlow": 77,
+    "census": "NO_FLOW_NEAR",
+    "fills": {
+     "V41": null,
+     "ARM": null,
+     "WALK": null,
+     "BOTH": null
+    }
+   },
+   "THA": {
+    "dir": "UNKNOWN",
+    "cred0": false,
+    "entry": null,
+    "rest": 22,
+    "reach": 20,
+    "qlow": 24,
+    "census": "FLOW_BELOW_REST",
+    "fills": {
+     "V41": null,
+     "ARM": null,
+     "WALK": 24,
+     "BOTH": 24
+    }
+   },
+   "combined": {
+    "V41": null,
+    "ARM": null,
+    "WALK": null,
+    "BOTH": null
+   }
+  },
+  "KIRSEK": {
+   "cat": "ATP_CHALL",
+   "KIR": {
+    "dir": "CLIMBING",
+    "cred0": false,
+    "entry": null,
+    "rest": 30,
+    "reach": 28,
+    "qlow": 28,
+    "census": "FLOW_AT_REST_PRETRIGGER",
+    "fills": {
+     "V41": null,
+     "ARM": 30,
+     "WALK": null,
+     "BOTH": 30
+    }
+   },
+   "SEK": {
+    "dir": "FALLING",
+    "cred0": true,
+    "entry": 17,
+    "rest": 17,
+    "reach": 68,
+    "qlow": null,
+    "census": null,
+    "fills": {
+     "V41": 17,
+     "ARM": 17,
+     "WALK": 17,
+     "BOTH": 17
+    }
+   },
+   "combined": {
+    "V41": null,
+    "ARM": 47,
+    "WALK": null,
+    "BOTH": 47
+   }
+  },
+  "VANLEE": {
+   "cat": "WTA_CHALL",
+   "LEE": {
+    "dir": "UNKNOWN",
+    "cred0": false,
+    "entry": null,
+    "rest": 44,
+    "reach": 1,
+    "qlow": 45,
+    "census": "NO_FLOW_NEAR",
+    "fills": {
+     "V41": null,
+     "ARM": null,
+     "WALK": null,
+     "BOTH": null
+    }
+   },
+   "VAN": {
+    "dir": "UNKNOWN",
+    "cred0": false,
+    "entry": null,
+    "rest": 54,
+    "reach": 53,
+    "qlow": 55,
+    "census": "FLOW_BELOW_REST",
+    "fills": {
+     "V41": null,
+     "ARM": null,
+     "WALK": 55,
+     "BOTH": 55
+    }
+   },
+   "combined": {
+    "V41": null,
+    "ARM": null,
+    "WALK": null,
+    "BOTH": null
+   }
+  },
+  "MCKOUA": {
+   "cat": "ATP_CHALL",
+   "MCK": {
+    "dir": "FALLING",
+    "cred0": false,
+    "entry": null,
+    "rest": 55,
+    "reach": 54,
+    "qlow": 56,
+    "census": "FLOW_BELOW_REST",
+    "fills": {
+     "V41": null,
+     "ARM": null,
+     "WALK": 56,
+     "BOTH": 56
+    }
+   },
+   "OUA": {
+    "dir": "CLIMBING",
+    "cred0": false,
+    "entry": null,
+    "rest": 44,
+    "reach": 37,
+    "qlow": 37,
+    "census": "NO_FLOW_NEAR",
+    "fills": {
+     "V41": null,
+     "ARM": null,
+     "WALK": null,
+     "BOTH": null
+    }
+   },
+   "combined": {
+    "V41": null,
+    "ARM": null,
+    "WALK": null,
+    "BOTH": null
+   }
+  },
+  "ARNROM": {
+   "cat": "ATP_CHALL",
+   "ARN": {
+    "dir": "UNKNOWN",
+    "cred0": true,
+    "entry": 50,
+    "rest": 50,
+    "reach": 50,
+    "qlow": null,
+    "census": null,
+    "fills": {
+     "V41": 50,
+     "ARM": 50,
+     "WALK": 50,
+     "BOTH": 50
+    }
+   },
+   "ROM": {
+    "dir": "UNKNOWN",
+    "cred0": true,
+    "entry": 40,
+    "rest": 40,
+    "reach": 38,
+    "qlow": null,
+    "census": null,
+    "fills": {
+     "V41": 40,
+     "ARM": 40,
+     "WALK": 40,
+     "BOTH": 40
+    }
+   },
+   "combined": {
+    "V41": 90,
+    "ARM": 90,
+    "WALK": 90,
+    "BOTH": 90
+   }
+  },
+  "KRUFER": {
+   "cat": "ATP_MAIN",
+   "FER": {
+    "dir": "UNKNOWN",
+    "cred0": true,
+    "entry": 43,
+    "rest": 44,
+    "reach": 1,
+    "qlow": 44,
+    "census": null,
+    "fills": {
+     "V41": 43,
+     "ARM": 43,
+     "WALK": 43,
+     "BOTH": 43
+    }
+   },
+   "KRU": {
+    "dir": "UNKNOWN",
+    "cred0": true,
+    "entry": 53,
+    "rest": 56,
+    "reach": 49,
+    "qlow": 54,
+    "census": null,
+    "fills": {
+     "V41": 53,
+     "ARM": 53,
+     "WALK": 53,
+     "BOTH": 53
+    }
+   },
+   "combined": {
+    "V41": 96,
+    "ARM": 96,
+    "WALK": 96,
+    "BOTH": 96
+   }
+  },
+  "BOSCOP": {
+   "cat": "ATP_CHALL",
+   "BOS": {
+    "dir": "UNKNOWN",
+    "cred0": true,
+    "entry": 30,
+    "rest": 31,
+    "reach": 28,
+    "qlow": 32,
+    "census": null,
+    "fills": {
+     "V41": 30,
+     "ARM": 30,
+     "WALK": 30,
+     "BOTH": 30
+    }
+   },
+   "COP": {
+    "dir": "UNKNOWN",
+    "cred0": true,
+    "entry": 64,
+    "rest": 64,
+    "reach": 47,
+    "qlow": null,
+    "census": null,
+    "fills": {
+     "V41": 64,
+     "ARM": 64,
+     "WALK": 64,
+     "BOTH": 64
+    }
+   },
+   "combined": {
+    "V41": 94,
+    "ARM": 94,
+    "WALK": 94,
+    "BOTH": 94
+   }
+  }
+ }
+}

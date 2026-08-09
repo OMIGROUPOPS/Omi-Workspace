@@ -1,0 +1,471 @@
+{
+ "LABEL": "THE_561_UNFILLED_MISS_GEOMETRY",
+ "population": {
+  "measured_unfilled_legs": 779,
+  "never_placed": 4,
+  "admitted_unfilled": 775,
+  "op_stated_561": "operator population 561 (=343 naked + 218 skip-legs minus 218 admission-nulls) NOT reproduced: measured 779 unfilled with only 4 NEVER_PLACED (admission-null); skip legs are RESTING_UNFILLED, not admission-null. Censused all 779, classified exactly once."
+ },
+ "classification_rule": "R*=resting_target_at_edge (else join level, else bid-1). F=union_reach. nearest=|F-R*|. NEVER_PLACED(no rest armed) > NO_FLOW_NEAR(F null or nearest>3c) > FLOW_ABOVE_REST(F>R*, rest too deep) > FLOW_AT_REST_PRETRIGGER(F<=R* & flow ts < rest-armed ts) > FLOW_BELOW_REST(F<=R*, rest too shallow/slow).",
+ "class_totals": {
+  "FLOW_BELOW_REST": {
+   "n": 94,
+   "nearest_cents": 66
+  },
+  "FLOW_ABOVE_REST": {
+   "n": 349,
+   "nearest_cents": 538
+  },
+  "FLOW_AT_REST_PRETRIGGER": {
+   "n": 172,
+   "nearest_cents": 119
+  },
+  "NO_FLOW_NEAR": {
+   "n": 160,
+   "nearest_cents": 2507
+  },
+  "NEVER_PLACED": {
+   "n": 4,
+   "nearest_cents": 0
+  }
+ },
+ "per_category": {
+  "FLOW_BELOW_REST": {
+   "ATP_CHALL": {
+    "n": 54,
+    "nearest": {
+     "n": 54,
+     "total": 38,
+     "median": 0,
+     "max": 3
+    }
+   },
+   "ATP_MAIN": {
+    "n": 10,
+    "nearest": {
+     "n": 10,
+     "total": 15,
+     "median": 2,
+     "max": 3
+    }
+   },
+   "WTA_CHALL": {
+    "n": 22,
+    "nearest": {
+     "n": 22,
+     "total": 11,
+     "median": 0,
+     "max": 2
+    }
+   },
+   "WTA_MAIN": {
+    "n": 8,
+    "nearest": {
+     "n": 8,
+     "total": 2,
+     "median": 0,
+     "max": 1
+    }
+   }
+  },
+  "FLOW_ABOVE_REST": {
+   "ATP_CHALL": {
+    "n": 185,
+    "nearest": {
+     "n": 185,
+     "total": 290,
+     "median": 1,
+     "max": 3
+    }
+   },
+   "ATP_MAIN": {
+    "n": 34,
+    "nearest": {
+     "n": 34,
+     "total": 59,
+     "median": 2,
+     "max": 3
+    }
+   },
+   "WTA_CHALL": {
+    "n": 78,
+    "nearest": {
+     "n": 78,
+     "total": 116,
+     "median": 1,
+     "max": 3
+    }
+   },
+   "WTA_MAIN": {
+    "n": 52,
+    "nearest": {
+     "n": 52,
+     "total": 73,
+     "median": 1,
+     "max": 3
+    }
+   }
+  },
+  "FLOW_AT_REST_PRETRIGGER": {
+   "ATP_CHALL": {
+    "n": 96,
+    "nearest": {
+     "n": 96,
+     "total": 79,
+     "median": 1,
+     "max": 3
+    }
+   },
+   "ATP_MAIN": {
+    "n": 27,
+    "nearest": {
+     "n": 27,
+     "total": 18,
+     "median": 0,
+     "max": 3
+    }
+   },
+   "WTA_CHALL": {
+    "n": 23,
+    "nearest": {
+     "n": 23,
+     "total": 6,
+     "median": 0,
+     "max": 2
+    }
+   },
+   "WTA_MAIN": {
+    "n": 26,
+    "nearest": {
+     "n": 26,
+     "total": 16,
+     "median": 0,
+     "max": 3
+    }
+   }
+  },
+  "NO_FLOW_NEAR": {
+   "ATP_CHALL": {
+    "n": 56,
+    "nearest": {
+     "n": 50,
+     "total": 547,
+     "median": 7,
+     "max": 65
+    }
+   },
+   "ATP_MAIN": {
+    "n": 27,
+    "nearest": {
+     "n": 23,
+     "total": 402,
+     "median": 9,
+     "max": 56
+    }
+   },
+   "WTA_CHALL": {
+    "n": 51,
+    "nearest": {
+     "n": 51,
+     "total": 1309,
+     "median": 19,
+     "max": 70
+    }
+   },
+   "WTA_MAIN": {
+    "n": 26,
+    "nearest": {
+     "n": 18,
+     "total": 249,
+     "median": 6,
+     "max": 53
+    }
+   }
+  },
+  "NEVER_PLACED": {
+   "ATP_CHALL": {
+    "n": 2,
+    "nearest": null
+   },
+   "ATP_MAIN": {
+    "n": 2,
+    "nearest": null
+   },
+   "WTA_CHALL": {
+    "n": 0,
+    "nearest": null
+   },
+   "WTA_MAIN": {
+    "n": 0,
+    "nearest": null
+   }
+  }
+ },
+ "conservation": {
+  "sum_classified": 779,
+  "unfilled": 779,
+  "exactly_once": true
+ },
+ "top20_diagnosable": [
+  {
+   "value": 58,
+   "code": "26JUL13PENTHA",
+   "cat": "WTA_CHALL",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "THA",
+   "filled_or_partner": "PEN",
+   "partner_px": 22,
+   "this_reach": 20,
+   "rest": 22,
+   "nearest_miss": 2,
+   "game_type": "skip"
+  },
+  {
+   "value": 55,
+   "code": "26JUL14KIRSEK",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_AT_REST_PRETRIGGER",
+   "unfilled": "KIR",
+   "filled_or_partner": "SEK",
+   "partner_px": 17,
+   "this_reach": 28,
+   "rest": 30,
+   "nearest_miss": 2,
+   "game_type": "naked"
+  },
+  {
+   "value": 49,
+   "code": "26JUL18ZAKVAN",
+   "cat": "WTA_CHALL",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "VAN",
+   "filled_or_partner": "ZAK",
+   "partner_px": 1,
+   "this_reach": 50,
+   "rest": 49,
+   "nearest_miss": 1,
+   "game_type": "skip"
+  },
+  {
+   "value": 46,
+   "code": "26JUL13VANLEE",
+   "cat": "WTA_CHALL",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "VAN",
+   "filled_or_partner": "LEE",
+   "partner_px": 1,
+   "this_reach": 53,
+   "rest": 54,
+   "nearest_miss": 1,
+   "game_type": "skip"
+  },
+  {
+   "value": 37,
+   "code": "26JUL12OFNTIR",
+   "cat": "ATP_MAIN",
+   "klass": "FLOW_AT_REST_PRETRIGGER",
+   "unfilled": "TIR",
+   "filled_or_partner": "OFN",
+   "partner_px": 6,
+   "this_reach": 57,
+   "rest": 57,
+   "nearest_miss": 0,
+   "game_type": "naked"
+  },
+  {
+   "value": 32,
+   "code": "26JUL12ERJBOS",
+   "cat": "WTA_CHALL",
+   "klass": "FLOW_AT_REST_PRETRIGGER",
+   "unfilled": "BOS",
+   "filled_or_partner": "ERJ",
+   "partner_px": 51,
+   "this_reach": 17,
+   "rest": 19,
+   "nearest_miss": 2,
+   "game_type": "skip"
+  },
+  {
+   "value": 21,
+   "code": "26JUL14HRUBUY",
+   "cat": "WTA_CHALL",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "HRU",
+   "filled_or_partner": "BUY",
+   "partner_px": 1,
+   "this_reach": 78,
+   "rest": 79,
+   "nearest_miss": 1,
+   "game_type": "skip"
+  },
+  {
+   "value": 14,
+   "code": "26JUL20AKSCOS",
+   "cat": "WTA_MAIN",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "COS",
+   "filled_or_partner": "AKS",
+   "partner_px": 18,
+   "this_reach": 68,
+   "rest": 69,
+   "nearest_miss": 1,
+   "game_type": "skip"
+  },
+  {
+   "value": 12,
+   "code": "26JUL19BOHBOU",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "BOU",
+   "filled_or_partner": "BOH",
+   "partner_px": 5,
+   "this_reach": 83,
+   "rest": 86,
+   "nearest_miss": 3,
+   "game_type": "naked"
+  },
+  {
+   "value": 10,
+   "code": "26JUL19VANFAR",
+   "cat": "ATP_MAIN",
+   "klass": "FLOW_AT_REST_PRETRIGGER",
+   "unfilled": "FAR",
+   "filled_or_partner": "VAN",
+   "partner_px": 36,
+   "this_reach": 54,
+   "rest": 55,
+   "nearest_miss": 1,
+   "game_type": "skip"
+  },
+  {
+   "value": 9,
+   "code": "26JUL13ROZISO",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "ISO",
+   "filled_or_partner": "ROZ",
+   "partner_px": 63,
+   "this_reach": 28,
+   "rest": 27,
+   "nearest_miss": 1,
+   "game_type": "naked"
+  },
+  {
+   "value": 9,
+   "code": "26JUL19MCKOUA",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "MCK",
+   "filled_or_partner": "OUA",
+   "partner_px": 37,
+   "this_reach": 54,
+   "rest": 55,
+   "nearest_miss": 1,
+   "game_type": "skip"
+  },
+  {
+   "value": 9,
+   "code": "26JUL19WAWBUR",
+   "cat": "ATP_MAIN",
+   "klass": "FLOW_AT_REST_PRETRIGGER",
+   "unfilled": "BUR",
+   "filled_or_partner": "WAW",
+   "partner_px": 29,
+   "this_reach": 62,
+   "rest": 65,
+   "nearest_miss": 3,
+   "game_type": "skip"
+  },
+  {
+   "value": 8,
+   "code": "26JUL12BARREI",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "REI",
+   "filled_or_partner": "BAR",
+   "partner_px": 61,
+   "this_reach": 31,
+   "rest": 28,
+   "nearest_miss": 3,
+   "game_type": "skip"
+  },
+  {
+   "value": 8,
+   "code": "26JUL13OUALIN",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_AT_REST_PRETRIGGER",
+   "unfilled": "LIN",
+   "filled_or_partner": "OUA",
+   "partner_px": 75,
+   "this_reach": 17,
+   "rest": 18,
+   "nearest_miss": 1,
+   "game_type": "skip"
+  },
+  {
+   "value": 8,
+   "code": "26JUL19SINMAT",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "SIN",
+   "filled_or_partner": "MAT",
+   "partner_px": 61,
+   "this_reach": 31,
+   "rest": 28,
+   "nearest_miss": 3,
+   "game_type": "skip"
+  },
+  {
+   "value": 8,
+   "code": "26JUL19VUKGEA",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "VUK",
+   "filled_or_partner": "GEA",
+   "partner_px": 61,
+   "this_reach": 31,
+   "rest": 34,
+   "nearest_miss": 3,
+   "game_type": "skip"
+  },
+  {
+   "value": 8,
+   "code": "26JUL12HERKAZ",
+   "cat": "WTA_MAIN",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "HER",
+   "filled_or_partner": "KAZ",
+   "partner_px": 46,
+   "this_reach": 46,
+   "rest": 45,
+   "nearest_miss": 1,
+   "game_type": "naked"
+  },
+  {
+   "value": 7,
+   "code": "26JUL15SANERE",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "SAN",
+   "filled_or_partner": "ERE",
+   "partner_px": 50,
+   "this_reach": 43,
+   "rest": 42,
+   "nearest_miss": 1,
+   "game_type": "naked"
+  },
+  {
+   "value": 7,
+   "code": "26JUL19CASVAS",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "CAS",
+   "filled_or_partner": "VAS",
+   "partner_px": 54,
+   "this_reach": 39,
+   "rest": 38,
+   "nearest_miss": 1,
+   "game_type": "naked"
+  }
+ ]
+}

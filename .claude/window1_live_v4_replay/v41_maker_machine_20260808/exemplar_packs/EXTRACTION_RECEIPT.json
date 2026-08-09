@@ -1,0 +1,16 @@
+{
+ "schema_version": "V41_DECISION_MARKS_EXTRACTION_RECEIPT_V1",
+ "source_v41_commit": "96d33316b0c0020b46b71569fcdbadeaa97a64e3",
+ "standing_template_commit": "bd9e2afdcc5a8c4414438771d33c8229fb2bf1cd",
+ "replay_invocations": 0,
+ "files": {
+  "ROUJAK_V41_DECISION_MARKS.json": {
+   "sha256": "58a9c67ddd6ed519bb2cdb400896d897c6fb3867eea36dd6c16a3e8974a4e1be",
+   "bytes": 531499
+  },
+  "PUTJEA_V41_DECISION_MARKS.json": {
+   "sha256": "4b5a310560e0e8f78d463eecc6afe01dabd2d71e04a091ec01d980626e2861b8",
+   "bytes": 33393
+  }
+ }
+}

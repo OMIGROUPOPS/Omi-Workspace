@@ -1,0 +1,31 @@
+{
+  "schema_version": "window1-v43-re-adjudication-source-binding-v1",
+  "package_commit": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+  "files": {
+    "ATTRIBUTION_SCORECARD.json": {
+      "sha256": "d776fb451a6b7735b9db106e63d52fcce32f2bf1b6adba1a362dd88d1da37067",
+      "bytes": 53686
+    },
+    "NAMED_V43_RECEIPT.json": {
+      "sha256": "1da769b288fbb13fb840ba01116791ebbe427e93ca17618f7c6708c8227a69db",
+      "bytes": 60717
+    },
+    "COMPOSITION_ACCEPTANCE_BAR.json": {
+      "sha256": "a6bed62dd227fc155eee794134c1a38d4e2919d25bc1ef59d49ea452129ed911",
+      "bytes": 657
+    },
+    "CONSTRUCTION_STATUS.json": {
+      "sha256": "b7125ea7a305e70cbc245c56c33b06af001f9654c1f3b1e22351c08a431cb9e6",
+      "bytes": 307
+    },
+    "FULL_BOOK_PNL.json": {
+      "sha256": "c89c1d440f9527e8193e6ab47257fc5699996692cfffc75e36f60175aac0e9f2",
+      "bytes": 14508
+    },
+    "DEEP_GAP_GUARD_ALONE_RECEIPT.json": {
+      "sha256": "353153e0d6df9d0aeb18b81b33f534feafff3631f541056a804f71ef75604a69",
+      "bytes": 394410
+    }
+  },
+  "all_hashes_verified": true
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "window1-v43-re-adjudication-v1",
+  "ruling": "V43_OPERATIVE_REPLAY_BASELINE_UNDEPLOYED",
+  "effective_date": "2026-08-09",
+  "frozen_machine_package_commit": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+  "frozen_machine_parent": "96d33316b0c0020b46b71569fcdbadeaa97a64e3",
+  "policy_or_score_replay_changed": false,
+  "original_receipts_rewritten": false,
+  "supersedes": {
+    "construction_status": "BLOCKED_NOT_OPERATIVE",
+    "construction_status_sha256": "b7125ea7a305e70cbc245c56c33b06af001f9654c1f3b1e22351c08a431cb9e6",
+    "acceptance_bar_sha256": "a6bed62dd227fc155eee794134c1a38d4e2919d25bc1ef59d49ea452129ed911",
+    "scope": "ADJUDICATION_ONLY"
+  },
+  "corrected_named_check_law": {
+    "completion": "PASS_IFF_OBSERVED_COMBINED_ENTRY_CENTS_IS_LE_REQUIRED_COMBINED_ENTRY_CENTS",
+    "mechanism": "BIND_GUARD_REASON_AND_APPLICABLE_FILL_CLASS_NEVER_A_SPECIFIC_TICK_BOOK_VALUE",
+    "better_than_required_is_a_pass": true,
+    "specific_tick_bid_ask_last_dwell_values_are_acceptance_inputs": false
+  },
+  "numeric_bar": {
+    "completed_pairs": 395,
+    "completed_pairs_minimum": 313,
+    "true_book_net_cents": 1748,
+    "true_book_strict_minimum_cents": 1001,
+    "pass": true
+  },
+  "named_checks": {
+    "KIRSEK": {
+      "required_combined_cents": 47,
+      "observed_combined_cents": 24,
+      "fill_classes": [
+        "MARKET_REACH_PRINT_CROSS",
+        "MARKET_REACH_TRADED_AT_LEVEL"
+      ],
+      "pass": true
+    },
+    "ARNROM": {
+      "required_combined_cents": 90,
+      "observed_combined_cents": 89,
+      "fill_classes": [
+        "MARKET_REACH_PRINT_CROSS",
+        "MARKET_REACH_PRINT_CROSS"
+      ],
+      "pass": true
+    },
+    "BOSCOP": {
+      "required_combined_cents": 94,
+      "observed_combined_cents": 80,
+      "fill_classes": [
+        "MARKET_REACH_PRINT_CROSS",
+        "MARKET_REACH_TRADED_AT_LEVEL"
+      ],
+      "pass": true
+    },
+    "KRUFER": {
+      "required_combined_cents": 96,
+      "observed_combined_cents": 96,
+      "fill_classes": [
+        "MARKET_REACH_PRINT_CROSS",
+        "MARKET_REACH_PRINT_CROSS"
+      ],
+      "pass": true
+    },
+    "PUTJEA": {
+      "required_mechanism": "DEEP_GAP_FEASIBILITY_GUARD_WITHHOLD",
+      "observed_guard_reason": "V42_DEEP_GAP_FEASIBILITY_WITHHOLD",
+      "observed_target_cents": 64,
+      "observed_implied_sibling_cap_cents": 35,
+      "specific_sibling_ask_value_bound": false,
+      "pass": true
+    },
+    "BORDIM": {
+      "required_mechanism": "DIM_NOT_WITHHELD",
+      "observed_dim_fill_class": "MARKET_REACH_PRINT_CROSS",
+      "dim_withheld": false,
+      "pass": true
+    }
+  },
+  "zero_named_mechanism_regressions": true,
+  "standing_watch_items": [
+    {
+      "name": "NAKED_BOOK_PNL",
+      "value_cents": -162,
+      "status": "WATCH",
+      "acceptance_veto": false
+    }
+  ],
+  "operative_status": {
+    "replay_baseline": "V43",
+    "deployment_authority": false,
+    "live_cutover_authority": false
+  }
+}

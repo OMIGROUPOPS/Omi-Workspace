@@ -1,0 +1,29 @@
+{
+  "schema_version": "window1-v43-analytical-estimate-supersession-v1",
+  "ruling": "EXECUTABLE_ATTRIBUTION_SUPERSEDES_ANALYTICAL_DIAL_ESTIMATES",
+  "analytical_estimates": [
+    {
+      "commit": "9ddfe8c6fec868cf07f92c54c878fe9208253451",
+      "role": "ANALYTICAL_ESTIMATE",
+      "subject": "ARM_AT_FIRST_EVIDENCE"
+    },
+    {
+      "commit": "645e035bce12a4dcaf4cb7f10a3767fa898652a0",
+      "role": "ANALYTICAL_ESTIMATE",
+      "subject": "DEEP_GAP_FEASIBILITY_T10"
+    },
+    {
+      "commit": "52275c9d63be90eb16febd1d2cb10db00bd829c7",
+      "role": "ANALYTICAL_ESTIMATE",
+      "subject": "LOOSENING_PLUS_ONE_CENT"
+    }
+  ],
+  "controlling_executable_attribution": {
+    "commit": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+    "path": ".claude/window1_live_v4_replay/v43_composed_machine_20260809/ATTRIBUTION_SCORECARD.json",
+    "sha256": "d776fb451a6b7735b9db106e63d52fcce32f2bf1b6adba1a362dd88d1da37067",
+    "bytes": 53686
+  },
+  "analytical_estimates_are_acceptance_targets": false,
+  "executable_rows_are_controlling": true
+}

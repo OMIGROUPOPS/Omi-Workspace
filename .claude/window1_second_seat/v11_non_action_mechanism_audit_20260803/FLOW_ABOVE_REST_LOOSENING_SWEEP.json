@@ -1,0 +1,168 @@
+{
+ "LABEL": "FLOW_ABOVE_REST_LOOSENING_SWEEP",
+ "law": "V41 CANON reach-crediting re-scored with rest raised +k: tracking fills reprice +k (join fills unchanged); an uncredited FLOW_ABOVE leg converts ONLY if its reach is a TRADE within k (ask-dwell-above is unreachable \u2014 sanity forbids resting at/above the ask). Dynamic pair cap: comb>99 drops the shallower leg to naked. True book = locked + naked P&L (certified closes) per a30f5ccd.",
+ "flow_above_split": {
+  "above_1c": 208,
+  "above_2c": 93,
+  "above_3c": 48,
+  "total": 349,
+  "note": "+1 catches 60%, +2 cum 86%, +3 all; but only TRADED-sourced ones are maker-reachable"
+ },
+ "baseline_k0": {
+  "completed": 243,
+  "under_par": 243,
+  "locked": 732,
+  "naked_pnl": 50,
+  "true_book": 782
+ },
+ "per_k": {
+  "k=0": {
+   "completed": 243,
+   "under_par": 243,
+   "locked": 732,
+   "naked_pnl": 50,
+   "naked_n": 343,
+   "true_book": 782,
+   "by_cat": {
+    "ATP_CHALL": {
+     "locked": 280,
+     "naked": 145
+    },
+    "ATP_MAIN": {
+     "locked": 243,
+     "naked": -72
+    },
+    "WTA_CHALL": {
+     "locked": 85,
+     "naked": 65
+    },
+    "WTA_MAIN": {
+     "locked": 124,
+     "naked": -88
+    }
+   }
+  },
+  "k=1": {
+   "completed": 281,
+   "under_par": 281,
+   "locked": 799,
+   "naked_pnl": 34,
+   "naked_n": 398,
+   "true_book": 833,
+   "by_cat": {
+    "ATP_CHALL": {
+     "locked": 327,
+     "naked": 144
+    },
+    "ATP_MAIN": {
+     "locked": 244,
+     "naked": -76
+    },
+    "WTA_CHALL": {
+     "locked": 88,
+     "naked": 69
+    },
+    "WTA_MAIN": {
+     "locked": 140,
+     "naked": -103
+    }
+   }
+  },
+  "k=2": {
+   "completed": 264,
+   "under_par": 264,
+   "locked": 764,
+   "naked_pnl": -62,
+   "naked_n": 441,
+   "true_book": 702,
+   "by_cat": {
+    "ATP_CHALL": {
+     "locked": 303,
+     "naked": 95
+    },
+    "ATP_MAIN": {
+     "locked": 241,
+     "naked": -66
+    },
+    "WTA_CHALL": {
+     "locked": 82,
+     "naked": 39
+    },
+    "WTA_MAIN": {
+     "locked": 138,
+     "naked": -130
+    }
+   }
+  },
+  "k=3": {
+   "completed": 251,
+   "under_par": 251,
+   "locked": 746,
+   "naked_pnl": -205,
+   "naked_n": 467,
+   "true_book": 541,
+   "by_cat": {
+    "ATP_CHALL": {
+     "locked": 296,
+     "naked": 35
+    },
+    "ATP_MAIN": {
+     "locked": 237,
+     "naked": -75
+    },
+    "WTA_CHALL": {
+     "locked": 81,
+     "naked": -12
+    },
+    "WTA_MAIN": {
+     "locked": 132,
+     "naked": -153
+    }
+   }
+  }
+ },
+ "two_columns": {
+  "k=1": {
+   "GAINED": {
+    "new_fills": 155,
+    "new_completed_pairs": 38,
+    "added_locked_cents": 76
+   },
+   "COST": {
+    "reprice_margin_lost_cents": 30,
+    "new_naked_exposures": 85,
+    "pairs_over_par": 0,
+    "locked_lost_cents": 0
+   },
+   "NET_true_book_delta": 51
+  },
+  "k=2": {
+   "GAINED": {
+    "new_fills": 195,
+    "new_completed_pairs": 25,
+    "added_locked_cents": 49
+   },
+   "COST": {
+    "reprice_margin_lost_cents": 52,
+    "new_naked_exposures": 120,
+    "pairs_over_par": 0,
+    "locked_lost_cents": 11
+   },
+   "NET_true_book_delta": -80
+  },
+  "k=3": {
+   "GAINED": {
+    "new_fills": 206,
+    "new_completed_pairs": 14,
+    "added_locked_cents": 34
+   },
+   "COST": {
+    "reprice_margin_lost_cents": 75,
+    "new_naked_exposures": 138,
+    "pairs_over_par": 0,
+    "locked_lost_cents": 17
+   },
+   "NET_true_book_delta": -241
+  }
+ }
+}

@@ -1654,3 +1654,17 @@ so no recovery numerator is invented.
 
 Canonical package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/ff5880d11a88b0d12415f5371d7cbb61331957e4/.claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807/REPORT.md
+
+## V43 COMPOSED MACHINE - BLOCKED / NOT OPERATIVE - 2026-08-09
+
+V43 evaluates every combination of first-evidence arming, the T=10 deep-gap
+guard, and one-cent loosening on frozen V41. The combined executable row is
+395 completed/under-par and +1,748 cents true book, but the build is not an
+operative successor: receipt-priced single-clause rows and mandatory named
+fingerprints do not reproduce causally. The ARM and loosening source receipts
+are post-hoc re-scores, not executable decision streams. KIRSEK/ARNROM/BOSCOP
+are 24/89/80 rather than 47/90/94. No expected value was forced. V41 remains
+operative. Two clean builds match byte-for-byte and forbidden access is zero.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0fb17b6ceed17c4f51bbd/arb-executor/docs/research/window1/WINDOW1_V43_COMPOSED_MACHINE_20260809_ADDENDUM.md

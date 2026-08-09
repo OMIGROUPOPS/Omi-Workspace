@@ -1705,3 +1705,22 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/20a8be31082be357b62b
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/b3e5a0d131f33f3163bccb2164bb2cc926236c14/arb-executor/docs/research/window1/WINDOW1_V41_MAKER_MACHINE_20260808_ADDENDUM.md
+
+### 2026-08-09 - V43 COMPOSED MACHINE BLOCKED / NOT OPERATIVE
+
+V43 causally composed first-evidence arming, the T=10 deep-gap guard, and
+one-cent loosening on V41 across all eight attribution combinations. Its
+combined executable row clears the raw bar at 395 completed/under-par pairs
+and +1,748 cents true book, but construction fails. The controlling ARM and
+loosening receipts are post-hoc analysis repricings, not executable decision
+traces, so their mandated single-clause rows do not reproduce. Named results
+also diverge: KIRSEK 24, ARNROM 89, BOSCOP 80; only KRUFER 96 and BORDIM's
+non-withhold pass, while PUTJEA's exact 93-ask fingerprint does not. No value
+was forced. V43 is evidence only and V41 remains operative. Two clean builds
+matched 35/35 files; forbidden access is zero.
+
+Canonical evidence package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0fb17b6ceed17c4f51bbd/.claude/window1_live_v4_replay/v43_composed_machine_20260809/REPORT.md
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0fb17b6ceed17c4f51bbd/arb-executor/docs/research/window1/WINDOW1_V43_COMPOSED_MACHINE_20260809_ADDENDUM.md

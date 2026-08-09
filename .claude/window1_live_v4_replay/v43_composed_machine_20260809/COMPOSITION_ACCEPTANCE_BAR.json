@@ -1,0 +1,33 @@
+{
+  "completed_pairs": {
+    "value": 395,
+    "minimum": 313,
+    "pass": true
+  },
+  "true_book_net_cents": {
+    "value": 1748,
+    "strict_minimum": 1001,
+    "pass": true
+  },
+  "named_regressions": {
+    "pass": false,
+    "assertions": {
+      "KIRSEK_47": false,
+      "ARNROM_90": false,
+      "KRUFER_96": true,
+      "BOSCOP_94": false,
+      "PUTJEA_fingerprint_pass": false,
+      "BORDIM_DIM_not_withheld": true
+    }
+  },
+  "receipt_single_clause_reproduction": {
+    "pass": false,
+    "rows": {
+      "V41_BASELINE": true,
+      "C1_ARM_ONLY": false,
+      "C3_LOOSEN_ONLY": false,
+      "C2_GUARD_ONLY": false
+    }
+  },
+  "pass": false
+}

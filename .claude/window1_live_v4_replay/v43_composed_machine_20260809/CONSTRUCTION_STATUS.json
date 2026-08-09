@@ -1,0 +1,10 @@
+{
+  "status": "BLOCKED_NOT_OPERATIVE",
+  "operative_baseline": "V41_96d33316",
+  "reasons": [
+    "ANALYSIS_ONLY_RECEIPT_PRICING_DOES_NOT_REPRODUCE_AS_EXECUTABLE_RECEIPT_CAUSAL_POLICY",
+    "MANDATORY_NAMED_IDENTITIES_CHANGED"
+  ],
+  "no_forced_values": true,
+  "no_operative_supersession_on_block": true
+}

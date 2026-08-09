@@ -1,0 +1,96 @@
+{
+  "clause_1": {
+    "commit": "9ddfe8c6fec868cf07f92c54c878fe9208253451",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CONVICTION_LAG_REMOVAL.json",
+    "sha256": "9f4404adc2247099270381fb3f46e3a33044e97421f513c365935e3e686ed95b",
+    "controlling_row": {
+      "completed": 313,
+      "under_par": 313,
+      "locked": 925,
+      "naked_pnl": 76,
+      "true_book": 1001,
+      "frontier": {
+        "<=93": 17,
+        "<=95": 39,
+        "<=97": 95,
+        "<100": 313
+      },
+      "by_cat": {
+        "ATP_CHALL": {
+          "comp": 129,
+          "locked": 388,
+          "naked": 162
+        },
+        "ATP_MAIN": {
+          "comp": 79,
+          "locked": 296,
+          "naked": -84
+        },
+        "WTA_CHALL": {
+          "comp": 33,
+          "locked": 98,
+          "naked": 67
+        },
+        "WTA_MAIN": {
+          "comp": 72,
+          "locked": 143,
+          "naked": -69
+        }
+      },
+      "new_fills": 133,
+      "new_naked": 59,
+      "regressions": 0
+    },
+    "included": "ARM_AT_FIRST_EVIDENCE_ONLY",
+    "explicitly_excluded": "WALK_LAG_REMOVAL"
+  },
+  "clause_2": {
+    "commit": "645e035bce12a4dcaf4cb7f10a3767fa898652a0",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAP_UNFEASIBLE_CENSUS.json",
+    "sha256": "a8a1b01bcf57fdedce1827b29e65204f68f1e222db8db5579d9732a553b250e5",
+    "T10": {
+      "withheld_of_134": 3,
+      "withheld_naked_loss_cents": -79,
+      "completed_pairs_forfeited": 2,
+      "completed_locked_forfeited_cents": 4,
+      "winning_naked_forfeited": 1,
+      "winning_naked_forfeited_cents": 2,
+      "derived_net_cents": 73
+    },
+    "full_book_method_commit": "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f",
+    "full_book_method_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V41_FULL_BOOK_PNL.json",
+    "full_book_method_sha256": "b961449241201f7d059db644d54a910b0ecf2c805024319b63758458f6b4260a"
+  },
+  "clause_3": {
+    "commit": "52275c9d63be90eb16febd1d2cb10db00bd829c7",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FLOW_ABOVE_REST_LOOSENING_SWEEP.json",
+    "sha256": "268822ebf10c0e316a0ecacc6e01f83b9e1eca891938dd5e8c793853f4b744c7",
+    "controlling_row": {
+      "completed": 281,
+      "under_par": 281,
+      "locked": 799,
+      "naked_pnl": 34,
+      "naked_n": 398,
+      "true_book": 833,
+      "by_cat": {
+        "ATP_CHALL": {
+          "locked": 327,
+          "naked": 144
+        },
+        "ATP_MAIN": {
+          "locked": 244,
+          "naked": -76
+        },
+        "WTA_CHALL": {
+          "locked": 88,
+          "naked": 69
+        },
+        "WTA_MAIN": {
+          "locked": 140,
+          "naked": -103
+        }
+      }
+    },
+    "law": "V41 CANON reach-crediting re-scored with rest raised +k: tracking fills reprice +k (join fills unchanged); an uncredited FLOW_ABOVE leg converts ONLY if its reach is a TRADE within k (ask-dwell-above is unreachable — sanity forbids resting at/above the ask). Dynamic pair cap: comb>99 drops the shallower leg to naked. True book = locked + naked P&L (certified closes) per a30f5ccd."
+  }
+}

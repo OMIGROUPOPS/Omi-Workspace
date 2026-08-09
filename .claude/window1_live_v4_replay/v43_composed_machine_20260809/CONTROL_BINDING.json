@@ -1,0 +1,34 @@
+{
+  "schema_version": "window1-v43-composed-machine-control-v1",
+  "parent": "96d33316b0c0020b46b71569fcdbadeaa97a64e3",
+  "frozen_V41": "96d33316b0c0020b46b71569fcdbadeaa97a64e3",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "controlling_receipts": [
+    "9ddfe8c6fec868cf07f92c54c878fe9208253451",
+    "645e035bce12a4dcaf4cb7f10a3767fa898652a0",
+    "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f",
+    "52275c9d63be90eb16febd1d2cb10db00bd829c7"
+  ],
+  "architecture": {
+    "incumbent": "V41_BYTE_IDENTICAL_EXCEPT_EXPLICIT_RECEIPT_PRICED_CLAUSE_COMBINATIONS",
+    "clause_1": "RISING_PERSISTED_LEVEL_JOINABLE_FROM_FIRST_OBSERVATION_NO_300S_NO_SELLER_HIT_NO_SECOND_VISIT",
+    "excluded_from_clause_1": "WALK_LAG_REMOVAL_HELD_NOT_INCLUDED",
+    "clause_2": "REST_AT_L_UNLAWFUL_IFF_99_MINUS_L_IS_STRICTLY_LESS_THAN_SIBLING_CONTEMPORANEOUS_BEST_ASK_MINUS_10",
+    "clause_3": "TRACKING_REST_MIN_BEST_BID_PAIR_CAP_BEST_ASK_MINUS_1",
+    "pairwise_and_combined_attribution": true,
+    "take_path": "DELETED_IN_V41",
+    "pair_cap": "V41_UNCHANGED",
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V41_UNCHANGED"
+  },
+  "acceptance_bar": {
+    "true_book_net_cents_strictly_greater_than": 1001,
+    "completed_pairs_min": 313,
+    "zero_named_regressions": true
+  },
+  "fill_rulers": {
+    "market_scoring": "CANON_UNION_CHANNELS",
+    "build_verification": "STRICT_PRINT_CROSS",
+    "never_swapped": true
+  }
+}

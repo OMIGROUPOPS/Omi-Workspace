@@ -1,0 +1,1969 @@
+{
+  "ordered": {
+    "KIRSEK": "COMPLETES_AT_47_KIR_APPROX_30_VIA_FIRST_EVIDENCE_PLUS_SEK_17",
+    "ARNROM": "ZERO_REGRESSION_90",
+    "KRUFER": "ZERO_REGRESSION_96",
+    "BOSCOP": "ZERO_REGRESSION_94",
+    "PUTJEA": "JEA_REST_64_WITHHELD_AT_SIBLING_ASK_93_IMPLIED_CAP_35",
+    "BORDIM": "MARGINAL_ONE_CENT_GAP_MUST_NOT_BE_WITHHELD"
+  },
+  "observed": {
+    "KIRSEK": 24,
+    "ARNROM": 89,
+    "KRUFER": 96,
+    "BOSCOP": 80
+  },
+  "assertions": {
+    "KIRSEK_47": false,
+    "ARNROM_90": false,
+    "KRUFER_96": true,
+    "BOSCOP_94": false,
+    "PUTJEA_fingerprint_pass": false,
+    "BORDIM_DIM_not_withheld": true
+  },
+  "PUTJEA": {
+    "fingerprint": null,
+    "actions": [
+      {
+        "machine": "V43_ALL_THREE",
+        "mode": "MARKET_UNION_REACH",
+        "kind": "DEEP_GAP_WITHHOLD_START",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "timestamp_epoch": 1783952875,
+        "t_minus_scheduled_seconds": 73925,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 73925,
+        "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-717",
+        "trigger_leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "guard": {
+          "authority": true,
+          "withheld": true,
+          "reason": "V42_DEEP_GAP_FEASIBILITY_WITHHOLD",
+          "target_cents": 64,
+          "sibling_best_ask_cents": 83,
+          "implied_sibling_cap_cents": 35,
+          "deep_gap_cents": 48,
+          "tolerance_cents": 10,
+          "comparison": "35 < 83-10",
+          "active_target_guard": {
+            "authority": true,
+            "withheld": false,
+            "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+            "target_cents": 16,
+            "sibling_best_ask_cents": 83,
+            "implied_sibling_cap_cents": 83,
+            "deep_gap_cents": 0,
+            "tolerance_cents": 10,
+            "comparison": "83 >= 83-10"
+          }
+        },
+        "v41_action": null,
+        "v41_target_cents": null
+      },
+      {
+        "machine": "V43_ALL_THREE",
+        "mode": "MARKET_UNION_REACH",
+        "kind": "DEEP_GAP_WITHHOLD_LIFT",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "timestamp_epoch": 1783952988,
+        "t_minus_scheduled_seconds": 73812,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 73812,
+        "receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-221",
+        "trigger_leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+        "guard": {
+          "authority": true,
+          "withheld": false,
+          "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+          "target_cents": 64,
+          "sibling_best_ask_cents": 45,
+          "implied_sibling_cap_cents": 35,
+          "deep_gap_cents": 10,
+          "tolerance_cents": 10,
+          "comparison": "35 >= 45-10"
+        },
+        "v41_action": null,
+        "v41_target_cents": null
+      },
+      {
+        "machine": "V43_ALL_THREE",
+        "mode": "MARKET_UNION_REACH",
+        "kind": "DEEP_GAP_WITHHOLD_START",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "timestamp_epoch": 1783954835,
+        "t_minus_scheduled_seconds": 71965,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 71965,
+        "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-724",
+        "trigger_leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "guard": {
+          "authority": true,
+          "withheld": true,
+          "reason": "V42_DEEP_GAP_FEASIBILITY_WITHHOLD",
+          "target_cents": 64,
+          "sibling_best_ask_cents": 77,
+          "implied_sibling_cap_cents": 35,
+          "deep_gap_cents": 42,
+          "tolerance_cents": 10,
+          "comparison": "35 < 77-10",
+          "active_target_guard": {
+            "authority": true,
+            "withheld": true,
+            "reason": "V42_DEEP_GAP_FEASIBILITY_WITHHOLD",
+            "target_cents": 64,
+            "sibling_best_ask_cents": 77,
+            "implied_sibling_cap_cents": 35,
+            "deep_gap_cents": 42,
+            "tolerance_cents": 10,
+            "comparison": "35 < 77-10"
+          }
+        },
+        "v41_action": null,
+        "v41_target_cents": null
+      },
+      {
+        "machine": "V43_ALL_THREE",
+        "mode": "MARKET_UNION_REACH",
+        "kind": "DEEP_GAP_WITHHOLD_LIFT",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "timestamp_epoch": 1783955781,
+        "t_minus_scheduled_seconds": 71019,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 71019,
+        "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-736",
+        "trigger_leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "guard": {
+          "authority": true,
+          "withheld": false,
+          "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+          "target_cents": 19,
+          "sibling_best_ask_cents": 75,
+          "implied_sibling_cap_cents": 80,
+          "deep_gap_cents": -5,
+          "tolerance_cents": 10,
+          "comparison": "80 >= 75-10"
+        },
+        "v41_action": null,
+        "v41_target_cents": null
+      }
+    ]
+  },
+  "BORDIM": {
+    "DIM_withhold_starts": 0,
+    "actions": [
+      {
+        "machine": "V43_ALL_THREE",
+        "mode": "MARKET_UNION_REACH",
+        "kind": "DEEP_GAP_WITHHOLD_START",
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "leg_identity": "KXATPMATCH-26JUL15BORDIM|BOR",
+        "timestamp_epoch": 1784044942,
+        "t_minus_scheduled_seconds": 76058,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 66508.16899991035,
+        "receipt": "KXATPMATCH-26JUL15BORDIM-BOR.csv.gz#row-4",
+        "trigger_leg_identity": "KXATPMATCH-26JUL15BORDIM|BOR",
+        "guard": {
+          "authority": true,
+          "withheld": true,
+          "reason": "V42_DEEP_GAP_FEASIBILITY_WITHHOLD",
+          "target_cents": 43,
+          "sibling_best_ask_cents": 93,
+          "implied_sibling_cap_cents": 56,
+          "deep_gap_cents": 37,
+          "tolerance_cents": 10,
+          "comparison": "56 < 93-10",
+          "active_target_guard": {
+            "authority": true,
+            "withheld": false,
+            "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+            "target_cents": 6,
+            "sibling_best_ask_cents": 93,
+            "implied_sibling_cap_cents": 93,
+            "deep_gap_cents": 0,
+            "tolerance_cents": 10,
+            "comparison": "93 >= 93-10"
+          }
+        },
+        "v41_action": null,
+        "v41_target_cents": null
+      },
+      {
+        "machine": "V43_ALL_THREE",
+        "mode": "MARKET_UNION_REACH",
+        "kind": "DEEP_GAP_WITHHOLD_LIFT",
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "leg_identity": "KXATPMATCH-26JUL15BORDIM|BOR",
+        "timestamp_epoch": 1784044943,
+        "t_minus_scheduled_seconds": 76057,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 66507.16899991035,
+        "receipt": "KXATPMATCH-26JUL15BORDIM-DIM.csv.gz#row-5",
+        "trigger_leg_identity": "KXATPMATCH-26JUL15BORDIM|DIM",
+        "guard": {
+          "authority": true,
+          "withheld": false,
+          "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+          "target_cents": 43,
+          "sibling_best_ask_cents": 57,
+          "implied_sibling_cap_cents": 56,
+          "deep_gap_cents": 1,
+          "tolerance_cents": 10,
+          "comparison": "56 >= 57-10"
+        },
+        "v41_action": null,
+        "v41_target_cents": null
+      }
+    ]
+  },
+  "by_machine": {
+    "V41_BASELINE": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "KIR": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 17,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 40,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 94,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 30,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "JEA": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "PUT": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BOR": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": true,
+              "entry_cents": 73,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 74,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "ZHE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      }
+    },
+    "C1_ARM_ONLY": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 24,
+          "under_par": true,
+          "legs": {
+            "KIR": {
+              "credited": true,
+              "entry_cents": 16,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 8,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 33,
+          "under_par": true
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 39,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 79,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 30,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 49,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "JEA": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "PUT": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BOR": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": true,
+              "entry_cents": 73,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 74,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "ZHE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      }
+    },
+    "C2_GUARD_ONLY": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "KIR": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 17,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 40,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 94,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 30,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "JEA": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "PUT": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BOR": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 55,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ZHE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      }
+    },
+    "C3_LOOSEN_ONLY": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 40,
+          "under_par": true,
+          "legs": {
+            "KIR": {
+              "credited": true,
+              "entry_cents": 32,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 8,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 50,
+          "under_par": true
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 40,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 95,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 31,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 73,
+          "under_par": true,
+          "legs": {
+            "JEA": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "PUT": {
+              "credited": true,
+              "entry_cents": 9,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true,
+          "legs": {
+            "BOR": {
+              "credited": true,
+              "entry_cents": 52,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": true,
+              "entry_cents": 74,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 75,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ZHE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      }
+    },
+    "C1_C2_ARM_GUARD": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 24,
+          "under_par": true,
+          "legs": {
+            "KIR": {
+              "credited": true,
+              "entry_cents": 16,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 8,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 33,
+          "under_par": true
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 39,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 79,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 30,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 49,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "JEA": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "PUT": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BOR": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 98,
+          "under_par": true,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 55,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ZHE": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      }
+    },
+    "C1_C3_ARM_LOOSEN": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 24,
+          "under_par": true,
+          "legs": {
+            "KIR": {
+              "credited": true,
+              "entry_cents": 16,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 8,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 34,
+          "under_par": true
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 39,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 80,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 31,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 49,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 73,
+          "under_par": true,
+          "legs": {
+            "JEA": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "PUT": {
+              "credited": true,
+              "entry_cents": 9,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true,
+          "legs": {
+            "BOR": {
+              "credited": true,
+              "entry_cents": 52,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": true,
+              "entry_cents": 74,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 75,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ZHE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      }
+    },
+    "C2_C3_GUARD_LOOSEN": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 40,
+          "under_par": true,
+          "legs": {
+            "KIR": {
+              "credited": true,
+              "entry_cents": 32,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 8,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 50,
+          "under_par": true
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 40,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 90,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 95,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 31,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 64,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "JEA": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "PUT": {
+              "credited": true,
+              "entry_cents": 9,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true,
+          "legs": {
+            "BOR": {
+              "credited": true,
+              "entry_cents": 52,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": true,
+              "entry_cents": 21,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 97,
+          "under_par": true,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 55,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ZHE": {
+              "credited": true,
+              "entry_cents": 42,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 97,
+          "under_par": true
+        }
+      }
+    },
+    "V43_ALL_THREE": {
+      "KIRSEK": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 24,
+          "under_par": true,
+          "legs": {
+            "KIR": {
+              "credited": true,
+              "entry_cents": 16,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "SEK": {
+              "credited": true,
+              "entry_cents": 8,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 34,
+          "under_par": true
+        }
+      },
+      "ARNROM": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true,
+          "legs": {
+            "ARN": {
+              "credited": true,
+              "entry_cents": 50,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ROM": {
+              "credited": true,
+              "entry_cents": 39,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 89,
+          "under_par": true
+        }
+      },
+      "KRUFER": {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true,
+          "legs": {
+            "FER": {
+              "credited": true,
+              "entry_cents": 43,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "KRU": {
+              "credited": true,
+              "entry_cents": 53,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 96,
+          "under_par": true
+        }
+      },
+      "BOSCOP": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 80,
+          "under_par": true,
+          "legs": {
+            "BOS": {
+              "credited": true,
+              "entry_cents": 31,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "COP": {
+              "credited": true,
+              "entry_cents": 49,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "PUTJEA": {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "JEA": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "PUT": {
+              "credited": true,
+              "entry_cents": 9,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      },
+      "BORDIM": {
+        "event_id": "KXATPMATCH-26JUL15BORDIM",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true,
+          "legs": {
+            "BOR": {
+              "credited": true,
+              "entry_cents": 52,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            },
+            "DIM": {
+              "credited": true,
+              "entry_cents": 47,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      },
+      "ROCBUE": {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "MARKET_UNION_REACH": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false,
+          "legs": {
+            "BUE": {
+              "credited": false,
+              "entry_cents": null,
+              "fill_class": null,
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+            },
+            "ROC": {
+              "credited": true,
+              "entry_cents": 21,
+              "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+              "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      },
+      "KREZHE": {
+        "event_id": "KXWTAMATCH-26JUL17KREZHE",
+        "MARKET_UNION_REACH": {
+          "completed": true,
+          "combined_entry_cents": 97,
+          "under_par": true,
+          "legs": {
+            "KRE": {
+              "credited": true,
+              "entry_cents": 55,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            },
+            "ZHE": {
+              "credited": true,
+              "entry_cents": 42,
+              "fill_class": "MARKET_REACH_PRINT_CROSS",
+              "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+            }
+          }
+        },
+        "STRICT_PRINT_CROSS": {
+          "completed": true,
+          "combined_entry_cents": 97,
+          "under_par": true
+        }
+      }
+    }
+  }
+}

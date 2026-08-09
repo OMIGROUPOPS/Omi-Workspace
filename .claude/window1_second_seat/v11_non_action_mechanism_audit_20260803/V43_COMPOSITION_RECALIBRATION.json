@@ -1,0 +1,281 @@
+{
+ "LABEL": "V43_COMPOSITION_RECALIBRATION",
+ "basis": "V43 01a58334; census 639e8b19; standalone T10 calibration 645e035b = COMPOSITION_STALE",
+ "bar": {
+  "true_book_gt": 1748,
+  "naked_toward": ">=0"
+ },
+ "baseline": {
+  "completed": 395,
+  "locked": 1910,
+  "naked": -162,
+  "true_book": 1748
+ },
+ "DIAL_A_guard_tolerance": {
+  "T=10": {
+   "completed": 395,
+   "locked": 1910,
+   "naked": -162,
+   "true_book": 1748,
+   "withheld_resolution": {
+    "completed": 0,
+    "naked": 0,
+    "still_withheld": 36
+   }
+  },
+  "T=15": {
+   "completed": 398,
+   "locked": 1976,
+   "naked": -171,
+   "true_book": 1805,
+   "withheld_resolution": {
+    "completed": 3,
+    "naked": 2,
+    "still_withheld": 31
+   }
+  },
+  "T=20": {
+   "completed": 399,
+   "locked": 1983,
+   "naked": -172,
+   "true_book": 1811,
+   "withheld_resolution": {
+    "completed": 4,
+    "naked": 4,
+    "still_withheld": 28
+   }
+  },
+  "T=25": {
+   "completed": 404,
+   "locked": 2007,
+   "naked": -181,
+   "true_book": 1826,
+   "withheld_resolution": {
+    "completed": 9,
+    "naked": 5,
+    "still_withheld": 22
+   }
+  },
+  "T=removed": {
+   "completed": 415,
+   "locked": 2123,
+   "naked": -192,
+   "true_book": 1931,
+   "withheld_resolution": {
+    "completed": 23,
+    "naked": 13,
+    "still_withheld": 0
+   }
+  }
+ },
+ "DIAL_B_dry_sibling": {
+  "score": {
+   "completed": 395,
+   "locked": 1910,
+   "naked": 49,
+   "true_book": 1959
+  },
+  "two_columns": {
+   "losses_avoided": 230,
+   "n_avoided": 36,
+   "winners_forgone": 19,
+   "n_forgone": 7,
+   "net_naked_improvement": 211,
+   "by_cat": {
+    "ATP_CHALL": {
+     "avoided": 127,
+     "forgone": 0
+    },
+    "ATP_MAIN": {
+     "avoided": 51,
+     "forgone": 13
+    },
+    "WTA_CHALL": {
+     "avoided": 2,
+     "forgone": 6
+    },
+    "WTA_MAIN": {
+     "avoided": 50,
+     "forgone": 0
+    }
+   }
+  }
+ },
+ "A_plus_B": {
+  "score": {
+   "completed": 415,
+   "locked": 2123,
+   "naked": 42,
+   "true_book": 2165
+  },
+  "dryB": {
+   "losses_avoided": 240,
+   "n_avoided": 37,
+   "winners_forgone": 6,
+   "n_forgone": 5,
+   "net_naked_improvement": 234,
+   "by_cat": {
+    "ATP_CHALL": {
+     "avoided": 137,
+     "forgone": 0
+    },
+    "ATP_MAIN": {
+     "avoided": 51,
+     "forgone": 0
+    },
+    "WTA_CHALL": {
+     "avoided": 2,
+     "forgone": 6
+    },
+    "WTA_MAIN": {
+     "avoided": 50,
+     "forgone": 0
+    }
+   }
+  }
+ },
+ "named": {
+  "PUTJEA": {
+   "cat": "WTA_MAIN",
+   "V43_base": {
+    "credited": {
+     "PUT": 9
+    },
+    "combined": null,
+    "locked": null
+   },
+   "A_T25": {
+    "credited": {
+     "PUT": 9
+    },
+    "combined": null,
+    "locked": null
+   },
+   "A_removed": {
+    "credited": {
+     "PUT": 9
+    },
+    "combined": null,
+    "locked": null
+   },
+   "B": {
+    "credited": {},
+    "combined": null,
+    "locked": null
+   },
+   "AB": {
+    "credited": {},
+    "combined": null,
+    "locked": null
+   }
+  },
+  "PENTHA": {
+   "cat": "WTA_CHALL",
+   "V43_base": {
+    "credited": {},
+    "combined": null,
+    "locked": null
+   },
+   "A_T25": {
+    "credited": {
+     "THA": 24
+    },
+    "combined": null,
+    "locked": null
+   },
+   "A_removed": {
+    "credited": {
+     "PEN": 31,
+     "THA": 24
+    },
+    "combined": 55,
+    "locked": 45
+   },
+   "B": {
+    "credited": {},
+    "combined": null,
+    "locked": null
+   },
+   "AB": {
+    "credited": {
+     "PEN": 31,
+     "THA": 24
+    },
+    "combined": 55,
+    "locked": 45
+   }
+  },
+  "SHEOLI": {
+   "cat": "WTA_MAIN",
+   "V43_base": {
+    "credited": {},
+    "combined": null,
+    "locked": null
+   },
+   "A_T25": {
+    "credited": {},
+    "combined": null,
+    "locked": null
+   },
+   "A_removed": {
+    "credited": {
+     "OLI": 46,
+     "SHE": 46
+    },
+    "combined": 92,
+    "locked": 8
+   },
+   "B": {
+    "credited": {},
+    "combined": null,
+    "locked": null
+   },
+   "AB": {
+    "credited": {
+     "OLI": 46,
+     "SHE": 46
+    },
+    "combined": 92,
+    "locked": 8
+   }
+  },
+  "SALIBR": {
+   "cat": "WTA_MAIN",
+   "V43_base": {
+    "credited": {
+     "SAL": 8
+    },
+    "combined": null,
+    "locked": null
+   },
+   "A_T25": {
+    "credited": {
+     "SAL": 8
+    },
+    "combined": null,
+    "locked": null
+   },
+   "A_removed": {
+    "credited": {
+     "SAL": 8
+    },
+    "combined": null,
+    "locked": null
+   },
+   "B": {
+    "credited": {
+     "SAL": 8
+    },
+    "combined": null,
+    "locked": null
+   },
+   "AB": {
+    "credited": {
+     "SAL": 8
+    },
+    "combined": null,
+    "locked": null
+   }
+  }
+ }
+}

@@ -1668,3 +1668,16 @@ operative. Two clean builds match byte-for-byte and forbidden access is zero.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0fb17b6ceed17c4f51bbd/arb-executor/docs/research/window1/WINDOW1_V43_COMPOSED_MACHINE_20260809_ADDENDUM.md
+
+## V43 RE-ADJUDICATED OPERATIVE - 2026-08-09
+
+The machine did not change. CANON corrected named completion checks from exact
+equality to at-or-better and mechanism checks from tick values to guard reason
+plus applicable fill class. All six named checks pass under that law; V43 is
+the operative replay baseline at 395 completed/under-par and +1,748 cents true
+book. The -162-cent naked book remains a standing watch item. The three dial
+receipts are analytical estimates; executable attribution controls. No live
+cutover or deployment is authorized.
+
+Re-adjudication receipt:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf0f421404f5da36ecb892/.claude/window1_live_v4_replay/v43_re_adjudication_20260809/V43_RE_ADJUDICATION_RECEIPT.json

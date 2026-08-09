@@ -39,3 +39,19 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0fb17b6ceed17c4f51bbd/.claude/window1_live_v4_replay/v43_composed_machine_20260809/FORBIDDEN_ACCESS_RECEIPT.json
 
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0fb17b6ceed17c4f51bbd/.claude/window1_live_v4_replay/v43_composed_machine_20260809/ARTIFACT_HASH_MANIFEST.json
+
+## Superseding re-adjudication
+
+The machine and executable attribution above are unchanged. The prior block is
+superseded by the corrected CANON law: a named completion passes at its required
+combined price or better, and a mechanism fingerprint binds guard reason plus
+applicable fill class rather than a particular tick's book values. Under that
+law KIRSEK 24<=47, ARNROM 89<=90, BOSCOP 80<=94, KRUFER 96<=96, PUTJEA's
+deep-gap withhold mechanism, and BORDIM's non-withhold all pass. V43 is the
+operative replay baseline at 395 completed/under-par pairs and +1,748 cents
+true book. Its -162-cent naked book is a standing watch item. This grants no
+deployment or live-cutover authority.
+
+Re-adjudication receipt:
+
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf0f421404f5da36ecb892/.claude/window1_live_v4_replay/v43_re_adjudication_20260809/V43_RE_ADJUDICATION_RECEIPT.json

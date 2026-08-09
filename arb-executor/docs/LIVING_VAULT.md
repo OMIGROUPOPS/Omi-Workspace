@@ -1724,3 +1724,23 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/01a58334e90acffd4bb0fb17b6ceed17c4f51bbd/arb-executor/docs/research/window1/WINDOW1_V43_COMPOSED_MACHINE_20260809_ADDENDUM.md
+
+### 2026-08-09 - V43 RE-ADJUDICATED OPERATIVE
+
+The V43 machine and score are unchanged. The prior block was an acceptance-law
+defect: named completion checks required equality rather than at-or-better, and
+PUTJEA bound a particular sibling-ask tick rather than the guard mechanism.
+CANON now requires observed combined price <= the named bar and binds mechanism
+checks to guard reason plus applicable fill class. KIRSEK 24<=47, ARNROM
+89<=90, BOSCOP 80<=94, and KRUFER 96<=96 pass; PUTJEA emits the deep-gap
+withhold reason and BORDIM|DIM remains unwithheld. V43 is therefore the
+operative replay baseline at 395 completed/under-par pairs and +1,748 cents
+true book. The -162-cent naked book is a standing watch item. This ruling is
+not deployment or live-cutover authority. The three dial receipts are stamped
+`ANALYTICAL_ESTIMATE`; executable attribution controls.
+
+Re-adjudication receipt:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf0f421404f5da36ecb892/.claude/window1_live_v4_replay/v43_re_adjudication_20260809/V43_RE_ADJUDICATION_RECEIPT.json
+
+Analytical-estimate supersession:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf0f421404f5da36ecb892/.claude/window1_live_v4_replay/v43_re_adjudication_20260809/ANALYTICAL_ESTIMATE_SUPERSESSION_RECEIPT.json

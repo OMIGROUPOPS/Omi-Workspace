@@ -1,0 +1,598 @@
+{
+ "LABEL": "V43_RESIDUAL_MISS_GEOMETRY",
+ "source": "V43 composed machine 01a58334 (arm+guard+loosen ALL_THREE); e17915f3 census machinery + GUARD_WITHHELD class",
+ "population": {
+  "completed": 395,
+  "naked": 347,
+  "skip": 62,
+  "uncompleted_games": 409,
+  "unfilled_legs": 471
+ },
+ "class_totals": {
+  "FLOW_ABOVE_REST": {
+   "n": 238,
+   "nearest_cents": 371
+  },
+  "FLOW_BELOW_REST": {
+   "n": 39,
+   "nearest_cents": 40
+  },
+  "FLOW_AT_REST_PRETRIGGER": {
+   "n": 71,
+   "nearest_cents": 30
+  },
+  "NO_FLOW_NEAR": {
+   "n": 83,
+   "nearest_cents": 955
+  },
+  "NEVER_PLACED": {
+   "n": 5,
+   "nearest_cents": 0
+  },
+  "GUARD_WITHHELD": {
+   "n": 35,
+   "nearest_cents": 508
+  }
+ },
+ "per_category": {
+  "FLOW_ABOVE_REST": {
+   "ATP_CHALL": {
+    "n": 132,
+    "nearest": {
+     "n": 132,
+     "total": 208,
+     "median": 1,
+     "max": 3
+    }
+   },
+   "ATP_MAIN": {
+    "n": 29,
+    "nearest": {
+     "n": 29,
+     "total": 52,
+     "median": 2,
+     "max": 3
+    }
+   },
+   "WTA_CHALL": {
+    "n": 43,
+    "nearest": {
+     "n": 43,
+     "total": 57,
+     "median": 1,
+     "max": 3
+    }
+   },
+   "WTA_MAIN": {
+    "n": 34,
+    "nearest": {
+     "n": 34,
+     "total": 54,
+     "median": 1,
+     "max": 3
+    }
+   }
+  },
+  "FLOW_BELOW_REST": {
+   "ATP_CHALL": {
+    "n": 29,
+    "nearest": {
+     "n": 29,
+     "total": 29,
+     "median": 1,
+     "max": 3
+    }
+   },
+   "ATP_MAIN": {
+    "n": 2,
+    "nearest": {
+     "n": 2,
+     "total": 4,
+     "median": 3,
+     "max": 3
+    }
+   },
+   "WTA_CHALL": {
+    "n": 7,
+    "nearest": {
+     "n": 7,
+     "total": 6,
+     "median": 0,
+     "max": 2
+    }
+   },
+   "WTA_MAIN": {
+    "n": 1,
+    "nearest": {
+     "n": 1,
+     "total": 1,
+     "median": 1,
+     "max": 1
+    }
+   }
+  },
+  "FLOW_AT_REST_PRETRIGGER": {
+   "ATP_CHALL": {
+    "n": 45,
+    "nearest": {
+     "n": 45,
+     "total": 23,
+     "median": 0,
+     "max": 3
+    }
+   },
+   "ATP_MAIN": {
+    "n": 6,
+    "nearest": {
+     "n": 6,
+     "total": 4,
+     "median": 1,
+     "max": 1
+    }
+   },
+   "WTA_CHALL": {
+    "n": 15,
+    "nearest": {
+     "n": 15,
+     "total": 1,
+     "median": 0,
+     "max": 1
+    }
+   },
+   "WTA_MAIN": {
+    "n": 5,
+    "nearest": {
+     "n": 5,
+     "total": 2,
+     "median": 0,
+     "max": 1
+    }
+   }
+  },
+  "NO_FLOW_NEAR": {
+   "ATP_CHALL": {
+    "n": 34,
+    "nearest": {
+     "n": 28,
+     "total": 235,
+     "median": 6,
+     "max": 35
+    }
+   },
+   "ATP_MAIN": {
+    "n": 14,
+    "nearest": {
+     "n": 11,
+     "total": 133,
+     "median": 7,
+     "max": 47
+    }
+   },
+   "WTA_CHALL": {
+    "n": 19,
+    "nearest": {
+     "n": 19,
+     "total": 456,
+     "median": 14,
+     "max": 71
+    }
+   },
+   "WTA_MAIN": {
+    "n": 16,
+    "nearest": {
+     "n": 12,
+     "total": 131,
+     "median": 6,
+     "max": 52
+    }
+   }
+  },
+  "NEVER_PLACED": {
+   "ATP_CHALL": {
+    "n": 3,
+    "nearest": null
+   },
+   "ATP_MAIN": {
+    "n": 2,
+    "nearest": null
+   },
+   "WTA_CHALL": {
+    "n": 0,
+    "nearest": null
+   },
+   "WTA_MAIN": {
+    "n": 0,
+    "nearest": null
+   }
+  },
+  "GUARD_WITHHELD": {
+   "ATP_CHALL": {
+    "n": 10,
+    "nearest": {
+     "n": 10,
+     "total": 66,
+     "median": 5,
+     "max": 24
+    }
+   },
+   "ATP_MAIN": {
+    "n": 7,
+    "nearest": {
+     "n": 7,
+     "total": 159,
+     "median": 8,
+     "max": 78
+    }
+   },
+   "WTA_CHALL": {
+    "n": 13,
+    "nearest": {
+     "n": 13,
+     "total": 168,
+     "median": 9,
+     "max": 41
+    }
+   },
+   "WTA_MAIN": {
+    "n": 5,
+    "nearest": {
+     "n": 5,
+     "total": 115,
+     "median": 27,
+     "max": 45
+    }
+   }
+  }
+ },
+ "conservation": {
+  "sum": 471,
+  "unfilled": 471,
+  "exactly_once": true
+ },
+ "naked_book_decomposition": {
+  "total_cents": -162,
+  "by_class": {
+   "FLOW_ABOVE_REST": {
+    "pnl": -11,
+    "n": 171
+   },
+   "FLOW_BELOW_REST": {
+    "pnl": 42,
+    "n": 18
+   },
+   "FLOW_AT_REST_PRETRIGGER": {
+    "pnl": -5,
+    "n": 43
+   },
+   "NO_FLOW_NEAR": {
+    "pnl": -224,
+    "n": 41
+   },
+   "GUARD_WITHHELD": {
+    "pnl": 36,
+    "n": 10
+   }
+  }
+ },
+ "GUARD_WITHHELD": {
+  "n": 35,
+  "would_if_removed": {
+   "new_completed_pairs": 17,
+   "added_locked_cents": 150
+  },
+  "saved_by_guard": {
+   "naked_losses_avoided_cents": -37,
+   "naked_wins_forgone_cents": 10,
+   "net_guard_value": 27
+  },
+  "exemplars": [
+   {
+    "code": "26JUL12BROHUA",
+    "cat": "ATP_CHALL",
+    "leg": "BRO",
+    "withheld_target": 75,
+    "sibling_ask": 95,
+    "implied_cap": 24,
+    "deep_gap": 71,
+    "reach": 63,
+    "partner": 28,
+    "would_combined": 103,
+    "would_locked": null,
+    "would_naked_pnl": -12,
+    "partner_credited": true
+   },
+   {
+    "code": "26JUL13HOLWAT",
+    "cat": "ATP_CHALL",
+    "leg": "HOL",
+    "withheld_target": 50,
+    "sibling_ask": 90,
+    "implied_cap": 49,
+    "deep_gap": 41,
+    "reach": 49,
+    "partner": 47,
+    "would_combined": 97,
+    "would_locked": 3,
+    "would_naked_pnl": 3,
+    "partner_credited": false
+   },
+   {
+    "code": "26JUL13PERTOB",
+    "cat": "ATP_CHALL",
+    "leg": "TOB",
+    "withheld_target": 45,
+    "sibling_ask": 95,
+    "implied_cap": 54,
+    "deep_gap": 41,
+    "reach": 45,
+    "partner": 52,
+    "would_combined": 97,
+    "would_locked": 3,
+    "would_naked_pnl": 0,
+    "partner_credited": true
+   }
+  ]
+ },
+ "top20_diagnosable": [
+  {
+   "value": 54,
+   "code": "26JUL13PENTHA",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "THA",
+   "partner_px": 22,
+   "this_reach": 20,
+   "diag_fill": 24,
+   "rest": 22,
+   "nearest": 4,
+   "gametype": "skip"
+  },
+  {
+   "value": 53,
+   "code": "26JUL18SHEOLI",
+   "cat": "WTA_MAIN",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "SHE",
+   "partner_px": 1,
+   "this_reach": 42,
+   "diag_fill": 46,
+   "rest": 45,
+   "nearest": 4,
+   "gametype": "skip"
+  },
+  {
+   "value": 49,
+   "code": "26JUL13PENTHA",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "PEN",
+   "partner_px": 20,
+   "this_reach": 22,
+   "diag_fill": 31,
+   "rest": 76,
+   "nearest": 9,
+   "gametype": "skip"
+  },
+  {
+   "value": 48,
+   "code": "26JUL14SALIBR",
+   "cat": "WTA_MAIN",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "IBR",
+   "partner_px": 8,
+   "this_reach": 44,
+   "diag_fill": 44,
+   "rest": 43,
+   "nearest": 1,
+   "gametype": "naked"
+  },
+  {
+   "value": 38,
+   "code": "26JUL17SMIYUN",
+   "cat": "ATP_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "YUN",
+   "partner_px": 39,
+   "this_reach": 13,
+   "diag_fill": 23,
+   "rest": 60,
+   "nearest": 10,
+   "gametype": "naked"
+  },
+  {
+   "value": 38,
+   "code": "26JUL13SAINUG",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "NUG",
+   "partner_px": 1,
+   "this_reach": 50,
+   "diag_fill": 61,
+   "rest": 66,
+   "nearest": 11,
+   "gametype": "skip"
+  },
+  {
+   "value": 28,
+   "code": "26JUL13PANFAL",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "PAN",
+   "partner_px": 30,
+   "this_reach": 1,
+   "diag_fill": 42,
+   "rest": 54,
+   "nearest": 41,
+   "gametype": "skip"
+  },
+  {
+   "value": 27,
+   "code": "26JUL13VANLEE",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "LEE",
+   "partner_px": 55,
+   "this_reach": 1,
+   "diag_fill": 18,
+   "rest": 44,
+   "nearest": 17,
+   "gametype": "naked"
+  },
+  {
+   "value": 25,
+   "code": "26JUL20RUZSAL",
+   "cat": "WTA_MAIN",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "RUZ",
+   "partner_px": 25,
+   "this_reach": 23,
+   "diag_fill": 50,
+   "rest": 58,
+   "nearest": 27,
+   "gametype": "skip"
+  },
+  {
+   "value": 21,
+   "code": "26JUL13SAINUG",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "SAI",
+   "partner_px": 50,
+   "this_reach": 1,
+   "diag_fill": 29,
+   "rest": 32,
+   "nearest": 28,
+   "gametype": "skip"
+  },
+  {
+   "value": 12,
+   "code": "26JUL18SHEOLI",
+   "cat": "WTA_MAIN",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "OLI",
+   "partner_px": 42,
+   "this_reach": 1,
+   "diag_fill": 46,
+   "rest": 46,
+   "nearest": 45,
+   "gametype": "skip"
+  },
+  {
+   "value": 10,
+   "code": "26JUL14ZHUYUN",
+   "cat": "ATP_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "YUN",
+   "partner_px": 9,
+   "this_reach": 78,
+   "diag_fill": 81,
+   "rest": 90,
+   "nearest": 3,
+   "gametype": "naked"
+  },
+  {
+   "value": 10,
+   "code": "26JUL18LUZTSE",
+   "cat": "ATP_MAIN",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "TSE",
+   "partner_px": 11,
+   "this_reach": 1,
+   "diag_fill": 79,
+   "rest": 79,
+   "nearest": 78,
+   "gametype": "naked"
+  },
+  {
+   "value": 9,
+   "code": "26JUL14SHUSHI",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "SHU",
+   "partner_px": 9,
+   "this_reach": 77,
+   "diag_fill": 82,
+   "rest": 90,
+   "nearest": 5,
+   "gametype": "naked"
+  },
+  {
+   "value": 8,
+   "code": "26JUL19VUKGEA",
+   "cat": "ATP_CHALL",
+   "klass": "FLOW_BELOW_REST",
+   "unfilled": "GEA",
+   "partner_px": 31,
+   "this_reach": 61,
+   "diag_fill": 61,
+   "rest": 64,
+   "nearest": 3,
+   "gametype": "skip"
+  },
+  {
+   "value": 8,
+   "code": "26JUL12HERKAZ",
+   "cat": "WTA_MAIN",
+   "klass": "FLOW_ABOVE_REST",
+   "unfilled": "HER",
+   "partner_px": 46,
+   "this_reach": 46,
+   "diag_fill": 46,
+   "rest": 45,
+   "nearest": 1,
+   "gametype": "naked"
+  },
+  {
+   "value": 7,
+   "code": "26JUL20PALLEO",
+   "cat": "ATP_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "PAL",
+   "partner_px": 57,
+   "this_reach": 12,
+   "diag_fill": 36,
+   "rest": 42,
+   "nearest": 24,
+   "gametype": "naked"
+  },
+  {
+   "value": 7,
+   "code": "26JUL15TRUDAV",
+   "cat": "ATP_MAIN",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "DAV",
+   "partner_px": 25,
+   "this_reach": 54,
+   "diag_fill": 68,
+   "rest": 74,
+   "nearest": 14,
+   "gametype": "naked"
+  },
+  {
+   "value": 7,
+   "code": "26JUL18COLCER",
+   "cat": "ATP_MAIN",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "COL",
+   "partner_px": 38,
+   "this_reach": 1,
+   "diag_fill": 55,
+   "rest": 59,
+   "nearest": 54,
+   "gametype": "naked"
+  },
+  {
+   "value": 7,
+   "code": "26JUL14DILFAL",
+   "cat": "WTA_CHALL",
+   "klass": "GUARD_WITHHELD",
+   "unfilled": "DIL",
+   "partner_px": 65,
+   "this_reach": 19,
+   "diag_fill": 28,
+   "rest": 34,
+   "nearest": 9,
+   "gametype": "naked"
+  }
+ ]
+}

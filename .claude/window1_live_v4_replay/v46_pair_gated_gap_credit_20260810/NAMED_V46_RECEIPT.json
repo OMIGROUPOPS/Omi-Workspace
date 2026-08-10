@@ -1,0 +1,889 @@
+{
+  "ordered_law": "NAMED_COMPLETION_PASSES_AT_REQUIRED_COMBINED_PRICE_OR_BETTER; GAP_CREDIT_REPRICE_REQUIRES_SIBLING_ALREADY_CREDITED",
+  "rows": {
+    "PANFAL": {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "V46": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 44,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 44,
+            "persistent_join_timestamp_epoch": 1783937409,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13PANFAL-FAL.csv.gz#row-1662",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 54,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 54,
+            "persistent_join_timestamp_epoch": 1783937413,
+            "persistent_join_book_last_trade_receipts": 88,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13PANFAL-PAN.csv.gz#row-5772",
+            "post_join_book_last_trade_receipts": 45,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "gap_credit_legs": {
+        "FAL": {
+          "eligible_receipts": 5,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 5,
+          "first": {
+            "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|FAL",
+            "category": "WTA_CHALL",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783894223,
+            "t_minus_scheduled_seconds": 53377,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 43202.09200000763,
+            "receipt": "KXWTACHALLENGERMATCH-26JUL13PANFAL-FAL.csv.gz#row-5",
+            "prior_ask_cents": 99,
+            "current_ask_cents": 96,
+            "ask_gap_cents": 3,
+            "order_before_cents": 2,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|PAN",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 3
+            },
+            "order_after_cents": 2
+          },
+          "last": {
+            "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|FAL",
+            "category": "WTA_CHALL",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783937380,
+            "t_minus_scheduled_seconds": 10220,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 45.092000007629395,
+            "receipt": "KXWTACHALLENGERMATCH-26JUL13PANFAL-FAL.csv.gz#row-1433",
+            "prior_ask_cents": 50,
+            "current_ask_cents": 47,
+            "ask_gap_cents": 3,
+            "order_before_cents": 46,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|PAN",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 3
+            },
+            "order_after_cents": 46
+          },
+          "fill": null,
+          "terminal_rest_cents": 44,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "PAN": {
+          "eligible_receipts": 1,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 1,
+          "first": {
+            "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|PAN",
+            "category": "WTA_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783898387,
+            "t_minus_scheduled_seconds": 49213,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 39038.09200000763,
+            "receipt": "KXWTACHALLENGERMATCH-26JUL13PANFAL-PAN.csv.gz#row-39",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 46,
+            "ask_gap_cents": 48,
+            "order_before_cents": 6,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|FAL",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 48
+            },
+            "order_after_cents": 6
+          },
+          "last": {
+            "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|PAN",
+            "category": "WTA_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783898387,
+            "t_minus_scheduled_seconds": 49213,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 39038.09200000763,
+            "receipt": "KXWTACHALLENGERMATCH-26JUL13PANFAL-PAN.csv.gz#row-39",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 46,
+            "ask_gap_cents": 48,
+            "order_before_cents": 6,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXWTACHALLENGERMATCH-26JUL13PANFAL|FAL",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 48
+            },
+            "order_after_cents": 6
+          },
+          "fill": null,
+          "terminal_rest_cents": 54,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "ARNROM": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "V46": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 50,
+            "persistent_join_timestamp_epoch": 1783868100,
+            "persistent_join_book_last_trade_receipts": 1,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35474",
+            "post_join_book_last_trade_receipts": 31,
+            "post_join_certified_seller_hits_at_level": 2,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 39,
+            "persistent_join_timestamp_epoch": 1783899855,
+            "persistent_join_book_last_trade_receipts": 2,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-1333",
+            "post_join_book_last_trade_receipts": 85,
+            "post_join_certified_seller_hits_at_level": 3,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "gap_credit_legs": {
+        "ARN": {
+          "eligible_receipts": 1,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 1,
+          "first": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783858844,
+            "t_minus_scheduled_seconds": -4844,
+            "t_minus_actual_bell_seconds": 87256,
+            "t_minus_pre_match_boundary_seconds": 87256,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35393",
+            "prior_ask_cents": 90,
+            "current_ask_cents": 57,
+            "ask_gap_cents": 33,
+            "order_before_cents": 47,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 33
+            },
+            "order_after_cents": 47
+          },
+          "last": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783858844,
+            "t_minus_scheduled_seconds": -4844,
+            "t_minus_actual_bell_seconds": 87256,
+            "t_minus_pre_match_boundary_seconds": 87256,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35393",
+            "prior_ask_cents": 90,
+            "current_ask_cents": 57,
+            "ask_gap_cents": 33,
+            "order_before_cents": 47,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 33
+            },
+            "order_after_cents": 47
+          },
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "ROM": {
+          "eligible_receipts": 2,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 1,
+          "first": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783858844,
+            "t_minus_scheduled_seconds": -4844,
+            "t_minus_actual_bell_seconds": 87256,
+            "t_minus_pre_match_boundary_seconds": 87256,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-769",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 53,
+            "ask_gap_cents": 41,
+            "order_before_cents": 15,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 41
+            },
+            "order_after_cents": 15
+          },
+          "last": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ROM",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783896032,
+            "t_minus_scheduled_seconds": -42032,
+            "t_minus_actual_bell_seconds": 50068,
+            "t_minus_pre_match_boundary_seconds": 50068,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-999",
+            "prior_ask_cents": 49,
+            "current_ask_cents": 45,
+            "ask_gap_cents": 4,
+            "order_before_cents": 44,
+            "pair_cap_cents": 49,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+            "sibling_credited": true,
+            "sibling_entry_cents": 50,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_NO_LAWFUL_REPRICE_DOWN",
+              "ask_gap_cents": 4,
+              "candidate_target_cents": 44
+            },
+            "order_after_cents": 44
+          },
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        }
+      }
+    },
+    "KIRSEK": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "V46": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 16,
+            "persistent_join_timestamp_epoch": 1784003371,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR.csv.gz#row-5520",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 8,
+            "persistent_join_timestamp_epoch": 1783997316,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK.csv.gz#row-6",
+            "post_join_book_last_trade_receipts": 8,
+            "post_join_certified_seller_hits_at_level": 1,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "gap_credit_legs": {
+        "KIR": {
+          "eligible_receipts": 19,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 0,
+          "first": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL14KIRSEK|KIR",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1784000633,
+            "t_minus_scheduled_seconds": 47767,
+            "t_minus_actual_bell_seconds": 37567,
+            "t_minus_pre_match_boundary_seconds": 37567,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR.csv.gz#row-469",
+            "prior_ask_cents": 95,
+            "current_ask_cents": 92,
+            "ask_gap_cents": 3,
+            "order_before_cents": 6,
+            "pair_cap_cents": 91,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL14KIRSEK|SEK",
+            "sibling_credited": true,
+            "sibling_entry_cents": 8,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_NO_LAWFUL_REPRICE_DOWN",
+              "ask_gap_cents": 3,
+              "candidate_target_cents": 91
+            },
+            "order_after_cents": 6
+          },
+          "last": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL14KIRSEK|KIR",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1784000875,
+            "t_minus_scheduled_seconds": 47525,
+            "t_minus_actual_bell_seconds": 37325,
+            "t_minus_pre_match_boundary_seconds": 37325,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR.csv.gz#row-564",
+            "prior_ask_cents": 95,
+            "current_ask_cents": 89,
+            "ask_gap_cents": 6,
+            "order_before_cents": 5,
+            "pair_cap_cents": 91,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL14KIRSEK|SEK",
+            "sibling_credited": true,
+            "sibling_entry_cents": 8,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_NO_LAWFUL_REPRICE_DOWN",
+              "ask_gap_cents": 6,
+              "candidate_target_cents": 88
+            },
+            "order_after_cents": 5
+          },
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "SEK": {
+          "eligible_receipts": 0,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 0,
+          "first": null,
+          "last": null,
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+        }
+      }
+    },
+    "KRUFER": {
+      "event_id": "KXATPMATCH-26JUL12KRUFER",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "V46": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "SETTLED",
+            "persistent_join_level_cents": 43,
+            "persistent_join_timestamp_epoch": 1783801422,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL12KRUFER-FER.csv.gz#row-133",
+            "post_join_book_last_trade_receipts": 96,
+            "post_join_certified_seller_hits_at_level": 4,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 56,
+            "persistent_join_timestamp_epoch": 1783831207,
+            "persistent_join_book_last_trade_receipts": 311,
+            "persistent_join_certified_seller_aggressed_prints": 2,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL12KRUFER-KRU.csv.gz#row-1858",
+            "post_join_book_last_trade_receipts": 603,
+            "post_join_certified_seller_hits_at_level": 2,
+            "sanity_bound_receipts": 2649,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "gap_credit_legs": {
+        "FER": {
+          "eligible_receipts": 1,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 1,
+          "first": {
+            "event_id": "KXATPMATCH-26JUL12KRUFER",
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|FER",
+            "category": "ATP_MAIN",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783795748,
+            "t_minus_scheduled_seconds": 58252,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 58252,
+            "receipt": "KXATPMATCH-26JUL12KRUFER-FER.csv.gz#row-7",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 48,
+            "ask_gap_cents": 46,
+            "order_before_cents": 38,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPMATCH-26JUL12KRUFER|KRU",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 46
+            },
+            "order_after_cents": 38
+          },
+          "last": {
+            "event_id": "KXATPMATCH-26JUL12KRUFER",
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|FER",
+            "category": "ATP_MAIN",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783795748,
+            "t_minus_scheduled_seconds": 58252,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 58252,
+            "receipt": "KXATPMATCH-26JUL12KRUFER-FER.csv.gz#row-7",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 48,
+            "ask_gap_cents": 46,
+            "order_before_cents": 38,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPMATCH-26JUL12KRUFER|KRU",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 46
+            },
+            "order_after_cents": 38
+          },
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "KRU": {
+          "eligible_receipts": 1,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 1,
+          "first": {
+            "event_id": "KXATPMATCH-26JUL12KRUFER",
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|KRU",
+            "category": "ATP_MAIN",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783795748,
+            "t_minus_scheduled_seconds": 58252,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 58252,
+            "receipt": "KXATPMATCH-26JUL12KRUFER-KRU.csv.gz#row-6",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 62,
+            "ask_gap_cents": 32,
+            "order_before_cents": 6,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPMATCH-26JUL12KRUFER|FER",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 32
+            },
+            "order_after_cents": 6
+          },
+          "last": {
+            "event_id": "KXATPMATCH-26JUL12KRUFER",
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|KRU",
+            "category": "ATP_MAIN",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783795748,
+            "t_minus_scheduled_seconds": 58252,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 58252,
+            "receipt": "KXATPMATCH-26JUL12KRUFER-KRU.csv.gz#row-6",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 62,
+            "ask_gap_cents": 32,
+            "order_before_cents": 6,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPMATCH-26JUL12KRUFER|FER",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 32
+            },
+            "order_after_cents": 6
+          },
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        }
+      }
+    },
+    "BOSCOP": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 80,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 49,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "V46": {
+        "completed": true,
+        "combined_entry_cents": 80,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "SETTLED",
+            "persistent_join_level_cents": 31,
+            "persistent_join_timestamp_epoch": 1783857273,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-BOS.csv.gz#row-5624",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 1,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 49,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 49,
+            "persistent_join_timestamp_epoch": 1783893041,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-125715",
+            "post_join_book_last_trade_receipts": 7,
+            "post_join_certified_seller_hits_at_level": 3,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "gap_credit_legs": {
+        "BOS": {
+          "eligible_receipts": 6,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 1,
+          "first": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|BOS",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783815197,
+            "t_minus_scheduled_seconds": 38803,
+            "t_minus_actual_bell_seconds": 203203,
+            "t_minus_pre_match_boundary_seconds": 203203,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-BOS.csv.gz#row-24",
+            "prior_ask_cents": 95,
+            "current_ask_cents": 73,
+            "ask_gap_cents": 22,
+            "order_before_cents": 5,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 22
+            },
+            "order_after_cents": 5
+          },
+          "last": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|BOS",
+            "category": "ATP_CHALL",
+            "price_region": "26_50",
+            "timestamp_epoch": 1783933304,
+            "t_minus_scheduled_seconds": -79304,
+            "t_minus_actual_bell_seconds": 85096,
+            "t_minus_pre_match_boundary_seconds": 85096,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-BOS.csv.gz#row-9844",
+            "prior_ask_cents": 38,
+            "current_ask_cents": 35,
+            "ask_gap_cents": 3,
+            "order_before_cents": 31,
+            "pair_cap_cents": 50,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+            "sibling_credited": true,
+            "sibling_entry_cents": 49,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_NO_LAWFUL_REPRICE_DOWN",
+              "ask_gap_cents": 3,
+              "candidate_target_cents": 34
+            },
+            "order_after_cents": 31
+          },
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "COP": {
+          "eligible_receipts": 558,
+          "authorized_walks": 0,
+          "sibling_uncredited_refusals": 558,
+          "first": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783837422,
+            "t_minus_scheduled_seconds": 16578,
+            "t_minus_actual_bell_seconds": 180978,
+            "t_minus_pre_match_boundary_seconds": 180978,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-28187",
+            "prior_ask_cents": 94,
+            "current_ask_cents": 91,
+            "ask_gap_cents": 3,
+            "order_before_cents": 20,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|BOS",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 3
+            },
+            "order_after_cents": 20
+          },
+          "last": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+            "category": "ATP_CHALL",
+            "price_region": "51_75",
+            "timestamp_epoch": 1783861047,
+            "t_minus_scheduled_seconds": -7047,
+            "t_minus_actual_bell_seconds": 157353,
+            "t_minus_pre_match_boundary_seconds": 157353,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-87550",
+            "prior_ask_cents": 89,
+            "current_ask_cents": 78,
+            "ask_gap_cents": 11,
+            "order_before_cents": 32,
+            "pair_cap_cents": null,
+            "sibling_leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|BOS",
+            "sibling_credited": false,
+            "sibling_entry_cents": null,
+            "decision": {
+              "eligible": true,
+              "authorized": false,
+              "reason": "V46_GAP_CREDIT_REFUSED_SIBLING_NOT_CREDITED",
+              "ask_gap_cents": 11
+            },
+            "order_after_cents": 32
+          },
+          "fill": null,
+          "terminal_rest_cents": null,
+          "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+        }
+      }
+    }
+  },
+  "assertions": {
+    "PANFAL_completes_at_or_better_92": false,
+    "PANFAL_locked_at_least_8": false,
+    "ARNROM_at_or_better_89": true,
+    "KIRSEK_at_or_better_24": true,
+    "KRUFER_at_or_better_96": true,
+    "BOSCOP_at_or_better_80": true,
+    "no_new_exposure_from_pair_gated_gap_credit": true
+  },
+  "pass": false,
+  "PANFAL_mechanism_diagnosis": {
+    "both_V45_legs_uncredited": true,
+    "sibling_credit_authority_ever_available": false,
+    "conclusion": "ORDERED_NAMED_OUTCOME_IS_UNREACHABLE_UNDER_THE_ORDERED_PAIR_GATE_BECAUSE_NEITHER_EXPRESSION_IS_CREDITED_BEFORE_THE_PAN_GAP"
+  }
+}

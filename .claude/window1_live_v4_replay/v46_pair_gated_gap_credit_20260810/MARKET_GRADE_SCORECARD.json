@@ -1,0 +1,70 @@
+{
+  "score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 1138,
+    "completed_pairs": 396,
+    "under_par_pairs": 396,
+    "locked_cents_per_contract": 1936,
+    "locked_cents_five_lot": 9680,
+    "maker_fill_classes": {
+      "MARKET_REACH_PRINT_CROSS": 731,
+      "MARKET_REACH_TRADED_AT_LEVEL": 407
+    },
+    "frontier": {
+      "LE_93": 52,
+      "LE_95": 71,
+      "LE_97": 142,
+      "LT_100": 396,
+      "ANY_PRICE": 396
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "reach_grade": {
+    "answer_key_games": 637,
+    "answer_key_locked_cents": 5253,
+    "grades": {
+      "MISSING": 302,
+      "SHALLOW": 250,
+      "MATCHED": 85
+    },
+    "shallow_gap_cents": {
+      "n": 523,
+      "null_n": 0,
+      "sum": 3412,
+      "min": 1,
+      "p25": 1,
+      "median": 3,
+      "p75": 6,
+      "p90": 15,
+      "max": 70
+    },
+    "measurable_residual_cents": {
+      "n": 754,
+      "null_n": 0,
+      "sum": 3949,
+      "min": 1,
+      "p25": 1,
+      "median": 2,
+      "p75": 4,
+      "p90": 10,
+      "max": 70
+    },
+    "completed_pairs": 335,
+    "under_par_pairs": 335
+  },
+  "comparison_answer_key": {
+    "events": 804,
+    "legs": 1608,
+    "reachable_games": 785,
+    "no_reach_games": 19,
+    "under_par_games": 637,
+    "locked_cents": 5253,
+    "union_legs": 1570
+  }
+}

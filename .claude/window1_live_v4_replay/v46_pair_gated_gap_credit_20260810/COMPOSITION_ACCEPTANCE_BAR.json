@@ -1,0 +1,77 @@
+{
+  "baseline_reproduction": {
+    "frozen_V45_commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+    "expected": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396
+      }
+    },
+    "observed": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396,
+        "ANY_PRICE": 396
+      }
+    },
+    "pass": true
+  },
+  "completed_pairs": {
+    "value": 396,
+    "minimum": 396,
+    "pass": true
+  },
+  "true_book_net_cents": {
+    "value": 1774,
+    "strict_minimum": 1774,
+    "pass": false
+  },
+  "zero_bound_regressions": {
+    "checks": {
+      "under_par_non_regression": true,
+      "locked_cents_non_regression": true,
+      "frontier_non_regression": true,
+      "strict_build_verification_non_regression": true,
+      "no_new_exposure": true,
+      "named": {
+        "PANFAL_completes_at_or_better_92": false,
+        "PANFAL_locked_at_least_8": false,
+        "ARNROM_at_or_better_89": true,
+        "KIRSEK_at_or_better_24": true,
+        "KRUFER_at_or_better_96": true,
+        "BOSCOP_at_or_better_80": true,
+        "no_new_exposure_from_pair_gated_gap_credit": true
+      }
+    },
+    "pass": false
+  },
+  "named_checks": {
+    "pass": false,
+    "assertions": {
+      "PANFAL_completes_at_or_better_92": false,
+      "PANFAL_locked_at_least_8": false,
+      "ARNROM_at_or_better_89": true,
+      "KIRSEK_at_or_better_24": true,
+      "KRUFER_at_or_better_96": true,
+      "BOSCOP_at_or_better_80": true,
+      "no_new_exposure_from_pair_gated_gap_credit": true
+    }
+  },
+  "pass": false
+}

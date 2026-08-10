@@ -1,0 +1,34 @@
+{
+  "schema_version": "window1-v46-pair-gated-gap-credit-control-v1",
+  "base": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "frozen_V45": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "controlling_receipts": [
+    "aa884cc5a1f9465a219d0913dbc237a33bc3a063"
+  ],
+  "architecture": {
+    "incumbent": "V45_BYTE_IDENTICAL_EXCEPT_ONE_PAIR_GATED_GAP_CREDIT_CLAUSE",
+    "incumbent_clause": "FALLING_NO_CHASE_STRICT_ASK_CREDIT",
+    "additional_credit_event": "SINGLE_RECEIPT_ASK_GAP_GE_3_CENTS",
+    "authorization": "OTHER_EXPRESSION_ALREADY_CREDITED",
+    "authorized_effect": "REPRICE_EXISTING_FALLING_REST_DOWN_TO_MIN_CURRENT_ASK_MINUS_1_PAIR_CAP",
+    "sibling_not_credited": "V45_ACTION_STREAM_UNCHANGED",
+    "fill_credit": "INHERITED_MARKET_UNION_OR_STRICT_LATER_RECEIPT_ONLY_NO_SAME_RECEIPT_FABRICATION",
+    "pair_cap": "V45_UNCHANGED",
+    "sanity_bound": "REST_STRICTLY_BELOW_CURRENT_BEST_ASK",
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V45_UNCHANGED",
+    "take_path": "DELETED_IN_V41"
+  },
+  "acceptance_bar": {
+    "completed_pairs_min": 396,
+    "true_book_net_cents_strictly_greater_than": 1774,
+    "zero_bound_regressions": true,
+    "PANFAL_at_or_better_92_and_locked_min_8": true
+  },
+  "fill_rulers": {
+    "market_scoring": "CANON_UNION_CHANNELS",
+    "build_verification": "STRICT_PRINT_CROSS",
+    "never_swapped": true
+  }
+}

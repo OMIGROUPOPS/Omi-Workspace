@@ -1,0 +1,10 @@
+{
+  "status": "BLOCKED_V45_REMAINS_OPERATIVE",
+  "operative_baseline": "V45_3bda0a54",
+  "reasons": [
+    "TRUE_BOOK_BAR_FAILED",
+    "BOUND_REGRESSION",
+    "NAMED_CHECK_FAILED"
+  ],
+  "no_forced_values": true
+}

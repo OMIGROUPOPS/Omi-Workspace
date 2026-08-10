@@ -1,0 +1,40 @@
+{
+  "authorized_walks": 5,
+  "authorized_legs": 3,
+  "authorized_events": 3,
+  "authorized_walks_that_filled": 0,
+  "eligible_legs": 1087,
+  "sibling_uncredited_refusal_receipts": 12650,
+  "sibling_uncredited_refusal_legs": 1057,
+  "no_lawful_reprice_receipts": 835,
+  "two_columns": {
+    "pairs_completed": {
+      "events": 0,
+      "identities": []
+    },
+    "new_exposure": {
+      "events": 0,
+      "identities": []
+    }
+  },
+  "falling_tail_depth_cents": {
+    "n": 0,
+    "null_n": 0,
+    "sum": 0,
+    "min": null,
+    "p25": null,
+    "median": null,
+    "p75": null,
+    "p90": null,
+    "max": null
+  },
+  "by_category": {
+    "WTA_MAIN": 4,
+    "ATP_CHALL": 1
+  },
+  "conservation": {
+    "authorized_walk_rows": 5,
+    "leg_authorized_walk_sum": 5,
+    "pass": true
+  }
+}

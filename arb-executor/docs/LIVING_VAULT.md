@@ -1793,3 +1793,20 @@ authorized.
 
 Frozen evidence package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/1b1b6a653dda8cea45119264a6b682d35826cf22/.claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810/REPORT.md
+
+### 2026-08-10 - V47 SAME-TICK ARM OPERATIVE
+
+V47 makes deep-join qualification and placement one receipt-local operation on
+operative V45 without changing any gate, level, target, guard, cap, fill ruler,
+or hard edge. The executable footprint conserves 1,380,318 qualifications into
+3,180 mode-by-leg rows and proves zero positive V47 scheduler-latency rows.
+The 33,125 positive qualification-to-post rows are unchanged guard/law delay,
+not scheduler latency. All 1,608 market action streams and every score are
+unchanged: 396 market completions, 331 strict completions, +1,774 cents true
+book, and frontier 52/71/142/396. SURECH remains unfilled; ARNROM, KIRSEK,
+KRUFER, BOSCOP, and PANFAL have zero regression. Two clean builds match 35/35
+artifacts and forbidden access is zero. V47 is operative as a correctness fix
+at zero replay delta; no deployment or live cutover is authorized.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/f99590eb9bfb77a695dc038a4efe21e7825f378c/arb-executor/docs/research/window1/WINDOW1_V47_SAME_TICK_ARM_20260810_ADDENDUM.md

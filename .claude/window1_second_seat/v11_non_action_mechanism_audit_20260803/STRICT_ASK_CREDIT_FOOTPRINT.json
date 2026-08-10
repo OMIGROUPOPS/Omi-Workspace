@@ -1,0 +1,81 @@
+{
+ "LABEL": "STRICT_ASK_CREDIT_FOOTPRINT",
+ "basis": "V45 3bda0a54; STRICT_ASK_CREDIT_BEFORE_REPRICE = the V36 FALLING NO_CHASE gate: reprice-down only to a strict-ask-credited low (running_qualified_ask_low). Footprint = uncredited legs where causal flow passed BELOW the held rest (Cz<R) and never credited.",
+ "FOOTPRINT": {
+  "total": 50,
+  "by_chain_link": {
+   "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY": 42,
+   "CHAIN_L5_STALE_REPRICE": 4,
+   "CHAIN_L2_MISREAD": 4
+  },
+  "by_category": {
+   "ATP_CHALL": 28,
+   "ATP_MAIN": 8,
+   "WTA_CHALL": 6,
+   "WTA_MAIN": 8
+  },
+  "divergence_integral_cents": 105,
+  "causal_flow_passed": 50,
+  "vs_L5": {
+   "corrected_L5_legs": 4,
+   "footprint": 50,
+   "note": "the rule's true class is far larger than the 4 genuine L5 legs; most footprint legs are bucketed L6 (present at the strict-ask low while flow passed below uncredited)"
+  }
+ },
+ "THE_FIX": {
+  "clause": "single-tick ask gap>=3c = its own credit event (gap-credit); footprint legs walk to the causal reach and fill there",
+  "stamp": "ANALYTICAL_ESTIMATE",
+  "GAINED": {
+   "legs_unfrozen": 50,
+   "pairs_completed": 39,
+   "locked_cents": 121,
+   "locked_by_cat": {
+    "ATP_CHALL": 63,
+    "ATP_MAIN": 20,
+    "WTA_CHALL": 16,
+    "WTA_MAIN": 22
+   }
+  },
+  "ADVERSE": {
+   "falling_tail_note": "unfrozen fill (Cz) minus the leg's eventual low; >0 = fill sits above the eventual bottom (into a continuing crash) \u2014 benign when the pair completes (hedged), a directional loss only on legs that stay naked",
+   "all_unfrozen_distribution": {
+    "n": 50,
+    "min": -2,
+    "p25": 8,
+    "median": 28,
+    "p75": 40,
+    "max": 71,
+    "deep_le_neg5": 0
+   },
+   "naked_only_distribution": {
+    "n": 11,
+    "min": -2,
+    "p25": 10,
+    "median": 44,
+    "p75": 50,
+    "max": 71,
+    "deep_le_neg5": 0
+   },
+   "naked_unfrozen_legs": 11
+  }
+ },
+ "named_PANFAL_PAN": {
+  "code": "26JUL13PANFAL",
+  "cat": "WTA_CHALL",
+  "leg": "PAN",
+  "rest": 54,
+  "causal": 45,
+  "anytime": 1,
+  "qual_ask_low": 45,
+  "divergence": 9,
+  "link": "CHAIN_L5_STALE_REPRICE",
+  "partner_val": 47,
+  "partner_cred": false,
+  "eventual_low": 1,
+  "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-PAN"
+ },
+ "conservation": {
+  "footprint": 50,
+  "sum_by_link": 50
+ }
+}

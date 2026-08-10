@@ -1,0 +1,95 @@
+{
+ "LABEL": "THE_316_RECUT",
+ "basis": "V45 3bda0a54; CANON 3-channel, no seller-cross privilege. lowest available = causal_own_reach_low (post-lawful-rest 3-channel min; correctly excludes pre-trigger). Verdict vs our rest.",
+ "population": {
+  "L6_legs_recut": 342,
+  "note": "corrected L6 set (NO_COUNTERPARTY + OVERPAR); pre-L5-recut stamp was 316"
+ },
+ "verdicts": {
+  "REST_AT_AVAILABLE": 121,
+  "REST_BELOW_AVAILABLE": 209,
+  "TRULY_NOTHING": 12
+ },
+ "verdicts_by_category": {
+  "ATP_CHALL": {
+   "REST_AT_AVAILABLE": 60,
+   "REST_BELOW_AVAILABLE": 109,
+   "TRULY_NOTHING": 6
+  },
+  "ATP_MAIN": {
+   "REST_BELOW_AVAILABLE": 23,
+   "REST_AT_AVAILABLE": 20,
+   "TRULY_NOTHING": 3
+  },
+  "WTA_CHALL": {
+   "REST_AT_AVAILABLE": 27,
+   "REST_BELOW_AVAILABLE": 51
+  },
+  "WTA_MAIN": {
+   "REST_BELOW_AVAILABLE": 26,
+   "REST_AT_AVAILABLE": 14,
+   "TRULY_NOTHING": 3
+  }
+ },
+ "REST_BELOW_AVAILABLE_k_distribution": {
+  "n": 209,
+  "min": 1,
+  "p25": 1,
+  "median": 1,
+  "p75": 2,
+  "max": 3
+ },
+ "channel_that_set_lowest": {
+  "TRADED_PRINT": 142,
+  "DWELLED_ASK": 109,
+  "_note": "raw-offer tape scan: TRADED_PRINT + DWELLED_ASK only; SELLER_CROSS never set the lowest -> no seller-cross privilege confirmed"
+ },
+ "overpar_resum": {
+  "over_par_games": 146,
+  "now_under_100_on_causal": 0
+ },
+ "corrected_totals": {
+  "reachable_crediting_fault": 121,
+  "placement_fault_sat_under": 209,
+  "truly_market_no": 12,
+  "true_offer_existed": 330,
+  "v45_captured": 0
+ },
+ "named": {
+  "SALIBR|IBR": {
+   "rest": 43,
+   "causal": 44,
+   "verdict": "REST_BELOW_AVAILABLE",
+   "k": 1,
+   "link": "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY",
+   "pv": 8,
+   "overpar": false,
+   "tk": "KXWTAMATCH-26JUL14SALIBR-IBR"
+  },
+  "LUZTSE|TSE": {
+   "rest": 79,
+   "causal": 79,
+   "verdict": "REST_AT_AVAILABLE",
+   "k": null,
+   "link": "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY",
+   "pv": 11,
+   "overpar": false,
+   "tk": "KXATPMATCH-26JUL18LUZTSE-TSE"
+  },
+  "SURECH|ECH_note": "ECH is CHAIN_L4_LATE_POST (causal null) - OUTSIDE the L6 re-cut; its partner SUR is the SURECH L6 leg",
+  "SURECH|SUR": {
+   "rest": 47,
+   "causal": 48,
+   "verdict": "REST_BELOW_AVAILABLE",
+   "k": 1,
+   "link": "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY",
+   "pv": null,
+   "overpar": false,
+   "tk": "KXATPCHALLENGERMATCH-26JUL14SURECH-SUR"
+  }
+ },
+ "conservation": {
+  "recut": 342,
+  "sum": 342
+ }
+}

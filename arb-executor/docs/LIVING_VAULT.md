@@ -1773,3 +1773,23 @@ No deployment or live cutover is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0e8b51f48105cab43db1d87d481a3a9fa8d91b6c/arb-executor/docs/research/window1/WINDOW1_V45_RE_ADJUDICATION_20260809_ADDENDUM.md
+
+### 2026-08-10 - V46 PAIR-GATED GAP CREDIT BLOCKED
+
+V46 adds one receipt-causal credit source to operative V45: a single-receipt
+ask gap of at least three cents may reprice an existing FALLING rest down only
+after the sibling is credited. V45 reproduces exactly. V46 authorizes five
+walks across three legs, but none fills; its completed pairs, locked value,
+naked P&L, true book, frontier, and strict score are unchanged. The variant
+records 12,650 sibling-uncredited refusals across 1,057 legs with zero new
+exposure.
+
+PANFAL is the decisive contradiction: PAN gaps 94->46 while FAL is uncredited,
+and neither leg is ever credited, so the ordered pair gate never acquires
+authority. PANFAL remains incomplete. V46 fails its strict true-book
+improvement and named PANFAL bars. V45 remains operative. Two clean builds are
+byte-identical; forbidden access is zero. No deployment or live cutover is
+authorized.
+
+Frozen evidence package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/1b1b6a653dda8cea45119264a6b682d35826cf22/.claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810/REPORT.md

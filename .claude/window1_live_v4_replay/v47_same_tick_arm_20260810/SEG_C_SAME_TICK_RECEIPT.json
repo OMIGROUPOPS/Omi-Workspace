@@ -1,0 +1,332 @@
+{
+  "qualification_rows": 1380318,
+  "deep_join_legs": 3180,
+  "by_mode": {
+    "STRICT_PRINT_CROSS": 708854,
+    "MARKET_UNION_REACH": 671464
+  },
+  "V45_zero_qualification_to_post_rows": 1187002,
+  "V47_zero_qualification_to_post_rows": 1187002,
+  "V45_positive_qualification_to_post_rows": 33125,
+  "V47_positive_qualification_to_post_rows": 33125,
+  "V45_positive_scheduler_latency_rows": 0,
+  "V47_positive_scheduler_latency_rows": 0,
+  "unchanged_law_no_post_rows": 160191,
+  "outcome_changed_rows": 0,
+  "outcome_changed_events": [],
+  "SURECH": [
+    {
+      "key": "MARKET_UNION_REACH|KXATPCHALLENGERMATCH-26JUL14SURECH|ECH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14SURECH|ECH",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "bell_confidence": "live_by_only",
+      "mode": "MARKET_UNION_REACH",
+      "qualification_rows": 10,
+      "first_qualification": {
+        "timestamp_epoch": 1784004751,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-ECH.csv.gz#row-8",
+        "level_cents": 5,
+        "residency_seconds": 0
+      },
+      "last_qualification": {
+        "timestamp_epoch": 1784012364,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-ECH.csv.gz#row-1810",
+        "level_cents": 52,
+        "residency_seconds": 0
+      },
+      "levels_cents": [
+        5,
+        14,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "V45_outcome": {
+        "leg_credited": false,
+        "leg_entry_cents": null,
+        "pair_completed": false,
+        "combined_entry_cents": null
+      },
+      "V47_outcome": {
+        "leg_credited": false,
+        "leg_entry_cents": null,
+        "pair_completed": false,
+        "combined_entry_cents": null
+      },
+      "outcome_changed": false,
+      "V45": {
+        "qualification_to_post_latency_seconds": {
+          "n": 10,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8,
+          "POSTED_LATER_AFTER_UNCHANGED_LAW": 1,
+          "ALREADY_RESTING_AT_QUALIFIED_LEVEL": 1
+        },
+        "positive_scheduler_latency_rows": 0
+      },
+      "V47": {
+        "qualification_to_post_latency_seconds": {
+          "n": 10,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8,
+          "POSTED_LATER_AFTER_UNCHANGED_LAW": 1,
+          "ALREADY_RESTING_AT_QUALIFIED_LEVEL": 1
+        },
+        "positive_scheduler_latency_rows": 0
+      }
+    },
+    {
+      "key": "MARKET_UNION_REACH|KXATPCHALLENGERMATCH-26JUL14SURECH|SUR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14SURECH|SUR",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "bell_confidence": "live_by_only",
+      "mode": "MARKET_UNION_REACH",
+      "qualification_rows": 8,
+      "first_qualification": {
+        "timestamp_epoch": 1784004751,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-SUR.csv.gz#row-8",
+        "level_cents": 5,
+        "residency_seconds": 0
+      },
+      "last_qualification": {
+        "timestamp_epoch": 1784011622,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-SUR.csv.gz#row-173",
+        "level_cents": 47,
+        "residency_seconds": 0
+      },
+      "levels_cents": [
+        5,
+        6,
+        14,
+        41,
+        44,
+        45,
+        46,
+        47
+      ],
+      "V45_outcome": {
+        "leg_credited": false,
+        "leg_entry_cents": null,
+        "pair_completed": false,
+        "combined_entry_cents": null
+      },
+      "V47_outcome": {
+        "leg_credited": false,
+        "leg_entry_cents": null,
+        "pair_completed": false,
+        "combined_entry_cents": null
+      },
+      "outcome_changed": false,
+      "V45": {
+        "qualification_to_post_latency_seconds": {
+          "n": 8,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8
+        },
+        "positive_scheduler_latency_rows": 0
+      },
+      "V47": {
+        "qualification_to_post_latency_seconds": {
+          "n": 8,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8
+        },
+        "positive_scheduler_latency_rows": 0
+      }
+    },
+    {
+      "key": "STRICT_PRINT_CROSS|KXATPCHALLENGERMATCH-26JUL14SURECH|ECH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14SURECH|ECH",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "bell_confidence": "live_by_only",
+      "mode": "STRICT_PRINT_CROSS",
+      "qualification_rows": 10,
+      "first_qualification": {
+        "timestamp_epoch": 1784004751,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-ECH.csv.gz#row-8",
+        "level_cents": 5,
+        "residency_seconds": 0
+      },
+      "last_qualification": {
+        "timestamp_epoch": 1784012364,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-ECH.csv.gz#row-1810",
+        "level_cents": 52,
+        "residency_seconds": 0
+      },
+      "levels_cents": [
+        5,
+        14,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "V45_outcome": null,
+      "V47_outcome": null,
+      "outcome_changed": false,
+      "V45": {
+        "qualification_to_post_latency_seconds": {
+          "n": 10,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8,
+          "POSTED_LATER_AFTER_UNCHANGED_LAW": 1,
+          "ALREADY_RESTING_AT_QUALIFIED_LEVEL": 1
+        },
+        "positive_scheduler_latency_rows": 0
+      },
+      "V47": {
+        "qualification_to_post_latency_seconds": {
+          "n": 10,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8,
+          "POSTED_LATER_AFTER_UNCHANGED_LAW": 1,
+          "ALREADY_RESTING_AT_QUALIFIED_LEVEL": 1
+        },
+        "positive_scheduler_latency_rows": 0
+      }
+    },
+    {
+      "key": "STRICT_PRINT_CROSS|KXATPCHALLENGERMATCH-26JUL14SURECH|SUR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14SURECH|SUR",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "bell_confidence": "live_by_only",
+      "mode": "STRICT_PRINT_CROSS",
+      "qualification_rows": 8,
+      "first_qualification": {
+        "timestamp_epoch": 1784004751,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-SUR.csv.gz#row-8",
+        "level_cents": 5,
+        "residency_seconds": 0
+      },
+      "last_qualification": {
+        "timestamp_epoch": 1784011622,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14SURECH-SUR.csv.gz#row-173",
+        "level_cents": 47,
+        "residency_seconds": 0
+      },
+      "levels_cents": [
+        5,
+        6,
+        14,
+        41,
+        44,
+        45,
+        46,
+        47
+      ],
+      "V45_outcome": null,
+      "V47_outcome": null,
+      "outcome_changed": false,
+      "V45": {
+        "qualification_to_post_latency_seconds": {
+          "n": 8,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8
+        },
+        "positive_scheduler_latency_rows": 0
+      },
+      "V47": {
+        "qualification_to_post_latency_seconds": {
+          "n": 8,
+          "null_n": 0,
+          "sum": 0,
+          "min": 0,
+          "p25": 0,
+          "median": 0,
+          "p75": 0,
+          "p90": 0,
+          "max": 0
+        },
+        "disposition_counts": {
+          "POSTED_ON_QUALIFYING_RECEIPT": 8
+        },
+        "positive_scheduler_latency_rows": 0
+      }
+    }
+  ],
+  "evidence_ruling": "8877c2d5_IS_AN_OLDER_L4_ARCHETYPE_RENDER_NOT_A_V45_TRACE; EXECUTABLE_V45_ALREADY_POSTS_JOIN_CHANGES_ON_THE_QUALIFYING_RECEIPT",
+  "latency_ruling": "QUALIFICATION_TO_POST_DELAY_FROM_UNCHANGED_GUARDS_IS_NOT_SCHEDULER_LATENCY",
+  "footprint_grain": "ONE_ROW_PER_MODE_AND_DEEP_JOIN_LEG",
+  "conservation": {
+    "V45_qualifications": 1380318,
+    "V47_qualifications": 1380318,
+    "qualification_assignment_sum": 1380318,
+    "ledger_rows": 3180,
+    "expected_ledger_rows": 3180,
+    "pass": true
+  }
+}

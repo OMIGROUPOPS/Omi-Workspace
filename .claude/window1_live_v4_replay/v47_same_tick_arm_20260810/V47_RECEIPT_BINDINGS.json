@@ -1,0 +1,55 @@
+{
+  "frozen_V45": {
+    "commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+    "baseline_reproduction": {
+      "frozen_V45_commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+      "expected": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396
+        }
+      },
+      "observed": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396,
+          "ANY_PRICE": 396
+        }
+      },
+      "pass": true
+    },
+    "control_path": ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/CONTROL_BINDING.json",
+    "control_sha256": "018b1ff7a7951ef4f8ffafef9471a257998ff30f1212cc09c80ece573f05b0fa",
+    "attribution_path": ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/ATTRIBUTION_SCORECARD.json",
+    "attribution_sha256": "c2bf44360b7f0eb4262a1314f7dcf8f5bb54e0115cb90b4206047c51f34e5eb9",
+    "inherited_policy_path": "arb-executor/analysis/window1_v45_guard_release_sibling_credit.js",
+    "inherited_policy_git_sha256": "8341076e38cd3322776bd54016f203c8fa1b1e97c51ebcfe78930b7a57780207",
+    "working_git_normalized_sha256": "8341076e38cd3322776bd54016f203c8fa1b1e97c51ebcfe78930b7a57780207",
+    "git_normalized_policy_byte_identical": true
+  },
+  "SURECH_forensic": {
+    "commit": "8877c2d519c26b4e54f283ebebcee4933113d100",
+    "marks_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/l4_archetype/SURECH_DECISION_MARKS.json",
+    "marks_sha256": "3facd3c3196fc9d0b602310d058c412252d1182f39b13cba054abb61cbb91312",
+    "timeline_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/l4_archetype/SURECH_DUAL_TIMELINE_V2.csv",
+    "timeline_sha256": "cbe9f13168f5ca9c9551fa4599060a9b0ca092668b5f44b6a05a3744469de505",
+    "role": "OLDER_L4_ARCHETYPE_EVIDENCE_NOT_A_FROZEN_V45_DECISION_TRACE"
+  },
+  "scoped_law": "JOIN_QUALIFICATION_AND_PLACEMENT_DECISION_ARE_ONE_ATOMIC_RECEIPT_LOCAL_OPERATION; ALL_DECISION_LAWS_UNCHANGED"
+}

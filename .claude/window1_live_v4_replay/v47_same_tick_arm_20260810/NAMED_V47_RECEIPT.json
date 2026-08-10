@@ -1,0 +1,241 @@
+{
+  "rows": {
+    "SURECH": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "ECH": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          },
+          "SUR": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          }
+        }
+      },
+      "V47": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "ECH": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          },
+          "SUR": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          }
+        }
+      },
+      "byte_identical_outcome": true
+    },
+    "ARNROM": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "V47": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "byte_identical_outcome": true
+    },
+    "KIRSEK": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "V47": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "byte_identical_outcome": true
+    },
+    "KRUFER": {
+      "event_id": "KXATPMATCH-26JUL12KRUFER",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "V47": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "byte_identical_outcome": true
+    },
+    "BOSCOP": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 80,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 49,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "V47": {
+        "completed": true,
+        "combined_entry_cents": 80,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_REACH_PRINT_CROSS"
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 49,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "byte_identical_outcome": true
+    },
+    "PANFAL": {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          }
+        }
+      },
+      "V47": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null
+          }
+        }
+      },
+      "byte_identical_outcome": true
+    }
+  },
+  "assertions": {
+    "SURECH_causal_reach_null_remains_unfilled": true,
+    "ARNROM_no_regression": true,
+    "KIRSEK_no_regression": true,
+    "KRUFER_no_regression": true,
+    "BOSCOP_no_regression": true,
+    "PANFAL_no_regression": true
+  },
+  "pass": true
+}

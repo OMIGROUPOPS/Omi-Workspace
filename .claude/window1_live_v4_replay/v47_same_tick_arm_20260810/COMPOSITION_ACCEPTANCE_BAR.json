@@ -1,0 +1,61 @@
+{
+  "baseline_reproduction": {
+    "frozen_V45_commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+    "expected": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396
+      }
+    },
+    "observed": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396,
+        "ANY_PRICE": 396
+      }
+    },
+    "pass": true
+  },
+  "correctness": {
+    "V47_qualification_rows": 1380318,
+    "V47_zero_qualification_to_post_rows": 1187002,
+    "V47_positive_qualification_to_post_rows": 33125,
+    "V47_positive_scheduler_latency_rows": 0,
+    "pass": true
+  },
+  "zero_regressions": {
+    "checks": {
+      "market_completed": true,
+      "market_under_par": true,
+      "locked_cents": true,
+      "true_book": true,
+      "strict_completed": true,
+      "frontier": true,
+      "named": true
+    },
+    "pass": true
+  },
+  "gain_required": false,
+  "observed_gain": {
+    "completed_pairs": 0,
+    "locked_cents": 0,
+    "true_book_net_cents": 0
+  },
+  "pass": true
+}

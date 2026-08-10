@@ -1,0 +1,13 @@
+{
+  "frozen_V45_commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "compared_leg_streams": 1608,
+  "changed_leg_streams": 0,
+  "unchanged_leg_streams": 1608,
+  "changed": [],
+  "unchanged_aggregate_sha256": "170b7ea0e6dd574231ad87cecc804a8a2ef0fc3f65fd0e39b0d7cbdfb5d4df7c",
+  "conservation": {
+    "sum": 1608,
+    "expected": 1608,
+    "pass": true
+  }
+}

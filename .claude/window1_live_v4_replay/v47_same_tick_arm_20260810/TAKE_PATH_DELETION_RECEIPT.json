@@ -1,0 +1,14 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v47_same_tick_arm.js",
+  "policy_sha256": "73728d9902fbd19f7ef7c67cd0d406324faed140f86e65f2a8ded71f528f95b0",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "market_taker_fills": 0,
+  "strict_taker_fills": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "maker_fees_cents": 0,
+  "pass": true
+}

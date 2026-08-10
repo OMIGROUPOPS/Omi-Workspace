@@ -1,0 +1,7 @@
+{
+  "status": "PASS_OPERATIVE",
+  "operative_baseline": "V47_SAME_TICK_ARM",
+  "gains_required": false,
+  "reasons": [],
+  "no_forced_values": true
+}

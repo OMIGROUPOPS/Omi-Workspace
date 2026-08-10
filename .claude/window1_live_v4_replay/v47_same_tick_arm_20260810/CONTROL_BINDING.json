@@ -1,0 +1,34 @@
+{
+  "schema_version": "window1-v47-same-tick-arm-control-v1",
+  "base": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "frozen_V45": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "controlling_receipts": [
+    "8877c2d519c26b4e54f283ebebcee4933113d100"
+  ],
+  "architecture": {
+    "incumbent": "V45_BYTE_IDENTICAL_EXCEPT_EXPLICIT_ATOMIC_RECEIPT_PIPELINE",
+    "fix": "JOIN_QUALIFICATION_AND_PLACEMENT_DECISION_EXECUTE_IN_ONE_RECEIPT_LOCAL_CALL",
+    "qualification_law": "V45_UNCHANGED",
+    "persistence_level_definition": "V45_UNCHANGED",
+    "target_guard_cap_sanity_fill_and_edge_laws": "V45_UNCHANGED",
+    "scheduler_latency_after_qualification": 0,
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V45_UNCHANGED",
+    "take_path": "DELETED_IN_V41"
+  },
+  "evidence_scope": {
+    "SURECH_render_role": "OLDER_L4_ARCHETYPE_EVIDENCE_NOT_A_FROZEN_V45_DECISION_TRACE",
+    "executable_SEG_C_footprint": "V45_VS_V47_WHOLE_804"
+  },
+  "acceptance_bar": {
+    "V45_reproduced": true,
+    "zero_named_regressions": true,
+    "aggregate_gain_required": false
+  },
+  "fill_rulers": {
+    "market_scoring": "CANON_UNION_CHANNELS",
+    "build_verification": "STRICT_PRINT_CROSS",
+    "never_swapped": true
+  }
+}

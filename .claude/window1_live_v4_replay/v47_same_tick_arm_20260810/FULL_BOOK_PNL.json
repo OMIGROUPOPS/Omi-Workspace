@@ -1,0 +1,196 @@
+{
+  "method": {
+    "commit": "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f",
+    "receipt_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V41_FULL_BOOK_PNL.json",
+    "receipt_sha256": "b961449241201f7d059db644d54a910b0ecf2c805024319b63758458f6b4260a",
+    "close_audit_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INDEPENDENT_CLOSE_AUDIT_1608.csv",
+    "close_audit_sha256": "51d542d9c1f18c6b30b6bb5e8f458d9cf3adeebf1895399f8f7b2ba416836303",
+    "close_column": "replay_close_cents",
+    "completed": "100_MINUS_PAIR_ENTRY",
+    "naked": "FROZEN_REPLAY_WINDOW1_CLOSE_MINUS_ENTRY_WHERE_AVAILABLE",
+    "skip": 0
+  },
+  "rows": [
+    {
+      "machine": "V45_BASELINE",
+      "aggregate": {
+        "events": 804,
+        "completed_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_legs": 346,
+        "naked_priced": 283,
+        "naked_open": 63,
+        "naked_pnl_cents": -162,
+        "skips": 62,
+        "true_book_net_cents": 1774
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 369,
+          "completed_pairs": 152,
+          "completed_locked_cents": 606,
+          "naked_legs": 181,
+          "naked_priced": 159,
+          "naked_open": 22,
+          "naked_pnl_cents": -99,
+          "skips": 36,
+          "true_book_net_cents": 507
+        },
+        "ATP_MAIN": {
+          "events": 147,
+          "completed_pairs": 93,
+          "completed_locked_cents": 644,
+          "naked_legs": 48,
+          "naked_priced": 37,
+          "naked_open": 11,
+          "naked_pnl_cents": -67,
+          "skips": 6,
+          "true_book_net_cents": 577
+        },
+        "WTA_CHALL": {
+          "events": 136,
+          "completed_pairs": 55,
+          "completed_locked_cents": 134,
+          "naked_legs": 65,
+          "naked_priced": 43,
+          "naked_open": 22,
+          "naked_pnl_cents": 35,
+          "skips": 16,
+          "true_book_net_cents": 169
+        },
+        "WTA_MAIN": {
+          "events": 152,
+          "completed_pairs": 96,
+          "completed_locked_cents": 552,
+          "naked_legs": 52,
+          "naked_priced": 44,
+          "naked_open": 8,
+          "naked_pnl_cents": -31,
+          "skips": 4,
+          "true_book_net_cents": 521
+        }
+      }
+    },
+    {
+      "machine": "V47_SAME_TICK_ARM",
+      "aggregate": {
+        "events": 804,
+        "completed_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_legs": 346,
+        "naked_priced": 283,
+        "naked_open": 63,
+        "naked_pnl_cents": -162,
+        "skips": 62,
+        "true_book_net_cents": 1774
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 369,
+          "completed_pairs": 152,
+          "completed_locked_cents": 606,
+          "naked_legs": 181,
+          "naked_priced": 159,
+          "naked_open": 22,
+          "naked_pnl_cents": -99,
+          "skips": 36,
+          "true_book_net_cents": 507
+        },
+        "ATP_MAIN": {
+          "events": 147,
+          "completed_pairs": 93,
+          "completed_locked_cents": 644,
+          "naked_legs": 48,
+          "naked_priced": 37,
+          "naked_open": 11,
+          "naked_pnl_cents": -67,
+          "skips": 6,
+          "true_book_net_cents": 577
+        },
+        "WTA_CHALL": {
+          "events": 136,
+          "completed_pairs": 55,
+          "completed_locked_cents": 134,
+          "naked_legs": 65,
+          "naked_priced": 43,
+          "naked_open": 22,
+          "naked_pnl_cents": 35,
+          "skips": 16,
+          "true_book_net_cents": 169
+        },
+        "WTA_MAIN": {
+          "events": 152,
+          "completed_pairs": 96,
+          "completed_locked_cents": 552,
+          "naked_legs": 52,
+          "naked_priced": 44,
+          "naked_open": 8,
+          "naked_pnl_cents": -31,
+          "skips": 4,
+          "true_book_net_cents": 521
+        }
+      }
+    }
+  ],
+  "acceptance": {
+    "baseline_reproduction": {
+      "frozen_V45_commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+      "expected": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396
+        }
+      },
+      "observed": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396,
+          "ANY_PRICE": 396
+        }
+      },
+      "pass": true
+    },
+    "correctness": {
+      "V47_qualification_rows": 1380318,
+      "V47_zero_qualification_to_post_rows": 1187002,
+      "V47_positive_qualification_to_post_rows": 33125,
+      "V47_positive_scheduler_latency_rows": 0,
+      "pass": true
+    },
+    "zero_regressions": {
+      "checks": {
+        "market_completed": true,
+        "market_under_par": true,
+        "locked_cents": true,
+        "true_book": true,
+        "strict_completed": true,
+        "frontier": true,
+        "named": true
+      },
+      "pass": true
+    },
+    "gain_required": false,
+    "observed_gain": {
+      "completed_pairs": 0,
+      "locked_cents": 0,
+      "true_book_net_cents": 0
+    },
+    "pass": true
+  }
+}

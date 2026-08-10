@@ -1,0 +1,44 @@
+{
+ "event": "KXATPMATCH-26JUL18COLCER",
+ "code": "26JUL18COLCER",
+ "category": "ATP_MAIN",
+ "docket_rank": 5,
+ "value_at_stake_cents": 61,
+ "game_type": "naked",
+ "miss_story": "COL: guard held rest out at 55c while flow reached 1c [GUARD_WITHHELD]",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing template)",
+ "w1_span": {
+  "left": 1784298039,
+  "left_et": "2026-07-17 14:20:39",
+  "right": 1784304956,
+  "right_et": "2026-07-17 16:15:56"
+ },
+ "legs": {
+  "CER": {
+   "ticker": "KXATPMATCH-26JUL18COLCER-CER",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": true,
+   "entry_cents": 38,
+   "union_reach_cents": 1,
+   "resting_target_at_edge_cents": 38,
+   "census_class": "CREDITED",
+   "deep_gap_withhold_episodes": 1,
+   "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL",
+   "final_state": "CREDITED"
+  },
+  "COL": {
+   "ticker": "KXATPMATCH-26JUL18COLCER-COL",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "union_reach_cents": 1,
+   "resting_target_at_edge_cents": 59,
+   "census_class": "GUARD_WITHHELD",
+   "deep_gap_withhold_episodes": 1,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  }
+ }
+}

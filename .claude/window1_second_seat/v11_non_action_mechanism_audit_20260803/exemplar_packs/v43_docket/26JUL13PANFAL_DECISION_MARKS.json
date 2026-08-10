@@ -1,0 +1,44 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+ "code": "26JUL13PANFAL",
+ "category": "WTA_CHALL",
+ "docket_rank": 3,
+ "value_at_stake_cents": 69,
+ "game_type": "skip",
+ "miss_story": "FAL: rest 44c, flow 30c (14c off) [NO_FLOW_NEAR]; PAN: guard held rest out at 42c while flow reached 1c [GUARD_WITHHELD]",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing template)",
+ "w1_span": {
+  "left": 1783894220,
+  "left_et": "2026-07-12 22:10:20",
+  "right": 1783937425,
+  "right_et": "2026-07-13 10:10:25"
+ },
+ "legs": {
+  "FAL": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-FAL",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "union_reach_cents": 30,
+   "resting_target_at_edge_cents": 44,
+   "census_class": "NO_FLOW_NEAR",
+   "deep_gap_withhold_episodes": 0,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  },
+  "PAN": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-PAN",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "union_reach_cents": 1,
+   "resting_target_at_edge_cents": 54,
+   "census_class": "GUARD_WITHHELD",
+   "deep_gap_withhold_episodes": 1,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  }
+ }
+}

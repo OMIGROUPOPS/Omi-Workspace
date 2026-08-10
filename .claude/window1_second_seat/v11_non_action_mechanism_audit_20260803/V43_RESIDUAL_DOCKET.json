@@ -1,0 +1,382 @@
+{
+ "LABEL": "V43_RESIDUAL_DOCKET",
+ "basis": "V43 01a58334, census 639e8b19; value=100-sum(leg fill-or-reach); both-dry skips excluded",
+ "conservation": {
+  "uncompleted_games": 409,
+  "ranked_value_gt0": 178,
+  "both_dry_skip_class": 9,
+  "dry_missing_leg": 7,
+  "over_par": 215,
+  "check": 409,
+  "note": "409 uncompleted = 178 ranked (value>0) + 9 both-dry skips (market's no) + 7 naked/skip w/ a no-flow missing leg + 215 reachable-but-over-par"
+ },
+ "top15": [
+  {
+   "rank": 1,
+   "code": "26JUL18LUZTSE",
+   "cat": "ATP_MAIN",
+   "value": 88,
+   "gametype": "naked",
+   "miss_story": "TSE: guard held rest out at 79c while flow reached 1c [GUARD_WITHHELD]",
+   "legs": {
+    "LUZ": {
+     "cls": "CREDITED",
+     "reach": 10,
+     "rest": 79,
+     "entry": 11,
+     "cred": true
+    },
+    "TSE": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 1,
+     "rest": 79,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 2,
+   "code": "26JUL13KHOZHA",
+   "cat": "WTA_CHALL",
+   "value": 79,
+   "gametype": "naked",
+   "miss_story": "KHO: rest 77c, flow 6c (71c off) [NO_FLOW_NEAR]",
+   "legs": {
+    "KHO": {
+     "cls": "NO_FLOW_NEAR",
+     "reach": 6,
+     "rest": 77,
+     "entry": null,
+     "cred": false
+    },
+    "ZHA": {
+     "cls": "CREDITED",
+     "reach": 1,
+     "rest": 15,
+     "entry": 15,
+     "cred": true
+    }
+   }
+  },
+  {
+   "rank": 3,
+   "code": "26JUL13PANFAL",
+   "cat": "WTA_CHALL",
+   "value": 69,
+   "gametype": "skip",
+   "miss_story": "FAL: rest 44c, flow 30c (14c off) [NO_FLOW_NEAR]; PAN: guard held rest out at 42c while flow reached 1c [GUARD_WITHHELD]",
+   "legs": {
+    "FAL": {
+     "cls": "NO_FLOW_NEAR",
+     "reach": 30,
+     "rest": 44,
+     "entry": null,
+     "cred": false
+    },
+    "PAN": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 1,
+     "rest": 54,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 4,
+   "code": "26JUL13SHIHUA",
+   "cat": "WTA_CHALL",
+   "value": 66,
+   "gametype": "naked",
+   "miss_story": "HUA: rest 60c, flow 1c (59c off) [NO_FLOW_NEAR]",
+   "legs": {
+    "HUA": {
+     "cls": "NO_FLOW_NEAR",
+     "reach": 1,
+     "rest": 60,
+     "entry": null,
+     "cred": false
+    },
+    "SHI": {
+     "cls": "CREDITED",
+     "reach": 16,
+     "rest": 33,
+     "entry": 33,
+     "cred": true
+    }
+   }
+  },
+  {
+   "rank": 5,
+   "code": "26JUL18COLCER",
+   "cat": "ATP_MAIN",
+   "value": 61,
+   "gametype": "naked",
+   "miss_story": "COL: guard held rest out at 55c while flow reached 1c [GUARD_WITHHELD]",
+   "legs": {
+    "CER": {
+     "cls": "CREDITED",
+     "reach": 1,
+     "rest": 38,
+     "entry": 38,
+     "cred": true
+    },
+    "COL": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 1,
+     "rest": 59,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 6,
+   "code": "26JUL13PENTHA",
+   "cat": "WTA_CHALL",
+   "value": 58,
+   "gametype": "skip",
+   "miss_story": "PEN: guard held rest out at 31c while flow reached 22c [GUARD_WITHHELD]; THA: guard held rest out at 24c while flow reached 20c [GUARD_WITHHELD]",
+   "legs": {
+    "PEN": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 22,
+     "rest": 76,
+     "entry": null,
+     "cred": false
+    },
+    "THA": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 20,
+     "rest": 22,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 7,
+   "code": "26JUL18SHEOLI",
+   "cat": "WTA_MAIN",
+   "value": 57,
+   "gametype": "skip",
+   "miss_story": "OLI: guard held rest out at 46c while flow reached 1c [GUARD_WITHHELD]; SHE: guard held rest out at 46c while flow reached 42c [GUARD_WITHHELD]",
+   "legs": {
+    "OLI": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 1,
+     "rest": 46,
+     "entry": null,
+     "cred": false
+    },
+    "SHE": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 42,
+     "rest": 45,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 8,
+   "code": "26JUL17ZAKPRO",
+   "cat": "WTA_CHALL",
+   "value": 52,
+   "gametype": "naked",
+   "miss_story": "PRO: rest 51c, flow 1c (50c off) [NO_FLOW_NEAR]",
+   "legs": {
+    "PRO": {
+     "cls": "NO_FLOW_NEAR",
+     "reach": 1,
+     "rest": 51,
+     "entry": null,
+     "cred": false
+    },
+    "ZAK": {
+     "cls": "CREDITED",
+     "reach": 37,
+     "rest": 48,
+     "entry": 47,
+     "cred": true
+    }
+   }
+  },
+  {
+   "rank": 9,
+   "code": "26JUL20RUZSAL",
+   "cat": "WTA_MAIN",
+   "value": 52,
+   "gametype": "skip",
+   "miss_story": "RUZ: guard held rest out at 50c while flow reached 23c [GUARD_WITHHELD]; SAL: rest 40c, flow 25c (15c off) [NO_FLOW_NEAR]",
+   "legs": {
+    "RUZ": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 23,
+     "rest": 58,
+     "entry": null,
+     "cred": false
+    },
+    "SAL": {
+     "cls": "NO_FLOW_NEAR",
+     "reach": 25,
+     "rest": 40,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 10,
+   "code": "26JUL13SAINUG",
+   "cat": "WTA_CHALL",
+   "value": 49,
+   "gametype": "skip",
+   "miss_story": "NUG: guard held rest out at 61c while flow reached 50c [GUARD_WITHHELD]; SAI: guard held rest out at 29c while flow reached 1c [GUARD_WITHHELD]",
+   "legs": {
+    "NUG": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 50,
+     "rest": 66,
+     "entry": null,
+     "cred": false
+    },
+    "SAI": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 1,
+     "rest": 32,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 11,
+   "code": "26JUL17SMIYUN",
+   "cat": "ATP_CHALL",
+   "value": 48,
+   "gametype": "naked",
+   "miss_story": "YUN: guard held rest out at 23c while flow reached 13c [GUARD_WITHHELD]",
+   "legs": {
+    "SMI": {
+     "cls": "CREDITED",
+     "reach": 1,
+     "rest": 39,
+     "entry": 39,
+     "cred": true
+    },
+    "YUN": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 13,
+     "rest": 60,
+     "entry": null,
+     "cred": false
+    }
+   }
+  },
+  {
+   "rank": 12,
+   "code": "26JUL14SALIBR",
+   "cat": "WTA_MAIN",
+   "value": 48,
+   "gametype": "naked",
+   "miss_story": "IBR: rest 43c a shade too deep, flow dwelled 44c just above [FLOW_ABOVE_REST]",
+   "legs": {
+    "IBR": {
+     "cls": "FLOW_ABOVE_REST",
+     "reach": 44,
+     "rest": 43,
+     "entry": null,
+     "cred": false
+    },
+    "SAL": {
+     "cls": "CREDITED",
+     "reach": 56,
+     "rest": 7,
+     "entry": 8,
+     "cred": true
+    }
+   }
+  },
+  {
+   "rank": 13,
+   "code": "26JUL13VANLEE",
+   "cat": "WTA_CHALL",
+   "value": 44,
+   "gametype": "naked",
+   "miss_story": "LEE: guard held rest out at 18c while flow reached 1c [GUARD_WITHHELD]",
+   "legs": {
+    "LEE": {
+     "cls": "GUARD_WITHHELD",
+     "reach": 1,
+     "rest": 44,
+     "entry": null,
+     "cred": false
+    },
+    "VAN": {
+     "cls": "CREDITED",
+     "reach": 53,
+     "rest": 55,
+     "entry": 55,
+     "cred": true
+    }
+   }
+  },
+  {
+   "rank": 14,
+   "code": "26JUL16ZAKSHU",
+   "cat": "WTA_CHALL",
+   "value": 44,
+   "gametype": "naked",
+   "miss_story": "SHU: rest 44c, flow 1c (43c off) [NO_FLOW_NEAR]",
+   "legs": {
+    "SHU": {
+     "cls": "NO_FLOW_NEAR",
+     "reach": 1,
+     "rest": 44,
+     "entry": null,
+     "cred": false
+    },
+    "ZAK": {
+     "cls": "CREDITED",
+     "reach": 32,
+     "rest": 55,
+     "entry": 55,
+     "cred": true
+    }
+   }
+  },
+  {
+   "rank": 15,
+   "code": "26JUL13KRASAL",
+   "cat": "ATP_CHALL",
+   "value": 43,
+   "gametype": "naked",
+   "miss_story": "KRA: rest 78c, flow 43c (35c off) [NO_FLOW_NEAR]",
+   "legs": {
+    "KRA": {
+     "cls": "NO_FLOW_NEAR",
+     "reach": 43,
+     "rest": 78,
+     "entry": null,
+     "cred": false
+    },
+    "SAL": {
+     "cls": "CREDITED",
+     "reach": 1,
+     "rest": 14,
+     "entry": 14,
+     "cred": true
+    }
+   }
+  }
+ ],
+ "top5_events": [
+  "KXATPMATCH-26JUL18LUZTSE",
+  "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+  "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+  "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+  "KXATPMATCH-26JUL18COLCER"
+ ]
+}

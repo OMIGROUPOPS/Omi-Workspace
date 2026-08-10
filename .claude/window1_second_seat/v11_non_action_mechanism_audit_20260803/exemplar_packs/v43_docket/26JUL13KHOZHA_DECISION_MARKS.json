@@ -1,0 +1,44 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+ "code": "26JUL13KHOZHA",
+ "category": "WTA_CHALL",
+ "docket_rank": 2,
+ "value_at_stake_cents": 79,
+ "game_type": "naked",
+ "miss_story": "KHO: rest 77c, flow 6c (71c off) [NO_FLOW_NEAR]",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing template)",
+ "w1_span": {
+  "left": 1783894220,
+  "left_et": "2026-07-12 22:10:20",
+  "right": 1783937442,
+  "right_et": "2026-07-13 10:10:42"
+ },
+ "legs": {
+  "KHO": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13KHOZHA-KHO",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "union_reach_cents": 6,
+   "resting_target_at_edge_cents": 77,
+   "census_class": "NO_FLOW_NEAR",
+   "deep_gap_withhold_episodes": 0,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  },
+  "ZHA": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13KHOZHA-ZHA",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": true,
+   "entry_cents": 15,
+   "union_reach_cents": 1,
+   "resting_target_at_edge_cents": 15,
+   "census_class": "CREDITED",
+   "deep_gap_withhold_episodes": 0,
+   "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL",
+   "final_state": "CREDITED"
+  }
+ }
+}

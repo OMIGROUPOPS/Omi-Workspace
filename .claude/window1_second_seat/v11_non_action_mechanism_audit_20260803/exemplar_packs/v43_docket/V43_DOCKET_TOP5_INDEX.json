@@ -1,0 +1,60 @@
+{
+ "LABEL": "V43_DOCKET_TOP5_PACKS",
+ "packs": [
+  {
+   "rank": 1,
+   "code": "26JUL18LUZTSE",
+   "value": 88,
+   "type": "naked",
+   "cat": "ATP_MAIN",
+   "rows": 456,
+   "bbo": 427,
+   "trades": 29,
+   "miss": "TSE: guard held rest out at 79c while flow reached 1c [GUARD_WITHHELD]"
+  },
+  {
+   "rank": 2,
+   "code": "26JUL13KHOZHA",
+   "value": 79,
+   "type": "naked",
+   "cat": "WTA_CHALL",
+   "rows": 3720,
+   "bbo": 3702,
+   "trades": 18,
+   "miss": "KHO: rest 77c, flow 6c (71c off) [NO_FLOW_NEAR]"
+  },
+  {
+   "rank": 3,
+   "code": "26JUL13PANFAL",
+   "value": 69,
+   "type": "skip",
+   "cat": "WTA_CHALL",
+   "rows": 7630,
+   "bbo": 7614,
+   "trades": 16,
+   "miss": "FAL: rest 44c, flow 30c (14c off) [NO_FLOW_NEAR]; PAN: guard held rest out at 42c while flow reached 1c [GUARD_WITHHELD]"
+  },
+  {
+   "rank": 4,
+   "code": "26JUL13SHIHUA",
+   "value": 66,
+   "type": "naked",
+   "cat": "WTA_CHALL",
+   "rows": 1897,
+   "bbo": 1862,
+   "trades": 35,
+   "miss": "HUA: rest 60c, flow 1c (59c off) [NO_FLOW_NEAR]"
+  },
+  {
+   "rank": 5,
+   "code": "26JUL18COLCER",
+   "value": 61,
+   "type": "naked",
+   "cat": "ATP_MAIN",
+   "rows": 523,
+   "bbo": 474,
+   "trades": 49,
+   "miss": "COL: guard held rest out at 55c while flow reached 1c [GUARD_WITHHELD]"
+  }
+ ]
+}

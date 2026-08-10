@@ -1,0 +1,93 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+ "code": "SURECH",
+ "category": "ATP_CHALL",
+ "archetype": "CHAIN_L4_LATE_POST (top exemplar, 13c, fdeb7516)",
+ "game_type": "skip",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS (standing template)",
+ "w1_span": {
+  "left": 1784002927,
+  "left_et": "2026-07-14 04:22:07",
+  "right": 1784012439,
+  "right_et": "2026-07-14 07:00:39"
+ },
+ "legs": {
+  "ECH": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14SURECH-ECH",
+   "global_direction": "FALLING",
+   "close_cents": "39",
+   "credited": false,
+   "anytime_reach_cents": 39,
+   "causal_reach_cents": null,
+   "resting_target_cents": 52,
+   "arming_chain": {
+    "first_nameable_moment": {
+     "ts": 1784002927,
+     "et": "2026-07-14 04:22:07",
+     "what": "first two-sided book \u2014 a lawful rest (bid-1) existed at open"
+    },
+    "actual_post": {
+     "ts": 1784002927,
+     "et": "2026-07-14 04:22:07",
+     "level": "bid-1 tracking (shallow)"
+    },
+    "deep_level_arm": {
+     "level_cents": 52,
+     "ts": 1784012364,
+     "et": "2026-07-14 06:59:24",
+     "what": "persistence-only join to the deep level"
+    },
+    "arming_lag_seconds": 9437,
+    "arming_lag_hms": "02h37m",
+    "flow_passed_in_between": {
+     "trades": 16,
+     "deepest_cents": 55,
+     "first_trade": "2026-07-14 06:48:44",
+     "note": "flow that traded while the rest sat shallow, before the deep join armed"
+    },
+    "verdict": "LATE_POST: causal reach null \u2014 the deep join armed at 2026-07-14 06:59:24, minutes before the 2026-07-14 07:00:39 edge; the collectable flow had already passed"
+   },
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  },
+  "SUR": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14SURECH-SUR",
+   "global_direction": "CLIMBING",
+   "close_cents": "63",
+   "credited": false,
+   "anytime_reach_cents": 58,
+   "causal_reach_cents": 48,
+   "resting_target_cents": 47,
+   "arming_chain": {
+    "first_nameable_moment": {
+     "ts": 1784002927,
+     "et": "2026-07-14 04:22:07",
+     "what": "first two-sided book \u2014 a lawful rest (bid-1) existed at open"
+    },
+    "actual_post": {
+     "ts": 1784002927,
+     "et": "2026-07-14 04:22:07",
+     "level": "bid-1 tracking (shallow)"
+    },
+    "deep_level_arm": {
+     "level_cents": 47,
+     "ts": 1784011622,
+     "et": "2026-07-14 06:47:02",
+     "what": "persistence-only join to the deep level"
+    },
+    "arming_lag_seconds": 8695,
+    "arming_lag_hms": "02h24m",
+    "flow_passed_in_between": {
+     "trades": 0,
+     "deepest_cents": null,
+     "first_trade": null,
+     "note": "flow that traded while the rest sat shallow, before the deep join armed"
+    },
+    "verdict": "deep level armed in time"
+   },
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  }
+ },
+ "narrative": "SURECH is a SKIP: both rests posted at open (04:22) as shallow bid-1, but the deep persistence-only join armed only at the very end (ECH 06:59:24 / SUR 06:47:02, seconds-to-minutes before the 07:00:39 edge). The 300s+ persistence gate delayed the deep post ~2.5h past first-nameable; the flow that would have filled passed in the interim, leaving ECH with a null causal reach. The chain broke at L4 POST: the level was nameable early, the machine stood late."
+}

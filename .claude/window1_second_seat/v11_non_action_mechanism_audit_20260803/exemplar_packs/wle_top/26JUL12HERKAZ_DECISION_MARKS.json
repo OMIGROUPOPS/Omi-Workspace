@@ -1,0 +1,84 @@
+{
+ "event": "KXWTAMATCH-26JUL12HERKAZ",
+ "code": "26JUL12HERKAZ",
+ "category": "WTA_MAIN",
+ "archetype": "WINDOW_LAWFUL_EVIDENCE top exemplar (STANDABILITY_V2 fe4747cd)",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1783781797,
+  "left_et": "2026-07-11 14:56:37",
+  "right": 1783846800,
+  "right_et": "2026-07-12 09:00:00"
+ },
+ "top_exemplar_row": {
+  "game": "26JUL12HERKAZ",
+  "category": "WTA_MAIN",
+  "missing_leg": "HER",
+  "ticker": "KXWTAMATCH-26JUL12HERKAZ-HER",
+  "value_at_stake": 8,
+  "P_evidenced_level": 46,
+  "evidence": {
+   "prior_trade_le_P": null,
+   "bid_touch_ge_P": {
+    "bid": 46,
+    "ts": 1783813033,
+    "et": "2026-07-11 23:37:13"
+   }
+  },
+  "window_spans_ask_gt_P": [
+   {
+    "start": 1783821668,
+    "start_et": "2026-07-12 02:01:08",
+    "end": 1783829408,
+    "end_et": "2026-07-12 04:10:08",
+    "dur_s": 7740
+   }
+  ],
+  "total_window_seconds": 7740,
+  "completing_print": {
+   "price": 46,
+   "size": 43.97,
+   "ts": 1783829606,
+   "et": "2026-07-12 04:13:26",
+   "taker_side": "yes"
+  },
+  "v48_rest": {
+   "terminal_level": 45,
+   "first_action": "2026-07-11 14:56:37",
+   "join_arm": "2026-07-12 08:46:09",
+   "path_summary": "rest ended at 45c; the evidenced level 46c was above/at it"
+  }
+ },
+ "legs": {
+  "HER": {
+   "ticker": "KXWTAMATCH-26JUL12HERKAZ-HER",
+   "global_direction": "CLIMBING",
+   "close_cents": "55",
+   "credited": false,
+   "entry_cents": null,
+   "rest": 45,
+   "deepest_trade": {
+    "price": 46,
+    "ts": "2026-07-12 04:13:26",
+    "size": 43.97,
+    "side": "yes"
+   },
+   "wle": true
+  },
+  "KAZ": {
+   "ticker": "KXWTAMATCH-26JUL12HERKAZ-KAZ",
+   "global_direction": "FALLING",
+   "close_cents": "47",
+   "credited": true,
+   "entry_cents": 46,
+   "rest": 46,
+   "deepest_trade": {
+    "price": 46,
+    "ts": "2026-07-12 05:11:44",
+    "size": 40.0,
+    "side": "no"
+   },
+   "wle": false
+  }
+ }
+}

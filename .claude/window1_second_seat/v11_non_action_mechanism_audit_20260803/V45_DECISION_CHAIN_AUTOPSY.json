@@ -1,0 +1,606 @@
+{
+ "LABEL": "V45_DECISION_CHAIN_AUTOPSY",
+ "basis": "V45 3bda0a54; process diagnosis by earliest broken buy-chain link (L2 read / L3 target / L4 post / L5 reprice / L6 stand). causal reach=reach_snapshot.causal_own_reach_low. SUPERSEDES outcome-stamp; MARKET_NO only as an L6 verdict.",
+ "chain": "L1 ADMIT -> L2 READ(dir vs frozen) -> L3 TARGET(named? right level vs causal flow) -> L4 POST(arming lag) -> L5 REPRICE(tracked?) -> L6 STAND(present at flow moment: no-counterparty | overpar)",
+ "conservation": {
+  "unfilled_legs": 470,
+  "sum": 470,
+  "exactly_once": true
+ },
+ "link_totals": {
+  "CHAIN_L2_MISREAD": {
+   "n": 58,
+   "cents": 43
+  },
+  "CHAIN_L3_NO_TARGET": {
+   "n": 4,
+   "cents": 0
+  },
+  "CHAIN_L3_WRONG_LEVEL": {
+   "n": 11,
+   "cents": 1
+  },
+  "CHAIN_L4_LATE_POST": {
+   "n": 47,
+   "cents": 45
+  },
+  "CHAIN_L5_STALE_REPRICE": {
+   "n": 34,
+   "cents": 77
+  },
+  "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY": {
+   "n": 173,
+   "cents": 346
+  },
+  "CHAIN_L6_PRESENT_BUT_OVERPAR": {
+   "n": 143,
+   "cents": 0
+  }
+ },
+ "per_category": {
+  "CHAIN_L2_MISREAD": {
+   "ATP_CHALL": {
+    "n": 39,
+    "cents": 30
+   },
+   "ATP_MAIN": {
+    "n": 6,
+    "cents": 9
+   },
+   "WTA_CHALL": {
+    "n": 8,
+    "cents": 3
+   },
+   "WTA_MAIN": {
+    "n": 5,
+    "cents": 1
+   }
+  },
+  "CHAIN_L3_NO_TARGET": {
+   "ATP_CHALL": {
+    "n": 2,
+    "cents": 0
+   },
+   "ATP_MAIN": {
+    "n": 2,
+    "cents": 0
+   },
+   "WTA_CHALL": {
+    "n": 0,
+    "cents": 0
+   },
+   "WTA_MAIN": {
+    "n": 0,
+    "cents": 0
+   }
+  },
+  "CHAIN_L3_WRONG_LEVEL": {
+   "ATP_CHALL": {
+    "n": 7,
+    "cents": 0
+   },
+   "ATP_MAIN": {
+    "n": 0,
+    "cents": 0
+   },
+   "WTA_CHALL": {
+    "n": 3,
+    "cents": 1
+   },
+   "WTA_MAIN": {
+    "n": 1,
+    "cents": 0
+   }
+  },
+  "CHAIN_L4_LATE_POST": {
+   "ATP_CHALL": {
+    "n": 27,
+    "cents": 36
+   },
+   "ATP_MAIN": {
+    "n": 5,
+    "cents": 0
+   },
+   "WTA_CHALL": {
+    "n": 7,
+    "cents": 8
+   },
+   "WTA_MAIN": {
+    "n": 8,
+    "cents": 1
+   }
+  },
+  "CHAIN_L5_STALE_REPRICE": {
+   "ATP_CHALL": {
+    "n": 7,
+    "cents": 14
+   },
+   "ATP_MAIN": {
+    "n": 4,
+    "cents": 13
+   },
+   "WTA_CHALL": {
+    "n": 22,
+    "cents": 50
+   },
+   "WTA_MAIN": {
+    "n": 1,
+    "cents": 0
+   }
+  },
+  "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY": {
+   "ATP_CHALL": {
+    "n": 100,
+    "cents": 178
+   },
+   "ATP_MAIN": {
+    "n": 27,
+    "cents": 41
+   },
+   "WTA_CHALL": {
+    "n": 22,
+    "cents": 27
+   },
+   "WTA_MAIN": {
+    "n": 24,
+    "cents": 100
+   }
+  },
+  "CHAIN_L6_PRESENT_BUT_OVERPAR": {
+   "ATP_CHALL": {
+    "n": 71,
+    "cents": 0
+   },
+   "ATP_MAIN": {
+    "n": 16,
+    "cents": 0
+   },
+   "WTA_CHALL": {
+    "n": 35,
+    "cents": 0
+   },
+   "WTA_MAIN": {
+    "n": 21,
+    "cents": 0
+   }
+  }
+ },
+ "L2_organ": {
+  "frozen_comparable_legs": 366,
+  "misread": 232,
+  "rate": 0.634,
+  "by_read_vs_frozen": {
+   "FALLING_vs_SETTLED": 52,
+   "RISING_vs_FALLING": 34,
+   "FALLING_vs_RISING": 64,
+   "RISING_vs_SETTLED": 46,
+   "SETTLED_vs_RISING": 25,
+   "SETTLED_vs_FALLING": 11
+  },
+  "note": "L2 misread = combined_state read != frozen corrected direction at the reach moment; the 157-mislabel organ re-measured"
+ },
+ "top5_per_link": {
+  "CHAIN_L2_MISREAD": [
+   {
+    "code": "26JUL19NIKVRB",
+    "leg": "VRB",
+    "cat": "ATP_CHALL",
+    "value": 8,
+    "frozen": "RISING",
+    "read": "FALLING",
+    "rest": 75,
+    "anytime": 68,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL17HALSHE",
+    "leg": "HAL",
+    "cat": "ATP_MAIN",
+    "value": 6,
+    "frozen": "FALLING",
+    "read": "RISING",
+    "rest": 57,
+    "anytime": 58,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL12MARFOR",
+    "leg": "FOR",
+    "cat": "ATP_CHALL",
+    "value": 5,
+    "frozen": "RISING",
+    "read": "SETTLED",
+    "rest": 42,
+    "anytime": 38,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL13POLMIY",
+    "leg": "POL",
+    "cat": "ATP_CHALL",
+    "value": 4,
+    "frozen": "SETTLED",
+    "read": "FALLING",
+    "rest": 22,
+    "anytime": 24,
+    "causal": 26,
+    "cents": null
+   },
+   {
+    "code": "26JUL12CHAJON",
+    "leg": "JON",
+    "cat": "ATP_CHALL",
+    "value": 3,
+    "frozen": "RISING",
+    "read": "FALLING",
+    "rest": 58,
+    "anytime": 56,
+    "causal": null,
+    "cents": null
+   }
+  ],
+  "CHAIN_L3_NO_TARGET": [
+   {
+    "code": "26JUL14MATMOR",
+    "leg": "MAT",
+    "cat": "ATP_CHALL",
+    "value": null,
+    "frozen": null,
+    "read": null,
+    "rest": null,
+    "anytime": 42,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL14MATMOR",
+    "leg": "MOR",
+    "cat": "ATP_CHALL",
+    "value": null,
+    "frozen": null,
+    "read": null,
+    "rest": null,
+    "anytime": 2,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL18CORSAC",
+    "leg": "COR",
+    "cat": "ATP_MAIN",
+    "value": null,
+    "frozen": null,
+    "read": null,
+    "rest": null,
+    "anytime": 6,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL18CORSAC",
+    "leg": "SAC",
+    "cat": "ATP_MAIN",
+    "value": null,
+    "frozen": null,
+    "read": null,
+    "rest": null,
+    "anytime": 44,
+    "causal": null,
+    "cents": null
+   }
+  ],
+  "CHAIN_L3_WRONG_LEVEL": [
+   {
+    "code": "26JUL13KABPER",
+    "leg": "KAB",
+    "cat": "WTA_CHALL",
+    "value": 1,
+    "frozen": "FALLING",
+    "read": "FALLING",
+    "rest": 66,
+    "anytime": 71,
+    "causal": 72,
+    "cents": null
+   },
+   {
+    "code": "26JUL12FANBIG",
+    "leg": "FAN",
+    "cat": "ATP_CHALL",
+    "value": 0,
+    "frozen": null,
+    "read": "FALLING",
+    "rest": 32,
+    "anytime": 35,
+    "causal": 36,
+    "cents": null
+   },
+   {
+    "code": "26JUL12WESSEL",
+    "leg": "WES",
+    "cat": "ATP_CHALL",
+    "value": -1,
+    "frozen": null,
+    "read": "FALLING",
+    "rest": 41,
+    "anytime": 49,
+    "causal": 49,
+    "cents": null
+   },
+   {
+    "code": "26JUL12MALTUR",
+    "leg": "MAL",
+    "cat": "WTA_CHALL",
+    "value": -1,
+    "frozen": "FALLING",
+    "read": "FALLING",
+    "rest": 47,
+    "anytime": 53,
+    "causal": 55,
+    "cents": null
+   },
+   {
+    "code": "26JUL19SINMAT",
+    "leg": "SIN",
+    "cat": "ATP_CHALL",
+    "value": -3,
+    "frozen": null,
+    "read": "FALLING",
+    "rest": 29,
+    "anytime": 31,
+    "causal": 35,
+    "cents": null
+   }
+  ],
+  "CHAIN_L4_LATE_POST": [
+   {
+    "code": "26JUL14SURECH",
+    "leg": "ECH",
+    "cat": "ATP_CHALL",
+    "value": 13,
+    "frozen": "FALLING",
+    "read": "FALLING",
+    "rest": 52,
+    "anytime": 39,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL12BARREI",
+    "leg": "REI",
+    "cat": "ATP_CHALL",
+    "value": 6,
+    "frozen": null,
+    "read": "FALLING",
+    "rest": 33,
+    "anytime": 31,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL12ROUJAK",
+    "leg": "JAK",
+    "cat": "WTA_CHALL",
+    "value": 5,
+    "frozen": "RISING",
+    "read": "RISING",
+    "rest": 56,
+    "anytime": 52,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL12KUZDE",
+    "leg": "KUZ",
+    "cat": "ATP_CHALL",
+    "value": 4,
+    "frozen": "RISING",
+    "read": "RISING",
+    "rest": 85,
+    "anytime": 82,
+    "causal": null,
+    "cents": null
+   },
+   {
+    "code": "26JUL12BARVIS",
+    "leg": "BAR",
+    "cat": "ATP_CHALL",
+    "value": 3,
+    "frozen": null,
+    "read": "RISING",
+    "rest": 80,
+    "anytime": 83,
+    "causal": null,
+    "cents": null
+   }
+  ],
+  "CHAIN_L5_STALE_REPRICE": [
+   {
+    "code": "26JUL18LUZTSE",
+    "leg": "TSE",
+    "cat": "ATP_MAIN",
+    "value": 10,
+    "frozen": null,
+    "read": "FALLING",
+    "rest": 79,
+    "anytime": 1,
+    "causal": 79,
+    "cents": null
+   },
+   {
+    "code": "26JUL13PANFAL",
+    "leg": "FAL",
+    "cat": "WTA_CHALL",
+    "value": 8,
+    "frozen": null,
+    "read": "RISING",
+    "rest": 44,
+    "anytime": 30,
+    "causal": 47,
+    "cents": null
+   },
+   {
+    "code": "26JUL13PANFAL",
+    "leg": "PAN",
+    "cat": "WTA_CHALL",
+    "value": 8,
+    "frozen": null,
+    "read": "RISING",
+    "rest": 54,
+    "anytime": 1,
+    "causal": 45,
+    "cents": null
+   },
+   {
+    "code": "26JUL13KRASAL",
+    "leg": "KRA",
+    "cat": "ATP_CHALL",
+    "value": 7,
+    "frozen": null,
+    "read": "FALLING",
+    "rest": 78,
+    "anytime": 43,
+    "causal": 79,
+    "cents": null
+   },
+   {
+    "code": "26JUL13KHOZHA",
+    "leg": "KHO",
+    "cat": "WTA_CHALL",
+    "value": 7,
+    "frozen": null,
+    "read": "FALLING",
+    "rest": 77,
+    "anytime": 6,
+    "causal": 78,
+    "cents": null
+   }
+  ],
+  "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY": [
+   {
+    "code": "26JUL14SALIBR",
+    "leg": "IBR",
+    "cat": "WTA_MAIN",
+    "value": 48,
+    "frozen": "SETTLED",
+    "read": "FALLING",
+    "rest": 43,
+    "anytime": 44,
+    "causal": 44,
+    "cents": null
+   },
+   {
+    "code": "26JUL12BROHUA",
+    "leg": "BRO",
+    "cat": "ATP_CHALL",
+    "value": 8,
+    "frozen": "FALLING",
+    "read": "RISING",
+    "rest": 62,
+    "anytime": 63,
+    "causal": 64,
+    "cents": null
+   },
+   {
+    "code": "26JUL12HERKAZ",
+    "leg": "HER",
+    "cat": "WTA_MAIN",
+    "value": 7,
+    "frozen": "RISING",
+    "read": "RISING",
+    "rest": 45,
+    "anytime": 46,
+    "causal": 47,
+    "cents": null
+   },
+   {
+    "code": "26JUL19COSAKS",
+    "leg": "COS",
+    "cat": "WTA_MAIN",
+    "value": 7,
+    "frozen": "SETTLED",
+    "read": "SETTLED",
+    "rest": 63,
+    "anytime": 64,
+    "causal": 59,
+    "cents": null
+   },
+   {
+    "code": "26JUL15HOLMAY",
+    "leg": "MAY",
+    "cat": "ATP_CHALL",
+    "value": 6,
+    "frozen": "RISING",
+    "read": "RISING",
+    "rest": 34,
+    "anytime": 34,
+    "causal": 29,
+    "cents": null
+   }
+  ],
+  "CHAIN_L6_PRESENT_BUT_OVERPAR": [
+   {
+    "code": "26JUL12CHISEA",
+    "leg": "SEA",
+    "cat": "ATP_CHALL",
+    "value": 0,
+    "frozen": "SETTLED",
+    "read": "RISING",
+    "rest": 64,
+    "anytime": 65,
+    "causal": 65,
+    "cents": null
+   },
+   {
+    "code": "26JUL12CHOGAS",
+    "leg": "GAS",
+    "cat": "ATP_CHALL",
+    "value": 0,
+    "frozen": "SETTLED",
+    "read": "SETTLED",
+    "rest": 38,
+    "anytime": 39,
+    "causal": 39,
+    "cents": null
+   },
+   {
+    "code": "26JUL12HOUJOR",
+    "leg": "JOR",
+    "cat": "ATP_CHALL",
+    "value": 0,
+    "frozen": null,
+    "read": "RISING",
+    "rest": 48,
+    "anytime": 49,
+    "causal": 49,
+    "cents": null
+   },
+   {
+    "code": "26JUL12KARMAR",
+    "leg": "KAR",
+    "cat": "ATP_CHALL",
+    "value": 0,
+    "frozen": "RISING",
+    "read": "SETTLED",
+    "rest": 33,
+    "anytime": 38,
+    "causal": 34,
+    "cents": null
+   },
+   {
+    "code": "26JUL12MEJSOT",
+    "leg": "MEJ",
+    "cat": "ATP_CHALL",
+    "value": 0,
+    "frozen": "RISING",
+    "read": "RISING",
+    "rest": 66,
+    "anytime": 67,
+    "causal": 67,
+    "cents": null
+   }
+  ]
+ }
+}

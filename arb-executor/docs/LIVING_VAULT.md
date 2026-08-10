@@ -1757,4 +1757,4 @@ has no guard release or maker fill to credit. V43 remains operative. No live
 cutover or deployment is authorized.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/arb-executor/docs/research/window1/WINDOW1_V45_GUARD_RELEASE_SIBLING_CREDIT_20260809_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/arb-executor/docs/research/window1/WINDOW1_V45_GUARD_RELEASE_SIBLING_CREDIT_20260809_ADDENDUM.md

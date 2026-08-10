@@ -1693,4 +1693,4 @@ no later in-window seller-aggressed print reached it. The package is frozen as
 evidence; V43 remains operative.
 
 Canonical package:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/REPORT.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/REPORT.md

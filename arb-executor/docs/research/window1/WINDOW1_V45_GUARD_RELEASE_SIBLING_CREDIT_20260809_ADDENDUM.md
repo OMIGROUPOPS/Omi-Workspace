@@ -32,14 +32,13 @@ verification only. Forbidden live, holdout, order, position, settlement,
 deployment, and network access is zero. V43 remains operative.
 
 Canonical report:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/REPORT.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/REPORT.md
 
 Release receipt:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/RELEASED_REST_RECEIPT.json
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/RELEASED_REST_RECEIPT.json
 
 Named and causal receipt:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/NAMED_V45_RECEIPT.json
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/NAMED_V45_RECEIPT.json
 
 Determinism receipt:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/DETERMINISM_RECEIPT.json
-
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/DETERMINISM_RECEIPT.json

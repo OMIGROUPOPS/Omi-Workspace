@@ -1681,3 +1681,16 @@ cutover or deployment is authorized.
 
 Re-adjudication receipt:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf0f421404f5da36ecb892/.claude/window1_live_v4_replay/v43_re_adjudication_20260809/V43_RE_ADJUDICATION_RECEIPT.json
+
+## V45 GUARD RELEASE AT SIBLING CREDIT - BLOCKED - 2026-08-09
+
+V45 adds one scoped clause to operative V43: retain the T=10 guard before a
+sibling credit, then terminate its authority over the remaining leg and post
+the lawful cap-bounded rest. The executable row moves 395->396 completed pairs
+and +1,748c->+1,774c true book. Naked P&L remains -162c, so the bar fails.
+LUZTSE cannot be credited: TSE's 79 rest was already live before LUZ credit and
+no later in-window seller-aggressed print reached it. The package is frozen as
+evidence; V43 remains operative.
+
+Canonical package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/REPORT.md

@@ -1744,3 +1744,17 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf
 
 Analytical-estimate supersession:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf0f421404f5da36ecb892/.claude/window1_live_v4_replay/v43_re_adjudication_20260809/ANALYTICAL_ESTIMATE_SUPERSESSION_RECEIPT.json
+
+### 2026-08-09 - V45 GUARD RELEASE AT SIBLING CREDIT BLOCKED
+
+V45 preserves V43's pre-fill T=10 deep-gap guard and terminates that guard's
+authority over a leg only when the sibling is credited. It raises completed
+pairs 395->396 and true book +1,748c->+1,774c, with one completion gain and no
+new exposure across 26 releases. Naked P&L remains -162c, however, so the
+improvement bar fails. LUZTSE also remains incomplete lawfully: TSE's rest at
+79 predates LUZ credit, receives no later in-window seller hit, and therefore
+has no guard release or maker fill to credit. V43 remains operative. No live
+cutover or deployment is authorized.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_COMMIT__/arb-executor/docs/research/window1/WINDOW1_V45_GUARD_RELEASE_SIBLING_CREDIT_20260809_ADDENDUM.md

@@ -1,0 +1,14 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v45_guard_release_sibling_credit.js",
+  "policy_sha256": "8341076e38cd3322776bd54016f203c8fa1b1e97c51ebcfe78930b7a57780207",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "market_taker_fills": 0,
+  "strict_taker_fills": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "maker_fees_cents": 0,
+  "pass": true
+}

@@ -1,0 +1,161 @@
+{
+  "controlling_frontier": {
+    "commit": "084df12553928677869bd2857516caa3f0490416",
+    "sha256": "673f46b517d18321570a83ac5828e5603c400ee89f705fb3a6f1ad9eed20baa0",
+    "T4_persist300": {
+      "completable": 636,
+      "under_par": 631,
+      "locked": 5211,
+      "frontier": {
+        "<=93": 119,
+        "<=95": 180,
+        "<=97": 337,
+        "<100": 631
+      },
+      "by_cat": {
+        "ATP_CHALL": 291,
+        "ATP_MAIN": 128,
+        "WTA_CHALL": 97,
+        "WTA_MAIN": 115
+      },
+      "lock_by_cat": {
+        "ATP_CHALL": 1729,
+        "ATP_MAIN": 917,
+        "WTA_CHALL": 1987,
+        "WTA_MAIN": 578
+      },
+      "riser_empty": 0,
+      "false_arms": 7,
+      "false_arm_overreach_cents": 10,
+      "hard_false_arms": 0
+    }
+  },
+  "controlling_level_policy": {
+    "commit": "cca7c6c1554344711e2ddb32f3d3e2175c44711e",
+    "sha256": "26128106cdd58c5c430b2f5b87d8089802061cbac7870f6eb8171dce5b023077",
+    "P2_join": {
+      "completable": 521,
+      "under_par": 480,
+      "locked": 3493,
+      "frontier": {
+        "<=93": 83,
+        "<=95": 120,
+        "<=97": 206,
+        "<100": 480
+      },
+      "by_cat": {
+        "ATP_CHALL": 201,
+        "ATP_MAIN": 102,
+        "WTA_CHALL": 87,
+        "WTA_MAIN": 90
+      },
+      "lock_by_cat": {
+        "ATP_CHALL": 1159,
+        "ATP_MAIN": 552,
+        "WTA_CHALL": 1321,
+        "WTA_MAIN": 461
+      },
+      "riser_forfeits": 117
+    },
+    "P3_join_track": {
+      "completable": 521,
+      "under_par": 480,
+      "locked": 3495,
+      "frontier": {
+        "<=93": 83,
+        "<=95": 120,
+        "<=97": 206,
+        "<100": 480
+      },
+      "by_cat": {
+        "ATP_CHALL": 201,
+        "ATP_MAIN": 102,
+        "WTA_CHALL": 87,
+        "WTA_MAIN": 90
+      },
+      "lock_by_cat": {
+        "ATP_CHALL": 1159,
+        "ATP_MAIN": 552,
+        "WTA_CHALL": 1322,
+        "WTA_MAIN": 462
+      },
+      "riser_forfeits": 117
+    }
+  },
+  "seller_hit_gate_removed": true,
+  "first_two_sided_tracker_until_join": true,
+  "join_overrides_tracker": true,
+  "join_census": {
+    "join_legs": 1589,
+    "market_credited_after_join": 1125,
+    "strict_credited_after_join": 994,
+    "post_join_certified_seller_hit_distribution": {
+      "n": 1589,
+      "null_n": 0,
+      "sum": 4266,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 3,
+      "p90": 7,
+      "max": 78
+    },
+    "post_join_book_last_trade_receipt_distribution": {
+      "n": 1589,
+      "null_n": 0,
+      "sum": 434656,
+      "min": 0,
+      "p25": 0,
+      "median": 20,
+      "p75": 143,
+      "p90": 528,
+      "max": 28432
+    },
+    "zero_post_join_certified_seller_hits": 500,
+    "by_category_x_bell_confidence": {
+      "ATP_CHALL|live_by_only": 421,
+      "ATP_CHALL|exact": 215,
+      "ATP_MAIN|live_by_only": 176,
+      "WTA_CHALL|live_by_only": 160,
+      "WTA_MAIN|live_by_only": 129,
+      "WTA_MAIN|exact": 97,
+      "WTA_CHALL|exact": 79,
+      "ATP_MAIN|exact": 73,
+      "ATP_CHALL|schedule_only": 52,
+      "WTA_MAIN|schedule_only": 32,
+      "ATP_CHALL|contradictory": 31,
+      "WTA_MAIN|clean_interval": 28,
+      "WTA_CHALL|schedule_only": 24,
+      "ATP_MAIN|clean_interval": 18,
+      "ATP_MAIN|schedule_only": 18,
+      "ATP_CHALL|clean_interval": 14,
+      "WTA_MAIN|contradictory": 10,
+      "WTA_CHALL|contradictory": 6,
+      "ATP_MAIN|contradictory": 4,
+      "WTA_CHALL|clean_interval": 2
+    },
+    "BOSCOP_COP": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOSCOP|COP",
+      "category": "ATP_CHALL",
+      "bell_confidence": "exact",
+      "incumbent_state_at_terminal_decision": "RISING",
+      "join_level_cents": 49,
+      "join_timestamp_epoch": 1783893041,
+      "join_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-125715",
+      "trigger_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12BOSCOP-COP.csv.gz#row-125715",
+      "all_book_last_trade_at_level_receipts": 0,
+      "all_certified_seller_aggressed_prints_at_level": 0,
+      "post_join_book_last_trade_at_level_receipts": 7,
+      "post_join_certified_seller_aggressed_prints_at_level": 3,
+      "market_credited": true,
+      "market_entry_cents": 49,
+      "market_fill_timestamp_epoch": 1783893041.85,
+      "market_fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+      "strict_credited": false,
+      "strict_entry_cents": null,
+      "strict_fill_timestamp_epoch": null,
+      "strict_fill_class": null
+    }
+  }
+}

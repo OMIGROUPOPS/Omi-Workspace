@@ -1,0 +1,925 @@
+{
+  "ordered_law": "NAMED_COMPLETION_PASSES_AT_REQUIRED_COMBINED_PRICE_OR_BETTER; MECHANISM_FINGERPRINTS_BIND_TO_MECHANISM_NOT_TICK_VALUES",
+  "rows": {
+    "LUZTSE": {
+      "event_id": "KXATPMATCH-26JUL18LUZTSE",
+      "V43": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LUZ": {
+            "credited": true,
+            "entry_cents": 11,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          },
+          "TSE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LUZ": {
+            "credited": true,
+            "entry_cents": 11,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_rest_cents": null,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 79,
+            "persistent_join_timestamp_epoch": 1784374557,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 2,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL18LUZTSE-LUZ.csv.gz#row-21",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 2,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "TSE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 79,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 79,
+            "persistent_join_timestamp_epoch": 1784375204,
+            "persistent_join_book_last_trade_receipts": 99,
+            "persistent_join_certified_seller_aggressed_prints": 3,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL18LUZTSE-TSE.csv.gz#row-40",
+            "post_join_book_last_trade_receipts": 97,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "SIBLING_CREDIT_BUT_NO_ACTIVE_GUARD_WITHHOLD",
+      "causal_forensics": {
+        "LUZ": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 10,
+          "union_first_evidence_timestamp_epoch": 1784375294.708991,
+          "reach_inside_hard_edge": true,
+          "persistent_join_level_cents": 79,
+          "persistent_join_timestamp_epoch": 1784374557,
+          "post_join_certified_seller_hits_at_level": 2,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+        },
+        "TSE": {
+          "pair_cap_cents": 88,
+          "terminal_rest_cents": 79,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1784386329.904026,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 79,
+          "persistent_join_timestamp_epoch": 1784375204,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "COLCER": {
+      "event_id": "KXATPMATCH-26JUL18COLCER",
+      "V43": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "CER": {
+            "credited": true,
+            "entry_cents": 38,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          },
+          "COL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "CER": {
+            "credited": true,
+            "entry_cents": 38,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_rest_cents": null,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 38,
+            "persistent_join_timestamp_epoch": 1784298711,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL18COLCER-CER.csv.gz#row-15",
+            "post_join_book_last_trade_receipts": 1,
+            "post_join_certified_seller_hits_at_level": 1,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "COL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 59,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 59,
+            "persistent_join_timestamp_epoch": 1784304899,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL18COLCER-COL.csv.gz#row-152",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "SIBLING_CREDIT_BUT_NO_ACTIVE_GUARD_WITHHOLD",
+      "causal_forensics": {
+        "CER": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1784374593.127078,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 38,
+          "persistent_join_timestamp_epoch": 1784298711,
+          "post_join_certified_seller_hits_at_level": 1,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+        },
+        "COL": {
+          "pair_cap_cents": 61,
+          "terminal_rest_cents": 59,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1784370060.02329,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 59,
+          "persistent_join_timestamp_epoch": 1784304899,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "SMIYUN": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+      "V43": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "SMI": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "YUN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "SMI": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 39,
+            "persistent_join_timestamp_epoch": 1784301427,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL17SMIYUN-SMI.csv.gz#row-1206",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 1,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "YUN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 60,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 63,
+            "persistent_join_timestamp_epoch": 1784317174,
+            "persistent_join_book_last_trade_receipts": 124,
+            "persistent_join_certified_seller_aggressed_prints": 5,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL17SMIYUN-YUN.csv.gz#row-1544",
+            "post_join_book_last_trade_receipts": 91,
+            "post_join_certified_seller_hits_at_level": 5,
+            "sanity_bound_receipts": 992,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "SIBLING_CREDIT_BUT_NO_ACTIVE_GUARD_WITHHOLD",
+      "causal_forensics": {
+        "SMI": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1784339906.45429,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 39,
+          "persistent_join_timestamp_epoch": 1784301427,
+          "post_join_certified_seller_hits_at_level": 1,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "YUN": {
+          "pair_cap_cents": 60,
+          "terminal_rest_cents": 60,
+          "union_reach_cents": 13,
+          "union_first_evidence_timestamp_epoch": 1784334823.596327,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 63,
+          "persistent_join_timestamp_epoch": 1784317174,
+          "post_join_certified_seller_hits_at_level": 5,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "VANLEE": {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "V43": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LEE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "VAN": {
+            "credited": true,
+            "entry_cents": 55,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LEE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 44,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 45,
+            "persistent_join_timestamp_epoch": 1783919847,
+            "persistent_join_book_last_trade_receipts": 24,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13VANLEE-LEE.csv.gz#row-1140",
+            "post_join_book_last_trade_receipts": 22,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 134,
+            "sanity_violations": 0
+          },
+          "VAN": {
+            "credited": true,
+            "entry_cents": 55,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_rest_cents": null,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 55,
+            "persistent_join_timestamp_epoch": 1783909754,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13VANLEE-VAN.csv.gz#row-555",
+            "post_join_book_last_trade_receipts": 32,
+            "post_join_certified_seller_hits_at_level": 1,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "SIBLING_CREDIT_BUT_NO_ACTIVE_GUARD_WITHHOLD",
+      "causal_forensics": {
+        "LEE": {
+          "pair_cap_cents": 44,
+          "terminal_rest_cents": 44,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1783950998.554064,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 45,
+          "persistent_join_timestamp_epoch": 1783919847,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "VAN": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 53,
+          "union_first_evidence_timestamp_epoch": 1783946081.661271,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 55,
+          "persistent_join_timestamp_epoch": 1783909754,
+          "post_join_certified_seller_hits_at_level": 1,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+        }
+      }
+    },
+    "SAINUG": {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "V43": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "NUG": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "SAI": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "NUG": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 66,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 67,
+            "persistent_join_timestamp_epoch": 1783941600,
+            "persistent_join_book_last_trade_receipts": 324,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13SAINUG-NUG.csv.gz#row-1294",
+            "post_join_book_last_trade_receipts": 29,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 356,
+            "sanity_violations": 0
+          },
+          "SAI": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 32,
+            "final_causal_state": "SETTLED",
+            "persistent_join_level_cents": 32,
+            "persistent_join_timestamp_epoch": 1783899210,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13SAINUG-SAI.csv.gz#row-81",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "NO_SIBLING_CREDIT_PRE_FILL_GUARD_UNCHANGED",
+      "causal_forensics": {
+        "NUG": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": 66,
+          "union_reach_cents": 50,
+          "union_first_evidence_timestamp_epoch": 1783943637.566967,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 67,
+          "persistent_join_timestamp_epoch": 1783941600,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "SAI": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": 32,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1783947905.341807,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 32,
+          "persistent_join_timestamp_epoch": 1783899210,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "PENTHA": {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+      "V43": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "PEN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "THA": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "PEN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 76,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 76,
+            "persistent_join_timestamp_epoch": 1783928837,
+            "persistent_join_book_last_trade_receipts": 29,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13PENTHA-PEN.csv.gz#row-23804",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 29,
+            "sanity_violations": 0
+          },
+          "THA": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 22,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 22,
+            "persistent_join_timestamp_epoch": 1783945200,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13PENTHA-THA.csv.gz#row-1461",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "NO_SIBLING_CREDIT_PRE_FILL_GUARD_UNCHANGED",
+      "causal_forensics": {
+        "PEN": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": 76,
+          "union_reach_cents": 22,
+          "union_first_evidence_timestamp_epoch": 1783950178.953408,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 76,
+          "persistent_join_timestamp_epoch": 1783928837,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "THA": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": 22,
+          "union_reach_cents": 20,
+          "union_first_evidence_timestamp_epoch": 1783946367.092218,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 22,
+          "persistent_join_timestamp_epoch": 1783945200,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "SHEOLI": {
+      "event_id": "KXWTAMATCH-26JUL18SHEOLI",
+      "V43": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "OLI": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "SHE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "V45": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "OLI": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 46,
+            "final_causal_state": "FALLING",
+            "persistent_join_level_cents": 47,
+            "persistent_join_timestamp_epoch": 1784304780,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTAMATCH-26JUL18SHEOLI-OLI.csv.gz#row-7",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "SHE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_rest_cents": 45,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 45,
+            "persistent_join_timestamp_epoch": 1784308600,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXWTAMATCH-26JUL18SHEOLI-SHE.csv.gz#row-33",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "NO_SIBLING_CREDIT_PRE_FILL_GUARD_UNCHANGED",
+      "causal_forensics": {
+        "OLI": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": 46,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1784388991.001033,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 47,
+          "persistent_join_timestamp_epoch": 1784304780,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "SHE": {
+          "pair_cap_cents": null,
+          "terminal_rest_cents": 45,
+          "union_reach_cents": 42,
+          "union_first_evidence_timestamp_epoch": 1784385661.894712,
+          "reach_inside_hard_edge": false,
+          "persistent_join_level_cents": 45,
+          "persistent_join_timestamp_epoch": 1784308600,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "ARNROM": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "V43": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 50,
+            "persistent_join_timestamp_epoch": 1783868100,
+            "persistent_join_book_last_trade_receipts": 1,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN.csv.gz#row-35474",
+            "post_join_book_last_trade_receipts": 31,
+            "post_join_certified_seller_hits_at_level": 2,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 39,
+            "persistent_join_timestamp_epoch": 1783899855,
+            "persistent_join_book_last_trade_receipts": 2,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ROM.csv.gz#row-1333",
+            "post_join_book_last_trade_receipts": 85,
+            "post_join_certified_seller_hits_at_level": 3,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "SIBLING_CREDIT_BUT_NO_ACTIVE_GUARD_WITHHOLD",
+      "causal_forensics": {
+        "ARN": {
+          "pair_cap_cents": 60,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 50,
+          "union_first_evidence_timestamp_epoch": 1783875407.293605,
+          "reach_inside_hard_edge": true,
+          "persistent_join_level_cents": 50,
+          "persistent_join_timestamp_epoch": 1783868100,
+          "post_join_certified_seller_hits_at_level": 2,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "ROM": {
+          "pair_cap_cents": 49,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 38,
+          "union_first_evidence_timestamp_epoch": 1783935978,
+          "reach_inside_hard_edge": true,
+          "persistent_join_level_cents": 39,
+          "persistent_join_timestamp_epoch": 1783899855,
+          "post_join_certified_seller_hits_at_level": 3,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        }
+      }
+    },
+    "KRUFER": {
+      "event_id": "KXATPMATCH-26JUL12KRUFER",
+      "V43": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "SETTLED",
+            "persistent_join_level_cents": 43,
+            "persistent_join_timestamp_epoch": 1783801422,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL12KRUFER-FER.csv.gz#row-133",
+            "post_join_book_last_trade_receipts": 96,
+            "post_join_certified_seller_hits_at_level": 4,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 56,
+            "persistent_join_timestamp_epoch": 1783831207,
+            "persistent_join_book_last_trade_receipts": 311,
+            "persistent_join_certified_seller_aggressed_prints": 2,
+            "persistent_join_evidence_receipt": "KXATPMATCH-26JUL12KRUFER-KRU.csv.gz#row-1858",
+            "post_join_book_last_trade_receipts": 603,
+            "post_join_certified_seller_hits_at_level": 2,
+            "sanity_bound_receipts": 2649,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "SIBLING_CREDIT_BUT_NO_ACTIVE_GUARD_WITHHOLD",
+      "causal_forensics": {
+        "FER": {
+          "pair_cap_cents": 46,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 1,
+          "union_first_evidence_timestamp_epoch": 1783850167.893538,
+          "reach_inside_hard_edge": true,
+          "persistent_join_level_cents": 43,
+          "persistent_join_timestamp_epoch": 1783801422,
+          "post_join_certified_seller_hits_at_level": 4,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "KRU": {
+          "pair_cap_cents": 56,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 49,
+          "union_first_evidence_timestamp_epoch": 1783845657.516807,
+          "reach_inside_hard_edge": true,
+          "persistent_join_level_cents": 56,
+          "persistent_join_timestamp_epoch": 1783831207,
+          "post_join_certified_seller_hits_at_level": 2,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        }
+      }
+    },
+    "KIRSEK": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "V43": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "V45": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 16,
+            "persistent_join_timestamp_epoch": 1784003371,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR.csv.gz#row-5520",
+            "post_join_book_last_trade_receipts": 0,
+            "post_join_certified_seller_hits_at_level": 0,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_rest_cents": null,
+            "final_causal_state": "RISING",
+            "persistent_join_level_cents": 8,
+            "persistent_join_timestamp_epoch": 1783997316,
+            "persistent_join_book_last_trade_receipts": 0,
+            "persistent_join_certified_seller_aggressed_prints": 0,
+            "persistent_join_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK.csv.gz#row-6",
+            "post_join_book_last_trade_receipts": 8,
+            "post_join_certified_seller_hits_at_level": 1,
+            "sanity_bound_receipts": 0,
+            "sanity_violations": 0
+          }
+        }
+      },
+      "released_rest_rows": [],
+      "disposition": "SIBLING_CREDIT_BUT_NO_ACTIVE_GUARD_WITHHOLD",
+      "causal_forensics": {
+        "KIR": {
+          "pair_cap_cents": 91,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 28,
+          "union_first_evidence_timestamp_epoch": 1784019610,
+          "reach_inside_hard_edge": true,
+          "persistent_join_level_cents": 16,
+          "persistent_join_timestamp_epoch": 1784003371,
+          "post_join_certified_seller_hits_at_level": 0,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        },
+        "SEK": {
+          "pair_cap_cents": 83,
+          "terminal_rest_cents": null,
+          "union_reach_cents": 68,
+          "union_first_evidence_timestamp_epoch": 1784037995.19685,
+          "reach_inside_hard_edge": true,
+          "persistent_join_level_cents": 8,
+          "persistent_join_timestamp_epoch": 1783997316,
+          "post_join_certified_seller_hits_at_level": 1,
+          "post_credit_guard_releases": 0,
+          "post_credit_guard_reapplication_prevented_receipts": 0,
+          "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+        }
+      }
+    }
+  },
+  "assertions": {
+    "LUZTSE_completes_at_or_better_90": false,
+    "PENTHA_unchanged_without_sibling_credit": true,
+    "SHEOLI_unchanged_without_sibling_credit": true,
+    "ARNROM_at_or_better_89": true,
+    "KRUFER_at_or_better_96": true,
+    "KIRSEK_at_or_better_24": true,
+    "no_new_exposure_from_post_credit_release": true
+  },
+  "pass": false
+}

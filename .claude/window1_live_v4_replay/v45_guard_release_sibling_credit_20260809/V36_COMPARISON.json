@@ -1,0 +1,213 @@
+{
+  "frozen_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "frozen_gross_score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 1035,
+    "completed_pairs": 270,
+    "under_par_pairs": 270,
+    "locked_cents_per_contract": 670,
+    "locked_cents_five_lot": 3350,
+    "maker_fill_classes": {
+      "PROVEN_TAKER_EVIDENCE_FLOOR_QUALIFIED_ASK": 882,
+      "PROVEN_MAKER_SELLER_AGGRESSED_PRINT_SIZE_FIVE_AT_OR_BELOW_REST": 153
+    },
+    "frontier": {
+      "LE_93": 9,
+      "LE_95": 20,
+      "LE_97": 77,
+      "LT_100": 270,
+      "ANY_PRICE": 270
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "frozen_net_of_taker_fee_score": {
+    "fee_law": "TAKER=CEIL(0.07*P*(1-P)*100)_CENTS_PER_CONTRACT; MAKER=0; FIVE_CONTRACTS_PER_LEG",
+    "aggregate": {
+      "events": 804,
+      "credited_legs": 1035,
+      "maker_legs_fee_exempt": 153,
+      "taker_legs_charged": 882,
+      "completed_pairs": 270,
+      "gross_under_par_pairs": 270,
+      "net_positive_completed_pairs": 47,
+      "games_flipped_negative_by_fees": 180,
+      "games_flipped_to_zero_by_fees": 43,
+      "gross_locked_cents_per_contract": 670,
+      "gross_locked_cents_five_lot": 3350,
+      "taker_fees_all_credited_legs_cents_per_contract": 1646,
+      "taker_fees_all_credited_legs_five_lot": 8230,
+      "taker_fees_completed_pairs_cents_per_contract": 807,
+      "taker_fees_completed_pairs_five_lot": 4035,
+      "net_locked_after_all_entry_taker_fees_cents_per_contract": -976,
+      "net_locked_after_all_entry_taker_fees_five_lot": -4880,
+      "completed_pair_net_locked_cents_per_contract": -137,
+      "completed_pair_net_locked_cents_five_lot": -685
+    },
+    "per_category": [
+      {
+        "category": "ATP_CHALL",
+        "events": 369,
+        "credited_legs": 469,
+        "maker_legs_fee_exempt": 58,
+        "taker_legs_charged": 411,
+        "completed_pairs": 121,
+        "gross_under_par_pairs": 121,
+        "net_positive_completed_pairs": 20,
+        "games_flipped_negative_by_fees": 82,
+        "games_flipped_to_zero_by_fees": 19,
+        "gross_locked_cents_per_contract": 327,
+        "gross_locked_cents_five_lot": 1635,
+        "taker_fees_all_credited_legs_cents_per_contract": 761,
+        "taker_fees_all_credited_legs_five_lot": 3805,
+        "taker_fees_completed_pairs_cents_per_contract": 374,
+        "taker_fees_completed_pairs_five_lot": 1870,
+        "net_locked_after_all_entry_taker_fees_cents_per_contract": -434,
+        "net_locked_after_all_entry_taker_fees_five_lot": -2170,
+        "completed_pair_net_locked_cents_per_contract": -47,
+        "completed_pair_net_locked_cents_five_lot": -235
+      },
+      {
+        "category": "ATP_MAIN",
+        "events": 147,
+        "credited_legs": 207,
+        "maker_legs_fee_exempt": 43,
+        "taker_legs_charged": 164,
+        "completed_pairs": 67,
+        "gross_under_par_pairs": 67,
+        "net_positive_completed_pairs": 13,
+        "games_flipped_negative_by_fees": 44,
+        "games_flipped_to_zero_by_fees": 10,
+        "gross_locked_cents_per_contract": 135,
+        "gross_locked_cents_five_lot": 675,
+        "taker_fees_all_credited_legs_cents_per_contract": 320,
+        "taker_fees_all_credited_legs_five_lot": 1600,
+        "taker_fees_completed_pairs_cents_per_contract": 199,
+        "taker_fees_completed_pairs_five_lot": 995,
+        "net_locked_after_all_entry_taker_fees_cents_per_contract": -185,
+        "net_locked_after_all_entry_taker_fees_five_lot": -925,
+        "completed_pair_net_locked_cents_per_contract": -64,
+        "completed_pair_net_locked_cents_five_lot": -320
+      },
+      {
+        "category": "WTA_CHALL",
+        "events": 136,
+        "credited_legs": 162,
+        "maker_legs_fee_exempt": 17,
+        "taker_legs_charged": 145,
+        "completed_pairs": 29,
+        "gross_under_par_pairs": 29,
+        "net_positive_completed_pairs": 7,
+        "games_flipped_negative_by_fees": 18,
+        "games_flipped_to_zero_by_fees": 4,
+        "gross_locked_cents_per_contract": 111,
+        "gross_locked_cents_five_lot": 555,
+        "taker_fees_all_credited_legs_cents_per_contract": 274,
+        "taker_fees_all_credited_legs_five_lot": 1370,
+        "taker_fees_completed_pairs_cents_per_contract": 85,
+        "taker_fees_completed_pairs_five_lot": 425,
+        "net_locked_after_all_entry_taker_fees_cents_per_contract": -163,
+        "net_locked_after_all_entry_taker_fees_five_lot": -815,
+        "completed_pair_net_locked_cents_per_contract": 26,
+        "completed_pair_net_locked_cents_five_lot": 130
+      },
+      {
+        "category": "WTA_MAIN",
+        "events": 152,
+        "credited_legs": 197,
+        "maker_legs_fee_exempt": 35,
+        "taker_legs_charged": 162,
+        "completed_pairs": 53,
+        "gross_under_par_pairs": 53,
+        "net_positive_completed_pairs": 7,
+        "games_flipped_negative_by_fees": 36,
+        "games_flipped_to_zero_by_fees": 10,
+        "gross_locked_cents_per_contract": 97,
+        "gross_locked_cents_five_lot": 485,
+        "taker_fees_all_credited_legs_cents_per_contract": 291,
+        "taker_fees_all_credited_legs_five_lot": 1455,
+        "taker_fees_completed_pairs_cents_per_contract": 149,
+        "taker_fees_completed_pairs_five_lot": 745,
+        "net_locked_after_all_entry_taker_fees_cents_per_contract": -194,
+        "net_locked_after_all_entry_taker_fees_five_lot": -970,
+        "completed_pair_net_locked_cents_per_contract": -52,
+        "completed_pair_net_locked_cents_five_lot": -260
+      }
+    ]
+  },
+  "V41_maker_fee": {
+    "maker_fills_fee_exempt": true,
+    "taker_fills": 0,
+    "total_entry_fees_cents": 0,
+    "net_equals_gross": true
+  },
+  "causal_reach_reference": {
+    "commit": "d3db740f143646614bc10778c0b4e27fa519dcd8",
+    "under_par": 504,
+    "locked_cents": 3319
+  },
+  "reach_answer_key_grade_from_b581cbb": {
+    "matched": 52,
+    "shallow": 212,
+    "one_missing": 486,
+    "both_missing": 35,
+    "no_reach": 19,
+    "completed_on_637_answer_key": 264
+  },
+  "V45_market_union_reach": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 1138,
+    "completed_pairs": 396,
+    "under_par_pairs": 396,
+    "locked_cents_per_contract": 1936,
+    "locked_cents_five_lot": 9680,
+    "maker_fill_classes": {
+      "MARKET_REACH_PRINT_CROSS": 731,
+      "MARKET_REACH_TRADED_AT_LEVEL": 407
+    },
+    "frontier": {
+      "LE_93": 52,
+      "LE_95": 71,
+      "LE_97": 142,
+      "LT_100": 396,
+      "ANY_PRICE": 396
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "V45_strict_build_verification": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 1033,
+    "completed_pairs": 331,
+    "under_par_pairs": 331,
+    "locked_cents_per_contract": 1583,
+    "locked_cents_five_lot": 7915,
+    "maker_fill_classes": {
+      "STRICT_PRINT_CROSS_SELLER_AGGRESSED_SIZE_FIVE": 1033
+    },
+    "frontier": {
+      "LE_93": 36,
+      "LE_95": 50,
+      "LE_97": 99,
+      "LT_100": 331,
+      "ANY_PRICE": 331
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  }
+}

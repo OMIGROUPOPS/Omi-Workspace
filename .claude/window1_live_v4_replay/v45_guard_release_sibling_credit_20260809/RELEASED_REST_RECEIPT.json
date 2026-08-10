@@ -1,0 +1,30 @@
+{
+  "released_rests": 26,
+  "active_withholds_terminated_at_credit": 3,
+  "future_reapplications_prevented": 23,
+  "released_and_filled": 18,
+  "released_unfilled": 8,
+  "two_columns": {
+    "pairs_completed": {
+      "events": 1,
+      "identities": [
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ]
+    },
+    "new_exposure": {
+      "events": 0,
+      "identities": []
+    }
+  },
+  "by_category": {
+    "WTA_MAIN": 10,
+    "ATP_MAIN": 8,
+    "ATP_CHALL": 7,
+    "WTA_CHALL": 1
+  },
+  "conservation": {
+    "rows": 26,
+    "filled_plus_unfilled": 26,
+    "pass": true
+  }
+}

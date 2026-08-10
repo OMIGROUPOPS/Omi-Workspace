@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED_V43_REMAINS_OPERATIVE",
+  "operative_baseline": "V43_01a58334",
+  "reasons": [
+    "NAKED_BOOK_DID_NOT_IMPROVE",
+    "NAMED_CHECK_FAILED"
+  ],
+  "no_forced_values": true
+}

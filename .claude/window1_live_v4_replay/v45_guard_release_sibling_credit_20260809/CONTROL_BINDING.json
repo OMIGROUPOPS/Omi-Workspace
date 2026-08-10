@@ -1,0 +1,34 @@
+{
+  "schema_version": "window1-v45-guard-release-sibling-credit-control-v1",
+  "base": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+  "frozen_V43": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "controlling_receipts": [
+    "6934634efcc32cdb26dbe927ce8398a66aa50e92",
+    "b503e4edc2184e8958c97980c2e1769a077bfdd9",
+    "645e035bce12a4dcaf4cb7f10a3767fa898652a0",
+    "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f"
+  ],
+  "architecture": {
+    "incumbent": "V43_BYTE_IDENTICAL_EXCEPT_ONE_POST_CREDIT_GUARD_AUTHORITY_TERMINATION",
+    "pre_fill_deep_gap_guard": "V43_T10_REMAINS_ACTIVE_UNCHANGED",
+    "release_trigger": "OTHER_EXPRESSION_CREDITED",
+    "release_effect": "ACTIVE_DEEP_GAP_WITHHOLD_TERMINATES_AND_REST_POSTS_IMMEDIATELY_AT_V43_LAWFUL_LEVEL",
+    "fixed_pair_cap": "99_MINUS_CREDITED_SIBLING_ENTRY",
+    "sanity_bound": "V43_REST_STRICTLY_BELOW_CURRENT_BEST_ASK_UNCHANGED",
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V43_UNCHANGED",
+    "take_path": "DELETED_IN_V41"
+  },
+  "acceptance_bar": {
+    "completed_pairs_min": 395,
+    "true_book_net_cents_strictly_greater_than": 1748,
+    "naked_pnl_cents_strictly_greater_than": -162,
+    "named_at_or_better_and_scope_checks": true
+  },
+  "fill_rulers": {
+    "market_scoring": "CANON_UNION_CHANNELS",
+    "build_verification": "STRICT_PRINT_CROSS",
+    "never_swapped": true
+  }
+}

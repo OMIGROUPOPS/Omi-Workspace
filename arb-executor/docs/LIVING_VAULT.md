@@ -1758,3 +1758,18 @@ cutover or deployment is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/arb-executor/docs/research/window1/WINDOW1_V45_GUARD_RELEASE_SIBLING_CREDIT_20260809_ADDENDUM.md
+
+### 2026-08-09 - V45 RE-ADJUDICATED OPERATIVE
+
+The V45 machine and scores are unchanged. CANON now requires a blocking bar to
+be causally tied to the clause under test. Naked improvement was aspirational
+and unbound to post-credit guard release, so unchanged -162c naked P&L is a
+watch item rather than a veto. V45 strictly improves completed/under-par pairs
+395->396, locked value 1,910c->1,936c, true book +1,748c->+1,774c, and every
+frontier tier by one, with zero new exposure and no bound regression. Named
+checks pass by mechanism; LUZTSE is not retro-credited because no active guard
+existed at sibling credit. V45 supersedes V43 as the operative replay baseline.
+No deployment or live cutover is authorized.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_READJUDICATION_COMMIT__/arb-executor/docs/research/window1/WINDOW1_V45_RE_ADJUDICATION_20260809_ADDENDUM.md

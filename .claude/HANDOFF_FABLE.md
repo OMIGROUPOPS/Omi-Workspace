@@ -1694,3 +1694,16 @@ evidence; V43 remains operative.
 
 Canonical package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/3bda0a5476c7fc845891928795f709feff8caabf/.claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809/REPORT.md
+
+## V45 RE-ADJUDICATED OPERATIVE - 2026-08-09
+
+No machine output changed. The naked-improvement bar was aspirational and not
+causally bound to the post-credit guard-release clause. Under CANON's new
+mechanism-bound acceptance law, V45 dominates V43 on all bound instruments:
+396 completed/under-par, +1,774c true book, frontier 52/71/142/396, and zero
+new exposure. LUZTSE passes as a mechanism non-applicability receipt without
+inventing a completion. V45 is the operative replay baseline; no deployment or
+live cutover is authorized.
+
+Canonical receipt:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_READJUDICATION_COMMIT__/.claude/window1_live_v4_replay/v45_re_adjudication_20260809/V45_RE_ADJUDICATION_RECEIPT.json

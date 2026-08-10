@@ -1,0 +1,15 @@
+{
+  "schema_version": "window1-v45-re-adjudication-source-binding-v1",
+  "package_commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "files": {
+    "ATTRIBUTION_SCORECARD.json": { "sha256": "c2bf44360b7f0eb4262a1314f7dcf8f5bb54e0115cb90b4206047c51f34e5eb9", "bytes": 14980 },
+    "NAMED_V45_RECEIPT.json": { "sha256": "b574e9b71af42a9d9be00400b33497dd1348e5aad93f2c7e023eec6812fa235b", "bytes": 35933 },
+    "COMPOSITION_ACCEPTANCE_BAR.json": { "sha256": "3d1f81835dee552a40bc5f44df14dd4c1e6244461a0e57551caaa5be69a18515", "bytes": 1456 },
+    "CONSTRUCTION_STATUS.json": { "sha256": "3189b9fad5b43f70591e1f8bebdbd69c6b8dab849ff1fd9e15cf63aaa64a1426", "bytes": 195 },
+    "FULL_BOOK_PNL.json": { "sha256": "db69c07cc2f9feda8ed2e3816d9fcd8b376f576d552ff7d7eb8e26c3c2ff4a93", "bytes": 5551 },
+    "RELEASED_REST_RECEIPT.json": { "sha256": "da14cc06f051e6bda54e541f03ac57a53981b506dd8fd6368795b96076d2b621", "bytes": 571 },
+    "V43_V45_DIFFERENTIAL_RECEIPT.json": { "sha256": "85e3d3ffb9dac1465b0d623051ab748e10c89cd0ab4c49cacd35a922dbf75c3a", "bytes": 8872 },
+    "REPORT.md": { "sha256": "47f1e8f08149d66dfb7edb87539745a0c94b664e5aac674f030c5a740c5ed204", "bytes": 1374 }
+  },
+  "all_hashes_verified": true
+}

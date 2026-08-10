@@ -1,0 +1,84 @@
+{
+  "schema_version": "window1-v45-re-adjudication-v1",
+  "ruling": "V45_OPERATIVE_REPLAY_BASELINE_UNDEPLOYED",
+  "effective_date": "2026-08-09",
+  "frozen_machine_package_commit": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "frozen_machine_parent": "6b8a45e12f20dee8cb3f20d070e131fcc6c89608",
+  "policy_or_score_replay_changed": false,
+  "original_receipts_rewritten": false,
+  "supersedes": {
+    "construction_status": "BLOCKED_V43_REMAINS_OPERATIVE",
+    "construction_status_sha256": "3189b9fad5b43f70591e1f8bebdbd69c6b8dab849ff1fd9e15cf63aaa64a1426",
+    "acceptance_bar_sha256": "3d1f81835dee552a40bc5f44df14dd4c1e6244461a0e57551caaa5be69a18515",
+    "scope": "ADJUDICATION_ONLY"
+  },
+  "acceptance_bar_law": {
+    "rule": "A_BAR_MAY_BLOCK_ONLY_WHEN_CAUSALLY_TIED_TO_THE_CLAUSE_UNDER_TEST",
+    "unbound_aspirational_bar_is_a_veto": false,
+    "ratification": "STRICT_IMPROVEMENT_ON_AT_LEAST_ONE_BOUND_INSTRUMENT_AND_NO_REGRESSION_ON_ANY_BOUND_INSTRUMENT",
+    "named_mechanism_not_applicable": "PASS_WHEN_THE_FROZEN_RECEIPT_PROVES_THE_CLAUSE_LACKED_AUTHORITY_AND_THE_INCUMBENT_PATH_REMAINED_LAWFUL",
+    "no_post_hoc_fill_or_completion_credit": true
+  },
+  "bound_instrument_dominance": {
+    "completed_pairs": { "V43": 395, "V45": 396, "delta": 1, "pass": true },
+    "under_par_pairs": { "V43": 395, "V45": 396, "delta": 1, "pass": true },
+    "locked_cents": { "V43": 1910, "V45": 1936, "delta": 26, "pass": true },
+    "true_book_net_cents": { "V43": 1748, "V45": 1774, "delta": 26, "pass": true },
+    "frontier": {
+      "LE_93": { "V43": 51, "V45": 52, "delta": 1, "pass": true },
+      "LE_95": { "V43": 70, "V45": 71, "delta": 1, "pass": true },
+      "LE_97": { "V43": 141, "V45": 142, "delta": 1, "pass": true },
+      "LT_100": { "V43": 395, "V45": 396, "delta": 1, "pass": true }
+    },
+    "new_exposure": { "V45": 0, "pass": true },
+    "strict_build_verification_completed_pairs": { "V43": 331, "V45": 331, "delta": 0, "pass": true },
+    "all_bound_instruments_non_regressing": true,
+    "at_least_one_bound_instrument_strictly_improves": true,
+    "pass": true
+  },
+  "unbound_watch_items": [
+    {
+      "name": "NAKED_BOOK_PNL_IMPROVEMENT",
+      "V43_cents": -162,
+      "V45_cents": -162,
+      "status": "ASPIRATIONAL_UNBOUND_WATCH",
+      "causally_bound_to_release_active_post_credit_guard": false,
+      "acceptance_veto": false
+    }
+  ],
+  "released_rest_ledger": {
+    "released_rests": 26,
+    "released_and_filled": 18,
+    "released_unfilled": 8,
+    "new_completed_pairs": 1,
+    "new_exposure": 0,
+    "conservation_pass": true
+  },
+  "named_checks": {
+    "LUZTSE": {
+      "required_mechanism": "TERMINATE_ACTIVE_DEEP_GAP_WITHHOLD_AT_SIBLING_CREDIT",
+      "active_withhold_at_sibling_credit": false,
+      "incumbent_TSE_rest_live_before_sibling_credit": true,
+      "post_join_in_window_seller_hits_at_79": 0,
+      "completion_retrocredited": false,
+      "result": "NOT_APPLICABLE_NO_ACTIVE_WITHHOLD; LAWFUL_INCUMBENT_REST_PRESERVED",
+      "pass": true
+    },
+    "COLCER": { "result": "NO_ACTIVE_WITHHOLD_AT_SIBLING_CREDIT; MISSING_SIDE_REACH_AFTER_EDGE", "pass": true },
+    "SMIYUN": { "result": "NO_ACTIVE_WITHHOLD_AT_SIBLING_CREDIT; MISSING_SIDE_REACH_AFTER_EDGE", "pass": true },
+    "VANLEE": { "result": "NO_ACTIVE_WITHHOLD_AT_SIBLING_CREDIT; MISSING_SIDE_REACH_AFTER_EDGE", "pass": true },
+    "SAINUG": { "result": "NO_SIBLING_CREDIT; PRE_FILL_GUARD_UNCHANGED", "pass": true },
+    "PENTHA": { "result": "UNCHANGED_NO_SIBLING_CREDIT", "pass": true },
+    "SHEOLI": { "result": "UNCHANGED_NO_SIBLING_CREDIT", "pass": true },
+    "ARNROM": { "required_combined_cents": 89, "observed_combined_cents": 89, "pass": true },
+    "KRUFER": { "required_combined_cents": 96, "observed_combined_cents": 96, "pass": true },
+    "KIRSEK": { "required_combined_cents": 24, "observed_combined_cents": 24, "pass": true }
+  },
+  "all_named_checks_pass": true,
+  "operative_status": {
+    "replay_baseline": "V45",
+    "superseded_replay_baseline": "V43",
+    "deployment_authority": false,
+    "live_cutover_authority": false
+  }
+}

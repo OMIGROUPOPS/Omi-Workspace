@@ -1810,3 +1810,22 @@ at zero replay delta; no deployment or live cutover is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/f99590eb9bfb77a695dc038a4efe21e7825f378c/arb-executor/docs/research/window1/WINDOW1_V47_SAME_TICK_ARM_20260810_ADDENDUM.md
+
+### 2026-08-10 - V48 TRADES-AS-TRUTH OPERATIVE
+
+V48 makes true exchange prints the sole market-credit truth for standing
+rests: any identified trade at-or-below the rest after it stood credits,
+without ask-touch, aggressor, dwell, size, arrival-direction, or channel
+filters. Asks inform placement only. Strict seller-aggressed size-five print
+crossing remains a separate build-verification ruler. V47 reproduces at 396
+completed/under-par pairs and +1,774 cents true book; the trades-as-truth law
+row and selected executable `bid` rung are identical on this corpus. `bid-1`
+falls to 105/+648 and the recent-trade rung to 394/+1,375. True traded floors
+classify 711 games under par, 81 over par, and 12 unavailable. LUZTSE|TSE is
+correctly uncredited because its 79 print precedes the 79 rest by 30.103
+seconds and no later print reaches it. Named checks pass, two clean builds are
+byte-identical, and forbidden access is zero. No deployment or live cutover is
+authorized.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/7936c410496726d5c65f05916527ec5039787681/arb-executor/docs/research/window1/WINDOW1_V48_TRADES_AS_TRUTH_20260810_ADDENDUM.md

@@ -1,0 +1,105 @@
+{
+ "LABEL": "V45_DECISION_CHAIN_AUTOPSY_L5_RECUT",
+ "correction": "L5_STALE_REPRICE was mis-keyed on ANYTIME union_reach (pre-trigger deep prints), a scalar cross-wire. Re-keyed on CAUSAL reach (post-lawful-rest): L5 iff causal flow ran >3c BELOW the present rest (genuine non-tracking). Legs whose only sub-rest flow was pre-trigger anytime -> re-tagged L6 (present).",
+ "old_L5_count": 34,
+ "new_L5_count": 4,
+ "corrected_link_totals": {
+  "CHAIN_L2_MISREAD": 62,
+  "CHAIN_L3_NO_TARGET": 4,
+  "CHAIN_L3_WRONG_LEVEL": 11,
+  "CHAIN_L4_LATE_POST": 47,
+  "CHAIN_L5_STALE_REPRICE": 4,
+  "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY": 185,
+  "CHAIN_L6_PRESENT_BUT_OVERPAR": 157
+ },
+ "corrected_per_category": {
+  "CHAIN_L2_MISREAD": {
+   "ATP_CHALL": 40,
+   "ATP_MAIN": 7,
+   "WTA_CHALL": 8,
+   "WTA_MAIN": 7
+  },
+  "CHAIN_L3_NO_TARGET": {
+   "ATP_CHALL": 2,
+   "ATP_MAIN": 2,
+   "WTA_CHALL": 0,
+   "WTA_MAIN": 0
+  },
+  "CHAIN_L3_WRONG_LEVEL": {
+   "ATP_CHALL": 7,
+   "ATP_MAIN": 0,
+   "WTA_CHALL": 3,
+   "WTA_MAIN": 1
+  },
+  "CHAIN_L4_LATE_POST": {
+   "ATP_CHALL": 27,
+   "ATP_MAIN": 5,
+   "WTA_CHALL": 7,
+   "WTA_MAIN": 8
+  },
+  "CHAIN_L5_STALE_REPRICE": {
+   "ATP_CHALL": 2,
+   "ATP_MAIN": 0,
+   "WTA_CHALL": 1,
+   "WTA_MAIN": 1
+  },
+  "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY": {
+   "ATP_CHALL": 103,
+   "ATP_MAIN": 28,
+   "WTA_CHALL": 33,
+   "WTA_MAIN": 21
+  },
+  "CHAIN_L6_PRESENT_BUT_OVERPAR": {
+   "ATP_CHALL": 72,
+   "ATP_MAIN": 18,
+   "WTA_CHALL": 45,
+   "WTA_MAIN": 22
+  }
+ },
+ "conservation": {
+  "unfilled": 470,
+  "sum": 470
+ },
+ "named_retag": {
+  "26JUL13KRASAL|KRA": {
+   "anytime": 43,
+   "causal": 79,
+   "rest": 78,
+   "new_tag": "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY",
+   "rest_stable": 78,
+   "law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY_ALREADY_AT_TARGET"
+  },
+  "26JUL18LUZTSE|TSE": {
+   "anytime": 1,
+   "causal": 79,
+   "rest": 79,
+   "new_tag": "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY",
+   "rest_stable": 79,
+   "law": "V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1_ALREADY_AT_TARGET"
+  },
+  "26JUL13KHOZHA|KHO": {
+   "anytime": 6,
+   "causal": 78,
+   "rest": 77,
+   "new_tag": "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY",
+   "rest_stable": 77,
+   "law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY_ALREADY_AT_TARGET"
+  },
+  "26JUL13PANFAL|FAL": {
+   "anytime": 30,
+   "causal": 47,
+   "rest": 44,
+   "new_tag": "CHAIN_L6_PRESENT_BUT_NO_COUNTERPARTY",
+   "rest_stable": 44,
+   "law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY_ALREADY_AT_TARGET"
+  },
+  "26JUL13PANFAL|PAN": {
+   "anytime": 1,
+   "causal": 45,
+   "rest": 54,
+   "new_tag": "CHAIN_L5_STALE_REPRICE",
+   "rest_stable": 54,
+   "law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY_ALREADY_AT_TARGET"
+  }
+ }
+}

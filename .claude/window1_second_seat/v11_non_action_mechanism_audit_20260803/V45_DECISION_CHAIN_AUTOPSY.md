@@ -1,3 +1,5 @@
+> **L5 CORRECTION (V45_L5_RECEIPT_PULL):** CHAIN_L5_STALE_REPRICE was mis-keyed on the ANYTIME union_reach (pre-trigger prints) — a scalar cross-wire. Re-keyed on the CAUSAL reach it collapses 34→4; the 30 spurious legs (LUZTSE·TSE, KHOZHA·KHO, KRASAL·KRA, PANFAL·FAL…) stood present at their causal level and re-tag L6. Corrected market-no share rises to ~73%. See V45_L5_RECEIPT_PULL.md.
+
 # The decision-chain autopsy — V45, by where the buy-chain broke
 
 Analysis seat only. Read-only. Every unfilled leg of the non-completed games under V45 (`3bda0a54`) diagnosed by **process, not outcome** — the earliest broken link in the buy-decision chain, assigned exactly once. **L1 ADMIT → L2 READ → L3 TARGET → L4 POST → L5 REPRICE → L6 STAND.** A misread counts as the break only when it **propagated** to a placement failure; a read that recovered downstream is scored at its true mechanical link. **This supersedes outcome-stamp classification — MARKET_NO is lawful only as an L6 verdict.** Machine artifact: `…/V45_DECISION_CHAIN_AUTOPSY.json`.

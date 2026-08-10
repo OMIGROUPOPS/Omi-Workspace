@@ -17,4 +17,4 @@ No fill is invented. V45 supersedes V43 as the operative replay baseline. This
 ruling is not deployment or live-cutover authority.
 
 Canonical receipt:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_READJUDICATION_COMMIT__/.claude/window1_live_v4_replay/v45_re_adjudication_20260809/V45_RE_ADJUDICATION_RECEIPT.json
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0e8b51f48105cab43db1d87d481a3a9fa8d91b6c/.claude/window1_live_v4_replay/v45_re_adjudication_20260809/V45_RE_ADJUDICATION_RECEIPT.json

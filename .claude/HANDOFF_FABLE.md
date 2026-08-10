@@ -1706,4 +1706,4 @@ inventing a completion. V45 is the operative replay baseline; no deployment or
 live cutover is authorized.
 
 Canonical receipt:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_READJUDICATION_COMMIT__/.claude/window1_live_v4_replay/v45_re_adjudication_20260809/V45_RE_ADJUDICATION_RECEIPT.json
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0e8b51f48105cab43db1d87d481a3a9fa8d91b6c/.claude/window1_live_v4_replay/v45_re_adjudication_20260809/V45_RE_ADJUDICATION_RECEIPT.json

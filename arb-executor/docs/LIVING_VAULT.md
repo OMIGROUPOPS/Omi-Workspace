@@ -1772,4 +1772,4 @@ existed at sibling credit. V45 supersedes V43 as the operative replay baseline.
 No deployment or live cutover is authorized.
 
 Canonical addendum:
-https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/__V45_READJUDICATION_COMMIT__/arb-executor/docs/research/window1/WINDOW1_V45_RE_ADJUDICATION_20260809_ADDENDUM.md
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0e8b51f48105cab43db1d87d481a3a9fa8d91b6c/arb-executor/docs/research/window1/WINDOW1_V45_RE_ADJUDICATION_20260809_ADDENDUM.md

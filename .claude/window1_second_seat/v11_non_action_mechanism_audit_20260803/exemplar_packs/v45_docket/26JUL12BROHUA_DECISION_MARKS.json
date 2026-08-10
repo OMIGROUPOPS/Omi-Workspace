@@ -1,0 +1,43 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+ "code": "26JUL12BROHUA",
+ "category": "ATP_CHALL",
+ "causal_docket_rank": 3,
+ "causal_value_at_stake_cents": 8,
+ "game_type": "naked",
+ "miss_story": "BRO: rest 62c, causal reach 64c (anytime 63 was pre-trigger)",
+ "reach_basis": "causal (post-lawful-rest flow), d3db740f",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1783801048,
+  "left_et": "2026-07-11 20:17:28",
+  "right": 1783853940,
+  "right_et": "2026-07-12 10:59:00"
+ },
+ "legs": {
+  "BRO": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BROHUA-BRO",
+   "global_direction": "FALLING",
+   "close_cents": "63",
+   "credited": false,
+   "entry_cents": null,
+   "anytime_reach_cents": 63,
+   "causal_reach_cents": 64,
+   "resting_target_cents": 62,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  },
+  "HUA": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12BROHUA-HUA",
+   "global_direction": "CLIMBING",
+   "close_cents": "38",
+   "credited": true,
+   "entry_cents": 28,
+   "anytime_reach_cents": 27,
+   "causal_reach_cents": null,
+   "resting_target_cents": 28,
+   "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL",
+   "final_state": "CREDITED"
+  }
+ }
+}

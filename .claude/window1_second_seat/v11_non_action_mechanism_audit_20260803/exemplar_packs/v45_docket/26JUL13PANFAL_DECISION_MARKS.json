@@ -1,0 +1,43 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+ "code": "26JUL13PANFAL",
+ "category": "WTA_CHALL",
+ "causal_docket_rank": 4,
+ "causal_value_at_stake_cents": 8,
+ "game_type": "skip",
+ "miss_story": "FAL: rest 44c, causal reach 47c (anytime 30 was pre-trigger); PAN: rest 54c, causal reach 45c (anytime 1 was pre-trigger)",
+ "reach_basis": "causal (post-lawful-rest flow), d3db740f",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1783894220,
+  "left_et": "2026-07-12 22:10:20",
+  "right": 1783937425,
+  "right_et": "2026-07-13 10:10:25"
+ },
+ "legs": {
+  "FAL": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-FAL",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "anytime_reach_cents": 30,
+   "causal_reach_cents": 47,
+   "resting_target_cents": 44,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  },
+  "PAN": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-PAN",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "anytime_reach_cents": 1,
+   "causal_reach_cents": 45,
+   "resting_target_cents": 54,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  }
+ }
+}

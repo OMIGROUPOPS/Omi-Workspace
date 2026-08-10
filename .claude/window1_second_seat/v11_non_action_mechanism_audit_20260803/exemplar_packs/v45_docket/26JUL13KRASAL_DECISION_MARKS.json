@@ -1,0 +1,43 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+ "code": "26JUL13KRASAL",
+ "category": "ATP_CHALL",
+ "causal_docket_rank": 5,
+ "causal_value_at_stake_cents": 7,
+ "game_type": "naked",
+ "miss_story": "KRA: rest 78c, causal reach 79c (anytime 43 was pre-trigger)",
+ "reach_basis": "causal (post-lawful-rest flow), d3db740f",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1783891508,
+  "left_et": "2026-07-12 21:25:08",
+  "right": 1783935656,
+  "right_et": "2026-07-13 09:40:56"
+ },
+ "legs": {
+  "KRA": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13KRASAL-KRA",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "anytime_reach_cents": 43,
+   "causal_reach_cents": 79,
+   "resting_target_cents": 78,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  },
+  "SAL": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL13KRASAL-SAL",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": true,
+   "entry_cents": 14,
+   "anytime_reach_cents": 1,
+   "causal_reach_cents": 15,
+   "resting_target_cents": 14,
+   "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL",
+   "final_state": "CREDITED"
+  }
+ }
+}

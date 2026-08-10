@@ -1,0 +1,60 @@
+{
+ "LABEL": "V45_CAUSAL_DOCKET_TOP5_PACKS",
+ "packs": [
+  {
+   "rank": 1,
+   "code": "26JUL14SALIBR",
+   "causal_value": 48,
+   "type": "naked",
+   "cat": "WTA_MAIN",
+   "rows": 33765,
+   "bbo": 33728,
+   "trades": 37,
+   "miss": "IBR: rest 43c, causal reach 44c"
+  },
+  {
+   "rank": 2,
+   "code": "26JUL18LUZTSE",
+   "causal_value": 10,
+   "type": "naked",
+   "cat": "ATP_MAIN",
+   "rows": 456,
+   "bbo": 427,
+   "trades": 29,
+   "miss": "TSE: rest 79c, causal reach 79c (anytime 1 was pre-trigger)"
+  },
+  {
+   "rank": 3,
+   "code": "26JUL12BROHUA",
+   "causal_value": 8,
+   "type": "naked",
+   "cat": "ATP_CHALL",
+   "rows": 13164,
+   "bbo": 12938,
+   "trades": 226,
+   "miss": "BRO: rest 62c, causal reach 64c (anytime 63 was pre-trigger)"
+  },
+  {
+   "rank": 4,
+   "code": "26JUL13PANFAL",
+   "causal_value": 8,
+   "type": "skip",
+   "cat": "WTA_CHALL",
+   "rows": 7630,
+   "bbo": 7614,
+   "trades": 16,
+   "miss": "FAL: rest 44c, causal reach 47c (anytime 30 was pre-trigger); PAN: rest 54c, causal reach 45c (anytime 1 was pre-trigger)"
+  },
+  {
+   "rank": 5,
+   "code": "26JUL13KRASAL",
+   "causal_value": 7,
+   "type": "naked",
+   "cat": "ATP_CHALL",
+   "rows": 5074,
+   "bbo": 5031,
+   "trades": 43,
+   "miss": "KRA: rest 78c, causal reach 79c (anytime 43 was pre-trigger)"
+  }
+ ]
+}

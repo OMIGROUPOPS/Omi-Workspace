@@ -1,0 +1,43 @@
+{
+ "event": "KXWTAMATCH-26JUL14SALIBR",
+ "code": "26JUL14SALIBR",
+ "category": "WTA_MAIN",
+ "causal_docket_rank": 1,
+ "causal_value_at_stake_cents": 48,
+ "game_type": "naked",
+ "miss_story": "IBR: rest 43c, causal reach 44c",
+ "reach_basis": "causal (post-lawful-rest flow), d3db740f",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1783958437,
+  "left_et": "2026-07-13 16:00:37",
+  "right": 1784026924,
+  "right_et": "2026-07-14 11:02:04"
+ },
+ "legs": {
+  "IBR": {
+   "ticker": "KXWTAMATCH-26JUL14SALIBR-IBR",
+   "global_direction": "FLAT",
+   "close_cents": "44",
+   "credited": false,
+   "entry_cents": null,
+   "anytime_reach_cents": 44,
+   "causal_reach_cents": 44,
+   "resting_target_cents": 43,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  },
+  "SAL": {
+   "ticker": "KXWTAMATCH-26JUL14SALIBR-SAL",
+   "global_direction": "FLAT",
+   "close_cents": "57",
+   "credited": true,
+   "entry_cents": 8,
+   "anytime_reach_cents": 56,
+   "causal_reach_cents": null,
+   "resting_target_cents": 7,
+   "terminal_reason": "MARKET_REACH_PRINT_CROSS",
+   "final_state": "CREDITED"
+  }
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "event": "KXATPMATCH-26JUL18LUZTSE",
+ "code": "26JUL18LUZTSE",
+ "category": "ATP_MAIN",
+ "causal_docket_rank": 2,
+ "causal_value_at_stake_cents": 10,
+ "game_type": "naked",
+ "miss_story": "TSE: rest 79c, causal reach 79c (anytime 1 was pre-trigger)",
+ "reach_basis": "causal (post-lawful-rest flow), d3db740f",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1784373580,
+  "left_et": "2026-07-18 11:19:40",
+  "right": 1784377800,
+  "right_et": "2026-07-18 12:30:00"
+ },
+ "legs": {
+  "LUZ": {
+   "ticker": "KXATPMATCH-26JUL18LUZTSE-LUZ",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": true,
+   "entry_cents": 11,
+   "anytime_reach_cents": 10,
+   "causal_reach_cents": 14,
+   "resting_target_cents": 79,
+   "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL",
+   "final_state": "CREDITED"
+  },
+  "TSE": {
+   "ticker": "KXATPMATCH-26JUL18LUZTSE-TSE",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "anytime_reach_cents": 1,
+   "causal_reach_cents": 79,
+   "resting_target_cents": 79,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+   "final_state": "RESTING_UNFILLED"
+  }
+ }
+}

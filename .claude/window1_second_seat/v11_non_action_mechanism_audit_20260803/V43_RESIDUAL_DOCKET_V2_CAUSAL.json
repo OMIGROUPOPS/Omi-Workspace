@@ -1,0 +1,381 @@
+{
+ "LABEL": "V43_RESIDUAL_DOCKET_V2_CAUSAL",
+ "basis": "V45 3bda0a54; causal reach = reach_snapshot.causal_own_reach_low_cents (d3db740f machinery: union flow strictly AFTER the leg's lawful rest could stand, in-window). value=100-sum(leg causal fill-or-reach). MARKET_NO = missing side has zero causal reach.",
+ "supersedes": "V43_RESIDUAL_DOCKET (6934634e, anytime-reach ranking - overstated)",
+ "conservation": {
+  "uncompleted": 408,
+  "ranked_causal_value_gt0": 155,
+  "market_no": 93,
+  "over_par": 160,
+  "check": 408
+ },
+ "top15": [
+  {
+   "rank": 1,
+   "code": "26JUL14SALIBR",
+   "cat": "WTA_MAIN",
+   "value": 48,
+   "gametype": "naked",
+   "miss_story": "IBR: rest 43c, causal reach 44c",
+   "legs": {
+    "IBR": {
+     "cred": false,
+     "entry": null,
+     "anytime": 44,
+     "causal": 44,
+     "rest": 43
+    },
+    "SAL": {
+     "cred": true,
+     "entry": 8,
+     "anytime": 56,
+     "causal": null,
+     "rest": 7
+    }
+   }
+  },
+  {
+   "rank": 2,
+   "code": "26JUL18LUZTSE",
+   "cat": "ATP_MAIN",
+   "value": 10,
+   "gametype": "naked",
+   "miss_story": "TSE: rest 79c, causal reach 79c (anytime 1 was pre-trigger)",
+   "legs": {
+    "LUZ": {
+     "cred": true,
+     "entry": 11,
+     "anytime": 10,
+     "causal": 14,
+     "rest": 79
+    },
+    "TSE": {
+     "cred": false,
+     "entry": null,
+     "anytime": 1,
+     "causal": 79,
+     "rest": 79
+    }
+   }
+  },
+  {
+   "rank": 3,
+   "code": "26JUL12BROHUA",
+   "cat": "ATP_CHALL",
+   "value": 8,
+   "gametype": "naked",
+   "miss_story": "BRO: rest 62c, causal reach 64c (anytime 63 was pre-trigger)",
+   "legs": {
+    "BRO": {
+     "cred": false,
+     "entry": null,
+     "anytime": 63,
+     "causal": 64,
+     "rest": 62
+    },
+    "HUA": {
+     "cred": true,
+     "entry": 28,
+     "anytime": 27,
+     "causal": null,
+     "rest": 28
+    }
+   }
+  },
+  {
+   "rank": 4,
+   "code": "26JUL13PANFAL",
+   "cat": "WTA_CHALL",
+   "value": 8,
+   "gametype": "skip",
+   "miss_story": "FAL: rest 44c, causal reach 47c (anytime 30 was pre-trigger); PAN: rest 54c, causal reach 45c (anytime 1 was pre-trigger)",
+   "legs": {
+    "FAL": {
+     "cred": false,
+     "entry": null,
+     "anytime": 30,
+     "causal": 47,
+     "rest": 44
+    },
+    "PAN": {
+     "cred": false,
+     "entry": null,
+     "anytime": 1,
+     "causal": 45,
+     "rest": 54
+    }
+   }
+  },
+  {
+   "rank": 5,
+   "code": "26JUL13KRASAL",
+   "cat": "ATP_CHALL",
+   "value": 7,
+   "gametype": "naked",
+   "miss_story": "KRA: rest 78c, causal reach 79c (anytime 43 was pre-trigger)",
+   "legs": {
+    "KRA": {
+     "cred": false,
+     "entry": null,
+     "anytime": 43,
+     "causal": 79,
+     "rest": 78
+    },
+    "SAL": {
+     "cred": true,
+     "entry": 14,
+     "anytime": 1,
+     "causal": 15,
+     "rest": 14
+    }
+   }
+  },
+  {
+   "rank": 6,
+   "code": "26JUL13KHOZHA",
+   "cat": "WTA_CHALL",
+   "value": 7,
+   "gametype": "naked",
+   "miss_story": "KHO: rest 77c, causal reach 78c (anytime 6 was pre-trigger)",
+   "legs": {
+    "KHO": {
+     "cred": false,
+     "entry": null,
+     "anytime": 6,
+     "causal": 78,
+     "rest": 77
+    },
+    "ZHA": {
+     "cred": true,
+     "entry": 15,
+     "anytime": 1,
+     "causal": 17,
+     "rest": 15
+    }
+   }
+  },
+  {
+   "rank": 7,
+   "code": "26JUL12HERKAZ",
+   "cat": "WTA_MAIN",
+   "value": 7,
+   "gametype": "naked",
+   "miss_story": "HER: rest 45c, causal reach 47c (anytime 46 was pre-trigger)",
+   "legs": {
+    "HER": {
+     "cred": false,
+     "entry": null,
+     "anytime": 46,
+     "causal": 47,
+     "rest": 45
+    },
+    "KAZ": {
+     "cred": true,
+     "entry": 46,
+     "anytime": 46,
+     "causal": 47,
+     "rest": 46
+    }
+   }
+  },
+  {
+   "rank": 8,
+   "code": "26JUL19COSAKS",
+   "cat": "WTA_MAIN",
+   "value": 7,
+   "gametype": "naked",
+   "miss_story": "COS: rest 63c, causal reach 59c",
+   "legs": {
+    "AKS": {
+     "cred": true,
+     "entry": 34,
+     "anytime": 37,
+     "causal": 42,
+     "rest": 34
+    },
+    "COS": {
+     "cred": false,
+     "entry": null,
+     "anytime": 64,
+     "causal": 59,
+     "rest": 63
+    }
+   }
+  },
+  {
+   "rank": 9,
+   "code": "26JUL15HOLMAY",
+   "cat": "ATP_CHALL",
+   "value": 6,
+   "gametype": "naked",
+   "miss_story": "MAY: rest 34c, causal reach 29c",
+   "legs": {
+    "HOL": {
+     "cred": true,
+     "entry": 65,
+     "anytime": 64,
+     "causal": 66,
+     "rest": 65
+    },
+    "MAY": {
+     "cred": false,
+     "entry": null,
+     "anytime": 34,
+     "causal": 29,
+     "rest": 34
+    }
+   }
+  },
+  {
+   "rank": 10,
+   "code": "26JUL19DEMMAG",
+   "cat": "ATP_CHALL",
+   "value": 6,
+   "gametype": "naked",
+   "miss_story": "MAG: rest 93c, causal reach 88c",
+   "legs": {
+    "DEM": {
+     "cred": true,
+     "entry": 6,
+     "anytime": 3,
+     "causal": 5,
+     "rest": 6
+    },
+    "MAG": {
+     "cred": false,
+     "entry": null,
+     "anytime": 96,
+     "causal": 88,
+     "rest": 93
+    }
+   }
+  },
+  {
+   "rank": 11,
+   "code": "26JUL18ROCBUE",
+   "cat": "ATP_MAIN",
+   "value": 6,
+   "gametype": "naked",
+   "miss_story": "BUE: rest 78c, causal reach 73c",
+   "legs": {
+    "BUE": {
+     "cred": false,
+     "entry": null,
+     "anytime": 82,
+     "causal": 73,
+     "rest": 78
+    },
+    "ROC": {
+     "cred": true,
+     "entry": 21,
+     "anytime": 16,
+     "causal": 41,
+     "rest": 74
+    }
+   }
+  },
+  {
+   "rank": 12,
+   "code": "26JUL14IVAGIU",
+   "cat": "ATP_CHALL",
+   "value": 5,
+   "gametype": "naked",
+   "miss_story": "GIU: rest 41c, causal reach 42c",
+   "legs": {
+    "GIU": {
+     "cred": false,
+     "entry": null,
+     "anytime": 43,
+     "causal": 42,
+     "rest": 41
+    },
+    "IVA": {
+     "cred": true,
+     "entry": 53,
+     "anytime": 56,
+     "causal": null,
+     "rest": 55
+    }
+   }
+  },
+  {
+   "rank": 13,
+   "code": "26JUL14MRVCAN",
+   "cat": "ATP_CHALL",
+   "value": 5,
+   "gametype": "naked",
+   "miss_story": "MRV: rest 54c, causal reach 55c (anytime 54 was pre-trigger)",
+   "legs": {
+    "CAN": {
+     "cred": true,
+     "entry": 40,
+     "anytime": 43,
+     "causal": null,
+     "rest": 40
+    },
+    "MRV": {
+     "cred": false,
+     "entry": null,
+     "anytime": 54,
+     "causal": 55,
+     "rest": 54
+    }
+   }
+  },
+  {
+   "rank": 14,
+   "code": "26JUL19BARSTA",
+   "cat": "ATP_CHALL",
+   "value": 5,
+   "gametype": "naked",
+   "miss_story": "STA: rest 62c, causal reach 59c",
+   "legs": {
+    "BAR": {
+     "cred": true,
+     "entry": 36,
+     "anytime": 36,
+     "causal": 38,
+     "rest": 37
+    },
+    "STA": {
+     "cred": false,
+     "entry": null,
+     "anytime": 62,
+     "causal": 59,
+     "rest": 62
+    }
+   }
+  },
+  {
+   "rank": 15,
+   "code": "26JUL19JONISO",
+   "cat": "ATP_CHALL",
+   "value": 5,
+   "gametype": "naked",
+   "miss_story": "ISO: rest 56c, causal reach 52c",
+   "legs": {
+    "ISO": {
+     "cred": false,
+     "entry": null,
+     "anytime": 60,
+     "causal": 52,
+     "rest": 56
+    },
+    "JON": {
+     "cred": true,
+     "entry": 43,
+     "anytime": 36,
+     "causal": 44,
+     "rest": 44
+    }
+   }
+  }
+ ],
+ "top5_events": [
+  "KXWTAMATCH-26JUL14SALIBR",
+  "KXATPMATCH-26JUL18LUZTSE",
+  "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+  "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+  "KXATPCHALLENGERMATCH-26JUL13KRASAL"
+ ]
+}

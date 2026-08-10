@@ -1,0 +1,155 @@
+{
+  "baseline": "TRADE_TRUTH_V47_INCUMBENT",
+  "rungs": {
+    "TRADE_TRUTH_BID_MINUS_ONE": {
+      "aggregate": {
+        "changed_legs": 1078,
+        "dispositions": {
+          "FILL_LOST": 723,
+          "FILL_REPRICED_FAVORABLE": 242,
+          "FILL_REPRICED_ADVERSE": 92,
+          "FILL_GAINED": 21
+        },
+        "favorable_reprice_cents": 591,
+        "adverse_reprice_cents": 518
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "changed_legs": 464,
+          "dispositions": {
+            "FILL_LOST": 316,
+            "FILL_REPRICED_FAVORABLE": 103,
+            "FILL_REPRICED_ADVERSE": 36,
+            "FILL_GAINED": 9
+          },
+          "favorable_reprice_cents": 311,
+          "adverse_reprice_cents": 131
+        },
+        "ATP_MAIN": {
+          "changed_legs": 214,
+          "dispositions": {
+            "FILL_LOST": 110,
+            "FILL_REPRICED_FAVORABLE": 66,
+            "FILL_REPRICED_ADVERSE": 31,
+            "FILL_GAINED": 7
+          },
+          "favorable_reprice_cents": 135,
+          "adverse_reprice_cents": 233
+        },
+        "WTA_CHALL": {
+          "changed_legs": 170,
+          "dispositions": {
+            "FILL_LOST": 136,
+            "FILL_REPRICED_FAVORABLE": 25,
+            "FILL_REPRICED_ADVERSE": 7,
+            "FILL_GAINED": 2
+          },
+          "favorable_reprice_cents": 55,
+          "adverse_reprice_cents": 25
+        },
+        "WTA_MAIN": {
+          "changed_legs": 230,
+          "dispositions": {
+            "FILL_LOST": 161,
+            "FILL_REPRICED_FAVORABLE": 48,
+            "FILL_REPRICED_ADVERSE": 18,
+            "FILL_GAINED": 3
+          },
+          "favorable_reprice_cents": 90,
+          "adverse_reprice_cents": 129
+        }
+      },
+      "score_delta": {
+        "completed_pairs": -291,
+        "under_par_pairs": -291,
+        "locked_cents": -1398,
+        "naked_pnl_cents": 272,
+        "true_book_net_cents": -1126
+      }
+    },
+    "TRADE_TRUTH_BID": {
+      "aggregate": {
+        "changed_legs": 0,
+        "dispositions": {},
+        "favorable_reprice_cents": 0,
+        "adverse_reprice_cents": 0
+      },
+      "by_category": {},
+      "score_delta": {
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "locked_cents": 0,
+        "naked_pnl_cents": 0,
+        "true_book_net_cents": 0
+      }
+    },
+    "TRADE_TRUTH_RECENT_TRADE": {
+      "aggregate": {
+        "changed_legs": 203,
+        "dispositions": {
+          "FILL_REPRICED_ADVERSE": 116,
+          "FILL_REPRICED_FAVORABLE": 33,
+          "FILL_GAINED": 29,
+          "FILL_LOST": 25
+        },
+        "favorable_reprice_cents": 71,
+        "adverse_reprice_cents": 525
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "changed_legs": 92,
+          "dispositions": {
+            "FILL_REPRICED_ADVERSE": 48,
+            "FILL_GAINED": 18,
+            "FILL_LOST": 13,
+            "FILL_REPRICED_FAVORABLE": 13
+          },
+          "favorable_reprice_cents": 20,
+          "adverse_reprice_cents": 185
+        },
+        "ATP_MAIN": {
+          "changed_legs": 43,
+          "dispositions": {
+            "FILL_REPRICED_ADVERSE": 29,
+            "FILL_REPRICED_FAVORABLE": 7,
+            "FILL_LOST": 5,
+            "FILL_GAINED": 2
+          },
+          "favorable_reprice_cents": 19,
+          "adverse_reprice_cents": 242
+        },
+        "WTA_CHALL": {
+          "changed_legs": 22,
+          "dispositions": {
+            "FILL_REPRICED_ADVERSE": 9,
+            "FILL_GAINED": 7,
+            "FILL_LOST": 3,
+            "FILL_REPRICED_FAVORABLE": 3
+          },
+          "favorable_reprice_cents": 9,
+          "adverse_reprice_cents": 14
+        },
+        "WTA_MAIN": {
+          "changed_legs": 46,
+          "dispositions": {
+            "FILL_REPRICED_ADVERSE": 30,
+            "FILL_REPRICED_FAVORABLE": 10,
+            "FILL_LOST": 4,
+            "FILL_GAINED": 2
+          },
+          "favorable_reprice_cents": 23,
+          "adverse_reprice_cents": 84
+        }
+      },
+      "score_delta": {
+        "completed_pairs": -2,
+        "under_par_pairs": -2,
+        "locked_cents": -345,
+        "naked_pnl_cents": -54,
+        "true_book_net_cents": -399
+      }
+    }
+  },
+  "selected": "TRADE_TRUTH_BID",
+  "selection_law": "MAX_TRUE_BOOK_NET_CENTS_THEN_COMPLETED_PAIRS_THEN_COMPLETED_LOCKED_CENTS_THEN_MACHINE_NAME; NO_NAMED_RESULT_USED_FOR_SELECTION"
+}

@@ -1,0 +1,14 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v48_trades_as_truth.js",
+  "policy_sha256": "fce1bfb8d4c8b972fecdc8ab8f54de60cd8afe8395e4ef6e9f5f107f63502197",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "market_taker_fills": 0,
+  "strict_taker_fills": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "maker_fees_cents": 0,
+  "pass": true
+}

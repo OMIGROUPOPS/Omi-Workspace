@@ -1,0 +1,20 @@
+{
+  "order_must_preexist_print": true,
+  "timestamp_relation": "PRINT_TIMESTAMP_STRICTLY_GREATER_THAN_REST_ACTION_TIMESTAMP",
+  "price_relation": "TRUE_TRADE_PRICE_LE_REST_LEVEL",
+  "required_fields": [
+    "trade_id",
+    "exchange_timestamp",
+    "price"
+  ],
+  "forbidden_filters": [
+    "ask",
+    "aggressor",
+    "dwell",
+    "displayed_size",
+    "arrival_direction",
+    "channel"
+  ],
+  "asks_role": "PLACEMENT_ONLY",
+  "strict_build_verification_separate": true
+}

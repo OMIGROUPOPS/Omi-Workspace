@@ -1,0 +1,32 @@
+{
+  "commit": "d3db740f143646614bc10778c0b4e27fa519dcd8",
+  "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAUSAL_REACH.json",
+  "sha256": "f303a9f137bbd63fa498845aec0435af27f0f47fe9492e0e880c17604fefec53",
+  "CAUSAL_REACH": {
+    "completable": 536,
+    "under_par": 504,
+    "locked": 3319,
+    "frontier": {
+      "<=93": 82,
+      "<=95": 128,
+      "<=97": 252,
+      "<100": 504
+    },
+    "by_cat": {
+      "ATP_CHALL": 222,
+      "ATP_MAIN": 117,
+      "WTA_CHALL": 68,
+      "WTA_MAIN": 97
+    },
+    "lock_by_cat": {
+      "ATP_CHALL": 1070,
+      "ATP_MAIN": 682,
+      "WTA_CHALL": 1060,
+      "WTA_MAIN": 507
+    }
+  },
+  "conservation": {
+    "legs": 1274,
+    "games": 637
+  }
+}

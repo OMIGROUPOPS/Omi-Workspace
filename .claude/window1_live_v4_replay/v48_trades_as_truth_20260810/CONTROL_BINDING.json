@@ -1,0 +1,41 @@
+{
+  "schema_version": "window1-v48-trades-as-truth-control-v1",
+  "base": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "frozen_V47": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "controlling_receipts": [
+    "e995c81b39174cc67bffcf568390b8d069e5fd8a"
+  ],
+  "architecture": {
+    "law_change": "A_STANDING_REST_CREDITS_ON_ANY_TRUE_TRADE_PRINT_AT_OR_BELOW_ITS_LEVEL_AFTER_THE_REST_STOOD",
+    "excluded_credit_filters": [
+      "ASK",
+      "QUOTE_TOUCH",
+      "AGGRESSOR_SIDE",
+      "DWELL",
+      "SIZE",
+      "ARRIVAL_DIRECTION",
+      "CHANNEL_TAXONOMY"
+    ],
+    "asks_role": "PLACEMENT_ONLY_NEVER_CREDIT_OR_FLOOR",
+    "lawful_span": "V47_HARD_PREBELL_EDGE_UNCHANGED",
+    "strict_ruler": "V47_STRICT_PRINT_CROSS_BUILD_VERIFICATION_ONLY",
+    "placement_attribution": [
+      "V47_INCUMBENT",
+      "BID_MINUS_ONE",
+      "BID",
+      "LOWEST_TRUE_TRADE_TRAILING_300S"
+    ],
+    "placement_honesty": "V47_INCUMBENT_IS_A_MIXED_OPERATIVE_STACK_AND_IS_NOT_RELABELLED_BID_MINUS_ONE",
+    "clocks_as_decision_inputs": []
+  },
+  "acceptance_bar": {
+    "zero_bound_named_regressions": true,
+    "aggregate_target": null,
+    "gains_reported_as_observed": true
+  },
+  "fill_rulers": {
+    "market_scoring": "ANY_TRUE_TRADE_AT_OR_BELOW_PRIOR_LAWFUL_REST",
+    "build_verification": "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST",
+    "never_swapped": true
+  }
+}

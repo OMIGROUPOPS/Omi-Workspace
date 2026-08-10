@@ -1,0 +1,813 @@
+{
+  "selected_ladder": "TRADE_TRUTH_BID",
+  "selection_law": "MAX_TRUE_BOOK_NET_CENTS_THEN_COMPLETED_PAIRS_THEN_COMPLETED_LOCKED_CENTS_THEN_MACHINE_NAME; NO_NAMED_RESULT_USED_FOR_SELECTION",
+  "by_machine": {
+    "V47_BASELINE": {
+      "LUZTSE": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LUZ": {
+            "credited": true,
+            "entry_cents": 11,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          },
+          "TSE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "SALIBR": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "IBR": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "SAL": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "ARNROM": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "KIRSEK": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "KRUFER": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          }
+        }
+      },
+      "BOSCOP": {
+        "completed": true,
+        "combined_entry_cents": 80,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_REACH_PRINT_CROSS",
+            "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 49,
+            "fill_class": "MARKET_REACH_TRADED_AT_LEVEL",
+            "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL"
+          }
+        }
+      },
+      "PANFAL": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      }
+    },
+    "TRADE_TRUTH_V47_INCUMBENT": {
+      "LUZTSE": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LUZ": {
+            "credited": true,
+            "entry_cents": 11,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "TSE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "SALIBR": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "IBR": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "SAL": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "ARNROM": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "KIRSEK": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "KRUFER": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "BOSCOP": {
+        "completed": true,
+        "combined_entry_cents": 80,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 49,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "PANFAL": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      }
+    },
+    "TRADE_TRUTH_BID_MINUS_ONE": {
+      "LUZTSE": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LUZ": {
+            "credited": true,
+            "entry_cents": 10,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "TSE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "SALIBR": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "IBR": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "SAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "ARNROM": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "ARN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "ROM": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "KIRSEK": {
+        "completed": true,
+        "combined_entry_cents": 32,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 15,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 17,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "KRUFER": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "BOSCOP": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 30,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "COP": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "PANFAL": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      }
+    },
+    "TRADE_TRUTH_BID": {
+      "LUZTSE": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LUZ": {
+            "credited": true,
+            "entry_cents": 11,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "TSE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "SALIBR": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "IBR": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "SAL": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "ARNROM": {
+        "completed": true,
+        "combined_entry_cents": 89,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 50,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "KIRSEK": {
+        "completed": true,
+        "combined_entry_cents": 24,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 16,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "KRUFER": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "BOSCOP": {
+        "completed": true,
+        "combined_entry_cents": 80,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 49,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "PANFAL": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      }
+    },
+    "TRADE_TRUTH_RECENT_TRADE": {
+      "LUZTSE": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "LUZ": {
+            "credited": true,
+            "entry_cents": 14,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "TSE": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      },
+      "SALIBR": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "IBR": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "SAL": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "ARNROM": {
+        "completed": true,
+        "combined_entry_cents": 94,
+        "under_par": true,
+        "legs": {
+          "ARN": {
+            "credited": true,
+            "entry_cents": 55,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "ROM": {
+            "credited": true,
+            "entry_cents": 39,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "KIRSEK": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "KIR": {
+            "credited": true,
+            "entry_cents": 88,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "SEK": {
+            "credited": true,
+            "entry_cents": 8,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "KRUFER": {
+        "completed": true,
+        "combined_entry_cents": 96,
+        "under_par": true,
+        "legs": {
+          "FER": {
+            "credited": true,
+            "entry_cents": 43,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "KRU": {
+            "credited": true,
+            "entry_cents": 53,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "BOSCOP": {
+        "completed": true,
+        "combined_entry_cents": 82,
+        "under_par": true,
+        "legs": {
+          "BOS": {
+            "credited": true,
+            "entry_cents": 31,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          },
+          "COP": {
+            "credited": true,
+            "entry_cents": 51,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+          }
+        }
+      },
+      "PANFAL": {
+        "completed": false,
+        "combined_entry_cents": null,
+        "under_par": false,
+        "legs": {
+          "FAL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          },
+          "PAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+          }
+        }
+      }
+    }
+  },
+  "LUZTSE_TSE": {
+    "leg_identity": "KXATPMATCH-26JUL18LUZTSE|TSE",
+    "rest_periods_at_79": [
+      {
+        "start_epoch": 1784375205,
+        "start_receipt": "KXATPMATCH-26JUL18LUZTSE-LUZ.csv.gz#row-88",
+        "end_epoch": 1784377800.716,
+        "end_receipt": null
+      }
+    ],
+    "qualifying_post_stand_prints_at_or_below_79": [],
+    "credited_at_79": false,
+    "fills": [],
+    "absolute_window_floor_print": {
+      "timestamp_epoch": 1784375174.897,
+      "receipt": "3785e551-cb36-49a2-fdf0-e27d26efde97",
+      "trade_id": "3785e551-cb36-49a2-fdf0-e27d26efde97",
+      "size": 1,
+      "taker_side": "no",
+      "taker_book_side": "ask"
+    },
+    "absolute_floor_precedes_first_79_rest_by_seconds": 30.102999925613403,
+    "condition": "CREDIT_IFF_TRUE_TRADE_PRINT_AT_OR_BELOW_79_WHILE_THE_79_REST_STOOD",
+    "pass": true
+  },
+  "SALIBR_IBR_by_rung": {
+    "V47_BASELINE": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "IBR": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "SAL": {
+          "credited": true,
+          "entry_cents": 8,
+          "fill_class": "MARKET_REACH_PRINT_CROSS",
+          "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+        }
+      }
+    },
+    "TRADE_TRUTH_V47_INCUMBENT": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "IBR": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "SAL": {
+          "credited": true,
+          "entry_cents": 8,
+          "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+          "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+        }
+      }
+    },
+    "TRADE_TRUTH_BID_MINUS_ONE": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "IBR": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "SAL": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      }
+    },
+    "TRADE_TRUTH_BID": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "IBR": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "SAL": {
+          "credited": true,
+          "entry_cents": 8,
+          "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+          "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+        }
+      }
+    },
+    "TRADE_TRUTH_RECENT_TRADE": {
+      "completed": false,
+      "combined_entry_cents": null,
+      "under_par": false,
+      "legs": {
+        "IBR": {
+          "credited": false,
+          "entry_cents": null,
+          "fill_class": null,
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        },
+        "SAL": {
+          "credited": true,
+          "entry_cents": 8,
+          "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+          "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+        }
+      }
+    }
+  },
+  "V47_baseline_vs_law_only_byte_equal_placements_not_claimed": false,
+  "assertions": {
+    "LUZTSE_TSE_trade_truth_iff": true,
+    "ARNROM_at_or_better_89": true,
+    "KIRSEK_at_or_better_24": true,
+    "KRUFER_at_or_better_96": true,
+    "BOSCOP_at_or_better_80": true,
+    "PANFAL_no_regression": true
+  },
+  "pass": true
+}

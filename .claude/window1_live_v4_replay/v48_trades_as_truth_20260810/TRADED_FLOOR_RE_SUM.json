@@ -1,0 +1,121 @@
+{
+  "law": "PER_LEG_FLOOR_IS_LOWEST_LAWFUL_TRUE_TRADED_PRICE_IN_HARD_WINDOW1_SPAN; NO_ASK_AGGRESSOR_DWELL_SIZE_OR_ARRIVAL_FILTER",
+  "aggregate": {
+    "games": 804,
+    "traded_floor_classes": {
+      "UNDER_PAR": 711,
+      "OVER_PAR": 81,
+      "UNAVAILABLE": 12
+    },
+    "old_union_classes": {
+      "UNDER_PAR": 637,
+      "OVER_PAR": 148,
+      "UNAVAILABLE": 19
+    },
+    "flips": {
+      "UNDER_PAR->UNDER_PAR": 589,
+      "OVER_PAR->UNDER_PAR": 106,
+      "OVER_PAR->OVER_PAR": 40,
+      "UNDER_PAR->OVER_PAR": 40,
+      "UNAVAILABLE->UNDER_PAR": 16,
+      "UNDER_PAR->UNAVAILABLE": 8,
+      "OVER_PAR->UNAVAILABLE": 2,
+      "UNAVAILABLE->UNAVAILABLE": 2,
+      "UNAVAILABLE->OVER_PAR": 1
+    }
+  },
+  "by_category": {
+    "ATP_CHALL": {
+      "games": 369,
+      "traded_floor_classes": {
+        "UNDER_PAR": 318,
+        "OVER_PAR": 44,
+        "UNAVAILABLE": 7
+      },
+      "old_union_classes": {
+        "UNDER_PAR": 295,
+        "OVER_PAR": 70,
+        "UNAVAILABLE": 4
+      },
+      "flips": {
+        "UNDER_PAR->UNDER_PAR": 269,
+        "OVER_PAR->UNDER_PAR": 47,
+        "OVER_PAR->OVER_PAR": 22,
+        "UNDER_PAR->OVER_PAR": 22,
+        "UNDER_PAR->UNAVAILABLE": 4,
+        "UNAVAILABLE->UNAVAILABLE": 2,
+        "UNAVAILABLE->UNDER_PAR": 2,
+        "OVER_PAR->UNAVAILABLE": 1
+      }
+    },
+    "ATP_MAIN": {
+      "games": 147,
+      "traded_floor_classes": {
+        "UNDER_PAR": 141,
+        "OVER_PAR": 4,
+        "UNAVAILABLE": 2
+      },
+      "old_union_classes": {
+        "UNDER_PAR": 128,
+        "OVER_PAR": 13,
+        "UNAVAILABLE": 6
+      },
+      "flips": {
+        "UNDER_PAR->UNDER_PAR": 125,
+        "OVER_PAR->UNDER_PAR": 10,
+        "UNAVAILABLE->UNDER_PAR": 6,
+        "OVER_PAR->OVER_PAR": 3,
+        "UNDER_PAR->UNAVAILABLE": 2,
+        "UNDER_PAR->OVER_PAR": 1
+      }
+    },
+    "WTA_CHALL": {
+      "games": 136,
+      "traded_floor_classes": {
+        "UNDER_PAR": 106,
+        "OVER_PAR": 29,
+        "UNAVAILABLE": 1
+      },
+      "old_union_classes": {
+        "UNDER_PAR": 98,
+        "OVER_PAR": 38
+      },
+      "flips": {
+        "UNDER_PAR->UNDER_PAR": 82,
+        "OVER_PAR->UNDER_PAR": 24,
+        "UNDER_PAR->OVER_PAR": 16,
+        "OVER_PAR->OVER_PAR": 13,
+        "OVER_PAR->UNAVAILABLE": 1
+      }
+    },
+    "WTA_MAIN": {
+      "games": 152,
+      "traded_floor_classes": {
+        "UNDER_PAR": 146,
+        "OVER_PAR": 4,
+        "UNAVAILABLE": 2
+      },
+      "old_union_classes": {
+        "UNDER_PAR": 116,
+        "OVER_PAR": 27,
+        "UNAVAILABLE": 9
+      },
+      "flips": {
+        "UNDER_PAR->UNDER_PAR": 113,
+        "OVER_PAR->UNDER_PAR": 25,
+        "UNAVAILABLE->UNDER_PAR": 8,
+        "OVER_PAR->OVER_PAR": 2,
+        "UNDER_PAR->UNAVAILABLE": 2,
+        "UNAVAILABLE->OVER_PAR": 1,
+        "UNDER_PAR->OVER_PAR": 1
+      }
+    }
+  },
+  "conservation": {
+    "games": 804,
+    "legs": 1608,
+    "expected_games": 804,
+    "expected_legs": 1608,
+    "pass": true
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "baseline_reproduction": {
+    "frozen_V47_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "expected": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396
+      }
+    },
+    "observed": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396,
+        "ANY_PRICE": 396
+      }
+    },
+    "pass": true
+  },
+  "selected_ladder": "TRADE_TRUTH_BID",
+  "aggregate_targets": null,
+  "law_only_observed": {
+    "completed_pairs": 396,
+    "true_book_net_cents": 1774
+  },
+  "selected_observed": {
+    "completed_pairs": 396,
+    "true_book_net_cents": 1774
+  },
+  "zero_bound_named_regressions": {
+    "pass": true,
+    "assertions": {
+      "LUZTSE_TSE_trade_truth_iff": true,
+      "ARNROM_at_or_better_89": true,
+      "KIRSEK_at_or_better_24": true,
+      "KRUFER_at_or_better_96": true,
+      "BOSCOP_at_or_better_80": true,
+      "PANFAL_no_regression": true
+    }
+  },
+  "pass": true
+}

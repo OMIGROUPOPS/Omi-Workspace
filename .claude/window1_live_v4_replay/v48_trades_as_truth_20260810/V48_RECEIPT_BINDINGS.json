@@ -1,0 +1,50 @@
+{
+  "frozen_V47": {
+    "commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "baseline_reproduction": {
+      "frozen_V47_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+      "expected": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396
+        }
+      },
+      "observed": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396,
+          "ANY_PRICE": 396
+        }
+      },
+      "pass": true
+    }
+  },
+  "controlling_recut": {
+    "commit": "e995c81b39174cc67bffcf568390b8d069e5fd8a",
+    "json_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/THE_316_RECUT.json",
+    "json_sha256": "36095a296263a2cc71cfc1d65944e5a0ac31e8a805552f859e218b4e14776d5d",
+    "markdown_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/THE_316_RECUT.md",
+    "markdown_sha256": "6cf9a120629003935733eca3dd1bbbd116d9fc9b21d8c48c0b9d312bac915939",
+    "re_cut_legs": 342,
+    "true_offer_existed": 330,
+    "seller_cross_set_lowest_legs": 0
+  },
+  "scoped_law": "ANY_TRUE_TRADE_PRINT_AT_OR_BELOW_A_LAWFUL_REST_AFTER_THE_REST_STOOD_CREDITS; NO_CHANNEL_AGGRESSOR_DWELL_SIZE_OR_ARRIVAL_FILTER",
+  "placement_honesty": "V47_INCUMBENT_IS_MIXED; BID_MINUS_ONE_BID_AND_RECENT_TRADE_ARE_EXPLICIT_EXECUTABLE_RUNGS"
+}

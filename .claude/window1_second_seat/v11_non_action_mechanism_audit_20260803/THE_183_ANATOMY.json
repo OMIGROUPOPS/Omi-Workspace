@@ -1,0 +1,155 @@
+{
+ "LABEL": "THE_183_ANATOMY",
+ "basis": "V48 e073c606; CANON traded-at-level+trades-as-truth ruler (no aggressor/dwell filter). Per missing leg of the gap games: could a rest LAWFULLY stand at the completing print's level before the print? standable = post-only bid at P placeable = best ask>P at the print (bid-supported). PRINT_BEFORE assessed under T5 arming (first two-sided book).",
+ "ruler_correction": "supersedes MAKER_REACHABLE_OFFER 7fcd6614 (RULER_VIOLATION: aggressor-side + dwell filters)",
+ "PRINT_ABOVE_REST": {
+  "ONLY_BY_PREDICTION": 46,
+  "LAWFULLY_STANDABLE": 14
+ },
+ "PRINT_BEFORE_REST_STOOD": {
+  "ONLY_BY_PREDICTION": 60,
+  "LAWFULLY_STANDABLE": 70
+ },
+ "by_category": {
+  "ATP_CHALL": {
+   "LAWFULLY_STANDABLE": 36,
+   "ONLY_BY_PREDICTION": 67
+  },
+  "ATP_MAIN": {
+   "LAWFULLY_STANDABLE": 11,
+   "ONLY_BY_PREDICTION": 5
+  },
+  "WTA_CHALL": {
+   "LAWFULLY_STANDABLE": 29,
+   "ONLY_BY_PREDICTION": 24
+  },
+  "WTA_MAIN": {
+   "LAWFULLY_STANDABLE": 8,
+   "ONLY_BY_PREDICTION": 10
+  }
+ },
+ "recoverable": {
+  "games": 62,
+  "locked_cents": 1064,
+  "by_category": {
+   "ATP_CHALL": 24,
+   "ATP_MAIN": 10,
+   "WTA_CHALL": 23,
+   "WTA_MAIN": 5
+  },
+  "cents_by_category": {
+   "ATP_CHALL": 248,
+   "ATP_MAIN": 210,
+   "WTA_CHALL": 454,
+   "WTA_MAIN": 152
+  },
+  "distance": "396 captured + 62 lawfully-recoverable = 458 toward 700 (still 242 short)"
+ },
+ "conservation": {
+  "legs_analyzed": 190,
+  "print_above": 60,
+  "print_before": 130
+ },
+ "top_recoverable": [
+  {
+   "code": "26JUL18BASBOE",
+   "cat": "WTA_CHALL",
+   "leg": "BAS",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 94,
+   "ask_at_print": 95,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL13JONSPI",
+   "cat": "WTA_CHALL",
+   "leg": "JON",
+   "gap_class": "PRINT_ABOVE_REST",
+   "print_price": 91,
+   "ask_at_print": 92,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL13KNUKUR",
+   "cat": "WTA_CHALL",
+   "leg": "KNU",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 84,
+   "ask_at_print": 86,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL16KHOPRO",
+   "cat": "WTA_CHALL",
+   "leg": "PRO",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 84,
+   "ask_at_print": 86,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL14ZHUYUN",
+   "cat": "ATP_CHALL",
+   "leg": "YUN",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 78,
+   "ask_at_print": 86,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL14MAKSEY",
+   "cat": "ATP_CHALL",
+   "leg": "SEY",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 77,
+   "ask_at_print": 79,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL19RUSKAZ",
+   "cat": "WTA_MAIN",
+   "leg": "RUS",
+   "gap_class": "PRINT_ABOVE_REST",
+   "print_price": 75,
+   "ask_at_print": 76,
+   "side": "BUYER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL12FEICHE",
+   "cat": "WTA_CHALL",
+   "leg": "FEI",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 74,
+   "ask_at_print": 76,
+   "side": "BUYER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL13BOUZHA",
+   "cat": "ATP_CHALL",
+   "leg": "ZHA",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 73,
+   "ask_at_print": 74,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  },
+  {
+   "code": "26JUL13OKATAR",
+   "cat": "WTA_CHALL",
+   "leg": "TAR",
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "print_price": 71,
+   "ask_at_print": 72,
+   "side": "SELLER",
+   "verdict": "LAWFULLY_STANDABLE"
+  }
+ ]
+}

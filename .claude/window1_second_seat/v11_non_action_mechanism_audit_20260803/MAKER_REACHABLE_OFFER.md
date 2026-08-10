@@ -1,3 +1,5 @@
+> **RULER_VIOLATION (stamped).** This artifact's maker-reachable floor imposed an **aggressor-side (seller-only) filter and a 10s ask-dwell filter** — both **contradict CANON**: trades-as-truth credits **any** true trade at-or-below a standing rest (no aggressor filter), and traded-at-level imposes **no dwell**. The maker offer '501' is therefore under a wrong ruler. The correct question is not *was it seller-aggressed/dwelled* but *could a rest lawfully have stood at the level* — see THE_183_ANATOMY. Retained for lineage; superseded on the ruler.
+
 # Maker-reachable offer — the channel split that sizes the true bar
 
 Analysis seat only. Read-only. V48 trades-as-truth (`e073c606`). A resting bid is filled only by a **seller crossing to it** or the **ask descending onto it** — never by a **buyer lifting the ask**. This splits the traded offer into what a maker can actually reach. Machine artifact: `…/MAKER_REACHABLE_OFFER.json`.

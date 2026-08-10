@@ -64,5 +64,6 @@
   "maker_offer": 501,
   "all_comer": 498,
   "gap_games": 102
- }
+ },
+ "RULER_VIOLATION": "aggressor-side (seller-only) + 10s dwell filters contradict CANON traded-at-level + trades-as-truth (any trade at/below a standing rest credits, no aggressor/dwell filter). Superseded by THE_183_ANATOMY (lawful-standability ruler)."
 }

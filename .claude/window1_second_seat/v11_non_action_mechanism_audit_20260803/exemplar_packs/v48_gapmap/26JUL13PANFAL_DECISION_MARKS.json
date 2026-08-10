@@ -1,0 +1,54 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+ "code": "26JUL13PANFAL",
+ "category": "WTA_CHALL",
+ "archetype": "THE_315_GAP_MAP (under-par-by-trades, V48 uncredited)",
+ "game_type": "skip",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1783894220,
+  "left_et": "2026-07-12 22:10:20",
+  "right": 1783937425,
+  "right_et": "2026-07-13 10:10:25"
+ },
+ "legs": {
+  "FAL": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-FAL",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "our_rest_cents": 44,
+   "first_action_ts": "2026-07-12 22:10:20",
+   "lawful_stand_arm_ts": "2026-07-13 10:10:09",
+   "completing_print": {
+    "price_cents": 30,
+    "ts": "2026-07-13 10:19:31",
+    "t_minus_s": -545,
+    "size": 25.0,
+    "taker_side": "no"
+   },
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+  },
+  "PAN": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13PANFAL-PAN",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "our_rest_cents": 54,
+   "first_action_ts": "2026-07-12 22:10:20",
+   "lawful_stand_arm_ts": "2026-07-13 10:10:13",
+   "completing_print": {
+    "price_cents": 1,
+    "ts": "2026-07-13 12:19:43",
+    "t_minus_s": -7757,
+    "size": 1.0,
+    "taker_side": "no"
+   },
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+  }
+ }
+}

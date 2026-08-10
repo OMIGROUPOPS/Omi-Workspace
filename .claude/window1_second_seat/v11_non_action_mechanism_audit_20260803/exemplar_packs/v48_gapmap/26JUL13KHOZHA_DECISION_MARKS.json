@@ -1,0 +1,54 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+ "code": "26JUL13KHOZHA",
+ "category": "WTA_CHALL",
+ "archetype": "THE_315_GAP_MAP (under-par-by-trades, V48 uncredited)",
+ "game_type": "naked",
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1783894220,
+  "left_et": "2026-07-12 22:10:20",
+  "right": 1783937442,
+  "right_et": "2026-07-13 10:10:42"
+ },
+ "legs": {
+  "KHO": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13KHOZHA-KHO",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": false,
+   "entry_cents": null,
+   "our_rest_cents": 77,
+   "first_action_ts": "2026-07-12 22:10:20",
+   "lawful_stand_arm_ts": "2026-07-13 10:09:54",
+   "completing_print": {
+    "price_cents": 6,
+    "ts": "2026-07-13 11:55:47",
+    "t_minus_s": -6304,
+    "size": 5.0,
+    "taker_side": "no"
+   },
+   "gap_class": "PRINT_BEFORE_REST_STOOD",
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+  },
+  "ZHA": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL13KHOZHA-ZHA",
+   "global_direction": "UNKNOWN",
+   "close_cents": "",
+   "credited": true,
+   "entry_cents": 15,
+   "our_rest_cents": 15,
+   "first_action_ts": "2026-07-12 22:10:20",
+   "lawful_stand_arm_ts": "2026-07-13 10:08:50",
+   "completing_print": {
+    "price_cents": 1,
+    "ts": "2026-07-13 12:18:20",
+    "t_minus_s": -7657,
+    "size": 1.0,
+    "taker_side": "no"
+   },
+   "gap_class": "CREDITED",
+   "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+  }
+ }
+}

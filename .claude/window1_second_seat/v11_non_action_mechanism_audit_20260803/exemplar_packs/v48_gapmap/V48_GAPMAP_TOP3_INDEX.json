@@ -1,0 +1,23 @@
+{
+ "LABEL": "V48_GAPMAP_TOP3_PACKS",
+ "packs": [
+  {
+   "code": "26JUL18LUZTSE",
+   "rows": 456,
+   "bbo": 427,
+   "trades": 29
+  },
+  {
+   "code": "26JUL13KHOZHA",
+   "rows": 3720,
+   "bbo": 3702,
+   "trades": 18
+  },
+  {
+   "code": "26JUL13PANFAL",
+   "rows": 7630,
+   "bbo": 7614,
+   "trades": 16
+  }
+ ]
+}

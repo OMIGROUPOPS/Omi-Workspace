@@ -1,0 +1,68 @@
+{
+ "LABEL": "MAKER_REACHABLE_OFFER",
+ "basis": "V48 e073c606. maker-reachable floor = min(lowest seller-aggressed print, lowest ask-descent-dwell) post-first-lawful-stand; excludes buyer-lift trades (a resting bid is not filled by a buyer lifting the ask).",
+ "part1_gap_completing_prints_by_side": {
+  "by_gap_class": {
+   "PRINT_BEFORE_REST_STOOD": {
+    "BUYER_LIFT": 15,
+    "SELLER_AGGRESSED": 70
+   },
+   "PRINT_ABOVE_REST": {
+    "BUYER_LIFT": 29,
+    "SELLER_AGGRESSED": 7
+   },
+   "REST_ABSENT": {
+    "SELLER_AGGRESSED": 3,
+    "BUYER_LIFT": 1
+   }
+  },
+  "by_category": {
+   "ATP_CHALL": {
+    "BUYER_LIFT": 28,
+    "SELLER_AGGRESSED": 33
+   },
+   "ATP_MAIN": {
+    "SELLER_AGGRESSED": 11,
+    "BUYER_LIFT": 5
+   },
+   "WTA_CHALL": {
+    "SELLER_AGGRESSED": 30,
+    "BUYER_LIFT": 6
+   },
+   "WTA_MAIN": {
+    "SELLER_AGGRESSED": 6,
+    "BUYER_LIFT": 6
+   }
+  }
+ },
+ "part2_the_maker_offer": {
+  "THE_MAKER_OFFER": 501,
+  "all_comer_traded_offer_anytime": 562,
+  "all_comer_post_stand": 498,
+  "all_comer_v48_stated": 711,
+  "captured_v48": 396,
+  "note": "maker offer <= all-comer (excludes buyer-lifts) but adds ask-descent; beside 711 all-comer and 396 captured"
+ },
+ "part3_the_700_bar": {
+  "bar": 700,
+  "maker_offer_ge_700": false,
+  "maker_offer": 501,
+  "maker_shortfall_to_700": 199,
+  "presence_expansion_needed_games": 199,
+  "selective_taking": {
+   "takeable_not_maker_games": 65,
+   "net_positive_after_taker_fees": 12,
+   "total_locked_cents": 123,
+   "total_taker_fees_cents": 135,
+   "net_cents": -12,
+   "note": "games in the all-comer offer but NOT maker-reachable (buyer-lift only); to capture them we must TAKE (cross), paying ceil(0.07*p*(1-p)*100) per contract"
+  }
+ },
+ "conservation": {
+  "D": 804,
+  "captured": 396,
+  "maker_offer": 501,
+  "all_comer": 498,
+  "gap_games": 102
+ }
+}

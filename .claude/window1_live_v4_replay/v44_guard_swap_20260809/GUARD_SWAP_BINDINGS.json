@@ -1,0 +1,103 @@
+{
+  "base": {
+    "commit": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+    "role": "OPERATIVE_V43_EXECUTABLE_BASE",
+    "reproduced": {
+      "expected": {
+        "completed_pairs": 395,
+        "completed_locked_cents": 1910,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1748,
+        "frontier": {
+          "LE_93": 51,
+          "LE_95": 70,
+          "LE_97": 141,
+          "LT_100": 395
+        }
+      },
+      "observed": {
+        "events": 804,
+        "completed_pairs": 395,
+        "completed_locked_cents": 1910,
+        "naked_legs": 347,
+        "naked_priced": 283,
+        "naked_open": 64,
+        "naked_pnl_cents": -162,
+        "skips": 62,
+        "true_book_net_cents": 1748,
+        "frontier": {
+          "LE_93": 51,
+          "LE_95": 70,
+          "LE_97": 141,
+          "LT_100": 395,
+          "ANY_PRICE": 395
+        }
+      },
+      "pass": true
+    }
+  },
+  "recalibration": {
+    "commit": "b503e4edc2184e8958c97980c2e1769a077bfdd9",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V43_COMPOSITION_RECALIBRATION.json",
+    "sha256": "c7403e51ad19491b5d6d971dfa53963e4e974ce707a64a50f7b495b4d4f98adc",
+    "role": "ANALYTICAL_ESTIMATE_NOT_EXECUTABLE_SCORE",
+    "projected_A_plus_B": {
+      "score": {
+        "completed": 415,
+        "locked": 2123,
+        "naked": 42,
+        "true_book": 2165
+      },
+      "dryB": {
+        "losses_avoided": 240,
+        "n_avoided": 37,
+        "winners_forgone": 6,
+        "n_forgone": 5,
+        "net_naked_improvement": 234,
+        "by_cat": {
+          "ATP_CHALL": {
+            "avoided": 137,
+            "forgone": 0
+          },
+          "ATP_MAIN": {
+            "avoided": 51,
+            "forgone": 0
+          },
+          "WTA_CHALL": {
+            "avoided": 2,
+            "forgone": 6
+          },
+          "WTA_MAIN": {
+            "avoided": 50,
+            "forgone": 0
+          }
+        }
+      }
+    }
+  },
+  "residual_census": {
+    "commit": "639e8b19e9e6699f6c99bcd48a9557273234cd93",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V43_RESIDUAL_MISS_GEOMETRY.json",
+    "sha256": "80f99c489df5e07340613cd3bdcd82019fbe8474f3024bce733ccc3eb5729737",
+    "role": "DEFECT_CENSUS",
+    "guard_withheld": {
+      "n": 35,
+      "nearest_cents": 508
+    },
+    "no_flow_near": {
+      "n": 83,
+      "nearest_cents": 955
+    }
+  },
+  "removed_guard": {
+    "original_commit": "645e035bce12a4dcaf4cb7f10a3767fa898652a0",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAP_UNFEASIBLE_CENSUS.json",
+    "sha256": "a8a1b01bcf57fdedce1827b29e65204f68f1e222db8db5579d9732a553b250e5",
+    "status": "COMPOSITION_STALE_REMOVED_FROM_V44_COMBINED"
+  },
+  "full_book_method": {
+    "commit": "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/V41_FULL_BOOK_PNL.json",
+    "sha256": "b961449241201f7d059db644d54a910b0ecf2c805024319b63758458f6b4260a"
+  }
+}

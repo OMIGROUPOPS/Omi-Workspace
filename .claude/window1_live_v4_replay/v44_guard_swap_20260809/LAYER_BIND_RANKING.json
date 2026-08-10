@@ -1,0 +1,201 @@
+{
+  "rows": [
+    {
+      "owner": "RISING_REST_FILLED_SHALLOW",
+      "games": 331,
+      "sides": 362,
+      "measurable_cents": 2142,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 78,
+        "ATP_MAIN|live_by_only": 51,
+        "ATP_CHALL|exact": 50,
+        "WTA_MAIN|live_by_only": 37,
+        "ATP_MAIN|exact": 33,
+        "WTA_CHALL|live_by_only": 29,
+        "WTA_MAIN|exact": 20,
+        "WTA_CHALL|exact": 15,
+        "ATP_CHALL|contradictory": 12,
+        "WTA_CHALL|schedule_only": 11,
+        "WTA_MAIN|schedule_only": 7,
+        "ATP_CHALL|schedule_only": 6,
+        "ATP_MAIN|schedule_only": 4,
+        "WTA_MAIN|contradictory": 3,
+        "ATP_MAIN|contradictory": 2,
+        "WTA_CHALL|contradictory": 2,
+        "ATP_CHALL|clean_interval": 1,
+        "ATP_MAIN|clean_interval": 1
+      }
+    },
+    {
+      "owner": "FALLING_REST_FILLED_SHALLOW",
+      "games": 130,
+      "sides": 130,
+      "measurable_cents": 951,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 34,
+        "ATP_CHALL|exact": 17,
+        "ATP_MAIN|live_by_only": 17,
+        "WTA_MAIN|live_by_only": 14,
+        "WTA_MAIN|exact": 13,
+        "WTA_CHALL|live_by_only": 7,
+        "ATP_MAIN|exact": 6,
+        "ATP_CHALL|contradictory": 5,
+        "ATP_CHALL|schedule_only": 4,
+        "WTA_CHALL|schedule_only": 4,
+        "ATP_CHALL|clean_interval": 3,
+        "ATP_MAIN|schedule_only": 3,
+        "WTA_CHALL|exact": 1,
+        "WTA_MAIN|contradictory": 1,
+        "WTA_MAIN|schedule_only": 1
+      }
+    },
+    {
+      "owner": "SETTLED_REST_FILLED_SHALLOW",
+      "games": 45,
+      "sides": 45,
+      "measurable_cents": 360,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 12,
+        "WTA_CHALL|live_by_only": 9,
+        "ATP_MAIN|live_by_only": 6,
+        "ATP_CHALL|exact": 4,
+        "WTA_MAIN|live_by_only": 4,
+        "ATP_MAIN|exact": 3,
+        "WTA_MAIN|exact": 3,
+        "ATP_MAIN|schedule_only": 1,
+        "WTA_CHALL|exact": 1,
+        "WTA_MAIN|contradictory": 1,
+        "WTA_MAIN|schedule_only": 1
+      }
+    },
+    {
+      "owner": "PAIR_CAP_ARITHMETIC",
+      "games": 134,
+      "sides": 134,
+      "measurable_cents": 334,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 31,
+        "ATP_CHALL|exact": 22,
+        "ATP_MAIN|live_by_only": 20,
+        "WTA_MAIN|live_by_only": 15,
+        "ATP_MAIN|exact": 12,
+        "WTA_MAIN|exact": 11,
+        "WTA_CHALL|exact": 7,
+        "ATP_CHALL|clean_interval": 3,
+        "ATP_CHALL|schedule_only": 3,
+        "WTA_CHALL|live_by_only": 3,
+        "WTA_CHALL|schedule_only": 2,
+        "WTA_MAIN|schedule_only": 2,
+        "ATP_MAIN|clean_interval": 1,
+        "ATP_MAIN|schedule_only": 1,
+        "WTA_MAIN|contradictory": 1
+      }
+    },
+    {
+      "owner": "FALLER_V36_NO_CHASE_REST_OFF_REACH",
+      "games": 59,
+      "sides": 61,
+      "measurable_cents": 97,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 21,
+        "ATP_CHALL|exact": 14,
+        "ATP_MAIN|live_by_only": 8,
+        "WTA_CHALL|exact": 4,
+        "WTA_MAIN|live_by_only": 4,
+        "ATP_CHALL|schedule_only": 3,
+        "WTA_CHALL|live_by_only": 3,
+        "WTA_CHALL|schedule_only": 2,
+        "ATP_CHALL|contradictory": 1,
+        "WTA_CHALL|clean_interval": 1
+      }
+    },
+    {
+      "owner": "PAIR_CAP_REST_FILLED_SHALLOW",
+      "games": 6,
+      "sides": 6,
+      "measurable_cents": 53,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 1,
+        "ATP_CHALL|schedule_only": 1,
+        "ATP_MAIN|contradictory": 1,
+        "ATP_MAIN|live_by_only": 1,
+        "WTA_CHALL|exact": 1,
+        "WTA_CHALL|live_by_only": 1
+      }
+    },
+    {
+      "owner": "RISER_PULSE_REST_OFF_REACH",
+      "games": 17,
+      "sides": 17,
+      "measurable_cents": 26,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 7,
+        "ATP_CHALL|exact": 4,
+        "WTA_MAIN|live_by_only": 2,
+        "ATP_CHALL|clean_interval": 1,
+        "ATP_MAIN|live_by_only": 1,
+        "WTA_CHALL|exact": 1,
+        "WTA_MAIN|clean_interval": 1
+      }
+    },
+    {
+      "owner": "SETTLED_BID_MINUS_ONE_REST_OFF_REACH",
+      "games": 15,
+      "sides": 15,
+      "measurable_cents": 17,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 5,
+        "WTA_CHALL|live_by_only": 4,
+        "ATP_CHALL|exact": 3,
+        "WTA_CHALL|exact": 2,
+        "ATP_MAIN|live_by_only": 1
+      }
+    },
+    {
+      "owner": "RISER_NO_TWO_VISIT_TRAILING_PULSE_FLOOR",
+      "games": 6,
+      "sides": 6,
+      "measurable_cents": 9,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 2,
+        "ATP_CHALL|exact": 1,
+        "ATP_CHALL|schedule_only": 1,
+        "ATP_MAIN|live_by_only": 1,
+        "WTA_MAIN|exact": 1
+      }
+    },
+    {
+      "owner": "HARD_PREBELL_EDGE_EXCLUDES_REACH_EVIDENCE",
+      "games": 90,
+      "sides": 113,
+      "measurable_cents": 0,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 48,
+        "WTA_CHALL|live_by_only": 28,
+        "ATP_MAIN|live_by_only": 16,
+        "WTA_MAIN|live_by_only": 8,
+        "ATP_CHALL|contradictory": 5,
+        "WTA_MAIN|contradictory": 4,
+        "WTA_CHALL|contradictory": 3,
+        "ATP_CHALL|schedule_only": 1
+      }
+    },
+    {
+      "owner": "UNION_REACH_PRECEDED_RESIDENCY_OR_CHANNEL_NOT_REPEATED",
+      "games": 13,
+      "sides": 13,
+      "measurable_cents": 0,
+      "category_x_bell_confidence": {
+        "ATP_CHALL|live_by_only": 8,
+        "ATP_CHALL|exact": 3,
+        "WTA_CHALL|exact": 1,
+        "WTA_MAIN|live_by_only": 1
+      }
+    }
+  ],
+  "conservation": {
+    "residual_sides": 902,
+    "ranked_sides": 902,
+    "pass": true
+  }
+}

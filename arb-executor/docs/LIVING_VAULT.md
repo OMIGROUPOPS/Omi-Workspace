@@ -1744,3 +1744,19 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf
 
 Analytical-estimate supersession:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/d1f60c35a44f800e37bf0f421404f5da36ecb892/.claude/window1_live_v4_replay/v43_re_adjudication_20260809/ANALYTICAL_ESTIMATE_SUPERSESSION_RECEIPT.json
+
+### 2026-08-09 - V44 GUARD SWAP BLOCKED / V43 REMAINS OPERATIVE
+
+V44 removed V43's composition-stale T=10 deep-gap guard and added the ordered
+three-cent dry-sibling law. The analysis-seat operation deleted fills
+post-hoc, but a resting exchange order cannot refuse an opposing fill. The
+executable build therefore withholds or cancels the rest while the sibling is
+dry and places it on the first causal lift receipt; ignored or retroactive
+fills are forbidden. V43 reproduces exactly at 395 completed and +1,748 cents
+true book. Guard removal alone is 393/+1,590; dry-only is 375/+955; combined
+V44 is 375 completed, 1,077 cents locked, -206 cents naked, and +871 cents true
+book. V44 fails the completion, naked-book, true-book, and named bars. The
+projected 415/+2,165 row remains `ANALYTICAL_ESTIMATE`, never executable truth.
+Two clean builds are byte-identical and forbidden access is zero. V44 is
+`BLOCKED_NOT_OPERATIVE`; V43 remains operative. No deployment or live-cutover
+authority is created.

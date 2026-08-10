@@ -1,0 +1,12 @@
+{
+  "status": "BLOCKED_NOT_OPERATIVE",
+  "operative_baseline": "V43_01a58334",
+  "reasons": [
+    "COMPLETION_BAR_FAILED",
+    "NAKED_BOOK_BAR_FAILED",
+    "TRUE_BOOK_BAR_FAILED",
+    "NAMED_MECHANISM_OR_AT_OR_BETTER_CHECK_FAILED"
+  ],
+  "no_forced_values": true,
+  "executable_truth_controls": true
+}

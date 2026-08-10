@@ -1,0 +1,61 @@
+{
+  "score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1586,
+    "credited_legs": 1015,
+    "completed_pairs": 319,
+    "under_par_pairs": 319,
+    "locked_cents_per_contract": 908,
+    "locked_cents_five_lot": 4540,
+    "maker_fill_classes": {
+      "STRICT_PRINT_CROSS_SELLER_AGGRESSED_SIZE_FIVE": 1015
+    },
+    "frontier": {
+      "LE_93": 22,
+      "LE_95": 32,
+      "LE_97": 79,
+      "LT_100": 319,
+      "ANY_PRICE": 319
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "reach_grade": {
+    "answer_key_games": 637,
+    "answer_key_locked_cents": 5253,
+    "grades": {
+      "MISSING": 366,
+      "SHALLOW": 219,
+      "MATCHED": 52
+    },
+    "shallow_gap_cents": {
+      "n": 506,
+      "null_n": 0,
+      "sum": 3102,
+      "min": 1,
+      "p25": 1,
+      "median": 3,
+      "p75": 5,
+      "p90": 15,
+      "max": 78
+    },
+    "measurable_residual_cents": {
+      "n": 804,
+      "null_n": 0,
+      "sum": 3602,
+      "min": 0,
+      "p25": 1,
+      "median": 2,
+      "p75": 4,
+      "p90": 8,
+      "max": 78
+    },
+    "completed_pairs": 271,
+    "under_par_pairs": 271
+  },
+  "role": "BUILD_VERIFICATION_ONLY_NOT_MARKET_VALUE"
+}

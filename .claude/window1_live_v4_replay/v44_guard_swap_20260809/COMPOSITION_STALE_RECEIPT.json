@@ -1,0 +1,7 @@
+{
+  "superseded_calibration_commit": "645e035bce12a4dcaf4cb7f10a3767fa898652a0",
+  "superseding_executable_base": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+  "recalibration_commit": "b503e4edc2184e8958c97980c2e1769a077bfdd9",
+  "ruling": "T10_DEEP_GAP_STANDALONE_CALIBRATION_IS_COMPOSITION_STALE_AND_IS_DELETED_FROM_V44_COMBINED",
+  "executable_attribution_controls": true
+}

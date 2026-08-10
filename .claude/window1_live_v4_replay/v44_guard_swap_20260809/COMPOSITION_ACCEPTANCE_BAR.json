@@ -1,0 +1,36 @@
+{
+  "baseline_reproduction": {
+    "pass": true
+  },
+  "completed_pairs": {
+    "value": 375,
+    "minimum": 395,
+    "pass": false
+  },
+  "naked_pnl_cents": {
+    "value": -206,
+    "minimum": 0,
+    "pass": false
+  },
+  "true_book_net_cents": {
+    "value": 871,
+    "strict_minimum": 1748,
+    "pass": false
+  },
+  "deep_gap_guard_removed": {
+    "pass": true
+  },
+  "named_checks": {
+    "pass": false,
+    "assertions": {
+      "PENTHA_at_or_better_55": false,
+      "SHEOLI_at_or_better_92": false,
+      "PUTJEA_both_withheld_dry_skip_no_naked_PUT": false,
+      "KIRSEK_at_or_better_24": false,
+      "ARNROM_at_or_better_89": false,
+      "KRUFER_at_or_better_96": true,
+      "BOSCOP_at_or_better_80": true
+    }
+  },
+  "pass": false
+}

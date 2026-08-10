@@ -1,0 +1,68 @@
+{
+  "law": "WITHHOLD_POTENTIAL_FILL_WHILE_SIBLING_UNION_FLOW_SO_FAR_HAS_NEVER_COME_WITHIN_3C_OF_ANY_CAUSALLY_OBSERVED_LAWFUL_SIBLING_REST_LEVEL",
+  "executable_realization": "REST_WITHHELD_OR_CANCELLED_BEFORE_FILL; PLACED_ON_CAUSAL_LIFT_RECEIPT",
+  "threshold_cents": 3,
+  "lift": "FIRST_RECEIPT_ESTABLISHING_SIBLING_FLOW_WITHIN_3C_OF_ANY_CAUSALLY_OBSERVED_LAWFUL_SIBLING_REST_LEVEL",
+  "union_channels": [
+    "QUOTE_TOUCH_10S_SIZE_FIVE",
+    "TRADED_AT_LEVEL",
+    "STRICT_PRINT_CROSS"
+  ],
+  "market": {
+    "affected_legs": 1603,
+    "withhold_episodes": 1603,
+    "withheld_placement_evaluations": 1605297,
+    "lifts": 1585,
+    "by_category": {
+      "ATP_CHALL": 736,
+      "WTA_MAIN": 303,
+      "ATP_MAIN": 292,
+      "WTA_CHALL": 272
+    }
+  },
+  "two_columns_executable": {
+    "V43_baseline": {
+      "events": 804,
+      "completed_pairs": 395,
+      "completed_locked_cents": 1910,
+      "naked_legs": 347,
+      "naked_priced": 283,
+      "naked_open": 64,
+      "naked_pnl_cents": -162,
+      "skips": 62,
+      "true_book_net_cents": 1748
+    },
+    "dry_sibling_alone": {
+      "events": 804,
+      "completed_pairs": 375,
+      "completed_locked_cents": 1146,
+      "naked_legs": 357,
+      "naked_priced": 289,
+      "naked_open": 68,
+      "naked_pnl_cents": -191,
+      "skips": 72,
+      "true_book_net_cents": 955
+    },
+    "V44_combined": {
+      "events": 804,
+      "completed_pairs": 375,
+      "completed_locked_cents": 1077,
+      "naked_legs": 358,
+      "naked_priced": 290,
+      "naked_open": 68,
+      "naked_pnl_cents": -206,
+      "skips": 71,
+      "true_book_net_cents": 871
+    }
+  },
+  "analytical_estimate": {
+    "commit": "b503e4edc2184e8958c97980c2e1769a077bfdd9",
+    "score": {
+      "completed": 415,
+      "locked": 2123,
+      "naked": 42,
+      "true_book": 2165
+    },
+    "controlling": false
+  }
+}

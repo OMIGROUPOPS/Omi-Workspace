@@ -1,0 +1,14 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v44_guard_swap.js",
+  "policy_sha256": "aa621f01f2714277436e7515c1f2f30c53a9c06ca70b96202b8722cd20b11512",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "market_taker_fills": 0,
+  "strict_taker_fills": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "maker_fees_cents": 0,
+  "pass": true
+}

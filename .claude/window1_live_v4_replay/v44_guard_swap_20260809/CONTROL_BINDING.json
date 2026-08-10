@@ -1,0 +1,44 @@
+{
+  "schema_version": "window1-v44-guard-swap-control-v1",
+  "parent": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+  "frozen_V43": "01a58334e90acffd4bb0fb17b6ceed17c4f51bbd",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "controlling_receipts": [
+    "b503e4edc2184e8958c97980c2e1769a077bfdd9",
+    "639e8b19e9e6699f6c99bcd48a9557273234cd93",
+    "645e035bce12a4dcaf4cb7f10a3767fa898652a0",
+    "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f"
+  ],
+  "architecture": {
+    "incumbent": "V43_BYTE_IDENTICAL_EXCEPT_EXACT_GUARD_SWAP",
+    "removed": "T10_DEEP_GAP_FEASIBILITY_GUARD_DELETED_FROM_V44_COMBINED",
+    "added": "WITHHOLD_POTENTIAL_FILL_WHILE_SIBLING_UNION_FLOW_SO_FAR_HAS_NEVER_COME_WITHIN_3C_OF_ANY_CAUSALLY_OBSERVED_LAWFUL_SIBLING_REST_LEVEL",
+    "lift": "FIRST_RECEIPT_ESTABLISHING_SIBLING_FLOW_WITHIN_3C_OF_ANY_CAUSALLY_OBSERVED_LAWFUL_SIBLING_REST_LEVEL",
+    "union_channels": [
+      "QUOTE_TOUCH_10S_SIZE_FIVE",
+      "TRADED_AT_LEVEL",
+      "STRICT_PRINT_CROSS"
+    ],
+    "decision_time_only": true,
+    "no_retroactive_fill": true,
+    "arm_at_first_evidence": "V43_UNCHANGED",
+    "loosen_one_cent": "V43_UNCHANGED",
+    "sanity_bound": "V43_UNCHANGED",
+    "lazy_leg_1": "V43_UNCHANGED",
+    "pair_cap": "V43_UNCHANGED",
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V43_UNCHANGED",
+    "take_path": "DELETED_IN_V41"
+  },
+  "acceptance_bar": {
+    "true_book_net_cents_strictly_greater_than": 1748,
+    "naked_pnl_cents_min": 0,
+    "completed_pairs_min": 395,
+    "named_at_or_better_and_mechanism_bound": true
+  },
+  "fill_rulers": {
+    "market_scoring": "CANON_UNION_CHANNELS",
+    "build_verification": "STRICT_PRINT_CROSS",
+    "never_swapped": true
+  }
+}

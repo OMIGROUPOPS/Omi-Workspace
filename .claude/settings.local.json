@@ -120,7 +120,9 @@
       "Bash(npm install:*)",
       "WebFetch(domain:raw.githubusercontent.com)",
       "Bash(rm:*)",
-      "Bash(ssh:*)"
+      "Bash(ssh:*)",
+      "Bash(mkdir -p /home/user/Omi-Workspace/.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803)",
+      "Bash(cp /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/DECISION_CHAIN_LEDGER_81.md /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/DECISION_CHAIN_LEDGER_81.json /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/26JUL12MALTUR_DUAL_TIMELINE_V2.csv /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/26JUL12MALTUR_DECISION_MARKS.json /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/26JUL20TOTRUG_DUAL_TIMELINE_V2.csv /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/26JUL20TOTRUG_DECISION_MARKS.json /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/26JUL13DONWES_DUAL_TIMELINE_V2.csv /tmp/claude-0/-home-user-Omi-Workspace/672cd104-53a7-5497-b415-453535b048e5/scratchpad/26JUL13DONWES_DECISION_MARKS.json /home/user/Omi-Workspace/.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/)"
     ]
   }
 }

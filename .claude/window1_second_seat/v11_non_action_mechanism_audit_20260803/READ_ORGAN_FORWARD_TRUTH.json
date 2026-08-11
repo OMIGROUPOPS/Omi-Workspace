@@ -1,0 +1,168 @@
+{
+ "LABEL": "READ_ORGAN_FORWARD_TRUTH",
+ "basis": "reopen #4 (bc0ce289): V47 (fb74c8b8) state reads at every action receipt scored vs FORWARD net mid-move over +30/60/90min (threshold +-2c), fit-local tapes; ex-post frozen-QR ruler beside on the same receipts.",
+ "receipts": {
+  "candidates": 1208014,
+  "excluded_no_tape": 0,
+  "scored_per_horizon": {
+   "30m": 1069183,
+   "60m": 1061150,
+   "90m": 1059152
+  }
+ },
+ "expost_ruler": {
+  "right": 149888,
+  "total": 434364,
+  "rate": 0.345,
+  "note": "the old ex-post whole-window ruler on the same receipts"
+ },
+ "accuracy_per_state": {
+  "30m": {
+   "SETTLED": {
+    "right": 5425,
+    "total": 6620,
+    "rate": 0.819
+   },
+   "RISING": {
+    "right": 140204,
+    "total": 1044008,
+    "rate": 0.134
+   },
+   "FALLING": {
+    "right": 3380,
+    "total": 18555,
+    "rate": 0.182
+   }
+  },
+  "60m": {
+   "SETTLED": {
+    "right": 5003,
+    "total": 6684,
+    "rate": 0.749
+   },
+   "RISING": {
+    "right": 169158,
+    "total": 1036903,
+    "rate": 0.163
+   },
+   "FALLING": {
+    "right": 3444,
+    "total": 17563,
+    "rate": 0.196
+   }
+  },
+  "90m": {
+   "SETTLED": {
+    "right": 4613,
+    "total": 6672,
+    "rate": 0.691
+   },
+   "RISING": {
+    "right": 210551,
+    "total": 1035049,
+    "rate": 0.203
+   },
+   "FALLING": {
+    "right": 4033,
+    "total": 17431,
+    "rate": 0.231
+   }
+  }
+ },
+ "accuracy_per_category": {
+  "30m": {
+   "ATP_CHALL": {
+    "right": 94642,
+    "total": 400267,
+    "rate": 0.236
+   },
+   "ATP_MAIN": {
+    "right": 20722,
+    "total": 182412,
+    "rate": 0.114
+   },
+   "WTA_CHALL": {
+    "right": 7541,
+    "total": 323323,
+    "rate": 0.023
+   },
+   "WTA_MAIN": {
+    "right": 26104,
+    "total": 163181,
+    "rate": 0.16
+   }
+  },
+  "60m": {
+   "ATP_CHALL": {
+    "right": 109020,
+    "total": 395365,
+    "rate": 0.276
+   },
+   "ATP_MAIN": {
+    "right": 20053,
+    "total": 182056,
+    "rate": 0.11
+   },
+   "WTA_CHALL": {
+    "right": 8124,
+    "total": 320565,
+    "rate": 0.025
+   },
+   "WTA_MAIN": {
+    "right": 40408,
+    "total": 163164,
+    "rate": 0.248
+   }
+  },
+  "90m": {
+   "ATP_CHALL": {
+    "right": 95792,
+    "total": 394536,
+    "rate": 0.243
+   },
+   "ATP_MAIN": {
+    "right": 54616,
+    "total": 181834,
+    "rate": 0.3
+   },
+   "WTA_CHALL": {
+    "right": 10164,
+    "total": 319935,
+    "rate": 0.032
+   },
+   "WTA_MAIN": {
+    "right": 58625,
+    "total": 162847,
+    "rate": 0.36
+   }
+  }
+ },
+ "confusion_60m": {
+  "FALLING->_fwd_FALLING": 3444,
+  "FALLING->_fwd_RISING": 4587,
+  "FALLING->_fwd_SETTLED": 9532,
+  "RISING->_fwd_FALLING": 76803,
+  "RISING->_fwd_RISING": 169158,
+  "RISING->_fwd_SETTLED": 790942,
+  "SETTLED->_fwd_FALLING": 724,
+  "SETTLED->_fwd_RISING": 957,
+  "SETTLED->_fwd_SETTLED": 5003
+ },
+ "money_cut": {
+  "FWD_WRONG": {
+   "fills": 631,
+   "total_close_minus_entry": 1337,
+   "mean": 2.12
+  },
+  "FWD_RIGHT": {
+   "fills": 300,
+   "total_close_minus_entry": 463,
+   "mean": 1.54
+  }
+ },
+ "conservation": {
+  "every_scored_read_once": true,
+  "candidates": 1208014,
+  "excluded": 0
+ }
+}

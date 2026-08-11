@@ -104,8 +104,13 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
   boundary may clip genuine pre-match flow; a boundary-quality detector scopes it.
 - ⧗ **Corrected dipless** — re-run the 43 through the corrected reconstruction; the quarantine lifts or the
   absence verdict falls (4ba98104).
-- ⧗ **Coupling 1/3/4** — GAP: the operator's numbered coupling items are not present in this seat's records;
-  slots reserved (the coupling census 6b28b4af is the substrate).
+- ⧗ **Coupling 1/3/4** (canonical four parts; part 2 done): **(1) tick-by-tick inverse** — how tightly the two
+  legs move against each other, where it holds and breaks, per category and per starting-price split;
+  **(2) divot arrival — MEASURED** (`f40ac8ea` primary; the `9ee14bf5` arm quarantined); **(3) pair shapes vs
+  leg shapes** — is there a DUAL taxonomy of pair-level shapes, and does pair shape predict better than the two
+  leg shapes separately; **(4) starting-split coupling** — 30/70 vs 8/92 carry different dynamic floors; do they
+  carry different coupling? Substrate: **the pair constraint (legs sum to ~100) is the strongest available axis
+  and remains entirely unused.**
 - ⧗ **S9 resolution** — the WTA inverse-falling hold is live code with no ratified doctrine (cd592540); ratify,
   rewrite, or remove.
 - ⧗ **Reopens #2–#10** (bc0ce289): V44b maturity dry-sibling · LAW B full-riser-stack · read-organ forward-truth
@@ -114,21 +119,40 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 
 ---
 
-## 4 · RUNNING LIST A–H — dock-or-retire
+## 4 · RUNNING LIST A–H — canonical (operator, via Fable's session records)
 
-**GAP:** the operator's standing A–H list is not present in this seat's records; the letters below are this
-seat's best docking of the campaign's eight recurring threads and await the operator's mapping:
+Replaced wholesale per operator authorization (deviation from append-only noted in the commit). The eight
+threads this seat previously guessed here were **not** A–H; they survive below as the seat docket.
 
-- A · first-fill discipline → **dock** to ⧗ V50 fork.
-- B · mirror/LAW B → **retire** (declined twice, bc0ce289 #4/#12); read-side arbitration remains a shelf item.
-- C · divot/pulse doctrine → **dock** to ⧗ V38b session-recurrence reopen; trailing form retired.
-- D · dry-sibling → **dock** to ⧗ V44b maturity form; analytic form retired.
-- E · gap-credit → **dock** to ⧗ V46b ungated-priced; pair-gated form retired (empty causal gate).
-- F · read organ → **retire the indictment** (12d67c8a); keep the FALLING-inversion quadrant as a watch item.
-- G · edge/boundary → **dock** to ⧗ bell detector (the 81.2% post-edge census).
-- H · capture quality → **dock** to ⧗ corrected dipless + the capture-confound protocol (9ff18c8c).
+- **A · GATE vs WINDOW** — T-8h is OMI's admission gate, not the market's window; the market trades for days
+  prior. Does pre-gate tape exist, and do we ignore it by choice or absence? **OPEN** — the left-edge twin of
+  the S17 right-edge work; docked beside ⧗ bell detector as its own slot.
+- **B · EXTERNAL BOOK BLEND** — Odds API subscription + 3rd-party sources; blending sharp-book pricing with the
+  pattern OS is explicitly wanted. ALVVAN showed FV "stale/absent" — never established whether the organ
+  exists-but-didn't-load vs doesn't exist. **OPEN, unanswered.**
+- **C · LEG-COUPLING ORGAN** — what in live_v4 reads one leg's state when pricing the other? **PARTIALLY
+  ANSWERED** by `cd592540`: coupling exists at PERMISSION/clamp level (S12 reads siblingBestAsk, S16 reads the
+  first entry, S14 reads sibling credit) but **not at READ level** — S3 never consults the sibling's S3 (the
+  missing mirror-arbitration rule, 69% incoherence). Residue docked → ⧗ coupling 1/3/4 + the mirror install
+  item.
+- **D · MACRO vs MICRO** — what MICRO layer reads the subsecond tape at entry? **CONFIRMED GAP** by
+  `cd592540`: all micro-micro sites (S5/S7/S8/S10/S11) are mechanical; no directional subsecond read exists.
+  Docked → the empty-MACRO / blind-spot-3 exhibit; owner = the LAW B reopen family.
+- **E · DIRECTIONAL CALL** — does anything determine macro uptick vs downturn before aiming? **CONFIRMED
+  ABSENT**: S1–S3 are TRAIL(300 s) reads; the atlas is consulted once at conception; no macro directional organ.
+  Docked → the empty-MACRO exhibit.
+- **F · TIMING AXIS** — a macro table supplies a distribution, never a wall-clock minute. **UPHELD** —
+  GRANULARITY LAW in force all session; retired to watch status.
+- **G · 950 skip_no_trade** — a state logged as 950 events (the 8,072-alarms inflation family). **RESOLVED BY
+  DOCTRINE 3** (lane-or-dedupe) at the doctrine level; artifact-level fix unverified — caveat stands.
+- **H · MID-RUN EDIT** — what edited live_v4.py mid-run and forced fail-closed at 948/2412 rows? **OPEN, never
+  investigated**; forensic-sized, low priority, but it stays named.
 
----
+### Seat docket (formerly mis-filed as A–H; retained, NOT canonical)
+
+first-fill discipline → ⧗ V50 · mirror/LAW B → retired (read-side shelf) · divot/pulse → ⧗ V38b ·
+dry-sibling → ⧗ V44b · gap-credit → ⧗ V46b · read organ → indictment retired, FALLING-inversion watched ·
+edge/boundary → ⧗ bell detector · capture quality → ⧗ corrected dipless.
 
 ## 5 · CONTRADICTION TABLE — surfaced, not smoothed
 

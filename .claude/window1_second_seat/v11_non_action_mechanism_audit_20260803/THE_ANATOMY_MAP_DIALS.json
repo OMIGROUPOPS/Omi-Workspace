@@ -152,7 +152,7 @@
    "outcome": "CREDIT",
    "resolution": "RECEIPT",
    "code": "runner + v41.tradedAtLevel",
-   "levers": "trades-as-truth (e073c606); FANBIG defect"
+   "levers": "trades-as-truth (e073c606); FANBIG item MOOTED (evidence-join error, post-MAZ forensic)"
   }
  ],
  "count": 19,

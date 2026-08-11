@@ -97,8 +97,9 @@ edge law never checks whether a rest ever stood inside the record.
 
 **S18 · credit law** (runner scoring; v41.tradedAtLevel under the V48 ruling) — job: credit any true trade
 at-or-below a standing rest, strictly after stood; quote touch never credits; strictPrintCross = build
-verification only. CREDIT / RECEIPT. Levers: none (law). CANON: trades-as-truth `e073c606`. **Defect: the
-FANBIG through-bid print not admitted (`653b7f13`) — one proven candidate crediting defect.**
+verification only. CREDIT / RECEIPT. Levers: none (law). CANON: trades-as-truth `e073c606`. Defect: none
+standing — the FANBIG through-bid item (`653b7f13`) was MOOTED by the post-MAZ forensic (an evidence-join error
+in the reconstruction, not a crediting defect); no open S18 defect.
 
 ## The conflict table — two sites, one leg, one receipt
 

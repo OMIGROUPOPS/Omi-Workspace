@@ -1,0 +1,305 @@
+{
+ "LABEL": "POST_MAZ_TRIAGE",
+ "EDGE_CLIPPED_CENSUS": {
+  "population_legs": 568,
+  "legs_with_postedge_subrest_print": 461,
+  "share": 0.812,
+  "total_lots": 119420995.0,
+  "minutes_past_edge": {
+   "n": 461,
+   "p25": 10.8,
+   "median": 18.1,
+   "p75": 36.1,
+   "max": 2939.9
+  },
+  "by_bell": {
+   "live_by_only": "241/289",
+   "exact": "113/130",
+   "schedule_only": "87/119",
+   "contradictory": "8/14",
+   "clean_interval": "12/16"
+  },
+  "by_cat": {
+   "ATP_CHALL": "275/319",
+   "ATP_MAIN": "50/65",
+   "WTA_CHALL": "76/108",
+   "WTA_MAIN": "60/76"
+  },
+  "by_corpus": {
+   "dev": 374,
+   "sealed": 87
+  },
+  "note": "print coverage: fit-local full-life (dev) + holdout/exam repull (sealed); sealed repull may not extend far past edge - counts are lower bounds there"
+ },
+ "QUARANTINE_43": {
+  "counts": {
+   "QUARANTINED": 43,
+   "CLEAN": 0
+  },
+  "rows": [
+   {
+    "code": "26AUG10RAIVAN",
+    "leg": "VAN",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL27ALBHAS",
+    "leg": "HAS",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL28AZKERE",
+    "leg": "ERE",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL28BASRAW",
+    "leg": "BAS",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26AUG09EALBEN",
+    "leg": "BEN",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL27NAVKEN",
+    "leg": "KEN",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL27SHYBRA",
+    "leg": "BRA",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL28PARWAN",
+    "leg": "PAR",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL12CHAJON",
+    "leg": "JON",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL12MIYKUZ",
+    "leg": "KUZ",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL12RAIZHU",
+    "leg": "ZHU",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL13BOUGAN",
+    "leg": "BOU",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL13JONPET",
+    "leg": "PET",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL13RODALK",
+    "leg": "ROD",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL13SANLOP",
+    "leg": "LOP",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL14CASSCH",
+    "leg": "SCH",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL14DALMAY",
+    "leg": "MAY",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL14SQUKUM",
+    "leg": "SQU",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL16BICCAS",
+    "leg": "BIC",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL16DELDAL",
+    "leg": "DAL",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL16SMIMAT",
+    "leg": "SMI",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL17DRAGEA",
+    "leg": "GEA",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL18ALCVIL",
+    "leg": "ALC",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL19HERECH",
+    "leg": "ECH",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL19MARCOL",
+    "leg": "MAR",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL20JOHAGU",
+    "leg": "JOH",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL20TOKHUR",
+    "leg": "TOK",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL20ZHUMAL",
+    "leg": "ZHU",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL12ALTGAS",
+    "leg": "ALT",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL12DROBLO",
+    "leg": "BLO",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL12SLADAM",
+    "leg": "DAM",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL18ROCBUE",
+    "leg": "BUE",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL18RUBTAB",
+    "leg": "TAB",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL18WALDJE",
+    "leg": "DJE",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL12SOKNUG",
+    "leg": "NUG",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL13RINAST",
+    "leg": "RIN",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL13RISPOH",
+    "leg": "POH",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL14CARVON",
+    "leg": "CAR",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL20MAZSPI",
+    "leg": "MAZ",
+    "stamp": "QUARANTINED",
+    "why": "MAZ (defect established by the standing forensic)"
+   },
+   {
+    "code": "26JUL20TOTRUG",
+    "leg": "RUG",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL18HONTHA",
+    "leg": "HON",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL18ITOKNU",
+    "leg": "ITO",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   },
+   {
+    "code": "26JUL19PRIMAR",
+    "leg": "PRI",
+    "stamp": "QUARANTINED",
+    "why": "shared reconstruction code path with MAZ (same loader + span logic in dipless43.py); the independent copied-snapshot signature fires on 0/43 INCLUDING MAZ, so no per-leg clearance is possible"
+   }
+  ],
+  "method_note": "Signature tested: terminal identical-book run >1h crossing/postdating the edge. It fires on ZERO of 43 including MAZ itself - therefore it is NOT the defect's fingerprint and cannot clear the 42. All 43 rows share dipless43.py's loader/span code path with the MAZ row; exposure is uniform. Stamp: 43/43 QUARANTINED pending the forensic's specific mechanism."
+ },
+ "conservation": {
+  "census_legs": 568,
+  "quarantine": 43
+ }
+}

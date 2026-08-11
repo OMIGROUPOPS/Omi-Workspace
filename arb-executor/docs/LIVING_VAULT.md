@@ -1793,3 +1793,29 @@ authorized.
 
 Frozen evidence package:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/1b1b6a653dda8cea45119264a6b682d35826cf22/.claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810/REPORT.md
+
+### 2026-08-11 - V50 FIRST-FILL PRICE DISCIPLINE BLOCKED
+
+V50 adds one price-only cap to frozen operative V47: while sibling true-flow
+exists, a live rest/entry level cannot exceed 99 minus the sibling's lowest
+causal true-trade price observed so far; absent sibling flow, V47 is unchanged.
+The rest remains live and there is no timing gate or clock input.
+
+The a20e1a85 sealed receipt remains mechanism evidence (45 cases: 31
+first-fill-richness / 14 genuinely infeasible), but its sealed-exam identities
+are not the development 804. The development CAP_UNFEASIBLE class is therefore
+derived transparently from frozen V47 and conserves 192 unique events. V50
+recovers 35, but delays 184 V47 entries and loses 116. Executable output falls
+from 396 to 388 completed/under-par pairs and from 1,936c to 1,869c locked;
+naked P&L improves -162c to -80c and true book improves +1,774c to +1,789c.
+ARNROM regresses 89->97, while PUTJEA 73, KREZHE 97, KRUFER 96, and BOSCOP 80
+do not regress; ROCBUE remains incomplete. Because the named mechanism bar
+fails and eight completions are lost, V50 is rejected and V47 remains
+operative. Two clean builds are byte-identical and forbidden access is zero.
+No deployment or live-cutover authority is created.
+
+Canonical evidence package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a60adeb3e8f510c53f02415669208090b47462e9/.claude/window1_live_v4_replay/v50_first_fill_price_discipline_20260811/REPORT.md
+
+Canonical attribution:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a60adeb3e8f510c53f02415669208090b47462e9/.claude/window1_live_v4_replay/v50_first_fill_price_discipline_20260811/ATTRIBUTION_SCORECARD.json

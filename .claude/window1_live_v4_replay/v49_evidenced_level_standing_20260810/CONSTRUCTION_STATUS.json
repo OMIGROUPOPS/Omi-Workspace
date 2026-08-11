@@ -1,0 +1,9 @@
+{
+  "status": "BLOCKED_V47_REMAINS_OPERATIVE",
+  "operative_candidate": "V47_FB74C8B8",
+  "aggregate_targets": null,
+  "reasons": [
+    "BOUND_REGRESSION"
+  ],
+  "no_forced_values": true
+}

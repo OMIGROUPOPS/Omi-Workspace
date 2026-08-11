@@ -1,0 +1,70 @@
+{
+  "baseline_reproduction": {
+    "frozen_V47_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "scoring_ruler": "TRADES_AS_TRUTH",
+    "expected": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396
+      }
+    },
+    "observed": {
+      "completed_pairs": 396,
+      "under_par_pairs": 396,
+      "completed_locked_cents": 1936,
+      "naked_pnl_cents": -162,
+      "true_book_net_cents": 1774,
+      "strict_completed_pairs": 331,
+      "frontier": {
+        "LE_93": 52,
+        "LE_95": 71,
+        "LE_97": 142,
+        "LT_100": 396,
+        "ANY_PRICE": 396
+      }
+    },
+    "pass": true
+  },
+  "zero_bound_regressions": {
+    "checks": {
+      "named": false,
+      "completed_non_regression": false,
+      "frontier_non_regression": false,
+      "strict_completed_non_regression": false
+    },
+    "pass": false
+  },
+  "aggregate_target": null,
+  "observed": {
+    "completed_pairs": 393,
+    "under_par_pairs": 393,
+    "full_book": {
+      "events": 804,
+      "completed_pairs": 393,
+      "completed_locked_cents": 1666,
+      "naked_legs": 357,
+      "naked_priced": 289,
+      "naked_open": 68,
+      "naked_pnl_cents": -234,
+      "skips": 54,
+      "true_book_net_cents": 1432
+    },
+    "frontier": {
+      "LE_93": 47,
+      "LE_95": 62,
+      "LE_97": 118,
+      "LT_100": 393,
+      "ANY_PRICE": 393
+    },
+    "strict_completed_pairs": 318
+  },
+  "pass": false
+}

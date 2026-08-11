@@ -1,0 +1,14 @@
+{
+  "evidenced_actions": 20178,
+  "evidenced_legs": 1424,
+  "evidenced_games": 784,
+  "credited_legs": 994,
+  "evidence_sources": {
+    "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 19055,
+    "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1507
+  },
+  "fills_gained": 31,
+  "fills_repriced_favorable": 31,
+  "fills_repriced_adverse": 163,
+  "fills_lost": 26
+}

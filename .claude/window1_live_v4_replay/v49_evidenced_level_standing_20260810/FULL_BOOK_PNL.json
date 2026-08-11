@@ -1,0 +1,131 @@
+{
+  "method": {
+    "commit": "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f",
+    "close_column": "replay_close_cents",
+    "completed": "100_MINUS_PAIR_ENTRY",
+    "naked": "FROZEN_REPLAY_WINDOW1_CLOSE_MINUS_ENTRY_WHERE_AVAILABLE",
+    "skip": 0
+  },
+  "rows": [
+    {
+      "machine": "TRADE_TRUTH_V47_BASELINE",
+      "aggregate": {
+        "events": 804,
+        "completed_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_legs": 346,
+        "naked_priced": 283,
+        "naked_open": 63,
+        "naked_pnl_cents": -162,
+        "skips": 62,
+        "true_book_net_cents": 1774
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 369,
+          "completed_pairs": 152,
+          "completed_locked_cents": 606,
+          "naked_legs": 181,
+          "naked_priced": 159,
+          "naked_open": 22,
+          "naked_pnl_cents": -99,
+          "skips": 36,
+          "true_book_net_cents": 507
+        },
+        "ATP_MAIN": {
+          "events": 147,
+          "completed_pairs": 93,
+          "completed_locked_cents": 644,
+          "naked_legs": 48,
+          "naked_priced": 37,
+          "naked_open": 11,
+          "naked_pnl_cents": -67,
+          "skips": 6,
+          "true_book_net_cents": 577
+        },
+        "WTA_CHALL": {
+          "events": 136,
+          "completed_pairs": 55,
+          "completed_locked_cents": 134,
+          "naked_legs": 65,
+          "naked_priced": 43,
+          "naked_open": 22,
+          "naked_pnl_cents": 35,
+          "skips": 16,
+          "true_book_net_cents": 169
+        },
+        "WTA_MAIN": {
+          "events": 152,
+          "completed_pairs": 96,
+          "completed_locked_cents": 552,
+          "naked_legs": 52,
+          "naked_priced": 44,
+          "naked_open": 8,
+          "naked_pnl_cents": -31,
+          "skips": 4,
+          "true_book_net_cents": 521
+        }
+      }
+    },
+    {
+      "machine": "V49_EVIDENCED_LEVEL_STANDING",
+      "aggregate": {
+        "events": 804,
+        "completed_pairs": 393,
+        "completed_locked_cents": 1666,
+        "naked_legs": 357,
+        "naked_priced": 289,
+        "naked_open": 68,
+        "naked_pnl_cents": -234,
+        "skips": 54,
+        "true_book_net_cents": 1432
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "events": 369,
+          "completed_pairs": 155,
+          "completed_locked_cents": 505,
+          "naked_legs": 180,
+          "naked_priced": 156,
+          "naked_open": 24,
+          "naked_pnl_cents": -147,
+          "skips": 34,
+          "true_book_net_cents": 358
+        },
+        "ATP_MAIN": {
+          "events": 147,
+          "completed_pairs": 90,
+          "completed_locked_cents": 611,
+          "naked_legs": 52,
+          "naked_priced": 42,
+          "naked_open": 10,
+          "naked_pnl_cents": -73,
+          "skips": 5,
+          "true_book_net_cents": 538
+        },
+        "WTA_CHALL": {
+          "events": 136,
+          "completed_pairs": 55,
+          "completed_locked_cents": 128,
+          "naked_legs": 70,
+          "naked_priced": 45,
+          "naked_open": 25,
+          "naked_pnl_cents": 24,
+          "skips": 11,
+          "true_book_net_cents": 152
+        },
+        "WTA_MAIN": {
+          "events": 152,
+          "completed_pairs": 93,
+          "completed_locked_cents": 422,
+          "naked_legs": 55,
+          "naked_priced": 46,
+          "naked_open": 9,
+          "naked_pnl_cents": -38,
+          "skips": 4,
+          "true_book_net_cents": 384
+        }
+      }
+    }
+  ]
+}

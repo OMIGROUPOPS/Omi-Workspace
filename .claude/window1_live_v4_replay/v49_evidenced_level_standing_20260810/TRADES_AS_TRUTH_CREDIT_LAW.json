@@ -1,0 +1,11 @@
+{
+  "order_must_preexist_print": true,
+  "price_relation": "TRUE_TRADE_PRICE_LE_REST_LEVEL",
+  "required_fields": [
+    "trade_id",
+    "exchange_timestamp",
+    "price"
+  ],
+  "asks_role": "PLACEMENT_ONLY",
+  "strict_build_verification_separate": true
+}

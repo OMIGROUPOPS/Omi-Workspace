@@ -1,0 +1,89 @@
+{
+  "frozen_V47": {
+    "commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "baseline_reproduction": {
+      "frozen_V47_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+      "scoring_ruler": "TRADES_AS_TRUTH",
+      "expected": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396
+        }
+      },
+      "observed": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396,
+          "ANY_PRICE": 396
+        }
+      },
+      "pass": true
+    }
+  },
+  "standability_v2": {
+    "commit": "fe4747cd915830dc16f41c6bbec5e0ca1c14d99c",
+    "json_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/STANDABILITY_V2_PLACEMENT_WINDOW.json",
+    "json_sha256": "e96ecec88d0c91f58e944c273a5e137d943f59c364e380bfb9cdcb26da9edd35",
+    "markdown_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/STANDABILITY_V2_PLACEMENT_WINDOW.md",
+    "markdown_sha256": "cdfd3f27e12ad6299990cf048c44f18b1c07b8994584ef2ce62c05c64582a825",
+    "target_games": 81,
+    "target_locked_cents": 1162
+  },
+  "HERKAZ": {
+    "commit": "b9673399c36fb9e5c14940610e3bf43fd2614c19",
+    "receipt_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/WLE_TOP_EXEMPLAR.json",
+    "receipt_sha256": "d7a9e32b097b45f3471b4ca03ed253b041ba14acd3d4d6020afed34c1eb4fc06",
+    "marks_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/wle_top/26JUL12HERKAZ_DECISION_MARKS.json",
+    "marks_sha256": "06b1ae953d529acf70a313896c34a12622db6d9eef210ce71f75327fddd507fc",
+    "timeline_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/wle_top/26JUL12HERKAZ_DUAL_TIMELINE_V2.csv",
+    "timeline_sha256": "469cfcad33d102871c3f61b1f14b9ff6b721edd27bbaf1c15eebc545163efb1d",
+    "evidenced_level_cents": 46
+  },
+  "universal_plus_one_receipt": {
+    "commit": "52275c9d63be90eb16febd1d2cb10db00bd829c7",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FLOW_ABOVE_REST_LOOSENING_SWEEP.json",
+    "sha256": "268822ebf10c0e316a0ecacc6e01f83b9e1eca891938dd5e8c793853f4b744c7",
+    "controlling_row": {
+      "completed": 281,
+      "under_par": 281,
+      "locked": 799,
+      "naked_pnl": 34,
+      "naked_n": 398,
+      "true_book": 833,
+      "by_cat": {
+        "ATP_CHALL": {
+          "locked": 327,
+          "naked": 144
+        },
+        "ATP_MAIN": {
+          "locked": 244,
+          "naked": -76
+        },
+        "WTA_CHALL": {
+          "locked": 88,
+          "naked": 69
+        },
+        "WTA_MAIN": {
+          "locked": 140,
+          "naked": -103
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+ "LABEL": "MIRROR_DIVOT_FUSION_SIZING",
+ "basis": "LAW B re-test: inverse=RISING sibling placement = trailing pulse floor (V38 divot params d1ac9497: 300s trailing, >=2 distinct ask-level visits; 10s-dwell trough fallback) instead of tracking-join. Causal union post-stand scoring. Dev = the vindicated pred-RISING subset of the 240 one-eyed (e177c2fb); sealed = the vindicated pred-RISING subset of the 22 (a20e1a85, ledger pulse_floor_cents).",
+ "DEV": {
+  "pred_rising_vindicated_with_pulse": 107,
+  "new_pairs": 5,
+  "new_pair_cents": 8,
+  "improved_legs": 0,
+  "improved_cents": 0,
+  "total": 8,
+  "forfeits_vs_tracking": 0
+ },
+ "SEALED": {
+  "pred_rising_vindicated_with_pulse": 1,
+  "new_pairs": 0,
+  "cents": 0
+ },
+ "baseline_tracking_LAW_B_total": 55,
+ "fusion_total_dev": 8,
+ "vrb_class_named": [],
+ "conservation": {
+  "dev_one_eyed": 240,
+  "dev_pred_rising_vindicated_scanned": 107,
+  "sealed_22": 22,
+  "sealed_pred_rising": 1
+ }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "window1-trades-truth-harmonization-tests-v1",
+  "runs": 2,
+  "tests_per_run": 3,
+  "passes_per_run": 3,
+  "failures": 0,
+  "commands": [
+    "node arb-executor/tests/test_window1_trades_truth_admission_harmonization.js",
+    "node arb-executor/tests/test_window1_v48_trades_as_truth.js",
+    "node arb-executor/tests/test_window1_v48_trades_as_truth_package.js"
+  ],
+  "assertions": {
+    "genuine_through_bid_35_at_rest_35_credits": true,
+    "canonical_38_at_rest_35_does_not_credit": true,
+    "canonical_later_35_at_rest_32_does_not_credit": true,
+    "v48_attribution_hash_unchanged": true,
+    "v47_baseline_completed_pairs_reproduced": 396,
+    "trade_truth_v47_incumbent_completed_pairs_reproduced": 396
+  },
+  "pass": true
+}

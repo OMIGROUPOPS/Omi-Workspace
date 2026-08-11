@@ -1,0 +1,20 @@
+{
+  "schema_version": "window1-trades-truth-policy-byte-identity-v1",
+  "parent_commit": "4f3e9f35eb60fc45b6cf04bb55e525ebce4875db",
+  "files": {
+    "arb-executor/analysis/window1_v48_trades_as_truth.js": {
+      "parent_blob": "d5a3b89edb3a4267c022f241aa1d2f104af6bf47",
+      "working_blob": "d5a3b89edb3a4267c022f241aa1d2f104af6bf47",
+      "sha256": "fce1bfb8d4c8b972fecdc8ab8f54de60cd8afe8395e4ef6e9f5f107f63502197",
+      "byte_identical": true
+    },
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "parent_blob": "e000bf3f8b237328b59a15275fea8983ee1d6e35",
+      "working_blob": "e000bf3f8b237328b59a15275fea8983ee1d6e35",
+      "sha256": "56e9df2e32c05947a4ef3284ec2dc1d7db5a214e5d51cf8846ebeddd5843f89b",
+      "byte_identical": true
+    }
+  },
+  "policy_files_changed": 0,
+  "pass": true
+}

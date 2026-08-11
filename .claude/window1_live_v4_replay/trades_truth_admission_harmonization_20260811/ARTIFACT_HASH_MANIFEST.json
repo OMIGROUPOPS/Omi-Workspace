@@ -1,0 +1,14 @@
+{
+  "schema_version": "window1-trades-truth-harmonization-artifact-manifest-v1",
+  "files": {
+    "ADMISSION_FORENSIC_RECEIPT.json": { "sha256": "143afcb7c439beb7c0c4195bad4d0c8b260813da6a8c11dc17325ad1965f0601", "bytes": 3778 },
+    "DETERMINISM_RECEIPT.json": { "sha256": "420c8c1bd141905dc2b208a478f147c17c8ab44819641b49c2a2da49d0f054e3", "bytes": 335 },
+    "HARMONIZATION_TABLE.json": { "sha256": "01bc2275a873b510c965fc0b1eb922905d6c60c4fc6be5ef7b64af1d047ecf2a", "bytes": 776 },
+    "POLICY_BYTE_IDENTITY.json": { "sha256": "bbcf0c9059d258b84ebc01c72eb54d5599e4f2fb42956717fab405deb4675ad5", "bytes": 823 },
+    "TEST_RESULTS.json": { "sha256": "c60fed259ce1a86bf2b7c584d9b2d5a1185b4ab7f23fcdb1c3dd82a21e038b8e", "bytes": 757 },
+    "V47_ATTRIBUTION_REPRODUCTION.json": { "sha256": "712d2a645ac5c156e5dfa36861b1ca9bfec2b4d5d558059791ff59c4a90e417d", "bytes": 1982 },
+    "arb-executor/tests/test_window1_trades_truth_admission_harmonization.js": { "sha256": "edb3c3571bfd87dc224f87c26529238c583c2cceae9f00b56134db4cfdf031b3", "bytes": 3034 },
+    "arb-executor/docs/research/window1/WINDOW1_TRADES_TRUTH_ADMISSION_HARMONIZATION_20260811_ADDENDUM.md": { "sha256": "14be1f7ce58532e697efce1a0f712634f86c26d3b37e33a1c018cda7b31e072c", "bytes": 2002 }
+  },
+  "manifest_self_excluded": true
+}

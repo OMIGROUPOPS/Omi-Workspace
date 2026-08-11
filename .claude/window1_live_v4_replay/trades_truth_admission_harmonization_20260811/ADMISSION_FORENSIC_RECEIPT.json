@@ -1,0 +1,93 @@
+{
+  "schema_version": "window1-trades-truth-admission-forensic-v1",
+  "status": "REQUESTED_FANBIG_CREDIT_BLOCKED_BY_RECEIPT_MISMATCH",
+  "controlling_claim": {
+    "commit": "653b7f1393adfec23d749de09dfef7591be8397a",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/THE_81_IDENTITY_LEDGER.json",
+    "claimed_print_timestamp_epoch": 1783854017,
+    "claimed_print_price_cents": 35,
+    "claimed_book_bid_cents": 38,
+    "claimed_book_ask_cents": 39,
+    "claimed_cause": "ANOMALOUS_THROUGH_BID_PRINT_NOT_ADMITTED"
+  },
+  "admission_organ": {
+    "source": "arb-executor/analysis/window1_v48_trades_as_truth.js",
+    "function": "tradeTruthCredit",
+    "lines": "29-38",
+    "call_site": "arb-executor/analysis/build_window1_v38_maker_only.js:338-339",
+    "exact_price_condition": "print.price <= order.target_cents",
+    "book_relationship_filter": null,
+    "aggressor_filter": null,
+    "dwell_filter": null,
+    "size_filter": null
+  },
+  "canonical_source_binding": {
+    "private_prints_path_class": "PRIVATE_FIT_DEVELOPMENT_PRINTS_HASH_ONLY",
+    "private_prints_sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+    "fan_tick_sha256": "56131110540ccbc0db56b8a87366d41bee265af7058ee95d0f6fdc2fbf40cef9"
+  },
+  "receipt_level_timeline": [
+    {
+      "timestamp_epoch": 1783839079,
+      "timestamp_utc": "2026-07-12T06:51:19Z",
+      "kind": "REST_REPRICE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-FAN.csv.gz#row-1279",
+      "active_rest_cents_after": 35
+    },
+    {
+      "timestamp_epoch": 1783854017.132571,
+      "timestamp_utc": "2026-07-12T11:00:17.132571Z",
+      "kind": "TRUE_PRINT",
+      "receipt": "54d11711-fb6b-5bb1-35cc-906d7014588e",
+      "trade_id": "54d11711-fb6b-5bb1-35cc-906d7014588e",
+      "price_cents": 38,
+      "active_rest_cents": 35,
+      "comparison": "38 <= 35",
+      "comparison_result": false,
+      "credit": false,
+      "rejection_condition": "PRICE_ABOVE_ACTIVE_REST"
+    },
+    {
+      "timestamp_epoch": 1783869263,
+      "timestamp_utc": "2026-07-12T15:14:23Z",
+      "kind": "REST_REPRICE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-FAN.csv.gz#row-2058",
+      "active_rest_cents_after": 32
+    },
+    {
+      "timestamp_epoch": 1783869471.137727,
+      "timestamp_utc": "2026-07-12T15:17:51.137727Z",
+      "kind": "TRUE_PRINT",
+      "receipt": "9b39056f-f7c5-5ac7-9a31-b5b715efdccd",
+      "trade_id": "9b39056f-f7c5-5ac7-9a31-b5b715efdccd",
+      "price_cents": 35,
+      "size": 30,
+      "active_rest_cents": 32,
+      "comparison": "35 <= 32",
+      "comparison_result": false,
+      "credit": false,
+      "rejection_condition": "PRICE_ABOVE_ACTIVE_REST"
+    }
+  ],
+  "root_cause": {
+    "class": "CROSS_RECEIPT_PRICE_TIMESTAMP_JOIN",
+    "detail": "The named cause joined the 35-cent price from receipt 9b39056f at 15:17:51Z to the 11:00:17Z timestamp of receipt 54d11711, whose canonical price is 38 cents. At the actual 35-cent receipt the active V47/V48 rest was 32 cents.",
+    "admission_defect_present": false,
+    "source_change_lawful": false
+  },
+  "counterfactual_unit_proof": {
+    "order_target_cents": 35,
+    "print_price_cents": 35,
+    "book_bid_cents": 38,
+    "book_ask_cents": 39,
+    "tradeTruthCredit": true,
+    "meaning": "A genuine identified 35-cent print while a 35-cent rest stands credits even through a 38/39 book; the organ has no book filter."
+  },
+  "ruling": {
+    "fanbig_fan_credited": false,
+    "reason": "No canonical 35-cent true print overlaps the 35-cent rest.",
+    "behavioral_patch": null,
+    "forbidden_patch": "Credit by joining fields across two trade receipts or by treating carried last_trade state as a true print.",
+    "requested_behavioral_outcome": "BLOCKED_FAIL_CLOSED"
+  }
+}

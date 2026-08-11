@@ -1,0 +1,25 @@
+{
+  "schema_version": "window1-harmonization-table-v1",
+  "rows": [
+    {
+      "case": "FANBIG|FAN",
+      "controlling_claim_commit": "653b7f1393adfec23d749de09dfef7591be8397a",
+      "prior_status": "DRIFT_CANDIDATE_ANOMALOUS_THROUGH_BID_PRINT_NOT_ADMITTED",
+      "new_status": "DRIFT->FIXED",
+      "fixed_surface": "EVIDENCE_HARMONIZATION",
+      "root_cause": "CROSS_RECEIPT_PRICE_TIMESTAMP_JOIN",
+      "policy_bug": false,
+      "policy_change": null,
+      "actual_outcome": "FAN_REMAINS_UNCREDITED_LAWFULLY",
+      "requested_credit_outcome": "BLOCKED_NO_OVERLAPPING_35C_TRUE_PRINT",
+      "regressions": 0
+    }
+  ],
+  "conservation": {
+    "cases": 1,
+    "fixed_evidence_drifts": 1,
+    "behavioral_fixes": 0,
+    "fabricated_credits": 0,
+    "pass": true
+  }
+}

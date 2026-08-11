@@ -1,0 +1,10 @@
+{
+  "schema_version": "window1-trades-truth-harmonization-determinism-v1",
+  "focused_test_runs": 2,
+  "identical_outcome": true,
+  "policy_byte_identity": true,
+  "frozen_attribution_sha256": "59adad66bb6d5af1801e4c6cbdb95d3b98f5c5eebd639844017efeffeeb66075",
+  "decision_rows_changed": 0,
+  "score_rows_changed": 0,
+  "pass": true
+}

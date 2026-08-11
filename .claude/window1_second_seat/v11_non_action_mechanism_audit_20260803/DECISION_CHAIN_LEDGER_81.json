@@ -1,0 +1,4527 @@
+{
+ "LABEL": "DECISION_CHAIN_LEDGER_81",
+ "built_utc": "2026-08-11T01:45:00Z",
+ "basis": {
+  "standability_v2": "fe4747cd915830dc16f41c6bbec5e0ca1c14d99c",
+  "v1_anatomy": "3dd57fbad16b5eb068d5e1a3de9bd9a4a31e8aff",
+  "v47_operative": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "v49_attempt": "1c8700fad871061890cbf41ea9f236002c06dc2e"
+ },
+ "conservation": {
+  "rows": 81,
+  "identity_pinned_window_law_additions": 19,
+  "identity_pinned_v1_top_recoverable": 10,
+  "identity_unreceipted_slots": 52,
+  "category_budget": {
+   "ATP_CHALL": 34,
+   "ATP_MAIN": 10,
+   "WTA_CHALL": 30,
+   "WTA_MAIN": 7
+  },
+  "pinned_by_category": {
+   "ATP_CHALL": 13,
+   "ATP_MAIN": 0,
+   "WTA_CHALL": 13,
+   "WTA_MAIN": 3
+  },
+  "slots_by_category": {
+   "ATP_CHALL": 21,
+   "ATP_MAIN": 10,
+   "WTA_CHALL": 17,
+   "WTA_MAIN": 4
+  }
+ },
+ "rows": [
+  {
+   "row": 1,
+   "game_code": "26JUL12AZKLEO",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "AZK",
+     "target_P_cents": 49,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 49,
+     "placement_window_seconds": null,
+     "standability": "NOT_RECUT",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 45,
+      "v49_min_evidence_ts": 1783840181,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK.csv.gz#row-8",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 4,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 48,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK.csv.gz#row-165",
+      "v47_persistent_join_level": 52,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK.csv.gz#row-2173",
+      "v49_level_cents": 48,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK.csv.gz#row-165"
+     },
+     "completing_print": {
+      "price_cents": 49,
+      "timestamp_epoch_receipted_proxy": 1783847145,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "LEO",
+      "v47_rest_level_cents": 50,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "LEO",
+     "target_P_cents": 47,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 47,
+     "placement_window_seconds": 23723,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 46,
+      "v49_min_evidence_ts": 1783840599,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-LEO.csv.gz#row-27",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 14
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 46,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-LEO.csv.gz#row-3541",
+      "v47_persistent_join_level": 46,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-LEO.csv.gz#row-3646",
+      "v49_level_cents": 46,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL12AZKLEO-LEO.csv.gz#row-3541"
+     },
+     "completing_print": {
+      "price_cents": 47,
+      "timestamp_epoch_receipted_proxy": 1783887762,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "AZK",
+      "v47_rest_level_cents": 52,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "NONE",
+    "combined_cents": 0,
+    "uncalled": [
+     "AZK",
+     "LEO"
+    ]
+   },
+   "outcome_v49": {
+    "state": "NONE",
+    "combined_cents": 0,
+    "uncalled": [
+     "AZK",
+     "LEO"
+    ]
+   },
+   "machine_window_lock_cents": 4,
+   "v49_non_convert_reason": "AZK: BID_MINUS_ONE_OFFSET_AT_P -- V49 own-bid evidence min 45 (receipt KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK.csv.gz#row-8); the persistence join rest stood at 48=P-1 when the print arrived (receipt KXATPCHALLENGERMATCH-26JUL12AZKLEO-AZK.csv.gz#row-165); the print passed 1c above the rest | LEO: BID_MINUS_ONE_OFFSET_AT_P -- fe4747cd bid_reached_P=true, V49 evidence min 46; the bid-1 tracking rest stood at 46=P-1 when the print arrived (receipt KXATPCHALLENGERMATCH-26JUL12AZKLEO-LEO.csv.gz#row-3541); the print passed 1c above the rest; ask==P at the print tick (fe4747cd), so a post-only bid at P at that tick would cross (sanity-bound collision at P)"
+  },
+  {
+   "row": 2,
+   "game_code": "26JUL12FANBIG",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "BIG",
+     "target_P_cents": 62,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 62,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 5,
+      "v49_min_evidence_ts": 1783833048,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-BIG.csv.gz#row-15",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 64,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-BIG.csv.gz#row-1225",
+      "v47_persistent_join_level": 64,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-BIG.csv.gz#row-1225",
+      "v49_level_cents": 64,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-BIG.csv.gz#row-1225"
+     },
+     "completing_print": {
+      "price_cents": 62,
+      "timestamp_epoch_receipted_proxy": 1783839118.727,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "FAN",
+      "v47_rest_level_cents": 35,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 64,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 64,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "FAN",
+     "target_P_cents": 35,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 35,
+     "placement_window_seconds": 17563,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1783827794,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-FAN.csv.gz#row-4",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 4
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 35,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-FAN.csv.gz#row-1279",
+      "v47_persistent_join_level": 32,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-FAN.csv.gz#row-2058",
+      "v49_level_cents": 35,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL12FANBIG-FAN.csv.gz#row-1279"
+     },
+     "completing_print": {
+      "price_cents": 35,
+      "timestamp_epoch_receipted_proxy": 1783854017.132,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "BIG",
+      "v47_rest_level_cents": 64,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 64
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 64,
+    "uncalled": [
+     "FAN"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 64,
+    "uncalled": [
+     "FAN"
+    ]
+   },
+   "machine_window_lock_cents": 3,
+   "v49_non_convert_reason": "FAN: REST_AT_OR_ABOVE_P_YET_UNCREDITED -- rest stood at 35>=P=35 from 1783839079 (receipt KXATPCHALLENGERMATCH-26JUL12FANBIG-FAN.csv.gz#row-1279); the completing print's tick-time is NOT receipted in committed artifacts (tape private, hash-only), so the at-tick non-credit cause is not derivable from receipts; 1c8700fa conversion receipt confirms uncredited"
+  },
+  {
+   "row": 3,
+   "game_code": "26JUL13DONWES",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "DON",
+     "target_P_cents": 25,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 25,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 22,
+      "v49_min_evidence_ts": 1783895499,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-10",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 10
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 26,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-767",
+      "v47_persistent_join_level": 26,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-767",
+      "v49_level_cents": 27,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-658"
+     },
+     "completing_print": {
+      "price_cents": 25,
+      "timestamp_epoch_receipted_proxy": 1783936618.668,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "WES",
+      "v47_rest_level_cents": 72,
+      "v47_direction_read": "FALLING",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 26,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 25,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "WES",
+     "target_P_cents": 73,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 73,
+     "placement_window_seconds": 12023,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 74,
+      "v49_min_evidence_ts": 1783922799,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-WES.csv.gz#row-363",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 2
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 72,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-WES.csv.gz#row-478",
+      "v47_persistent_join_level": 72,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-WES.csv.gz#row-2526",
+      "v49_level_cents": 72,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-WES.csv.gz#row-483"
+     },
+     "completing_print": {
+      "price_cents": 73,
+      "timestamp_epoch_receipted_proxy": 1783931511,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "DON",
+      "v47_rest_level_cents": 27,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 74,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 26,
+    "uncalled": [
+     "WES"
+    ]
+   },
+   "outcome_v49": {
+    "state": "COMPLETED",
+    "combined_cents": 99,
+    "uncalled": []
+   },
+   "machine_window_lock_cents": 2,
+   "v49_non_convert_reason": "CONVERTED"
+  },
+  {
+   "row": 4,
+   "game_code": "26JUL13PERTOB",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "PER",
+     "target_P_cents": 51,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 51,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 45,
+      "v49_min_evidence_ts": 1783923505,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-PER.csv.gz#row-32",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 52,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-PER.csv.gz#row-1172",
+      "v47_persistent_join_level": 52,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-PER.csv.gz#row-1172",
+      "v49_level_cents": 52,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-PER.csv.gz#row-1172"
+     },
+     "completing_print": {
+      "price_cents": 51,
+      "timestamp_epoch_receipted_proxy": 1783950315.382,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "TOB",
+      "v47_rest_level_cents": 46,
+      "v47_direction_read": "SETTLED",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 52,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 52,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "TOB",
+     "target_P_cents": 45,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 45,
+     "placement_window_seconds": 12247,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 45,
+      "v49_min_evidence_ts": 1783923509,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-TOB.csv.gz#row-29",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 9
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 44,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-TOB.csv.gz#row-4612",
+      "v47_persistent_join_level": 43,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-TOB.csv.gz#row-8011",
+      "v49_level_cents": 44,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL13PERTOB-TOB.csv.gz#row-4619"
+     },
+     "completing_print": {
+      "price_cents": 45,
+      "timestamp_epoch_receipted_proxy": 1783960083,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "PER",
+      "v47_rest_level_cents": 53,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 52
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 52,
+    "uncalled": [
+     "TOB"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 52,
+    "uncalled": [
+     "TOB"
+    ]
+   },
+   "machine_window_lock_cents": 4,
+   "v49_non_convert_reason": "TOB: BID_MINUS_ONE_OFFSET_AT_P -- fe4747cd bid_reached_P=true, V49 evidence min 45; the bid-1 tracking rest stood at 44=P-1 when the print arrived (receipt KXATPCHALLENGERMATCH-26JUL13PERTOB-TOB.csv.gz#row-4619); the print passed 1c above the rest; ask==P at the print tick (fe4747cd), so a post-only bid at P at that tick would cross (sanity-bound collision at P)"
+  },
+  {
+   "row": 5,
+   "game_code": "26JUL14GENPET",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "GEN",
+     "target_P_cents": 61,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 61,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": null,
+      "v49_min_evidence_ts": null,
+      "v49_min_evidence_receipt": null,
+      "v49_evidence_sources": null
+     },
+     "rest_during_window": {
+      "v47_level_cents": 61,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-GEN.csv.gz#row-142",
+      "v47_persistent_join_level": 61,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-GEN.csv.gz#row-44",
+      "v49_level_cents": 61,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-GEN.csv.gz#row-44"
+     },
+     "completing_print": {
+      "price_cents": 61,
+      "timestamp_epoch_receipted_proxy": 1784001443.109,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "PET",
+      "v47_rest_level_cents": 37,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 61,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 61,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "PET",
+     "target_P_cents": 37,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 35,
+     "placement_window_seconds": 3739,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 36,
+      "v49_min_evidence_ts": 1783980251,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-PET.csv.gz#row-39",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 2,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 64
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 33,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-PET.csv.gz#row-5013",
+      "v47_persistent_join_level": 35,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-PET.csv.gz#row-5889",
+      "v49_level_cents": 33,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL14GENPET-PET.csv.gz#row-5045"
+     },
+     "completing_print": {
+      "price_cents": 37,
+      "timestamp_epoch_receipted_proxy": 1784027437,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "GEN",
+      "v47_rest_level_cents": 61,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 61
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 61,
+    "uncalled": [
+     "PET"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 61,
+    "uncalled": [
+     "PET"
+    ]
+   },
+   "machine_window_lock_cents": 4,
+   "v49_non_convert_reason": "PET: REST_CLAMPED_4C_UNDER_P -- rest at 33 under bid-1 tracking at the print (receipt KXATPCHALLENGERMATCH-26JUL14GENPET-PET.csv.gz#row-5045); V49 evidence min 36; ask==P at print tick (sanity collision at P)"
+  },
+  {
+   "row": 6,
+   "game_code": "26JUL19DJOMAT",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "DJO",
+     "target_P_cents": 4,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 4,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 5,
+      "v49_min_evidence_ts": 1784428572,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO.csv.gz#row-23",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 14
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 11,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO.csv.gz#row-387",
+      "v47_persistent_join_level": 11,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO.csv.gz#row-416",
+      "v49_level_cents": 13,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-DJO.csv.gz#row-512"
+     },
+     "completing_print": {
+      "price_cents": 4,
+      "timestamp_epoch_receipted_proxy": 1784435942.898,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "MAT",
+      "v47_rest_level_cents": 86,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 11,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 13,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "MAT",
+     "target_P_cents": 84,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 84,
+     "placement_window_seconds": 21998,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 5,
+      "v49_min_evidence_ts": 1784428572,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-MAT.csv.gz#row-22",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 5
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 83,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-MAT.csv.gz#row-1547",
+      "v47_persistent_join_level": 82,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-MAT.csv.gz#row-1861",
+      "v49_level_cents": 83,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL19DJOMAT-MAT.csv.gz#row-1547"
+     },
+     "completing_print": {
+      "price_cents": 84,
+      "timestamp_epoch_receipted_proxy": 1784462326,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "DJO",
+      "v47_rest_level_cents": 11,
+      "v47_direction_read": "FALLING",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": true,
+      "fill_price_cents": 11
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 11,
+    "uncalled": [
+     "MAT"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 13,
+    "uncalled": [
+     "MAT"
+    ]
+   },
+   "machine_window_lock_cents": 12,
+   "v49_non_convert_reason": "MAT: BID_MINUS_ONE_OFFSET_AT_P -- fe4747cd bid_reached_P=true, V49 evidence min 5; the persistence join rest stood at 83=P-1 when the print arrived (receipt KXATPCHALLENGERMATCH-26JUL19DJOMAT-MAT.csv.gz#row-1547); the print passed 1c above the rest; ask==P at the print tick (fe4747cd), so a post-only bid at P at that tick would cross (sanity-bound collision at P)"
+  },
+  {
+   "row": 7,
+   "game_code": "26JUL19SINMAT",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "MAT",
+     "target_P_cents": 62,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 62,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1784410845,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-MAT.csv.gz#row-9",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 4,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 68,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-MAT.csv.gz#row-1542",
+      "v47_persistent_join_level": 68,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-MAT.csv.gz#row-1505",
+      "v49_level_cents": 68,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-MAT.csv.gz#row-1542"
+     },
+     "completing_print": {
+      "price_cents": 62,
+      "timestamp_epoch_receipted_proxy": 1784449048.803,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "SIN",
+      "v47_rest_level_cents": 30,
+      "v47_direction_read": "FALLING",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 68,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 68,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "SIN",
+     "target_P_cents": 31,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 31,
+     "placement_window_seconds": 13860,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 5,
+      "v49_min_evidence_ts": 1784435129,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-SIN.csv.gz#row-118",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 30,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-SIN.csv.gz#row-1016",
+      "v47_persistent_join_level": 29,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-SIN.csv.gz#row-1180",
+      "v49_level_cents": 30,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL19SINMAT-SIN.csv.gz#row-1080"
+     },
+     "completing_print": {
+      "price_cents": 31,
+      "timestamp_epoch_receipted_proxy": 1784448291,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "MAT",
+      "v47_rest_level_cents": 65,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 68,
+    "uncalled": [
+     "SIN"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 68,
+    "uncalled": [
+     "SIN"
+    ]
+   },
+   "machine_window_lock_cents": 7,
+   "v49_non_convert_reason": "SIN: BID_MINUS_ONE_OFFSET_AT_P -- fe4747cd bid_reached_P=true, V49 evidence min 5; the bid-1 tracking rest stood at 30=P-1 when the print arrived (receipt KXATPCHALLENGERMATCH-26JUL19SINMAT-SIN.csv.gz#row-1080); the print passed 1c above the rest; ask==P at the print tick (fe4747cd), so a post-only bid at P at that tick would cross (sanity-bound collision at P)"
+  },
+  {
+   "row": 8,
+   "game_code": "26JUL20CHABOU",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "BOU",
+     "target_P_cents": 39,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 39,
+     "placement_window_seconds": 21658,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 38,
+      "v49_min_evidence_ts": 1784531063,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-BOU.csv.gz#row-140",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 38,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-BOU.csv.gz#row-5751",
+      "v47_persistent_join_level": 38,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-BOU.csv.gz#row-5800",
+      "v49_level_cents": 38,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-BOU.csv.gz#row-8073"
+     },
+     "completing_print": {
+      "price_cents": 39,
+      "timestamp_epoch_receipted_proxy": 1784571091,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "CHA",
+      "v47_rest_level_cents": 60,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 40,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "CHA",
+     "target_P_cents": 60,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 60,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 57,
+      "v49_min_evidence_ts": 1784531063,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA.csv.gz#row-224",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 10
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 60,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA.csv.gz#row-7597",
+      "v47_persistent_join_level": 60,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA.csv.gz#row-7597",
+      "v49_level_cents": 60,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA.csv.gz#row-7597"
+     },
+     "completing_print": {
+      "price_cents": 60,
+      "timestamp_epoch_receipted_proxy": 1784571501.321,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "BOU",
+      "v47_rest_level_cents": 38,
+      "v47_direction_read": "FALLING",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 60,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 60,
+    "uncalled": [
+     "BOU"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 40,
+    "uncalled": [
+     "CHA"
+    ]
+   },
+   "machine_window_lock_cents": 1,
+   "v49_non_convert_reason": "CHA: BID_MINUS_ONE_OFFSET_AT_P -- V49 own-bid evidence min 57 (receipt KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA.csv.gz#row-224); the persistence join rest stood at 59=P-1 when the print arrived (receipt KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA.csv.gz#row-489); the print passed 1c above the rest | SIBLING_FLIP: V47 filled CHA but left BOU; V49 instead filled BOU and left CHA -- the evidence gate moved which side stood; the pair completed under neither machine"
+  },
+  {
+   "row": 9,
+   "game_code": "26JUL20STAMAT",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "MAT",
+     "target_P_cents": 61,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 60,
+     "placement_window_seconds": 13419,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 59,
+      "v49_min_evidence_ts": 1784503269,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-MAT.csv.gz#row-268",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 16
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 60,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-MAT.csv.gz#row-436",
+      "v47_persistent_join_level": 60,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-MAT.csv.gz#row-436",
+      "v49_level_cents": 60,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-MAT.csv.gz#row-462"
+     },
+     "completing_print": {
+      "price_cents": 61,
+      "timestamp_epoch_receipted_proxy": 1784515548,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "STA",
+      "v47_rest_level_cents": 38,
+      "v47_direction_read": "FALLING",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "STA",
+     "target_P_cents": 38,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 38,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 38,
+      "v49_min_evidence_ts": 1784496044,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-STA.csv.gz#row-172",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 38,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-STA.csv.gz#row-531",
+      "v47_persistent_join_level": 38,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-STA.csv.gz#row-593",
+      "v49_level_cents": 38,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL20STAMAT-STA.csv.gz#row-703"
+     },
+     "completing_print": {
+      "price_cents": 38,
+      "timestamp_epoch_receipted_proxy": 1784528769.419,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "MAT",
+      "v47_rest_level_cents": 60,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 38,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 38,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 38,
+    "uncalled": [
+     "MAT"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 38,
+    "uncalled": [
+     "MAT"
+    ]
+   },
+   "machine_window_lock_cents": 2,
+   "v49_non_convert_reason": "MAT: BID_MINUS_ONE_OFFSET_AT_P -- fe4747cd bid_reached_P=true, V49 evidence min 59; the bid-1 tracking rest stood at 60=P-1 when the print arrived (receipt KXATPCHALLENGERMATCH-26JUL20STAMAT-MAT.csv.gz#row-462); the print passed 1c above the rest; ask==P at the print tick (fe4747cd), so a post-only bid at P at that tick would cross (sanity-bound collision at P)"
+  },
+  {
+   "row": 10,
+   "game_code": "26JUL20VALGOM",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "GOM",
+     "target_P_cents": 81,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 81,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": null,
+      "v49_min_evidence_ts": null,
+      "v49_min_evidence_receipt": null,
+      "v49_evidence_sources": null
+     },
+     "rest_during_window": {
+      "v47_level_cents": 81,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL20VALGOM-GOM.csv.gz#row-57",
+      "v47_persistent_join_level": 81,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL20VALGOM-GOM.csv.gz#row-57",
+      "v49_level_cents": 81,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL20VALGOM-GOM.csv.gz#row-57"
+     },
+     "completing_print": {
+      "price_cents": 81,
+      "timestamp_epoch_receipted_proxy": 1784500416.52,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "VAL",
+      "v47_rest_level_cents": 18,
+      "v47_direction_read": "FALLING",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 81,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 81,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "VAL",
+     "target_P_cents": 14,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 14,
+     "placement_window_seconds": 16142,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 18,
+      "v49_min_evidence_ts": 1784500363,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL20VALGOM-VAL.csv.gz#row-60",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 13,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL20VALGOM-VAL.csv.gz#row-901",
+      "v47_persistent_join_level": 14,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL20VALGOM-VAL.csv.gz#row-1088",
+      "v49_level_cents": 13,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL20VALGOM-VAL.csv.gz#row-903"
+     },
+     "completing_print": {
+      "price_cents": 14,
+      "timestamp_epoch_receipted_proxy": 1784540452,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "GOM",
+      "v47_rest_level_cents": 81,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 81
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 81,
+    "uncalled": [
+     "VAL"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 81,
+    "uncalled": [
+     "VAL"
+    ]
+   },
+   "machine_window_lock_cents": 5,
+   "v49_non_convert_reason": "VAL: EVIDENCE_CEILING_4C_ABOVE_P -- V49's gate never certified P=14: min evidenced standing level 18 (receipt KXATPCHALLENGERMATCH-26JUL20VALGOM-VAL.csv.gz#row-60); no prior true trade <=P receipt; rest at print stood 13 under bid-1 tracking (receipt KXATPCHALLENGERMATCH-26JUL20VALGOM-VAL.csv.gz#row-903); ask==P at the print tick (fe4747cd), so placing at P at that tick would cross -- the stand had to happen earlier in the window and never did"
+  },
+  {
+   "row": 11,
+   "game_code": "26JUL12MALTUR",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "MAL",
+     "target_P_cents": 53,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 49,
+     "placement_window_seconds": 1106,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 51,
+      "v49_min_evidence_ts": 1783829010,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-MAL.csv.gz#row-220",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 45,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-MAL.csv.gz#row-41856",
+      "v47_persistent_join_level": 47,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-MAL.csv.gz#row-42649",
+      "v49_level_cents": 45,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-MAL.csv.gz#row-41856"
+     },
+     "completing_print": {
+      "price_cents": 53,
+      "timestamp_epoch_receipted_proxy": 1783876484.256,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "TUR",
+      "v47_rest_level_cents": 46,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 46
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 53,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "TUR",
+     "target_P_cents": 46,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 46,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 40,
+      "v49_min_evidence_ts": 1783827339,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-109",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 46,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-155",
+      "v47_persistent_join_level": 46,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-155",
+      "v49_level_cents": 40,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-156"
+     },
+     "completing_print": {
+      "price_cents": 46,
+      "timestamp_epoch_receipted_proxy": 1783827770.435,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "MAL",
+      "v47_rest_level_cents": 51,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 46,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 46,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 46,
+    "uncalled": [
+     "MAL"
+    ]
+   },
+   "outcome_v49": {
+    "state": "COMPLETED",
+    "combined_cents": 99,
+    "uncalled": []
+   },
+   "machine_window_lock_cents": 5,
+   "v49_non_convert_reason": "CONVERTED"
+  },
+  {
+   "row": 12,
+   "game_code": "26JUL13KOTURG",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "KOT",
+     "target_P_cents": 32,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 32,
+     "placement_window_seconds": 17212,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 35,
+      "v49_min_evidence_ts": 1783918357,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-34",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 9
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 31,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-1961",
+      "v47_persistent_join_level": 31,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-17320",
+      "v49_level_cents": 31,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-4239"
+     },
+     "completing_print": {
+      "price_cents": 32,
+      "timestamp_epoch_receipted_proxy": 1783959598,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "URG",
+      "v47_rest_level_cents": 67,
+      "v47_direction_read": "SETTLED",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "URG",
+     "target_P_cents": 64,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 64,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 67,
+      "v49_min_evidence_ts": 1783944935,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-URG.csv.gz#row-924",
+      "v49_evidence_sources": {
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1,
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 67,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-URG.csv.gz#row-924",
+      "v47_persistent_join_level": 67,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-URG.csv.gz#row-285",
+      "v49_level_cents": 67,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13KOTURG-URG.csv.gz#row-924"
+     },
+     "completing_print": {
+      "price_cents": 64,
+      "timestamp_epoch_receipted_proxy": 1783966995.001,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "KOT",
+      "v47_rest_level_cents": 32,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 67,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 67,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 67,
+    "uncalled": [
+     "KOT"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 67,
+    "uncalled": [
+     "KOT"
+    ]
+   },
+   "machine_window_lock_cents": 4,
+   "v49_non_convert_reason": "KOT: EVIDENCE_CEILING_3C_ABOVE_P -- V49's gate never certified P=32: min evidenced standing level 35 (receipt KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-34); no prior true trade <=P receipt; rest at print stood 31 under bid-1 tracking (receipt KXWTACHALLENGERMATCH-26JUL13KOTURG-KOT.csv.gz#row-4239); ask==P at the print tick (fe4747cd), so placing at P at that tick would cross -- the stand had to happen earlier in the window and never did"
+  },
+  {
+   "row": 13,
+   "game_code": "26JUL13SELYAN",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "SEL",
+     "target_P_cents": 59,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 59,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 52,
+      "v49_min_evidence_ts": 1783914323,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-31",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 5
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 59,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-2568",
+      "v47_persistent_join_level": 59,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-2568",
+      "v49_level_cents": 57,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-994"
+     },
+     "completing_print": {
+      "price_cents": 59,
+      "timestamp_epoch_receipted_proxy": 1783948951.283,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "YAN",
+      "v47_rest_level_cents": 39,
+      "v47_direction_read": "FALLING",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 59,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "YAN",
+     "target_P_cents": 39,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 39,
+     "placement_window_seconds": 16110,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": null,
+      "v49_min_evidence_ts": null,
+      "v49_min_evidence_receipt": null,
+      "v49_evidence_sources": null
+     },
+     "rest_during_window": {
+      "v47_level_cents": 38,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-YAN.csv.gz#row-2528",
+      "v47_persistent_join_level": 37,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-YAN.csv.gz#row-3481",
+      "v49_level_cents": 42,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13SELYAN-YAN.csv.gz#row-301"
+     },
+     "completing_print": {
+      "price_cents": 39,
+      "timestamp_epoch_receipted_proxy": 1783953549,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "SEL",
+      "v47_rest_level_cents": 59,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 59
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 42,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 59,
+    "uncalled": [
+     "YAN"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 42,
+    "uncalled": [
+     "SEL"
+    ]
+   },
+   "machine_window_lock_cents": 2,
+   "v49_non_convert_reason": "SEL: REST_CLAMPED_2C_UNDER_P -- rest at 57 under bid-1 tracking at the print (receipt KXWTACHALLENGERMATCH-26JUL13SELYAN-SEL.csv.gz#row-994); V49 evidence min 52 | SIBLING_FLIP: V47 filled SEL but left YAN; V49 instead filled YAN and left SEL -- the evidence gate moved which side stood; the pair completed under neither machine"
+  },
+  {
+   "row": 14,
+   "game_code": "26JUL16BASRUS",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "BAS",
+     "target_P_cents": 66,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 66,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": null,
+      "v49_min_evidence_ts": null,
+      "v49_min_evidence_receipt": null,
+      "v49_evidence_sources": null
+     },
+     "rest_during_window": {
+      "v47_level_cents": 66,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-100",
+      "v47_persistent_join_level": 66,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-100",
+      "v49_level_cents": 66,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-100"
+     },
+     "completing_print": {
+      "price_cents": 66,
+      "timestamp_epoch_receipted_proxy": 1784162687.132,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "RUS",
+      "v47_rest_level_cents": 30,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 66,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 66,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "RUS",
+     "target_P_cents": 32,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 32,
+     "placement_window_seconds": 7336,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 31,
+      "v49_min_evidence_ts": 1784163045,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-145",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 2
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 31,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-123",
+      "v47_persistent_join_level": 31,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-867",
+      "v49_level_cents": 31,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-145"
+     },
+     "completing_print": {
+      "price_cents": 32,
+      "timestamp_epoch_receipted_proxy": 1784168790,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "BAS",
+      "v47_rest_level_cents": 68,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 66
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 66,
+    "uncalled": [
+     "RUS"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 66,
+    "uncalled": [
+     "RUS"
+    ]
+   },
+   "machine_window_lock_cents": 2,
+   "v49_non_convert_reason": "RUS: BID_MINUS_ONE_OFFSET_AT_P -- fe4747cd bid_reached_P=true, V49 evidence min 31; the bid-1 tracking rest stood at 31=P-1 when the print arrived (receipt KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-145); the print passed 1c above the rest; ask==P at the print tick (fe4747cd), so a post-only bid at P at that tick would cross (sanity-bound collision at P)"
+  },
+  {
+   "row": 15,
+   "game_code": "26JUL17JONNOH",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "JON",
+     "target_P_cents": 61,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 61,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 62,
+      "v49_min_evidence_ts": 1784255082,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-JON.csv.gz#row-46",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 2
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 61,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-JON.csv.gz#row-174",
+      "v47_persistent_join_level": 61,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-JON.csv.gz#row-202",
+      "v49_level_cents": 62,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-JON.csv.gz#row-298"
+     },
+     "completing_print": {
+      "price_cents": 61,
+      "timestamp_epoch_receipted_proxy": 1784265037.947,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "NOH",
+      "v47_rest_level_cents": 37,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 61,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 62,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "NOH",
+     "target_P_cents": 38,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 38,
+     "placement_window_seconds": 8574,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 34,
+      "v49_min_evidence_ts": 1784254835,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-NOH.csv.gz#row-24",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 36,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-NOH.csv.gz#row-86",
+      "v47_persistent_join_level": 37,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-NOH.csv.gz#row-988",
+      "v49_level_cents": 36,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL17JONNOH-NOH.csv.gz#row-86"
+     },
+     "completing_print": {
+      "price_cents": 38,
+      "timestamp_epoch_receipted_proxy": 1784255635,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "JON",
+      "v47_rest_level_cents": 63,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 61,
+    "uncalled": [
+     "NOH"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 62,
+    "uncalled": [
+     "NOH"
+    ]
+   },
+   "machine_window_lock_cents": 1,
+   "v49_non_convert_reason": "NOH: REST_CLAMPED_2C_UNDER_P -- rest at 36 under persistence join at the print (receipt KXWTACHALLENGERMATCH-26JUL17JONNOH-NOH.csv.gz#row-86); V49 evidence min 34; ask==P at print tick (sanity collision at P)"
+  },
+  {
+   "row": 16,
+   "game_code": "26JUL20KABCHI",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "CHI",
+     "target_P_cents": 77,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 77,
+     "placement_window_seconds": 8648,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 77,
+      "v49_min_evidence_ts": 1784518012,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-CHI.csv.gz#row-57",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 76,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-CHI.csv.gz#row-1192",
+      "v47_persistent_join_level": 76,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-CHI.csv.gz#row-1535",
+      "v49_level_cents": 76,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-CHI.csv.gz#row-1198"
+     },
+     "completing_print": {
+      "price_cents": 77,
+      "timestamp_epoch_receipted_proxy": 1784550440,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "KAB",
+      "v47_rest_level_cents": 20,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 20
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 78,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "KAB",
+     "target_P_cents": 20,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 20,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 20,
+      "v49_min_evidence_ts": 1784518381,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-KAB.csv.gz#row-73",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 20,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-KAB.csv.gz#row-119",
+      "v47_persistent_join_level": 20,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-KAB.csv.gz#row-54",
+      "v49_level_cents": 20,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL20KABCHI-KAB.csv.gz#row-73"
+     },
+     "completing_print": {
+      "price_cents": 20,
+      "timestamp_epoch_receipted_proxy": 1784520304.116,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "CHI",
+      "v47_rest_level_cents": 78,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 20,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 20,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 20,
+    "uncalled": [
+     "CHI"
+    ]
+   },
+   "outcome_v49": {
+    "state": "COMPLETED",
+    "combined_cents": 98,
+    "uncalled": []
+   },
+   "machine_window_lock_cents": 3,
+   "v49_non_convert_reason": "CONVERTED"
+  },
+  {
+   "row": 17,
+   "game_code": "26JUL20TOTRUG",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "RUG",
+     "target_P_cents": 55,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 55,
+     "placement_window_seconds": 3105,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 52,
+      "v49_min_evidence_ts": 1784523992,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-RUG.csv.gz#row-24",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 6
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 54,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-RUG.csv.gz#row-492",
+      "v47_persistent_join_level": 54,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-RUG.csv.gz#row-2511",
+      "v49_level_cents": 54,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-RUG.csv.gz#row-842"
+     },
+     "completing_print": {
+      "price_cents": 55,
+      "timestamp_epoch_receipted_proxy": 1784552480,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "TOT",
+      "v47_rest_level_cents": 44,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 55,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "TOT",
+     "target_P_cents": 44,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 44,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 38,
+      "v49_min_evidence_ts": 1784523666,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT.csv.gz#row-24",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 25,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 44,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT.csv.gz#row-1070",
+      "v47_persistent_join_level": 44,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT.csv.gz#row-1045",
+      "v49_level_cents": 44,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT.csv.gz#row-1056"
+     },
+     "completing_print": {
+      "price_cents": 44,
+      "timestamp_epoch_receipted_proxy": 1784562358.234,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "RUG",
+      "v47_rest_level_cents": 54,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 44,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 44,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 44,
+    "uncalled": [
+     "RUG"
+    ]
+   },
+   "outcome_v49": {
+    "state": "COMPLETED",
+    "combined_cents": 99,
+    "uncalled": []
+   },
+   "machine_window_lock_cents": 1,
+   "v49_non_convert_reason": "CONVERTED"
+  },
+  {
+   "row": 18,
+   "game_code": "26JUL12HERKAZ",
+   "event_id": "KXWTAMATCH-26JUL12HERKAZ",
+   "category": "WTA_MAIN",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "HER",
+     "target_P_cents": 46,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 46,
+     "placement_window_seconds": 7740,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 8,
+      "v49_min_evidence_ts": 1783785096,
+      "v49_min_evidence_receipt": "KXWTAMATCH-26JUL12HERKAZ-HER.csv.gz#row-8",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 28
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 45,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTAMATCH-26JUL12HERKAZ-HER.csv.gz#row-1039",
+      "v47_persistent_join_level": 53,
+      "v47_persistent_join_receipt": "KXWTAMATCH-26JUL12HERKAZ-HER.csv.gz#row-2192",
+      "v49_level_cents": 45,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTAMATCH-26JUL12HERKAZ-HER.csv.gz#row-1039"
+     },
+     "completing_print": {
+      "price_cents": 46,
+      "timestamp_epoch_receipted_proxy": 1783830206.519,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "KAZ",
+      "v47_rest_level_cents": 46,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "KAZ",
+     "target_P_cents": 46,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 46,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 8,
+      "v49_min_evidence_ts": 1783785096,
+      "v49_min_evidence_receipt": "KXWTAMATCH-26JUL12HERKAZ-KAZ.csv.gz#row-8",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 12
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 46,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTAMATCH-26JUL12HERKAZ-KAZ.csv.gz#row-1925",
+      "v47_persistent_join_level": 46,
+      "v47_persistent_join_receipt": "KXWTAMATCH-26JUL12HERKAZ-KAZ.csv.gz#row-1925",
+      "v49_level_cents": 46,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTAMATCH-26JUL12HERKAZ-KAZ.csv.gz#row-1990"
+     },
+     "completing_print": {
+      "price_cents": 46,
+      "timestamp_epoch_receipted_proxy": 1783833104.571,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "HER",
+      "v47_rest_level_cents": 45,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 46,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 46,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 46,
+    "uncalled": [
+     "HER"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 46,
+    "uncalled": [
+     "HER"
+    ]
+   },
+   "machine_window_lock_cents": 8,
+   "v49_non_convert_reason": "HER: BID_MINUS_ONE_OFFSET_AT_P -- fe4747cd bid_reached_P=true, V49 evidence min 8; the persistence join rest stood at 45=P-1 when the print arrived (receipt KXWTAMATCH-26JUL12HERKAZ-HER.csv.gz#row-1039); the print passed 1c above the rest; ask==P at the print tick (fe4747cd), so a post-only bid at P at that tick would cross (sanity-bound collision at P)"
+  },
+  {
+   "row": 19,
+   "game_code": "26JUL20LYSVAL",
+   "event_id": "KXWTAMATCH-26JUL20LYSVAL",
+   "category": "WTA_MAIN",
+   "identity_status": "IDENTITY_PINNED_WINDOW_LAW_ADDITION_FE4747CD",
+   "legs": [
+    {
+     "leg": "LYS",
+     "target_P_cents": 30,
+     "P_basis": "fe4747cd v2 detail",
+     "machine_window_lowest_trade_cents": 29,
+     "placement_window_seconds": 787,
+     "standability": "WINDOW_LAWFUL_EVIDENCE",
+     "evidence_for_P": {
+      "prior_trade_leq_P": false,
+      "bid_reached_P": true,
+      "v49_min_evidenced_level_cents": 9,
+      "v49_min_evidence_ts": 1784448898,
+      "v49_min_evidence_receipt": "KXWTAMATCH-26JUL20LYSVAL-LYS.csv.gz#row-39",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 5,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 28,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTAMATCH-26JUL20LYSVAL-LYS.csv.gz#row-124",
+      "v47_persistent_join_level": 29,
+      "v47_persistent_join_receipt": "KXWTAMATCH-26JUL20LYSVAL-LYS.csv.gz#row-15431",
+      "v49_level_cents": 28,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTAMATCH-26JUL20LYSVAL-LYS.csv.gz#row-124"
+     },
+     "completing_print": {
+      "price_cents": 30,
+      "timestamp_epoch_receipted_proxy": 1784454465,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "VAL",
+      "v47_rest_level_cents": 70,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 67
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "VAL",
+     "target_P_cents": 67,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 67,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 66,
+      "v49_min_evidence_ts": 1784449420,
+      "v49_min_evidence_receipt": "KXWTAMATCH-26JUL20LYSVAL-VAL.csv.gz#row-66",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 67,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTAMATCH-26JUL20LYSVAL-VAL.csv.gz#row-68",
+      "v47_persistent_join_level": 67,
+      "v47_persistent_join_receipt": "KXWTAMATCH-26JUL20LYSVAL-VAL.csv.gz#row-68",
+      "v49_level_cents": 67,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTAMATCH-26JUL20LYSVAL-VAL.csv.gz#row-68"
+     },
+     "completing_print": {
+      "price_cents": 67,
+      "timestamp_epoch_receipted_proxy": 1784449831.786,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "LYS",
+      "v47_rest_level_cents": 26,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 67,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 67,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 67,
+    "uncalled": [
+     "LYS"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 67,
+    "uncalled": [
+     "LYS"
+    ]
+   },
+   "machine_window_lock_cents": 4,
+   "v49_non_convert_reason": "LYS: REST_CLAMPED_2C_UNDER_P -- rest at 28 under persistence join at the print (receipt KXWTAMATCH-26JUL20LYSVAL-LYS.csv.gz#row-124); V49 evidence min 9; ask==P at print tick (sanity collision at P)"
+  },
+  {
+   "row": 20,
+   "game_code": "26JUL18BASBOE",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "BAS",
+     "target_P_cents": 94,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 95,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=95>P=94 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1784353078,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BAS.csv.gz#row-7",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 94,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BAS.csv.gz#row-198",
+      "v47_persistent_join_level": 96,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BAS.csv.gz#row-366",
+      "v49_level_cents": 94,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BAS.csv.gz#row-198"
+     },
+     "completing_print": {
+      "price_cents": 94,
+      "timestamp_epoch_receipted_proxy": 1784354550.326,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "BOE",
+      "v47_rest_level_cents": 5,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 5
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "BOE",
+     "target_P_cents": 3,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 3,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1784353448,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BOE.csv.gz#row-8",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 5,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BOE.csv.gz#row-16",
+      "v47_persistent_join_level": 5,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BOE.csv.gz#row-7",
+      "v49_level_cents": 5,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL18BASBOE-BOE.csv.gz#row-16"
+     },
+     "completing_print": {
+      "price_cents": 3,
+      "timestamp_epoch_receipted_proxy": 1784353551.969,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "BAS",
+      "v47_rest_level_cents": 90,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 5,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 5,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 5,
+    "uncalled": [
+     "BAS"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 5,
+    "uncalled": [
+     "BAS"
+    ]
+   },
+   "machine_window_lock_cents": 2,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 21,
+   "game_code": "26JUL13JONSPI",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "JON",
+     "target_P_cents": 91,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 51,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=92>P=91 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1783889473,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13JONSPI-JON.csv.gz#row-8",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": null,
+      "v47_law": null,
+      "v47_receipt": null,
+      "v47_persistent_join_level": 88,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13JONSPI-JON.csv.gz#row-192",
+      "v49_level_cents": null,
+      "v49_law": null,
+      "v49_receipt": null
+     },
+     "completing_print": {
+      "price_cents": 91,
+      "timestamp_epoch_receipted_proxy": null,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "SPI",
+      "v47_rest_level_cents": null,
+      "v47_direction_read": null,
+      "v47_law": null,
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "SPI",
+     "target_P_cents": 7,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 7,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1783889473,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13JONSPI-SPI.csv.gz#row-8",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 17
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 8,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13JONSPI-SPI.csv.gz#row-189",
+      "v47_persistent_join_level": 8,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13JONSPI-SPI.csv.gz#row-189",
+      "v49_level_cents": 8,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13JONSPI-SPI.csv.gz#row-189"
+     },
+     "completing_print": {
+      "price_cents": 7,
+      "timestamp_epoch_receipted_proxy": 1783902223.703,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "JON",
+      "v47_rest_level_cents": 50,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 8,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 8,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 8,
+    "uncalled": [
+     "JON"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 8,
+    "uncalled": [
+     "JON"
+    ]
+   },
+   "machine_window_lock_cents": 42,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 22,
+   "game_code": "26JUL13KNUKUR",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "KNU",
+     "target_P_cents": 84,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 85,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=86>P=84 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 84,
+      "v49_min_evidence_ts": 1783909106,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-109",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 13,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 87,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1683",
+      "v47_persistent_join_level": 89,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-2237",
+      "v49_level_cents": 87,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1683"
+     },
+     "completing_print": {
+      "price_cents": 84,
+      "timestamp_epoch_receipted_proxy": 1783931842,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "KUR",
+      "v47_rest_level_cents": 11,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "KUR",
+     "target_P_cents": 9,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 9,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 5,
+      "v49_min_evidence_ts": 1783903371,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-21",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 11
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 9,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-132513",
+      "v47_persistent_join_level": 9,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-132518",
+      "v49_level_cents": 9,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-132552"
+     },
+     "completing_print": {
+      "price_cents": 9,
+      "timestamp_epoch_receipted_proxy": 1783942772.625,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "KNU",
+      "v47_rest_level_cents": 87,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 9,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 9,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 9,
+    "uncalled": [
+     "KNU"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 9,
+    "uncalled": [
+     "KNU"
+    ]
+   },
+   "machine_window_lock_cents": 6,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 23,
+   "game_code": "26JUL16KHOPRO",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "KHO",
+     "target_P_cents": 15,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 15,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 15,
+      "v49_min_evidence_ts": 1784161524,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-KHO.csv.gz#row-45",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 2,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 15,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-KHO.csv.gz#row-705",
+      "v47_persistent_join_level": 15,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-KHO.csv.gz#row-737",
+      "v49_level_cents": 15,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-KHO.csv.gz#row-900"
+     },
+     "completing_print": {
+      "price_cents": 15,
+      "timestamp_epoch_receipted_proxy": 1784203871.573,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "PRO",
+      "v47_rest_level_cents": 84,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 15,
+       "fill_class": "MARKET_REACH_TRADED_AT_LEVEL"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 15,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "PRO",
+     "target_P_cents": 84,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 85,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=86>P=84 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": null,
+      "v49_min_evidence_ts": null,
+      "v49_min_evidence_receipt": null,
+      "v49_evidence_sources": null
+     },
+     "rest_during_window": {
+      "v47_level_cents": 84,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-PRO.csv.gz#row-178",
+      "v47_persistent_join_level": 86,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-PRO.csv.gz#row-2132",
+      "v49_level_cents": 84,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL16KHOPRO-PRO.csv.gz#row-178"
+     },
+     "completing_print": {
+      "price_cents": 84,
+      "timestamp_epoch_receipted_proxy": 1784166081,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "KHO",
+      "v47_rest_level_cents": 15,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 15,
+    "uncalled": [
+     "PRO"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 15,
+    "uncalled": [
+     "PRO"
+    ]
+   },
+   "machine_window_lock_cents": 0,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 24,
+   "game_code": "26JUL14ZHUYUN",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "YUN",
+     "target_P_cents": 78,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 90,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=86>P=78 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 5,
+      "v49_min_evidence_ts": 1784007496,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-YUN.csv.gz#row-14",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 1
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 90,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-YUN.csv.gz#row-407",
+      "v47_persistent_join_level": 93,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-YUN.csv.gz#row-568",
+      "v49_level_cents": 85,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-YUN.csv.gz#row-95"
+     },
+     "completing_print": {
+      "price_cents": 78,
+      "timestamp_epoch_receipted_proxy": 1784031262.625,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "ZHU",
+      "v47_rest_level_cents": 9,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 9
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "ZHU",
+     "target_P_cents": 7,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 7,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": null,
+      "v49_min_evidence_ts": null,
+      "v49_min_evidence_receipt": null,
+      "v49_evidence_sources": null
+     },
+     "rest_during_window": {
+      "v47_level_cents": 9,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-ZHU.csv.gz#row-598",
+      "v47_persistent_join_level": 9,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-ZHU.csv.gz#row-598",
+      "v49_level_cents": 14,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN-ZHU.csv.gz#row-11"
+     },
+     "completing_print": {
+      "price_cents": 7,
+      "timestamp_epoch_receipted_proxy": 1784020275.825,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "YUN",
+      "v47_rest_level_cents": 88,
+      "v47_direction_read": "SETTLED",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 9,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 14,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 9,
+    "uncalled": [
+     "YUN"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 14,
+    "uncalled": [
+     "YUN"
+    ]
+   },
+   "machine_window_lock_cents": 3,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 25,
+   "game_code": "26JUL14MAKSEY",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "MAK",
+     "target_P_cents": 19,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 19,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 19,
+      "v49_min_evidence_ts": 1783986565,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-MAK.csv.gz#row-94",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 19,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-MAK.csv.gz#row-574",
+      "v47_persistent_join_level": 20,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-MAK.csv.gz#row-102",
+      "v49_level_cents": 20,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-MAK.csv.gz#row-145"
+     },
+     "completing_print": {
+      "price_cents": 19,
+      "timestamp_epoch_receipted_proxy": 1784005096.162,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "SEY",
+      "v47_rest_level_cents": 79,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 19,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 20,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "SEY",
+     "target_P_cents": 77,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 80,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=79>P=77 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 77,
+      "v49_min_evidence_ts": 1783986565,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-SEY.csv.gz#row-109",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 79,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-SEY.csv.gz#row-131",
+      "v47_persistent_join_level": 80,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-SEY.csv.gz#row-2142",
+      "v49_level_cents": 79,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL14MAKSEY-SEY.csv.gz#row-131"
+     },
+     "completing_print": {
+      "price_cents": 77,
+      "timestamp_epoch_receipted_proxy": 1784011093,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "MAK",
+      "v47_rest_level_cents": 19,
+      "v47_direction_read": "SETTLED",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": true,
+      "fill_price_cents": 19
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 19,
+    "uncalled": [
+     "SEY"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 20,
+    "uncalled": [
+     "SEY"
+    ]
+   },
+   "machine_window_lock_cents": 1,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 26,
+   "game_code": "26JUL19RUSKAZ",
+   "event_id": "KXWTAMATCH-26JUL19RUSKAZ",
+   "category": "WTA_MAIN",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "KAZ",
+     "target_P_cents": 24,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 24,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 8,
+      "v49_min_evidence_ts": 1784390687,
+      "v49_min_evidence_receipt": "KXWTAMATCH-26JUL19RUSKAZ-KAZ.csv.gz#row-6",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 16
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 24,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTAMATCH-26JUL19RUSKAZ-KAZ.csv.gz#row-218",
+      "v47_persistent_join_level": 24,
+      "v47_persistent_join_receipt": "KXWTAMATCH-26JUL19RUSKAZ-KAZ.csv.gz#row-218",
+      "v49_level_cents": 24,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTAMATCH-26JUL19RUSKAZ-KAZ.csv.gz#row-332"
+     },
+     "completing_print": {
+      "price_cents": 24,
+      "timestamp_epoch_receipted_proxy": 1784414473.652,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "RUS",
+      "v47_rest_level_cents": 72,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 24,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 24,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "RUS",
+     "target_P_cents": 75,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 74,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=76>P=75 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 8,
+      "v49_min_evidence_ts": 1784390687,
+      "v49_min_evidence_receipt": "KXWTAMATCH-26JUL19RUSKAZ-RUS.csv.gz#row-8",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 22,
+       "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 11
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 74,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTAMATCH-26JUL19RUSKAZ-RUS.csv.gz#row-655",
+      "v47_persistent_join_level": 74,
+      "v47_persistent_join_receipt": "KXWTAMATCH-26JUL19RUSKAZ-RUS.csv.gz#row-1240",
+      "v49_level_cents": 74,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTAMATCH-26JUL19RUSKAZ-RUS.csv.gz#row-655"
+     },
+     "completing_print": {
+      "price_cents": 75,
+      "timestamp_epoch_receipted_proxy": 1784430467,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "KAZ",
+      "v47_rest_level_cents": 24,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 24
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 24,
+    "uncalled": [
+     "RUS"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 24,
+    "uncalled": [
+     "RUS"
+    ]
+   },
+   "machine_window_lock_cents": 2,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 27,
+   "game_code": "26JUL12FEICHE",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "CHE",
+     "target_P_cents": 25,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 25,
+     "placement_window_seconds": null,
+     "standability": "NOT_RECUT",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 22,
+      "v49_min_evidence_ts": 1783809761,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-CHE.csv.gz#row-107",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 3
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 24,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-CHE.csv.gz#row-6702",
+      "v47_persistent_join_level": 24,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-CHE.csv.gz#row-5513",
+      "v49_level_cents": 24,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-CHE.csv.gz#row-5513"
+     },
+     "completing_print": {
+      "price_cents": 25,
+      "timestamp_epoch_receipted_proxy": 1783840573,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "FEI",
+      "v47_rest_level_cents": 74,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "FEI",
+     "target_P_cents": 74,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 74,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=76>P=74 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 73,
+      "v49_min_evidence_ts": 1783810076,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-FEI.csv.gz#row-113",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 4
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": null,
+      "v47_law": null,
+      "v47_receipt": null,
+      "v47_persistent_join_level": 74,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL12FEICHE-FEI.csv.gz#row-1247",
+      "v49_level_cents": null,
+      "v49_law": null,
+      "v49_receipt": null
+     },
+     "completing_print": {
+      "price_cents": 74,
+      "timestamp_epoch_receipted_proxy": null,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "CHE",
+      "v47_rest_level_cents": null,
+      "v47_direction_read": null,
+      "v47_law": null,
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "NONE",
+    "combined_cents": 0,
+    "uncalled": [
+     "CHE",
+     "FEI"
+    ]
+   },
+   "outcome_v49": {
+    "state": "NONE",
+    "combined_cents": 0,
+    "uncalled": [
+     "CHE",
+     "FEI"
+    ]
+   },
+   "machine_window_lock_cents": 1,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 28,
+   "game_code": "26JUL13BOUZHA",
+   "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "BOU",
+     "target_P_cents": 24,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 24,
+     "placement_window_seconds": null,
+     "standability": "V47_CREDITED",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": null,
+      "v49_min_evidence_ts": null,
+      "v49_min_evidence_receipt": null,
+      "v49_evidence_sources": null
+     },
+     "rest_during_window": {
+      "v47_level_cents": 24,
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-BOU.csv.gz#row-143",
+      "v47_persistent_join_level": 24,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-BOU.csv.gz#row-143",
+      "v49_level_cents": 24,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-BOU.csv.gz#row-143"
+     },
+     "completing_print": {
+      "price_cents": 24,
+      "timestamp_epoch_receipted_proxy": 1783923210.657,
+      "proxy_source": "fill_timestamp (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "ZHA",
+      "v47_rest_level_cents": 74,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": true,
+       "entry_cents": 24,
+       "fill_class": "MARKET_REACH_PRINT_CROSS"
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 24,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    },
+    {
+     "leg": "ZHA",
+     "target_P_cents": 73,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 74,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=74>P=73 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 72,
+      "v49_min_evidence_ts": 1783921557,
+      "v49_min_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-ZHA.csv.gz#row-97",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 8
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 73,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-ZHA.csv.gz#row-1501",
+      "v47_persistent_join_level": 73,
+      "v47_persistent_join_receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-ZHA.csv.gz#row-1758",
+      "v49_level_cents": 73,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXATPCHALLENGERMATCH-26JUL13BOUZHA-ZHA.csv.gz#row-1513"
+     },
+     "completing_print": {
+      "price_cents": 73,
+      "timestamp_epoch_receipted_proxy": 1783945156,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "BOU",
+      "v47_rest_level_cents": 24,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": true,
+      "fill_price_cents": 24
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "ONE_LEG",
+    "combined_cents": 24,
+    "uncalled": [
+     "ZHA"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 24,
+    "uncalled": [
+     "ZHA"
+    ]
+   },
+   "machine_window_lock_cents": 2,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 29,
+   "game_code": "26JUL13OKATAR",
+   "event_id": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_PINNED_V1_TOP_RECOVERABLE_3DD57FBA",
+   "legs": [
+    {
+     "leg": "OKA",
+     "target_P_cents": 18,
+     "P_basis": "machine-window lowest true trade (1c8700fa DECISION_TRACE_1608)",
+     "machine_window_lowest_trade_cents": 18,
+     "placement_window_seconds": null,
+     "standability": "NOT_RECUT",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1783912853,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-OKA.csv.gz#row-7",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 5
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 15,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-OKA.csv.gz#row-238",
+      "v47_persistent_join_level": 16,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-OKA.csv.gz#row-190",
+      "v49_level_cents": 15,
+      "v49_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-OKA.csv.gz#row-243"
+     },
+     "completing_print": {
+      "price_cents": 18,
+      "timestamp_epoch_receipted_proxy": 1783931965,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "TAR",
+      "v47_rest_level_cents": 83,
+      "v47_direction_read": "RISING",
+      "v47_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      }
+     }
+    },
+    {
+     "leg": "TAR",
+     "target_P_cents": 71,
+     "P_basis": "3dd57fba top_recoverable",
+     "machine_window_lowest_trade_cents": 84,
+     "placement_window_seconds": null,
+     "standability": "LAWFULLY_STANDABLE_INSTANT ask_at_print=72>P=71 (3dd57fba)",
+     "evidence_for_P": {
+      "prior_trade_leq_P": null,
+      "bid_reached_P": null,
+      "v49_min_evidenced_level_cents": 4,
+      "v49_min_evidence_ts": 1783912855,
+      "v49_min_evidence_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-TAR.csv.gz#row-7",
+      "v49_evidence_sources": {
+       "OWN_BEST_BID_P_CONTINUOUSLY_STANDING": 8
+      }
+     },
+     "rest_during_window": {
+      "v47_level_cents": 84,
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "v47_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-TAR.csv.gz#row-957",
+      "v47_persistent_join_level": 84,
+      "v47_persistent_join_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-TAR.csv.gz#row-988",
+      "v49_level_cents": 85,
+      "v49_law": "persistence join (V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1)",
+      "v49_receipt": "KXWTACHALLENGERMATCH-26JUL13OKATAR-TAR.csv.gz#row-927"
+     },
+     "completing_print": {
+      "price_cents": 71,
+      "timestamp_epoch_receipted_proxy": 1783933456.542,
+      "proxy_source": "latest_new_low_evidence_ts (V47 MARKET_EVENT_LEDGER)",
+      "size": "NOT_RECEIPTED_IN_COMMITTED_ARTIFACTS"
+     },
+     "sibling_at_print": {
+      "leg": "OKA",
+      "v47_rest_level_cents": 15,
+      "v47_direction_read": "SETTLED",
+      "v47_law": "bid-1 tracking (V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY)",
+      "filled_by_then": false,
+      "fill_price_cents": null
+     },
+     "outcome": {
+      "v47": {
+       "credited": false,
+       "entry_cents": null,
+       "fill_class": null
+      },
+      "v49": {
+       "credited": true,
+       "entry_cents": 85,
+       "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+      }
+     }
+    }
+   ],
+   "outcome_v47": {
+    "state": "NONE",
+    "combined_cents": 0,
+    "uncalled": [
+     "OKA",
+     "TAR"
+    ]
+   },
+   "outcome_v49": {
+    "state": "ONE_LEG",
+    "combined_cents": 85,
+    "uncalled": [
+     "OKA"
+    ]
+   },
+   "machine_window_lock_cents": -2,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 30,
+   "game_code": "SLOT_ATP_CHALL_01",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 31,
+   "game_code": "SLOT_ATP_CHALL_02",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 32,
+   "game_code": "SLOT_ATP_CHALL_03",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 33,
+   "game_code": "SLOT_ATP_CHALL_04",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 34,
+   "game_code": "SLOT_ATP_CHALL_05",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 35,
+   "game_code": "SLOT_ATP_CHALL_06",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 36,
+   "game_code": "SLOT_ATP_CHALL_07",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 37,
+   "game_code": "SLOT_ATP_CHALL_08",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 38,
+   "game_code": "SLOT_ATP_CHALL_09",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 39,
+   "game_code": "SLOT_ATP_CHALL_10",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 40,
+   "game_code": "SLOT_ATP_CHALL_11",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 41,
+   "game_code": "SLOT_ATP_CHALL_12",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 42,
+   "game_code": "SLOT_ATP_CHALL_13",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 43,
+   "game_code": "SLOT_ATP_CHALL_14",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 44,
+   "game_code": "SLOT_ATP_CHALL_15",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 45,
+   "game_code": "SLOT_ATP_CHALL_16",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 46,
+   "game_code": "SLOT_ATP_CHALL_17",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 47,
+   "game_code": "SLOT_ATP_CHALL_18",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 48,
+   "game_code": "SLOT_ATP_CHALL_19",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 49,
+   "game_code": "SLOT_ATP_CHALL_20",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 50,
+   "game_code": "SLOT_ATP_CHALL_21",
+   "event_id": null,
+   "category": "ATP_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 51,
+   "game_code": "SLOT_ATP_MAIN_01",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 52,
+   "game_code": "SLOT_ATP_MAIN_02",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 53,
+   "game_code": "SLOT_ATP_MAIN_03",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 54,
+   "game_code": "SLOT_ATP_MAIN_04",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 55,
+   "game_code": "SLOT_ATP_MAIN_05",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 56,
+   "game_code": "SLOT_ATP_MAIN_06",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 57,
+   "game_code": "SLOT_ATP_MAIN_07",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 58,
+   "game_code": "SLOT_ATP_MAIN_08",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 59,
+   "game_code": "SLOT_ATP_MAIN_09",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 60,
+   "game_code": "SLOT_ATP_MAIN_10",
+   "event_id": null,
+   "category": "ATP_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 61,
+   "game_code": "SLOT_WTA_CHALL_01",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 62,
+   "game_code": "SLOT_WTA_CHALL_02",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 63,
+   "game_code": "SLOT_WTA_CHALL_03",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 64,
+   "game_code": "SLOT_WTA_CHALL_04",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 65,
+   "game_code": "SLOT_WTA_CHALL_05",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 66,
+   "game_code": "SLOT_WTA_CHALL_06",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 67,
+   "game_code": "SLOT_WTA_CHALL_07",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 68,
+   "game_code": "SLOT_WTA_CHALL_08",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 69,
+   "game_code": "SLOT_WTA_CHALL_09",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 70,
+   "game_code": "SLOT_WTA_CHALL_10",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 71,
+   "game_code": "SLOT_WTA_CHALL_11",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 72,
+   "game_code": "SLOT_WTA_CHALL_12",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 73,
+   "game_code": "SLOT_WTA_CHALL_13",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 74,
+   "game_code": "SLOT_WTA_CHALL_14",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 75,
+   "game_code": "SLOT_WTA_CHALL_15",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 76,
+   "game_code": "SLOT_WTA_CHALL_16",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 77,
+   "game_code": "SLOT_WTA_CHALL_17",
+   "event_id": null,
+   "category": "WTA_CHALL",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 78,
+   "game_code": "SLOT_WTA_MAIN_01",
+   "event_id": null,
+   "category": "WTA_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 79,
+   "game_code": "SLOT_WTA_MAIN_02",
+   "event_id": null,
+   "category": "WTA_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 80,
+   "game_code": "SLOT_WTA_MAIN_03",
+   "event_id": null,
+   "category": "WTA_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  },
+  {
+   "row": 81,
+   "game_code": "SLOT_WTA_MAIN_04",
+   "event_id": null,
+   "category": "WTA_MAIN",
+   "identity_status": "IDENTITY_UNRECEIPTED",
+   "reason": "member of the v1-62 lawfully-recoverable set (3dd57fba), whose per-game identities were never emitted; fe4747cd froze the 81 as aggregates only; V49 (1c8700fa) declined to fabricate the intersection; the ask-at-print per missing leg needed to recompute membership exists only in the private fit-local tape (SOURCE_HASH_MANIFEST private_prints, hash-only)",
+   "legs": null,
+   "outcome_v47": null,
+   "outcome_v49": null,
+   "v49_non_convert_reason": null
+  }
+ ],
+ "basis_drift_pinned_rows": [
+  "26JUL14GENPET PET: receipt P 37 vs machine-window low 35",
+  "26JUL20STAMAT MAT: receipt P 61 vs machine-window low 60",
+  "26JUL12MALTUR MAL: receipt P 53 vs machine-window low 49",
+  "26JUL20LYSVAL LYS: receipt P 30 vs machine-window low 29",
+  "26JUL18BASBOE BAS: receipt P 94 vs machine-window low 95",
+  "26JUL13JONSPI JON: receipt P 91 vs machine-window low 51",
+  "26JUL13KNUKUR KNU: receipt P 84 vs machine-window low 85",
+  "26JUL16KHOPRO PRO: receipt P 84 vs machine-window low 85",
+  "26JUL14ZHUYUN YUN: receipt P 78 vs machine-window low 90",
+  "26JUL14MAKSEY SEY: receipt P 77 vs machine-window low 80",
+  "26JUL19RUSKAZ RUS: receipt P 75 vs machine-window low 74",
+  "26JUL13BOUZHA ZHA: receipt P 73 vs machine-window low 74",
+  "26JUL13OKATAR TAR: receipt P 71 vs machine-window low 84"
+ ]
+}

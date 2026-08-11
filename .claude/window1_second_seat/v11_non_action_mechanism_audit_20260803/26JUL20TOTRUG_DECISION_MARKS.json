@@ -1,0 +1,73 @@
+{
+ "LABEL": "26JUL20TOTRUG_DECISION_MARKS",
+ "event_id": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+ "category": "WTA_CHALL",
+ "legs": {
+  "RUG": {
+   "machine_window_lowest_trade_cents": 55,
+   "v47": {
+    "credited": false,
+    "entry_cents": null,
+    "fill_ts": null,
+    "fill_receipt": null,
+    "join_level": 54,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-RUG.csv.gz#row-2511",
+    "join_ts": 1784567553
+   },
+   "v49": {
+    "credited": true,
+    "entry_cents": 55,
+    "fill_ts": 1784562356.771,
+    "fill_receipt": null,
+    "join_level": 54,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-RUG.csv.gz#row-358",
+    "join_ts": 1784535910
+   },
+   "divergence": {
+    "first_divergence_ts": 1784522999,
+    "v47_rest_then": 52,
+    "v49_rest_then": 5
+   }
+  },
+  "TOT": {
+   "machine_window_lowest_trade_cents": 44,
+   "v47": {
+    "credited": true,
+    "entry_cents": 44,
+    "fill_ts": 1784562358.234,
+    "fill_receipt": null,
+    "join_level": 44,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT.csv.gz#row-1045",
+    "join_ts": 1784560374
+   },
+   "v49": {
+    "credited": true,
+    "entry_cents": 44,
+    "fill_ts": 1784562358.234,
+    "fill_receipt": null,
+    "join_level": 44,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL20TOTRUG-TOT.csv.gz#row-1045",
+    "join_ts": 1784560374
+   },
+   "divergence": {
+    "first_divergence_ts": 1784522999,
+    "v47_rest_then": 38,
+    "v49_rest_then": 37
+   }
+  }
+ },
+ "outcome": {
+  "v47": {
+   "state": "ONE_LEG",
+   "combined_cents": 44,
+   "uncalled": [
+    "RUG"
+   ]
+  },
+  "v49": {
+   "state": "COMPLETED",
+   "combined_cents": 99,
+   "uncalled": []
+  }
+ }
+}

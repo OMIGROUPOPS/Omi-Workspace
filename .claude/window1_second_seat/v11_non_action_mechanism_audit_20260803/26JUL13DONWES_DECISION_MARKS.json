@@ -1,0 +1,73 @@
+{
+ "LABEL": "26JUL13DONWES_DECISION_MARKS",
+ "event_id": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+ "category": "ATP_CHALL",
+ "legs": {
+  "DON": {
+   "machine_window_lowest_trade_cents": 25,
+   "v47": {
+    "credited": true,
+    "entry_cents": 26,
+    "fill_ts": 1783936618.668,
+    "fill_receipt": null,
+    "join_level": 26,
+    "join_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-767",
+    "join_ts": 1783936618
+   },
+   "v49": {
+    "credited": true,
+    "entry_cents": 25,
+    "fill_ts": 1783936618.668,
+    "fill_receipt": null,
+    "join_level": 26,
+    "join_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-DON.csv.gz#row-767",
+    "join_ts": 1783936618
+   },
+   "divergence": {
+    "first_divergence_ts": 1783895157,
+    "v47_rest_then": 22,
+    "v49_rest_then": 21
+   }
+  },
+  "WES": {
+   "machine_window_lowest_trade_cents": 73,
+   "v47": {
+    "credited": false,
+    "entry_cents": null,
+    "fill_ts": null,
+    "fill_receipt": null,
+    "join_level": 72,
+    "join_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-WES.csv.gz#row-2526",
+    "join_ts": 1783938912
+   },
+   "v49": {
+    "credited": true,
+    "entry_cents": 74,
+    "fill_ts": 1783935400.74,
+    "fill_receipt": null,
+    "join_level": 72,
+    "join_receipt": "KXATPCHALLENGERMATCH-26JUL13DONWES-WES.csv.gz#row-512",
+    "join_ts": 1783933960
+   },
+   "divergence": {
+    "first_divergence_ts": 1783895123,
+    "v47_rest_then": 68,
+    "v49_rest_then": 67
+   }
+  }
+ },
+ "outcome": {
+  "v47": {
+   "state": "ONE_LEG",
+   "combined_cents": 26,
+   "uncalled": [
+    "WES"
+   ]
+  },
+  "v49": {
+   "state": "COMPLETED",
+   "combined_cents": 99,
+   "uncalled": []
+  }
+ }
+}

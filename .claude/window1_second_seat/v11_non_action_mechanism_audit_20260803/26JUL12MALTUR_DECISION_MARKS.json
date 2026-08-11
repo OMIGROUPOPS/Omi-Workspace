@@ -1,0 +1,73 @@
+{
+ "LABEL": "26JUL12MALTUR_DECISION_MARKS",
+ "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+ "category": "WTA_CHALL",
+ "legs": {
+  "MAL": {
+   "machine_window_lowest_trade_cents": 49,
+   "v47": {
+    "credited": false,
+    "entry_cents": null,
+    "fill_ts": null,
+    "fill_receipt": null,
+    "join_level": 47,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-MAL.csv.gz#row-42649",
+    "join_ts": 1783876499
+   },
+   "v49": {
+    "credited": true,
+    "entry_cents": 53,
+    "fill_ts": 1783876099.15,
+    "fill_receipt": null,
+    "join_level": 52,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-MAL.csv.gz#row-883",
+    "join_ts": 1783854142
+   },
+   "divergence": {
+    "first_divergence_ts": 1783826536,
+    "v47_rest_then": 4,
+    "v49_rest_then": 3
+   }
+  },
+  "TUR": {
+   "machine_window_lowest_trade_cents": 46,
+   "v47": {
+    "credited": true,
+    "entry_cents": 46,
+    "fill_ts": 1783827770.435,
+    "fill_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-181",
+    "join_level": 46,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-155",
+    "join_ts": 1783827578
+   },
+   "v49": {
+    "credited": true,
+    "entry_cents": 46,
+    "fill_ts": 1783827978.296,
+    "fill_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-181",
+    "join_level": 46,
+    "join_receipt": "KXWTACHALLENGERMATCH-26JUL12MALTUR-TUR.csv.gz#row-155",
+    "join_ts": 1783827578
+   },
+   "divergence": {
+    "first_divergence_ts": 1783826536,
+    "v47_rest_then": 4,
+    "v49_rest_then": 3
+   }
+  }
+ },
+ "outcome": {
+  "v47": {
+   "state": "ONE_LEG",
+   "combined_cents": 46,
+   "uncalled": [
+    "MAL"
+   ]
+  },
+  "v49": {
+   "state": "COMPLETED",
+   "combined_cents": 99,
+   "uncalled": []
+  }
+ }
+}

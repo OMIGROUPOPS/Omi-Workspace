@@ -4,6 +4,9 @@ Analysis seat. Spine = the anatomy map @ `cd592540` (18 decision sites, outcome-
 ACTION/CREDIT × resolution-layers RECEIPT/TRAIL/EVENT × the organ chain v47→v45→v43→v41+v42→v36→v32/v35 +
 runner). Every number cites SHA + denominator + brain. ANALYTICAL_ESTIMATE where the executable did not run.
 **This document is the standard every future test is faithful to — gaps are marked as gaps (⧗ / GAP).**
+**EXHIBITS:** `os_blueprint_left_v2.png` · `os_blueprint_right.png` (this directory) — the OS blueprint pair,
+graded ACCEPT in this conversation's session records; source files `cd592540` (anatomy map) / `528d75e4`
+(arnrom_marks_v47).
 
 ---
 

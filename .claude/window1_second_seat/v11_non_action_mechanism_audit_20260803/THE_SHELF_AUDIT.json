@@ -1,0 +1,226 @@
+{
+ "LABEL": "THE_SHELF_AUDIT",
+ "ruler": "V47 fb74c8b8 bindings + truth/INDEX.json consuming probes",
+ "partA": [
+  {
+   "artifact": "quote_reachability_20260730 d1ac9497",
+   "finding": "804 divot/episode census + W1 authority",
+   "status": "INSTALLED",
+   "note": "PULSE_FLOOR_BINDING + span/close authority; QUOTE_TOUCH crediting role superseded by e073c606"
+  },
+  {
+   "artifact": "nikvrb_ask_dwell_20260731 35f3e788",
+   "finding": "ask-only dwell replay",
+   "status": "SUPERSEDED",
+   "note": "by trades-as-truth e073c606"
+  },
+  {
+   "artifact": "nikvrb_coupling_20260730 6b28b4af",
+   "finding": "inter-divot gaps; riser-first ordering",
+   "status": "SHELVED",
+   "note": ""
+  },
+  {
+   "artifact": "jul6 pressure doctrine",
+   "finding": "dual direction readers",
+   "status": "INSTALLED",
+   "note": "combined_state/pressure_state per receipt"
+  },
+  {
+   "artifact": "entry-schedule hypothesis",
+   "finding": "riser rests at recurring divot floor",
+   "status": "SUPERSEDED",
+   "note": "by trigger frontier 084df125 / V41 join"
+  },
+  {
+   "artifact": "band taxonomy 735365ff",
+   "finding": "natural (anchor,net,dip) bands",
+   "status": "SHELVED",
+   "note": ""
+  },
+  {
+   "artifact": "chain-pressure spec",
+   "finding": "pressure leads price",
+   "status": "SHELVED",
+   "note": "first measurement 6bc169bf"
+  },
+  {
+   "artifact": "union reach 57daf3c1",
+   "finding": "sealed 3-channel key 637/5253",
+   "status": "INSTALLED",
+   "note": "V47 fill-ruler binding (telemetry for grading)"
+  },
+  {
+   "artifact": "causal reach d3db740f",
+   "finding": "collectable 504/3319",
+   "status": "INSTALLED",
+   "note": "CAUSAL_REACH_BINDING; causal_own_reach_low in snapshots"
+  },
+  {
+   "artifact": "trigger frontier 084df125",
+   "finding": "persistence-only arming ~99% of ceiling",
+   "status": "INSTALLED",
+   "note": "V41 riser join law"
+  },
+  {
+   "artifact": "level-policy realization cca7c6c1",
+   "finding": "P2 join realized winner",
+   "status": "INSTALLED",
+   "note": "P2-over-P1 receipt in decision reasons"
+  },
+  {
+   "artifact": "conviction-lag removal 9ddfe8c6",
+   "finding": "ARM +219c; walk self-defeating",
+   "status": "INSTALLED",
+   "note": "arm half via V43-C1; walk half correctly unbuilt"
+  },
+  {
+   "artifact": "+1c loosen 52275c9d",
+   "finding": "only first cent pays +51c",
+   "status": "INSTALLED",
+   "note": "V43-C3 tracking rest in V47"
+  },
+  {
+   "artifact": "deep-gap guard 645e035b",
+   "finding": "T=10 +73c standalone",
+   "status": "INSTALLED",
+   "note": "V42 guard in V47; COMPOSITION_STALE b503e4ed"
+  },
+  {
+   "artifact": "dry-sibling A+B b503e4ed",
+   "finding": "2165c/+42 naked",
+   "status": "SHELVED",
+   "note": "guard still runs"
+  },
+  {
+   "artifact": "gap-credit aa884cc5",
+   "finding": "strict-ask freeze 50 legs; +121c pair-gated",
+   "status": "INSTALLED",
+   "note": "gap_credit_* organ"
+  },
+  {
+   "artifact": "guard release 3bda0a54",
+   "finding": "release at sibling credit",
+   "status": "INSTALLED",
+   "note": "post_credit_guard_release organ"
+  },
+  {
+   "artifact": "same-tick arm 8877c2d5",
+   "finding": "2.5h arming lag killed",
+   "status": "INSTALLED",
+   "note": "V47 defining fix"
+  },
+  {
+   "artifact": "trades-as-truth e073c606 + gap map a37bf6a6",
+   "finding": "any trade at/below rest credits",
+   "status": "INSTALLED",
+   "note": "V47 credit law"
+  },
+  {
+   "artifact": "183 anatomy + standability v2 3dd57fba/fe4747cd",
+   "finding": "lawful ceiling ~477",
+   "status": "SHELVED",
+   "note": "fed BLOCKED V49"
+  },
+  {
+   "artifact": "81 identity ledger 653b7f13",
+   "finding": "81 named; FANBIG defect",
+   "status": "SHELVED",
+   "note": ""
+  },
+  {
+   "artifact": "maker offer 7fcd6614",
+   "finding": "maker bar 501",
+   "status": "SUPERSEDED",
+   "note": "RULER_VIOLATION 3dd57fba"
+  },
+  {
+   "artifact": "sealed gauge+mirror b26cf548",
+   "finding": "capture 14.4%; incoherence norm",
+   "status": "SHELVED",
+   "note": ""
+  },
+  {
+   "artifact": "capbound anatomy a20e1a85",
+   "finding": "31/45 self-inflicted",
+   "status": "SHELVED",
+   "note": "V50 lever unbuilt"
+  },
+  {
+   "artifact": "mirror-trust/LAW B e177c2fb+63f5ece9",
+   "finding": "vindication real; <=61c",
+   "status": "SHELVED",
+   "note": "declined by sizing"
+  },
+  {
+   "artifact": "divot arrival/ratchet/dipless f40ac8ea/9ee14bf5/aa1cc301/9ff18c8c",
+   "finding": "riser misses are dip absence",
+   "status": "SHELVED",
+   "note": ""
+  },
+  {
+   "artifact": "hidden-book census 6bc169bf",
+   "finding": "half of flow beyond displayed book; +4-6pt chain",
+   "status": "SHELVED",
+   "note": ""
+  },
+  {
+   "artifact": "V41 true book a30f5ccd",
+   "finding": "maker-only +782c",
+   "status": "INSTALLED",
+   "note": "full-book PNL organ"
+  },
+  {
+   "artifact": "exit charts / bands",
+   "finding": "band exits per cell",
+   "status": "INSTALLED",
+   "note": "exit_machinery site wired"
+  }
+ ],
+ "partA_counts": {
+  "INSTALLED": 15,
+  "SHELVED": 11,
+  "SUPERSEDED": 3
+ },
+ "partB": {
+  "surfaces_installed": 7,
+  "sites": {
+   "installed": 5,
+   "shelved": [
+    "gun_sources"
+   ]
+  },
+  "studies": {
+   "total": 61,
+   "installed": 46,
+   "shelved_pending": [
+    "bellrecovery_20260708",
+    "cohort_20260717",
+    "dossier_20260714",
+    "floor_20260717",
+    "replay_20260712",
+    "tapebell_20260715",
+    "tapegate_20260714",
+    "triage_20260715_morning",
+    "w1lib_20260714"
+   ],
+   "superseded": [
+    "loop8/loop9 capture-standard (frame-defect 7ac46074)"
+   ]
+  }
+ },
+ "shelved_ranked": [
+  "1 CAP_BOUND first-fill discipline (a20e1a85)",
+  "2 dry-sibling+guard-removal (b503e4ed)",
+  "3 regret-gauge telemetry (b26cf548)",
+  "4 mirror coherence read-side (b26cf548/e177c2fb)",
+  "5 dip-supply admission (9ee14bf5/aa1cc301)",
+  "6 hidden-book chain (6bc169bf)",
+  "7 band taxonomy (735365ff)",
+  "8 gun_sources site",
+  "9 coupling census (6b28b4af)",
+  "10 FANBIG crediting fix (653b7f13)",
+  "11 lawful-ceiling bar (fe4747cd)",
+  "12 pending-finding studies"
+ ]
+}

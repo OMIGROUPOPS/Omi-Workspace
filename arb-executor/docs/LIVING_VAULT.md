@@ -1829,3 +1829,19 @@ authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/7936c410496726d5c65f05916527ec5039787681/arb-executor/docs/research/window1/WINDOW1_V48_TRADES_AS_TRUTH_20260810_ADDENDUM.md
+
+### 2026-08-10 - V49 EVIDENCED-LEVEL STANDING BLOCKED
+
+V49 replaces V47's universal one-cent loosen with evidence-conditional
+standing at P: authority requires a prior true trade at-or-below P or the own
+best bid continuously at P for V47's inherited 300-second interval. The
+frozen V47 baseline reproduces exactly at 396 completions, +1,774 cents true
+book, frontier 52/71/142/396, and 331 strict pairs. V49 falls to 393,
++1,432 cents, 47/62/118/393, and 318. Its ledger gains 31 fills but adversely
+reprices 163 and loses 26. HERKAZ remains incomplete; the five incumbent named
+controls do not regress. The bound bar fails, so V47 remains operative and V49
+is retained as deterministic rejection evidence. No deployment or live
+cutover is authorized.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b0fdda29e64b720f82a9b8984f3b4cc29901fd2/arb-executor/docs/research/window1/WINDOW1_V49_EVIDENCED_LEVEL_STANDING_20260810_ADDENDUM.md

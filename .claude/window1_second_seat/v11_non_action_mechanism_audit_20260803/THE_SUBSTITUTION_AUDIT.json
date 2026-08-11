@@ -1,0 +1,120 @@
+{
+ "LABEL": "THE_SUBSTITUTION_AUDIT",
+ "entries": [
+  {
+   "instrument": "V38 pulse-floor",
+   "cite": "2c54d724",
+   "claimed": "risers pulse to a recurring session floor (d1ac9497)",
+   "actually": "trailing-300s/2-visit lookback",
+   "verdict": "SUBSTITUTED: trailing-window myopia",
+   "faithful_test": "session-scale recurrence floor"
+  },
+  {
+   "instrument": "wide-spread ask-anchor",
+   "cite": "57583640",
+   "claimed": "VRB class: catch transient wide-spread divot",
+   "actually": "median-spread>3c gate (excluded VRB)",
+   "verdict": "SUBSTITUTED: median gate for per-moment spread",
+   "faithful_test": "per-moment spread gate at the divot"
+  },
+  {
+   "instrument": "k-depth curve",
+   "cite": "d40bc010-era",
+   "claimed": "deeper fixed rests catch deep flow",
+   "actually": "bid-path-touch fill ruler",
+   "verdict": "SUBSTITUTED: bid-touch for trade-truth",
+   "faithful_test": "re-run under trades-as-truth"
+  },
+  {
+   "instrument": "LAW B mirror",
+   "cite": "e177c2fb",
+   "claimed": "sibling placement from trusted inverse",
+   "actually": "one-shot join at current bid",
+   "verdict": "SUBSTITUTED: one-shot level for full riser stack",
+   "faithful_test": "full V47 riser stack from trust moment"
+  },
+  {
+   "instrument": "dual-rest",
+   "cite": "d34fc6ce",
+   "claimed": "A join + B tracker >=1c above, first-fill-wins",
+   "actually": "as ordered",
+   "verdict": "FAITHFUL",
+   "faithful_test": "stays dead"
+  },
+  {
+   "instrument": "classifier-34% read organ",
+   "cite": "fdeb7516/e177c2fb",
+   "claimed": "reads wrong at decision moments",
+   "actually": "judged vs ex-post whole-window QR label",
+   "verdict": "SUBSTITUTED: terminal labels for moment-truth",
+   "faithful_test": "judge vs forward 30-60min path"
+  },
+  {
+   "instrument": "walk-lag removal",
+   "cite": "9ddfe8c6",
+   "claimed": "faller reprices every receipt",
+   "actually": "analytic instant-fill at evidence low (favors it)",
+   "verdict": "PARTIAL: analytic, error favored instrument",
+   "faithful_test": "executable per-receipt replay"
+  },
+  {
+   "instrument": "transient tombstone",
+   "cite": "cca7c6c1 P4",
+   "claimed": "336-signature announces imminent dip",
+   "actually": "held at PAST excursion low",
+   "verdict": "PARTIAL: past low for announced level",
+   "faithful_test": "reprice to ask-1 at signature onset"
+  },
+  {
+   "instrument": "V44 dry-sibling",
+   "cite": "480b1ee1",
+   "claimed": "Dial B +417c (b503e4ed)",
+   "actually": "faithful causal withhold; MY analytic was ex-post naked-conditioned",
+   "verdict": "TEST_FAITHFUL_ANALYTIC_SUBSTITUTED (mine)",
+   "faithful_test": "maturity-conditioned withhold"
+  },
+  {
+   "instrument": "V46 gap-credit",
+   "cite": "1b1b6a65",
+   "claimed": "pair-gated +121c (aa884cc5)",
+   "actually": "faithful causal gate (sibling-credited-first), empty; MY analytic ex-post pair-conditioned",
+   "verdict": "TEST_FAITHFUL_ANALYTIC_SUBSTITUTED (mine)",
+   "faithful_test": "ungated with knives priced, two columns"
+  },
+  {
+   "instrument": "V49 evidenced-standing",
+   "cite": "1c8700fa",
+   "claimed": "stand AT evidenced P (fe4747cd)",
+   "actually": "kept bid-1 offset (BID_MINUS_ONE_OFFSET_AT_P dominant)",
+   "verdict": "SUBSTITUTED: P-1 offset retained",
+   "faithful_test": "join semantics at exactly P"
+  },
+  {
+   "instrument": "divot fusion",
+   "cite": "63f5ece9",
+   "claimed": "vaulted riser placement for trusted inverse",
+   "actually": "deepest trailing trough (never revisited by a riser)",
+   "verdict": "SUBSTITUTED: deep trough for at-bid join",
+   "faithful_test": "collapses into LAW B faithful test"
+  }
+ ],
+ "counts": {
+  "FAITHFUL": 1,
+  "SUBSTITUTED": 7,
+  "PARTIAL": 2,
+  "TEST_FAITHFUL_ANALYTIC_SUBSTITUTED": 2
+ },
+ "self_audit": "the V44/V46 substitutions were in this seat's own supporting analytics (ex-post conditioning); the machines were the faithful tests",
+ "reopen_ranked": [
+  "1 V49b stand-AT-P",
+  "2 V44b maturity-conditioned dry-sibling",
+  "3 LAW B full-riser-stack",
+  "4 read organ forward-truth",
+  "5 V38b session-recurrence pulse",
+  "6 V46b ungated gap-credit knives-priced",
+  "7 k-curve trades-as-truth",
+  "8 per-moment wide-spread",
+  "9 announced-level transient reprice",
+  "10 walk-lag replay"
+ ]
+}

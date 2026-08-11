@@ -64,7 +64,7 @@ status. Companion machine list: `THE_SHELF_AUDIT.json`.
 
 ## Conservation
 
-Part A: 29 named lineage artifacts — 15 INSTALLED · 10 SHELVED · 4 SUPERSEDED (d1ac9497 carries a split stamp:
+Part A: 29 named lineage artifacts — 15 INSTALLED · 11 SHELVED · 3 SUPERSEDED (d1ac9497 carries a split stamp:
 params installed, crediting role superseded — counted once as INSTALLED with the supersession noted). Part B:
 7 surfaces INSTALLED; 6 sites = 5 INSTALLED + 1 SHELVED; 61 studies = 46 INSTALLED · 9 SHELVED (8 pending +
 gun feeders folded into the site) · 2+ SUPERSEDED (loop8/9 frame-defect line) — every registry entry carries

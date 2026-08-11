@@ -27,6 +27,8 @@ const V43_RECALIBRATION_COMMIT = "b503e4edc2184e8958c97980c2e1769a077bfdd9";
 const V43_RESIDUAL_DOCKET_COMMIT = "6934634efcc32cdb26dbe927ce8398a66aa50e92";
 const STRICT_ASK_FOOTPRINT_COMMIT = "aa884cc5a1f9465a219d0913dbc237a33bc3a063";
 const SURECH_RENDER_COMMIT = "8877c2d519c26b4e54f283ebebcee4933113d100";
+const V47_COMMIT = "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34";
+const CAPBOUND_ANATOMY_COMMIT = "a20e1a85976aefee6a6f0567957174133b692df6";
 const V36_PACKAGE = ".claude/window1_live_v4_replay/v36_state_directional_rest_mature_floor_20260806";
 const GAP_PACKAGE = ".claude/window1_live_v4_replay/v36_gap_to_union_reach_20260807";
 const OUT_REL = ".claude/window1_live_v4_replay/v38_maker_only_machine_20260807";
@@ -43,20 +45,22 @@ const isV43 = variant === "v43";
 const isV45 = variant === "v45";
 const isV46 = variant === "v46";
 const isV47 = variant === "v47";
-const isV45Family = isV45 || isV46 || isV47;
+const isV50 = variant === "v50";
+const isV47Family = isV47 || isV50;
+const isV45Family = isV45 || isV46 || isV47Family;
 const isAttribution = isV43 || isV45Family;
 const hasDeepGap = isV42 || isAttribution;
 const isMaker41 = isV41 || hasDeepGap;
 const isPlacementStack = isV39 || isV40 || isMaker41;
-if (!["v38", "v39", "v40", "v41", "v42", "v43", "v45", "v46", "v47"].includes(variant)) throw new Error(`unknown variant ${variant}`);
-const policy = require(isV47 ? "./window1_v47_same_tick_arm.js" : isV46 ? "./window1_v46_pair_gated_gap_credit.js" : isV45 ? "./window1_v45_guard_release_sibling_credit.js" : isV43 ? "./window1_v43_composed_machine.js" : isV42 ? "./window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "./window1_v41_maker_machine.js" : isV40 ? "./window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "./window1_v39_corrected_placement_stack.js" : "./window1_v38_maker_only_machine.js");
+if (!["v38", "v39", "v40", "v41", "v42", "v43", "v45", "v46", "v47", "v50"].includes(variant)) throw new Error(`unknown variant ${variant}`);
+const policy = require(isV50 ? "./window1_v50_first_fill_price_discipline.js" : isV47 ? "./window1_v47_same_tick_arm.js" : isV46 ? "./window1_v46_pair_gated_gap_credit.js" : isV45 ? "./window1_v45_guard_release_sibling_credit.js" : isV43 ? "./window1_v43_composed_machine.js" : isV42 ? "./window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "./window1_v41_maker_machine.js" : isV40 ? "./window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "./window1_v39_corrected_placement_stack.js" : "./window1_v38_maker_only_machine.js");
 const v43Policy = isV45Family ? require("./window1_v43_composed_machine.js") : null;
 const repo = path.resolve(arg("--repo", "."));
 const v36Root = path.resolve(arg("--v36-root", "C:/tmp/omi-v36-frozen-bfde"));
 const reachRoot = path.resolve(arg("--reach-root", "C:/tmp/omi-reach-57daf3"));
 const gapRoot = path.resolve(arg("--gap-root", isPlacementStack ? "C:/tmp/omi-v36-gap-reach-20260807" : repo));
 const privateRoot = path.resolve(arg("--private-root", process.env.W1_PRIVATE_ROOT || "C:/Users/omigr/OMI-Window1-private"));
-const output = path.resolve(arg("--output", path.join(repo, isV47 ? ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810" : isV46 ? ".claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810" : isV45 ? ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809" : isV43 ? ".claude/window1_live_v4_replay/v43_composed_machine_20260809" : isV42 ? ".claude/window1_live_v4_replay/v42_deep_gap_feasibility_guard_20260809" : isV41 ? ".claude/window1_live_v4_replay/v41_maker_machine_20260808" : isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
+const output = path.resolve(arg("--output", path.join(repo, isV50 ? ".claude/window1_live_v4_replay/v50_first_fill_price_discipline_20260811" : isV47 ? ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810" : isV46 ? ".claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810" : isV45 ? ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809" : isV43 ? ".claude/window1_live_v4_replay/v43_composed_machine_20260809" : isV42 ? ".claude/window1_live_v4_replay/v42_deep_gap_feasibility_guard_20260809" : isV41 ? ".claude/window1_live_v4_replay/v41_maker_machine_20260808" : isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
 const compare = arg("--compare", null) ? path.resolve(arg("--compare", null)) : null;
 
 function ensure(value, message) { if (!value) throw new Error(message); }
@@ -92,7 +96,7 @@ function gitShow(commit, relativePath) {
 }
 function safeOutput(dir) {
   const resolved = path.resolve(dir);
-  ensure(path.basename(resolved).includes(isV47 ? "v47" : isV46 ? "v46" : isV45 ? "v45" : isV43 ? "v43" : isV42 ? "v42" : isV41 ? "v41" : isV40 ? "v40" : isV39 ? "v39" : "v38"), `unsafe output ${resolved}`);
+  ensure(path.basename(resolved).includes(isV50 ? "v50" : isV47 ? "v47" : isV46 ? "v46" : isV45 ? "v45" : isV43 ? "v43" : isV42 ? "v42" : isV41 ? "v41" : isV40 ? "v40" : isV39 ? "v39" : "v38"), `unsafe output ${resolved}`);
   ensure(resolved !== repo && resolved !== path.parse(resolved).root, `unsafe output ${resolved}`);
   fs.rmSync(resolved, { recursive: true, force: true });
   fs.mkdirSync(resolved, { recursive: true });
@@ -241,9 +245,9 @@ function noteV42Guard(leg, decision, row, base, actions, triggerLegIdentity) {
 
 function applyRestDecision(leg, sibling, row, decision, combinedState, detail, actions, base, triggerLegIdentity) {
   if (["PLACE_REST", "REPRICE_REST"].includes(decision.action)) {
-    leg.active_order = { target_cents: decision.target_cents, action_ts: row.ts, action_receipt: row.receipt, source_state: combinedState, ...(decision.gap_credit?.authorized ? { gap_credit: { ...decision.gap_credit, event_id: base.event_id, leg_identity: leg.leg_identity, authorization_timestamp_epoch: row.ts, authorization_receipt: row.receipt } } : {}) };
+    leg.active_order = { target_cents: decision.target_cents, incumbent_target_cents: decision.first_fill_price_discipline?.incumbent_target_cents ?? decision.target_cents, action_ts: row.ts, action_receipt: row.receipt, source_state: combinedState, ...(decision.gap_credit?.authorized ? { gap_credit: { ...decision.gap_credit, event_id: base.event_id, leg_identity: leg.leg_identity, authorization_timestamp_epoch: row.ts, authorization_receipt: row.receipt } } : {}) };
     leg.first_action ||= detail;
-    actions.push({ kind: decision.gap_credit?.authorized ? "GAP_CREDIT_REPRICE_DOWN" : decision.action, event_id: base.event_id, leg_identity: leg.leg_identity, ...clockFields(row.ts, base), receipt: row.receipt, trigger_leg_identity: triggerLegIdentity, target_cents: decision.target_cents, state: combinedState, reason: decision.reason, pulse_floor_cents: detail?.pulse_floor?.floor_cents ?? null, guard: decision.guard ?? null, gap_credit: decision.gap_credit ?? null });
+    actions.push({ kind: decision.gap_credit?.authorized ? "GAP_CREDIT_REPRICE_DOWN" : decision.action, event_id: base.event_id, leg_identity: leg.leg_identity, ...clockFields(row.ts, base), receipt: row.receipt, trigger_leg_identity: triggerLegIdentity, target_cents: decision.target_cents, state: combinedState, reason: decision.reason, pulse_floor_cents: detail?.pulse_floor?.floor_cents ?? null, guard: decision.guard ?? null, gap_credit: decision.gap_credit ?? null, first_fill_price_discipline: decision.first_fill_price_discipline ?? null });
   } else if (decision.action === "CANCEL_REST") {
     leg.active_order = null;
     actions.push({ kind: "CANCEL_REST", event_id: base.event_id, leg_identity: leg.leg_identity, ...clockFields(row.ts, base), receipt: row.receipt, trigger_leg_identity: triggerLegIdentity, reason: decision.reason, guard: decision.guard ?? null });
@@ -251,6 +255,44 @@ function applyRestDecision(leg, sibling, row, decision, combinedState, detail, a
     leg.first_action ||= detail;
     takeLeg(leg, sibling, row, actions, base, decision);
   }
+}
+
+function repriceV50OnSiblingFlow(leg, flowLeg, row, actions, base, normalizedClauses) {
+  if (!normalizedClauses.first_fill_price_discipline || leg.credited || !leg.active_order) return;
+  const before = leg.active_order.target_cents;
+  const incumbent = leg.active_order.incumbent_target_cents ?? before;
+  const bound = policy.firstFillPriceBound({
+    pairCap: leg.pair_cap_cents,
+    siblingObservedFlowFloor: flowLeg.running_traded_low,
+  });
+  if (!Number.isInteger(bound.effective_cap_cents)) return;
+  const target = Math.min(incumbent, bound.effective_cap_cents);
+  if (target === before) return;
+  leg.first_fill_price_bound_cross_receipts += 1;
+  const receipt = {
+    kind: policy.lawfulCent(target) ? "V50_FLOW_FLOOR_CAP_REPRICE" : "V50_FLOW_FLOOR_CAP_CANCEL",
+    event_id: base.event_id,
+    leg_identity: leg.leg_identity,
+    ...clockFields(row.ts, base),
+    receipt: row.receipt,
+    trigger_leg_identity: flowLeg.leg_identity,
+    sibling_observed_flow_floor_cents: flowLeg.running_traded_low,
+    observed_flow_cap_cents: bound.observed_flow_cap_cents,
+    fixed_pair_cap_cents: bound.fixed_pair_cap_cents,
+    effective_cap_cents: bound.effective_cap_cents,
+    incumbent_target_cents: incumbent,
+    prior_target_cents: before,
+    target_cents: policy.lawfulCent(target) ? target : null,
+    price_only_not_timing: true,
+  };
+  if (policy.lawfulCent(target)) {
+    leg.active_order = { ...leg.active_order, target_cents: target, action_ts: row.ts, action_receipt: row.receipt };
+    leg.first_fill_price_bound_reprices += 1;
+  } else {
+    leg.active_order = null;
+    leg.first_fill_price_bound_cancels += 1;
+  }
+  actions.push(receipt);
 }
 
 function releaseV45GuardAtSiblingCredit(withheldLeg, creditedLeg, row, actions, base, normalizedClauses) {
@@ -300,7 +342,7 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
   const event = { event_id: base.event_id, category: base.category, starting_price_split: base.starting_price_split, bell_confidence: base.bell_confidence, edge_source_field: base.edge_source_field, w1_left_epoch: base.left, w1_right_epoch: base.right, mode, clauses: normalizedClauses, legs: {} };
   for (const id of ids) {
     const meta = base.legs[id], reach = meta.reach;
-    event.legs[id] = { ...meta, reach: undefined, event_id: base.event_id, credited: false, entry_cents: null, fill_class: null, fill_source_state: null, action_timestamp_epoch: null, fill_timestamp_epoch: null, pair_cap_cents: null, active_order: null, prior_book: null, directional: [], pulse_visits: [], pulse_floor_cents: null, pulse_floor_ever: false, current_bid_level: null, current_bid_since: null, current_bid_last_trade_hit: false, current_bid_last_trade_hit_receipt: null, book_last_trade_hits_by_level: new Map(), seller_hits_by_level: new Map(), persistent_join_level: null, persistent_join_receipt: null, persistent_join_evidence_receipt: null, persistent_join_timestamp_epoch: null, post_join_book_last_trade_receipts: 0, post_join_certified_seller_hits_at_level: 0, running_seller_hit_low: null, running_qualified_ask_low: null, running_qualified_ask_low_unabsorbed: false, running_qualified_ask_low_reformed_nonfalling: false, latest_new_low_evidence_ts: null, downward_evidence_rows: [], last_combined_state: "SETTLED", classifier_rows: 0, classifier_state_counts: { FALLING: 0, RISING: 0, SETTLED: 0 }, classifier_opposed_rows: 0, classifier_agreement_rows: 0, sanity_bound_rows: 0, sanity_violation_rows: 0, decision_count: 0, state_counts: { FALLING: 0, RISING: 0, SETTLED: 0 }, action_counts: {}, disagreement_count: 0, first_decision: null, last_decision: null, first_action: null, terminal_reason: null, last_placement_inputs: null, deep_gap_guard_evaluations: 0, deep_gap_withheld_evaluations: 0, deep_gap_withhold_episodes: 0, deep_gap_lifts: 0, deep_gap_withhold_active: false, deep_gap_first_withhold: null, deep_gap_last_withhold: null, deep_gap_last_lift: null, post_credit_guard_release_attempts: 0, post_credit_guard_releases: 0, post_credit_guard_release_no_book: 0, post_credit_guard_reapplication_prevented_receipts: 0, post_credit_guard_release: null, gap_credit_eligible_receipts: 0, gap_credit_authorized_walks: 0, gap_credit_sibling_uncredited_refusals: 0, gap_credit_no_lawful_reprice: 0, gap_credit_first: null, gap_credit_last: null, gap_credit_fill: null, union_reach_cents: reach.union_reach_cents, union_first_evidence_timestamp_epoch: reach.union_first_evidence_timestamp_epoch, reach_sources: reach.union_sources, reach_inside_v36_edge: reach.union_first_evidence_timestamp_epoch >= base.left && reach.union_first_evidence_timestamp_epoch <= base.right, reach_snapshot: null };
+    event.legs[id] = { ...meta, reach: undefined, event_id: base.event_id, credited: false, entry_cents: null, fill_class: null, fill_source_state: null, action_timestamp_epoch: null, fill_timestamp_epoch: null, pair_cap_cents: null, active_order: null, prior_book: null, directional: [], pulse_visits: [], pulse_floor_cents: null, pulse_floor_ever: false, current_bid_level: null, current_bid_since: null, current_bid_last_trade_hit: false, current_bid_last_trade_hit_receipt: null, book_last_trade_hits_by_level: new Map(), seller_hits_by_level: new Map(), persistent_join_level: null, persistent_join_receipt: null, persistent_join_evidence_receipt: null, persistent_join_timestamp_epoch: null, post_join_book_last_trade_receipts: 0, post_join_certified_seller_hits_at_level: 0, running_traded_low: null, running_seller_hit_low: null, running_qualified_ask_low: null, running_qualified_ask_low_unabsorbed: false, running_qualified_ask_low_reformed_nonfalling: false, latest_new_low_evidence_ts: null, downward_evidence_rows: [], last_combined_state: "SETTLED", classifier_rows: 0, classifier_state_counts: { FALLING: 0, RISING: 0, SETTLED: 0 }, classifier_opposed_rows: 0, classifier_agreement_rows: 0, sanity_bound_rows: 0, sanity_violation_rows: 0, decision_count: 0, state_counts: { FALLING: 0, RISING: 0, SETTLED: 0 }, action_counts: {}, disagreement_count: 0, first_decision: null, last_decision: null, first_action: null, terminal_reason: null, last_placement_inputs: null, deep_gap_guard_evaluations: 0, deep_gap_withheld_evaluations: 0, deep_gap_withhold_episodes: 0, deep_gap_lifts: 0, deep_gap_withhold_active: false, deep_gap_first_withhold: null, deep_gap_last_withhold: null, deep_gap_last_lift: null, post_credit_guard_release_attempts: 0, post_credit_guard_releases: 0, post_credit_guard_release_no_book: 0, post_credit_guard_reapplication_prevented_receipts: 0, post_credit_guard_release: null, gap_credit_eligible_receipts: 0, gap_credit_authorized_walks: 0, gap_credit_sibling_uncredited_refusals: 0, gap_credit_no_lawful_reprice: 0, gap_credit_first: null, gap_credit_last: null, gap_credit_fill: null, first_fill_price_bound_cross_receipts: 0, first_fill_price_bound_reprices: 0, first_fill_price_bound_cancels: 0, union_reach_cents: reach.union_reach_cents, union_first_evidence_timestamp_epoch: reach.union_first_evidence_timestamp_epoch, reach_sources: reach.union_sources, reach_inside_v36_edge: reach.union_first_evidence_timestamp_epoch >= base.left && reach.union_first_evidence_timestamp_epoch <= base.right, reach_snapshot: null };
   }
   const timeline = [];
   for (const id of ids) {
@@ -314,6 +356,10 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
     if ((isV40 || isMaker41) && Number.isFinite(leg.persistent_join_timestamp_epoch) && row.ts > leg.persistent_join_timestamp_epoch) {
       if (row.kind === "PRINT" && row.taker_side === "no" && row.price === leg.persistent_join_level) leg.post_join_certified_seller_hits_at_level += 1;
       if (row.kind === "BOOK" && row.bid === leg.persistent_join_level && row.last_trade === leg.persistent_join_level) leg.post_join_book_last_trade_receipts += 1;
+    }
+    if (row.kind === "PRINT" && Number.isInteger(row.price)) {
+      leg.running_traded_low = leg.running_traded_low === null ? row.price : Math.min(leg.running_traded_low, row.price);
+      if (isV50) repriceV50OnSiblingFlow(sibling, leg, row, actions, base, normalizedClauses);
     }
     if (leg.credited) {
       if (normalizedClauses.deep_gap_guard && row.kind === "BOOK") {
@@ -405,9 +451,9 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
     const wtaInverseFalling = isPlacementStack && combined.state === "RISING" && String(base.category).startsWith("WTA") && sibling.last_combined_state === "FALLING";
     const before = leg.active_order?.target_cents ?? null;
     const askGapCents = prior && Number.isInteger(prior.ask) && Number.isInteger(row.ask) ? prior.ask - row.ask : null;
-    const placementInputs = { state: combined.state, book: row, priorAsk: prior?.ask ?? null, askGapCents, activeTarget: before, pairCap: leg.pair_cap_cents, pulseFloor: pulse.floor_cents, persistentJoinLevel: isPlacementStack ? leg.persistent_join_level : null, wtaInverseFalling, causalOwnReachLow, activeEvidenceFloor, floorFirstFlickerLive: activeEvidenceFloor === leg.running_qualified_ask_low && leg.running_qualified_ask_low_unabsorbed, floorMature, siblingBestAsk: normalizedClauses.deep_gap_guard ? (sibling.prior_book?.ask ?? null) : undefined, siblingEntryCents: sibling.entry_cents, siblingCredited: sibling.credited, clauses: normalizedClauses };
+    const placementInputs = { state: combined.state, book: row, priorAsk: prior?.ask ?? null, askGapCents, activeTarget: before, pairCap: leg.pair_cap_cents, pulseFloor: pulse.floor_cents, persistentJoinLevel: isPlacementStack ? leg.persistent_join_level : null, wtaInverseFalling, causalOwnReachLow, activeEvidenceFloor, floorFirstFlickerLive: activeEvidenceFloor === leg.running_qualified_ask_low && leg.running_qualified_ask_low_unabsorbed, floorMature, siblingBestAsk: normalizedClauses.deep_gap_guard ? (sibling.prior_book?.ask ?? null) : undefined, siblingObservedFlowFloor: sibling.running_traded_low, siblingEntryCents: sibling.entry_cents, siblingCredited: sibling.credited, clauses: normalizedClauses };
     leg.last_placement_inputs = placementInputs;
-    const atomicReceiptDecision = isV47 && normalizedClauses.same_tick_arm ? policy.decideReceipt({ ...placementInputs, currentJoinLevel: joinLevelBeforeReceipt, residencySeconds: row.ts - leg.current_bid_since }) : null;
+    const atomicReceiptDecision = isV47Family && normalizedClauses.same_tick_arm ? policy.decideReceipt({ ...placementInputs, currentJoinLevel: joinLevelBeforeReceipt, residencySeconds: row.ts - leg.current_bid_since }) : null;
     if (atomicReceiptDecision) ensure(atomicReceiptDecision.effective_join_level_cents === leg.persistent_join_level, `V47 atomic join mismatch ${leg.leg_identity} ${row.receipt}`);
     const decision = atomicReceiptDecision ? atomicReceiptDecision.decision : policy.decide(placementInputs);
     let postCreditGuardBypass = null;
@@ -440,7 +486,7 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
     leg.first_decision ||= detail; leg.last_decision = detail;
     applyRestDecision(leg, sibling, row, decision, combined.state, detail, actions, base, leg.leg_identity);
     detail.order_after_cents = leg.active_order?.target_cents ?? null;
-    if (isV47 && v41Join?.changed) {
+    if (isV47Family && v41Join?.changed) {
       const sameReceiptPost = ["PLACE_REST", "REPRICE_REST"].includes(decision.action) && detail.order_after_cents === v41Join.level_cents;
       const alreadyAtLevel = decision.action === "HOLD_REST" && before === v41Join.level_cents && detail.order_after_cents === v41Join.level_cents;
       joinQualifications.push({
@@ -720,7 +766,10 @@ async function main() {
     baseByEvent.set(span.event_id, base);
   }
   ensure(baseByEvent.size === 804 && tickerBounds.size === 1608, "base conservation failed");
-  const machineSpecs = isV47 ? [
+  const machineSpecs = isV50 ? [
+    { name: "V47_BASELINE", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true, first_fill_price_discipline: false } },
+    { name: "V50_FIRST_FILL_PRICE_DISCIPLINE", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true, first_fill_price_discipline: true } },
+  ] : isV47 ? [
     { name: "V45_BASELINE", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: false } },
     { name: "V47_SAME_TICK_ARM", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true } },
   ] : isV46 ? [
@@ -743,7 +792,7 @@ async function main() {
   const printLoad = await loadPrints(tickerBounds), tapeHashes = {};
   let index = 0;
   for (const base of [...baseByEvent.values()].sort((a, b) => a.event_id.localeCompare(b.event_id))) {
-    index += 1; if (index % 50 === 0) process.stderr.write(`${isV47 ? "V47x2" : isV46 ? "V46x2" : isV45 ? "V45x2" : isV43 ? "V43x8" : isV42 ? "V42" : isV41 ? "V41" : isV40 ? "V40" : isV39 ? "V39" : "V38"} replay ${index}/804\n`);
+    index += 1; if (index % 50 === 0) process.stderr.write(`${isV50 ? "V50x2" : isV47 ? "V47x2" : isV46 ? "V46x2" : isV45 ? "V45x2" : isV43 ? "V43x8" : isV42 ? "V42" : isV41 ? "V41" : isV40 ? "V40" : isV39 ? "V39" : "V38"} replay ${index}/804\n`);
     const tapes = new Map(), prints = new Map();
     for (const [id, leg] of Object.entries(base.legs)) {
       const loaded = loadTape(leg.ticker); tapeHashes[leg.ticker] = { sha256: loaded.sha256, bytes: loaded.bytes };
@@ -758,7 +807,7 @@ async function main() {
       for (const row of strict.actions) run.actions.push({ machine: spec.name, mode: "STRICT_PRINT_CROSS", ...row });
     }
   }
-  const primaryRun = machineRuns.get(isV47 ? "V47_SAME_TICK_ARM" : isV46 ? "V46_PAIR_GATED_GAP_CREDIT" : isV45 ? "V45_GUARD_RELEASE_AT_SIBLING_CREDIT" : isV43 ? "V43_ALL_THREE" : "PRIMARY"), marketEvents = primaryRun.marketEvents, strictEvents = primaryRun.strictEvents, allActions = primaryRun.actions;
+  const primaryRun = machineRuns.get(isV50 ? "V50_FIRST_FILL_PRICE_DISCIPLINE" : isV47 ? "V47_SAME_TICK_ARM" : isV46 ? "V46_PAIR_GATED_GAP_CREDIT" : isV45 ? "V45_GUARD_RELEASE_AT_SIBLING_CREDIT" : isV43 ? "V43_ALL_THREE" : "PRIMARY"), marketEvents = primaryRun.marketEvents, strictEvents = primaryRun.strictEvents, allActions = primaryRun.actions;
   const marketScore = score(marketEvents), strictScore = score(strictEvents), marketGrades = gradeAgainstReach(marketEvents, reachByEvent, baseByEvent), strictGrades = gradeAgainstReach(strictEvents, reachByEvent, baseByEvent), v36Score = frozenV36Score(reachRows), v36NetScore = frozenV36NetScore(v36StrictFrozenEvents);
   ensure(v36NetScore.aggregate.taker_legs_charged === 882, "V36 taker-leg fee population changed");
   const v41LedgerPath = ".claude/window1_live_v4_replay/v41_maker_machine_20260808/MARKET_EVENT_LEDGER.jsonl.gz";
@@ -852,10 +901,17 @@ async function main() {
     const pass = Object.entries(expected).every(([key, value]) => key === "frontier" ? Object.entries(value).every(([tier, n]) => observed.frontier[tier] === n) : observed[key] === value);
     return { frozen_V45_commit: V45_COMMIT, expected, observed, pass };
   })() : null;
+  const v50BaselineReproduction = isV50 ? (() => {
+    const row = attributionByName.get("V47_BASELINE");
+    const expected = { completed_pairs: 396, under_par_pairs: 396, completed_locked_cents: 1936, naked_pnl_cents: -162, true_book_net_cents: 1774, strict_completed_pairs: 331, frontier: { LE_93: 52, LE_95: 71, LE_97: 142, LT_100: 396 } };
+    const observed = { completed_pairs: row.MARKET_UNION_REACH.completed_pairs, under_par_pairs: row.MARKET_UNION_REACH.under_par_pairs, completed_locked_cents: row.FULL_BOOK.completed_locked_cents, naked_pnl_cents: row.FULL_BOOK.naked_pnl_cents, true_book_net_cents: row.FULL_BOOK.true_book_net_cents, strict_completed_pairs: row.STRICT_PRINT_CROSS.completed_pairs, frontier: row.MARKET_UNION_REACH.frontier };
+    const pass = Object.entries(expected).every(([key, value]) => key === "frontier" ? Object.entries(value).every(([tier, n]) => observed.frontier[tier] === n) : observed[key] === value);
+    return { frozen_V47_commit: V47_COMMIT, expected, observed, pass };
+  })() : null;
   const layerGroups = new Map();
   for (const row of marketGrades.residuals) { const key = row.layer_bind.owner; if (!layerGroups.has(key)) layerGroups.set(key, []); layerGroups.get(key).push(row); }
   const layerRanking = [...layerGroups].map(([owner, rows]) => ({ owner, games: new Set(rows.map((row) => row.event_id)).size, sides: rows.length, measurable_cents: rows.reduce((sum, row) => sum + (row.layer_bind.measurable_cents || 0), 0), category_x_bell_confidence: countBy(rows, (row) => `${row.category}|${row.bell_confidence}`) })).sort((a, b) => b.measurable_cents - a.measurable_cents || b.games - a.games || a.owner.localeCompare(b.owner));
-  const namedLabels = isV47 ? ["SURECH", "ARNROM", "KIRSEK", "KRUFER", "BOSCOP", "PANFAL"] : isV46 ? ["PANFAL", "ARNROM", "KIRSEK", "KRUFER", "BOSCOP"] : isV45 ? ["LUZTSE", "COLCER", "SMIYUN", "VANLEE", "SAINUG", "PENTHA", "SHEOLI", "ARNROM", "KRUFER", "KIRSEK"] : isV43 ? ["KIRSEK", "ARNROM", "KRUFER", "BOSCOP", "PUTJEA", "BORDIM", "ROCBUE", "KREZHE"] : isV42 ? ["PUTJEA", "ROCBUE", "KREZHE", "BORDIM", "ARNROM"] : isV41 ? ["ARNROM", "BOSCOP", "NIKVRB", "WESPAA", "KRUFER"] : ["ARNROM", "BOSCOP", "WESPAA", "NIKVRB", "GANJAN"];
+  const namedLabels = isV50 ? ["PUTJEA", "ROCBUE", "KREZHE", "ARNROM", "KRUFER", "BOSCOP"] : isV47 ? ["SURECH", "ARNROM", "KIRSEK", "KRUFER", "BOSCOP", "PANFAL"] : isV46 ? ["PANFAL", "ARNROM", "KIRSEK", "KRUFER", "BOSCOP"] : isV45 ? ["LUZTSE", "COLCER", "SMIYUN", "VANLEE", "SAINUG", "PENTHA", "SHEOLI", "ARNROM", "KRUFER", "KIRSEK"] : isV43 ? ["KIRSEK", "ARNROM", "KRUFER", "BOSCOP", "PUTJEA", "BORDIM", "ROCBUE", "KREZHE"] : isV42 ? ["PUTJEA", "ROCBUE", "KREZHE", "BORDIM", "ARNROM"] : isV41 ? ["ARNROM", "BOSCOP", "NIKVRB", "WESPAA", "KRUFER"] : ["ARNROM", "BOSCOP", "WESPAA", "NIKVRB", "GANJAN"];
   const named = {};
   for (const label of namedLabels) {
     const market = marketEvents.find((event) => event.event_id.includes(label)), strict = strictEvents.find((event) => event.event_id.includes(label));
@@ -873,8 +929,8 @@ async function main() {
     }
     return [spec.name, gameRows];
   })) : null;
-  const policyFile = path.join(repo, isV47 ? "arb-executor/analysis/window1_v47_same_tick_arm.js" : isV46 ? "arb-executor/analysis/window1_v46_pair_gated_gap_credit.js" : isV45 ? "arb-executor/analysis/window1_v45_guard_release_sibling_credit.js" : isV43 ? "arb-executor/analysis/window1_v43_composed_machine.js" : isV42 ? "arb-executor/analysis/window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "arb-executor/analysis/window1_v41_maker_machine.js" : isV40 ? "arb-executor/analysis/window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "arb-executor/analysis/window1_v39_corrected_placement_stack.js" : "arb-executor/analysis/window1_v38_maker_only_machine.js"), builderFile = __filename;
-  const wrapperFile = path.join(repo, isV47 ? "arb-executor/analysis/build_window1_v47_same_tick_arm.js" : isV46 ? "arb-executor/analysis/build_window1_v46_pair_gated_gap_credit.js" : isV45 ? "arb-executor/analysis/build_window1_v45_guard_release_sibling_credit.js" : isV43 ? "arb-executor/analysis/build_window1_v43_composed_machine.js" : isV42 ? "arb-executor/analysis/build_window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "arb-executor/analysis/build_window1_v41_maker_machine.js" : isV40 ? "arb-executor/analysis/build_window1_v40_incumbent_direction_placement_stack.js" : "arb-executor/analysis/build_window1_v39_corrected_placement_stack.js");
+  const policyFile = path.join(repo, isV50 ? "arb-executor/analysis/window1_v50_first_fill_price_discipline.js" : isV47 ? "arb-executor/analysis/window1_v47_same_tick_arm.js" : isV46 ? "arb-executor/analysis/window1_v46_pair_gated_gap_credit.js" : isV45 ? "arb-executor/analysis/window1_v45_guard_release_sibling_credit.js" : isV43 ? "arb-executor/analysis/window1_v43_composed_machine.js" : isV42 ? "arb-executor/analysis/window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "arb-executor/analysis/window1_v41_maker_machine.js" : isV40 ? "arb-executor/analysis/window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "arb-executor/analysis/window1_v39_corrected_placement_stack.js" : "arb-executor/analysis/window1_v38_maker_only_machine.js"), builderFile = __filename;
+  const wrapperFile = path.join(repo, isV50 ? "arb-executor/analysis/build_window1_v50_first_fill_price_discipline.js" : isV47 ? "arb-executor/analysis/build_window1_v47_same_tick_arm.js" : isV46 ? "arb-executor/analysis/build_window1_v46_pair_gated_gap_credit.js" : isV45 ? "arb-executor/analysis/build_window1_v45_guard_release_sibling_credit.js" : isV43 ? "arb-executor/analysis/build_window1_v43_composed_machine.js" : isV42 ? "arb-executor/analysis/build_window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "arb-executor/analysis/build_window1_v41_maker_machine.js" : isV40 ? "arb-executor/analysis/build_window1_v40_incumbent_direction_placement_stack.js" : "arb-executor/analysis/build_window1_v39_corrected_placement_stack.js");
   const policyText = fs.readFileSync(policyFile, "utf8");
   const makerPolicyLineageText = hasDeepGap ? `${fs.readFileSync(path.join(repo, "arb-executor/analysis/window1_v41_maker_machine.js"), "utf8")}\n${isAttribution ? fs.readFileSync(path.join(repo, "arb-executor/analysis/window1_v42_deep_gap_feasibility_guard.js"), "utf8") : ""}\n${policyText}` : policyText;
   if (!isPlacementStack || isMaker41) ensure(!/action:\s*["']TAKE["']/.test(policyText) && !/function\s+.*take/i.test(policyText) && !/matureFloorTakePermission/.test(policyText), `take path survived in ${variant.toUpperCase()} policy`);
@@ -935,6 +991,15 @@ async function main() {
   const frozenV45ControlBytes = (isV46 || isV47) ? gitShow(V45_COMMIT, frozenV45ControlPath) : null;
   const frozenV45ScoreBytes = (isV46 || isV47) ? gitShow(V45_COMMIT, frozenV45ScorePath) : null;
   const frozenV45PolicyBytes = (isV46 || isV47) ? gitShow(V45_COMMIT, frozenV45PolicyPath) : null;
+  const frozenV47ControlPath = ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810/CONTROL_BINDING.json";
+  const frozenV47ScorePath = ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810/ATTRIBUTION_SCORECARD.json";
+  const frozenV47PolicyPath = "arb-executor/analysis/window1_v47_same_tick_arm.js";
+  const frozenV47ControlBytes = isV50 ? gitShow(V47_COMMIT, frozenV47ControlPath) : null;
+  const frozenV47ScoreBytes = isV50 ? gitShow(V47_COMMIT, frozenV47ScorePath) : null;
+  const frozenV47PolicyBytes = isV50 ? gitShow(V47_COMMIT, frozenV47PolicyPath) : null;
+  const capboundAnatomyPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAPBOUND_ANATOMY_TAIL_CHECK.json";
+  const capboundAnatomyBytes = isV50 ? gitShow(CAPBOUND_ANATOMY_COMMIT, capboundAnatomyPath) : null;
+  const capboundAnatomy = isV50 ? JSON.parse(capboundAnatomyBytes) : null;
   const surechMarksPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/l4_archetype/SURECH_DECISION_MARKS.json";
   const surechTimelinePath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/exemplar_packs/l4_archetype/SURECH_DUAL_TIMELINE_V2.csv";
   const surechMarksBytes = isV47 ? gitShow(SURECH_RENDER_COMMIT, surechMarksPath) : null;
@@ -960,8 +1025,15 @@ async function main() {
     ensure(JSON.parse(frozenV45ControlBytes).schema_version === "window1-v45-guard-release-sibling-credit-control-v1", "V45 frozen control binding changed");
     ensure(JSON.parse(surechMarksBytes).event === "KXATPCHALLENGERMATCH-26JUL14SURECH", "SURECH render identity changed");
   }
+  if (isV50) {
+    ensure(shaBytes(frozenV47PolicyBytes) === shaBytes(Buffer.from(fs.readFileSync(path.join(repo, frozenV47PolicyPath), "utf8").replace(/\r\n/g, "\n"))), "V47 inherited Git-normalized policy bytes differ from fb74c8b8");
+    ensure(JSON.parse(frozenV47ControlBytes).schema_version === "window1-v47-same-tick-arm-control-v1", "V47 frozen control binding changed");
+    ensure(capboundAnatomy.THE_45?.n === 45 && capboundAnatomy.THE_45?.die_from_first_fill_richness === 31 && capboundAnatomy.THE_45?.genuinely_infeasible === 14, "a20e1a85 CAP_BOUND anatomy changed");
+  }
   const control = isV46
     ? { schema_version: "window1-v46-pair-gated-gap-credit-control-v1", base: V45_COMMIT, frozen_V45: V45_COMMIT, frozen_union_reach: REACH_COMMIT, controlling_receipts: [STRICT_ASK_FOOTPRINT_COMMIT], architecture: { incumbent: "V45_BYTE_IDENTICAL_EXCEPT_ONE_PAIR_GATED_GAP_CREDIT_CLAUSE", incumbent_clause: "FALLING_NO_CHASE_STRICT_ASK_CREDIT", additional_credit_event: "SINGLE_RECEIPT_ASK_GAP_GE_3_CENTS", authorization: "OTHER_EXPRESSION_ALREADY_CREDITED", authorized_effect: "REPRICE_EXISTING_FALLING_REST_DOWN_TO_MIN_CURRENT_ASK_MINUS_1_PAIR_CAP", sibling_not_credited: "V45_ACTION_STREAM_UNCHANGED", fill_credit: "INHERITED_MARKET_UNION_OR_STRICT_LATER_RECEIPT_ONLY_NO_SAME_RECEIPT_FABRICATION", pair_cap: "V45_UNCHANGED", sanity_bound: "REST_STRICTLY_BELOW_CURRENT_BEST_ASK", clocks_as_decision_inputs: [], hard_prebell_edge: "V45_UNCHANGED", take_path: "DELETED_IN_V41" }, acceptance_bar: { completed_pairs_min: 396, true_book_net_cents_strictly_greater_than: 1774, zero_bound_regressions: true, PANFAL_at_or_better_92_and_locked_min_8: true }, fill_rulers: { market_scoring: "CANON_UNION_CHANNELS", build_verification: "STRICT_PRINT_CROSS", never_swapped: true } }
+    : isV50
+    ? { schema_version: "window1-v50-first-fill-price-discipline-control-v1", base: V47_COMMIT, frozen_V47: V47_COMMIT, frozen_union_reach: REACH_COMMIT, controlling_receipts: [CAPBOUND_ANATOMY_COMMIT], architecture: { incumbent: "V47_BYTE_IDENTICAL_UNLESS_SIBLING_TRUE_TRADE_EXISTS", clause: "REST_OR_ENTRY_LEVEL_L_LE_99_MINUS_SIBLING_LOWEST_CAUSAL_TRADED_PRICE_SO_FAR", no_sibling_flow: "UNBOUNDED_V47_PATH", first_flow_and_new_lows: "REPRICE_EXISTING_REST_ON_THE_SIBLING_PRINT_RECEIPT", price_not_timing: true, fixed_pair_cap: "MIN_WITH_99_MINUS_CREDITED_SIBLING_ENTRY", clocks_as_decision_inputs: [], hard_prebell_edge: "V47_UNCHANGED", take_path: "DELETED_IN_V41" }, attribution: { frozen_CAP_UNFEASIBLE_rows: 45, first_fill_richness_rows: 31, genuinely_infeasible_rows: 14, cost_columns: ["ENTRIES_DELAYED", "ENTRIES_LOST"] }, fill_rulers: { market_scoring: "CANON_UNION_CHANNELS", build_verification: "STRICT_PRINT_CROSS", never_swapped: true } }
     : isV47
     ? { schema_version: "window1-v47-same-tick-arm-control-v1", base: V45_COMMIT, frozen_V45: V45_COMMIT, frozen_union_reach: REACH_COMMIT, controlling_receipts: [SURECH_RENDER_COMMIT], architecture: { incumbent: "V45_BYTE_IDENTICAL_EXCEPT_EXPLICIT_ATOMIC_RECEIPT_PIPELINE", fix: "JOIN_QUALIFICATION_AND_PLACEMENT_DECISION_EXECUTE_IN_ONE_RECEIPT_LOCAL_CALL", qualification_law: "V45_UNCHANGED", persistence_level_definition: "V45_UNCHANGED", target_guard_cap_sanity_fill_and_edge_laws: "V45_UNCHANGED", scheduler_latency_after_qualification: 0, clocks_as_decision_inputs: [], hard_prebell_edge: "V45_UNCHANGED", take_path: "DELETED_IN_V41" }, evidence_scope: { SURECH_render_role: "OLDER_L4_ARCHETYPE_EVIDENCE_NOT_A_FROZEN_V45_DECISION_TRACE", executable_SEG_C_footprint: "V45_VS_V47_WHOLE_804" }, acceptance_bar: { V45_reproduced: true, zero_named_regressions: true, aggregate_gain_required: false }, fill_rulers: { market_scoring: "CANON_UNION_CHANNELS", build_verification: "STRICT_PRINT_CROSS", never_swapped: true } }
     : isV45
@@ -1310,6 +1382,73 @@ async function main() {
     out.pass = out.baseline_reproduction.pass && out.correctness.pass && out.zero_regressions.pass;
     return out;
   })() : null;
+  const v50Differential = isV50 ? (() => {
+    const priorRun = machineRuns.get("V47_BASELINE"), nextRun = machineRuns.get("V50_FIRST_FILL_PRICE_DISCIPLINE");
+    const group = (rows) => {
+      const out = new Map();
+      for (const row of rows) {
+        if (!out.has(row.leg_identity)) out.set(row.leg_identity, []);
+        out.get(row.leg_identity).push(row);
+      }
+      return out;
+    };
+    const prior = group(priorRun.actions.filter((row) => row.mode === "MARKET_UNION_REACH").map(({ machine, ...row }) => row));
+    const next = group(nextRun.actions.filter((row) => row.mode === "MARKET_UNION_REACH").map(({ machine, ...row }) => row));
+    const identities = [...new Set([...prior.keys(), ...next.keys()])].sort();
+    const rows = identities.map((legIdentity) => {
+      const before = canonical(prior.get(legIdentity) || []), after = canonical(next.get(legIdentity) || []);
+      return { leg_identity: legIdentity, V47_action_stream_sha256: shaBytes(Buffer.from(before)), V50_action_stream_sha256: shaBytes(Buffer.from(after)), byte_identical: before === after };
+    });
+    return { compared_leg_streams: rows.length, changed_leg_streams: rows.filter((row) => !row.byte_identical).length, unchanged_leg_streams: rows.filter((row) => row.byte_identical).length, changed: rows.filter((row) => !row.byte_identical), conservation: { expected: 1608, observed: rows.length, pass: rows.length === 1608 } };
+  })() : null;
+  const v50CapAttribution = isV50 ? (() => {
+    const allPrior = machineRuns.get("V47_BASELINE").marketEvents;
+    const nextByEvent = new Map(machineRuns.get("V50_FIRST_FILL_PRICE_DISCIPLINE").marketEvents.map((event) => [event.event_id, event]));
+    const devCapUnfeasible = allPrior.filter((event) => {
+      const legs = Object.values(event.legs);
+      if (legs.filter((leg) => leg.credited).length !== 1) return false;
+      const sibling = legs.find((leg) => !leg.credited);
+      return Number.isInteger(sibling.pair_cap_cents)
+        && Number.isInteger(sibling.union_reach_cents)
+        && sibling.union_reach_cents > sibling.pair_cap_cents;
+    });
+    const rows = devCapUnfeasible.map((before) => {
+      const after = nextByEvent.get(before.event_id);
+      ensure(after, `V50 event missing ${before.event_id}`);
+      const legRows = Object.keys(before.legs).sort().map((id) => {
+        const prior = before.legs[id], next = after.legs[id];
+        return { leg_id: id, V47: { credited: prior.credited, entry_cents: prior.entry_cents, fill_timestamp_epoch: prior.fill_timestamp_epoch, pair_cap_cents: prior.pair_cap_cents, union_reach_cents: prior.union_reach_cents }, V50: { credited: next.credited, entry_cents: next.entry_cents, fill_timestamp_epoch: next.fill_timestamp_epoch, pair_cap_cents: next.pair_cap_cents, union_reach_cents: next.union_reach_cents }, entry_delayed: prior.credited && next.credited && next.fill_timestamp_epoch > prior.fill_timestamp_epoch, entry_lost: prior.credited && !next.credited, entry_price_improved_cents: prior.credited && next.credited ? prior.entry_cents - next.entry_cents : null };
+      });
+      const uncredited = Object.values(before.legs).find((leg) => !leg.credited);
+      return { event_id: before.event_id, category: before.category, starting_price_split: before.starting_price_split, class: "V47_DEV_CAP_UNFEASIBLE", class_predicate: "EXACTLY_ONE_CREDITED_AND_UNCREDITED_UNION_REACH_GT_FIXED_PAIR_CAP", cap_gap_cents: uncredited.union_reach_cents - uncredited.pair_cap_cents, V47: { completed: before.completed_pair, combined_entry_cents: before.combined_entry_cents }, V50: { completed: after.completed_pair, combined_entry_cents: after.combined_entry_cents }, pair_recovered: !before.completed_pair && after.completed_pair, pair_lost: before.completed_pair && !after.completed_pair, legs: legRows };
+    });
+    const allNext = nextByEvent;
+    const allCosts = allPrior.flatMap((before) => Object.keys(before.legs).sort().map((id) => ({ before: before.legs[id], after: allNext.get(before.event_id).legs[id], event_id: before.event_id, category: before.category }))).filter(({ before, after }) => before.credited && (!after.credited || after.fill_timestamp_epoch > before.fill_timestamp_epoch));
+    return {
+      sealed_mechanism_evidence: { commit: CAPBOUND_ANATOMY_COMMIT, path: capboundAnatomyPath, sha256: shaBytes(capboundAnatomyBytes), rows: 45, first_fill_richness: 31, genuinely_infeasible: 14, identity_population: "SEALED_EXAM_NOT_DEV_804", direct_identity_join_to_development: false },
+      development_class_definition: { population: "FROZEN_V47_DEV_804", predicate: "EXACTLY_ONE_CREDITED_LEG; UN-CREDITED_SIBLING_HAS_INTEGER_PAIR_CAP_AND_UNION_REACH; UNION_REACH_GT_PAIR_CAP", derived_from: "V47_BASELINE/MARKET_EVENT_LEDGER.jsonl.gz", endpoint_fields_used_for_attribution_only: ["credited", "pair_cap_cents", "union_reach_cents"], decision_inputs_changed: false },
+      two_columns: {
+        CAP_UNFEASIBLE_RECOVERY: { eligible_dev_CAP_UNFEASIBLE_pairs: rows.length, pairs_recovered: rows.filter((row) => row.pair_recovered).length, identities: rows.filter((row) => row.pair_recovered).map((row) => row.event_id) },
+        PRICE_BOUND_COST: { entries_delayed: allCosts.filter((row) => row.after.credited).length, entries_lost: allCosts.filter((row) => !row.after.credited).length, affected_events: [...new Set(allCosts.map((row) => row.event_id))].sort() },
+      },
+      rows,
+      conservation: { development_events: allPrior.length, dev_CAP_UNFEASIBLE_rows: rows.length, unique_event_identities: new Set(rows.map((row) => row.event_id)).size, all_rows_match_class_predicate: rows.every((row) => row.cap_gap_cents > 0), pass: allPrior.length === 804 && rows.length > 0 && rows.length === new Set(rows.map((row) => row.event_id)).size && rows.every((row) => row.cap_gap_cents > 0) },
+    };
+  })() : null;
+  const v50BoundLedger = isV50 ? primaryRun.actions.filter((row) => row.mode === "MARKET_UNION_REACH" && (row.first_fill_price_discipline?.authority === "SIBLING_LOWEST_CAUSAL_TRADE_SO_FAR" || String(row.kind).startsWith("V50_FLOW_FLOOR_CAP_"))).map((row) => ({ event_id: row.event_id, leg_identity: row.leg_identity, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, kind: row.kind, target_cents: row.target_cents ?? null, first_fill_price_discipline: row.first_fill_price_discipline ?? { authority: "SIBLING_LOWEST_CAUSAL_TRADE_SO_FAR", sibling_observed_flow_floor_cents: row.sibling_observed_flow_floor_cents, observed_flow_cap_cents: row.observed_flow_cap_cents, fixed_pair_cap_cents: row.fixed_pair_cap_cents, effective_cap_cents: row.effective_cap_cents, incumbent_target_cents: row.incumbent_target_cents, applied: true } })) : null;
+  const v50BoundViolations = isV50 ? v50BoundLedger.filter((row) => Number.isInteger(row.target_cents) && Number.isInteger(row.first_fill_price_discipline.effective_cap_cents) && row.target_cents > row.first_fill_price_discipline.effective_cap_cents) : null;
+  const namedV50 = isV50 ? (() => {
+    const baseline = namedAttribution.V47_BASELINE, current = namedAttribution.V50_FIRST_FILL_PRICE_DISCIPLINE, rows = {};
+    for (const label of namedLabels) rows[label] = { event_id: named[label].event_id, V47: baseline[label].MARKET_UNION_REACH, V50: current[label].MARKET_UNION_REACH };
+    const noRegression = (label) => !rows[label].V47.completed || (rows[label].V50.completed && rows[label].V50.combined_entry_cents <= rows[label].V47.combined_entry_cents);
+    const assertions = { ARNROM_no_regression: noRegression("ARNROM"), KRUFER_no_regression: noRegression("KRUFER"), BOSCOP_no_regression: noRegression("BOSCOP") };
+    return { rows, assertions, pass: Object.values(assertions).every(Boolean) };
+  })() : null;
+  const v50Acceptance = isV50 ? (() => {
+    const row = attributionByName.get("V50_FIRST_FILL_PRICE_DISCIPLINE"), baseline = attributionByName.get("V47_BASELINE");
+    const checks = { V47_baseline_reproduced: v50BaselineReproduction.pass, causal_bound_violations_zero: v50BoundViolations.length === 0, CAP_BOUND_conservation: v50CapAttribution.conservation.pass, named_no_regressions: namedV50.pass };
+    return { mechanism_bound_checks: checks, pass: Object.values(checks).every(Boolean), gains_not_forced: true, observed_delta: { completed_pairs: row.MARKET_UNION_REACH.completed_pairs - baseline.MARKET_UNION_REACH.completed_pairs, under_par_pairs: row.MARKET_UNION_REACH.under_par_pairs - baseline.MARKET_UNION_REACH.under_par_pairs, completed_locked_cents: row.FULL_BOOK.completed_locked_cents - baseline.FULL_BOOK.completed_locked_cents, naked_pnl_cents: row.FULL_BOOK.naked_pnl_cents - baseline.FULL_BOOK.naked_pnl_cents, true_book_net_cents: row.FULL_BOOK.true_book_net_cents - baseline.FULL_BOOK.true_book_net_cents }, attribution_columns: v50CapAttribution.two_columns };
+  })() : null;
   const v43GuardOnlyDiff = isV43 ? deepGapDifferential(machineRuns.get("V41_BASELINE").marketEvents, machineRuns.get("C2_GUARD_ONLY").marketEvents, closeByTicker) : null;
   const v43AttributionScorecard = isV43 ? {
     order: machineSpecs.map((spec) => spec.name),
@@ -1339,6 +1478,14 @@ async function main() {
     acceptance: v47Acceptance,
     delta_V47_minus_V45: v47Acceptance.observed_gain,
   } : null;
+  const v50AttributionScorecard = isV50 ? {
+    order: machineSpecs.map((spec) => spec.name),
+    rows: attributionRows.map(({ full_book_rows, ...row }) => row),
+    frozen_V47_reproduction: v50BaselineReproduction,
+    acceptance: v50Acceptance,
+    delta_V50_minus_V47: v50Acceptance.observed_delta,
+    two_columns: v50CapAttribution.two_columns,
+  } : null;
   const core = {
     "CONTROL_BINDING.json": canonical(control),
     ...((isPlacementStack && !isMaker41) ? { "TAKE_PATH_INTACT_RECEIPT.json": canonical({ frozen_V36_commit: V36_COMMIT, V36_policy_path: "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js", V36_policy_sha256: fileHash(path.join(v36Root, "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js")), variant_policy_path: path.relative(repo, policyFile).replaceAll("\\", "/"), variant_policy_sha256: fileHash(policyFile), decision_reason: isV40 ? "MATURE_EVIDENCE_FLOOR_TAKE" : "V36_MATURE_EVIDENCE_FLOOR_TAKE_UNCHANGED", market_taker_fills: marketLegs.filter((leg) => String(leg.fill_class).includes("TAKER")).length, strict_taker_fills: strictEvents.flatMap((event) => Object.values(event.legs)).filter((leg) => String(leg.fill_class).includes("TAKER")).length, V38_tombstone_role: "REJECTED_MAKER_ONLY_NEGATIVE_CONTROL_NOT_INHERITED" }) } : { "TAKE_PATH_DELETION_RECEIPT.json": canonical({ policy_path: path.relative(repo, policyFile).replaceAll("\\", "/"), policy_sha256: fileHash(policyFile), forbidden_action_literal_TAKE_count: (policyText.match(/action:\s*["']TAKE["']/g) || []).length, take_named_function_count: (policyText.match(/function\s+\w*take\w*/gi) || []).length, market_taker_fills: marketLegs.filter((leg) => String(leg.fill_class).includes("TAKER")).length, strict_taker_fills: strictEvents.flatMap((event) => Object.values(event.legs)).filter((leg) => String(leg.fill_class).includes("TAKER")).length, entry_actions_exported: ["PLACE_REST", "REPRICE_REST"], maker_fees_cents: 0, pass: true }) }),
@@ -1354,6 +1501,21 @@ async function main() {
     ...(isPlacementStack ? { "REST_SANITY.json": canonical(sanity), "V36_COMPARISON.json": canonical(v36Comparison) } : {}),
     ...(isV40 ? { "CLASSIFIER_RESEARCH_OPEN_RECEIPT.json": canonical(classifierResearchOpen), "ACCEPTANCE_BAR.json": canonical(acceptance), "PERSISTENT_JOIN_POST_EVIDENCE_RECEIPT.json": canonical(joinReceipt), "PERSISTENT_JOIN_POST_EVIDENCE_LEDGER.jsonl.gz": gzipRows(joinRows) } : {}),
     ...(isMaker41 ? { "PERSISTENCE_ONLY_JOIN_RECEIPT.json": canonical({ controlling_frontier: { commit: RISER_FRONTIER_COMMIT, sha256: shaBytes(riserFrontierBytes), T4_persist300: riserFrontierReceipt.per_trigger.T4_persist300 }, controlling_level_policy: { commit: LEVEL_POLICY_COMMIT, sha256: shaBytes(levelPolicyBytes), P2_join: levelPolicyReceipt.per_policy.P2_join, P3_join_track: levelPolicyReceipt.per_policy.P3_join_track }, seller_hit_gate_removed: true, first_two_sided_tracker_until_join: true, join_overrides_tracker: true, join_census: joinReceipt }), "PERSISTENT_JOIN_LEDGER.jsonl.gz": gzipRows(joinRows), "CAUSAL_REACH_BINDING.json": canonical({ commit: CAUSAL_REACH_COMMIT, path: causalReachPath, sha256: shaBytes(causalReachBytes), CAUSAL_REACH: causalReachReceipt.CAUSAL_REACH, conservation: causalReachReceipt.conservation }), ...(isV41 ? { "NAMED_V41_RECEIPT.json": canonical(namedV41) } : {}) } : {}),
+    ...(isV50 ? {
+      "V50_RECEIPT_BINDINGS.json": canonical({
+        frozen_V47: { commit: V47_COMMIT, baseline_reproduction: v50BaselineReproduction, control_path: frozenV47ControlPath, control_sha256: shaBytes(frozenV47ControlBytes), attribution_path: frozenV47ScorePath, attribution_sha256: shaBytes(frozenV47ScoreBytes), inherited_policy_path: frozenV47PolicyPath, inherited_policy_git_sha256: shaBytes(frozenV47PolicyBytes), working_git_normalized_sha256: shaBytes(Buffer.from(fs.readFileSync(path.join(repo, frozenV47PolicyPath), "utf8").replace(/\r\n/g, "\n"))), git_normalized_policy_byte_identical: shaBytes(frozenV47PolicyBytes) === shaBytes(Buffer.from(fs.readFileSync(path.join(repo, frozenV47PolicyPath), "utf8").replace(/\r\n/g, "\n"))) },
+        CAP_BOUND_anatomy: { commit: CAPBOUND_ANATOMY_COMMIT, path: capboundAnatomyPath, sha256: shaBytes(capboundAnatomyBytes), frozen_rows: 45, first_fill_richness: 31, genuinely_infeasible: 14 },
+        scoped_law: "REST_OR_ENTRY_PRICE_L_IS_BOUNDED_BY_99_MINUS_SIBLING_LOWEST_CAUSAL_TRUE_TRADE_SO_FAR; NO_FLOW_IS_UNBOUNDED; PRICE_ONLY_NOT_TIMING",
+      }),
+      "ATTRIBUTION_SCORECARD.json": canonical(v50AttributionScorecard),
+      "CAP_BOUND_RECOVERY_AND_COST_RECEIPT.json": canonical(v50CapAttribution),
+      "CAP_BOUND_RECOVERY_LEDGER.jsonl.gz": gzipRows(v50CapAttribution.rows),
+      "V47_V50_DIFFERENTIAL_RECEIPT.json": canonical(v50Differential),
+      "COMPOSITION_ACCEPTANCE_BAR.json": canonical(v50Acceptance),
+      "CONSTRUCTION_STATUS.json": canonical({ status: v50Acceptance.pass ? "PASS_MECHANISM_BOUND" : "BLOCKED_V47_REMAINS_OPERATIVE", operative_baseline: "V47_fb74c8b8", gains_required: false, observed_delta: v50Acceptance.observed_delta, reasons: Object.entries(v50Acceptance.mechanism_bound_checks).filter(([, pass]) => !pass).map(([name]) => name), no_forced_values: true }),
+      "NAMED_V50_RECEIPT.json": canonical(namedV50),
+      "FULL_BOOK_PNL.json": canonical({ method: { commit: FULL_BOOK_PNL_COMMIT, receipt_path: fullBookReceiptPath, receipt_sha256: shaBytes(fullBookReceiptBytes), close_audit_path: closeAuditPath, close_audit_sha256: shaBytes(closeAuditBytes), close_column: "replay_close_cents", completed: "100_MINUS_PAIR_ENTRY", naked: "FROZEN_REPLAY_WINDOW1_CLOSE_MINUS_ENTRY_WHERE_AVAILABLE", skip: 0 }, rows: attributionRows.map((row) => ({ machine: row.machine, aggregate: row.FULL_BOOK, by_category: row.by_category.FULL_BOOK })), acceptance: v50Acceptance }),
+    } : {}),
     ...(isV47 ? {
       "V47_RECEIPT_BINDINGS.json": canonical({
         frozen_V45: { commit: V45_COMMIT, baseline_reproduction: v47BaselineReproduction, control_path: frozenV45ControlPath, control_sha256: shaBytes(frozenV45ControlBytes), attribution_path: frozenV45ScorePath, attribution_sha256: shaBytes(frozenV45ScoreBytes), inherited_policy_path: frozenV45PolicyPath, inherited_policy_git_sha256: shaBytes(frozenV45PolicyBytes), working_git_normalized_sha256: shaBytes(Buffer.from(fs.readFileSync(path.join(repo, frozenV45PolicyPath), "utf8").replace(/\r\n/g, "\n"))), git_normalized_policy_byte_identical: shaBytes(frozenV45PolicyBytes) === shaBytes(Buffer.from(fs.readFileSync(path.join(repo, frozenV45PolicyPath), "utf8").replace(/\r\n/g, "\n"))) },
@@ -1441,7 +1603,7 @@ async function main() {
     ...(isV40 ? { "NAMED_V40_RECEIPT.json": canonical(namedV40) } : {}),
     "FORBIDDEN_ACCESS_RECEIPT.json": canonical({ holdout_accesses: 0, live_accesses: 0, network_runtime_accesses: 0, order_accesses: 0, position_accesses: 0, exit_accesses: 0, settlement_accesses: 0, DCA_accesses: 0, deployment_accesses: 0, private_scope: "FIT_DEVELOPMENT_804_TAPE_AND_CERTIFIED_PRINT_CACHE_ONLY", mutations: 0 }),
     "SOURCE_HASH_MANIFEST.json": canonical({
-      commits: { V36: V36_COMMIT, UNION_REACH: REACH_COMMIT, GAP_GRADE_PARENT: GAP_COMMIT, DIVOT_CENSUS: DIVOT_COMMIT, ...(isPlacementStack ? { COUNTERFACTUAL: COUNTERFACTUAL_COMMIT } : {}), ...(isV39 ? { FALLER_ANATOMY: FALLER_ANATOMY_COMMIT } : {}), ...(isV40 ? { V39_EVIDENCE_PACKAGE: "ff5880d11a88b0d12415f5371d7cbb61331957e4" } : {}), ...(isMaker41 ? { CAUSAL_REACH: CAUSAL_REACH_COMMIT, RISER_TRIGGER_FRONTIER: RISER_FRONTIER_COMMIT, LEVEL_POLICY_REALIZATION: LEVEL_POLICY_COMMIT } : {}), ...(hasDeepGap ? { V41_PACKAGE: V41_COMMIT, DEEP_GAP_CENSUS: DEEP_GAP_CENSUS_COMMIT, FULL_BOOK_PNL_METHOD: FULL_BOOK_PNL_COMMIT } : {}), ...(isAttribution ? { ARM_FIRST_EVIDENCE: ARM_FIRST_EVIDENCE_COMMIT, LOOSEN_ONE_CENT: LOOSEN_ONE_CENT_COMMIT } : {}), ...(isV45 ? { V43_OPERATIVE: V43_COMMIT, V43_RECALIBRATION: V43_RECALIBRATION_COMMIT, V43_RESIDUAL_DOCKET: V43_RESIDUAL_DOCKET_COMMIT } : {}), ...(isV46 ? { V45_OPERATIVE: V45_COMMIT, STRICT_ASK_CREDIT_FOOTPRINT: STRICT_ASK_FOOTPRINT_COMMIT } : {}), ...(isV47 ? { V45_OPERATIVE: V45_COMMIT, SURECH_RENDER: SURECH_RENDER_COMMIT } : {}) },
+      commits: { V36: V36_COMMIT, UNION_REACH: REACH_COMMIT, GAP_GRADE_PARENT: GAP_COMMIT, DIVOT_CENSUS: DIVOT_COMMIT, ...(isPlacementStack ? { COUNTERFACTUAL: COUNTERFACTUAL_COMMIT } : {}), ...(isV39 ? { FALLER_ANATOMY: FALLER_ANATOMY_COMMIT } : {}), ...(isV40 ? { V39_EVIDENCE_PACKAGE: "ff5880d11a88b0d12415f5371d7cbb61331957e4" } : {}), ...(isMaker41 ? { CAUSAL_REACH: CAUSAL_REACH_COMMIT, RISER_TRIGGER_FRONTIER: RISER_FRONTIER_COMMIT, LEVEL_POLICY_REALIZATION: LEVEL_POLICY_COMMIT } : {}), ...(hasDeepGap ? { V41_PACKAGE: V41_COMMIT, DEEP_GAP_CENSUS: DEEP_GAP_CENSUS_COMMIT, FULL_BOOK_PNL_METHOD: FULL_BOOK_PNL_COMMIT } : {}), ...(isAttribution ? { ARM_FIRST_EVIDENCE: ARM_FIRST_EVIDENCE_COMMIT, LOOSEN_ONE_CENT: LOOSEN_ONE_CENT_COMMIT } : {}), ...(isV45 ? { V43_OPERATIVE: V43_COMMIT, V43_RECALIBRATION: V43_RECALIBRATION_COMMIT, V43_RESIDUAL_DOCKET: V43_RESIDUAL_DOCKET_COMMIT } : {}), ...(isV46 ? { V45_OPERATIVE: V45_COMMIT, STRICT_ASK_CREDIT_FOOTPRINT: STRICT_ASK_FOOTPRINT_COMMIT } : {}), ...(isV47 ? { V45_OPERATIVE: V45_COMMIT, SURECH_RENDER: SURECH_RENDER_COMMIT } : {}), ...(isV50 ? { V47_OPERATIVE: V47_COMMIT, CAP_BOUND_ANATOMY: CAPBOUND_ANATOMY_COMMIT } : {}) },
       public: {
         [path.relative(repo, policyFile).replaceAll("\\", "/")]: { sha256: fileHash(policyFile), bytes: fs.statSync(policyFile).size },
         [path.relative(repo, builderFile).replaceAll("\\", "/")]: { sha256: fileHash(builderFile), bytes: fs.statSync(builderFile).size },
@@ -1476,12 +1638,17 @@ async function main() {
           "arb-executor/tests/test_window1_v47_same_tick_arm.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v47_same_tick_arm.js")), bytes: fs.statSync(path.join(repo, "arb-executor/tests/test_window1_v47_same_tick_arm.js")).size },
           "arb-executor/tests/test_window1_v47_same_tick_arm_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v47_same_tick_arm_package.js")), bytes: fs.statSync(path.join(repo, "arb-executor/tests/test_window1_v47_same_tick_arm_package.js")).size },
         } : {}),
+        ...(isV50 ? {
+          "arb-executor/analysis/window1_v47_same_tick_arm.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v47_same_tick_arm.js")), bytes: fs.statSync(path.join(repo, "arb-executor/analysis/window1_v47_same_tick_arm.js")).size },
+          "arb-executor/tests/test_window1_v50_first_fill_price_discipline.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v50_first_fill_price_discipline.js")), bytes: fs.statSync(path.join(repo, "arb-executor/tests/test_window1_v50_first_fill_price_discipline.js")).size },
+          "arb-executor/tests/test_window1_v50_first_fill_price_discipline_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v50_first_fill_price_discipline_package.js")), bytes: fs.statSync(path.join(repo, "arb-executor/tests/test_window1_v50_first_fill_price_discipline_package.js")).size },
+        } : {}),
         ...(isV40 ? { [v39TelemetryPath]: { sha256: fileHash(path.join(repo, v39TelemetryPath)), bytes: fs.statSync(path.join(repo, v39TelemetryPath)).size } } : {}),
         [`${GAP_PACKAGE}/UNION_REACH_LEG_LEDGER.jsonl.gz`]: { sha256: fileHash(path.join(gapPackage, "UNION_REACH_LEG_LEDGER.jsonl.gz")), bytes: fs.statSync(path.join(gapPackage, "UNION_REACH_LEG_LEDGER.jsonl.gz")).size },
         [`${GAP_PACKAGE}/V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz`]: { sha256: fileHash(path.join(gapPackage, "V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz")), bytes: fs.statSync(path.join(gapPackage, "V36_GAP_TO_REACH_LEG_LEDGER.jsonl.gz")).size },
       },
       frozen_V36: { WINDOW1_SPAN_804: { sha256: fileHash(path.join(v36Package, "WINDOW1_SPAN_804.json")), bytes: fs.statSync(path.join(v36Package, "WINDOW1_SPAN_804.json")).size }, STRICT_DECISION_TRACE_1608: { sha256: fileHash(path.join(v36Package, "STRICT_DECISION_TRACE_1608.json")), bytes: fs.statSync(path.join(v36Package, "STRICT_DECISION_TRACE_1608.json")).size } },
-      git_bound_receipts: isPlacementStack ? { [counterPath]: { commit: COUNTERFACTUAL_COMMIT, sha256: shaBytes(counterBytes), bytes: counterBytes.length }, ...(isV39 ? { [anatomyPath]: { commit: FALLER_ANATOMY_COMMIT, sha256: shaBytes(anatomyBytes), bytes: anatomyBytes.length } } : {}), ...(isMaker41 ? { [causalReachPath]: { commit: CAUSAL_REACH_COMMIT, sha256: shaBytes(causalReachBytes), bytes: causalReachBytes.length }, [riserFrontierPath]: { commit: RISER_FRONTIER_COMMIT, sha256: shaBytes(riserFrontierBytes), bytes: riserFrontierBytes.length }, [levelPolicyPath]: { commit: LEVEL_POLICY_COMMIT, sha256: shaBytes(levelPolicyBytes), bytes: levelPolicyBytes.length } } : {}), ...(hasDeepGap ? { [deepGapCensusPath]: { commit: DEEP_GAP_CENSUS_COMMIT, sha256: shaBytes(deepGapCensusBytes), bytes: deepGapCensusBytes.length }, [fullBookReceiptPath]: { commit: FULL_BOOK_PNL_COMMIT, sha256: shaBytes(fullBookReceiptBytes), bytes: fullBookReceiptBytes.length }, [closeAuditPath]: { commit: FULL_BOOK_PNL_COMMIT, sha256: shaBytes(closeAuditBytes), bytes: closeAuditBytes.length } } : {}), ...(isAttribution ? { [armFirstEvidencePath]: { commit: ARM_FIRST_EVIDENCE_COMMIT, sha256: shaBytes(armFirstEvidenceBytes), bytes: armFirstEvidenceBytes.length }, [loosenOneCentPath]: { commit: LOOSEN_ONE_CENT_COMMIT, sha256: shaBytes(loosenOneCentBytes), bytes: loosenOneCentBytes.length } } : {}), ...(isV45 ? { [v43RecalibrationPath]: { commit: V43_RECALIBRATION_COMMIT, sha256: shaBytes(v43RecalibrationBytes), bytes: v43RecalibrationBytes.length }, [v43DocketPath]: { commit: V43_RESIDUAL_DOCKET_COMMIT, sha256: shaBytes(v43DocketBytes), bytes: v43DocketBytes.length }, [luztseMarksPath]: { commit: V43_RESIDUAL_DOCKET_COMMIT, sha256: shaBytes(luztseMarksBytes), bytes: luztseMarksBytes.length }, [luztseTimelinePath]: { commit: V43_RESIDUAL_DOCKET_COMMIT, sha256: shaBytes(luztseTimelineBytes), bytes: luztseTimelineBytes.length } } : {}), ...(isV46 ? { [frozenV45ControlPath]: { commit: V45_COMMIT, sha256: shaBytes(frozenV45ControlBytes), bytes: frozenV45ControlBytes.length }, [frozenV45ScorePath]: { commit: V45_COMMIT, sha256: shaBytes(frozenV45ScoreBytes), bytes: frozenV45ScoreBytes.length }, [frozenV45PolicyPath]: { commit: V45_COMMIT, sha256: shaBytes(frozenV45PolicyBytes), bytes: frozenV45PolicyBytes.length }, [strictAskFootprintPath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(strictAskFootprintBytes), bytes: strictAskFootprintBytes.length }, [strictAskFootprintMdPath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(strictAskFootprintMdBytes), bytes: strictAskFootprintMdBytes.length }, [panfalMarksPath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(panfalMarksBytes), bytes: panfalMarksBytes.length }, [panfalTimelinePath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(panfalTimelineBytes), bytes: panfalTimelineBytes.length } } : {}) } : {},
+      git_bound_receipts: isPlacementStack ? { [counterPath]: { commit: COUNTERFACTUAL_COMMIT, sha256: shaBytes(counterBytes), bytes: counterBytes.length }, ...(isV39 ? { [anatomyPath]: { commit: FALLER_ANATOMY_COMMIT, sha256: shaBytes(anatomyBytes), bytes: anatomyBytes.length } } : {}), ...(isMaker41 ? { [causalReachPath]: { commit: CAUSAL_REACH_COMMIT, sha256: shaBytes(causalReachBytes), bytes: causalReachBytes.length }, [riserFrontierPath]: { commit: RISER_FRONTIER_COMMIT, sha256: shaBytes(riserFrontierBytes), bytes: riserFrontierBytes.length }, [levelPolicyPath]: { commit: LEVEL_POLICY_COMMIT, sha256: shaBytes(levelPolicyBytes), bytes: levelPolicyBytes.length } } : {}), ...(hasDeepGap ? { [deepGapCensusPath]: { commit: DEEP_GAP_CENSUS_COMMIT, sha256: shaBytes(deepGapCensusBytes), bytes: deepGapCensusBytes.length }, [fullBookReceiptPath]: { commit: FULL_BOOK_PNL_COMMIT, sha256: shaBytes(fullBookReceiptBytes), bytes: fullBookReceiptBytes.length }, [closeAuditPath]: { commit: FULL_BOOK_PNL_COMMIT, sha256: shaBytes(closeAuditBytes), bytes: closeAuditBytes.length } } : {}), ...(isAttribution ? { [armFirstEvidencePath]: { commit: ARM_FIRST_EVIDENCE_COMMIT, sha256: shaBytes(armFirstEvidenceBytes), bytes: armFirstEvidenceBytes.length }, [loosenOneCentPath]: { commit: LOOSEN_ONE_CENT_COMMIT, sha256: shaBytes(loosenOneCentBytes), bytes: loosenOneCentBytes.length } } : {}), ...(isV45 ? { [v43RecalibrationPath]: { commit: V43_RECALIBRATION_COMMIT, sha256: shaBytes(v43RecalibrationBytes), bytes: v43RecalibrationBytes.length }, [v43DocketPath]: { commit: V43_RESIDUAL_DOCKET_COMMIT, sha256: shaBytes(v43DocketBytes), bytes: v43DocketBytes.length }, [luztseMarksPath]: { commit: V43_RESIDUAL_DOCKET_COMMIT, sha256: shaBytes(luztseMarksBytes), bytes: luztseMarksBytes.length }, [luztseTimelinePath]: { commit: V43_RESIDUAL_DOCKET_COMMIT, sha256: shaBytes(luztseTimelineBytes), bytes: luztseTimelineBytes.length } } : {}), ...(isV46 ? { [frozenV45ControlPath]: { commit: V45_COMMIT, sha256: shaBytes(frozenV45ControlBytes), bytes: frozenV45ControlBytes.length }, [frozenV45ScorePath]: { commit: V45_COMMIT, sha256: shaBytes(frozenV45ScoreBytes), bytes: frozenV45ScoreBytes.length }, [frozenV45PolicyPath]: { commit: V45_COMMIT, sha256: shaBytes(frozenV45PolicyBytes), bytes: frozenV45PolicyBytes.length }, [strictAskFootprintPath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(strictAskFootprintBytes), bytes: strictAskFootprintBytes.length }, [strictAskFootprintMdPath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(strictAskFootprintMdBytes), bytes: strictAskFootprintMdBytes.length }, [panfalMarksPath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(panfalMarksBytes), bytes: panfalMarksBytes.length }, [panfalTimelinePath]: { commit: STRICT_ASK_FOOTPRINT_COMMIT, sha256: shaBytes(panfalTimelineBytes), bytes: panfalTimelineBytes.length } } : {}), ...(isV50 ? { [frozenV47ControlPath]: { commit: V47_COMMIT, sha256: shaBytes(frozenV47ControlBytes), bytes: frozenV47ControlBytes.length }, [frozenV47ScorePath]: { commit: V47_COMMIT, sha256: shaBytes(frozenV47ScoreBytes), bytes: frozenV47ScoreBytes.length }, [frozenV47PolicyPath]: { commit: V47_COMMIT, sha256: shaBytes(frozenV47PolicyBytes), bytes: frozenV47PolicyBytes.length }, [capboundAnatomyPath]: { commit: CAPBOUND_ANATOMY_COMMIT, sha256: shaBytes(capboundAnatomyBytes), bytes: capboundAnatomyBytes.length } } : {}) } : {},
       private_prints: printLoad.receipt,
       private_tapes: tapeHashes,
     }),
@@ -1498,8 +1665,11 @@ async function main() {
     await writeGzipRowsFile(path.join(output, "ATTRIBUTION_STRICT_EVENT_LEDGER.jsonl.gz"), attributionEvents("strictEvents"));
     await writeGzipRowsFile(path.join(output, "ATTRIBUTION_FULL_BOOK_LEDGER.jsonl.gz"), attributionFullBookRows());
   }
+  if (isV50) await writeGzipRowsFile(path.join(output, "FIRST_FILL_PRICE_BOUND_LEDGER.jsonl.gz"), v50BoundLedger);
   await writeGzipRowsFile(path.join(output, "ACTION_TRACE.jsonl.gz"), allActions);
-  write("REPORT.md", isV47
+  write("REPORT.md", isV50
+    ? `# V50 first-fill price discipline - ${v50Acceptance.pass ? "PASS MECHANISM-BOUND" : "BLOCKED / V47 REMAINS OPERATIVE"}\n\nV50 adds one causal price bound to frozen V47. A rest or entry target L may not exceed 99 minus the sibling's lowest true trade observed so far. Before sibling flow exists, V47 is unchanged. The clause changes price only: the rest remains live, re-evaluates on each sibling print, and uses no clock.\n\n${attributionRows.map((row) => `- ${row.machine}: completed ${row.MARKET_UNION_REACH.completed_pairs}, under par ${row.MARKET_UNION_REACH.under_par_pairs}, locked ${row.FULL_BOOK.completed_locked_cents}c, naked ${row.FULL_BOOK.naked_pnl_cents}c, true book ${row.FULL_BOOK.true_book_net_cents}c, frontier ${row.MARKET_UNION_REACH.frontier.LE_93}/${row.MARKET_UNION_REACH.frontier.LE_95}/${row.MARKET_UNION_REACH.frontier.LE_97}/${row.MARKET_UNION_REACH.frontier.LT_100}; strict ${row.STRICT_PRINT_CROSS.completed_pairs}.`).join("\n")}\n\n- Frozen V47 reproduction: ${v50BaselineReproduction.pass ? "PASS" : "FAIL"}.\n- CAP_UNFEASIBLE recovery: ${v50CapAttribution.two_columns.CAP_UNFEASIBLE_RECOVERY.pairs_recovered}/${v50CapAttribution.two_columns.CAP_UNFEASIBLE_RECOVERY.eligible_dev_CAP_UNFEASIBLE_pairs} development V47 CAP_UNFEASIBLE pairs recovered.\n- Sealed a20e1a85 evidence remains bound as 45 cases (31 first-fill richness / 14 genuinely infeasible); its later exam identities are not joined to development events.\n- Price-bound cost: ${v50CapAttribution.two_columns.PRICE_BOUND_COST.entries_delayed} entries delayed and ${v50CapAttribution.two_columns.PRICE_BOUND_COST.entries_lost} entries lost.\n- Bound receipts: ${v50BoundLedger.length}; violations ${v50BoundViolations.length}; changed action streams ${v50Differential.changed_leg_streams}/${v50Differential.compared_leg_streams}.\n- Named: PUTJEA ${named.PUTJEA.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; ROCBUE ${named.ROCBUE.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; KREZHE ${named.KREZHE.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; ARNROM ${named.ARNROM.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; KRUFER ${named.KRUFER.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; BOSCOP ${named.BOSCOP.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}.\n- Mechanism-bound checks: ${v50Acceptance.pass ? "PASS" : "BLOCKED"}; gains are reported as observed and never forced.\n- Market value uses CANON union channels; strict print crossing remains build verification only.\n`
+    : isV47
     ? `# V47 same-tick arm - ${v47Acceptance.pass ? "PASS / OPERATIVE" : "BLOCKED / V45 REMAINS OPERATIVE"}\n\nV47 freezes one pipeline-correctness invariant on operative V45: a changed deep-join qualification and the placement decision are one receipt-local operation. Persistence, first-evidence arming, targets, guards, caps, sanity, fill rulers, and the hard edge are unchanged.\n\n${attributionRows.map((row) => `- ${row.machine}: completed ${row.MARKET_UNION_REACH.completed_pairs}, under par ${row.MARKET_UNION_REACH.under_par_pairs}, locked ${row.FULL_BOOK.completed_locked_cents}c, naked ${row.FULL_BOOK.naked_pnl_cents}c, true book ${row.FULL_BOOK.true_book_net_cents}c, frontier ${row.MARKET_UNION_REACH.frontier.LE_93}/${row.MARKET_UNION_REACH.frontier.LE_95}/${row.MARKET_UNION_REACH.frontier.LE_97}/${row.MARKET_UNION_REACH.frontier.LT_100}; strict ${row.STRICT_PRINT_CROSS.completed_pairs}.`).join("\n")}\n\n- Frozen V45 reproduction: ${v47BaselineReproduction.pass ? "PASS" : "FAIL"}.\n- SEG_C qualification rows: ${v47SegCFootprint.summary.qualification_rows}; V45/V47 positive qualification-to-post rows ${v47SegCFootprint.summary.V45_positive_qualification_to_post_rows}/${v47SegCFootprint.summary.V47_positive_qualification_to_post_rows}; V47 positive scheduler-latency rows ${v47SegCFootprint.summary.V47_positive_scheduler_latency_rows}. Qualification-to-post delay caused by an unchanged guard is reported separately and is not scheduler latency.\n- Changed outcomes: ${v47SegCFootprint.summary.outcome_changed_rows}; changed action streams: ${v47Differential.changed_leg_streams}.\n- SURECH remains unfilled as ordered; the 8877c2d5 render is older L4 archetype evidence, not a frozen V45 trace. The executable V45 baseline already posted each unguarded changed join on its qualifying receipt, so V47's correctness invariant yields zero score delta rather than a manufactured gain.\n- Named zero-regression checks: ${namedV47.pass ? "PASS" : "FAIL"}.\n- Acceptance: zero scheduler latency ${v47Acceptance.correctness.pass ? "PASS" : "FAIL"}; zero regressions ${v47Acceptance.zero_regressions.pass ? "PASS" : "FAIL"}; gain required NO; overall ${v47Acceptance.pass ? "PASS" : "BLOCKED"}.\n- Market value uses CANON union channels; strict print crossing remains build verification only.\n`
     : isV46
     ? `# V46 pair-gated gap credit - ${v46Acceptance.pass ? "PASS / OPERATIVE" : "BLOCKED / V45 REMAINS OPERATIVE"}\n\nV46 adds one clause to frozen operative V45: on a FALLING leg with an existing rest, a single-receipt ask gap of at least ${policy.ASK_GAP_CREDIT_MIN_CENTS} cents licenses a reprice down only after the game's other expression is already credited. Without sibling credit the V45 action stream is unchanged. The reprice posts at min(current ask minus one, pair cap); fills still require an inherited later market-union or strict-print receipt.\n\n${attributionRows.map((row) => `- ${row.machine}: completed ${row.MARKET_UNION_REACH.completed_pairs}, under par ${row.MARKET_UNION_REACH.under_par_pairs}, locked ${row.FULL_BOOK.completed_locked_cents}c, naked ${row.FULL_BOOK.naked_pnl_cents}c, true book ${row.FULL_BOOK.true_book_net_cents}c, frontier ${row.MARKET_UNION_REACH.frontier.LE_93}/${row.MARKET_UNION_REACH.frontier.LE_95}/${row.MARKET_UNION_REACH.frontier.LE_97}/${row.MARKET_UNION_REACH.frontier.LT_100}; strict ${row.STRICT_PRINT_CROSS.completed_pairs}.`).join("\n")}\n\n- Frozen V45 reproduction: ${v46BaselineReproduction.pass ? "PASS" : "FAIL"}.\n- Gap-credit walks: ${v46GapLedger.summary.authorized_walks} across ${v46GapLedger.summary.authorized_legs} legs; filled ${v46GapLedger.summary.authorized_walks_that_filled}.\n- Two columns: completion gains ${v46GapLedger.summary.two_columns.pairs_completed.events}; new exposure ${v46GapLedger.summary.two_columns.new_exposure.events}.\n- Sibling-uncredited refusal receipts: ${v46GapLedger.summary.sibling_uncredited_refusal_receipts} across ${v46GapLedger.summary.sibling_uncredited_refusal_legs} legs. The frozen aa884cc5 footprint's 11 naked-knife legs / median +44c remain an analytical binding, not a coerced replay count.\n- PANFAL ${named.PANFAL.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}: ${namedV46.PANFAL_mechanism_diagnosis.conclusion}.\n- ARNROM ${named.ARNROM.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; KIRSEK ${named.KIRSEK.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; KRUFER ${named.KRUFER.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}; BOSCOP ${named.BOSCOP.MARKET_UNION_REACH.combined_entry_cents ?? "INCOMPLETE"}.\n- Bar: completed >=396 ${v46Acceptance.completed_pairs.pass ? "PASS" : "FAIL"}; true book >1774c ${v46Acceptance.true_book_net_cents.pass ? "PASS" : "FAIL"}; zero bound regressions ${v46Acceptance.zero_bound_regressions.pass ? "PASS" : "FAIL"}; named ${v46Acceptance.named_checks.pass ? "PASS" : "FAIL"}; overall ${v46Acceptance.pass ? "PASS" : "BLOCKED"}.\n- Market value uses CANON union channels; strict print crossing remains build verification only.\n`
@@ -1531,7 +1701,7 @@ async function main() {
     writeManifest(compare);
     ensure(fileHash(path.join(compare, "ARTIFACT_HASH_MANIFEST.json")) === fileHash(path.join(output, "ARTIFACT_HASH_MANIFEST.json")), "finalized artifact manifests differ");
   }
-  process.stdout.write(canonical({ output, MARKET_UNION_REACH: marketScore, STRICT_PRINT_CROSS: strictScore, reach_grade: marketGrades.aggregate, ...(isV47 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v47Acceptance, SEG_C: v47SegCFootprint.summary } : isV46 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v46Acceptance, GAP_CREDIT: v46GapLedger.summary } : isV45 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v45Acceptance, RELEASES: v45ReleasedRestLedger.summary } : isV43 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v43Acceptance } : isV42 ? { FULL_BOOK: v42FullBook.aggregate, ACCEPTANCE: v42Acceptance, GUARD: { affected_legs: v42GuardLegs.length, differential: deepGapDiff.aggregate } } : {}), named }));
+  process.stdout.write(canonical({ output, MARKET_UNION_REACH: marketScore, STRICT_PRINT_CROSS: strictScore, reach_grade: marketGrades.aggregate, ...(isV50 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v50Acceptance, CAP_BOUND: v50CapAttribution.two_columns } : isV47 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v47Acceptance, SEG_C: v47SegCFootprint.summary } : isV46 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v46Acceptance, GAP_CREDIT: v46GapLedger.summary } : isV45 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v45Acceptance, RELEASES: v45ReleasedRestLedger.summary } : isV43 ? { ATTRIBUTION: attributionRows.map(({ full_book_rows, ...row }) => row), ACCEPTANCE: v43Acceptance } : isV42 ? { FULL_BOOK: v42FullBook.aggregate, ACCEPTANCE: v42Acceptance, GUARD: { affected_legs: v42GuardLegs.length, differential: deepGapDiff.aggregate } } : {}), named }));
 }
 
 main().catch((error) => { process.stderr.write(`${error.stack || error}\n`); process.exitCode = 1; });

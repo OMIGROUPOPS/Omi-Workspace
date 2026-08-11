@@ -1,0 +1,55 @@
+{
+  "frozen_V47": {
+    "commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "baseline_reproduction": {
+      "frozen_V47_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+      "expected": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396
+        }
+      },
+      "observed": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396,
+          "ANY_PRICE": 396
+        }
+      },
+      "pass": true
+    },
+    "control_path": ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810/CONTROL_BINDING.json",
+    "control_sha256": "70f09222aa549fd597c5f81d706c3578396a39ee3873132ddc386ed90b01362c",
+    "attribution_path": ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810/ATTRIBUTION_SCORECARD.json",
+    "attribution_sha256": "de4d7d24aa946a1532f6e4db9d8ef728e4a9443d191a009ef62c8325988eccc7",
+    "inherited_policy_path": "arb-executor/analysis/window1_v47_same_tick_arm.js",
+    "inherited_policy_git_sha256": "73728d9902fbd19f7ef7c67cd0d406324faed140f86e65f2a8ded71f528f95b0",
+    "working_git_normalized_sha256": "73728d9902fbd19f7ef7c67cd0d406324faed140f86e65f2a8ded71f528f95b0",
+    "git_normalized_policy_byte_identical": true
+  },
+  "CAP_BOUND_anatomy": {
+    "commit": "a20e1a85976aefee6a6f0567957174133b692df6",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAPBOUND_ANATOMY_TAIL_CHECK.json",
+    "sha256": "b2d7ceb63ed2863706b1e2282ff5ad4bdc16a292892b2931d4b2d8e9608fef97",
+    "frozen_rows": 45,
+    "first_fill_richness": 31,
+    "genuinely_infeasible": 14
+  },
+  "scoped_law": "REST_OR_ENTRY_PRICE_L_IS_BOUNDED_BY_99_MINUS_SIBLING_LOWEST_CAUSAL_TRUE_TRADE_SO_FAR; NO_FLOW_IS_UNBOUNDED; PRICE_ONLY_NOT_TIMING"
+}

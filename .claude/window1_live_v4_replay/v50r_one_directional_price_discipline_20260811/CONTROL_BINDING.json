@@ -1,0 +1,35 @@
+{
+  "schema_version": "window1-v50r-one-directional-first-fill-price-discipline-control-v1",
+  "base": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "frozen_V47": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "frozen_union_reach": "57daf3c15ad618098a810566d24127df8f17f3f9",
+  "controlling_receipts": [
+    "a20e1a85976aefee6a6f0567957174133b692df6"
+  ],
+  "architecture": {
+    "incumbent": "V47_BYTE_IDENTICAL_EXCEPT_UNHEDGED_FIRST_FILL_PRICE_BOUND",
+    "clause": "ONLY_UNHEDGED_PROSPECTIVE_FIRST_FILL_LEVEL_L_LE_99_MINUS_SIBLING_LOWEST_CAUSAL_TRADED_PRICE_SO_FAR",
+    "sequence_unknown": "EITHER_UNCREDITED_LEG_IS_A_PROSPECTIVE_FIRST_FILL_AND_MAY_BE_BOUNDED",
+    "sibling_credit": "FLOW_FLOOR_BOUND_LIFTS_RECEIPT_LOCALLY; V47_FIXED_PAIR_CAP_ONLY",
+    "second_fill": "SEEKS_OWN_CAUSAL_V47_FLOOR_UNDER_FIXED_99_MINUS_FIRST_FILL_CAP",
+    "no_sibling_flow": "UNBOUNDED_V47_PATH",
+    "price_not_timing": true,
+    "clocks_as_decision_inputs": [],
+    "hard_prebell_edge": "V47_UNCHANGED",
+    "take_path": "DELETED_IN_V41"
+  },
+  "attribution": {
+    "frozen_CAP_UNFEASIBLE_rows": 45,
+    "first_fill_richness_rows": 31,
+    "genuinely_infeasible_rows": 14,
+    "cost_columns": [
+      "ENTRIES_DELAYED",
+      "ENTRIES_LOST"
+    ]
+  },
+  "fill_rulers": {
+    "market_scoring": "CANON_UNION_CHANNELS",
+    "build_verification": "STRICT_PRINT_CROSS",
+    "never_swapped": true
+  }
+}

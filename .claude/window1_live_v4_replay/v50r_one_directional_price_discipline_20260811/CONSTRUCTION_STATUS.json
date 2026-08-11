@@ -1,0 +1,16 @@
+{
+  "status": "BLOCKED_V47_REMAINS_OPERATIVE",
+  "operative_baseline": "V47_fb74c8b8",
+  "gains_required": false,
+  "observed_delta": {
+    "completed_pairs": -11,
+    "under_par_pairs": -11,
+    "completed_locked_cents": -67,
+    "naked_pnl_cents": 83,
+    "true_book_net_cents": 16
+  },
+  "reasons": [
+    "named_no_regressions"
+  ],
+  "no_forced_values": true
+}

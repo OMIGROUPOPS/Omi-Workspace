@@ -1,0 +1,7314 @@
+{
+ "LABEL": "SEALED_REGRET_GAUGE_MISS_CENSUS_MIRROR",
+ "basis": "V47 sealed exam 2bae8931 STAGE3_ONE_RUN_FINAL_RETRY2; 238 events; achievable floor = per-leg traded_floor_cents (sealed MARKET_REGRET_LEDGER, trades-as-truth post-lawful-stand); reads = reach_snapshot.combined_state at each leg's key moment.",
+ "caveats": [
+  "frozen-path RIGHT/WRONG not receiptable for the sealed population (leg_direction null, no holdout reachability artifact); read_right measured vs REALIZED (close vs entry) on the 82 filled naked legs only",
+  "closes exist in sealed artifacts only for the 82 naked legs (naked_close_cents); completed-leg close deltas not receiptable"
+ ],
+ "conservation": {
+  "events": 238,
+  "completed": 146,
+  "one_sided": 82,
+  "skips": 10,
+  "check": 238
+ },
+ "capture_efficiency": {
+  "our_locked": 571,
+  "best_achievable_locked": 3976,
+  "pct": 14.4
+ },
+ "MIRROR_COHERENCE": {
+  "sampled_games": 237,
+  "coherent": 74,
+  "rate": 0.312,
+  "incoherent_146": 93,
+  "incoherent_82": 62,
+  "share_82": 0.756,
+  "share_146": 0.637,
+  "right_filled_but_sibling_not_inverse": 22,
+  "note": "coherent iff B's key-moment read is A's inverse (F<->R, S<->S); the operator's contradictory-read class = incoherent games"
+ },
+ "THE_146": {
+  "pair_gap": {
+   "ATP_CHALL": {
+    "n": 96,
+    "median": 15,
+    "p75": 46,
+    "total": 2570,
+    "max": 96
+   },
+   "ATP_MAIN": {
+    "n": 24,
+    "median": 8,
+    "p75": 18,
+    "total": 382,
+    "max": 84
+   },
+   "WTA_CHALL": {
+    "n": 9,
+    "median": 1,
+    "p75": 5,
+    "total": 91,
+    "max": 74
+   },
+   "WTA_MAIN": {
+    "n": 17,
+    "median": 1,
+    "p75": 3,
+    "total": 121,
+    "max": 87
+   },
+   "ALL": {
+    "n": 146,
+    "median": 6,
+    "p75": 37,
+    "total": 3164,
+    "max": 96
+   }
+  }
+ },
+ "THE_82": {
+  "premium_discount": {
+   "RISER|LOSS": 4,
+   "FALLER/SETTLED|LOSS": 24,
+   "FALLER/SETTLED|WIN": 19,
+   "FALLER/SETTLED|FLAT": 23,
+   "RISER|FLAT": 6,
+   "RISER|WIN": 6
+  },
+  "unfilled_geometry": {
+   "PRETRIGGER": 20,
+   "CAP_BOUND": 45,
+   "FLOW_ABOVE": 16,
+   "FLOW_BELOW": 1
+  }
+ },
+ "THE_10": [
+  {
+   "code": "26AUG09ZINKIN",
+   "cat": "ATP_CHALL",
+   "why": "KIN: floor NONE vs rest 12 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); ZIN: floor NONE vs rest 55 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL27BRASUL",
+   "cat": "ATP_CHALL",
+   "why": "BRA: floor 16 vs rest 13 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SUL: floor 84 vs rest 85 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL27PINSAM",
+   "cat": "ATP_CHALL",
+   "why": "PIN: floor 33 vs rest 31 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SAM: floor 68 vs rest 68 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL27SEKCHI",
+   "cat": "ATP_CHALL",
+   "why": "CHI: floor 72 vs rest 70 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SEK: floor 30 vs rest 28 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL27WALDON",
+   "cat": "ATP_CHALL",
+   "why": "DON: floor 44 vs rest 42 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); WAL: floor 57 vs rest 57 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL28AJDSUL",
+   "cat": "ATP_CHALL",
+   "why": "AJD: floor 53 vs rest 52 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SUL: floor 47 vs rest 46 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL28TURURS",
+   "cat": "ATP_CHALL",
+   "why": "TUR: floor 38 vs rest 34 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); URS: floor 64 vs rest 60 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL27QUISHE",
+   "cat": "ATP_MAIN",
+   "why": "QUI: floor 28 vs rest 26 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SHE: floor 73 vs rest 71 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL28MICMCD",
+   "cat": "ATP_MAIN",
+   "why": "MCD: floor NONE vs rest 27 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); MIC: floor NONE vs rest 18 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "code": "26JUL27ZARKES",
+   "cat": "WTA_MAIN",
+   "why": "KES: floor 74 vs rest 73 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); ZAR: floor 19 vs rest 26 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  }
+ ],
+ "top10_worst_pair_gap": [
+  {
+   "code": "26AUG10BARLEC",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 98,
+   "best": 2,
+   "gap": 96
+  },
+  {
+   "code": "26AUG10ISOMUK",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 98,
+   "best": 2,
+   "gap": 96
+  },
+  {
+   "code": "26AUG10PETMCD",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 99,
+   "best": 9,
+   "gap": 90
+  },
+  {
+   "code": "26AUG10RIBALC",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 99,
+   "best": 9,
+   "gap": 90
+  },
+  {
+   "code": "26AUG09POUSIM",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 99,
+   "best": 11,
+   "gap": 88
+  },
+  {
+   "code": "26AUG10MRVBAS",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 99,
+   "best": 11,
+   "gap": 88
+  },
+  {
+   "code": "26AUG09SAMRYB",
+   "cat": "WTA_MAIN",
+   "disposition": "COMPLETED",
+   "our": 99,
+   "best": 12,
+   "gap": 87
+  },
+  {
+   "code": "26JUL28MAYDUC",
+   "cat": "ATP_MAIN",
+   "disposition": "COMPLETED",
+   "our": 99,
+   "best": 15,
+   "gap": 84
+  },
+  {
+   "code": "26AUG10RAWMIT",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 99,
+   "best": 16,
+   "gap": 83
+  },
+  {
+   "code": "26AUG10VANMEC",
+   "cat": "ATP_CHALL",
+   "disposition": "COMPLETED",
+   "our": 98,
+   "best": 23,
+   "gap": 75
+  }
+ ],
+ "rows": [
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09ALVVAN",
+   "code": "26AUG09ALVVAN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 93,
+   "pair_gap": 6,
+   "legs": {
+    "ALV": {
+     "entry": 4,
+     "floor": 1,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    },
+    "VAN": {
+     "entry": 95,
+     "floor": 92,
+     "delta": 3,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09BOYFOR",
+   "code": "26AUG09BOYFOR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 65,
+   "pair_gap": 34,
+   "legs": {
+    "BOY": {
+     "entry": 85,
+     "floor": 64,
+     "delta": 21,
+     "read": "RISING",
+     "credited": true
+    },
+    "FOR": {
+     "entry": 14,
+     "floor": 1,
+     "delta": 13,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09CANCEC",
+   "code": "26AUG09CANCEC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 89,
+   "pair_gap": 10,
+   "legs": {
+    "CAN": {
+     "entry": 90,
+     "floor": 88,
+     "delta": 2,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "CEC": {
+     "entry": 9,
+     "floor": 1,
+     "delta": 8,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09DICMAY",
+   "code": "26AUG09DICMAY",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 71,
+   "pair_gap": 27,
+   "legs": {
+    "DIC": {
+     "entry": 9,
+     "floor": 1,
+     "delta": 8,
+     "read": "RISING",
+     "credited": true
+    },
+    "MAY": {
+     "entry": 89,
+     "floor": 70,
+     "delta": 19,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09HILKIM",
+   "code": "26AUG09HILKIM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 77,
+   "pair_gap": 22,
+   "legs": {
+    "HIL": {
+     "entry": 19,
+     "floor": 1,
+     "delta": 18,
+     "read": "FALLING",
+     "credited": true
+    },
+    "KIM": {
+     "entry": 80,
+     "floor": 76,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09ILABUT",
+   "code": "26AUG09ILABUT",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 28,
+   "pair_gap": 71,
+   "legs": {
+    "BUT": {
+     "entry": 61,
+     "floor": 27,
+     "delta": 34,
+     "read": "RISING",
+     "credited": true
+    },
+    "ILA": {
+     "entry": 38,
+     "floor": 1,
+     "delta": 37,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09JOHCHA",
+   "code": "26AUG09JOHCHA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 91,
+   "pair_gap": 7,
+   "legs": {
+    "CHA": {
+     "entry": 8,
+     "floor": 1,
+     "delta": 7,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "JOH": {
+     "entry": 90,
+     "floor": 90,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09JUBRAI",
+   "code": "26AUG09JUBRAI",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 83,
+   "pair_gap": 15,
+   "legs": {
+    "JUB": {
+     "entry": 84,
+     "floor": 77,
+     "delta": 7,
+     "read": "FALLING",
+     "credited": true
+    },
+    "RAI": {
+     "entry": 14,
+     "floor": 6,
+     "delta": 8,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09KITROT",
+   "code": "26AUG09KITROT",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 94,
+   "best_achievable": 89,
+   "pair_gap": 5,
+   "legs": {
+    "KIT": {
+     "entry": 8,
+     "floor": 3,
+     "delta": 5,
+     "read": "RISING",
+     "credited": true
+    },
+    "ROT": {
+     "entry": 86,
+     "floor": 86,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09MANYOU",
+   "code": "26AUG09MANYOU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 76,
+   "pair_gap": 23,
+   "legs": {
+    "MAN": {
+     "entry": 7,
+     "floor": 1,
+     "delta": 6,
+     "read": "RISING",
+     "credited": true
+    },
+    "YOU": {
+     "entry": 92,
+     "floor": 75,
+     "delta": 17,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09POUSIM",
+   "code": "26AUG09POUSIM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 11,
+   "pair_gap": 88,
+   "legs": {
+    "POU": {
+     "entry": 31,
+     "floor": 10,
+     "delta": 21,
+     "read": "RISING",
+     "credited": true
+    },
+    "SIM": {
+     "entry": 68,
+     "floor": 1,
+     "delta": 67,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09SURGOD",
+   "code": "26AUG09SURGOD",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 95,
+   "pair_gap": 4,
+   "legs": {
+    "GOD": {
+     "entry": 4,
+     "floor": 1,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    },
+    "SUR": {
+     "entry": 95,
+     "floor": 94,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09WINMOS",
+   "code": "26AUG09WINMOS",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 64,
+   "pair_gap": 35,
+   "legs": {
+    "MOS": {
+     "entry": 22,
+     "floor": 1,
+     "delta": 21,
+     "read": "RISING",
+     "credited": true
+    },
+    "WIN": {
+     "entry": 77,
+     "floor": 63,
+     "delta": 14,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+   "code": "26AUG09ZINKIN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": null,
+   "pair_gap": null,
+   "legs": {
+    "KIN": {
+     "entry": null,
+     "floor": null,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "ZIN": {
+     "entry": null,
+     "floor": null,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "KIN: floor NONE vs rest 12 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); ZIN: floor NONE vs rest 55 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10AGADEC",
+   "code": "26AUG10AGADEC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 64,
+   "pair_gap": 35,
+   "legs": {
+    "AGA": {
+     "entry": 35,
+     "floor": 1,
+     "delta": 34,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "DEC": {
+     "entry": 64,
+     "floor": 63,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10BALMIL",
+   "code": "26AUG10BALMIL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 94,
+   "pair_gap": 6,
+   "legs": {
+    "BAL": {
+     "entry": null,
+     "floor": 45,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "MIL": {
+     "entry": 53,
+     "floor": 49,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "MIL",
+   "close": 52,
+   "naked_pnl": -1,
+   "filled_read": "RISING",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "BAL",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10BARLEC",
+   "code": "26AUG10BARLEC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 2,
+   "pair_gap": 96,
+   "legs": {
+    "BAR": {
+     "entry": 92,
+     "floor": 1,
+     "delta": 91,
+     "read": "FALLING",
+     "credited": true
+    },
+    "LEC": {
+     "entry": 6,
+     "floor": 1,
+     "delta": 5,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10BLASAK",
+   "code": "26AUG10BLASAK",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 68,
+   "pair_gap": 31,
+   "legs": {
+    "BLA": {
+     "entry": 22,
+     "floor": 22,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SAK": {
+     "entry": 77,
+     "floor": 46,
+     "delta": 31,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10BOYMAY",
+   "code": "26AUG10BOYMAY",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 42,
+   "pair_gap": 57,
+   "legs": {
+    "BOY": {
+     "entry": 58,
+     "floor": 1,
+     "delta": 57,
+     "read": "RISING",
+     "credited": true
+    },
+    "MAY": {
+     "entry": 41,
+     "floor": 41,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10BRAJIA",
+   "code": "26AUG10BRAJIA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 94,
+   "best_achievable": 53,
+   "pair_gap": 41,
+   "legs": {
+    "BRA": {
+     "entry": 58,
+     "floor": 52,
+     "delta": 6,
+     "read": "RISING",
+     "credited": true
+    },
+    "JIA": {
+     "entry": 36,
+     "floor": 1,
+     "delta": 35,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10CANCRI",
+   "code": "26AUG10CANCRI",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 75,
+   "pair_gap": 24,
+   "legs": {
+    "CAN": {
+     "entry": 87,
+     "floor": 74,
+     "delta": 13,
+     "read": "RISING",
+     "credited": true
+    },
+    "CRI": {
+     "entry": 12,
+     "floor": 1,
+     "delta": 11,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10CECHAR",
+   "code": "26AUG10CECHAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 56,
+   "pair_gap": 43,
+   "legs": {
+    "CEC": {
+     "entry": 69,
+     "floor": 55,
+     "delta": 14,
+     "read": "RISING",
+     "credited": true
+    },
+    "HAR": {
+     "entry": 30,
+     "floor": 1,
+     "delta": 29,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10CREMOE",
+   "code": "26AUG10CREMOE",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 49,
+   "pair_gap": 49,
+   "legs": {
+    "CRE": {
+     "entry": 46,
+     "floor": 1,
+     "delta": 45,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MOE": {
+     "entry": 52,
+     "floor": 48,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10DEVGAL",
+   "code": "26AUG10DEVGAL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 26,
+   "pair_gap": 72,
+   "legs": {
+    "DEV": {
+     "entry": 22,
+     "floor": 1,
+     "delta": 21,
+     "read": "FALLING",
+     "credited": true
+    },
+    "GAL": {
+     "entry": 76,
+     "floor": 25,
+     "delta": 51,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10FERMAS",
+   "code": "26AUG10FERMAS",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 35,
+   "pair_gap": 62,
+   "legs": {
+    "FER": {
+     "entry": 59,
+     "floor": 1,
+     "delta": 58,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "MAS": {
+     "entry": 38,
+     "floor": 34,
+     "delta": 4,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10HOMCAR",
+   "code": "26AUG10HOMCAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 63,
+   "pair_gap": 35,
+   "legs": {
+    "CAR": {
+     "entry": 64,
+     "floor": 62,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "HOM": {
+     "entry": 34,
+     "floor": 1,
+     "delta": 33,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10ICHSIN",
+   "code": "26AUG10ICHSIN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 95,
+   "best_achievable": 50,
+   "pair_gap": 45,
+   "legs": {
+    "ICH": {
+     "entry": 52,
+     "floor": 49,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    },
+    "SIN": {
+     "entry": 43,
+     "floor": 1,
+     "delta": 42,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10ISOMUK",
+   "code": "26AUG10ISOMUK",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 2,
+   "pair_gap": 96,
+   "legs": {
+    "ISO": {
+     "entry": 49,
+     "floor": 1,
+     "delta": 48,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "MUK": {
+     "entry": 49,
+     "floor": 1,
+     "delta": 48,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10JOHROT",
+   "code": "26AUG10JOHROT",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 96,
+   "pair_gap": 3,
+   "legs": {
+    "JOH": {
+     "entry": 36,
+     "floor": 34,
+     "delta": 2,
+     "read": "RISING",
+     "credited": true
+    },
+    "ROT": {
+     "entry": 63,
+     "floor": 62,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10JORPIN",
+   "code": "26AUG10JORPIN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 97,
+   "pair_gap": 2,
+   "legs": {
+    "JOR": {
+     "entry": 23,
+     "floor": 22,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    },
+    "PIN": {
+     "entry": 76,
+     "floor": 75,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10KINFEN",
+   "code": "26AUG10KINFEN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 71,
+   "pair_gap": 28,
+   "legs": {
+    "FEN": {
+     "entry": 76,
+     "floor": 70,
+     "delta": 6,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "KIN": {
+     "entry": 23,
+     "floor": 1,
+     "delta": 22,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10KRADAS",
+   "code": "26AUG10KRADAS",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 70,
+   "pair_gap": 29,
+   "legs": {
+    "DAS": {
+     "entry": 32,
+     "floor": 8,
+     "delta": 24,
+     "read": "RISING",
+     "credited": true
+    },
+    "KRA": {
+     "entry": 67,
+     "floor": 62,
+     "delta": 5,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10KUMZEU",
+   "code": "26AUG10KUMZEU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 93,
+   "best_achievable": 37,
+   "pair_gap": 56,
+   "legs": {
+    "KUM": {
+     "entry": 86,
+     "floor": 36,
+     "delta": 50,
+     "read": "RISING",
+     "credited": true
+    },
+    "ZEU": {
+     "entry": 7,
+     "floor": 1,
+     "delta": 6,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10LEOARU",
+   "code": "26AUG10LEOARU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 50,
+   "pair_gap": 49,
+   "legs": {
+    "ARU": {
+     "entry": 51,
+     "floor": 49,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "LEO": {
+     "entry": 48,
+     "floor": 1,
+     "delta": 47,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10MARWEI",
+   "code": "26AUG10MARWEI",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 29,
+   "pair_gap": 68,
+   "legs": {
+    "MAR": {
+     "entry": 55,
+     "floor": 1,
+     "delta": 54,
+     "read": "RISING",
+     "credited": true
+    },
+    "WEI": {
+     "entry": 42,
+     "floor": 28,
+     "delta": 14,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10MATMAT2",
+   "code": "26AUG10MATMAT2",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 65,
+   "pair_gap": 34,
+   "legs": {
+    "MAT": {
+     "entry": 33,
+     "floor": 1,
+     "delta": 32,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MAT2": {
+     "entry": 66,
+     "floor": 64,
+     "delta": 2,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10MRVBAS",
+   "code": "26AUG10MRVBAS",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 11,
+   "pair_gap": 88,
+   "legs": {
+    "BAS": {
+     "entry": 39,
+     "floor": 1,
+     "delta": 38,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MRV": {
+     "entry": 60,
+     "floor": 10,
+     "delta": 50,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10OPIKRU",
+   "code": "26AUG10OPIKRU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 53,
+   "pair_gap": 46,
+   "legs": {
+    "KRU": {
+     "entry": 79,
+     "floor": 52,
+     "delta": 27,
+     "read": "FALLING",
+     "credited": true
+    },
+    "OPI": {
+     "entry": 20,
+     "floor": 1,
+     "delta": 19,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10PANPAL",
+   "code": "26AUG10PANPAL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 62,
+   "pair_gap": 37,
+   "legs": {
+    "PAL": {
+     "entry": 37,
+     "floor": 1,
+     "delta": 36,
+     "read": "RISING",
+     "credited": true
+    },
+    "PAN": {
+     "entry": 62,
+     "floor": 61,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10PETMCD",
+   "code": "26AUG10PETMCD",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 9,
+   "pair_gap": 90,
+   "legs": {
+    "MCD": {
+     "entry": 59,
+     "floor": 8,
+     "delta": 51,
+     "read": "RISING",
+     "credited": true
+    },
+    "PET": {
+     "entry": 40,
+     "floor": 1,
+     "delta": 39,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10RAIVAN",
+   "code": "26AUG10RAIVAN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 90,
+   "pair_gap": 10,
+   "legs": {
+    "RAI": {
+     "entry": 35,
+     "floor": 26,
+     "delta": 9,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "VAN": {
+     "entry": null,
+     "floor": 64,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "RAI",
+   "close": 26,
+   "naked_pnl": -9,
+   "filled_read": "SETTLED",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "VAN",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10RATSAT",
+   "code": "26AUG10RATSAT",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 61,
+   "pair_gap": 38,
+   "legs": {
+    "RAT": {
+     "entry": 59,
+     "floor": 50,
+     "delta": 9,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SAT": {
+     "entry": 40,
+     "floor": 11,
+     "delta": 29,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10RAWMIT",
+   "code": "26AUG10RAWMIT",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 16,
+   "pair_gap": 83,
+   "legs": {
+    "MIT": {
+     "entry": 75,
+     "floor": 1,
+     "delta": 74,
+     "read": "RISING",
+     "credited": true
+    },
+    "RAW": {
+     "entry": 24,
+     "floor": 15,
+     "delta": 9,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10RIBALC",
+   "code": "26AUG10RIBALC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 9,
+   "pair_gap": 90,
+   "legs": {
+    "ALC": {
+     "entry": 82,
+     "floor": 1,
+     "delta": 81,
+     "read": "FALLING",
+     "credited": true
+    },
+    "RIB": {
+     "entry": 17,
+     "floor": 8,
+     "delta": 9,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10ROMGIU",
+   "code": "26AUG10ROMGIU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 95,
+   "best_achievable": 49,
+   "pair_gap": 46,
+   "legs": {
+    "GIU": {
+     "entry": 46,
+     "floor": 1,
+     "delta": 45,
+     "read": "FALLING",
+     "credited": true
+    },
+    "ROM": {
+     "entry": 49,
+     "floor": 48,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10SINZHA",
+   "code": "26AUG10SINZHA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 51,
+   "pair_gap": 48,
+   "legs": {
+    "SIN": {
+     "entry": 49,
+     "floor": 34,
+     "delta": 15,
+     "read": "FALLING",
+     "credited": true
+    },
+    "ZHA": {
+     "entry": 50,
+     "floor": 17,
+     "delta": 33,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10SMIGIL",
+   "code": "26AUG10SMIGIL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 95,
+   "pair_gap": 4,
+   "legs": {
+    "GIL": {
+     "entry": 42,
+     "floor": 38,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    },
+    "SMI": {
+     "entry": 57,
+     "floor": 57,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10SULBIN",
+   "code": "26AUG10SULBIN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 79,
+   "pair_gap": 20,
+   "legs": {
+    "BIN": {
+     "entry": 37,
+     "floor": 18,
+     "delta": 19,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SUL": {
+     "entry": 62,
+     "floor": 61,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10SURKIM",
+   "code": "26AUG10SURKIM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 91,
+   "pair_gap": 6,
+   "legs": {
+    "KIM": {
+     "entry": 48,
+     "floor": 44,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    },
+    "SUR": {
+     "entry": 49,
+     "floor": 47,
+     "delta": 2,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10TSESAC",
+   "code": "26AUG10TSESAC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 54,
+   "pair_gap": 43,
+   "legs": {
+    "SAC": {
+     "entry": 46,
+     "floor": 20,
+     "delta": 26,
+     "read": "RISING",
+     "credited": true
+    },
+    "TSE": {
+     "entry": 51,
+     "floor": 34,
+     "delta": 17,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10VANMEC",
+   "code": "26AUG10VANMEC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 23,
+   "pair_gap": 75,
+   "legs": {
+    "MEC": {
+     "entry": 36,
+     "floor": 22,
+     "delta": 14,
+     "read": "RISING",
+     "credited": true
+    },
+    "VAN": {
+     "entry": 62,
+     "floor": 1,
+     "delta": 61,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10WALGUT",
+   "code": "26AUG10WALGUT",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 67,
+   "pair_gap": 32,
+   "legs": {
+    "GUT": {
+     "entry": 26,
+     "floor": 5,
+     "delta": 21,
+     "read": "RISING",
+     "credited": true
+    },
+    "WAL": {
+     "entry": 73,
+     "floor": 62,
+     "delta": 11,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10WINYOU",
+   "code": "26AUG10WINYOU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 40,
+   "pair_gap": 59,
+   "legs": {
+    "WIN": {
+     "entry": 50,
+     "floor": 39,
+     "delta": 11,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "YOU": {
+     "entry": 49,
+     "floor": 1,
+     "delta": 48,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10YEVPUR",
+   "code": "26AUG10YEVPUR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 32,
+   "pair_gap": 67,
+   "legs": {
+    "PUR": {
+     "entry": 42,
+     "floor": 1,
+     "delta": 41,
+     "read": "RISING",
+     "credited": true
+    },
+    "YEV": {
+     "entry": 57,
+     "floor": 31,
+     "delta": 26,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26AUG10ZEBKIR",
+   "code": "26AUG10ZEBKIR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 51,
+   "pair_gap": 46,
+   "legs": {
+    "KIR": {
+     "entry": 83,
+     "floor": 50,
+     "delta": 33,
+     "read": "FALLING",
+     "credited": true
+    },
+    "ZEB": {
+     "entry": 14,
+     "floor": 1,
+     "delta": 13,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27ALBHAS",
+   "code": "26JUL27ALBHAS",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 97,
+   "pair_gap": 3,
+   "legs": {
+    "ALB": {
+     "entry": 60,
+     "floor": 56,
+     "delta": 4,
+     "read": "FALLING",
+     "credited": true
+    },
+    "HAS": {
+     "entry": null,
+     "floor": 41,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "ALB",
+   "close": 56,
+   "naked_pnl": -4,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "HAS",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27AMBKIC",
+   "code": "26JUL27AMBKIC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 96,
+   "pair_gap": 4,
+   "legs": {
+    "AMB": {
+     "entry": 44,
+     "floor": 44,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "KIC": {
+     "entry": null,
+     "floor": 52,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "AMB",
+   "close": 49,
+   "naked_pnl": 5,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "KIC",
+   "unfilled_geometry": "FLOW_ABOVE 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27ANDPOP",
+   "code": "26JUL27ANDPOP",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 96,
+   "pair_gap": 3,
+   "legs": {
+    "AND": {
+     "entry": 15,
+     "floor": 15,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "POP": {
+     "entry": 84,
+     "floor": 81,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27BASNAK",
+   "code": "26JUL27BASNAK",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 97,
+   "pair_gap": 1,
+   "legs": {
+    "BAS": {
+     "entry": 70,
+     "floor": 69,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    },
+    "NAK": {
+     "entry": 28,
+     "floor": 28,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27BLACOM",
+   "code": "26JUL27BLACOM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "BLA": {
+     "entry": 63,
+     "floor": 63,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "COM": {
+     "entry": 36,
+     "floor": 36,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27BOIDEB",
+   "code": "26JUL27BOIDEB",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 93,
+   "pair_gap": 5,
+   "legs": {
+    "BOI": {
+     "entry": 42,
+     "floor": 41,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "DEB": {
+     "entry": 56,
+     "floor": 52,
+     "delta": 4,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27BONBIC",
+   "code": "26JUL27BONBIC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BIC": {
+     "entry": null,
+     "floor": 14,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "BON": {
+     "entry": 85,
+     "floor": 84,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BON",
+   "close": 85,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "BIC",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27BOSROD",
+   "code": "26JUL27BOSROD",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BOS": {
+     "entry": null,
+     "floor": 25,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "ROD": {
+     "entry": 76,
+     "floor": 73,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "ROD",
+   "close": 76,
+   "naked_pnl": 0,
+   "filled_read": "RISING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "BOS",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27BRASUL",
+   "code": "26JUL27BRASUL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "BRA": {
+     "entry": null,
+     "floor": 16,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "SUL": {
+     "entry": null,
+     "floor": 84,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "BRA: floor 16 vs rest 13 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SUL: floor 84 vs rest 85 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27CHOPAS",
+   "code": "26JUL27CHOPAS",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "CHO": {
+     "entry": null,
+     "floor": 64,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "PAS": {
+     "entry": 35,
+     "floor": 35,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "PAS",
+   "close": 36,
+   "naked_pnl": 1,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "CHO",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27DALBRU",
+   "code": "26JUL27DALBRU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 94,
+   "pair_gap": 4,
+   "legs": {
+    "BRU": {
+     "entry": 40,
+     "floor": 37,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    },
+    "DAL": {
+     "entry": 58,
+     "floor": 57,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27DJEBAS",
+   "code": "26JUL27DJEBAS",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 95,
+   "pair_gap": 4,
+   "legs": {
+    "BAS": {
+     "entry": 33,
+     "floor": 33,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "DJE": {
+     "entry": 66,
+     "floor": 62,
+     "delta": 4,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27GADMAC",
+   "code": "26JUL27GADMAC",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 85,
+   "pair_gap": 13,
+   "legs": {
+    "GAD": {
+     "entry": 57,
+     "floor": 44,
+     "delta": 13,
+     "read": "RISING",
+     "credited": true
+    },
+    "MAC": {
+     "entry": 41,
+     "floor": 41,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27GALPET",
+   "code": "26JUL27GALPET",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 96,
+   "pair_gap": 4,
+   "legs": {
+    "GAL": {
+     "entry": 67,
+     "floor": 63,
+     "delta": 4,
+     "read": "FALLING",
+     "credited": true
+    },
+    "PET": {
+     "entry": null,
+     "floor": 33,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "GAL",
+   "close": 65,
+   "naked_pnl": -2,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "PET",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27GOMBER",
+   "code": "26JUL27GOMBER",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "BER": {
+     "entry": 31,
+     "floor": 31,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "GOM": {
+     "entry": null,
+     "floor": 68,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BER",
+   "close": 31,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "GOM",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27HOLGRE",
+   "code": "26JUL27HOLGRE",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "GRE": {
+     "entry": 29,
+     "floor": 29,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "HOL": {
+     "entry": null,
+     "floor": 71,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "GRE",
+   "close": 31,
+   "naked_pnl": 2,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "HOL",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27HSUMMO",
+   "code": "26JUL27HSUMMO",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "HSU": {
+     "entry": null,
+     "floor": 47,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "MMO": {
+     "entry": 53,
+     "floor": 53,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MMO",
+   "close": 53,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "HSU",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27KOLKUM",
+   "code": "26JUL27KOLKUM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 87,
+   "pair_gap": 12,
+   "legs": {
+    "KOL": {
+     "entry": 48,
+     "floor": 48,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "KUM": {
+     "entry": 51,
+     "floor": 39,
+     "delta": 12,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27KRANIC",
+   "code": "26JUL27KRANIC",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "KRA": {
+     "entry": 40,
+     "floor": 40,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "NIC": {
+     "entry": null,
+     "floor": 59,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "KRA",
+   "close": 40,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "NIC",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27KUZBIN",
+   "code": "26JUL27KUZBIN",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "BIN": {
+     "entry": 17,
+     "floor": 17,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "KUZ": {
+     "entry": null,
+     "floor": 82,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BIN",
+   "close": 20,
+   "naked_pnl": 3,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "KUZ",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27LAPIE",
+   "code": "26JUL27LAPIE",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "LA": {
+     "entry": null,
+     "floor": 29,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "PIE": {
+     "entry": 71,
+     "floor": 70,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "PIE",
+   "close": 70,
+   "naked_pnl": -1,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "LA",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27MARBEC",
+   "code": "26JUL27MARBEC",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 87,
+   "pair_gap": 12,
+   "legs": {
+    "BEC": {
+     "entry": 22,
+     "floor": 22,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "MAR": {
+     "entry": 77,
+     "floor": 65,
+     "delta": 12,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27MILVAN",
+   "code": "26JUL27MILVAN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 23,
+   "best_achievable": 22,
+   "pair_gap": 1,
+   "legs": {
+    "MIL": {
+     "entry": 18,
+     "floor": 18,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "VAN": {
+     "entry": 5,
+     "floor": 4,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27MIYANA",
+   "code": "26JUL27MIYANA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 96,
+   "pair_gap": 2,
+   "legs": {
+    "ANA": {
+     "entry": 10,
+     "floor": 10,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "MIY": {
+     "entry": 88,
+     "floor": 86,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27MOCBRO",
+   "code": "26JUL27MOCBRO",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 97,
+   "pair_gap": 0,
+   "legs": {
+    "BRO": {
+     "entry": 31,
+     "floor": 31,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "MOC": {
+     "entry": 66,
+     "floor": 66,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27MONMAZ",
+   "code": "26JUL27MONMAZ",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "MAZ": {
+     "entry": 19,
+     "floor": 17,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MON": {
+     "entry": null,
+     "floor": 81,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "MAZ",
+   "close": 19,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "MON",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27MONNAG",
+   "code": "26JUL27MONNAG",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 96,
+   "pair_gap": 3,
+   "legs": {
+    "MON": {
+     "entry": 53,
+     "floor": 50,
+     "delta": 3,
+     "read": "FALLING",
+     "credited": true
+    },
+    "NAG": {
+     "entry": 46,
+     "floor": 46,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27MULNAP",
+   "code": "26JUL27MULNAP",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "MUL": {
+     "entry": null,
+     "floor": 61,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "NAP": {
+     "entry": 39,
+     "floor": 37,
+     "delta": 2,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "NAP",
+   "close": 37,
+   "naked_pnl": -2,
+   "filled_read": "SETTLED",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "MUL",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27PDANIK",
+   "code": "26JUL27PDANIK",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 75,
+   "pair_gap": 22,
+   "legs": {
+    "NIK": {
+     "entry": 19,
+     "floor": 1,
+     "delta": 18,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "PDA": {
+     "entry": 78,
+     "floor": 74,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27PINSAM",
+   "code": "26JUL27PINSAM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 101,
+   "pair_gap": null,
+   "legs": {
+    "PIN": {
+     "entry": null,
+     "floor": 33,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "SAM": {
+     "entry": null,
+     "floor": 68,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "skip_why": "PIN: floor 33 vs rest 31 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SAM: floor 68 vs rest 68 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27POLKOV",
+   "code": "26JUL27POLKOV",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "KOV": {
+     "entry": 37,
+     "floor": 37,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "POL": {
+     "entry": 62,
+     "floor": 62,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27RICLLA",
+   "code": "26JUL27RICLLA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 97,
+   "pair_gap": 3,
+   "legs": {
+    "LLA": {
+     "entry": 80,
+     "floor": 76,
+     "delta": 4,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "RIC": {
+     "entry": null,
+     "floor": 21,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "LLA",
+   "close": 77,
+   "naked_pnl": -3,
+   "filled_read": "SETTLED",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "RIC",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27RINPRA",
+   "code": "26JUL27RINPRA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 95,
+   "pair_gap": 3,
+   "legs": {
+    "PRA": {
+     "entry": 44,
+     "floor": 41,
+     "delta": 3,
+     "read": "FALLING",
+     "credited": true
+    },
+    "RIN": {
+     "entry": 54,
+     "floor": 54,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27SAKMAR",
+   "code": "26JUL27SAKMAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "MAR": {
+     "entry": 69,
+     "floor": 69,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SAK": {
+     "entry": 30,
+     "floor": 30,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27SEKCHI",
+   "code": "26JUL27SEKCHI",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 102,
+   "pair_gap": null,
+   "legs": {
+    "CHI": {
+     "entry": null,
+     "floor": 72,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    },
+    "SEK": {
+     "entry": null,
+     "floor": 30,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "CHI: floor 72 vs rest 70 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SEK: floor 30 vs rest 28 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27SINMAT",
+   "code": "26JUL27SINMAT",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "MAT": {
+     "entry": 65,
+     "floor": 64,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SIN": {
+     "entry": null,
+     "floor": 34,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MAT",
+   "close": 64,
+   "naked_pnl": -1,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "SIN",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27SINREJ",
+   "code": "26JUL27SINREJ",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "REJ": {
+     "entry": 13,
+     "floor": 13,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "SIN": {
+     "entry": 86,
+     "floor": 86,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27SWECHA",
+   "code": "26JUL27SWECHA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "CHA": {
+     "entry": 37,
+     "floor": 37,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SWE": {
+     "entry": null,
+     "floor": 61,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "CHA",
+   "close": 42,
+   "naked_pnl": 5,
+   "filled_read": "RISING",
+   "realized": "RISING",
+   "read_right": true,
+   "unfilled_leg": "SWE",
+   "unfilled_geometry": "FLOW_ABOVE 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27TOPABO",
+   "code": "26JUL27TOPABO",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 98,
+   "pair_gap": 0,
+   "legs": {
+    "ABO": {
+     "entry": 27,
+     "floor": 27,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "TOP": {
+     "entry": 71,
+     "floor": 71,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27VARFOR",
+   "code": "26JUL27VARFOR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 98,
+   "pair_gap": 0,
+   "legs": {
+    "FOR": {
+     "entry": 47,
+     "floor": 47,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "VAR": {
+     "entry": 51,
+     "floor": 51,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27VRBJAN",
+   "code": "26JUL27VRBJAN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "JAN": {
+     "entry": 56,
+     "floor": 56,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "VRB": {
+     "entry": 43,
+     "floor": 43,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27VRBMAR",
+   "code": "26JUL27VRBMAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 96,
+   "pair_gap": 4,
+   "legs": {
+    "MAR": {
+     "entry": 66,
+     "floor": 63,
+     "delta": 3,
+     "read": "FALLING",
+     "credited": true
+    },
+    "VRB": {
+     "entry": null,
+     "floor": 33,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MAR",
+   "close": 63,
+   "naked_pnl": -3,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "VRB",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27WALDON",
+   "code": "26JUL27WALDON",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 101,
+   "pair_gap": null,
+   "legs": {
+    "DON": {
+     "entry": null,
+     "floor": 44,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "WAL": {
+     "entry": null,
+     "floor": 57,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "DON: floor 44 vs rest 42 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); WAL: floor 57 vs rest 57 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27WENCAS",
+   "code": "26JUL27WENCAS",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "CAS": {
+     "entry": null,
+     "floor": 53,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "WEN": {
+     "entry": 47,
+     "floor": 47,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "WEN",
+   "close": 47,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "CAS",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL27WOLZHA",
+   "code": "26JUL27WOLZHA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 94,
+   "best_achievable": 94,
+   "pair_gap": 0,
+   "legs": {
+    "WOL": {
+     "entry": 40,
+     "floor": 40,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "ZHA": {
+     "entry": 54,
+     "floor": 54,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28ADDPOU",
+   "code": "26JUL28ADDPOU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "ADD": {
+     "entry": null,
+     "floor": 56,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "POU": {
+     "entry": 43,
+     "floor": 43,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "POU",
+   "close": 43,
+   "naked_pnl": 0,
+   "filled_read": "RISING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "ADD",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28AJDSUL",
+   "code": "26JUL28AJDSUL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "AJD": {
+     "entry": null,
+     "floor": 53,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    },
+    "SUL": {
+     "entry": null,
+     "floor": 47,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "AJD: floor 53 vs rest 52 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SUL: floor 47 vs rest 46 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28ALKSIN",
+   "code": "26JUL28ALKSIN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "ALK": {
+     "entry": null,
+     "floor": 81,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "SIN": {
+     "entry": 19,
+     "floor": 19,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "SIN",
+   "close": 21,
+   "naked_pnl": 2,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "ALK",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28ARNPIE",
+   "code": "26JUL28ARNPIE",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "ARN": {
+     "entry": 67,
+     "floor": 67,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "PIE": {
+     "entry": null,
+     "floor": 33,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "ARN",
+   "close": 68,
+   "naked_pnl": 1,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "PIE",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28AZKERE",
+   "code": "26JUL28AZKERE",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "AZK": {
+     "entry": 23,
+     "floor": 23,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "ERE": {
+     "entry": null,
+     "floor": 77,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "AZK",
+   "close": 24,
+   "naked_pnl": 1,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "ERE",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28BARNED",
+   "code": "26JUL28BARNED",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BAR": {
+     "entry": 61,
+     "floor": 61,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "NED": {
+     "entry": null,
+     "floor": 37,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BAR",
+   "close": 64,
+   "naked_pnl": 3,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "NED",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28BASRAW",
+   "code": "26JUL28BASRAW",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BAS": {
+     "entry": null,
+     "floor": 85,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "RAW": {
+     "entry": 15,
+     "floor": 13,
+     "delta": 2,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "RAW",
+   "close": 13,
+   "naked_pnl": -2,
+   "filled_read": "SETTLED",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "BAS",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28BITILK",
+   "code": "26JUL28BITILK",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 85,
+   "pair_gap": 13,
+   "legs": {
+    "BIT": {
+     "entry": 75,
+     "floor": 62,
+     "delta": 13,
+     "read": "FALLING",
+     "credited": true
+    },
+    "ILK": {
+     "entry": 23,
+     "floor": 23,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28CANPEL",
+   "code": "26JUL28CANPEL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "CAN": {
+     "entry": 29,
+     "floor": 29,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "PEL": {
+     "entry": null,
+     "floor": 71,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "CAN",
+   "close": 29,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "PEL",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28CECAGA",
+   "code": "26JUL28CECAGA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "AGA": {
+     "entry": 29,
+     "floor": 29,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "CEC": {
+     "entry": null,
+     "floor": 70,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "AGA",
+   "close": 30,
+   "naked_pnl": 1,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "CEC",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28CORFOR",
+   "code": "26JUL28CORFOR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "COR": {
+     "entry": 45,
+     "floor": 44,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "FOR": {
+     "entry": null,
+     "floor": 54,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "COR",
+   "close": 44,
+   "naked_pnl": -1,
+   "filled_read": "SETTLED",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "FOR",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28DAHMAR",
+   "code": "26JUL28DAHMAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 97,
+   "pair_gap": 2,
+   "legs": {
+    "DAH": {
+     "entry": 59,
+     "floor": 57,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MAR": {
+     "entry": 40,
+     "floor": 40,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28DENPDA",
+   "code": "26JUL28DENPDA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 41,
+   "pair_gap": 56,
+   "legs": {
+    "DEN": {
+     "entry": 62,
+     "floor": 10,
+     "delta": 52,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "PDA": {
+     "entry": 35,
+     "floor": 31,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28DIACOM",
+   "code": "26JUL28DIACOM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "COM": {
+     "entry": 15,
+     "floor": 14,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    },
+    "DIA": {
+     "entry": null,
+     "floor": 85,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "COM",
+   "close": 15,
+   "naked_pnl": 0,
+   "filled_read": "RISING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "DIA",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28FELMAY",
+   "code": "26JUL28FELMAY",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "FEL": {
+     "entry": 71,
+     "floor": 71,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "MAY": {
+     "entry": 28,
+     "floor": 28,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28GAUPAV",
+   "code": "26JUL28GAUPAV",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 97,
+   "pair_gap": 3,
+   "legs": {
+    "GAU": {
+     "entry": null,
+     "floor": 63,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "PAV": {
+     "entry": 35,
+     "floor": 34,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "PAV",
+   "close": 35,
+   "naked_pnl": 0,
+   "filled_read": "RISING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "GAU",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28GENREI",
+   "code": "26JUL28GENREI",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "GEN": {
+     "entry": null,
+     "floor": 67,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "REI": {
+     "entry": 32,
+     "floor": 32,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "REI",
+   "close": 32,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "GEN",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28GOMCER",
+   "code": "26JUL28GOMCER",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "CER": {
+     "entry": 26,
+     "floor": 26,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "GOM": {
+     "entry": null,
+     "floor": 74,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "CER",
+   "close": 26,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "GOM",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28HARCHU",
+   "code": "26JUL28HARCHU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 97,
+   "pair_gap": 3,
+   "legs": {
+    "CHU": {
+     "entry": 11,
+     "floor": 10,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "HAR": {
+     "entry": null,
+     "floor": 87,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "CHU",
+   "close": 12,
+   "naked_pnl": 1,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "HAR",
+   "unfilled_geometry": "FLOW_ABOVE 7c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28HOUCAR",
+   "code": "26JUL28HOUCAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "CAR": {
+     "entry": null,
+     "floor": 56,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "HOU": {
+     "entry": 44,
+     "floor": 43,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "HOU",
+   "close": 44,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "CAR",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28JUSGUE",
+   "code": "26JUL28JUSGUE",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 98,
+   "pair_gap": 0,
+   "legs": {
+    "GUE": {
+     "entry": 45,
+     "floor": 45,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "JUS": {
+     "entry": 53,
+     "floor": 53,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28KASFER",
+   "code": "26JUL28KASFER",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 31,
+   "pair_gap": 67,
+   "legs": {
+    "FER": {
+     "entry": 30,
+     "floor": 30,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "KAS": {
+     "entry": 68,
+     "floor": 1,
+     "delta": 67,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28KIRDHA",
+   "code": "26JUL28KIRDHA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 97,
+   "pair_gap": 2,
+   "legs": {
+    "DHA": {
+     "entry": 92,
+     "floor": 91,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "KIR": {
+     "entry": 7,
+     "floor": 6,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28KIRINC",
+   "code": "26JUL28KIRINC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "INC": {
+     "entry": 73,
+     "floor": 73,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "KIR": {
+     "entry": 26,
+     "floor": 26,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28KOTGAL",
+   "code": "26JUL28KOTGAL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 98,
+   "pair_gap": 0,
+   "legs": {
+    "GAL": {
+     "entry": 61,
+     "floor": 61,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "KOT": {
+     "entry": 37,
+     "floor": 37,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28KRUHEN",
+   "code": "26JUL28KRUHEN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "HEN": {
+     "entry": null,
+     "floor": 34,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "KRU": {
+     "entry": 66,
+     "floor": 65,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "KRU",
+   "close": 66,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "HEN",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28KUMBAX",
+   "code": "26JUL28KUMBAX",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "BAX": {
+     "entry": 67,
+     "floor": 66,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "KUM": {
+     "entry": null,
+     "floor": 33,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "BAX",
+   "close": 67,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "KUM",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MAENEU",
+   "code": "26JUL28MAENEU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 101,
+   "pair_gap": null,
+   "legs": {
+    "MAE": {
+     "entry": 32,
+     "floor": 32,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "NEU": {
+     "entry": null,
+     "floor": 69,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MAE",
+   "close": 32,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "NEU",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MARBUE",
+   "code": "26JUL28MARBUE",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "BUE": {
+     "entry": 70,
+     "floor": 70,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "MAR": {
+     "entry": 29,
+     "floor": 29,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MARDEL",
+   "code": "26JUL28MARDEL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "DEL": {
+     "entry": null,
+     "floor": 56,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    },
+    "MAR": {
+     "entry": 43,
+     "floor": 43,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MAR",
+   "close": 44,
+   "naked_pnl": 1,
+   "filled_read": "RISING",
+   "realized": "RISING",
+   "read_right": true,
+   "unfilled_leg": "DEL",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MARSEY",
+   "code": "26JUL28MARSEY",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "MAR": {
+     "entry": null,
+     "floor": 19,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "SEY": {
+     "entry": 80,
+     "floor": 80,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "SEY",
+   "close": 82,
+   "naked_pnl": 2,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "MAR",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MATTRO",
+   "code": "26JUL28MATTRO",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 50,
+   "pair_gap": 50,
+   "legs": {
+    "MAT": {
+     "entry": 47,
+     "floor": 1,
+     "delta": 46,
+     "read": "FALLING",
+     "credited": true
+    },
+    "TRO": {
+     "entry": null,
+     "floor": 49,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MAT",
+   "close": 1,
+   "naked_pnl": -46,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "TRO",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MIYNAK",
+   "code": "26JUL28MIYNAK",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 97,
+   "pair_gap": 0,
+   "legs": {
+    "MIY": {
+     "entry": 82,
+     "floor": 82,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "NAK": {
+     "entry": 15,
+     "floor": 15,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MOLTOP",
+   "code": "26JUL28MOLTOP",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "MOL": {
+     "entry": 57,
+     "floor": 57,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "TOP": {
+     "entry": 42,
+     "floor": 42,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28MONJOR",
+   "code": "26JUL28MONJOR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "JOR": {
+     "entry": 35,
+     "floor": 35,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MON": {
+     "entry": null,
+     "floor": 65,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "JOR",
+   "close": 36,
+   "naked_pnl": 1,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "MON",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28NIKBAR",
+   "code": "26JUL28NIKBAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "BAR": {
+     "entry": 71,
+     "floor": 69,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "NIK": {
+     "entry": null,
+     "floor": 30,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BAR",
+   "close": 70,
+   "naked_pnl": -1,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "NIK",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28OLITAB",
+   "code": "26JUL28OLITAB",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "OLI": {
+     "entry": 61,
+     "floor": 59,
+     "delta": 2,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "TAB": {
+     "entry": null,
+     "floor": 40,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "OLI",
+   "close": 60,
+   "naked_pnl": -1,
+   "filled_read": "SETTLED",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "TAB",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28POLDAL",
+   "code": "26JUL28POLDAL",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "DAL": {
+     "entry": null,
+     "floor": 61,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "POL": {
+     "entry": 38,
+     "floor": 38,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "POL",
+   "close": 40,
+   "naked_pnl": 2,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "DAL",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28REHTRA",
+   "code": "26JUL28REHTRA",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 94,
+   "pair_gap": 6,
+   "legs": {
+    "REH": {
+     "entry": 53,
+     "floor": 51,
+     "delta": 2,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "TRA": {
+     "entry": null,
+     "floor": 43,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "REH",
+   "close": 58,
+   "naked_pnl": 5,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "TRA",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28REJBRU",
+   "code": "26JUL28REJBRU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BRU": {
+     "entry": 86,
+     "floor": 84,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "REJ": {
+     "entry": null,
+     "floor": 14,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BRU",
+   "close": 85,
+   "naked_pnl": -1,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "REJ",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28RIBTOR",
+   "code": "26JUL28RIBTOR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "RIB": {
+     "entry": null,
+     "floor": 51,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "TOR": {
+     "entry": 49,
+     "floor": 48,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "TOR",
+   "close": 50,
+   "naked_pnl": 1,
+   "filled_read": "RISING",
+   "realized": "RISING",
+   "read_right": true,
+   "unfilled_leg": "RIB",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28ROMVIR",
+   "code": "26JUL28ROMVIR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 98,
+   "pair_gap": 1,
+   "legs": {
+    "ROM": {
+     "entry": 26,
+     "floor": 25,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    },
+    "VIR": {
+     "entry": 73,
+     "floor": 73,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28RONNIC",
+   "code": "26JUL28RONNIC",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 96,
+   "pair_gap": 1,
+   "legs": {
+    "NIC": {
+     "entry": 59,
+     "floor": 58,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "RON": {
+     "entry": 38,
+     "floor": 38,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28SAKMCD",
+   "code": "26JUL28SAKMCD",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 85,
+   "pair_gap": 14,
+   "legs": {
+    "MCD": {
+     "entry": 74,
+     "floor": 74,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SAK": {
+     "entry": 25,
+     "floor": 11,
+     "delta": 14,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28SCHGOM",
+   "code": "26JUL28SCHGOM",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "GOM": {
+     "entry": 41,
+     "floor": 39,
+     "delta": 2,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "SCH": {
+     "entry": null,
+     "floor": 60,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "GOM",
+   "close": 41,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "SCH",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28SCHMRV",
+   "code": "26JUL28SCHMRV",
+   "cat": "ATP_CHALL",
+   "bell": "live_by_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "MRV": {
+     "entry": 46,
+     "floor": 46,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SCH": {
+     "entry": null,
+     "floor": 53,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "MRV",
+   "close": 46,
+   "naked_pnl": 0,
+   "filled_read": "RISING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "SCH",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28SHITOK",
+   "code": "26JUL28SHITOK",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 27,
+   "best_achievable": 27,
+   "pair_gap": 0,
+   "legs": {
+    "SHI": {
+     "entry": 21,
+     "floor": 21,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "TOK": {
+     "entry": 6,
+     "floor": 6,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28SKAFAU",
+   "code": "26JUL28SKAFAU",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "FAU": {
+     "entry": 41,
+     "floor": 41,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SKA": {
+     "entry": 58,
+     "floor": 58,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28TABSQU",
+   "code": "26JUL28TABSQU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "SQU": {
+     "entry": 38,
+     "floor": 38,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "TAB": {
+     "entry": null,
+     "floor": 61,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "SQU",
+   "close": 39,
+   "naked_pnl": 1,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "TAB",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28TOKPAN",
+   "code": "26JUL28TOKPAN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "PAN": {
+     "entry": 68,
+     "floor": 68,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "TOK": {
+     "entry": 31,
+     "floor": 31,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28TURURS",
+   "code": "26JUL28TURURS",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 102,
+   "pair_gap": null,
+   "legs": {
+    "TUR": {
+     "entry": null,
+     "floor": 38,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "URS": {
+     "entry": null,
+     "floor": 64,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "TUR: floor 38 vs rest 34 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); URS: floor 64 vs rest 60 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28VASVAR",
+   "code": "26JUL28VASVAR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "VAR": {
+     "entry": 41,
+     "floor": 41,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "VAS": {
+     "entry": null,
+     "floor": 59,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "VAR",
+   "close": 43,
+   "naked_pnl": 2,
+   "filled_read": "RISING",
+   "realized": "RISING",
+   "read_right": true,
+   "unfilled_leg": "VAS",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28VRBBAS",
+   "code": "26JUL28VRBBAS",
+   "cat": "ATP_CHALL",
+   "bell": "exact",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "BAS": {
+     "entry": 87,
+     "floor": 87,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "VRB": {
+     "entry": 12,
+     "floor": 12,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28WALGIU",
+   "code": "26JUL28WALGIU",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 98,
+   "pair_gap": 1,
+   "legs": {
+    "GIU": {
+     "entry": 53,
+     "floor": 53,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "WAL": {
+     "entry": 46,
+     "floor": 45,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28YEVDUR",
+   "code": "26JUL28YEVDUR",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "DUR": {
+     "entry": null,
+     "floor": 64,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "YEV": {
+     "entry": 36,
+     "floor": 36,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "YEV",
+   "close": 37,
+   "naked_pnl": 1,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "DUR",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28ZHULAN",
+   "code": "26JUL28ZHULAN",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 24,
+   "pair_gap": 73,
+   "legs": {
+    "LAN": {
+     "entry": 59,
+     "floor": 1,
+     "delta": 58,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "ZHU": {
+     "entry": 38,
+     "floor": 23,
+     "delta": 15,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL28ZINPOL",
+   "code": "26JUL28ZINPOL",
+   "cat": "ATP_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 63,
+   "pair_gap": 35,
+   "legs": {
+    "POL": {
+     "entry": 31,
+     "floor": 25,
+     "delta": 6,
+     "read": "RISING",
+     "credited": true
+    },
+    "ZIN": {
+     "entry": 67,
+     "floor": 38,
+     "delta": 29,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26AUG09FONSHE",
+   "code": "26AUG09FONSHE",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "FON": {
+     "entry": 46,
+     "floor": 46,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SHE": {
+     "entry": 53,
+     "floor": 53,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26AUG09TIETIR",
+   "code": "26AUG09TIETIR",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 52,
+   "pair_gap": 47,
+   "legs": {
+    "TIE": {
+     "entry": 68,
+     "floor": 48,
+     "delta": 20,
+     "read": "RISING",
+     "credited": true
+    },
+    "TIR": {
+     "entry": 31,
+     "floor": 4,
+     "delta": 27,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26AUG09VANMEN",
+   "code": "26AUG09VANMEN",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "MEN": {
+     "entry": 72,
+     "floor": 72,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "VAN": {
+     "entry": 27,
+     "floor": 27,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26AUG10DARNAK",
+   "code": "26AUG10DARNAK",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 98,
+   "pair_gap": 0,
+   "legs": {
+    "DAR": {
+     "entry": 31,
+     "floor": 31,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "NAK": {
+     "entry": 67,
+     "floor": 67,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26AUG10JODFIL",
+   "code": "26AUG10JODFIL",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 90,
+   "best_achievable": 72,
+   "pair_gap": 18,
+   "legs": {
+    "FIL": {
+     "entry": 39,
+     "floor": 36,
+     "delta": 3,
+     "read": "FALLING",
+     "credited": true
+    },
+    "JOD": {
+     "entry": 51,
+     "floor": 36,
+     "delta": 15,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26AUG10MERTIE",
+   "code": "26AUG10MERTIE",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 89,
+   "pair_gap": 10,
+   "legs": {
+    "MER": {
+     "entry": 36,
+     "floor": 31,
+     "delta": 5,
+     "read": "RISING",
+     "credited": true
+    },
+    "TIE": {
+     "entry": 63,
+     "floor": 58,
+     "delta": 5,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26JUL27ARNMUS",
+   "code": "26JUL27ARNMUS",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 95,
+   "pair_gap": 4,
+   "legs": {
+    "ARN": {
+     "entry": 39,
+     "floor": 39,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MUS": {
+     "entry": 60,
+     "floor": 56,
+     "delta": 4,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27DAMSHE",
+   "code": "26JUL27DAMSHE",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 94,
+   "best_achievable": 76,
+   "pair_gap": 18,
+   "legs": {
+    "DAM": {
+     "entry": 18,
+     "floor": 18,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SHE": {
+     "entry": 76,
+     "floor": 58,
+     "delta": 18,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26JUL27DETSI",
+   "code": "26JUL27DETSI",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 89,
+   "pair_gap": 9,
+   "legs": {
+    "DE": {
+     "entry": 61,
+     "floor": 52,
+     "delta": 9,
+     "read": "RISING",
+     "credited": true
+    },
+    "TSI": {
+     "entry": 37,
+     "floor": 37,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27DIABOY",
+   "code": "26JUL27DIABOY",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 78,
+   "best_achievable": 66,
+   "pair_gap": 12,
+   "legs": {
+    "BOY": {
+     "entry": 31,
+     "floor": 21,
+     "delta": 10,
+     "read": "RISING",
+     "credited": true
+    },
+    "DIA": {
+     "entry": 47,
+     "floor": 45,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26JUL27FILJOD",
+   "code": "26JUL27FILJOD",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 97,
+   "pair_gap": 1,
+   "legs": {
+    "FIL": {
+     "entry": 58,
+     "floor": 58,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "JOD": {
+     "entry": 40,
+     "floor": 39,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27FRIBER",
+   "code": "26JUL27FRIBER",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 95,
+   "pair_gap": 3,
+   "legs": {
+    "BER": {
+     "entry": 22,
+     "floor": 19,
+     "delta": 3,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "FRI": {
+     "entry": 76,
+     "floor": 76,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27GIRHEW",
+   "code": "26JUL27GIRHEW",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 88,
+   "pair_gap": 10,
+   "legs": {
+    "GIR": {
+     "entry": 88,
+     "floor": 81,
+     "delta": 7,
+     "read": "FALLING",
+     "credited": true
+    },
+    "HEW": {
+     "entry": 10,
+     "floor": 7,
+     "delta": 3,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27HERTOM",
+   "code": "26JUL27HERTOM",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 84,
+   "best_achievable": 77,
+   "pair_gap": 7,
+   "legs": {
+    "HER": {
+     "entry": 18,
+     "floor": 18,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "TOM": {
+     "entry": 66,
+     "floor": 59,
+     "delta": 7,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27HUMMAR",
+   "code": "26JUL27HUMMAR",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 90,
+   "pair_gap": 10,
+   "legs": {
+    "HUM": {
+     "entry": null,
+     "floor": 78,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "MAR": {
+     "entry": 30,
+     "floor": 12,
+     "delta": 18,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "MAR",
+   "close": 22,
+   "naked_pnl": -8,
+   "filled_read": "RISING",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "HUM",
+   "unfilled_geometry": "CAP_BOUND gap 9c"
+  },
+  {
+   "event": "KXATPMATCH-26JUL27MAJPAU",
+   "code": "26JUL27MAJPAU",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "MAJ": {
+     "entry": 25,
+     "floor": 24,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "PAU": {
+     "entry": null,
+     "floor": 75,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MAJ",
+   "close": 25,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "PAU",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXATPMATCH-26JUL27MANTIE",
+   "code": "26JUL27MANTIE",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "MAN": {
+     "entry": 25,
+     "floor": 22,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    },
+    "TIE": {
+     "entry": null,
+     "floor": 76,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "MAN",
+   "close": 23,
+   "naked_pnl": -2,
+   "filled_read": "RISING",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "TIE",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXATPMATCH-26JUL27MICDRA",
+   "code": "26JUL27MICDRA",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 75,
+   "best_achievable": 72,
+   "pair_gap": 3,
+   "legs": {
+    "DRA": {
+     "entry": 31,
+     "floor": 30,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MIC": {
+     "entry": 44,
+     "floor": 42,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27NAKETC",
+   "code": "26JUL27NAKETC",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 97,
+   "pair_gap": 2,
+   "legs": {
+    "ETC": {
+     "entry": 30,
+     "floor": 30,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "NAK": {
+     "entry": 69,
+     "floor": 67,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27NISSHA",
+   "code": "26JUL27NISSHA",
+   "cat": "ATP_MAIN",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 92,
+   "pair_gap": 6,
+   "legs": {
+    "NIS": {
+     "entry": 32,
+     "floor": 32,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SHA": {
+     "entry": 66,
+     "floor": 60,
+     "delta": 6,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26JUL27QUISHE",
+   "code": "26JUL27QUISHE",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 101,
+   "pair_gap": null,
+   "legs": {
+    "QUI": {
+     "entry": null,
+     "floor": 28,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "SHE": {
+     "entry": null,
+     "floor": 73,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "QUI: floor 28 vs rest 26 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); SHE: floor 73 vs rest 71 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL27SVAMEN",
+   "code": "26JUL27SVAMEN",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 95,
+   "pair_gap": 4,
+   "legs": {
+    "MEN": {
+     "entry": 81,
+     "floor": 79,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SVA": {
+     "entry": 18,
+     "floor": 16,
+     "delta": 2,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27TABGRI",
+   "code": "26JUL27TABGRI",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 90,
+   "pair_gap": 8,
+   "legs": {
+    "GRI": {
+     "entry": 54,
+     "floor": 52,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "TAB": {
+     "entry": 44,
+     "floor": 38,
+     "delta": 6,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27TIAATM",
+   "code": "26JUL27TIAATM",
+   "cat": "ATP_MAIN",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 95,
+   "pair_gap": 4,
+   "legs": {
+    "ATM": {
+     "entry": 27,
+     "floor": 25,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "TIA": {
+     "entry": 72,
+     "floor": 70,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL27VUKSVA",
+   "code": "26JUL27VUKSVA",
+   "cat": "ATP_MAIN",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 70,
+   "pair_gap": 28,
+   "legs": {
+    "SVA": {
+     "entry": 38,
+     "floor": 37,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "VUK": {
+     "entry": 60,
+     "floor": 33,
+     "delta": 27,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL28KOUWIN",
+   "code": "26JUL28KOUWIN",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 71,
+   "best_achievable": 19,
+   "pair_gap": 52,
+   "legs": {
+    "KOU": {
+     "entry": 53,
+     "floor": 1,
+     "delta": 52,
+     "read": "FALLING",
+     "credited": true
+    },
+    "WIN": {
+     "entry": 18,
+     "floor": 18,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXATPMATCH-26JUL28KWONGEA",
+   "code": "26JUL28KWONGEA",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 47,
+   "pair_gap": 52,
+   "legs": {
+    "GEA": {
+     "entry": 45,
+     "floor": 38,
+     "delta": 7,
+     "read": "RISING",
+     "credited": true
+    },
+    "KWON": {
+     "entry": 54,
+     "floor": 9,
+     "delta": 45,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26JUL28MAYDUC",
+   "code": "26JUL28MAYDUC",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 15,
+   "pair_gap": 84,
+   "legs": {
+    "DUC": {
+     "entry": 57,
+     "floor": 14,
+     "delta": 43,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MAY": {
+     "entry": 42,
+     "floor": 1,
+     "delta": 41,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXATPMATCH-26JUL28MICMCD",
+   "code": "26JUL28MICMCD",
+   "cat": "ATP_MAIN",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": null,
+   "pair_gap": null,
+   "legs": {
+    "MCD": {
+     "entry": null,
+     "floor": null,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "MIC": {
+     "entry": null,
+     "floor": null,
+     "delta": null,
+     "read": null,
+     "credited": false
+    }
+   },
+   "mirror_coherent": null,
+   "skip_why": "MCD: floor NONE vs rest 27 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); MIC: floor NONE vs rest 18 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27BURLAN",
+   "code": "26JUL27BURLAN",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BUR": {
+     "entry": null,
+     "floor": 60,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "LAN": {
+     "entry": 38,
+     "floor": 38,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "LAN",
+   "close": 38,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "BUR",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27CIRPOP",
+   "code": "26JUL27CIRPOP",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 98,
+   "pair_gap": 0,
+   "legs": {
+    "CIR": {
+     "entry": 51,
+     "floor": 51,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "POP": {
+     "entry": 47,
+     "floor": 47,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27HENPOH",
+   "code": "26JUL27HENPOH",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 98,
+   "pair_gap": 0,
+   "legs": {
+    "HEN": {
+     "entry": 38,
+     "floor": 38,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "POH": {
+     "entry": 60,
+     "floor": 60,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27KAZROU",
+   "code": "26JUL27KAZROU",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "KAZ": {
+     "entry": 45,
+     "floor": 45,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "ROU": {
+     "entry": null,
+     "floor": 53,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "KAZ",
+   "close": 46,
+   "naked_pnl": 1,
+   "filled_read": "RISING",
+   "realized": "RISING",
+   "read_right": true,
+   "unfilled_leg": "ROU",
+   "unfilled_geometry": "FLOW_ABOVE 2c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27MALBER",
+   "code": "26JUL27MALBER",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 92,
+   "pair_gap": 7,
+   "legs": {
+    "BER": {
+     "entry": 55,
+     "floor": 55,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "MAL": {
+     "entry": 44,
+     "floor": 37,
+     "delta": 7,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27PRIKOT",
+   "code": "26JUL27PRIKOT",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "KOT": {
+     "entry": null,
+     "floor": 57,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "PRI": {
+     "entry": 42,
+     "floor": 42,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "PRI",
+   "close": 43,
+   "naked_pnl": 1,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "KOT",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27QUEFET",
+   "code": "26JUL27QUEFET",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 97,
+   "pair_gap": 2,
+   "legs": {
+    "FET": {
+     "entry": 8,
+     "floor": 7,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    },
+    "QUE": {
+     "entry": 91,
+     "floor": 90,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27RAMSTR",
+   "code": "26JUL27RAMSTR",
+   "cat": "WTA_CHALL",
+   "bell": "live_by_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "RAM": {
+     "entry": 29,
+     "floor": 28,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "STR": {
+     "entry": null,
+     "floor": 72,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "RAM",
+   "close": 28,
+   "naked_pnl": -1,
+   "filled_read": "SETTLED",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "STR",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27ROMSOR",
+   "code": "26JUL27ROMSOR",
+   "cat": "WTA_CHALL",
+   "bell": "exact",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "ROM": {
+     "entry": 42,
+     "floor": 41,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "SOR": {
+     "entry": null,
+     "floor": 58,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "ROM",
+   "close": 42,
+   "naked_pnl": 0,
+   "filled_read": "SETTLED",
+   "realized": "SETTLED",
+   "read_right": true,
+   "unfilled_leg": "SOR",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL27SZATON",
+   "code": "26JUL27SZATON",
+   "cat": "WTA_CHALL",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 92,
+   "best_achievable": 87,
+   "pair_gap": 5,
+   "legs": {
+    "SZA": {
+     "entry": 43,
+     "floor": 43,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "TON": {
+     "entry": 49,
+     "floor": 44,
+     "delta": 5,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28BULMON",
+   "code": "26JUL28BULMON",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "BUL": {
+     "entry": null,
+     "floor": 43,
+     "delta": null,
+     "read": "SETTLED",
+     "credited": false
+    },
+    "MON": {
+     "entry": 56,
+     "floor": 56,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "MON",
+   "close": 57,
+   "naked_pnl": 1,
+   "filled_read": "SETTLED",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "BUL",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28CIRGAI",
+   "code": "26JUL28CIRGAI",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "CIR": {
+     "entry": 76,
+     "floor": 76,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "GAI": {
+     "entry": null,
+     "floor": 22,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "CIR",
+   "close": 80,
+   "naked_pnl": 4,
+   "filled_read": "FALLING",
+   "realized": "RISING",
+   "read_right": false,
+   "unfilled_leg": "GAI",
+   "unfilled_geometry": "FLOW_ABOVE 2c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28IBRBUR",
+   "code": "26JUL28IBRBUR",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 97,
+   "pair_gap": 1,
+   "legs": {
+    "BUR": {
+     "entry": 18,
+     "floor": 17,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "IBR": {
+     "entry": 80,
+     "floor": 80,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28JANSOB",
+   "code": "26JUL28JANSOB",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 100,
+   "pair_gap": null,
+   "legs": {
+    "JAN": {
+     "entry": 20,
+     "floor": 20,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SOB": {
+     "entry": null,
+     "floor": 80,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "JAN",
+   "close": 20,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "SOB",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28JONPAQ",
+   "code": "26JUL28JONPAQ",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "JON": {
+     "entry": 80,
+     "floor": 79,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "PAQ": {
+     "entry": null,
+     "floor": 20,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "JON",
+   "close": 80,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "PAQ",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28KOTSPI",
+   "code": "26JUL28KOTSPI",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "KOT": {
+     "entry": null,
+     "floor": 54,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "SPI": {
+     "entry": 46,
+     "floor": 44,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "SPI",
+   "close": 45,
+   "naked_pnl": -1,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "KOT",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28RISSEM",
+   "code": "26JUL28RISSEM",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 98,
+   "pair_gap": 1,
+   "legs": {
+    "RIS": {
+     "entry": 47,
+     "floor": 46,
+     "delta": 1,
+     "read": "SETTLED",
+     "credited": true
+    },
+    "SEM": {
+     "entry": 52,
+     "floor": 52,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28ROURAD",
+   "code": "26JUL28ROURAD",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 96,
+   "pair_gap": 4,
+   "legs": {
+    "RAD": {
+     "entry": 81,
+     "floor": 79,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "ROU": {
+     "entry": null,
+     "floor": 17,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "RAD",
+   "close": 81,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "ROU",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28SAMBRE",
+   "code": "26JUL28SAMBRE",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 98,
+   "pair_gap": 1,
+   "legs": {
+    "BRE": {
+     "entry": 5,
+     "floor": 5,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SAM": {
+     "entry": 94,
+     "floor": 93,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL28TONBRO",
+   "code": "26JUL28TONBRO",
+   "cat": "WTA_CHALL",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 25,
+   "pair_gap": 74,
+   "legs": {
+    "BRO": {
+     "entry": 82,
+     "floor": 16,
+     "delta": 66,
+     "read": "RISING",
+     "credited": true
+    },
+    "TON": {
+     "entry": 17,
+     "floor": 9,
+     "delta": 8,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26AUG09EALBEN",
+   "code": "26AUG09EALBEN",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BEN": {
+     "entry": null,
+     "floor": 53,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "EAL": {
+     "entry": 47,
+     "floor": 45,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "EAL",
+   "close": 46,
+   "naked_pnl": -1,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "BEN",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTAMATCH-26AUG09FEROSA",
+   "code": "26AUG09FEROSA",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 99,
+   "pair_gap": 0,
+   "legs": {
+    "FER": {
+     "entry": 30,
+     "floor": 30,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "OSA": {
+     "entry": 69,
+     "floor": 69,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26AUG09KORGAU",
+   "code": "26AUG09KORGAU",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 98,
+   "pair_gap": 1,
+   "legs": {
+    "GAU": {
+     "entry": 75,
+     "floor": 74,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    },
+    "KOR": {
+     "entry": 24,
+     "floor": 24,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26AUG09SAMRYB",
+   "code": "26AUG09SAMRYB",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 12,
+   "pair_gap": 87,
+   "legs": {
+    "RYB": {
+     "entry": 74,
+     "floor": 7,
+     "delta": 67,
+     "read": "RISING",
+     "credited": true
+    },
+    "SAM": {
+     "entry": 25,
+     "floor": 5,
+     "delta": 20,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26AUG10ALESVI",
+   "code": "26AUG10ALESVI",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 97,
+   "pair_gap": 2,
+   "legs": {
+    "ALE": {
+     "entry": 29,
+     "floor": 28,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SVI": {
+     "entry": 70,
+     "floor": 69,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26AUG10SHNSWI",
+   "code": "26AUG10SHNSWI",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 99,
+   "best_achievable": 98,
+   "pair_gap": 1,
+   "legs": {
+    "SHN": {
+     "entry": 26,
+     "floor": 26,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SWI": {
+     "entry": 73,
+     "floor": 72,
+     "delta": 1,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27ALELIU",
+   "code": "26JUL27ALELIU",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 94,
+   "pair_gap": 6,
+   "legs": {
+    "ALE": {
+     "entry": 73,
+     "floor": 66,
+     "delta": 7,
+     "read": "FALLING",
+     "credited": true
+    },
+    "LIU": {
+     "entry": null,
+     "floor": 28,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "ALE",
+   "close": 69,
+   "naked_pnl": -4,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "LIU",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27COCTAU",
+   "code": "26JUL27COCTAU",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 95,
+   "best_achievable": 93,
+   "pair_gap": 2,
+   "legs": {
+    "COC": {
+     "entry": 29,
+     "floor": 29,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "TAU": {
+     "entry": 66,
+     "floor": 64,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27EALZHE",
+   "code": "26JUL27EALZHE",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 71,
+   "best_achievable": 69,
+   "pair_gap": 2,
+   "legs": {
+    "EAL": {
+     "entry": 18,
+     "floor": 17,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    },
+    "ZHE": {
+     "entry": 53,
+     "floor": 52,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27FERLIN",
+   "code": "26JUL27FERLIN",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 90,
+   "best_achievable": 90,
+   "pair_gap": 0,
+   "legs": {
+    "FER": {
+     "entry": 62,
+     "floor": 62,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "LIN": {
+     "entry": 28,
+     "floor": 28,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27FREANN",
+   "code": "26JUL27FREANN",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 95,
+   "pair_gap": 5,
+   "legs": {
+    "ANN": {
+     "entry": null,
+     "floor": 62,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "FRE": {
+     "entry": 35,
+     "floor": 33,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "FRE",
+   "close": 35,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "ANN",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27KRUBOU",
+   "code": "26JUL27KRUBOU",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 92,
+   "pair_gap": 8,
+   "legs": {
+    "BOU": {
+     "entry": 44,
+     "floor": 39,
+     "delta": 5,
+     "read": "FALLING",
+     "credited": true
+    },
+    "KRU": {
+     "entry": null,
+     "floor": 53,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "BOU",
+   "close": 40,
+   "naked_pnl": -4,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "KRU",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27NAVKEN",
+   "code": "26JUL27NAVKEN",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 97,
+   "pair_gap": 3,
+   "legs": {
+    "KEN": {
+     "entry": null,
+     "floor": 27,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "NAV": {
+     "entry": 73,
+     "floor": 70,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "NAV",
+   "close": 71,
+   "naked_pnl": -2,
+   "filled_read": "RISING",
+   "realized": "FALLING",
+   "read_right": false,
+   "unfilled_leg": "KEN",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27OSOHUN",
+   "code": "26JUL27OSOHUN",
+   "cat": "WTA_MAIN",
+   "bell": "exact",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 93,
+   "pair_gap": 4,
+   "legs": {
+    "HUN": {
+     "entry": 32,
+     "floor": 28,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    },
+    "OSO": {
+     "entry": 65,
+     "floor": 65,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27POTWIL",
+   "code": "26JUL27POTWIL",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 95,
+   "best_achievable": 91,
+   "pair_gap": 4,
+   "legs": {
+    "POT": {
+     "entry": 77,
+     "floor": 77,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "WIL": {
+     "entry": 18,
+     "floor": 14,
+     "delta": 4,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27SAMKEY",
+   "code": "26JUL27SAMKEY",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "KEY": {
+     "entry": null,
+     "floor": 75,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "SAM": {
+     "entry": 25,
+     "floor": 23,
+     "delta": 2,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "SAM",
+   "close": 25,
+   "naked_pnl": 0,
+   "filled_read": "RISING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "KEY",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27SEBKAL",
+   "code": "26JUL27SEBKAL",
+   "cat": "WTA_MAIN",
+   "bell": "live_by_only",
+   "disposition": "COMPLETED",
+   "our_combined": 96,
+   "best_achievable": 96,
+   "pair_gap": 0,
+   "legs": {
+    "KAL": {
+     "entry": 62,
+     "floor": 62,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SEB": {
+     "entry": 34,
+     "floor": 34,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27SHYBRA",
+   "code": "26JUL27SHYBRA",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 95,
+   "pair_gap": 5,
+   "legs": {
+    "BRA": {
+     "entry": null,
+     "floor": 43,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "SHY": {
+     "entry": 56,
+     "floor": 52,
+     "delta": 4,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "SHY",
+   "close": 53,
+   "naked_pnl": -3,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "BRA",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27SIEPRO",
+   "code": "26JUL27SIEPRO",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 95,
+   "best_achievable": 95,
+   "pair_gap": 0,
+   "legs": {
+    "PRO": {
+     "entry": 52,
+     "floor": 52,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "SIE": {
+     "entry": 43,
+     "floor": 43,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27SONBRA",
+   "code": "26JUL27SONBRA",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 98,
+   "best_achievable": 97,
+   "pair_gap": 1,
+   "legs": {
+    "BRA": {
+     "entry": 14,
+     "floor": 14,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "SON": {
+     "entry": 84,
+     "floor": 83,
+     "delta": 1,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27STASTE",
+   "code": "26JUL27STASTE",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 90,
+   "best_achievable": 90,
+   "pair_gap": 0,
+   "legs": {
+    "STA": {
+     "entry": 66,
+     "floor": 66,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "STE": {
+     "entry": 24,
+     "floor": 24,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27STOSTE",
+   "code": "26JUL27STOSTE",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 93,
+   "pair_gap": 7,
+   "legs": {
+    "STE": {
+     "entry": 61,
+     "floor": 59,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "STO": {
+     "entry": null,
+     "floor": 34,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "STE",
+   "close": 59,
+   "naked_pnl": -2,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "STO",
+   "unfilled_geometry": "FLOW_BELOW"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27TJESRA",
+   "code": "26JUL27TJESRA",
+   "cat": "WTA_MAIN",
+   "bell": "exact",
+   "disposition": "COMPLETED",
+   "our_combined": 91,
+   "best_achievable": 88,
+   "pair_gap": 3,
+   "legs": {
+    "SRA": {
+     "entry": 26,
+     "floor": 26,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "TJE": {
+     "entry": 65,
+     "floor": 62,
+     "delta": 3,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27VIDBAS",
+   "code": "26JUL27VIDBAS",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 98,
+   "pair_gap": 2,
+   "legs": {
+    "BAS": {
+     "entry": 37,
+     "floor": 37,
+     "delta": 0,
+     "read": "FALLING",
+     "credited": true
+    },
+    "VID": {
+     "entry": null,
+     "floor": 61,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BAS",
+   "close": 37,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "VID",
+   "unfilled_geometry": "PRETRIGGER"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27VOLGOL",
+   "code": "26JUL27VOLGOL",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 97,
+   "best_achievable": 83,
+   "pair_gap": 14,
+   "legs": {
+    "GOL": {
+     "entry": 43,
+     "floor": 35,
+     "delta": 8,
+     "read": "RISING",
+     "credited": true
+    },
+    "VOL": {
+     "entry": 54,
+     "floor": 48,
+     "delta": 6,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27WANMCC",
+   "code": "26JUL27WANMCC",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 86,
+   "pair_gap": 14,
+   "legs": {
+    "MCC": {
+     "entry": null,
+     "floor": 62,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "WAN": {
+     "entry": 24,
+     "floor": 24,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "WAN",
+   "close": 39,
+   "naked_pnl": 15,
+   "filled_read": "RISING",
+   "realized": "RISING",
+   "read_right": true,
+   "unfilled_leg": "MCC",
+   "unfilled_geometry": "FLOW_ABOVE 1c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27YEXBIR",
+   "code": "26JUL27YEXBIR",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 99,
+   "pair_gap": 1,
+   "legs": {
+    "BIR": {
+     "entry": 82,
+     "floor": 80,
+     "delta": 2,
+     "read": "FALLING",
+     "credited": true
+    },
+    "YEX": {
+     "entry": null,
+     "floor": 19,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BIR",
+   "close": 82,
+   "naked_pnl": 0,
+   "filled_read": "FALLING",
+   "realized": "SETTLED",
+   "read_right": false,
+   "unfilled_leg": "YEX",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27ZAKFRU",
+   "code": "26JUL27ZAKFRU",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "COMPLETED",
+   "our_combined": 89,
+   "best_achievable": 89,
+   "pair_gap": 0,
+   "legs": {
+    "FRU": {
+     "entry": 28,
+     "floor": 28,
+     "delta": 0,
+     "read": "RISING",
+     "credited": true
+    },
+    "ZAK": {
+     "entry": 61,
+     "floor": 61,
+     "delta": 0,
+     "read": "SETTLED",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false
+  },
+  {
+   "event": "KXWTAMATCH-26JUL27ZARKES",
+   "code": "26JUL27ZARKES",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "SKIP",
+   "our_combined": null,
+   "best_achievable": 93,
+   "pair_gap": 7,
+   "legs": {
+    "KES": {
+     "entry": null,
+     "floor": 74,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "ZAR": {
+     "entry": null,
+     "floor": 19,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "skip_why": "KES: floor 74 vs rest 73 (REST_UNFILLED_AT_HARD_PREBELL_EDGE); ZAR: floor 19 vs rest 26 (REST_UNFILLED_AT_HARD_PREBELL_EDGE)"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL28BUCKUD",
+   "code": "26JUL28BUCKUD",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 95,
+   "pair_gap": 5,
+   "legs": {
+    "BUC": {
+     "entry": 48,
+     "floor": 43,
+     "delta": 5,
+     "read": "FALLING",
+     "credited": true
+    },
+    "KUD": {
+     "entry": null,
+     "floor": 52,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "BUC",
+   "close": 44,
+   "naked_pnl": -4,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "KUD",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL28KASKAL",
+   "code": "26JUL28KASKAL",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 96,
+   "pair_gap": 4,
+   "legs": {
+    "KAL": {
+     "entry": null,
+     "floor": 62,
+     "delta": null,
+     "read": "FALLING",
+     "credited": false
+    },
+    "KAS": {
+     "entry": 38,
+     "floor": 34,
+     "delta": 4,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": false,
+   "filled_leg": "KAS",
+   "close": 34,
+   "naked_pnl": -4,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "KAL",
+   "unfilled_geometry": "CAP_BOUND gap 1c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL28PARWAN",
+   "code": "26JUL28PARWAN",
+   "cat": "WTA_MAIN",
+   "bell": "schedule_only",
+   "disposition": "NAKED",
+   "our_combined": null,
+   "best_achievable": 96,
+   "pair_gap": 4,
+   "legs": {
+    "PAR": {
+     "entry": null,
+     "floor": 38,
+     "delta": null,
+     "read": "RISING",
+     "credited": false
+    },
+    "WAN": {
+     "entry": 63,
+     "floor": 58,
+     "delta": 5,
+     "read": "FALLING",
+     "credited": true
+    }
+   },
+   "mirror_coherent": true,
+   "filled_leg": "WAN",
+   "close": 59,
+   "naked_pnl": -4,
+   "filled_read": "FALLING",
+   "realized": "FALLING",
+   "read_right": true,
+   "unfilled_leg": "PAR",
+   "unfilled_geometry": "CAP_BOUND gap 2c"
+  }
+ ]
+}

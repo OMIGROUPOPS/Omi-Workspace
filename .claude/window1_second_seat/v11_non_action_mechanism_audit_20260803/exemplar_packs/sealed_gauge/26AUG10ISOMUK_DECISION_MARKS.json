@@ -1,0 +1,51 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26AUG10ISOMUK",
+ "code": "26AUG10ISOMUK",
+ "category": "ATP_CHALL",
+ "bell": "schedule_only",
+ "archetype": "SEALED_REGRET top pair-gap (2bae8931)",
+ "gauge_row": {
+  "event": "KXATPCHALLENGERMATCH-26AUG10ISOMUK",
+  "code": "26AUG10ISOMUK",
+  "cat": "ATP_CHALL",
+  "bell": "schedule_only",
+  "disposition": "COMPLETED",
+  "our_combined": 98,
+  "best_achievable": 2,
+  "pair_gap": 96,
+  "legs": {
+   "ISO": {
+    "entry": 49,
+    "floor": 1,
+    "delta": 48,
+    "read": "SETTLED",
+    "credited": true
+   },
+   "MUK": {
+    "entry": 49,
+    "floor": 1,
+    "delta": 48,
+    "read": "SETTLED",
+    "credited": true
+   }
+  },
+  "mirror_coherent": true
+ },
+ "note": "holdout population - fit-local tape absent; timeline is the sealed ACTION_TRACE receipt series (RECEIPT_TIMELINE_V1), flagged",
+ "legs": {
+  "ISO": {
+   "ticker": "KXATPCHALLENGERMATCH-26AUG10ISOMUK-ISO",
+   "credited": true,
+   "entry": 49,
+   "terminal_reason": "MARKET_REACH_PRINT_CROSS",
+   "final_state": "CREDITED"
+  },
+  "MUK": {
+   "ticker": "KXATPCHALLENGERMATCH-26AUG10ISOMUK-MUK",
+   "credited": true,
+   "entry": 49,
+   "terminal_reason": "MARKET_REACH_PRINT_CROSS",
+   "final_state": "CREDITED"
+  }
+ }
+}

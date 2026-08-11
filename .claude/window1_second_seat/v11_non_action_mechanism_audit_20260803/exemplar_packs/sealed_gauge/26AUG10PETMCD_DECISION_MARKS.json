@@ -1,0 +1,51 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26AUG10PETMCD",
+ "code": "26AUG10PETMCD",
+ "category": "ATP_CHALL",
+ "bell": "schedule_only",
+ "archetype": "SEALED_REGRET top pair-gap (2bae8931)",
+ "gauge_row": {
+  "event": "KXATPCHALLENGERMATCH-26AUG10PETMCD",
+  "code": "26AUG10PETMCD",
+  "cat": "ATP_CHALL",
+  "bell": "schedule_only",
+  "disposition": "COMPLETED",
+  "our_combined": 99,
+  "best_achievable": 9,
+  "pair_gap": 90,
+  "legs": {
+   "MCD": {
+    "entry": 59,
+    "floor": 8,
+    "delta": 51,
+    "read": "RISING",
+    "credited": true
+   },
+   "PET": {
+    "entry": 40,
+    "floor": 1,
+    "delta": 39,
+    "read": "RISING",
+    "credited": true
+   }
+  },
+  "mirror_coherent": false
+ },
+ "note": "holdout population - fit-local tape absent; timeline is the sealed ACTION_TRACE receipt series (RECEIPT_TIMELINE_V1), flagged",
+ "legs": {
+  "MCD": {
+   "ticker": "KXATPCHALLENGERMATCH-26AUG10PETMCD-MCD",
+   "credited": true,
+   "entry": 59,
+   "terminal_reason": "MARKET_REACH_PRINT_CROSS",
+   "final_state": "CREDITED"
+  },
+  "PET": {
+   "ticker": "KXATPCHALLENGERMATCH-26AUG10PETMCD-PET",
+   "credited": true,
+   "entry": 40,
+   "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL",
+   "final_state": "CREDITED"
+  }
+ }
+}

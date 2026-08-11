@@ -1,0 +1,51 @@
+{
+ "event": "KXATPCHALLENGERMATCH-26AUG10BARLEC",
+ "code": "26AUG10BARLEC",
+ "category": "ATP_CHALL",
+ "bell": "schedule_only",
+ "archetype": "SEALED_REGRET top pair-gap (2bae8931)",
+ "gauge_row": {
+  "event": "KXATPCHALLENGERMATCH-26AUG10BARLEC",
+  "code": "26AUG10BARLEC",
+  "cat": "ATP_CHALL",
+  "bell": "schedule_only",
+  "disposition": "COMPLETED",
+  "our_combined": 98,
+  "best_achievable": 2,
+  "pair_gap": 96,
+  "legs": {
+   "BAR": {
+    "entry": 92,
+    "floor": 1,
+    "delta": 91,
+    "read": "FALLING",
+    "credited": true
+   },
+   "LEC": {
+    "entry": 6,
+    "floor": 1,
+    "delta": 5,
+    "read": "RISING",
+    "credited": true
+   }
+  },
+  "mirror_coherent": true
+ },
+ "note": "holdout population - fit-local tape absent; timeline is the sealed ACTION_TRACE receipt series (RECEIPT_TIMELINE_V1), flagged",
+ "legs": {
+  "BAR": {
+   "ticker": "KXATPCHALLENGERMATCH-26AUG10BARLEC-BAR",
+   "credited": true,
+   "entry": 92,
+   "terminal_reason": "MARKET_REACH_PRINT_CROSS",
+   "final_state": "CREDITED"
+  },
+  "LEC": {
+   "ticker": "KXATPCHALLENGERMATCH-26AUG10BARLEC-LEC",
+   "credited": true,
+   "entry": 6,
+   "terminal_reason": "MARKET_REACH_TRADED_AT_LEVEL",
+   "final_state": "CREDITED"
+  }
+ }
+}

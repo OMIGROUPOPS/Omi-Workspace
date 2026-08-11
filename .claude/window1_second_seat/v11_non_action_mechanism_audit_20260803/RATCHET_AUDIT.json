@@ -1,0 +1,182 @@
+{
+ "LABEL": "RATCHET_AUDIT",
+ "basis": "f40ac8ea population (sealed 12 + dev 62 riser-side unfilled) + 30 credited dev risers (calibration, sha1-deterministic). Post-lawful-stand ask dips at ANY level; boundary B(t)=99 - sibling's contemporaneous qualified-ask-low (running >=10s-dwell ask min, decision-time observable). Catchable dip: trough<=B(t).",
+ "SEALED_UNFILLED": {
+  "label": "sealed_unfilled",
+  "n": 12,
+  "no_tape": 0,
+  "legs_with_dips": 4,
+  "no_dip": 8,
+  "median_dips": 0,
+  "median_rungs": 1,
+  "asc_share_med": 0.2,
+  "pairs_completable_at_catchable": 0,
+  "cents_best": 0,
+  "all_dips_overpar": 4
+ },
+ "DEV_UNFILLED": {
+  "label": "dev_unfilled",
+  "n": 62,
+  "no_tape": 0,
+  "legs_with_dips": 27,
+  "no_dip": 35,
+  "median_dips": 0,
+  "median_rungs": 1,
+  "asc_share_med": 0.0,
+  "pairs_completable_at_catchable": 5,
+  "cents_best": 5,
+  "all_dips_overpar": 22
+ },
+ "CALIBRATION_FILLED": {
+  "label": "dev_filled_calibration",
+  "n": 30,
+  "no_tape": 0,
+  "legs_with_dips": 28,
+  "no_dip": 2,
+  "median_dips": 5,
+  "median_rungs": 2,
+  "asc_share_med": 0.02,
+  "pairs_completable_at_catchable": 11,
+  "cents_best": 27,
+  "all_dips_overpar": 17
+ },
+ "named_exemplars": {
+  "catchable_missed": [
+   {
+    "code": "26JUL13BOUZHA",
+    "leg": "ZHA",
+    "dips": 109,
+    "ratchet_rungs": 2,
+    "catchable": 108,
+    "best_val": 1,
+    "miss": {
+     "last_catchable": "07-13 14:35",
+     "remaining_window_s": 32642,
+     "sibling_read_at_miss": "RISING",
+     "dips_after": 1
+    }
+   },
+   {
+    "code": "26JUL19PALMUN",
+    "leg": "MUN",
+    "dips": 3,
+    "ratchet_rungs": 1,
+    "catchable": 1,
+    "best_val": 1,
+    "miss": {
+     "last_catchable": "07-19 12:58",
+     "remaining_window_s": 77,
+     "sibling_read_at_miss": "FALLING",
+     "dips_after": 0
+    }
+   },
+   {
+    "code": "26JUL19VUKGEA",
+    "leg": "GEA",
+    "dips": 59,
+    "ratchet_rungs": 5,
+    "catchable": 5,
+    "best_val": 1,
+    "miss": {
+     "last_catchable": "07-19 19:16",
+     "remaining_window_s": 2031,
+     "sibling_read_at_miss": "RISING",
+     "dips_after": 0
+    }
+   },
+   {
+    "code": "26JUL20WINARS",
+    "leg": "ARS",
+    "dips": 1,
+    "ratchet_rungs": 1,
+    "catchable": 1,
+    "best_val": 1,
+    "miss": {
+     "last_catchable": "07-20 15:07",
+     "remaining_window_s": 2840,
+     "sibling_read_at_miss": "FALLING",
+     "dips_after": 0
+    }
+   },
+   {
+    "code": "26JUL13TIMANN",
+    "leg": "TIM",
+    "dips": 4,
+    "ratchet_rungs": 3,
+    "catchable": 1,
+    "best_val": 1,
+    "miss": {
+     "last_catchable": "07-13 18:50",
+     "remaining_window_s": 86342,
+     "sibling_read_at_miss": "RISING",
+     "dips_after": 3
+    }
+   }
+  ],
+  "pure_ratchet_overpar": [
+   {
+    "code": "26JUL13WINKIR",
+    "leg": "KIR",
+    "dips": 25,
+    "ratchet_rungs": 2,
+    "overpar_dips": 25
+   },
+   {
+    "code": "26JUL15LAJKRU",
+    "leg": "LAJ",
+    "dips": 3,
+    "ratchet_rungs": 1,
+    "overpar_dips": 3
+   },
+   {
+    "code": "26JUL15SHIBOU",
+    "leg": "BOU",
+    "dips": 2,
+    "ratchet_rungs": 1,
+    "overpar_dips": 2
+   },
+   {
+    "code": "26JUL15VILMAR",
+    "leg": "VIL",
+    "dips": 2,
+    "ratchet_rungs": 2,
+    "overpar_dips": 2
+   }
+  ],
+  "sealed": [
+   {
+    "code": "26JUL27BOSROD",
+    "leg": "BOS",
+    "dips": 1,
+    "catchable": 0,
+    "best_val": 0
+   },
+   {
+    "code": "26JUL27MONMAZ",
+    "leg": "MON",
+    "dips": 1,
+    "catchable": 0,
+    "best_val": 0
+   },
+   {
+    "code": "26JUL28POLDAL",
+    "leg": "DAL",
+    "dips": 6,
+    "catchable": 0,
+    "best_val": 0
+   },
+   {
+    "code": "26JUL27KRUBOU",
+    "leg": "KRU",
+    "dips": 1,
+    "catchable": 0,
+    "best_val": 0
+   }
+  ]
+ },
+ "conservation": {
+  "sealed": 12,
+  "dev": 62,
+  "calibration": 30
+ }
+}

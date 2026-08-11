@@ -1,0 +1,180 @@
+{
+ "LABEL": "THE_ANATOMY_MAP_DIALS",
+ "ruler": "fb74c8b8 source chain v47->v45->v43->v41+v42->v36->v32/v35 + runner",
+ "sites": [
+  {
+   "id": "S1",
+   "name": "quote-path read",
+   "outcome": "READ",
+   "resolution": "TRAIL300",
+   "code": "v32.quotePathState",
+   "levers": "LOOKBACK_SECONDS=300"
+  },
+  {
+   "id": "S2",
+   "name": "pressure read",
+   "outcome": "READ",
+   "resolution": "RECEIPT",
+   "code": "v32.pressureState",
+   "levers": "0.60/0.40 thresholds"
+  },
+  {
+   "id": "S3",
+   "name": "state combiner",
+   "outcome": "READ",
+   "resolution": "RECEIPT",
+   "code": "v32.combineState",
+   "levers": "quote-primacy; disagreement flag UNCONSUMED"
+  },
+  {
+   "id": "S4",
+   "name": "persistence-join qualification",
+   "outcome": "PERMISSION",
+   "resolution": "TRAIL300",
+   "code": "v43.persistenceJoinUpdate C1",
+   "levers": "300s residency; arm_at_first_evidence"
+  },
+  {
+   "id": "S5",
+   "name": "same-tick arm atomicity",
+   "outcome": "ACTION-ORDER",
+   "resolution": "RECEIPT",
+   "code": "v47.decideReceipt",
+   "levers": "latency=0 (8877c2d5)"
+  },
+  {
+   "id": "S6",
+   "name": "RISING placement",
+   "outcome": "LEVEL",
+   "resolution": "RECEIPT",
+   "code": "v41.placementTarget b1",
+   "levers": "join level"
+  },
+  {
+   "id": "S7",
+   "name": "FALLING placement",
+   "outcome": "LEVEL",
+   "resolution": "RECEIPT",
+   "code": "v32.fallingRestTarget",
+   "levers": "bid-1 monotone no-chase"
+  },
+  {
+   "id": "S8",
+   "name": "SETTLED placement",
+   "outcome": "LEVEL",
+   "resolution": "RECEIPT",
+   "code": "v35.livingRestTarget",
+   "levers": "bid-1 living"
+  },
+  {
+   "id": "S9",
+   "name": "WTA inverse-falling hold",
+   "outcome": "LEVEL",
+   "resolution": "RECEIPT",
+   "code": "v41.placementTarget b2",
+   "levers": "min(pulse,causal-low); DOCTRINE-LESS (LAW B declined)"
+  },
+  {
+   "id": "S10",
+   "name": "C3 loosen",
+   "outcome": "LEVEL",
+   "resolution": "RECEIPT",
+   "code": "v43.placementTarget",
+   "levers": "loosen_one_cent (52275c9d)"
+  },
+  {
+   "id": "S11",
+   "name": "post-only sanity bound",
+   "outcome": "CLAMP",
+   "resolution": "RECEIPT",
+   "code": "v41.postOnlyBound",
+   "levers": "min(ask-1,cap)"
+  },
+  {
+   "id": "S12",
+   "name": "deep-gap guard",
+   "outcome": "PERMISSION",
+   "resolution": "RECEIPT",
+   "code": "v42.deepGapFeasibility",
+   "levers": "T=10 (645e035b); COMPOSITION_STALE"
+  },
+  {
+   "id": "S13",
+   "name": "incumbent adjudication under withhold",
+   "outcome": "ACTION",
+   "resolution": "RECEIPT",
+   "code": "v42.decide tail",
+   "levers": "keep-feasible/cancel-infeasible/hold"
+  },
+  {
+   "id": "S14",
+   "name": "guard release at sibling credit",
+   "outcome": "PERMISSION-OVERRIDE",
+   "resolution": "EVENT",
+   "code": "v45.decide",
+   "levers": "release clause (3bda0a54)"
+  },
+  {
+   "id": "S15",
+   "name": "trailing pulse floor",
+   "outcome": "LEVEL(telemetry+S9)",
+   "resolution": "TRAIL300",
+   "code": "v41.trailingPulseFloor",
+   "levers": "300s/2-visits; TRAILING-MYOPIA (bc0ce289#5)"
+  },
+  {
+   "id": "S16",
+   "name": "lazy first-fill pair cap",
+   "outcome": "CLAMP",
+   "resolution": "EVENT",
+   "code": "runner",
+   "levers": "cap=99-first entry; RICHNESS defect (a20e1a85)"
+  },
+  {
+   "id": "S16b",
+   "name": "gap-credit instrumentation",
+   "outcome": "TELEMETRY",
+   "resolution": "RECEIPT",
+   "code": "V47 ledger fields",
+   "levers": "V46 clause BLOCKED"
+  },
+  {
+   "id": "S17",
+   "name": "hard pre-bell edge",
+   "outcome": "PERMISSION",
+   "resolution": "EVENT",
+   "code": "runner",
+   "levers": "V36 span; stand-too-late defect (aa1cc301)"
+  },
+  {
+   "id": "S18",
+   "name": "credit law",
+   "outcome": "CREDIT",
+   "resolution": "RECEIPT",
+   "code": "runner + v41.tradedAtLevel",
+   "levers": "trades-as-truth (e073c606); FANBIG defect"
+  }
+ ],
+ "count": 19,
+ "july_audit_count": 12,
+ "extensions": [
+  "S5",
+  "S9",
+  "S13",
+  "S14",
+  "S15",
+  "S16b/S18 split"
+ ],
+ "dispatch_lineage": "truth/archive/tape_20260714 (C-EVERY-SITE drafted, never sent; grep-clean)",
+ "conflicts": {
+  "resolved": 8,
+  "resolved_by_accident": [
+   "S15/S4 branch order, no written rule"
+  ],
+  "missing": [
+   "S18/S7 strict-ask-freeze path",
+   "mirror arbitration (S3 vs sibling S3)"
+  ],
+  "unconsumed_signal": "S3 disagreement flag"
+ }
+}

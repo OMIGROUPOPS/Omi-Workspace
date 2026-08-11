@@ -1819,3 +1819,24 @@ https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a60adeb3e8f510c53f02
 
 Canonical attribution:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/a60adeb3e8f510c53f02415669208090b47462e9/.claude/window1_live_v4_replay/v50_first_fill_price_discipline_20260811/ATTRIBUTION_SCORECARD.json
+
+### 2026-08-11 - V50-R ONE-DIRECTIONAL PRICE DISCIPLINE BLOCKED
+
+V50-R narrows the observed-flow bound to a prospective unhedged first fill and
+lifts that authority at sibling credit, leaving only V47's fixed pair cap on
+the second expression. The executable result falls from V47's 396 to 385
+completed/under-par pairs. Locked value falls 1,936c->1,869c; naked P&L
+improves -162c->-79c and true book improves +1,774c->+1,790c. ARNROM remains
+the decisive regression at 89->97 and PUTJEA remains completed at 73 rather
+than withheld.
+
+The receipt corrects the proposed causal story: V47 fills ARN 50 first and ROM
+39 second; V50-R delays ARN's earlier opportunity, lets ROM 39 fill first, and
+later fills ARN at 58. Post-credit release cannot recover a pre-credit
+opportunity already lost. In PUTJEA, PUT 9 fills first and JEA 64 is the
+unbounded second expression, so withholding is not entailed by this law. V50-R
+is rejected and V47 remains operative. Two clean builds match 36/36 artifacts;
+forbidden access is zero. No deployment or live-cutover authority is created.
+
+Canonical evidence package:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8e4191f40f1c38d43cb897ae10d6cc385f1012de/.claude/window1_live_v4_replay/v50r_one_directional_price_discipline_20260811/REPORT.md

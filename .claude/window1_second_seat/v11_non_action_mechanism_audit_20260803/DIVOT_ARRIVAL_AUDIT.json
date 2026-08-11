@@ -1,0 +1,137 @@
+{
+ "LABEL": "DIVOT_ARRIVAL_AUDIT",
+ "basis": "riser-side unfilled legs: sealed 82 (b26cf548, read RISING) from the exam's private tapes; dev one-eyed 240 (e177c2fb, frozen CLIMBING) from fit-local. Divot = ask dip-and-resume run (d1ac9497 method) AFTER the rest lawfully stood (join/first-action). Refusal on the DEEPEST post-stand trough T vs rest R and cap.",
+ "SEALED": {
+  "total": 12,
+  "classes": {
+   "NO_DIVOT_CAME": 10,
+   "CAP_BOUND": 1,
+   "TROUGH_ABOVE_REST": 1
+  },
+  "cents": {
+   "CAP_BOUND": 0,
+   "TROUGH_ABOVE_REST": 1
+  },
+  "v50_fit_under_floor_cap": 1,
+  "exemplars": {
+   "CAP_BOUND": [
+    {
+     "code": "26JUL27MONMAZ",
+     "leg": "MON",
+     "trough": 82,
+     "rest": 80,
+     "cap": 80,
+     "divots": 1,
+     "value": 0
+    }
+   ],
+   "TROUGH_ABOVE_REST": [
+    {
+     "code": "26JUL28POLDAL",
+     "leg": "DAL",
+     "trough": 61,
+     "rest": 60,
+     "cap": 61,
+     "divots": 5,
+     "value": 1
+    }
+   ]
+  }
+ },
+ "DEV": {
+  "total": 62,
+  "classes": {
+   "NO_DIVOT_CAME": 41,
+   "TROUGH_ABOVE_REST": 2,
+   "CAP_BOUND": 17,
+   "EXPECTED_FILL_ANOMALY": 2
+  },
+  "cents": {
+   "TROUGH_ABOVE_REST": 3,
+   "CAP_BOUND": 0,
+   "EXPECTED_FILL_ANOMALY": 6
+  },
+  "v50_fit_under_floor_cap": 8,
+  "exemplars": {
+   "TROUGH_ABOVE_REST": [
+    {
+     "code": "26JUL13BOUZHA",
+     "leg": "ZHA",
+     "trough": 74,
+     "rest": 73,
+     "cap": 75,
+     "divots": 109,
+     "value": 2
+    },
+    {
+     "code": "26JUL15VILMAR",
+     "leg": "VIL",
+     "trough": 51,
+     "rest": 50,
+     "cap": null,
+     "divots": 2,
+     "value": 1
+    }
+   ],
+   "CAP_BOUND": [
+    {
+     "code": "26JUL13WINKIR",
+     "leg": "KIR",
+     "trough": 29,
+     "rest": 27,
+     "cap": 27,
+     "divots": 25,
+     "value": 0
+    },
+    {
+     "code": "26JUL15LAJKRU",
+     "leg": "LAJ",
+     "trough": 69,
+     "rest": 67,
+     "cap": 67,
+     "divots": 3,
+     "value": 0
+    },
+    {
+     "code": "26JUL15SHIBOU",
+     "leg": "BOU",
+     "trough": 45,
+     "rest": 41,
+     "cap": 41,
+     "divots": 2,
+     "value": 0
+    }
+   ],
+   "EXPECTED_FILL_ANOMALY": [
+    {
+     "code": "26JUL19VUKGEA",
+     "leg": "GEA",
+     "trough": 64,
+     "rest": 64,
+     "cap": null,
+     "divots": 59,
+     "value": 5
+    },
+    {
+     "code": "26JUL13TIMANN",
+     "leg": "TIM",
+     "trough": 41,
+     "rest": 41,
+     "cap": 41,
+     "divots": 4,
+     "value": 1
+    }
+   ]
+  }
+ },
+ "V50_PREVIEW": {
+  "sealed_capbound_fit_if_sibling_paid_floor": 1,
+  "dev": 8
+ },
+ "conservation": {
+  "sealed": 12,
+  "dev": 62,
+  "sealed_classified": 12,
+  "dev_classified": 62
+ }
+}

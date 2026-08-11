@@ -1,0 +1,165 @@
+{
+ "LABEL": "HIDDEN_BOOK_CENSUS",
+ "basis": "every in-window print located vs the contemporaneous displayed BBO (last tick <= print ts). Dev = fit-local 373k reconciled prints; sealed = the 238's canonical prints (holdout + exam repull). CHAIN: for inside-spread prints, whether the displayed book moved toward the hidden level in the prior/following 60s (nearest-side distance).",
+ "DEV": {
+  "label": "dev",
+  "total_located": 373183,
+  "no_tape": 20,
+  "counts": {
+   "AT_DISPLAYED_BID": 46509,
+   "AT_DISPLAYED_ASK": 149005,
+   "INSIDE_SPREAD": 4405,
+   "THROUGH": 173264
+  },
+  "shares": {
+   "AT_DISPLAYED_BID": 0.125,
+   "AT_DISPLAYED_ASK": 0.399,
+   "INSIDE_SPREAD": 0.012,
+   "THROUGH": 0.464
+  },
+  "volume_shares": {
+   "AT_DISPLAYED_BID": 0.151,
+   "AT_DISPLAYED_ASK": 0.348,
+   "INSIDE_SPREAD": 0.009,
+   "THROUGH": 0.493
+  },
+  "by_category": {
+   "ATP_CHALL": {
+    "AT_DISPLAYED_ASK": 49447,
+    "AT_DISPLAYED_BID": 19278,
+    "INSIDE_SPREAD": 1964,
+    "THROUGH": 89746
+   },
+   "ATP_MAIN": {
+    "AT_DISPLAYED_ASK": 52346,
+    "AT_DISPLAYED_BID": 11027,
+    "THROUGH": 27396,
+    "INSIDE_SPREAD": 1012
+   },
+   "WTA_CHALL": {
+    "AT_DISPLAYED_ASK": 21057,
+    "AT_DISPLAYED_BID": 11096,
+    "THROUGH": 41861,
+    "INSIDE_SPREAD": 1100
+   },
+   "WTA_MAIN": {
+    "THROUGH": 14261,
+    "AT_DISPLAYED_ASK": 26155,
+    "AT_DISPLAYED_BID": 5108,
+    "INSIDE_SPREAD": 329
+   }
+  },
+  "chain": {
+   "inside_n": 4405,
+   "book_moved_toward_before": 1429,
+   "book_moved_toward_after": 1612,
+   "share_before": 0.324,
+   "share_after": 0.366
+  },
+  "special": {
+   "MAZ66": [
+    {
+     "t": 1784577152,
+     "cls": "AT_DISPLAYED_BID",
+     "bid": 66,
+     "ask": 68
+    },
+    {
+     "t": 1784577129,
+     "cls": "AT_DISPLAYED_BID",
+     "bid": 66,
+     "ask": 68
+    },
+    {
+     "t": 1784576768,
+     "cls": "THROUGH",
+     "bid": 67,
+     "ask": 69
+    }
+   ]
+  }
+ },
+ "SEALED": {
+  "label": "sealed",
+  "total_located": 580079,
+  "no_tape": 0,
+  "counts": {
+   "AT_DISPLAYED_BID": 68910,
+   "AT_DISPLAYED_ASK": 155932,
+   "INSIDE_SPREAD": 5972,
+   "THROUGH": 349265
+  },
+  "shares": {
+   "AT_DISPLAYED_BID": 0.119,
+   "AT_DISPLAYED_ASK": 0.269,
+   "INSIDE_SPREAD": 0.01,
+   "THROUGH": 0.602
+  },
+  "volume_shares": {
+   "AT_DISPLAYED_BID": 0.128,
+   "AT_DISPLAYED_ASK": 0.24,
+   "INSIDE_SPREAD": 0.006,
+   "THROUGH": 0.626
+  },
+  "by_category": {
+   "ATP_CHALL": {
+    "AT_DISPLAYED_ASK": 106455,
+    "THROUGH": 272570,
+    "AT_DISPLAYED_BID": 57724,
+    "INSIDE_SPREAD": 5235
+   },
+   "ATP_MAIN": {
+    "AT_DISPLAYED_ASK": 27382,
+    "AT_DISPLAYED_BID": 5487,
+    "THROUGH": 61243,
+    "INSIDE_SPREAD": 370
+   },
+   "WTA_CHALL": {
+    "AT_DISPLAYED_ASK": 3198,
+    "THROUGH": 548,
+    "AT_DISPLAYED_BID": 514,
+    "INSIDE_SPREAD": 126
+   },
+   "WTA_MAIN": {
+    "AT_DISPLAYED_ASK": 18897,
+    "AT_DISPLAYED_BID": 5185,
+    "THROUGH": 14904,
+    "INSIDE_SPREAD": 241
+   }
+  },
+  "chain": {
+   "inside_n": 5972,
+   "book_moved_toward_before": 1688,
+   "book_moved_toward_after": 2039,
+   "share_before": 0.283,
+   "share_after": 0.341
+  },
+  "special": {}
+ },
+ "MAZ66": [
+  {
+   "t": 1784577152,
+   "cls": "AT_DISPLAYED_BID",
+   "bid": 66,
+   "ask": 68
+  },
+  {
+   "t": 1784577129,
+   "cls": "AT_DISPLAYED_BID",
+   "bid": 66,
+   "ask": 68
+  },
+  {
+   "t": 1784576768,
+   "cls": "THROUGH",
+   "bid": 67,
+   "ask": 69
+  }
+ ],
+ "conservation": {
+  "dev_located": 373183,
+  "dev_no_tape": 20,
+  "sealed_located": 580079,
+  "sealed_no_tape": 0
+ }
+}

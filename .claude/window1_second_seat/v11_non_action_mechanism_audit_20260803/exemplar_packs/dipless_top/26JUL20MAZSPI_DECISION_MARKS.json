@@ -1,0 +1,45 @@
+{
+ "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+ "code": "26JUL20MAZSPI",
+ "category": "WTA_CHALL",
+ "archetype": "HIGHEST-VALUE DIPLESS LEG (THE_DIPLESS_43_RAW + capture cross)",
+ "top_row": {
+  "code": "26JUL20MAZSPI",
+  "leg": "MAZ",
+  "sealed": false,
+  "verdict": "TRADED_THROUGH",
+  "value": 1,
+  "honest_floor": 66,
+  "min_ask": 68,
+  "min_print": 66,
+  "rest": 66,
+  "sib": "SPI",
+  "sib_entry": 33,
+  "era": "DEV_FIT_LOCAL",
+  "capture": "CAPTURE_SUSPECT",
+  "density_vs_cal": 1.56,
+  "gap_share": 0.538
+ },
+ "template": "DUAL_TIMELINE_V2 + DECISION_MARKS",
+ "w1_span": {
+  "left": 1784556600,
+  "left_et": "2026-07-20 14:10:00",
+  "right": 1784579100,
+  "right_et": "2026-07-20 20:25:00"
+ },
+ "note": "raw-resolution render for Plex; capture-quality caveat applies (see CAPTURE_QUALITY_CROSS row)",
+ "legs": {
+  "MAZ": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20MAZSPI-MAZ",
+   "credited": false,
+   "entry": null,
+   "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+  },
+  "SPI": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL20MAZSPI-SPI",
+   "credited": true,
+   "entry": 33,
+   "terminal_reason": "MARKET_REACH_PRINT_CROSS"
+  }
+ }
+}

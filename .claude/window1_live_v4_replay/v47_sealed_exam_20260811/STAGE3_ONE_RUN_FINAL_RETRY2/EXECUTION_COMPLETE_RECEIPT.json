@@ -1,0 +1,10 @@
+{
+  "status": "COMPLETE_FINAL",
+  "score_emitting_runs": 1,
+  "retries": 0,
+  "V47_invocations": 1,
+  "V45_comparison_from_same_V47_policy_pass": 1,
+  "V36_invocations": 1,
+  "population_N": 238,
+  "completed_at_utc": "2026-08-11T15:00:25.974Z"
+}

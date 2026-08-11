@@ -1,0 +1,20 @@
+{
+  "files": {
+    "DEV_INERTNESS_RECEIPT.json": {
+      "sha256": "4844123a212ff56c4127f56d9f46406a2fc49a1245b8fd421c3fd48610bee647",
+      "bytes": 3497
+    },
+    "DEV_REBUILD_STDERR.txt": {
+      "sha256": "8c79e67e686037451b99df9c7f1923bb33306f9b8d05cf7d3d6dddf141e0a483",
+      "bytes": 335
+    },
+    "DEV_REBUILD_STDOUT.txt": {
+      "sha256": "10e63959056338f78b5456a0b00c6f80d9cdaf003befb6abd84ad252f456a65f",
+      "bytes": 47011
+    },
+    "POLICY_BYTE_IDENTITY_RECEIPT.json": {
+      "sha256": "a3bbc34bd88a1f467a214c30ced07b0e24b544eb22796f5a2cdad3bcc8fe0843",
+      "bytes": 4049
+    }
+  }
+}

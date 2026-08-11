@@ -1,0 +1,14 @@
+{
+  "authorization": "OPERATOR_PROMPT_V47_SEALED_EXAM_20260811",
+  "authorization_consumed": true,
+  "emission_finality": "FIRST_SCORE_ROW_FINAL",
+  "score_rows_before_start": 0,
+  "V47": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "V45": "3bda0a5476c7fc845891928795f709feff8caabf",
+  "V36": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83",
+  "population_N": 238,
+  "event_list_sha256": "3f1acfa355f60ca3c196e7be20f8a87caca04db2970278042e40c476ab96e1f8",
+  "boundary_sha256": "dc12a7d782bc26210463e61849620e5799a12955452536fae7b05b21d028cac9",
+  "prints_sha256": "68d03a09c2bd987495ed7e72ed8980bd5bc6b967af80f2197cd2e9b0f3dc69ee",
+  "started_at_utc": "2026-08-11T14:46:12.777Z"
+}

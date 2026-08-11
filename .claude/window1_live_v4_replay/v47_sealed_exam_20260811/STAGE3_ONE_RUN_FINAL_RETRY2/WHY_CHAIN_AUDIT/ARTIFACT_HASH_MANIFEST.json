@@ -1,0 +1,64 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "930d76be19cbee65ca6d6cb900a09ad042345766c713f94bbf789fe6665e40c1",
+      "bytes": 88
+    },
+    "KXATPCHALLENGERMATCH-26AUG09ZINKIN/DECISION_MARKS.json": {
+      "sha256": "9634c2fed004accb1d3ae6c3dc95ab6fedc7589a0bae6d817edb55bc4a1ac6b2",
+      "bytes": 16685
+    },
+    "KXATPCHALLENGERMATCH-26AUG09ZINKIN/DUAL_TIMELINE_V2.csv": {
+      "sha256": "00d9032839de1a0dd5a505d6878628b549efc70a8db4830ee53b88d8bab1bac7",
+      "bytes": 1401
+    },
+    "KXATPCHALLENGERMATCH-26AUG10BALMIL/DECISION_MARKS.json": {
+      "sha256": "bf6729d8aa13f0527adcbba29d0d76204a5358027ec306f1644b95fbad1fc1df",
+      "bytes": 432217
+    },
+    "KXATPCHALLENGERMATCH-26AUG10BALMIL/DUAL_TIMELINE_V2.csv": {
+      "sha256": "0f887c4fe31a1aec9208167bb5015fa1c0488b6b106b4ba1cdbf21d184055f09",
+      "bytes": 30806
+    },
+    "KXATPCHALLENGERMATCH-26AUG10VANMEC/DECISION_MARKS.json": {
+      "sha256": "ce75e0abce806f68bc27e422e74c7e2aefc1a5d803fd2260ab2eadb15c005296",
+      "bytes": 445728
+    },
+    "KXATPCHALLENGERMATCH-26AUG10VANMEC/DUAL_TIMELINE_V2.csv": {
+      "sha256": "b08ac245d2ca4d3b7cb6fa011da697047f73cc53da489b6619d2c96cfaeed01d",
+      "bytes": 33649
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KRANIC/DECISION_MARKS.json": {
+      "sha256": "f1df9f91fb2411f6a84ec858764a4a1cea804695158a0be625e2a6788d643e1c",
+      "bytes": 69839
+    },
+    "KXATPCHALLENGERMATCH-26JUL27KRANIC/DUAL_TIMELINE_V2.csv": {
+      "sha256": "f2de0c298f5c26b093daeab6d37624236a8956a5c18d956c605ff0854dbab83c",
+      "bytes": 5491
+    },
+    "KXATPCHALLENGERMATCH-26JUL27WALDON/DECISION_MARKS.json": {
+      "sha256": "af2fb0a65751c4e9c28c65898a9aad0b54117a5f40790288ed82a0cfeebae93e",
+      "bytes": 338022
+    },
+    "KXATPCHALLENGERMATCH-26JUL27WALDON/DUAL_TIMELINE_V2.csv": {
+      "sha256": "99adf4d7a1252f77d6d4e0d08661718e96f386c114f9b543cab2b5e86dede375",
+      "bytes": 29239
+    },
+    "KXWTAMATCH-26JUL27TJESRA/DECISION_MARKS.json": {
+      "sha256": "fbf6433c2ccd9f62ff3d1a3680eef9d2e9cbe4d749cc04f767b292f50b7a8177",
+      "bytes": 77304
+    },
+    "KXWTAMATCH-26JUL27TJESRA/DUAL_TIMELINE_V2.csv": {
+      "sha256": "6e4aae3bdaab98c3221805c629b68b4460105c4814c5922694f37dedf1a21475",
+      "bytes": 6166
+    },
+    "REPORT.md": {
+      "sha256": "e2d01bcd2c67b08300f0a4d1f7759f6e61798268c51b27160461132e2899d17d",
+      "bytes": 392
+    },
+    "WHY_CHAIN_AUDIT.json": {
+      "sha256": "bf09c49554b4f4de05515e05f056941b1262b6bd8d901e497ed94a3bb76bad98",
+      "bytes": 5524
+    }
+  }
+}

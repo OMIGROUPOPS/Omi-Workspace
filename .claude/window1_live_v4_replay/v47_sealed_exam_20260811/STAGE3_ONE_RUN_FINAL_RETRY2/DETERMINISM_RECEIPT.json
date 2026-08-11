@@ -1,0 +1,10 @@
+{
+  "policy_replay_invocations": {
+    "V47_and_V45_single_shared_pass": 1,
+    "V36": 1
+  },
+  "artifact_builds": 2,
+  "compared_files": 38,
+  "byte_identical": true,
+  "mismatches": []
+}

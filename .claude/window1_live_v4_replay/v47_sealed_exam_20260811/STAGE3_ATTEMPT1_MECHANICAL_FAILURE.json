@@ -1,0 +1,14 @@
+{
+  "schema_version": "window1-v47-sealed-exam-mechanical-failure-v1",
+  "stage": "STAGE_3",
+  "attempt": 1,
+  "classification": "MECHANICAL_PRE_SCORE",
+  "error": "RangeError: Maximum call stack size exceeded",
+  "site": "arb-executor/analysis/window1_v47_sealed_exam_runner.js:reachFor",
+  "cause": "unbounded JavaScript argument spread in Math.min over the sealed print rows",
+  "score_rows_emitted": 0,
+  "brain_simulations_started": 0,
+  "preserved_output": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE3_ONE_RUN_FINAL/EXECUTION_START_RECEIPT.json",
+  "repair_law": "replace argument-spread extrema with byte-semantics-equivalent bounded iteration; policy and frozen inputs unchanged",
+  "emission_finality_ruling": "MECHANICAL_FAILURE_BEFORE_ANY_SCORE_ROW_MAY_BE_REPAIRED_AND_REATTEMPTED"
+}

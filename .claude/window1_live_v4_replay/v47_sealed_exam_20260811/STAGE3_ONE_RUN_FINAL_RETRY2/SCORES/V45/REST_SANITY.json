@@ -1,0 +1,38 @@
+{
+  "MARKET_TRADES_TRUTH": {
+    "legs": 476,
+    "sanity_violation_receipts": 0,
+    "terminal_resting": 102,
+    "by_category_x_bell": {
+      "ATP_CHALL|exact": 16,
+      "ATP_CHALL|live_by_only": 16,
+      "ATP_CHALL|schedule_only": 282,
+      "ATP_MAIN|live_by_only": 6,
+      "ATP_MAIN|schedule_only": 52,
+      "WTA_CHALL|exact": 2,
+      "WTA_CHALL|live_by_only": 4,
+      "WTA_CHALL|schedule_only": 34,
+      "WTA_MAIN|exact": 4,
+      "WTA_MAIN|live_by_only": 2,
+      "WTA_MAIN|schedule_only": 58
+    }
+  },
+  "STRICT_PRINT_CROSS_BUILD_VERIFICATION": {
+    "legs": 476,
+    "sanity_violation_receipts": 0,
+    "terminal_resting": 148,
+    "by_category_x_bell": {
+      "ATP_CHALL|exact": 16,
+      "ATP_CHALL|live_by_only": 16,
+      "ATP_CHALL|schedule_only": 282,
+      "ATP_MAIN|live_by_only": 6,
+      "ATP_MAIN|schedule_only": 52,
+      "WTA_CHALL|exact": 2,
+      "WTA_CHALL|live_by_only": 4,
+      "WTA_CHALL|schedule_only": 34,
+      "WTA_MAIN|exact": 4,
+      "WTA_MAIN|live_by_only": 2,
+      "WTA_MAIN|schedule_only": 58
+    }
+  }
+}

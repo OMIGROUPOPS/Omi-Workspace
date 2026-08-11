@@ -1,0 +1,16 @@
+{
+  "schema_version": "window1-v47-sealed-exam-mechanical-failure-v1",
+  "stage": "STAGE_3",
+  "attempt": 2,
+  "classification": "MECHANICAL_PRE_SCORE",
+  "error": "TypeError: Cannot read properties of undefined (reading 'filter')",
+  "site": "frozen V36 evidenceInsideWindow called from adapter runV36",
+  "cause": "adapter keyed V36 tape and print maps by leg_id although the frozen V36 entry contract reads by ticker",
+  "V47_V45_simulations_completed_in_memory": true,
+  "V36_simulations_completed": 0,
+  "score_rows_emitted": 0,
+  "persisted_score_artifacts": 0,
+  "preserved_output": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE3_ONE_RUN_FINAL_RETRY1/EXECUTION_START_RECEIPT.json",
+  "repair_law": "bind the adapter maps by ticker as required by the frozen V36 entry contract; policy and frozen inputs unchanged",
+  "emission_finality_ruling": "MECHANICAL_FAILURE_BEFORE_ANY_SCORE_ROW_MAY_BE_REPAIRED_AND_REATTEMPTED"
+}

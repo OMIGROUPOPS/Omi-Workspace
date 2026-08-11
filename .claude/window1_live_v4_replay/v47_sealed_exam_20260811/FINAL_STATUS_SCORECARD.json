@@ -1,0 +1,41 @@
+{
+  "schema_version": "window1-v47-sealed-exam-final-status-v1",
+  "status": "COMPLETE_FINAL",
+  "population_N": 238,
+  "dev_inertness": {
+    "status": "PASS",
+    "compared_files": 10,
+    "frozen_v47_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+  },
+  "emission_finality": {
+    "score_emitting_runs": 1,
+    "pre_score_mechanical_failures_preserved": 2,
+    "policy_changes": 0
+  },
+  "sealed_scores": {
+    "V47": {
+      "completed_pairs": 146,
+      "true_book_net_cents": 516,
+      "dev_completed_pairs": 396,
+      "dev_true_book_net_cents": 1774
+    },
+    "V45": {
+      "completed_pairs": 146,
+      "true_book_net_cents": 516
+    },
+    "V36": {
+      "completed_pairs": 116,
+      "true_book_net_cents": -55
+    }
+  },
+  "why_chain_audit": {
+    "status": "PASS",
+    "packs": 6,
+    "completed": 2,
+    "one_leg": 2,
+    "skip": 1,
+    "near_miss": 1,
+    "unemitted_why_fields": "SILENT"
+  },
+  "live_mutation": false
+}

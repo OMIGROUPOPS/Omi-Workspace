@@ -1819,3 +1819,20 @@ but immature. The clipped exchange-print ledger has 510,486 rows and passes
 20/20 nightly reconciliation. DEV inertness did not complete its required
 byte comparison, so the sealed exam did not run, no score row exists, and the
 one-run authorization remains unused. No policy or live surface changed.
+
+### 2026-08-11 - V47 SEALED EXAM COMPLETE / WHY-CHAIN FROZEN
+
+The required clean DEV-804 inertness rebuild passed all ten byte comparisons
+against frozen V47 `fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34`. Two adapter-only
+mechanical failures occurred before score emission and remain preserved. The
+authorized final attempt was the single score-emitting run on the frozen 238;
+policy bytes did not change. Market/trades-truth results are V47 146 completed
+and +516 cents true book, V45 146/+516, and V36 116/-55, against V47 development
+396/+1,774.
+
+The receipt-only WHY-chain addendum freezes six deterministic standing-template
+packs spanning two completed, two one-leg, one skip, and one near-miss game.
+Every leg is traced L1 admission through L6 outcome. Where the frozen run did
+not emit a causal explanation, the pack says `SILENT`; no explanation was
+invented and no policy was rerun. This completes measurement only and grants no
+deployment, restart, order, or live-capital authority.

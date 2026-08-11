@@ -1,0 +1,91 @@
+{
+  "schema_version": "window1-v47-sealed-exam-dev-inertness-v1",
+  "V47": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "D": 804,
+  "compared_files": [
+    {
+      "file": "ATTRIBUTION_SCORECARD.json",
+      "rebuilt_sha256": "de4d7d24aa946a1532f6e4db9d8ef728e4a9443d191a009ef62c8325988eccc7",
+      "frozen_sha256": "de4d7d24aa946a1532f6e4db9d8ef728e4a9443d191a009ef62c8325988eccc7",
+      "rebuilt_bytes": 15025,
+      "frozen_bytes": 15025,
+      "pass": true
+    },
+    {
+      "file": "MARKET_GRADE_SCORECARD.json",
+      "rebuilt_sha256": "b658ac76df4d9d5cbd5654baf0189e5941d7207fc1767cc0d65baaf99ad56e36",
+      "frozen_sha256": "b658ac76df4d9d5cbd5654baf0189e5941d7207fc1767cc0d65baaf99ad56e36",
+      "rebuilt_bytes": 1378,
+      "frozen_bytes": 1378,
+      "pass": true
+    },
+    {
+      "file": "STRICT_BUILD_VERIFICATION_SCORECARD.json",
+      "rebuilt_sha256": "b891bd52381bfdc830239a77a8f4ffd33d61a80fc2a27d18752265f251399709",
+      "frozen_sha256": "b891bd52381bfdc830239a77a8f4ffd33d61a80fc2a27d18752265f251399709",
+      "rebuilt_bytes": 1207,
+      "frozen_bytes": 1207,
+      "pass": true
+    },
+    {
+      "file": "MARKET_EVENT_LEDGER.jsonl.gz",
+      "rebuilt_sha256": "555e2371b3f25bee1d99a087f5a8ff4dfda37da72b7099020c9ed81c21a2397d",
+      "frozen_sha256": "555e2371b3f25bee1d99a087f5a8ff4dfda37da72b7099020c9ed81c21a2397d",
+      "rebuilt_bytes": 918529,
+      "frozen_bytes": 918529,
+      "pass": true
+    },
+    {
+      "file": "STRICT_EVENT_LEDGER.jsonl.gz",
+      "rebuilt_sha256": "07861e462f74ffaf09750df34dc8fff9126b4c80c9d09d4901df9fa3024fe00a",
+      "frozen_sha256": "07861e462f74ffaf09750df34dc8fff9126b4c80c9d09d4901df9fa3024fe00a",
+      "rebuilt_bytes": 936535,
+      "frozen_bytes": 936535,
+      "pass": true
+    },
+    {
+      "file": "ACTION_TRACE.jsonl.gz",
+      "rebuilt_sha256": "46677066d7b97a4cf0f7f88504871348b73ae44541ca744a633fe7ab8a5bef06",
+      "frozen_sha256": "46677066d7b97a4cf0f7f88504871348b73ae44541ca744a633fe7ab8a5bef06",
+      "rebuilt_bytes": 15943443,
+      "frozen_bytes": 15943443,
+      "pass": true
+    },
+    {
+      "file": "DECISION_TRACE_1608.jsonl.gz",
+      "rebuilt_sha256": "66065053fb8eedcaa088c0b10182609640a3d8f02952b7650ab1f5748786b78e",
+      "frozen_sha256": "66065053fb8eedcaa088c0b10182609640a3d8f02952b7650ab1f5748786b78e",
+      "rebuilt_bytes": 449996,
+      "frozen_bytes": 449996,
+      "pass": true
+    },
+    {
+      "file": "ATTRIBUTION_FULL_BOOK_LEDGER.jsonl.gz",
+      "rebuilt_sha256": "7c0d367358dd00595941cfa5f145ed5bb587df14e79217c39a2ee10914917225",
+      "frozen_sha256": "7c0d367358dd00595941cfa5f145ed5bb587df14e79217c39a2ee10914917225",
+      "rebuilt_bytes": 24864,
+      "frozen_bytes": 24864,
+      "pass": true
+    },
+    {
+      "file": "SEG_C_SAME_TICK_FOOTPRINT.jsonl.gz",
+      "rebuilt_sha256": "d11970a1c85cb81ece5f87fff02d64d30648ef90eba4a195430386a92e89ee1b",
+      "frozen_sha256": "d11970a1c85cb81ece5f87fff02d64d30648ef90eba4a195430386a92e89ee1b",
+      "rebuilt_bytes": 234782,
+      "frozen_bytes": 234782,
+      "pass": true
+    },
+    {
+      "file": "SEG_C_SAME_TICK_RECEIPT.json",
+      "rebuilt_sha256": "f87d5220fef0dd3a6ea583562ca5d3d1f673518e8a8550d3825d59d3c5c2f522",
+      "frozen_sha256": "f87d5220fef0dd3a6ea583562ca5d3d1f673518e8a8550d3825d59d3c5c2f522",
+      "rebuilt_bytes": 9273,
+      "frozen_bytes": 9273,
+      "pass": true
+    }
+  ],
+  "byte_identical": true,
+  "sealed_exam_invocations": 0,
+  "score_rows_on_sealed_population": 0,
+  "pass": true
+}

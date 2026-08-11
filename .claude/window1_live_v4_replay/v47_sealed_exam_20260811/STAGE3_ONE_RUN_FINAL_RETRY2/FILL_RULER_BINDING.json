@@ -1,0 +1,14 @@
+{
+  "schema_version": "window1-v47-sealed-exam-fill-ruler-v1",
+  "MARKET_TRADES_TRUTH": {
+    "rest_credit": "STRICTLY_LATER_POSITIVE_SIZE_EXCHANGE_TRADE_AT_OR_BELOW_LAWFUL_STANDING_REST",
+    "aggressor_filter": null,
+    "dwell_filter": null,
+    "quote_touch_credit": false,
+    "asks_role": "PLACEMENT_INPUT_ONLY",
+    "V47_V45_existing_predicate": "window1_v41_maker_machine.tradedAtLevel",
+    "V36_adapter_predicate": "SAME_TRADE_AT_OR_BELOW_RULE; IMMEDIATE_POLICY_TAKES_UNCHANGED"
+  },
+  "STRICT_PRINT_CROSS_BUILD_VERIFICATION": "STRICTLY_LATER_SELLER_AGGRESSED_PRINT_SIZE_GE_5_AT_OR_BELOW_REST; V36_IMMEDIATE_POLICY_TAKES_UNCHANGED",
+  "policy_source_bytes_changed": 0
+}

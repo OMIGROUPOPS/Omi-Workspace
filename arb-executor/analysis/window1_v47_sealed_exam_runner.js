@@ -56,7 +56,9 @@ function readJsonl(file) { const text = fs.readFileSync(file, "utf8").trim(); re
 function gitShow(commit, rel) { return child.execFileSync("git", ["show", `${commit}:${rel}`], { cwd: repo, maxBuffer: 512 * 1024 * 1024 }); }
 function countBy(rows, fn) { const out = {}; for (const row of rows) { const key = String(fn(row)); out[key] = (out[key] || 0) + 1; } return Object.fromEntries(Object.entries(out).sort(([a], [b]) => a.localeCompare(b))); }
 function percentile(values, q) { const rows = values.filter(Number.isFinite).sort((a, b) => a - b); return rows.length ? rows[Math.max(0, Math.ceil(q * rows.length) - 1)] : null; }
-function distribution(values) { const rows = values.filter(Number.isFinite); return { n: rows.length, null_n: values.length - rows.length, sum: rows.reduce((a, b) => a + b, 0), min: rows.length ? Math.min(...rows) : null, p25: percentile(rows, .25), median: percentile(rows, .5), p75: percentile(rows, .75), p90: percentile(rows, .9), max: rows.length ? Math.max(...rows) : null }; }
+function boundedMin(values) { let result = null; for (const value of values) if (Number.isFinite(value) && (result === null || value < result)) result = value; return result; }
+function boundedMax(values) { let result = null; for (const value of values) if (Number.isFinite(value) && (result === null || value > result)) result = value; return result; }
+function distribution(values) { const rows = values.filter(Number.isFinite); return { n: rows.length, null_n: values.length - rows.length, sum: rows.reduce((a, b) => a + b, 0), min: boundedMin(rows), p25: percentile(rows, .25), median: percentile(rows, .5), p75: percentile(rows, .75), p90: percentile(rows, .9), max: boundedMax(rows) }; }
 function priceRegion(price) { return price <= 25 ? "le25" : price <= 50 ? "26_50" : price <= 75 ? "51_75" : "ge76"; }
 function writeJson(dir, name, value) { fs.writeFileSync(path.join(dir, name), canonical(value)); }
 async function writeGzipRows(file, rows) {
@@ -187,7 +189,7 @@ function buildBinding(api, declarationFile, boundaryFile, oldTapeRoot, newTapeRo
 
 function boundaryBase(event, tapes) {
   const boundary = event.boundary;
-  const left = Math.min(...[...tapes.values()].map((rows) => rows[0].ts));
+  const left = boundedMin([...tapes.values()].map((rows) => rows[0].ts));
   const schedule = (boundary.candidate_sources || []).find((row) => row.direction === "schedule_bound")?.timestamp_epoch ?? boundary.right_edge_epoch;
   const actualBell = boundary.precision_class === "exact" ? boundary.right_edge_epoch : null;
   const firstBids = [...tapes.values()].map((rows) => rows[0].bid).sort((a, b) => a - b);
@@ -197,9 +199,9 @@ function boundaryBase(event, tapes) {
 function reachFor(tape, prints, left, right) {
   const asks = tape.filter((row) => row.ts >= left && row.ts <= right && row.ask_dwell_seconds >= 10 && row.top_ask_size >= 5);
   const trades = prints.filter((row) => row.ts >= left && row.ts <= right && row.size > 0 && Number.isInteger(row.price));
-  const askLow = asks.length ? Math.min(...asks.map((row) => row.ask)) : null;
-  const tradeLow = trades.length ? Math.min(...trades.map((row) => row.price)) : null;
-  const levels = [askLow, tradeLow].filter(Number.isInteger), floor = levels.length ? Math.min(...levels) : null;
+  const askLow = boundedMin(asks.map((row) => row.ask));
+  const tradeLow = boundedMin(trades.map((row) => row.price));
+  const levels = [askLow, tradeLow].filter(Number.isInteger), floor = boundedMin(levels);
   const evidence = [...asks.filter((row) => row.ask === floor), ...trades.filter((row) => row.price === floor)].sort((a, b) => a.ts - b.ts || a.ordinal - b.ordinal);
   return { union_reach_cents: floor, union_first_evidence_timestamp_epoch: evidence[0]?.ts ?? null, union_sources: { qualifying_ask_low_cents: askLow, traded_low_cents: tradeLow } };
 }
@@ -251,7 +253,7 @@ function runV47(api, binding, printsByTicker) {
 
 function timelineFor(baseEvent, tapes, prints) {
   const rows = [];
-  for (const [id, leg] of Object.entries(baseEvent.legs)) { for (const row of tapes.get(id)) rows.push({ ...row, leg_id: id }); for (const row of prints.get(id) || []) rows.push({ ...row, leg_id: id }); }
+  for (const [id, leg] of Object.entries(baseEvent.legs)) { for (const row of tapes.get(leg.ticker)) rows.push({ ...row, leg_id: id }); for (const row of prints.get(leg.ticker) || []) rows.push({ ...row, leg_id: id }); }
   rows.sort((a, b) => a.ts - b.ts || (a.kind === "PRINT" ? 0 : 1) - (b.kind === "PRINT" ? 0 : 1) || a.ordinal - b.ordinal || a.leg_id.localeCompare(b.leg_id));
   return rows;
 }
@@ -271,11 +273,11 @@ function runV36(api, binding, printsByTicker) {
   try { for (const event of binding.events) {
     index += 1; if (index % 25 === 0) process.stderr.write(`V36 sealed ${index}/${binding.events.length}\n`);
     const rawTapes = new Map(), tapes = new Map(), prints = new Map();
-    for (const leg of event.legs) { const raw = binding.loadTape(leg), p = printsByTicker.get(leg.ticker) || []; rawTapes.set(leg.leg_id, raw); tapes.set(leg.leg_id, api.condenseTape(raw, p)); prints.set(leg.leg_id, p); }
+    for (const leg of event.legs) { const raw = binding.loadTape(leg), p = printsByTicker.get(leg.ticker) || []; rawTapes.set(leg.ticker, raw); tapes.set(leg.ticker, api.condenseTape(raw, p)); prints.set(leg.ticker, p); }
     const base = boundaryBase(event, rawTapes), boundary = normalizedBoundary(event.boundary);
     const baseEvent = { event_id: event.event_id, category: event.category, starting_price_split: base.starting_price_split, legs: {} };
     const sources = new Map(), bells = new Map();
-    for (const leg of event.legs) { baseEvent.legs[leg.leg_id] = { leg_identity: `${event.event_id}|${leg.leg_id}`, event_id: event.event_id, category: event.category, price_region: priceRegion(rawTapes.get(leg.leg_id)[0].bid), leg_id: leg.leg_id, ticker: leg.ticker, R3: null }; sources.set(leg.ticker, { event_id: event.event_id, ticker: leg.ticker, scheduled: base.scheduled }); }
+    for (const leg of event.legs) { baseEvent.legs[leg.leg_id] = { leg_identity: `${event.event_id}|${leg.leg_id}`, event_id: event.event_id, category: event.category, price_region: priceRegion(rawTapes.get(leg.ticker)[0].bid), leg_id: leg.leg_id, ticker: leg.ticker, R3: null }; sources.set(leg.ticker, { event_id: event.event_id, ticker: leg.ticker, scheduled: base.scheduled }); }
     if (Number.isFinite(base.actual_bell)) bells.set(event.event_id, base.actual_bell);
     const span = { event_id: event.event_id, category: event.category, starting_price_split: base.starting_price_split, w1_left_epoch: base.left, w1_right_epoch: base.right, edge_source_field: boundary.edge_source_field, precision_class: boundary.precision_class, selected_source: boundary.selected_source, selected_source_family: boundary.selected_source_family, selected_timestamp_precision: boundary.selected_timestamp_precision, conflict_status: boundary.conflict_status, interval_contradiction: false, non_positive_span: base.right < base.left, span_seconds: Math.max(0, base.right - base.left) };
     spans.push(span);
@@ -313,7 +315,7 @@ function regret(events, printsByTicker) {
   const rows = [];
   for (const event of events) for (const leg of Object.values(event.legs)) {
     const prints = (printsByTicker.get(leg.ticker) || []).filter((row) => row.ts >= event.w1_left_epoch && row.ts <= event.w1_right_epoch && row.size > 0 && Number.isInteger(row.price));
-    const floor = prints.length ? Math.min(...prints.map((row) => row.price)) : null;
+    const floor = boundedMin(prints.map((row) => row.price));
     rows.push({ event_id: event.event_id, leg_identity: leg.leg_identity, ticker: leg.ticker, category: event.category, bell_confidence: event.bell_confidence, credited: leg.credited, entry_cents: leg.entry_cents, traded_floor_cents: floor, regret_cents: leg.credited && Number.isInteger(floor) ? leg.entry_cents - floor : null, uncredited_opportunity: !leg.credited && Number.isInteger(floor) });
   }
   const cells = [];

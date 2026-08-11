@@ -1,0 +1,180 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "3715017ceec9c8eef8f3f4218de322f96c831f8fed159cf3e024a51d6f6e91c0",
+      "bytes": 189
+    },
+    "EXECUTION_COMPLETE_RECEIPT.json": {
+      "sha256": "f17ef48e646824a8213dbea29232bbdc8f59fe3a0f9b5814fb889d2e86931c0d",
+      "bytes": 247
+    },
+    "EXECUTION_START_RECEIPT.json": {
+      "sha256": "08bd43ed22812bb61092931a79f904709b14867f19d8138d9943a8a9806da22d",
+      "bytes": 677
+    },
+    "FILL_RULER_BINDING.json": {
+      "sha256": "ba8e323e379ade771ab18795f67199e1898bc4971a24bea345734dd8df0072da",
+      "bytes": 680
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "cf4954551642e43d89b2cf90ff3764f12e52a12cb6168882ba3705a887e506eb",
+      "bytes": 250
+    },
+    "POLICY_BYTE_IDENTITY_RECEIPT.json": {
+      "sha256": "33034c09478e2b5edc45e954255447e75143d8b4a7584a999182d92932ffc289",
+      "bytes": 8161
+    },
+    "SCORES/BELL_CONFIDENCE_SCORECARD.json": {
+      "sha256": "bbe27566c641d40738fe04b1bcf2d8d1c3fb82515e8210f9ec4ed185bfb2afa1",
+      "bytes": 36667
+    },
+    "SCORES/REPORT.md": {
+      "sha256": "f3080f53ca0e791adb0e551d75e07c56868f432d2947f67ca3db7d35f6e891d4",
+      "bytes": 972
+    },
+    "SCORES/V36/ACTION_TRACE.jsonl.gz": {
+      "sha256": "7e8344709192bf40e99f8864dd71565650ee54a0b4ad9fb86f69c2d5c7b81b5b",
+      "bytes": 904955
+    },
+    "SCORES/V36/FRONTIER.json": {
+      "sha256": "4d493d0bbd3ad46e620e3f9191261b2545df205cd0af9902cf55906ae6549c2c",
+      "bytes": 265
+    },
+    "SCORES/V36/FULL_BOOK_PNL.json": {
+      "sha256": "cbe80f7b3b91865a0f577c874e8f5f1664e05202737cb946f4f9346e8a9d8e26",
+      "bytes": 109715
+    },
+    "SCORES/V36/JOIN_QUALIFICATION_TRACE.jsonl.gz": {
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "bytes": 20
+    },
+    "SCORES/V36/MAKER_TAKER_SPLIT.json": {
+      "sha256": "dc8a0a51f749ee85071479726988450b93673a5888213d8a703f71002bc166c0",
+      "bytes": 323
+    },
+    "SCORES/V36/MARKET_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "45bfbd951e982d1058fb5b8b870754d8fd0217513f6b579aaba3473b17dbd954",
+      "bytes": 471815
+    },
+    "SCORES/V36/MARKET_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "c73e3b033417d15b41f79ab3f0f43701fa8d12be5ea52628755a9ef7ce40ad6f",
+      "bytes": 9730
+    },
+    "SCORES/V36/REGRET_GAUGE.json": {
+      "sha256": "142d8bb8081e26674caf1274c8409dbc3f2871831a18202f2a1d472f52acd29a",
+      "bytes": 9957
+    },
+    "SCORES/V36/REST_SANITY.json": {
+      "sha256": "5f736ca8a176644378e42d634e43d29277d4112a2c260381f2800793f37328d7",
+      "bytes": 1051
+    },
+    "SCORES/V36/SCORECARD.json": {
+      "sha256": "1d30bfd3254847d40471fe4446e2589c039fe0d518fb49d2f137a66f9ef4b0b5",
+      "bytes": 38570
+    },
+    "SCORES/V36/STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "256637254bef41bbd028f04c0b4499af2c64d938c8ed6212286d987074617070",
+      "bytes": 472239
+    },
+    "SCORES/V36/STRICT_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "d99007b380e219a1134f1e2a8ea14c92b25c128f49d4d7df08aab4627dc614eb",
+      "bytes": 9737
+    },
+    "SCORES/V45/ACTION_TRACE.jsonl.gz": {
+      "sha256": "c7bf62f29b3d88c1bd059cb42842f5cd02e67539f0a52057b9bc04ce360e4bbd",
+      "bytes": 1402026
+    },
+    "SCORES/V45/FRONTIER.json": {
+      "sha256": "023d5efbb6b42a257f08b0156b647d2cf0be76bc9ad8aa0f9bcb6663f1a1516c",
+      "bytes": 266
+    },
+    "SCORES/V45/FULL_BOOK_PNL.json": {
+      "sha256": "8e0c2910ae452fb8640cc5ba96df8261e6544d155bee24b8fb5bae33502c865c",
+      "bytes": 108795
+    },
+    "SCORES/V45/JOIN_QUALIFICATION_TRACE.jsonl.gz": {
+      "sha256": "231ec28840c9e4264964a34d5c12ef5a2833b23946556c17b82140972bf92858",
+      "bytes": 771905
+    },
+    "SCORES/V45/MAKER_TAKER_SPLIT.json": {
+      "sha256": "09243d65c01355693df760ebdfa7b09769990231a163424bb5fcf00fa3b03745",
+      "bytes": 219
+    },
+    "SCORES/V45/MARKET_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "73496ecde2c95b3d41387b883a59055d9c39c9b1c7823207bc673451740e1ba4",
+      "bytes": 266590
+    },
+    "SCORES/V45/MARKET_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "b12442b5bde547c360214ff24a7b443629c11ef74f8d549cee0ce42500ff1ac2",
+      "bytes": 9714
+    },
+    "SCORES/V45/REGRET_GAUGE.json": {
+      "sha256": "07922282e25aa13667017b3a510e858e72531e28beb6cc2b32ab83ce340fa5e7",
+      "bytes": 9934
+    },
+    "SCORES/V45/REST_SANITY.json": {
+      "sha256": "efffbcbe881fb0b98e204903c6b529ea76c3e6f8add05c1ea7598e47879eb98d",
+      "bytes": 1055
+    },
+    "SCORES/V45/SCORECARD.json": {
+      "sha256": "885495746af1868f2442c1f68482fe096f6b231a71e9b19051ddc0f88ea2bab3",
+      "bytes": 38997
+    },
+    "SCORES/V45/STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "5ef1e481e828b2afa014f358911be251c85a7387a661d706b4f7d680c21992cd",
+      "bytes": 276402
+    },
+    "SCORES/V45/STRICT_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "4df56832a693684f3dcc12bf2334143b72fcbc3c6920518dc81305a8b8c053df",
+      "bytes": 9691
+    },
+    "SCORES/V47/ACTION_TRACE.jsonl.gz": {
+      "sha256": "c7bf62f29b3d88c1bd059cb42842f5cd02e67539f0a52057b9bc04ce360e4bbd",
+      "bytes": 1402026
+    },
+    "SCORES/V47/FRONTIER.json": {
+      "sha256": "023d5efbb6b42a257f08b0156b647d2cf0be76bc9ad8aa0f9bcb6663f1a1516c",
+      "bytes": 266
+    },
+    "SCORES/V47/FULL_BOOK_PNL.json": {
+      "sha256": "8e0c2910ae452fb8640cc5ba96df8261e6544d155bee24b8fb5bae33502c865c",
+      "bytes": 108795
+    },
+    "SCORES/V47/JOIN_QUALIFICATION_TRACE.jsonl.gz": {
+      "sha256": "735ce944e9c05ffe47a3fece4e9d310fc1d2459b15ae8e4c57278ac7e4b8558a",
+      "bytes": 771989
+    },
+    "SCORES/V47/MAKER_TAKER_SPLIT.json": {
+      "sha256": "09243d65c01355693df760ebdfa7b09769990231a163424bb5fcf00fa3b03745",
+      "bytes": 219
+    },
+    "SCORES/V47/MARKET_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "8baf1c794862dd3e71cb2205f31184e9642c67ddb74cf78870ba526697cd270e",
+      "bytes": 266562
+    },
+    "SCORES/V47/MARKET_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "b12442b5bde547c360214ff24a7b443629c11ef74f8d549cee0ce42500ff1ac2",
+      "bytes": 9714
+    },
+    "SCORES/V47/REGRET_GAUGE.json": {
+      "sha256": "07922282e25aa13667017b3a510e858e72531e28beb6cc2b32ab83ce340fa5e7",
+      "bytes": 9934
+    },
+    "SCORES/V47/REST_SANITY.json": {
+      "sha256": "efffbcbe881fb0b98e204903c6b529ea76c3e6f8add05c1ea7598e47879eb98d",
+      "bytes": 1055
+    },
+    "SCORES/V47/SCORECARD.json": {
+      "sha256": "7ca179408eab84ecd24c7fb6af72c3d3272b6512afc7c6bad354aa2eb6129f90",
+      "bytes": 38997
+    },
+    "SCORES/V47/STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "c1778a4cd2cba689e61e9f3e7cd94ef8b46bb66085f26971ac27dc5ec5389e6c",
+      "bytes": 276396
+    },
+    "SCORES/V47/STRICT_REGRET_LEDGER.jsonl.gz": {
+      "sha256": "4df56832a693684f3dcc12bf2334143b72fcbc3c6920518dc81305a8b8c053df",
+      "bytes": 9691
+    }
+  }
+}

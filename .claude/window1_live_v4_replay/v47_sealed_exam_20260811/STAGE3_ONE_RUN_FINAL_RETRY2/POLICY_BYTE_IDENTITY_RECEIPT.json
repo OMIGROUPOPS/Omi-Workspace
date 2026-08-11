@@ -1,0 +1,169 @@
+{
+  "before": {
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "sha256": "04e741b34e22e113cfe708fc2a9fb96e66844005b7b7511d4bc132ac426d97f6",
+      "bytes": 215158,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/build_window1_v47_same_tick_arm.js": {
+      "sha256": "6b503eb0f8db8b242d717edc1a528729ef4459522dbc00e01afb33733557a788",
+      "bytes": 368,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v47_same_tick_arm.js": {
+      "sha256": "73728d9902fbd19f7ef7c67cd0d406324faed140f86e65f2a8ded71f528f95b0",
+      "bytes": 1321,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v45_guard_release_sibling_credit.js": {
+      "sha256": "8341076e38cd3322776bd54016f203c8fa1b1e97c51ebcfe78930b7a57780207",
+      "bytes": 1053,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v43_composed_machine.js": {
+      "sha256": "6c01e3b8cb7ba044eaf0240fa7104cfc4239b675b39c3c457efb84ed4cb8a4c2",
+      "bytes": 4262,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v42_deep_gap_feasibility_guard.js": {
+      "sha256": "8c46e3a453b76d62052d76e19e77517dcecf3b6097497eb84f0297355a24fce7",
+      "bytes": 3289,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v41_maker_machine.js": {
+      "sha256": "c81a9265f320c27848405b779877e22820243ba6765501879cbdded9c5fdc532",
+      "bytes": 5054,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js": {
+      "sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+      "bytes": 3796,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js": {
+      "sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+      "bytes": 3467,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v34_dual_side_residency_machine.js": {
+      "sha256": "e26802f5bcfeab74b77d2b3201386fb527e1d543967c71d05679c2b1d44bc81a",
+      "bytes": 3866,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v32_no_chase_state_machine.js": {
+      "sha256": "414b1079a03ad1938a2b2dcc80f230e72a928662176582a68af788c997d0631a",
+      "bytes": 4187,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js@V36": {
+      "sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+      "bytes": 3796,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js@V36": {
+      "sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+      "bytes": 3467,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/window1_v34_dual_side_residency_machine.js@V36": {
+      "sha256": "e26802f5bcfeab74b77d2b3201386fb527e1d543967c71d05679c2b1d44bc81a",
+      "bytes": 3866,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/window1_v32_no_chase_state_machine.js@V36": {
+      "sha256": "414b1079a03ad1938a2b2dcc80f230e72a928662176582a68af788c997d0631a",
+      "bytes": 4187,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js@V36": {
+      "sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+      "bytes": 145886,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    }
+  },
+  "after": {
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "sha256": "04e741b34e22e113cfe708fc2a9fb96e66844005b7b7511d4bc132ac426d97f6",
+      "bytes": 215158,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/build_window1_v47_same_tick_arm.js": {
+      "sha256": "6b503eb0f8db8b242d717edc1a528729ef4459522dbc00e01afb33733557a788",
+      "bytes": 368,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v47_same_tick_arm.js": {
+      "sha256": "73728d9902fbd19f7ef7c67cd0d406324faed140f86e65f2a8ded71f528f95b0",
+      "bytes": 1321,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v45_guard_release_sibling_credit.js": {
+      "sha256": "8341076e38cd3322776bd54016f203c8fa1b1e97c51ebcfe78930b7a57780207",
+      "bytes": 1053,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v43_composed_machine.js": {
+      "sha256": "6c01e3b8cb7ba044eaf0240fa7104cfc4239b675b39c3c457efb84ed4cb8a4c2",
+      "bytes": 4262,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v42_deep_gap_feasibility_guard.js": {
+      "sha256": "8c46e3a453b76d62052d76e19e77517dcecf3b6097497eb84f0297355a24fce7",
+      "bytes": 3289,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v41_maker_machine.js": {
+      "sha256": "c81a9265f320c27848405b779877e22820243ba6765501879cbdded9c5fdc532",
+      "bytes": 5054,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js": {
+      "sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+      "bytes": 3796,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js": {
+      "sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+      "bytes": 3467,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v34_dual_side_residency_machine.js": {
+      "sha256": "e26802f5bcfeab74b77d2b3201386fb527e1d543967c71d05679c2b1d44bc81a",
+      "bytes": 3866,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v32_no_chase_state_machine.js": {
+      "sha256": "414b1079a03ad1938a2b2dcc80f230e72a928662176582a68af788c997d0631a",
+      "bytes": 4187,
+      "pinned_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34"
+    },
+    "arb-executor/analysis/window1_v36_state_directional_rest_mature_floor.js@V36": {
+      "sha256": "5db3922d5749e11548bca0c301abec19da5e2dfb993ffc17a44ec90989e34f73",
+      "bytes": 3796,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/window1_v35_living_rest_evidence_gate.js@V36": {
+      "sha256": "14d237ccfcda4c716a43c6c455ad0f4a8c8994835f770bd3ff18ce4d7d79a54f",
+      "bytes": 3467,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/window1_v34_dual_side_residency_machine.js@V36": {
+      "sha256": "e26802f5bcfeab74b77d2b3201386fb527e1d543967c71d05679c2b1d44bc81a",
+      "bytes": 3866,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/window1_v32_no_chase_state_machine.js@V36": {
+      "sha256": "414b1079a03ad1938a2b2dcc80f230e72a928662176582a68af788c997d0631a",
+      "bytes": 4187,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    },
+    "arb-executor/analysis/build_window1_v36_state_directional_rest_mature_floor.js@V36": {
+      "sha256": "5e8ba40af9fc85986fc921e79ffda582272b48f6ff522c40d3fba4509ffbb2bf",
+      "bytes": 145886,
+      "pinned_commit": "bfde0d8d1135f5c5f48a5f3d619ab30050efab83"
+    }
+  },
+  "byte_identical": true,
+  "policy_files_modified": 0,
+  "adapter_scope": "INPUT_BINDING_ONLY"
+}

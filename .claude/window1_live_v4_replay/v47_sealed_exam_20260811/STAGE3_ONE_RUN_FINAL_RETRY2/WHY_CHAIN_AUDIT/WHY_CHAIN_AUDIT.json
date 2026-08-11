@@ -1,0 +1,180 @@
+{
+  "schema_version": "window1-v47-sealed-exam-why-chain-audit-v1",
+  "frozen_exam": {
+    "V47": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "population_N": 238,
+    "score_emitting_runs": 1,
+    "results_root_sha_scope": "FROZEN_STAGE3_ONE_RUN_FINAL_RETRY2"
+  },
+  "selection_law": [
+    "lowest-combined exact-bell completion",
+    "completed game with maximum emitted guard lifecycle",
+    "first exact-bell one-leg outcome",
+    "first capture-stream one-leg outcome",
+    "zero-credit game farthest below union reach",
+    "zero-credit game nearest union reach"
+  ],
+  "rows": [
+    {
+      "role": "COMPLETED_DEEP_EXACT",
+      "event_id": "KXWTAMATCH-26JUL27TJESRA",
+      "category": "WTA_MAIN",
+      "bell_confidence": "exact",
+      "outcome_class": "COMPLETED",
+      "credited_legs": 2,
+      "combined_entry_cents": 91,
+      "action_receipts": 23,
+      "join_receipts": 11,
+      "L5_reprices": 15,
+      "silent_fields": {
+        "SRA": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ],
+        "TJE": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ]
+      }
+    },
+    {
+      "role": "COMPLETED_MAX_GUARD_LIFECYCLE",
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10VANMEC",
+      "category": "ATP_CHALL",
+      "bell_confidence": "schedule_only",
+      "outcome_class": "COMPLETED",
+      "credited_legs": 2,
+      "combined_entry_cents": 98,
+      "action_receipts": 121,
+      "join_receipts": 100,
+      "L5_reprices": 75,
+      "silent_fields": {
+        "MEC": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ],
+        "VAN": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ]
+      }
+    },
+    {
+      "role": "ONE_LEG_EXACT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27KRANIC",
+      "category": "ATP_CHALL",
+      "bell_confidence": "exact",
+      "outcome_class": "ONE_LEG",
+      "credited_legs": 1,
+      "combined_entry_cents": null,
+      "action_receipts": 19,
+      "join_receipts": 13,
+      "L5_reprices": 15,
+      "silent_fields": {
+        "KRA": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ],
+        "NIC": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ]
+      }
+    },
+    {
+      "role": "ONE_LEG_CAPTURE_STREAM",
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BALMIL",
+      "category": "ATP_CHALL",
+      "bell_confidence": "schedule_only",
+      "outcome_class": "ONE_LEG",
+      "credited_legs": 1,
+      "combined_entry_cents": null,
+      "action_receipts": 114,
+      "join_receipts": 111,
+      "L5_reprices": 108,
+      "silent_fields": {
+        "BAL": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ],
+        "MIL": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ]
+      }
+    },
+    {
+      "role": "SKIP_FAR_FROM_REACH",
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+      "category": "ATP_CHALL",
+      "bell_confidence": "schedule_only",
+      "outcome_class": "SKIP",
+      "credited_legs": 0,
+      "combined_entry_cents": null,
+      "action_receipts": 4,
+      "join_receipts": 0,
+      "L5_reprices": 2,
+      "silent_fields": {
+        "KIN": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ],
+        "ZIN": [
+          "L5_WALK",
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ]
+      }
+    },
+    {
+      "role": "NEAR_MISS",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL27WALDON",
+      "category": "ATP_CHALL",
+      "bell_confidence": "schedule_only",
+      "outcome_class": "NEAR_MISS",
+      "credited_legs": 0,
+      "combined_entry_cents": null,
+      "action_receipts": 107,
+      "join_receipts": 28,
+      "L5_reprices": 98,
+      "silent_fields": {
+        "DON": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ],
+        "WAL": [
+          "L2_CONSTITUENT_DIRECTION_READS"
+        ]
+      }
+    }
+  ],
+  "sources": {
+    "event_ledger": {
+      "path": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE3_ONE_RUN_FINAL_RETRY2/SCORES/V47/MARKET_EVENT_LEDGER.jsonl.gz",
+      "sha256": "8baf1c794862dd3e71cb2205f31184e9642c67ddb74cf78870ba526697cd270e"
+    },
+    "action_trace": {
+      "path": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE3_ONE_RUN_FINAL_RETRY2/SCORES/V47/ACTION_TRACE.jsonl.gz",
+      "sha256": "c7bf62f29b3d88c1bd059cb42842f5cd02e67539f0a52057b9bc04ce360e4bbd"
+    },
+    "join_trace": {
+      "path": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE3_ONE_RUN_FINAL_RETRY2/SCORES/V47/JOIN_QUALIFICATION_TRACE.jsonl.gz",
+      "sha256": "735ce944e9c05ffe47a3fece4e9d310fc1d2459b15ae8e4c57278ac7e4b8558a"
+    },
+    "population_declaration": {
+      "path": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE1/FROZEN_POPULATION_DECLARATION.json",
+      "sha256": "4feffef6ffcfe1c14508b96d23469719c6c8f332374384d6c480fd7c686286ba"
+    },
+    "boundary_ledger": {
+      "path": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE1/PRE_MATCH_BOUNDARY_LEDGER.jsonl",
+      "sha256": "dc12a7d782bc26210463e61849620e5799a12955452536fae7b05b21d028cac9"
+    },
+    "prints": {
+      "path_class": "FROZEN_PRIVATE_EXAM_PRINTS",
+      "sha256": "68d03a09c2bd987495ed7e72ed8980bd5bc6b967af80f2197cd2e9b0f3dc69ee"
+    }
+  },
+  "limitations": {
+    "un-emitted_hold_only_decisions": "SILENT",
+    "quote_path_and_pressure_constituents": "SILENT_UNLESS_PRESENT_ON_FROZEN_EVENT_SNAPSHOT",
+    "no_reconstruction_claim": true,
+    "no_policy_rerun": true
+  },
+  "conservation": {
+    "packs": 6,
+    "completed": 2,
+    "one_leg": 2,
+    "skip": 1,
+    "near_miss": 1,
+    "pass": true
+  }
+}

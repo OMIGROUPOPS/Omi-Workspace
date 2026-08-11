@@ -1,0 +1,449 @@
+{
+  "schema_version": "window1-v47-sealed-exam-why-chain-v1",
+  "role": "SKIP_FAR_FROM_REACH",
+  "event": {
+    "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+    "category": "ATP_CHALL",
+    "bell_confidence": "schedule_only",
+    "edge_source_field": "schedule_bound_utc",
+    "completed_pair": false,
+    "combined_entry_cents": null,
+    "credited_legs": 0,
+    "outcome_class": "SKIP"
+  },
+  "chains": {
+    "KIN": {
+      "leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|KIN",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN",
+      "L1": {
+        "layer": "L1_ADMIT",
+        "status": "PASS",
+        "why": "FROZEN_STAGE1_POPULATION_ADMISSION",
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN",
+        "source_partition": "STAGE_B_CAPTURE_ONLY_STREAM",
+        "touch_classification": "UNTOUCHED_DECISION_RELEVANT",
+        "tape_sha256": "117878f8457eba18609de727aea4b3e4075d1a6802902d322e81d5729cbca357",
+        "authoritative_from_epoch": 1786291288.589,
+        "authoritative_through_epoch": 1786333192.375,
+        "hard_right_edge_epoch": 1786294800,
+        "precision_class": "schedule_only",
+        "edge_source_field": "schedule_bound_utc"
+      },
+      "L2": {
+        "layer": "L2_READ",
+        "mark_sequences": [
+          1,
+          2,
+          3
+        ],
+        "constituent_quote_path_and_pressure_receipts": "SILENT_NOT_EMITTED_SEPARATELY_BY_FROZEN_V47_EXAM_TRACE",
+        "why": "combined state is carried on emitted action receipts; bid/ask/last/spread/dwell/depth are joined to the exact named tape receipt"
+      },
+      "L3": {
+        "layer": "L3_TARGET",
+        "mark_sequences": [
+          1,
+          2,
+          3
+        ],
+        "why": "target and named placement/cap law are copied from emitted action receipts"
+      },
+      "L4": {
+        "layer": "L4_POST",
+        "mark_sequences": [
+          1
+        ],
+        "join_qualifications": [],
+        "why": "post and arming receipts emitted"
+      },
+      "L5": {
+        "layer": "L5_WALK",
+        "mark_sequences": [
+          2,
+          3
+        ],
+        "why": "every emitted reprice/cancel is preserved in execution order"
+      },
+      "L6": {
+        "layer": "L6_OUTCOME",
+        "credited": false,
+        "entry_cents": null,
+        "fill_class": null,
+        "fill_receipt": null,
+        "fill_timestamp_epoch": null,
+        "fill_evidence": null,
+        "terminal_state": "RESTING_UNFILLED",
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "resting_target_at_edge_cents": 12,
+        "union_reach_cents": 23,
+        "reach_gap_cents": 11,
+        "true_print_receipts_for_leg": 374,
+        "why": "frozen terminal event row"
+      },
+      "execution_order_marks": [
+        {
+          "sequence": 1,
+          "layer": "L4_POST",
+          "kind": "PLACE_REST",
+          "timestamp_epoch": 1786291670,
+          "t_minus_scheduled_seconds": 3130,
+          "t_minus_actual_bell_seconds": null,
+          "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-3",
+          "state_call": "FALLING",
+          "state_evidence": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-3",
+            "timestamp_epoch": 1786291670,
+            "bid": 19,
+            "ask": 23,
+            "last_traded": 0,
+            "spread": 4,
+            "ask_dwell_seconds": 0,
+            "top_bid_size": 104,
+            "top_ask_size": 512,
+            "bid_depth_5": 327,
+            "ask_depth_5": 1531.28,
+            "depth_ratio": 0.17596917579697355
+          },
+          "sibling_observation": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN.csv.gz#row-3",
+            "timestamp_epoch": 1786291670,
+            "bid": 55,
+            "ask": 80,
+            "last_traded": 0,
+            "spread": 25,
+            "ask_dwell_seconds": 0,
+            "top_bid_size": 1,
+            "top_ask_size": 554.91,
+            "bid_depth_5": 104,
+            "ask_depth_5": 1557.9099999999999,
+            "depth_ratio": 0.06257859932246633
+          },
+          "prior_target_cents": null,
+          "target_cents": 19,
+          "why": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "target_law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "pair_cap_cents": 80,
+          "fill_evidence": null,
+          "raw_action_receipt": {
+            "mode": "MARKET_TRADES_TRUTH",
+            "kind": "PLACE_REST",
+            "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+            "leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|KIN",
+            "timestamp_epoch": 1786291670,
+            "t_minus_scheduled_seconds": 3130,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 3130,
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-3",
+            "trigger_leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|KIN",
+            "target_cents": 19,
+            "state": "FALLING",
+            "reason": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+            "pulse_floor_cents": null,
+            "guard": {
+              "authority": false,
+              "withheld": false,
+              "reason": "V42_NO_CONTEMPORANEOUS_SIBLING_ASK_V41_UNCHANGED",
+              "target_cents": 19,
+              "sibling_best_ask_cents": null,
+              "implied_sibling_cap_cents": 80,
+              "deep_gap_cents": null,
+              "tolerance_cents": 10
+            },
+            "gap_credit": null
+          }
+        },
+        {
+          "sequence": 2,
+          "layer": "L5_WALK",
+          "kind": "REPRICE_REST",
+          "timestamp_epoch": 1786293580,
+          "t_minus_scheduled_seconds": 1220,
+          "t_minus_actual_bell_seconds": null,
+          "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-20",
+          "state_call": "FALLING",
+          "state_evidence": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-20",
+            "timestamp_epoch": 1786293580,
+            "bid": 18,
+            "ask": 23,
+            "last_traded": 0,
+            "spread": 5,
+            "ask_dwell_seconds": 1910,
+            "top_bid_size": 100,
+            "top_ask_size": 512,
+            "bid_depth_5": 126,
+            "ask_depth_5": 1531.28,
+            "depth_ratio": 0.076028190770419
+          },
+          "sibling_observation": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN.csv.gz#row-18",
+            "timestamp_epoch": 1786293577,
+            "bid": 55,
+            "ask": 80,
+            "last_traded": 0,
+            "spread": 25,
+            "ask_dwell_seconds": 1907,
+            "top_bid_size": 1,
+            "top_ask_size": 504.91,
+            "bid_depth_5": 104,
+            "ask_depth_5": 1507.91,
+            "depth_ratio": 0.06451973125050406
+          },
+          "prior_target_cents": 19,
+          "target_cents": 18,
+          "why": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "target_law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "pair_cap_cents": 81,
+          "fill_evidence": null,
+          "raw_action_receipt": {
+            "mode": "MARKET_TRADES_TRUTH",
+            "kind": "REPRICE_REST",
+            "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+            "leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|KIN",
+            "timestamp_epoch": 1786293580,
+            "t_minus_scheduled_seconds": 1220,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 1220,
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-20",
+            "trigger_leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|KIN",
+            "target_cents": 18,
+            "state": "FALLING",
+            "reason": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+            "pulse_floor_cents": null,
+            "guard": {
+              "authority": true,
+              "withheld": false,
+              "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+              "target_cents": 18,
+              "sibling_best_ask_cents": 80,
+              "implied_sibling_cap_cents": 81,
+              "deep_gap_cents": -1,
+              "tolerance_cents": 10,
+              "comparison": "81 >= 80-10"
+            },
+            "gap_credit": null
+          }
+        },
+        {
+          "sequence": 3,
+          "layer": "L5_WALK",
+          "kind": "REPRICE_REST",
+          "timestamp_epoch": 1786293580,
+          "t_minus_scheduled_seconds": 1220,
+          "t_minus_actual_bell_seconds": null,
+          "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-21",
+          "state_call": "FALLING",
+          "state_evidence": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-21",
+            "timestamp_epoch": 1786293580,
+            "bid": 12,
+            "ask": 23,
+            "last_traded": 0,
+            "spread": 11,
+            "ask_dwell_seconds": 1910,
+            "top_bid_size": 20,
+            "top_ask_size": 512,
+            "bid_depth_5": 528,
+            "ask_depth_5": 1531.28,
+            "depth_ratio": 0.25640029524882485
+          },
+          "sibling_observation": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN.csv.gz#row-18",
+            "timestamp_epoch": 1786293577,
+            "bid": 55,
+            "ask": 80,
+            "last_traded": 0,
+            "spread": 25,
+            "ask_dwell_seconds": 1907,
+            "top_bid_size": 1,
+            "top_ask_size": 504.91,
+            "bid_depth_5": 104,
+            "ask_depth_5": 1507.91,
+            "depth_ratio": 0.06451973125050406
+          },
+          "prior_target_cents": 18,
+          "target_cents": 12,
+          "why": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "target_law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "pair_cap_cents": 87,
+          "fill_evidence": null,
+          "raw_action_receipt": {
+            "mode": "MARKET_TRADES_TRUTH",
+            "kind": "REPRICE_REST",
+            "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+            "leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|KIN",
+            "timestamp_epoch": 1786293580,
+            "t_minus_scheduled_seconds": 1220,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 1220,
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-21",
+            "trigger_leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|KIN",
+            "target_cents": 12,
+            "state": "FALLING",
+            "reason": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+            "pulse_floor_cents": null,
+            "guard": {
+              "authority": true,
+              "withheld": false,
+              "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+              "target_cents": 12,
+              "sibling_best_ask_cents": 80,
+              "implied_sibling_cap_cents": 87,
+              "deep_gap_cents": -7,
+              "tolerance_cents": 10,
+              "comparison": "87 >= 80-10"
+            },
+            "gap_credit": null
+          }
+        }
+      ],
+      "silent_layers_or_fields": [
+        "L2_CONSTITUENT_DIRECTION_READS"
+      ]
+    },
+    "ZIN": {
+      "leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|ZIN",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN",
+      "L1": {
+        "layer": "L1_ADMIT",
+        "status": "PASS",
+        "why": "FROZEN_STAGE1_POPULATION_ADMISSION",
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN",
+        "source_partition": "STAGE_B_CAPTURE_ONLY_STREAM",
+        "touch_classification": "UNTOUCHED_DECISION_RELEVANT",
+        "tape_sha256": "3ded35525b046163bdb30794823969bfbaa2c2650925486c6b70360cf6159f67",
+        "authoritative_from_epoch": 1786291288.43,
+        "authoritative_through_epoch": 1786333192.325,
+        "hard_right_edge_epoch": 1786294800,
+        "precision_class": "schedule_only",
+        "edge_source_field": "schedule_bound_utc"
+      },
+      "L2": {
+        "layer": "L2_READ",
+        "mark_sequences": [
+          1
+        ],
+        "constituent_quote_path_and_pressure_receipts": "SILENT_NOT_EMITTED_SEPARATELY_BY_FROZEN_V47_EXAM_TRACE",
+        "why": "combined state is carried on emitted action receipts; bid/ask/last/spread/dwell/depth are joined to the exact named tape receipt"
+      },
+      "L3": {
+        "layer": "L3_TARGET",
+        "mark_sequences": [
+          1
+        ],
+        "why": "target and named placement/cap law are copied from emitted action receipts"
+      },
+      "L4": {
+        "layer": "L4_POST",
+        "mark_sequences": [
+          1
+        ],
+        "join_qualifications": [],
+        "why": "post and arming receipts emitted"
+      },
+      "L5": {
+        "layer": "L5_WALK",
+        "mark_sequences": [],
+        "why": "SILENT_NO_REPRICE"
+      },
+      "L6": {
+        "layer": "L6_OUTCOME",
+        "credited": false,
+        "entry_cents": null,
+        "fill_class": null,
+        "fill_receipt": null,
+        "fill_timestamp_epoch": null,
+        "fill_evidence": null,
+        "terminal_state": "RESTING_UNFILLED",
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "resting_target_at_edge_cents": 55,
+        "union_reach_cents": 80,
+        "reach_gap_cents": 25,
+        "true_print_receipts_for_leg": 96,
+        "why": "frozen terminal event row"
+      },
+      "execution_order_marks": [
+        {
+          "sequence": 1,
+          "layer": "L4_POST",
+          "kind": "PLACE_REST",
+          "timestamp_epoch": 1786291670,
+          "t_minus_scheduled_seconds": 3130,
+          "t_minus_actual_bell_seconds": null,
+          "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN.csv.gz#row-3",
+          "state_call": "FALLING",
+          "state_evidence": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN.csv.gz#row-3",
+            "timestamp_epoch": 1786291670,
+            "bid": 55,
+            "ask": 80,
+            "last_traded": 0,
+            "spread": 25,
+            "ask_dwell_seconds": 0,
+            "top_bid_size": 1,
+            "top_ask_size": 554.91,
+            "bid_depth_5": 104,
+            "ask_depth_5": 1557.9099999999999,
+            "depth_ratio": 0.06257859932246633
+          },
+          "sibling_observation": {
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN.csv.gz#row-3",
+            "timestamp_epoch": 1786291670,
+            "bid": 19,
+            "ask": 23,
+            "last_traded": 0,
+            "spread": 4,
+            "ask_dwell_seconds": 0,
+            "top_bid_size": 104,
+            "top_ask_size": 512,
+            "bid_depth_5": 327,
+            "ask_depth_5": 1531.28,
+            "depth_ratio": 0.17596917579697355
+          },
+          "prior_target_cents": null,
+          "target_cents": 55,
+          "why": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "target_law": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+          "pair_cap_cents": 44,
+          "fill_evidence": null,
+          "raw_action_receipt": {
+            "mode": "MARKET_TRADES_TRUTH",
+            "kind": "PLACE_REST",
+            "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+            "leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|ZIN",
+            "timestamp_epoch": 1786291670,
+            "t_minus_scheduled_seconds": 3130,
+            "t_minus_actual_bell_seconds": null,
+            "t_minus_pre_match_boundary_seconds": 3130,
+            "receipt": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-ZIN.csv.gz#row-3",
+            "trigger_leg_identity": "KXATPCHALLENGERMATCH-26AUG09ZINKIN|ZIN",
+            "target_cents": 55,
+            "state": "FALLING",
+            "reason": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+            "pulse_floor_cents": null,
+            "guard": {
+              "authority": true,
+              "withheld": false,
+              "reason": "V42_DEEP_GAP_FEASIBILITY_PASS",
+              "target_cents": 55,
+              "sibling_best_ask_cents": 23,
+              "implied_sibling_cap_cents": 44,
+              "deep_gap_cents": -21,
+              "tolerance_cents": 10,
+              "comparison": "44 >= 23-10"
+            },
+            "gap_credit": null
+          }
+        }
+      ],
+      "silent_layers_or_fields": [
+        "L5_WALK",
+        "L2_CONSTITUENT_DIRECTION_READS"
+      ]
+    }
+  },
+  "receipts_only": true,
+  "policy_rerun": false
+}

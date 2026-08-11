@@ -1,0 +1,16 @@
+{
+  "MARKET_TRADES_TRUTH": {
+    "LE_93": 5,
+    "LE_95": 12,
+    "LE_97": 26,
+    "LT_100": 116,
+    "ANY_PRICE": 116
+  },
+  "STRICT_PRINT_CROSS_BUILD_VERIFICATION": {
+    "LE_93": 4,
+    "LE_95": 10,
+    "LE_97": 23,
+    "LT_100": 110,
+    "ANY_PRICE": 110
+  }
+}

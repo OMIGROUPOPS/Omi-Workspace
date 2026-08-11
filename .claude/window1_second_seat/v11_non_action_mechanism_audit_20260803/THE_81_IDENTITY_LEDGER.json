@@ -1,0 +1,3852 @@
+{
+ "LABEL": "THE_81_IDENTITY_LEDGER",
+ "basis": "fe4747cd lineage recomputation (v1 instant-standable + v2 window-law), fit-local tape+prints; V47 fb74c8b8 / V49 1c8700fa outcomes joined; closes the 52 unreceipted slots of DECISION_CHAIN_LEDGER_81 (4b9fcb79).",
+ "conservation": {
+  "games": 81,
+  "by_cat": {
+   "ATP_MAIN": 10,
+   "WTA_CHALL": 30,
+   "WTA_MAIN": 7,
+   "ATP_CHALL": 34
+  },
+  "target": "81 = 34/10/30/7 (fe4747cd freeze)"
+ },
+ "the_81": [
+  {
+   "event": "KXATPMATCH-26JUL18LUZTSE",
+   "code": "26JUL18LUZTSE",
+   "cat": "ATP_MAIN",
+   "value": 88,
+   "missing": [
+    {
+     "leg": "TSE",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784386329,
+     "print_et": "2026-07-18 14:52:09",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784373580,
+     "evidence_et": "2026-07-18 11:19:40",
+     "window_total_s": 12748,
+     "window_first": {
+      "start": "2026-07-18 11:19:40",
+      "end": "2026-07-18 14:52:08"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_78C_ABOVE_P",
+     "v49_rest": 79,
+     "v49_evidenced_level": 79,
+     "sibling_at_print": {
+      "leg": "LUZ",
+      "rest": 79,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 17
+     }
+    }
+   ],
+   "V47": "ONE_LEG 11c (TSE uncalled)",
+   "V49": "ONE_LEG 17c (TSE uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+   "code": "26JUL13SHIHUA",
+   "cat": "WTA_CHALL",
+   "value": 66,
+   "missing": [
+    {
+     "leg": "HUA",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783941552,
+     "print_et": "2026-07-13 11:19:12",
+     "print_size": 6.81,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783894220,
+     "evidence_et": "2026-07-12 22:10:20",
+     "window_total_s": 22145,
+     "window_first": {
+      "start": "2026-07-13 05:10:07",
+      "end": "2026-07-13 11:19:12"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_64C_ABOVE_P",
+     "v49_rest": 60,
+     "v49_evidenced_level": 65,
+     "sibling_at_print": {
+      "leg": "SHI",
+      "rest": 34,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 34
+     }
+    }
+   ],
+   "V47": "ONE_LEG 33c (HUA uncalled)",
+   "V49": "ONE_LEG 34c (HUA uncalled)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL18COLCER",
+   "code": "26JUL18COLCER",
+   "cat": "ATP_MAIN",
+   "value": 61,
+   "missing": [
+    {
+     "leg": "COL",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784370060,
+     "print_et": "2026-07-18 10:21:00",
+     "print_size": 15.69,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784298039,
+     "evidence_et": "2026-07-17 14:20:39",
+     "window_total_s": 22860,
+     "window_first": {
+      "start": "2026-07-18 04:00:00",
+      "end": "2026-07-18 10:21:00"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_58C_ABOVE_P",
+     "v49_rest": 57,
+     "v49_evidenced_level": 59,
+     "sibling_at_print": {
+      "leg": "CER",
+      "rest": 42,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 42
+     }
+    }
+   ],
+   "V47": "ONE_LEG 38c (COL uncalled)",
+   "V49": "ONE_LEG 42c (COL uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+   "code": "26JUL18MCASHI",
+   "cat": "WTA_CHALL",
+   "value": 60,
+   "missing": [
+    {
+     "leg": "MCA",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784396533,
+     "print_et": "2026-07-18 17:42:13",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784348940,
+     "evidence_et": "2026-07-18 04:29:00",
+     "window_total_s": 19762,
+     "window_first": {
+      "start": "2026-07-18 12:12:51",
+      "end": "2026-07-18 17:42:13"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_50C_ABOVE_P",
+     "v49_rest": 50,
+     "v49_evidenced_level": 51,
+     "sibling_at_print": {
+      "leg": "SHI",
+      "rest": 49,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "SHI",
+     "P": 39,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784392958,
+     "print_et": "2026-07-18 16:42:38",
+     "print_size": 6.91,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784348940,
+     "evidence_et": "2026-07-18 04:29:00",
+     "window_total_s": 19872,
+     "window_first": {
+      "start": "2026-07-18 11:11:26",
+      "end": "2026-07-18 16:42:38"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_10C_ABOVE_P",
+     "v49_rest": 49,
+     "v49_evidenced_level": 49,
+     "sibling_at_print": {
+      "leg": "MCA",
+      "rest": 50,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL18SHEOLI",
+   "code": "26JUL18SHEOLI",
+   "cat": "WTA_MAIN",
+   "value": 57,
+   "missing": [
+    {
+     "leg": "OLI",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784388991,
+     "print_et": "2026-07-18 15:36:31",
+     "print_size": 14.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784303596,
+     "evidence_et": "2026-07-17 15:53:16",
+     "window_total_s": 23791,
+     "window_first": {
+      "start": "2026-07-18 09:00:00",
+      "end": "2026-07-18 15:36:31"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_46C_ABOVE_P",
+     "v49_rest": 47,
+     "v49_evidenced_level": 47,
+     "sibling_at_print": {
+      "leg": "SHE",
+      "rest": 45,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "SHE",
+     "P": 42,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784385661,
+     "print_et": "2026-07-18 14:41:01",
+     "print_size": 60.29,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784304547,
+     "evidence_et": "2026-07-17 16:09:07",
+     "window_total_s": 20265,
+     "window_first": {
+      "start": "2026-07-18 09:03:15",
+      "end": "2026-07-18 14:41:00"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_4C_ABOVE_P",
+     "v49_rest": 45,
+     "v49_evidenced_level": 46,
+     "sibling_at_print": {
+      "leg": "OLI",
+      "rest": 47,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+   "code": "26JUL14MATMOR",
+   "cat": "ATP_CHALL",
+   "value": 56,
+   "missing": [
+    {
+     "leg": "MAT",
+     "P": 42,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784050562,
+     "print_et": "2026-07-14 17:36:02",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784007466,
+     "evidence_et": "2026-07-14 05:37:46",
+     "window_total_s": 23144,
+     "window_first": {
+      "start": "2026-07-14 11:10:10",
+      "end": "2026-07-14 17:35:54"
+     },
+     "n_spans": 1,
+     "v49_reason": "OTHER_NO_REST",
+     "v49_rest": null,
+     "v49_evidenced_level": null,
+     "sibling_at_print": {
+      "leg": "MOR",
+      "rest": null,
+      "dir": "?",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "MOR",
+     "P": 2,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784054973,
+     "print_et": "2026-07-14 18:49:33",
+     "print_size": 3.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784002927,
+     "evidence_et": "2026-07-14 04:22:07",
+     "window_total_s": 27544,
+     "window_first": {
+      "start": "2026-07-14 11:10:10",
+      "end": "2026-07-14 18:49:14"
+     },
+     "n_spans": 1,
+     "v49_reason": "OTHER_NO_REST",
+     "v49_rest": null,
+     "v49_evidenced_level": null,
+     "sibling_at_print": {
+      "leg": "MAT",
+      "rest": null,
+      "dir": "?",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+   "code": "26JUL17ZAKPRO",
+   "cat": "WTA_CHALL",
+   "value": 52,
+   "missing": [
+    {
+     "leg": "PRO",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784293726,
+     "print_et": "2026-07-17 13:08:46",
+     "print_size": 5.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784247253,
+     "evidence_et": "2026-07-17 00:14:13",
+     "window_total_s": 22010,
+     "window_first": {
+      "start": "2026-07-17 07:01:56",
+      "end": "2026-07-17 13:08:46"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_52C_ABOVE_P",
+     "v49_rest": 52,
+     "v49_evidenced_level": 53,
+     "sibling_at_print": {
+      "leg": "ZAK",
+      "rest": 48,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 47
+     }
+    }
+   ],
+   "V47": "ONE_LEG 47c (PRO uncalled)",
+   "V49": "ONE_LEG 47c (PRO uncalled)"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL20RUZSAL",
+   "code": "26JUL20RUZSAL",
+   "cat": "WTA_MAIN",
+   "value": 52,
+   "missing": [
+    {
+     "leg": "RUZ",
+     "P": 23,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784559408,
+     "print_et": "2026-07-20 14:56:48",
+     "print_size": 82.33,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784483096,
+     "evidence_et": "2026-07-19 17:44:56",
+     "window_total_s": 26786,
+     "window_first": {
+      "start": "2026-07-20 07:30:00",
+      "end": "2026-07-20 14:56:26"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_35C_ABOVE_P",
+     "v49_rest": 58,
+     "v49_evidenced_level": 58,
+     "sibling_at_print": {
+      "leg": "SAL",
+      "rest": 41,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "SAL",
+     "P": 25,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784560579,
+     "print_et": "2026-07-20 15:16:19",
+     "print_size": 17.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784483096,
+     "evidence_et": "2026-07-19 17:44:56",
+     "window_total_s": 27955,
+     "window_first": {
+      "start": "2026-07-20 07:30:00",
+      "end": "2026-07-20 15:15:55"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_18C_ABOVE_P",
+     "v49_rest": 41,
+     "v49_evidenced_level": 43,
+     "sibling_at_print": {
+      "leg": "RUZ",
+      "rest": 58,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+   "code": "26JUL17SMIYUN",
+   "cat": "ATP_CHALL",
+   "value": 48,
+   "missing": [
+    {
+     "leg": "YUN",
+     "P": 13,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784334823,
+     "print_et": "2026-07-18 00:33:43",
+     "print_size": 24.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784286768,
+     "evidence_et": "2026-07-17 11:12:48",
+     "window_total_s": 23620,
+     "window_first": {
+      "start": "2026-07-17 18:00:03",
+      "end": "2026-07-18 00:33:43"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_50C_ABOVE_P",
+     "v49_rest": 60,
+     "v49_evidenced_level": 63,
+     "sibling_at_print": {
+      "leg": "SMI",
+      "rest": 39,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 39
+     }
+    }
+   ],
+   "V47": "ONE_LEG 39c (YUN uncalled)",
+   "V49": "ONE_LEG 39c (YUN uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+   "code": "26JUL13VANLEE",
+   "cat": "WTA_CHALL",
+   "value": 44,
+   "missing": [
+    {
+     "leg": "LEE",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783950998,
+     "print_et": "2026-07-13 13:56:38",
+     "print_size": 52.36,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783898443,
+     "evidence_et": "2026-07-12 23:20:43",
+     "window_total_s": 27983,
+     "window_first": {
+      "start": "2026-07-13 06:10:15",
+      "end": "2026-07-13 13:56:38"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_44C_ABOVE_P",
+     "v49_rest": 44,
+     "v49_evidenced_level": 45,
+     "sibling_at_print": {
+      "leg": "VAN",
+      "rest": 55,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 55
+     }
+    }
+   ],
+   "V47": "ONE_LEG 55c (LEE uncalled)",
+   "V49": "ONE_LEG 55c (LEE uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+   "code": "26JUL16ZAKSHU",
+   "cat": "WTA_CHALL",
+   "value": 44,
+   "missing": [
+    {
+     "leg": "SHU",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784219332,
+     "print_et": "2026-07-16 16:28:52",
+     "print_size": 111.81,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784168068,
+     "evidence_et": "2026-07-16 02:14:28",
+     "window_total_s": 26927,
+     "window_first": {
+      "start": "2026-07-16 09:00:04",
+      "end": "2026-07-16 16:28:51"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_43C_ABOVE_P",
+     "v49_rest": 44,
+     "v49_evidenced_level": 44,
+     "sibling_at_print": {
+      "leg": "ZAK",
+      "rest": 55,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 55
+     }
+    }
+   ],
+   "V47": "ONE_LEG 55c (SHU uncalled)",
+   "V49": "ONE_LEG 55c (SHU uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+   "code": "26JUL13KRASAL",
+   "cat": "ATP_CHALL",
+   "value": 43,
+   "missing": [
+    {
+     "leg": "KRA",
+     "P": 43,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783941234,
+     "print_et": "2026-07-13 11:13:54",
+     "print_size": 16.66,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783891508,
+     "evidence_et": "2026-07-12 21:25:08",
+     "window_total_s": 25283,
+     "window_first": {
+      "start": "2026-07-13 04:12:30",
+      "end": "2026-07-13 11:13:53"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_42C_ABOVE_P",
+     "v49_rest": 78,
+     "v49_evidenced_level": 85,
+     "sibling_at_print": {
+      "leg": "SAL",
+      "rest": 14,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 14
+     }
+    }
+   ],
+   "V47": "ONE_LEG 14c (KRA uncalled)",
+   "V49": "ONE_LEG 14c (KRA uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+   "code": "26JUL16ZVOHRU",
+   "cat": "WTA_CHALL",
+   "value": 42,
+   "missing": [
+    {
+     "leg": "HRU",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784209330,
+     "print_et": "2026-07-16 13:42:10",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784160875,
+     "evidence_et": "2026-07-16 00:14:35",
+     "window_total_s": 24129,
+     "window_first": {
+      "start": "2026-07-16 07:00:01",
+      "end": "2026-07-16 13:42:10"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_42C_ABOVE_P",
+     "v49_rest": 41,
+     "v49_evidenced_level": 43,
+     "sibling_at_print": {
+      "leg": "ZVO",
+      "rest": 58,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 57
+     }
+    }
+   ],
+   "V47": "ONE_LEG 57c (HRU uncalled)",
+   "V49": "ONE_LEG 57c (HRU uncalled)"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL17PUTSHE",
+   "code": "26JUL17PUTSHE",
+   "cat": "WTA_MAIN",
+   "value": 40,
+   "missing": [
+    {
+     "leg": "PUT",
+     "P": 18,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784286353,
+     "print_et": "2026-07-17 11:05:53",
+     "print_size": 475.15,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784207671,
+     "evidence_et": "2026-07-16 13:14:31",
+     "window_total_s": 21948,
+     "window_first": {
+      "start": "2026-07-17 05:00:05",
+      "end": "2026-07-17 11:05:53"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 59,
+     "v49_evidenced_level": 60,
+     "sibling_at_print": {
+      "leg": "SHE",
+      "rest": 39,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "ONE_LEG 42c (PUT uncalled)",
+   "V49": "ONE_LEG 60c (SHE uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+   "code": "26JUL14TANHAV",
+   "cat": "WTA_CHALL",
+   "value": 38,
+   "missing": [
+    {
+     "leg": "HAV",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784032444,
+     "print_et": "2026-07-14 12:34:04",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783980866,
+     "evidence_et": "2026-07-13 22:14:26",
+     "window_total_s": 27237,
+     "window_first": {
+      "start": "2026-07-14 05:00:07",
+      "end": "2026-07-14 12:34:04"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_37C_ABOVE_P",
+     "v49_rest": 37,
+     "v49_evidenced_level": 38,
+     "sibling_at_print": {
+      "leg": "TAN",
+      "rest": 61,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 61
+     }
+    }
+   ],
+   "V47": "ONE_LEG 61c (HAV uncalled)",
+   "V49": "ONE_LEG 61c (HAV uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+   "code": "26JUL20PALLEO",
+   "cat": "ATP_CHALL",
+   "value": 31,
+   "missing": [
+    {
+     "leg": "PAL",
+     "P": 12,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784554641,
+     "print_et": "2026-07-20 13:37:21",
+     "print_size": 55.64,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784502966,
+     "evidence_et": "2026-07-19 23:16:06",
+     "window_total_s": 26907,
+     "window_first": {
+      "start": "2026-07-20 06:08:52",
+      "end": "2026-07-20 13:37:19"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_32C_ABOVE_P",
+     "v49_rest": 42,
+     "v49_evidenced_level": 44,
+     "sibling_at_print": {
+      "leg": "LEO",
+      "rest": 57,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 57
+     }
+    }
+   ],
+   "V47": "ONE_LEG 57c (PAL uncalled)",
+   "V49": "ONE_LEG 57c (PAL uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+   "code": "26JUL16PALALM",
+   "cat": "ATP_CHALL",
+   "value": 30,
+   "missing": [
+    {
+     "leg": "ALM",
+     "P": 42,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784238668,
+     "print_et": "2026-07-16 21:51:08",
+     "print_size": 4.85,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784192438,
+     "evidence_et": "2026-07-16 09:00:38",
+     "window_total_s": 24642,
+     "window_first": {
+      "start": "2026-07-16 15:00:26",
+      "end": "2026-07-16 21:51:08"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_31C_ABOVE_P",
+     "v49_rest": 71,
+     "v49_evidenced_level": 73,
+     "sibling_at_print": {
+      "leg": "PAL",
+      "rest": 28,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 28
+     }
+    }
+   ],
+   "V47": "ONE_LEG 28c (ALM uncalled)",
+   "V49": "ONE_LEG 28c (ALM uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+   "code": "26JUL13OKATAR",
+   "cat": "WTA_CHALL",
+   "value": 28,
+   "missing": [
+    {
+     "leg": "OKA",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783965131,
+     "print_et": "2026-07-13 17:52:11",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783912284,
+     "evidence_et": "2026-07-13 03:11:24",
+     "window_total_s": 28315,
+     "window_first": {
+      "start": "2026-07-13 10:00:16",
+      "end": "2026-07-13 17:52:11"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_15C_ABOVE_P",
+     "v49_rest": 14,
+     "v49_evidenced_level": 16,
+     "sibling_at_print": {
+      "leg": "TAR",
+      "rest": 85,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 85
+     }
+    },
+    {
+     "leg": "TAR",
+     "P": 71,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783961998,
+     "print_et": "2026-07-13 16:59:58",
+     "print_size": 2.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783917408,
+     "evidence_et": "2026-07-13 04:36:48",
+     "window_total_s": 25182,
+     "window_first": {
+      "start": "2026-07-13 10:00:16",
+      "end": "2026-07-13 16:59:58"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 85,
+     "v49_evidenced_level": 85,
+     "sibling_at_print": {
+      "leg": "OKA",
+      "rest": 14,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "ONE_LEG 85c (OKA uncalled)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL15TRUDAV",
+   "code": "26JUL15TRUDAV",
+   "cat": "ATP_MAIN",
+   "value": 21,
+   "missing": [
+    {
+     "leg": "DAV",
+     "P": 54,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784134074,
+     "print_et": "2026-07-15 16:47:54",
+     "print_size": 7.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784038552,
+     "evidence_et": "2026-07-14 14:15:52",
+     "window_total_s": 28044,
+     "window_first": {
+      "start": "2026-07-15 09:00:30",
+      "end": "2026-07-15 16:47:54"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_21C_ABOVE_P",
+     "v49_rest": 74,
+     "v49_evidenced_level": 75,
+     "sibling_at_print": {
+      "leg": "TRU",
+      "rest": 25,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 25
+     }
+    }
+   ],
+   "V47": "ONE_LEG 25c (DAV uncalled)",
+   "V49": "ONE_LEG 25c (DAV uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+   "code": "26JUL14HRUBUY",
+   "cat": "WTA_CHALL",
+   "value": 19,
+   "missing": [
+    {
+     "leg": "BUY",
+     "P": 1,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784051682,
+     "print_et": "2026-07-14 17:54:42",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783998959,
+     "evidence_et": "2026-07-14 03:15:59",
+     "window_total_s": 28418,
+     "window_first": {
+      "start": "2026-07-14 10:00:56",
+      "end": "2026-07-14 17:54:34"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_19C_ABOVE_P",
+     "v49_rest": 16,
+     "v49_evidenced_level": 20,
+     "sibling_at_print": {
+      "leg": "HRU",
+      "rest": 80,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 80
+     }
+    }
+   ],
+   "V47": "ONE_LEG 80c (BUY uncalled)",
+   "V49": "ONE_LEG 80c (BUY uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+   "code": "26JUL14DILFAL",
+   "cat": "WTA_CHALL",
+   "value": 16,
+   "missing": [
+    {
+     "leg": "DIL",
+     "P": 19,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784034942,
+     "print_et": "2026-07-14 13:15:42",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783984939,
+     "evidence_et": "2026-07-13 23:22:19",
+     "window_total_s": 25535,
+     "window_first": {
+      "start": "2026-07-14 06:10:07",
+      "end": "2026-07-14 13:15:42"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_20C_ABOVE_P",
+     "v49_rest": 34,
+     "v49_evidenced_level": 39,
+     "sibling_at_print": {
+      "leg": "FAL",
+      "rest": 65,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 65
+     }
+    }
+   ],
+   "V47": "ONE_LEG 65c (DIL uncalled)",
+   "V49": "ONE_LEG 65c (DIL uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+   "code": "26JUL20KOZPAS",
+   "cat": "ATP_CHALL",
+   "value": 15,
+   "missing": [
+    {
+     "leg": "PAS",
+     "P": 21,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784565826,
+     "print_et": "2026-07-20 16:43:46",
+     "print_size": 15.88,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784517991,
+     "evidence_et": "2026-07-20 03:26:31",
+     "window_total_s": 23444,
+     "window_first": {
+      "start": "2026-07-20 10:12:51",
+      "end": "2026-07-20 16:43:35"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_13C_ABOVE_P",
+     "v49_rest": 34,
+     "v49_evidenced_level": 34,
+     "sibling_at_print": {
+      "leg": "KOZ",
+      "rest": 64,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 64
+     }
+    }
+   ],
+   "V47": "ONE_LEG 64c (PAS uncalled)",
+   "V49": "ONE_LEG 64c (PAS uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+   "code": "26JUL14ZHUYUN",
+   "cat": "ATP_CHALL",
+   "value": 13,
+   "missing": [
+    {
+     "leg": "YUN",
+     "P": 78,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784054208,
+     "print_et": "2026-07-14 18:36:48",
+     "print_size": 2.67,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784007496,
+     "evidence_et": "2026-07-14 05:38:16",
+     "window_total_s": 26797,
+     "window_first": {
+      "start": "2026-07-14 11:10:11",
+      "end": "2026-07-14 18:36:48"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_15C_ABOVE_P",
+     "v49_rest": 85,
+     "v49_evidenced_level": 93,
+     "sibling_at_print": {
+      "leg": "ZHU",
+      "rest": 14,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 14
+     }
+    }
+   ],
+   "V47": "ONE_LEG 9c (YUN uncalled)",
+   "V49": "ONE_LEG 14c (YUN uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+   "code": "26JUL14KHONUG",
+   "cat": "WTA_CHALL",
+   "value": 11,
+   "missing": [
+    {
+     "leg": "KHO",
+     "P": 30,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784033362,
+     "print_et": "2026-07-14 12:49:22",
+     "print_size": 100.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783984939,
+     "evidence_et": "2026-07-13 23:22:19",
+     "window_total_s": 23864,
+     "window_first": {
+      "start": "2026-07-14 06:11:38",
+      "end": "2026-07-14 12:49:22"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_11C_ABOVE_P",
+     "v49_rest": 40,
+     "v49_evidenced_level": 41,
+     "sibling_at_print": {
+      "leg": "NUG",
+      "rest": 59,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 59
+     }
+    }
+   ],
+   "V47": "ONE_LEG 59c (KHO uncalled)",
+   "V49": "ONE_LEG 59c (KHO uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+   "code": "26JUL17DELFUE",
+   "cat": "ATP_CHALL",
+   "value": 10,
+   "missing": [
+    {
+     "leg": "FUE",
+     "P": 3,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784310375,
+     "print_et": "2026-07-17 17:46:15",
+     "print_size": 5.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784261963,
+     "evidence_et": "2026-07-17 04:19:23",
+     "window_total_s": 24124,
+     "window_first": {
+      "start": "2026-07-17 11:04:11",
+      "end": "2026-07-17 17:46:15"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_9C_ABOVE_P",
+     "v49_rest": 11,
+     "v49_evidenced_level": 12,
+     "sibling_at_print": {
+      "leg": "DEL",
+      "rest": 87,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 88
+     }
+    }
+   ],
+   "V47": "ONE_LEG 87c (FUE uncalled)",
+   "V49": "ONE_LEG 88c (FUE uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+   "code": "26JUL12BROHUA",
+   "cat": "ATP_CHALL",
+   "value": 9,
+   "missing": [
+    {
+     "leg": "BRO",
+     "P": 63,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783851804,
+     "print_et": "2026-07-12 10:23:24",
+     "print_size": 11.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783817292,
+     "evidence_et": "2026-07-12 00:48:12",
+     "window_total_s": 26216,
+     "window_first": {
+      "start": "2026-07-12 03:00:04",
+      "end": "2026-07-12 10:17:00"
+     },
+     "n_spans": 2,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 67,
+     "v49_evidenced_level": 74,
+     "sibling_at_print": {
+      "leg": "HUA",
+      "rest": 28,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 28
+     }
+    }
+   ],
+   "V47": "ONE_LEG 28c (BRO uncalled)",
+   "V49": "COMPLETED 96c"
+  },
+  {
+   "event": "KXATPMATCH-26JUL19WAWBUR",
+   "code": "26JUL19WAWBUR",
+   "cat": "ATP_MAIN",
+   "value": 9,
+   "missing": [
+    {
+     "leg": "WAW",
+     "P": 29,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784513046,
+     "print_et": "2026-07-20 02:04:06",
+     "print_size": 100.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784446357,
+     "evidence_et": "2026-07-19 07:32:37",
+     "window_total_s": 72182,
+     "window_first": {
+      "start": "2026-07-19 06:01:04",
+      "end": "2026-07-20 02:04:06"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_10C_ABOVE_P",
+     "v49_rest": 20,
+     "v49_evidenced_level": 39,
+     "sibling_at_print": {
+      "leg": "BUR",
+      "rest": 62,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 62
+     }
+    }
+   ],
+   "V47": "ONE_LEG 62c (WAW uncalled)",
+   "V49": "ONE_LEG 62c (WAW uncalled)"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL12HERKAZ",
+   "code": "26JUL12HERKAZ",
+   "cat": "WTA_MAIN",
+   "value": 8,
+   "missing": [
+    {
+     "leg": "HER",
+     "P": 46,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1783829606,
+     "print_et": "2026-07-12 04:13:26",
+     "print_size": 43.97,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783813033,
+     "evidence_et": "2026-07-11 23:37:13",
+     "window_total_s": 7740,
+     "window_first": {
+      "start": "2026-07-12 02:01:08",
+      "end": "2026-07-12 04:10:08"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_8C_ABOVE_P",
+     "v49_rest": 45,
+     "v49_evidenced_level": 54,
+     "sibling_at_print": {
+      "leg": "KAZ",
+      "rest": 46,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": 46
+     }
+    }
+   ],
+   "V47": "ONE_LEG 46c (HER uncalled)",
+   "V49": "ONE_LEG 46c (HER uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+   "code": "26JUL19VUKGEA",
+   "cat": "ATP_CHALL",
+   "value": 8,
+   "missing": [
+    {
+     "leg": "GEA",
+     "P": 61,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784482261,
+     "print_et": "2026-07-19 17:31:01",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784480843,
+     "evidence_et": "2026-07-19 17:07:23",
+     "window_total_s": 2559,
+     "window_first": {
+      "start": "2026-07-19 16:48:13",
+      "end": "2026-07-19 17:30:52"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 64,
+     "v49_evidenced_level": 64,
+     "sibling_at_print": {
+      "leg": "VUK",
+      "rest": 35,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "VUK",
+     "P": 31,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784485949,
+     "print_et": "2026-07-19 18:32:29",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784479693,
+     "evidence_et": "2026-07-19 16:48:13",
+     "window_total_s": 6241,
+     "window_first": {
+      "start": "2026-07-19 16:48:13",
+      "end": "2026-07-19 18:32:14"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_5C_ABOVE_P",
+     "v49_rest": 35,
+     "v49_evidenced_level": 36,
+     "sibling_at_print": {
+      "leg": "GEA",
+      "rest": 64,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+   "code": "26JUL13KNUKUR",
+   "cat": "WTA_CHALL",
+   "value": 7,
+   "missing": [
+    {
+     "leg": "KNU",
+     "P": 84,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783955465,
+     "print_et": "2026-07-13 15:11:05",
+     "print_size": 2.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783908503,
+     "evidence_et": "2026-07-13 02:08:23",
+     "window_total_s": 28247,
+     "window_first": {
+      "start": "2026-07-13 07:20:18",
+      "end": "2026-07-13 15:11:05"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_5C_ABOVE_P",
+     "v49_rest": 89,
+     "v49_evidenced_level": 89,
+     "sibling_at_print": {
+      "leg": "KUR",
+      "rest": 9,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 9
+     }
+    }
+   ],
+   "V47": "ONE_LEG 9c (KNU uncalled)",
+   "V49": "ONE_LEG 9c (KNU uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+   "code": "26JUL15TANGAS",
+   "cat": "WTA_CHALL",
+   "value": 7,
+   "missing": [
+    {
+     "leg": "TAN",
+     "P": 37,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784114844,
+     "print_et": "2026-07-15 11:27:24",
+     "print_size": 50.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784070889,
+     "evidence_et": "2026-07-14 23:14:49",
+     "window_total_s": 19622,
+     "window_first": {
+      "start": "2026-07-15 06:00:22",
+      "end": "2026-07-15 11:27:24"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_6C_ABOVE_P",
+     "v49_rest": 42,
+     "v49_evidenced_level": 43,
+     "sibling_at_print": {
+      "leg": "GAS",
+      "rest": 56,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 56
+     }
+    }
+   ],
+   "V47": "ONE_LEG 56c (TAN uncalled)",
+   "V49": "ONE_LEG 56c (TAN uncalled)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL19VANFAR",
+   "code": "26JUL19VANFAR",
+   "cat": "ATP_MAIN",
+   "value": 7,
+   "missing": [
+    {
+     "leg": "VAN",
+     "P": 36,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784653150,
+     "print_et": "2026-07-21 16:59:10",
+     "print_size": 34.9,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784396630,
+     "evidence_et": "2026-07-18 17:43:50",
+     "window_total_s": 212179,
+     "window_first": {
+      "start": "2026-07-19 06:02:51",
+      "end": "2026-07-21 16:59:10"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_9C_ABOVE_P",
+     "v49_rest": 42,
+     "v49_evidenced_level": 45,
+     "sibling_at_print": {
+      "leg": "FAR",
+      "rest": 57,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 57
+     }
+    }
+   ],
+   "V47": "ONE_LEG 57c (VAN uncalled)",
+   "V49": "ONE_LEG 57c (VAN uncalled)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL12DODCAR",
+   "code": "26JUL12DODCAR",
+   "cat": "ATP_MAIN",
+   "value": 6,
+   "missing": [
+    {
+     "leg": "CAR",
+     "P": 70,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783970131,
+     "print_et": "2026-07-13 19:15:31",
+     "print_size": 3.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783824811,
+     "evidence_et": "2026-07-12 02:53:31",
+     "window_total_s": 119494,
+     "window_first": {
+      "start": "2026-07-12 10:03:57",
+      "end": "2026-07-13 19:15:31"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_5C_ABOVE_P",
+     "v49_rest": 73,
+     "v49_evidenced_level": 75,
+     "sibling_at_print": {
+      "leg": "DOD",
+      "rest": 24,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 24
+     }
+    }
+   ],
+   "V47": "ONE_LEG 24c (CAR uncalled)",
+   "V49": "ONE_LEG 24c (CAR uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+   "code": "26JUL13POLMIY",
+   "cat": "ATP_CHALL",
+   "value": 6,
+   "missing": [
+    {
+     "leg": "POL",
+     "P": 24,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783960445,
+     "print_et": "2026-07-13 16:34:05",
+     "print_size": 10.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783924694,
+     "evidence_et": "2026-07-13 06:38:14",
+     "window_total_s": 22545,
+     "window_first": {
+      "start": "2026-07-13 10:18:05",
+      "end": "2026-07-13 16:33:50"
+     },
+     "n_spans": 2,
+     "v49_reason": "EVIDENCE_CEILING_5C_ABOVE_P",
+     "v49_rest": 22,
+     "v49_evidenced_level": 29,
+     "sibling_at_print": {
+      "leg": "MIY",
+      "rest": 70,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 70
+     }
+    }
+   ],
+   "V47": "ONE_LEG 70c (POL uncalled)",
+   "V49": "ONE_LEG 70c (POL uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+   "code": "26JUL14MRVCAN",
+   "cat": "ATP_CHALL",
+   "value": 6,
+   "missing": [
+    {
+     "leg": "MRV",
+     "P": 54,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784040374,
+     "print_et": "2026-07-14 14:46:14",
+     "print_size": 1.7,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783982105,
+     "evidence_et": "2026-07-13 22:35:05",
+     "window_total_s": 33676,
+     "window_first": {
+      "start": "2026-07-14 05:24:56",
+      "end": "2026-07-14 14:46:12"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 55,
+     "v49_evidenced_level": 57,
+     "sibling_at_print": {
+      "leg": "CAN",
+      "rest": 40,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 40
+     }
+    }
+   ],
+   "V47": "ONE_LEG 40c (MRV uncalled)",
+   "V49": "ONE_LEG 40c (MRV uncalled)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL16BURUGO",
+   "code": "26JUL16BURUGO",
+   "cat": "ATP_MAIN",
+   "value": 6,
+   "missing": [
+    {
+     "leg": "BUR",
+     "P": 57,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784213649,
+     "print_et": "2026-07-16 14:54:09",
+     "print_size": 26.36,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784154467,
+     "evidence_et": "2026-07-15 22:27:47",
+     "window_total_s": 21217,
+     "window_first": {
+      "start": "2026-07-16 09:00:01",
+      "end": "2026-07-16 14:53:38"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_CLAMPED_50C_UNDER_P",
+     "v49_rest": 6,
+     "v49_evidenced_level": 6,
+     "sibling_at_print": {
+      "leg": "UGO",
+      "rest": 11,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "UGO",
+     "P": 37,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784220686,
+     "print_et": "2026-07-16 16:51:26",
+     "print_size": 59.68,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784147914,
+     "evidence_et": "2026-07-15 20:38:34",
+     "window_total_s": 28285,
+     "window_first": {
+      "start": "2026-07-16 09:00:01",
+      "end": "2026-07-16 16:51:26"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_CLAMPED_25C_UNDER_P",
+     "v49_rest": 11,
+     "v49_evidenced_level": 6,
+     "sibling_at_print": {
+      "leg": "BUR",
+      "rest": 6,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXATPMATCH-26JUL17HALSHE",
+   "code": "26JUL17HALSHE",
+   "cat": "ATP_MAIN",
+   "value": 6,
+   "missing": [
+    {
+     "leg": "HAL",
+     "P": 58,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784292116,
+     "print_et": "2026-07-17 12:41:56",
+     "print_size": 11.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784289106,
+     "evidence_et": "2026-07-17 11:51:46",
+     "window_total_s": 3967,
+     "window_first": {
+      "start": "2026-07-17 11:35:46",
+      "end": "2026-07-17 12:41:53"
+     },
+     "n_spans": 1,
+     "v49_reason": "BID_MINUS_ONE_OFFSET_AT_P",
+     "v49_rest": 57,
+     "v49_evidenced_level": 6,
+     "sibling_at_print": {
+      "leg": "SHE",
+      "rest": 36,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 36
+     }
+    }
+   ],
+   "V47": "ONE_LEG 36c (HAL uncalled)",
+   "V49": "ONE_LEG 36c (HAL uncalled)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL12DEJGAU",
+   "code": "26JUL12DEJGAU",
+   "cat": "ATP_MAIN",
+   "value": 5,
+   "missing": [
+    {
+     "leg": "GAU",
+     "P": 29,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783949538,
+     "print_et": "2026-07-13 13:32:18",
+     "print_size": 74.91,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783790827,
+     "evidence_et": "2026-07-11 17:27:07",
+     "window_total_s": 123427,
+     "window_first": {
+      "start": "2026-07-12 03:15:11",
+      "end": "2026-07-13 13:32:18"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_8C_ABOVE_P",
+     "v49_rest": 32,
+     "v49_evidenced_level": 37,
+     "sibling_at_print": {
+      "leg": "DEJ",
+      "rest": 66,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 66
+     }
+    }
+   ],
+   "V47": "ONE_LEG 66c (GAU uncalled)",
+   "V49": "ONE_LEG 66c (GAU uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+   "code": "26JUL12ROUJAK",
+   "cat": "WTA_CHALL",
+   "value": 5,
+   "missing": [
+    {
+     "leg": "JAK",
+     "P": 52,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783845614,
+     "print_et": "2026-07-12 08:40:14",
+     "print_size": 0.42,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783820304,
+     "evidence_et": "2026-07-12 01:38:24",
+     "window_total_s": 1786,
+     "window_first": {
+      "start": "2026-07-12 08:10:12",
+      "end": "2026-07-12 08:39:58"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 51,
+     "v49_evidenced_level": 52,
+     "sibling_at_print": {
+      "leg": "ROU",
+      "rest": 43,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": 44
+     }
+    }
+   ],
+   "V47": "ONE_LEG 43c (JAK uncalled)",
+   "V49": "COMPLETED 96c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+   "code": "26JUL19DJOMAT",
+   "cat": "ATP_CHALL",
+   "value": 5,
+   "missing": [
+    {
+     "leg": "MAT",
+     "P": 84,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784464809,
+     "print_et": "2026-07-19 12:40:09",
+     "print_size": 3.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784432500,
+     "evidence_et": "2026-07-19 03:41:40",
+     "window_total_s": 21998,
+     "window_first": {
+      "start": "2026-07-19 05:51:53",
+      "end": "2026-07-19 11:58:31"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_11C_ABOVE_P",
+     "v49_rest": 82,
+     "v49_evidenced_level": 95,
+     "sibling_at_print": {
+      "leg": "DJO",
+      "rest": 11,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 13
+     }
+    }
+   ],
+   "V47": "ONE_LEG 11c (MAT uncalled)",
+   "V49": "ONE_LEG 13c (MAT uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+   "code": "26JUL20VALGOM",
+   "cat": "ATP_CHALL",
+   "value": 5,
+   "missing": [
+    {
+     "leg": "VAL",
+     "P": 14,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784540394,
+     "print_et": "2026-07-20 09:39:54",
+     "print_size": 2.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784500062,
+     "evidence_et": "2026-07-19 22:27:42",
+     "window_total_s": 16142,
+     "window_first": {
+      "start": "2026-07-20 05:10:52",
+      "end": "2026-07-20 09:39:54"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_4C_ABOVE_P",
+     "v49_rest": 14,
+     "v49_evidenced_level": 18,
+     "sibling_at_print": {
+      "leg": "GOM",
+      "rest": 81,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 81
+     }
+    }
+   ],
+   "V47": "ONE_LEG 81c (VAL uncalled)",
+   "V49": "ONE_LEG 81c (VAL uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+   "code": "26JUL13HOLWAT",
+   "cat": "ATP_CHALL",
+   "value": 4,
+   "missing": [
+    {
+     "leg": "HOL",
+     "P": 49,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783989636,
+     "print_et": "2026-07-14 00:40:36",
+     "print_size": 4.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783925656,
+     "evidence_et": "2026-07-13 06:54:16",
+     "window_total_s": 39628,
+     "window_first": {
+      "start": "2026-07-13 13:40:08",
+      "end": "2026-07-14 00:40:36"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_5C_ABOVE_P",
+     "v49_rest": 50,
+     "v49_evidenced_level": 54,
+     "sibling_at_print": {
+      "leg": "WAT",
+      "rest": 48,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 49
+     }
+    },
+    {
+     "leg": "WAT",
+     "P": 47,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784001759,
+     "print_et": "2026-07-14 04:02:39",
+     "print_size": 10.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783933507,
+     "evidence_et": "2026-07-13 09:05:07",
+     "window_total_s": 51751,
+     "window_first": {
+      "start": "2026-07-13 13:40:08",
+      "end": "2026-07-14 04:02:39"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 48,
+     "v49_evidenced_level": 49,
+     "sibling_at_print": {
+      "leg": "HOL",
+      "rest": 50,
+      "dir": "SETTLED",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "ONE_LEG 49c (HOL uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+   "code": "26JUL14MAKSEY",
+   "cat": "ATP_CHALL",
+   "value": 4,
+   "missing": [
+    {
+     "leg": "SEY",
+     "P": 77,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784035813,
+     "print_et": "2026-07-14 13:30:13",
+     "print_size": 0.58,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783986213,
+     "evidence_et": "2026-07-13 23:43:33",
+     "window_total_s": 24736,
+     "window_first": {
+      "start": "2026-07-14 06:37:55",
+      "end": "2026-07-14 13:30:11"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 79,
+     "v49_evidenced_level": 80,
+     "sibling_at_print": {
+      "leg": "MAK",
+      "rest": 20,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 20
+     }
+    }
+   ],
+   "V47": "ONE_LEG 19c (SEY uncalled)",
+   "V49": "ONE_LEG 20c (SEY uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+   "code": "26JUL20ARSRIC",
+   "cat": "ATP_CHALL",
+   "value": 4,
+   "missing": [
+    {
+     "leg": "ARS",
+     "P": 34,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784613658,
+     "print_et": "2026-07-21 06:00:58",
+     "print_size": 10.63,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784549210,
+     "evidence_et": "2026-07-20 12:06:50",
+     "window_total_s": 42971,
+     "window_first": {
+      "start": "2026-07-20 18:00:00",
+      "end": "2026-07-21 05:56:11"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 35,
+     "v49_evidenced_level": 36,
+     "sibling_at_print": {
+      "leg": "RIC",
+      "rest": 62,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 62
+     }
+    }
+   ],
+   "V47": "ONE_LEG 62c (ARS uncalled)",
+   "V49": "COMPLETED 98c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+   "code": "26JUL13BOUZHA",
+   "cat": "ATP_CHALL",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "ZHA",
+     "P": 73,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783966245,
+     "print_et": "2026-07-13 18:10:45",
+     "print_size": 33.17,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783921197,
+     "evidence_et": "2026-07-13 05:39:57",
+     "window_total_s": 24641,
+     "window_first": {
+      "start": "2026-07-13 11:20:04",
+      "end": "2026-07-13 18:10:45"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_2C_ABOVE_P",
+     "v49_rest": 73,
+     "v49_evidenced_level": 75,
+     "sibling_at_print": {
+      "leg": "BOU",
+      "rest": 24,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 24
+     }
+    }
+   ],
+   "V47": "ONE_LEG 24c (ZHA uncalled)",
+   "V49": "ONE_LEG 24c (ZHA uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+   "code": "26JUL13PERTOB",
+   "cat": "ATP_CHALL",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "TOB",
+     "P": 45,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1783961472,
+     "print_et": "2026-07-13 16:51:12",
+     "print_size": 2.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783923155,
+     "evidence_et": "2026-07-13 06:12:35",
+     "window_total_s": 12247,
+     "window_first": {
+      "start": "2026-07-13 13:00:26",
+      "end": "2026-07-13 16:24:33"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 44,
+     "v49_evidenced_level": 48,
+     "sibling_at_print": {
+      "leg": "PER",
+      "rest": 52,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 52
+     }
+    }
+   ],
+   "V47": "ONE_LEG 52c (TOB uncalled)",
+   "V49": "ONE_LEG 52c (TOB uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+   "code": "26JUL14BLATOM",
+   "cat": "ATP_CHALL",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "BLA",
+     "P": 64,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784081634,
+     "print_et": "2026-07-15 02:13:54",
+     "print_size": 204.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784031652,
+     "evidence_et": "2026-07-14 12:20:52",
+     "window_total_s": 26034,
+     "window_first": {
+      "start": "2026-07-14 19:00:00",
+      "end": "2026-07-15 02:13:54"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_2C_ABOVE_P",
+     "v49_rest": 66,
+     "v49_evidenced_level": 66,
+     "sibling_at_print": {
+      "leg": "TOM",
+      "rest": 34,
+      "dir": "SETTLED",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "TOM",
+     "P": 33,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784075002,
+     "print_et": "2026-07-15 00:23:22",
+     "print_size": 23.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784031992,
+     "evidence_et": "2026-07-14 12:26:32",
+     "window_total_s": 18921,
+     "window_first": {
+      "start": "2026-07-14 19:07:49",
+      "end": "2026-07-15 00:23:10"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 34,
+     "v49_evidenced_level": 34,
+     "sibling_at_print": {
+      "leg": "BLA",
+      "rest": 66,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+   "code": "26JUL14FALYUA",
+   "cat": "WTA_CHALL",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "FAL",
+     "P": 38,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784040918,
+     "print_et": "2026-07-14 14:55:18",
+     "print_size": 69.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783989356,
+     "evidence_et": "2026-07-14 00:35:56",
+     "window_total_s": 26585,
+     "window_first": {
+      "start": "2026-07-14 07:20:56",
+      "end": "2026-07-14 14:44:01"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 40,
+     "v49_evidenced_level": 41,
+     "sibling_at_print": {
+      "leg": "YUA",
+      "rest": 59,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 59
+     }
+    }
+   ],
+   "V47": "ONE_LEG 59c (FAL uncalled)",
+   "V49": "ONE_LEG 59c (FAL uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+   "code": "26JUL17ANDKRA",
+   "cat": "WTA_CHALL",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "AND",
+     "P": 25,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784265779,
+     "print_et": "2026-07-17 05:22:59",
+     "print_size": 66.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784236488,
+     "evidence_et": "2026-07-16 21:14:48",
+     "window_total_s": 4887,
+     "window_first": {
+      "start": "2026-07-17 04:01:31",
+      "end": "2026-07-17 05:22:58"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_4C_ABOVE_P",
+     "v49_rest": 27,
+     "v49_evidenced_level": 29,
+     "sibling_at_print": {
+      "leg": "KRA",
+      "rest": 72,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 72
+     }
+    }
+   ],
+   "V47": "ONE_LEG 72c (AND uncalled)",
+   "V49": "ONE_LEG 72c (AND uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL17CHIBRO",
+   "code": "26JUL17CHIBRO",
+   "cat": "WTA_CHALL",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "CHI",
+     "P": 36,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784308092,
+     "print_et": "2026-07-17 17:08:12",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784262808,
+     "evidence_et": "2026-07-17 04:33:28",
+     "window_total_s": 20826,
+     "window_first": {
+      "start": "2026-07-17 11:20:20",
+      "end": "2026-07-17 17:07:26"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 38,
+     "v49_evidenced_level": 39,
+     "sibling_at_print": {
+      "leg": "BRO",
+      "rest": 61,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 61
+     }
+    }
+   ],
+   "V47": "ONE_LEG 61c (CHI uncalled)",
+   "V49": "ONE_LEG 61c (CHI uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+   "code": "26JUL20KABCHI",
+   "cat": "WTA_CHALL",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "CHI",
+     "P": 77,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784551941,
+     "print_et": "2026-07-20 12:52:21",
+     "print_size": 1.27,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784517522,
+     "evidence_et": "2026-07-20 03:18:42",
+     "window_total_s": 8648,
+     "window_first": {
+      "start": "2026-07-20 10:03:00",
+      "end": "2026-07-20 12:27:08"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 76,
+     "v49_evidenced_level": 79,
+     "sibling_at_print": {
+      "leg": "KAB",
+      "rest": 20,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 20
+     }
+    }
+   ],
+   "V47": "ONE_LEG 20c (CHI uncalled)",
+   "V49": "COMPLETED 98c"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL20LYSVAL",
+   "code": "26JUL20LYSVAL",
+   "cat": "WTA_MAIN",
+   "value": 3,
+   "missing": [
+    {
+     "leg": "LYS",
+     "P": 30,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784519481,
+     "print_et": "2026-07-20 03:51:21",
+     "print_size": 3.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784459850,
+     "evidence_et": "2026-07-19 11:17:30",
+     "window_total_s": 787,
+     "window_first": {
+      "start": "2026-07-20 03:00:00",
+      "end": "2026-07-20 03:13:07"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 29,
+     "v49_evidenced_level": 31,
+     "sibling_at_print": {
+      "leg": "VAL",
+      "rest": 67,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 67
+     }
+    }
+   ],
+   "V47": "ONE_LEG 67c (LYS uncalled)",
+   "V49": "ONE_LEG 67c (LYS uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+   "code": "26JUL13ALVKUM",
+   "cat": "ATP_CHALL",
+   "value": 2,
+   "missing": [
+    {
+     "leg": "ALV",
+     "P": 52,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783918308,
+     "print_et": "2026-07-13 04:51:48",
+     "print_size": 90.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783891274,
+     "evidence_et": "2026-07-12 21:21:14",
+     "window_total_s": 2688,
+     "window_first": {
+      "start": "2026-07-13 04:03:39",
+      "end": "2026-07-13 04:48:27"
+     },
+     "n_spans": 2,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 53,
+     "v49_evidenced_level": 53,
+     "sibling_at_print": {
+      "leg": "KUM",
+      "rest": 46,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 46
+     }
+    }
+   ],
+   "V47": "ONE_LEG 46c (ALV uncalled)",
+   "V49": "ONE_LEG 46c (ALV uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+   "code": "26JUL13KENSHE",
+   "cat": "ATP_CHALL",
+   "value": 2,
+   "missing": [
+    {
+     "leg": "KEN",
+     "P": 56,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783976780,
+     "print_et": "2026-07-13 21:06:20",
+     "print_size": 50.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783959165,
+     "evidence_et": "2026-07-13 16:12:45",
+     "window_total_s": 12978,
+     "window_first": {
+      "start": "2026-07-13 17:30:02",
+      "end": "2026-07-13 21:06:20"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_CLAMPED_1C_UNDER_P",
+     "v49_rest": 54,
+     "v49_evidenced_level": 55,
+     "sibling_at_print": {
+      "leg": "SHE",
+      "rest": 45,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "SHE",
+     "P": 42,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783978414,
+     "print_et": "2026-07-13 21:33:34",
+     "print_size": 85.29,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783939349,
+     "evidence_et": "2026-07-13 10:42:29",
+     "window_total_s": 14612,
+     "window_first": {
+      "start": "2026-07-13 17:30:02",
+      "end": "2026-07-13 21:33:34"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 45,
+     "v49_evidenced_level": 45,
+     "sibling_at_print": {
+      "leg": "KEN",
+      "rest": 54,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL13MATMIC",
+   "code": "26JUL13MATMIC",
+   "cat": "WTA_MAIN",
+   "value": 2,
+   "missing": [
+    {
+     "leg": "MAT",
+     "P": 40,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783961838,
+     "print_et": "2026-07-13 16:57:18",
+     "print_size": 35.13,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783898420,
+     "evidence_et": "2026-07-12 23:20:20",
+     "window_total_s": 26752,
+     "window_first": {
+      "start": "2026-07-13 09:30:00",
+      "end": "2026-07-13 16:55:52"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_8C_ABOVE_P",
+     "v49_rest": 41,
+     "v49_evidenced_level": 48,
+     "sibling_at_print": {
+      "leg": "MIC",
+      "rest": 58,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 58
+     }
+    }
+   ],
+   "V47": "ONE_LEG 58c (MAT uncalled)",
+   "V49": "ONE_LEG 58c (MAT uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+   "code": "26JUL13SELYAN",
+   "cat": "WTA_CHALL",
+   "value": 2,
+   "missing": [
+    {
+     "leg": "YAN",
+     "P": 39,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1783954375,
+     "print_et": "2026-07-13 14:52:55",
+     "print_size": 26.8,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783913820,
+     "evidence_et": "2026-07-13 03:37:00",
+     "window_total_s": 16110,
+     "window_first": {
+      "start": "2026-07-13 10:10:19",
+      "end": "2026-07-13 14:38:49"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 42,
+     "v49_evidenced_level": 42,
+     "sibling_at_print": {
+      "leg": "SEL",
+      "rest": 57,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "ONE_LEG 59c (YAN uncalled)",
+   "V49": "ONE_LEG 42c (SEL uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+   "code": "26JUL14GENPET",
+   "cat": "ATP_CHALL",
+   "value": 2,
+   "missing": [
+    {
+     "leg": "PET",
+     "P": 37,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784020269,
+     "print_et": "2026-07-14 09:11:09",
+     "print_size": 64.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783983745,
+     "evidence_et": "2026-07-13 23:02:25",
+     "window_total_s": 3739,
+     "window_first": {
+      "start": "2026-07-14 04:42:37",
+      "end": "2026-07-14 05:44:56"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_CLAMPED_1C_UNDER_P",
+     "v49_rest": 35,
+     "v49_evidenced_level": 37,
+     "sibling_at_print": {
+      "leg": "GEN",
+      "rest": 61,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 61
+     }
+    }
+   ],
+   "V47": "ONE_LEG 61c (PET uncalled)",
+   "V49": "ONE_LEG 61c (PET uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+   "code": "26JUL16BASRUS",
+   "cat": "WTA_CHALL",
+   "value": 2,
+   "missing": [
+    {
+     "leg": "RUS",
+     "P": 32,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784198274,
+     "print_et": "2026-07-16 10:37:54",
+     "print_size": 1160.59,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784192425,
+     "evidence_et": "2026-07-16 09:00:25",
+     "window_total_s": 7336,
+     "window_first": {
+      "start": "2026-07-16 07:43:54",
+      "end": "2026-07-16 09:46:10"
+     },
+     "n_spans": 1,
+     "v49_reason": "BID_MINUS_ONE_OFFSET_AT_P",
+     "v49_rest": 31,
+     "v49_evidenced_level": 32,
+     "sibling_at_print": {
+      "leg": "BAS",
+      "rest": 66,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 66
+     }
+    }
+   ],
+   "V47": "ONE_LEG 66c (RUS uncalled)",
+   "V49": "ONE_LEG 66c (RUS uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+   "code": "26JUL20FAURIN",
+   "cat": "ATP_CHALL",
+   "value": 2,
+   "missing": [
+    {
+     "leg": "FAU",
+     "P": 33,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784550367,
+     "print_et": "2026-07-20 12:26:07",
+     "print_size": 11.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784508493,
+     "evidence_et": "2026-07-20 00:48:13",
+     "window_total_s": 17700,
+     "window_first": {
+      "start": "2026-07-20 07:30:23",
+      "end": "2026-07-20 12:25:23"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 33,
+     "v49_evidenced_level": 36,
+     "sibling_at_print": {
+      "leg": "RIN",
+      "rest": 65,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 65
+     }
+    }
+   ],
+   "V47": "ONE_LEG 65c (FAU uncalled)",
+   "V49": "ONE_LEG 65c (FAU uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+   "code": "26JUL12FANBIG",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "FAN",
+     "P": 35,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1783869471,
+     "print_et": "2026-07-12 15:17:51",
+     "print_size": 30.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783839079,
+     "evidence_et": "2026-07-12 06:51:19",
+     "window_total_s": 17563,
+     "window_first": {
+      "start": "2026-07-12 10:07:24",
+      "end": "2026-07-12 15:00:07"
+     },
+     "n_spans": 2,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 34,
+     "v49_evidenced_level": 38,
+     "sibling_at_print": {
+      "leg": "BIG",
+      "rest": 64,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 64
+     }
+    }
+   ],
+   "V47": "ONE_LEG 64c (FAN uncalled)",
+   "V49": "ONE_LEG 64c (FAN uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+   "code": "26JUL12FEICHE",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "CHE",
+     "P": 25,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783844615,
+     "print_et": "2026-07-12 08:23:35",
+     "print_size": 36.0,
+     "print_side": "yes",
+     "evidence_type": null,
+     "evidence_ts": null,
+     "evidence_et": null,
+     "window_total_s": 7435,
+     "window_first": {
+      "start": "2026-07-12 05:10:04",
+      "end": "2026-07-12 07:13:59"
+     },
+     "n_spans": 2,
+     "v49_reason": "BID_MINUS_ONE_OFFSET_AT_P",
+     "v49_rest": 24,
+     "v49_evidenced_level": 24,
+     "sibling_at_print": {
+      "leg": "FEI",
+      "rest": 74,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "FEI",
+     "P": 74,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783836124,
+     "print_et": "2026-07-12 06:02:04",
+     "print_size": 0.42,
+     "print_side": "yes",
+     "evidence_type": null,
+     "evidence_ts": null,
+     "evidence_et": null,
+     "window_total_s": 3119,
+     "window_first": {
+      "start": "2026-07-12 05:10:05",
+      "end": "2026-07-12 06:02:04"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_AT_OR_ABOVE_P_YET_UNCREDITED",
+     "v49_rest": 74,
+     "v49_evidenced_level": 74,
+     "sibling_at_print": {
+      "leg": "CHE",
+      "rest": 24,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+   "code": "26JUL12MALTUR",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "MAL",
+     "P": 53,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1783862710,
+     "print_et": "2026-07-12 13:25:10",
+     "print_size": 21.92,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783834487,
+     "evidence_et": "2026-07-12 05:34:47",
+     "window_total_s": 1106,
+     "window_first": {
+      "start": "2026-07-12 10:23:20",
+      "end": "2026-07-12 10:41:46"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 52,
+     "v49_evidenced_level": 54,
+     "sibling_at_print": {
+      "leg": "TUR",
+      "rest": 46,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 46
+     }
+    }
+   ],
+   "V47": "ONE_LEG 46c (MAL uncalled)",
+   "V49": "COMPLETED 99c"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+   "code": "26JUL12MIYKUZ",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "KUZ",
+     "P": 35,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783883016,
+     "print_et": "2026-07-12 19:03:36",
+     "print_size": 96.0,
+     "print_side": "yes",
+     "evidence_type": null,
+     "evidence_ts": null,
+     "evidence_et": null,
+     "window_total_s": 0,
+     "window_first": {
+      "start": "2026-07-12 19:03:36",
+      "end": "2026-07-12 19:03:36"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 34,
+     "v49_evidenced_level": 36,
+     "sibling_at_print": {
+      "leg": "MIY",
+      "rest": 65,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 65
+     }
+    }
+   ],
+   "V47": "ONE_LEG 64c (KUZ uncalled)",
+   "V49": "ONE_LEG 65c (KUZ uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+   "code": "26JUL13DONWES",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "WES",
+     "P": 73,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1783933960,
+     "print_et": "2026-07-13 09:12:40",
+     "print_size": 170.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783897655,
+     "evidence_et": "2026-07-12 23:07:35",
+     "window_total_s": 12023,
+     "window_first": {
+      "start": "2026-07-13 05:10:48",
+      "end": "2026-07-13 08:31:11"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 72,
+     "v49_evidenced_level": 74,
+     "sibling_at_print": {
+      "leg": "DON",
+      "rest": 26,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": 25
+     }
+    }
+   ],
+   "V47": "ONE_LEG 26c (WES uncalled)",
+   "V49": "COMPLETED 99c"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+   "code": "26JUL13JONSPI",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "JON",
+     "P": 91,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1783921368,
+     "print_et": "2026-07-13 05:42:48",
+     "print_size": 61.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783908350,
+     "evidence_et": "2026-07-13 02:05:50",
+     "window_total_s": 7885,
+     "window_first": {
+      "start": "2026-07-13 03:31:23",
+      "end": "2026-07-13 05:42:48"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_CLAMPED_40C_UNDER_P",
+     "v49_rest": 50,
+     "v49_evidenced_level": 88,
+     "sibling_at_print": {
+      "leg": "SPI",
+      "rest": 8,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 8
+     }
+    }
+   ],
+   "V47": "ONE_LEG 8c (JON uncalled)",
+   "V49": "ONE_LEG 8c (JON uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+   "code": "26JUL13KOTURG",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "KOT",
+     "P": 32,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1783959912,
+     "print_et": "2026-07-13 16:25:12",
+     "print_size": 5.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1783918028,
+     "evidence_et": "2026-07-13 04:47:08",
+     "window_total_s": 17212,
+     "window_first": {
+      "start": "2026-07-13 11:30:06",
+      "end": "2026-07-13 16:16:58"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_4C_ABOVE_P",
+     "v49_rest": 31,
+     "v49_evidenced_level": 36,
+     "sibling_at_print": {
+      "leg": "URG",
+      "rest": 67,
+      "dir": "FALLING",
+      "filled_by_print": false,
+      "entry": 67
+     }
+    }
+   ],
+   "V47": "ONE_LEG 67c (KOT uncalled)",
+   "V49": "ONE_LEG 67c (KOT uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+   "code": "26JUL16GLISEK",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "GLI",
+     "P": 61,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784200808,
+     "print_et": "2026-07-16 11:20:08",
+     "print_size": 0.1,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784173636,
+     "evidence_et": "2026-07-16 03:47:16",
+     "window_total_s": 4167,
+     "window_first": {
+      "start": "2026-07-16 10:10:30",
+      "end": "2026-07-16 11:19:57"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 61,
+     "v49_evidenced_level": 62,
+     "sibling_at_print": {
+      "leg": "SEK",
+      "rest": 38,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 38
+     }
+    }
+   ],
+   "V47": "ONE_LEG 38c (GLI uncalled)",
+   "V49": "ONE_LEG 38c (GLI uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+   "code": "26JUL16KHOPRO",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "PRO",
+     "P": 84,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784204193,
+     "print_et": "2026-07-16 12:16:33",
+     "print_size": 7.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784166081,
+     "evidence_et": "2026-07-16 01:41:21",
+     "window_total_s": 18989,
+     "window_first": {
+      "start": "2026-07-16 07:00:04",
+      "end": "2026-07-16 12:16:33"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_2C_ABOVE_P",
+     "v49_rest": 84,
+     "v49_evidenced_level": 86,
+     "sibling_at_print": {
+      "leg": "KHO",
+      "rest": 15,
+      "dir": "SETTLED",
+      "filled_by_print": true,
+      "entry": 15
+     }
+    }
+   ],
+   "V47": "ONE_LEG 15c (PRO uncalled)",
+   "V49": "ONE_LEG 15c (PRO uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+   "code": "26JUL16MRVRON",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "MRV",
+     "P": 57,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784172139,
+     "print_et": "2026-07-16 03:22:19",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784146741,
+     "evidence_et": "2026-07-15 20:19:01",
+     "window_total_s": 1322,
+     "window_first": {
+      "start": "2026-07-16 03:00:17",
+      "end": "2026-07-16 03:22:19"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 59,
+     "v49_evidenced_level": 58,
+     "sibling_at_print": {
+      "leg": "RON",
+      "rest": 40,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    },
+    {
+     "leg": "RON",
+     "P": 42,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784172153,
+     "print_et": "2026-07-16 03:22:33",
+     "print_size": 1.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784159904,
+     "evidence_et": "2026-07-15 23:58:24",
+     "window_total_s": 1343,
+     "window_first": {
+      "start": "2026-07-16 03:00:10",
+      "end": "2026-07-16 03:22:33"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_CLAMPED_1C_UNDER_P",
+     "v49_rest": 40,
+     "v49_evidenced_level": 40,
+     "sibling_at_print": {
+      "leg": "MRV",
+      "rest": 59,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "NONE",
+   "V49": "NONE"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+   "code": "26JUL17GRAVAN",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "GRA",
+     "P": 43,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784265812,
+     "print_et": "2026-07-17 05:23:32",
+     "print_size": 40.0,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784243533,
+     "evidence_et": "2026-07-16 23:12:13",
+     "window_total_s": 794,
+     "window_first": {
+      "start": "2026-07-17 05:10:07",
+      "end": "2026-07-17 05:23:21"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_AT_OR_ABOVE_P_YET_UNCREDITED",
+     "v49_rest": 43,
+     "v49_evidenced_level": 43,
+     "sibling_at_print": {
+      "leg": "VAN",
+      "rest": 56,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 56
+     }
+    }
+   ],
+   "V47": "ONE_LEG 56c (GRA uncalled)",
+   "V49": "ONE_LEG 56c (GRA uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+   "code": "26JUL17JONNOH",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "NOH",
+     "P": 38,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784291345,
+     "print_et": "2026-07-17 12:29:05",
+     "print_size": 2.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784265038,
+     "evidence_et": "2026-07-17 05:10:38",
+     "window_total_s": 8574,
+     "window_first": {
+      "start": "2026-07-17 09:00:26",
+      "end": "2026-07-17 11:23:20"
+     },
+     "n_spans": 1,
+     "v49_reason": "BID_MINUS_ONE_OFFSET_AT_P",
+     "v49_rest": 37,
+     "v49_evidenced_level": 38,
+     "sibling_at_print": {
+      "leg": "JON",
+      "rest": 62,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 62
+     }
+    }
+   ],
+   "V47": "ONE_LEG 61c (NOH uncalled)",
+   "V49": "ONE_LEG 62c (NOH uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+   "code": "26JUL18BASBOE",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "BAS",
+     "P": 94,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784399361,
+     "print_et": "2026-07-18 18:29:21",
+     "print_size": 5.19,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784354197,
+     "evidence_et": "2026-07-18 05:56:37",
+     "window_total_s": 21834,
+     "window_first": {
+      "start": "2026-07-18 12:25:27",
+      "end": "2026-07-18 18:29:21"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_2C_ABOVE_P",
+     "v49_rest": 94,
+     "v49_evidenced_level": 96,
+     "sibling_at_print": {
+      "leg": "BOE",
+      "rest": 5,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 5
+     }
+    }
+   ],
+   "V47": "ONE_LEG 5c (BAS uncalled)",
+   "V49": "ONE_LEG 5c (BAS uncalled)"
+  },
+  {
+   "event": "KXATPMATCH-26JUL19ALTCOL",
+   "code": "26JUL19ALTCOL",
+   "cat": "ATP_MAIN",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "ALT",
+     "P": 37,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784487746,
+     "print_et": "2026-07-19 19:02:26",
+     "print_size": 24.47,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784479667,
+     "evidence_et": "2026-07-19 16:47:47",
+     "window_total_s": 52153,
+     "window_first": {
+      "start": "2026-07-19 04:33:00",
+      "end": "2026-07-19 19:02:13"
+     },
+     "n_spans": 1,
+     "v49_reason": "REST_CLAMPED_16C_UNDER_P",
+     "v49_rest": 20,
+     "v49_evidenced_level": 35,
+     "sibling_at_print": {
+      "leg": "COL",
+      "rest": 58,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 58
+     }
+    }
+   ],
+   "V47": "ONE_LEG 62c (ALT uncalled)",
+   "V49": "ONE_LEG 58c (ALT uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+   "code": "26JUL19BARSTA",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "STA",
+     "P": 63,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784460624,
+     "print_et": "2026-07-19 11:30:24",
+     "print_size": 10.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784436174,
+     "evidence_et": "2026-07-19 04:42:54",
+     "window_total_s": 23478,
+     "window_first": {
+      "start": "2026-07-19 04:42:26",
+      "end": "2026-07-19 09:59:14"
+     },
+     "n_spans": 5,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 62,
+     "v49_evidenced_level": 64,
+     "sibling_at_print": {
+      "leg": "BAR",
+      "rest": 37,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 37
+     }
+    }
+   ],
+   "V47": "ONE_LEG 36c (STA uncalled)",
+   "V49": "ONE_LEG 37c (STA uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+   "code": "26JUL19CALTEP",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "TEP",
+     "P": 21,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784443793,
+     "print_et": "2026-07-19 06:49:53",
+     "print_size": 1.0,
+     "print_side": "yes",
+     "evidence_type": null,
+     "evidence_ts": null,
+     "evidence_et": null,
+     "window_total_s": 5640,
+     "window_first": {
+      "start": "2026-07-19 04:12:29",
+      "end": "2026-07-19 05:08:59"
+     },
+     "n_spans": 3,
+     "v49_reason": "EVIDENCE_CEILING_3C_ABOVE_P",
+     "v49_rest": 21,
+     "v49_evidenced_level": 24,
+     "sibling_at_print": {
+      "leg": "CAL",
+      "rest": 78,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": 78
+     }
+    }
+   ],
+   "V47": "ONE_LEG 78c (TEP uncalled)",
+   "V49": "ONE_LEG 78c (TEP uncalled)"
+  },
+  {
+   "event": "KXWTAMATCH-26JUL19RUSKAZ",
+   "code": "26JUL19RUSKAZ",
+   "cat": "WTA_MAIN",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "RUS",
+     "P": 75,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784435772,
+     "print_et": "2026-07-19 04:36:12",
+     "print_size": 3.0,
+     "print_side": "yes",
+     "evidence_type": null,
+     "evidence_ts": null,
+     "evidence_et": null,
+     "window_total_s": 0,
+     "window_first": {
+      "start": "2026-07-19 04:36:12",
+      "end": "2026-07-19 04:36:12"
+     },
+     "n_spans": 1,
+     "v49_reason": "BID_MINUS_ONE_OFFSET_AT_P",
+     "v49_rest": 74,
+     "v49_evidenced_level": 75,
+     "sibling_at_print": {
+      "leg": "KAZ",
+      "rest": 24,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 24
+     }
+    }
+   ],
+   "V47": "ONE_LEG 24c (RUS uncalled)",
+   "V49": "ONE_LEG 24c (RUS uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+   "code": "26JUL19SINMAT",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "SIN",
+     "P": 31,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784453191,
+     "print_et": "2026-07-19 09:26:31",
+     "print_size": 15.38,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784435131,
+     "evidence_et": "2026-07-19 04:25:31",
+     "window_total_s": 13860,
+     "window_first": {
+      "start": "2026-07-19 04:12:29",
+      "end": "2026-07-19 08:03:29"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_10C_ABOVE_P",
+     "v49_rest": 30,
+     "v49_evidenced_level": 41,
+     "sibling_at_print": {
+      "leg": "MAT",
+      "rest": 68,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 68
+     }
+    }
+   ],
+   "V47": "ONE_LEG 68c (SIN uncalled)",
+   "V49": "ONE_LEG 68c (SIN uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+   "code": "26JUL20CHABOU",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "BOU",
+     "P": 39,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784571411,
+     "print_et": "2026-07-20 18:16:51",
+     "print_size": 10.0,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784531063,
+     "evidence_et": "2026-07-20 07:04:23",
+     "window_total_s": 21658,
+     "window_first": {
+      "start": "2026-07-20 12:10:11",
+      "end": "2026-07-20 18:11:09"
+     },
+     "n_spans": 1,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 39,
+     "v49_evidenced_level": 40,
+     "sibling_at_print": {
+      "leg": "CHA",
+      "rest": 59,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": null
+     }
+    }
+   ],
+   "V47": "ONE_LEG 60c (BOU uncalled)",
+   "V49": "ONE_LEG 40c (CHA uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+   "code": "26JUL20MAZSPI",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "MAZ",
+     "P": 66,
+     "verdict": "V1_STANDABLE",
+     "standable": true,
+     "print_ts": 1784576768,
+     "print_et": "2026-07-20 19:46:08",
+     "print_size": 176.84,
+     "print_side": "no",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784550208,
+     "evidence_et": "2026-07-20 12:23:28",
+     "window_total_s": 20089,
+     "window_first": {
+      "start": "2026-07-20 14:11:19",
+      "end": "2026-07-20 19:46:08"
+     },
+     "n_spans": 1,
+     "v49_reason": "EVIDENCE_CEILING_1C_ABOVE_P",
+     "v49_rest": 66,
+     "v49_evidenced_level": 67,
+     "sibling_at_print": {
+      "leg": "SPI",
+      "rest": 33,
+      "dir": "RISING",
+      "filled_by_print": true,
+      "entry": 33
+     }
+    }
+   ],
+   "V47": "ONE_LEG 33c (MAZ uncalled)",
+   "V49": "ONE_LEG 33c (MAZ uncalled)"
+  },
+  {
+   "event": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+   "code": "26JUL20STAMAT",
+   "cat": "ATP_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "MAT",
+     "P": 61,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784535403,
+     "print_et": "2026-07-20 08:16:43",
+     "print_size": 1.59,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784510354,
+     "evidence_et": "2026-07-20 01:19:14",
+     "window_total_s": 13419,
+     "window_first": {
+      "start": "2026-07-20 04:07:17",
+      "end": "2026-07-20 05:03:32"
+     },
+     "n_spans": 2,
+     "v49_reason": "BID_MINUS_ONE_OFFSET_AT_P",
+     "v49_rest": 60,
+     "v49_evidenced_level": 61,
+     "sibling_at_print": {
+      "leg": "STA",
+      "rest": 38,
+      "dir": "FALLING",
+      "filled_by_print": true,
+      "entry": 38
+     }
+    }
+   ],
+   "V47": "ONE_LEG 38c (MAT uncalled)",
+   "V49": "ONE_LEG 38c (MAT uncalled)"
+  },
+  {
+   "event": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+   "code": "26JUL20TOTRUG",
+   "cat": "WTA_CHALL",
+   "value": 1,
+   "missing": [
+    {
+     "leg": "RUG",
+     "P": 55,
+     "verdict": "WINDOW_LAWFUL_EVIDENCE",
+     "standable": true,
+     "print_ts": 1784553875,
+     "print_et": "2026-07-20 13:24:35",
+     "print_size": 19.38,
+     "print_side": "yes",
+     "evidence_type": "BID_TOUCH",
+     "evidence_ts": 1784526756,
+     "evidence_et": "2026-07-20 05:52:36",
+     "window_total_s": 3105,
+     "window_first": {
+      "start": "2026-07-20 12:06:49",
+      "end": "2026-07-20 12:57:15"
+     },
+     "n_spans": 2,
+     "v49_reason": "CONVERTED_LEG",
+     "v49_rest": 54,
+     "v49_evidenced_level": 56,
+     "sibling_at_print": {
+      "leg": "TOT",
+      "rest": 44,
+      "dir": "RISING",
+      "filled_by_print": false,
+      "entry": 44
+     }
+    }
+   ],
+   "V47": "ONE_LEG 44c (RUG uncalled)",
+   "V49": "COMPLETED 99c"
+  }
+ ],
+ "drift_reconciliation": [
+  {
+   "code": "26JUL14GENPET",
+   "leg": "PET",
+   "ledger_P_receipt": 37,
+   "ledger_P_machine": 35,
+   "my_fit_min": 37,
+   "my_machine_min": 35,
+   "fit_span": [
+    "2026-07-14 04:40:00",
+    "2026-07-14 10:55:00"
+   ],
+   "machine_span": [
+    "2026-07-13 21:54:12",
+    "2026-07-14 11:11:00"
+   ],
+   "fit_only_min_print": null,
+   "machine_only_min_print": {
+    "ts": "2026-07-14 11:10:51",
+    "price": 35
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL20STAMAT",
+   "leg": "MAT",
+   "ledger_P_receipt": 61,
+   "ledger_P_machine": 60,
+   "my_fit_min": 61,
+   "my_machine_min": 60,
+   "fit_span": [
+    "2026-07-20 04:00:00",
+    "2026-07-20 08:55:00"
+   ],
+   "machine_span": [
+    "2026-07-19 21:12:34",
+    "2026-07-20 09:01:54"
+   ],
+   "fit_only_min_print": null,
+   "machine_only_min_print": {
+    "ts": "2026-07-19 23:21:08",
+    "price": 60
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL12MALTUR",
+   "leg": "MAL",
+   "ledger_P_receipt": 53,
+   "ledger_P_machine": 49,
+   "my_fit_min": 53,
+   "my_machine_min": 49,
+   "fit_span": [
+    "2026-07-12 10:10:00",
+    "2026-07-12 17:14:00"
+   ],
+   "machine_span": [
+    "2026-07-12 03:22:16",
+    "2026-07-12 17:15:00"
+   ],
+   "fit_only_min_print": null,
+   "machine_only_min_print": {
+    "ts": "2026-07-12 17:14:44",
+    "price": 49
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL20LYSVAL",
+   "leg": "LYS",
+   "ledger_P_receipt": 30,
+   "ledger_P_machine": 29,
+   "my_fit_min": 30,
+   "my_machine_min": 29,
+   "fit_span": [
+    "2026-07-20 03:00:00",
+    "2026-07-20 11:00:00"
+   ],
+   "machine_span": [
+    "2026-07-19 08:06:25",
+    "2026-07-20 11:00:00"
+   ],
+   "fit_only_min_print": null,
+   "machine_only_min_print": {
+    "ts": "2026-07-19 09:12:57",
+    "price": 29
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL18BASBOE",
+   "leg": "BAS",
+   "ledger_P_receipt": 94,
+   "ledger_P_machine": 95,
+   "my_fit_min": 94,
+   "my_machine_min": 95,
+   "fit_span": [
+    "2026-07-18 12:20:00",
+    "2026-07-18 18:45:00"
+   ],
+   "machine_span": [
+    "2026-07-18 05:32:29",
+    "2026-07-18 17:11:00"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-18 18:31:04",
+    "price": 94
+   },
+   "machine_only_min_print": {
+    "ts": "2026-07-18 05:45:59",
+    "price": 95
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL13JONSPI",
+   "leg": "JON",
+   "ledger_P_receipt": 91,
+   "ledger_P_machine": 51,
+   "my_fit_min": 91,
+   "my_machine_min": 51,
+   "fit_span": [
+    "2026-07-13 03:30:00",
+    "2026-07-13 08:25:00"
+   ],
+   "machine_span": [
+    "2026-07-12 20:41:28",
+    "2026-07-13 00:51:45"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-13 08:07:05",
+    "price": 91
+   },
+   "machine_only_min_print": {
+    "ts": "2026-07-13 00:23:43",
+    "price": 51
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL13KNUKUR",
+   "leg": "KNU",
+   "ledger_P_receipt": 84,
+   "ledger_P_machine": 85,
+   "my_fit_min": 84,
+   "my_machine_min": 85,
+   "fit_span": [
+    "2026-07-13 07:20:00",
+    "2026-07-13 15:20:00"
+   ],
+   "machine_span": [
+    "2026-07-13 00:30:38",
+    "2026-07-13 12:30:23"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-13 15:11:05",
+    "price": 84
+   },
+   "machine_only_min_print": {
+    "ts": "2026-07-13 05:44:38",
+    "price": 85
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL16KHOPRO",
+   "leg": "PRO",
+   "ledger_P_receipt": 84,
+   "ledger_P_machine": 85,
+   "my_fit_min": 84,
+   "my_machine_min": 85,
+   "fit_span": [
+    "2026-07-16 07:00:00",
+    "2026-07-16 15:00:00"
+   ],
+   "machine_span": [
+    "2026-07-16 00:14:35",
+    "2026-07-16 12:14:00"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-16 12:56:54",
+    "price": 84
+   },
+   "machine_only_min_print": {
+    "ts": "2026-07-16 05:32:38",
+    "price": 85
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL14ZHUYUN",
+   "leg": "YUN",
+   "ledger_P_receipt": 78,
+   "ledger_P_machine": 90,
+   "my_fit_min": 78,
+   "my_machine_min": 90,
+   "fit_span": [
+    "2026-07-14 11:10:00",
+    "2026-07-14 19:10:00"
+   ],
+   "machine_span": [
+    "2026-07-14 04:22:07",
+    "2026-07-14 15:30:01"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-14 18:36:48",
+    "price": 78
+   },
+   "machine_only_min_print": {
+    "ts": "2026-07-14 09:11:15",
+    "price": 90
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL14MAKSEY",
+   "leg": "SEY",
+   "ledger_P_receipt": 77,
+   "ledger_P_machine": 80,
+   "my_fit_min": 77,
+   "my_machine_min": 80,
+   "fit_span": [
+    "2026-07-14 06:30:00",
+    "2026-07-14 14:30:00"
+   ],
+   "machine_span": [
+    "2026-07-13 23:40:59",
+    "2026-07-14 11:17:00"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-14 13:30:13",
+    "price": 77
+   },
+   "machine_only_min_print": null,
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL19RUSKAZ",
+   "leg": "RUS",
+   "ledger_P_receipt": 75,
+   "ledger_P_machine": 74,
+   "my_fit_min": 75,
+   "my_machine_min": 74,
+   "fit_span": [
+    "2026-07-19 03:00:00",
+    "2026-07-19 08:49:00"
+   ],
+   "machine_span": [
+    "2026-07-18 15:59:21",
+    "2026-07-19 08:50:00"
+   ],
+   "fit_only_min_print": null,
+   "machine_only_min_print": {
+    "ts": "2026-07-18 18:40:03",
+    "price": 74
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL13BOUZHA",
+   "leg": "ZHA",
+   "ledger_P_receipt": 73,
+   "ledger_P_machine": 74,
+   "my_fit_min": 73,
+   "my_machine_min": 74,
+   "fit_span": [
+    "2026-07-13 11:20:00",
+    "2026-07-13 23:40:00"
+   ],
+   "machine_span": [
+    "2026-07-13 04:32:01",
+    "2026-07-13 16:48:00"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-13 20:43:03",
+    "price": 73
+   },
+   "machine_only_min_print": null,
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  },
+  {
+   "code": "26JUL13OKATAR",
+   "leg": "TAR",
+   "ledger_P_receipt": 71,
+   "ledger_P_machine": 84,
+   "my_fit_min": 71,
+   "my_machine_min": 84,
+   "fit_span": [
+    "2026-07-13 10:00:00",
+    "2026-07-13 18:00:00"
+   ],
+   "machine_span": [
+    "2026-07-13 03:11:24",
+    "2026-07-13 09:09:41"
+   ],
+   "fit_only_min_print": {
+    "ts": "2026-07-13 17:00:09",
+    "price": 71
+   },
+   "machine_only_min_print": {
+    "ts": "2026-07-13 08:42:45",
+    "price": 84
+   },
+   "verdict": "SPAN_BASIS_CONFIRMED"
+  }
+ ],
+ "fanbig_fan_cause": {
+  "print_price": 35,
+  "print_ts": 1783854017,
+  "print_et": "2026-07-12 11:00:17",
+  "v48_join": {
+   "level": 32,
+   "ts": 1783869263,
+   "et": "2026-07-12 15:14:23"
+  },
+  "v47_join": {
+   "level": 32,
+   "ts": 1783869263,
+   "et": "2026-07-12 15:14:23"
+  },
+  "v48_terminal_rest": 32,
+  "v47_terminal_rest": 32,
+  "fit_tape_last_tick": "2026-07-12 17:55:50",
+  "cause": "ANOMALOUS_THROUGH_BID_PRINT_NOT_ADMITTED (candidate crediting defect, flagged): at the 35c print tick (2026-07-12 11:00:17) the fit-local book was bid 38 / ask 39 - the print landed 3c THROUGH the standing bid. The persistence join stood at 35=P from row-1279 (06:51:19) and did not re-anchor to 32 until 15:14:23 (row-2058), AFTER the print. So the rest WAS at 35 when a true 35c trade printed; V48 trades-as-truth law says credit, yet V47/V48/V49 all leave FAN uncredited while V47 records the same print as latest_new_low_evidence. The machine's trade-admission path did not admit this through-the-bid print as a fill. This is the one leg in the 81 where tape and crediting genuinely disagree - REPORTED as a candidate V48/V49 crediting defect, not forced.",
+  "book_at_tick": {
+   "bid": 38,
+   "ask": 39
+  }
+ }
+}

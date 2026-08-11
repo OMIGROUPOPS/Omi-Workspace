@@ -1810,3 +1810,12 @@ at zero replay delta; no deployment or live cutover is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/f99590eb9bfb77a695dc038a4efe21e7825f378c/arb-executor/docs/research/window1/WINDOW1_V47_SAME_TICK_ARM_20260810_ADDENDUM.md
+
+### 2026-08-11 - V47 SEALED EXAM BLOCKED BEFORE EXECUTION
+
+The refreshed exam-ready seal is 238 games: corrected 171 plus 67 untouched
+capture-stream games spanning the hard pre-bell edge; 93 more remain sealed
+but immature. The clipped exchange-print ledger has 510,486 rows and passes
+20/20 nightly reconciliation. DEV inertness did not complete its required
+byte comparison, so the sealed exam did not run, no score row exists, and the
+one-run authorization remains unused. No policy or live surface changed.

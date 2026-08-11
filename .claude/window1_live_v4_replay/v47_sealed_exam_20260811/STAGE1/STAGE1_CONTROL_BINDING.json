@@ -1,0 +1,33 @@
+{
+  "schema_version": "window1-v47-sealed-exam-stage1-control-v1",
+  "policy_invocations": 0,
+  "score_rows": 0,
+  "minimum_N": 60,
+  "observed_N": 238,
+  "pass": true,
+  "corrected_171": {
+    "event_list_sha256": "06ede0264a196bbebc005785c3ffdee5a840afe1a617f86f0354eedf65ac4313",
+    "boundary_ledger_sha256": "70f8b28749d8e1fd60e64af6e3ced41e556b2a20e5898ec692f0e4f7081b7c0a"
+  },
+  "capture_registry": {
+    "sha256": "ffc35012b5a079079faf64c8c84c264acbb622dc60590317e06700fd868eac64",
+    "state_sha256": "0ee377a1783a48053e9e1451b01df1c5f0c3131b5cf8979ccc55308bd19edc83",
+    "policy_sha256": "ba545fa2c88fb4af0b7a2a4183a2f99368fc7ef79979060b40452cc9c0f208aa"
+  },
+  "capture_materialization_manifest_sha256": "4ab6de3af87f04a7f32601687adfbe830c5dde05849f080748c053a402d74c4f",
+  "public_print_repull_receipt_sha256": "febfadca9f3834df5a9f29f14b771d176e208a04d915e0357112a73152340f7b",
+  "new_capture": {
+    "candidates_after_two_sided_book_admission": 160,
+    "hard_pre_bell_span_ready": 67,
+    "sealed_eligible_not_mature": 93,
+    "touch_clean_admitted": 67,
+    "declaration_sha256": "4a8899991f811aad09b56aaa8ad77cf5dc0118794764c0c705ca4231356bfad7",
+    "boundary_sha256": "d92bbdc2499fa1733413a2b79497c41e58d3c978a0bd2dd1ea1db5707a91a19f"
+  },
+  "frozen_population": {
+    "N": 238,
+    "legs": 476,
+    "event_list_sha256": "3f1acfa355f60ca3c196e7be20f8a87caca04db2970278042e40c476ab96e1f8",
+    "boundary_ledger_sha256": "dc12a7d782bc26210463e61849620e5799a12955452536fae7b05b21d028cac9"
+  }
+}

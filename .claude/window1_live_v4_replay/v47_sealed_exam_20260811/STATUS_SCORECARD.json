@@ -1,0 +1,37 @@
+{
+  "schema_version": "window1-v47-sealed-exam-status-v1",
+  "status": "BLOCKED_BEFORE_EXAM",
+  "stage_reached": "STAGE_2_DEV_INERTNESS_REBUILD_INTERRUPTED_BEFORE_ARTIFACT_EMISSION",
+  "sealed_population": {
+    "N": 238,
+    "legs": 476,
+    "corrected_171": 171,
+    "new_capture_hard_edge_ready": 67,
+    "sealed_eligible_not_mature_deferred": 93,
+    "event_list_sha256": "3f1acfa355f60ca3c196e7be20f8a87caca04db2970278042e40c476ab96e1f8",
+    "boundary_ledger_sha256": "dc12a7d782bc26210463e61849620e5799a12955452536fae7b05b21d028cac9",
+    "canonical_prints": 510486,
+    "canonical_prints_sha256": "68d03a09c2bd987495ed7e72ed8980bd5bc6b967af80f2197cd2e9b0f3dc69ee",
+    "nightly_reconciliation": "PASS_20_OF_20"
+  },
+  "dev_inertness": {
+    "attempt_1": "MECHANICAL_SAFE_OUTPUT_BASENAME_REJECTION_BEFORE_SIMULATION; PRESERVED",
+    "attempt_2": "INTERRUPTED_BEFORE_OUTPUT_OR_BYTE_COMPARISON",
+    "pass": false,
+    "byte_comparison_completed": false
+  },
+  "sealed_scores": {
+    "V47": { "completed": null, "true_book_cents": null },
+    "V45": { "completed": null, "true_book_cents": null },
+    "V36": { "completed": null, "true_book_cents": null }
+  },
+  "development_context": {
+    "V47": { "completed": 396, "true_book_cents": 1774 }
+  },
+  "exam": {
+    "ran": false,
+    "score_rows_emitted": 0,
+    "results_directory_exists": false,
+    "one_run_authorization_consumed": false
+  }
+}

@@ -1,0 +1,1138 @@
+{
+  "schema_version": "window1-v47-sealed-exam-touch-audit-v1",
+  "law": "Only evaluation, replay, diagnostic, or fix-motivating citation is touch; capture/storage/mechanical accumulation is not.",
+  "corrected_171": {
+    "events": 171,
+    "prior_consumption": "V36_AND_V35_SEALED_EXAM_DISCLOSED",
+    "V47_consumption_before_this_exam": 0,
+    "inclusion_authority": "CURRENT_OPERATOR_ORDER_EXPLICITLY_NAMES_CORRECTED_171_AS_REFRESH_BASE"
+  },
+  "capture_stream": {
+    "candidates": 160,
+    "exam_ready_untouched": 67,
+    "eligible_not_mature": 93,
+    "excluded_touched": 0,
+    "rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09ALVVAN",
+        "first_tagged_utc": "2026-08-09T05:59:02.153550Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09ANTPUR",
+        "first_tagged_utc": "2026-08-08T20:53:03.014241Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09BOYFOR",
+        "first_tagged_utc": "2026-08-09T04:05:03.988060Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09CANCEC",
+        "first_tagged_utc": "2026-08-09T02:48:03.006326Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09DICMAY",
+        "first_tagged_utc": "2026-08-09T04:05:03.988060Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09HILKIM",
+        "first_tagged_utc": "2026-08-09T04:30:06.415105Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09ILABUT",
+        "first_tagged_utc": "2026-08-09T05:10:05.021766Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09JOHCHA",
+        "first_tagged_utc": "2026-08-09T05:59:02.153550Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09JUBRAI",
+        "first_tagged_utc": "2026-08-09T05:59:02.153550Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09KITROT",
+        "first_tagged_utc": "2026-08-09T04:30:06.415105Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09MANYOU",
+        "first_tagged_utc": "2026-08-09T04:05:03.988060Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09MARRAP",
+        "first_tagged_utc": "2026-08-09T00:38:01.967407Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09PIRNES",
+        "first_tagged_utc": "2026-08-08T19:32:03.084759Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09POUSIM",
+        "first_tagged_utc": "2026-08-09T04:05:03.988060Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09SURGOD",
+        "first_tagged_utc": "2026-08-09T04:48:02.873917Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09WINMOS",
+        "first_tagged_utc": "2026-08-09T02:48:03.006326Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09YEVLAR",
+        "first_tagged_utc": "2026-08-08T20:53:03.014241Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+        "first_tagged_utc": "2026-08-09T02:48:03.006326Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10AGADEC",
+        "first_tagged_utc": "2026-08-09T17:01:02.968779Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10BALMIL",
+        "first_tagged_utc": "2026-08-10T09:00:06.691115Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10BARLEC",
+        "first_tagged_utc": "2026-08-09T20:33:03.132365Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10BLASAK",
+        "first_tagged_utc": "2026-08-10T09:12:02.260391Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10BOYMAY",
+        "first_tagged_utc": "2026-08-10T03:05:04.176994Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10BRAJIA",
+        "first_tagged_utc": "2026-08-10T01:41:02.690002Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10CANCRI",
+        "first_tagged_utc": "2026-08-09T21:14:02.776524Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10CECHAR",
+        "first_tagged_utc": "2026-08-10T03:05:04.176994Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10CREMOE",
+        "first_tagged_utc": "2026-08-10T00:33:02.920585Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10DEVGAL",
+        "first_tagged_utc": "2026-08-10T01:01:02.159201Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10FERMAS",
+        "first_tagged_utc": "2026-08-09T20:01:02.996948Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10HOMCAR",
+        "first_tagged_utc": "2026-08-09T20:01:02.996948Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10ICHSIN",
+        "first_tagged_utc": "2026-08-09T18:31:02.679801Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10ISOMUK",
+        "first_tagged_utc": "2026-08-09T17:01:02.968779Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10JOHROT",
+        "first_tagged_utc": "2026-08-10T04:12:03.556389Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10JORPIN",
+        "first_tagged_utc": "2026-08-10T09:00:06.691115Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10KINFEN",
+        "first_tagged_utc": "2026-08-10T03:05:04.176994Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10KRADAS",
+        "first_tagged_utc": "2026-08-09T21:14:02.776524Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10KUMZEU",
+        "first_tagged_utc": "2026-08-09T20:33:03.132365Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10LEOARU",
+        "first_tagged_utc": "2026-08-09T17:01:02.968779Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10MARWEI",
+        "first_tagged_utc": "2026-08-09T21:14:02.776524Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10MATMAT2",
+        "first_tagged_utc": "2026-08-09T20:33:03.132365Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10MRVBAS",
+        "first_tagged_utc": "2026-08-10T06:32:03.065964Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10OPIKRU",
+        "first_tagged_utc": "2026-08-09T21:43:02.244781Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10PANPAL",
+        "first_tagged_utc": "2026-08-09T20:33:03.132365Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10PETMCD",
+        "first_tagged_utc": "2026-08-10T03:05:04.176994Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10RAIVAN",
+        "first_tagged_utc": "2026-08-09T22:34:02.194094Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10RATSAT",
+        "first_tagged_utc": "2026-08-09T20:33:03.132365Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10RAWMIT",
+        "first_tagged_utc": "2026-08-09T18:31:02.679801Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10RIBALC",
+        "first_tagged_utc": "2026-08-10T00:33:02.920585Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10ROMGIU",
+        "first_tagged_utc": "2026-08-10T04:32:02.468237Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10SINZHA",
+        "first_tagged_utc": "2026-08-09T19:03:02.685166Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10SMIGIL",
+        "first_tagged_utc": "2026-08-10T10:11:02.957294Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10SULBIN",
+        "first_tagged_utc": "2026-08-09T21:43:02.244781Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10SURKIM",
+        "first_tagged_utc": "2026-08-10T04:12:03.556389Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10TSESAC",
+        "first_tagged_utc": "2026-08-10T00:33:02.920585Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10VANMEC",
+        "first_tagged_utc": "2026-08-09T20:01:02.996948Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10WALGUT",
+        "first_tagged_utc": "2026-08-09T21:43:02.244781Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10WINYOU",
+        "first_tagged_utc": "2026-08-10T03:05:04.176994Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10YEVPUR",
+        "first_tagged_utc": "2026-08-09T21:43:02.244781Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG10ZEBKIR",
+        "first_tagged_utc": "2026-08-09T20:33:03.132365Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11AMBAJD",
+        "first_tagged_utc": "2026-08-10T20:02:02.404713Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11BARICH",
+        "first_tagged_utc": "2026-08-10T17:01:02.367263Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11BARKRA",
+        "first_tagged_utc": "2026-08-10T21:20:04.374655Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11DALTOR",
+        "first_tagged_utc": "2026-08-10T20:02:02.404713Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11DEDREH",
+        "first_tagged_utc": "2026-08-10T23:00:07.648379Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11DOUDEC",
+        "first_tagged_utc": "2026-08-10T20:51:02.727581Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11FOMZHU",
+        "first_tagged_utc": "2026-08-10T20:51:02.727581Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11FORMEC",
+        "first_tagged_utc": "2026-08-10T20:02:02.404713Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11HOUNAG",
+        "first_tagged_utc": "2026-08-11T00:14:02.924416Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11ILAMAR",
+        "first_tagged_utc": "2026-08-11T02:55:03.879003Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11IMAGHI",
+        "first_tagged_utc": "2026-08-10T19:42:02.947768Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11KIRNED",
+        "first_tagged_utc": "2026-08-10T23:20:03.701409Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11KRUDIE",
+        "first_tagged_utc": "2026-08-10T20:31:02.663565Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11KUMSIN",
+        "first_tagged_utc": "2026-08-10T18:31:02.136503Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11LECPUR",
+        "first_tagged_utc": "2026-08-10T23:00:07.648379Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11MACKUM",
+        "first_tagged_utc": "2026-08-11T02:55:03.879003Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11MARGOM",
+        "first_tagged_utc": "2026-08-10T21:20:04.374655Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11MENFAU",
+        "first_tagged_utc": "2026-08-10T23:00:07.648379Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11MICCAR",
+        "first_tagged_utc": "2026-08-11T02:55:03.879003Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11MMOBUT",
+        "first_tagged_utc": "2026-08-11T02:55:03.879003Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11MOLMOL2",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11OMAZHU",
+        "first_tagged_utc": "2026-08-10T18:31:02.136503Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11ONCZIN",
+        "first_tagged_utc": "2026-08-11T04:05:04.528528Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11OUACUI",
+        "first_tagged_utc": "2026-08-10T17:01:02.367263Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11PDABRO",
+        "first_tagged_utc": "2026-08-10T20:31:02.663565Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11PIRSCH",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11RAWALK",
+        "first_tagged_utc": "2026-08-10T18:31:02.136503Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11ROCMAS",
+        "first_tagged_utc": "2026-08-11T01:14:02.390183Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11SAIPIR",
+        "first_tagged_utc": "2026-08-11T01:14:02.390183Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11SAMISO",
+        "first_tagged_utc": "2026-08-10T20:51:02.727581Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11SHIARU",
+        "first_tagged_utc": "2026-08-10T19:42:02.947768Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11SUNNUR",
+        "first_tagged_utc": "2026-08-10T19:42:02.947768Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11TRAKIC",
+        "first_tagged_utc": "2026-08-11T04:05:04.528528Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11URSDHA",
+        "first_tagged_utc": "2026-08-10T17:01:02.367263Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11WALTAB",
+        "first_tagged_utc": "2026-08-10T23:00:07.648379Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11WEINEU",
+        "first_tagged_utc": "2026-08-10T21:20:04.374655Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11WENGOJ",
+        "first_tagged_utc": "2026-08-11T02:55:03.879003Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26AUG11YEVDOD",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG09FONSHE",
+        "first_tagged_utc": "2026-08-08T16:32:02.944790Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG09TIETIR",
+        "first_tagged_utc": "2026-08-08T16:32:02.944790Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG09VANMEN",
+        "first_tagged_utc": "2026-08-08T16:32:02.944790Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG10DARNAK",
+        "first_tagged_utc": "2026-08-09T16:33:03.154556Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG10JODFIL",
+        "first_tagged_utc": "2026-08-09T16:33:03.154556Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG10MERTIE",
+        "first_tagged_utc": "2026-08-09T20:22:02.584442Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11DAMSAK",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11ECHZHE",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11FARBAS",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11GASBUD",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11GIRROC",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11GOGVIR",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11HALKWON",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11HARJAC",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11LAJBON",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11LAJSVR",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11MAEYUN",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11MCDYIB",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11MEJFEA",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11MENSHE",
+        "first_tagged_utc": "2026-08-10T20:02:02.404713Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11MPESVA",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11NISCOM",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11OCOSWE",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11POPDRO",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11SHELLA",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11SHIDEL",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11TRUOFN",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11VANHEI",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11VUKBLA",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11WOLSAM",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXATPMATCH-26AUG11WONHON",
+        "first_tagged_utc": "2026-08-10T21:03:02.419549Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG09EALBEN",
+        "first_tagged_utc": "2026-08-08T16:01:02.489719Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG09FEROSA",
+        "first_tagged_utc": "2026-08-08T16:01:02.489719Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG09KORGAU",
+        "first_tagged_utc": "2026-08-08T16:01:02.489719Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG09SAMRYB",
+        "first_tagged_utc": "2026-08-08T16:01:02.489719Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG10ALESVI",
+        "first_tagged_utc": "2026-08-09T17:01:02.968779Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG10SHNSWI",
+        "first_tagged_utc": "2026-08-09T17:01:02.968779Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11ARASAS",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11BENGAU",
+        "first_tagged_utc": "2026-08-10T17:01:02.367263Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11DARUCH",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11DAYPRE",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11IATLIU",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11JIMSAW",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11KORLEP",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11KRABAS",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11LEEKUD",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11LYSKAW",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11MARCHA",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11MONGRA",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11OSARYB",
+        "first_tagged_utc": "2026-08-10T17:01:02.367263Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11PODSEI",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11SAKJEA",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11SALBLI",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11SELMAN",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11SIEITO",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11SRAJAC",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11STOERJ",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11TAGZHU",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11TARJON",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11VANURH",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11WANAND",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11ZAKSTE",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      },
+      {
+        "event_id": "KXWTAMATCH-26AUG11ZARYUA",
+        "first_tagged_utc": "2026-08-10T21:59:02.830397Z",
+        "hits": [],
+        "decision_relevant_hits": [],
+        "pass": true
+      }
+    ]
+  }
+}

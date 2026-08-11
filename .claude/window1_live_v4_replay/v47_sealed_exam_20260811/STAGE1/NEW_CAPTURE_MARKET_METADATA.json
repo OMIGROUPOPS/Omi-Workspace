@@ -1,0 +1,2725 @@
+{
+  "receipts": [
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ALVVAN",
+      "market": {
+        "close_time": "2026-08-09T19:41:53Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09ALVVAN",
+        "expected_expiration_time": "2026-08-09T20:30:00Z",
+        "occurrence_datetime": "2026-08-09T20:30:00Z",
+        "open_time": "2026-08-09T05:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09ALVVAN-ALV"
+      },
+      "raw_bytes": 2616,
+      "raw_sha256": "4b450fba07ed1ef96b987f7668946d84539a505c0fb79705b899dc4f8be10661",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09ALVVAN-ALV",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09ALVVAN-ALV"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ANTPUR",
+      "market": {
+        "close_time": "2026-08-09T17:00:15Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09ANTPUR",
+        "expected_expiration_time": "2026-08-09T11:30:00Z",
+        "occurrence_datetime": "2026-08-09T11:30:00Z",
+        "open_time": "2026-08-08T21:00:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09ANTPUR-ANT"
+      },
+      "raw_bytes": 2582,
+      "raw_sha256": "29b89f710cf3489032e0d1e0b81c86a797d41c0d9e332d886d878356108c91b8",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09ANTPUR-ANT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09ANTPUR-ANT"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09BOYFOR",
+      "market": {
+        "close_time": "2026-08-09T17:30:07Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09BOYFOR",
+        "expected_expiration_time": "2026-08-09T18:10:00Z",
+        "occurrence_datetime": "2026-08-09T18:10:00Z",
+        "open_time": "2026-08-09T03:21:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09BOYFOR-BOY"
+      },
+      "raw_bytes": 2565,
+      "raw_sha256": "357bf6126a67f9ec2067d1840fb1dcd50e2255bddd31ec30fe184f34e1a30dfa",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09BOYFOR-BOY",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09BOYFOR-BOY"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09CANCEC",
+      "market": {
+        "close_time": "2026-08-09T17:00:16Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09CANCEC",
+        "expected_expiration_time": "2026-08-09T17:00:00Z",
+        "occurrence_datetime": "2026-08-09T17:00:00Z",
+        "open_time": "2026-08-09T02:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09CANCEC-CAN"
+      },
+      "raw_bytes": 2600,
+      "raw_sha256": "b942b432bf1b86787a25343a01596efa4649299bcb48c42c4d583259163fa88f",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09CANCEC-CAN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09CANCEC-CAN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09DICMAY",
+      "market": {
+        "close_time": "2026-08-09T18:34:54Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09DICMAY",
+        "expected_expiration_time": "2026-08-09T18:10:00Z",
+        "occurrence_datetime": "2026-08-09T18:10:00Z",
+        "open_time": "2026-08-09T03:20:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09DICMAY-DIC"
+      },
+      "raw_bytes": 2570,
+      "raw_sha256": "b60db48c41ba74e8299da1e1e85a89bb2a71db890bae78186e6fca47c686d09f",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09DICMAY-DIC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09DICMAY-DIC"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09HILKIM",
+      "market": {
+        "close_time": "2026-08-09T18:10:11Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09HILKIM",
+        "expected_expiration_time": "2026-08-09T19:20:00Z",
+        "occurrence_datetime": "2026-08-09T19:20:00Z",
+        "open_time": "2026-08-09T04:30:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09HILKIM-HIL"
+      },
+      "raw_bytes": 2580,
+      "raw_sha256": "0231f1ac50b6a783cf19f0cdbd6ad95855ded9afcacf19d0f8fd38ff68714b49",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09HILKIM-HIL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09HILKIM-HIL"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ILABUT",
+      "market": {
+        "close_time": "2026-08-09T19:20:14Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09ILABUT",
+        "expected_expiration_time": "2026-08-09T20:00:00Z",
+        "occurrence_datetime": "2026-08-09T20:00:00Z",
+        "open_time": "2026-08-09T05:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09ILABUT-BUT"
+      },
+      "raw_bytes": 2524,
+      "raw_sha256": "ed9e38578f439c30d90c1dff978d95abadac1d216650d58dc9c1ff77208a6053",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09ILABUT-BUT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09ILABUT-BUT"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09JOHCHA",
+      "market": {
+        "close_time": "2026-08-09T19:49:56Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09JOHCHA",
+        "expected_expiration_time": "2026-08-09T20:30:00Z",
+        "occurrence_datetime": "2026-08-09T20:30:00Z",
+        "open_time": "2026-08-09T05:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09JOHCHA-CHA"
+      },
+      "raw_bytes": 2606,
+      "raw_sha256": "ea9709cc5494d066c4a41112a5b570cc5a601a83d841f23f9c7672d2e6a3e15a",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09JOHCHA-CHA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09JOHCHA-CHA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09JUBRAI",
+      "market": {
+        "close_time": "2026-08-09T22:10:26Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09JUBRAI",
+        "expected_expiration_time": "2026-08-09T20:30:00Z",
+        "occurrence_datetime": "2026-08-09T20:30:00Z",
+        "open_time": "2026-08-09T05:41:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09JUBRAI-JUB"
+      },
+      "raw_bytes": 2533,
+      "raw_sha256": "731aeaa7180fd92863148c6654291f1d3c7133bbc6c231952a917f2f1ed43c7d",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09JUBRAI-JUB",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09JUBRAI-JUB"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09KITROT",
+      "market": {
+        "close_time": "2026-08-09T19:49:55Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09KITROT",
+        "expected_expiration_time": "2026-08-09T19:20:00Z",
+        "occurrence_datetime": "2026-08-09T19:20:00Z",
+        "open_time": "2026-08-09T04:30:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09KITROT-KIT"
+      },
+      "raw_bytes": 2589,
+      "raw_sha256": "619b4c6392b3fc2511d8cd23744350de701c3db16b0d922e559009f29735a3d7",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09KITROT-KIT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09KITROT-KIT"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09MANYOU",
+      "market": {
+        "close_time": "2026-08-09T16:50:05Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09MANYOU",
+        "expected_expiration_time": "2026-08-09T18:10:00Z",
+        "occurrence_datetime": "2026-08-09T18:10:00Z",
+        "open_time": "2026-08-09T03:20:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09MANYOU-MAN"
+      },
+      "raw_bytes": 2572,
+      "raw_sha256": "23d7ec14921fc27cd26dac1a18b9dfe1a20365917d6d737e76e86011d4407a8f",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09MANYOU-MAN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09MANYOU-MAN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09MARRAP",
+      "market": {
+        "close_time": "2026-08-09T18:14:54Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09MARRAP",
+        "expected_expiration_time": "2026-08-09T14:30:00Z",
+        "occurrence_datetime": "2026-08-09T14:30:00Z",
+        "open_time": "2026-08-08T23:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09MARRAP-MAR"
+      },
+      "raw_bytes": 2647,
+      "raw_sha256": "e5643e387a7f19dea5f4e299e72c82d4508c412a66b4aa6ec56658deb59864cd",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09MARRAP-MAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09MARRAP-MAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09PIRNES",
+      "market": {
+        "close_time": "2026-08-09T17:15:09Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09PIRNES",
+        "expected_expiration_time": "2026-08-09T10:00:00Z",
+        "occurrence_datetime": "2026-08-09T10:00:00Z",
+        "open_time": "2026-08-08T19:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09PIRNES-NES"
+      },
+      "raw_bytes": 2533,
+      "raw_sha256": "22edc05e013673555809e194c902f0ea2f6a2d1bdac37f2d224b7e8fb6c8144a",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09PIRNES-NES",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09PIRNES-NES"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09POUSIM",
+      "market": {
+        "close_time": "2026-08-09T19:00:37Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09POUSIM",
+        "expected_expiration_time": "2026-08-09T19:00:00Z",
+        "occurrence_datetime": "2026-08-09T19:00:00Z",
+        "open_time": "2026-08-09T04:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09POUSIM-POU"
+      },
+      "raw_bytes": 2535,
+      "raw_sha256": "9a6a2065afb091c00cf3e3e9310fcc2cdf278c4e75247ae6d4015c291861a5c0",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09POUSIM-POU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09POUSIM-POU"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09SURGOD",
+      "market": {
+        "close_time": "2026-08-09T18:50:04Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09SURGOD",
+        "expected_expiration_time": "2026-08-09T19:20:00Z",
+        "occurrence_datetime": "2026-08-09T19:20:00Z",
+        "open_time": "2026-08-09T04:50:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09SURGOD-GOD"
+      },
+      "raw_bytes": 2579,
+      "raw_sha256": "9adfe2ec30641671ba2fd47edee783e8971f5dc69987e1399a007413e9a8d8dc",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09SURGOD-GOD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09SURGOD-GOD"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09WINMOS",
+      "market": {
+        "close_time": "2026-08-09T16:30:15Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09WINMOS",
+        "expected_expiration_time": "2026-08-09T17:00:00Z",
+        "occurrence_datetime": "2026-08-09T17:00:00Z",
+        "open_time": "2026-08-09T02:11:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09WINMOS-MOS"
+      },
+      "raw_bytes": 2596,
+      "raw_sha256": "e4f4bd92eae0b0a5589fb1e8a80986a110a0cc040a2bfcbc84d05c31e7c302a1",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09WINMOS-MOS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09WINMOS-MOS"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09YEVLAR",
+      "market": {
+        "close_time": "2026-08-09T17:15:09Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09YEVLAR",
+        "expected_expiration_time": "2026-08-09T11:30:00Z",
+        "occurrence_datetime": "2026-08-09T11:30:00Z",
+        "open_time": "2026-08-08T21:00:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09YEVLAR-LAR"
+      },
+      "raw_bytes": 2560,
+      "raw_sha256": "b3746413560f4a804c66787ac9076f37b9812e7d0cf8d59e9d60ae66e7b4f6c0",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09YEVLAR-LAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09YEVLAR-LAR"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+      "market": {
+        "close_time": "2026-08-09T18:13:53Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+        "expected_expiration_time": "2026-08-09T17:00:00Z",
+        "occurrence_datetime": "2026-08-09T17:00:00Z",
+        "open_time": "2026-08-09T02:11:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN"
+      },
+      "raw_bytes": 2530,
+      "raw_sha256": "13fe5a79698f7b659a0094bba05f437af40655720fbecc5f263f128eb5d1e24a",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG09ZINKIN-KIN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10AGADEC",
+      "market": {
+        "close_time": "2026-08-10T07:00:18Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10AGADEC",
+        "expected_expiration_time": "2026-08-10T08:00:00Z",
+        "occurrence_datetime": "2026-08-10T08:00:00Z",
+        "open_time": "2026-08-09T17:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10AGADEC-AGA"
+      },
+      "raw_bytes": 2567,
+      "raw_sha256": "f2ad1feba0f08f85164fe6f4d088bd143212e84e0bc2a78e2997355a98163b95",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10AGADEC-AGA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10AGADEC-AGA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BALMIL",
+      "market": {
+        "close_time": "2026-08-11T03:45:06Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10BALMIL",
+        "expected_expiration_time": "2026-08-10T23:00:00Z",
+        "occurrence_datetime": "2026-08-10T23:00:00Z",
+        "open_time": "2026-08-10T08:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10BALMIL-BAL"
+      },
+      "raw_bytes": 2556,
+      "raw_sha256": "2c9f431a7a566bacc4c432901b9e4c9a584ce6fdf926f6af669139ab789e0725",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10BALMIL-BAL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10BALMIL-BAL"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BARLEC",
+      "market": {
+        "close_time": "2026-08-10T11:00:17Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10BARLEC",
+        "expected_expiration_time": "2026-08-10T11:30:00Z",
+        "occurrence_datetime": "2026-08-10T11:30:00Z",
+        "open_time": "2026-08-09T20:41:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10BARLEC-BAR"
+      },
+      "raw_bytes": 2604,
+      "raw_sha256": "9f979baa7691170140a4a3e0dc1d4ef921d64d0a8922f3ba56c8a1e00ed6c319",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10BARLEC-BAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10BARLEC-BAR"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BLASAK",
+      "market": {
+        "close_time": "2026-08-24T21:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10BLASAK",
+        "expected_expiration_time": "2026-08-11T13:45:00Z",
+        "occurrence_datetime": "2026-08-11T00:10:00Z",
+        "open_time": "2026-08-10T09:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10BLASAK-BLA"
+      },
+      "raw_bytes": 2485,
+      "raw_sha256": "8347b6792d72e7a1bc4cc38998752a88ac89d03d5abf79fced7f3cc2e46d55f6",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10BLASAK-BLA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10BLASAK-BLA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BOYMAY",
+      "market": {
+        "close_time": "2026-08-10T16:30:14Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10BOYMAY",
+        "expected_expiration_time": "2026-08-10T18:00:00Z",
+        "occurrence_datetime": "2026-08-10T18:00:00Z",
+        "open_time": "2026-08-10T03:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10BOYMAY-BOY"
+      },
+      "raw_bytes": 2553,
+      "raw_sha256": "6d448eca921dbfdd983463160e37dd1493e093b18565817cd14b1d507b46e329",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10BOYMAY-BOY",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10BOYMAY-BOY"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BRAJIA",
+      "market": {
+        "close_time": "2026-08-10T16:34:51Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10BRAJIA",
+        "expected_expiration_time": "2026-08-10T16:40:00Z",
+        "occurrence_datetime": "2026-08-10T16:40:00Z",
+        "open_time": "2026-08-10T01:50:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10BRAJIA-BRA"
+      },
+      "raw_bytes": 2556,
+      "raw_sha256": "3e2bf45b6a9dd961902f829a12a72854638e87fa08906013192de6749bac4b1f",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10BRAJIA-BRA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10BRAJIA-BRA"
+    },
+    {
+      "attempts": 3,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10CANCRI",
+      "market": {
+        "close_time": "2026-08-10T10:35:10Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10CANCRI",
+        "expected_expiration_time": "2026-08-10T12:10:00Z",
+        "occurrence_datetime": "2026-08-10T12:10:00Z",
+        "open_time": "2026-08-09T21:21:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10CANCRI-CAN"
+      },
+      "raw_bytes": 2606,
+      "raw_sha256": "f0301aa65e853c85ade7ad35bb4b67360afadc6c83d7a96ff31df43788a7322b",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10CANCRI-CAN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10CANCRI-CAN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10CECHAR",
+      "market": {
+        "close_time": "2026-08-10T17:39:59Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10CECHAR",
+        "expected_expiration_time": "2026-08-10T18:00:00Z",
+        "occurrence_datetime": "2026-08-10T18:00:00Z",
+        "open_time": "2026-08-10T03:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10CECHAR-CEC"
+      },
+      "raw_bytes": 2555,
+      "raw_sha256": "fdf9c19f657419c588bba2a51f035195ed2a78fe6defd117562fa19b08308fa3",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10CECHAR-CEC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10CECHAR-CEC"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10CREMOE",
+      "market": {
+        "close_time": "2026-08-10T16:10:06Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10CREMOE",
+        "expected_expiration_time": "2026-08-10T15:30:00Z",
+        "occurrence_datetime": "2026-08-10T15:30:00Z",
+        "open_time": "2026-08-10T00:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10CREMOE-CRE"
+      },
+      "raw_bytes": 2571,
+      "raw_sha256": "09f8ee68a66871661423f92d8a2af9e1ee18c3c5633feeed8d4448ca664fa5ac",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10CREMOE-CRE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10CREMOE-CRE"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10DEVGAL",
+      "market": {
+        "close_time": "2026-08-10T15:36:56Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10DEVGAL",
+        "expected_expiration_time": "2026-08-10T16:00:00Z",
+        "occurrence_datetime": "2026-08-10T16:00:00Z",
+        "open_time": "2026-08-10T01:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10DEVGAL-DEV"
+      },
+      "raw_bytes": 2541,
+      "raw_sha256": "0c85b55d09e488d4d55f0ba2d0663cc1652f14aa44cea299168768c613a09118",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10DEVGAL-DEV",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10DEVGAL-DEV"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10FERMAS",
+      "market": {
+        "close_time": "2026-08-10T11:00:17Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10FERMAS",
+        "expected_expiration_time": "2026-08-10T11:00:00Z",
+        "occurrence_datetime": "2026-08-10T11:00:00Z",
+        "open_time": "2026-08-09T20:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10FERMAS-FER"
+      },
+      "raw_bytes": 2583,
+      "raw_sha256": "441c28c8c6bead273a6acb7c1cf140ac3925568cb7894e5a4b8bd9b10e0de4d3",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10FERMAS-FER",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10FERMAS-FER"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10HOMCAR",
+      "market": {
+        "close_time": "2026-08-10T09:20:38Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10HOMCAR",
+        "expected_expiration_time": "2026-08-10T11:00:00Z",
+        "occurrence_datetime": "2026-08-10T11:00:00Z",
+        "open_time": "2026-08-09T20:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10HOMCAR-CAR"
+      },
+      "raw_bytes": 2570,
+      "raw_sha256": "1eb27b7e5f3cadd9399d9cfcf6c0a6d2ed90fa1c939f7ef0bf3dcdf12e18d426",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10HOMCAR-CAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10HOMCAR-CAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ICHSIN",
+      "market": {
+        "close_time": "2026-08-10T09:00:21Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10ICHSIN",
+        "expected_expiration_time": "2026-08-10T09:30:00Z",
+        "occurrence_datetime": "2026-08-10T09:30:00Z",
+        "open_time": "2026-08-09T18:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10ICHSIN-ICH"
+      },
+      "raw_bytes": 2572,
+      "raw_sha256": "196018fc764275a994669e50ac50b1b84233398a69c2f129fe2e0254aa5f3a71",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10ICHSIN-ICH",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10ICHSIN-ICH"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ISOMUK",
+      "market": {
+        "close_time": "2026-08-10T08:05:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10ISOMUK",
+        "expected_expiration_time": "2026-08-10T08:00:00Z",
+        "occurrence_datetime": "2026-08-10T08:00:00Z",
+        "open_time": "2026-08-09T17:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10ISOMUK-ISO"
+      },
+      "raw_bytes": 2569,
+      "raw_sha256": "b5eaba13ba3da5fd75c032e06b9d880aabacc4baf6831b1bd8e700121dede5d6",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10ISOMUK-ISO",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10ISOMUK-ISO"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10JOHROT",
+      "market": {
+        "close_time": "2026-08-11T00:24:58Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10JOHROT",
+        "expected_expiration_time": "2026-08-10T19:10:00Z",
+        "occurrence_datetime": "2026-08-10T19:10:00Z",
+        "open_time": "2026-08-10T04:20:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10JOHROT-JOH"
+      },
+      "raw_bytes": 2579,
+      "raw_sha256": "2e2544455cfc3ed6fe757bd5513774381b986c2ed986fc3503046d131c4d737a",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10JOHROT-JOH",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10JOHROT-JOH"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10JORPIN",
+      "market": {
+        "close_time": "2026-08-11T01:50:20Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10JORPIN",
+        "expected_expiration_time": "2026-08-10T23:00:00Z",
+        "occurrence_datetime": "2026-08-10T23:00:00Z",
+        "open_time": "2026-08-10T08:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10JORPIN-JOR"
+      },
+      "raw_bytes": 2625,
+      "raw_sha256": "05a583cb3f3c9ea18963f7525040381ee2fd778c0d9ae5d8c29110153f469383",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10JORPIN-JOR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10JORPIN-JOR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10KINFEN",
+      "market": {
+        "close_time": "2026-08-10T16:30:15Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10KINFEN",
+        "expected_expiration_time": "2026-08-10T18:00:00Z",
+        "occurrence_datetime": "2026-08-10T18:00:00Z",
+        "open_time": "2026-08-10T03:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10KINFEN-FEN"
+      },
+      "raw_bytes": 2553,
+      "raw_sha256": "ef714631799fda805483141ba39f3fae154846879c45466dc49a444319ccb98e",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10KINFEN-FEN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10KINFEN-FEN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10KRADAS",
+      "market": {
+        "close_time": "2026-08-10T13:40:09Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10KRADAS",
+        "expected_expiration_time": "2026-08-10T12:10:00Z",
+        "occurrence_datetime": "2026-08-10T12:10:00Z",
+        "open_time": "2026-08-09T21:21:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10KRADAS-DAS"
+      },
+      "raw_bytes": 2601,
+      "raw_sha256": "3cbb9867d67042a1df40bf9b9f6ee4d58cf437e2cb8492833020de63147a061f",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10KRADAS-DAS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10KRADAS-DAS"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10KUMZEU",
+      "market": {
+        "close_time": "2026-08-10T10:55:02Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10KUMZEU",
+        "expected_expiration_time": "2026-08-10T11:30:00Z",
+        "occurrence_datetime": "2026-08-10T11:30:00Z",
+        "open_time": "2026-08-09T20:41:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10KUMZEU-KUM"
+      },
+      "raw_bytes": 2550,
+      "raw_sha256": "96c8a6047a41f214a718b2a8c3bc0843b6b6a6e8a31b48d744b5b8f71b797149",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10KUMZEU-KUM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10KUMZEU-KUM"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10LEOARU",
+      "market": {
+        "close_time": "2026-08-10T06:40:31Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10LEOARU",
+        "expected_expiration_time": "2026-08-10T08:00:00Z",
+        "occurrence_datetime": "2026-08-10T08:00:00Z",
+        "open_time": "2026-08-09T17:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10LEOARU-ARU"
+      },
+      "raw_bytes": 2578,
+      "raw_sha256": "88d005e2ccb0ea0795aa1690658ea83c6b42e981a17c49b1ca69e7516d0c914d",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10LEOARU-ARU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10LEOARU-ARU"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10MARWEI",
+      "market": {
+        "close_time": "2026-08-10T11:30:09Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10MARWEI",
+        "expected_expiration_time": "2026-08-10T12:10:00Z",
+        "occurrence_datetime": "2026-08-10T12:10:00Z",
+        "open_time": "2026-08-09T21:21:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10MARWEI-MAR"
+      },
+      "raw_bytes": 2617,
+      "raw_sha256": "ff6fbe9a4616ce8957d6ae3562de991900d28df8d4e3dce796b3fbac4a0d6e31",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10MARWEI-MAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10MARWEI-MAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10MATMAT2",
+      "market": {
+        "close_time": "2026-08-10T10:30:14Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10MATMAT2",
+        "expected_expiration_time": "2026-08-10T11:30:00Z",
+        "occurrence_datetime": "2026-08-10T11:30:00Z",
+        "open_time": "2026-08-09T20:41:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10MATMAT2-MAT"
+      },
+      "raw_bytes": 2543,
+      "raw_sha256": "b5fb90b9e188cdf82158f2e4f4cb1602108482c3e96c9bc06fac369faf91dd10",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10MATMAT2-MAT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10MATMAT2-MAT"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10MRVBAS",
+      "market": {
+        "close_time": "2026-08-10T21:30:19Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10MRVBAS",
+        "expected_expiration_time": "2026-08-10T21:30:00Z",
+        "occurrence_datetime": "2026-08-10T21:30:00Z",
+        "open_time": "2026-08-10T06:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10MRVBAS-BAS"
+      },
+      "raw_bytes": 2536,
+      "raw_sha256": "d56a82673daa5525d8801a192471647b29ce7ecce807978fc4299776fc1ce3df",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10MRVBAS-BAS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10MRVBAS-BAS"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10OPIKRU",
+      "market": {
+        "close_time": "2026-08-10T13:00:09Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10OPIKRU",
+        "expected_expiration_time": "2026-08-10T12:40:00Z",
+        "occurrence_datetime": "2026-08-10T12:40:00Z",
+        "open_time": "2026-08-09T21:50:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10OPIKRU-KRU"
+      },
+      "raw_bytes": 2571,
+      "raw_sha256": "f4c38352bcf052739a30421cea514e9e1be36803485edc99056682b7fc07a1bc",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10OPIKRU-KRU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10OPIKRU-KRU"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10PANPAL",
+      "market": {
+        "close_time": "2026-08-10T10:15:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10PANPAL",
+        "expected_expiration_time": "2026-08-10T11:30:00Z",
+        "occurrence_datetime": "2026-08-10T11:30:00Z",
+        "open_time": "2026-08-09T20:41:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10PANPAL-PAL"
+      },
+      "raw_bytes": 2529,
+      "raw_sha256": "7a0f146c7f925986d8cac6fa88985b648bc6eb9b2376d323805b728d47191b7e",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10PANPAL-PAL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10PANPAL-PAL"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10PETMCD",
+      "market": {
+        "close_time": "2026-08-10T17:53:55Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10PETMCD",
+        "expected_expiration_time": "2026-08-10T18:00:00Z",
+        "occurrence_datetime": "2026-08-10T18:00:00Z",
+        "open_time": "2026-08-10T03:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10PETMCD-MCD"
+      },
+      "raw_bytes": 2557,
+      "raw_sha256": "f0efbb9740d5a5c3a23b052d22bda75dd1e0f0828a03d088fa593e302a78532a",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10PETMCD-MCD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10PETMCD-MCD"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RAIVAN",
+      "market": {
+        "close_time": "2026-08-10T23:40:27Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10RAIVAN",
+        "expected_expiration_time": "2026-08-11T22:25:00Z",
+        "occurrence_datetime": "2026-08-10T12:00:00Z",
+        "open_time": "2026-08-09T22:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10RAIVAN-RAI"
+      },
+      "raw_bytes": 2591,
+      "raw_sha256": "c1f511471ec243649d9653bedaa390f81dbe0680d52a2204e8ed4599e2cd461d",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10RAIVAN-RAI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10RAIVAN-RAI"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RATSAT",
+      "market": {
+        "close_time": "2026-08-10T12:10:09Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10RATSAT",
+        "expected_expiration_time": "2026-08-10T11:30:00Z",
+        "occurrence_datetime": "2026-08-10T11:30:00Z",
+        "open_time": "2026-08-09T20:41:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10RATSAT-RAT"
+      },
+      "raw_bytes": 2515,
+      "raw_sha256": "460b8b95ca9c7a556988e52bfad84ec6c8f4470c1d0237a48b19d03d9022052d",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10RATSAT-RAT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10RATSAT-RAT"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RAWMIT",
+      "market": {
+        "close_time": "2026-08-10T08:50:21Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10RAWMIT",
+        "expected_expiration_time": "2026-08-10T09:30:00Z",
+        "occurrence_datetime": "2026-08-10T09:30:00Z",
+        "open_time": "2026-08-09T18:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10RAWMIT-MIT"
+      },
+      "raw_bytes": 2566,
+      "raw_sha256": "e8382d63ce761b1c0bfb6c0ac11220c2ad23d98a2fcd79551fc09b8a7c9d369c",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10RAWMIT-MIT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10RAWMIT-MIT"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RIBALC",
+      "market": {
+        "close_time": "2026-08-10T15:00:21Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10RIBALC",
+        "expected_expiration_time": "2026-08-10T15:30:00Z",
+        "occurrence_datetime": "2026-08-10T15:30:00Z",
+        "open_time": "2026-08-10T00:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10RIBALC-ALC"
+      },
+      "raw_bytes": 2571,
+      "raw_sha256": "505ac08a62e2ae75caf303d74865599369665cdac58c50b327a6f84e3cbcd109",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10RIBALC-ALC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10RIBALC-ALC"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ROMGIU",
+      "market": {
+        "close_time": "2026-08-10T17:53:56Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10ROMGIU",
+        "expected_expiration_time": "2026-08-10T19:30:00Z",
+        "occurrence_datetime": "2026-08-10T19:30:00Z",
+        "open_time": "2026-08-10T04:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10ROMGIU-GIU"
+      },
+      "raw_bytes": 2535,
+      "raw_sha256": "43b9c07cd997fa6e4c6dba5c798dad3972b0c5958e0ec631a53397961c487a05",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10ROMGIU-GIU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10ROMGIU-GIU"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SINZHA",
+      "market": {
+        "close_time": "2026-08-10T10:30:13Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10SINZHA",
+        "expected_expiration_time": "2026-08-10T10:00:00Z",
+        "occurrence_datetime": "2026-08-10T10:00:00Z",
+        "open_time": "2026-08-09T19:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10SINZHA-SIN"
+      },
+      "raw_bytes": 2582,
+      "raw_sha256": "d839c5147a9407b485e65173ef1c01ab8812fef3e16ce153ad6471607646033d",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10SINZHA-SIN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10SINZHA-SIN"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SMIGIL",
+      "market": {
+        "close_time": "2026-08-24T22:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10SMIGIL",
+        "expected_expiration_time": "2026-08-11T01:00:00Z",
+        "occurrence_datetime": "2026-08-11T01:00:00Z",
+        "open_time": "2026-08-10T10:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10SMIGIL-GIL"
+      },
+      "raw_bytes": 2422,
+      "raw_sha256": "fabe505f8ba09197c59d746e98520902d1a99fda8087e3503c969fa487b347fa",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10SMIGIL-GIL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10SMIGIL-GIL"
+    },
+    {
+      "attempts": 3,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SULBIN",
+      "market": {
+        "close_time": "2026-08-10T13:50:04Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10SULBIN",
+        "expected_expiration_time": "2026-08-10T12:40:00Z",
+        "occurrence_datetime": "2026-08-10T12:40:00Z",
+        "open_time": "2026-08-09T21:50:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10SULBIN-BIN"
+      },
+      "raw_bytes": 2549,
+      "raw_sha256": "7bc5f09c5a9902390ffb2f446a6d71f11c3a9185f812c12d1bf3d01d7990a05c",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10SULBIN-BIN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10SULBIN-BIN"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SURKIM",
+      "market": {
+        "close_time": "2026-08-11T00:40:17Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10SURKIM",
+        "expected_expiration_time": "2026-08-10T19:10:00Z",
+        "occurrence_datetime": "2026-08-10T19:10:00Z",
+        "open_time": "2026-08-10T04:20:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10SURKIM-KIM"
+      },
+      "raw_bytes": 2548,
+      "raw_sha256": "f9eb91317d294a8f4b40f14ca9a9e6bb0aa73f27d49c095b90f6a5b32600448e",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10SURKIM-KIM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10SURKIM-KIM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10TSESAC",
+      "market": {
+        "close_time": "2026-08-10T15:50:05Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10TSESAC",
+        "expected_expiration_time": "2026-08-10T15:30:00Z",
+        "occurrence_datetime": "2026-08-10T15:30:00Z",
+        "open_time": "2026-08-10T00:40:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10TSESAC-SAC"
+      },
+      "raw_bytes": 2542,
+      "raw_sha256": "b388bfa65b8f7e5f764c56822ec75e90fb0ab9cc4dc6f194e49b304fdf5cf5a6",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10TSESAC-SAC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10TSESAC-SAC"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10VANMEC",
+      "market": {
+        "close_time": "2026-08-10T09:20:38Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10VANMEC",
+        "expected_expiration_time": "2026-08-10T11:00:00Z",
+        "occurrence_datetime": "2026-08-10T11:00:00Z",
+        "open_time": "2026-08-09T20:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10VANMEC-MEC"
+      },
+      "raw_bytes": 2599,
+      "raw_sha256": "faac035edde811ec05ea57e17056189dedc2c554ded3cb85dc9d557bc2246ebf",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10VANMEC-MEC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10VANMEC-MEC"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10WALGUT",
+      "market": {
+        "close_time": "2026-08-10T13:00:10Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10WALGUT",
+        "expected_expiration_time": "2026-08-10T12:40:00Z",
+        "occurrence_datetime": "2026-08-10T12:40:00Z",
+        "open_time": "2026-08-09T21:50:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10WALGUT-GUT"
+      },
+      "raw_bytes": 2557,
+      "raw_sha256": "ff76c8fb63fce0f5cb4f7f8e067164d6b5fb111c044ed3cf8f7fa7bffc966df7",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10WALGUT-GUT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10WALGUT-GUT"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10WINYOU",
+      "market": {
+        "close_time": "2026-08-10T16:20:09Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10WINYOU",
+        "expected_expiration_time": "2026-08-10T18:00:00Z",
+        "occurrence_datetime": "2026-08-10T18:00:00Z",
+        "open_time": "2026-08-10T03:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10WINYOU-WIN"
+      },
+      "raw_bytes": 2563,
+      "raw_sha256": "5ee57518e8b2822fff7d5855e82214ceeb7021ed894e8de354819b078fb63bcb",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10WINYOU-WIN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10WINYOU-WIN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10YEVPUR",
+      "market": {
+        "close_time": "2026-08-10T12:30:04Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10YEVPUR",
+        "expected_expiration_time": "2026-08-10T12:40:00Z",
+        "occurrence_datetime": "2026-08-10T12:40:00Z",
+        "open_time": "2026-08-09T21:50:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10YEVPUR-PUR"
+      },
+      "raw_bytes": 2592,
+      "raw_sha256": "cd02e057ee5a72a2728a9a732ac16003627cc1c61cab151a7bc9554030101f30",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10YEVPUR-PUR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10YEVPUR-PUR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ZEBKIR",
+      "market": {
+        "close_time": "2026-08-10T10:55:03Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG10ZEBKIR",
+        "expected_expiration_time": "2026-08-10T11:30:00Z",
+        "occurrence_datetime": "2026-08-10T11:30:00Z",
+        "open_time": "2026-08-09T20:41:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG10ZEBKIR-KIR"
+      },
+      "raw_bytes": 2554,
+      "raw_sha256": "607eacc4fde039f32c7fc8184e44e0687783a43578b775710c39600dd70d4ed7",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG10ZEBKIR-KIR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG10ZEBKIR-KIR"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11AMBAJD",
+      "market": {
+        "close_time": "2026-08-25T08:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11AMBAJD",
+        "expected_expiration_time": "2026-08-11T11:00:00Z",
+        "occurrence_datetime": "2026-08-11T11:00:00Z",
+        "open_time": "2026-08-10T20:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11AMBAJD-AJD"
+      },
+      "raw_bytes": 2445,
+      "raw_sha256": "318e4e2c1928dd0ca7c11c399cd2fe3695b99d0cbf709cce82b679413d005114",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11AMBAJD-AJD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11AMBAJD-AJD"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11BARICH",
+      "market": {
+        "close_time": "2026-08-11T06:05:11Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11BARICH",
+        "expected_expiration_time": "2026-08-11T08:00:00Z",
+        "occurrence_datetime": "2026-08-11T08:00:00Z",
+        "open_time": "2026-08-10T17:10:00Z",
+        "status": "finalized",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11BARICH-BAR"
+      },
+      "raw_bytes": 2579,
+      "raw_sha256": "4ed22064c90326649a7820b36b598bd5c08d8afdcf26f39e10702d96746221f1",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11BARICH-BAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11BARICH-BAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11BARKRA",
+      "market": {
+        "close_time": "2026-08-25T09:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11BARKRA",
+        "expected_expiration_time": "2026-08-11T12:10:00Z",
+        "occurrence_datetime": "2026-08-11T12:10:00Z",
+        "open_time": "2026-08-10T21:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11BARKRA-BAR"
+      },
+      "raw_bytes": 2439,
+      "raw_sha256": "b5a0faf6fcd533cef982be80e1c510ff3f4287ee7d066a6c9143dfb373aec14b",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11BARKRA-BAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11BARKRA-BAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11DALTOR",
+      "market": {
+        "close_time": "2026-08-25T08:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11DALTOR",
+        "expected_expiration_time": "2026-08-11T11:00:00Z",
+        "occurrence_datetime": "2026-08-11T11:00:00Z",
+        "open_time": "2026-08-10T20:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11DALTOR-DAL"
+      },
+      "raw_bytes": 2461,
+      "raw_sha256": "70d3783ccdd7f7cfee50ca9a307805210217060732415cb8a7484edc87415979",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11DALTOR-DAL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11DALTOR-DAL"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11DEDREH",
+      "market": {
+        "close_time": "2026-08-25T10:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11DEDREH",
+        "expected_expiration_time": "2026-08-11T13:10:00Z",
+        "occurrence_datetime": "2026-08-11T13:10:00Z",
+        "open_time": "2026-08-10T22:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11DEDREH-DED"
+      },
+      "raw_bytes": 2497,
+      "raw_sha256": "03287c0e03a2be5a543e58f0ca1691f051cc4a8d1af82efe482230d02b839e57",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11DEDREH-DED",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11DEDREH-DED"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11DOUDEC",
+      "market": {
+        "close_time": "2026-08-25T08:50:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11DOUDEC",
+        "expected_expiration_time": "2026-08-11T11:50:00Z",
+        "occurrence_datetime": "2026-08-11T11:50:00Z",
+        "open_time": "2026-08-10T21:00:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11DOUDEC-DEC"
+      },
+      "raw_bytes": 2429,
+      "raw_sha256": "f230242a5385300f1cfdee4cd6c56923a8329fe7d6a6f2f908860a0346f14001",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11DOUDEC-DEC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11DOUDEC-DEC"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11FOMZHU",
+      "market": {
+        "close_time": "2026-08-25T08:50:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11FOMZHU",
+        "expected_expiration_time": "2026-08-11T11:50:00Z",
+        "occurrence_datetime": "2026-08-11T11:50:00Z",
+        "open_time": "2026-08-10T21:00:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11FOMZHU-FOM"
+      },
+      "raw_bytes": 2426,
+      "raw_sha256": "64d77461a3e2c0772c61840649d4dc17f4d28168f21524782d90d095a8eb3b02",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11FOMZHU-FOM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11FOMZHU-FOM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11FORMEC",
+      "market": {
+        "close_time": "2026-08-25T08:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11FORMEC",
+        "expected_expiration_time": "2026-08-11T11:00:00Z",
+        "occurrence_datetime": "2026-08-11T11:00:00Z",
+        "open_time": "2026-08-10T20:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11FORMEC-FOR"
+      },
+      "raw_bytes": 2443,
+      "raw_sha256": "c1d362b33a1f2f16170ef762ab5a206f447b4feb04e5fd644db5cea6322664ab",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11FORMEC-FOR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11FORMEC-FOR"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11HOUNAG",
+      "market": {
+        "close_time": "2026-08-25T12:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11HOUNAG",
+        "expected_expiration_time": "2026-08-11T15:00:00Z",
+        "occurrence_datetime": "2026-08-11T15:00:00Z",
+        "open_time": "2026-08-11T00:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11HOUNAG-HOU"
+      },
+      "raw_bytes": 2415,
+      "raw_sha256": "b8629d59fae30e68c7ada55d734a0168385abbb438fc06f193f4f7a170f06aec",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11HOUNAG-HOU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11HOUNAG-HOU"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11ILAMAR",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11ILAMAR",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-11T02:11:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11ILAMAR-ILA"
+      },
+      "raw_bytes": 2433,
+      "raw_sha256": "1999a0eb7907586f4157aac8a6174b4c4a0f5e62ae94e300bd19ac9571a3fa34",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11ILAMAR-ILA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11ILAMAR-ILA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11IMAGHI",
+      "market": {
+        "close_time": "2026-08-25T07:40:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11IMAGHI",
+        "expected_expiration_time": "2026-08-11T10:40:00Z",
+        "occurrence_datetime": "2026-08-11T10:40:00Z",
+        "open_time": "2026-08-10T19:50:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11IMAGHI-GHI"
+      },
+      "raw_bytes": 2451,
+      "raw_sha256": "df92611916b744d86926972e686a945dd7afce23b7b5463489cda7acfbaf3448",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11IMAGHI-GHI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11IMAGHI-GHI"
+    },
+    {
+      "attempts": 4,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11KIRNED",
+      "market": {
+        "close_time": "2026-08-25T11:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11KIRNED",
+        "expected_expiration_time": "2026-08-11T14:10:00Z",
+        "occurrence_datetime": "2026-08-11T14:10:00Z",
+        "open_time": "2026-08-10T23:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11KIRNED-KIR"
+      },
+      "raw_bytes": 2418,
+      "raw_sha256": "c8294af426db760d41ac825f877a44089ecffaf85bc3ab85b0383f1de8a9b8ee",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11KIRNED-KIR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11KIRNED-KIR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11KRUDIE",
+      "market": {
+        "close_time": "2026-08-25T08:30:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11KRUDIE",
+        "expected_expiration_time": "2026-08-11T11:30:00Z",
+        "occurrence_datetime": "2026-08-11T11:30:00Z",
+        "open_time": "2026-08-10T20:40:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11KRUDIE-DIE"
+      },
+      "raw_bytes": 2445,
+      "raw_sha256": "82c600f0e502cac1cde367ddfb9497d8fd5bced8e19b1c78fed6daa37c6b7f77",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11KRUDIE-DIE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11KRUDIE-DIE"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11KUMSIN",
+      "market": {
+        "close_time": "2026-08-25T06:30:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11KUMSIN",
+        "expected_expiration_time": "2026-08-11T09:30:00Z",
+        "occurrence_datetime": "2026-08-11T09:30:00Z",
+        "open_time": "2026-08-10T18:40:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11KUMSIN-KUM"
+      },
+      "raw_bytes": 2457,
+      "raw_sha256": "625c3d31cd6c93e8d7d2b63633388f4c427179c825b4f37f6f74f3ac61ba79c0",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11KUMSIN-KUM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11KUMSIN-KUM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11LECPUR",
+      "market": {
+        "close_time": "2026-08-25T10:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11LECPUR",
+        "expected_expiration_time": "2026-08-11T13:00:00Z",
+        "occurrence_datetime": "2026-08-11T13:00:00Z",
+        "open_time": "2026-08-10T22:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11LECPUR-LEC"
+      },
+      "raw_bytes": 2539,
+      "raw_sha256": "2737a923e144a8763d50cd791d6a516944ab92d745cd614aa70346f9f0fece5d",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11LECPUR-LEC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11LECPUR-LEC"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MACKUM",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11MACKUM",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-11T02:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11MACKUM-KUM"
+      },
+      "raw_bytes": 2437,
+      "raw_sha256": "3f662229ee3a03ecafc6a23b91e0ff16ede8e2e9a88dde73a466fabe64a2e0fd",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11MACKUM-KUM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11MACKUM-KUM"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MARGOM",
+      "market": {
+        "close_time": "2026-08-25T09:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11MARGOM",
+        "expected_expiration_time": "2026-08-11T12:10:00Z",
+        "occurrence_datetime": "2026-08-11T12:10:00Z",
+        "open_time": "2026-08-10T21:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11MARGOM-GOM"
+      },
+      "raw_bytes": 2487,
+      "raw_sha256": "cf0969779b0de4368174c373b8c752082c3ff9d5a579ddc71c39cf2f275dc2f4",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11MARGOM-GOM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11MARGOM-GOM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MENFAU",
+      "market": {
+        "close_time": "2026-08-25T10:20:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11MENFAU",
+        "expected_expiration_time": "2026-08-11T13:20:00Z",
+        "occurrence_datetime": "2026-08-11T13:20:00Z",
+        "open_time": "2026-08-10T22:30:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11MENFAU-FAU"
+      },
+      "raw_bytes": 2421,
+      "raw_sha256": "a8a56e1f37ff5d859c7e2b1070be76e32f1cf3b9529de245e37bbc22a8055ad0",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11MENFAU-FAU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11MENFAU-FAU"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MICCAR",
+      "market": {
+        "close_time": "2026-08-25T14:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11MICCAR",
+        "expected_expiration_time": "2026-08-11T17:10:00Z",
+        "occurrence_datetime": "2026-08-11T17:10:00Z",
+        "open_time": "2026-08-11T02:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11MICCAR-CAR"
+      },
+      "raw_bytes": 2438,
+      "raw_sha256": "9cb12139172857735a37cd0554b13025215f81b4289f999dc230adb8d8c27f3e",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11MICCAR-CAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11MICCAR-CAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MMOBUT",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11MMOBUT",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-11T02:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11MMOBUT-BUT"
+      },
+      "raw_bytes": 2435,
+      "raw_sha256": "8f892c706c95fc66257eeeeb75cb6124d2468cd99b4d3055194bf39139dd7f48",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11MMOBUT-BUT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11MMOBUT-BUT"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MOLMOL2",
+      "market": {
+        "close_time": "2026-08-25T09:40:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11MOLMOL2",
+        "expected_expiration_time": "2026-08-11T12:40:00Z",
+        "occurrence_datetime": "2026-08-11T12:40:00Z",
+        "open_time": "2026-08-10T21:50:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11MOLMOL2-MOL"
+      },
+      "raw_bytes": 2448,
+      "raw_sha256": "b4fa9926d11eb7dcfad5533933361d248a00bae0f1f1da517237043fac8879de",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11MOLMOL2-MOL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11MOLMOL2-MOL"
+    },
+    {
+      "attempts": 4,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11OMAZHU",
+      "market": {
+        "close_time": "2026-08-25T06:30:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11OMAZHU",
+        "expected_expiration_time": "2026-08-11T09:30:00Z",
+        "occurrence_datetime": "2026-08-11T09:30:00Z",
+        "open_time": "2026-08-10T18:40:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11OMAZHU-OMA"
+      },
+      "raw_bytes": 2459,
+      "raw_sha256": "4fec0879a20402e221827e0723cdca023f6ebbe653cbefec605d5cdc36bc398c",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11OMAZHU-OMA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11OMAZHU-OMA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11ONCZIN",
+      "market": {
+        "close_time": "2026-08-25T15:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11ONCZIN",
+        "expected_expiration_time": "2026-08-11T18:10:00Z",
+        "occurrence_datetime": "2026-08-11T18:10:00Z",
+        "open_time": "2026-08-11T03:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11ONCZIN-ONC"
+      },
+      "raw_bytes": 2438,
+      "raw_sha256": "23e0a4d8f995739a8a2ea4af36f138f8f13da8e7723da47772fb722bddaf8dba",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11ONCZIN-ONC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11ONCZIN-ONC"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11OUACUI",
+      "market": {
+        "close_time": "2026-08-25T05:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11OUACUI",
+        "expected_expiration_time": "2026-08-11T08:00:00Z",
+        "occurrence_datetime": "2026-08-11T08:00:00Z",
+        "open_time": "2026-08-10T17:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11OUACUI-CUI"
+      },
+      "raw_bytes": 2409,
+      "raw_sha256": "0f5bb4b4d487b794e2f7bb87bc59ac7ee24042a979acf8e14b10a4bee50b9182",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11OUACUI-CUI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11OUACUI-CUI"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11PDABRO",
+      "market": {
+        "close_time": "2026-08-25T08:30:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11PDABRO",
+        "expected_expiration_time": "2026-08-11T11:30:00Z",
+        "occurrence_datetime": "2026-08-11T11:30:00Z",
+        "open_time": "2026-08-10T20:40:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11PDABRO-BRO"
+      },
+      "raw_bytes": 2480,
+      "raw_sha256": "9f8d7079500e497c3315220f88daa1f79d220239aca92dd33f3519dad147685f",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11PDABRO-BRO",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11PDABRO-BRO"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11PIRSCH",
+      "market": {
+        "close_time": "2026-08-25T09:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11PIRSCH",
+        "expected_expiration_time": "2026-08-11T12:00:00Z",
+        "occurrence_datetime": "2026-08-11T12:00:00Z",
+        "open_time": "2026-08-10T21:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11PIRSCH-PIR"
+      },
+      "raw_bytes": 2445,
+      "raw_sha256": "ddf2abf03b5376c2a94415ac2c0b47e9b4e4063909899d5bb20cf0dd7d2b5248",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11PIRSCH-PIR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11PIRSCH-PIR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11RAWALK",
+      "market": {
+        "close_time": "2026-08-25T06:30:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11RAWALK",
+        "expected_expiration_time": "2026-08-11T09:30:00Z",
+        "occurrence_datetime": "2026-08-11T09:30:00Z",
+        "open_time": "2026-08-10T18:40:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11RAWALK-ALK"
+      },
+      "raw_bytes": 2423,
+      "raw_sha256": "40a657129974fb358a893bdba4dc2495b55920d891d8098dedcf536060ca1efa",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11RAWALK-ALK",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11RAWALK-ALK"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11ROCMAS",
+      "market": {
+        "close_time": "2026-08-25T13:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11ROCMAS",
+        "expected_expiration_time": "2026-08-11T16:00:00Z",
+        "occurrence_datetime": "2026-08-11T16:00:00Z",
+        "open_time": "2026-08-11T01:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11ROCMAS-MAS"
+      },
+      "raw_bytes": 2457,
+      "raw_sha256": "207d2f2b0d15b685227b71d42ead4ab575de3fd4815eef79c1e72af30906d35a",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11ROCMAS-MAS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11ROCMAS-MAS"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SAIPIR",
+      "market": {
+        "close_time": "2026-08-25T13:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11SAIPIR",
+        "expected_expiration_time": "2026-08-11T16:00:00Z",
+        "occurrence_datetime": "2026-08-11T16:00:00Z",
+        "open_time": "2026-08-11T01:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11SAIPIR-PIR"
+      },
+      "raw_bytes": 2474,
+      "raw_sha256": "a417496eed0d63168e68f856bc96246012112b9e614a17a0453920e61234b2a8",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11SAIPIR-PIR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11SAIPIR-PIR"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SAMISO",
+      "market": {
+        "close_time": "2026-08-25T08:50:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11SAMISO",
+        "expected_expiration_time": "2026-08-11T11:50:00Z",
+        "occurrence_datetime": "2026-08-11T11:50:00Z",
+        "open_time": "2026-08-10T21:00:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11SAMISO-ISO"
+      },
+      "raw_bytes": 2436,
+      "raw_sha256": "be460ef3be2e929b5ffafb35ba6640eba0db39e8f97ae9d56e7b2317206d6757",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11SAMISO-ISO",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11SAMISO-ISO"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SHIARU",
+      "market": {
+        "close_time": "2026-08-25T07:40:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11SHIARU",
+        "expected_expiration_time": "2026-08-11T10:40:00Z",
+        "occurrence_datetime": "2026-08-11T10:40:00Z",
+        "open_time": "2026-08-10T19:50:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11SHIARU-ARU"
+      },
+      "raw_bytes": 2450,
+      "raw_sha256": "cda85a0972393c014a52846a570da24a08f70d17125c08a5f4c32077a5c2e7de",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11SHIARU-ARU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11SHIARU-ARU"
+    },
+    {
+      "attempts": 4,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SUNNUR",
+      "market": {
+        "close_time": "2026-08-25T07:40:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11SUNNUR",
+        "expected_expiration_time": "2026-08-11T10:40:00Z",
+        "occurrence_datetime": "2026-08-11T10:40:00Z",
+        "open_time": "2026-08-10T19:50:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11SUNNUR-NUR"
+      },
+      "raw_bytes": 2443,
+      "raw_sha256": "4fe04c6d2105c023816de4bfdac9d5fb1fa1f6f4f8688353f447fbc2440edf16",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11SUNNUR-NUR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11SUNNUR-NUR"
+    },
+    {
+      "attempts": 4,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11TRAKIC",
+      "market": {
+        "close_time": "2026-08-25T16:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11TRAKIC",
+        "expected_expiration_time": "2026-08-11T19:00:00Z",
+        "occurrence_datetime": "2026-08-11T19:00:00Z",
+        "open_time": "2026-08-11T04:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11TRAKIC-KIC"
+      },
+      "raw_bytes": 2433,
+      "raw_sha256": "31aeddd4ebb8a5306209fc3d70fea07a1ba3cf0bcb61b34e996c52a06f940107",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11TRAKIC-KIC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11TRAKIC-KIC"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11URSDHA",
+      "market": {
+        "close_time": "2026-08-25T05:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11URSDHA",
+        "expected_expiration_time": "2026-08-11T08:00:00Z",
+        "occurrence_datetime": "2026-08-11T08:00:00Z",
+        "open_time": "2026-08-10T17:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11URSDHA-DHA"
+      },
+      "raw_bytes": 2431,
+      "raw_sha256": "95c94e733dac2c2978641eaeb0ce80964683dcbfd12b80d229a4d9030f485397",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11URSDHA-DHA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11URSDHA-DHA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11WALTAB",
+      "market": {
+        "close_time": "2026-08-25T10:50:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11WALTAB",
+        "expected_expiration_time": "2026-08-11T13:50:00Z",
+        "occurrence_datetime": "2026-08-11T13:50:00Z",
+        "open_time": "2026-08-10T23:00:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11WALTAB-TAB"
+      },
+      "raw_bytes": 2447,
+      "raw_sha256": "0a41987388c8d3063304857d99321660cd2f0fe8aa7d021b5cc3f7cad98ad4be",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11WALTAB-TAB",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11WALTAB-TAB"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11WEINEU",
+      "market": {
+        "close_time": "2026-08-25T09:10:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11WEINEU",
+        "expected_expiration_time": "2026-08-11T12:10:00Z",
+        "occurrence_datetime": "2026-08-11T12:10:00Z",
+        "open_time": "2026-08-10T21:20:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11WEINEU-NEU"
+      },
+      "raw_bytes": 2434,
+      "raw_sha256": "10be8e1d52667bafb5fce8b6df9f9f6342e633e5ab90930993e80aa2dee35803",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11WEINEU-NEU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11WEINEU-NEU"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11WENGOJ",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11WENGOJ",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-11T02:10:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11WENGOJ-GOJ"
+      },
+      "raw_bytes": 2429,
+      "raw_sha256": "af4c47913379f3a4af2da9933420fed8062de879321e25f0eca905359826b918",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11WENGOJ-GOJ",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11WENGOJ-GOJ"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11YEVDOD",
+      "market": {
+        "close_time": "2026-08-25T09:40:00Z",
+        "event_ticker": "KXATPCHALLENGERMATCH-26AUG11YEVDOD",
+        "expected_expiration_time": "2026-08-11T12:40:00Z",
+        "occurrence_datetime": "2026-08-11T12:40:00Z",
+        "open_time": "2026-08-10T21:50:00Z",
+        "status": "active",
+        "ticker": "KXATPCHALLENGERMATCH-26AUG11YEVDOD-DOD"
+      },
+      "raw_bytes": 2429,
+      "raw_sha256": "df7a3a486522a68b1d88492aa0b82b8c672a7f67bed06ca23872d626ab26eb9c",
+      "ticker": "KXATPCHALLENGERMATCH-26AUG11YEVDOD-DOD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPCHALLENGERMATCH-26AUG11YEVDOD-DOD"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG09FONSHE",
+      "market": {
+        "close_time": "2026-08-10T00:03:14Z",
+        "event_ticker": "KXATPMATCH-26AUG09FONSHE",
+        "expected_expiration_time": "2026-08-09T19:30:00Z",
+        "occurrence_datetime": "2026-08-09T19:30:00Z",
+        "open_time": "2026-08-08T16:35:00Z",
+        "status": "finalized",
+        "ticker": "KXATPMATCH-26AUG09FONSHE-FON"
+      },
+      "raw_bytes": 2493,
+      "raw_sha256": "b020e0370b536d56478546a6635e40c657d8193850cf027a119a372da4e08192",
+      "ticker": "KXATPMATCH-26AUG09FONSHE-FON",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG09FONSHE-FON"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG09TIETIR",
+      "market": {
+        "close_time": "2026-08-09T20:09:53Z",
+        "event_ticker": "KXATPMATCH-26AUG09TIETIR",
+        "expected_expiration_time": "2026-08-09T19:30:00Z",
+        "occurrence_datetime": "2026-08-09T19:30:00Z",
+        "open_time": "2026-08-08T16:35:00Z",
+        "status": "finalized",
+        "ticker": "KXATPMATCH-26AUG09TIETIR-TIE"
+      },
+      "raw_bytes": 2486,
+      "raw_sha256": "ca2208f82a99ba4354bada2b38e67c83720bc63bca485d32d351d91c6857e200",
+      "ticker": "KXATPMATCH-26AUG09TIETIR-TIE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG09TIETIR-TIE"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG09VANMEN",
+      "market": {
+        "close_time": "2026-08-10T02:00:01Z",
+        "event_ticker": "KXATPMATCH-26AUG09VANMEN",
+        "expected_expiration_time": "2026-08-09T19:30:00Z",
+        "occurrence_datetime": "2026-08-09T19:30:00Z",
+        "open_time": "2026-08-08T16:35:00Z",
+        "status": "finalized",
+        "ticker": "KXATPMATCH-26AUG09VANMEN-MEN"
+      },
+      "raw_bytes": 2522,
+      "raw_sha256": "d349f401d05253fa42a6974683202427e523b2b52ee107392f5e127e6eec43d1",
+      "ticker": "KXATPMATCH-26AUG09VANMEN-MEN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG09VANMEN-MEN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG10DARNAK",
+      "market": {
+        "close_time": "2026-08-24T16:30:00Z",
+        "event_ticker": "KXATPMATCH-26AUG10DARNAK",
+        "expected_expiration_time": "2026-08-10T19:30:00Z",
+        "occurrence_datetime": "2026-08-10T19:30:00Z",
+        "open_time": "2026-08-09T16:35:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG10DARNAK-DAR"
+      },
+      "raw_bytes": 2425,
+      "raw_sha256": "5cb2c736c2dff456eb5db9824e78847951f69a089bb9ad3cdcb10a173b383ea7",
+      "ticker": "KXATPMATCH-26AUG10DARNAK-DAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG10DARNAK-DAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG10JODFIL",
+      "market": {
+        "close_time": "2026-08-24T16:30:00Z",
+        "event_ticker": "KXATPMATCH-26AUG10JODFIL",
+        "expected_expiration_time": "2026-08-10T19:30:00Z",
+        "occurrence_datetime": "2026-08-10T19:30:00Z",
+        "open_time": "2026-08-09T16:35:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG10JODFIL-FIL"
+      },
+      "raw_bytes": 2389,
+      "raw_sha256": "2de271a184e02593ea9c67df60ce07dc5a0b52895dc061cc60b886798f11ffa3",
+      "ticker": "KXATPMATCH-26AUG10JODFIL-FIL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG10JODFIL-FIL"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG10MERTIE",
+      "market": {
+        "close_time": "2026-08-24T20:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG10MERTIE",
+        "expected_expiration_time": "2026-08-10T23:00:00Z",
+        "occurrence_datetime": "2026-08-10T23:00:00Z",
+        "open_time": "2026-08-09T20:25:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG10MERTIE-MER"
+      },
+      "raw_bytes": 2396,
+      "raw_sha256": "3f1959d0879edbff4baee899f3c839df629e577709a78b5e9f21c87181ed8565",
+      "ticker": "KXATPMATCH-26AUG10MERTIE-MER",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG10MERTIE-MER"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11DAMSAK",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11DAMSAK",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:05:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11DAMSAK-DAM"
+      },
+      "raw_bytes": 2444,
+      "raw_sha256": "57b3d28a7b309f99bcdb787d0ad732fb9360d5434d48ce30b6d67e751703b623",
+      "ticker": "KXATPMATCH-26AUG11DAMSAK-DAM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11DAMSAK-DAM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11ECHZHE",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11ECHZHE",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11ECHZHE-ECH"
+      },
+      "raw_bytes": 2429,
+      "raw_sha256": "7f7934d3da02080210bd282b76f3a4ceb044196a1902643e8c242701c22d05b0",
+      "ticker": "KXATPMATCH-26AUG11ECHZHE-ECH",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11ECHZHE-ECH"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG11FARBAS",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11FARBAS",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11FARBAS-BAS"
+      },
+      "raw_bytes": 2464,
+      "raw_sha256": "7675866d41eb378d80097d704cbb85bd0d22c390317620714e5080d9c2c2528f",
+      "ticker": "KXATPMATCH-26AUG11FARBAS-BAS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11FARBAS-BAS"
+    },
+    {
+      "attempts": 4,
+      "event_id": "KXATPMATCH-26AUG11GASBUD",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11GASBUD",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11GASBUD-BUD"
+      },
+      "raw_bytes": 2476,
+      "raw_sha256": "83452363cd994429c0a8c61742f157109ca01a383f674038998ca990f7249fd8",
+      "ticker": "KXATPMATCH-26AUG11GASBUD-BUD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11GASBUD-BUD"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11GIRROC",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11GIRROC",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11GIRROC-GIR"
+      },
+      "raw_bytes": 2417,
+      "raw_sha256": "1c9d9314bc33570c671a88469c9bd69ffe78939a51acf9bf1e0b1797c51c226c",
+      "ticker": "KXATPMATCH-26AUG11GIRROC-GIR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11GIRROC-GIR"
+    },
+    {
+      "attempts": 5,
+      "event_id": "KXATPMATCH-26AUG11GOGVIR",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11GOGVIR",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11GOGVIR-GOG"
+      },
+      "raw_bytes": 2456,
+      "raw_sha256": "e04c74b567c9b2301ceddd7d04a526a48f070e272fc3f4662d1d8e205e72e71a",
+      "ticker": "KXATPMATCH-26AUG11GOGVIR-GOG",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11GOGVIR-GOG"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11HALKWON",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11HALKWON",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11HALKWON-HAL"
+      },
+      "raw_bytes": 2418,
+      "raw_sha256": "a9298b90b1ceb0732607c226caf7965a386a87b3e2dd37fac151bcab017615d6",
+      "ticker": "KXATPMATCH-26AUG11HALKWON-HAL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11HALKWON-HAL"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11HARJAC",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11HARJAC",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11HARJAC-HAR"
+      },
+      "raw_bytes": 2423,
+      "raw_sha256": "f2111492578dee5aec82de8185d8663cd726130756a5663b0c08d6b23ad93a8e",
+      "ticker": "KXATPMATCH-26AUG11HARJAC-HAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11HARJAC-HAR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11LAJBON",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11LAJBON",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11LAJBON-BON"
+      },
+      "raw_bytes": 2429,
+      "raw_sha256": "e32bd3e096b42396d6c6b3ff097b12e01ca3457c55e6dc20bf353b791d0a9889",
+      "ticker": "KXATPMATCH-26AUG11LAJBON-BON",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11LAJBON-BON"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11LAJSVR",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11LAJSVR",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:05:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11LAJSVR-LAJ"
+      },
+      "raw_bytes": 2415,
+      "raw_sha256": "c6360fef376cb51c73b1007aa28a543e4e8f1ab54fa5b0f4de28ae4db36a4b18",
+      "ticker": "KXATPMATCH-26AUG11LAJSVR-LAJ",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11LAJSVR-LAJ"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG11MAEYUN",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11MAEYUN",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11MAEYUN-MAE"
+      },
+      "raw_bytes": 2455,
+      "raw_sha256": "a533fc387b88f552e9113a6f4b51589caecfe46477c9e82dfe495efa929da42a",
+      "ticker": "KXATPMATCH-26AUG11MAEYUN-MAE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11MAEYUN-MAE"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11MCDYIB",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11MCDYIB",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11MCDYIB-MCD"
+      },
+      "raw_bytes": 2443,
+      "raw_sha256": "f8a6b3a2d92cf2beca3e1479c9fa7b601efbfac9993d0e7fe98f28b00c55f948",
+      "ticker": "KXATPMATCH-26AUG11MCDYIB-MCD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11MCDYIB-MCD"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG11MEJFEA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11MEJFEA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11MEJFEA-FEA"
+      },
+      "raw_bytes": 2433,
+      "raw_sha256": "a6957cc6957600e781a50e6f77115259c7aa5dd08975e9c1c617ae2156f775ef",
+      "ticker": "KXATPMATCH-26AUG11MEJFEA-FEA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11MEJFEA-FEA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11MENSHE",
+      "market": {
+        "close_time": "2026-08-25T20:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11MENSHE",
+        "expected_expiration_time": "2026-08-11T23:00:00Z",
+        "occurrence_datetime": "2026-08-11T23:00:00Z",
+        "open_time": "2026-08-10T20:05:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11MENSHE-MEN"
+      },
+      "raw_bytes": 2400,
+      "raw_sha256": "4343502bd9013133d6ba1ab6dd3ae2196238fc4ef2f938bb882c7c92b41707d2",
+      "ticker": "KXATPMATCH-26AUG11MENSHE-MEN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11MENSHE-MEN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11MPESVA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11MPESVA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11MPESVA-MPE"
+      },
+      "raw_bytes": 2511,
+      "raw_sha256": "98211c20f8286e8e86a8b52d66e0b11cd2312e97dc95bab8df0f9215a02883b7",
+      "ticker": "KXATPMATCH-26AUG11MPESVA-MPE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11MPESVA-MPE"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11NISCOM",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11NISCOM",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11NISCOM-COM"
+      },
+      "raw_bytes": 2458,
+      "raw_sha256": "90119da0567f65aed5ea3aeed1aa1ff6ed8d2a0d4e872c993088d664bbf0d1b8",
+      "ticker": "KXATPMATCH-26AUG11NISCOM-COM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11NISCOM-COM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11OCOSWE",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11OCOSWE",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11OCOSWE-OCO"
+      },
+      "raw_bytes": 2467,
+      "raw_sha256": "92252639c6aca68f37d2b30a2b2791f9c09611d7a61a06cff732c768054c0994",
+      "ticker": "KXATPMATCH-26AUG11OCOSWE-OCO",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11OCOSWE-OCO"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG11POPDRO",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11POPDRO",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:05:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11POPDRO-DRO"
+      },
+      "raw_bytes": 2434,
+      "raw_sha256": "e6529d8e22620dd3e16898bed420f00213011f26b2b3cbcaf328635062fc47e5",
+      "ticker": "KXATPMATCH-26AUG11POPDRO-DRO",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11POPDRO-DRO"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG11SHELLA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11SHELLA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11SHELLA-LLA"
+      },
+      "raw_bytes": 2468,
+      "raw_sha256": "f954745859c5d4a18e7d1a24eeef6956d73e1a1df7ff6d409df79a7575c0ff82",
+      "ticker": "KXATPMATCH-26AUG11SHELLA-LLA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11SHELLA-LLA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11SHIDEL",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11SHIDEL",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11SHIDEL-DEL"
+      },
+      "raw_bytes": 2440,
+      "raw_sha256": "741318ca7d6b72489c17beb3e2888c869ffa188a117aa5a4f473b3afe64d726e",
+      "ticker": "KXATPMATCH-26AUG11SHIDEL-DEL",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11SHIDEL-DEL"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXATPMATCH-26AUG11TRUOFN",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11TRUOFN",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11TRUOFN-OFN"
+      },
+      "raw_bytes": 2446,
+      "raw_sha256": "1617f8a6e6018ec3d7de01a812b42eab7af11dcdc72e8e07f1c05a771fc54d86",
+      "ticker": "KXATPMATCH-26AUG11TRUOFN-OFN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11TRUOFN-OFN"
+    },
+    {
+      "attempts": 3,
+      "event_id": "KXATPMATCH-26AUG11VANHEI",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11VANHEI",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11VANHEI-HEI"
+      },
+      "raw_bytes": 2434,
+      "raw_sha256": "4dc6676ceb6f850da3f4d02626cce19f72f7e57e611072858c7cba3c82bd4c0f",
+      "ticker": "KXATPMATCH-26AUG11VANHEI-HEI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11VANHEI-HEI"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11VUKBLA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11VUKBLA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:05:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11VUKBLA-BLA"
+      },
+      "raw_bytes": 2418,
+      "raw_sha256": "a69fcf997ddcb720f3fa9a4c575e3875e8cca4ef1a5ccc367f6c5081bdfeb4d2",
+      "ticker": "KXATPMATCH-26AUG11VUKBLA-BLA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11VUKBLA-BLA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11WOLSAM",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11WOLSAM",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11WOLSAM-SAM"
+      },
+      "raw_bytes": 2411,
+      "raw_sha256": "2dbe1fd8315745b3597257c2a13fecf75cf3eee708ddc87dfe94a434e9041336",
+      "ticker": "KXATPMATCH-26AUG11WOLSAM-SAM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11WOLSAM-SAM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXATPMATCH-26AUG11WONHON",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXATPMATCH-26AUG11WONHON",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:06:00Z",
+        "status": "active",
+        "ticker": "KXATPMATCH-26AUG11WONHON-HON"
+      },
+      "raw_bytes": 2418,
+      "raw_sha256": "4085a969c6daf77329d4d17cd03c836fee212f9b2efe6263afc9fc4f1c16a468",
+      "ticker": "KXATPMATCH-26AUG11WONHON-HON",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXATPMATCH-26AUG11WONHON-HON"
+    },
+    {
+      "attempts": 4,
+      "event_id": "KXWTAMATCH-26AUG09EALBEN",
+      "market": {
+        "close_time": "2026-08-10T02:09:50Z",
+        "event_ticker": "KXWTAMATCH-26AUG09EALBEN",
+        "expected_expiration_time": "2026-08-09T19:00:00Z",
+        "occurrence_datetime": "2026-08-09T19:00:00Z",
+        "open_time": "2026-08-08T16:05:00Z",
+        "status": "finalized",
+        "ticker": "KXWTAMATCH-26AUG09EALBEN-BEN"
+      },
+      "raw_bytes": 2491,
+      "raw_sha256": "82ff29e985d197881945c75cc334976deb540227e7e0ee118d32f41c26fe4dbb",
+      "ticker": "KXWTAMATCH-26AUG09EALBEN-BEN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG09EALBEN-BEN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG09FEROSA",
+      "market": {
+        "close_time": "2026-08-10T00:34:46Z",
+        "event_ticker": "KXWTAMATCH-26AUG09FEROSA",
+        "expected_expiration_time": "2026-08-09T19:00:00Z",
+        "occurrence_datetime": "2026-08-09T19:00:00Z",
+        "open_time": "2026-08-08T16:05:00Z",
+        "status": "finalized",
+        "ticker": "KXWTAMATCH-26AUG09FEROSA-FER"
+      },
+      "raw_bytes": 2507,
+      "raw_sha256": "3a897fea61bf59fbf0e0fe60a4412230053f0a7a642ac535cfec91422849d2df",
+      "ticker": "KXWTAMATCH-26AUG09FEROSA-FER",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG09FEROSA-FER"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG09KORGAU",
+      "market": {
+        "close_time": "2026-08-09T21:10:02Z",
+        "event_ticker": "KXWTAMATCH-26AUG09KORGAU",
+        "expected_expiration_time": "2026-08-09T19:00:00Z",
+        "occurrence_datetime": "2026-08-09T19:00:00Z",
+        "open_time": "2026-08-08T16:05:00Z",
+        "status": "finalized",
+        "ticker": "KXWTAMATCH-26AUG09KORGAU-GAU"
+      },
+      "raw_bytes": 2480,
+      "raw_sha256": "3cacf67594dba86a1453667617f688b7051d582594da949d00777fa009363202",
+      "ticker": "KXWTAMATCH-26AUG09KORGAU-GAU",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG09KORGAU-GAU"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG09SAMRYB",
+      "market": {
+        "close_time": "2026-08-09T19:34:48Z",
+        "event_ticker": "KXWTAMATCH-26AUG09SAMRYB",
+        "expected_expiration_time": "2026-08-09T19:00:00Z",
+        "occurrence_datetime": "2026-08-09T19:00:00Z",
+        "open_time": "2026-08-08T16:05:00Z",
+        "status": "finalized",
+        "ticker": "KXWTAMATCH-26AUG09SAMRYB-RYB"
+      },
+      "raw_bytes": 2510,
+      "raw_sha256": "e0e4d13d4184aa45541146fd8455e9f3c243ff7fea2ab9044f2b6d02939cfd66",
+      "ticker": "KXWTAMATCH-26AUG09SAMRYB-RYB",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG09SAMRYB-RYB"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG10ALESVI",
+      "market": {
+        "close_time": "2026-08-11T02:10:37Z",
+        "event_ticker": "KXWTAMATCH-26AUG10ALESVI",
+        "expected_expiration_time": "2026-08-10T20:00:00Z",
+        "occurrence_datetime": "2026-08-10T20:00:00Z",
+        "open_time": "2026-08-09T17:05:00Z",
+        "status": "finalized",
+        "ticker": "KXWTAMATCH-26AUG10ALESVI-ALE"
+      },
+      "raw_bytes": 2558,
+      "raw_sha256": "f18abefe0ae17e542e4ff6bc9c761d2aa38fe2703c0fb9b1c67bcc6e318c6072",
+      "ticker": "KXWTAMATCH-26AUG10ALESVI-ALE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG10ALESVI-ALE"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG10SHNSWI",
+      "market": {
+        "close_time": "2026-08-11T00:15:30Z",
+        "event_ticker": "KXWTAMATCH-26AUG10SHNSWI",
+        "expected_expiration_time": "2026-08-10T20:00:00Z",
+        "occurrence_datetime": "2026-08-10T20:00:00Z",
+        "open_time": "2026-08-09T17:05:00Z",
+        "status": "finalized",
+        "ticker": "KXWTAMATCH-26AUG10SHNSWI-SHN"
+      },
+      "raw_bytes": 2508,
+      "raw_sha256": "1b8f7c88e8adab443d43d4993f6a077e812c2b4b74c40909e7250a871794fc28",
+      "ticker": "KXWTAMATCH-26AUG10SHNSWI-SHN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG10SHNSWI-SHN"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11ARASAS",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11ARASAS",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11ARASAS-ARA"
+      },
+      "raw_bytes": 2437,
+      "raw_sha256": "a2023433457ca832c57c8fb21e32abdec16e7e669cdae16a7a9c2f0d2c17a5c5",
+      "ticker": "KXWTAMATCH-26AUG11ARASAS-ARA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11ARASAS-ARA"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG11BENGAU",
+      "market": {
+        "close_time": "2026-08-25T17:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11BENGAU",
+        "expected_expiration_time": "2026-08-11T20:00:00Z",
+        "occurrence_datetime": "2026-08-11T20:00:00Z",
+        "open_time": "2026-08-10T17:05:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11BENGAU-BEN"
+      },
+      "raw_bytes": 2399,
+      "raw_sha256": "2361d85e03179f8e2f803ba706833cbb387d147d94124d7a1bb98ca4fc75e843",
+      "ticker": "KXWTAMATCH-26AUG11BENGAU-BEN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11BENGAU-BEN"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG11DARUCH",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11DARUCH",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11DARUCH-DAR"
+      },
+      "raw_bytes": 2419,
+      "raw_sha256": "e6dee7170ae6f7e39c930703e2005dae368701af4f13236e5fa2b97a244c254e",
+      "ticker": "KXWTAMATCH-26AUG11DARUCH-DAR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11DARUCH-DAR"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG11DAYPRE",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11DAYPRE",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11DAYPRE-DAY"
+      },
+      "raw_bytes": 2404,
+      "raw_sha256": "c9a955e7202247fa7f9ddbb79526b686dd7381e49c87eae3e812e928afb58b4e",
+      "ticker": "KXWTAMATCH-26AUG11DAYPRE-DAY",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11DAYPRE-DAY"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11IATLIU",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11IATLIU",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11IATLIU-IAT"
+      },
+      "raw_bytes": 2428,
+      "raw_sha256": "39f1aa24a676d0cda244725d4b898ada8fef1952de892926fca0e960d3c83221",
+      "ticker": "KXWTAMATCH-26AUG11IATLIU-IAT",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11IATLIU-IAT"
+    },
+    {
+      "attempts": 3,
+      "event_id": "KXWTAMATCH-26AUG11JIMSAW",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11JIMSAW",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11JIMSAW-JIM"
+      },
+      "raw_bytes": 2529,
+      "raw_sha256": "83b35ccfc8f751f2ddfa6c6fa36cec11295012803853150986e0ca16aa73ef5b",
+      "ticker": "KXWTAMATCH-26AUG11JIMSAW-JIM",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11JIMSAW-JIM"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11KORLEP",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11KORLEP",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11KORLEP-KOR"
+      },
+      "raw_bytes": 2444,
+      "raw_sha256": "7935aa27a98ba05a01ac325100aedcb2cc9d296768fb82aed2276270f5edd63d",
+      "ticker": "KXWTAMATCH-26AUG11KORLEP-KOR",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11KORLEP-KOR"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11KRABAS",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11KRABAS",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11KRABAS-BAS"
+      },
+      "raw_bytes": 2470,
+      "raw_sha256": "c4c1783373bc2842552bd5e85a873be0c4c712c2463803317a71c8423ec78758",
+      "ticker": "KXWTAMATCH-26AUG11KRABAS-BAS",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11KRABAS-BAS"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11LEEKUD",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11LEEKUD",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11LEEKUD-KUD"
+      },
+      "raw_bytes": 2445,
+      "raw_sha256": "3b3ec7fac699338247458243032ee3721f2b7d52fbb925420ccddb4f6f872fad",
+      "ticker": "KXWTAMATCH-26AUG11LEEKUD-KUD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11LEEKUD-KUD"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11LYSKAW",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11LYSKAW",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11LYSKAW-KAW"
+      },
+      "raw_bytes": 2408,
+      "raw_sha256": "16876ac76658a97ef606ab3dc3f698590d7398f6b0238230ef4332a2da055f32",
+      "ticker": "KXWTAMATCH-26AUG11LYSKAW-KAW",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11LYSKAW-KAW"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11MARCHA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11MARCHA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11MARCHA-CHA"
+      },
+      "raw_bytes": 2434,
+      "raw_sha256": "0e1c27335a14439e89c5da39868d11dc73ff4754ac2b8a513f388501bae662b8",
+      "ticker": "KXWTAMATCH-26AUG11MARCHA-CHA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11MARCHA-CHA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11MONGRA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11MONGRA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11MONGRA-GRA"
+      },
+      "raw_bytes": 2435,
+      "raw_sha256": "02512387305c85244f8c251154cafdec8d2924ae518cdf63334ed95b31f7d472",
+      "ticker": "KXWTAMATCH-26AUG11MONGRA-GRA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11MONGRA-GRA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11OSARYB",
+      "market": {
+        "close_time": "2026-08-25T17:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11OSARYB",
+        "expected_expiration_time": "2026-08-11T20:00:00Z",
+        "occurrence_datetime": "2026-08-11T20:00:00Z",
+        "open_time": "2026-08-10T17:05:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11OSARYB-OSA"
+      },
+      "raw_bytes": 2395,
+      "raw_sha256": "50a46504827805a8da394ca84417f463e4c6387dd9bd5bc1b51e1489a513b604",
+      "ticker": "KXWTAMATCH-26AUG11OSARYB-OSA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11OSARYB-OSA"
+    },
+    {
+      "attempts": 5,
+      "event_id": "KXWTAMATCH-26AUG11PODSEI",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11PODSEI",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:35:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11PODSEI-POD"
+      },
+      "raw_bytes": 2439,
+      "raw_sha256": "42dc98bc4d4c3abb4ce6f8b0f2c84d82c7210ab379d5b0248e7773fe854121e1",
+      "ticker": "KXWTAMATCH-26AUG11PODSEI-POD",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11PODSEI-POD"
+    },
+    {
+      "attempts": 3,
+      "event_id": "KXWTAMATCH-26AUG11SAKJEA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11SAKJEA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:35:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11SAKJEA-JEA"
+      },
+      "raw_bytes": 2448,
+      "raw_sha256": "a3db6b216563d2b88f64e924dfcd4f7c1e2cd1fd0eaed0a3d4661cc9d8299369",
+      "ticker": "KXWTAMATCH-26AUG11SAKJEA-JEA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11SAKJEA-JEA"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11SALBLI",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11SALBLI",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11SALBLI-BLI"
+      },
+      "raw_bytes": 2431,
+      "raw_sha256": "83db994467b9f1b986134d51b8f80158004cf5a0f419ea99672d35682df90b71",
+      "ticker": "KXWTAMATCH-26AUG11SALBLI-BLI",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11SALBLI-BLI"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG11SELMAN",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11SELMAN",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:35:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11SELMAN-MAN"
+      },
+      "raw_bytes": 2462,
+      "raw_sha256": "43a49cfc96e77caa574f740c6d5e9d4bcc91ee89c7d7576fac446b7fabb5a067",
+      "ticker": "KXWTAMATCH-26AUG11SELMAN-MAN",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11SELMAN-MAN"
+    },
+    {
+      "attempts": 3,
+      "event_id": "KXWTAMATCH-26AUG11SIEITO",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11SIEITO",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11SIEITO-ITO"
+      },
+      "raw_bytes": 2387,
+      "raw_sha256": "533fbef9990ea527ebf19bb44f15f9cc4cbe9fd6c317ba6807f136b3a1ebf644",
+      "ticker": "KXWTAMATCH-26AUG11SIEITO-ITO",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11SIEITO-ITO"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11SRAJAC",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11SRAJAC",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11SRAJAC-JAC"
+      },
+      "raw_bytes": 2438,
+      "raw_sha256": "7e9b2f6e72671df0a4f077da6efec0c1f1c902fab34c66900256dfb3398a7a71",
+      "ticker": "KXWTAMATCH-26AUG11SRAJAC-JAC",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11SRAJAC-JAC"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11STOERJ",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11STOERJ",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:35:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11STOERJ-ERJ"
+      },
+      "raw_bytes": 2444,
+      "raw_sha256": "37019f365997cf93f36ef184ee4961d3a28c71786704b444798371bd2b8f2427",
+      "ticker": "KXWTAMATCH-26AUG11STOERJ-ERJ",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11STOERJ-ERJ"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11TAGZHU",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11TAGZHU",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11TAGZHU-TAG"
+      },
+      "raw_bytes": 2415,
+      "raw_sha256": "9acd12f8b0f834b244472afd762fb7e3c57288f1cb7b97a9913f4c3935789739",
+      "ticker": "KXWTAMATCH-26AUG11TAGZHU-TAG",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11TAGZHU-TAG"
+    },
+    {
+      "attempts": 2,
+      "event_id": "KXWTAMATCH-26AUG11TARJON",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11TARJON",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11TARJON-JON"
+      },
+      "raw_bytes": 2429,
+      "raw_sha256": "4515c1df7cb148d12784f62bb40bea7e8a7dcac9e0de0eb93062316802abfdca",
+      "ticker": "KXWTAMATCH-26AUG11TARJON-JON",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11TARJON-JON"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11VANURH",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11VANURH",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11VANURH-URH"
+      },
+      "raw_bytes": 2441,
+      "raw_sha256": "73c1a85142d51d3a0519d59566b3f18e9710e849634ae5a0ac53e99588894199",
+      "ticker": "KXWTAMATCH-26AUG11VANURH-URH",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11VANURH-URH"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11WANAND",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11WANAND",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11WANAND-AND"
+      },
+      "raw_bytes": 2430,
+      "raw_sha256": "bbdbd9f24ced754df8b97804f3f3c886b63011722841029e49c91f6c46e58679",
+      "ticker": "KXWTAMATCH-26AUG11WANAND-AND",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11WANAND-AND"
+    },
+    {
+      "attempts": 1,
+      "event_id": "KXWTAMATCH-26AUG11ZAKSTE",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11ZAKSTE",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:35:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11ZAKSTE-STE"
+      },
+      "raw_bytes": 2461,
+      "raw_sha256": "1966627f0f9141dd3c0384f5d8c9238eec70aa875e296c24889e4bc2509e1f8c",
+      "ticker": "KXWTAMATCH-26AUG11ZAKSTE-STE",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11ZAKSTE-STE"
+    },
+    {
+      "attempts": 3,
+      "event_id": "KXWTAMATCH-26AUG11ZARYUA",
+      "market": {
+        "close_time": "2026-08-25T14:00:00Z",
+        "event_ticker": "KXWTAMATCH-26AUG11ZARYUA",
+        "expected_expiration_time": "2026-08-11T17:00:00Z",
+        "occurrence_datetime": "2026-08-11T17:00:00Z",
+        "open_time": "2026-08-10T21:36:00Z",
+        "status": "active",
+        "ticker": "KXWTAMATCH-26AUG11ZARYUA-YUA"
+      },
+      "raw_bytes": 2400,
+      "raw_sha256": "8a0251e354c2ac83acfdfe1a5eb0a48939092f72818c3dfa47d67816ed98e97a",
+      "ticker": "KXWTAMATCH-26AUG11ZARYUA-YUA",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXWTAMATCH-26AUG11ZARYUA-YUA"
+    }
+  ],
+  "schema_version": "window1-v47-sealed-exam-market-metadata-v1"
+}

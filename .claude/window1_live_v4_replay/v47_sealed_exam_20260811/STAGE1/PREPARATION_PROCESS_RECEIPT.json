@@ -1,0 +1,48 @@
+{
+  "schema_version": "window1-v47-sealed-exam-preparation-v1",
+  "policy_invocations": 0,
+  "score_rows": 0,
+  "scoring_authorization_consumed": false,
+  "frozen_raw": {
+    "members": 37,
+    "member_list_sha256": "883cd1275758692727af912faef557e4e824f85e82e10914bfd340a2f843e9e7",
+    "compressed_bytes": 1849042470,
+    "expanded_bytes_verified": 12182540404,
+    "gzip_integrity": "PASS_37_OF_37",
+    "failed_members": 0,
+    "failed_member_list_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "preprocessing": {
+    "initial_worker_diagnostics": 8,
+    "exact_diagnostic": "Syntax error: Unterminated quoted string",
+    "disposition": "NON_AUTHORITATIVE_HELPER_WORKERS; COMPLETE_OUTPUT_INDEPENDENTLY_GZIP_TESTED_AND_MEMBER_CONSERVED",
+    "obsolete_filter_pipeline_stopped": true,
+    "recorder_pid_preserved": 3459414
+  },
+  "materialization": {
+    "remote_slow_attempt": "STOPPED_PRE_SCORE_WITHOUT_MANIFEST; NOT_USED",
+    "local_node_initialization_error": "path.basename callback received Array.map index; zero archive rows read; empty output removed",
+    "authoritative_run": "NODE_STREAMING_LOCAL_RUN2",
+    "manifest_sha256": "4ab6de3af87f04a7f32601687adfbe830c5dde05849f080748c053a402d74c4f"
+  },
+  "public_print_repull": {
+    "first_canonicalization": "STOPPED_PRE_SCORE_BEFORE_RECEIPT_TO_AVOID_VPS_OOM; ALL_662_RAW_RECEIPTS_PRESERVED",
+    "discarded_partial_normalized_bytes": 621411831,
+    "discarded_partial_normalized_sha256": "709ae0f70542ba0b6f430de7afce787fbd8c4932c1120dba7779632b761186e9",
+    "repair": "DISK_BACKED_EXACT_TRADE_ID_AND_LINE_HASH; N20_SAMPLE_ROWS_ONLY_IN_MEMORY",
+    "provisional_unbounded_population": {
+      "N": 331,
+      "canonical_rows": 1852616,
+      "canonical_sha256": "dca9c491e13a136336616e537fcd6bbcd5cd6a9ca5ce25f32954b363861c07df",
+      "N20_result": "FAIL_15_FAITHFUL_5_ONGOING_EVENTS_WITH_2013_NEW_POST_PULL_TRADES",
+      "disposition": "NOT_USED; REVEALED_93_CAPTURE_EVENTS_DID_NOT_YET_SPAN_THE_HARD_PRE_BELL_EDGE"
+    },
+    "hard_edge_correction": {
+      "exam_ready_N": 238,
+      "eligible_not_mature_deferred": 93,
+      "canonical_scope": "AT_OR_BEFORE_FROZEN_HARD_PRE_BELL_RIGHT_EDGE",
+      "N20_result": "PASS_20_OF_20"
+    },
+    "authoritative_receipt_sha256": "febfadca9f3834df5a9f29f14b771d176e208a04d915e0357112a73152340f7b"
+  }
+}

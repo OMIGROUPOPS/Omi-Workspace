@@ -1,0 +1,1250 @@
+{
+  "schema_version": "window1-v47-sealed-exam-hard-edge-readiness-v1",
+  "law": "A capture-only event remains sealed/eligible but cannot enter this exam until both authoritative leg tapes span the frozen hard pre-bell right edge.",
+  "policy_invocations": 0,
+  "score_rows": 0,
+  "candidates": 160,
+  "exam_ready": 67,
+  "eligible_not_mature": 93,
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ALVVAN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ANTPUR",
+      "capture_quality_flags": [
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09ANTPUR-ANT",
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09ANTPUR-PUR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09BOYFOR",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09CANCEC",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09DICMAY",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09HILKIM",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ILABUT",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09JOHCHA",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09JUBRAI",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09KITROT",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09MANYOU",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09MARRAP",
+      "capture_quality_flags": [
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09MARRAP-MAR",
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09MARRAP-RAP"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09PIRNES",
+      "capture_quality_flags": [
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09PIRNES-NES",
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09PIRNES-PIR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09POUSIM",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09SURGOD",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09WINMOS",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09YEVLAR",
+      "capture_quality_flags": [
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09YEVLAR-LAR",
+        "AUTHORITATIVE_TAPE_BEGINS_AFTER_BOUNDARY:KXATPCHALLENGERMATCH-26AUG09YEVLAR-YEV"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG09ZINKIN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10AGADEC",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BALMIL",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BARLEC",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BLASAK",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BOYMAY",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10BRAJIA",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10CANCRI",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10CECHAR",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10CREMOE",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10DEVGAL",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10FERMAS",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10HOMCAR",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ICHSIN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ISOMUK",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10JOHROT",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10JORPIN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10KINFEN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10KRADAS",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10KUMZEU",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10LEOARU",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10MARWEI",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10MATMAT2",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10MRVBAS",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10OPIKRU",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10PANPAL",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10PETMCD",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RAIVAN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RATSAT",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RAWMIT",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10RIBALC",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ROMGIU",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SINZHA",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SMIGIL",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SULBIN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10SURKIM",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10TSESAC",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10VANMEC",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10WALGUT",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10WINYOU",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10YEVPUR",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG10ZEBKIR",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11AMBAJD",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11AMBAJD-AJD",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11AMBAJD-AMB"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11BARICH",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11BARICH-BAR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11BARICH-ICH"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11BARKRA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11BARKRA-BAR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11BARKRA-KRA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11DALTOR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11DALTOR-DAL",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11DALTOR-TOR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11DEDREH",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11DEDREH-DED",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11DEDREH-REH"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11DOUDEC",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11DOUDEC-DEC",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11DOUDEC-DOU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11FOMZHU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11FOMZHU-FOM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11FOMZHU-ZHU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11FORMEC",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11FORMEC-FOR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11FORMEC-MEC"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11HOUNAG",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11HOUNAG-HOU",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11HOUNAG-NAG"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11ILAMAR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11ILAMAR-ILA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11ILAMAR-MAR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11IMAGHI",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11IMAGHI-GHI",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11IMAGHI-IMA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11KIRNED",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11KIRNED-KIR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11KIRNED-NED"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11KRUDIE",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11KRUDIE-DIE",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11KRUDIE-KRU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11KUMSIN",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11KUMSIN-KUM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11KUMSIN-SIN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11LECPUR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11LECPUR-LEC",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11LECPUR-PUR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MACKUM",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MACKUM-KUM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MACKUM-MAC"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MARGOM",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MARGOM-GOM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MARGOM-MAR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MENFAU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MENFAU-FAU",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MENFAU-MEN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MICCAR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MICCAR-CAR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MICCAR-MIC"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MMOBUT",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MMOBUT-BUT",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MMOBUT-MMO"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11MOLMOL2",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MOLMOL2-MOL",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11MOLMOL2-MOL2"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11OMAZHU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11OMAZHU-OMA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11OMAZHU-ZHU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11ONCZIN",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11ONCZIN-ONC",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11ONCZIN-ZIN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11OUACUI",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11OUACUI-CUI",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11OUACUI-OUA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11PDABRO",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11PDABRO-BRO",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11PDABRO-PDA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11PIRSCH",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11PIRSCH-PIR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11PIRSCH-SCH"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11RAWALK",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11RAWALK-ALK",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11RAWALK-RAW"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11ROCMAS",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11ROCMAS-MAS",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11ROCMAS-ROC"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SAIPIR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SAIPIR-PIR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SAIPIR-SAI"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SAMISO",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SAMISO-ISO",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SAMISO-SAM"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SHIARU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SHIARU-ARU",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SHIARU-SHI"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11SUNNUR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SUNNUR-NUR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11SUNNUR-SUN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11TRAKIC",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11TRAKIC-KIC",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11TRAKIC-TRA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11URSDHA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11URSDHA-DHA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11URSDHA-URS"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11WALTAB",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11WALTAB-TAB",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11WALTAB-WAL"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11WEINEU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11WEINEU-NEU",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11WEINEU-WEI"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11WENGOJ",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11WENGOJ-GOJ",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11WENGOJ-WEN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26AUG11YEVDOD",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11YEVDOD-DOD",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPCHALLENGERMATCH-26AUG11YEVDOD-YEV"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG09FONSHE",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG09TIETIR",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG09VANMEN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG10DARNAK",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG10JODFIL",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG10MERTIE",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11DAMSAK",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11DAMSAK-DAM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11DAMSAK-SAK"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11ECHZHE",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11ECHZHE-ECH",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11ECHZHE-ZHE"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11FARBAS",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11FARBAS-BAS",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11FARBAS-FAR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11GASBUD",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11GASBUD-BUD",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11GASBUD-GAS"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11GIRROC",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11GIRROC-GIR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11GIRROC-ROC"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11GOGVIR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11GOGVIR-GOG",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11GOGVIR-VIR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11HALKWON",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11HALKWON-HAL",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11HALKWON-KWON"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11HARJAC",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11HARJAC-HAR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11HARJAC-JAC"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11LAJBON",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11LAJBON-BON",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11LAJBON-LAJ"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11LAJSVR",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11LAJSVR-LAJ",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11LAJSVR-SVR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11MAEYUN",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MAEYUN-MAE",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MAEYUN-YUN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11MCDYIB",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MCDYIB-MCD",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MCDYIB-YIB"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11MEJFEA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MEJFEA-FEA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MEJFEA-MEJ"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11MENSHE",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MENSHE-MEN",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MENSHE-SHE"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11MPESVA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MPESVA-MPE",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11MPESVA-SVA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11NISCOM",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11NISCOM-COM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11NISCOM-NIS"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11OCOSWE",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11OCOSWE-OCO",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11OCOSWE-SWE"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11POPDRO",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11POPDRO-DRO",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11POPDRO-POP"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11SHELLA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11SHELLA-LLA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11SHELLA-SHE"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11SHIDEL",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11SHIDEL-DEL",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11SHIDEL-SHI"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11TRUOFN",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11TRUOFN-OFN",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11TRUOFN-TRU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11VANHEI",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11VANHEI-HEI",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11VANHEI-VAN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11VUKBLA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11VUKBLA-BLA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11VUKBLA-VUK"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11WOLSAM",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11WOLSAM-SAM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11WOLSAM-WOL"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXATPMATCH-26AUG11WONHON",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11WONHON-HON",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXATPMATCH-26AUG11WONHON-WON"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG09EALBEN",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG09FEROSA",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG09KORGAU",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG09SAMRYB",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG10ALESVI",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG10SHNSWI",
+      "capture_quality_flags": [],
+      "hard_pre_bell_span_complete": true,
+      "disposition": "EXAM_READY"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11ARASAS",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11ARASAS-ARA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11ARASAS-SAS"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11BENGAU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11BENGAU-BEN",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11BENGAU-GAU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11DARUCH",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11DARUCH-DAR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11DARUCH-UCH"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11DAYPRE",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11DAYPRE-DAY",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11DAYPRE-PRE"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11IATLIU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11IATLIU-IAT",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11IATLIU-LIU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11JIMSAW",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11JIMSAW-JIM",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11JIMSAW-SAW"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11KORLEP",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11KORLEP-KOR",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11KORLEP-LEP"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11KRABAS",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11KRABAS-BAS",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11KRABAS-KRA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11LEEKUD",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11LEEKUD-KUD",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11LEEKUD-LEE"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11LYSKAW",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11LYSKAW-KAW",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11LYSKAW-LYS"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11MARCHA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11MARCHA-CHA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11MARCHA-MAR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11MONGRA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11MONGRA-GRA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11MONGRA-MON"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11OSARYB",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11OSARYB-OSA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11OSARYB-RYB"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11PODSEI",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11PODSEI-POD",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11PODSEI-SEI"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11SAKJEA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SAKJEA-JEA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SAKJEA-SAK"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11SALBLI",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SALBLI-BLI",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SALBLI-SAL"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11SELMAN",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SELMAN-MAN",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SELMAN-SEL"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11SIEITO",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SIEITO-ITO",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SIEITO-SIE"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11SRAJAC",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SRAJAC-JAC",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11SRAJAC-SRA"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11STOERJ",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11STOERJ-ERJ",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11STOERJ-STO"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11TAGZHU",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11TAGZHU-TAG",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11TAGZHU-ZHU"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11TARJON",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11TARJON-JON",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11TARJON-TAR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11VANURH",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11VANURH-URH",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11VANURH-VAN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11WANAND",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11WANAND-AND",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11WANAND-WAN"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11ZAKSTE",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11ZAKSTE-STE",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11ZAKSTE-ZAK"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    },
+    {
+      "event_id": "KXWTAMATCH-26AUG11ZARYUA",
+      "capture_quality_flags": [
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11ZARYUA-YUA",
+        "TAPE_ENDS_BEFORE_BOUNDARY:KXWTAMATCH-26AUG11ZARYUA-ZAR"
+      ],
+      "hard_pre_bell_span_complete": false,
+      "disposition": "SEALED_ELIGIBLE_NOT_MATURE_NOT_TOUCHED"
+    }
+  ]
+}

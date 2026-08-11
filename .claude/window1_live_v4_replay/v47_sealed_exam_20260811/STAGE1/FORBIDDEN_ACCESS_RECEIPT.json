@@ -1,0 +1,10 @@
+{
+  "policy_invocations": 0,
+  "score_rows": 0,
+  "live_engine_access": 0,
+  "order_access": 0,
+  "position_access": 0,
+  "trading_access": 0,
+  "tuning": 0,
+  "network_access": "CAPTURE_REGISTRY_SSH_AND_PUBLIC_EXCHANGE_METADATA_ONLY"
+}

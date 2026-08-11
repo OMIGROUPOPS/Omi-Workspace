@@ -1,0 +1,76 @@
+{
+  "files": {
+    "CAPTURE_MATERIALIZATION_MANIFEST.json": {
+      "sha256": "4ab6de3af87f04a7f32601687adfbe830c5dde05849f080748c053a402d74c4f",
+      "bytes": 273968
+    },
+    "FAILED_RAW_MEMBERS.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "FILTER_PARALLEL_DIAGNOSTICS.log": {
+      "sha256": "3613ef8720d35bf07bcbd9bdb6a2a5df30c2e4179f6b476b596254dbe98c5174",
+      "bytes": 656
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "12fa19241d26a74ce459a9700e1d781e1c0e6bd09eac8641cb33a126402d55f1",
+      "bytes": 237
+    },
+    "FROZEN_EVENT_LIST.txt": {
+      "sha256": "3f1acfa355f60ca3c196e7be20f8a87caca04db2970278042e40c476ab96e1f8",
+      "bytes": 7720
+    },
+    "FROZEN_POPULATION_DECLARATION.json": {
+      "sha256": "4feffef6ffcfe1c14508b96d23469719c6c8f332374384d6c480fd7c686286ba",
+      "bytes": 304822
+    },
+    "FROZEN_RAW_MEMBERS.txt": {
+      "sha256": "883cd1275758692727af912faef557e4e824f85e82e10914bfd340a2f843e9e7",
+      "bytes": 4181
+    },
+    "HARD_PRE_BELL_SPAN_READINESS.json": {
+      "sha256": "ccce2634010c8b7647f544528a087d73ea073b4e8ffa46f1e12961dba2dfb781",
+      "bytes": 45196
+    },
+    "NEW_CAPTURE_DECLARATION.json": {
+      "sha256": "4a8899991f811aad09b56aaa8ad77cf5dc0118794764c0c705ca4231356bfad7",
+      "bytes": 569961
+    },
+    "NEW_CAPTURE_EXCLUSIONS.json": {
+      "sha256": "a6c0ed92706918c52f41998e3cb5b94d16c75ccce108984f706975e1ebaef91c",
+      "bytes": 57029
+    },
+    "NEW_CAPTURE_MARKET_METADATA.json": {
+      "sha256": "c77bbc0ee722da530657d11c3f8c1378f1b9749ada90b1859803582c32374234",
+      "bytes": 117315
+    },
+    "NEW_CAPTURE_STAGE1_SUMMARY.json": {
+      "sha256": "33cab1698f0bd200bb8223ef105f805fd49db38d0b381ee0e375758c622987c5",
+      "bytes": 1025
+    },
+    "PREPARATION_PROCESS_RECEIPT.json": {
+      "sha256": "5e7dbac614071e660d7dadd821f967edf5b9f21068b6cb70458a239e2d94b15b",
+      "bytes": 2350
+    },
+    "PRE_MATCH_BOUNDARY_LEDGER.jsonl": {
+      "sha256": "dc12a7d782bc26210463e61849620e5799a12955452536fae7b05b21d028cac9",
+      "bytes": 256681
+    },
+    "PUBLIC_PRINT_REPULL_RECEIPT.json": {
+      "sha256": "febfadca9f3834df5a9f29f14b771d176e208a04d915e0357112a73152340f7b",
+      "bytes": 323073
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "ceec6dcbfa1ca47a2af6bab755cdaa1702864859fc596db6781320ee1066a7bb",
+      "bytes": 1983
+    },
+    "STAGE1_CONTROL_BINDING.json": {
+      "sha256": "398c4463244977eecfa7e8f1843c0e07dc65141fea0def088925dd654ec83702",
+      "bytes": 1513
+    },
+    "TOUCH_AUDIT.json": {
+      "sha256": "bee2da2980431dae3e32371365109da3845e4a3438fbe3feee459fa761d2aaf1",
+      "bytes": 34060
+    }
+  }
+}

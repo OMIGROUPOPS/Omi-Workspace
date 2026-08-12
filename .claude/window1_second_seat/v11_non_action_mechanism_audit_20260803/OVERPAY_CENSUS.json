@@ -1,0 +1,239 @@
+{
+ "LABEL": "OVERPAY_CENSUS",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "basis": "396 completed dev pairs, V47 fb74c8b8. overpay = entry - lowest true print eligible (p<=standing rest at its moment, incl. withhold-held levels) within [first_action, fill_ts]; rest path from lane-deduped ACTION_TRACE; prints fit-local; CAUSAL_LEG_TABLE not used. ARRIVED_AFTER_LOW = zero within-standing overpay but pre-stand session low < entry (measured separately, not in overpay cents).",
+ "conservation": {
+  "pairs": 396,
+  "credited_legs_scored": 792
+ },
+ "overpay_distribution": {
+  "all": {
+   "n": 792,
+   "p25": 0,
+   "median": 0,
+   "p75": 0,
+   "max": 15,
+   "total": 119
+  },
+  "first_leg": {
+   "n": 396,
+   "p25": 0,
+   "median": 0,
+   "p75": 0,
+   "max": 8,
+   "total": 40
+  },
+  "second_leg": {
+   "n": 396,
+   "p25": 0,
+   "median": 0,
+   "p75": 0,
+   "max": 15,
+   "total": 79
+  },
+  "per_category": {
+   "ATP_CHALL": {
+    "n": 304,
+    "p25": 0,
+    "median": 0,
+    "p75": 0,
+    "max": 5,
+    "total": 43
+   },
+   "ATP_MAIN": {
+    "n": 186,
+    "p25": 0,
+    "median": 0,
+    "p75": 0,
+    "max": 8,
+    "total": 35
+   },
+   "WTA_CHALL": {
+    "n": 110,
+    "p25": 0,
+    "median": 0,
+    "p75": 0,
+    "max": 2,
+    "total": 7
+   },
+   "WTA_MAIN": {
+    "n": 192,
+    "p25": 0,
+    "median": 0,
+    "p75": 0,
+    "max": 15,
+    "total": 34
+   }
+  }
+ },
+ "total_cents_left": 119,
+ "legs_overpaid": 63,
+ "mechanism_classes": {
+  "counts": {
+   "WALKED_AWAY_FROM_LOW": 11,
+   "CAP_BOUND": 27,
+   "STOOD_TOO_HIGH_FROM_JOIN": 25
+  },
+  "cents": {
+   "WALKED_AWAY_FROM_LOW": 12,
+   "CAP_BOUND": 48,
+   "STOOD_TOO_HIGH_FROM_JOIN": 59
+  }
+ },
+ "arrived_after_low": {
+  "legs": 0,
+  "prestand_depth": null
+ },
+ "top15": [
+  {
+   "code": "26JUL13BURPUT",
+   "leg": "PUT",
+   "cat": "WTA_MAIN",
+   "order": "SECOND",
+   "entry": 65,
+   "within_low": 50,
+   "overpay": 15,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  },
+  {
+   "code": "26JUL15TABMID",
+   "leg": "TAB",
+   "cat": "ATP_MAIN",
+   "order": "FIRST",
+   "entry": 76,
+   "within_low": 68,
+   "overpay": 8,
+   "class": "CAP_BOUND"
+  },
+  {
+   "code": "26JUL19TSICOL",
+   "leg": "TSI",
+   "cat": "ATP_MAIN",
+   "order": "SECOND",
+   "entry": 51,
+   "within_low": 44,
+   "overpay": 7,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  },
+  {
+   "code": "26JUL12FETPIE",
+   "leg": "PIE",
+   "cat": "WTA_MAIN",
+   "order": "FIRST",
+   "entry": 51,
+   "within_low": 45,
+   "overpay": 6,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  },
+  {
+   "code": "26JUL19CLAKUZ",
+   "leg": "CLA",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 36,
+   "within_low": 31,
+   "overpay": 5,
+   "class": "CAP_BOUND"
+  },
+  {
+   "code": "26JUL12GIUBAR",
+   "leg": "BAR",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 21,
+   "within_low": 18,
+   "overpay": 3,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  },
+  {
+   "code": "26JUL12POLKUH",
+   "leg": "KUH",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 18,
+   "within_low": 15,
+   "overpay": 3,
+   "class": "CAP_BOUND"
+  },
+  {
+   "code": "26JUL12VANCHO",
+   "leg": "VAN",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 73,
+   "within_low": 70,
+   "overpay": 3,
+   "class": "CAP_BOUND"
+  },
+  {
+   "code": "26JUL13KUMLAG",
+   "leg": "LAG",
+   "cat": "ATP_CHALL",
+   "order": "FIRST",
+   "entry": 54,
+   "within_low": 51,
+   "overpay": 3,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  },
+  {
+   "code": "26JUL20OKTDOD",
+   "leg": "DOD",
+   "cat": "WTA_MAIN",
+   "order": "FIRST",
+   "entry": 38,
+   "within_low": 35,
+   "overpay": 3,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  },
+  {
+   "code": "26JUL12HERALM",
+   "leg": "HER",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 29,
+   "within_low": 27,
+   "overpay": 2,
+   "class": "CAP_BOUND"
+  },
+  {
+   "code": "26JUL12MORPET",
+   "leg": "MOR",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 66,
+   "within_low": 64,
+   "overpay": 2,
+   "class": "CAP_BOUND"
+  },
+  {
+   "code": "26JUL13FORHUA",
+   "leg": "FOR",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 66,
+   "within_low": 64,
+   "overpay": 2,
+   "class": "CAP_BOUND"
+  },
+  {
+   "code": "26JUL13ROZISO",
+   "leg": "ROZ",
+   "cat": "ATP_CHALL",
+   "order": "FIRST",
+   "entry": 64,
+   "within_low": 62,
+   "overpay": 2,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  },
+  {
+   "code": "26JUL14OUAFIC",
+   "leg": "OUA",
+   "cat": "ATP_CHALL",
+   "order": "SECOND",
+   "entry": 31,
+   "within_low": 29,
+   "overpay": 2,
+   "class": "STOOD_TOO_HIGH_FROM_JOIN"
+  }
+ ]
+}

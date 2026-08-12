@@ -1,0 +1,41 @@
+{
+  "files": {
+    "BOTH_MACHINES_FORWARD_DECISION_TRACE.jsonl.gz": {
+      "bytes": 1283486,
+      "sha256": "fab9695e0f18fc8567c190f7cfeed4f43d9f8039a8fcc2697bba78b44b2b67bf"
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "bytes": 93,
+      "sha256": "d6128e0c6b34cfecb9b5e7a14390f2ee0f3da02fb912a9b98bc4fe4657f6cc19"
+    },
+    "DOWNSTREAM_CONSEQUENCE_CHAIN.json": {
+      "bytes": 489903,
+      "sha256": "d2cb4aab6e35266710f122d253252f2539a1c4d4db95908e737ffdafc3be3ee6"
+    },
+    "FIRST_READ_DIVERGENCE.json": {
+      "bytes": 7201,
+      "sha256": "58d6f09065839d51e2c8e87e5f6959314034bdaffc3fc2388c55c01bf30dc752"
+    },
+    "FLIP_QUERY_SUMMARY.json": {
+      "bytes": 762,
+      "sha256": "f468f26cd5575cd4b96e5348ddca78dbe12353dc948dbe3c05c8fe3298d3ed18"
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "bytes": 268,
+      "sha256": "d7857f601e956e15e98603bed3c69b82561937c4df8c1d90cd0b6bc4220c15f7"
+    },
+    "FORWARD_TRUTH_PATH.jsonl.gz": {
+      "bytes": 88329,
+      "sha256": "b79670df0ca9b450d4467170778e9e27c078b7557acdd9941542dfe9f40d2646"
+    },
+    "INPUT_HASH_BINDING.json": {
+      "bytes": 1026,
+      "sha256": "660ac735f074e88c07fd51edc3801f6ec56091bd93b81aa3398047e92a9355cd"
+    },
+    "REPORT.md": {
+      "bytes": 637,
+      "sha256": "45e7c5394e4b7ea7b6ae13977aa9036b39f34c70446c991c7b95260cbb24871b"
+    }
+  },
+  "source_commit": "08ce27c0a297ed707cfd89aa29e60be223c9df7f"
+}

@@ -1,0 +1,21 @@
+{
+  "edits_or_replay": false,
+  "events": [
+    {
+      "baseline_combined_entry_cents": 99,
+      "baseline_completed": true,
+      "candidate_combined_entry_cents": null,
+      "candidate_completed": false,
+      "divergence_receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-8",
+      "divergence_timestamp_epoch": 1784231480,
+      "event_id": "KXATPMATCH-26JUL17RUBBAE",
+      "first_downstream_decision_difference_receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-192",
+      "first_downstream_decision_difference_timestamp_epoch": 1784234255
+    }
+  ],
+  "flip_games": 1,
+  "interpretation": null,
+  "query": "V52B_COMPLETED_AND_V52C_NOT_COMPLETED_ON_SHARED_30",
+  "shared_population": 30,
+  "source_commit": "08ce27c0a297ed707cfd89aa29e60be223c9df7f"
+}

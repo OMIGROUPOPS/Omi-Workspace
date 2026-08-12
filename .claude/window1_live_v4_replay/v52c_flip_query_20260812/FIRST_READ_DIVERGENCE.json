@@ -1,0 +1,204 @@
+[
+  {
+    "V52B_BLIND_FIXED_TRAIL": {
+      "decision": {
+        "blocked_clause": "STABILITY_ONSET_NOT_REACHED",
+        "final_action": "HOLD_REST",
+        "final_target_cents": null,
+        "gate_verdict": "BLOCKED",
+        "reason": "V52B_BIRTH_BLOCKED_STABILITY_ONSET_NOT_REACHED"
+      },
+      "observation": {
+        "ask": 93,
+        "ask_depth_5": 902,
+        "ask_dwell_seconds": 0,
+        "bid": 6,
+        "bid_depth_5": 2961,
+        "last_traded": 0,
+        "spread": 87,
+        "top_ask_size": 10
+      },
+      "read_evidence": {
+        "evidence": "NEW_LOW_ASK",
+        "passed": true,
+        "pressure_state": "RISING",
+        "quote_path_state": "FALLING",
+        "receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-8",
+        "state": "FALLING"
+      },
+      "read_verdict": {
+        "passed": true,
+        "pressure_state": "RISING",
+        "quote_path_state": "FALLING",
+        "receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-8",
+        "state": "FALLING"
+      }
+    },
+    "V52C_SIGHTED_FULL_POST_ONSET": {
+      "decision": {
+        "blocked_clause": "STABILITY_ONSET_NOT_REACHED",
+        "final_action": "HOLD_REST",
+        "final_target_cents": null,
+        "gate_verdict": "BLOCKED",
+        "reason": "V52B_BIRTH_BLOCKED_STABILITY_ONSET_NOT_REACHED"
+      },
+      "observation": {
+        "ask": 93,
+        "ask_depth_5": 902,
+        "ask_dwell_seconds": 0,
+        "bid": 6,
+        "bid_depth_5": 2961,
+        "last_traded": 0,
+        "spread": 87,
+        "top_ask_size": 10
+      },
+      "read_evidence": {
+        "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+        "full_post_onset_evidence": {
+          "consulted": {
+            "book_receipts": 0,
+            "comparable_book_transitions": 0,
+            "comparable_print_transitions": 0,
+            "cross_source_comparisons": 0,
+            "evidence_receipts": 0,
+            "print_receipts": 0
+          },
+          "evaluation_receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-8",
+          "evaluation_timestamp_epoch": 1784231480,
+          "first_evidence": null,
+          "fixed_horizon_seconds": null,
+          "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+          "last_directional_evidence": null,
+          "last_evidence": null,
+          "onset_timestamp_epoch": 1784234255,
+          "replacement_tuning_constant": null,
+          "span_seconds": null,
+          "sufficient": false,
+          "weighted_scores_cents": {
+            "falling": 0,
+            "rising": 0
+          },
+          "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF"
+        },
+        "passed": false,
+        "pressure_state": "RISING",
+        "quote_path_state": "SETTLED",
+        "receipt": null,
+        "state": "RISING"
+      },
+      "read_verdict": {
+        "passed": false,
+        "pressure_state": "RISING",
+        "quote_path_state": "SETTLED",
+        "receipt": null,
+        "state": "RISING"
+      }
+    },
+    "common_key": "KXATPMATCH-26JUL17RUBBAE|BAE|1784231480|KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-8",
+    "divergence_kind": "FIRST_SEMANTIC_READ_VERDICT_DIFFERENCE",
+    "event_id": "KXATPMATCH-26JUL17RUBBAE",
+    "first_downstream_decision_difference": {
+      "V52B_BLIND_FIXED_TRAIL": {
+        "decision": {
+          "blocked_clause": "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR",
+          "final_action": "HOLD_REST",
+          "final_target_cents": null,
+          "gate_verdict": "BLOCKED",
+          "reason": "V52B_BIRTH_BLOCKED_PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR"
+        },
+        "observation": {
+          "ask": 44,
+          "ask_depth_5": 871,
+          "ask_dwell_seconds": 19,
+          "bid": 38,
+          "bid_depth_5": 547,
+          "last_traded": 0,
+          "spread": 6,
+          "top_ask_size": 70
+        },
+        "read": {
+          "evidence": "BUYER_LIFT_PRINT",
+          "passed": true,
+          "pressure_state": "FALLING",
+          "quote_path_state": "RISING",
+          "receipt": "3396c53d-1c40-7679-4eaa-fcef291b1182",
+          "state": "RISING"
+        }
+      },
+      "V52C_SIGHTED_FULL_POST_ONSET": {
+        "decision": {
+          "blocked_clause": "NO_TAPE_MACHINE_READ_ABSENT",
+          "final_action": "HOLD_REST",
+          "final_target_cents": null,
+          "gate_verdict": "BLOCKED",
+          "reason": "V52B_BIRTH_BLOCKED_NO_TAPE_MACHINE_READ_ABSENT"
+        },
+        "observation": {
+          "ask": 44,
+          "ask_depth_5": 871,
+          "ask_dwell_seconds": 19,
+          "bid": 38,
+          "bid_depth_5": 547,
+          "last_traded": 0,
+          "spread": 6,
+          "top_ask_size": 70
+        },
+        "read": {
+          "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+          "full_post_onset_evidence": {
+            "consulted": {
+              "book_receipts": 1,
+              "comparable_book_transitions": 0,
+              "comparable_print_transitions": 0,
+              "cross_source_comparisons": 0,
+              "evidence_receipts": 1,
+              "print_receipts": 0
+            },
+            "evaluation_receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-192",
+            "evaluation_timestamp_epoch": 1784234255,
+            "first_evidence": {
+              "causal_rank": 1,
+              "kind": "BOOK",
+              "receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-192",
+              "timestamp_epoch": 1784234255
+            },
+            "fixed_horizon_seconds": null,
+            "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+            "last_directional_evidence": null,
+            "last_evidence": {
+              "causal_rank": 1,
+              "kind": "BOOK",
+              "receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-192",
+              "timestamp_epoch": 1784234255
+            },
+            "onset_timestamp_epoch": 1784234255,
+            "replacement_tuning_constant": null,
+            "span_seconds": 0,
+            "sufficient": false,
+            "weighted_scores_cents": {
+              "falling": 0,
+              "rising": 0
+            },
+            "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF"
+          },
+          "passed": false,
+          "pressure_state": "FALLING",
+          "quote_path_state": "SETTLED",
+          "receipt": null,
+          "state": "FALLING"
+        }
+      },
+      "common_key": "KXATPMATCH-26JUL17RUBBAE|BAE|1784234255|KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-192",
+      "leg_identity": "KXATPMATCH-26JUL17RUBBAE|BAE",
+      "receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-192",
+      "t_minus_actual_bell_seconds": null,
+      "t_minus_scheduled_seconds": 63745,
+      "timestamp_epoch": 1784234255
+    },
+    "leg_identity": "KXATPMATCH-26JUL17RUBBAE|BAE",
+    "receipt": "KXATPMATCH-26JUL17RUBBAE-BAE.csv.gz#row-8",
+    "t_minus_actual_bell_seconds": null,
+    "t_minus_scheduled_seconds": 66520,
+    "timestamp_epoch": 1784231480
+  }
+]

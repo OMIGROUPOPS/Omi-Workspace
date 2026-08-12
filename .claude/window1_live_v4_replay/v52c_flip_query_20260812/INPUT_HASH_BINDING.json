@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/V52B_BASELINE_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "bytes": 178766,
+      "sha256": "d079567179b0e2597c335c85fd5bb7aee0b89c8c3a065ceed2762c4cd5d2af85"
+    },
+    ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/V52B_BASELINE_FULL_DECISION_TRACE_30_GAMES.jsonl.gz": {
+      "bytes": 32600408,
+      "sha256": "2f9079fad5852f32f7adcd5cb70399e2eef0988c71c6cf7af60908b409648086"
+    },
+    ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/V52C_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "bytes": 178709,
+      "sha256": "abadbe5a4767a9ee6ffcacbf21b86508e9c946bc09b268010fdfe789d4a5879e"
+    },
+    ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/V52C_FULL_DECISION_TRACE_30_GAMES.jsonl.gz": {
+      "bytes": 59315058,
+      "sha256": "e6f5e3693ab72a1b037374a2c2b50ac1ad3cb4d41cb343cd3ea5358e3b11abb2"
+    }
+  },
+  "source_commit": "08ce27c0a297ed707cfd89aa29e60be223c9df7f"
+}

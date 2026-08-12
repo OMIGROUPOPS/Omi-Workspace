@@ -1845,3 +1845,28 @@ cutover is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b0fdda29e64b720f82a9b8984f3b4cc29901fd2/arb-executor/docs/research/window1/WINDOW1_V49_EVIDENCED_LEVEL_STANDING_20260810_ADDENDUM.md
+
+### 2026-08-11 - V49b FAITHFUL STAND-AT-P RATIFIED
+
+V49b reopens V49's substitution defect and implements the doctrine literally:
+after causal authority exists on a frozen doctrine leg, its rest stands at P
+itself or abstains when exact P is unlawful. It never applies bid-minus-one or
+falls back to another level. V47 remains byte-identical without doctrine
+authority. The executable ledger binds 81 games and 93 doctrine legs; all 173
+authorized actions are `AT_P`, with zero `BID_MINUS_ONE` rows and zero target
+invariant violations. Ten doctrine legs improve at or below P and no bound
+successful doctrine leg regresses.
+
+V47 reproduces at 396 market completions, frontier 52/71/142/396/396, 331
+strict completions, and +1,774 cents true book. V49b records 405 market
+completions, frontier 53/73/144/405/405, 330 strict completions, and +1,778
+cents true book. Strict print crossing remains build verification, not the
+CANON market ruler. The analytical 81-game ceiling is not claimed: nine of 81
+games complete with every doctrine leg at its own P or better. The nine new
+completions are shallow-skewed. The regret gauge is explicitly
+`OPTIMISTIC_EX_POST_TRUE_TRADE_FLOOR`; the convicted `d3db740f` surface is
+consumed by zero decisions. Two clean builds are byte-identical and forbidden
+access is zero. No deployment or live cutover is authorized.
+
+Canonical addendum:
+https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/47b51fd20f3b0b821d27b63b15a576e36103562e/arb-executor/docs/research/window1/WINDOW1_V49B_FAITHFUL_STAND_AT_P_20260811_ADDENDUM.md

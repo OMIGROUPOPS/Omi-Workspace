@@ -1,0 +1,5117 @@
+[
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 87,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12LINMAL|LIN",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1783877960,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 777,
+                "shift_timestamp_epoch": 1783877960,
+                "before_mean": 12.487773487773488,
+                "after_mean": 766.3423423423424,
+                "sse": 22373079.12483913,
+                "before_n": 777,
+                "after_n": 111
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783877960,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 777,
+                  "shift_timestamp_epoch": 1783877960,
+                  "before_mean": 12.487773487773488,
+                  "after_mean": 766.3423423423424,
+                  "sse": 22373079.12483913,
+                  "before_n": 777,
+                  "after_n": 111
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 888
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 75,
+        "fill_timestamp_epoch": 1783879305.538,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 39132,
+        "gate_posts": 2,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 34209,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 4406,
+          "FIRING_DISAGREEMENT_ACTIVE": 18
+        },
+        "post_onset_true_trade_low_cents": 29,
+        "post_onset_true_trade_low_receipt": "c7b61640-1f6f-44ec-3fde-4b765e745956"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12LINMAL|MAL",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1783878620,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 788,
+                "shift_timestamp_epoch": 1783878620,
+                "before_mean": 4.362944162436548,
+                "after_mean": 410.39,
+                "sse": 3651795.987969543,
+                "before_n": 788,
+                "after_n": 100
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783878620,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 788,
+                  "shift_timestamp_epoch": 1783878620,
+                  "before_mean": 4.362944162436548,
+                  "after_mean": 410.39,
+                  "sse": 3651795.987969543,
+                  "before_n": 788,
+                  "after_n": 100
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 888
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 12,
+        "fill_timestamp_epoch": 1783878816.087,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 51021,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 48539,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 90,
+          "FIRING_DISAGREEMENT_ACTIVE": 790,
+          "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 1594
+        },
+        "post_onset_true_trade_low_cents": 12,
+        "post_onset_true_trade_low_receipt": "e4deda55-0543-5a5e-bbab-26e33749f78c"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+    "short_event": "26JUL12POLKUH",
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783831217,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 8,
+                "shift_timestamp_epoch": 1783831217,
+                "before_mean": 68.75,
+                "after_mean": 2.44125,
+                "sse": 1960.7387500000123,
+                "before_n": 8,
+                "after_n": 800
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 8,
+                "shift_timestamp_epoch": 1783831217,
+                "before_mean": 10.4375,
+                "after_mean": 0.290625,
+                "sse": 456.39843749999807,
+                "before_n": 8,
+                "after_n": 800
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783831217,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 8,
+                  "shift_timestamp_epoch": 1783831217,
+                  "before_mean": 68.75,
+                  "after_mean": 2.44125,
+                  "sse": 1960.7387500000123,
+                  "before_n": 8,
+                  "after_n": 800
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 8,
+                  "shift_timestamp_epoch": 1783831217,
+                  "before_mean": 10.4375,
+                  "after_mean": 0.290625,
+                  "sse": 456.39843749999807,
+                  "before_n": 8,
+                  "after_n": 800
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783878077,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 789,
+                  "shift_timestamp_epoch": 1783878077,
+                  "before_mean": 0.10773130544993663,
+                  "after_mean": 5.368421052631579,
+                  "sse": 156.26389166833434,
+                  "before_n": 789,
+                  "after_n": 19
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 808
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 18,
+        "fill_timestamp_epoch": 1783879149.48,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 6223,
+        "gate_posts": 4,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 145,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 3182,
+          "NO_TAPE_MACHINE_READ_ABSENT": 2167,
+          "FIRING_DISAGREEMENT_ACTIVE": 73
+        },
+        "post_onset_true_trade_low_cents": 15,
+        "post_onset_true_trade_low_receipt": "ee8c6aaa-121a-638b-8090-c508f52faf01"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783831217,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 8,
+                "shift_timestamp_epoch": 1783831217,
+                "before_mean": 87.875,
+                "after_mean": 2.8025,
+                "sse": 2359.6700000000487,
+                "before_n": 8,
+                "after_n": 800
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 8,
+                "shift_timestamp_epoch": 1783831217,
+                "before_mean": 10.4375,
+                "after_mean": 0.290625,
+                "sse": 456.39843749999807,
+                "before_n": 8,
+                "after_n": 800
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783831217,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 8,
+                  "shift_timestamp_epoch": 1783831217,
+                  "before_mean": 87.875,
+                  "after_mean": 2.8025,
+                  "sse": 2359.6700000000487,
+                  "before_n": 8,
+                  "after_n": 800
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 8,
+                  "shift_timestamp_epoch": 1783831217,
+                  "before_mean": 10.4375,
+                  "after_mean": 0.290625,
+                  "sse": 456.39843749999807,
+                  "before_n": 8,
+                  "after_n": 800
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783873037,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 705,
+                  "shift_timestamp_epoch": 1783873037,
+                  "before_mean": 0.4397163120567376,
+                  "after_mean": 3,
+                  "sse": 521.68794326242,
+                  "before_n": 705,
+                  "after_n": 103
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 808
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 5673,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 21,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 2986,
+          "NO_TAPE_MACHINE_READ_ABSENT": 2445,
+          "FIRING_DISAGREEMENT_ACTIVE": 221
+        },
+        "post_onset_true_trade_low_cents": 80,
+        "post_onset_true_trade_low_receipt": "83be3a6a-3261-75e3-ac29-638d39cfd707"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL13WOLFEN|FEN",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783962867,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 300,
+                "shift_timestamp_epoch": 1783962867,
+                "before_mean": 2.236666666666667,
+                "after_mean": 1,
+                "sse": 70.19666666666622,
+                "before_n": 300,
+                "after_n": 267
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 300,
+                "shift_timestamp_epoch": 1783962867,
+                "before_mean": 0.13166666666666665,
+                "after_mean": 0,
+                "sse": 14.549166666666663,
+                "before_n": 300,
+                "after_n": 267
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783962867,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 300,
+                  "shift_timestamp_epoch": 1783962867,
+                  "before_mean": 2.236666666666667,
+                  "after_mean": 1,
+                  "sse": 70.19666666666622,
+                  "before_n": 300,
+                  "after_n": 267
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 300,
+                  "shift_timestamp_epoch": 1783962867,
+                  "before_mean": 0.13166666666666665,
+                  "after_mean": 0,
+                  "sse": 14.549166666666663,
+                  "before_n": 300,
+                  "after_n": 267
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783974147,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 488,
+                  "shift_timestamp_epoch": 1783974147,
+                  "before_mean": 0.8012295081967213,
+                  "after_mean": 7.455696202531645,
+                  "sse": 985.314199003942,
+                  "before_n": 488,
+                  "after_n": 79
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 567
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 5265,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 2261,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 933,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1762,
+          "FIRING_DISAGREEMENT_ACTIVE": 114
+        },
+        "post_onset_true_trade_low_cents": 22,
+        "post_onset_true_trade_low_receipt": "6b0f1240-3f55-4b6d-685f-6c816af0ffeb"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL13WOLFEN|WOL",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783962867,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 247,
+                "shift_timestamp_epoch": 1783959687,
+                "before_mean": 2.1983805668016196,
+                "after_mean": 1,
+                "sse": 67.27935222672055,
+                "before_n": 247,
+                "after_n": 320
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 300,
+                "shift_timestamp_epoch": 1783962867,
+                "before_mean": 0.13166666666666665,
+                "after_mean": 0,
+                "sse": 14.549166666666663,
+                "before_n": 300,
+                "after_n": 267
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783962867,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 247,
+                  "shift_timestamp_epoch": 1783959687,
+                  "before_mean": 2.1983805668016196,
+                  "after_mean": 1,
+                  "sse": 67.27935222672055,
+                  "before_n": 247,
+                  "after_n": 320
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 300,
+                  "shift_timestamp_epoch": 1783962867,
+                  "before_mean": 0.13166666666666665,
+                  "after_mean": 0,
+                  "sse": 14.549166666666663,
+                  "before_n": 300,
+                  "after_n": 267
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783974567,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 495,
+                  "shift_timestamp_epoch": 1783974567,
+                  "before_mean": 1.2727272727272727,
+                  "after_mean": 9.13888888888889,
+                  "sse": 1830.7929292929318,
+                  "before_n": 495,
+                  "after_n": 72
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 567
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 77,
+        "fill_timestamp_epoch": 1783977422.212,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 33192,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 14563,
+          "NO_TAPE_MACHINE_READ_ABSENT": 4207,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 14349,
+          "FIRING_DISAGREEMENT_ACTIVE": 69
+        },
+        "post_onset_true_trade_low_cents": 77,
+        "post_onset_true_trade_low_receipt": "a4aa8bdb-e752-689e-6f15-6102018cb52c"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL13YIBMAR|MAR",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1783955495,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 650,
+                "shift_timestamp_epoch": 1783955495,
+                "before_mean": 1.44,
+                "after_mean": 27.08695652173913,
+                "sse": 5987.638260869564,
+                "before_n": 650,
+                "after_n": 69
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783955495,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 650,
+                  "shift_timestamp_epoch": 1783955495,
+                  "before_mean": 1.44,
+                  "after_mean": 27.08695652173913,
+                  "sse": 5987.638260869564,
+                  "before_n": 650,
+                  "after_n": 69
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 719
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 16474,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 12366,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 2792,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1090
+        },
+        "post_onset_true_trade_low_cents": 6,
+        "post_onset_true_trade_low_receipt": "4c6d80fc-ad92-4c1b-9a06-819777871024"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL13YIBMAR|YIB",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1783958375,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 698,
+                "shift_timestamp_epoch": 1783958375,
+                "before_mean": 0.6117478510028653,
+                "after_mean": 11.142857142857142,
+                "sse": 584.3550961932134,
+                "before_n": 698,
+                "after_n": 21
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783958375,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 698,
+                  "shift_timestamp_epoch": 1783958375,
+                  "before_mean": 0.6117478510028653,
+                  "after_mean": 11.142857142857142,
+                  "sse": 584.3550961932134,
+                  "before_n": 698,
+                  "after_n": 21
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 719
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 39318,
+        "gate_posts": 4,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 34578,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 3959,
+          "NO_TAPE_MACHINE_READ_ABSENT": 583,
+          "FIRING_DISAGREEMENT_ACTIVE": 112
+        },
+        "post_onset_true_trade_low_cents": 93,
+        "post_onset_true_trade_low_receipt": "d5b75a62-7fb6-7851-257d-44d6d3a0bfb9"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784021219,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 371,
+                "shift_timestamp_epoch": 1784021219,
+                "before_mean": 0,
+                "after_mean": 1.7873563218390804,
+                "sse": 2258.264367816083,
+                "before_n": 371,
+                "after_n": 348
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784021219,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 371,
+                  "shift_timestamp_epoch": 1784021219,
+                  "before_mean": 0,
+                  "after_mean": 1.7873563218390804,
+                  "sse": 2258.264367816083,
+                  "before_n": 371,
+                  "after_n": 348
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 719
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 36473,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 2949,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 29748,
+          "NO_TAPE_MACHINE_READ_ABSENT": 3776
+        },
+        "post_onset_true_trade_low_cents": 40,
+        "post_onset_true_trade_low_receipt": "b24bd093-10ae-7fff-b81e-bcc4b7686a44"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784035319,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 606,
+                "shift_timestamp_epoch": 1784035319,
+                "before_mean": 0.599009900990099,
+                "after_mean": 6.8584070796460175,
+                "sse": 1123.2939192149322,
+                "before_n": 606,
+                "after_n": 113
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784035319,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 606,
+                  "shift_timestamp_epoch": 1784035319,
+                  "before_mean": 0.599009900990099,
+                  "after_mean": 6.8584070796460175,
+                  "sse": 1123.2939192149322,
+                  "before_n": 606,
+                  "after_n": 113
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 719
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 5940,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 4584,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 507,
+          "NO_TAPE_MACHINE_READ_ABSENT": 849
+        },
+        "post_onset_true_trade_low_cents": 59,
+        "post_onset_true_trade_low_receipt": "b2ad818b-da30-49e4-adc0-27c48fd7a725"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL15GENDE",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL15GENDE|DE",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784102815,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 204,
+                "shift_timestamp_epoch": 1784090395,
+                "before_mean": 2.906862745098039,
+                "after_mean": 1.0348360655737705,
+                "sse": 41.63817904210822,
+                "before_n": 204,
+                "after_n": 488
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 411,
+                "shift_timestamp_epoch": 1784102815,
+                "before_mean": 0.5815085158150851,
+                "after_mean": 0,
+                "sse": 45.519464720194485,
+                "before_n": 411,
+                "after_n": 281
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784102815,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 204,
+                  "shift_timestamp_epoch": 1784090395,
+                  "before_mean": 2.906862745098039,
+                  "after_mean": 1.0348360655737705,
+                  "sse": 41.63817904210822,
+                  "before_n": 204,
+                  "after_n": 488
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 411,
+                  "shift_timestamp_epoch": 1784102815,
+                  "before_mean": 0.5815085158150851,
+                  "after_mean": 0,
+                  "sse": 45.519464720194485,
+                  "before_n": 411,
+                  "after_n": 281
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784119015,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 681,
+                  "shift_timestamp_epoch": 1784119015,
+                  "before_mean": 0.7474302496328928,
+                  "after_mean": 10.727272727272727,
+                  "sse": 696.7398211186776,
+                  "before_n": 681,
+                  "after_n": 11
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 692
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 18,
+        "fill_timestamp_epoch": 1784108547.921,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 906,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 691,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 64,
+          "NO_TAPE_MACHINE_READ_ABSENT": 115,
+          "FIRING_DISAGREEMENT_ACTIVE": 1
+        },
+        "post_onset_true_trade_low_cents": 18,
+        "post_onset_true_trade_low_receipt": "a7c57374-f4f9-5ea4-2f47-87a7e305316e"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL15GENDE|GEN",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784087395,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 154,
+                "shift_timestamp_epoch": 1784087395,
+                "before_mean": 0,
+                "after_mean": 1.6245353159851301,
+                "sse": 1290.1561338289937,
+                "before_n": 154,
+                "after_n": 538
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784102815,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 191,
+                  "shift_timestamp_epoch": 1784089615,
+                  "before_mean": 2.0157068062827226,
+                  "after_mean": 1.0479041916167664,
+                  "sse": 27.803178982348886,
+                  "before_n": 191,
+                  "after_n": 501
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 411,
+                  "shift_timestamp_epoch": 1784102815,
+                  "before_mean": 0.5815085158150851,
+                  "after_mean": 0,
+                  "sse": 45.519464720194485,
+                  "before_n": 411,
+                  "after_n": 281
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784087395,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 154,
+                  "shift_timestamp_epoch": 1784087395,
+                  "before_mean": 0,
+                  "after_mean": 1.6245353159851301,
+                  "sse": 1290.1561338289937,
+                  "before_n": 154,
+                  "after_n": 538
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 692
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1839,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 285,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 367,
+          "NO_TAPE_MACHINE_READ_ABSENT": 926
+        },
+        "post_onset_true_trade_low_cents": 80,
+        "post_onset_true_trade_low_receipt": "e3019725-304d-5809-6824-b3565f2593a7"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL17GENHOU|GEN",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784286563,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 74,
+                "shift_timestamp_epoch": 1784266403,
+                "before_mean": 2.1486486486486487,
+                "after_mean": 1.1636661211129296,
+                "sse": 98.9982527535717,
+                "before_n": 74,
+                "after_n": 611
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 410,
+                "shift_timestamp_epoch": 1784286563,
+                "before_mean": 1.5902439024390245,
+                "after_mean": 0.22181818181818183,
+                "sse": 327.1300665188419,
+                "before_n": 410,
+                "after_n": 275
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784286563,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 74,
+                  "shift_timestamp_epoch": 1784266403,
+                  "before_mean": 2.1486486486486487,
+                  "after_mean": 1.1636661211129296,
+                  "sse": 98.9982527535717,
+                  "before_n": 74,
+                  "after_n": 611
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 410,
+                  "shift_timestamp_epoch": 1784286563,
+                  "before_mean": 1.5902439024390245,
+                  "after_mean": 0.22181818181818183,
+                  "sse": 327.1300665188419,
+                  "before_n": 410,
+                  "after_n": 275
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784297783,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 597,
+                  "shift_timestamp_epoch": 1784297783,
+                  "before_mean": 1.814070351758794,
+                  "after_mean": 16.34090909090909,
+                  "sse": 3276.134536317956,
+                  "before_n": 597,
+                  "after_n": 88
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 685
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 3022,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 2295,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 362,
+          "NO_TAPE_MACHINE_READ_ABSENT": 365
+        },
+        "post_onset_true_trade_low_cents": 53,
+        "post_onset_true_trade_low_receipt": "4aae2077-5f55-4832-facc-25b6be3e54f5"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL17GENHOU|HOU",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784293763,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 530,
+                "shift_timestamp_epoch": 1784293763,
+                "before_mean": 0.4528301886792453,
+                "after_mean": 4.27741935483871,
+                "sse": 526.3917224589183,
+                "before_n": 530,
+                "after_n": 155
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784293763,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 530,
+                  "shift_timestamp_epoch": 1784293763,
+                  "before_mean": 0.4528301886792453,
+                  "after_mean": 4.27741935483871,
+                  "sse": 526.3917224589183,
+                  "before_n": 530,
+                  "after_n": 155
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 685
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1786,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 1379,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 163,
+          "NO_TAPE_MACHINE_READ_ABSENT": 244
+        },
+        "post_onset_true_trade_low_cents": 48,
+        "post_onset_true_trade_low_receipt": "1e5bb628-6a2d-492d-ea29-6f30c465ff79"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL17PERSAN|PER",
+        "onset": {
+          "selected": null,
+          "candidates": {
+            "A": null,
+            "B": null
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": "TRADE_CADENCE_DID_NOT_INCREASE"
+          },
+          "trajectory_rows": 707
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 3970,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 3970
+        },
+        "post_onset_true_trade_low_cents": null,
+        "post_onset_true_trade_low_receipt": null
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL17PERSAN|SAN",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784303563,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 638,
+                "shift_timestamp_epoch": 1784303563,
+                "before_mean": 0.7931034482758621,
+                "after_mean": 3.8260869565217392,
+                "sse": 1094.6026986506756,
+                "before_n": 638,
+                "after_n": 69
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784303563,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 638,
+                  "shift_timestamp_epoch": 1784303563,
+                  "before_mean": 0.7931034482758621,
+                  "after_mean": 3.8260869565217392,
+                  "sse": 1094.6026986506756,
+                  "before_n": 638,
+                  "after_n": 69
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 707
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 3101,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 2584,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 389,
+          "NO_TAPE_MACHINE_READ_ABSENT": 128
+        },
+        "post_onset_true_trade_low_cents": 60,
+        "post_onset_true_trade_low_receipt": "f099e3ce-f85d-5a66-5728-6c68bf276aaf"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL18FUEBON",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 98,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL18FUEBON|BON",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784346651,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 10,
+                "shift_timestamp_epoch": 1784346651,
+                "before_mean": 67.8,
+                "after_mean": 1.5904486251808974,
+                "sse": 1358.6969609261914,
+                "before_n": 10,
+                "after_n": 691
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 10,
+                "shift_timestamp_epoch": 1784346651,
+                "before_mean": 5.45,
+                "after_mean": 0.28002894356005786,
+                "sse": 192.28939942112908,
+                "before_n": 10,
+                "after_n": 691
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784346651,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 10,
+                  "shift_timestamp_epoch": 1784346651,
+                  "before_mean": 67.8,
+                  "after_mean": 1.5904486251808974,
+                  "sse": 1358.6969609261914,
+                  "before_n": 10,
+                  "after_n": 691
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 10,
+                  "shift_timestamp_epoch": 1784346651,
+                  "before_mean": 5.45,
+                  "after_mean": 0.28002894356005786,
+                  "sse": 192.28939942112908,
+                  "before_n": 10,
+                  "after_n": 691
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784369031,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 383,
+                  "shift_timestamp_epoch": 1784369031,
+                  "before_mean": 0.8537859007832899,
+                  "after_mean": 3.7641509433962264,
+                  "sse": 1857.1233311985811,
+                  "before_n": 383,
+                  "after_n": 318
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 701
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 70,
+        "fill_timestamp_epoch": 1784376444.608,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 1622,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 328,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 442,
+          "NO_TAPE_MACHINE_READ_ABSENT": 755,
+          "FIRING_DISAGREEMENT_ACTIVE": 8
+        },
+        "post_onset_true_trade_low_cents": 70,
+        "post_onset_true_trade_low_receipt": "22495c8a-c8d9-5352-c3e0-a679bf7ff11c"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL18FUEBON|FUE",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784346651,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 10,
+                "shift_timestamp_epoch": 1784346651,
+                "before_mean": 51.9,
+                "after_mean": 1.3632416787264834,
+                "sse": 2022.726338639656,
+                "before_n": 10,
+                "after_n": 691
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 10,
+                "shift_timestamp_epoch": 1784346651,
+                "before_mean": 5.45,
+                "after_mean": 0.28002894356005786,
+                "sse": 192.28939942112908,
+                "before_n": 10,
+                "after_n": 691
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784346651,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 10,
+                  "shift_timestamp_epoch": 1784346651,
+                  "before_mean": 51.9,
+                  "after_mean": 1.3632416787264834,
+                  "sse": 2022.726338639656,
+                  "before_n": 10,
+                  "after_n": 691
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 10,
+                  "shift_timestamp_epoch": 1784346651,
+                  "before_mean": 5.45,
+                  "after_mean": 0.28002894356005786,
+                  "sse": 192.28939942112908,
+                  "before_n": 10,
+                  "after_n": 691
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784384511,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 641,
+                  "shift_timestamp_epoch": 1784384511,
+                  "before_mean": 1.7925117004680187,
+                  "after_mean": 11.05,
+                  "sse": 1890.2540561622523,
+                  "before_n": 641,
+                  "after_n": 60
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 701
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 28,
+        "fill_timestamp_epoch": 1784384479.71,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 2955,
+        "gate_posts": 3,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 253,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 674,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1554
+        },
+        "post_onset_true_trade_low_cents": 28,
+        "post_onset_true_trade_low_receipt": "da4e31a0-c629-47d2-f44e-015df8439b62"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+    "short_event": "26JUL19ARSMAR",
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784448396,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 231,
+                "shift_timestamp_epoch": 1784448396,
+                "before_mean": 0,
+                "after_mean": 0.7724425887265136,
+                "sse": 534.1962421711906,
+                "before_n": 231,
+                "after_n": 479
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784456556,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 231,
+                  "shift_timestamp_epoch": 1784448396,
+                  "before_mean": 77.96103896103897,
+                  "after_mean": 4.227557411273486,
+                  "sse": 7896.84559282058,
+                  "before_n": 231,
+                  "after_n": 479
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 367,
+                  "shift_timestamp_epoch": 1784456556,
+                  "before_mean": 2.517711171662125,
+                  "after_mean": 0.6909620991253644,
+                  "sse": 606.8768598914837,
+                  "before_n": 367,
+                  "after_n": 343
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784448396,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 231,
+                  "shift_timestamp_epoch": 1784448396,
+                  "before_mean": 0,
+                  "after_mean": 0.7724425887265136,
+                  "sse": 534.1962421711906,
+                  "before_n": 231,
+                  "after_n": 479
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 710
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1366,
+        "gate_posts": 33,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 47,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 431,
+          "NO_TAPE_MACHINE_READ_ABSENT": 478,
+          "FIRING_DISAGREEMENT_ACTIVE": 127
+        },
+        "post_onset_true_trade_low_cents": 35,
+        "post_onset_true_trade_low_receipt": "d2315a52-f03f-4dd2-9c14-b12859470224"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784456556,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 231,
+                "shift_timestamp_epoch": 1784448396,
+                "before_mean": 77.18181818181819,
+                "after_mean": 3.7265135699373695,
+                "sse": 10961.53691402547,
+                "before_n": 231,
+                "after_n": 479
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 367,
+                "shift_timestamp_epoch": 1784456556,
+                "before_mean": 2.517711171662125,
+                "after_mean": 0.6909620991253644,
+                "sse": 606.8768598914837,
+                "before_n": 367,
+                "after_n": 343
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784456556,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 231,
+                  "shift_timestamp_epoch": 1784448396,
+                  "before_mean": 77.18181818181819,
+                  "after_mean": 3.7265135699373695,
+                  "sse": 10961.53691402547,
+                  "before_n": 231,
+                  "after_n": 479
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 367,
+                  "shift_timestamp_epoch": 1784456556,
+                  "before_mean": 2.517711171662125,
+                  "after_mean": 0.6909620991253644,
+                  "sse": 606.8768598914837,
+                  "before_n": 367,
+                  "after_n": 343
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784475096,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 676,
+                  "shift_timestamp_epoch": 1784475096,
+                  "before_mean": 0.17899408284023668,
+                  "after_mean": 4.823529411764706,
+                  "sse": 220.28289244691993,
+                  "before_n": 676,
+                  "after_n": 34
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 710
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 60,
+        "fill_timestamp_epoch": 1784475080.668,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 1041,
+        "gate_posts": 14,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 385,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 171,
+          "NO_TAPE_MACHINE_READ_ABSENT": 313,
+          "FIRING_DISAGREEMENT_ACTIVE": 30
+        },
+        "post_onset_true_trade_low_cents": 60,
+        "post_onset_true_trade_low_receipt": "46a39f4f-a857-501e-78d3-8723619708fc"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MARCOL|COL",
+        "onset": {
+          "selected": null,
+          "candidates": {
+            "A": null,
+            "B": null
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": "TRADE_CADENCE_DID_NOT_INCREASE"
+          },
+          "trajectory_rows": 425
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 339,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 339
+        },
+        "post_onset_true_trade_low_cents": null,
+        "post_onset_true_trade_low_receipt": null
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MARCOL|MAR",
+        "onset": {
+          "selected": null,
+          "candidates": {
+            "A": null,
+            "B": null
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": "TRADE_CADENCE_DID_NOT_INCREASE"
+          },
+          "trajectory_rows": 425
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 207,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 207
+        },
+        "post_onset_true_trade_low_cents": null,
+        "post_onset_true_trade_low_receipt": null
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL19SINMAT|MAT",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784435381,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 428,
+                "shift_timestamp_epoch": 1784435381,
+                "before_mean": 0,
+                "after_mean": 1.3177842565597668,
+                "sse": 258.3615160349854,
+                "before_n": 428,
+                "after_n": 343
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784435381,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 428,
+                  "shift_timestamp_epoch": 1784435381,
+                  "before_mean": 0,
+                  "after_mean": 1.3177842565597668,
+                  "sse": 258.3615160349854,
+                  "before_n": 428,
+                  "after_n": 343
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 771
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1936,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 738,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 843,
+          "NO_TAPE_MACHINE_READ_ABSENT": 355
+        },
+        "post_onset_true_trade_low_cents": 66,
+        "post_onset_true_trade_low_receipt": "001ecdb5-80a2-6cb3-8d2c-6192cfec60f4"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL19SINMAT|SIN",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784454941,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 754,
+                "shift_timestamp_epoch": 1784454941,
+                "before_mean": 0.29045092838196285,
+                "after_mean": 8,
+                "sse": 371.39124668434613,
+                "before_n": 754,
+                "after_n": 17
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784454941,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 754,
+                  "shift_timestamp_epoch": 1784454941,
+                  "before_mean": 0.29045092838196285,
+                  "after_mean": 8,
+                  "sse": 371.39124668434613,
+                  "before_n": 754,
+                  "after_n": 17
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 771
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1452,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 1408,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 19,
+          "NO_TAPE_MACHINE_READ_ABSENT": 25
+        },
+        "post_onset_true_trade_low_cents": null,
+        "post_onset_true_trade_low_receipt": null
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ALKFIC|ALK",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784520768,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 110,
+                "shift_timestamp_epoch": 1784520768,
+                "before_mean": 0.6727272727272727,
+                "after_mean": 33.92429577464789,
+                "sse": 626919.9629001282,
+                "before_n": 110,
+                "after_n": 568
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784534868,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 115,
+                  "shift_timestamp_epoch": 1784521068,
+                  "before_mean": 4.321739130434783,
+                  "after_mean": 1.5150976909413854,
+                  "sse": 669.7173218009149,
+                  "before_n": 115,
+                  "after_n": 563
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 345,
+                  "shift_timestamp_epoch": 1784534868,
+                  "before_mean": 1.0768115942028986,
+                  "after_mean": 0.11261261261261261,
+                  "sse": 300.2415197806507,
+                  "before_n": 345,
+                  "after_n": 333
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784520768,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 110,
+                  "shift_timestamp_epoch": 1784520768,
+                  "before_mean": 0.6727272727272727,
+                  "after_mean": 33.92429577464789,
+                  "sse": 626919.9629001282,
+                  "before_n": 110,
+                  "after_n": 568
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 678
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 53,
+        "fill_timestamp_epoch": 1784536070.277,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 19698,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 317,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 18782,
+          "NO_TAPE_MACHINE_READ_ABSENT": 566,
+          "FIRING_DISAGREEMENT_ACTIVE": 30
+        },
+        "post_onset_true_trade_low_cents": 52,
+        "post_onset_true_trade_low_receipt": "5af1d3e2-5a04-678e-3098-de33803ade67"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ALKFIC|FIC",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784534868,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 339,
+                "shift_timestamp_epoch": 1784534508,
+                "before_mean": 3.206489675516224,
+                "after_mean": 1.2595870206489677,
+                "sse": 322.70206489675627,
+                "before_n": 339,
+                "after_n": 339
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 345,
+                "shift_timestamp_epoch": 1784534868,
+                "before_mean": 1.0768115942028986,
+                "after_mean": 0.11261261261261261,
+                "sse": 300.2415197806507,
+                "before_n": 345,
+                "after_n": 333
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784534868,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 339,
+                  "shift_timestamp_epoch": 1784534508,
+                  "before_mean": 3.206489675516224,
+                  "after_mean": 1.2595870206489677,
+                  "sse": 322.70206489675627,
+                  "before_n": 339,
+                  "after_n": 339
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 345,
+                  "shift_timestamp_epoch": 1784534868,
+                  "before_mean": 1.0768115942028986,
+                  "after_mean": 0.11261261261261261,
+                  "sse": 300.2415197806507,
+                  "before_n": 345,
+                  "after_n": 333
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784548128,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 566,
+                  "shift_timestamp_epoch": 1784548128,
+                  "before_mean": 2.722614840989399,
+                  "after_mean": 8.267857142857142,
+                  "sse": 2383.4148157496174,
+                  "before_n": 566,
+                  "after_n": 112
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 678
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 17002,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 15938,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 58,
+          "NO_TAPE_MACHINE_READ_ABSENT": 343
+        },
+        "post_onset_true_trade_low_cents": 46,
+        "post_onset_true_trade_low_receipt": "a6ff4643-5918-5826-2900-93b4d4bf26ea"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 99,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ZHESHE|SHE",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784539277,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 217,
+                "shift_timestamp_epoch": 1784537417,
+                "before_mean": 3.6313364055299537,
+                "after_mean": 1.206896551724138,
+                "sse": 585.679326235502,
+                "before_n": 217,
+                "after_n": 580
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 248,
+                "shift_timestamp_epoch": 1784539277,
+                "before_mean": 1.0544354838709677,
+                "after_mean": 0.23497267759562843,
+                "sse": 121.70364555790549,
+                "before_n": 248,
+                "after_n": 549
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784539277,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 217,
+                  "shift_timestamp_epoch": 1784537417,
+                  "before_mean": 3.6313364055299537,
+                  "after_mean": 1.206896551724138,
+                  "sse": 585.679326235502,
+                  "before_n": 217,
+                  "after_n": 580
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 248,
+                  "shift_timestamp_epoch": 1784539277,
+                  "before_mean": 1.0544354838709677,
+                  "after_mean": 0.23497267759562843,
+                  "sse": 121.70364555790549,
+                  "before_n": 248,
+                  "after_n": 549
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784568497,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 735,
+                  "shift_timestamp_epoch": 1784568497,
+                  "before_mean": 1.6938775510204083,
+                  "after_mean": 31.016129032258064,
+                  "sse": 8319.10631994735,
+                  "before_n": 735,
+                  "after_n": 62
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 797
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 22,
+        "fill_timestamp_epoch": 1784560566.942,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 1290,
+        "gate_posts": 3,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 609,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 108,
+          "NO_TAPE_MACHINE_READ_ABSENT": 489
+        },
+        "post_onset_true_trade_low_cents": 22,
+        "post_onset_true_trade_low_receipt": "c29347c4-5616-755d-8c15-6e49c2a78538"
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ZHESHE|ZHE",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784539277,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 63,
+                "shift_timestamp_epoch": 1784528177,
+                "before_mean": 8.88888888888889,
+                "after_mean": 1.2874659400544959,
+                "sse": 178.56690887072378,
+                "before_n": 63,
+                "after_n": 734
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 248,
+                "shift_timestamp_epoch": 1784539277,
+                "before_mean": 1.0544354838709677,
+                "after_mean": 0.23497267759562843,
+                "sse": 121.70364555790549,
+                "before_n": 248,
+                "after_n": 549
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784539277,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 63,
+                  "shift_timestamp_epoch": 1784528177,
+                  "before_mean": 8.88888888888889,
+                  "after_mean": 1.2874659400544959,
+                  "sse": 178.56690887072378,
+                  "before_n": 63,
+                  "after_n": 734
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 248,
+                  "shift_timestamp_epoch": 1784539277,
+                  "before_mean": 1.0544354838709677,
+                  "after_mean": 0.23497267759562843,
+                  "sse": 121.70364555790549,
+                  "before_n": 248,
+                  "after_n": 549
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784567837,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 724,
+                  "shift_timestamp_epoch": 1784567837,
+                  "before_mean": 7.895027624309392,
+                  "after_mean": 70.24657534246575,
+                  "sse": 58729.58374328315,
+                  "before_n": 724,
+                  "after_n": 73
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 797
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 77,
+        "fill_timestamp_epoch": 1784551987.162,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 1284,
+        "gate_posts": 2,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 686,
+          "NO_TAPE_MACHINE_READ_ABSENT": 118,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 99,
+          "FIRING_DISAGREEMENT_ACTIVE": 349
+        },
+        "post_onset_true_trade_low_cents": 77,
+        "post_onset_true_trade_low_receipt": "38ca70d1-f045-771c-f73a-56979dfee426"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL12CECOLI",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 99,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL12CECOLI|CEC",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783846901,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 27,
+                "shift_timestamp_epoch": 1783801961,
+                "before_mean": 87.18518518518519,
+                "after_mean": -0.11180124223602485,
+                "sse": 11445.974695192035,
+                "before_n": 27,
+                "after_n": 1288
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 776,
+                "shift_timestamp_epoch": 1783846901,
+                "before_mean": 1.2777061855670102,
+                "after_mean": 0.10853432282003711,
+                "sse": 745.805059125312,
+                "before_n": 776,
+                "after_n": 539
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783846901,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 27,
+                  "shift_timestamp_epoch": 1783801961,
+                  "before_mean": 87.18518518518519,
+                  "after_mean": -0.11180124223602485,
+                  "sse": 11445.974695192035,
+                  "before_n": 27,
+                  "after_n": 1288
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 776,
+                  "shift_timestamp_epoch": 1783846901,
+                  "before_mean": 1.2777061855670102,
+                  "after_mean": 0.10853432282003711,
+                  "sse": 745.805059125312,
+                  "before_n": 776,
+                  "after_n": 539
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783870181,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 1164,
+                  "shift_timestamp_epoch": 1783870181,
+                  "before_mean": 4.487113402061856,
+                  "after_mean": 276.13907284768214,
+                  "sse": 6061160.886171225,
+                  "before_n": 1164,
+                  "after_n": 151
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1315
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 76,
+        "fill_timestamp_epoch": 1783869724.799,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 35505,
+        "gate_posts": 16,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 484,
+          "NO_TAPE_MACHINE_READ_ABSENT": 2724,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 1401,
+          "FIRING_DISAGREEMENT_ACTIVE": 4471
+        },
+        "post_onset_true_trade_low_cents": 75,
+        "post_onset_true_trade_low_receipt": "bc1bb045-5de7-526b-febd-fa484ca1afed"
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL12CECOLI|OLI",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783846901,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 27,
+                "shift_timestamp_epoch": 1783801961,
+                "before_mean": 87.18518518518519,
+                "after_mean": 0.827639751552795,
+                "sse": 6459.810098918759,
+                "before_n": 27,
+                "after_n": 1288
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 776,
+                "shift_timestamp_epoch": 1783846901,
+                "before_mean": 1.2777061855670102,
+                "after_mean": 0.10853432282003711,
+                "sse": 745.805059125312,
+                "before_n": 776,
+                "after_n": 539
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783846901,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 27,
+                  "shift_timestamp_epoch": 1783801961,
+                  "before_mean": 87.18518518518519,
+                  "after_mean": 0.827639751552795,
+                  "sse": 6459.810098918759,
+                  "before_n": 27,
+                  "after_n": 1288
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 776,
+                  "shift_timestamp_epoch": 1783846901,
+                  "before_mean": 1.2777061855670102,
+                  "after_mean": 0.10853432282003711,
+                  "sse": 745.805059125312,
+                  "before_n": 776,
+                  "after_n": 539
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783870181,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 1164,
+                  "shift_timestamp_epoch": 1783870181,
+                  "before_mean": 2.979381443298969,
+                  "after_mean": 241.27152317880794,
+                  "sse": 4379145.37270431,
+                  "before_n": 1164,
+                  "after_n": 151
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1315
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 23,
+        "fill_timestamp_epoch": 1783868712.199,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 10527,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 544,
+          "NO_TAPE_MACHINE_READ_ABSENT": 7623,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 335,
+          "FIRING_DISAGREEMENT_ACTIVE": 1686
+        },
+        "post_onset_true_trade_low_cents": 23,
+        "post_onset_true_trade_low_receipt": "811fc3ef-e2b0-50f7-5dc4-1b5f71534d3a"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL13SANDAN",
+    "short_event": "26JUL13SANDAN",
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783895430,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 158,
+                "shift_timestamp_epoch": 1783880070,
+                "before_mean": 87.15822784810126,
+                "after_mean": 0.9346781940441883,
+                "sse": 2768.6024209924713,
+                "before_n": 158,
+                "after_n": 1041
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 414,
+                "shift_timestamp_epoch": 1783895430,
+                "before_mean": 1.171497584541063,
+                "after_mean": 0.25286624203821656,
+                "sse": 288.8797224529982,
+                "before_n": 414,
+                "after_n": 785
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783895430,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 158,
+                  "shift_timestamp_epoch": 1783880070,
+                  "before_mean": 87.15822784810126,
+                  "after_mean": 0.9346781940441883,
+                  "sse": 2768.6024209924713,
+                  "before_n": 158,
+                  "after_n": 1041
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 414,
+                  "shift_timestamp_epoch": 1783895430,
+                  "before_mean": 1.171497584541063,
+                  "after_mean": 0.25286624203821656,
+                  "sse": 288.8797224529982,
+                  "before_n": 414,
+                  "after_n": 785
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783913310,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 712,
+                  "shift_timestamp_epoch": 1783913310,
+                  "before_mean": 2.127808988764045,
+                  "after_mean": 9.209445585215606,
+                  "sse": 27514.005932330474,
+                  "before_n": 712,
+                  "after_n": 487
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1199
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 77,
+        "fill_timestamp_epoch": 1783934665.641,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 4128,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 587,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 849,
+          "NO_TAPE_MACHINE_READ_ABSENT": 2204,
+          "FIRING_DISAGREEMENT_ACTIVE": 42
+        },
+        "post_onset_true_trade_low_cents": 77,
+        "post_onset_true_trade_low_receipt": "cf1e6118-5912-521e-e3b9-367a3c23970a"
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783895430,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 158,
+                "shift_timestamp_epoch": 1783880070,
+                "before_mean": 87.15822784810126,
+                "after_mean": 0.7896253602305475,
+                "sse": 3345.9722576879703,
+                "before_n": 158,
+                "after_n": 1041
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 414,
+                "shift_timestamp_epoch": 1783895430,
+                "before_mean": 1.171497584541063,
+                "after_mean": 0.25286624203821656,
+                "sse": 288.8797224529982,
+                "before_n": 414,
+                "after_n": 785
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783895430,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 158,
+                  "shift_timestamp_epoch": 1783880070,
+                  "before_mean": 87.15822784810126,
+                  "after_mean": 0.7896253602305475,
+                  "sse": 3345.9722576879703,
+                  "before_n": 158,
+                  "after_n": 1041
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 414,
+                  "shift_timestamp_epoch": 1783895430,
+                  "before_mean": 1.171497584541063,
+                  "after_mean": 0.25286624203821656,
+                  "sse": 288.8797224529982,
+                  "before_n": 414,
+                  "after_n": 785
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783934730,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 1069,
+                  "shift_timestamp_epoch": 1783934730,
+                  "before_mean": 1.4050514499532274,
+                  "after_mean": 6.792307692307692,
+                  "sse": 2973.0050298625806,
+                  "before_n": 1069,
+                  "after_n": 130
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1199
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 5463,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 578,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 1399,
+          "NO_TAPE_MACHINE_READ_ABSENT": 2901
+        },
+        "post_onset_true_trade_low_cents": 22,
+        "post_onset_true_trade_low_receipt": "8238dc11-f42f-5730-c81e-cceae4ae49ae"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL16FARRUU",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL16FARRUU|FAR",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784121641,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 19,
+                "shift_timestamp_epoch": 1784106101,
+                "before_mean": 2.6315789473684212,
+                "after_mean": 1.0602910602910602,
+                "sse": 102.1757303862554,
+                "before_n": 19,
+                "after_n": 1443
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 278,
+                "shift_timestamp_epoch": 1784121641,
+                "before_mean": 2.8741007194244603,
+                "after_mean": 0.41047297297297297,
+                "sse": 330.60366031499007,
+                "before_n": 278,
+                "after_n": 1184
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784121641,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 19,
+                  "shift_timestamp_epoch": 1784106101,
+                  "before_mean": 2.6315789473684212,
+                  "after_mean": 1.0602910602910602,
+                  "sse": 102.1757303862554,
+                  "before_n": 19,
+                  "after_n": 1443
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 278,
+                  "shift_timestamp_epoch": 1784121641,
+                  "before_mean": 2.8741007194244603,
+                  "after_mean": 0.41047297297297297,
+                  "sse": 330.60366031499007,
+                  "before_n": 278,
+                  "after_n": 1184
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784168561,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 1060,
+                  "shift_timestamp_epoch": 1784168561,
+                  "before_mean": 4.584905660377358,
+                  "after_mean": 19.915422885572138,
+                  "sse": 52518.482868675586,
+                  "before_n": 1060,
+                  "after_n": 402
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1462
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 11806,
+        "gate_posts": 2,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 441,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 3,
+          "NO_TAPE_MACHINE_READ_ABSENT": 6184
+        },
+        "post_onset_true_trade_low_cents": 20,
+        "post_onset_true_trade_low_receipt": "ac5e2d91-7cf9-676a-35a1-debe6036b7b3"
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL16FARRUU|RUU",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784121641,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 19,
+                "shift_timestamp_epoch": 1784106101,
+                "before_mean": 8.789473684210526,
+                "after_mean": 1.110880110880111,
+                "sse": 267.41707699602284,
+                "before_n": 19,
+                "after_n": 1443
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 278,
+                "shift_timestamp_epoch": 1784121641,
+                "before_mean": 2.8741007194244603,
+                "after_mean": 0.41047297297297297,
+                "sse": 330.60366031499007,
+                "before_n": 278,
+                "after_n": 1184
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784121641,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 19,
+                  "shift_timestamp_epoch": 1784106101,
+                  "before_mean": 8.789473684210526,
+                  "after_mean": 1.110880110880111,
+                  "sse": 267.41707699602284,
+                  "before_n": 19,
+                  "after_n": 1443
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 278,
+                  "shift_timestamp_epoch": 1784121641,
+                  "before_mean": 2.8741007194244603,
+                  "after_mean": 0.41047297297297297,
+                  "sse": 330.60366031499007,
+                  "before_n": 278,
+                  "after_n": 1184
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784151101,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 769,
+                  "shift_timestamp_epoch": 1784151101,
+                  "before_mean": 7.568270481144343,
+                  "after_mean": 44.26406926406926,
+                  "sse": 447521.3411244141,
+                  "before_n": 769,
+                  "after_n": 693
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1462
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 81,
+        "fill_timestamp_epoch": 1784128276.399,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 1970,
+        "gate_posts": 21,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 479,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 234,
+          "FIRING_DISAGREEMENT_ACTIVE": 480,
+          "NO_TAPE_MACHINE_READ_ABSENT": 683
+        },
+        "post_onset_true_trade_low_cents": 79,
+        "post_onset_true_trade_low_receipt": "e8084bf5-d7fa-45a0-0d9e-3d339b3ce9cb"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL16MERDRO",
+    "short_event": "26JUL16MERDRO",
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784156734,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 83,
+                "shift_timestamp_epoch": 1784153734,
+                "before_mean": 69.89156626506023,
+                "after_mean": 1.0315789473684212,
+                "sse": 35691.076727964406,
+                "before_n": 83,
+                "after_n": 950
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 133,
+                "shift_timestamp_epoch": 1784156734,
+                "before_mean": 1.6090225563909775,
+                "after_mean": 0.48055555555555557,
+                "sse": 274.0788951545531,
+                "before_n": 133,
+                "after_n": 900
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784156734,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 83,
+                  "shift_timestamp_epoch": 1784153734,
+                  "before_mean": 69.89156626506023,
+                  "after_mean": 1.0315789473684212,
+                  "sse": 35691.076727964406,
+                  "before_n": 83,
+                  "after_n": 950
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 133,
+                  "shift_timestamp_epoch": 1784156734,
+                  "before_mean": 1.6090225563909775,
+                  "after_mean": 0.48055555555555557,
+                  "sse": 274.0788951545531,
+                  "before_n": 133,
+                  "after_n": 900
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784207794,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 984,
+                  "shift_timestamp_epoch": 1784207794,
+                  "before_mean": 10.504065040650406,
+                  "after_mean": 81.14285714285714,
+                  "sse": 83369.98373983758,
+                  "before_n": 984,
+                  "after_n": 49
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1033
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 49,
+        "fill_timestamp_epoch": 1784158597.805,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 3904,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 3670,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 99,
+          "NO_TAPE_MACHINE_READ_ABSENT": 105,
+          "FIRING_DISAGREEMENT_ACTIVE": 5
+        },
+        "post_onset_true_trade_low_cents": 49,
+        "post_onset_true_trade_low_receipt": "509e7c00-7492-7024-9576-cb09e738b395"
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784156734,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 83,
+                "shift_timestamp_epoch": 1784153734,
+                "before_mean": 68.71084337349397,
+                "after_mean": 0.8326315789473684,
+                "sse": 37067.44866201648,
+                "before_n": 83,
+                "after_n": 950
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 133,
+                "shift_timestamp_epoch": 1784156734,
+                "before_mean": 1.6090225563909775,
+                "after_mean": 0.48055555555555557,
+                "sse": 274.0788951545531,
+                "before_n": 133,
+                "after_n": 900
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784156734,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 83,
+                  "shift_timestamp_epoch": 1784153734,
+                  "before_mean": 68.71084337349397,
+                  "after_mean": 0.8326315789473684,
+                  "sse": 37067.44866201648,
+                  "before_n": 83,
+                  "after_n": 950
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 133,
+                  "shift_timestamp_epoch": 1784156734,
+                  "before_mean": 1.6090225563909775,
+                  "after_mean": 0.48055555555555557,
+                  "sse": 274.0788951545531,
+                  "before_n": 133,
+                  "after_n": 900
+                }
+              }
+            },
+            "B": null
+          },
+          "rejected": {
+            "A": null,
+            "B": "TRADE_CADENCE_DID_NOT_INCREASE"
+          },
+          "trajectory_rows": 1033
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 7194,
+        "gate_posts": 2,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 1076,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 233,
+          "NO_TAPE_MACHINE_READ_ABSENT": 637
+        },
+        "post_onset_true_trade_low_cents": 48,
+        "post_onset_true_trade_low_receipt": "35535f80-265e-51c9-69a1-0fdb5cea959c"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL17RUBBAE",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 99,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL17RUBBAE|BAE",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784234255,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 36,
+                "shift_timestamp_epoch": 1784232875,
+                "before_mean": 72.47222222222223,
+                "after_mean": 1.7343412526997841,
+                "sse": 18919.62017038627,
+                "before_n": 36,
+                "after_n": 926
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 59,
+                "shift_timestamp_epoch": 1784234255,
+                "before_mean": 12.661016949152541,
+                "after_mean": 0.4274640088593577,
+                "sse": 10717.219231563344,
+                "before_n": 59,
+                "after_n": 903
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784234255,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 36,
+                  "shift_timestamp_epoch": 1784232875,
+                  "before_mean": 72.47222222222223,
+                  "after_mean": 1.7343412526997841,
+                  "sse": 18919.62017038627,
+                  "before_n": 36,
+                  "after_n": 926
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 59,
+                  "shift_timestamp_epoch": 1784234255,
+                  "before_mean": 12.661016949152541,
+                  "after_mean": 0.4274640088593577,
+                  "sse": 10717.219231563344,
+                  "before_n": 59,
+                  "after_n": 903
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784255075,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 406,
+                  "shift_timestamp_epoch": 1784255075,
+                  "before_mean": 3.7832512315270934,
+                  "after_mean": 13.338129496402878,
+                  "sse": 16369.357763050673,
+                  "before_n": 406,
+                  "after_n": 556
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 962
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 37,
+        "fill_timestamp_epoch": 1784263616.18,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 3260,
+        "gate_posts": 6,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 190,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 114,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1359
+        },
+        "post_onset_true_trade_low_cents": 37,
+        "post_onset_true_trade_low_receipt": "d836e642-1c48-6649-90e8-af4893c79106"
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL17RUBBAE|RUB",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784234255,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 20,
+                "shift_timestamp_epoch": 1784231915,
+                "before_mean": 87.65,
+                "after_mean": 1.921443736730361,
+                "sse": 18804.736836519198,
+                "before_n": 20,
+                "after_n": 942
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 59,
+                "shift_timestamp_epoch": 1784234255,
+                "before_mean": 12.661016949152541,
+                "after_mean": 0.4274640088593577,
+                "sse": 10717.219231563344,
+                "before_n": 59,
+                "after_n": 903
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784234255,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 20,
+                  "shift_timestamp_epoch": 1784231915,
+                  "before_mean": 87.65,
+                  "after_mean": 1.921443736730361,
+                  "sse": 18804.736836519198,
+                  "before_n": 20,
+                  "after_n": 942
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 59,
+                  "shift_timestamp_epoch": 1784234255,
+                  "before_mean": 12.661016949152541,
+                  "after_mean": 0.4274640088593577,
+                  "sse": 10717.219231563344,
+                  "before_n": 59,
+                  "after_n": 903
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784256335,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 427,
+                  "shift_timestamp_epoch": 1784256335,
+                  "before_mean": 13.56440281030445,
+                  "after_mean": 29.3196261682243,
+                  "sse": 99619.32284795024,
+                  "before_n": 427,
+                  "after_n": 535
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 962
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 62,
+        "fill_timestamp_epoch": 1784241939.381,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 547,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 85,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 140,
+          "NO_TAPE_MACHINE_READ_ABSENT": 113,
+          "FIRING_DISAGREEMENT_ACTIVE": 161
+        },
+        "post_onset_true_trade_low_cents": 61,
+        "post_onset_true_trade_low_receipt": "0ff3aa42-9875-6333-0649-b65cdd4ba885"
+      }
+    ]
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL19PELBUE",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 99,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL19PELBUE|BUE",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784395432,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 52,
+                "shift_timestamp_epoch": 1784395072,
+                "before_mean": 52.51923076923077,
+                "after_mean": 1.3984962406015038,
+                "sse": 26250.018363215688,
+                "before_n": 52,
+                "after_n": 1064
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 58,
+                "shift_timestamp_epoch": 1784395432,
+                "before_mean": 2.9827586206896552,
+                "after_mean": 0.3440453686200378,
+                "sse": 717.2502444429956,
+                "before_n": 58,
+                "after_n": 1058
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784395432,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 52,
+                  "shift_timestamp_epoch": 1784395072,
+                  "before_mean": 52.51923076923077,
+                  "after_mean": 1.3984962406015038,
+                  "sse": 26250.018363215688,
+                  "before_n": 52,
+                  "after_n": 1064
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 58,
+                  "shift_timestamp_epoch": 1784395432,
+                  "before_mean": 2.9827586206896552,
+                  "after_mean": 0.3440453686200378,
+                  "sse": 717.2502444429956,
+                  "before_n": 58,
+                  "after_n": 1058
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784438332,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 773,
+                  "shift_timestamp_epoch": 1784438332,
+                  "before_mean": 0.31047865459249674,
+                  "after_mean": 3.7026239067055395,
+                  "sse": 7905.152761381757,
+                  "before_n": 773,
+                  "after_n": 343
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1116
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 32,
+        "fill_timestamp_epoch": 1784438278.688,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 3415,
+        "gate_posts": 46,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 163,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 398,
+          "NO_TAPE_MACHINE_READ_ABSENT": 935,
+          "FIRING_DISAGREEMENT_ACTIVE": 1000
+        },
+        "post_onset_true_trade_low_cents": 32,
+        "post_onset_true_trade_low_receipt": "4b4a1687-47fe-5610-5ee6-f7cc8798e1b7"
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL19PELBUE|PEL",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784395432,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 51,
+                "shift_timestamp_epoch": 1784395012,
+                "before_mean": 63.745098039215684,
+                "after_mean": 1.136150234741784,
+                "sse": 16884.944490472237,
+                "before_n": 51,
+                "after_n": 1065
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 58,
+                "shift_timestamp_epoch": 1784395432,
+                "before_mean": 2.9827586206896552,
+                "after_mean": 0.3440453686200378,
+                "sse": 717.2502444429956,
+                "before_n": 58,
+                "after_n": 1058
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784395432,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 51,
+                  "shift_timestamp_epoch": 1784395012,
+                  "before_mean": 63.745098039215684,
+                  "after_mean": 1.136150234741784,
+                  "sse": 16884.944490472237,
+                  "before_n": 51,
+                  "after_n": 1065
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 58,
+                  "shift_timestamp_epoch": 1784395432,
+                  "before_mean": 2.9827586206896552,
+                  "after_mean": 0.3440453686200378,
+                  "sse": 717.2502444429956,
+                  "before_n": 58,
+                  "after_n": 1058
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784438332,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 773,
+                  "shift_timestamp_epoch": 1784438332,
+                  "before_mean": 2.4941785252263906,
+                  "after_mean": 15.696793002915452,
+                  "sse": 81195.69027566703,
+                  "before_n": 773,
+                  "after_n": 343
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1116
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 67,
+        "fill_timestamp_epoch": 1784426118.192,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 4848,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 79,
+          "NO_TAPE_MACHINE_READ_ABSENT": 3671,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 380,
+          "FIRING_DISAGREEMENT_ACTIVE": 710
+        },
+        "post_onset_true_trade_low_cents": 67,
+        "post_onset_true_trade_low_receipt": "02e4c081-ef6c-7d9c-66d2-d4da12beb728"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL12BOSKOV|BOS",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783819461,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 177,
+                "shift_timestamp_epoch": 1783814901,
+                "before_mean": 88.28813559322033,
+                "after_mean": 3.025830258302583,
+                "sse": 30047.943461128714,
+                "before_n": 177,
+                "after_n": 542
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 253,
+                "shift_timestamp_epoch": 1783819461,
+                "before_mean": 1.5592885375494072,
+                "after_mean": 0.22746781115879827,
+                "sse": 956.9990839539255,
+                "before_n": 253,
+                "after_n": 466
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783819461,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 177,
+                  "shift_timestamp_epoch": 1783814901,
+                  "before_mean": 88.28813559322033,
+                  "after_mean": 3.025830258302583,
+                  "sse": 30047.943461128714,
+                  "before_n": 177,
+                  "after_n": 542
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 253,
+                  "shift_timestamp_epoch": 1783819461,
+                  "before_mean": 1.5592885375494072,
+                  "after_mean": 0.22746781115879827,
+                  "sse": 956.9990839539255,
+                  "before_n": 253,
+                  "after_n": 466
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783845561,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 688,
+                  "shift_timestamp_epoch": 1783845561,
+                  "before_mean": 0.436046511627907,
+                  "after_mean": 4.129032258064516,
+                  "sse": 656.6699174793742,
+                  "before_n": 688,
+                  "after_n": 31
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 719
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1572,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 834,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 243,
+          "NO_TAPE_MACHINE_READ_ABSENT": 471
+        },
+        "post_onset_true_trade_low_cents": 93,
+        "post_onset_true_trade_low_receipt": "bd601c9b-c2da-610b-b9d2-bc764424a2fa"
+      },
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL12BOSKOV|KOV",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783819461,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 183,
+                "shift_timestamp_epoch": 1783815261,
+                "before_mean": 86.53005464480874,
+                "after_mean": 2.4794776119402986,
+                "sse": 23019.35895318497,
+                "before_n": 183,
+                "after_n": 536
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 253,
+                "shift_timestamp_epoch": 1783819461,
+                "before_mean": 1.5592885375494072,
+                "after_mean": 0.22746781115879827,
+                "sse": 956.9990839539255,
+                "before_n": 253,
+                "after_n": 466
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783819461,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 183,
+                  "shift_timestamp_epoch": 1783815261,
+                  "before_mean": 86.53005464480874,
+                  "after_mean": 2.4794776119402986,
+                  "sse": 23019.35895318497,
+                  "before_n": 183,
+                  "after_n": 536
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 253,
+                  "shift_timestamp_epoch": 1783819461,
+                  "before_mean": 1.5592885375494072,
+                  "after_mean": 0.22746781115879827,
+                  "sse": 956.9990839539255,
+                  "before_n": 253,
+                  "after_n": 466
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783847301,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 717,
+                  "shift_timestamp_epoch": 1783847301,
+                  "before_mean": 0.8158995815899581,
+                  "after_mean": 22,
+                  "sse": 1207.6987447698725,
+                  "before_n": 717,
+                  "after_n": 2
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 719
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 2228,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 598,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1072,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 531
+        },
+        "post_onset_true_trade_low_cents": 6,
+        "post_onset_true_trade_low_receipt": "bdc4fd59-45d6-5745-2267-48a310306e2a"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL13PAPAND|AND",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783902043,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 139,
+                "shift_timestamp_epoch": 1783899043,
+                "before_mean": 88.00719424460432,
+                "after_mean": 3.332173913043478,
+                "sse": 24984.54758836441,
+                "before_n": 139,
+                "after_n": 575
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 189,
+                "shift_timestamp_epoch": 1783902043,
+                "before_mean": 1.1746031746031746,
+                "after_mean": 0.5895238095238096,
+                "sse": 1589.5304761904736,
+                "before_n": 189,
+                "after_n": 525
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783902043,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 139,
+                  "shift_timestamp_epoch": 1783899043,
+                  "before_mean": 88.00719424460432,
+                  "after_mean": 3.332173913043478,
+                  "sse": 24984.54758836441,
+                  "before_n": 139,
+                  "after_n": 575
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 189,
+                  "shift_timestamp_epoch": 1783902043,
+                  "before_mean": 1.1746031746031746,
+                  "after_mean": 0.5895238095238096,
+                  "sse": 1589.5304761904736,
+                  "before_n": 189,
+                  "after_n": 525
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783912963,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 371,
+                  "shift_timestamp_epoch": 1783912963,
+                  "before_mean": 0.16981132075471697,
+                  "after_mean": 1.9475218658892128,
+                  "sse": 541.3572803784587,
+                  "before_n": 371,
+                  "after_n": 343
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 714
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 4292,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 1552,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 792,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1948
+        },
+        "post_onset_true_trade_low_cents": 78,
+        "post_onset_true_trade_low_receipt": "c82c37e8-ec74-697d-370f-d2f33d991577"
+      },
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL13PAPAND|PAP",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783902043,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 136,
+                "shift_timestamp_epoch": 1783898863,
+                "before_mean": 88.75735294117646,
+                "after_mean": 2.596885813148789,
+                "sse": 3616.0670415225036,
+                "before_n": 136,
+                "after_n": 578
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 189,
+                "shift_timestamp_epoch": 1783902043,
+                "before_mean": 1.1746031746031746,
+                "after_mean": 0.5895238095238096,
+                "sse": 1589.5304761904736,
+                "before_n": 189,
+                "after_n": 525
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783902043,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 136,
+                  "shift_timestamp_epoch": 1783898863,
+                  "before_mean": 88.75735294117646,
+                  "after_mean": 2.596885813148789,
+                  "sse": 3616.0670415225036,
+                  "before_n": 136,
+                  "after_n": 578
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 189,
+                  "shift_timestamp_epoch": 1783902043,
+                  "before_mean": 1.1746031746031746,
+                  "after_mean": 0.5895238095238096,
+                  "sse": 1589.5304761904736,
+                  "before_n": 189,
+                  "after_n": 525
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783915063,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 406,
+                  "shift_timestamp_epoch": 1783915063,
+                  "before_mean": 0.2955665024630542,
+                  "after_mean": 3.1298701298701297,
+                  "sse": 2339.337214509624,
+                  "before_n": 406,
+                  "after_n": 308
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 714
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1575,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 683,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 183,
+          "NO_TAPE_MACHINE_READ_ABSENT": 709
+        },
+        "post_onset_true_trade_low_cents": 23,
+        "post_onset_true_trade_low_receipt": "0bdfb2d1-730b-47c8-aa6d-3a11f3d78406"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 97,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL14FERZAN|FER",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783995396,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 3,
+                "shift_timestamp_epoch": 1783995396,
+                "before_mean": 82,
+                "after_mean": 2.304654442877292,
+                "sse": 1406.1946403384984,
+                "before_n": 3,
+                "after_n": 709
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 3,
+                "shift_timestamp_epoch": 1783995396,
+                "before_mean": 8,
+                "after_mean": 0.6234132581100141,
+                "sse": 161.95133991537426,
+                "before_n": 3,
+                "after_n": 709
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783995396,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 3,
+                  "shift_timestamp_epoch": 1783995396,
+                  "before_mean": 82,
+                  "after_mean": 2.304654442877292,
+                  "sse": 1406.1946403384984,
+                  "before_n": 3,
+                  "after_n": 709
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 3,
+                  "shift_timestamp_epoch": 1783995396,
+                  "before_mean": 8,
+                  "after_mean": 0.6234132581100141,
+                  "sse": 161.95133991537426,
+                  "before_n": 3,
+                  "after_n": 709
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784004816,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 160,
+                  "shift_timestamp_epoch": 1784004816,
+                  "before_mean": 0,
+                  "after_mean": 1.7463768115942029,
+                  "sse": 2200.4927536232094,
+                  "before_n": 160,
+                  "after_n": 552
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 712
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 66,
+        "fill_timestamp_epoch": 1784018653.243,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 3968,
+        "gate_posts": 4,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 91,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 655,
+          "NO_TAPE_MACHINE_READ_ABSENT": 3137,
+          "FIRING_DISAGREEMENT_ACTIVE": 29
+        },
+        "post_onset_true_trade_low_cents": 62,
+        "post_onset_true_trade_low_receipt": "75dc6b09-bb3d-4669-74a5-4558e9bf7185"
+      },
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL14FERZAN|ZAN",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783995396,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 3,
+                "shift_timestamp_epoch": 1783995396,
+                "before_mean": 82,
+                "after_mean": 2.6657263751763045,
+                "sse": 1379.7771509167692,
+                "before_n": 3,
+                "after_n": 709
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 3,
+                "shift_timestamp_epoch": 1783995396,
+                "before_mean": 8,
+                "after_mean": 0.6234132581100141,
+                "sse": 161.95133991537426,
+                "before_n": 3,
+                "after_n": 709
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783995396,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 3,
+                  "shift_timestamp_epoch": 1783995396,
+                  "before_mean": 82,
+                  "after_mean": 2.6657263751763045,
+                  "sse": 1379.7771509167692,
+                  "before_n": 3,
+                  "after_n": 709
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 3,
+                  "shift_timestamp_epoch": 1783995396,
+                  "before_mean": 8,
+                  "after_mean": 0.6234132581100141,
+                  "sse": 161.95133991537426,
+                  "before_n": 3,
+                  "after_n": 709
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784015496,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 338,
+                  "shift_timestamp_epoch": 1784015496,
+                  "before_mean": 0,
+                  "after_mean": 0.5935828877005348,
+                  "sse": 96.22459893048111,
+                  "before_n": 338,
+                  "after_n": 374
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 712
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 31,
+        "fill_timestamp_epoch": 1784026277.149,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 998,
+        "gate_posts": 4,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 92,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 31,
+          "NO_TAPE_MACHINE_READ_ABSENT": 691,
+          "FIRING_DISAGREEMENT_ACTIVE": 66,
+          "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 40
+        },
+        "post_onset_true_trade_low_cents": 31,
+        "post_onset_true_trade_low_receipt": "bba05177-81d8-7e94-3df2-1964702dce0e"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 98,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ERJFEI|ERJ",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784248922,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 2,
+                "shift_timestamp_epoch": 1784248922,
+                "before_mean": 91,
+                "after_mean": 1.3795423956931359,
+                "sse": 472.96904441455234,
+                "before_n": 2,
+                "after_n": 743
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 1,
+                "shift_timestamp_epoch": 1784248862,
+                "before_mean": 3.5,
+                "after_mean": 0.36760752688172044,
+                "sse": 78.20934139784855,
+                "before_n": 1,
+                "after_n": 744
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784248922,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 2,
+                  "shift_timestamp_epoch": 1784248922,
+                  "before_mean": 91,
+                  "after_mean": 1.3795423956931359,
+                  "sse": 472.96904441455234,
+                  "before_n": 2,
+                  "after_n": 743
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 1,
+                  "shift_timestamp_epoch": 1784248862,
+                  "before_mean": 3.5,
+                  "after_mean": 0.36760752688172044,
+                  "sse": 78.20934139784855,
+                  "before_n": 1,
+                  "after_n": 744
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784289542,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 679,
+                  "shift_timestamp_epoch": 1784289542,
+                  "before_mean": 3.712812960235641,
+                  "after_mean": 15.56060606060606,
+                  "sse": 10669.25610300341,
+                  "before_n": 679,
+                  "after_n": 66
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 745
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 67,
+        "fill_timestamp_epoch": 1784278049.57,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 1761,
+        "gate_posts": 4,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 49,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 92,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1262,
+          "FIRING_DISAGREEMENT_ACTIVE": 225
+        },
+        "post_onset_true_trade_low_cents": 66,
+        "post_onset_true_trade_low_receipt": "bc97a229-c1ad-477d-329d-6963309af00e"
+      },
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ERJFEI|FEI",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784248922,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 2,
+                "shift_timestamp_epoch": 1784248922,
+                "before_mean": 92,
+                "after_mean": 1.737550471063257,
+                "sse": 467.82234185732233,
+                "before_n": 2,
+                "after_n": 743
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 1,
+                "shift_timestamp_epoch": 1784248862,
+                "before_mean": 3.5,
+                "after_mean": 0.36760752688172044,
+                "sse": 78.20934139784855,
+                "before_n": 1,
+                "after_n": 744
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784248922,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 2,
+                  "shift_timestamp_epoch": 1784248922,
+                  "before_mean": 92,
+                  "after_mean": 1.737550471063257,
+                  "sse": 467.82234185732233,
+                  "before_n": 2,
+                  "after_n": 743
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 1,
+                  "shift_timestamp_epoch": 1784248862,
+                  "before_mean": 3.5,
+                  "after_mean": 0.36760752688172044,
+                  "sse": 78.20934139784855,
+                  "before_n": 1,
+                  "after_n": 744
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784285582,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 613,
+                  "shift_timestamp_epoch": 1784285582,
+                  "before_mean": 1.2267536704730833,
+                  "after_mean": 9.045454545454545,
+                  "sse": 7987.208512531526,
+                  "before_n": 613,
+                  "after_n": 132
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 745
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 31,
+        "fill_timestamp_epoch": 1784272524.882,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 504,
+        "gate_posts": 2,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 52,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 114,
+          "NO_TAPE_MACHINE_READ_ABSENT": 310,
+          "FIRING_DISAGREEMENT_ACTIVE": 6
+        },
+        "post_onset_true_trade_low_cents": 31,
+        "post_onset_true_trade_low_receipt": "af395a2d-6356-77db-6f1d-f5535e5d1d7b"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL12LEPBUR",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL12LEPBUR|BUR",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1783812697,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 515,
+                "shift_timestamp_epoch": 1783812697,
+                "before_mean": 0,
+                "after_mean": 1.343402225755167,
+                "sse": 1083.8251192368818,
+                "before_n": 515,
+                "after_n": 629
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783812697,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 515,
+                  "shift_timestamp_epoch": 1783812697,
+                  "before_mean": 0,
+                  "after_mean": 1.343402225755167,
+                  "sse": 1083.8251192368818,
+                  "before_n": 515,
+                  "after_n": 629
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 1144
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 25,
+        "fill_timestamp_epoch": 1783838331.304,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 7548,
+        "gate_posts": 5,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 2102,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 3087,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1963,
+          "FIRING_DISAGREEMENT_ACTIVE": 217
+        },
+        "post_onset_true_trade_low_cents": 20,
+        "post_onset_true_trade_low_receipt": "6602cd6c-937a-56bf-4747-bddf4649eab9"
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL12LEPBUR|LEP",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1783828837,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 784,
+                "shift_timestamp_epoch": 1783828837,
+                "before_mean": 0.16071428571428573,
+                "after_mean": 5.977777777777778,
+                "sse": 6613.572222222225,
+                "before_n": 784,
+                "after_n": 360
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783828837,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 784,
+                  "shift_timestamp_epoch": 1783828837,
+                  "before_mean": 0.16071428571428573,
+                  "after_mean": 5.977777777777778,
+                  "sse": 6613.572222222225,
+                  "before_n": 784,
+                  "after_n": 360
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 1144
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 16351,
+        "gate_posts": 4,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 4442,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 9,
+          "FIRING_DISAGREEMENT_ACTIVE": 11640,
+          "NO_TAPE_MACHINE_READ_ABSENT": 200
+        },
+        "post_onset_true_trade_low_cents": 70,
+        "post_onset_true_trade_low_receipt": "78d7e1ab-15bb-5441-db73-ba8f17067476"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL13BURPUT",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 96,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL13BURPUT|BUR",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783865761,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 313,
+                "shift_timestamp_epoch": 1783862581,
+                "before_mean": 58.74760383386582,
+                "after_mean": 2.2754590984974956,
+                "sse": 91462.15920037101,
+                "before_n": 313,
+                "after_n": 1198
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 366,
+                "shift_timestamp_epoch": 1783865761,
+                "before_mean": 4.168032786885246,
+                "after_mean": 0.4427947598253275,
+                "sse": 4418.419040375114,
+                "before_n": 366,
+                "after_n": 1145
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783865761,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 313,
+                  "shift_timestamp_epoch": 1783862581,
+                  "before_mean": 58.74760383386582,
+                  "after_mean": 2.2754590984974956,
+                  "sse": 91462.15920037101,
+                  "before_n": 313,
+                  "after_n": 1198
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 366,
+                  "shift_timestamp_epoch": 1783865761,
+                  "before_mean": 4.168032786885246,
+                  "after_mean": 0.4427947598253275,
+                  "sse": 4418.419040375114,
+                  "before_n": 366,
+                  "after_n": 1145
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783934401,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 1510,
+                  "shift_timestamp_epoch": 1783934401,
+                  "before_mean": 0.6688741721854304,
+                  "after_mean": 93,
+                  "sse": 4196.437086092731,
+                  "before_n": 1510,
+                  "after_n": 1
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1511
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 31,
+        "fill_timestamp_epoch": 1783931939.826,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 5496,
+        "gate_posts": 7,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 2505,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 479,
+          "NO_TAPE_MACHINE_READ_ABSENT": 2157,
+          "FIRING_DISAGREEMENT_ACTIVE": 9
+        },
+        "post_onset_true_trade_low_cents": 31,
+        "post_onset_true_trade_low_receipt": "a7be80ab-b817-4817-1a9f-7416473b0f9d"
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL13BURPUT|PUT",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783865761,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 319,
+                "shift_timestamp_epoch": 1783862941,
+                "before_mean": 69.55485893416927,
+                "after_mean": 1.9169463087248322,
+                "sse": 54375.567653215665,
+                "before_n": 319,
+                "after_n": 1192
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 366,
+                "shift_timestamp_epoch": 1783865761,
+                "before_mean": 4.168032786885246,
+                "after_mean": 0.4427947598253275,
+                "sse": 4418.419040375114,
+                "before_n": 366,
+                "after_n": 1145
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783865761,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 319,
+                  "shift_timestamp_epoch": 1783862941,
+                  "before_mean": 69.55485893416927,
+                  "after_mean": 1.9169463087248322,
+                  "sse": 54375.567653215665,
+                  "before_n": 319,
+                  "after_n": 1192
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 366,
+                  "shift_timestamp_epoch": 1783865761,
+                  "before_mean": 4.168032786885246,
+                  "after_mean": 0.4427947598253275,
+                  "sse": 4418.419040375114,
+                  "before_n": 366,
+                  "after_n": 1145
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1783931941,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 1469,
+                  "shift_timestamp_epoch": 1783931941,
+                  "before_mean": 1.671204901293397,
+                  "after_mean": 25.547619047619047,
+                  "sse": 12362.596729229472,
+                  "before_n": 1469,
+                  "after_n": 42
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 1511
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 65,
+        "fill_timestamp_epoch": 1783934365.728,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 11188,
+        "gate_posts": 5,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 7331,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 380,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1333,
+          "FIRING_DISAGREEMENT_ACTIVE": 665
+        },
+        "post_onset_true_trade_low_cents": 65,
+        "post_onset_true_trade_low_receipt": "96b3d705-2147-742c-7ca8-247df5a9912f"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+    "short_event": "26JUL14PUTJEA",
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783955813,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 205,
+                "shift_timestamp_epoch": 1783948853,
+                "before_mean": 81.21951219512195,
+                "after_mean": 59.33615384615385,
+                "sse": 99467.22272045368,
+                "before_n": 205,
+                "after_n": 1300
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 321,
+                "shift_timestamp_epoch": 1783955813,
+                "before_mean": 6.571651090342679,
+                "after_mean": 0.9847972972972973,
+                "sse": 28219.578376273497,
+                "before_n": 321,
+                "after_n": 1184
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783955813,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 205,
+                  "shift_timestamp_epoch": 1783948853,
+                  "before_mean": 81.21951219512195,
+                  "after_mean": 59.33615384615385,
+                  "sse": 99467.22272045368,
+                  "before_n": 205,
+                  "after_n": 1300
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 321,
+                  "shift_timestamp_epoch": 1783955813,
+                  "before_mean": 6.571651090342679,
+                  "after_mean": 0.9847972972972973,
+                  "sse": 28219.578376273497,
+                  "before_n": 321,
+                  "after_n": 1184
+                }
+              }
+            },
+            "B": null
+          },
+          "rejected": {
+            "A": null,
+            "B": "TRADE_CADENCE_DID_NOT_INCREASE"
+          },
+          "trajectory_rows": 1505
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1388,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 736,
+          "NO_TAPE_MACHINE_READ_ABSENT": 14,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 638
+        },
+        "post_onset_true_trade_low_cents": null,
+        "post_onset_true_trade_low_receipt": null
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1783963133,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 443,
+                "shift_timestamp_epoch": 1783963133,
+                "before_mean": 60.347629796839726,
+                "after_mean": 7,
+                "sse": 156858.46501128605,
+                "before_n": 443,
+                "after_n": 1062
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 321,
+                "shift_timestamp_epoch": 1783955813,
+                "before_mean": 6.571651090342679,
+                "after_mean": 0.9847972972972973,
+                "sse": 28219.578376273497,
+                "before_n": 321,
+                "after_n": 1184
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1783963133,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 443,
+                  "shift_timestamp_epoch": 1783963133,
+                  "before_mean": 60.347629796839726,
+                  "after_mean": 7,
+                  "sse": 156858.46501128605,
+                  "before_n": 443,
+                  "after_n": 1062
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 321,
+                  "shift_timestamp_epoch": 1783955813,
+                  "before_mean": 6.571651090342679,
+                  "after_mean": 0.9847972972972973,
+                  "sse": 28219.578376273497,
+                  "before_n": 321,
+                  "after_n": 1184
+                }
+              }
+            },
+            "B": null
+          },
+          "rejected": {
+            "A": null,
+            "B": "TRADE_CADENCE_DID_NOT_INCREASE"
+          },
+          "trajectory_rows": 1505
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 1265,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 1259,
+          "NO_TAPE_MACHINE_READ_ABSENT": 6
+        },
+        "post_onset_true_trade_low_cents": null,
+        "post_onset_true_trade_low_receipt": null
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL19HONLEE",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL19HONLEE|HON",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784435635,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 950,
+                "shift_timestamp_epoch": 1784435635,
+                "before_mean": 0.9063157894736842,
+                "after_mean": 20.466666666666665,
+                "sse": 57243.86210526306,
+                "before_n": 950,
+                "after_n": 270
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784435635,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 950,
+                  "shift_timestamp_epoch": 1784435635,
+                  "before_mean": 0.9063157894736842,
+                  "after_mean": 20.466666666666665,
+                  "sse": 57243.86210526306,
+                  "before_n": 950,
+                  "after_n": 270
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 1220
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 6364,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 5139,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 855,
+          "NO_TAPE_MACHINE_READ_ABSENT": 370
+        },
+        "post_onset_true_trade_low_cents": 28,
+        "post_onset_true_trade_low_receipt": "4f42bcad-d31b-5785-3654-153db3fd2fa4"
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL19HONLEE|LEE",
+        "onset": {
+          "selected": {
+            "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+            "timestamp_epoch": 1784434435,
+            "components": {
+              "trade_cadence": {
+                "field": "trades_60min",
+                "index": 930,
+                "shift_timestamp_epoch": 1784434435,
+                "before_mean": 1.1440860215053763,
+                "after_mean": 6.334482758620689,
+                "sse": 2815.2476455320784,
+                "before_n": 930,
+                "after_n": 290
+              }
+            }
+          },
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784434435,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 930,
+                  "shift_timestamp_epoch": 1784434435,
+                  "before_mean": 1.1440860215053763,
+                  "after_mean": 6.334482758620689,
+                  "sse": 2815.2476455320784,
+                  "before_n": 930,
+                  "after_n": 290
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": "SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+            "B": null
+          },
+          "trajectory_rows": 1220
+        },
+        "final_state": "NEVER_PLACED_OR_CANCELLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 2491,
+        "gate_posts": 0,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 1324,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 491,
+          "NO_TAPE_MACHINE_READ_ABSENT": 676
+        },
+        "post_onset_true_trade_low_cents": 72,
+        "post_onset_true_trade_low_receipt": "4ddd52eb-a8c1-71fb-f830-62bbf31478be"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL20BLIBEJ",
+    "short_event": null,
+    "completed_pair_observation": false,
+    "combined_entry_cents_observation": null,
+    "under_par_observation": false,
+    "legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL20BLIBEJ|BEJ",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784470105,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 10,
+                "shift_timestamp_epoch": 1784448985,
+                "before_mean": 82.8,
+                "after_mean": 1.3654708520179373,
+                "sse": 3155.597757847452,
+                "before_n": 10,
+                "after_n": 3122
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 362,
+                "shift_timestamp_epoch": 1784470105,
+                "before_mean": 1.2748618784530388,
+                "after_mean": 0.7703971119133574,
+                "sse": 609.873806270809,
+                "before_n": 362,
+                "after_n": 2770
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784470105,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 10,
+                  "shift_timestamp_epoch": 1784448985,
+                  "before_mean": 82.8,
+                  "after_mean": 1.3654708520179373,
+                  "sse": 3155.597757847452,
+                  "before_n": 10,
+                  "after_n": 3122
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 362,
+                  "shift_timestamp_epoch": 1784470105,
+                  "before_mean": 1.2748618784530388,
+                  "after_mean": 0.7703971119133574,
+                  "sse": 609.873806270809,
+                  "before_n": 362,
+                  "after_n": 2770
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784601445,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 2551,
+                  "shift_timestamp_epoch": 1784601445,
+                  "before_mean": 1.3147785182281457,
+                  "after_mean": 8.0223752151463,
+                  "sse": 18034.941972065826,
+                  "before_n": 2551,
+                  "after_n": 581
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 3132
+        },
+        "final_state": "RESTING_UNFILLED",
+        "entry_cents_observation": null,
+        "fill_timestamp_epoch": null,
+        "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+        "gate_evaluations": 24233,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 623,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 334,
+          "NO_TAPE_MACHINE_READ_ABSENT": 18410,
+          "FIRING_DISAGREEMENT_ACTIVE": 19
+        },
+        "post_onset_true_trade_low_cents": 59,
+        "post_onset_true_trade_low_receipt": "973dde83-020f-712d-e3d9-82ac5976a182"
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL20BLIBEJ|BLI",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784470105,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 10,
+                "shift_timestamp_epoch": 1784448985,
+                "before_mean": 81.7,
+                "after_mean": 1.2700192184497117,
+                "sse": 1915.4737988468094,
+                "before_n": 10,
+                "after_n": 3122
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 362,
+                "shift_timestamp_epoch": 1784470105,
+                "before_mean": 1.2748618784530388,
+                "after_mean": 0.7703971119133574,
+                "sse": 609.873806270809,
+                "before_n": 362,
+                "after_n": 2770
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784470105,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 10,
+                  "shift_timestamp_epoch": 1784448985,
+                  "before_mean": 81.7,
+                  "after_mean": 1.2700192184497117,
+                  "sse": 1915.4737988468094,
+                  "before_n": 10,
+                  "after_n": 3122
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 362,
+                  "shift_timestamp_epoch": 1784470105,
+                  "before_mean": 1.2748618784530388,
+                  "after_mean": 0.7703971119133574,
+                  "sse": 609.873806270809,
+                  "before_n": 362,
+                  "after_n": 2770
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784573845,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 2091,
+                  "shift_timestamp_epoch": 1784573845,
+                  "before_mean": 0.5169775227164036,
+                  "after_mean": 1.840537944284342,
+                  "sse": 5043.676596694796,
+                  "before_n": 2091,
+                  "after_n": 1041
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 3132
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 40,
+        "fill_timestamp_epoch": 1784521386.164,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 10116,
+        "gate_posts": 1,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 817,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 30,
+          "NO_TAPE_MACHINE_READ_ABSENT": 8999,
+          "FIRING_DISAGREEMENT_ACTIVE": 127
+        },
+        "post_onset_true_trade_low_cents": 40,
+        "post_onset_true_trade_low_receipt": "ac55821d-8a4f-60ce-a723-3bf1f2bf2b2f"
+      }
+    ]
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL20RUSPAQ",
+    "short_event": null,
+    "completed_pair_observation": true,
+    "combined_entry_cents_observation": 99,
+    "under_par_observation": true,
+    "legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL20RUSPAQ|PAQ",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784494837,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 165,
+                "shift_timestamp_epoch": 1784491897,
+                "before_mean": 81.97575757575757,
+                "after_mean": 1.7961630695443644,
+                "sse": 8849.250752125477,
+                "before_n": 165,
+                "after_n": 834
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 214,
+                "shift_timestamp_epoch": 1784494837,
+                "before_mean": 1.308411214953271,
+                "after_mean": 0.2770700636942675,
+                "sse": 646.6321209595774,
+                "before_n": 214,
+                "after_n": 785
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784494837,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 165,
+                  "shift_timestamp_epoch": 1784491897,
+                  "before_mean": 81.97575757575757,
+                  "after_mean": 1.7961630695443644,
+                  "sse": 8849.250752125477,
+                  "before_n": 165,
+                  "after_n": 834
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 214,
+                  "shift_timestamp_epoch": 1784494837,
+                  "before_mean": 1.308411214953271,
+                  "after_mean": 0.2770700636942675,
+                  "sse": 646.6321209595774,
+                  "before_n": 214,
+                  "after_n": 785
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784514397,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 540,
+                  "shift_timestamp_epoch": 1784514397,
+                  "before_mean": 0.674074074074074,
+                  "after_mean": 4.270152505446623,
+                  "sse": 2983.1381263616577,
+                  "before_n": 540,
+                  "after_n": 459
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 999
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 38,
+        "fill_timestamp_epoch": 1784539382.358,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 7304,
+        "gate_posts": 2,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 338,
+          "NO_TAPE_MACHINE_READ_ABSENT": 4969,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 1199,
+          "FIRING_DISAGREEMENT_ACTIVE": 398
+        },
+        "post_onset_true_trade_low_cents": 38,
+        "post_onset_true_trade_low_receipt": "14b12ddf-7f23-5179-f035-0314fb90f8eb"
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL20RUSPAQ|RUS",
+        "onset": {
+          "selected": {
+            "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+            "timestamp_epoch": 1784494837,
+            "components": {
+              "spread": {
+                "field": "spread",
+                "index": 165,
+                "shift_timestamp_epoch": 1784491897,
+                "before_mean": 83.36363636363636,
+                "after_mean": 1.7961630695443644,
+                "sse": 3611.5295400042655,
+                "before_n": 165,
+                "after_n": 834
+              },
+              "midsum": {
+                "field": "midsum_abs_dev",
+                "index": 214,
+                "shift_timestamp_epoch": 1784494837,
+                "before_mean": 1.308411214953271,
+                "after_mean": 0.2770700636942675,
+                "sse": 646.6321209595774,
+                "before_n": 214,
+                "after_n": 785
+              }
+            }
+          },
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "timestamp_epoch": 1784494837,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 165,
+                  "shift_timestamp_epoch": 1784491897,
+                  "before_mean": 83.36363636363636,
+                  "after_mean": 1.7961630695443644,
+                  "sse": 3611.5295400042655,
+                  "before_n": 165,
+                  "after_n": 834
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 214,
+                  "shift_timestamp_epoch": 1784494837,
+                  "before_mean": 1.308411214953271,
+                  "after_mean": 0.2770700636942675,
+                  "sse": 646.6321209595774,
+                  "before_n": 214,
+                  "after_n": 785
+                }
+              }
+            },
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "timestamp_epoch": 1784514277,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 538,
+                  "shift_timestamp_epoch": 1784514277,
+                  "before_mean": 0.7899628252788105,
+                  "after_mean": 15.362255965292842,
+                  "sse": 103395.76905305282,
+                  "before_n": 538,
+                  "after_n": 461
+                }
+              }
+            }
+          },
+          "rejected": {
+            "A": null,
+            "B": null
+          },
+          "trajectory_rows": 999
+        },
+        "final_state": "CREDITED",
+        "entry_cents_observation": 61,
+        "fill_timestamp_epoch": 1784529474.869,
+        "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+        "gate_evaluations": 3307,
+        "gate_posts": 2,
+        "gate_blocks": {
+          "STABILITY_ONSET_NOT_REACHED": 547,
+          "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 708,
+          "NO_TAPE_MACHINE_READ_ABSENT": 1908
+        },
+        "post_onset_true_trade_low_cents": 60,
+        "post_onset_true_trade_low_receipt": "d90cd3cd-9527-4dc5-8571-98b94cbbdd1f"
+      }
+    ]
+  }
+]

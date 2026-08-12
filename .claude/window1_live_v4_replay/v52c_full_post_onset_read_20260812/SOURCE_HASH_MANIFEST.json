@@ -1,0 +1,32 @@
+{
+  "files": {
+    "arb-executor/analysis/window1_v52_judgment_gate.js": {
+      "sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "role": "FROZEN_POLICY_BASE"
+    },
+    "arb-executor/analysis/window1_v52b_read_level_authority.js": {
+      "sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "role": "FROZEN_CLAUSE_3_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "sha256": "d2cd3818d2511a4d12f3d8f415714f83526b63fbcd535eac87590c87f4d4b7c4",
+      "role": "REPLAY_AND_RECEIPT_BUILDER"
+    },
+    "arb-executor/analysis/window1_v52c_full_post_onset_read.js": {
+      "sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "role": "CLAUSE_2_ONLY_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v52c_full_post_onset_read.js": {
+      "sha256": "2a89e7e7e1994c68c794b8dfb0c6955f03e20d68a3bfe7767f63aa659cc488cf",
+      "role": "DETERMINISTIC_ENTRYPOINT"
+    },
+    "arb-executor/tests/test_window1_v52c_full_post_onset_read.js": {
+      "sha256": "a7676e469a7e3f1af7b5710e6fd6f03a49eb0911a77fd90efae33539c989254e",
+      "role": "CLAUSE_UNIT_TEST"
+    },
+    "arb-executor/tests/test_window1_v52c_full_post_onset_read_package.js": {
+      "sha256": "9ddc92309ae7525963735ca3bb53983beb5f7c3a4b24136017d3a4c9f539e60a",
+      "role": "PACKAGE_INTEGRITY_TEST"
+    }
+  }
+}

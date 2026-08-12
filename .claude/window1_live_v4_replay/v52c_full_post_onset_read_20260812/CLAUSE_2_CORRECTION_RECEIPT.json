@@ -1,0 +1,46 @@
+{
+  "authorized_change": "CLAUSE_2_EVIDENCE_HORIZON_ONLY",
+  "clause_1": {
+    "status": "FROZEN_CODEX_INTERIM_RESTAMP_ONLY",
+    "behavior_changed": false,
+    "common_receipts_compared": 508868,
+    "per_receipt_match": true
+  },
+  "clause_2": {
+    "before": "FIXED_300_SECOND_RECEIPT_TRAIL",
+    "after": "ALL_POST_ONSET_PRINT_AND_BOOK_HISTORY_AVAILABLE_AT_EVALUATION_RECEIPT_RECENCY_WEIGHTED_BY_CAUSAL_RECEIPT_RANK",
+    "READ_ABSENT_law": "ONLY_WHEN_POST_ONSET_EVIDENCE_CANNOT_SUPPORT_ANY_COMPARATIVE_READ",
+    "fixed_replacement_constant": null,
+    "changed_decision_receipts": 514088,
+    "changed_leg_streams": 44
+  },
+  "clause_3": {
+    "status": "FROZEN_V52B",
+    "behavior_changed": false,
+    "source_file": "arb-executor/analysis/window1_v52b_read_level_authority.js",
+    "source_sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+    "function_identity": {
+      "machineReadLevel": true,
+      "gateDecision": true,
+      "firstFailure": true
+    },
+    "downstream_inputs_may_change_only_from_clause_2": true
+  },
+  "clause_4": {
+    "status": "FROZEN",
+    "behavior_changed": false,
+    "common_receipts_compared": 508868,
+    "proof": "FROZEN_V52B_AND_V52C_FIRST_FAILURE_EVALUATED_ON_IDENTICAL_COHERENCE_INPUT_AT_EVERY_SHARED_RECEIPT",
+    "downstream_state_may_differ_after_clause_2_action": true,
+    "per_receipt_same_input_law_match": true
+  },
+  "crediting": {
+    "status": "FROZEN_TRADES_AS_TRUTH",
+    "source_file": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "source_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10"
+  },
+  "scavenger": {
+    "enabled": false,
+    "status": "FROZEN"
+  }
+}

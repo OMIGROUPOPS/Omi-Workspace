@@ -1887,3 +1887,28 @@ deployment, authorization, live access, holdout access, or trading mutation
 occurred.
 
 Canonical addendum: `WINDOW1_V52B_READ_LEVEL_AUTHORITY_20260812_ADDENDUM.md`.
+
+### 2026-08-12 - V52C ITERATION 2 / FULL POST-ONSET EVIDENCE HORIZON
+
+V52c amends clause 2 only. Each receipt's read consumes all causal post-onset
+book and print evidence available at that receipt, recency-weighted by causal
+receipt rank. Every observation retains positive weight; no fixed time cutoff
+or replacement constant exists. `READ_ABSENT` is lawful only while the
+post-onset evidence cannot support a comparative read. Clauses 1, 3, and 4 are
+frozen from V52b; crediting remains trades-as-truth; scavenger is OFF; and
+`REFLEX_POST` is zero.
+
+The observation scope is the five frozen pins plus a fresh stratified 25 that
+has zero overlap with V52b's fresh cohort. Seed SHA-256 is
+`ca37c21c3a83904bb079d5b82d1c6b97c8db427508926c5e7e5bee2d0dd4f61e`.
+For the 55 legs with frozen-V52b `READ_ABSENT` decisions, receipt blocks fall
+from 103,397 to 55. Two clean builds are byte-identical and 96 focused and
+inherited tests pass. MERDRO is restated correctly: formation-era 6-cent
+prints are not credited, while a post-onset credit following a complete
+judgment license is lawful. The missing ARSMAR `MAR` trace is frozen.
+
+V52b completes 10 and V52c 9 of the fresh 30; these are observations only.
+Disposition-804 remains gated. No deployment, authorization, holdout or live
+access, network runtime, or trading mutation occurred.
+
+Canonical addendum: `WINDOW1_V52C_FULL_POST_ONSET_READ_20260812_ADDENDUM.md`.

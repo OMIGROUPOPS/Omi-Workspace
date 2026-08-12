@@ -1,0 +1,92 @@
+{
+  "files": {
+    "ARSMAR_MAR_GATE_TRACE.jsonl.gz": {
+      "sha256": "84c0968ab8ad48f65720180f4326521d1c7cd64c9629888df37f531b37837e6a",
+      "bytes": 115794
+    },
+    "BEFORE_AFTER_DECISION_DIFFERENTIAL.jsonl.gz": {
+      "sha256": "5c6fc91546ca1466cb8aa3742327721538e6c4a04253a61860915b414ef1e365",
+      "bytes": 58452449
+    },
+    "BEFORE_AFTER_DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "5d6fb63085506d9c972ddcd46ae40d55d73b3b98f10a2e71735ab5952f7b7cf2",
+      "bytes": 179
+    },
+    "CHANGED_LEG_STREAMS.jsonl.gz": {
+      "sha256": "477f9c12f8ac580d3cbf313fb04d37542ec2c2ec406902eb8b53953ed2600369",
+      "bytes": 10711
+    },
+    "CLAUSE_2_CORRECTION_RECEIPT.json": {
+      "sha256": "0917d52257410ea9f794c3c7e5665c3945904dd57d80a798ee1afce2755efbd9",
+      "bytes": 1691
+    },
+    "COHORT_SELECTION_RECEIPT.json": {
+      "sha256": "991f1c7b829f5bfcd4303fb4d0efabbf55f5a5a3f9b91363a7791025e4009d92",
+      "bytes": 24230
+    },
+    "CONSTRUCTION_STATUS.json": {
+      "sha256": "13807632746b5fd1ecfb82ce0ee05f9e111820a8de4f14c9036f1d81057518bc",
+      "bytes": 170
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "f84dacb82ae8a556170baab148bbb18794cb02ca48ab8f1345a0a2a664caaffe",
+      "bytes": 236
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "7f68ffcdfbe646bff2ae6bb4334f624500caa14317ac6fb5fce2b1d1a656249e",
+      "bytes": 94
+    },
+    "FLOW_ASSERTIONS.json": {
+      "sha256": "11b78eec97efdbb30a3dbc078c325717588821365910c6a96d7e73fc7c05f220",
+      "bytes": 1096
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4824e08cc375d5171d66a5380d8bf5202ee87aac6bebf143b3e330eed7a3b544",
+      "bytes": 179
+    },
+    "NAMED_CHECKS_OBSERVATION_ONLY.json": {
+      "sha256": "f85707884ca79e2820b7343d65eda00417f3d3b3dd031b78288a95a988724695",
+      "bytes": 486297
+    },
+    "OUTCOME_OBSERVATIONS_30.json": {
+      "sha256": "291733d973af957ca0efff0daa458ef982f43d8e27bc4b090d477dfc6d55e108",
+      "bytes": 1206
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM.jsonl.gz": {
+      "sha256": "5fb2fabe6b9a7ad5b0627ea04e9b63aac01e61c214b2cf39755d2012416db595",
+      "bytes": 6327
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM_SUMMARY.json": {
+      "sha256": "737a82cef7ea8061f61483a939e3d413afec80cc3b00fc250774226aea7d6938",
+      "bytes": 849
+    },
+    "REPORT.md": {
+      "sha256": "5f2ddd6202517d16fdf070e9da637dbfeb10af4fb1e101e153957ea2f02b8b95",
+      "bytes": 1481
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "e421a14ca9ef42154db280fef7aa90b9e85641ad12a9a5286a9fc6f526065a78",
+      "bytes": 1405
+    },
+    "STABILITY_ONSET_LEDGER.jsonl.gz": {
+      "sha256": "563d85ed8bf1d45db6369d2b99b599413772edb34203ed9f32bc09d366f77e8d",
+      "bytes": 7275
+    },
+    "V52B_BASELINE_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "d079567179b0e2597c335c85fd5bb7aee0b89c8c3a065ceed2762c4cd5d2af85",
+      "bytes": 178766
+    },
+    "V52B_BASELINE_FULL_DECISION_TRACE_30_GAMES.jsonl.gz": {
+      "sha256": "2f9079fad5852f32f7adcd5cb70399e2eef0988c71c6cf7af60908b409648086",
+      "bytes": 32600408
+    },
+    "V52C_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "abadbe5a4767a9ee6ffcacbf21b86508e9c946bc09b268010fdfe789d4a5879e",
+      "bytes": 178709
+    },
+    "V52C_FULL_DECISION_TRACE_30_GAMES.jsonl.gz": {
+      "sha256": "e6f5e3693ab72a1b037374a2c2b50ac1ad3cb4d41cb343cd3ea5358e3b11abb2",
+      "bytes": 59315058
+    }
+  }
+}

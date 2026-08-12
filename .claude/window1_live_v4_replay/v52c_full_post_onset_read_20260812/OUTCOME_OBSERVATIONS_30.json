@@ -1,0 +1,58 @@
+{
+  "baseline": {
+    "D": 30,
+    "legs": 60,
+    "acted_legs": 43,
+    "credited_legs": 30,
+    "completed_pairs": 10,
+    "under_par_pairs": 10,
+    "locked_cents_per_contract": 29,
+    "locked_cents_five_lot": 145,
+    "maker_fill_classes": {
+      "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 30
+    },
+    "frontier": {
+      "LE_93": 1,
+      "LE_95": 1,
+      "LE_97": 3,
+      "LT_100": 10,
+      "ANY_PRICE": 10
+    },
+    "conservation": {
+      "D": 30,
+      "legs": 60,
+      "expected_D": 30,
+      "expected_legs": 60,
+      "pass": true
+    }
+  },
+  "candidate": {
+    "D": 30,
+    "legs": 60,
+    "acted_legs": 44,
+    "credited_legs": 29,
+    "completed_pairs": 9,
+    "under_par_pairs": 9,
+    "locked_cents_per_contract": 27,
+    "locked_cents_five_lot": 135,
+    "maker_fill_classes": {
+      "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 29
+    },
+    "frontier": {
+      "LE_93": 1,
+      "LE_95": 1,
+      "LE_97": 3,
+      "LT_100": 9,
+      "ANY_PRICE": 9
+    },
+    "conservation": {
+      "D": 30,
+      "legs": 60,
+      "expected_D": 30,
+      "expected_legs": 60,
+      "pass": true
+    }
+  },
+  "adjudication": null,
+  "role": "OBSERVATION_ONLY_30_GAME_FLOW_COHORT"
+}

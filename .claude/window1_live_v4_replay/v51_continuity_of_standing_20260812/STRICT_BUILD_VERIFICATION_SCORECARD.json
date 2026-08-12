@@ -1,0 +1,68 @@
+{
+  "score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1604,
+    "credited_legs": 1032,
+    "completed_pairs": 330,
+    "under_par_pairs": 330,
+    "locked_cents_per_contract": 1582,
+    "locked_cents_five_lot": 7910,
+    "maker_fill_classes": {
+      "STRICT_PRINT_CROSS_SELLER_AGGRESSED_SIZE_FIVE": 1032
+    },
+    "frontier": {
+      "LE_93": 36,
+      "LE_95": 50,
+      "LE_97": 99,
+      "LT_100": 330,
+      "ANY_PRICE": 330
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "traded_floor_grade": {
+    "score": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1604,
+      "credited_legs": 1032,
+      "completed_pairs": 330,
+      "under_par_pairs": 330,
+      "locked_cents_per_contract": 1582,
+      "locked_cents_five_lot": 7910,
+      "maker_fill_classes": {
+        "STRICT_PRINT_CROSS_SELLER_AGGRESSED_SIZE_FIVE": 1032
+      },
+      "frontier": {
+        "LE_93": 36,
+        "LE_95": 50,
+        "LE_97": 99,
+        "LT_100": 330,
+        "ANY_PRICE": 330
+      },
+      "conservation": {
+        "D": 804,
+        "legs": 1608,
+        "pass": true
+      }
+    },
+    "credited_leg_gap_to_lowest_trade_cents": {
+      "n": 1032,
+      "null_n": 0,
+      "sum": 4629,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 4,
+      "p90": 10,
+      "max": 78
+    },
+    "credited_at_or_better_than_lowest_trade": 366,
+    "traded_floor_missing_legs": 16
+  },
+  "role": "BUILD_VERIFICATION_ONLY_NOT_MARKET_VALUE"
+}

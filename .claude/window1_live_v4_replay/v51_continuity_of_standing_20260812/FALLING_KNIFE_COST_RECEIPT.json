@@ -1,0 +1,173 @@
+{
+  "law": "ENTRY_MINUS_LOWEST_LAWFUL_TRUE_TRADE_FLOOR_ON_CONVERTED_LEGS",
+  "converted_legs": 1,
+  "distribution_cents": {
+    "n": 1,
+    "null_n": 0,
+    "sum": 0,
+    "min": 0,
+    "p25": 0,
+    "median": 0,
+    "p75": 0,
+    "p90": 0,
+    "max": 0
+  },
+  "per_category": {
+    "ATP_CHALL": {
+      "target_legs": 184,
+      "states": {
+        "REMAINED_UNCREDITED": 176,
+        "ALREADY_CREDITED": 8
+      },
+      "conversions": 0,
+      "falling_knife_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    "ATP_MAIN": {
+      "target_legs": 53,
+      "states": {
+        "REMAINED_UNCREDITED": 47,
+        "ALREADY_CREDITED": 5,
+        "CONVERTED_BY_CONTINUITY": 1
+      },
+      "conversions": 1,
+      "falling_knife_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      }
+    },
+    "WTA_CHALL": {
+      "target_legs": 66,
+      "states": {
+        "REMAINED_UNCREDITED": 61,
+        "ALREADY_CREDITED": 5
+      },
+      "conversions": 0,
+      "falling_knife_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    "WTA_MAIN": {
+      "target_legs": 52,
+      "states": {
+        "REMAINED_UNCREDITED": 45,
+        "ALREADY_CREDITED": 7
+      },
+      "conversions": 0,
+      "falling_knife_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    }
+  },
+  "per_volume_tier": {
+    "1-99": {
+      "target_legs": 32,
+      "states": {
+        "REMAINED_UNCREDITED": 30,
+        "ALREADY_CREDITED": 2
+      },
+      "conversions": 0,
+      "falling_knife_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    "100-999": {
+      "target_legs": 112,
+      "states": {
+        "REMAINED_UNCREDITED": 108,
+        "ALREADY_CREDITED": 4
+      },
+      "conversions": 0,
+      "falling_knife_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    "1k-10k": {
+      "target_legs": 150,
+      "states": {
+        "REMAINED_UNCREDITED": 135,
+        "ALREADY_CREDITED": 15
+      },
+      "conversions": 0,
+      "falling_knife_cents": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    ">10k": {
+      "target_legs": 61,
+      "states": {
+        "REMAINED_UNCREDITED": 56,
+        "ALREADY_CREDITED": 4,
+        "CONVERTED_BY_CONTINUITY": 1
+      },
+      "conversions": 1,
+      "falling_knife_cents": {
+        "n": 1,
+        "null_n": 0,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      }
+    }
+  }
+}

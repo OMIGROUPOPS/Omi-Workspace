@@ -1,0 +1,61 @@
+{
+  "selection_law": "TOP_SIX_CONVERTED_TARGET_LEGS_BY_FALLING_KNIFE_CENTS_THEN_LEG_IDENTITY",
+  "rows": [
+    {
+      "event_id": "KXATPMATCH-26JUL18HEIFEL",
+      "leg_identity": "KXATPMATCH-26JUL18HEIFEL|HEI",
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "volume_tier": ">10k",
+      "evidence_named_P_cents": 58,
+      "state": "CONVERTED_BY_CONTINUITY",
+      "baseline_credited": false,
+      "candidate_credited": true,
+      "baseline_entry_cents": null,
+      "candidate_entry_cents": 58,
+      "traded_floor_cents": 58,
+      "falling_knife_cents": 0,
+      "continuity_applied_receipts": 104,
+      "continuity_walk_away_overrides": 104,
+      "continuity_s12_overrides": 0,
+      "first_continuity_receipt": {
+        "timestamp_epoch": 1784335379,
+        "t_minus_scheduled_seconds": 50821,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 43476.47300004959,
+        "receipt": "KXATPMATCH-26JUL18HEIFEL-HEI.csv.gz#row-298",
+        "order_before_cents": 58,
+        "order_after_cents": 58,
+        "flow": {
+          "qualified": true,
+          "cumulative_volume_lots": 14326.03,
+          "tier": ">10k",
+          "strict_threshold_lots": 10000,
+          "provenance": "AIM_ERROR_CENSUS_17664B3F_VOLUME_TIER_GT_10K"
+        },
+        "incumbent_action": "REPRICE_REST",
+        "incumbent_reason": "V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1"
+      },
+      "final_continuity_receipt": {
+        "timestamp_epoch": 1784343836,
+        "t_minus_scheduled_seconds": 42364,
+        "t_minus_actual_bell_seconds": null,
+        "t_minus_pre_match_boundary_seconds": 35019.47300004959,
+        "receipt": "KXATPMATCH-26JUL18HEIFEL-HEI.csv.gz#row-401",
+        "order_before_cents": 58,
+        "order_after_cents": 58,
+        "flow": {
+          "qualified": true,
+          "cumulative_volume_lots": 14326.43,
+          "tier": ">10k",
+          "strict_threshold_lots": 10000,
+          "provenance": "AIM_ERROR_CENSUS_17664B3F_VOLUME_TIER_GT_10K"
+        },
+        "incumbent_action": "REPRICE_REST",
+        "incumbent_reason": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY"
+      }
+    }
+  ],
+  "all_from_frozen_355_target": true,
+  "pass": true
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "window1-v51-continuity-of-standing-control-v1",
+  "base": "47b51fd20f3b0b821d27b63b15a576e36103562e",
+  "frozen_V49b": "47b51fd20f3b0b821d27b63b15a576e36103562e",
+  "controlling_receipts": [
+    "17664b3fb6f6cafbd9260487054941155056f23c"
+  ],
+  "architecture": {
+    "change": "EXACT_P_REST_ALREADY_ARMED_REMAINS_STANDING_DURING_ELEVATED_FLOW",
+    "time_discipline_only": true,
+    "price_transform": "NONE",
+    "elevated_flow": {
+      "causal_measure": "CUMULATIVE_TRUE_PRINT_VOLUME_LOTS_AT_OR_BEFORE_CURRENT_RECEIPT",
+      "strict_threshold_lots": 10000,
+      "provenance": "AIM_ERROR_CENSUS_17664B3F_VOLUME_TIER_GT_10K"
+    },
+    "overridden_vacate_paths": [
+      "V49B_AT_P_CURRENTLY_UNLAWFUL_NO_OFFSET_FALLBACK",
+      "V43_C2_WITHHOLD_CANCEL_INFEASIBLE_INCUMBENT_REST"
+    ],
+    "never_creates_a_rest": true,
+    "pair_cap_never_waived": true,
+    "staying_means_accepting_fills": true,
+    "incumbent_elsewhere": "V49B_BYTE_IDENTICAL",
+    "V50_price_bound_family": "NOT_CONSUMED"
+  },
+  "target_population": {
+    "distinct_RRWP_legs": 362,
+    "scoreable_with_lawful_floor": 355,
+    "no_lawful_floor": 7
+  },
+  "fill_rulers": {
+    "market_scoring": "ANY_TRUE_TRADE_AT_OR_BELOW_PRIOR_LAWFUL_REST",
+    "build_verification": "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST",
+    "never_swapped": true
+  },
+  "acceptance": "MECHANISM_BOUND_MEASUREMENT_NO_AUTO_RATIFICATION_BAR"
+}

@@ -1845,3 +1845,21 @@ cutover is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b0fdda29e64b720f82a9b8984f3b4cc29901fd2/arb-executor/docs/research/window1/WINDOW1_V49_EVIDENCED_LEVEL_STANDING_20260810_ADDENDUM.md
+
+### 2026-08-12 - V51 CONTINUITY OF STANDING MEASURED, NOT RATIFIED
+
+V51 is a time-discipline measurement on frozen V49b: after a frozen
+AIM_ERROR_CENSUS target has lawfully armed an exact-P rest and causal
+cumulative true-print volume crosses the census's named elevated tier
+(>10,000 lots), the rest stays at P through incumbent walk-away and
+pre-credit S12/deep-gap-withhold decisions while the pair cap remains lawful.
+The clause neither creates a rest nor changes its price. Across the 355
+scoreable standing-time misses, one converts, 25 were already credited, and
+329 remain uncredited. The conversion is HEIFEL|HEI at 58, exactly its traded
+floor, for zero measured falling-knife cost. Market completions move 405->406
+and true book 1,778c->1,779c; strict print-cross completions remain 330. Two
+clean builds are byte-identical. V49b remains operative pending operator
+ruling; no deployment or live cutover is authorized.
+
+Canonical addendum:
+arb-executor/docs/research/window1/V51_CONTINUITY_OF_STANDING_20260812_ADDENDUM.md

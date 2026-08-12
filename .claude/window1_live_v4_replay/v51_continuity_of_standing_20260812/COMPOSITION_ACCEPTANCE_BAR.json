@@ -1,0 +1,35 @@
+{
+  "mechanism_bound": true,
+  "baseline_reproduction": {
+    "market_score_byte_identical": true,
+    "strict_score_byte_identical": true,
+    "pass": true
+  },
+  "target_population": {
+    "distinct_rrwp_legs": 362,
+    "scoreable_legs": 355,
+    "unavailable_floor_legs": 7
+  },
+  "elevated_flow_threshold": {
+    "operator": ">",
+    "lots": 10000,
+    "provenance": "AIM_ERROR_CENSUS_17664B3F_VOLUME_TIER_GT_10K"
+  },
+  "mechanism_applications": 493,
+  "conversions": 1,
+  "falling_knife_cost_cents": {
+    "n": 1,
+    "null_n": 0,
+    "sum": 0,
+    "min": 0,
+    "p25": 0,
+    "median": 0,
+    "p75": 0,
+    "p90": 0,
+    "max": 0
+  },
+  "changed_legs_outside_355_target": 0,
+  "build_pass": true,
+  "ratified": null,
+  "operator_ruling_required": true
+}

@@ -1,0 +1,28 @@
+{
+  "frozen_V49b": {
+    "commit": "47b51fd20f3b0b821d27b63b15a576e36103562e",
+    "baseline_reproduction": {
+      "market_score_byte_identical": true,
+      "strict_score_byte_identical": true,
+      "pass": true
+    }
+  },
+  "AIM_ERROR_CENSUS": {
+    "commit": "17664b3fb6f6cafbd9260487054941155056f23c",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/AIM_ERROR_CENSUS.json",
+    "sha256": "d0a7f5c3bae13ebf79fec32cf3b3f5aa48784953f02a80f8a570d7f0f6507e84",
+    "bytes": 154221,
+    "population": {
+      "distinct_rrwp_legs": 362,
+      "scoreable_legs": 355,
+      "unavailable_floor_legs": 7
+    }
+  },
+  "elevated_flow_authority": {
+    "condition": "CAUSAL_CUMULATIVE_PRINT_VOLUME_LOTS_GT_10000",
+    "provenance": "AIM_ERROR_CENSUS_17664B3F_VOLUME_TIER_GT_10K",
+    "fitted_parameter": false,
+    "census_tier_boundary": true,
+    "eventual_event_volume_not_consumed": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v51_continuity_of_standing.js",
+  "policy_sha256": "f14e0ef9d4583e7c5f20acff1b88f54f62194efaabc24d1e533e68347d929b51",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "market_taker_fills": 0,
+  "strict_taker_fills": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "maker_fees_cents": 0,
+  "pass": true
+}

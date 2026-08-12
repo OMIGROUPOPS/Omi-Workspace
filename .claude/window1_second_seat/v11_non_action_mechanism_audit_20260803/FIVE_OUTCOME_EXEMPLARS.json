@@ -1,0 +1,1364 @@
+{
+ "LABEL": "FIVE_OUTCOME_EXEMPLARS",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "brain": "V49b staged ledger (operator-cited 47b51fd2; 393-ledger caveat inline per synthesis fold d6399035)",
+ "read_provenance": "own_read at join/fill/terminal = machine anchor; all other reads = tape-derived trailing-300s proxy (RECONSTRUCTION, doctrine-1 labeled - the staged ledger carries classifier COUNTS only, no per-receipt rows)",
+ "selection": {
+  "CASE1": "26JUL16MERDRO",
+  "CASE2": "26JUL12POLKUH",
+  "CASE3": "26JUL19ARSMAR",
+  "CASE4": "26JUL13SANDAN",
+  "CASE5": "26JUL14PUTJEA"
+ },
+ "packs": {
+  "CASE1": {
+   "event": "KXATPMATCH-26JUL16MERDRO",
+   "category": "ATP_MAIN",
+   "bell": "exact",
+   "window": [
+    1784148754,
+    1784210700
+   ],
+   "starting_split": "26_50+51_75",
+   "legs": {
+    "DRO": {
+     "ticker": "KXATPMATCH-26JUL16MERDRO-DRO",
+     "credited": true,
+     "entry": 6,
+     "terminal_rest": null,
+     "join_level": 6,
+     "pair_cap": 93,
+     "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+     "fill_source_state": "FALLING",
+     "last_read": "FALLING",
+     "own_low": 6,
+     "own_low_t_min": 35.6,
+     "gap_to_low": 0,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1784148754,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1784148754,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 1852,
+        "price": 93,
+        "size": 10.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1784150611,
+       "t_min_into_window": 30.9,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "credited",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1784150611,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 183,
+        "price": 93,
+        "size": 1.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "first_action",
+       "t": 1784148754,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1784148754,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 1852,
+        "price": 93,
+        "size": 10.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "fill",
+       "t": 1784150892,
+       "t_min_into_window": 35.6,
+       "own_read": "FALLING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "RISING",
+       "sibling_machine_anchor": "credited",
+       "action": "CREDITED",
+       "book": [
+        1784150892,
+        6,
+        92
+       ],
+       "pair_mid_sum": 101.0,
+       "next_print": {
+        "dt_s": 801,
+        "price": 60,
+        "size": 4.86
+       },
+       "forward": "down",
+       "verdict": "EARNED"
+      }
+     ]
+    },
+    "MER": {
+     "ticker": "KXATPMATCH-26JUL16MERDRO-MER",
+     "credited": true,
+     "entry": 6,
+     "terminal_rest": null,
+     "join_level": 6,
+     "pair_cap": 93,
+     "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+     "fill_source_state": "FALLING",
+     "last_read": "RISING",
+     "own_low": 6,
+     "own_low_t_min": 24.5,
+     "gap_to_low": 0,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1784148754,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1784148754,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 1241,
+        "price": 93,
+        "size": 1.07
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1784150005,
+       "t_min_into_window": 20.9,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1784150005,
+        6,
+        93
+       ],
+       "pair_mid_sum": 99.0,
+       "next_print": {
+        "dt_s": 163,
+        "price": 93,
+        "size": 8.93
+       },
+       "forward": "up",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_action",
+       "t": 1784148754,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1784148754,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 1241,
+        "price": 93,
+        "size": 1.07
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "fill",
+       "t": 1784150225,
+       "t_min_into_window": 24.5,
+       "own_read": "FALLING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "CREDITED",
+       "book": [
+        1784150210,
+        6,
+        94
+       ],
+       "pair_mid_sum": 99.5,
+       "next_print": {
+        "dt_s": 383,
+        "price": 93,
+        "size": 14.0
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      }
+     ]
+    }
+   },
+   "menu_moment": {
+    "t": 1784150606,
+    "t_min": 30.9,
+    "lowA": 93,
+    "lowB": 6,
+    "sum": 99,
+    "readA_proxy": "SETTLED",
+    "readB_proxy": "SETTLED",
+    "pair_mid_sum": 99.5,
+    "armedA": false,
+    "armedB": true,
+    "filledA": false,
+    "filledB": true
+   },
+   "midsum_decoupling": null
+  },
+  "CASE2": {
+   "event": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+   "category": "ATP_CHALL",
+   "bell": "exact",
+   "window": [
+    1783830737,
+    1783879200
+   ],
+   "starting_split": "ge75+le25",
+   "legs": {
+    "KUH": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH",
+     "credited": true,
+     "entry": 18,
+     "terminal_rest": null,
+     "join_level": 18,
+     "pair_cap": 18,
+     "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+     "fill_source_state": "RISING",
+     "last_read": "FALLING",
+     "own_low": 15,
+     "own_low_t_min": 806.9,
+     "gap_to_low": 3,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1783830737,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1783830737,
+        5,
+        95
+       ],
+       "pair_mid_sum": 99.5,
+       "next_print": {
+        "dt_s": 43228,
+        "price": 20,
+        "size": 1.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1783878330,
+       "t_min_into_window": 793.2,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "credited",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1783878330,
+        18,
+        20
+       ],
+       "pair_mid_sum": 100.5,
+       "next_print": {
+        "dt_s": 819,
+        "price": 15,
+        "size": 72.0
+       },
+       "forward": "up",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_action",
+       "t": 1783830737,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1783830737,
+        5,
+        95
+       ],
+       "pair_mid_sum": 99.5,
+       "next_print": {
+        "dt_s": 43228,
+        "price": 20,
+        "size": 1.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "fill",
+       "t": 1783879149,
+       "t_min_into_window": 806.9,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "credited",
+       "action": "CREDITED",
+       "book": [
+        1783878855,
+        18,
+        20
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 5,
+        "price": 16,
+        "size": 75.0
+       },
+       "forward": "up",
+       "verdict": "EARNED"
+      }
+     ]
+    },
+    "POL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL",
+     "credited": true,
+     "entry": 81,
+     "terminal_rest": null,
+     "join_level": 81,
+     "pair_cap": 81,
+     "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+     "fill_source_state": "RISING",
+     "last_read": "FALLING",
+     "own_low": 80,
+     "own_low_t_min": 704.0,
+     "gap_to_low": 1,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1783830737,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1783830737,
+        4,
+        95
+       ],
+       "pair_mid_sum": 99.5,
+       "next_print": {
+        "dt_s": 672,
+        "price": 83,
+        "size": 1.0
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1783872381,
+       "t_min_into_window": 694.1,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1783872381,
+        81,
+        82
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 598,
+        "price": 80,
+        "size": 18.67
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_action",
+       "t": 1783830737,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1783830737,
+        4,
+        95
+       ],
+       "pair_mid_sum": 99.5,
+       "next_print": {
+        "dt_s": 672,
+        "price": 83,
+        "size": 1.0
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "first_withhold",
+       "t": 1783831173,
+       "t_min_into_window": 7.3,
+       "own_read": "RISING",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "FALLING",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "WITHHOLD (S12)",
+       "book": [
+        1783831173,
+        74,
+        84
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 236,
+        "price": 83,
+        "size": 1.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "fill",
+       "t": 1783872979,
+       "t_min_into_window": 704.0,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "CREDITED",
+       "book": [
+        1783872967,
+        81,
+        82
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 1584,
+        "price": 82,
+        "size": 3.01
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      }
+     ]
+    }
+   },
+   "menu_moment": {
+    "t": 1783878058,
+    "t_min": 788.7,
+    "lowA": 19,
+    "lowB": 80,
+    "sum": 99,
+    "readA_proxy": "SETTLED",
+    "readB_proxy": "SETTLED",
+    "pair_mid_sum": 99.5,
+    "armedA": false,
+    "armedB": true,
+    "filledA": false,
+    "filledB": true
+   },
+   "midsum_decoupling": {
+    "t": 1783830797,
+    "t_min": 1.0,
+    "sum": 87.5
+   }
+  },
+  "CASE3": {
+   "event": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+   "category": "ATP_CHALL",
+   "bell": "exact",
+   "window": [
+    1784434536,
+    1784477100
+   ],
+   "starting_split": "26_50+51_75",
+   "legs": {
+    "ARS": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS",
+     "credited": false,
+     "entry": null,
+     "terminal_rest": 39,
+     "join_level": 38,
+     "pair_cap": 39,
+     "fill_class": null,
+     "fill_source_state": null,
+     "last_read": "FALLING",
+     "own_low": 35,
+     "own_low_t_min": 275.2,
+     "gap_to_low": 4,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1784434536,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1784434536,
+        5,
+        92
+       ],
+       "pair_mid_sum": 97.0,
+       "next_print": {
+        "dt_s": 13840,
+        "price": 39,
+        "size": 1.0
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1784476540,
+       "t_min_into_window": 700.1,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "credited",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1784476540,
+        38,
+        40
+       ],
+       "pair_mid_sum": 98.5,
+       "next_print": {
+        "dt_s": 754,
+        "price": 41,
+        "size": 10.37
+       },
+       "forward": "up",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_action",
+       "t": 1784434536,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1784434536,
+        5,
+        92
+       ],
+       "pair_mid_sum": 97.0,
+       "next_print": {
+        "dt_s": 13840,
+        "price": 39,
+        "size": 1.0
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "first_withhold",
+       "t": 1784448368,
+       "t_min_into_window": 230.5,
+       "own_read": "FALLING",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "RISING",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "WITHHOLD (S12)",
+       "book": [
+        1784448368,
+        29,
+        39
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 8,
+        "price": 39,
+        "size": 1.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "terminal_edge",
+       "t": 1784477100,
+       "t_min_into_window": 709.4,
+       "own_read": "FALLING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "credited",
+       "action": "REST_AT_EDGE terminal",
+       "book": [
+        1784477100,
+        38,
+        41
+       ],
+       "pair_mid_sum": 100.5,
+       "next_print": {
+        "dt_s": 194,
+        "price": 41,
+        "size": 10.37
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      }
+     ]
+    },
+    "MAR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR",
+     "credited": true,
+     "entry": 60,
+     "terminal_rest": null,
+     "join_level": 60,
+     "pair_cap": null,
+     "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+     "fill_source_state": "FALLING",
+     "last_read": "SETTLED",
+     "own_low": 59,
+     "own_low_t_min": 694.0,
+     "gap_to_low": 1,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1784434536,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1784434536,
+        5,
+        92
+       ],
+       "pair_mid_sum": 97.0,
+       "next_print": {
+        "dt_s": 32262,
+        "price": 61,
+        "size": 1.59
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1784474609,
+       "t_min_into_window": 667.9,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1784474609,
+        60,
+        61
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 471,
+        "price": 60,
+        "size": 23.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "first_action",
+       "t": 1784434536,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1784434536,
+        5,
+        92
+       ],
+       "pair_mid_sum": 97.0,
+       "next_print": {
+        "dt_s": 32262,
+        "price": 61,
+        "size": 1.59
+       },
+       "forward": "up",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "fill",
+       "t": 1784475080,
+       "t_min_into_window": 675.7,
+       "own_read": "FALLING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "CREDITED",
+       "book": [
+        1784475077,
+        60,
+        61
+       ],
+       "pair_mid_sum": 99.5,
+       "next_print": {
+        "dt_s": 1094,
+        "price": 59,
+        "size": 1.0
+       },
+       "forward": "down",
+       "verdict": "EARNED"
+      }
+     ]
+    }
+   },
+   "menu_moment": {
+    "t": 1784466798,
+    "t_min": 537.7,
+    "lowA": 35,
+    "lowB": 61,
+    "sum": 96,
+    "readA_proxy": "SETTLED",
+    "readB_proxy": "SETTLED",
+    "pair_mid_sum": 99.5,
+    "armedA": false,
+    "armedB": false,
+    "filledA": false,
+    "filledB": false
+   },
+   "midsum_decoupling": {
+    "t": 1784437806,
+    "t_min": 54.5,
+    "sum": 105.0
+   }
+  },
+  "CASE4": {
+   "event": "KXATPMATCH-26JUL13SANDAN",
+   "category": "ATP_MAIN",
+   "bell": "exact",
+   "window": [
+    1783870590,
+    1783942500
+   ],
+   "starting_split": "ge75+le25",
+   "legs": {
+    "DAN": {
+     "ticker": "KXATPMATCH-26JUL13SANDAN-DAN",
+     "credited": false,
+     "entry": null,
+     "terminal_rest": 68,
+     "join_level": 75,
+     "pair_cap": 68,
+     "fill_class": null,
+     "fill_source_state": null,
+     "last_read": "RISING",
+     "own_low": 69,
+     "own_low_t_min": 220.8,
+     "gap_to_low": -1,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1783870590,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1783870590,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 12176,
+        "price": 70,
+        "size": 1.39
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1783935521,
+       "t_min_into_window": 1082.2,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "credited",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1783935521,
+        75,
+        76
+       ],
+       "pair_mid_sum": 99.0,
+       "next_print": {
+        "dt_s": 1077,
+        "price": 76,
+        "size": 1.29
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_action",
+       "t": 1783870590,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1783870590,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 12176,
+        "price": 70,
+        "size": 1.39
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_withhold",
+       "t": 1783880046,
+       "t_min_into_window": 157.6,
+       "own_read": "RISING",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "FALLING",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "WITHHOLD (S12)",
+       "book": [
+        1783880046,
+        58,
+        68
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 2720,
+        "price": 70,
+        "size": 1.39
+       },
+       "forward": "up",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "terminal_edge",
+       "t": 1783942500,
+       "t_min_into_window": 1198.5,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "credited",
+       "action": "REST_AT_EDGE terminal",
+       "book": [
+        1783942499,
+        75,
+        76
+       ],
+       "pair_mid_sum": 99.0,
+       "next_print": {
+        "dt_s": 8,
+        "price": 76,
+        "size": 18.0
+       },
+       "forward": "up",
+       "verdict": "EARNED"
+      }
+     ]
+    },
+    "SAN": {
+     "ticker": "KXATPMATCH-26JUL13SANDAN-SAN",
+     "credited": true,
+     "entry": 31,
+     "terminal_rest": null,
+     "join_level": 31,
+     "pair_cap": null,
+     "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+     "fill_source_state": "RISING",
+     "last_read": "FALLING",
+     "own_low": 22,
+     "own_low_t_min": 820.5,
+     "gap_to_low": 9,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1783870590,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1783870590,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 11654,
+        "price": 31,
+        "size": 12.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1783881879,
+       "t_min_into_window": 188.2,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "RISING",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1783881879,
+        31,
+        33
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 365,
+        "price": 31,
+        "size": 12.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "first_action",
+       "t": 1783870590,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1783870590,
+        6,
+        94
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 11654,
+        "price": 31,
+        "size": 12.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_withhold",
+       "t": 1783880046,
+       "t_min_into_window": 157.6,
+       "own_read": "FALLING",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "RISING",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "WITHHOLD (S12)",
+       "book": [
+        1783880046,
+        32,
+        42
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 2198,
+        "price": 31,
+        "size": 12.0
+       },
+       "forward": "down",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "fill",
+       "t": 1783882244,
+       "t_min_into_window": 194.2,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "CREDITED",
+       "book": [
+        1783882244,
+        30,
+        32
+       ],
+       "pair_mid_sum": 100.0,
+       "next_print": {
+        "dt_s": 3754,
+        "price": 31,
+        "size": 10.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      }
+     ]
+    }
+   },
+   "menu_moment": {
+    "t": 1783889671,
+    "t_min": 318.0,
+    "lowA": 69,
+    "lowB": 28,
+    "sum": 97,
+    "readA_proxy": "SETTLED",
+    "readB_proxy": "SETTLED",
+    "pair_mid_sum": 98.0,
+    "armedA": false,
+    "armedB": true,
+    "filledA": false,
+    "filledB": true
+   },
+   "midsum_decoupling": null
+  },
+  "CASE5": {
+   "event": "KXWTAMATCH-26JUL14PUTJEA",
+   "category": "WTA_MAIN",
+   "bell": "schedule_only",
+   "window": [
+    1783936553,
+    1784026800
+   ],
+   "starting_split": "le25+le25",
+   "legs": {
+    "JEA": {
+     "ticker": "KXWTAMATCH-26JUL14PUTJEA-JEA",
+     "credited": false,
+     "entry": null,
+     "terminal_rest": 18,
+     "join_level": 21,
+     "pair_cap": null,
+     "fill_class": null,
+     "fill_source_state": null,
+     "last_read": "FALLING",
+     "own_low": 64,
+     "own_low_t_min": 320.2,
+     "gap_to_low": -46,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1783936553,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1783936553,
+        8,
+        93
+       ],
+       "pair_mid_sum": 101.0,
+       "next_print": {
+        "dt_s": 19213,
+        "price": 64,
+        "size": 1.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1783963268,
+       "t_min_into_window": 445.2,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "FALLING",
+       "sibling_machine_anchor": "armed",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1783963268,
+        21,
+        77
+       ],
+       "pair_mid_sum": 98.5,
+       "next_print": null,
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_action",
+       "t": 1783936553,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1783936553,
+        8,
+        93
+       ],
+       "pair_mid_sum": 101.0,
+       "next_print": {
+        "dt_s": 19213,
+        "price": 64,
+        "size": 1.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_withhold",
+       "t": 1783952875,
+       "t_min_into_window": 272.0,
+       "own_read": "RISING",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "WITHHOLD (S12)",
+       "book": [
+        1783952875,
+        64,
+        80
+       ],
+       "pair_mid_sum": 123.0,
+       "next_print": {
+        "dt_s": 2891,
+        "price": 64,
+        "size": 1.0
+       },
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "terminal_edge",
+       "t": 1784026800,
+       "t_min_into_window": 1504.1,
+       "own_read": "FALLING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "armed",
+       "action": "REST_AT_EDGE terminal",
+       "book": [
+        1783963883,
+        19,
+        80
+       ],
+       "pair_mid_sum": 99.0,
+       "next_print": null,
+       "forward": "flat",
+       "verdict": "EARNED"
+      }
+     ]
+    },
+    "PUT": {
+     "ticker": "KXWTAMATCH-26JUL14PUTJEA-PUT",
+     "credited": false,
+     "entry": null,
+     "terminal_rest": 22,
+     "join_level": 46,
+     "pair_cap": null,
+     "fill_class": null,
+     "fill_source_state": null,
+     "last_read": "SETTLED",
+     "own_low": 9,
+     "own_low_t_min": 89.1,
+     "gap_to_low": 13,
+     "moments": [
+      {
+       "moment": "first_decision",
+       "t": 1783936553,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "observe",
+       "book": [
+        1783936553,
+        8,
+        93
+       ],
+       "pair_mid_sum": 101.0,
+       "next_print": {
+        "dt_s": 5344,
+        "price": 9,
+        "size": 1.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "join_arm",
+       "t": 1783963098,
+       "t_min_into_window": 442.4,
+       "own_read": "RISING",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "arm join (law: arm read = RISING)",
+       "book": [
+        1783963098,
+        46,
+        82
+       ],
+       "pair_mid_sum": 113.0,
+       "next_print": null,
+       "forward": "down",
+       "verdict": "LUCKY/WRONG"
+      },
+      {
+       "moment": "first_action",
+       "t": 1783936553,
+       "t_min_into_window": 0.0,
+       "own_read": "NO_TAPE",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "NO_TAPE",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "PLACE_REST",
+       "book": [
+        1783936553,
+        8,
+        93
+       ],
+       "pair_mid_sum": 101.0,
+       "next_print": {
+        "dt_s": 5344,
+        "price": 9,
+        "size": 1.0
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "first_withhold",
+       "t": 1783943457,
+       "t_min_into_window": 115.1,
+       "own_read": "RISING",
+       "own_read_source": "tape_proxy_300s",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "pre_arm",
+       "action": "WITHHOLD (S12)",
+       "book": [
+        1783943457,
+        28,
+        80
+       ],
+       "pair_mid_sum": 105.5,
+       "next_print": {
+        "dt_s": 1861,
+        "price": 80,
+        "size": 1.29
+       },
+       "forward": "flat",
+       "verdict": "EARNED"
+      },
+      {
+       "moment": "terminal_edge",
+       "t": 1784026800,
+       "t_min_into_window": 1504.1,
+       "own_read": "SETTLED",
+       "own_read_source": "machine",
+       "sibling_read_proxy": "SETTLED",
+       "sibling_machine_anchor": "armed",
+       "action": "REST_AT_EDGE terminal",
+       "book": [
+        1783964060,
+        46,
+        53
+       ],
+       "pair_mid_sum": 99.0,
+       "next_print": null,
+       "forward": "flat",
+       "verdict": "EARNED"
+      }
+     ]
+    }
+   },
+   "menu_moment": {
+    "t": 1783955766,
+    "t_min": 320.2,
+    "lowA": 64,
+    "lowB": 9,
+    "sum": 73,
+    "readA_proxy": "SETTLED",
+    "readB_proxy": "SETTLED",
+    "pair_mid_sum": 120.0,
+    "armedA": false,
+    "armedB": false,
+    "filledA": false,
+    "filledB": false
+   },
+   "midsum_decoupling": {
+    "t": 1783941473,
+    "t_min": 82.0,
+    "sum": 70.0
+   }
+  }
+ }
+}

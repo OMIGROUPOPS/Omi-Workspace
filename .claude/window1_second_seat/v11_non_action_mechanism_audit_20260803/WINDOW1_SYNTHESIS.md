@@ -37,6 +37,22 @@ verification only, never swapped (`fb74c8b8` CONTROL_BINDING).
    count (the 711-vs-604 traded-floor drift `a37bf6a6`; the 13 P-drifts, 13/13 span-basis `653b7f13`; the
    edge census's exact-bell caveat `4ba98104`).
 
+**Laws added at the queue/formation/reflex fold (append, this commit):**
+
+6. **Formation law** — fills before a leg's onset are formation-era and say nothing about judgment; onset is
+   bracketed by the spread-collapse (earliest) and trade-cadence-arrival (latest) candidates (`9eff493b`
+   method, `1d5564b5` census); the qualifier between them is an open operator decision (§8), and until ruled,
+   bracket-dependent fills are named as such, never resolved by the seat.
+7. **Frame-check law** — every analysis reply carries PRIOR-ART (what standing artifact already covers this)
+   and a frame-check (what the instrument's classifier would conclude by construction) before results; the
+   reflex census's root-cause statement is the template: *"outcomes were audited, causes were assumed."*
+8. **Data-source law** — Kalshi's official API serves full trade history but **no historical order-book
+   depth** (`db470ec8`, verified); the recorder's dual-book store is the sole source for standing-state and
+   must be kept; trades reconcile to the exchange by trade_id (phantom rate 0.0).
+9. **The queue ruling (operator)** — crediting law untouched: **a sale kissing the rest credits** —
+   trades-as-truth pure; queue stamps (`1d5564b5`) are **informational only, never gating**. Queue
+   plausibility prices the live premium (§6); it does not re-score the replay book.
+
 ---
 
 ## 2 · THE LEDGER — every campaign artifact, stamped
@@ -97,6 +113,11 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 | Floor rebuild + presence premium (f730fad1; other seat) | **RESOLVED** — machine-anchored floor law; the 213-leg impossible set → **0**; the 100¢/3,444¢ decomposition: execution layer solved to 100¢, the remainder is presence-premium/window territory (§6) |
 | Decision audit (35ac1f5b; 1,608 legs, V49b-staged) | **RESOLVED** — restraint structurally absent (stood 1,603/1,608; CORRECT_RESTRAINT empty by construction, not classifier); 161/786 lucky fills; withholds 62.1% ahead of oncoming flow; 118 one-eyed unarbitrated / 86 BOTH-vindicated; discriminator zone table (category .163 / volume .127 / cell .122; spread nil .023). Rows carry the 393-ledger caveat pending re-key |
 | Aim error census (17664b3f; 362 RRWP legs, 355 scored) | **RESOLVED** — the misses are **standing-time, not aim**: median aim error +2 (stood at-or-above the eventual low); vault residual **0** (SEQFLOOR_RECUT knew the level, game by game); volume-monotone (>10k lots → +4); doctrine-2 strata held (P-cell, dipless 71/219); seqfloor fit-overlap REPORTED unresolved (§5) |
+| Five-outcome exemplar set (96168790; 5 games / 10 legs) | **RESOLVED** — referee named checks bound (3/4/5 improve, 1/2 not degrade, never tuning targets); the single rule = presence at the running true-trade floor while lows sum <100 |
+| Tape vs exchange diff (db470ec8; 53 games / 67,598 trades) | **RESOLVED** — no iceberg: REAL 53/53, phantom 0, missing 0; MERDRO 6¢ prints attested by trade_id; Kalshi has NO historical depth (data-source law, §1) |
+| Game tape packs (c09bde99; 5 games / 30 CSVs) | **RESOLVED** — raw series for the render seat; rest paths ledger-anchor grain (no V49b trace); heartbeat caveat applied |
+| MERDRO close-out (9eff493b; 2 trades / 12 shifts / 2 stamps) | **RESOLVED** — **denomination clean** (ours=yes_price at recorder line and diff line); onset table: the 6¢ prints predate every candidate onset, post-onset floors 39–60; **both formation fills QUEUE_IMPROBABLE** (26.56 vs 217 · 57.21 vs 218 displayed) |
+| Queue+formation+reflex census (1d5564b5; 1,143 credited fills) | **RESOLVED-TERMINAL** — queue: 643/1,143 improbable (56.3%); formation: 518 pre-onset / 478 bracket-dependent / 144 post-onset; **reflex: 1,140/1,143 fills born of posts preceding any read (structural); honest completes 0 of 393**; excluded money 1,436¢/1,266¢/1,666¢ with overlaps; the terminal instrument of the replay campaign |
 
 ---
 
@@ -115,6 +136,18 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 - ⧗ **V51 continuity-of-standing** — (new slot, fold) the executable of the four-instrument convergence (§7):
   keep the lawful rest standing through the moments flow prints at-or-below it. **Codex, in flight.** Its
   result prices patience vs the live-only presence premium and gates the Stage C pilot ruling.
+- ⧗ **V52 JUDGMENT GATE — the governing slot** (opened at the reflex fold, `1d5564b5`). Charter: **birth
+  license** — no rest is posted without four license clauses carried inline on the post: ① post-onset book
+  (the leg's onset qualifier has fired — §8 ruling pending), ② a machine read exists at the posting moment,
+  ③ the level comes from the post-onset true-trade diary (`prior_true_trade_low` family, not the bid anchor),
+  ④ pair coherence with the `disagreement` flag **consumed** (S3's dangling signal finally wired). **Crediting
+  law untouched** — trades-as-truth pure per the operator's queue ruling (§1 law 9: kiss = credit, queue
+  position ignored). Scavenger flag **specced OFF**. Two-stage plan: flow-check on the five exemplars **with
+  decision traces emitted**, then one-shot dev-804. Five named checks (`96168790`): ARSMAR completes ·
+  SANDAN's DAN uncapped · PUTJEA stands at real levels or sits out · POLKUH completes · **MERDRO is not
+  credited as judgment** (formation-era by every candidate). Never tuning targets.
+- **Mirror-arbitration install item (§4-C residue, S3 `disagreement` flag) → ABSORBED into V52 clause ④**
+  (fold, this commit) — the arbitration slot closes as a separate item.
 - **Aim-organ hypothesis — RETIRED, tombstone `17664b3f`** (fold): the deep-aim organ (AIM_V2 cell-depth as
   the miss fix) is refuted on this population — median aim error +2, the vault already knew the level, and
   aiming lower worsens every scored leg. Reopen condition: none at replay grain; superseded by V51.
@@ -231,6 +264,23 @@ ge75+le25 cell last.
 **Re-key line:** when Codex's canonical brain-SHA-stamped V49b ledger lands, re-key PAR_SHEET's state columns
 and DECISION_AUDIT's rows to it; until then both artifacts carry the 393-ledger caveat inline (§5 row).
 
+**Amendment — the reflex finding (fold @ this commit, `1d5564b5`):** the convergence's fifth and terminal
+instrument: **1,140 of 1,143 credited fills were born of posts that preceded any read** — structural, not
+incidental: V49b posts at the first two-sided receipt, and the read organs operate the rest afterward but
+**never authorize its birth**. Honest completes — both legs queue-plausible, post-onset, read-licensed —
+**0 of 393**. The convergence therefore deepens: presence-continuity remains the recoverable organ, but the
+presence itself was never a decision. **The root-cause law, verbatim: "outcomes were audited, causes were
+assumed."** The permanent rule: **every action carries its license inline** — machine posts carry their four
+license fields (V52 charter, §3); analysis replies carry PRIOR-ART + frame-check (§1 law 7). The terminal
+decision tree is unchanged in shape and now runs through V52: judgment-gated posts → V51-style continuity →
+patience vs live premium → Stage C pilot, zone-mapped.
+
+## 8 · OPEN OPERATOR DECISIONS
+
+- **The wake-up qualifier, A/B** — which onset candidate qualifies a leg as formed (earliest spread-collapse
+  vs latest trade-cadence-arrival, or a ruled intermediate). Moves **478 bracket-dependent legs / 228 staged
+  complete games / 964¢** (`1d5564b5`), and V52's clause ① binds to whichever is ruled. Logged open.
+
 ---
 
 *Conservation: every campaign artifact in §2 exactly one stamp; §3 slots each named or GAP-marked; §5 rows cite
@@ -238,3 +288,7 @@ both SHAs. Spine cd592540 (amended 4ba98104). Skeleton pass — flesh passes app
 *Fold pass (this commit): §2 +6 rows · §3 two slots FILLED, one slot added (V51), one restamp (V50
 fourth-order), one tombstone (aim organ), one carry (edge-clipped) · §5 +3 rows · §7 added. Append-only:
 no prior line deleted; riders marked "(fold)".*
+*Fold pass 2 (queue/formation/reflex): §1 +4 laws (6–9) · §2 +5 rows (exemplars, diff, packs, close-out,
+QFR census RESOLVED-TERMINAL) · §3 V52 JUDGMENT GATE opened as governing slot, arbitration item ABSORBED
+into its clause ④ · §7 reflex amendment + root-cause law verbatim + license rule · §8 opened (wake-up
+qualifier A/B logged). Append-only: no prior line deleted.*

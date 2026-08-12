@@ -1,0 +1,14 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v49b_faithful_stand_at_p.js",
+  "policy_sha256": "e4e6238beaf69ff57e7283ee361b76f3f32adad44d4989f40947c0156075dbec",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "market_taker_fills": 0,
+  "strict_taker_fills": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "maker_fees_cents": 0,
+  "pass": true
+}

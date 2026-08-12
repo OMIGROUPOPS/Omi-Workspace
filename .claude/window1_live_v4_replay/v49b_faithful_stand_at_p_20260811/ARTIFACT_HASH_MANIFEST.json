@@ -1,0 +1,164 @@
+{
+  "files": {
+    "ACTION_TRACE.jsonl.gz": {
+      "sha256": "5a63e766af83e687790b6216fb0fa35380bf34a701b330230beb938a09c0186d",
+      "bytes": 16485485
+    },
+    "ATTRIBUTION_FULL_BOOK_LEDGER.jsonl.gz": {
+      "sha256": "4400cf46e0f407439081efced806102f29540c02b1fba5fe388ab6d91df7c140",
+      "bytes": 25846
+    },
+    "ATTRIBUTION_MARKET_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "cfbeacdc25c53681401649a926bd63572463085317883685847f7a1c4396834c",
+      "bytes": 2034703
+    },
+    "ATTRIBUTION_SCORECARD.json": {
+      "sha256": "5afb1a1cc932b10109eae99a87caf9059d1e4fb0415fe740e16ae4a95f315493",
+      "bytes": 143781
+    },
+    "ATTRIBUTION_STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "25c4c78c2a8bbc36de5308a5dfb090e212b1ed8f5fcc90ce49cdc50e89ead3ba",
+      "bytes": 2081727
+    },
+    "CATEGORY_X_BELL_CONFIDENCE.json": {
+      "sha256": "13abd1e22c8fe6d9b2fceb205f7b30862dd334b183205def46b138f3bf4848d3",
+      "bytes": 103155
+    },
+    "CAUSAL_REACH_BINDING.json": {
+      "sha256": "91ceca0521db26906455d21bfa3635f5f0dfc6301aa4c8b4ab5a9fad001c6b58",
+      "bytes": 724
+    },
+    "COMPOSITION_ACCEPTANCE_BAR.json": {
+      "sha256": "531177994a7420dc79bc6d48b5921e2d02358fa8abaf58e14604c8e8120f842a",
+      "bytes": 4401
+    },
+    "CONSTRUCTION_STATUS.json": {
+      "sha256": "7b4e2c8800cf4f391f8044f12cc076ff1e9b346ce37700f5d4dcdf3554c13b69",
+      "bytes": 117
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "11ffb0fba8615acedee3488de59e3dc9ac938dabf0c39e05f9377609768348c2",
+      "bytes": 1385
+    },
+    "DECISION_TRACE_1608.jsonl.gz": {
+      "sha256": "d91207a9f8a11eaa0a5130364334f4ca7cb45e1504facd16221bbbcef346dafa",
+      "bytes": 428723
+    },
+    "DEPTH_SHARE_DEV_VS_SEALED.json": {
+      "sha256": "ec036f474ccefc85fbeef1c6c28e89b2cc7935e1b10e90bfacc935c56df64d9e",
+      "bytes": 776
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "b13b10de7385cdfa516c720a0d45b4ed1334b481c52c54fb5fe457737a988b97",
+      "bytes": 94
+    },
+    "DOCTRINE_81_GAME_LEDGER.jsonl.gz": {
+      "sha256": "27b4b4aaa74a0434455bb72ed4bca271c7be7bc7f2783424ca76cbd0e02b87ce",
+      "bytes": 16028
+    },
+    "DOCTRINE_81_LEG_LEDGER.jsonl.gz": {
+      "sha256": "193a84f8b60464061731dcd2809a49a6878a5e10eebad8f08e0a96d3f63df665",
+      "bytes": 14195
+    },
+    "DOCTRINE_81_OUTCOME_RECEIPT.json": {
+      "sha256": "6b9144559f903d1fa0bb9d4bc70e62271ecad9efd60db81fc690febe23d2f967",
+      "bytes": 3036
+    },
+    "FAITHFUL_STAND_AT_P_ACTION_LEDGER.jsonl.gz": {
+      "sha256": "32c7c6eb7dea883c027ffd3bd68826e4f974ced3d8b81a8272c9b869226a47a6",
+      "bytes": 11788
+    },
+    "FAITHFUL_STAND_AT_P_MECHANISM_RECEIPT.json": {
+      "sha256": "13d452072cd955f1d3047f7ac5079690d9fc24c796ffd2837798a2c8cbb34e66",
+      "bytes": 458
+    },
+    "FLOOR_AUTHORITY_RECEIPT.json": {
+      "sha256": "8f098defa9d1a8be4317ed1c282d9c6352ecf62c3050c2d44f117df5f91ed8d2",
+      "bytes": 292
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4dbc29834ae9c63717b35f1b548fdc5369620462ae4afc5deb518b6845848c08",
+      "bytes": 327
+    },
+    "FRONTIER.json": {
+      "sha256": "6f76c2802c6b2a123a6eccf43640d5c47c8c876a6a8cdd1975db7856463241af",
+      "bytes": 15796
+    },
+    "FULL_BOOK_PNL.json": {
+      "sha256": "3746c8f8fd85c21a5e1063a57fa0aaa7e8118f8228939f04e7aedf39d1ad7d09",
+      "bytes": 3534
+    },
+    "MARKET_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "9c760b57e3d0245fe9276d130a377fa664549fdb7b89442e312ae730ced9b697",
+      "bytes": 1019334
+    },
+    "MARKET_GRADE_SCORECARD.json": {
+      "sha256": "02bb4026a1d8f853125a4bb3b4c27ef6987cd2769b8cc8acc08e52c16ee600a4",
+      "bytes": 1487
+    },
+    "NAMED_GAMES.json": {
+      "sha256": "ad87d4e6a3a6dde0caffd21a51d318ad0f383480ab8edadf8cec859347e726f7",
+      "bytes": 2111003
+    },
+    "PERSISTENCE_ONLY_JOIN_RECEIPT.json": {
+      "sha256": "e397fec2c492ab1fbdbd3bb960c9a0abce5862570e5e10d74f18b8732e014462",
+      "bytes": 4490
+    },
+    "PERSISTENT_JOIN_LEDGER.jsonl.gz": {
+      "sha256": "010ce49aedae8503253964625e9fed909e1981849875c891834906e625731b74",
+      "bytes": 82853
+    },
+    "PULSE_FLOOR_BINDING.json": {
+      "sha256": "004b3bbfa6f5c5a0dc3bff3929923ad7f1cf4f5143a607419955a8a73fa29953",
+      "bytes": 571
+    },
+    "REGRET_GAUGE.json": {
+      "sha256": "c2414216051fe7a6fab180792bab3d500e9633a8d8c970872bdfc4708ffbf5be",
+      "bytes": 5736
+    },
+    "REPORT.md": {
+      "sha256": "392edbbb3899a654b286e4a7a1ee5494c05361c195bc51026d1d90c979b82b58",
+      "bytes": 1306
+    },
+    "REST_SANITY.json": {
+      "sha256": "4f750d4a9c03e2eb0c1aeb4a67c2c325ecc7c36e16da52fc85b801ab24f0ccc0",
+      "bytes": 192
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "06bb1f042b062ef6187d6223f8124425e34d20a1792648543dd1a3d74666d851",
+      "bytes": 259856
+    },
+    "STRICT_BUILD_VERIFICATION_SCORECARD.json": {
+      "sha256": "9446d8753ca6ace3fc54e84675ecd2c26ecd73e894219bd39b32b276cacea743",
+      "bytes": 1506
+    },
+    "STRICT_EVENT_LEDGER.jsonl.gz": {
+      "sha256": "190571b7d2e78a369ceb415bd15f289835c0da9c0c04889bdecc308417ed8308",
+      "bytes": 1043029
+    },
+    "TAKE_PATH_DELETION_RECEIPT.json": {
+      "sha256": "6524a5e8ffdbdba5b7333e9fcc0a9bb60bde57e623f2bfb8b31723aebd5126fa",
+      "bytes": 413
+    },
+    "TRADES_AS_TRUTH_CREDIT_LAW.json": {
+      "sha256": "51816f7c3c0f4122814ad162c344eadcc14eb2127975bd9575013fb26e2543f4",
+      "bytes": 173
+    },
+    "V36_COMPARISON.json": {
+      "sha256": "7a64fc3c922bd0b1f88e5407e51b986262d039d1140116e720303ecbf0d9ec87",
+      "bytes": 7184
+    },
+    "V47_V49B_DIFFERENTIAL_LEDGER.jsonl.gz": {
+      "sha256": "ef13704b5b4c473a767ee62d46e1baaaccfdf497b36618588334dbb4e65f34a5",
+      "bytes": 540
+    },
+    "V47_V49B_DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "5fd6fe8b1be702ad9420852798e24b35e4b35f7da85b870a8da05ec0e33446ce",
+      "bytes": 880
+    },
+    "V49B_RECEIPT_BINDINGS.json": {
+      "sha256": "aeceaf696f353a6f7b0dfe3a747f44639e3205480f082382cb68437369b1fd0b",
+      "bytes": 2922
+    }
+  }
+}

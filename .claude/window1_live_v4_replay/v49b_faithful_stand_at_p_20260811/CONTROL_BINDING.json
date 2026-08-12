@@ -1,0 +1,39 @@
+{
+  "schema_version": "window1-v49b-faithful-stand-at-p-control-v1",
+  "base": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "frozen_V47": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+  "controlling_receipts": [
+    "bc0ce289a0bec90e137fe5638e0d629a88c651bf",
+    "fe4747cd915830dc16f41c6bbec5e0ca1c14d99c",
+    "4b9fcb794b7acecc8fe064ea2647159e81472025",
+    "653b7f1393adfec23d749de09dfef7591be8397a"
+  ],
+  "architecture": {
+    "change": "ON_HASH_BOUND_DOCTRINE_LEGS_STAND_AT_EXACT_P_AFTER_CAUSAL_OWN_TAPE_EVIDENCE",
+    "no_offset": true,
+    "prohibited_mechanism": "BID_MINUS_ONE_OFFSET_AT_P",
+    "evidence_sources": [
+      "PRIOR_TRUE_TRADE_AT_OR_BELOW_P",
+      "OWN_BEST_BID_REACHED_EXACT_P",
+      "HASH_BOUND_PRE_WINDOW_CAUSAL_EVIDENCE"
+    ],
+    "incumbent_elsewhere": "V47_BYTE_IDENTICAL",
+    "untouched": [
+      "PERSISTENT_JOIN",
+      "WTA_OTHER_EXPRESSION_HOLD",
+      "PAIR_CAP",
+      "POST_ONLY_SANITY",
+      "DEEP_GAP_GUARD",
+      "SIBLING_CREDIT_RELEASE",
+      "SAME_TICK_ARM",
+      "HARD_PREBELL_EDGE"
+    ],
+    "causal_floor_table_d3db740f": "PROHIBITED_FROM_DECISION_CONSUMPTION"
+  },
+  "fill_rulers": {
+    "market_scoring": "ANY_TRUE_TRADE_AT_OR_BELOW_PRIOR_LAWFUL_REST",
+    "build_verification": "STRICT_SELLER_AGGRESSED_PRINT_SIZE5_AT_OR_BELOW_PRIOR_REST",
+    "never_swapped": true
+  },
+  "gauge_stamp": "OPTIMISTIC_EX_POST_TRUE_TRADE_FLOOR"
+}

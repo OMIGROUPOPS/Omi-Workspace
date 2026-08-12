@@ -1,0 +1,9 @@
+{
+  "prohibited_decision_surface": {
+    "commit": "d3db740f143646614bc10778c0b4e27fa519dcd8",
+    "ruling_commit": "f36798fc84ea2fb466750212a69bed021d74a772",
+    "consumed_by_V49b_decisions": false
+  },
+  "gauge": "OPTIMISTIC_EX_POST_TRUE_TRADE_FLOOR",
+  "direct_print_census_only": true
+}

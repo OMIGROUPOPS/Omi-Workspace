@@ -1,0 +1,293 @@
+{
+  "stamp": "OPTIMISTIC_EX_POST_TRUE_TRADE_FLOOR",
+  "floor_source": "DIRECT_CANONICAL_PRINT_CENSUS_INSIDE_FROZEN_W1_SPAN",
+  "d3db740f_consumed_by_decision": false,
+  "aggregate": {
+    "credited_legs": 1148,
+    "gap_cents": {
+      "n": 1148,
+      "null_n": 0,
+      "sum": 4607,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 3,
+      "p90": 8,
+      "max": 88
+    }
+  },
+  "category_x_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "credited_legs": 164,
+      "gap_cents": {
+        "n": 164,
+        "null_n": 0,
+        "sum": 743,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 12,
+        "max": 47
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "credited_legs": 166,
+      "gap_cents": {
+        "n": 166,
+        "null_n": 0,
+        "sum": 718,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 7,
+        "max": 63
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76",
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "credited_legs": 59,
+      "gap_cents": {
+        "n": 59,
+        "null_n": 0,
+        "sum": 337,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 10,
+        "max": 88
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25",
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "credited_legs": 100,
+      "gap_cents": {
+        "n": 100,
+        "null_n": 0,
+        "sum": 300,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 7,
+        "max": 44
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50",
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "credited_legs": 87,
+      "gap_cents": {
+        "n": 87,
+        "null_n": 0,
+        "sum": 450,
+        "min": 0,
+        "p25": 0,
+        "median": 3,
+        "p75": 5,
+        "p90": 11,
+        "max": 49
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75",
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "credited_legs": 85,
+      "gap_cents": {
+        "n": 85,
+        "null_n": 0,
+        "sum": 536,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 8,
+        "max": 72
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76",
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "credited_legs": 20,
+      "gap_cents": {
+        "n": 20,
+        "null_n": 0,
+        "sum": 22,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 3,
+        "max": 5
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25",
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "credited_legs": 42,
+      "gap_cents": {
+        "n": 42,
+        "null_n": 0,
+        "sum": 131,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 4,
+        "p90": 5,
+        "max": 27
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50",
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "credited_legs": 55,
+      "gap_cents": {
+        "n": 55,
+        "null_n": 0,
+        "sum": 132,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 4,
+        "max": 42
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75",
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "credited_legs": 62,
+      "gap_cents": {
+        "n": 62,
+        "null_n": 0,
+        "sum": 182,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 5,
+        "max": 55
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76",
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "credited_legs": 25,
+      "gap_cents": {
+        "n": 25,
+        "null_n": 0,
+        "sum": 159,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 30,
+        "max": 70
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25",
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "credited_legs": 38,
+      "gap_cents": {
+        "n": 38,
+        "null_n": 0,
+        "sum": 101,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 15,
+        "max": 19
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50",
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "credited_legs": 68,
+      "gap_cents": {
+        "n": 68,
+        "null_n": 0,
+        "sum": 192,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 9,
+        "max": 21
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75",
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "credited_legs": 69,
+      "gap_cents": {
+        "n": 69,
+        "null_n": 0,
+        "sum": 313,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 10,
+        "max": 60
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76",
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "credited_legs": 34,
+      "gap_cents": {
+        "n": 34,
+        "null_n": 0,
+        "sum": 54,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 22
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25",
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "credited_legs": 74,
+      "gap_cents": {
+        "n": 74,
+        "null_n": 0,
+        "sum": 237,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 9,
+        "max": 25
+      }
+    }
+  ]
+}

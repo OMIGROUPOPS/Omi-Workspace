@@ -1,0 +1,732 @@
+{
+ "LABEL": "GAME_TAPE_PACKS",
+ "source": {
+  "book": "fit-local recorder dual-book store (ticks/<ticker>.csv.gz), columns bid_1/bid_1_sz/ask_1/ask_1_sz, W1 span only, one row per top-of-book change (change-dedupe on the 4-tuple; deeper levels not exported)",
+  "trades": "fit-local prints.jsonl, W1 span, all rows with trade_id (source kalshi_public_trade; reconciliation column vs TAPE_VS_EXCHANGE_DIFF db470ec8 per-leg ours_n)",
+  "rest_path": "V49b staged MARKET_EVENT_LEDGER anchors ONLY - the staged V49b carries no ACTION_TRACE; rows are machine-recorded anchor points (first action, join arm, withhold first/last, fill or terminal rest). NO interpolation invented; the render seat must not draw a continuous rest line between anchors",
+  "bell": "scheduled_bell_epoch and pre_match_boundary_epoch DERIVED as first_decision.timestamp_epoch + its machine-recorded t_minus_* fields; w1_left/right are the ledger window edges"
+ },
+ "heartbeat_caveat": "the recorder has no heartbeat channel; book-series gaps >600s are listed per leg as recorder_gaps_over_600s and are QUIET-OR-OUTAGE UNDISTINGUISHABLE - flagged, not smoothed",
+ "games": {
+  "26JUL16MERDRO": {
+   "event": "KXATPMATCH-26JUL16MERDRO",
+   "category": "ATP_MAIN",
+   "bell_confidence": "exact",
+   "w1_left_epoch": 1784148754,
+   "w1_right_epoch": 1784210700,
+   "edge_source_field": "exact_start_utc",
+   "legs": {
+    "DRO": {
+     "ticker": "KXATPMATCH-26JUL16MERDRO-DRO",
+     "files": [
+      "DRO_book.csv",
+      "DRO_trades.csv",
+      "DRO_restpath.csv"
+     ],
+     "book_rows_per_change": 5600,
+     "book_raw_rows_in_window": 11760,
+     "trades_rows": 289,
+     "true_prints": 289,
+     "diff_ours_n": 289,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1784221200,
+     "pre_match_boundary_epoch": 1784210700,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1784149086,
+       "to_epoch": 1784150611,
+       "seconds": 1525
+      },
+      {
+       "from_epoch": 1784185825,
+       "to_epoch": 1784187064,
+       "seconds": 1239
+      },
+      {
+       "from_epoch": 1784187099,
+       "to_epoch": 1784188456,
+       "seconds": 1357
+      },
+      {
+       "from_epoch": 1784188570,
+       "to_epoch": 1784189432,
+       "seconds": 862
+      },
+      {
+       "from_epoch": 1784189492,
+       "to_epoch": 1784191156,
+       "seconds": 1664
+      },
+      {
+       "from_epoch": 1784191156,
+       "to_epoch": 1784192055,
+       "seconds": 899
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    },
+    "MER": {
+     "ticker": "KXATPMATCH-26JUL16MERDRO-MER",
+     "files": [
+      "MER_book.csv",
+      "MER_trades.csv",
+      "MER_restpath.csv"
+     ],
+     "book_rows_per_change": 2290,
+     "book_raw_rows_in_window": 7194,
+     "trades_rows": 702,
+     "true_prints": 702,
+     "diff_ours_n": 702,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1784221200,
+     "pre_match_boundary_epoch": 1784210700,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1784149086,
+       "to_epoch": 1784150005,
+       "seconds": 919
+      },
+      {
+       "from_epoch": 1784150927,
+       "to_epoch": 1784151639,
+       "seconds": 712
+      },
+      {
+       "from_epoch": 1784185529,
+       "to_epoch": 1784187064,
+       "seconds": 1535
+      },
+      {
+       "from_epoch": 1784187102,
+       "to_epoch": 1784187940,
+       "seconds": 838
+      },
+      {
+       "from_epoch": 1784188570,
+       "to_epoch": 1784189492,
+       "seconds": 922
+      },
+      {
+       "from_epoch": 1784189492,
+       "to_epoch": 1784191156,
+       "seconds": 1664
+      },
+      {
+       "from_epoch": 1784191156,
+       "to_epoch": 1784192055,
+       "seconds": 899
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    }
+   }
+  },
+  "26JUL12POLKUH": {
+   "event": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+   "category": "ATP_CHALL",
+   "bell_confidence": "exact",
+   "w1_left_epoch": 1783830737,
+   "w1_right_epoch": 1783879200,
+   "edge_source_field": "exact_start_utc",
+   "legs": {
+    "KUH": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH",
+     "files": [
+      "KUH_book.csv",
+      "KUH_trades.csv",
+      "KUH_restpath.csv"
+     ],
+     "book_rows_per_change": 3174,
+     "book_raw_rows_in_window": 6223,
+     "trades_rows": 13,
+     "true_prints": 13,
+     "diff_ours_n": 13,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1783884000,
+     "pre_match_boundary_epoch": 1783879200,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1783831853,
+       "to_epoch": 1783832493,
+       "seconds": 640
+      },
+      {
+       "from_epoch": 1783836087,
+       "to_epoch": 1783836837,
+       "seconds": 750
+      },
+      {
+       "from_epoch": 1783838511,
+       "to_epoch": 1783839464,
+       "seconds": 953
+      },
+      {
+       "from_epoch": 1783839838,
+       "to_epoch": 1783840552,
+       "seconds": 714
+      },
+      {
+       "from_epoch": 1783842231,
+       "to_epoch": 1783842962,
+       "seconds": 731
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    },
+    "POL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL",
+     "files": [
+      "POL_book.csv",
+      "POL_trades.csv",
+      "POL_restpath.csv"
+     ],
+     "book_rows_per_change": 2598,
+     "book_raw_rows_in_window": 5673,
+     "trades_rows": 18,
+     "true_prints": 18,
+     "diff_ours_n": 18,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1783884000,
+     "pre_match_boundary_epoch": 1783879200,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1783831734,
+       "to_epoch": 1783833612,
+       "seconds": 1878
+      },
+      {
+       "from_epoch": 1783835773,
+       "to_epoch": 1783836824,
+       "seconds": 1051
+      },
+      {
+       "from_epoch": 1783838485,
+       "to_epoch": 1783839463,
+       "seconds": 978
+      },
+      {
+       "from_epoch": 1783839836,
+       "to_epoch": 1783840558,
+       "seconds": 722
+      },
+      {
+       "from_epoch": 1783841907,
+       "to_epoch": 1783842962,
+       "seconds": 1055
+      },
+      {
+       "from_epoch": 1783847335,
+       "to_epoch": 1783847992,
+       "seconds": 657
+      },
+      {
+       "from_epoch": 1783848578,
+       "to_epoch": 1783849838,
+       "seconds": 1260
+      },
+      {
+       "from_epoch": 1783850026,
+       "to_epoch": 1783851290,
+       "seconds": 1264
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    }
+   }
+  },
+  "26JUL19ARSMAR": {
+   "event": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+   "category": "ATP_CHALL",
+   "bell_confidence": "exact",
+   "w1_left_epoch": 1784434536,
+   "w1_right_epoch": 1784477100,
+   "edge_source_field": "exact_start_utc",
+   "legs": {
+    "ARS": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS",
+     "files": [
+      "ARS_book.csv",
+      "ARS_trades.csv",
+      "ARS_restpath.csv"
+     ],
+     "book_rows_per_change": 678,
+     "book_raw_rows_in_window": 1366,
+     "trades_rows": 7,
+     "true_prints": 7,
+     "diff_ours_n": 7,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1784487600,
+     "pre_match_boundary_epoch": 1784477100,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1784434967,
+       "to_epoch": 1784436777,
+       "seconds": 1810
+      },
+      {
+       "from_epoch": 1784436977,
+       "to_epoch": 1784437783,
+       "seconds": 806
+      },
+      {
+       "from_epoch": 1784438139,
+       "to_epoch": 1784440054,
+       "seconds": 1915
+      },
+      {
+       "from_epoch": 1784440447,
+       "to_epoch": 1784443658,
+       "seconds": 3211
+      },
+      {
+       "from_epoch": 1784443986,
+       "to_epoch": 1784447253,
+       "seconds": 3267
+      },
+      {
+       "from_epoch": 1784447555,
+       "to_epoch": 1784448280,
+       "seconds": 725
+      },
+      {
+       "from_epoch": 1784449254,
+       "to_epoch": 1784449993,
+       "seconds": 739
+      },
+      {
+       "from_epoch": 1784449995,
+       "to_epoch": 1784450706,
+       "seconds": 711
+      },
+      {
+       "from_epoch": 1784453551,
+       "to_epoch": 1784455957,
+       "seconds": 2406
+      },
+      {
+       "from_epoch": 1784457933,
+       "to_epoch": 1784458657,
+       "seconds": 724
+      },
+      {
+       "from_epoch": 1784458657,
+       "to_epoch": 1784459372,
+       "seconds": 715
+      },
+      {
+       "from_epoch": 1784475209,
+       "to_epoch": 1784475879,
+       "seconds": 670
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    },
+    "MAR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR",
+     "files": [
+      "MAR_book.csv",
+      "MAR_trades.csv",
+      "MAR_restpath.csv"
+     ],
+     "book_rows_per_change": 445,
+     "book_raw_rows_in_window": 1143,
+     "trades_rows": 13,
+     "true_prints": 13,
+     "diff_ours_n": 13,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1784487600,
+     "pre_match_boundary_epoch": 1784477100,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1784434680,
+       "to_epoch": 1784436777,
+       "seconds": 2097
+      },
+      {
+       "from_epoch": 1784436976,
+       "to_epoch": 1784437780,
+       "seconds": 804
+      },
+      {
+       "from_epoch": 1784438139,
+       "to_epoch": 1784440054,
+       "seconds": 1915
+      },
+      {
+       "from_epoch": 1784440447,
+       "to_epoch": 1784443658,
+       "seconds": 3211
+      },
+      {
+       "from_epoch": 1784443986,
+       "to_epoch": 1784447253,
+       "seconds": 3267
+      },
+      {
+       "from_epoch": 1784447555,
+       "to_epoch": 1784448280,
+       "seconds": 725
+      },
+      {
+       "from_epoch": 1784448933,
+       "to_epoch": 1784450706,
+       "seconds": 1773
+      },
+      {
+       "from_epoch": 1784454545,
+       "to_epoch": 1784455155,
+       "seconds": 610
+      },
+      {
+       "from_epoch": 1784458657,
+       "to_epoch": 1784459372,
+       "seconds": 715
+      },
+      {
+       "from_epoch": 1784461022,
+       "to_epoch": 1784461718,
+       "seconds": 696
+      },
+      {
+       "from_epoch": 1784462400,
+       "to_epoch": 1784463536,
+       "seconds": 1136
+      },
+      {
+       "from_epoch": 1784465998,
+       "to_epoch": 1784466687,
+       "seconds": 689
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    }
+   }
+  },
+  "26JUL13SANDAN": {
+   "event": "KXATPMATCH-26JUL13SANDAN",
+   "category": "ATP_MAIN",
+   "bell_confidence": "exact",
+   "w1_left_epoch": 1783870590,
+   "w1_right_epoch": 1783942500,
+   "edge_source_field": "exact_start_utc",
+   "legs": {
+    "DAN": {
+     "ticker": "KXATPMATCH-26JUL13SANDAN-DAN",
+     "files": [
+      "DAN_book.csv",
+      "DAN_trades.csv",
+      "DAN_restpath.csv"
+     ],
+     "book_rows_per_change": 1257,
+     "book_raw_rows_in_window": 5168,
+     "trades_rows": 113,
+     "true_prints": 113,
+     "diff_ours_n": 113,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1783953000,
+     "pre_match_boundary_epoch": 1783942500,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1783870650,
+       "to_epoch": 1783871486,
+       "seconds": 836
+      },
+      {
+       "from_epoch": 1783871527,
+       "to_epoch": 1783874768,
+       "seconds": 3241
+      },
+      {
+       "from_epoch": 1783875080,
+       "to_epoch": 1783877095,
+       "seconds": 2015
+      },
+      {
+       "from_epoch": 1783877095,
+       "to_epoch": 1783878374,
+       "seconds": 1279
+      },
+      {
+       "from_epoch": 1783878680,
+       "to_epoch": 1783880046,
+       "seconds": 1366
+      },
+      {
+       "from_epoch": 1783882766,
+       "to_epoch": 1783883787,
+       "seconds": 1021
+      },
+      {
+       "from_epoch": 1783890111,
+       "to_epoch": 1783891191,
+       "seconds": 1080
+      },
+      {
+       "from_epoch": 1783891191,
+       "to_epoch": 1783892280,
+       "seconds": 1089
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    },
+    "SAN": {
+     "ticker": "KXATPMATCH-26JUL13SANDAN-SAN",
+     "files": [
+      "SAN_book.csv",
+      "SAN_trades.csv",
+      "SAN_restpath.csv"
+     ],
+     "book_rows_per_change": 2036,
+     "book_raw_rows_in_window": 5463,
+     "trades_rows": 46,
+     "true_prints": 46,
+     "diff_ours_n": 46,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1783953000,
+     "pre_match_boundary_epoch": 1783942500,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1783870650,
+       "to_epoch": 1783871486,
+       "seconds": 836
+      },
+      {
+       "from_epoch": 1783871527,
+       "to_epoch": 1783874768,
+       "seconds": 3241
+      },
+      {
+       "from_epoch": 1783875080,
+       "to_epoch": 1783877095,
+       "seconds": 2015
+      },
+      {
+       "from_epoch": 1783877095,
+       "to_epoch": 1783878374,
+       "seconds": 1279
+      },
+      {
+       "from_epoch": 1783878680,
+       "to_epoch": 1783880046,
+       "seconds": 1366
+      },
+      {
+       "from_epoch": 1783882248,
+       "to_epoch": 1783883787,
+       "seconds": 1539
+      },
+      {
+       "from_epoch": 1783884138,
+       "to_epoch": 1783884900,
+       "seconds": 762
+      },
+      {
+       "from_epoch": 1783890111,
+       "to_epoch": 1783890747,
+       "seconds": 636
+      },
+      {
+       "from_epoch": 1783891191,
+       "to_epoch": 1783892255,
+       "seconds": 1064
+      },
+      {
+       "from_epoch": 1783892405,
+       "to_epoch": 1783893455,
+       "seconds": 1050
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    }
+   }
+  },
+  "26JUL14PUTJEA": {
+   "event": "KXWTAMATCH-26JUL14PUTJEA",
+   "category": "WTA_MAIN",
+   "bell_confidence": "schedule_only",
+   "w1_left_epoch": 1783936553,
+   "w1_right_epoch": 1784026800,
+   "edge_source_field": "schedule_bound_utc",
+   "legs": {
+    "JEA": {
+     "ticker": "KXWTAMATCH-26JUL14PUTJEA-JEA",
+     "files": [
+      "JEA_book.csv",
+      "JEA_trades.csv",
+      "JEA_restpath.csv"
+     ],
+     "book_rows_per_change": 945,
+     "book_raw_rows_in_window": 1388,
+     "trades_rows": 4,
+     "true_prints": 4,
+     "diff_ours_n": 4,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1784026800,
+     "pre_match_boundary_epoch": 1784026800,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1783936611,
+       "to_epoch": 1783939846,
+       "seconds": 3235
+      },
+      {
+       "from_epoch": 1783940406,
+       "to_epoch": 1783941448,
+       "seconds": 1042
+      },
+      {
+       "from_epoch": 1783941487,
+       "to_epoch": 1783942137,
+       "seconds": 650
+      },
+      {
+       "from_epoch": 1783942137,
+       "to_epoch": 1783943168,
+       "seconds": 1031
+      },
+      {
+       "from_epoch": 1783943515,
+       "to_epoch": 1783946466,
+       "seconds": 2951
+      },
+      {
+       "from_epoch": 1783947026,
+       "to_epoch": 1783948822,
+       "seconds": 1796
+      },
+      {
+       "from_epoch": 1783950632,
+       "to_epoch": 1783951318,
+       "seconds": 686
+      },
+      {
+       "from_epoch": 1783951318,
+       "to_epoch": 1783952875,
+       "seconds": 1557
+      },
+      {
+       "from_epoch": 1783952946,
+       "to_epoch": 1783953795,
+       "seconds": 849
+      },
+      {
+       "from_epoch": 1783953795,
+       "to_epoch": 1783954835,
+       "seconds": 1040
+      },
+      {
+       "from_epoch": 1783954835,
+       "to_epoch": 1783955770,
+       "seconds": 935
+      },
+      {
+       "from_epoch": 1783955781,
+       "to_epoch": 1783957024,
+       "seconds": 1243
+      },
+      {
+       "from_epoch": 1783957579,
+       "to_epoch": 1783958603,
+       "seconds": 1024
+      },
+      {
+       "from_epoch": 1783958604,
+       "to_epoch": 1783959305,
+       "seconds": 701
+      },
+      {
+       "from_epoch": 1783959379,
+       "to_epoch": 1783961195,
+       "seconds": 1816
+      },
+      {
+       "from_epoch": 1783961409,
+       "to_epoch": 1783963099,
+       "seconds": 1690
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    },
+    "PUT": {
+     "ticker": "KXWTAMATCH-26JUL14PUTJEA-PUT",
+     "files": [
+      "PUT_book.csv",
+      "PUT_trades.csv",
+      "PUT_restpath.csv"
+     ],
+     "book_rows_per_change": 925,
+     "book_raw_rows_in_window": 1265,
+     "trades_rows": 6,
+     "true_prints": 6,
+     "diff_ours_n": 6,
+     "reconciles": true,
+     "scheduled_bell_epoch": 1784026800,
+     "pre_match_boundary_epoch": 1784026800,
+     "recorder_gaps_over_600s": [
+      {
+       "from_epoch": 1783936607,
+       "to_epoch": 1783939846,
+       "seconds": 3239
+      },
+      {
+       "from_epoch": 1783940406,
+       "to_epoch": 1783941447,
+       "seconds": 1041
+      },
+      {
+       "from_epoch": 1783942565,
+       "to_epoch": 1783943457,
+       "seconds": 892
+      },
+      {
+       "from_epoch": 1783945324,
+       "to_epoch": 1783945925,
+       "seconds": 601
+      },
+      {
+       "from_epoch": 1783946829,
+       "to_epoch": 1783948821,
+       "seconds": 1992
+      },
+      {
+       "from_epoch": 1783949784,
+       "to_epoch": 1783950626,
+       "seconds": 842
+      },
+      {
+       "from_epoch": 1783951244,
+       "to_epoch": 1783952717,
+       "seconds": 1473
+      },
+      {
+       "from_epoch": 1783955863,
+       "to_epoch": 1783957577,
+       "seconds": 1714
+      },
+      {
+       "from_epoch": 1783959379,
+       "to_epoch": 1783960118,
+       "seconds": 739
+      },
+      {
+       "from_epoch": 1783960118,
+       "to_epoch": 1783961195,
+       "seconds": 1077
+      },
+      {
+       "from_epoch": 1783961404,
+       "to_epoch": 1783963098,
+       "seconds": 1694
+      },
+      {
+       "from_epoch": 1783963100,
+       "to_epoch": 1783964059,
+       "seconds": 959
+      }
+     ],
+     "rest_path_grain": "LEDGER_ANCHORS_ONLY"
+    }
+   }
+  }
+ }
+}

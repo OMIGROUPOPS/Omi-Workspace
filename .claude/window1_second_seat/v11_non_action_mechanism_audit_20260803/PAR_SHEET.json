@@ -1,0 +1,162 @@
+{
+ "LABEL": "PAR_SHEET",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "basis": "804 dev games; PAR=sum per leg of lowest true print in the ledger W1 window (raw prints, no stand-conditioning); OURS=V49b staged ledger (operator-cited 47b51fd2; ledger carries no embedded SHA - stated provenance); NO_OFFER = par>=100 or a leg never traded in-window.",
+ "conservation": {
+  "games": 804,
+  "states": {
+   "COMPLETE": 393,
+   "NEITHER": 54,
+   "PARTIAL": 357
+  },
+  "offer": {
+   "OFFERED": 711,
+   "NO_OFFER": 93
+  },
+  "lawful_skip_games": 2
+ },
+ "totals": {
+  "total_par_delta_offered": 7051,
+  "total_captured_completes": 1666
+ },
+ "gap_dist": {
+  "COMPLETE|ATP_CHALL": {
+   "n": 155,
+   "p25": 1,
+   "median": 3,
+   "p75": 7,
+   "max": 91,
+   "total": 1512
+  },
+  "COMPLETE|ATP_MAIN": {
+   "n": 90,
+   "p25": 2,
+   "median": 4,
+   "p75": 7,
+   "max": 83,
+   "total": 943
+  },
+  "COMPLETE|WTA_CHALL": {
+   "n": 55,
+   "p25": 0,
+   "median": 1,
+   "p75": 5,
+   "max": 78,
+   "total": 493
+  },
+  "COMPLETE|WTA_MAIN": {
+   "n": 93,
+   "p25": 1,
+   "median": 3,
+   "p75": 7,
+   "max": 78,
+   "total": 729
+  },
+  "PARTIAL|ATP_CHALL": {
+   "n": 158,
+   "p25": 2,
+   "median": 3,
+   "p75": 5,
+   "max": 89,
+   "total": 887
+  },
+  "PARTIAL|ATP_MAIN": {
+   "n": 49,
+   "p25": 3,
+   "median": 5,
+   "p75": 8,
+   "max": 33,
+   "total": 313
+  },
+  "PARTIAL|WTA_CHALL": {
+   "n": 50,
+   "p25": 1,
+   "median": 2,
+   "p75": 4,
+   "max": 42,
+   "total": 196
+  },
+  "PARTIAL|WTA_MAIN": {
+   "n": 52,
+   "p25": 2,
+   "median": 3,
+   "p75": 6,
+   "max": 48,
+   "total": 270
+  },
+  "NEITHER|ATP_CHALL": {
+   "n": 5,
+   "p25": 1,
+   "median": 2,
+   "p75": 3,
+   "max": 4,
+   "total": 11
+  },
+  "NEITHER|ATP_MAIN": {
+   "n": 2,
+   "p25": 1,
+   "median": 2,
+   "p75": 2,
+   "max": 2,
+   "total": 3
+  },
+  "NEITHER|WTA_CHALL": {
+   "n": 1,
+   "p25": 1,
+   "median": 1,
+   "p75": 1,
+   "max": 1,
+   "total": 1
+  },
+  "NEITHER|WTA_MAIN": {
+   "n": 1,
+   "p25": 27,
+   "median": 27,
+   "p75": 27,
+   "max": 27,
+   "total": 27
+  }
+ },
+ "gap_dist_by_state": {
+  "COMPLETE": {
+   "n": 393,
+   "p25": 1,
+   "median": 3,
+   "p75": 7,
+   "max": 91,
+   "total": 3677
+  },
+  "PARTIAL": {
+   "n": 309,
+   "p25": 2,
+   "median": 3,
+   "p75": 6,
+   "max": 89,
+   "total": 1666
+  },
+  "NEITHER": {
+   "n": 9,
+   "p25": 1,
+   "median": 2,
+   "p75": 3,
+   "max": 27,
+   "total": 42
+  }
+ },
+ "league": {
+  "cents": {
+   "S4/S6_JOIN": 2133,
+   "S7/S10_TRACKING": 1645,
+   "S16_CAP": 799,
+   "S7/S10_TIMING_NOT_STANDING": 749,
+   "S12_GUARD": 59
+  },
+  "legs_or_games": {
+   "S4/S6_JOIN": 261,
+   "S7/S10_TRACKING": 235,
+   "S7/S10_TIMING_NOT_STANDING": 125,
+   "S16_CAP": 159,
+   "S12_GUARD": 3
+  }
+ }
+}

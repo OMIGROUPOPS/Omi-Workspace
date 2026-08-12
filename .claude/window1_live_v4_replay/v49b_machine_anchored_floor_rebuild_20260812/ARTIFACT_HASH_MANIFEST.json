@@ -1,0 +1,48 @@
+{
+  "files": {
+    "CATEGORY_X_PRICE_REGION.json": {
+      "sha256": "b988fe41d7018173c58ff174acaeb0880c4a2d12bd23b00f8931a56011e372ee",
+      "bytes": 15862
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "c0d246bae780eee8e7d1cd86ce00d7cfb643c98aab5336eef19d2a144ad3727c",
+      "bytes": 2418
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "b5d5be5e7cb9a20d48ae2090183c4ee47600bb93b5859af0dcf9a91c7cd361c6",
+      "bytes": 94
+    },
+    "F36798FC_IMPOSSIBLE_SET_RECONCILIATION.json": {
+      "sha256": "c97a4fc0e958c58eed0297af6324bb7a5a4e2a71776ef844424a36864dc0a99c",
+      "bytes": 51859
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "6e8d4f34f418d976204b46b7faa05e9a24db437fb2e6f30680d3e8eb95ae22bc",
+      "bytes": 321
+    },
+    "PRESENCE_PREMIUM_SUMMARY.json": {
+      "sha256": "12e8bcfc6a2ae0b33d9403085982fb4277cad2337b5204cfaab446d635ecec83",
+      "bytes": 17311
+    },
+    "REPORT.md": {
+      "sha256": "c177ebe529632182c09d0e3c89cf860f7742b2feb24f61e9c29ae62d895648dc",
+      "bytes": 1089
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "72857787502d45398a772f95d62ec745d8b0ef0d36b1180dd6f3d4fd43e19b7b",
+      "bytes": 279312
+    },
+    "V47_MACHINE_ANCHORED_FLOOR_TABLE_1608.jsonl.gz": {
+      "sha256": "12a4341a6cede3d40e65aeec11b461d8270673d9279c524e6dc8224e6daaf747",
+      "bytes": 6033427
+    },
+    "V49B_COMPLETED_810_PRESENCE_PREMIUM_LEDGER.jsonl.gz": {
+      "sha256": "9acf38597f4e967b876b8213f70f5f59908feb4cfe1fa26b824e2bf21f160a62",
+      "bytes": 66764
+    },
+    "V49B_MACHINE_ANCHORED_FLOOR_TABLE_1608.jsonl.gz": {
+      "sha256": "76cfa654ae5741a09f3c7ee5f8c1db55f13fef890cd72026a2597f8341e5244f",
+      "bytes": 5858412
+    }
+  }
+}

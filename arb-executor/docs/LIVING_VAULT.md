@@ -1870,3 +1870,22 @@ access is zero. No deployment or live cutover is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/47b51fd20f3b0b821d27b63b15a576e36103562e/arb-executor/docs/research/window1/WINDOW1_V49B_FAITHFUL_STAND_AT_P_20260811_ADDENDUM.md
+
+### 2026-08-12 - V49b MACHINE-ANCHORED FLOOR REBUILD PASS
+
+The staged `f36798fc` floor repair is complete. The old `d3db740f` analytic
+table reproduces all 213 impossible V47 credited legs whose entry was below
+its alleged causal floor. Re-anchoring the floor to executable rest intervals
+reduces that count to zero on V47 and zero on V49b. No policy or replay
+behavior changed.
+
+Across V49b's 405 completed pairs / 810 credited legs, entry minus the rebuilt
+machine floor totals 100 cents. Entry minus the market-offered true-trade floor
+totals 3,544 cents. Their conserved difference, the counterfactual replay
+presence premium, is 3,444 cents; its min/p25/median/p75/p90/max distribution
+is 0/0/1/3/10/88. This measures flow intersecting actual simulated rests, not
+real queue position or causal market impact. Two clean builds are byte-identical
+and forbidden access is zero. No deployment or live cutover is authorized.
+
+Canonical addendum:
+`arb-executor/docs/research/window1/WINDOW1_V49B_MACHINE_ANCHORED_FLOOR_REBUILD_20260812_ADDENDUM.md`

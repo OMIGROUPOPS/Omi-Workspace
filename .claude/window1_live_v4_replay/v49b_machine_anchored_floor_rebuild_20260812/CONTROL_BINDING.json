@@ -1,0 +1,57 @@
+{
+  "schema_version": "window1-v49b-machine-anchored-floor-control-v1",
+  "commits": {
+    "V47_COMMIT": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "V49B_PACKAGE_COMMIT": "47b51fd20f3b0b821d27b63b15a576e36103562e",
+    "FLOOR_CONVICTION_COMMIT": "f36798fc84ea2fb466750212a69bed021d74a772",
+    "OLD_CAUSAL_TABLE_COMMIT": "d3db740f143646614bc10778c0b4e27fa519dcd8",
+    "CC_OVERPAY_CENSUS_COMMIT": "096241ae9512bc20fec7bf89b199551622a4c482"
+  },
+  "frozen_inputs": {
+    "V47_event_ledger": {
+      "path": ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810/MARKET_EVENT_LEDGER.jsonl.gz",
+      "sha256": "555e2371b3f25bee1d99a087f5a8ff4dfda37da72b7099020c9ed81c21a2397d"
+    },
+    "V47_action_trace": {
+      "path": ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810/ACTION_TRACE.jsonl.gz",
+      "sha256": "46677066d7b97a4cf0f7f88504871348b73ae44541ca744a633fe7ab8a5bef06",
+      "bytes": 15943443,
+      "raw_rows": 1220114,
+      "admitted_transition_rows": 587530,
+      "machine": "V47_SAME_TICK_ARM",
+      "mode": "MARKET_UNION_REACH"
+    },
+    "V49b_event_ledger": {
+      "path": ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811/MARKET_EVENT_LEDGER.jsonl.gz",
+      "sha256": "9c760b57e3d0245fe9276d130a377fa664549fdb7b89442e312ae730ced9b697"
+    },
+    "V49b_action_trace": {
+      "path": ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811/ACTION_TRACE.jsonl.gz",
+      "sha256": "5a63e766af83e687790b6216fb0fa35380bf34a701b330230beb938a09c0186d",
+      "bytes": 16485485,
+      "raw_rows": 1186489,
+      "admitted_transition_rows": 570669,
+      "machine": "V49B_FAITHFUL_STAND_AT_P",
+      "mode": "MARKET_TRADES_AS_TRUTH"
+    },
+    "old_causal_leg_table": {
+      "commit": "d3db740f143646614bc10778c0b4e27fa519dcd8",
+      "sha256": "d8a627c9349ee1c4c95681e71000aa5cce60df26e53c623f96330cb6201e21ae"
+    },
+    "private_prints": {
+      "path_class": "PRIVATE_FIT_DEVELOPMENT_PRINTS_HASH_ONLY",
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+      "bytes": 1766090446,
+      "raw_rows": 4836462,
+      "admitted_unique_window_prints": 259930,
+      "duplicate_trade_ids_rejected": 0
+    },
+    "private_tapes": {
+      "count": 1608,
+      "manifest_sha256": "a685c4bae2546ec1b06fd3b65d59dc453b253c7cf709942a01925e8ec36962ff"
+    }
+  },
+  "policy_changes": 0,
+  "replay_changes": 0,
+  "scoring_changes": 0
+}

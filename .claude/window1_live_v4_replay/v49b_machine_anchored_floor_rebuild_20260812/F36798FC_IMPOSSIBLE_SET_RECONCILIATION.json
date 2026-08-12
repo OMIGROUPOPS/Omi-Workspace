@@ -1,0 +1,1754 @@
+{
+  "controlling_spec": {
+    "commit": "f36798fc84ea2fb466750212a69bed021d74a772",
+    "old_defect": "ANALYTIC_TRIGGER_EVENT_ANCHORED_INSTEAD_OF_EXECUTABLE_STAND; STRICT_AFTER_EXCLUDED_ANCHORING_FILL_PRINT",
+    "ordered_repair": "REGENERATE_CAUSAL_LEG_TABLE_ANCHORED_TO_EXECUTABLE_ACTUAL_STAND_TIMES",
+    "expected_old_impossible": 213
+  },
+  "old_table": {
+    "commit": "d3db740f143646614bc10778c0b4e27fa519dcd8",
+    "sha256": "d8a627c9349ee1c4c95681e71000aa5cce60df26e53c623f96330cb6201e21ae",
+    "V47_credited_legs": 1138,
+    "with_old_floor": 867,
+    "impossible_entry_below_old_floor": 213,
+    "by_category": {
+      "ATP_CHALL": 77,
+      "ATP_MAIN": 57,
+      "WTA_CHALL": 21,
+      "WTA_MAIN": 58
+    },
+    "gap_cents": {
+      "n": 213,
+      "null_n": 0,
+      "sum": 1182,
+      "min": 1,
+      "p25": 1,
+      "median": 2,
+      "p75": 5,
+      "p90": 11,
+      "max": 70
+    }
+  },
+  "rebuilt": {
+    "law": "MIN(TRUE_TRADE_AT_OR_BELOW_REST, QUALIFYING_ASK_AT_OR_BELOW_REST) STRICTLY_AFTER_ACTUAL_REST_STAND AND THROUGH FILL_OR_CANCEL",
+    "qualifying_ask_dwell_seconds": 10,
+    "qualifying_ask_size_contracts": 5,
+    "V47": {
+      "legs": 1608,
+      "credited_legs": 1138,
+      "impossible_entry_below_rebuilt_floor": 0
+    },
+    "V49b": {
+      "legs": 1608,
+      "credited_legs": 1148,
+      "impossible_entry_below_rebuilt_floor": 0
+    }
+  },
+  "killed_213": true,
+  "old_impossible_identities": [
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ALVVAN|ALV",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV",
+      "entry_cents": 58,
+      "old_causal_floor_cents": 76,
+      "gap_cents": 18,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ARNROM|ARN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12ARNROM-ARN",
+      "entry_cents": 50,
+      "old_causal_floor_cents": 56,
+      "gap_cents": 6,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12AVEFOR|FOR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12AVEFOR-FOR",
+      "entry_cents": 43,
+      "old_causal_floor_cents": 46,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BALPET|BAL",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12BALPET-BAL",
+      "entry_cents": 11,
+      "old_causal_floor_cents": 14,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOUVIT|VIT",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12BOUVIT-VIT",
+      "entry_cents": 18,
+      "old_causal_floor_cents": 20,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12CHAJON|CHA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12CHAJON-CHA",
+      "entry_cents": 41,
+      "old_causal_floor_cents": 42,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12ECHMUN|MUN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12ECHMUN-MUN",
+      "entry_cents": 18,
+      "old_causal_floor_cents": 20,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12FORPAM|FOR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12FORPAM-FOR",
+      "entry_cents": 86,
+      "old_causal_floor_cents": 95,
+      "gap_cents": 9,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GANJAN|JAN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN",
+      "entry_cents": 78,
+      "old_causal_floor_cents": 79,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GIESHE|SHE",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12GIESHE-SHE",
+      "entry_cents": 85,
+      "old_causal_floor_cents": 86,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12HECISO|HEC",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12HECISO-HEC",
+      "entry_cents": 56,
+      "old_causal_floor_cents": 61,
+      "gap_cents": 5,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12HERALM|HER",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12HERALM-HER",
+      "entry_cents": 29,
+      "old_causal_floor_cents": 30,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12KUMTUR|TUR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12KUMTUR-TUR",
+      "entry_cents": 24,
+      "old_causal_floor_cents": 30,
+      "gap_cents": 6,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12MARARS|ARS",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12MARARS-ARS",
+      "entry_cents": 37,
+      "old_causal_floor_cents": 38,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PEAKIR|KIR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12PEAKIR-KIR",
+      "entry_cents": 67,
+      "old_causal_floor_cents": 71,
+      "gap_cents": 4,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PIETAB|TAB",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12PIETAB-TAB",
+      "entry_cents": 32,
+      "old_causal_floor_cents": 33,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH",
+      "entry_cents": 18,
+      "old_causal_floor_cents": 19,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLVIN|POL",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12POLVIN-POL",
+      "entry_cents": 38,
+      "old_causal_floor_cents": 42,
+      "gap_cents": 4,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12SIAIVA|IVA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL12SIAIVA-IVA",
+      "entry_cents": 95,
+      "old_causal_floor_cents": 96,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13CHOSUR|CHO",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13CHOSUR-CHO",
+      "entry_cents": 20,
+      "old_causal_floor_cents": 21,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13FORRAF|RAF",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13FORRAF-RAF",
+      "entry_cents": 12,
+      "old_causal_floor_cents": 13,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13KUMLAG|LAG",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13KUMLAG-LAG",
+      "entry_cents": 54,
+      "old_causal_floor_cents": 58,
+      "gap_cents": 4,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MUNLEO|LEO",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13MUNLEO-LEO",
+      "entry_cents": 65,
+      "old_causal_floor_cents": 66,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13OUALIN|OUA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13OUALIN-OUA",
+      "entry_cents": 5,
+      "old_causal_floor_cents": 75,
+      "gap_cents": 70,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13POLMIY|MIY",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13POLMIY-MIY",
+      "entry_cents": 70,
+      "old_causal_floor_cents": 74,
+      "gap_cents": 4,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13PRICRI|CRI",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13PRICRI-CRI",
+      "entry_cents": 8,
+      "old_causal_floor_cents": 10,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13REHJUS|REH",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13REHJUS-REH",
+      "entry_cents": 57,
+      "old_causal_floor_cents": 60,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13ROZISO|ISO",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13ROZISO-ISO",
+      "entry_cents": 29,
+      "old_causal_floor_cents": 30,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13ROZISO|ROZ",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13ROZISO-ROZ",
+      "entry_cents": 64,
+      "old_causal_floor_cents": 68,
+      "gap_cents": 4,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13VUKBRO|VUK",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13VUKBRO-VUK",
+      "entry_cents": 40,
+      "old_causal_floor_cents": 41,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13YIBMAR|YIB",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL13YIBMAR-YIB",
+      "entry_cents": 92,
+      "old_causal_floor_cents": 93,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14CASGHI|CAS",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14CASGHI-CAS",
+      "entry_cents": 34,
+      "old_causal_floor_cents": 37,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14GANZIN|GAN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14GANZIN-GAN",
+      "entry_cents": 5,
+      "old_causal_floor_cents": 24,
+      "gap_cents": 19,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14GANZIN|ZIN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14GANZIN-ZIN",
+      "entry_cents": 67,
+      "old_causal_floor_cents": 73,
+      "gap_cents": 6,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14GENPET|GEN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14GENPET-GEN",
+      "entry_cents": 61,
+      "old_causal_floor_cents": 63,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14IVAGIU|IVA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14IVAGIU-IVA",
+      "entry_cents": 53,
+      "old_causal_floor_cents": 56,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14KIRSEK|SEK",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK",
+      "entry_cents": 8,
+      "old_causal_floor_cents": 68,
+      "gap_cents": 60,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA",
+      "entry_cents": 41,
+      "old_causal_floor_cents": 45,
+      "gap_cents": 4,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14LANYIB|LAN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14LANYIB-LAN",
+      "entry_cents": 13,
+      "old_causal_floor_cents": 14,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14MRVCAN|CAN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14MRVCAN-CAN",
+      "entry_cents": 40,
+      "old_causal_floor_cents": 45,
+      "gap_cents": 5,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14OUAFIC|OUA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14OUAFIC-OUA",
+      "entry_cents": 31,
+      "old_causal_floor_cents": 32,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14PERCRA|CRA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14PERCRA-CRA",
+      "entry_cents": 88,
+      "old_causal_floor_cents": 94,
+      "gap_cents": 6,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL",
+      "entry_cents": 40,
+      "old_causal_floor_cents": 42,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15BONJUS|JUS",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS",
+      "entry_cents": 59,
+      "old_causal_floor_cents": 60,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15NAPBAR|NAP",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL15NAPBAR-NAP",
+      "entry_cents": 56,
+      "old_causal_floor_cents": 58,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15NOGSUR|NOG",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-NOG",
+      "entry_cents": 43,
+      "old_causal_floor_cents": 44,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15NOGSUR|SUR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-SUR",
+      "entry_cents": 55,
+      "old_causal_floor_cents": 57,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15WESCOP|COP",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL15WESCOP-COP",
+      "entry_cents": 80,
+      "old_causal_floor_cents": 82,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL15WESCOP|WES",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL15WESCOP-WES",
+      "entry_cents": 16,
+      "old_causal_floor_cents": 17,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16ALCANG|ANG",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL16ALCANG-ANG",
+      "entry_cents": 16,
+      "old_causal_floor_cents": 18,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL16VISNIJ|NIJ",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL16VISNIJ-NIJ",
+      "entry_cents": 58,
+      "old_causal_floor_cents": 59,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17ADDIVA|ADD",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD",
+      "entry_cents": 29,
+      "old_causal_floor_cents": 30,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17KUMBOO|KUM",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL17KUMBOO-KUM",
+      "entry_cents": 52,
+      "old_causal_floor_cents": 55,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17PERSAN|SAN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL17PERSAN-SAN",
+      "entry_cents": 57,
+      "old_causal_floor_cents": 58,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17SANALM|ALM",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-ALM",
+      "entry_cents": 47,
+      "old_causal_floor_cents": 48,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17SANALM|SAN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL17SANALM-SAN",
+      "entry_cents": 52,
+      "old_causal_floor_cents": 53,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17SEKCAS|CAS",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL17SEKCAS-CAS",
+      "entry_cents": 61,
+      "old_causal_floor_cents": 62,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL18TOMJOH|JOH",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL18TOMJOH-JOH",
+      "entry_cents": 57,
+      "old_causal_floor_cents": 58,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|KRA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA",
+      "entry_cents": 38,
+      "old_causal_floor_cents": 41,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ|CLA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ-CLA",
+      "entry_cents": 36,
+      "old_causal_floor_cents": 42,
+      "gap_cents": 6,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19HURBIG|BIG",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG",
+      "entry_cents": 54,
+      "old_causal_floor_cents": 59,
+      "gap_cents": 5,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19KUHPAS|PAS",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19KUHPAS-PAS",
+      "entry_cents": 86,
+      "old_causal_floor_cents": 87,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19KUZOPI|KUZ",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19KUZOPI-KUZ",
+      "entry_cents": 82,
+      "old_causal_floor_cents": 83,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MENKUM|MEN",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN",
+      "entry_cents": 5,
+      "old_causal_floor_cents": 6,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19RODIVA|ROD",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL19RODIVA-ROD",
+      "entry_cents": 63,
+      "old_causal_floor_cents": 64,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ALKFIC|FIC",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20ALKFIC-FIC",
+      "entry_cents": 46,
+      "old_causal_floor_cents": 47,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20CHABOU|CHA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20CHABOU-CHA",
+      "entry_cents": 60,
+      "old_causal_floor_cents": 61,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ECHHAR|HAR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20ECHHAR-HAR",
+      "entry_cents": 66,
+      "old_causal_floor_cents": 68,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GIUHER|HER",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20GIUHER-HER",
+      "entry_cents": 21,
+      "old_causal_floor_cents": 25,
+      "gap_cents": 4,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GORYOU|GOR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20GORYOU-GOR",
+      "entry_cents": 50,
+      "old_causal_floor_cents": 52,
+      "gap_cents": 2,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20HSUHAR|HAR",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20HSUHAR-HAR",
+      "entry_cents": 56,
+      "old_causal_floor_cents": 57,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20MAYMAG|MAG",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG",
+      "entry_cents": 31,
+      "old_causal_floor_cents": 32,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20MILSHE|SHE",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20MILSHE-SHE",
+      "entry_cents": 44,
+      "old_causal_floor_cents": 45,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20PIRNAP|NAP",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20PIRNAP-NAP",
+      "entry_cents": 21,
+      "old_causal_floor_cents": 24,
+      "gap_cents": 3,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20TROISO|TRO",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20TROISO-TRO",
+      "entry_cents": 77,
+      "old_causal_floor_cents": 78,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VALGOM|GOM",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20VALGOM-GOM",
+      "entry_cents": 81,
+      "old_causal_floor_cents": 86,
+      "gap_cents": 5,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20WATILA|ILA",
+      "ticker": "KXATPCHALLENGERMATCH-26JUL20WATILA-ILA",
+      "entry_cents": 36,
+      "old_causal_floor_cents": 37,
+      "gap_cents": 1,
+      "category": "ATP_CHALL"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12BORKOU|KOU",
+      "ticker": "KXATPMATCH-26JUL12BORKOU-KOU",
+      "entry_cents": 20,
+      "old_causal_floor_cents": 21,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12BUEMAR|BUE",
+      "ticker": "KXATPMATCH-26JUL12BUEMAR-BUE",
+      "entry_cents": 55,
+      "old_causal_floor_cents": 61,
+      "gap_cents": 6,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+      "ticker": "KXATPMATCH-26JUL12DAHBAE-BAE",
+      "entry_cents": 93,
+      "old_causal_floor_cents": 94,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12DODCAR|DOD",
+      "ticker": "KXATPMATCH-26JUL12DODCAR-DOD",
+      "entry_cents": 24,
+      "old_causal_floor_cents": 26,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12GUEGOM|GUE",
+      "ticker": "KXATPMATCH-26JUL12GUEGOM-GUE",
+      "entry_cents": 59,
+      "old_causal_floor_cents": 60,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12JACTRU|TRU",
+      "ticker": "KXATPMATCH-26JUL12JACTRU-TRU",
+      "entry_cents": 46,
+      "old_causal_floor_cents": 48,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12MOLROY|MOL",
+      "ticker": "KXATPMATCH-26JUL12MOLROY-MOL",
+      "entry_cents": 58,
+      "old_causal_floor_cents": 59,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12MOLROY|ROY",
+      "ticker": "KXATPMATCH-26JUL12MOLROY-ROY",
+      "entry_cents": 12,
+      "old_causal_floor_cents": 39,
+      "gap_cents": 27,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12OFNTIR|OFN",
+      "ticker": "KXATPMATCH-26JUL12OFNTIR-OFN",
+      "entry_cents": 6,
+      "old_causal_floor_cents": 39,
+      "gap_cents": 33,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12OFNTIR|TIR",
+      "ticker": "KXATPMATCH-26JUL12OFNTIR-TIR",
+      "entry_cents": 51,
+      "old_causal_floor_cents": 57,
+      "gap_cents": 6,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12TABHUE|TAB",
+      "ticker": "KXATPMATCH-26JUL12TABHUE-TAB",
+      "entry_cents": 45,
+      "old_causal_floor_cents": 55,
+      "gap_cents": 10,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13COLSKA|SKA",
+      "ticker": "KXATPMATCH-26JUL13COLSKA-SKA",
+      "entry_cents": 13,
+      "old_causal_floor_cents": 14,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+      "ticker": "KXATPMATCH-26JUL13SANDAN-DAN",
+      "entry_cents": 73,
+      "old_causal_floor_cents": 75,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14DIAMID|DIA",
+      "ticker": "KXATPMATCH-26JUL14DIAMID-DIA",
+      "entry_cents": 70,
+      "old_causal_floor_cents": 78,
+      "gap_cents": 8,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14TOPUGO|TOP",
+      "ticker": "KXATPMATCH-26JUL14TOPUGO-TOP",
+      "entry_cents": 25,
+      "old_causal_floor_cents": 28,
+      "gap_cents": 3,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14VALDAM|VAL",
+      "ticker": "KXATPMATCH-26JUL14VALDAM-VAL",
+      "entry_cents": 74,
+      "old_causal_floor_cents": 81,
+      "gap_cents": 7,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15ALTDAR|DAR",
+      "ticker": "KXATPMATCH-26JUL15ALTDAR-DAR",
+      "entry_cents": 61,
+      "old_causal_floor_cents": 63,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15BORDIM|BOR",
+      "ticker": "KXATPMATCH-26JUL15BORDIM-BOR",
+      "entry_cents": 52,
+      "old_causal_floor_cents": 64,
+      "gap_cents": 12,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15BUBHAL|HAL",
+      "ticker": "KXATPMATCH-26JUL15BUBHAL-HAL",
+      "entry_cents": 28,
+      "old_causal_floor_cents": 29,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15CARUGO|UGO",
+      "ticker": "KXATPMATCH-26JUL15CARUGO-UGO",
+      "entry_cents": 38,
+      "old_causal_floor_cents": 39,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15CERKEC|CER",
+      "ticker": "KXATPMATCH-26JUL15CERKEC-CER",
+      "entry_cents": 40,
+      "old_causal_floor_cents": 47,
+      "gap_cents": 7,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15HANVAC|HAN",
+      "ticker": "KXATPMATCH-26JUL15HANVAC-HAN",
+      "entry_cents": 57,
+      "old_causal_floor_cents": 62,
+      "gap_cents": 5,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15PRADZU|PRA",
+      "ticker": "KXATPMATCH-26JUL15PRADZU-PRA",
+      "entry_cents": 34,
+      "old_causal_floor_cents": 35,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15PRIMOL|PRI",
+      "ticker": "KXATPMATCH-26JUL15PRIMOL-PRI",
+      "entry_cents": 69,
+      "old_causal_floor_cents": 70,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15RUBPEL|PEL",
+      "ticker": "KXATPMATCH-26JUL15RUBPEL-PEL",
+      "entry_cents": 19,
+      "old_causal_floor_cents": 26,
+      "gap_cents": 7,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15TRANAV|NAV",
+      "ticker": "KXATPMATCH-26JUL15TRANAV-NAV",
+      "entry_cents": 81,
+      "old_causal_floor_cents": 83,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15VANDRO|DRO",
+      "ticker": "KXATPMATCH-26JUL15VANDRO-DRO",
+      "entry_cents": 51,
+      "old_causal_floor_cents": 56,
+      "gap_cents": 5,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL15VANVAL|VAN",
+      "ticker": "KXATPMATCH-26JUL15VANVAL-VAN",
+      "entry_cents": 42,
+      "old_causal_floor_cents": 45,
+      "gap_cents": 3,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16DZUARN|DZU",
+      "ticker": "KXATPMATCH-26JUL16DZUARN-DZU",
+      "entry_cents": 30,
+      "old_causal_floor_cents": 33,
+      "gap_cents": 3,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16FARRUU|FAR",
+      "ticker": "KXATPMATCH-26JUL16FARRUU-FAR",
+      "entry_cents": 18,
+      "old_causal_floor_cents": 19,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+      "ticker": "KXATPMATCH-26JUL16MERDRO-DRO",
+      "entry_cents": 6,
+      "old_causal_floor_cents": 39,
+      "gap_cents": 33,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+      "ticker": "KXATPMATCH-26JUL16MERDRO-MER",
+      "entry_cents": 6,
+      "old_causal_floor_cents": 60,
+      "gap_cents": 54,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16MOLDAV|MOL",
+      "ticker": "KXATPMATCH-26JUL16MOLDAV-MOL",
+      "entry_cents": 40,
+      "old_causal_floor_cents": 42,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17BORDAR|DAR",
+      "ticker": "KXATPMATCH-26JUL17BORDAR-DAR",
+      "entry_cents": 53,
+      "old_causal_floor_cents": 57,
+      "gap_cents": 4,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17CERRUU|CER",
+      "ticker": "KXATPMATCH-26JUL17CERRUU-CER",
+      "entry_cents": 10,
+      "old_causal_floor_cents": 25,
+      "gap_cents": 15,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17CERRUU|RUU",
+      "ticker": "KXATPMATCH-26JUL17CERRUU-RUU",
+      "entry_cents": 71,
+      "old_causal_floor_cents": 72,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17COLVAC|VAC",
+      "ticker": "KXATPMATCH-26JUL17COLVAC-VAC",
+      "entry_cents": 41,
+      "old_causal_floor_cents": 42,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17DZUMOL|MOL",
+      "ticker": "KXATPMATCH-26JUL17DZUMOL-MOL",
+      "entry_cents": 66,
+      "old_causal_floor_cents": 67,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17RINTSI|TSI",
+      "ticker": "KXATPMATCH-26JUL17RINTSI-TSI",
+      "entry_cents": 58,
+      "old_causal_floor_cents": 61,
+      "gap_cents": 3,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17TABTIR|TAB",
+      "ticker": "KXATPMATCH-26JUL17TABTIR-TAB",
+      "entry_cents": 52,
+      "old_causal_floor_cents": 54,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17VALTRA|VAL",
+      "ticker": "KXATPMATCH-26JUL17VALTRA-VAL",
+      "entry_cents": 69,
+      "old_causal_floor_cents": 71,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18HEIFEL|FEL",
+      "ticker": "KXATPMATCH-26JUL18HEIFEL-FEL",
+      "entry_cents": 41,
+      "old_causal_floor_cents": 43,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18HIPGIU|GIU",
+      "ticker": "KXATPMATCH-26JUL18HIPGIU-GIU",
+      "entry_cents": 69,
+      "old_causal_floor_cents": 74,
+      "gap_cents": 5,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18LUZTSE|LUZ",
+      "ticker": "KXATPMATCH-26JUL18LUZTSE-LUZ",
+      "entry_cents": 11,
+      "old_causal_floor_cents": 14,
+      "gap_cents": 3,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18MARJOR|MAR",
+      "ticker": "KXATPMATCH-26JUL18MARJOR-MAR",
+      "entry_cents": 8,
+      "old_causal_floor_cents": 67,
+      "gap_cents": 59,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18MERDZU|DZU",
+      "ticker": "KXATPMATCH-26JUL18MERDZU-DZU",
+      "entry_cents": 28,
+      "old_causal_floor_cents": 33,
+      "gap_cents": 5,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18PELSIL|PEL",
+      "ticker": "KXATPMATCH-26JUL18PELSIL-PEL",
+      "entry_cents": 61,
+      "old_causal_floor_cents": 90,
+      "gap_cents": 29,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18RODCHE|ROD",
+      "ticker": "KXATPMATCH-26JUL18RODCHE-ROD",
+      "entry_cents": 80,
+      "old_causal_floor_cents": 81,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18SHETSI|TSI",
+      "ticker": "KXATPMATCH-26JUL18SHETSI-TSI",
+      "entry_cents": 69,
+      "old_causal_floor_cents": 74,
+      "gap_cents": 5,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CERTRU|CER",
+      "ticker": "KXATPMATCH-26JUL19CERTRU-CER",
+      "entry_cents": 49,
+      "old_causal_floor_cents": 64,
+      "gap_cents": 15,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19DROUGO|DRO",
+      "ticker": "KXATPMATCH-26JUL19DROUGO-DRO",
+      "entry_cents": 45,
+      "old_causal_floor_cents": 46,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19GASDZU|GAS",
+      "ticker": "KXATPMATCH-26JUL19GASDZU-GAS",
+      "entry_cents": 44,
+      "old_causal_floor_cents": 45,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19KOPBUS|KOP",
+      "ticker": "KXATPMATCH-26JUL19KOPBUS-KOP",
+      "entry_cents": 34,
+      "old_causal_floor_cents": 35,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19LUZTAB|TAB",
+      "ticker": "KXATPMATCH-26JUL19LUZTAB-TAB",
+      "entry_cents": 88,
+      "old_causal_floor_cents": 90,
+      "gap_cents": 2,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19MULNAV|MUL",
+      "ticker": "KXATPMATCH-26JUL19MULNAV-MUL",
+      "entry_cents": 15,
+      "old_causal_floor_cents": 16,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19TORBAS|TOR",
+      "ticker": "KXATPMATCH-26JUL19TORBAS-TOR",
+      "entry_cents": 21,
+      "old_causal_floor_cents": 22,
+      "gap_cents": 1,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19TSICOL|TSI",
+      "ticker": "KXATPMATCH-26JUL19TSICOL-TSI",
+      "entry_cents": 51,
+      "old_causal_floor_cents": 56,
+      "gap_cents": 5,
+      "category": "ATP_MAIN"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12HESKOT|HES",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL12HESKOT-HES",
+      "entry_cents": 48,
+      "old_causal_floor_cents": 54,
+      "gap_cents": 6,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12ROUJAK|ROU",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL12ROUJAK-ROU",
+      "entry_cents": 43,
+      "old_causal_floor_cents": 46,
+      "gap_cents": 3,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL13GASBAN|GAS",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL13GASBAN-GAS",
+      "entry_cents": 53,
+      "old_causal_floor_cents": 54,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14FERZAN|FER",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14FERZAN-FER",
+      "entry_cents": 62,
+      "old_causal_floor_cents": 68,
+      "gap_cents": 6,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14KOSRUG|KOS",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14KOSRUG-KOS",
+      "entry_cents": 72,
+      "old_causal_floor_cents": 73,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14KOSRUG|RUG",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14KOSRUG-RUG",
+      "entry_cents": 26,
+      "old_causal_floor_cents": 27,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14RIESEM|SEM",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14RIESEM-SEM",
+      "entry_cents": 54,
+      "old_causal_floor_cents": 60,
+      "gap_cents": 6,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14TREGRA|TRE",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14TREGRA-TRE",
+      "entry_cents": 24,
+      "old_causal_floor_cents": 26,
+      "gap_cents": 2,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14WOLVAN|VAN",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL14WOLVAN-VAN",
+      "entry_cents": 78,
+      "old_causal_floor_cents": 79,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15CARPAL|PAL",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL15CARPAL-PAL",
+      "entry_cents": 32,
+      "old_causal_floor_cents": 34,
+      "gap_cents": 2,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15PENFAL|FAL",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL15PENFAL-FAL",
+      "entry_cents": 77,
+      "old_causal_floor_cents": 79,
+      "gap_cents": 2,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16BRAVED|BRA",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-BRA",
+      "entry_cents": 39,
+      "old_causal_floor_cents": 41,
+      "gap_cents": 2,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16BRAVED|VED",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL16BRAVED-VED",
+      "entry_cents": 54,
+      "old_causal_floor_cents": 55,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16KOSBRO|BRO",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL16KOSBRO-BRO",
+      "entry_cents": 40,
+      "old_causal_floor_cents": 41,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16KOSBRO|KOS",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL16KOSBRO-KOS",
+      "entry_cents": 59,
+      "old_causal_floor_cents": 60,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL16KOVRIE|RIE",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL16KOVRIE-RIE",
+      "entry_cents": 76,
+      "old_causal_floor_cents": 79,
+      "gap_cents": 3,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ANDKRA|KRA",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL17ANDKRA-KRA",
+      "entry_cents": 72,
+      "old_causal_floor_cents": 74,
+      "gap_cents": 2,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ERJFEI|FEI",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-FEI",
+      "entry_cents": 31,
+      "old_causal_floor_cents": 33,
+      "gap_cents": 2,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR|TAR",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR-TAR",
+      "entry_cents": 63,
+      "old_causal_floor_cents": 67,
+      "gap_cents": 4,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN|VAN",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN-VAN",
+      "entry_cents": 49,
+      "old_causal_floor_cents": 50,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL20FERREN|REN",
+      "ticker": "KXWTACHALLENGERMATCH-26JUL20FERREN-REN",
+      "entry_cents": 14,
+      "old_causal_floor_cents": 15,
+      "gap_cents": 1,
+      "category": "WTA_CHALL"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12FETPIE|PIE",
+      "ticker": "KXWTAMATCH-26JUL12FETPIE-PIE",
+      "entry_cents": 51,
+      "old_causal_floor_cents": 52,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12GARPRI|GAR",
+      "ticker": "KXWTAMATCH-26JUL12GARPRI-GAR",
+      "entry_cents": 38,
+      "old_causal_floor_cents": 39,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12HIBTON|HIB",
+      "ticker": "KXWTAMATCH-26JUL12HIBTON-HIB",
+      "entry_cents": 85,
+      "old_causal_floor_cents": 87,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12HODYAS|HOD",
+      "ticker": "KXWTAMATCH-26JUL12HODYAS-HOD",
+      "entry_cents": 85,
+      "old_causal_floor_cents": 86,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12ITOMAN|MAN",
+      "ticker": "KXWTAMATCH-26JUL12ITOMAN-MAN",
+      "entry_cents": 19,
+      "old_causal_floor_cents": 20,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12KULZAA|ZAA",
+      "ticker": "KXWTAMATCH-26JUL12KULZAA-ZAA",
+      "entry_cents": 11,
+      "old_causal_floor_cents": 67,
+      "gap_cents": 56,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12LEPBUR|BUR",
+      "ticker": "KXWTAMATCH-26JUL12LEPBUR-BUR",
+      "entry_cents": 20,
+      "old_causal_floor_cents": 22,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12LEPBUR|LEP",
+      "ticker": "KXWTAMATCH-26JUL12LEPBUR-LEP",
+      "entry_cents": 70,
+      "old_causal_floor_cents": 72,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12MICKUL|MIC",
+      "ticker": "KXWTAMATCH-26JUL12MICKUL-MIC",
+      "entry_cents": 22,
+      "old_causal_floor_cents": 42,
+      "gap_cents": 20,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12OKAIPE|IPE",
+      "ticker": "KXWTAMATCH-26JUL12OKAIPE-IPE",
+      "entry_cents": 71,
+      "old_causal_floor_cents": 83,
+      "gap_cents": 12,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12OKAIPE|OKA",
+      "ticker": "KXWTAMATCH-26JUL12OKAIPE-OKA",
+      "entry_cents": 10,
+      "old_causal_floor_cents": 15,
+      "gap_cents": 5,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12TAGSIE|TAG",
+      "ticker": "KXWTAMATCH-26JUL12TAGSIE-TAG",
+      "entry_cents": 81,
+      "old_causal_floor_cents": 88,
+      "gap_cents": 7,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13AMAHER|AMA",
+      "ticker": "KXWTAMATCH-26JUL13AMAHER-AMA",
+      "entry_cents": 31,
+      "old_causal_floor_cents": 35,
+      "gap_cents": 4,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13BONSOR|BON",
+      "ticker": "KXWTAMATCH-26JUL13BONSOR-BON",
+      "entry_cents": 50,
+      "old_causal_floor_cents": 53,
+      "gap_cents": 3,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13BURLEP|LEP",
+      "ticker": "KXWTAMATCH-26JUL13BURLEP-LEP",
+      "entry_cents": 35,
+      "old_causal_floor_cents": 37,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13CHAJIM|CHA",
+      "ticker": "KXWTAMATCH-26JUL13CHAJIM-CHA",
+      "entry_cents": 65,
+      "old_causal_floor_cents": 66,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13ITOKOR|ITO",
+      "ticker": "KXWTAMATCH-26JUL13ITOKOR-ITO",
+      "entry_cents": 14,
+      "old_causal_floor_cents": 19,
+      "gap_cents": 5,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13KRETOM|KRE",
+      "ticker": "KXWTAMATCH-26JUL13KRETOM-KRE",
+      "entry_cents": 87,
+      "old_causal_floor_cents": 89,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13MONMAS|MAS",
+      "ticker": "KXWTAMATCH-26JUL13MONMAS-MAS",
+      "entry_cents": 81,
+      "old_causal_floor_cents": 83,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13MONMAS|MON",
+      "ticker": "KXWTAMATCH-26JUL13MONMAS-MON",
+      "entry_cents": 15,
+      "old_causal_floor_cents": 16,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13SAKTON|SAK",
+      "ticker": "KXWTAMATCH-26JUL13SAKTON-SAK",
+      "entry_cents": 53,
+      "old_causal_floor_cents": 54,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|ZHE",
+      "ticker": "KXWTAMATCH-26JUL13ZHEBOU-ZHE",
+      "entry_cents": 64,
+      "old_causal_floor_cents": 65,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL14AVAUCH|AVA",
+      "ticker": "KXWTAMATCH-26JUL14AVAUCH-AVA",
+      "entry_cents": 54,
+      "old_causal_floor_cents": 55,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL14AVAUCH|UCH",
+      "ticker": "KXWTAMATCH-26JUL14AVAUCH-UCH",
+      "entry_cents": 8,
+      "old_causal_floor_cents": 44,
+      "gap_cents": 36,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL14OLIIPE|IPE",
+      "ticker": "KXWTAMATCH-26JUL14OLIIPE-IPE",
+      "entry_cents": 8,
+      "old_causal_floor_cents": 20,
+      "gap_cents": 12,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15BONZID|BON",
+      "ticker": "KXWTAMATCH-26JUL15BONZID-BON",
+      "entry_cents": 67,
+      "old_causal_floor_cents": 68,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15DARSAK|SAK",
+      "ticker": "KXWTAMATCH-26JUL15DARSAK-SAK",
+      "entry_cents": 77,
+      "old_causal_floor_cents": 78,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15HONPAR|PAR",
+      "ticker": "KXWTAMATCH-26JUL15HONPAR-PAR",
+      "entry_cents": 58,
+      "old_causal_floor_cents": 59,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15IBRBAD|IBR",
+      "ticker": "KXWTAMATCH-26JUL15IBRBAD-IBR",
+      "entry_cents": 12,
+      "old_causal_floor_cents": 13,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15OLIPRI|PRI",
+      "ticker": "KXWTAMATCH-26JUL15OLIPRI-PRI",
+      "entry_cents": 41,
+      "old_causal_floor_cents": 44,
+      "gap_cents": 3,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15PUTCHA|CHA",
+      "ticker": "KXWTAMATCH-26JUL15PUTCHA-CHA",
+      "entry_cents": 8,
+      "old_causal_floor_cents": 39,
+      "gap_cents": 31,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL15PUTCHA|PUT",
+      "ticker": "KXWTAMATCH-26JUL15PUTCHA-PUT",
+      "entry_cents": 8,
+      "old_causal_floor_cents": 60,
+      "gap_cents": 52,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL16TAUTON|TAU",
+      "ticker": "KXWTAMATCH-26JUL16TAUTON-TAU",
+      "entry_cents": 88,
+      "old_causal_floor_cents": 94,
+      "gap_cents": 6,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL17KREZHE|ZHE",
+      "ticker": "KXWTAMATCH-26JUL17KREZHE-ZHE",
+      "entry_cents": 42,
+      "old_causal_floor_cents": 48,
+      "gap_cents": 6,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL17UDVBAD|BAD",
+      "ticker": "KXWTAMATCH-26JUL17UDVBAD-BAD",
+      "entry_cents": 66,
+      "old_causal_floor_cents": 71,
+      "gap_cents": 5,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL17ZIDMAR|ZID",
+      "ticker": "KXWTAMATCH-26JUL17ZIDMAR-ZID",
+      "entry_cents": 30,
+      "old_causal_floor_cents": 34,
+      "gap_cents": 4,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18BADZID|BAD",
+      "ticker": "KXWTAMATCH-26JUL18BADZID-BAD",
+      "entry_cents": 74,
+      "old_causal_floor_cents": 76,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18MASRYS|MAS",
+      "ticker": "KXWTAMATCH-26JUL18MASRYS-MAS",
+      "entry_cents": 72,
+      "old_causal_floor_cents": 74,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18MORAKS|AKS",
+      "ticker": "KXWTAMATCH-26JUL18MORAKS-AKS",
+      "entry_cents": 65,
+      "old_causal_floor_cents": 66,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18OKALEE|LEE",
+      "ticker": "KXWTAMATCH-26JUL18OKALEE-LEE",
+      "entry_cents": 80,
+      "old_causal_floor_cents": 81,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL18SAKKOR|KOR",
+      "ticker": "KXWTAMATCH-26JUL18SAKKOR-KOR",
+      "entry_cents": 30,
+      "old_causal_floor_cents": 41,
+      "gap_cents": 11,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19EIGCAR|CAR",
+      "ticker": "KXWTAMATCH-26JUL19EIGCAR-CAR",
+      "entry_cents": 86,
+      "old_causal_floor_cents": 91,
+      "gap_cents": 5,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19KRESAK|KRE",
+      "ticker": "KXWTAMATCH-26JUL19KRESAK-KRE",
+      "entry_cents": 44,
+      "old_causal_floor_cents": 56,
+      "gap_cents": 12,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL19RUSKAZ|KAZ",
+      "ticker": "KXWTAMATCH-26JUL19RUSKAZ-KAZ",
+      "entry_cents": 24,
+      "old_causal_floor_cents": 26,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20AKSCOS|COS",
+      "ticker": "KXWTAMATCH-26JUL20AKSCOS-COS",
+      "entry_cents": 62,
+      "old_causal_floor_cents": 68,
+      "gap_cents": 6,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20BARYUA|YUA",
+      "ticker": "KXWTAMATCH-26JUL20BARYUA-YUA",
+      "entry_cents": 23,
+      "old_causal_floor_cents": 25,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20BONUCH|BON",
+      "ticker": "KXWTAMATCH-26JUL20BONUCH-BON",
+      "entry_cents": 70,
+      "old_causal_floor_cents": 71,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20BOUBOU2|BOU",
+      "ticker": "KXWTAMATCH-26JUL20BOUBOU2-BOU",
+      "entry_cents": 67,
+      "old_causal_floor_cents": 71,
+      "gap_cents": 4,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20KOVTAR|TAR",
+      "ticker": "KXWTAMATCH-26JUL20KOVTAR-TAR",
+      "entry_cents": 70,
+      "old_causal_floor_cents": 76,
+      "gap_cents": 6,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20OLISCH|SCH",
+      "ticker": "KXWTAMATCH-26JUL20OLISCH-SCH",
+      "entry_cents": 26,
+      "old_causal_floor_cents": 27,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20PODLEE|POD",
+      "ticker": "KXWTAMATCH-26JUL20PODLEE-POD",
+      "entry_cents": 42,
+      "old_causal_floor_cents": 43,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20PODSTU|POD",
+      "ticker": "KXWTAMATCH-26JUL20PODSTU-POD",
+      "entry_cents": 72,
+      "old_causal_floor_cents": 76,
+      "gap_cents": 4,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20QUEKAL|QUE",
+      "ticker": "KXWTAMATCH-26JUL20QUEKAL-QUE",
+      "entry_cents": 30,
+      "old_causal_floor_cents": 32,
+      "gap_cents": 2,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20SAMJOI|JOI",
+      "ticker": "KXWTAMATCH-26JUL20SAMJOI-JOI",
+      "entry_cents": 56,
+      "old_causal_floor_cents": 59,
+      "gap_cents": 3,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20SEISNI|SNI",
+      "ticker": "KXWTAMATCH-26JUL20SEISNI-SNI",
+      "entry_cents": 71,
+      "old_causal_floor_cents": 78,
+      "gap_cents": 7,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20SEMKRA|KRA",
+      "ticker": "KXWTAMATCH-26JUL20SEMKRA-KRA",
+      "entry_cents": 67,
+      "old_causal_floor_cents": 73,
+      "gap_cents": 6,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20STENOH|NOH",
+      "ticker": "KXWTAMATCH-26JUL20STENOH-NOH",
+      "entry_cents": 70,
+      "old_causal_floor_cents": 78,
+      "gap_cents": 8,
+      "category": "WTA_MAIN"
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20VEDBAR|VED",
+      "ticker": "KXWTAMATCH-26JUL20VEDBAR-VED",
+      "entry_cents": 60,
+      "old_causal_floor_cents": 61,
+      "gap_cents": 1,
+      "category": "WTA_MAIN"
+    }
+  ]
+}

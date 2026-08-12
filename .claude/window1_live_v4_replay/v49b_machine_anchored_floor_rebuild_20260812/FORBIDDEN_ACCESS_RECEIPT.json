@@ -1,0 +1,14 @@
+{
+  "holdout_access": 0,
+  "sealed_population_access": 0,
+  "live_access": 0,
+  "network_runtime": 0,
+  "orders": 0,
+  "positions": 0,
+  "exits": 0,
+  "settlement": 0,
+  "DCA": 0,
+  "deployment": 0,
+  "policy_mutation": 0,
+  "scope": "READ_ONLY_DEV_804_FROZEN_V47_AND_V49B_ARTIFACTS_PLUS_HASH_BOUND_PRIVATE_FIT_INPUTS"
+}

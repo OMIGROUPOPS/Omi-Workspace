@@ -1,0 +1,778 @@
+{
+  "per_category": [
+    {
+      "category": "ATP_CHALL",
+      "legs": 312,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 312,
+        "null_n": 0,
+        "sum": 42,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 5
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 312,
+        "null_n": 0,
+        "sum": 1483,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 11,
+        "max": 88
+      },
+      "presence_premium_cents": {
+        "n": 312,
+        "null_n": 0,
+        "sum": 1441,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 10,
+        "max": 88
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "legs": 186,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 186,
+        "null_n": 0,
+        "sum": 33,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 8
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 186,
+        "null_n": 0,
+        "sum": 927,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 4,
+        "p90": 8,
+        "max": 72
+      },
+      "presence_premium_cents": {
+        "n": 186,
+        "null_n": 0,
+        "sum": 894,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 8,
+        "max": 72
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "legs": 118,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 118,
+        "null_n": 0,
+        "sum": 7,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 2
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 118,
+        "null_n": 0,
+        "sum": 502,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 16,
+        "max": 70
+      },
+      "presence_premium_cents": {
+        "n": 118,
+        "null_n": 0,
+        "sum": 495,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 15,
+        "max": 70
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "legs": 194,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 194,
+        "null_n": 0,
+        "sum": 18,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 6
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 194,
+        "null_n": 0,
+        "sum": 632,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 9,
+        "max": 60
+      },
+      "presence_premium_cents": {
+        "n": 194,
+        "null_n": 0,
+        "sum": 614,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 8,
+        "max": 60
+      }
+    }
+  ],
+  "per_category_x_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50",
+      "category": "ATP_CHALL",
+      "price_region": "26_50",
+      "legs": 102,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 102,
+        "null_n": 0,
+        "sum": 18,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 5
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 102,
+        "null_n": 0,
+        "sum": 461,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 17,
+        "max": 35
+      },
+      "presence_premium_cents": {
+        "n": 102,
+        "null_n": 0,
+        "sum": 443,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 17,
+        "max": 35
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75",
+      "category": "ATP_CHALL",
+      "price_region": "51_75",
+      "legs": 104,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 104,
+        "null_n": 0,
+        "sum": 14,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 3
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 104,
+        "null_n": 0,
+        "sum": 526,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 12,
+        "max": 63
+      },
+      "presence_premium_cents": {
+        "n": 104,
+        "null_n": 0,
+        "sum": 512,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 10,
+        "max": 63
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76",
+      "category": "ATP_CHALL",
+      "price_region": "ge76",
+      "legs": 48,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 48,
+        "null_n": 0,
+        "sum": 6,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 3
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 48,
+        "null_n": 0,
+        "sum": 327,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 18,
+        "max": 88
+      },
+      "presence_premium_cents": {
+        "n": 48,
+        "null_n": 0,
+        "sum": 321,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 18,
+        "max": 88
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25",
+      "category": "ATP_CHALL",
+      "price_region": "le25",
+      "legs": 58,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 58,
+        "null_n": 0,
+        "sum": 4,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 3
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 58,
+        "null_n": 0,
+        "sum": 169,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 10,
+        "max": 27
+      },
+      "presence_premium_cents": {
+        "n": 58,
+        "null_n": 0,
+        "sum": 165,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 10,
+        "max": 27
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50",
+      "category": "ATP_MAIN",
+      "price_region": "26_50",
+      "legs": 69,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 69,
+        "null_n": 0,
+        "sum": 8,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 2
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 69,
+        "null_n": 0,
+        "sum": 392,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 5,
+        "p90": 13,
+        "max": 49
+      },
+      "presence_premium_cents": {
+        "n": 69,
+        "null_n": 0,
+        "sum": 384,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 5,
+        "p90": 13,
+        "max": 48
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75",
+      "category": "ATP_MAIN",
+      "price_region": "51_75",
+      "legs": 68,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 68,
+        "null_n": 0,
+        "sum": 20,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 8
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 68,
+        "null_n": 0,
+        "sum": 444,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 4,
+        "p90": 8,
+        "max": 72
+      },
+      "presence_premium_cents": {
+        "n": 68,
+        "null_n": 0,
+        "sum": 424,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 3,
+        "p90": 8,
+        "max": 72
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76",
+      "category": "ATP_MAIN",
+      "price_region": "ge76",
+      "legs": 19,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 19,
+        "null_n": 0,
+        "sum": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 19,
+        "null_n": 0,
+        "sum": 21,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 4,
+        "max": 5
+      },
+      "presence_premium_cents": {
+        "n": 19,
+        "null_n": 0,
+        "sum": 20,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 3,
+        "max": 5
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25",
+      "category": "ATP_MAIN",
+      "price_region": "le25",
+      "legs": 30,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 30,
+        "null_n": 0,
+        "sum": 4,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 2
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 30,
+        "null_n": 0,
+        "sum": 70,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 4,
+        "max": 27
+      },
+      "presence_premium_cents": {
+        "n": 30,
+        "null_n": 0,
+        "sum": 66,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 26
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50",
+      "category": "WTA_CHALL",
+      "price_region": "26_50",
+      "legs": 39,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 39,
+        "null_n": 0,
+        "sum": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 39,
+        "null_n": 0,
+        "sum": 110,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 10,
+        "max": 42
+      },
+      "presence_premium_cents": {
+        "n": 39,
+        "null_n": 0,
+        "sum": 108,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 10,
+        "max": 42
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75",
+      "category": "WTA_CHALL",
+      "price_region": "51_75",
+      "legs": 33,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 33,
+        "null_n": 0,
+        "sum": 3,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 33,
+        "null_n": 0,
+        "sum": 148,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 8,
+        "max": 55
+      },
+      "presence_premium_cents": {
+        "n": 33,
+        "null_n": 0,
+        "sum": 145,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 8,
+        "max": 55
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76",
+      "category": "WTA_CHALL",
+      "price_region": "ge76",
+      "legs": 23,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 23,
+        "null_n": 0,
+        "sum": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 2
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 23,
+        "null_n": 0,
+        "sum": 159,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 30,
+        "max": 70
+      },
+      "presence_premium_cents": {
+        "n": 23,
+        "null_n": 0,
+        "sum": 157,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 3,
+        "p90": 30,
+        "max": 70
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25",
+      "category": "WTA_CHALL",
+      "price_region": "le25",
+      "legs": 23,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 23,
+        "null_n": 0,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 23,
+        "null_n": 0,
+        "sum": 85,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 5,
+        "p90": 16,
+        "max": 19
+      },
+      "presence_premium_cents": {
+        "n": 23,
+        "null_n": 0,
+        "sum": 85,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 5,
+        "p90": 16,
+        "max": 19
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50",
+      "category": "WTA_MAIN",
+      "price_region": "26_50",
+      "legs": 51,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 51,
+        "null_n": 0,
+        "sum": 9,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 1,
+        "max": 3
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 51,
+        "null_n": 0,
+        "sum": 129,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 8,
+        "max": 21
+      },
+      "presence_premium_cents": {
+        "n": 51,
+        "null_n": 0,
+        "sum": 120,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 6,
+        "max": 20
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75",
+      "category": "WTA_MAIN",
+      "price_region": "51_75",
+      "legs": 57,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 57,
+        "null_n": 0,
+        "sum": 7,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 6
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 57,
+        "null_n": 0,
+        "sum": 289,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 14,
+        "max": 60
+      },
+      "presence_premium_cents": {
+        "n": 57,
+        "null_n": 0,
+        "sum": 282,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2,
+        "p90": 14,
+        "max": 60
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76",
+      "category": "WTA_MAIN",
+      "price_region": "ge76",
+      "legs": 33,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 33,
+        "null_n": 0,
+        "sum": 2,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 1
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 33,
+        "null_n": 0,
+        "sum": 52,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 22
+      },
+      "presence_premium_cents": {
+        "n": 33,
+        "null_n": 0,
+        "sum": 50,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 21
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25",
+      "category": "WTA_MAIN",
+      "price_region": "le25",
+      "legs": 53,
+      "entry_minus_rebuilt_machine_floor_cents": {
+        "n": 53,
+        "null_n": 0,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "entry_minus_market_offered_true_trade_floor_cents": {
+        "n": 53,
+        "null_n": 0,
+        "sum": 162,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 11,
+        "max": 25
+      },
+      "presence_premium_cents": {
+        "n": 53,
+        "null_n": 0,
+        "sum": 162,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 11,
+        "max": 25
+      }
+    }
+  ]
+}

@@ -92,17 +92,34 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 | arnrom_marks_v47 (528d75e4; 235 unique rows) | **RESOLVED** — Plex right panel; lane note f36798fc |
 | ARNROM reconciliations (f36798fc) | **RESOLVED** — doctrine receipts #2; floor quarantine trigger |
 | Post-MAZ triage (4ba98104; 568 legs / 43 / 1 amend) | **RESOLVED** — edge census live; quarantine standing |
+| Overpay census (096241ae; 396 pairs / 792 legs, V47) | **VALID-NARROW** (restamped this fold) — won-book near-overpay-free (63 legs / 119¢; join 59¢ > cap 48¢ > tracking 12¢); **denominator error noted**: the 119¢ was set against 571¢ (the *sealed* lock) — wrong book; the dev completes' own denominator is 1,936¢ (operator-stated correction). Narrow validity: the mechanism ordering stands; the headline ratio does not |
+| Par sheet (b7f12d6f; 804 dev, V49b-staged) | **PAR SIDE RESOLVED — standing scoreboard** (7,051¢ at par / 711 offered / 93 NO_OFFER exact vs e995c81b; league: placement organs 84% of 5,385¢). **OURS side SUPERSEDED-for-completes** by the floor rebuild (f730fad1); state rows pending re-key to the canonical brain-SHA-stamped ledger (393-vs-405, §5) — caveat inline until then |
+| Floor rebuild + presence premium (f730fad1; other seat) | **RESOLVED** — machine-anchored floor law; the 213-leg impossible set → **0**; the 100¢/3,444¢ decomposition: execution layer solved to 100¢, the remainder is presence-premium/window territory (§6) |
+| Decision audit (35ac1f5b; 1,608 legs, V49b-staged) | **RESOLVED** — restraint structurally absent (stood 1,603/1,608; CORRECT_RESTRAINT empty by construction, not classifier); 161/786 lucky fills; withholds 62.1% ahead of oncoming flow; 118 one-eyed unarbitrated / 86 BOTH-vindicated; discriminator zone table (category .163 / volume .127 / cell .122; spread nil .023). Rows carry the 393-ledger caveat pending re-key |
+| Aim error census (17664b3f; 362 RRWP legs, 355 scored) | **RESOLVED** — the misses are **standing-time, not aim**: median aim error +2 (stood at-or-above the eventual low); vault residual **0** (SEQFLOOR_RECUT knew the level, game by game); volume-monotone (>10k lots → +4); doctrine-2 strata held (P-cell, dipless 71/219); seqfloor fit-overlap REPORTED unresolved (§5) |
 
 ---
 
 ## 3 · OPEN SLOTS ⧗
 
 - ⧗ **V49b** — stand-AT-P (join semantics, no −1) when evidence exists and ask>P; the faithful executable of
-  fe4747cd's ~477 ceiling (bc0ce289 reopen #1).
+  fe4747cd's ~477 ceiling (bc0ce289 reopen #1). → **FILLED** (fold @ this commit): ratified @ `47b51fd2`;
+  official run 405 completes; the 81-game frontier reduced **81→9**.
 - ⧗ **V50 fork** — first-fill discipline: price the first fill at its own evidence floor so the cap arms at
-  99−floor (a20e1a85: 31/45 sealed cap-kills self-inflicted; f40ac8ea: 9/18 divot admissions).
+  99−floor (a20e1a85: 31/45 sealed cap-kills self-inflicted; f40ac8ea: 9/18 divot admissions). → **RESTAMPED
+  FOURTH-ORDER** (fold): Door B / the S16 cap organ ranks behind presence-continuity — the execution layer is
+  solved to 100¢ (f730fad1 decomposition); the cap's three measured faces stay on file.
 - ⧗ **Floor rebuild** — regenerate CAUSAL_LEG_TABLE anchored to the executable's actual stand times (not
-  event-anchored analytic triggers); kill the 213-leg impossible set (f36798fc).
+  event-anchored analytic triggers); kill the 213-leg impossible set (f36798fc). → **FILLED** (fold):
+  `f730fad1`, 213→0; the machine-anchored floor law is the standing ruler.
+- ⧗ **V51 continuity-of-standing** — (new slot, fold) the executable of the four-instrument convergence (§7):
+  keep the lawful rest standing through the moments flow prints at-or-below it. **Codex, in flight.** Its
+  result prices patience vs the live-only presence premium and gates the Stage C pilot ruling.
+- **Aim-organ hypothesis — RETIRED, tombstone `17664b3f`** (fold): the deep-aim organ (AIM_V2 cell-depth as
+  the miss fix) is refuted on this population — median aim error +2, the vault already knew the level, and
+  aiming lower worsens every scored leg. Reopen condition: none at replay grain; superseded by V51.
+- ⧗ **Edge-clipped** — UNMEASURED, carried (fold): the 4ba98104 post-edge census stands as counts; conversion
+  remains unmeasured pending the bell detector below.
 - ⧗ **Bell detector** — the schedule_only 87/119 post-edge-fill subset (4ba98104) is the only place an inferred
   boundary may clip genuine pre-match flow; a boundary-quality detector scopes it.
 - ⧗ **Corrected dipless** — re-run the 43 through the corrected reconstruction; the quarantine lifts or the
@@ -170,6 +187,9 @@ edge/boundary → ⧗ bell detector · capture quality → ⧗ corrected dipless
 | FANBIG = candidate crediting defect (653b7f13) | Post-MAZ forensic: evidence-join error, mooted | **B controls** — S18 amended (4ba98104) |
 | Maker offer 501 (7fcd6614) | CANON two-channel crediting (e073c606) | **B controls** — RULER_VIOLATION tombstone (3dd57fba) |
 | Sealed capture efficiency 14.4% (b26cf548; floors=sealed traded_floor) | Dev capture ~67% of realizable (cca7c6c1; different ruler) | **NOT a contradiction — different denominators**; kept visible per doctrine 5 |
+| Staged V49b ledger: 393 completes (b7f12d6f / 35ac1f5b instruments) | Official ratified V49b @ 47b51fd2: 405 completes | **OPEN** — the staged ledger is unstamped (no embedded brain SHA); named owner: **Codex provenance**; PAR_SHEET states + DECISION_AUDIT rows carry the 393-caveat inline until re-keyed (§7 re-key line) |
+| SEQFLOOR_RECUT residual 0 — "the vault knew the level" (17664b3f) | Fit corpus = 2,435-pair seqfloor pull; overlap with dev-804 unestablished | **REPORTED UNRESOLVED** (17664b3f doctrine-2 item #3) — if overlapped, residual-0 is partially in-sample |
+| Aim hypothesis: misses are depth errors a cell table fixes (this seat, pre-census) | Aim census: median +2, standing-time not aim; lower aim worsens all (17664b3f) | **CLOSED — B controls, tombstoned**; hypothesis retired in §3 |
 
 ---
 
@@ -182,5 +202,39 @@ capture number in this document is conditioned on our absence from the book; the
 
 ---
 
+## 7 · THE CONVERGENCE — presence-continuity, four instruments, one organ
+
+Four independent instruments, four different rulers, one finding:
+
+1. **Overpay census** (`096241ae`, VALID-NARROW) — when the rest was standing at the fill, the level was
+   nearly right: the won book leaks only 119¢, and the leak's organs are level-choice, not timing.
+2. **Par sheet** (`b7f12d6f`) — campaign-wide, the placement organs carry 84% of the 5,385¢ bill; gate,
+   guard, and window organs are noise at par scale.
+3. **Decision audit** (`35ac1f5b`) — the judgment is sound (56% right-read-right-play, 21% wrong reads);
+   362 legs read the market correctly and still missed; the withhold moments sat ahead of oncoming flow
+   62% of the time.
+4. **Aim census** (`17664b3f`) — those misses stood **at or above** the eventual low (median +2); the vault
+   already knew the level (residual 0); the error is not where we stood but **whether we were standing when
+   the flow printed** — and it grows monotonically with tape busyness.
+
+**Convergent verdict: presence-continuity — keeping the lawful rest standing through the moments flow prints
+at-or-below it — is the campaign's remaining replay-recoverable organ.** Everything else measurable at replay
+grain is either solved (execution to 100¢, f730fad1), fourth-order (the cap), noise (spread regime), or
+locked behind the replay boundary (§6).
+
+**Terminal decision tree:** ⧗ V51 continuity-of-standing (Codex, in flight) → its result prices **patience vs
+the live-only presence premium** (§6 — how much of the standing-time gap survives when our order is actually
+in the queue) → **Stage C pilot ruling**, zone-mapped by the discriminator table (`35ac1f5b`): pilot first in
+main-tour × moderate-liquidity (1k–10k lots) × balanced-to-cheap cells; WTA challengers, thin tapes, and the
+ge75+le25 cell last.
+
+**Re-key line:** when Codex's canonical brain-SHA-stamped V49b ledger lands, re-key PAR_SHEET's state columns
+and DECISION_AUDIT's rows to it; until then both artifacts carry the 393-ledger caveat inline (§5 row).
+
+---
+
 *Conservation: every campaign artifact in §2 exactly one stamp; §3 slots each named or GAP-marked; §5 rows cite
 both SHAs. Spine cd592540 (amended 4ba98104). Skeleton pass — flesh passes append, never silently rewrite.*
+*Fold pass (this commit): §2 +6 rows · §3 two slots FILLED, one slot added (V51), one restamp (V50
+fourth-order), one tombstone (aim organ), one carry (edge-clipped) · §5 +3 rows · §7 added. Append-only:
+no prior line deleted; riders marked "(fold)".*

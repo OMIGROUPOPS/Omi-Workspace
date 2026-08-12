@@ -126,6 +126,7 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 | Sealed triple census (7157456b; 374 credited fills, exam 2bae8931) | **RESOLVED-TERMINAL** — **honest sealed 0 of 146; reflex 374/374; sealed worse than dev on every axis** (queue-improbable 73.5%, pre-onset 65.5%, post-onset 4.3%); the 571¢ lock entirely reflex-born; bracket 113 legs / 61 games / 374¢ |
 | The sealed exam verdict itself (2bae8931: PASS, "generalization confirmed") | **RETIRED** (fold 3) — **it generalized the reflex, not judgment**: 374/374 exam fills were policy-born posts, 65.5% formation-era, 73.5% queue-thin (7157456b). The 14.4% capture number survives as a measurement; the PASS does not. **V52 must re-take sealed post-disposition, against an honest bar of 0.** |
 | ARSMAR renders (fold 4): `arsmar.png` · `arsmar_pair.png` | **arsmar.png SUPERSEDED** (single-leg basis) → **arsmar_pair.png is the game-basis standard.** Its PAIR strip: **102 segments, 50 FIRING_DISAGREEMENT — clause ④ is a blanket freeze on a hair-trigger flag; adjudicate-not-freeze queued as screw #3.** MAR gate strip honestly **ABSENT** (export gap; trace rides in with iteration 2). **Standing render rules: game-basis only; a gate-state strip is standard on every gated render.** |
+| Decision web (2af60dfc; 8 nodes / 613,394 traced receipts / 30 games) | **STANDING-REFERENCE** (fold 5) — the machine as it actually runs, human-language, live frequencies; **supersedes the pre-gate anatomy map (cd592540) at decision grain** — the 18-site map remains historical engineering detail. N6's caveat carried verbatim: *"first-failure ordering means these are frequencies of the named block, not of clause truth."* |
 
 ---
 
@@ -183,7 +184,9 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 - **THE READ-STARVATION DISCOVERY (fold 4):** ARS block histogram **READ_ABSENT 478 > PAIR_LOWS 431 >
   DISAGREEMENT 127 — on a 7-trade tape.** The fixed 300 s trail blinds the machine in slow games; the
   discriminator's "fails on thin tapes" (`35ac1f5b`) is now mechanistically explained. Drives **iteration 2:
-  clause ② evidence horizon, in flight @ Codex.** ⧗
+  clause ② evidence horizon, in flight @ Codex.** ⧗ → **30-game confirmation (fold 5, `2af60dfc`): the
+  decision web's N2 measures the live starvation rate at 25.9% — no-reading-possible on 158,965 of 613,394
+  receipts, cohort-wide, not just ARSMAR.**
 - **Aim-organ hypothesis — RETIRED, tombstone `17664b3f`** (fold): the deep-aim organ (AIM_V2 cell-depth as
   the miss fix) is refuted on this population — median aim error +2, the vault already knew the level, and
   aiming lower worsens every scored leg. Reopen condition: none at replay grain; superseded by V51.
@@ -311,6 +314,13 @@ presence** — the pilot, zone-mapped by `35ac1f5b`, priced by the queue stamps.
 the A/B onset binary (Fable authorship) — superseded by the primed ruling (§8); onset was a calendar answer
 to an evidence question.**
 
+**Amendment 3 — the N8 finding (fold 5, `2af60dfc`):** inside V52b, **frozen V49b runs on every receipt as a
+consulted-never-obeyed advisor — 417,636 join proposals (plus 182,808 tracking, 12,737 withholds, 213
+stand-at-P) across 30 games, obedience zero**: its proposal is an input to the level-authority clause and its
+guard passes through only after a licensed rest exists. **The reflex is demoted from actor to reference — on
+the record.** The organism that bought the entire pre-gate book now advises a gate that licensed 424 posts in
+613,394 receipts.
+
 **Amendment — the reflex finding (fold @ this commit, `1d5564b5`):** the convergence's fifth and terminal
 instrument: **1,140 of 1,143 credited fills were born of posts that preceded any read** — structural, not
 incidental: V49b posts at the first two-sided receipt, and the read organs operate the rest afterward but
@@ -376,3 +386,7 @@ design-limit / POLKUH mis-bound re-bound PASSED; clause ① onset binding restam
 478/431/127 → iteration 2 in flight) · §2 +1 row (ARSMAR renders; game-basis render rules standing) · §9 THE
 BELL pre-committed + per-fix validation codified · §1 law 10 vocabulary locks + the outcome-bound authorship
 pattern logged. Append-only: no prior line deleted.*
+*Fold pass 5 (decision web): §2 +1 row (DECISION_WEB 2af60dfc STANDING-REFERENCE, supersedes the anatomy map
+at decision grain, N6 named-block caveat verbatim) · §3 read-starvation rider (25.9% live confirmation) · §7
+amendment 3 (N8: the reflex demoted from actor to reference, 417,636 proposals / obedience zero). Append-only:
+no prior line deleted.*

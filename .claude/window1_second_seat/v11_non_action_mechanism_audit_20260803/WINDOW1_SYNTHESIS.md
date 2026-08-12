@@ -118,6 +118,8 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 | Game tape packs (c09bde99; 5 games / 30 CSVs) | **RESOLVED** — raw series for the render seat; rest paths ledger-anchor grain (no V49b trace); heartbeat caveat applied |
 | MERDRO close-out (9eff493b; 2 trades / 12 shifts / 2 stamps) | **RESOLVED** — **denomination clean** (ours=yes_price at recorder line and diff line); onset table: the 6¢ prints predate every candidate onset, post-onset floors 39–60; **both formation fills QUEUE_IMPROBABLE** (26.56 vs 217 · 57.21 vs 218 displayed) |
 | Queue+formation+reflex census (1d5564b5; 1,143 credited fills) | **RESOLVED-TERMINAL** — queue: 643/1,143 improbable (56.3%); formation: 518 pre-onset / 478 bracket-dependent / 144 post-onset; **reflex: 1,140/1,143 fills born of posts preceding any read (structural); honest completes 0 of 393**; excluded money 1,436¢/1,266¢/1,666¢ with overlaps; the terminal instrument of the replay campaign |
+| Sealed triple census (7157456b; 374 credited fills, exam 2bae8931) | **RESOLVED-TERMINAL** — **honest sealed 0 of 146; reflex 374/374; sealed worse than dev on every axis** (queue-improbable 73.5%, pre-onset 65.5%, post-onset 4.3%); the 571¢ lock entirely reflex-born; bracket 113 legs / 61 games / 374¢ |
+| The sealed exam verdict itself (2bae8931: PASS, "generalization confirmed") | **RETIRED** (fold 3) — **it generalized the reflex, not judgment**: 374/374 exam fills were policy-born posts, 65.5% formation-era, 73.5% queue-thin (7157456b). The 14.4% capture number survives as a measurement; the PASS does not. **V52 must re-take sealed post-disposition, against an honest bar of 0.** |
 
 ---
 
@@ -148,6 +150,12 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
   credited as judgment** (formation-era by every candidate). Never tuning targets.
 - **Mirror-arbitration install item (§4-C residue, S3 `disagreement` flag) → ABSORBED into V52 clause ④**
   (fold, this commit) — the arbitration slot closes as a separate item.
+- **V52 first results (fold 3; Codex run, operator-relayed):** Stage 1 **PASS** — all five license assertions
+  clean on the exemplar flow-check. Stage 2, one-shot dev-804: **176 completed / 645 credited legs / strict
+  142 / REFLEX_POST = 0 — the campaign's first honest baseline.** **V52 acceptance BLOCKED:** named checks
+  ARSMAR and POLKUH did not complete. Receipt-only defect found post-run (assertions JSON missing top-level
+  `pass`; first-post distribution counted re-placements) — repair authorized under emission-finality; autopsy
+  traces in flight at Codex. Raw URLs to be appended when Codex's post-run publishes them. ⧗
 - **Aim-organ hypothesis — RETIRED, tombstone `17664b3f`** (fold): the deep-aim organ (AIM_V2 cell-depth as
   the miss fix) is refuted on this population — median aim error +2, the vault already knew the level, and
   aiming lower worsens every scored leg. Reopen condition: none at replay grain; superseded by V51.
@@ -264,6 +272,17 @@ ge75+le25 cell last.
 **Re-key line:** when Codex's canonical brain-SHA-stamped V49b ledger lands, re-key PAR_SHEET's state columns
 and DECISION_AUDIT's rows to it; until then both artifacts carry the 393-ledger caveat inline (§5 row).
 
+**Amendment 2 — the potential map (fold 3):** the standing scoreboard restated with honest denominators:
+**offer 711** games (exchange-verified — the tape is Kalshi's record verbatim, `db470ec8`) · **honest capture
+176** (V52 dev-804 one-shot, the first reflex-free baseline). The gap between them is five ordered levers:
+① **primed-calibration via the proving loop** (§9) — teach the gate to recognize sufficiency earlier without
+faking it; ② **autopsy-driven clause repair** — ARSMAR/POLKUH non-completion traces name the next amendment;
+③ **permission-under-license** — a guard may never override a licensed bid (S12's 62%-ahead-of-flow withholds
+re-bound); ④ **scavenger mode ON-declared** — operator ruling pending, declared not silent; ⑤ **live
+presence** — the pilot, zone-mapped by `35ac1f5b`, priced by the queue stamps. **Retired-frames list gains:
+the A/B onset binary (Fable authorship) — superseded by the primed ruling (§8); onset was a calendar answer
+to an evidence question.**
+
 **Amendment — the reflex finding (fold @ this commit, `1d5564b5`):** the convergence's fifth and terminal
 instrument: **1,140 of 1,143 credited fills were born of posts that preceded any read** — structural, not
 incidental: V49b posts at the first two-sided receipt, and the read organs operate the rest afterward but
@@ -280,6 +299,24 @@ patience vs live premium → Stage C pilot, zone-mapped.
 - **The wake-up qualifier, A/B** — which onset candidate qualifies a leg as formed (earliest spread-collapse
   vs latest trade-cadence-arrival, or a ruled intermediate). Moves **478 bracket-dependent legs / 228 staged
   complete games / 964¢** (`1d5564b5`), and V52's clause ① binds to whichever is ruled. Logged open.
+  → **RESOLVED (fold 3) — superseded by the operator's PRIMED ruling, verbatim:** *"Awake = open. Primed =
+  enough evidence to make a decision — game-specific, a full understanding of what exists in sight, what our
+  logic is backed by, and why we are making every decision as is. The result is just gauging our ability to
+  do so."* License = evidence-sufficiency per the traces; **no global threshold**; ambiguous cases go to the
+  operator in the proving loop (§9). The 591 bracket-dependent legs (dev 478 + sealed 113) **reclassify under
+  this standard via traces, not a line.**
+
+## 9 · THE PROVING LOOP — standing dev protocol, gate era
+
+1. **Five fixed pins** — the exemplars (`96168790`: MERDRO · POLKUH · ARSMAR · SANDAN · PUTJEA), regression
+   checks on every run, **never tuned-to**.
+2. **Fresh stratified trace cohort per iteration** — ~25 games, seed stated in the run artifact, strata =
+   category × census stamp (`1d5564b5`/`7157456b` triples); **the operator reads every decision trace.**
+3. **One clause amendment per iteration** — mechanism-bound (an autopsy names it), traces emitted before and
+   after; no bundled changes.
+4. **Full-804 only at disposition** — the one-shot is spent deliberately, never iterated against.
+5. **Sealed only after 804 ratifies** — and the sealed re-take is scored against an honest bar of 0 (§2 exam
+   restamp).
 
 ---
 
@@ -292,3 +329,9 @@ no prior line deleted; riders marked "(fold)".*
 QFR census RESOLVED-TERMINAL) · §3 V52 JUDGMENT GATE opened as governing slot, arbitration item ABSORBED
 into its clause ④ · §7 reflex amendment + root-cause law verbatim + license rule · §8 opened (wake-up
 qualifier A/B logged). Append-only: no prior line deleted.*
+*Fold pass 3 (sealed terminal + V52 first results): §2 +2 rows (sealed triple census RESOLVED-TERMINAL; the
+exam's PASS RETIRED — generalized the reflex, not judgment) · §3 V52 first results (Stage 1 PASS; dev-804
+one-shot 176/645/142/reflex-0, the first honest baseline; acceptance BLOCKED on ARSMAR+POLKUH; receipt defect
+repair authorized, URLs pending Codex post-run) · §8 A/B RESOLVED → PRIMED ruling verbatim, 591 bracket legs
+reclassify via traces · §9 THE PROVING LOOP added · §7 amendment 2: the potential map (offer 711 → honest 176,
+five ordered levers; retired-frames + A/B binary). Append-only: no prior line deleted.*

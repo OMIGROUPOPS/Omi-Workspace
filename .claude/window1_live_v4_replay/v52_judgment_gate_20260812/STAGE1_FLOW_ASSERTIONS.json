@@ -1,0 +1,23 @@
+{
+  "zero_posts_pre_onset": {
+    "violations": [],
+    "pass": true
+  },
+  "zero_posts_on_no_tape": {
+    "violations": [],
+    "pass": true
+  },
+  "zero_levels_from_displayed_bids": {
+    "violations": [],
+    "pass": true
+  },
+  "every_post_has_four_license_fields": {
+    "violations": [],
+    "pass": true
+  },
+  "scavenger_off": {
+    "violations": [],
+    "pass": true
+  },
+  "pass": true
+}

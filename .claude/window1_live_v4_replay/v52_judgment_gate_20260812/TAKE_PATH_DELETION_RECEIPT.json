@@ -1,0 +1,14 @@
+{
+  "policy_path": "arb-executor/analysis/window1_v52_judgment_gate.js",
+  "policy_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+  "forbidden_action_literal_TAKE_count": 0,
+  "take_named_function_count": 0,
+  "market_taker_fills": 0,
+  "strict_taker_fills": 0,
+  "entry_actions_exported": [
+    "PLACE_REST",
+    "REPRICE_REST"
+  ],
+  "maker_fees_cents": 0,
+  "pass": true
+}

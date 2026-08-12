@@ -1,0 +1,59 @@
+{
+  "mechanism_bound": true,
+  "aggregate_target": null,
+  "baseline_reproduction": {
+    "commit": "47b51fd20f3b0b821d27b63b15a576e36103562e",
+    "market_path": ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811/MARKET_GRADE_SCORECARD.json",
+    "market_sha256": "02bb4026a1d8f853125a4bb3b4c27ef6987cd2769b8cc8acc08e52c16ee600a4",
+    "strict_path": ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811/STRICT_BUILD_VERIFICATION_SCORECARD.json",
+    "strict_sha256": "9446d8753ca6ace3fc54e84675ecd2c26ecd73e894219bd39b32b276cacea743",
+    "market_byte_identical": true,
+    "strict_byte_identical": true,
+    "pass": true
+  },
+  "flow_assertions": {
+    "zero_posts_pre_onset": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_posts_on_no_tape": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_levels_from_displayed_bids": {
+      "violations": [],
+      "pass": true
+    },
+    "every_post_has_four_license_fields": {
+      "violations": [],
+      "pass": true
+    },
+    "scavenger_off": {
+      "violations": [],
+      "pass": true
+    },
+    "pass": true
+  },
+  "onset_method_check": {
+    "checks": {
+      "DRO_spread_shift_matches_9eff493b": true,
+      "DRO_midsum_shift_matches_9eff493b": true,
+      "DRO_trade_cadence_shift_matches_9eff493b": true,
+      "MER_spread_shift_matches_9eff493b": true,
+      "MER_midsum_shift_matches_9eff493b": true,
+      "MER_declining_trade_cadence_rejected": true
+    },
+    "pass": true
+  },
+  "named_checks": {
+    "checks": {
+      "ARSMAR_completes": false,
+      "POLKUH_completes": false,
+      "SANDAN_DAN_uses_diary_not_displayed_premium": true,
+      "PUTJEA_real_diary_levels_or_lawful_sit_out": true,
+      "MERDRO_not_credited_as_judgment": false
+    },
+    "pass": false
+  },
+  "pass": false
+}

@@ -1,0 +1,36 @@
+{
+  "sealed_V47": {
+    "commit": "2bae89318273cc92fc75a7cbca679fc77496b3a7",
+    "path": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE3_ONE_RUN_FINAL_RETRY2/SCORES/V47/FRONTIER.json",
+    "completed_any": 146,
+    "LE_97": 37,
+    "share": 0.2534246575342466
+  },
+  "dev_V47": {
+    "completed_any": 396,
+    "LE_97": 142,
+    "share": 0.35858585858585856
+  },
+  "dev_V49b": {
+    "completed_any": 405,
+    "LE_97": 144,
+    "share": 0.35555555555555557
+  },
+  "V49b_added_completions": {
+    "n": 9,
+    "LE_97": 2,
+    "share": 0.2222222222222222,
+    "costs": {
+      "n": 9,
+      "null_n": 0,
+      "sum": 877,
+      "min": 91,
+      "p25": 98,
+      "median": 99,
+      "p75": 99,
+      "p90": 99,
+      "max": 99
+    },
+    "skew_shallow": true
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "stamp": "OPTIMISTIC_EX_POST_TRUE_TRADE_FLOOR",
+  "credited": {
+    "legs": 645,
+    "gap_cents": {
+      "n": 645,
+      "null_n": 0,
+      "sum": 3565,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 5,
+      "p90": 15,
+      "max": 75
+    }
+  },
+  "uncredited": {
+    "legs_with_lawful_traded_floor": 947,
+    "no_fabricated_fill_price_or_penalty": true,
+    "by_terminal_reason": {
+      "REST_UNFILLED_AT_HARD_PREBELL_EDGE": 553,
+      "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE": 394
+    }
+  },
+  "category_x_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50",
+      "legs": 261,
+      "credited_legs": 73,
+      "uncredited_with_floor": 185,
+      "credited_gap_cents": {
+        "n": 73,
+        "null_n": 0,
+        "sum": 466,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 6,
+        "p90": 23,
+        "max": 51
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75",
+      "legs": 252,
+      "credited_legs": 73,
+      "uncredited_with_floor": 177,
+      "credited_gap_cents": {
+        "n": 73,
+        "null_n": 0,
+        "sum": 493,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 5,
+        "p90": 23,
+        "max": 60
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge76",
+      "legs": 101,
+      "credited_legs": 36,
+      "uncredited_with_floor": 65,
+      "credited_gap_cents": {
+        "n": 36,
+        "null_n": 0,
+        "sum": 239,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 15,
+        "max": 75
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25",
+      "legs": 124,
+      "credited_legs": 52,
+      "uncredited_with_floor": 69,
+      "credited_gap_cents": {
+        "n": 52,
+        "null_n": 0,
+        "sum": 144,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 7,
+        "max": 16
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50",
+      "legs": 110,
+      "credited_legs": 64,
+      "uncredited_with_floor": 44,
+      "credited_gap_cents": {
+        "n": 64,
+        "null_n": 0,
+        "sum": 445,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 5,
+        "p90": 25,
+        "max": 49
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75",
+      "legs": 111,
+      "credited_legs": 63,
+      "uncredited_with_floor": 47,
+      "credited_gap_cents": {
+        "n": 63,
+        "null_n": 0,
+        "sum": 391,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 5,
+        "p90": 18,
+        "max": 60
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge76",
+      "legs": 27,
+      "credited_legs": 10,
+      "uncredited_with_floor": 17,
+      "credited_gap_cents": {
+        "n": 10,
+        "null_n": 0,
+        "sum": 30,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 5,
+        "p90": 7,
+        "max": 8
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25",
+      "legs": 46,
+      "credited_legs": 30,
+      "uncredited_with_floor": 16,
+      "credited_gap_cents": {
+        "n": 30,
+        "null_n": 0,
+        "sum": 112,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 3,
+        "p90": 5,
+        "max": 40
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50",
+      "legs": 96,
+      "credited_legs": 24,
+      "uncredited_with_floor": 72,
+      "credited_gap_cents": {
+        "n": 24,
+        "null_n": 0,
+        "sum": 110,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 19,
+        "max": 42
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75",
+      "legs": 87,
+      "credited_legs": 18,
+      "uncredited_with_floor": 69,
+      "credited_gap_cents": {
+        "n": 18,
+        "null_n": 0,
+        "sum": 116,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 6,
+        "p90": 31,
+        "max": 33
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge76",
+      "legs": 44,
+      "credited_legs": 13,
+      "uncredited_with_floor": 31,
+      "credited_gap_cents": {
+        "n": 13,
+        "null_n": 0,
+        "sum": 116,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 19,
+        "max": 72
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25",
+      "legs": 45,
+      "credited_legs": 18,
+      "uncredited_with_floor": 26,
+      "credited_gap_cents": {
+        "n": 18,
+        "null_n": 0,
+        "sum": 93,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 5,
+        "p90": 16,
+        "max": 43
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50",
+      "legs": 86,
+      "credited_legs": 55,
+      "uncredited_with_floor": 29,
+      "credited_gap_cents": {
+        "n": 55,
+        "null_n": 0,
+        "sum": 177,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 8,
+        "max": 36
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75",
+      "legs": 87,
+      "credited_legs": 45,
+      "uncredited_with_floor": 40,
+      "credited_gap_cents": {
+        "n": 45,
+        "null_n": 0,
+        "sum": 348,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 5,
+        "p90": 32,
+        "max": 65
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge76",
+      "legs": 52,
+      "credited_legs": 25,
+      "uncredited_with_floor": 27,
+      "credited_gap_cents": {
+        "n": 25,
+        "null_n": 0,
+        "sum": 106,
+        "min": 0,
+        "p25": 1,
+        "median": 1,
+        "p75": 7,
+        "p90": 10,
+        "max": 22
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25",
+      "legs": 79,
+      "credited_legs": 46,
+      "uncredited_with_floor": 33,
+      "credited_gap_cents": {
+        "n": 46,
+        "null_n": 0,
+        "sum": 179,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 4,
+        "p90": 12,
+        "max": 23
+      }
+    }
+  ]
+}

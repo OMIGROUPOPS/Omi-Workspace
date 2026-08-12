@@ -1845,3 +1845,22 @@ cutover is authorized.
 
 Canonical addendum:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/8b0fdda29e64b720f82a9b8984f3b4cc29901fd2/arb-executor/docs/research/window1/WINDOW1_V49_EVIDENCED_LEVEL_STANDING_20260810_ADDENDUM.md
+
+### 2026-08-12 - V52 POST-RUN RECEIPT REPAIR / NAMED TRACE AUTOPSY
+
+The V52 receipt-only repair adds the omitted top-level Stage-1 pass and fixes
+the first-post distribution to count one earliest placement per leg: 1,203
+first placements, excluding 6,033 later placement rows from the former 7,236
+count. All five Stage-1 assertions pass, REFLEX_POST remains zero, the V52
+policy hash is unchanged, and 25 frozen score/trace artifacts reproduce
+byte-for-byte. Two clean builds are fully deterministic.
+
+Clause 1 is the operator-ratified earliest-valid A-or-B onset law: A is spread
+collapse plus cross-leg mid-sum settlement; B is sustained trade-cadence
+arrival. The exact tape-pack ARSMAR identity selects B; POLKUH's two legs
+select A. At ARS's first 35-cent prints no licensed rest is standing: the gate
+moves from `POST_ONSET_TRUE_TRADE_LOW_ABSENT` to
+`PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR`, with zero S12 rows. KUH first licenses at
+18; POL never licenses. Full receipt-pinned traces are frozen in the V52
+package. V52 behavior and scores are unchanged and remain blocked; no
+deployment is authorized.

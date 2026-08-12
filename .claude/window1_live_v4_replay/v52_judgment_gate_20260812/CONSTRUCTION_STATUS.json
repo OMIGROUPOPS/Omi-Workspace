@@ -1,0 +1,8 @@
+{
+  "status": "BLOCKED_V49B_REMAINS_FROZEN_BASELINE",
+  "stage1_assertions_pass": true,
+  "stage2_one_shot_completed": true,
+  "aggregate_target": null,
+  "behavioral_tuning_after_stage1": false,
+  "no_deployment": true
+}

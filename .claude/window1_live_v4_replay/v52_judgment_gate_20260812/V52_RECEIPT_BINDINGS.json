@@ -1,0 +1,32 @@
+{
+  "frozen_V49b": {
+    "commit": "47b51fd20f3b0b821d27b63b15a576e36103562e",
+    "baseline_reproduction": {
+      "commit": "47b51fd20f3b0b821d27b63b15a576e36103562e",
+      "market_path": ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811/MARKET_GRADE_SCORECARD.json",
+      "market_sha256": "02bb4026a1d8f853125a4bb3b4c27ef6987cd2769b8cc8acc08e52c16ee600a4",
+      "strict_path": ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811/STRICT_BUILD_VERIFICATION_SCORECARD.json",
+      "strict_sha256": "9446d8753ca6ace3fc54e84675ecd2c26ecd73e894219bd39b32b276cacea743",
+      "market_byte_identical": true,
+      "strict_byte_identical": true,
+      "pass": true
+    }
+  },
+  "reflex_census": {
+    "commit": "1d5564b5cdd25de32cfa9244cf21486245ab5b55",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/QUEUE_FORMATION_REFLEX_CENSUS.json",
+    "sha256": "98e7ffa8ae318efe50a50d3f06254dd4614a01a8886cf83b59f7cb5d4d85e226"
+  },
+  "stability_onset": {
+    "commit": "9eff493b48a21af2706895dc4a1aa27e6fae684c",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MERDRO_CLOSEOUT.json",
+    "sha256": "7244ff76430a55685331f758bac9906bfa74fc281d78f2297cc74da5df3d8e19",
+    "method": "NEUTRAL_TWO_SEGMENT_SSE_A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE_OR_B_SUSTAINED_TRADE_CADENCE_ARRIVAL"
+  },
+  "five_game_tape_packs": {
+    "commit": "c09bde99bf6e529b24688bcc0deefd75be9530fd",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/game_tape_packs/MANIFEST.json",
+    "sha256": "6d802ae734b20a0c8c1fd541883b3cdd21e0eeb48dc37bb320b2f3500c6a5739"
+  },
+  "scoped_law": "REST_BIRTH_REQUIRES_STABILITY_ONSET_AND_MACHINE_READ_AND_POST_ONSET_TRUE_TRADE_DIARY_AND_PAIR_COHERENCE; SCAVENGER_OFF"
+}

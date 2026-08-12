@@ -1,0 +1,43 @@
+{
+  "aggregate": {
+    "changed_legs": 10,
+    "dispositions": {
+      "FILL_GAINED": 10
+    },
+    "favorable_reprice_cents": 0,
+    "adverse_reprice_cents": 0
+  },
+  "by_category": {
+    "ATP_CHALL": {
+      "changed_legs": 4,
+      "dispositions": {
+        "FILL_GAINED": 4
+      },
+      "favorable_reprice_cents": 0,
+      "adverse_reprice_cents": 0
+    },
+    "WTA_CHALL": {
+      "changed_legs": 5,
+      "dispositions": {
+        "FILL_GAINED": 5
+      },
+      "favorable_reprice_cents": 0,
+      "adverse_reprice_cents": 0
+    },
+    "WTA_MAIN": {
+      "changed_legs": 1,
+      "dispositions": {
+        "FILL_GAINED": 1
+      },
+      "favorable_reprice_cents": 0,
+      "adverse_reprice_cents": 0
+    }
+  },
+  "score_delta": {
+    "completed_pairs": 9,
+    "under_par_pairs": 9,
+    "locked_cents": 23,
+    "naked_pnl_cents": -19,
+    "true_book_net_cents": 4
+  }
+}

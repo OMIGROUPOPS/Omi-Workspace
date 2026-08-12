@@ -1,0 +1,8 @@
+{
+  "order_must_preexist_print": true,
+  "timestamp_relation": "PRINT_TIMESTAMP_STRICTLY_GREATER_THAN_REST_ACTION_TIMESTAMP",
+  "price_relation": "TRUE_TRADE_PRICE_LE_REST_LEVEL",
+  "asks_role": "PLACEMENT_ONLY",
+  "strict_build_verification_separate": true,
+  "V52_crediting_changed_from_V49b": false
+}

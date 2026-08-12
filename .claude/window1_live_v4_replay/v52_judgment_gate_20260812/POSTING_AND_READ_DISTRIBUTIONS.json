@@ -1,0 +1,48 @@
+{
+  "first_posts": 1203,
+  "rest_mutations": 10743,
+  "REFLEX_POST": 0,
+  "READ_LICENSED_POST": 10743,
+  "first_post_seconds_after_window_open": {
+    "n": 1203,
+    "null_n": 0,
+    "sum": 50897309,
+    "min": 848,
+    "p25": 24155,
+    "median": 38548,
+    "p75": 48675,
+    "p90": 74668,
+    "max": 257750
+  },
+  "first_post_t_minus_scheduled_seconds": {
+    "n": 1203,
+    "null_n": 0,
+    "sum": 26399494.630000114,
+    "min": -181483,
+    "p25": 9160,
+    "median": 20198,
+    "p75": 39081,
+    "p90": 57257,
+    "max": 90508
+  },
+  "first_post_t_minus_actual_bell_seconds": {
+    "n": 382,
+    "null_n": 821,
+    "sum": 12522179,
+    "min": 17,
+    "p25": 6763,
+    "median": 22442,
+    "p75": 42562,
+    "p90": 73820,
+    "max": 251114
+  },
+  "read_states_at_first_post": {
+    "RISING": 642,
+    "FALLING": 561
+  },
+  "onset_candidates_at_first_post": {
+    "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE": 924,
+    "B_SUSTAINED_TRADE_CADENCE_ARRIVAL": 279
+  },
+  "within_300s_of_open_observation_only": 0
+}

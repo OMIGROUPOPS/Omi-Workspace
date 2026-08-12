@@ -1,0 +1,162 @@
+{
+  "scope": "AUTHORIZED_RECEIPT_ONLY_REPAIR_NO_BEHAVIORAL_EDIT",
+  "authority": "OPERATOR_V52_POST_RUN_ORDER_2026-08-12",
+  "policy": {
+    "path": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "pre_repair_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+    "post_repair_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+    "byte_identical": true
+  },
+  "stage1_flow_assertions": {
+    "pre_repair_top_level_pass": "ABSENT",
+    "post_repair_top_level_pass": true,
+    "nested_assertions_changed": false
+  },
+  "first_post_distribution": {
+    "pre_repair_rows_incorrectly_counted_as_first_posts": 7236,
+    "post_repair_first_placements_only": 1203,
+    "unique_leg_identities": 1203,
+    "all_PLACE_REST_rows": 7236,
+    "replacement_PLACE_REST_rows_excluded": 6033,
+    "law": "EARLIEST_PLACE_REST_PER_LEG_IDENTITY_ONLY"
+  },
+  "named_identity_receipt_correction": {
+    "defect": "GENERIC_SUBSTRING_NAMED_LOOKUP_COULD_SELECT_AN_EARLIER_EVENT_WITH_THE_SAME_PAIR_CODE",
+    "prior_generic_ARSMAR_event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+    "exact_tape_pack_ARSMAR_event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+    "prior_generic_POLKUH_event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+    "exact_tape_pack_POLKUH_event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+    "replay_behavior_changed": false,
+    "score_artifacts_changed_by_correction": false
+  },
+  "score_trace_artifacts": {
+    "ACTION_TRACE.jsonl.gz": {
+      "before_sha256": "4f64d3b646d9aef09729746607e0db2a7d10a1e719ef33d537476aecdcd540bd",
+      "after_sha256": "4f64d3b646d9aef09729746607e0db2a7d10a1e719ef33d537476aecdcd540bd",
+      "byte_identical": true
+    },
+    "ATTRIBUTION_FULL_BOOK_LEDGER.jsonl.gz": {
+      "before_sha256": "f62d79491ce45bf67e28240a26249336305af1fe2a65ebd6511051072c08243b",
+      "after_sha256": "f62d79491ce45bf67e28240a26249336305af1fe2a65ebd6511051072c08243b",
+      "byte_identical": true
+    },
+    "ATTRIBUTION_MARKET_EVENT_LEDGER.jsonl.gz": {
+      "before_sha256": "1b36149eb9a6ebdea982bc689f426b8b32b07dfeaaff9b7eb73228cc77d753bd",
+      "after_sha256": "1b36149eb9a6ebdea982bc689f426b8b32b07dfeaaff9b7eb73228cc77d753bd",
+      "byte_identical": true
+    },
+    "ATTRIBUTION_SCORECARD.json": {
+      "before_sha256": "f0789e09eefb8bdc6b16f4c4c58aa17bb892819acb342f89b2180b8de443155b",
+      "after_sha256": "f0789e09eefb8bdc6b16f4c4c58aa17bb892819acb342f89b2180b8de443155b",
+      "byte_identical": true
+    },
+    "ATTRIBUTION_STRICT_EVENT_LEDGER.jsonl.gz": {
+      "before_sha256": "d07d442f610f647c624f82fdad635177d76406987317b918f6d37d32e0f0ba9a",
+      "after_sha256": "d07d442f610f647c624f82fdad635177d76406987317b918f6d37d32e0f0ba9a",
+      "byte_identical": true
+    },
+    "BIRTH_LICENSE_ACTION_LEDGER.jsonl.gz": {
+      "before_sha256": "865a0f6f159cf560aef0d381c8bfabb43a9eded6a6a9e6d88493058cbed42ff0",
+      "after_sha256": "865a0f6f159cf560aef0d381c8bfabb43a9eded6a6a9e6d88493058cbed42ff0",
+      "byte_identical": true
+    },
+    "CATEGORY_X_BELL_CONFIDENCE.json": {
+      "before_sha256": "f91671d84d7ec8fd3d0ed9fee858a38c9501e323310d14dceadaa795a9dafa19",
+      "after_sha256": "f91671d84d7ec8fd3d0ed9fee858a38c9501e323310d14dceadaa795a9dafa19",
+      "byte_identical": true
+    },
+    "DECISION_TRACE_1608.jsonl.gz": {
+      "before_sha256": "81b48a7f0e3dd73e9a6ac6b55332337110173fcf262abf636d6ed65c99418aca",
+      "after_sha256": "81b48a7f0e3dd73e9a6ac6b55332337110173fcf262abf636d6ed65c99418aca",
+      "byte_identical": true
+    },
+    "DOCTRINE_81_GAME_LEDGER.jsonl.gz": {
+      "before_sha256": "27b4b4aaa74a0434455bb72ed4bca271c7be7bc7f2783424ca76cbd0e02b87ce",
+      "after_sha256": "27b4b4aaa74a0434455bb72ed4bca271c7be7bc7f2783424ca76cbd0e02b87ce",
+      "byte_identical": true
+    },
+    "DOCTRINE_81_LEG_LEDGER.jsonl.gz": {
+      "before_sha256": "193a84f8b60464061731dcd2809a49a6878a5e10eebad8f08e0a96d3f63df665",
+      "after_sha256": "193a84f8b60464061731dcd2809a49a6878a5e10eebad8f08e0a96d3f63df665",
+      "byte_identical": true
+    },
+    "FAITHFUL_STAND_AT_P_ACTION_LEDGER.jsonl.gz": {
+      "before_sha256": "32c7c6eb7dea883c027ffd3bd68826e4f974ced3d8b81a8272c9b869226a47a6",
+      "after_sha256": "32c7c6eb7dea883c027ffd3bd68826e4f974ced3d8b81a8272c9b869226a47a6",
+      "byte_identical": true
+    },
+    "FRONTIER.json": {
+      "before_sha256": "4e8e3e4ad397d0c1c23f31732cd9cd8572c21ac28bb7bd3618ef5645709cd1c9",
+      "after_sha256": "4e8e3e4ad397d0c1c23f31732cd9cd8572c21ac28bb7bd3618ef5645709cd1c9",
+      "byte_identical": true
+    },
+    "FULL_BOOK_PNL.json": {
+      "before_sha256": "6afbc117e447c7e069c5a07b6305fe8d6691518911358d4e1e3e34c9f01b5571",
+      "after_sha256": "6afbc117e447c7e069c5a07b6305fe8d6691518911358d4e1e3e34c9f01b5571",
+      "byte_identical": true
+    },
+    "MARKET_EVENT_LEDGER.jsonl.gz": {
+      "before_sha256": "43d345a4ac18d6f9ca69ce12149396c790190291ed582f5340795618023266f0",
+      "after_sha256": "43d345a4ac18d6f9ca69ce12149396c790190291ed582f5340795618023266f0",
+      "byte_identical": true
+    },
+    "MARKET_GRADE_SCORECARD.json": {
+      "before_sha256": "249a15d6bcad191fe9f5fd38533c9de6af8ffb2e2cafe8abdbaa985a52b48827",
+      "after_sha256": "249a15d6bcad191fe9f5fd38533c9de6af8ffb2e2cafe8abdbaa985a52b48827",
+      "byte_identical": true
+    },
+    "PERSISTENT_JOIN_LEDGER.jsonl.gz": {
+      "before_sha256": "de7bdbeb9691377b4f65927e21a29357e7c4b6423be97cb376a54e2c814eac7d",
+      "after_sha256": "de7bdbeb9691377b4f65927e21a29357e7c4b6423be97cb376a54e2c814eac7d",
+      "byte_identical": true
+    },
+    "REGRET_GAUGE.json": {
+      "before_sha256": "9e4426598ff309de18fe9300dc9d1d66c69505e5352637afaa56bc07dcfd9a29",
+      "after_sha256": "9e4426598ff309de18fe9300dc9d1d66c69505e5352637afaa56bc07dcfd9a29",
+      "byte_identical": true
+    },
+    "STABILITY_ONSET_LEDGER.jsonl.gz": {
+      "before_sha256": "dfefb61e43062f5a5934b77d869386e0b6e829a5844245f414569bb971a8dc73",
+      "after_sha256": "dfefb61e43062f5a5934b77d869386e0b6e829a5844245f414569bb971a8dc73",
+      "byte_identical": true
+    },
+    "STAGE1_DECISION_TRACE.jsonl.gz": {
+      "before_sha256": "c009004846f730e7ae8f701ed6583e855dde44cc46f9a0c25fad9e5052e6964f",
+      "after_sha256": "c009004846f730e7ae8f701ed6583e855dde44cc46f9a0c25fad9e5052e6964f",
+      "byte_identical": true
+    },
+    "STRICT_BUILD_VERIFICATION_SCORECARD.json": {
+      "before_sha256": "5ef0579bcae93e4ccad2fe65b0208aa10eb78c4d3abf097066a36c0a9adb498a",
+      "after_sha256": "5ef0579bcae93e4ccad2fe65b0208aa10eb78c4d3abf097066a36c0a9adb498a",
+      "byte_identical": true
+    },
+    "STRICT_EVENT_LEDGER.jsonl.gz": {
+      "before_sha256": "79d188166509a52ca3bbbb6c5f22004af62801faf8562bfe96dfb08eb4d1db9d",
+      "after_sha256": "79d188166509a52ca3bbbb6c5f22004af62801faf8562bfe96dfb08eb4d1db9d",
+      "byte_identical": true
+    },
+    "THREE_STATE_CENSUS.json": {
+      "before_sha256": "c9d13798d9599972681d2cc4cf95221b3ec3662941e0e0dbc440803bc221f587",
+      "after_sha256": "c9d13798d9599972681d2cc4cf95221b3ec3662941e0e0dbc440803bc221f587",
+      "byte_identical": true
+    },
+    "THREE_STATE_EVENT_LEDGER.jsonl.gz": {
+      "before_sha256": "aa2b5a353858326d4c3d06cb8da6f47fa7c3393822b78ad197e6fd9218793ed9",
+      "after_sha256": "aa2b5a353858326d4c3d06cb8da6f47fa7c3393822b78ad197e6fd9218793ed9",
+      "byte_identical": true
+    },
+    "V47_V49B_DIFFERENTIAL_LEDGER.jsonl.gz": {
+      "before_sha256": "ef13704b5b4c473a767ee62d46e1baaaccfdf497b36618588334dbb4e65f34a5",
+      "after_sha256": "ef13704b5b4c473a767ee62d46e1baaaccfdf497b36618588334dbb4e65f34a5",
+      "byte_identical": true
+    },
+    "V49B_V52_DIFFERENTIAL_LEDGER.jsonl.gz": {
+      "before_sha256": "91e9b717fcb64184ac8dd13d10af81fee411a7b77ab565ca0ea05cfa56dc950d",
+      "after_sha256": "91e9b717fcb64184ac8dd13d10af81fee411a7b77ab565ca0ea05cfa56dc950d",
+      "byte_identical": true
+    }
+  },
+  "all_frozen_score_trace_bytes_unchanged": true,
+  "score_artifacts_recomputed_by_clean_build": true,
+  "score_values_touched": false
+}

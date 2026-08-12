@@ -1,0 +1,18 @@
+{
+  "doctrine_games": 81,
+  "doctrine_legs": 93,
+  "authorized_action_rows": 173,
+  "exact_AT_P_action_rows": 173,
+  "mechanism_codes": {
+    "AT_P": 173
+  },
+  "dominant_code": "AT_P",
+  "BID_MINUS_ONE_rows_on_doctrine_legs": 0,
+  "exact_target_invariant_violations": 0,
+  "causal_authority_sources": {
+    "HASH_BOUND_PRE_WINDOW_CAUSAL_EVIDENCE": 162,
+    "OWN_BEST_BID_REACHED_EXACT_P": 110,
+    "PRIOR_TRUE_TRADE_AT_OR_BELOW_P": 94
+  },
+  "pass": true
+}

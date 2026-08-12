@@ -1,0 +1,12 @@
+{
+  "commit": "d1ac94973252e2f8c28ba32374c29ff7bd605a7e",
+  "path": ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_DIVOT_CENSUS.json",
+  "source_sha256": "da6ff6b573e8c389170b091fc097c2fb6ff0dbecedc3bf75649e3de5d13afc37",
+  "adopted": {
+    "ask_side_dwell_10s_depth_median_cents": 1,
+    "ask_side_dwell_10s_depth_p90_cents": 2,
+    "trailing_horizon_seconds": 300,
+    "minimum_distinct_level_visits": 2
+  },
+  "causal_revisit_definition": "ASK_LEVEL_ENTRY_AFTER_A_DIFFERENT_PRIOR_ASK; UNCHANGED RECORDER SNAPSHOTS DO_NOT INCREMENT VISITS"
+}

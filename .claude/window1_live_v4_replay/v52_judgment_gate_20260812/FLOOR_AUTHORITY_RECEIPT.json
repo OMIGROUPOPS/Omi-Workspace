@@ -1,0 +1,6 @@
+{
+  "decision_floor": "OWN_POST_ONSET_RUNNING_TRUE_TRADE_LOW",
+  "displayed_bid_consumed": false,
+  "ex_post_floor_consumed_by_decision": false,
+  "regret_gauge_stamp": "OPTIMISTIC_EX_POST_TRUE_TRADE_FLOOR"
+}

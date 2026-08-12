@@ -1,0 +1,77 @@
+{
+  "frozen_V47": {
+    "commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+    "baseline_reproduction": {
+      "frozen_V47_commit": "fb74c8b8f0f5fa3bae69fab017ec937b6b13eb34",
+      "scoring_ruler": "TRADES_AS_TRUTH",
+      "expected": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396
+        }
+      },
+      "observed": {
+        "completed_pairs": 396,
+        "under_par_pairs": 396,
+        "completed_locked_cents": 1936,
+        "naked_pnl_cents": -162,
+        "true_book_net_cents": 1774,
+        "strict_completed_pairs": 331,
+        "frontier": {
+          "LE_93": 52,
+          "LE_95": 71,
+          "LE_97": 142,
+          "LT_100": 396,
+          "ANY_PRICE": 396
+        }
+      },
+      "pass": true
+    }
+  },
+  "receipts": {
+    "substitution_audit": {
+      "commit": "bc0ce289a0bec90e137fe5638e0d629a88c651bf",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/THE_SUBSTITUTION_AUDIT.json",
+      "sha256": "34becc88b6d36b866c2bacce489d08da13a45c15acddb8abf44731571225d4ee",
+      "bytes": 4337
+    },
+    "standability_v2": {
+      "commit": "fe4747cd915830dc16f41c6bbec5e0ca1c14d99c",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/STANDABILITY_V2_PLACEMENT_WINDOW.json",
+      "sha256": "e96ecec88d0c91f58e944c273a5e137d943f59c364e380bfb9cdcb26da9edd35",
+      "bytes": 13933
+    },
+    "decision_chain_81": {
+      "commit": "4b9fcb794b7acecc8fe064ea2647159e81472025",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DECISION_CHAIN_LEDGER_81.json",
+      "sha256": "f1ed5e12ab20c02e19cf0ed331dcb1b6d732fe39aa0b8114739b73eba549059c",
+      "bytes": 166590
+    },
+    "identity_81": {
+      "commit": "653b7f1393adfec23d749de09dfef7591be8397a",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/THE_81_IDENTITY_LEDGER.json",
+      "sha256": "d3b350493405805710354c4887581d9b65b88ee6987e167f53e1e0dbc09a5eb8",
+      "bytes": 97314
+    },
+    "causal_floor_conviction": {
+      "commit": "f36798fc84ea2fb466750212a69bed021d74a772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/ARNROM_RECONCILIATIONS.md",
+      "sha256": "4779e325a7525ab0ceff4480656fadb66e1db50a6d86d67d23e2d8b18677ccd7",
+      "bytes": 4416
+    }
+  },
+  "sealed_depth_comparator": {
+    "commit": "2bae89318273cc92fc75a7cbca679fc77496b3a7",
+    "path": ".claude/window1_live_v4_replay/v47_sealed_exam_20260811/STAGE3_ONE_RUN_FINAL_RETRY2/SCORES/V47/FRONTIER.json",
+    "sha256": "023d5efbb6b42a257f08b0156b647d2cf0be76bc9ad8aa0f9bcb6663f1a1516c",
+    "bytes": 266
+  }
+}

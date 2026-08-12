@@ -1,0 +1,68 @@
+{
+  "score": {
+    "D": 804,
+    "legs": 1608,
+    "acted_legs": 1203,
+    "credited_legs": 645,
+    "completed_pairs": 176,
+    "under_par_pairs": 176,
+    "locked_cents_per_contract": 510,
+    "locked_cents_five_lot": 2550,
+    "maker_fill_classes": {
+      "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 645
+    },
+    "frontier": {
+      "LE_93": 15,
+      "LE_95": 22,
+      "LE_97": 42,
+      "LT_100": 176,
+      "ANY_PRICE": 176
+    },
+    "conservation": {
+      "D": 804,
+      "legs": 1608,
+      "pass": true
+    }
+  },
+  "traded_floor_grade": {
+    "score": {
+      "D": 804,
+      "legs": 1608,
+      "acted_legs": 1203,
+      "credited_legs": 645,
+      "completed_pairs": 176,
+      "under_par_pairs": 176,
+      "locked_cents_per_contract": 510,
+      "locked_cents_five_lot": 2550,
+      "maker_fill_classes": {
+        "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 645
+      },
+      "frontier": {
+        "LE_93": 15,
+        "LE_95": 22,
+        "LE_97": 42,
+        "LT_100": 176,
+        "ANY_PRICE": 176
+      },
+      "conservation": {
+        "D": 804,
+        "legs": 1608,
+        "pass": true
+      }
+    },
+    "credited_leg_gap_to_lowest_trade_cents": {
+      "n": 645,
+      "null_n": 0,
+      "sum": 3565,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 5,
+      "p90": 15,
+      "max": 75
+    },
+    "credited_at_or_better_than_lowest_trade": 197,
+    "traded_floor_missing_legs": 16
+  },
+  "ruler": "CANON_TRADES_AS_TRUTH"
+}

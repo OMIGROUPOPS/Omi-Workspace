@@ -1,0 +1,2132 @@
+{
+ "LABEL": "TAPE_VS_EXCHANGE_DIFF",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "endpoint": "GET https://api.elections.kalshi.com/trade-api/v2/markets/trades?ticker=&limit=1000&cursor= (public, no auth; newest-first cursor pagination; full history served for settled July markets - verified by paginating past each W1 left edge). Match key: Kalshi trade_id (our prints carry it verbatim); field agreement = price exact, |size delta|<=0.011, |ts delta|<=2s. Scope: frozen W1 span per leg.",
+ "depth_confirmation": "GET /markets/{ticker}/orderbook takes no time parameter and returns only the CURRENT book (empty for settled markets; verified on MERDRO-MER). Candlestick history is OHLC/volume only. Kalshi offers NO historical order-book depth - our book recording is the sole source for standing-state and must be kept.",
+ "population": {
+  "par_le30_offered": [
+   "26JUL12BROGIU",
+   "26JUL12DODDEL",
+   "26JUL12GANJAN",
+   "26JUL12HECISO",
+   "26JUL12HERALM",
+   "26JUL12LINMAL",
+   "26JUL13OUALIN",
+   "26JUL14KIRSEK",
+   "26JUL15YIBYUN",
+   "26JUL20GALARN",
+   "26JUL12GUEGOM",
+   "26JUL12NEUTOP",
+   "26JUL16MERDRO",
+   "26JUL18JACDA",
+   "26JUL12PALCOL",
+   "26JUL12KULZAA",
+   "26JUL12MICKUL",
+   "26JUL15PUTCHA",
+   "26JUL15SHEQUE"
+  ],
+  "tiny_completes_overlap": [
+   "26JUL16MERDRO",
+   "26JUL18JACDA",
+   "26JUL14KIRSEK"
+  ],
+  "exemplars": [
+   "26JUL12POLKUH",
+   "26JUL19ARSMAR",
+   "26JUL13SANDAN",
+   "26JUL14PUTJEA"
+  ],
+  "random30": [
+   "26JUL12RAIZHU",
+   "26JUL12YEVBOR",
+   "26JUL20ECHHAR",
+   "26JUL20SAMJOI",
+   "26JUL13AVAFET",
+   "26JUL20FERREN",
+   "26JUL18PALHON",
+   "26JUL15TRANAV",
+   "26JUL17ERJFEI",
+   "26JUL19ZAMKIN",
+   "26JUL19BONALC",
+   "26JUL12MARARS",
+   "26JUL19VANFAR",
+   "26JUL15WOLJOH",
+   "26JUL17UDVBAD",
+   "26JUL15DARSAK",
+   "26JUL19DROUGO",
+   "26JUL17YANTRE",
+   "26JUL12CORDAN",
+   "26JUL15NOGSUR",
+   "26JUL15SANERE",
+   "26JUL18SERBER",
+   "26JUL16SMIMAT",
+   "26JUL12MORPET",
+   "26JUL19YEVSTR",
+   "26JUL19MENKUM",
+   "26JUL18SAKKOR",
+   "26JUL14RONGIU",
+   "26JUL19GASDZU",
+   "26JUL18MASRYS"
+  ],
+  "seed": 20260812,
+  "total_games": 53
+ },
+ "totals": {
+  "matched": 67598,
+  "missing": 0,
+  "phantom": 0,
+  "field_mismatch": 0
+ },
+ "random30_stats": {
+  "games": 30,
+  "verdicts": {
+   "REAL": 30
+  },
+  "ours": 10002,
+  "phantom": 0,
+  "phantom_rate": 0.0
+ },
+ "merdro_sixcent": {
+  "DRO": {
+   "n_sixcent": 1,
+   "rows": [
+    {
+     "tid": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a",
+     "ts": 1784150892,
+     "size": 57.21,
+     "true": true
+    }
+   ],
+   "all_matched": true
+  },
+  "MER": {
+   "n_sixcent": 1,
+   "rows": [
+    {
+     "tid": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+     "ts": 1784150225,
+     "size": 26.56,
+     "true": true
+    }
+   ],
+   "all_matched": true
+  }
+ },
+ "phantom_list": [],
+ "games": {
+  "26JUL12BROGIU": {
+   "legs": {
+    "BRO": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12BROGIU-BRO",
+     "ours_n": 3676,
+     "kalshi_n": 3676,
+     "matched": 3676,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 4
+    },
+    "GIU": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12BROGIU-GIU",
+     "ours_n": 3903,
+     "kalshi_n": 3903,
+     "matched": 3903,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 4
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 7579,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12DODDEL": {
+   "legs": {
+    "DEL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12DODDEL-DEL",
+     "ours_n": 4812,
+     "kalshi_n": 4812,
+     "matched": 4812,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 5
+    },
+    "DOD": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12DODDEL-DOD",
+     "ours_n": 3847,
+     "kalshi_n": 3847,
+     "matched": 3847,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 4
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 8659,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12GANJAN": {
+   "legs": {
+    "GAN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN",
+     "ours_n": 1266,
+     "kalshi_n": 1266,
+     "matched": 1266,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "JAN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN",
+     "ours_n": 764,
+     "kalshi_n": 764,
+     "matched": 764,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 2030,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12HECISO": {
+   "legs": {
+    "HEC": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12HECISO-HEC",
+     "ours_n": 442,
+     "kalshi_n": 442,
+     "matched": 442,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "ISO": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12HECISO-ISO",
+     "ours_n": 532,
+     "kalshi_n": 532,
+     "matched": 532,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 974,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12HERALM": {
+   "legs": {
+    "ALM": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12HERALM-ALM",
+     "ours_n": 1860,
+     "kalshi_n": 1860,
+     "matched": 1860,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "HER": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12HERALM-HER",
+     "ours_n": 3546,
+     "kalshi_n": 3546,
+     "matched": 3546,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 11
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 5406,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12LINMAL": {
+   "legs": {
+    "LIN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12LINMAL-LIN",
+     "ours_n": 1585,
+     "kalshi_n": 1585,
+     "matched": 1585,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "MAL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12LINMAL-MAL",
+     "ours_n": 753,
+     "kalshi_n": 753,
+     "matched": 753,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 2338,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL13OUALIN": {
+   "legs": {
+    "LIN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL13OUALIN-LIN",
+     "ours_n": 21,
+     "kalshi_n": 21,
+     "matched": 21,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "OUA": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL13OUALIN-OUA",
+     "ours_n": 32,
+     "kalshi_n": 32,
+     "matched": 32,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 53,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL14KIRSEK": {
+   "legs": {
+    "KIR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-KIR",
+     "ours_n": 52,
+     "kalshi_n": 52,
+     "matched": 52,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "SEK": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL14KIRSEK-SEK",
+     "ours_n": 39,
+     "kalshi_n": 39,
+     "matched": 39,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 91,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15YIBYUN": {
+   "legs": {
+    "YIB": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YIB",
+     "ours_n": 54,
+     "kalshi_n": 54,
+     "matched": 54,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 6
+    },
+    "YUN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15YIBYUN-YUN",
+     "ours_n": 71,
+     "kalshi_n": 71,
+     "matched": 71,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 6
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 125,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL20GALARN": {
+   "legs": {
+    "ARN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL20GALARN-ARN",
+     "ours_n": 2115,
+     "kalshi_n": 2115,
+     "matched": 2115,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "GAL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL",
+     "ours_n": 2850,
+     "kalshi_n": 2850,
+     "matched": 2850,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 4965,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12GUEGOM": {
+   "legs": {
+    "GOM": {
+     "ticker": "KXATPMATCH-26JUL12GUEGOM-GOM",
+     "ours_n": 2389,
+     "kalshi_n": 2389,
+     "matched": 2389,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "GUE": {
+     "ticker": "KXATPMATCH-26JUL12GUEGOM-GUE",
+     "ours_n": 2140,
+     "kalshi_n": 2140,
+     "matched": 2140,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 4529,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12NEUTOP": {
+   "legs": {
+    "NEU": {
+     "ticker": "KXATPMATCH-26JUL12NEUTOP-NEU",
+     "ours_n": 4631,
+     "kalshi_n": 4631,
+     "matched": 4631,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 5
+    },
+    "TOP": {
+     "ticker": "KXATPMATCH-26JUL12NEUTOP-TOP",
+     "ours_n": 2797,
+     "kalshi_n": 2797,
+     "matched": 2797,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 7428,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL16MERDRO": {
+   "legs": {
+    "DRO": {
+     "ticker": "KXATPMATCH-26JUL16MERDRO-DRO",
+     "ours_n": 289,
+     "kalshi_n": 289,
+     "matched": 289,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "MER": {
+     "ticker": "KXATPMATCH-26JUL16MERDRO-MER",
+     "ours_n": 702,
+     "kalshi_n": 702,
+     "matched": 702,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 991,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL18JACDA": {
+   "legs": {
+    "DA": {
+     "ticker": "KXATPMATCH-26JUL18JACDA-DA",
+     "ours_n": 88,
+     "kalshi_n": 88,
+     "matched": 88,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "JAC": {
+     "ticker": "KXATPMATCH-26JUL18JACDA-JAC",
+     "ours_n": 165,
+     "kalshi_n": 165,
+     "matched": 165,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 253,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12PALCOL": {
+   "legs": {
+    "COL": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12PALCOL-COL",
+     "ours_n": 1162,
+     "kalshi_n": 1162,
+     "matched": 1162,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "PAL": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12PALCOL-PAL",
+     "ours_n": 904,
+     "kalshi_n": 904,
+     "matched": 904,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 2066,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12KULZAA": {
+   "legs": {
+    "KUL": {
+     "ticker": "KXWTAMATCH-26JUL12KULZAA-KUL",
+     "ours_n": 3393,
+     "kalshi_n": 3393,
+     "matched": 3393,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 4
+    },
+    "ZAA": {
+     "ticker": "KXWTAMATCH-26JUL12KULZAA-ZAA",
+     "ours_n": 2371,
+     "kalshi_n": 2371,
+     "matched": 2371,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 5764,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12MICKUL": {
+   "legs": {
+    "KUL": {
+     "ticker": "KXWTAMATCH-26JUL12MICKUL-KUL",
+     "ours_n": 1766,
+     "kalshi_n": 1766,
+     "matched": 1766,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "MIC": {
+     "ticker": "KXWTAMATCH-26JUL12MICKUL-MIC",
+     "ours_n": 1847,
+     "kalshi_n": 1847,
+     "matched": 1847,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 3613,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15PUTCHA": {
+   "legs": {
+    "CHA": {
+     "ticker": "KXWTAMATCH-26JUL15PUTCHA-CHA",
+     "ours_n": 51,
+     "kalshi_n": 51,
+     "matched": 51,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "PUT": {
+     "ticker": "KXWTAMATCH-26JUL15PUTCHA-PUT",
+     "ours_n": 177,
+     "kalshi_n": 177,
+     "matched": 177,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 228,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15SHEQUE": {
+   "legs": {
+    "QUE": {
+     "ticker": "KXWTAMATCH-26JUL15SHEQUE-QUE",
+     "ours_n": 81,
+     "kalshi_n": 81,
+     "matched": 81,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "SHE": {
+     "ticker": "KXWTAMATCH-26JUL15SHEQUE-SHE",
+     "ours_n": 203,
+     "kalshi_n": 203,
+     "matched": 203,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 284,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12POLKUH": {
+   "legs": {
+    "KUH": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH",
+     "ours_n": 13,
+     "kalshi_n": 13,
+     "matched": 13,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "POL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL",
+     "ours_n": 18,
+     "kalshi_n": 18,
+     "matched": 18,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 5
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 31,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19ARSMAR": {
+   "legs": {
+    "ARS": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS",
+     "ours_n": 7,
+     "kalshi_n": 7,
+     "matched": 7,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "MAR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR",
+     "ours_n": 13,
+     "kalshi_n": 13,
+     "matched": 13,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 20,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL13SANDAN": {
+   "legs": {
+    "DAN": {
+     "ticker": "KXATPMATCH-26JUL13SANDAN-DAN",
+     "ours_n": 113,
+     "kalshi_n": 113,
+     "matched": 113,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "SAN": {
+     "ticker": "KXATPMATCH-26JUL13SANDAN-SAN",
+     "ours_n": 46,
+     "kalshi_n": 46,
+     "matched": 46,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 159,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL14PUTJEA": {
+   "legs": {
+    "JEA": {
+     "ticker": "KXWTAMATCH-26JUL14PUTJEA-JEA",
+     "ours_n": 4,
+     "kalshi_n": 4,
+     "matched": 4,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "PUT": {
+     "ticker": "KXWTAMATCH-26JUL14PUTJEA-PUT",
+     "ours_n": 6,
+     "kalshi_n": 6,
+     "matched": 6,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 10,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12RAIZHU": {
+   "legs": {
+    "RAI": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12RAIZHU-RAI",
+     "ours_n": 13,
+     "kalshi_n": 13,
+     "matched": 13,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 6
+    },
+    "ZHU": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12RAIZHU-ZHU",
+     "ours_n": 51,
+     "kalshi_n": 51,
+     "matched": 51,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 4
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 64,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12YEVBOR": {
+   "legs": {
+    "BOR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12YEVBOR-BOR",
+     "ours_n": 26,
+     "kalshi_n": 26,
+     "matched": 26,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "YEV": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12YEVBOR-YEV",
+     "ours_n": 1,
+     "kalshi_n": 1,
+     "matched": 1,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 27,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL20ECHHAR": {
+   "legs": {
+    "ECH": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL20ECHHAR-ECH",
+     "ours_n": 46,
+     "kalshi_n": 46,
+     "matched": 46,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "HAR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL20ECHHAR-HAR",
+     "ours_n": 84,
+     "kalshi_n": 84,
+     "matched": 84,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 130,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL20SAMJOI": {
+   "legs": {
+    "JOI": {
+     "ticker": "KXWTAMATCH-26JUL20SAMJOI-JOI",
+     "ours_n": 92,
+     "kalshi_n": 92,
+     "matched": 92,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "SAM": {
+     "ticker": "KXWTAMATCH-26JUL20SAMJOI-SAM",
+     "ours_n": 42,
+     "kalshi_n": 42,
+     "matched": 42,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 134,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL13AVAFET": {
+   "legs": {
+    "AVA": {
+     "ticker": "KXWTAMATCH-26JUL13AVAFET-AVA",
+     "ours_n": 48,
+     "kalshi_n": 48,
+     "matched": 48,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "FET": {
+     "ticker": "KXWTAMATCH-26JUL13AVAFET-FET",
+     "ours_n": 88,
+     "kalshi_n": 88,
+     "matched": 88,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 136,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL20FERREN": {
+   "legs": {
+    "FER": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL20FERREN-FER",
+     "ours_n": 96,
+     "kalshi_n": 96,
+     "matched": 96,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "REN": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL20FERREN-REN",
+     "ours_n": 126,
+     "kalshi_n": 126,
+     "matched": 126,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 222,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL18PALHON": {
+   "legs": {
+    "HON": {
+     "ticker": "KXWTAMATCH-26JUL18PALHON-HON",
+     "ours_n": 13,
+     "kalshi_n": 13,
+     "matched": 13,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "PAL": {
+     "ticker": "KXWTAMATCH-26JUL18PALHON-PAL",
+     "ours_n": 14,
+     "kalshi_n": 14,
+     "matched": 14,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 27,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15TRANAV": {
+   "legs": {
+    "NAV": {
+     "ticker": "KXATPMATCH-26JUL15TRANAV-NAV",
+     "ours_n": 202,
+     "kalshi_n": 202,
+     "matched": 202,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "TRA": {
+     "ticker": "KXATPMATCH-26JUL15TRANAV-TRA",
+     "ours_n": 150,
+     "kalshi_n": 150,
+     "matched": 150,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 352,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL17ERJFEI": {
+   "legs": {
+    "ERJ": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-ERJ",
+     "ours_n": 66,
+     "kalshi_n": 66,
+     "matched": 66,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "FEI": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL17ERJFEI-FEI",
+     "ours_n": 36,
+     "kalshi_n": 36,
+     "matched": 36,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 102,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19ZAMKIN": {
+   "legs": {
+    "KIN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN-KIN",
+     "ours_n": 980,
+     "kalshi_n": 980,
+     "matched": 980,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "ZAM": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN-ZAM",
+     "ours_n": 968,
+     "kalshi_n": 968,
+     "matched": 968,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 1948,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19BONALC": {
+   "legs": {
+    "ALC": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19BONALC-ALC",
+     "ours_n": 64,
+     "kalshi_n": 64,
+     "matched": 64,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "BON": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19BONALC-BON",
+     "ours_n": 18,
+     "kalshi_n": 18,
+     "matched": 18,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 82,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12MARARS": {
+   "legs": {
+    "ARS": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12MARARS-ARS",
+     "ours_n": 457,
+     "kalshi_n": 457,
+     "matched": 457,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "MAR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12MARARS-MAR",
+     "ours_n": 420,
+     "kalshi_n": 420,
+     "matched": 420,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 877,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19VANFAR": {
+   "legs": {
+    "FAR": {
+     "ticker": "KXATPMATCH-26JUL19VANFAR-FAR",
+     "ours_n": 34,
+     "kalshi_n": 34,
+     "matched": 34,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 5
+    },
+    "VAN": {
+     "ticker": "KXATPMATCH-26JUL19VANFAR-VAN",
+     "ours_n": 34,
+     "kalshi_n": 34,
+     "matched": 34,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 4
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 68,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15WOLJOH": {
+   "legs": {
+    "JOH": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15WOLJOH-JOH",
+     "ours_n": 40,
+     "kalshi_n": 40,
+     "matched": 40,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 7
+    },
+    "WOL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15WOLJOH-WOL",
+     "ours_n": 20,
+     "kalshi_n": 20,
+     "matched": 20,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 7
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 60,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL17UDVBAD": {
+   "legs": {
+    "BAD": {
+     "ticker": "KXWTAMATCH-26JUL17UDVBAD-BAD",
+     "ours_n": 180,
+     "kalshi_n": 180,
+     "matched": 180,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 5
+    },
+    "UDV": {
+     "ticker": "KXWTAMATCH-26JUL17UDVBAD-UDV",
+     "ours_n": 172,
+     "kalshi_n": 172,
+     "matched": 172,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 7
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 352,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15DARSAK": {
+   "legs": {
+    "DAR": {
+     "ticker": "KXWTAMATCH-26JUL15DARSAK-DAR",
+     "ours_n": 70,
+     "kalshi_n": 70,
+     "matched": 70,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "SAK": {
+     "ticker": "KXWTAMATCH-26JUL15DARSAK-SAK",
+     "ours_n": 163,
+     "kalshi_n": 163,
+     "matched": 163,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 233,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19DROUGO": {
+   "legs": {
+    "DRO": {
+     "ticker": "KXATPMATCH-26JUL19DROUGO-DRO",
+     "ours_n": 266,
+     "kalshi_n": 266,
+     "matched": 266,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 6
+    },
+    "UGO": {
+     "ticker": "KXATPMATCH-26JUL19DROUGO-UGO",
+     "ours_n": 971,
+     "kalshi_n": 971,
+     "matched": 971,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 10
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 1237,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL17YANTRE": {
+   "legs": {
+    "TRE": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL17YANTRE-TRE",
+     "ours_n": 17,
+     "kalshi_n": 17,
+     "matched": 17,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "YAN": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL17YANTRE-YAN",
+     "ours_n": 27,
+     "kalshi_n": 27,
+     "matched": 27,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 44,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12CORDAN": {
+   "legs": {
+    "COR": {
+     "ticker": "KXATPMATCH-26JUL12CORDAN-COR",
+     "ours_n": 39,
+     "kalshi_n": 39,
+     "matched": 39,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "DAN": {
+     "ticker": "KXATPMATCH-26JUL12CORDAN-DAN",
+     "ours_n": 99,
+     "kalshi_n": 99,
+     "matched": 99,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 138,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15NOGSUR": {
+   "legs": {
+    "NOG": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-NOG",
+     "ours_n": 25,
+     "kalshi_n": 25,
+     "matched": 25,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "SUR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-SUR",
+     "ours_n": 57,
+     "kalshi_n": 57,
+     "matched": 57,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 82,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL15SANERE": {
+   "legs": {
+    "ERE": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15SANERE-ERE",
+     "ours_n": 32,
+     "kalshi_n": 32,
+     "matched": 32,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "SAN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL15SANERE-SAN",
+     "ours_n": 10,
+     "kalshi_n": 10,
+     "matched": 10,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 42,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL18SERBER": {
+   "legs": {
+    "BER": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL18SERBER-BER",
+     "ours_n": 1,
+     "kalshi_n": 1,
+     "matched": 1,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "SER": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL18SERBER-SER",
+     "ours_n": 6,
+     "kalshi_n": 6,
+     "matched": 6,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 7,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL16SMIMAT": {
+   "legs": {
+    "MAT": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL16SMIMAT-MAT",
+     "ours_n": 167,
+     "kalshi_n": 167,
+     "matched": 167,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 9
+    },
+    "SMI": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL16SMIMAT-SMI",
+     "ours_n": 213,
+     "kalshi_n": 213,
+     "matched": 213,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 6
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 380,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL12MORPET": {
+   "legs": {
+    "MOR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12MORPET-MOR",
+     "ours_n": 850,
+     "kalshi_n": 850,
+     "matched": 850,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "PET": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12MORPET-PET",
+     "ours_n": 806,
+     "kalshi_n": 806,
+     "matched": 806,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 1656,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19YEVSTR": {
+   "legs": {
+    "STR": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19YEVSTR-STR",
+     "ours_n": 57,
+     "kalshi_n": 57,
+     "matched": 57,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "YEV": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19YEVSTR-YEV",
+     "ours_n": 50,
+     "kalshi_n": 50,
+     "matched": 50,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 107,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19MENKUM": {
+   "legs": {
+    "KUM": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM",
+     "ours_n": 32,
+     "kalshi_n": 32,
+     "matched": 32,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "MEN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN",
+     "ours_n": 40,
+     "kalshi_n": 40,
+     "matched": 40,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 72,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL18SAKKOR": {
+   "legs": {
+    "KOR": {
+     "ticker": "KXWTAMATCH-26JUL18SAKKOR-KOR",
+     "ours_n": 232,
+     "kalshi_n": 232,
+     "matched": 232,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 3
+    },
+    "SAK": {
+     "ticker": "KXWTAMATCH-26JUL18SAKKOR-SAK",
+     "ours_n": 1042,
+     "kalshi_n": 1042,
+     "matched": 1042,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 6
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 1274,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL14RONGIU": {
+   "legs": {
+    "GIU": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL14RONGIU-GIU",
+     "ours_n": 26,
+     "kalshi_n": 26,
+     "matched": 26,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "RON": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL14RONGIU-RON",
+     "ours_n": 3,
+     "kalshi_n": 3,
+     "matched": 3,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 29,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL19GASDZU": {
+   "legs": {
+    "DZU": {
+     "ticker": "KXATPMATCH-26JUL19GASDZU-DZU",
+     "ours_n": 26,
+     "kalshi_n": 26,
+     "matched": 26,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    },
+    "GAS": {
+     "ticker": "KXATPMATCH-26JUL19GASDZU-GAS",
+     "ours_n": 20,
+     "kalshi_n": 20,
+     "matched": 20,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 46,
+    "phantom": 0,
+    "missing": 0
+   }
+  },
+  "26JUL18MASRYS": {
+   "legs": {
+    "MAS": {
+     "ticker": "KXWTAMATCH-26JUL18MASRYS-MAS",
+     "ours_n": 50,
+     "kalshi_n": 50,
+     "matched": 50,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 1
+    },
+    "RYS": {
+     "ticker": "KXWTAMATCH-26JUL18MASRYS-RYS",
+     "ours_n": 24,
+     "kalshi_n": 24,
+     "matched": 24,
+     "field_mismatch": 0,
+     "mismatches": [],
+     "phantom": 0,
+     "phantom_rows": [],
+     "in_kalshi_missing_from_ours": 0,
+     "missing_sample": [],
+     "pagination_complete": true,
+     "pages": 2
+    }
+   },
+   "verdict": "REAL",
+   "counts": {
+    "matched": 74,
+    "phantom": 0,
+    "missing": 0
+   }
+  }
+ }
+}

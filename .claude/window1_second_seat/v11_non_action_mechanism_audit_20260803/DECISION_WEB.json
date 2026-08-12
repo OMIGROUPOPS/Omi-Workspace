@@ -1,0 +1,162 @@
+{
+ "LABEL": "DECISION_WEB",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "sources": {
+  "gate_code": "98d07986: arb-executor/analysis/window1_v52b_read_level_authority.js + window1_v52_judgment_gate.js + window1_v52_stability_onset.js (V52b wraps V52 wraps frozen V49b)",
+  "traces": "98d07986: .claude/window1_live_v4_replay/v52b_read_level_authority_20260812/V52B_FULL_DECISION_TRACE_30_GAMES.jsonl.gz - 613,394 receipts / 30 games; frequencies below are live, not theory",
+  "rule": "no invented structure: every node is a question the code actually asks; code values with zero trace appearances are flagged observed_0"
+ },
+ "nodes": [
+  {
+   "id": "N1",
+   "question": "Is this market awake yet?",
+   "technical": "stability onset, clause 1 (window1_v52_stability_onset.js; license.onset; binding CODEX-INTERIM, PRIMED standard supersedes in a future iteration)",
+   "refers_to": [
+    {"plain": "the gap between best bid and best ask, minute by minute over the whole window", "source": "live book", "field": "spread"},
+    {"plain": "the two legs' mid-prices summed, distance from 100", "source": "both legs' live books", "field": "midsum_abs_dev"},
+    {"plain": "contracts sold in the trailing hour", "source": "sold-contract record", "field": "trades_60min"}
+   ],
+   "classifies_into": {
+    "candidate_A": "spread collapsed AND pair mid-sum settled (both two-segment splits fall) -> A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE; else rejected SPREAD_AND_MIDSUM_DID_NOT_BOTH_SETTLE",
+    "candidate_B": "sales arrived in sustained cadence (split rises) -> B_SUSTAINED_TRADE_CADENCE_ARRIVAL; else rejected TRADE_CADENCE_DID_NOT_INCREASE",
+    "selected": "earliest valid candidate; per receipt: passed / not-yet (onset.passed true/false)"
+   },
+   "produces": "onset.passed + onset timestamp",
+   "consumed_by": ["N3 (defines post-onset)", "N4 (bounds + post-onset tests)", "N5 (post-onset lows)", "N6 (first license check)"],
+   "fired_in_traces": {"every_receipt": true, "median_receipts_per_game": 3868, "onset_passed_receipts_median_per_game": 3211.5, "selected_candidate_counts": {"A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE": 480431, "B_SUSTAINED_TRADE_CADENCE_ARRIVAL": 132963}, "not_awake_rows": 324360}
+  },
+  {
+   "id": "N2",
+   "question": "What do I believe this side is doing?",
+   "technical": "machine read (incumbent S1/S2/S3 classifier chain, 300s trail; license.read)",
+   "refers_to": [
+    {"plain": "new highs of the best bid and new lows of the best ask in the trailing window", "source": "live book", "field": "read.evidence in {NEW_HIGH_BID, NEW_LOW_ASK}"},
+    {"plain": "contracts sold by an aggressive buyer or seller", "source": "sold-contract record", "field": "read.evidence in {BUYER_LIFT_PRINT, SELLER_HIT_PRINT}"},
+    {"plain": "top-5 depth balance between the two sides of the book", "source": "live book", "field": "pressure_state (S2)"}
+   ],
+   "classifies_into": {
+    "state": ["RISING (419,450)", "FALLING (136,899)", "SETTLED (57,045)"],
+    "no_reading_possible": "NO_DIRECTIONAL_QUOTE_OR_PRINT_EVIDENCE -> read.passed=false (158,965 rows, 25.9% - the read-starvation lens)",
+    "evidence_kinds": {"NEW_HIGH_BID": 326835, "NEW_LOW_ASK": 84292, "BUYER_LIFT_PRINT": 39859, "SELLER_HIT_PRINT": 3287, "QUOTE_PATH_INTERNAL_CONFLICT": 156, "none": 158965}
+   },
+   "produces": "read.passed + state + the directional-evidence receipt and timestamp",
+   "consumed_by": ["N4 (the evidence that earns the level)", "N6 (second license check)"],
+   "fired_in_traces": {"every_receipt": true, "read_absent_rows": 158965}
+  },
+  {
+   "id": "N3",
+   "question": "What price does the diary remember?",
+   "technical": "post-onset true-trade diary, clause 3 reference (license.diary; V52b role RECORDED_REFERENCE_INPUT_NOT_SOLE_LEVEL_AUTHORITY)",
+   "refers_to": [
+    {"plain": "the cheapest contract sold on this side since the market woke", "source": "sold-contract record (own leg)", "field": "own_post_onset_true_trade_low_cents + own_receipt"},
+    {"plain": "the cheapest contract sold on the other side since it woke", "source": "sibling's sold-contract record", "field": "sibling_post_onset_true_trade_low_cents + sibling_receipt"}
+   ],
+   "classifies_into": {"passed": "a post-onset sale exists on this side (277,172 rows) / none yet (336,222)"},
+   "produces": "the two remembered lows (reference only under V52b; was the sole level source under V52)",
+   "consumed_by": ["N5 (lows summed vs par)", "the license record"],
+   "fired_in_traces": {"every_receipt": true, "diary_present_rows": 277172}
+  },
+  {
+   "id": "N4",
+   "question": "Where should my bid stand?",
+   "technical": "level authority (V52b machineReadLevel - iteration 1's read-level authority)",
+   "refers_to": [
+    {"plain": "the level the old reflex machine proposes right now, and which organ proposed it", "source": "the frozen incumbent chain (N8)", "field": "placement.target_cents + placement.authority (V41_/V43_ prefixes supported)"},
+    {"plain": "the cheapest and dearest prices observed since the market woke", "source": "live book + sold record since onset", "field": "post_onset_observation_bounds.min_cents/max_cents"},
+    {"plain": "the read's evidence: which receipt, when, both post-onset", "source": "the license itself (N2 output)", "field": "machine_read_evidence.evaluation_/directional_evidence_receipt + timestamps"},
+    {"plain": "the sanity rail: never at or above the ask, never above the pair cap", "source": "live book / the license", "field": "post_only_ask_bound_cents, pair_cap_cents"}
+   ],
+   "classifies_into": {
+    "four_checks": ["supported_authority (proposal from join or tracking organ)", "inside_post_onset_observation_bounds", "evidence_is_post_onset", "receipt_bound"],
+    "authority": {"V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL": 143968, "V52B_MACHINE_READ_LEVEL_ABSTAIN": 469426}
+   },
+   "produces": "the licensed target level (or abstention)",
+   "consumed_by": ["N6 (authority-earned check)", "N7 (the level to post/hold/reprice)"],
+   "fired_in_traces": {"every_receipt": true, "observed_0_note": "the two level-side block reasons MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED and NO_LAWFUL_MACHINE_READ_POST_LEVEL never surfaced as the named block in 30 games - an earlier clause always failed first (order-masking)"}
+  },
+  {
+   "id": "N5",
+   "question": "Do my two readings agree, and is the pair under par?",
+   "technical": "pair coherence, clause 4 (license.coherence)",
+   "refers_to": [
+    {"plain": "the two remembered lows summed against 100", "source": "the diary (N3), both legs", "field": "post_onset_running_lows_sum_cents -> lows_under_par"},
+    {"plain": "the disagreement flag between the quote-path reading and the pressure reading", "source": "the sibling's / own classifier state (S3 flag)", "field": "disagreement_firing -> disagreement_clear"},
+    {"plain": "whether the other side is already bought", "source": "the sibling's state", "field": "sibling_credited"}
+   ],
+   "classifies_into": {
+    "lows_under_par": {"true": 234792, "false": 378602},
+    "disagreement_firing": {"true": 262345, "false": 351049},
+    "disagreement_clear": {"true": 374203, "false": 239191},
+    "sibling_credited": {"true": 207901, "false": 405493}
+   },
+   "degenerate": "SCREW #3, marked honestly: when the readings disagree the only answer is freeze - a blanket HOLD. The flag fires on 262,345 rows (median 680 per game) yet is the NAMED block only 5,384 times because earlier clauses usually fail first; adjudicate-not-freeze is queued.",
+   "produces": "lows_under_par + disagreement_clear",
+   "consumed_by": ["N6 (third and fourth license checks)"],
+   "fired_in_traces": {"every_receipt": true}
+  },
+  {
+   "id": "N6",
+   "question": "May this bid exist right now?",
+   "technical": "the license verdict (firstFailure, fixed first-failure order: onset -> read -> pair-under-par -> disagreement -> level-authority -> lawful-level)",
+   "refers_to": [{"plain": "the five clauses' outputs, in fixed order", "source": "the license itself", "field": "onset.passed, read.passed, coherence.lows_under_par, coherence.disagreement_clear, level (N4)"}],
+   "classifies_into": {
+    "blocked-market-not-awake (STABILITY_ONSET_NOT_REACHED)": 324360,
+    "blocked-no-reading (NO_TAPE_MACHINE_READ_ABSENT)": 144168,
+    "blocked-pair-not-under-par (PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)": 25587,
+    "blocked-readings-disagree (FIRING_DISAGREEMENT_ACTIVE)": 5384,
+    "licensed (no failure)": 113895,
+    "observed_0": ["MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED", "NO_LAWFUL_MACHINE_READ_POST_LEVEL", "V52-only diary blocks POST_ONSET_TRUE_TRADE_LOW_ABSENT / NO_LAWFUL_DIARY_POST_LEVEL (superseded path)"]
+   },
+   "produces": "gate verdict BLOCKED / licensed",
+   "consumed_by": ["N7"],
+   "fired_in_traces": {"every_receipt": true, "median_blocked_per_game": 3351.5, "note": "first-failure ordering masks later clauses - frequencies are of the NAMED block, not of clause truth"}
+  },
+  {
+   "id": "N7",
+   "question": "What do I do with the standing bid?",
+   "technical": "action selection (gateDecision tail)",
+   "refers_to": [{"plain": "the currently standing bid's level, if any", "source": "the license itself", "field": "activeTarget / order_before_cents"}, {"plain": "the licensed target from N4", "source": "the license", "field": "level.target_cents"}],
+   "classifies_into": {
+    "PLACE_REST (no bid standing, licensed)": 47,
+    "REPRICE_REST (standing bid, different licensed level; direction UP/DOWN)": 377,
+    "HOLD_REST (blocked-with-standing-or-nothing, or licensed level already standing)": 612970,
+    "gate verdicts": {"BLOCKED": 499499, "LICENSED_HOLD": 113471, "POST": 424},
+    "observed_0": ["CANCEL_REST passthrough (INCUMBENT_LICENSED_REST_GUARD) - guard cancel of a licensed rest never occurred in the 30 games"]
+   },
+   "produces": "the receipt's action; reasons vocabulary = V52B_BIRTH_BLOCKED_* (4 observed) + V52B_LICENSED_MACHINE_READ_LEVEL_ALREADY_STANDING + V52B_LICENSED_MACHINE_READ_LEVEL_POST",
+   "consumed_by": ["the book (a post/reprice); the next receipt's activeTarget"],
+   "fired_in_traces": {"median_per_game": {"HOLD_REST": 3847.5, "PLACE_REST": 2, "REPRICE_REST": 1, "POST_verdicts": 3, "LICENSED_HOLD": 573.5}}
+  },
+  {
+   "id": "N8",
+   "question": "What would the old reflex do?",
+   "technical": "the frozen incumbent V49b chain, consulted never obeyed pre-license (unguarded_decision)",
+   "refers_to": [{"plain": "the whole pre-gate machine: join arming, tracking placement, deep-gap guard, pair cap", "source": "frozen V49b (v41/v42/v43/v36/v32/v35)", "field": "incumbent_action + incumbent_reason"}],
+   "classifies_into": {
+    "V41_RISING_PERSISTENCE_ONLY_JOIN_300S_P2_OVER_P1(+ALREADY_AT_TARGET)": 417636,
+    "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY(+ALREADY_AT_TARGET)": 182808,
+    "V43_C2_WITHHOLD_NEW_REST": 12737,
+    "V49B_FAITHFUL_STAND_AT_P": 213,
+    "incumbent_actions": {"PLACE_REST": 369659, "HOLD_REST": 241629, "REPRICE_REST": 2106}
+   },
+   "produces": "the proposed level + authority name consumed by N4; guard/cancel intents that pass through only after a licensed rest exists",
+   "consumed_by": ["N4", "N7 (guard passthrough)"],
+   "scavenger": "specced OFF on every row: V52_SCAVENGER_SPECCED_OFF 613,394/613,394",
+   "fired_in_traces": {"every_receipt": true}
+  }
+ ],
+ "edges": [
+  ["N1","N3"],["N1","N4"],["N1","N5"],["N1","N6"],
+  ["N2","N4"],["N2","N6"],
+  ["N3","N5"],
+  ["N8","N4"],["N8","N7"],
+  ["N4","N6"],["N4","N7"],
+  ["N5","N6"],
+  ["N6","N7"]
+ ],
+ "conservation": {
+  "trace_rows": 613394, "games": 30,
+  "every_trace_value_mapped": "gate_verdict/blocked_clause/reason -> N6+N7; final_action -> N7; incumbent_action/reason -> N8; onset.* -> N1; read.* -> N2; diary.* -> N3; coherence.* -> N5; level.*+machine_read_evidence -> N4; scavenger -> N8. No trace value is unmapped; named gaps: none.",
+  "code_values_observed_0": ["MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED","NO_LAWFUL_MACHINE_READ_POST_LEVEL","INCUMBENT_LICENSED_REST_GUARD","CANCEL_REST (gate output)","V52 diary-path blocks (superseded)"]
+ }
+}

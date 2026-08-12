@@ -52,6 +52,11 @@ verification only, never swapped (`fb74c8b8` CONTROL_BINDING).
 9. **The queue ruling (operator)** — crediting law untouched: **a sale kissing the rest credits** —
    trades-as-truth pure; queue stamps (`1d5564b5`) are **informational only, never gating**. Queue
    plausibility prices the live premium (§6); it does not re-score the replay book.
+10. **Vocabulary locks (fold 4)** — **bought** = a sale hit our bid, we own it · **bid** = resting, unfilled
+    · **prints** = "contracts sold at P" · **book side** = "contracts of standing bids at P." No synonyms in
+    artifacts. And a logged authorship pattern: **Fable's check-authoring failed outcome-bound twice**
+    (POLKUH, MERDRO — both demanded outcomes instead of lawful behavior); **future checks bind to lawful
+    behavior**, never to a result.
 
 ---
 
@@ -120,6 +125,7 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 | Queue+formation+reflex census (1d5564b5; 1,143 credited fills) | **RESOLVED-TERMINAL** — queue: 643/1,143 improbable (56.3%); formation: 518 pre-onset / 478 bracket-dependent / 144 post-onset; **reflex: 1,140/1,143 fills born of posts preceding any read (structural); honest completes 0 of 393**; excluded money 1,436¢/1,266¢/1,666¢ with overlaps; the terminal instrument of the replay campaign |
 | Sealed triple census (7157456b; 374 credited fills, exam 2bae8931) | **RESOLVED-TERMINAL** — **honest sealed 0 of 146; reflex 374/374; sealed worse than dev on every axis** (queue-improbable 73.5%, pre-onset 65.5%, post-onset 4.3%); the 571¢ lock entirely reflex-born; bracket 113 legs / 61 games / 374¢ |
 | The sealed exam verdict itself (2bae8931: PASS, "generalization confirmed") | **RETIRED** (fold 3) — **it generalized the reflex, not judgment**: 374/374 exam fills were policy-born posts, 65.5% formation-era, 73.5% queue-thin (7157456b). The 14.4% capture number survives as a measurement; the PASS does not. **V52 must re-take sealed post-disposition, against an honest bar of 0.** |
+| ARSMAR renders (fold 4): `arsmar.png` · `arsmar_pair.png` | **arsmar.png SUPERSEDED** (single-leg basis) → **arsmar_pair.png is the game-basis standard.** Its PAIR strip: **102 segments, 50 FIRING_DISAGREEMENT — clause ④ is a blanket freeze on a hair-trigger flag; adjudicate-not-freeze queued as screw #3.** MAR gate strip honestly **ABSENT** (export gap; trace rides in with iteration 2). **Standing render rules: game-basis only; a gate-state strip is standard on every gated render.** |
 
 ---
 
@@ -156,6 +162,28 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
   ARSMAR and POLKUH did not complete. Receipt-only defect found post-run (assertions JSON missing top-level
   `pass`; first-post distribution counted re-placements) — repair authorized under emission-finality; autopsy
   traces in flight at Codex. Raw URLs to be appended when Codex's post-run publishes them. ⧗
+- **V52 post-run receipts @ `e20fbe6c` (fold 4):** receipt repair landed — assertions `pass=true`; first
+  placements **1,203** with re-placements excluded; **25 score artifacts byte-unchanged** (emission-finality
+  held). **Exact-identity defect found and fixed:** a generic lookup could select `26JUL13ARSMAR`; corrected
+  to `26JUL19`; behavior unchanged.
+- **Named-check adjudications (fold 4):** **ARSMAR = GATE DESIGN LIMIT** — clause ③'s diary-only authority is
+  one-print-late *by construction* (it licensed 35 only 4.79 h after 35 existed; S12 exonerated — zero
+  withholds); drove iteration 1. **POLKUH = MIS-BOUND CHECK (Fable authorship)** — the check demanded a
+  completion that was itself reflex/formation-borne; re-bound to *KUH licensed credit + POL lawful
+  abstention*, and **PASSED under V52b**.
+- **Onset authority restamp (fold 4):** V52 clause ①'s "earliest of A/B" binding restamped **CODEX-INTERIM**
+  — no operator ruling existed when it was written, and the autopsy's A/B citation is inaccurate; the PRIMED
+  standard (§8) supersedes it in a future iteration.
+- **ITERATION 1 @ `98d07986` (fold 4):** clause ③ → **read-level authority** (an evidence-backed prediction
+  licenses the level; the diary demoted to reference). Cohort = 5 pins + 25: **completions 4→8/30,
+  REFLEX_POST 0, zero pin regressions, determinism 18/18.** **MERDRO adjudication:** DRO bought 49
+  post-onset, licensed — **lawful judgment credit**; the original check ("MERDRO not credited as judgment")
+  was Fable's second outcome-bound mis-bind, re-bound: *formation 6¢ must not credit; post-onset judgment
+  credits lawful.*
+- **THE READ-STARVATION DISCOVERY (fold 4):** ARS block histogram **READ_ABSENT 478 > PAIR_LOWS 431 >
+  DISAGREEMENT 127 — on a 7-trade tape.** The fixed 300 s trail blinds the machine in slow games; the
+  discriminator's "fails on thin tapes" (`35ac1f5b`) is now mechanistically explained. Drives **iteration 2:
+  clause ② evidence horizon, in flight @ Codex.** ⧗
 - **Aim-organ hypothesis — RETIRED, tombstone `17664b3f`** (fold): the deep-aim organ (AIM_V2 cell-depth as
   the miss fix) is refuted on this population — median aim error +2, the vault already knew the level, and
   aiming lower worsens every scored leg. Reopen condition: none at replay grain; superseded by V51.
@@ -318,6 +346,13 @@ patience vs live premium → Stage C pilot, zone-mapped.
 5. **Sealed only after 804 ratifies** — and the sealed re-take is scored against an honest bar of 0 (§2 exam
    restamp).
 
+**THE BELL — pre-committed (fold 4):** after screw #3 (adjudicate-not-freeze on clause ④), **the full-804
+re-run fires unconditionally** — acceptance is mechanism-bound against the honest 176, named checks
+at-or-better, two rulers; **further screws require post-804 evidence.** Per-fix validation, codified:
+① differential-receipt purity · ② law assertions (REFLEX_POST 0, license fields present, determinism) ·
+③ pin non-regression · ④ the fix's **pre-stated falsifiable claim** (iteration 2's: READ_ABSENT falls on
+thin tapes) · ⑤ operator trace read. **Sample scores are observations, never validators.**
+
 ---
 
 *Conservation: every campaign artifact in §2 exactly one stamp; §3 slots each named or GAP-marked; §5 rows cite
@@ -335,3 +370,9 @@ one-shot 176/645/142/reflex-0, the first honest baseline; acceptance BLOCKED on 
 repair authorized, URLs pending Codex post-run) · §8 A/B RESOLVED → PRIMED ruling verbatim, 591 bracket legs
 reclassify via traces · §9 THE PROVING LOOP added · §7 amendment 2: the potential map (offer 711 → honest 176,
 five ordered levers; retired-frames + A/B binary). Append-only: no prior line deleted.*
+*Fold pass 4 (V52b receipts + iteration 1): §3 +5 riders (e20fbe6c receipts + exact-identity fix; ARSMAR gate-
+design-limit / POLKUH mis-bound re-bound PASSED; clause ① onset binding restamped CODEX-INTERIM; iteration 1
+98d07986 read-level authority, 4→8/30, MERDRO re-bound lawful-judgment; read-starvation discovery
+478/431/127 → iteration 2 in flight) · §2 +1 row (ARSMAR renders; game-basis render rules standing) · §9 THE
+BELL pre-committed + per-fix validation codified · §1 law 10 vocabulary locks + the outcome-bound authorship
+pattern logged. Append-only: no prior line deleted.*

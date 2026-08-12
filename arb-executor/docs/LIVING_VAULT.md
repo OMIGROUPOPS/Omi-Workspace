@@ -1864,3 +1864,26 @@ moves from `POST_ONSET_TRUE_TRADE_LOW_ABSENT` to
 18; POL never licenses. Full receipt-pinned traces are frozen in the V52
 package. V52 behavior and scores are unchanged and remain blocked; no
 deployment is authorized.
+
+### 2026-08-12 - V52B ITERATION 1 / READ-LEVEL AUTHORITY OBSERVATION
+
+V52b amends clause ③ only: the post-onset true-trade diary remains recorded
+but is no longer the sole level authority. A receipt-local incumbent-machine
+level may sign only with post-onset evidence receipts and only inside the
+post-onset observed-price bounds. Clause ① is unchanged and restamped
+`CODEX-INTERIM`; clauses ② and ④, trades-as-truth crediting, and scavenger OFF
+are frozen. Same-input differential evaluation proves clause ④ unchanged;
+`REFLEX_POST` is zero.
+
+The deterministic scope is five frozen pins plus a fresh 25-event cohort
+stratified by category and paired census stamps, using seed SHA-256
+`8cd44b2feb7d49010e7d47bbc03696d4dd768ba85d03bc1617d3214379c85735`.
+All 30 games and every decision receipt are frozen. The 30-game observations
+move from 4 to 8 under-par completions, but are not an adjudication. ARSMAR
+remains incomplete and MERDRO credits; both facts are retained without policy
+tuning. POLKUH satisfies KUH credit plus POL lawful abstention. Two clean
+builds are byte-identical and all focused/inherited tests pass. No 804 run,
+deployment, authorization, live access, holdout access, or trading mutation
+occurred.
+
+Canonical addendum: `WINDOW1_V52B_READ_LEVEL_AUTHORITY_20260812_ADDENDUM.md`.

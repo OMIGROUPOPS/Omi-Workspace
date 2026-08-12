@@ -1,0 +1,39 @@
+{
+  "authorized_change": "CLAUSE_3_LEVEL_AUTHORITY_ONLY",
+  "clause_1": {
+    "status": "FROZEN_CODEX_INTERIM_RESTAMP_ONLY",
+    "behavior_changed": false,
+    "common_receipts_compared": 607033,
+    "per_receipt_match": true
+  },
+  "clause_2": {
+    "status": "FROZEN",
+    "behavior_changed": false,
+    "common_receipts_compared": 607033,
+    "per_receipt_match": true
+  },
+  "clause_3": {
+    "before": "POST_ONSET_TRUE_TRADE_DIARY_SOLE_LEVEL_AUTHORITY",
+    "after": "EVIDENCE_BACKED_RECEIPT_LOCAL_MACHINE_READ_LEVEL_AUTHORITY_BOUNDED_BY_POST_ONSET_OBSERVATIONS",
+    "diary_role_after": "RECORDED_REFERENCE_INPUT_NOT_SOLE_LEVEL_AUTHORITY",
+    "changed_decision_receipts": 676184,
+    "changed_leg_streams": 48
+  },
+  "clause_4": {
+    "status": "FROZEN",
+    "behavior_changed": false,
+    "common_receipts_compared": 607033,
+    "proof": "FROZEN_V52_AND_V52B_FIRST_FAILURE_EVALUATED_ON_IDENTICAL_COHERENCE_INPUT_AT_EVERY_SHARED_RECEIPT",
+    "downstream_state_may_differ_after_clause_3_action": true,
+    "per_receipt_same_input_law_match": true
+  },
+  "crediting": {
+    "status": "FROZEN_TRADES_AS_TRUTH",
+    "source_file": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "source_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10"
+  },
+  "scavenger": {
+    "enabled": false,
+    "status": "FROZEN"
+  }
+}

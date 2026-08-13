@@ -1,0 +1,74 @@
+{
+  "verdict": "EXPORT_ONLY_TRUNCATION; RUNNER_AND_MATERIALIZED_INPUT_FULL_SPAN",
+  "controlling_v52e_commit": "b09aa22b301205d5d44d683497cf3edc5b177cf8",
+  "cited_closeout_commit": "d9d9a4e3c2615e76276761d7bed8ae92928091f4",
+  "cohort_event_list_sha256": "3d779e45e157a7b0fcd7a9d37d75fa1ce06ea871ac3c199ae037a5be9591adf5",
+  "classification_law": {
+    "FULL_SPAN": "runner iterated the final materialized BOOK/PRINT receipt at-or-before the frozen edge",
+    "TRUNCATED": "runner stopped before an available bounded materialized receipt"
+  },
+  "runner": {
+    "games": 30,
+    "legs": 60,
+    "runner_full_span": 60,
+    "runner_truncated": 0,
+    "export_apparently_truncated": 44,
+    "credited_legs": 41,
+    "raw_ws_full_depth_usable_legs": 0,
+    "materialization_shorter_than_usable_raw_source": 0
+  },
+  "apparent_decision_export_gap_seconds": {
+    "n": 60,
+    "min": 0,
+    "p25": 0,
+    "median": 4497,
+    "p75": 17754,
+    "p90": 34458.83599996567,
+    "max": 73936.67700004578,
+    "sum": 723939.1970000267
+  },
+  "final_materialized_receipt_to_edge_gap_seconds": {
+    "n": 60,
+    "min": 0,
+    "p25": 0,
+    "median": 7,
+    "p75": 30,
+    "p90": 304.52500009536743,
+    "max": 62917,
+    "sum": 138664.34700012207
+  },
+  "by_terminal_state": {
+    "CREDITED": {
+      "legs": 41,
+      "apparent_export_gap_seconds": {
+        "n": 41,
+        "min": 91,
+        "p25": 4497,
+        "median": 12262,
+        "p75": 25830,
+        "p90": 35828,
+        "max": 73936.67700004578,
+        "sum": 723628.0980000496
+      }
+    },
+    "UNCREDITED": {
+      "legs": 19,
+      "apparent_export_gap_seconds": {
+        "n": 19,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 41.47499990463257,
+        "max": 262.69000005722046,
+        "sum": 311.0989999771118
+      }
+    }
+  },
+  "outcome_observation": {
+    "before_completed_pairs": 17,
+    "after_completed_pairs": 17,
+    "delta": 0,
+    "reason": "EXPORT_ONLY_RECEIPT_REPAIR; POLICY_AND_INPUTS_NOT_RERUN"
+  }
+}

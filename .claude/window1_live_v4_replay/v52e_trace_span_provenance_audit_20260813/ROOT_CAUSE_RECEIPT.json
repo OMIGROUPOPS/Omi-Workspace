@@ -1,0 +1,39 @@
+{
+  "verdict": "EXPORT_ONLY_TRUNCATION; RUNNER_AND_MATERIALIZED_INPUT_FULL_SPAN",
+  "disposition": "REGENERATE_RECEIPT_EXPORTS_ONLY; NO_POLICY_RERUN",
+  "code_lines": {
+    "bounded_timeline_iteration": {
+      "path": "arb-executor/analysis/build_window1_v38_maker_only.js",
+      "line": 419,
+      "effect": "every materialized BOOK/PRINT receipt inside the edge is iterated"
+    },
+    "terminal_credit_quiescence": {
+      "path": "arb-executor/analysis/build_window1_v38_maker_only.js",
+      "line_start": 426,
+      "line_end": 431,
+      "effect": "after credit the receipt is consumed, but no judgment decision row is emitted"
+    },
+    "print_receipt_branch": {
+      "path": "arb-executor/analysis/build_window1_v38_maker_only.js",
+      "line_start": 444,
+      "line_end": 462,
+      "effect": "print receipts can credit or update evidence, then continue before judgment trace emission"
+    },
+    "decision_export_only": {
+      "path": "arb-executor/analysis/build_window1_v38_maker_only.js",
+      "line_start": 671,
+      "line_end": 694,
+      "effect": "export is a BOOK decision-evaluation stream, not an input-consumption stream"
+    }
+  },
+  "conservation": {
+    "games": 30,
+    "legs": 60,
+    "runner_full_span": 60,
+    "runner_truncated": 0,
+    "export_apparently_truncated": 44,
+    "credited_legs": 41,
+    "raw_ws_full_depth_usable_legs": 0,
+    "materialization_shorter_than_usable_raw_source": 0
+  }
+}

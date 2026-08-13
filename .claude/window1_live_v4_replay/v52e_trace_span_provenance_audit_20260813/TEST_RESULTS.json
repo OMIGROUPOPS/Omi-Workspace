@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "test_files": 3,
+  "assertions": 108,
+  "failures": 0,
+  "omissions": 0,
+  "deselections": 0,
+  "suites": [
+    {
+      "file": "arb-executor/tests/test_window1_v52e_palantir_wiring.js",
+      "assertions": 31
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52e_palantir_wiring_package.js",
+      "assertions": 39
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52e_trace_span_provenance_audit.js",
+      "assertions": 38
+    }
+  ]
+}

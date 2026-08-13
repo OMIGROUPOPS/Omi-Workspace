@@ -1959,3 +1959,25 @@ The 804 bell did not run and remains gated pending operator trace review. No
 deployment, authorization, holdout/live access, or trading mutation occurred.
 
 Canonical addendum: `WINDOW1_V52E_PALANTIR_WIRING_20260812_ADDENDUM.md`.
+
+### 2026-08-13 - V52E TRACE-SPAN PROVENANCE AUDIT
+
+The frozen 30-game V52e cohort is FULL_SPAN at runner/input grain: 60 of 60
+legs consume their final bounded materialized BOOK/PRINT receipt and zero are
+runner-truncated. The apparent decision-export gap is positive on 44 legs
+(median 4,497 seconds) because the exported file records book decision
+evaluations only. PRINT receipts are consumed upstream of that export, and a
+terminally credited leg consumes later receipts without emitting new entry
+decisions. This is an export-only provenance defect; corrected receipt-span
+exports were added without rewriting the frozen decision trace.
+
+SHEVAN is corrected explicitly. VAN credited 58 at T+759.009 minutes and SHE
+credited 34 at T+761.293 minutes. Neither entry rest was standing at the later
+T+772 or T+792 crossings. The conditional-standing interpretation in Part B
+of `d9d9a4e3c2615e76276761d7bed8ae92928091f4` is superseded by the terminal
+credit receipts.
+
+V52e policy bytes and the 17/30 observation are unchanged. Two receipt-only
+builds are byte-identical and 108 assertions pass. The full-804 exam remains
+held. Canonical addendum:
+`WINDOW1_V52E_TRACE_SPAN_PROVENANCE_AUDIT_20260813_ADDENDUM.md`.

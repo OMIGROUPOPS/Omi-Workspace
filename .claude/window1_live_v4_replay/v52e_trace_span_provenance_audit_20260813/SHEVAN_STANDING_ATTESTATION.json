@@ -1,0 +1,55 @@
+{
+  "event_id": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+  "verdict": "RESTS_NOT_STANDING_AT_T_PLUS_772_OR_T_PLUS_792; BOTH_LEGS_ALREADY_CREDITED",
+  "legs": {
+    "SHE": {
+      "target_cents": 34,
+      "credited_timestamp_epoch": 1783864383.582,
+      "credited_t_plus_seconds": 45677.582000017166,
+      "fill_receipt": {
+        "kind": "PRINT",
+        "timestamp_epoch": 1783864383.582,
+        "receipt": "dc8cae39-b851-4a94-1986-3b66bf60a481",
+        "trade_id": "dc8cae39-b851-4a94-1986-3b66bf60a481",
+        "price_cents": 34,
+        "size": 25,
+        "taker_side": "no",
+        "taker_book_side": "ask"
+      },
+      "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+    },
+    "VAN": {
+      "target_cents": 58,
+      "credited_timestamp_epoch": 1783864246.556,
+      "credited_t_plus_seconds": 45540.55599999428,
+      "fill_receipt": {
+        "kind": "PRINT",
+        "timestamp_epoch": 1783864246.556,
+        "receipt": "8d397029-19f1-7b23-4097-e57a744cf973",
+        "trade_id": "8d397029-19f1-7b23-4097-e57a744cf973",
+        "price_cents": 57,
+        "size": 25,
+        "taker_side": "no",
+        "taker_book_side": "ask"
+      },
+      "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+    }
+  },
+  "crossings": [
+    {
+      "label": "VAN_49_CLUSTER_T_PLUS_772",
+      "timestamp_epoch": 1783865026,
+      "SHE_rest_standing": false,
+      "VAN_rest_standing": false,
+      "status": "NO_ACTIVE_ENTRY_REST; TERMINAL_CREDIT_PRECEDES_CROSSING"
+    },
+    {
+      "label": "SHE_COLLAPSE_T_PLUS_792",
+      "timestamp_epoch": 1783866226,
+      "SHE_rest_standing": false,
+      "VAN_rest_standing": false,
+      "status": "NO_ACTIVE_ENTRY_REST; TERMINAL_CREDIT_PRECEDES_CROSSING"
+    }
+  ],
+  "correction_to_d9d9a4e3_part_B": "The closeout treated end-of-decision-export as an unresolved standing rest. Frozen outcomes prove VAN credited at T+759.0 and SHE at T+761.3; later T+772/T+792 crossings are post-entry and cannot credit those rests again."
+}

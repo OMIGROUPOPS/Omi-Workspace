@@ -1,0 +1,52 @@
+{
+  "files": {
+    "BEFORE_AFTER_OBSERVATION_DELTA.json": {
+      "sha256": "16d7da6371356b16353d35a74d2928a93ce1f855628396a61eef6c76183c1a18",
+      "bytes": 3098
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "46f6f1d43e5c3d28fb6dc992139d479eb1c09c3c2a99175a3644ed8d304e9499",
+      "bytes": 94
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "9e571a055461dead04b6af62ef8c0fdb9d0ae2ca374b93a9e35f9c303a99ba53",
+      "bytes": 233
+    },
+    "POLICY_BYTE_IDENTITY.json": {
+      "sha256": "46d359844b9f8ef3e38ee210a52e81dca401d4497407694cc6ad88cacfa66295",
+      "bytes": 1525
+    },
+    "REPORT.md": {
+      "sha256": "90059c6c66a51c6f82c9166cda5ffcedd40b20dd4a9e2bd1b6aeee3968df5653",
+      "bytes": 1155
+    },
+    "ROOT_CAUSE_RECEIPT.json": {
+      "sha256": "1164002c143d56c6426bc395d4f724bb01d1ffe842e0ce219ca1237bb8c9707a",
+      "bytes": 1438
+    },
+    "SHEVAN_STANDING_ATTESTATION.json": {
+      "sha256": "f38849d26f94b24e0e7de62b83a9fcfe85c0e46b75af05aaf4a3c63f8dedcd5d",
+      "bytes": 2010
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "5ced385edd9f8bd63a6f234df9d2b2e7e72c7657db1731505c1bb61463ea5d84",
+      "bytes": 15838
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "0b6de4ad8196640a8c9c423f4dee86101a1f8da3c0ccf65cb7b622cf77223fb1",
+      "bytes": 484
+    },
+    "TRACE_SPAN_LEDGER_60.jsonl.gz": {
+      "sha256": "f19ca199eddabc6829a284aa4ed83b99541d87bc6053cdae30e807290733fbd2",
+      "bytes": 12652
+    },
+    "TRACE_SPAN_PROVENANCE_AUDIT.json": {
+      "sha256": "4ce6fc9ddac4bfeef754638a66ad22d0db95b94b32017c6bffc31f7372e842a2",
+      "bytes": 2026
+    },
+    "V52E_CORRECTED_DECISION_SPAN_CLOSE_60.jsonl.gz": {
+      "sha256": "5552b42c7c8e1f6475316c105e6b61156a92b73edac84bcaab5d3aa7f3d55329",
+      "bytes": 7014
+    }
+  }
+}

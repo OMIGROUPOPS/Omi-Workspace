@@ -1,0 +1,8 @@
+{
+  "changed_decision_receipts": 15889,
+  "license_or_metadata_changed_leg_streams": 54,
+  "behavior_changed_leg_streams": 8,
+  "every_behavior_change_starts_at_or_after_clause_5": true,
+  "frozen_clause_differences": 0,
+  "all_behavior_changes_authorized_by": "CLAUSE_5_PAIR_ENTRY_CONSERVATION_ONLY"
+}

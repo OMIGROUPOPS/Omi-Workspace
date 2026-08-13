@@ -2018,3 +2018,23 @@ matched the frozen 30-game observations on all 60 legs, and produced two
 byte-identical clean builds. No sealed, deployment, live, or trading access.
 Canonical addendum:
 `WINDOW1_V52E_FOUR_STATE_DISPOSITION_804_20260813_ADDENDUM.md`.
+
+### 2026-08-13 - V52F ITERATION 5 / PAIR-ENTRY CONSERVATION
+
+V52f adds exactly one licensing clause to frozen V52e. After the sibling is
+credited, every licensed rest target is bounded by the settlement identity
+`target_cents <= 99 - credited_sibling_entry_cents`. It is not a fitted
+constant, adds no timing gate, and is absent before sibling credit. Clauses
+1-4, N9 CLEAN prior consumption, trades-as-truth crediting, scavenger OFF, and
+`REFLEX_POST=0` remain frozen.
+
+On five pins plus a fresh 25 with zero B/C/D/E cohort overlap, V52e observes
+10 delta completions and four loss completions. V52f observes 13 delta
+completions and zero loss completions. VANDRO becomes a lawful partial;
+ZHEBOU, BERSAI, and BARYUA become 99/99/97. Eight leg behavior streams change,
+all at or after a game-level clause-5 bind; clauses 1-4/N9 have zero receipt
+differences. These are observations only; no full-804 disposition ran.
+
+Two final clean builds are byte-identical across 47 files; 355 assertions pass.
+Canonical addendum:
+`WINDOW1_V52F_PAIR_ENTRY_CONSERVATION_20260813_ADDENDUM.md`.

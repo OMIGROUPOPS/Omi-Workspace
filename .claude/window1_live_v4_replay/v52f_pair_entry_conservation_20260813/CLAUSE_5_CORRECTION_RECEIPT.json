@@ -1,0 +1,261 @@
+{
+  "authorized_change": "CLAUSE_5_PAIR_ENTRY_CONSERVATION_ONLY",
+  "settlement_identity": {
+    "payout_cents": 100,
+    "strict_law": "target_cents + credited_sibling_entry_cents < 100",
+    "integer_form": "target_cents <= 99 - credited_sibling_entry_cents",
+    "tuned_constant": false
+  },
+  "application": {
+    "only_after_sibling_credit": true,
+    "before_sibling_credit": "NOT_APPLICABLE_V52E_BYTE_BEHAVIOR",
+    "effect": "BOUND_LICENSED_TARGET_AT_FIXED_PAIR_CAP",
+    "timing_gate_added": false,
+    "crediting_changed": false
+  },
+  "clause_1": {
+    "status": "FROZEN_CODEX_INTERIM",
+    "behavior_changed": false,
+    "receipt_differences": 0
+  },
+  "clause_2": {
+    "status": "FROZEN_V52C",
+    "behavior_changed": false,
+    "receipt_differences": 0
+  },
+  "clause_3": {
+    "status": "FROZEN_V52B_PLUS_V52E_N4",
+    "machine_read_input_changed": false,
+    "receipt_differences": 0
+  },
+  "clause_4": {
+    "status": "FROZEN_V52D_PLUS_V52E_N5",
+    "behavior_changed": false,
+    "receipt_differences": 0
+  },
+  "N9": {
+    "status": "FROZEN_V52E",
+    "palantir_receipt_differences": 0,
+    "clean_store_boot": {
+      "passed": true,
+      "required_ids": [
+        "P1",
+        "P2",
+        "P4",
+        "P6",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "loaded_ids": [
+        "P1",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P2",
+        "P4",
+        "P6"
+      ],
+      "source_inventory": "store_CLEAN",
+      "unvalidated_loaded": 0,
+      "quarantined_loaded": 0,
+      "superseded_loaded": 0,
+      "fallback_loads": 0
+    }
+  },
+  "crediting": {
+    "status": "FROZEN_TRADES_AS_TRUTH",
+    "source_file": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "source_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10"
+  },
+  "scavenger": {
+    "enabled": false,
+    "status": "FROZEN"
+  },
+  "differential": {
+    "changed_decision_receipts": 15889,
+    "license_or_metadata_changed_leg_streams": 54,
+    "behavior_changed_leg_streams": 8,
+    "every_behavior_change_starts_at_or_after_clause_5": true
+  },
+  "pre_stated_claim": {
+    "named_cases": [
+      {
+        "code": "26JUL15VANDRO",
+        "event_id": "KXATPMATCH-26JUL15VANDRO",
+        "baseline": {
+          "event_id": "KXATPMATCH-26JUL15VANDRO",
+          "category": "ATP_MAIN",
+          "price_region": "26_50+51_75",
+          "state": "COMPLETE_AT_LOSS",
+          "combined_entry_cents": 100,
+          "credited_legs": [
+            {
+              "leg_identity": "KXATPMATCH-26JUL15VANDRO|DRO",
+              "entry_cents": 51
+            },
+            {
+              "leg_identity": "KXATPMATCH-26JUL15VANDRO|VAN",
+              "entry_cents": 49
+            }
+          ],
+          "missing_legs": []
+        },
+        "candidate": {
+          "event_id": "KXATPMATCH-26JUL15VANDRO",
+          "category": "ATP_MAIN",
+          "price_region": "26_50+51_75",
+          "state": "PARTIAL_FOR_REASON",
+          "combined_entry_cents": null,
+          "credited_legs": [
+            {
+              "leg_identity": "KXATPMATCH-26JUL15VANDRO|VAN",
+              "entry_cents": 49
+            }
+          ],
+          "missing_legs": [
+            {
+              "leg_identity": "KXATPMATCH-26JUL15VANDRO|DRO",
+              "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+              "judgment_gate_blocks": {
+                "STABILITY_ONSET_NOT_REACHED": 1678,
+                "NO_TAPE_MACHINE_READ_ABSENT": 1,
+                "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 191,
+                "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 491
+              }
+            }
+          ]
+        },
+        "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+      },
+      {
+        "code": "26JUL13ZHEBOU",
+        "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+        "baseline": {
+          "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+          "category": "WTA_MAIN",
+          "price_region": "26_50+51_75",
+          "state": "COMPLETE_AT_LOSS",
+          "combined_entry_cents": 100,
+          "credited_legs": [
+            {
+              "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|BOU",
+              "entry_cents": 32
+            },
+            {
+              "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|ZHE",
+              "entry_cents": 68
+            }
+          ],
+          "missing_legs": []
+        },
+        "candidate": {
+          "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+          "category": "WTA_MAIN",
+          "price_region": "26_50+51_75",
+          "state": "COMPLETE_AT_DELTA",
+          "combined_entry_cents": 99,
+          "credited_legs": [
+            {
+              "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|BOU",
+              "entry_cents": 31
+            },
+            {
+              "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|ZHE",
+              "entry_cents": 68
+            }
+          ],
+          "missing_legs": []
+        },
+        "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+      },
+      {
+        "code": "26JUL18BERSAI",
+        "event_id": "KXWTAMATCH-26JUL18BERSAI",
+        "baseline": {
+          "event_id": "KXWTAMATCH-26JUL18BERSAI",
+          "category": "WTA_MAIN",
+          "price_region": "ge75+le25",
+          "state": "COMPLETE_AT_LOSS",
+          "combined_entry_cents": 100,
+          "credited_legs": [
+            {
+              "leg_identity": "KXWTAMATCH-26JUL18BERSAI|BER",
+              "entry_cents": 10
+            },
+            {
+              "leg_identity": "KXWTAMATCH-26JUL18BERSAI|SAI",
+              "entry_cents": 90
+            }
+          ],
+          "missing_legs": []
+        },
+        "candidate": {
+          "event_id": "KXWTAMATCH-26JUL18BERSAI",
+          "category": "WTA_MAIN",
+          "price_region": "ge75+le25",
+          "state": "COMPLETE_AT_DELTA",
+          "combined_entry_cents": 99,
+          "credited_legs": [
+            {
+              "leg_identity": "KXWTAMATCH-26JUL18BERSAI|BER",
+              "entry_cents": 9
+            },
+            {
+              "leg_identity": "KXWTAMATCH-26JUL18BERSAI|SAI",
+              "entry_cents": 90
+            }
+          ],
+          "missing_legs": []
+        },
+        "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+      },
+      {
+        "code": "26JUL20BARYUA",
+        "event_id": "KXWTAMATCH-26JUL20BARYUA",
+        "baseline": {
+          "event_id": "KXWTAMATCH-26JUL20BARYUA",
+          "category": "WTA_MAIN",
+          "price_region": "26_50+51_75",
+          "state": "COMPLETE_AT_LOSS",
+          "combined_entry_cents": 100,
+          "credited_legs": [
+            {
+              "leg_identity": "KXWTAMATCH-26JUL20BARYUA|BAR",
+              "entry_cents": 71
+            },
+            {
+              "leg_identity": "KXWTAMATCH-26JUL20BARYUA|YUA",
+              "entry_cents": 29
+            }
+          ],
+          "missing_legs": []
+        },
+        "candidate": {
+          "event_id": "KXWTAMATCH-26JUL20BARYUA",
+          "category": "WTA_MAIN",
+          "price_region": "26_50+51_75",
+          "state": "COMPLETE_AT_DELTA",
+          "combined_entry_cents": 97,
+          "credited_legs": [
+            {
+              "leg_identity": "KXWTAMATCH-26JUL20BARYUA|BAR",
+              "entry_cents": 71
+            },
+            {
+              "leg_identity": "KXWTAMATCH-26JUL20BARYUA|YUA",
+              "entry_cents": 26
+            }
+          ],
+          "missing_legs": []
+        },
+        "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+      }
+    ],
+    "all_four_convert_from_COMPLETE_AT_LOSS": true,
+    "zero_new_COMPLETE_AT_LOSS": true,
+    "pass": true
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "named_cases": [
+    {
+      "code": "26JUL15VANDRO",
+      "event_id": "KXATPMATCH-26JUL15VANDRO",
+      "baseline": {
+        "event_id": "KXATPMATCH-26JUL15VANDRO",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_LOSS",
+        "combined_entry_cents": 100,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15VANDRO|DRO",
+            "entry_cents": 51
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL15VANDRO|VAN",
+            "entry_cents": 49
+          }
+        ],
+        "missing_legs": []
+      },
+      "candidate": {
+        "event_id": "KXATPMATCH-26JUL15VANDRO",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15VANDRO|VAN",
+            "entry_cents": 49
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15VANDRO|DRO",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 1678,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 191,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 491
+            }
+          }
+        ]
+      },
+      "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+    },
+    {
+      "code": "26JUL13ZHEBOU",
+      "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+      "baseline": {
+        "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_LOSS",
+        "combined_entry_cents": 100,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|BOU",
+            "entry_cents": 32
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|ZHE",
+            "entry_cents": 68
+          }
+        ],
+        "missing_legs": []
+      },
+      "candidate": {
+        "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|BOU",
+            "entry_cents": 31
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13ZHEBOU|ZHE",
+            "entry_cents": 68
+          }
+        ],
+        "missing_legs": []
+      },
+      "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+    },
+    {
+      "code": "26JUL18BERSAI",
+      "event_id": "KXWTAMATCH-26JUL18BERSAI",
+      "baseline": {
+        "event_id": "KXWTAMATCH-26JUL18BERSAI",
+        "category": "WTA_MAIN",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_LOSS",
+        "combined_entry_cents": 100,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18BERSAI|BER",
+            "entry_cents": 10
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18BERSAI|SAI",
+            "entry_cents": 90
+          }
+        ],
+        "missing_legs": []
+      },
+      "candidate": {
+        "event_id": "KXWTAMATCH-26JUL18BERSAI",
+        "category": "WTA_MAIN",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18BERSAI|BER",
+            "entry_cents": 9
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18BERSAI|SAI",
+            "entry_cents": 90
+          }
+        ],
+        "missing_legs": []
+      },
+      "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+    },
+    {
+      "code": "26JUL20BARYUA",
+      "event_id": "KXWTAMATCH-26JUL20BARYUA",
+      "baseline": {
+        "event_id": "KXWTAMATCH-26JUL20BARYUA",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_LOSS",
+        "combined_entry_cents": 100,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL20BARYUA|BAR",
+            "entry_cents": 71
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL20BARYUA|YUA",
+            "entry_cents": 29
+          }
+        ],
+        "missing_legs": []
+      },
+      "candidate": {
+        "event_id": "KXWTAMATCH-26JUL20BARYUA",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 97,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL20BARYUA|BAR",
+            "entry_cents": 71
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL20BARYUA|YUA",
+            "entry_cents": 26
+          }
+        ],
+        "missing_legs": []
+      },
+      "converted_from_COMPLETE_AT_LOSS_to_lawful_outcome": true
+    }
+  ],
+  "all_four_convert_from_COMPLETE_AT_LOSS": true,
+  "zero_new_COMPLETE_AT_LOSS": true,
+  "pass": true
+}

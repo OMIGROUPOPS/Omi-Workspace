@@ -1,0 +1,144 @@
+{
+  "decision_trace_rows": 688583,
+  "consumption_receipts": 688583,
+  "N2_receipts": 688583,
+  "N4_receipts": 688583,
+  "N5_receipts": 688583,
+  "N4_grid_covered_receipts": 630909,
+  "N4_prior_informed_live_evidence_rescues": 27336,
+  "N5_frozen_tie_resolutions": 0,
+  "baseline_N4_abstentions_in_grid_covered_receipts": 42219,
+  "candidate_N4_abstentions_on_same_receipts": 42219,
+  "N4_abstention_delta": 0,
+  "all_receipts_continuous": true,
+  "priors_gate": false,
+  "behaviorally_consumed": true,
+  "pin_comparisons": [
+    {
+      "code": "26JUL12POLKUH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "baseline_completed": false,
+      "candidate_completed": false,
+      "legs": [
+        {
+          "leg_id": "KUH",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 18,
+          "candidate_entry_cents": 18,
+          "unharmed": true
+        },
+        {
+          "leg_id": "POL",
+          "baseline_credited": false,
+          "candidate_credited": false,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": null,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL13SANDAN",
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "baseline_completed": false,
+      "candidate_completed": false,
+      "legs": [
+        {
+          "leg_id": "DAN",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 77,
+          "candidate_entry_cents": 77,
+          "unharmed": true
+        },
+        {
+          "leg_id": "SAN",
+          "baseline_credited": false,
+          "candidate_credited": false,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": null,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL14PUTJEA",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "baseline_completed": false,
+      "candidate_completed": false,
+      "legs": [
+        {
+          "leg_id": "JEA",
+          "baseline_credited": false,
+          "candidate_credited": false,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": null,
+          "unharmed": true
+        },
+        {
+          "leg_id": "PUT",
+          "baseline_credited": false,
+          "candidate_credited": false,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": null,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL16MERDRO",
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "baseline_completed": false,
+      "candidate_completed": false,
+      "legs": [
+        {
+          "leg_id": "DRO",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 49,
+          "candidate_entry_cents": 49,
+          "unharmed": true
+        },
+        {
+          "leg_id": "MER",
+          "baseline_credited": false,
+          "candidate_credited": false,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": null,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL19ARSMAR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "baseline_completed": false,
+      "candidate_completed": false,
+      "legs": [
+        {
+          "leg_id": "ARS",
+          "baseline_credited": false,
+          "candidate_credited": false,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": null,
+          "unharmed": true
+        },
+        {
+          "leg_id": "MAR",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 60,
+          "candidate_entry_cents": 60,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    }
+  ],
+  "pins_unharmed": true
+}

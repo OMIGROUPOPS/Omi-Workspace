@@ -1725,3 +1725,23 @@ credited_sibling_entry_cents`; it is diagnosed but not repaired. Two clean
 score builds are byte-identical, the frozen 30-game trace parity is 60/60, and
 35 focused assertions pass. Canonical addendum:
 `WINDOW1_V52E_FOUR_STATE_DISPOSITION_804_20260813_ADDENDUM.md`.
+
+## V52F PAIR-ENTRY CONSERVATION - 2026-08-13
+
+V52f changes one licensing clause over frozen V52e. Once a sibling is
+credited, the other expression's licensed target is bounded by
+`target <= 99 - credited sibling entry`. This is the settlement identity, not
+a margin parameter. It changes neither timing nor fill credit.
+
+The 30-game observation cohort is five pins plus a fresh 25 with zero overlap
+against every earlier V52b-e fresh cohort. V52e is 10 `COMPLETE_AT_DELTA`, four
+`COMPLETE_AT_LOSS`, ten partial, and six neither. V52f is 13 delta, zero loss,
+11 partial, and six neither. VANDRO becomes partial; ZHEBOU, BERSAI, and BARYUA
+become 99, 99, and 97. No new loss pair appears. Only eight leg behavior
+streams change, all after the pair-level clause-5 bind; prior clause receipt
+differences are zero.
+
+Two clean final builds are byte-identical across 47 artifacts. Twelve test
+files pass 355 assertions. No 804, sealed, deployment, live, or trading path
+ran. Canonical package:
+`.claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/`.

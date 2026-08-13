@@ -1,0 +1,25 @@
+{
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+  "provenance": {
+    "code": "26JUL14SMIILA",
+    "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+    "category": "ATP_CHALL",
+    "census_stamps": [
+      "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "NO_BOOK_AT_MOMENT|POST_ONSET_UNDER_ALL|REFLEX_POST"
+    ],
+    "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+NO_BOOK_AT_MOMENT|POST_ONSET_UNDER_ALL|REFLEX_POST",
+    "role": "EXPLICITLY_REUSED_NAMED_OBSERVATION_OUTSIDE_FRESH_25",
+    "prior_iteration": "V52B",
+    "prior_commit": "98d07986fd916c1d75beb45095c75752bbc65102"
+  },
+  "baseline_pair_lows_block_receipts": 5786,
+  "candidate_pair_lows_block_receipts": 0,
+  "candidate_posts_authorized_with_market_proof_false": 5786,
+  "baseline_completed": false,
+  "candidate_completed": true,
+  "baseline_combined_entry_cents": null,
+  "candidate_combined_entry_cents": 98,
+  "candidate_COMPLETE_AT_LOSS": false,
+  "pair_par_block_converted": true
+}

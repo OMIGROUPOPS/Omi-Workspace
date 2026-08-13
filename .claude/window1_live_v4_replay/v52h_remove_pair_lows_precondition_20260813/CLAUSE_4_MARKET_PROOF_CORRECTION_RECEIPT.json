@@ -1,0 +1,205 @@
+{
+  "authorized_change": "CLAUSE_4_MARKET_PROOF_PRECONDITION_REMOVAL_ONLY",
+  "before": "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR_BLOCKS_REST_LICENSE",
+  "after": "POST_ONSET_TRADED_LOW_SUM_RECORDED_AS_TELEMETRY_NOT_A_LICENSE_PRECONDITION",
+  "burden_transfer": {
+    "clause_3_evidence_backed_levels": "FROZEN",
+    "clause_6_joint_targets_at_or_below_99": "FROZEN_AND_BINDING",
+    "tuned_constant": false
+  },
+  "disagreement_referee": {
+    "status": "FROZEN_FULLY_INTACT",
+    "firing_disagreement_still_blocks": true,
+    "receipt_violations": []
+  },
+  "clauses_1_2_3_5_6": {
+    "status": "FROZEN",
+    "receipt_differences_before_authorized_change": 0,
+    "V52g_policy_commit": "ab841995f0cefa6011cf839fabf44057188111c4",
+    "pair_budget_summary": {
+      "records": 30,
+      "born_records": 30,
+      "unborn_records": 0,
+      "revision_rows": 3091,
+      "joint_sum_violations": [],
+      "incomplete_revision_chains": [],
+      "forbidden_plan_fields": [],
+      "exactly_one_record_per_game": true,
+      "pass": true,
+      "minimal_object_law": "ONE_RECORD_PER_GAME; BORN_AT_FIRST_LICENSED_POST; CURRENT_JOINT_SPLIT_AND_COMPLETE_LICENSED_REVISION_HISTORY_ONLY; NO_GOALS_OR_PREDICTIONS"
+    }
+  },
+  "N9": {
+    "status": "FROZEN_V52E",
+    "clean_store_boot": {
+      "passed": true,
+      "required_ids": [
+        "P1",
+        "P2",
+        "P4",
+        "P6",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "loaded_ids": [
+        "P1",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P2",
+        "P4",
+        "P6"
+      ],
+      "source_inventory": "store_CLEAN",
+      "unvalidated_loaded": 0,
+      "quarantined_loaded": 0,
+      "superseded_loaded": 0,
+      "fallback_loads": 0
+    }
+  },
+  "crediting": {
+    "status": "FROZEN_TRADES_AS_TRUTH",
+    "source_file": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "source_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10"
+  },
+  "scavenger": {
+    "enabled": false,
+    "status": "FROZEN"
+  },
+  "REFLEX_POST": {
+    "expected": 0,
+    "observed": 0
+  },
+  "differential": {
+    "changed_decision_receipts": 316225,
+    "license_or_metadata_changed_leg_streams": 60,
+    "behavior_changed_leg_streams": 60,
+    "every_behavior_change_starts_at_or_after_market_proof_removal": true
+  },
+  "pre_stated_claims": {
+    "SMIILA": {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+      "provenance": {
+        "code": "26JUL14SMIILA",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+        "category": "ATP_CHALL",
+        "census_stamps": [
+          "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+          "NO_BOOK_AT_MOMENT|POST_ONSET_UNDER_ALL|REFLEX_POST"
+        ],
+        "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+NO_BOOK_AT_MOMENT|POST_ONSET_UNDER_ALL|REFLEX_POST",
+        "role": "EXPLICITLY_REUSED_NAMED_OBSERVATION_OUTSIDE_FRESH_25",
+        "prior_iteration": "V52B",
+        "prior_commit": "98d07986fd916c1d75beb45095c75752bbc65102"
+      },
+      "baseline_pair_lows_block_receipts": 5786,
+      "candidate_pair_lows_block_receipts": 0,
+      "candidate_posts_authorized_with_market_proof_false": 5786,
+      "baseline_completed": false,
+      "candidate_completed": true,
+      "baseline_combined_entry_cents": null,
+      "candidate_combined_entry_cents": 98,
+      "candidate_COMPLETE_AT_LOSS": false,
+      "pair_par_block_converted": true
+    },
+    "zero_COMPLETE_AT_LOSS": true,
+    "pins_unharmed": true,
+    "new_one_sided_exposure": {
+      "newly_created_partials": 6,
+      "duration_seconds": {
+        "n": 6,
+        "null_n": 0,
+        "sum": 187448.9319999218,
+        "min": 32.44799995422363,
+        "p25": 4260.020999908447,
+        "median": 6573.041000127792,
+        "p75": 43112.954999923706,
+        "p90": 113232.757999897,
+        "max": 113232.757999897
+      },
+      "rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+          "category": "ATP_CHALL",
+          "price_region": "26_50+51_75",
+          "baseline_state": "NEITHER_FOR_REASON",
+          "credited_leg": "KXATPCHALLENGERMATCH-26JUL12TOKROZ|ROZ",
+          "credited_entry_cents": 56,
+          "credited_timestamp_epoch": 1783883219.979,
+          "missing_leg": "KXATPCHALLENGERMATCH-26JUL12TOKROZ|TOK",
+          "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+          "exposure_to_window_edge_seconds": 4260.020999908447,
+          "second_side_never_kissed": true
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+          "category": "ATP_CHALL",
+          "price_region": "26_50+51_75",
+          "baseline_state": "COMPLETE_AT_DELTA",
+          "credited_leg": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ|KUZ",
+          "credited_entry_cents": 57,
+          "credited_timestamp_epoch": 1784464062.291,
+          "missing_leg": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ|CLA",
+          "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+          "exposure_to_window_edge_seconds": 20237.709000110626,
+          "second_side_never_kissed": true
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL15VANVAL",
+          "category": "ATP_MAIN",
+          "price_region": "26_50+51_75",
+          "baseline_state": "NEITHER_FOR_REASON",
+          "credited_leg": "KXATPMATCH-26JUL15VANVAL|VAN",
+          "credited_entry_cents": 42,
+          "credited_timestamp_epoch": 1784048162.348,
+          "missing_leg": "KXATPMATCH-26JUL15VANVAL|VAL",
+          "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+          "exposure_to_window_edge_seconds": 32.44799995422363,
+          "second_side_never_kissed": true
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+          "category": "WTA_CHALL",
+          "price_region": "ge75+le25",
+          "baseline_state": "COMPLETE_AT_DELTA",
+          "credited_leg": "KXWTACHALLENGERMATCH-26JUL14PACVED|PAC",
+          "credited_entry_cents": 19,
+          "credited_timestamp_epoch": 1784008287.045,
+          "missing_leg": "KXWTACHALLENGERMATCH-26JUL14PACVED|VED",
+          "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+          "exposure_to_window_edge_seconds": 43112.954999923706,
+          "second_side_never_kissed": true
+        },
+        {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+          "category": "WTA_CHALL",
+          "price_region": "ge75+le25",
+          "baseline_state": "NEITHER_FOR_REASON",
+          "credited_leg": "KXWTACHALLENGERMATCH-26JUL15YANLAN|YAN",
+          "credited_entry_cents": 81,
+          "credited_timestamp_epoch": 1784085553.633,
+          "missing_leg": "KXWTACHALLENGERMATCH-26JUL15YANLAN|LAN",
+          "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+          "exposure_to_window_edge_seconds": 6573.041000127792,
+          "second_side_never_kissed": true
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL13SAKTON",
+          "category": "WTA_MAIN",
+          "price_region": "51_75+le25",
+          "baseline_state": "PARTIAL_FOR_REASON",
+          "credited_leg": "KXWTAMATCH-26JUL13SAKTON|TON",
+          "credited_entry_cents": 45,
+          "credited_timestamp_epoch": 1783930367.242,
+          "missing_leg": "KXWTAMATCH-26JUL13SAKTON|SAK",
+          "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+          "exposure_to_window_edge_seconds": 113232.757999897,
+          "second_side_never_kissed": true
+        }
+      ]
+    }
+  }
+}

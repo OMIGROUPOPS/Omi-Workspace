@@ -2087,3 +2087,27 @@ both machines at divergence, the joint-budget differentials, forward truth,
 and terminal outcomes without analysis-seat interpretation. Two clean builds
 are byte-identical. Canonical addendum:
 `WINDOW1_V52G_2094_RECONCILIATION_20260813_ADDENDUM.md`.
+
+### 2026-08-13 - V52H ITERATION 7 / REMOVE PAIR-LOWS MARKET PROOF
+
+V52h removes exactly clause 4's requirement that the pair's post-onset traded
+lows already sum below 100 before a rest may be licensed. The traded-low sum
+remains telemetry; the disagreement referee remains fully intact. Clauses 1,
+2, 3, 5, and 6, N9 CLEAN priors, trades-as-truth crediting, scavenger OFF,
+and `REFLEX_POST=0` remain frozen. Clause 6 still enforces joint standing
+targets at or below 99, and V52h observes zero completed-at-loss games.
+
+On five pins plus a fresh 25 with zero B/C/D/E/F/G overlap, V52g observes 10
+complete-at-delta games and V52h 16. V52h has 12 partial and two neither.
+SMIILA is honestly replayed outside the fresh cohort because V52b already
+consumed it; it converts from incomplete to a 98-cent completion. Six new
+one-sided exposures are recorded separately, with median duration 6,573.041
+seconds and maximum 113,232.758 seconds. Pins are unharmed and the disagreement
+referee has zero violations.
+
+Two builds are byte-identical across 55 files; 522 assertions pass with zero
+failures, omissions, or deselections. This is an observation-only iteration;
+no full-804, sealed, deployment, live, or trading action occurred.
+
+Canonical addendum:
+`WINDOW1_V52H_REMOVE_PAIR_LOWS_PRECONDITION_20260813_ADDENDUM.md`.

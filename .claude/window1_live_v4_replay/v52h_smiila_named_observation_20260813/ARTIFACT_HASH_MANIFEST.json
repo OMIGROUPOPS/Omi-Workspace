@@ -1,0 +1,28 @@
+{
+  "files": {
+    "CONTROL_BINDING.json": {
+      "sha256": "a72a9352a21221fb7fb21270398c9fb76f048543e1f95d469469a17267005c88",
+      "bytes": 249
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "e9b327a09976bf263e72118ecfd4d2d314f93a20bb5bb8e68116d437a9ef2c5e",
+      "bytes": 93
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4824e08cc375d5171d66a5380d8bf5202ee87aac6bebf143b3e330eed7a3b544",
+      "bytes": 179
+    },
+    "REPORT.md": {
+      "sha256": "00b79921927718b2685d06dc839d0998569dc035c985b102e940a81410150aba",
+      "bytes": 295
+    },
+    "SMIILA_NAMED_BEFORE_AFTER_TRACE.jsonl.gz": {
+      "sha256": "4c1e3b4ccb0e3b8eabd5cb10b5198292615ce9075f3e2af5ada25af493408fd2",
+      "bytes": 4102376
+    },
+    "SMIILA_NAMED_OBSERVATION.json": {
+      "sha256": "9d9fa15bd2f8a20dbae16389024a4a2279974054cfda69e4673c08aabca2447e",
+      "bytes": 993
+    }
+  }
+}

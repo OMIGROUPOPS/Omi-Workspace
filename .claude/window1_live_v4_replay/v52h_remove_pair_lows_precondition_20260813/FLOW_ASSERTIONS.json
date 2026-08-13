@@ -1,0 +1,98 @@
+{
+  "flow_assertions": {
+    "zero_posts_pre_onset": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_posts_on_no_tape": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_levels_from_displayed_bids": {
+      "violations": [],
+      "pass": true
+    },
+    "every_post_has_four_license_fields": {
+      "violations": [],
+      "pass": true
+    },
+    "scavenger_off": {
+      "violations": [],
+      "pass": true
+    }
+  },
+  "clause_1_CODEX_INTERIM": {
+    "violations": [],
+    "pass": true
+  },
+  "machine_read_evidence_on_every_post": {
+    "violations": [],
+    "pass": true
+  },
+  "diary_demoted_not_removed": {
+    "violations": [],
+    "pass": true
+  },
+  "REFLEX_POST_zero": {
+    "observed": 0,
+    "expected": 0,
+    "pass": true
+  },
+  "every_post_binds_full_post_onset_read_span": {
+    "violations": [],
+    "pass": true
+  },
+  "clauses_1_through_4_and_scavenger_mechanics_frozen": {
+    "violations": [],
+    "pass": true
+  },
+  "CLEAN_store_boot_assertion": {
+    "pass": true
+  },
+  "every_decision_receipt_consumes_N2_N4_N5_continuously": {
+    "violations": [],
+    "pass": true
+  },
+  "every_prior_has_CLEAN_provenance": {
+    "violations": [],
+    "pass": true
+  },
+  "priors_inform_never_gate": {
+    "violations": [],
+    "pass": true
+  },
+  "frozen_N9_continuous_consumption_preserved": {
+    "pass": true
+  },
+  "clause_4_market_proof_removal_recorded_on_every_rest_mutation": {
+    "violations": [],
+    "pass": true
+  },
+  "clause_4_disagreement_referee_intact": {
+    "violations": [],
+    "pass": true
+  },
+  "clauses_5_and_6_recorded_on_every_rest_mutation": {
+    "violations": [],
+    "pass": true
+  },
+  "clause_6_zero_joint_target_sum_above_99": {
+    "violations": [],
+    "pass": true
+  },
+  "pair_budget_record_one_per_game_complete_revision_chain": {
+    "pass": true
+  },
+  "zero_COMPLETE_AT_LOSS": {
+    "violations": [],
+    "pass": true
+  },
+  "SMIILA_pair_par_block_converts": {
+    "pass": true
+  },
+  "pins_unharmed": {
+    "violations": [],
+    "pass": true
+  },
+  "pass": true
+}

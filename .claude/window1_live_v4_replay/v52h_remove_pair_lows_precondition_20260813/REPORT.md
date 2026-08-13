@@ -1,0 +1,12 @@
+# V52h Iteration 7 - remove clause 4 market-proof precondition
+
+V52h removes exactly the requirement that post-onset traded lows already sum below 100 before a rest may be licensed. The traded-low sum remains recorded telemetry. The disagreement referee is intact; clauses 1, 2, 3, 5, and 6, N9, trades-as-truth crediting, scavenger OFF, and REFLEX_POST=0 are frozen.
+
+- Cohort: 5 frozen pins + 25 fresh deterministic category x census-stamp events; seed bd33dc89cbb7a279eb77bc228b6eee8c27650bbd299b4ed7beb19edf09a20005; fresh overlap B/C/D/E/F/G 0/0/0/0/0/0. SMIILA is an explicitly reused named observation from frozen V52B and is excluded from the fresh-25 score observation.
+- Differential: 316225 decision receipts, 60 behavior streams; every behavior change begins at or after the removed market-proof check.
+- Four-state observation: V52g {"PARTIAL_FOR_REASON":15,"COMPLETE_AT_DELTA":10,"NEITHER_FOR_REASON":5}; V52h {"COMPLETE_AT_DELTA":16,"PARTIAL_FOR_REASON":12,"NEITHER_FOR_REASON":2}; COMPLETE_AT_LOSS 0.
+- SMIILA named replay: {"event_id":"KXATPCHALLENGERMATCH-26JUL14SMIILA","provenance":{"code":"26JUL14SMIILA","event_id":"KXATPCHALLENGERMATCH-26JUL14SMIILA","category":"ATP_CHALL","census_stamps":["QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST","NO_BOOK_AT_MOMENT|POST_ONSET_UNDER_ALL|REFLEX_POST"],"stratum":"ATP_CHALL|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+NO_BOOK_AT_MOMENT|POST_ONSET_UNDER_ALL|REFLEX_POST","role":"EXPLICITLY_REUSED_NAMED_OBSERVATION_OUTSIDE_FRESH_25","prior_iteration":"V52B","prior_commit":"98d07986fd916c1d75beb45095c75752bbc65102"},"baseline_pair_lows_block_receipts":5786,"candidate_pair_lows_block_receipts":0,"candidate_posts_authorized_with_market_proof_false":5786,"baseline_completed":false,"candidate_completed":true,"baseline_combined_entry_cents":null,"candidate_combined_entry_cents":98,"candidate_COMPLETE_AT_LOSS":false,"pair_par_block_converted":true}.
+- New one-sided exposure: 6; duration seconds {"n":6,"null_n":0,"sum":187448.9319999218,"min":32.44799995422363,"p25":4260.020999908447,"median":6573.041000127792,"p75":43112.954999923706,"p90":113232.757999897,"max":113232.757999897}.
+- Pins unharmed true; disagreement referee violations 0.
+- Assertions: PASS; REFLEX_POST 0; scavenger OFF.
+- These 30 outcomes plus the separately named SMIILA replay are observations only. No full-804 disposition, sealed, deployment, authorization, live, order, or position action occurred.

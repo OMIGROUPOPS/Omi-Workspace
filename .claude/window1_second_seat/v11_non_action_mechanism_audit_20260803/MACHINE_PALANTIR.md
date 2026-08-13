@@ -88,3 +88,9 @@ proving-loop iteration with a pre-stated falsifiable claim before any prior-not-
 | G1 partial-delta ledger | how much one-sided exposure does the book carry, where, resolving how? (750 games; 243,275 ¢×h; top decile 40.6%) | MACRO | a new partial-management consumer |
 | G2 theta curves | post-onset drift base rates per cell (median 0 everywhere; +0.2¢/hr favorites in aggregate; Kostovic subsumed as tail) | MACRO | N2/N4 |
 | G3 vega/gamma surfaces | dip depth below running peak, 60-min recovery (rises with price: ge76 56% vs 26_50 32%), whip per volume | MICRO | N2/N4 |
+
+**Fold (journey):** G2 theta curves restamped **SCOPE-DEFECTIVE-FOR-MACRO** — the hourly-median frame cannot
+see burst-shaped travel; retained only as the no-hourly-escalator result. **G4 macro journey table** appended
+(UNVALIDATED-CANDIDATE): three stations, origin-classified; burst proof median 81.4% of travel in top-3 hours;
+movers in the 26_50 origin band; firming leg carries the larger displacement; pair view 68.3% mirrored / 2.6%
+decoupled. Target N2/N4 post-validation, prior-not-gate.

@@ -317,8 +317,8 @@
   "UNVALIDATED": 4,
   "QUARANTINED": 1,
   "SUPERSEDED": 11,
-  "rule_check": "every asset exactly one bin; the inside-print chain signature lives inside P11 (one bin); exemplar trajectories live inside P9; nothing silently omitted - the walk's registries are named in inventory_walk Fold: +3 greek candidates appended (G1-G3), CLEAN/candidate boundary untouched (CLEAN=14).",
-  "candidates_UNVALIDATED_CANDIDATE": 3
+  "rule_check": "every asset exactly one bin; the inside-print chain signature lives inside P11 (one bin); exemplar trajectories live inside P9; nothing silently omitted - the walk's registries are named in inventory_walk Fold: +3 greek candidates appended (G1-G3), CLEAN/candidate boundary untouched (CLEAN=14). Fold: G2 restamped SCOPE-DEFECTIVE-FOR-MACRO; G4 journey table appended.",
+  "candidates_UNVALIDATED_CANDIDATE": 4
  },
  "candidates_UNVALIDATED_CANDIDATE": [
   {
@@ -339,7 +339,7 @@
    "layer": "MACRO",
    "source": "GREEK_INSTRUMENTS.json B_theta",
    "sha": "(this commit)",
-   "status": "UNVALIDATED-CANDIDATE - median drift 0 in every cell; direction only in aggregate (+0.2c/hr favorites); subsumes the April Kostovic 50->72 anecdote as a tail event",
+   "status": "SCOPE-DEFECTIVE-FOR-MACRO (operator restamp) - hourly-median frame cannot see burst-shaped travel; RETAINED ONLY as the no-hourly-escalator result. Superseded for macro purposes by G4 (journey table).",
    "coverage": "804 dev games, 16 cells, post-onset only",
    "n9_wiring_target": "N2/N4 (post-validation; prior-not-gate)"
   },
@@ -352,6 +352,17 @@
    "sha": "(this commit)",
    "status": "UNVALIDATED-CANDIDATE - extends THE GRID (running-peak-anchored + time-conditioning + recovery; close-anchored numbers remain THE GRID's); recovery rises with price region (ge76 ~56% vs 26_50 ~32%); whip low-volume distortion flagged",
    "coverage": "1,530 legs post-onset, 16 cells",
+   "n9_wiring_target": "N2/N4 (post-validation; prior-not-gate)"
+  },
+  {
+   "id": "G4",
+   "name": "Macro journey table (three stations)",
+   "question": "Where does a leg's price actually travel - open to onset to edge - by origin region, and how burst-concentrated is the travel?",
+   "layer": "MACRO",
+   "source": "MACRO_JOURNEY_TABLE.json",
+   "sha": "(this commit)",
+   "status": "UNVALIDATED-CANDIDATE - burst proof: median 81.4% of total travel in the top-3 hours (p90 97.8%); movers live in the 26_50 origin band (+/-33c decile tails, medians 0); the firming leg carries the larger share of displacement; pair view 68.3% mirrored / 2.6% decoupled-same-direction",
+   "coverage": "1,602/1,608 dev legs; 801 games pair-viewed; origin-classified",
    "n9_wiring_target": "N2/N4 (post-validation; prior-not-gate)"
   }
  ]

@@ -1,0 +1,25 @@
+{
+  "pre_stated_operator_count": 127,
+  "frozen_V52c_actual_ARSMAR_block_rows": 510,
+  "discrepancy": "OPERATOR_PRE_STATED_127_DOES_NOT_EQUAL_FROZEN_V52C_ROW_GRAIN; ACTUAL_FROZEN_TRACE_CONTROLS",
+  "baseline_order_masked_disagreement_blocks": 15755,
+  "candidate_order_masked_disagreement_blocks": 0,
+  "order_masked_burden_delta": -15755,
+  "candidate_eligible_read_rows": 89979,
+  "candidate_flag_firing_rows": 69471,
+  "candidate_flag_firing_rate": 0.772080152035475,
+  "recorded_adjudications": 69471,
+  "resolved_strictly_stronger": 69471,
+  "honest_ties": 0,
+  "ARSMAR": {
+    "baseline_order_masked_blocks": 510,
+    "candidate_recorded_adjudications": 951,
+    "candidate_order_masked_blocks": 0,
+    "completed_observation": false
+  },
+  "pre_stated_falsifiable_claim": {
+    "adjudications_occur": true,
+    "order_masked_disagreement_burden_falls": true,
+    "ARSMAR_blocks_resolve_to_recorded_adjudications_or_downstream_credit": true
+  }
+}

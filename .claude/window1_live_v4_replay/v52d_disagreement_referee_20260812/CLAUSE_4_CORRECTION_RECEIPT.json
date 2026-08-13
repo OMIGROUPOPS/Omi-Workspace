@@ -1,0 +1,85 @@
+{
+  "authorized_change": "CLAUSE_4_DISAGREEMENT_REFEREE_ONLY",
+  "clause_1": {
+    "status": "FROZEN_CODEX_INTERIM",
+    "behavior_changed": false,
+    "common_receipts_compared": 350668,
+    "exact_per_receipt_match": true
+  },
+  "clause_2": {
+    "status": "FROZEN_V52C",
+    "behavior_changed": false,
+    "common_receipts_compared": 350668,
+    "exact_read_object_match": true,
+    "function_identity": {
+      "fullPostOnsetRead": true,
+      "fullPostOnsetAuthority": true
+    }
+  },
+  "clause_3": {
+    "status": "FROZEN_V52B",
+    "behavior_changed": false,
+    "source_file": "arb-executor/analysis/window1_v52b_read_level_authority.js",
+    "source_sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+    "function_identity": {
+      "machineReadLevel": true,
+      "gateDecision": true,
+      "firstFailure": true
+    },
+    "downstream_decisions_may_change_only_after_clause_4_adjudication": true
+  },
+  "clause_4": {
+    "before": "FIRING_DISAGREEMENT_FREEZES_UNLESS_SIBLING_CREDITED",
+    "after": "STRICTLY_STRONGER_RECEIPT_LOCAL_BACKING_WINS; HONEST_TIE_FREEZES",
+    "evidence_class_order": [
+      "PRINT_BACKED",
+      "QUOTE_PATH",
+      "DEPTH_PRESSURE"
+    ],
+    "comparison_order": [
+      "EVIDENCE_CLASS",
+      "BACKING_RECEIPT_RECENCY",
+      "EVIDENCING_MOVE_MAGNITUDE"
+    ],
+    "pair_under_par_check_changed": false,
+    "palantir_priors_consumed": false,
+    "N9_post_bell_consumed": false,
+    "historical_inputs_consumed": false,
+    "changed_decision_receipts": 80967,
+    "changed_leg_streams": 55,
+    "referee_summary": {
+      "pre_stated_operator_count": 127,
+      "frozen_V52c_actual_ARSMAR_block_rows": 510,
+      "discrepancy": "OPERATOR_PRE_STATED_127_DOES_NOT_EQUAL_FROZEN_V52C_ROW_GRAIN; ACTUAL_FROZEN_TRACE_CONTROLS",
+      "baseline_order_masked_disagreement_blocks": 15755,
+      "candidate_order_masked_disagreement_blocks": 0,
+      "order_masked_burden_delta": -15755,
+      "candidate_eligible_read_rows": 89979,
+      "candidate_flag_firing_rows": 69471,
+      "candidate_flag_firing_rate": 0.772080152035475,
+      "recorded_adjudications": 69471,
+      "resolved_strictly_stronger": 69471,
+      "honest_ties": 0,
+      "ARSMAR": {
+        "baseline_order_masked_blocks": 510,
+        "candidate_recorded_adjudications": 951,
+        "candidate_order_masked_blocks": 0,
+        "completed_observation": false
+      },
+      "pre_stated_falsifiable_claim": {
+        "adjudications_occur": true,
+        "order_masked_disagreement_burden_falls": true,
+        "ARSMAR_blocks_resolve_to_recorded_adjudications_or_downstream_credit": true
+      }
+    }
+  },
+  "crediting": {
+    "status": "FROZEN_TRADES_AS_TRUTH",
+    "source_file": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "source_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10"
+  },
+  "scavenger": {
+    "enabled": false,
+    "status": "FROZEN"
+  }
+}

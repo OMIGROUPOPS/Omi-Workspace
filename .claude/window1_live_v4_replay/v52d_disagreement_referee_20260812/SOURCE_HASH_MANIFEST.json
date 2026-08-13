@@ -1,0 +1,36 @@
+{
+  "files": {
+    "arb-executor/analysis/window1_v52_judgment_gate.js": {
+      "sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "role": "FROZEN_POLICY_BASE"
+    },
+    "arb-executor/analysis/window1_v52b_read_level_authority.js": {
+      "sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "role": "FROZEN_CLAUSE_3_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "sha256": "454ac7147bd120b283f5f377b745da62bbc3bbdd92d5ff04c3cfcd7e73ffc2a1",
+      "role": "REPLAY_AND_RECEIPT_BUILDER"
+    },
+    "arb-executor/analysis/window1_v52c_full_post_onset_read.js": {
+      "sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "role": "FROZEN_CLAUSE_2_POLICY"
+    },
+    "arb-executor/analysis/window1_v52d_disagreement_referee.js": {
+      "sha256": "26f379b90ded2bad6ed7a12bb82a95ff33e9937fe841b526edd36179bbd80a70",
+      "role": "CLAUSE_4_ONLY_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v52d_disagreement_referee.js": {
+      "sha256": "1f6c8f1cfaacd550a51f57d770e7c10285cae5d4b7f9abbce265ec2ca547d6a4",
+      "role": "DETERMINISTIC_ENTRYPOINT"
+    },
+    "arb-executor/tests/test_window1_v52d_disagreement_referee.js": {
+      "sha256": "bbefd23e0ab028a2b9d51bf56dcf620184461b83ba2e351a2feb308e3d31e592",
+      "role": "CLAUSE_UNIT_TEST"
+    },
+    "arb-executor/tests/test_window1_v52d_disagreement_referee_package.js": {
+      "sha256": "7265512195dfbf1cb5f163f927ffb0ba7e59feed4da09eaa65667c79ddd1534c",
+      "role": "PACKAGE_INTEGRITY_TEST"
+    }
+  }
+}

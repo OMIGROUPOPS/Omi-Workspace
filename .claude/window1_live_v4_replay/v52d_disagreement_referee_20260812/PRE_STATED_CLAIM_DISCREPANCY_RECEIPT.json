@@ -1,0 +1,6 @@
+{
+  "operator_stated_ARSMAR_blocks": 127,
+  "frozen_V52c_actual_row_grain_blocks": 510,
+  "resolution": "FROZEN_TRACE_CONTROLS; COUNT_NOT_COERCED",
+  "behavior_spec_ambiguity": false
+}

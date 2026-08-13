@@ -1912,3 +1912,25 @@ Disposition-804 remains gated. No deployment, authorization, holdout or live
 access, network runtime, or trading mutation occurred.
 
 Canonical addendum: `WINDOW1_V52C_FULL_POST_ONSET_READ_20260812_ADDENDUM.md`.
+
+### 2026-08-12 - V52D ITERATION 3 / DISAGREEMENT REFEREE
+
+V52d amends clause 4 only. A firing disagreement is adjudicated from in-game
+evidence available at that receipt in strict order: print-backed over
+quote-path over depth-pressure, then backing-receipt recency, then evidencing
+move magnitude. A strictly stronger reading wins; an exact tie remains frozen.
+The pair-under-par check is unchanged. Palantir, N9, post-bell, historical, and
+out-of-game inputs are forbidden. Clauses 1, 2, and 3, trades-as-truth
+crediting, and scavenger OFF are frozen; `REFLEX_POST` remains zero.
+
+The observation scope is five frozen pins plus a fresh stratified 25 with zero
+overlap against both V52b and V52c fresh cohorts. Frozen V52c emits 15,755
+order-masked disagreement blocks; V52d emits zero and records 69,471 strictly
+resolved referee receipts. The operator's stated ARSMAR count of 127 is
+corrected by the frozen trace to 510 row-grain blocks; V52d records 951 ARSMAR
+adjudications and leaves zero disagreement blocks, while ARSMAR remains
+incomplete as an observation. V52c and V52d each complete 9 of 30. The 804 bell
+remains unrun pending operator review of the traces. No deployment or live
+mutation is authorized.
+
+Canonical addendum: `WINDOW1_V52D_DISAGREEMENT_REFEREE_20260812_ADDENDUM.md`.

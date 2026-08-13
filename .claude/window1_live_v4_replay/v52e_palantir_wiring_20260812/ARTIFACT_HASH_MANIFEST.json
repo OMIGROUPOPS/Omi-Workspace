@@ -1,0 +1,132 @@
+{
+  "files": {
+    "ARSMAR_MAR_GATE_TRACE.jsonl.gz": {
+      "sha256": "d6843b497a2ceba7588a8560f32f155918fd869f2fe70ffc8abf7e77533372d9",
+      "bytes": 223363
+    },
+    "BEFORE_AFTER_DECISION_DIFFERENTIAL.jsonl.gz": {
+      "sha256": "73d8dbef13ff0000dcf0ca02966b562f90f9378d75632b1d58cd8975a7984db0",
+      "bytes": 59434810
+    },
+    "BEFORE_AFTER_DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "f10b6006101af49cc5b93b2274ee9bbe1cb510b055a67aa8adb2ac4aff54db36",
+      "bytes": 178
+    },
+    "CHANGED_LEG_STREAMS.jsonl.gz": {
+      "sha256": "19fa544bd63ae4519082e250f766f4f4b0ef9603b75de9a239c680360d728ce8",
+      "bytes": 15314
+    },
+    "CLEAN_SOURCE_BINDING.json": {
+      "sha256": "8e97e06bc1149067a4698f7375656b76c20587288656cf6a674bd504bde44f54",
+      "bytes": 9960
+    },
+    "CLEAN_STORE_BOOT_ASSERTION.json": {
+      "sha256": "9575ad14f26dba3fab5b5699d956c556ae1f13b15f1885a7e01f9062ae7239ec",
+      "bytes": 375
+    },
+    "COHORT_SELECTION_RECEIPT.json": {
+      "sha256": "f95228a4c9c3930abf6803d406c3395fcf05e84a533727cb8f5bef8cbab4368d",
+      "bytes": 26022
+    },
+    "CONSTRUCTION_STATUS.json": {
+      "sha256": "f97dfd79522b44b90fd6c32b1bb4b0bb0a9cea1d7e3aa9abf47c18e0ba4e6c93",
+      "bytes": 183
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "d05f846a9d17bbd00df4340b6b083f677b13d75c99d86f979417072921f990d1",
+      "bytes": 241
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "7aaba9988484008925a1c7de231dd051bd1148201c15040fa38f9ad30e286681",
+      "bytes": 94
+    },
+    "FLOW_ASSERTIONS.json": {
+      "sha256": "b2e02f6a3ef2b2979c80d1ae122e06908e65bc622d50900f524648d46e751c3a",
+      "bytes": 1565
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4824e08cc375d5171d66a5380d8bf5202ee87aac6bebf143b3e330eed7a3b544",
+      "bytes": 179
+    },
+    "N4_ABSTENTION_RECEIPT.json": {
+      "sha256": "45ebdd364584fade188d9530b07569fc8334add49d9479933bbef3f1b84d929c",
+      "bytes": 164
+    },
+    "N4_PRIOR_INFORMED_RESCUE_LEDGER.jsonl.gz": {
+      "sha256": "40c294e240cb40a7168ac5ce84b8d098d9311482e7972943e55c9233f8ad2f4b",
+      "bytes": 882865
+    },
+    "N5_PRIOR_TIE_ADJUDICATION_LEDGER.jsonl.gz": {
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "bytes": 20
+    },
+    "N9_WIRING_RECEIPT.json": {
+      "sha256": "35371a5bcc1bf712f42d81f9bfbdbeee8844c4bf78f463606b73472ad99b0c14",
+      "bytes": 6473
+    },
+    "NAMED_CHECKS_OBSERVATION_ONLY.json": {
+      "sha256": "9f03cfa4d51f83c4df57a8912fbf7f718056f761ed54fa559a4e6c8129dae696",
+      "bytes": 2450017
+    },
+    "OUTCOME_OBSERVATIONS_30.json": {
+      "sha256": "ae3c0fbd6d3fbebfa280867b370324a2367fe2b04e0be981d14c55b75c774e52",
+      "bytes": 1210
+    },
+    "PALANTIR_CONSUMPTION_LEDGER.jsonl.gz": {
+      "sha256": "dab4cdd5f55eb25d13b6b4c1525b795ce0c5fcbd9164a873802678549514610a",
+      "bytes": 19902571
+    },
+    "PALANTIR_CONSUMPTION_SUMMARY.json": {
+      "sha256": "d2122f972adb73edbc8087eadd4d0988f2e0d8e7631305f3aefa53278d20dcc8",
+      "bytes": 3920
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM.jsonl.gz": {
+      "sha256": "5a9a131b16bf26237e0cace086a3853ada80d255a8f14fa603c3502e3083e4bc",
+      "bytes": 5313
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM_SUMMARY.json": {
+      "sha256": "f4205d13c5e13b1c6b44c8c10538f9a1964953d7facabd3341bafff22cbf00c0",
+      "bytes": 754
+    },
+    "PIN_REGRESSION_RECEIPT.json": {
+      "sha256": "06f06b73073a54cbdcdd4e06d8052be60e492080c721d07fc020ff7a9a9c5928",
+      "bytes": 3405
+    },
+    "REPORT.md": {
+      "sha256": "002d0365ee1063d6a99ff4439c7b6905ce19d39f661450f23220903d95d64a8b",
+      "bytes": 1412
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "169531643c7ae7538152121bef6aaf2260eba1dc4d6aef8efaf1abee8aaf720f",
+      "bytes": 1985
+    },
+    "STABILITY_ONSET_LEDGER.jsonl.gz": {
+      "sha256": "a1601f922d782aa42d4d58e0af39e60d19516ec9b9a1d738aeef834049dddb48",
+      "bytes": 7620
+    },
+    "STEP0_REUSE_INVENTORY.json": {
+      "sha256": "a06493902102eda858bab97f9037b6026eb5f522bd71a7e1b1e177c7295ed502",
+      "bytes": 3994
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "683718487d5ec5e98e75a5c71a9e8628a5f9c12f133dc50b88bcc7792b9727e9",
+      "bytes": 1292
+    },
+    "V52D_BASELINE_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "c5bd3c79430367dfd98929f80c1bf0c684872b891d8a747d1fc07224c51d04f9",
+      "bytes": 186224
+    },
+    "V52D_BASELINE_FULL_DECISION_TRACE_30_GAMES.jsonl.gz": {
+      "sha256": "7ac251f415313250c7264105368b832c54464d86d835d62f972846b042255f43",
+      "bytes": 56680479
+    },
+    "V52E_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "3eb652897e925cb22e78915b183d811c273bc6a9f54acb613779fa9b5b74ed21",
+      "bytes": 186108
+    },
+    "V52E_FULL_DECISION_TRACE_30_GAMES.jsonl.gz": {
+      "sha256": "f1167e2f4c5fe63483a0a1145db3174a52f92e82f6bf041a39d04cbd893ede52",
+      "bytes": 97781163
+    }
+  }
+}

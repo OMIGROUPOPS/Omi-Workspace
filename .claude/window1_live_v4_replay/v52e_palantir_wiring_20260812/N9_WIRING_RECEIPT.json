@@ -1,0 +1,225 @@
+{
+  "authorized_change": "N9_CLEAN_PALANTIR_WIRING_ONLY",
+  "clause_1": {
+    "status": "FROZEN_CODEX_INTERIM",
+    "behavior_changed": false,
+    "common_receipts_compared": 361432,
+    "exact_per_receipt_match": true
+  },
+  "clause_2": {
+    "status": "FROZEN_V52C",
+    "behavior_changed": false,
+    "exact_read_object_match": true,
+    "function_identity": {
+      "fullPostOnsetRead": true,
+      "fullPostOnsetAuthority": true,
+      "observePostOnsetEvidence": true
+    }
+  },
+  "clause_3": {
+    "status": "FROZEN_MECHANICS_WITH_AUTHORIZED_N4_INFORMANT",
+    "incumbent_authority_withdrawn": false,
+    "N4_power": "RESCUE_ONLY_WHERE_FROZEN_LEVEL_ABSTAINS_AND_LIVE_RECEIPT_EVIDENCE_ALREADY_SUPPORTS_AUTHORITY; REFERENCE_BOUND_NEVER_SOLE_AUTHORITY",
+    "grid_lookup": "CURRENT_QUALIFYING_BOOK_ASK_NOT_EX_POST_CLOSE",
+    "N4_rescue_receipts": 3953
+  },
+  "clause_4": {
+    "status": "FROZEN_V52D_IN_GAME_REFEREE_FIRST_WITH_AUTHORIZED_N5_EXACT_TIE_INFORMANT",
+    "frozen_strict_winner_overridden": false,
+    "N5_power": "ONLY_FROZEN_EXACT_TIE; STRICT_VALIDATED_BASE_RATE_MARGIN_REQUIRED",
+    "N5_tie_resolutions": 0
+  },
+  "N2": {
+    "role": "RECORDED_CATEGORY_CELL_AND_VALIDATED_SIGNAL_PRIORS_FOR_THE_LIVE_TAPE_READ",
+    "behavior_gate": false
+  },
+  "N4": {
+    "role": "GRID_DISCOUNT_AND_ZONE_REFERENCE_BOUND_BESIDE_LIVE_EVIDENCE",
+    "behavior_gate": false
+  },
+  "N5": {
+    "role": "MIRROR_COHERENCE_AND_VINDICATION_TIE_AND_MARGIN_INFORMANT",
+    "behavior_gate": false
+  },
+  "continuous_consumption": {
+    "decision_trace_rows": 361432,
+    "consumption_receipts": 361432,
+    "N2_receipts": 361432,
+    "N4_receipts": 361432,
+    "N5_receipts": 361432,
+    "N4_grid_covered_receipts": 289374,
+    "N4_prior_informed_live_evidence_rescues": 3953,
+    "N5_frozen_tie_resolutions": 0,
+    "baseline_N4_abstentions_in_grid_covered_receipts": 2093,
+    "candidate_N4_abstentions_on_same_receipts": 0,
+    "N4_abstention_delta": -2093,
+    "all_receipts_continuous": true,
+    "priors_gate": false,
+    "behaviorally_consumed": true,
+    "pin_comparisons": [
+      {
+        "code": "26JUL12POLKUH",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "baseline_completed": false,
+        "candidate_completed": false,
+        "legs": [
+          {
+            "leg_id": "KUH",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 18,
+            "candidate_entry_cents": 18,
+            "unharmed": true
+          },
+          {
+            "leg_id": "POL",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL13SANDAN",
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "baseline_completed": false,
+        "candidate_completed": false,
+        "legs": [
+          {
+            "leg_id": "DAN",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 77,
+            "candidate_entry_cents": 77,
+            "unharmed": true
+          },
+          {
+            "leg_id": "SAN",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL14PUTJEA",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "baseline_completed": false,
+        "candidate_completed": false,
+        "legs": [
+          {
+            "leg_id": "JEA",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          },
+          {
+            "leg_id": "PUT",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL16MERDRO",
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "baseline_completed": false,
+        "candidate_completed": false,
+        "legs": [
+          {
+            "leg_id": "DRO",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 49,
+            "candidate_entry_cents": 49,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MER",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL19ARSMAR",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "baseline_completed": false,
+        "candidate_completed": false,
+        "legs": [
+          {
+            "leg_id": "ARS",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MAR",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 60,
+            "candidate_entry_cents": 60,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      }
+    ],
+    "pins_unharmed": true
+  },
+  "clean_store_boot": {
+    "passed": true,
+    "required_ids": [
+      "P1",
+      "P2",
+      "P4",
+      "P6",
+      "P11",
+      "P12",
+      "P13",
+      "P14"
+    ],
+    "loaded_ids": [
+      "P1",
+      "P11",
+      "P12",
+      "P13",
+      "P14",
+      "P2",
+      "P4",
+      "P6"
+    ],
+    "source_inventory": "store_CLEAN",
+    "unvalidated_loaded": 0,
+    "quarantined_loaded": 0,
+    "superseded_loaded": 0,
+    "fallback_loads": 0
+  },
+  "crediting": {
+    "status": "FROZEN_TRADES_AS_TRUTH",
+    "source_file": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "source_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10"
+  },
+  "scavenger": {
+    "enabled": false,
+    "status": "FROZEN"
+  }
+}

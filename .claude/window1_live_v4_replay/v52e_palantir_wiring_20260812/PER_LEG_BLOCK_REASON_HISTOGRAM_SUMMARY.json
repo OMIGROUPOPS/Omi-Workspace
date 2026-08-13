@@ -1,0 +1,22 @@
+{
+  "definition": "THIN_TAPE_IS_ENDOGENOUS: LEG_WITH_ONE_OR_MORE_FROZEN_V52B_READ_ABSENT_RECEIPTS; NO_COUNT_OR_TIME_THRESHOLD_ADDED",
+  "aggregate": {
+    "legs": 60,
+    "baseline": {
+      "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 112398,
+      "STABILITY_ONSET_NOT_REACHED": 87273,
+      "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 2227,
+      "NO_TAPE_MACHINE_READ_ABSENT": 57
+    },
+    "candidate": {
+      "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 112398,
+      "STABILITY_ONSET_NOT_REACHED": 87273,
+      "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 134,
+      "NO_TAPE_MACHINE_READ_ABSENT": 57
+    },
+    "thin_tape_legs": 57,
+    "thin_tape_READ_ABSENT_before": 57,
+    "thin_tape_READ_ABSENT_after": 57,
+    "READ_ABSENT_fell_on_thin_tapes": false
+  }
+}

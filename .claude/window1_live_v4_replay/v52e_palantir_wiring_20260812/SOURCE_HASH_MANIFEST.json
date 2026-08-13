@@ -1,0 +1,44 @@
+{
+  "files": {
+    "arb-executor/analysis/window1_v52_judgment_gate.js": {
+      "sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "role": "FROZEN_POLICY_BASE"
+    },
+    "arb-executor/analysis/window1_v52b_read_level_authority.js": {
+      "sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "role": "FROZEN_CLAUSE_3_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "sha256": "f7a4c0afc58631e23f30f0e303aaf20d3e488d96c8bb3c3d7b1847f7b24cae31",
+      "role": "REPLAY_AND_RECEIPT_BUILDER"
+    },
+    "arb-executor/analysis/window1_v52c_full_post_onset_read.js": {
+      "sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "role": "FROZEN_CLAUSE_2_POLICY"
+    },
+    "arb-executor/analysis/window1_v52d_disagreement_referee.js": {
+      "sha256": "26f379b90ded2bad6ed7a12bb82a95ff33e9937fe841b526edd36179bbd80a70",
+      "role": "FROZEN_CLAUSE_4_POLICY"
+    },
+    "arb-executor/analysis/window1_n9_clean_store.js": {
+      "sha256": "fb5b7518b44b0ff78e64c71e34f8ee554bd7bb7281701ffa6c16513b313cd5db",
+      "role": "CLEAN_REGISTRY_VALIDATOR_NOT_A_LOADER"
+    },
+    "arb-executor/analysis/window1_v52e_palantir_wiring.js": {
+      "sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+      "role": "N9_CONTINUOUS_PRIOR_WIRING"
+    },
+    "arb-executor/analysis/build_window1_v52e_palantir_wiring.js": {
+      "sha256": "2099e71f3384d1e404ff572edc2c8bdf50b7b486823dffe2e5440895a7a26504",
+      "role": "DETERMINISTIC_ENTRYPOINT"
+    },
+    "arb-executor/tests/test_window1_v52e_palantir_wiring.js": {
+      "sha256": "9b122d80a15934d10941267f20a19df2f98e4ddbed45b38ed02f20468d855fa8",
+      "role": "N9_UNIT_TEST"
+    },
+    "arb-executor/tests/test_window1_v52e_palantir_wiring_package.js": {
+      "sha256": "19eb3c32c0412f463d68888b60eb8fdc54b2a0bed48fe71eeed6f6ce6d2f5cb8",
+      "role": "PACKAGE_INTEGRITY_TEST"
+    }
+  }
+}

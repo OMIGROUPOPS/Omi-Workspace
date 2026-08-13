@@ -1934,3 +1934,28 @@ remains unrun pending operator review of the traces. No deployment or live
 mutation is authorized.
 
 Canonical addendum: `WINDOW1_V52D_DISAGREEMENT_REFEREE_20260812_ADDENDUM.md`.
+
+### 2026-08-12 - V52E ITERATION 4 / N9 CLEAN PALANTIR WIRING
+
+V52e reuses the vault-wired dossier, C-ONE-TRUTH registry semantics, pinned
+Git-object reader, and frozen N8 incumbent chain. It does not build a parallel
+loader. The registry is re-pointed to `MACHINE_PALANTIR.store_CLEAN` at
+`9929e91802dc0e0f7ed1af50c5526b2c9a730c7c`; boot accepts only VALIDATED or
+VALID-NARROW assets and hard-refuses UNVALIDATED, QUARANTINED, SUPERSEDED, and
+fallback inputs. Hot-mtime ATLAS/cohort and non-CLEAN loaders are retired for
+this package with named reasons.
+
+N2, N4, and N5 are consulted continuously on all 361,432 decision receipts,
+each with asset/status/SHA provenance. Priors inform and never gate. N4 rescues
+3,953 receipt-local levels already bounded by live evidence; grid-covered
+authority abstentions fall 2,093 to zero. N5 is present on every receipt but
+the cohort contains no frozen V52d exact tie eligible for a prior resolution.
+All five pins are unharmed; V52d and V52e each complete 17 of the fresh 30 as
+observations only. Clauses 1-4 mechanics, trades-as-truth crediting, scavenger
+OFF, and REFLEX_POST zero remain frozen.
+
+Two clean builds are byte-identical; 286 focused/inherited assertions pass.
+The 804 bell did not run and remains gated pending operator trace review. No
+deployment, authorization, holdout/live access, or trading mutation occurred.
+
+Canonical addendum: `WINDOW1_V52E_PALANTIR_WIRING_20260812_ADDENDUM.md`.

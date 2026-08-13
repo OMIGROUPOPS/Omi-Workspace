@@ -1,0 +1,251 @@
+{
+ "rows": [
+  {
+   "fact": "OFFERED",
+   "reason": "STABILITY_ONSET_NOT_REACHED",
+   "games": 113,
+   "cents_forgone": 890,
+   "margin_bands": {
+    "10c+": 20,
+    "1-2c": 43,
+    "3-4c": 26,
+    "5-9c": 24
+   },
+   "cats": {
+    "ATP_CHALL": 59,
+    "ATP_MAIN": 20,
+    "WTA_CHALL": 8,
+    "WTA_MAIN": 26
+   },
+   "exemplars": [
+    "26JUL16MERDRO(exact,m13)",
+    "26JUL12DEGEE(exact,m12)",
+    "26JUL12MULSHE(exact,m11)"
+   ]
+  },
+  {
+   "fact": "OFFERED",
+   "reason": "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR",
+   "games": 176,
+   "cents_forgone": 659,
+   "margin_bands": {
+    "5-9c": 44,
+    "1-2c": 91,
+    "10c+": 6,
+    "3-4c": 35
+   },
+   "cats": {
+    "ATP_CHALL": 87,
+    "ATP_MAIN": 29,
+    "WTA_CHALL": 32,
+    "WTA_MAIN": 28
+   },
+   "exemplars": [
+    "26JUL18PELSIL(exact,m36)",
+    "26JUL19NIKVRB(exact,m9)",
+    "26JUL15ZINGAL(exact,m8)"
+   ]
+  },
+  {
+   "fact": "OFFERED",
+   "reason": "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR+STABILITY_ONSET_NOT_REACHED",
+   "games": 32,
+   "cents_forgone": 111,
+   "margin_bands": {
+    "1-2c": 20,
+    "5-9c": 3,
+    "3-4c": 8,
+    "10c+": 1
+   },
+   "cats": {
+    "ATP_CHALL": 16,
+    "ATP_MAIN": 5,
+    "WTA_CHALL": 9,
+    "WTA_MAIN": 2
+   },
+   "exemplars": [
+    "26JUL12OKAIPE(exact,m4)",
+    "26JUL20GORMIN(exact,m2)",
+    "26JUL20MARROS(exact,m1)"
+   ]
+  },
+  {
+   "fact": "OFFERED",
+   "reason": "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED",
+   "games": 15,
+   "cents_forgone": 109,
+   "margin_bands": {
+    "5-9c": 5,
+    "3-4c": 5,
+    "10c+": 2,
+    "1-2c": 3
+   },
+   "cats": {
+    "ATP_CHALL": 5,
+    "ATP_MAIN": 3,
+    "WTA_CHALL": 4,
+    "WTA_MAIN": 3
+   },
+   "exemplars": [
+    "26JUL12MALTUR(exact,m5)",
+    "26JUL20KABCHI(exact,m3)",
+    "26JUL19RUSKAZ(exact,m1)"
+   ]
+  },
+  {
+   "fact": "OFFERED",
+   "reason": "COMPLETED_AT_LOSS",
+   "games": 4,
+   "cents_forgone": 20,
+   "margin_bands": {
+    "5-9c": 2,
+    "3-4c": 2
+   },
+   "cats": {
+    "ATP_MAIN": 1,
+    "WTA_MAIN": 3
+   },
+   "exemplars": [
+    "26JUL18BERSAI(exact,m4)",
+    "26JUL15VANDRO(live_by_only,m7)",
+    "26JUL20BARYUA(live_by_only,m5)"
+   ]
+  },
+  {
+   "fact": "OFFERED",
+   "reason": "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED+PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR",
+   "games": 4,
+   "cents_forgone": 14,
+   "margin_bands": {
+    "3-4c": 1,
+    "1-2c": 2,
+    "5-9c": 1
+   },
+   "cats": {
+    "ATP_CHALL": 2,
+    "WTA_CHALL": 2
+   },
+   "exemplars": [
+    "26JUL14DILFAL(live_by_only,m8)",
+    "26JUL14ZHUYUN(live_by_only,m3)",
+    "26JUL20ARSRIC(live_by_only,m2)"
+   ]
+  },
+  {
+   "fact": "OFFERED",
+   "reason": "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED+STABILITY_ONSET_NOT_REACHED",
+   "games": 2,
+   "cents_forgone": 5,
+   "margin_bands": {
+    "1-2c": 1,
+    "3-4c": 1
+   },
+   "cats": {
+    "ATP_CHALL": 2
+   },
+   "exemplars": [
+    "26JUL14GENPET(live_by_only,m4)",
+    "26JUL13DONWES(live_by_only,m1)"
+   ]
+  },
+  {
+   "fact": "NOT_OFFERED_POST_ONSET",
+   "reason": "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR",
+   "games": 81,
+   "cents_forgone": 0,
+   "margin_bands": {},
+   "cats": {
+    "ATP_CHALL": 45,
+    "ATP_MAIN": 4,
+    "WTA_CHALL": 23,
+    "WTA_MAIN": 9
+   },
+   "exemplars": [
+    "26JUL12BINGIL(exact,no-offer)",
+    "26JUL12FUEROS(exact,no-offer)",
+    "26JUL12HOHSUR(exact,no-offer)"
+   ]
+  },
+  {
+   "fact": "NOT_OFFERED_POST_ONSET",
+   "reason": "STABILITY_ONSET_NOT_REACHED",
+   "games": 61,
+   "cents_forgone": 0,
+   "margin_bands": {},
+   "cats": {
+    "ATP_CHALL": 37,
+    "ATP_MAIN": 4,
+    "WTA_CHALL": 12,
+    "WTA_MAIN": 8
+   },
+   "exemplars": [
+    "26JUL12FANBIG(exact,no-offer)",
+    "26JUL12LAGTEP(exact,no-offer)",
+    "26JUL12SALARN(exact,no-offer)"
+   ]
+  },
+  {
+   "fact": "NOT_OFFERED_POST_ONSET",
+   "reason": "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR+STABILITY_ONSET_NOT_REACHED",
+   "games": 46,
+   "cents_forgone": 0,
+   "margin_bands": {},
+   "cats": {
+    "ATP_CHALL": 23,
+    "ATP_MAIN": 5,
+    "WTA_CHALL": 17,
+    "WTA_MAIN": 1
+   },
+   "exemplars": [
+    "26JUL13BOUGAN(exact,no-offer)",
+    "26JUL13CHOSUR(exact,no-offer)",
+    "26JUL15GOMARN(exact,no-offer)"
+   ]
+  },
+  {
+   "fact": "NOT_OFFERED_POST_ONSET",
+   "reason": "NO_GATE_BLOCK_RECORDED",
+   "games": 2,
+   "cents_forgone": 0,
+   "margin_bands": {},
+   "cats": {
+    "ATP_CHALL": 1,
+    "ATP_MAIN": 1
+   },
+   "exemplars": [
+    "26JUL14MATMOR(live_by_only,no-offer)",
+    "26JUL18CORSAC(live_by_only,no-offer)"
+   ]
+  },
+  {
+   "fact": "NOT_OFFERED_POST_ONSET",
+   "reason": "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED+PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR",
+   "games": 1,
+   "cents_forgone": 0,
+   "margin_bands": {},
+   "cats": {
+    "WTA_CHALL": 1
+   },
+   "exemplars": [
+    "26JUL16BASRUS(live_by_only,no-offer)"
+   ]
+  }
+ ],
+ "states": {
+  "PARTIAL_FOR_REASON": 232,
+  "COMPLETE_AT_DELTA": 267,
+  "NEITHER_FOR_REASON": 301,
+  "COMPLETE_AT_LOSS": 4
+ },
+ "offer": {
+  "OFFERED_POST_ONSET": 612,
+  "FORMATION_ONLY_OFFER": 72,
+  "NOT_OFFERED_POST_ONSET": 82,
+  "NO_ONSET": 36,
+  "NO_TAPE": 2
+ },
+ "total": {
+  "games": 537,
+  "cents": 1808
+ }
+}

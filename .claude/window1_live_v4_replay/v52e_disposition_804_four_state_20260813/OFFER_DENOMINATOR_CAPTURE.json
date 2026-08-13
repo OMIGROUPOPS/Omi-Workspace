@@ -1,0 +1,635 @@
+{
+  "by_category_x_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50+26_50",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75",
+      "denominator": 238,
+      "market": {
+        "captured": 55,
+        "denominator": 238,
+        "rate": 0.23109243697478993
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 26,
+        "NOT_OFFERED_POST_ONSET": 32,
+        "NO_ONSET": 13,
+        "NO_TAPE": 1,
+        "OFFERED_POST_ONSET": 166
+      },
+      "strict": {
+        "captured": 26,
+        "denominator": 238,
+        "rate": 0.1092436974789916
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+ge75",
+      "denominator": 4,
+      "market": {
+        "captured": 2,
+        "denominator": 4,
+        "rate": 0.5
+      },
+      "offer_classes": {
+        "NO_ONSET": 1,
+        "OFFERED_POST_ONSET": 3
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 4,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+le25",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "NOT_OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+51_75",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "NO_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+ge75",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "NOT_OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+le25",
+      "denominator": 6,
+      "market": {
+        "captured": 0,
+        "denominator": 6,
+        "rate": 0
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 1,
+        "NOT_OFFERED_POST_ONSET": 2,
+        "OFFERED_POST_ONSET": 3
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 6,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25",
+      "denominator": 102,
+      "market": {
+        "captured": 28,
+        "denominator": 102,
+        "rate": 0.27450980392156865
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 11,
+        "NOT_OFFERED_POST_ONSET": 9,
+        "NO_ONSET": 3,
+        "OFFERED_POST_ONSET": 79
+      },
+      "strict": {
+        "captured": 16,
+        "denominator": 102,
+        "rate": 0.1568627450980392
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25+le25",
+      "denominator": 15,
+      "market": {
+        "captured": 7,
+        "denominator": 15,
+        "rate": 0.4666666666666667
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 1,
+        "NO_ONSET": 2,
+        "OFFERED_POST_ONSET": 12
+      },
+      "strict": {
+        "captured": 4,
+        "denominator": 15,
+        "rate": 0.26666666666666666
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+26_50",
+      "denominator": 1,
+      "market": {
+        "captured": 1,
+        "denominator": 1,
+        "rate": 1
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 1,
+        "denominator": 1,
+        "rate": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75",
+      "denominator": 103,
+      "market": {
+        "captured": 54,
+        "denominator": 103,
+        "rate": 0.5242718446601942
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 2,
+        "NOT_OFFERED_POST_ONSET": 3,
+        "NO_ONSET": 3,
+        "NO_TAPE": 1,
+        "OFFERED_POST_ONSET": 94
+      },
+      "strict": {
+        "captured": 23,
+        "denominator": 103,
+        "rate": 0.22330097087378642
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+ge75",
+      "denominator": 4,
+      "market": {
+        "captured": 2,
+        "denominator": 4,
+        "rate": 0.5
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 2,
+        "OFFERED_POST_ONSET": 2
+      },
+      "strict": {
+        "captured": 1,
+        "denominator": 4,
+        "rate": 0.25
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+51_75",
+      "denominator": 1,
+      "market": {
+        "captured": 1,
+        "denominator": 1,
+        "rate": 1
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 1,
+        "denominator": 1,
+        "rate": 1
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+le25",
+      "denominator": 2,
+      "market": {
+        "captured": 2,
+        "denominator": 2,
+        "rate": 1
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 2
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 2,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+ge75",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+le25",
+      "denominator": 29,
+      "market": {
+        "captured": 13,
+        "denominator": 29,
+        "rate": 0.4482758620689655
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 2,
+        "NOT_OFFERED_POST_ONSET": 1,
+        "OFFERED_POST_ONSET": 26
+      },
+      "strict": {
+        "captured": 4,
+        "denominator": 29,
+        "rate": 0.13793103448275862
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25+le25",
+      "denominator": 6,
+      "market": {
+        "captured": 2,
+        "denominator": 6,
+        "rate": 0.3333333333333333
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 6
+      },
+      "strict": {
+        "captured": 1,
+        "denominator": 6,
+        "rate": 0.16666666666666666
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+26_50",
+      "denominator": 2,
+      "market": {
+        "captured": 1,
+        "denominator": 2,
+        "rate": 0.5
+      },
+      "offer_classes": {
+        "NOT_OFFERED_POST_ONSET": 1,
+        "OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 2,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75",
+      "denominator": 88,
+      "market": {
+        "captured": 13,
+        "denominator": 88,
+        "rate": 0.14772727272727273
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 13,
+        "NOT_OFFERED_POST_ONSET": 19,
+        "NO_ONSET": 6,
+        "OFFERED_POST_ONSET": 50
+      },
+      "strict": {
+        "captured": 4,
+        "denominator": 88,
+        "rate": 0.045454545454545456
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75+le25",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "NO_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge75+le25",
+      "denominator": 44,
+      "market": {
+        "captured": 13,
+        "denominator": 44,
+        "rate": 0.29545454545454547
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 4,
+        "NOT_OFFERED_POST_ONSET": 7,
+        "NO_ONSET": 3,
+        "OFFERED_POST_ONSET": 30
+      },
+      "strict": {
+        "captured": 2,
+        "denominator": 44,
+        "rate": 0.045454545454545456
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25+le25",
+      "denominator": 1,
+      "market": {
+        "captured": 1,
+        "denominator": 1,
+        "rate": 1
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75",
+      "denominator": 77,
+      "market": {
+        "captured": 38,
+        "denominator": 77,
+        "rate": 0.4935064935064935
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 2,
+        "NOT_OFFERED_POST_ONSET": 3,
+        "NO_ONSET": 1,
+        "OFFERED_POST_ONSET": 71
+      },
+      "strict": {
+        "captured": 18,
+        "denominator": 77,
+        "rate": 0.23376623376623376
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+ge75",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+le25",
+      "denominator": 3,
+      "market": {
+        "captured": 0,
+        "denominator": 3,
+        "rate": 0
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 3
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 3,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+51_75",
+      "denominator": 1,
+      "market": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 1
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 1,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+le25",
+      "denominator": 4,
+      "market": {
+        "captured": 1,
+        "denominator": 4,
+        "rate": 0.25
+      },
+      "offer_classes": {
+        "OFFERED_POST_ONSET": 4
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 4,
+        "rate": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25",
+      "denominator": 56,
+      "market": {
+        "captured": 30,
+        "denominator": 56,
+        "rate": 0.5357142857142857
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 4,
+        "NOT_OFFERED_POST_ONSET": 2,
+        "OFFERED_POST_ONSET": 50
+      },
+      "strict": {
+        "captured": 21,
+        "denominator": 56,
+        "rate": 0.375
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25+le25",
+      "denominator": 10,
+      "market": {
+        "captured": 3,
+        "denominator": 10,
+        "rate": 0.3
+      },
+      "offer_classes": {
+        "FORMATION_ONLY_OFFER": 3,
+        "NOT_OFFERED_POST_ONSET": 1,
+        "NO_ONSET": 2,
+        "OFFERED_POST_ONSET": 4
+      },
+      "strict": {
+        "captured": 0,
+        "denominator": 10,
+        "rate": 0
+      }
+    }
+  ],
+  "classes_market": {
+    "FORMATION_ONLY_OFFER": {
+      "captured": 0,
+      "denominator": 72,
+      "rate": 0
+    },
+    "NOT_OFFERED_POST_ONSET": {
+      "captured": 0,
+      "denominator": 82,
+      "rate": 0
+    },
+    "NO_ONSET": {
+      "captured": 1,
+      "denominator": 36,
+      "rate": 0.027777777777777776
+    },
+    "NO_TAPE": {
+      "captured": 0,
+      "denominator": 2,
+      "rate": 0
+    },
+    "OFFERED_POST_ONSET": {
+      "captured": 266,
+      "denominator": 612,
+      "rate": 0.434640522875817
+    }
+  },
+  "fixed_denominator": {
+    "D": 804,
+    "OFFERED_POST_ONSET": 612,
+    "margin_ladder": {
+      "GE_10_CENTS": 90,
+      "GE_3_CENTS": 384,
+      "GE_5_CENTS": 236,
+      "THIN_1_TO_2_CENTS": 228
+    },
+    "other_classes": {
+      "FORMATION_ONLY_OFFER": 72,
+      "NOT_OFFERED_POST_ONSET": 82,
+      "NO_ONSET": 36,
+      "NO_TAPE": 2,
+      "OFFERED_POST_ONSET": 612
+    }
+  },
+  "formation_only_and_not_offered_never_folded": true,
+  "market_ladder": {
+    "ALL_OFFERED_POST_ONSET": {
+      "captured": 266,
+      "denominator": 612,
+      "rate": 0.434640522875817
+    },
+    "GE_10_CENTS": {
+      "captured": 61,
+      "denominator": 90,
+      "rate": 0.6777777777777778
+    },
+    "GE_3_CENTS": {
+      "captured": 198,
+      "denominator": 384,
+      "rate": 0.515625
+    },
+    "GE_5_CENTS": {
+      "captured": 128,
+      "denominator": 236,
+      "rate": 0.5423728813559322
+    },
+    "THIN_1_TO_2_CENTS": {
+      "captured": 68,
+      "denominator": 228,
+      "rate": 0.2982456140350877
+    }
+  },
+  "source": {
+    "commit": "22441e058f9efa7ea8c3065334a238ec8786416f",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json",
+    "sha256": "6bc197aaf4cd187d596fe1b4f731db30f2b2e249a82e7c6705cc20237695f955"
+  },
+  "strict_ladder": {
+    "ALL_OFFERED_POST_ONSET": {
+      "captured": 122,
+      "denominator": 612,
+      "rate": 0.19934640522875818
+    },
+    "GE_10_CENTS": {
+      "captured": 27,
+      "denominator": 90,
+      "rate": 0.3
+    },
+    "GE_3_CENTS": {
+      "captured": 85,
+      "denominator": 384,
+      "rate": 0.22135416666666666
+    },
+    "GE_5_CENTS": {
+      "captured": 57,
+      "denominator": 236,
+      "rate": 0.24152542372881355
+    },
+    "THIN_1_TO_2_CENTS": {
+      "captured": 37,
+      "denominator": 228,
+      "rate": 0.16228070175438597
+    }
+  }
+}

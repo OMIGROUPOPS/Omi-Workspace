@@ -1,0 +1,32 @@
+{
+  "adapter": "FROZEN_DIARY_PLUS_HASH_BOUND_PRINTS_V1",
+  "behavior_edits": false,
+  "fourth_state_operator_ruling_consumed": true,
+  "input_commit": "d9f83b30c44c3910f40d84b4b4f32daccabf3604",
+  "input_manifest_sha256": "53a9e4f2c724eab1dca4cd3979e4895589280a6dd012b95c1291d8d52e1fb594",
+  "input_path": ".claude/window1_live_v4_replay/v52e_disposition_804_blocked_20260813",
+  "order_before_resynchronizations": 0,
+  "pass": true,
+  "policy_invocations": 0,
+  "policy_modules_imported": 0,
+  "policy_replay": false,
+  "print_source": {
+    "admitted_unique_window_prints": 259930,
+    "bytes": 1766090446,
+    "duplicate_trade_id_rows_rejected": 0,
+    "path_class": "PRIVATE_FIT_DEVELOPMENT_PRINTS_HASH_ONLY",
+    "raw_rows": 4836462,
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "reconstructed_events": 804,
+  "reconstructed_loss_events": 4,
+  "resynchronization_classes": {},
+  "source_event_boundaries": 802,
+  "trace_chunks": 101,
+  "trace_empty_event_ids": [
+    "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+    "KXATPMATCH-26JUL18CORSAC"
+  ],
+  "trace_empty_events": 2,
+  "trace_rows": 14166494
+}

@@ -1,0 +1,140 @@
+{
+  "aggregate_sha256": "09592f3e81e754e5929b0b5cab599400a30b720a6551b254657e2a707c88933c",
+  "files": [
+    {
+      "bytes": 306,
+      "path": "COMPLETE_AT_LOSS_AUTOPSY_SUMMARY.json",
+      "sha256": "49bd16f7fa011d80eb294513178f80bae6e1e31b9fa2864dc988ffcd511b6bdd"
+    },
+    {
+      "bytes": 4625,
+      "path": "COMPLETE_AT_LOSS_LICENSE_AUTOPSY.jsonl.gz",
+      "sha256": "45c68e078ad7e681aa2ba86f07112340c45081ca75168c76ba4996d83e44e1d7"
+    },
+    {
+      "bytes": 452,
+      "path": "CONTROL_BINDING.json",
+      "sha256": "59eb7e91150949ae140ac750e94ec3a0e2ccc7806a5442f7c02e7061ba6c829e"
+    },
+    {
+      "bytes": 123,
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "ba3c34261eb18265a356590e2a9aefc8f69f86e91af098ad8f36318474e4924f"
+    },
+    {
+      "bytes": 231228,
+      "path": "FIRST_POST_LEDGER.jsonl.gz",
+      "sha256": "ba234d759a03cbfec93cadde15aa1d0e2d24ec4df3a7fd0d71c6e22845c84b94"
+    },
+    {
+      "bytes": 251,
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "ff57325531670952e7f7788dc51b1d7765f0ccf0273fea1221b0b7e64f1dddbb"
+    },
+    {
+      "bytes": 4368,
+      "path": "FOUR_STATE_CENSUS.json",
+      "sha256": "abfccd6318b6e0339d355bf254034e43e97ae39271602df3a7819c10caa3504d"
+    },
+    {
+      "bytes": 19558,
+      "path": "FOUR_STATE_EVENT_LEDGER_804.jsonl.gz",
+      "sha256": "d2c50282d387701e8854416aa5928f24ccac26187c3c9af2092accd00fe2932c"
+    },
+    {
+      "bytes": 34133,
+      "path": "FRONTIER.json",
+      "sha256": "c17064094191a69b6eedde48128df65cb60971752738e58ba3613a63e1a9afae"
+    },
+    {
+      "bytes": 1223,
+      "path": "LINEAGE_RECEIPT.json",
+      "sha256": "b17319d4ad34a097dacf8a12457a59eb29dcfef43e79ba74cf6a55bcc4e87fbc"
+    },
+    {
+      "bytes": 6278624,
+      "path": "MARKET_EVENT_LEDGER_804.jsonl.gz",
+      "sha256": "910035b47ed5eceafd6d60ca235248c131cef02b03f5a8be9dfb03cfd9197d3b"
+    },
+    {
+      "bytes": 5168,
+      "path": "NAMED_CHECKS.json",
+      "sha256": "159fd474450015f1fd0baaa2c0b7b959825baceb4bb2fe851efc17c32b43bf58"
+    },
+    {
+      "bytes": 13421,
+      "path": "OFFER_DENOMINATOR_CAPTURE.json",
+      "sha256": "bd50178da216b09405c764325dc6c7880c9e7e67ae9604e0f57cd96de1345373"
+    },
+    {
+      "bytes": 811,
+      "path": "PALANTIR_CONSUMPTION_SCALE_RECEIPT.json",
+      "sha256": "22ab17b03317addbadf26142ad40bb0f9e91183bdb9a27ac715b0751061be6bb"
+    },
+    {
+      "bytes": 1720,
+      "path": "PER_BLOCK_REASON_ROLLUP.json",
+      "sha256": "59243e31d21cb7c7412794cb62d846d73f65a17d2a1d7058007852642328cdb4"
+    },
+    {
+      "bytes": 2320,
+      "path": "POLICY_BYTE_IDENTITY.json",
+      "sha256": "c4649bcfb5feaed65b105d9affe45114cc640a00977725427eebc0c3981a425d"
+    },
+    {
+      "bytes": 1062,
+      "path": "POSTING_TIME_AND_READ_AT_POST.json",
+      "sha256": "dd91eb8a0c40033685f3a4bce7ef90eabe3614524d029ff96dada4322b2020c8"
+    },
+    {
+      "bytes": 49606,
+      "path": "POST_ONSET_OFFER_CAPTURE_LEDGER_804.jsonl.gz",
+      "sha256": "1b4875f2ce8f23c45692d0c357e62c6a1ea140ed2ff59fd4c9408110424ff6a0"
+    },
+    {
+      "bytes": 109,
+      "path": "REFLEX_POST_ATTESTATION.json",
+      "sha256": "25a57d8c34c55f972002c9995b998bef2c0fac4f6290d36537e15539f94c9941"
+    },
+    {
+      "bytes": 13979,
+      "path": "REGRET_GAUGE.json",
+      "sha256": "8f152c9062b59c0c148135fcd65489266457503cac654be6751e5ea1cce70f24"
+    },
+    {
+      "bytes": 41559,
+      "path": "REGRET_LEDGER_1608.jsonl.gz",
+      "sha256": "91556c3ea67aa588a785314b654bb084550da6fb845da6a404950c0b8232ebb8"
+    },
+    {
+      "bytes": 1432,
+      "path": "REPORT.md",
+      "sha256": "b85ea0c7fcbfa10ed4cdea3a738c96d078a4ba59d1cc8458f6494ae69195787b"
+    },
+    {
+      "bytes": 30068,
+      "path": "SOURCE_HASH_MANIFEST.json",
+      "sha256": "72b26e307c893d3dcd19ffdff5864b9047b4fe33658186dddd338920d4d932c3"
+    },
+    {
+      "bytes": 6289270,
+      "path": "STRICT_EVENT_LEDGER_804.jsonl.gz",
+      "sha256": "c711a69a0a545a5df2517c6db83a81624530358bf87dea8f130f77234e9c79da"
+    },
+    {
+      "bytes": 443,
+      "path": "TRACE_RECONSTRUCTION_PARITY_30.json",
+      "sha256": "ae74944250e6e666769fb9c36b7682252a72c739fdce9450ca0cb612e7229a63"
+    },
+    {
+      "bytes": 1143,
+      "path": "TRACE_SCORE_ADAPTER_RECEIPT.json",
+      "sha256": "506b07a03c1781cb963485833086d8788c48f2beb002d43d5133cbf39589ac4d"
+    },
+    {
+      "bytes": 35288,
+      "path": "TWO_RULER_SCORECARD.json",
+      "sha256": "9cc599108500f6dabf72a5236c3dfe70384e8b38dd9b13f5eba123a3b2383ab5"
+    }
+  ]
+}

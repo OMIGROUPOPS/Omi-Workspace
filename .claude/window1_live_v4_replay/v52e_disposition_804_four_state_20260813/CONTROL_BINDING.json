@@ -1,0 +1,13 @@
+{
+  "already_run_trace_commit": "d9f83b30c44c3910f40d84b4b4f32daccabf3604",
+  "deployment": false,
+  "frozen_policy_commit": "b09aa22b301205d5d44d683497cf3edc5b177cf8",
+  "live": false,
+  "policy_edits": false,
+  "policy_replay": false,
+  "scope": "DEV_804_ONLY",
+  "score_only_adapter": true,
+  "sealed_access": false,
+  "trace_parent": "11f0fe0e04c315b555a0f02e4c8d44388328039e",
+  "variant": "V52E_DISPOSITION_804_FOUR_STATE_SCORE_FROM_D9_TRACES"
+}

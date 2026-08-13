@@ -1707,3 +1707,21 @@ live cutover is authorized.
 
 Canonical receipt:
 https://raw.githubusercontent.com/OMIGROUPOPS/Omi-Workspace/0e8b51f48105cab43db1d87d481a3a9fa8d91b6c/.claude/window1_live_v4_replay/v45_re_adjudication_20260809/V45_RE_ADJUDICATION_RECEIPT.json
+
+## V52E FULL-804 FOUR-STATE SCORE - 2026-08-13
+
+The operator added `COMPLETE_AT_LOSS` as the exhaustive fourth disposition for
+a completed pair at or above 100; it is a first-class defect and is never
+folded. A score-only adapter consumed the already-run d9f83b30 decision shards
+without invoking or replaying policy. The four-state census is 267 at delta, 4
+at loss, 232 partial, and 301 neither, conserving 804. Market completed/under
+par is 271/267; strict build verification is 124/122. Offered-post-onset
+capture is 266/612. REFLEX_POST is zero.
+
+The four losses—VANDRO, ZHEBOU, BERSAI, and BARYUA—are all exactly 100. In each,
+a later machine-read receipt repriced the second side one cent above the active
+pair cap. The precise missing check is `target_cents <= 99 -
+credited_sibling_entry_cents`; it is diagnosed but not repaired. Two clean
+score builds are byte-identical, the frozen 30-game trace parity is 60/60, and
+35 focused assertions pass. Canonical addendum:
+`WINDOW1_V52E_FOUR_STATE_DISPOSITION_804_20260813_ADDENDUM.md`.

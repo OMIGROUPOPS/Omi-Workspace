@@ -1,0 +1,12 @@
+{
+  "event_ids": [
+    "KXATPMATCH-26JUL15VANDRO",
+    "KXWTAMATCH-26JUL13ZHEBOU",
+    "KXWTAMATCH-26JUL18BERSAI",
+    "KXWTAMATCH-26JUL20BARYUA"
+  ],
+  "events": 4,
+  "missing_check_precise": "V52E_MACHINE_READ_LICENSE_TARGET_MUST_BE_BOUNDED_BY_ACTIVE_PAIR_CAP",
+  "repair_applied": false,
+  "rows": 12
+}

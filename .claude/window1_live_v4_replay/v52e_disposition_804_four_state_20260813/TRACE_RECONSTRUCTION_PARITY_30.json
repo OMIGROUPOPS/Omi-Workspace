@@ -1,0 +1,12 @@
+{
+  "byte_value_parity": true,
+  "differences": [],
+  "events": 30,
+  "legs": 60,
+  "role": "INDEPENDENT_EVENT_LEVEL_FILL_PARITY_FOR_FROZEN_30_GAME_V52E_OBSERVATION",
+  "source": {
+    "commit": "b09aa22b301205d5d44d683497cf3edc5b177cf8",
+    "path": ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812/V52E_FLOW_OUTCOMES_OBSERVATION_ONLY.json",
+    "sha256": "3eb652897e925cb22e78915b183d811c273bc6a9f54acb613779fa9b5b74ed21"
+  }
+}

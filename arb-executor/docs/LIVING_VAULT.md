@@ -2000,3 +2000,21 @@ three-state conservation law requires a new operator ruling before any rerun.
 
 Canonical addendum:
 `WINDOW1_V52E_DISPOSITION_804_BLOCK_20260813_ADDENDUM.md`.
+
+### 2026-08-13 - V52E FULL-804 FOUR-STATE SCORE
+
+The operator-ratified fourth state is `COMPLETE_AT_LOSS`: both expressions
+credited with combined entry >=100. It is a first-class defect class, never a
+partial/neither row and never folded into `COMPLETE_AT_DELTA`. The frozen d9
+diaries score to 267 at delta, 4 at loss, 232 partial, and 301 neither; total
+804. Market completed/under-par is 271/267, strict build verification 124/122,
+and offered-post-onset capture 266/612.
+
+All four losses are exactly 100: VANDRO, ZHEBOU, BERSAI, and BARYUA. Their
+common missing check is pair-cap bounding inside V52e machine-read licensing:
+`target_cents <= 99 - credited_sibling_entry_cents`. This is a diagnosis only;
+policy behavior is unchanged. The score adapter invoked policy zero times,
+matched the frozen 30-game observations on all 60 legs, and produced two
+byte-identical clean builds. No sealed, deployment, live, or trading access.
+Canonical addendum:
+`WINDOW1_V52E_FOUR_STATE_DISPOSITION_804_20260813_ADDENDUM.md`.

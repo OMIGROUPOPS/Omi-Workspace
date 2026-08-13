@@ -1,0 +1,43 @@
+{
+  "rows": [
+    {
+      "commit": "e20fbe6ce8bfe2619b6718e7554087fd9b900f0f",
+      "completed_pairs": 176,
+      "scope": "DEV_804_DISPOSITION",
+      "version": "V52"
+    },
+    {
+      "commit": "98d07986fd916c1d75beb45095c75752bbc65102",
+      "completed_pairs": 8,
+      "scope": "PINS_PLUS_FRESH25_OBSERVATION",
+      "version": "V52B"
+    },
+    {
+      "commit": "08ce27c0a297ed707cfd89aa29e60be223c9df7f",
+      "completed_pairs": 9,
+      "scope": "PINS_PLUS_FRESH25_OBSERVATION",
+      "version": "V52C"
+    },
+    {
+      "commit": "893ee4c6860179a82c4b42439cf4a94cb2bcc97f",
+      "completed_pairs": 9,
+      "scope": "PINS_PLUS_FRESH25_OBSERVATION",
+      "version": "V52D"
+    },
+    {
+      "commit": "b09aa22b301205d5d44d683497cf3edc5b177cf8",
+      "completed_pairs": 17,
+      "scope": "PINS_PLUS_FRESH25_OBSERVATION",
+      "version": "V52E"
+    },
+    {
+      "commit": "d9f83b30c44c3910f40d84b4b4f32daccabf3604",
+      "complete_at_delta": 267,
+      "complete_at_loss": 4,
+      "completed_pairs": 271,
+      "scope": "DEV_804_FOUR_STATE_EXAM",
+      "version": "V52E"
+    }
+  ],
+  "warning": "V52_IS_FULL_804; V52B_TO_V52E_PRIOR_ROWS_ARE_DISTINCT_30_GAME_OBSERVATION_COHORTS_NOT_A_SCORE_SERIES"
+}

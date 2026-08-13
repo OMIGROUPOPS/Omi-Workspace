@@ -1,0 +1,1333 @@
+{
+  "denominator": 804,
+  "market": {
+    "ANY_PRICE": 271,
+    "LE_93": 13,
+    "LE_95": 24,
+    "LE_97": 51,
+    "LT_100": 267
+  },
+  "per_category_x_price_region": {
+    "market": [
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|26_50+26_50",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 238,
+        "acted_legs": 312,
+        "cell": "ATP_CHALL|26_50+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 55,
+        "credited_legs": 175,
+        "denominator": 238,
+        "frontier": {
+          "ANY_PRICE": 55,
+          "LE_93": 4,
+          "LE_95": 6,
+          "LE_97": 12,
+          "LT_100": 55
+        },
+        "legs": 476,
+        "locked_cents_five_lot": 660,
+        "locked_cents_per_contract": 132,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 175
+        },
+        "under_par_pairs": 55
+      },
+      {
+        "D": 4,
+        "acted_legs": 6,
+        "cell": "ATP_CHALL|26_50+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 2,
+        "credited_legs": 5,
+        "denominator": 4,
+        "frontier": {
+          "ANY_PRICE": 2,
+          "LE_93": 1,
+          "LE_95": 1,
+          "LE_97": 1,
+          "LT_100": 2
+        },
+        "legs": 8,
+        "locked_cents_five_lot": 45,
+        "locked_cents_per_contract": 9,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 5
+        },
+        "under_par_pairs": 2
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|26_50+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|51_75+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|51_75+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 6,
+        "acted_legs": 4,
+        "cell": "ATP_CHALL|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 2,
+        "denominator": 6,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 12,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 102,
+        "acted_legs": 152,
+        "cell": "ATP_CHALL|ge75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 28,
+        "credited_legs": 91,
+        "denominator": 102,
+        "frontier": {
+          "ANY_PRICE": 28,
+          "LE_93": 2,
+          "LE_95": 2,
+          "LE_97": 4,
+          "LT_100": 28
+        },
+        "legs": 204,
+        "locked_cents_five_lot": 270,
+        "locked_cents_per_contract": 54,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 91
+        },
+        "under_par_pairs": 28
+      },
+      {
+        "D": 15,
+        "acted_legs": 24,
+        "cell": "ATP_CHALL|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 7,
+        "credited_legs": 17,
+        "denominator": 15,
+        "frontier": {
+          "ANY_PRICE": 7,
+          "LE_93": 1,
+          "LE_95": 2,
+          "LE_97": 3,
+          "LT_100": 7
+        },
+        "legs": 30,
+        "locked_cents_five_lot": 130,
+        "locked_cents_per_contract": 26,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 17
+        },
+        "under_par_pairs": 7
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "ATP_MAIN|26_50+26_50",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 2,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 103,
+        "acted_legs": 182,
+        "cell": "ATP_MAIN|26_50+51_75",
+        "complete_at_loss_pairs": 1,
+        "completed_pairs": 55,
+        "credited_legs": 143,
+        "denominator": 103,
+        "frontier": {
+          "ANY_PRICE": 55,
+          "LE_93": 0,
+          "LE_95": 2,
+          "LE_97": 7,
+          "LT_100": 54
+        },
+        "legs": 206,
+        "locked_cents_five_lot": 435,
+        "locked_cents_per_contract": 87,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 143
+        },
+        "under_par_pairs": 54
+      },
+      {
+        "D": 4,
+        "acted_legs": 4,
+        "cell": "ATP_MAIN|26_50+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 2,
+        "credited_legs": 4,
+        "denominator": 4,
+        "frontier": {
+          "ANY_PRICE": 2,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 2
+        },
+        "legs": 8,
+        "locked_cents_five_lot": 15,
+        "locked_cents_per_contract": 3,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 4
+        },
+        "under_par_pairs": 2
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "ATP_MAIN|51_75+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 2,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 2,
+        "acted_legs": 4,
+        "cell": "ATP_MAIN|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 2,
+        "credited_legs": 4,
+        "denominator": 2,
+        "frontier": {
+          "ANY_PRICE": 2,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 2
+        },
+        "legs": 4,
+        "locked_cents_five_lot": 10,
+        "locked_cents_per_contract": 2,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 4
+        },
+        "under_par_pairs": 2
+      },
+      {
+        "D": 1,
+        "acted_legs": 1,
+        "cell": "ATP_MAIN|ge75+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 29,
+        "acted_legs": 51,
+        "cell": "ATP_MAIN|ge75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 13,
+        "credited_legs": 35,
+        "denominator": 29,
+        "frontier": {
+          "ANY_PRICE": 13,
+          "LE_93": 1,
+          "LE_95": 1,
+          "LE_97": 2,
+          "LT_100": 13
+        },
+        "legs": 58,
+        "locked_cents_five_lot": 135,
+        "locked_cents_per_contract": 27,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 35
+        },
+        "under_par_pairs": 13
+      },
+      {
+        "D": 6,
+        "acted_legs": 12,
+        "cell": "ATP_MAIN|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 2,
+        "credited_legs": 8,
+        "denominator": 6,
+        "frontier": {
+          "ANY_PRICE": 2,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 2
+        },
+        "legs": 12,
+        "locked_cents_five_lot": 10,
+        "locked_cents_per_contract": 2,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 8
+        },
+        "under_par_pairs": 2
+      },
+      {
+        "D": 2,
+        "acted_legs": 2,
+        "cell": "WTA_CHALL|26_50+26_50",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 2,
+        "denominator": 2,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 1
+        },
+        "legs": 4,
+        "locked_cents_five_lot": 15,
+        "locked_cents_per_contract": 3,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 88,
+        "acted_legs": 93,
+        "cell": "WTA_CHALL|26_50+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 13,
+        "credited_legs": 43,
+        "denominator": 88,
+        "frontier": {
+          "ANY_PRICE": 13,
+          "LE_93": 1,
+          "LE_95": 2,
+          "LE_97": 5,
+          "LT_100": 13
+        },
+        "legs": 176,
+        "locked_cents_five_lot": 160,
+        "locked_cents_per_contract": 32,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 43
+        },
+        "under_par_pairs": 13
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "WTA_CHALL|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 44,
+        "acted_legs": 56,
+        "cell": "WTA_CHALL|ge75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 13,
+        "credited_legs": 37,
+        "denominator": 44,
+        "frontier": {
+          "ANY_PRICE": 13,
+          "LE_93": 1,
+          "LE_95": 2,
+          "LE_97": 3,
+          "LT_100": 13
+        },
+        "legs": 88,
+        "locked_cents_five_lot": 130,
+        "locked_cents_per_contract": 26,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 37
+        },
+        "under_par_pairs": 13
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "WTA_CHALL|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 2,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 77,
+        "acted_legs": 140,
+        "cell": "WTA_MAIN|26_50+51_75",
+        "complete_at_loss_pairs": 2,
+        "completed_pairs": 40,
+        "credited_legs": 108,
+        "denominator": 77,
+        "frontier": {
+          "ANY_PRICE": 40,
+          "LE_93": 2,
+          "LE_95": 4,
+          "LE_97": 9,
+          "LT_100": 38
+        },
+        "legs": 154,
+        "locked_cents_five_lot": 405,
+        "locked_cents_per_contract": 81,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 108
+        },
+        "under_par_pairs": 38
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "WTA_MAIN|26_50+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 3,
+        "acted_legs": 6,
+        "cell": "WTA_MAIN|26_50+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 2,
+        "denominator": 3,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 6,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 1,
+        "cell": "WTA_MAIN|51_75+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 4,
+        "acted_legs": 7,
+        "cell": "WTA_MAIN|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 5,
+        "denominator": 4,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 8,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 5
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 56,
+        "acted_legs": 100,
+        "cell": "WTA_MAIN|ge75+le25",
+        "complete_at_loss_pairs": 1,
+        "completed_pairs": 31,
+        "credited_legs": 78,
+        "denominator": 56,
+        "frontier": {
+          "ANY_PRICE": 31,
+          "LE_93": 0,
+          "LE_95": 2,
+          "LE_97": 3,
+          "LT_100": 30
+        },
+        "legs": 112,
+        "locked_cents_five_lot": 240,
+        "locked_cents_per_contract": 48,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 78
+        },
+        "under_par_pairs": 30
+      },
+      {
+        "D": 10,
+        "acted_legs": 8,
+        "cell": "WTA_MAIN|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 3,
+        "credited_legs": 7,
+        "denominator": 10,
+        "frontier": {
+          "ANY_PRICE": 3,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 3
+        },
+        "legs": 20,
+        "locked_cents_five_lot": 25,
+        "locked_cents_per_contract": 5,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 7
+        },
+        "under_par_pairs": 3
+      }
+    ],
+    "strict": [
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|26_50+26_50",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 238,
+        "acted_legs": 312,
+        "cell": "ATP_CHALL|26_50+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 26,
+        "credited_legs": 111,
+        "denominator": 238,
+        "frontier": {
+          "ANY_PRICE": 26,
+          "LE_93": 2,
+          "LE_95": 2,
+          "LE_97": 4,
+          "LT_100": 26
+        },
+        "legs": 476,
+        "locked_cents_five_lot": 245,
+        "locked_cents_per_contract": 49,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 111
+        },
+        "under_par_pairs": 26
+      },
+      {
+        "D": 4,
+        "acted_legs": 6,
+        "cell": "ATP_CHALL|26_50+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 2,
+        "denominator": 4,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 8,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|26_50+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|51_75+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "ATP_CHALL|51_75+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 6,
+        "acted_legs": 4,
+        "cell": "ATP_CHALL|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 6,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 12,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 102,
+        "acted_legs": 152,
+        "cell": "ATP_CHALL|ge75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 16,
+        "credited_legs": 63,
+        "denominator": 102,
+        "frontier": {
+          "ANY_PRICE": 16,
+          "LE_93": 1,
+          "LE_95": 1,
+          "LE_97": 1,
+          "LT_100": 16
+        },
+        "legs": 204,
+        "locked_cents_five_lot": 145,
+        "locked_cents_per_contract": 29,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 63
+        },
+        "under_par_pairs": 16
+      },
+      {
+        "D": 15,
+        "acted_legs": 24,
+        "cell": "ATP_CHALL|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 4,
+        "credited_legs": 11,
+        "denominator": 15,
+        "frontier": {
+          "ANY_PRICE": 4,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 4
+        },
+        "legs": 30,
+        "locked_cents_five_lot": 35,
+        "locked_cents_per_contract": 7,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 11
+        },
+        "under_par_pairs": 4
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "ATP_MAIN|26_50+26_50",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 2,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 103,
+        "acted_legs": 182,
+        "cell": "ATP_MAIN|26_50+51_75",
+        "complete_at_loss_pairs": 1,
+        "completed_pairs": 24,
+        "credited_legs": 94,
+        "denominator": 103,
+        "frontier": {
+          "ANY_PRICE": 24,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 2,
+          "LT_100": 23
+        },
+        "legs": 206,
+        "locked_cents_five_lot": 155,
+        "locked_cents_per_contract": 31,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 94
+        },
+        "under_par_pairs": 23
+      },
+      {
+        "D": 4,
+        "acted_legs": 4,
+        "cell": "ATP_MAIN|26_50+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 3,
+        "denominator": 4,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 8,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 3
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "ATP_MAIN|51_75+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 2,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 2,
+        "acted_legs": 4,
+        "cell": "ATP_MAIN|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 2,
+        "denominator": 2,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 4,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 1,
+        "cell": "ATP_MAIN|ge75+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 29,
+        "acted_legs": 51,
+        "cell": "ATP_MAIN|ge75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 4,
+        "credited_legs": 24,
+        "denominator": 29,
+        "frontier": {
+          "ANY_PRICE": 4,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 4
+        },
+        "legs": 58,
+        "locked_cents_five_lot": 30,
+        "locked_cents_per_contract": 6,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 24
+        },
+        "under_par_pairs": 4
+      },
+      {
+        "D": 6,
+        "acted_legs": 12,
+        "cell": "ATP_MAIN|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 1,
+        "credited_legs": 7,
+        "denominator": 6,
+        "frontier": {
+          "ANY_PRICE": 1,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1
+        },
+        "legs": 12,
+        "locked_cents_five_lot": 5,
+        "locked_cents_per_contract": 1,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 7
+        },
+        "under_par_pairs": 1
+      },
+      {
+        "D": 2,
+        "acted_legs": 2,
+        "cell": "WTA_CHALL|26_50+26_50",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 2,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 4,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 88,
+        "acted_legs": 93,
+        "cell": "WTA_CHALL|26_50+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 4,
+        "credited_legs": 27,
+        "denominator": 88,
+        "frontier": {
+          "ANY_PRICE": 4,
+          "LE_93": 1,
+          "LE_95": 1,
+          "LE_97": 1,
+          "LT_100": 4
+        },
+        "legs": 176,
+        "locked_cents_five_lot": 55,
+        "locked_cents_per_contract": 11,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 27
+        },
+        "under_par_pairs": 4
+      },
+      {
+        "D": 1,
+        "acted_legs": 0,
+        "cell": "WTA_CHALL|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 0,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {},
+        "under_par_pairs": 0
+      },
+      {
+        "D": 44,
+        "acted_legs": 56,
+        "cell": "WTA_CHALL|ge75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 2,
+        "credited_legs": 22,
+        "denominator": 44,
+        "frontier": {
+          "ANY_PRICE": 2,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 2
+        },
+        "legs": 88,
+        "locked_cents_five_lot": 10,
+        "locked_cents_per_contract": 2,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 22
+        },
+        "under_par_pairs": 2
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "WTA_CHALL|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 77,
+        "acted_legs": 140,
+        "cell": "WTA_MAIN|26_50+51_75",
+        "complete_at_loss_pairs": 1,
+        "completed_pairs": 19,
+        "credited_legs": 73,
+        "denominator": 77,
+        "frontier": {
+          "ANY_PRICE": 19,
+          "LE_93": 1,
+          "LE_95": 2,
+          "LE_97": 5,
+          "LT_100": 18
+        },
+        "legs": 154,
+        "locked_cents_five_lot": 195,
+        "locked_cents_per_contract": 39,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 73
+        },
+        "under_par_pairs": 18
+      },
+      {
+        "D": 1,
+        "acted_legs": 2,
+        "cell": "WTA_MAIN|26_50+ge75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 3,
+        "acted_legs": 6,
+        "cell": "WTA_MAIN|26_50+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 3,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 6,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 1,
+        "acted_legs": 1,
+        "cell": "WTA_MAIN|51_75+51_75",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 1,
+        "denominator": 1,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 2,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 1
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 4,
+        "acted_legs": 7,
+        "cell": "WTA_MAIN|51_75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 3,
+        "denominator": 4,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 8,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 3
+        },
+        "under_par_pairs": 0
+      },
+      {
+        "D": 56,
+        "acted_legs": 100,
+        "cell": "WTA_MAIN|ge75+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 21,
+        "credited_legs": 63,
+        "denominator": 56,
+        "frontier": {
+          "ANY_PRICE": 21,
+          "LE_93": 0,
+          "LE_95": 2,
+          "LE_97": 3,
+          "LT_100": 21
+        },
+        "legs": 112,
+        "locked_cents_five_lot": 175,
+        "locked_cents_per_contract": 35,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 63
+        },
+        "under_par_pairs": 21
+      },
+      {
+        "D": 10,
+        "acted_legs": 8,
+        "cell": "WTA_MAIN|le25+le25",
+        "complete_at_loss_pairs": 0,
+        "completed_pairs": 0,
+        "credited_legs": 2,
+        "denominator": 10,
+        "frontier": {
+          "ANY_PRICE": 0,
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0
+        },
+        "legs": 20,
+        "locked_cents_five_lot": 0,
+        "locked_cents_per_contract": 0,
+        "maker_fill_classes": {
+          "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST": 2
+        },
+        "under_par_pairs": 0
+      }
+    ]
+  },
+  "strict": {
+    "ANY_PRICE": 124,
+    "LE_93": 5,
+    "LE_95": 8,
+    "LE_97": 17,
+    "LT_100": 122
+  }
+}

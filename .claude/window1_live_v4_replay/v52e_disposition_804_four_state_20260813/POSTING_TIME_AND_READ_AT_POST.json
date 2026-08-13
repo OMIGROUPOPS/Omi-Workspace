@@ -1,0 +1,43 @@
+{
+  "REFLEX_POST": 0,
+  "first_placements": 1173,
+  "first_post_seconds_after_window_open": {
+    "max": 257652,
+    "median": 37630,
+    "min": 848,
+    "n": 1173,
+    "p25": 21727,
+    "p75": 48806,
+    "p90": 74231.8,
+    "sum": 48632369
+  },
+  "first_post_t_minus_actual_bell_seconds": {
+    "max": 251114,
+    "median": 22673.5,
+    "min": 59,
+    "n": 380,
+    "p25": 7188.5,
+    "p75": 43542.75,
+    "p90": 75445.10000000008,
+    "sum": 12877132
+  },
+  "first_post_t_minus_scheduled_seconds": {
+    "max": 90508,
+    "median": 22236,
+    "min": -181385,
+    "n": 1173,
+    "p25": 9136,
+    "p75": 40226,
+    "p90": 59077.599999999984,
+    "sum": 26932097.630000114
+  },
+  "onset_candidate_at_first_post": {
+    "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE": 901,
+    "B_SUSTAINED_TRADE_CADENCE_ARRIVAL": 272
+  },
+  "read_at_first_post": {
+    "FALLING|FULL_POST_ONSET_PRINT_AND_BOOK_HISTORY_RECENCY_WEIGHTED_BY_CAUSAL_RANK": 653,
+    "RISING|FULL_POST_ONSET_PRINT_AND_BOOK_HISTORY_RECENCY_WEIGHTED_BY_CAUSAL_RANK": 520
+  },
+  "rest_mutations": 90369
+}

@@ -1,0 +1,155 @@
+{
+  "role": "CURRENT_BINDINGS_REPORTED_NOT_TUNED",
+  "rows": {
+    "ARSMAR": {
+      "combined_entry_cents": null,
+      "completed": false,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "legs": {
+        "KXATPCHALLENGERMATCH-26JUL13ARSMAR|ARS": {
+          "credited": true,
+          "entry_cents": 32,
+          "final_state": "CREDITED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 1957,
+            "STABILITY_ONSET_NOT_REACHED": 21
+          },
+          "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+        },
+        "KXATPCHALLENGERMATCH-26JUL13ARSMAR|MAR": {
+          "credited": false,
+          "entry_cents": null,
+          "final_state": "RESTING_UNFILLED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 1732,
+            "STABILITY_ONSET_NOT_REACHED": 19
+          },
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      },
+      "under_par": false
+    },
+    "MERDRO": {
+      "combined_entry_cents": null,
+      "completed": false,
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "legs": {
+        "KXATPMATCH-26JUL16MERDRO|DRO": {
+          "credited": true,
+          "entry_cents": 49,
+          "final_state": "CREDITED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 203,
+            "STABILITY_ONSET_NOT_REACHED": 3670
+          },
+          "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+        },
+        "KXATPMATCH-26JUL16MERDRO|MER": {
+          "credited": false,
+          "entry_cents": null,
+          "final_state": "RESTING_UNFILLED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 286,
+            "STABILITY_ONSET_NOT_REACHED": 1076
+          },
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      },
+      "under_par": false
+    },
+    "POLKUH": {
+      "combined_entry_cents": null,
+      "completed": false,
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "legs": {
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH": {
+          "credited": true,
+          "entry_cents": 18,
+          "final_state": "CREDITED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 4972,
+            "STABILITY_ONSET_NOT_REACHED": 145
+          },
+          "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+        },
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL": {
+          "credited": false,
+          "entry_cents": null,
+          "final_state": "RESTING_UNFILLED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 4822,
+            "STABILITY_ONSET_NOT_REACHED": 21
+          },
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      },
+      "under_par": false
+    },
+    "PUTJEA": {
+      "combined_entry_cents": null,
+      "completed": false,
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "legs": {
+        "KXWTAMATCH-26JUL14PUTJEA|JEA": {
+          "credited": false,
+          "entry_cents": null,
+          "final_state": "NEVER_PLACED_OR_CANCELLED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 651,
+            "STABILITY_ONSET_NOT_REACHED": 736
+          },
+          "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE"
+        },
+        "KXWTAMATCH-26JUL14PUTJEA|PUT": {
+          "credited": false,
+          "entry_cents": null,
+          "final_state": "NEVER_PLACED_OR_CANCELLED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 5,
+            "STABILITY_ONSET_NOT_REACHED": 1259
+          },
+          "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE"
+        }
+      },
+      "under_par": false
+    },
+    "SANDAN": {
+      "combined_entry_cents": null,
+      "completed": false,
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "legs": {
+        "KXATPMATCH-26JUL13SANDAN|DAN": {
+          "credited": true,
+          "entry_cents": 77,
+          "final_state": "CREDITED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 1875,
+            "STABILITY_ONSET_NOT_REACHED": 587
+          },
+          "terminal_reason": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST"
+        },
+        "KXATPMATCH-26JUL13SANDAN|SAN": {
+          "credited": false,
+          "entry_cents": null,
+          "final_state": "RESTING_UNFILLED",
+          "gate_blocks": {
+            "NO_TAPE_MACHINE_READ_ABSENT": 1,
+            "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 2351,
+            "STABILITY_ONSET_NOT_REACHED": 578
+          },
+          "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE"
+        }
+      },
+      "under_par": false
+    }
+  }
+}

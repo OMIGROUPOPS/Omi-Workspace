@@ -1,0 +1,41 @@
+{
+  "N2_rows": 14166494,
+  "N4_rows": 14166494,
+  "N5_rows": 14166494,
+  "all_decision_rows_consumed_N2_N4_N5": true,
+  "clean_store_assertion": {
+    "fallback_loads": 0,
+    "loaded_ids": [
+      "P1",
+      "P11",
+      "P12",
+      "P13",
+      "P14",
+      "P2",
+      "P4",
+      "P6"
+    ],
+    "passed": true,
+    "quarantined_loaded": 0,
+    "required_ids": [
+      "P1",
+      "P2",
+      "P4",
+      "P6",
+      "P11",
+      "P12",
+      "P13",
+      "P14"
+    ],
+    "source_inventory": "store_CLEAN",
+    "superseded_loaded": 0,
+    "unvalidated_loaded": 0
+  },
+  "continuous_rows": 14166494,
+  "decision_rows": 14166494,
+  "manifest_sha256_counts": {
+    "2f5e6e5856e7f879cbf9a64395a36c82a730487581a10b30da93f70f874c339c": 14166494
+  },
+  "priors_gate_true_rows": 0,
+  "priors_never_gate": true
+}

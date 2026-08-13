@@ -2404,7 +2404,7 @@ async function main() {
     if (entryLaterFloorComparison) {
       const before = entryLaterFloorComparison.baseline.bought_above_later_floor_only;
       const after = entryLaterFloorComparison.candidate.bought_above_later_floor_only;
-      entryLaterFloorComparison.pre_stated_claim.bought_above_later_floor_depth_shifts_toward_zero = before.n > 0 && after.n > 0 && after.median <= before.median && after.p75 <= before.p75;
+      entryLaterFloorComparison.pre_stated_claim.bought_above_later_floor_depth_shifts_toward_zero = before.n > 0 && after.n > 0 && after.median <= before.median && after.p75 <= before.p75 && (after.median < before.median || after.p75 < before.p75);
     }
     const perGameOutcomeTable = isV52i ? candidateRun.marketEvents.map((event) => {
       const outcome = candidateFourStateRows.find((row) => row.event_id === event.event_id);

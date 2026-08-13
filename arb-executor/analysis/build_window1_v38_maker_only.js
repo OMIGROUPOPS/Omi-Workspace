@@ -2,7 +2,6 @@
 "use strict";
 
 const crypto = require("crypto");
-const cp = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const readline = require("readline");
@@ -49,6 +48,7 @@ const V52F_PARENT_COMMIT = "4716657a18519d5b90705eb20030a66f5491a91b";
 const V52F_COMMIT = "c235363e404c44873d43caa1626bd4ca927eb645";
 const V52G_COMMIT = "ab841995f0cefa6011cf839fabf44057188111c4";
 const V52H_COMMIT = "b43d7cde56aac5fe5cc553419286119adf378d6d";
+const V52I_SOURCE_IMPLEMENTATION_COMMIT = "17623dce8efe139f0825226a5bf07aba7a9a2a7a";
 const GREEK_INSTRUMENTS_COMMIT = "2d48e4ee65e2d4b320accafcd4ac39669591d64b";
 const OFFER_DENOMINATOR_COMMIT = "22441e058f9efa7ea8c3065334a238ec8786416f";
 const MACHINE_PALANTIR_COMMIT = "9929e91802dc0e0f7ed1af50c5526b2c9a730c7c";
@@ -1691,7 +1691,7 @@ function buildV52iCohort(baseByEvent, censusBytes, priorReceipts) {
   ensure(source.rows?.length === 1143 && priors.length === 7 && priors.every((item) => item.receipt.fresh_25?.length === 25), "V52i cohort inputs invalid");
   const excludedByIteration = Object.fromEntries(priors.map((item) => [item.iteration, new Set(item.receipt.fresh_25.map((row) => row.code))]));
   const excluded = new Set(Object.values(excludedByIteration).flatMap((set) => [...set]));
-  const sourceImplementationCommit = cp.execFileSync("git", ["rev-parse", "HEAD"], { cwd: repo, encoding: "utf8" }).trim();
+  const sourceImplementationCommit = V52I_SOURCE_IMPLEMENTATION_COMMIT;
   ensure(/^[0-9a-f]{40}$/.test(sourceImplementationCommit), "V52i source implementation commit unavailable");
   const seedMaterial = `V52I_ITERATION8_COHORT25|${sourceImplementationCommit}`;
   const seedSha256 = shaBytes(Buffer.from(seedMaterial));
@@ -2390,7 +2390,7 @@ async function main() {
     const offerCensus = isV52i ? JSON.parse(gitShow("22441e05", ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json")) : null;
     const offerByTicker = isV52i ? new Map(offerCensus.rows.flatMap((game) => Object.values(game.legs ?? {}).map((leg) => [`${game.code}|${leg.ticker.split("-").at(-1)}`, { ...leg, game_code: game.code, offer_class: game.cls, offer_margin_cents: game.margin, pair_floor_cents: game.pair_floor_sel }]))) : new Map();
     const entryFloorRowsFor = (run, variantName) => isV52i ? run.marketEvents.flatMap((event) => Object.values(event.legs).filter((leg) => leg.credited).map((leg) => {
-      const offer = offerByTicker.get(`${event.event_id.split("-").at(-1)}|${leg.leg_identity}`) ?? null;
+      const offer = offerByTicker.get(`${event.event_id.split("-").at(-1)}|${leg.leg_identity.split("|").at(-1)}`) ?? null;
       return { variant: variantName, event_id: event.event_id, leg_identity: leg.leg_identity, category: event.category, price_region: leg.price_region, entry_cents: leg.entry_cents, post_onset_offer_floor_cents: offer?.floor_sel ?? null, entry_minus_later_floor_cents: Number.isInteger(offer?.floor_sel) ? leg.entry_cents - offer.floor_sel : null, offer_class: offer?.offer_class ?? null, offer_margin_cents: offer?.offer_margin_cents ?? null };
     })) : [];
     const baselineEntryFloorRows = entryFloorRowsFor(baselineRun, "V52H");
@@ -2409,7 +2409,7 @@ async function main() {
     const perGameOutcomeTable = isV52i ? candidateRun.marketEvents.map((event) => {
       const outcome = candidateFourStateRows.find((row) => row.event_id === event.event_id);
       const firstLeg = Object.values(event.legs)[0];
-      const offer = offerByTicker.get(`${event.event_id.split("-").at(-1)}|${firstLeg.leg_identity}`) ?? null;
+      const offer = offerByTicker.get(`${event.event_id.split("-").at(-1)}|${firstLeg.leg_identity.split("|").at(-1)}`) ?? null;
       return { event_id: event.event_id, category: event.category, price_region: event.starting_price_split, state: outcome.state, combined_entry_cents: event.completed_pair ? event.combined_entry_cents : null, credited_legs: outcome.credited_legs, combined_entry_minus_100_cents: event.completed_pair ? event.combined_entry_cents - 100 : null, locked_delta_vs_100_cents: event.completed_pair ? 100 - event.combined_entry_cents : null, offer_class: offer?.offer_class ?? null, offer_margin_cents: offer?.offer_margin_cents ?? null, offer_census_source_commit: "22441e05" };
     }).sort((a, b) => a.event_id.localeCompare(b.event_id)) : null;
     const palantirConsumptionSummary = isV52e ? {

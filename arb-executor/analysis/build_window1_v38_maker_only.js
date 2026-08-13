@@ -2234,8 +2234,20 @@ async function main() {
         if ((isV52g || isV52h || isV52i) && Number.isInteger(firstAuthorizedIndex) && candidateIndex >= firstAuthorizedIndex) downstreamFrozenInputDivergences.push({ ...receipt, classification: isV52i ? "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_3_DEPTH_SELECTION" : isV52h ? "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_4_PRECONDITION_REMOVAL" : "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_6" });
         else frozenClauseDiffs.push(receipt);
       }
-      const beforeDecision = { gate_verdict: before.gate_verdict, blocked_clause: before.blocked_clause, final_action: before.final_action, final_target_cents: before.final_target_cents, reason: before.reason, level: before.level };
-      const afterDecision = { gate_verdict: after.gate_verdict, blocked_clause: after.blocked_clause, final_action: after.final_action, final_target_cents: after.final_target_cents, reason: after.reason, level: after.level };
+      const decisionView = (row, includeDepth) => ({
+        gate_verdict: row.gate_verdict,
+        blocked_clause: row.blocked_clause,
+        final_action: row.final_action,
+        final_target_cents: row.final_target_cents,
+        reason: row.reason,
+        ...(isV52i ? {
+          frozen_machine_read_authorized: row.level?.machine_read?.authorized ?? null,
+          frozen_machine_read_target_cents: row.level?.machine_read?.target_cents ?? null,
+          ...(includeDepth && row.depth_informed_level_selection?.target_changed ? { depth_informed_level_selection: row.depth_informed_level_selection } : {}),
+        } : { level: row.level }),
+      });
+      const beforeDecision = decisionView(before, false);
+      const afterDecision = decisionView(after, true);
       if (canonical(beforeDecision) !== canonical(afterDecision)) decisionDiffs.push({ key, event_id: after.event_id, leg_identity: after.leg_identity, timestamp_epoch: after.timestamp_epoch, receipt: after.receipt, before: beforeDecision, after: afterDecision, authorized_clause: authorizedClause });
     }
     for (const key of [...baselineTrace.keys()].filter((value) => !candidateTrace.has(value))) {

@@ -1,0 +1,5747 @@
+{
+ "LABEL": "DECISIVE_MOMENT_PLAN_FEASIBILITY",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "supersedes": "0e16068e reason column restamped RECEIPT-WEIGHTED-SUPERSEDED; population and 1,808c stand",
+ "conservation": {
+  "games": 346,
+  "cents": 1808,
+  "layer2": {
+   "PLAN_WAS_FEASIBLE": 324,
+   "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED": 22
+  },
+  "feasible": {
+   "games": 324,
+   "cents": 1761
+  },
+  "never_jointly_under_99": "0 by construction: OFFERED means census post-onset floors sum <100, hence <=99 - stated, measured empty"
+ },
+ "window_min": {
+  "p25": 233.2,
+  "median": 524.8,
+  "p75": 749.6,
+  "max": 3453.0
+ },
+ "anomaly_moments": 2094,
+ "cells": [
+  {
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 133,
+   "cents": 963,
+   "exemplars": [
+    "26JUL18PELSIL(exact,m36)",
+    "26JUL16MERDRO(exact,m13)",
+    "26JUL20KORJIM(exact,m11)"
+   ]
+  },
+  {
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 35,
+   "cents": 265,
+   "exemplars": [
+    "26JUL12MULSHE(exact,m11)",
+    "26JUL14CINHAL(exact,m6)",
+    "26JUL16DENBAR(exact,m3)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 65,
+   "cents": 152,
+   "exemplars": [
+    "26JUL18CASGEA(exact,m6)",
+    "26JUL13ARSDAL(exact,m5)",
+    "26JUL12HOUJOR(exact,m3)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 53,
+   "cents": 137,
+   "exemplars": [
+    "26JUL18CIRTOT(exact,m5)",
+    "26JUL12WESPAA(exact,m2)",
+    "26JUL15NOGSUR(exact,m2)"
+   ]
+  },
+  {
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 8,
+   "cents": 134,
+   "exemplars": [
+    "26JUL12DEGEE(exact,m12)",
+    "26JUL12SOKNUG(exact,m8)",
+    "26JUL12VOLMAR(exact,m3)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 12,
+   "cents": 39,
+   "exemplars": [
+    "26JUL12MALTUR(exact,m5)",
+    "26JUL20KABCHI(exact,m3)",
+    "26JUL20CHABOU(exact,m1)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 7,
+   "cents": 27,
+   "exemplars": [
+    "26JUL19RUSKAZ(exact,m1)",
+    "26JUL19DJOMAT(live_by_only,m12)",
+    "26JUL13MATMIC(live_by_only,m6)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "games": 10,
+   "cents": 16,
+   "exemplars": [
+    "26JUL12OKAIPE(exact,m4)",
+    "26JUL13MUNLEO(exact,m2)",
+    "26JUL13GIUALM(exact,m1)"
+   ]
+  },
+  {
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 3,
+   "cents": 15,
+   "exemplars": [
+    "26JUL18BERSAI(exact,m4)",
+    "26JUL15VANDRO(live_by_only,m7)",
+    "26JUL13ZHEBOU(live_by_only,m4)"
+   ]
+  },
+  {
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "games": 4,
+   "cents": 14,
+   "exemplars": [
+    "26JUL13PERTOB(exact,m4)",
+    "26JUL16ZANTRE(exact,m1)",
+    "26JUL12BARREI(live_by_only,m6)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_TOO_DEEP",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 2,
+   "cents": 14,
+   "exemplars": [
+    "26JUL14DILFAL(live_by_only,m8)",
+    "26JUL12BROHUA(live_by_only,m6)"
+   ]
+  },
+  {
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 3,
+   "cents": 11,
+   "exemplars": [
+    "26JUL19TOKMIY(exact,m3)",
+    "26JUL12REJMID(live_by_only,m5)",
+    "26JUL14URSPAL(live_by_only,m3)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "games": 3,
+   "cents": 8,
+   "exemplars": [
+    "26JUL16ADDGHI(exact,m2)",
+    "26JUL12MARFOR(live_by_only,m4)",
+    "26JUL15GENDE(live_by_only,m2)"
+   ]
+  },
+  {
+   "layer1": "INPUT_GRAIN_ASLEEP",
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "games": 1,
+   "cents": 4,
+   "exemplars": [
+    "26JUL13GREVAN(exact,m4)"
+   ]
+  },
+  {
+   "layer1": "STOOD_TOO_DEEP",
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "games": 3,
+   "cents": 4,
+   "exemplars": [
+    "26JUL13PALGON(exact,m1)",
+    "26JUL20POLBRU(live_by_only,m2)",
+    "26JUL19TORSEN(live_by_only,m1)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "games": 3,
+   "cents": 3,
+   "exemplars": [
+    "26JUL14FUEPRI(live_by_only,m1)",
+    "26JUL14GUIBON(live_by_only,m1)",
+    "26JUL18GAUTSE(live_by_only,m1)"
+   ]
+  },
+  {
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "games": 1,
+   "cents": 2,
+   "exemplars": [
+    "26JUL20VALGOM(clean_interval,m2)"
+   ]
+  }
+ ],
+ "games": [
+  {
+   "code": "26JUL12ALVVAN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 24,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ALV": "STOOD_TOO_DEEP",
+    "VAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783849410,
+   "feasible_window_min": 20.5,
+   "max_lawful_joint_margin": 23
+  },
+  {
+   "code": "26JUL12AVEFOR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 9,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "AVE": "STOOD_TOO_DEEP",
+    "FOR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783835193,
+   "feasible_window_min": 751.2,
+   "max_lawful_joint_margin": 8
+  },
+  {
+   "code": "26JUL12AZKLEO",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "AZK": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "LEO": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783866961,
+   "feasible_window_min": 362.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12BALPET",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 23,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PET": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783848929,
+   "feasible_window_min": 40.2,
+   "max_lawful_joint_margin": 22
+  },
+  {
+   "code": "26JUL12BARREI",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BAR": "INPUT_GRAIN_ASLEEP",
+    "REI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783893569,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL12BOSCOP",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BOS": "STOOD_TOO_DEEP",
+    "COP": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783941967,
+   "feasible_window_min": 1271.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL12BROHUA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BRO": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "HUA": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783833870,
+   "feasible_window_min": 304.1,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL12BRUGAD",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BRU": "STOOD_TOO_DEEP",
+    "GAD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783916371,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL12CHAJON",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 12,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "CHA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "JON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783844853,
+   "feasible_window_min": 179.1,
+   "max_lawful_joint_margin": 11
+  },
+  {
+   "code": "26JUL12CHOGAS",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CHO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GAS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783829131,
+   "feasible_window_min": 489.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12DEGEE",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 12,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DE": "INPUT_GRAIN_ASLEEP",
+    "GEE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783905213,
+   "feasible_window_min": 722.7,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL12DEVGON",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DEV": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GON": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783876734,
+   "feasible_window_min": 8.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12DROPIR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DRO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PIR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783829837,
+   "feasible_window_min": 707.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12ECHMUN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 37,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ECH": "STOOD_TOO_DEEP",
+    "MUN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783885791,
+   "feasible_window_min": 64.5,
+   "max_lawful_joint_margin": 36
+  },
+  {
+   "code": "26JUL12FEAWAL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 21,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "FEA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "WAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783883346,
+   "feasible_window_min": 8.6,
+   "max_lawful_joint_margin": 14
+  },
+  {
+   "code": "26JUL12GANJAN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 56,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GAN": "INPUT_GRAIN_ASLEEP",
+    "JAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783847987,
+   "feasible_window_min": 38.8,
+   "max_lawful_joint_margin": 47
+  },
+  {
+   "code": "26JUL12GIESHE",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GIE": "STOOD_TOO_DEEP",
+    "SHE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783838941,
+   "feasible_window_min": 686.6,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL12GIUBAR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 43,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "GIU": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783880180,
+   "feasible_window_min": 17.5,
+   "max_lawful_joint_margin": 42
+  },
+  {
+   "code": "26JUL12HECISO",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 63,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HEC": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "ISO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783875197,
+   "feasible_window_min": 38.7,
+   "max_lawful_joint_margin": 62
+  },
+  {
+   "code": "26JUL12HERALM",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 46,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ALM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "HER": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783880360,
+   "feasible_window_min": 65.6,
+   "max_lawful_joint_margin": 32
+  },
+  {
+   "code": "26JUL12HOUJOR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "HOU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "JOR": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783858888,
+   "feasible_window_min": 1584.5,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL12KRALOR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "KRA": "STOOD_TOO_DEEP",
+    "LOR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783851635,
+   "feasible_window_min": 144.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12KUZDE",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "DE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KUZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783856103,
+   "feasible_window_min": 74.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12MARFOR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "FOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783861890,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL12MIYKUZ",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KUZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MIY": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783848194,
+   "feasible_window_min": 580.4,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL12OUAFER",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 6,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FER": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "OUA": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783844761,
+   "feasible_window_min": 524.6,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL12PALMAR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 9,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783836916,
+   "feasible_window_min": 851.6,
+   "max_lawful_joint_margin": 8
+  },
+  {
+   "code": "26JUL12POLKUH",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KUH": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "POL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783831310,
+   "feasible_window_min": 797.3,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL12PRIBAL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PRI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783852357,
+   "feasible_window_min": 60.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12RAQKUM",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 43,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KUM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "RAQ": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783850440,
+   "feasible_window_min": 33.8,
+   "max_lawful_joint_margin": 23
+  },
+  {
+   "code": "26JUL12TOKROZ",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ROZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TOK": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783884553,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL12TROHOR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 9,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HOR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783836495,
+   "feasible_window_min": 661.1,
+   "max_lawful_joint_margin": 8
+  },
+  {
+   "code": "26JUL12VANCHO",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CHO": "STOOD_TOO_DEEP",
+    "VAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783835300,
+   "feasible_window_min": 738.8,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL12WESPAA",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "PAA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "WES": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783850810,
+   "feasible_window_min": 284.9,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL12WINROB",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ROB": "STOOD_TOO_DEEP",
+    "WIN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783831310,
+   "feasible_window_min": 741.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12YIBMAL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "MAL": "STOOD_TOO_DEEP",
+    "YIB": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783838793,
+   "feasible_window_min": 864.3,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL12YOUDLI",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DLI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "YOU": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783848510,
+   "feasible_window_min": 742.0,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL13AGABAR",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "AGA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "BAR": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783948766,
+   "feasible_window_min": 81.0,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL13ARSDAL",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ARS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "DAL": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783925558,
+   "feasible_window_min": 229.9,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL13BINFUE",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BIN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "FUE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783904556,
+   "feasible_window_min": 411.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13DONWES",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DON": "STOOD_TOO_DEEP",
+    "WES": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783936648,
+   "feasible_window_min": 37.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13FORHUA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 13,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "FOR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "HUA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783897705,
+   "feasible_window_min": 1.2,
+   "max_lawful_joint_margin": 12
+  },
+  {
+   "code": "26JUL13GIUALM",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ALM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GIU": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783950846,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL13GREVAN",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 4,
+   "layer1": "INPUT_GRAIN_ASLEEP",
+   "leg_reasons": {
+    "GRE": "INPUT_GRAIN_ASLEEP",
+    "VAN": "INPUT_GRAIN_ASLEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783944972,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL13HOLWAT",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "HOL": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "WAT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783928747,
+   "feasible_window_min": 463.4,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL13KRASAL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "KRA": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "SAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783913067,
+   "feasible_window_min": 376.4,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL13MUNLEO",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "LEO": "STOOD_TOO_DEEP",
+    "MUN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783952231,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL13NOGBRO",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BRO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "NOG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783932292,
+   "feasible_window_min": 589.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13PALGON",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GON": "STOOD_TOO_DEEP",
+    "PAL": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783928812,
+   "feasible_window_min": 264.0,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13PERTOB",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 4,
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "PER": "INPUT_GRAIN_ASLEEP",
+    "TOB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783961587,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL13PRICRI",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CRI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PRI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783916638,
+   "feasible_window_min": 226.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13RADIVA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "IVA": "STOOD_TOO_DEEP",
+    "RAD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783962804,
+   "feasible_window_min": 55.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13RODALK",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ALK": "STOOD_TOO_DEEP",
+    "ROD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783946235,
+   "feasible_window_min": 420.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13SHIHAR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SHI": "INPUT_GRAIN_ASLEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783959308,
+   "feasible_window_min": 52.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13VILGAN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VIL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783907960,
+   "feasible_window_min": 136.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13VUKBRO",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VUK": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783940257,
+   "feasible_window_min": 363.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13WONTUN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "TUN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "WON": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783951746,
+   "feasible_window_min": 151.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13YEVCAM",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CAM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "YEV": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783897619,
+   "feasible_window_min": 388.4,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL13YIBMAR",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "MAR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "YIB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783958375,
+   "feasible_window_min": 19.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14ADDLEO",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "ADD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "LEO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784003698,
+   "feasible_window_min": 633.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14ALCTAB",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ALC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TAB": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784004757,
+   "feasible_window_min": 56.1,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14ALMGRA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ALM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GRA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784004166,
+   "feasible_window_min": 562.9,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL14BRUNIJ",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BRU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "NIJ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783998039,
+   "feasible_window_min": 417.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14CLAWES",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CLA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "WES": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783990519,
+   "feasible_window_min": 447.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14DALMAY",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DAL": "STOOD_TOO_DEEP",
+    "MAY": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784017093,
+   "feasible_window_min": 442.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14DELXIL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DEL": "STOOD_TOO_DEEP",
+    "XIL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783986337,
+   "feasible_window_min": 1016.6,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14DRATRO",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "DRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784060286,
+   "feasible_window_min": 42.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14FUEPRI",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "FUE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PRI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784026129,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL14GANZIN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 19,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZIN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784001550,
+   "feasible_window_min": 274.1,
+   "max_lawful_joint_margin": 18
+  },
+  {
+   "code": "26JUL14GENPET",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GEN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PET": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784021211,
+   "feasible_window_min": 104.0,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14GUIBON",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GUI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784000504,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL14IVAGIU",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GIU": "STOOD_TOO_DEEP",
+    "IVA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784002622,
+   "feasible_window_min": 298.9,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL14JOHBER",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BER": "STOOD_TOO_DEEP",
+    "JOH": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784007638,
+   "feasible_window_min": 321.0,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL14JONIVA",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "IVA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "JON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784003996,
+   "feasible_window_min": 631.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14KRATOR",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "KRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783977912,
+   "feasible_window_min": 280.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14LAGSAN",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "LAG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784020705,
+   "feasible_window_min": 351.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14MAKSEY",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAK": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SEY": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783986337,
+   "feasible_window_min": 610.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14MARCAM",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CAM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MAR": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784034105,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL14MARMAY",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "MAR": "STOOD_TOO_DEEP",
+    "MAY": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783978049,
+   "feasible_window_min": 886.7,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL14MILCHA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CHA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MIL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784066097,
+   "feasible_window_min": 43.0,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14RONGIU",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GIU": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "RON": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784002234,
+   "feasible_window_min": 346.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14ROZRIC",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "RIC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ROZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784008327,
+   "feasible_window_min": 772.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14SMIILA",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 41,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "ILA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SMI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784034389,
+   "feasible_window_min": 124.9,
+   "max_lawful_joint_margin": 40
+  },
+  {
+   "code": "26JUL14URSPAL",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "PAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "URS": "INPUT_GRAIN_ASLEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784035452,
+   "feasible_window_min": 109.1,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14VILRIB",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "RIB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VIL": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783978049,
+   "feasible_window_min": 748.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14ZHOKOZ",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KOZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZHO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784003351,
+   "feasible_window_min": 713.2,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL14ZHUYUN",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "YUN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZHU": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784007592,
+   "feasible_window_min": 587.3,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL15GENDE",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "GEN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784102937,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL15NAPBAR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "NAP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784093345,
+   "feasible_window_min": 525.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL15NOGSUR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "NOG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SUR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784110272,
+   "feasible_window_min": 191.7,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL15RODINC",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "INC": "STOOD_TOO_DEEP",
+    "ROD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784108136,
+   "feasible_window_min": 183.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL15ROMGAL",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "ROM": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784096849,
+   "feasible_window_min": 163.5,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL15SANERE",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 9,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ERE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784101224,
+   "feasible_window_min": 542.6,
+   "max_lawful_joint_margin": 8
+  },
+  {
+   "code": "26JUL15SCHHOU",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "HOU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SCH": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784099315,
+   "feasible_window_min": 429.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL15WOLJOH",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "JOH": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "WOL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784114688,
+   "feasible_window_min": 480.7,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL15YIBYUN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 11,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "YIB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "YUN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784095218,
+   "feasible_window_min": 773.2,
+   "max_lawful_joint_margin": 10
+  },
+  {
+   "code": "26JUL15ZHOPER",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "PER": "STOOD_TOO_DEEP",
+    "ZHO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784105873,
+   "feasible_window_min": 397.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL15ZINGAL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZIN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784090010,
+   "feasible_window_min": 615.7,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL16ADDGHI",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ADD": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "GHI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784218158,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL16DELDAL",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "DEL": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784196522,
+   "feasible_window_min": 140.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL16DENBAR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAR": "STOOD_TOO_DEEP",
+    "DEN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784155465,
+   "feasible_window_min": 658.6,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL16DRAMIL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DRA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MIL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784233029,
+   "feasible_window_min": 30.5,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL16FORCUI",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CUI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "FOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784206687,
+   "feasible_window_min": 179.6,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL16GRESAN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GRE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784223345,
+   "feasible_window_min": 115.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL16KUMBRO",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KUM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784155465,
+   "feasible_window_min": 223.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL16RICGEA",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GEA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "RIC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784230174,
+   "feasible_window_min": 29.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL17ADDIVA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ADD": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "IVA": "INPUT_GRAIN_ASLEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784303021,
+   "feasible_window_min": 83.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL17DRAGEA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DRA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "GEA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784268804,
+   "feasible_window_min": 537.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL17FORTOM",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "FOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TOM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784325844,
+   "feasible_window_min": 142.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL17GALCOP",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "COP": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "GAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784263047,
+   "feasible_window_min": 159.5,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL17KUMBOO",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BOO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "KUM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784272640,
+   "feasible_window_min": 190.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL17NAPVIL",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "NAP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VIL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784294149,
+   "feasible_window_min": 63.1,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL17SMIYUN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "SMI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "YUN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784287023,
+   "feasible_window_min": 557.3,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL18CASGEA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CAS": "STOOD_TOO_DEEP",
+    "GEA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784404629,
+   "feasible_window_min": 37.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL18DENCOP",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "COP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "DEN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784349095,
+   "feasible_window_min": 401.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18GENKUM",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GEN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KUM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784340761,
+   "feasible_window_min": 707.5,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL18PERIVA",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "IVA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PER": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784386205,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL19ARSMAR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ARS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784456565,
+   "feasible_window_min": 332.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19BANZHU",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAN": "STOOD_TOO_DEEP",
+    "ZHU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784438227,
+   "feasible_window_min": 555.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19BIAYOU",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BIA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "YOU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784441093,
+   "feasible_window_min": 458.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19CALTEP",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TEP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784435099,
+   "feasible_window_min": 312.3,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL19DEMMAG",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DEM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MAG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784438813,
+   "feasible_window_min": 561.5,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL19DENGEN",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DEN": "STOOD_TOO_DEEP",
+    "GEN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784420091,
+   "feasible_window_min": 688.0,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19DJOMAT",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 12,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DJO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MAT": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784428701,
+   "feasible_window_min": 621.1,
+   "max_lawful_joint_margin": 11
+  },
+  {
+   "code": "26JUL19DONTOP",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TOP": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784428835,
+   "feasible_window_min": 340.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19JOHGEO",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GEO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "JOH": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784448380,
+   "feasible_window_min": 533.6,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19KOZVIT",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "KOZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VIT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784445619,
+   "feasible_window_min": 565.3,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19KUHPAS",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KUH": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PAS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784445721,
+   "feasible_window_min": 743.1,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL19KUZOPI",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "KUZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "OPI": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784419200,
+   "feasible_window_min": 415.8,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL19MALMOR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784444085,
+   "feasible_window_min": 245.7,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19MCKOUA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MCK": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "OUA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784435644,
+   "feasible_window_min": 549.9,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL19MENKUM",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KUM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MEN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784435576,
+   "feasible_window_min": 451.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19MILFAN",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FAN": "STOOD_TOO_DEEP",
+    "MIL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784448272,
+   "feasible_window_min": 470.7,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19MONTHO",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "THO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784431556,
+   "feasible_window_min": 514.8,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL19NIKVRB",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 9,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "NIK": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "VRB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784461261,
+   "feasible_window_min": 250.7,
+   "max_lawful_joint_margin": 8
+  },
+  {
+   "code": "26JUL19OLILAS",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "LAS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "OLI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784415723,
+   "feasible_window_min": 838.7,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19PALMUN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "MUN": "STOOD_TOO_DEEP",
+    "PAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784434626,
+   "feasible_window_min": 511.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19PAPROS",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "PAP": "STOOD_TOO_DEEP",
+    "ROS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784418694,
+   "feasible_window_min": 919.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19PIENES",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 12,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "NES": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PIE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784433768,
+   "feasible_window_min": 586.1,
+   "max_lawful_joint_margin": 11
+  },
+  {
+   "code": "26JUL19REJWES",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "REJ": "STOOD_TOO_DEEP",
+    "WES": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784447928,
+   "feasible_window_min": 268.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19RITGOM",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GOM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "RIT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784442523,
+   "feasible_window_min": 256.3,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19SINMAT",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "MAT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SIN": "INPUT_GRAIN_ASLEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784455028,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL19TOKMIY",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "MIY": "INPUT_GRAIN_ASLEEP",
+    "TOK": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784491627,
+   "feasible_window_min": 57.1,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19TORSEN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "SEN": "STOOD_TOO_DEEP",
+    "TOR": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784431317,
+   "feasible_window_min": 410.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19TRODAL",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "DAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784456483,
+   "feasible_window_min": 596.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19VALCAS",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "CAS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784457964,
+   "feasible_window_min": 115.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19VASTAB",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "TAB": "STOOD_TOO_DEEP",
+    "VAS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784413678,
+   "feasible_window_min": 567.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20ALKFIC",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ALK": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "FIC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784534916,
+   "feasible_window_min": 329.9,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20ARSRIC",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "ARS": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "RIC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784569372,
+   "feasible_window_min": 318.2,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20CALKUM",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KUM": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784496470,
+   "feasible_window_min": 689.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20CHABOU",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BOU": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "CHA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784525813,
+   "feasible_window_min": 774.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20GONTOB",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GON": "STOOD_TOO_DEEP",
+    "TOB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784549053,
+   "feasible_window_min": 92.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20IMAKIN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "IMA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KIN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784549874,
+   "feasible_window_min": 166.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL20JOHAGU",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "AGU": "STOOD_TOO_DEEP",
+    "JOH": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784521137,
+   "feasible_window_min": 681.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL20KOZPAS",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "KOZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PAS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784518013,
+   "feasible_window_min": 666.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20KYMCLA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CLA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "KYM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784528102,
+   "feasible_window_min": 712.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20MARBIT",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BIT": "STOOD_TOO_DEEP",
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784496472,
+   "feasible_window_min": 706.1,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL20MARROS",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "MAR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ROS": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784532540,
+   "feasible_window_min": 164.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20NOGSHI",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "NOG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SHI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784563869,
+   "feasible_window_min": 303.2,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL20ONCAJD",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "AJD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ONC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784531036,
+   "feasible_window_min": 213.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20PIRNAP",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "NAP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PIR": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784515409,
+   "feasible_window_min": 608.5,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL20POLBRU",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BRU": "STOOD_TOO_DEEP",
+    "POL": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784495953,
+   "feasible_window_min": 712.6,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20STAMAT",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "STA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784496146,
+   "feasible_window_min": 543.7,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20TOKHUR",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "HUR": "STOOD_TOO_DEEP",
+    "TOK": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784525427,
+   "feasible_window_min": 704.2,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20TORSTR",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "STR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784524322,
+   "feasible_window_min": 387.4,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL20TROISO",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ISO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784525427,
+   "feasible_window_min": 749.6,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20VALGOM",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GOM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAL": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784540452,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL20VARDON",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784495954,
+   "feasible_window_min": 384.7,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL20VASSIN",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "SIN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAS": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784532882,
+   "feasible_window_min": 140.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20WINARS",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ARS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "WIN": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784521093,
+   "feasible_window_min": 597.7,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL20ZHUMAL",
+   "cat": "ATP_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "MAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZHU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784550812,
+   "feasible_window_min": 20.8,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12ALTGAS",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ALT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GAS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783832644,
+   "feasible_window_min": 3375.2,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL12BORKOU",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KOU": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784030232,
+   "feasible_window_min": 87.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12CORDAN",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "COR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "DAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783829457,
+   "feasible_window_min": 462.7,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL12DEJGAU",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DEJ": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "GAU": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783796700,
+   "feasible_window_min": 1800.7,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL12DIEMON",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DIE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MON": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783796374,
+   "feasible_window_min": 900.9,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL12DODCAR",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "CAR": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "DOD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783824819,
+   "feasible_window_min": 1303.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL12GUEGOM",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 57,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GOM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GUE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783871803,
+   "feasible_window_min": 56.2,
+   "max_lawful_joint_margin": 56
+  },
+  {
+   "code": "26JUL12KRUFER",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 30,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "FER": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "KRU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783848158,
+   "feasible_window_min": 48.4,
+   "max_lawful_joint_margin": 24
+  },
+  {
+   "code": "26JUL12MARHAN",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783779238,
+   "feasible_window_min": 2058.1,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL12MULSHE",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 11,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "MUL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SHE": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783797200,
+   "feasible_window_min": 3453.0,
+   "max_lawful_joint_margin": 10
+  },
+  {
+   "code": "26JUL12OFNTIR",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "OFN": "STOOD_TOO_DEEP",
+    "TIR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783790888,
+   "feasible_window_min": 1047.5,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL12PASKAS",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "KAS": "STOOD_TOO_DEEP",
+    "PAS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783835142,
+   "feasible_window_min": 256.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12REJMID",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "MID": "INPUT_GRAIN_ASLEEP",
+    "REJ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783823766,
+   "feasible_window_min": 476.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12SESMER",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "MER": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SES": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784042452,
+   "feasible_window_min": 35.0,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12STRMUN",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MUN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "STR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783809317,
+   "feasible_window_min": 2451.4,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL12SVRDIM",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DIM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SVR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783833843,
+   "feasible_window_min": 2039.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13PASKRU",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "KRU": "STOOD_TOO_DEEP",
+    "PAS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783870446,
+   "feasible_window_min": 970.2,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL13SANDAN",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783895447,
+   "feasible_window_min": 782.5,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL13TABROD",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ROD": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TAB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783893955,
+   "feasible_window_min": 728.5,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL14CECBUR",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BUR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "CEC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783956079,
+   "feasible_window_min": 1483.7,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL14CINHAL",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CIN": "STOOD_TOO_DEEP",
+    "HAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783945264,
+   "feasible_window_min": 976.6,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL14DIAMID",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DIA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MID": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783970902,
+   "feasible_window_min": 842.6,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14GOMMCD",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GOM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MCD": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783987249,
+   "feasible_window_min": 1029.5,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL14KYMDIE",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DIE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "KYM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783961921,
+   "feasible_window_min": 926.7,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL14NEUPRA",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "NEU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784047519,
+   "feasible_window_min": 46.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14TOPUGO",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "TOP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "UGO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783956741,
+   "feasible_window_min": 1155.6,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL14VALDAM",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DAM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "VAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783970874,
+   "feasible_window_min": 842.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14VANDAN",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783967388,
+   "feasible_window_min": 409.8,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL15BASTIR",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TIR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784110907,
+   "feasible_window_min": 1161.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL15PRADZU",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DZU": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784122658,
+   "feasible_window_min": 37.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL15VANDRO",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_LOSS",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DRO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "VAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784094188,
+   "feasible_window_min": 714.9,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL15VANVAL",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "VAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784042930,
+   "feasible_window_min": 87.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL16FARRUU",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FAR": "STOOD_TOO_DEEP",
+    "RUU": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784121840,
+   "feasible_window_min": 1176.3,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL16MERDRO",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 13,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DRO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MER": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784156914,
+   "feasible_window_min": 836.4,
+   "max_lawful_joint_margin": 12
+  },
+  {
+   "code": "26JUL17RINTSI",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "RIN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TSI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784218057,
+   "feasible_window_min": 1361.9,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL17TABTIR",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "TAB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TIR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784227639,
+   "feasible_window_min": 338.3,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL18BUTTAB",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 13,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BUT": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TAB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784332602,
+   "feasible_window_min": 674.1,
+   "max_lawful_joint_margin": 12
+  },
+  {
+   "code": "26JUL18CINMIC",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CIN": "STOOD_TOO_DEEP",
+    "MIC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784332114,
+   "feasible_window_min": 579.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18COLCER",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "CER": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "COL": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784298879,
+   "feasible_window_min": 97.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL18DOMSKA",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DOM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SKA": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784333451,
+   "feasible_window_min": 801.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18GAUTSE",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GAU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TSE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784372024,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL18HIPGIU",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GIU": "STOOD_TOO_DEEP",
+    "HIP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784333786,
+   "feasible_window_min": 524.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL18JACDA",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "JAC": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784327863,
+   "feasible_window_min": 744.8,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL18KOPHER",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "HER": "STOOD_TOO_DEEP",
+    "KOP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784377548,
+   "feasible_window_min": 83.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18LUZTSE",
+   "cat": "ATP_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "LUZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TSE": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784375205,
+   "feasible_window_min": 36.8,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL18PELSIL",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 36,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "PEL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SIL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784335808,
+   "feasible_window_min": 814.7,
+   "max_lawful_joint_margin": 14
+  },
+  {
+   "code": "26JUL18WALDJE",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DJE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "WAL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784327050,
+   "feasible_window_min": 751.9,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL19CINGIU",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CIN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GIU": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784379130,
+   "feasible_window_min": 1294.2,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL19DELDJE",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DEL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "DJE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784396610,
+   "feasible_window_min": 1035.7,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL19FERVAN",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "FER": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784417875,
+   "feasible_window_min": 1473.5,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL19GAUCAR",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "GAU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784430004,
+   "feasible_window_min": 663.2,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL19MARSKA",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SKA": "INPUT_GRAIN_ASLEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784436020,
+   "feasible_window_min": 354.2,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19RODSAC",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ROD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SAC": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784396198,
+   "feasible_window_min": 1068.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19RUBDAR",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "DAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "RUB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784394573,
+   "feasible_window_min": 1030.5,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL19TSICOL",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 45,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "COL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TSI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784384582,
+   "feasible_window_min": 13.8,
+   "max_lawful_joint_margin": 34
+  },
+  {
+   "code": "26JUL19VANFAR",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FAR": "STOOD_TOO_DEEP",
+    "VAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784433734,
+   "feasible_window_min": 595.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL19WAWBUR",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BUR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "WAW": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784444312,
+   "feasible_window_min": 386.2,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL20SCHROD",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ROD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SCH": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784496321,
+   "feasible_window_min": 890.5,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL12BOSKOV",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BOS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KOV": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783819745,
+   "feasible_window_min": 458.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12FEICHE",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "CHE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "FEI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783833713,
+   "feasible_window_min": 181.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12MALTUR",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "MAL": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "TUR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783827102,
+   "feasible_window_min": 823.0,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL12ROUJAK",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 47,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "JAK": "INPUT_GRAIN_ASLEEP",
+    "ROU": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783846251,
+   "feasible_window_min": 312.9,
+   "max_lawful_joint_margin": 43
+  },
+  {
+   "code": "26JUL12SAIETO",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 2,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ETO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SAI": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783847098,
+   "feasible_window_min": 258.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL12SOKNUG",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 8,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "NUG": "INPUT_GRAIN_ASLEEP",
+    "SOK": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783860329,
+   "feasible_window_min": 69.5,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL12VOLMAR",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "INPUT_GRAIN_ASLEEP+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAR": "INPUT_GRAIN_ASLEEP",
+    "VOL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783862432,
+   "feasible_window_min": 223.0,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13BAIPRO",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAI": "STOOD_TOO_DEEP",
+    "PRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783916146,
+   "feasible_window_min": 660.8,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL13GJOCHI",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "CHI": "STOOD_TOO_DEEP",
+    "GJO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783926395,
+   "feasible_window_min": 418.1,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13GRABER",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BER": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783902629,
+   "feasible_window_min": 514.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13HERJAK",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "HER": "STOOD_TOO_DEEP",
+    "JAK": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783951465,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL13KABPER",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "KAB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PER": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783902754,
+   "feasible_window_min": 681.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13KHOZHA",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "KHO": "STOOD_TOO_DEEP",
+    "ZHA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783936368,
+   "feasible_window_min": 17.9,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL13KNUKUR",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KNU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KUR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783909106,
+   "feasible_window_min": 561.1,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL13KOTURG",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "KOT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "URG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783944970,
+   "feasible_window_min": 367.1,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13RADREN",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "RAD": "STOOD_TOO_DEEP",
+    "REN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783908147,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL13RINAST",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "AST": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "RIN": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783940846,
+   "feasible_window_min": 180.1,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL13SELYAN",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "SEL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "YAN": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783913106,
+   "feasible_window_min": 731.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14BASFRI",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAS": "STOOD_TOO_DEEP",
+    "FRI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783993454,
+   "feasible_window_min": 205.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14BRAPIE",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PIE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784025467,
+   "feasible_window_min": 358.8,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL14DILFAL",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "DIL": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "FAL": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784026735,
+   "feasible_window_min": 113.8,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL14FRUGAO",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "FRU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "GAO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784039738,
+   "feasible_window_min": 79.0,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL14HRUBUY",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BUY": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "HRU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784018759,
+   "feasible_window_min": 483.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL14KHONUG",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "KHO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "NUG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784028552,
+   "feasible_window_min": 56.7,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14KOVBAS",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAS": "STOOD_TOO_DEEP",
+    "KOV": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784000198,
+   "feasible_window_min": 305.6,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL14MAZBRO",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BRO": "STOOD_TOO_DEEP",
+    "MAZ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784003838,
+   "feasible_window_min": 767.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14PIGSAM",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "PIG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SAM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784016596,
+   "feasible_window_min": 304.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL14RIESEM",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "RIE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SEM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783998221,
+   "feasible_window_min": 334.4,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL14TANHAV",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "HAV": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784006273,
+   "feasible_window_min": 290.3,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL14TREGRA",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GRA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TRE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784020544,
+   "feasible_window_min": 410.5,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL15ASTNOH",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "AST": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "NOH": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784111256,
+   "feasible_window_min": 289.2,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL15CARPAL",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784092846,
+   "feasible_window_min": 541.5,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL15ERJBAR",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAR": "STOOD_TOO_DEEP",
+    "ERJ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784081332,
+   "feasible_window_min": 469.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL15PENFAL",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "FAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PEN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784077057,
+   "feasible_window_min": 736.0,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL16BENKRA",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BEN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784162230,
+   "feasible_window_min": 506.2,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL16GAOVAL",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GAO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784174881,
+   "feasible_window_min": 559.0,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL16HERVAN",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "HER": "STOOD_TOO_DEEP",
+    "VAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784168838,
+   "feasible_window_min": 494.2,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL16KOSBRO",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KOS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784193059,
+   "feasible_window_min": 439.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL16ZANTRE",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "INPUT_GRAIN_ASLEEP+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "TRE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZAN": "INPUT_GRAIN_ASLEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784199651,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL16ZVOHRU",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "HRU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZVO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784201192,
+   "feasible_window_min": 40.1,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL17VANTAN",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "TAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "VAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784278290,
+   "feasible_window_min": 313.9,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL18BASBOE",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "BOE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784354288,
+   "feasible_window_min": 665.1,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18BASKRA",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "KRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784324761,
+   "feasible_window_min": 600.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL18BROBRA",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "BRO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784340806,
+   "feasible_window_min": 678.2,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18CIRTOT",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "CIR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TOT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784355385,
+   "feasible_window_min": 500.1,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL18URGKOT",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "KOT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "URG": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784345666,
+   "feasible_window_min": 680.9,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19BASSHI",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SHI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784440305,
+   "feasible_window_min": 145.8,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL19GRAKRA",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KRA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784411856,
+   "feasible_window_min": 526.6,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19KOTHOD",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HOD": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "KOT": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784476560,
+   "feasible_window_min": 65.0,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19RENTON",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "REN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784441801,
+   "feasible_window_min": 700.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19VANTAR",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "TAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "VAN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784427186,
+   "feasible_window_min": 466.5,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL20FERREN",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FER": "STOOD_TOO_DEEP",
+    "REN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784526151,
+   "feasible_window_min": 700.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20GORMIN",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "GOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MIN": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784565639,
+   "feasible_window_min": 68.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20KABCHI",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "CHI": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "KAB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784517375,
+   "feasible_window_min": 701.2,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL20LANRAD",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "LAN": "STOOD_TOO_DEEP",
+    "RAD": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784517375,
+   "feasible_window_min": 707.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL12FETPIE",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FET": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PIE": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783811506,
+   "feasible_window_min": 541.9,
+   "max_lawful_joint_margin": 21
+  },
+  {
+   "code": "26JUL12GARPRI",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 44,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GAR": "STOOD_TOO_DEEP",
+    "PRI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783841257,
+   "feasible_window_min": 80.2,
+   "max_lawful_joint_margin": 43
+  },
+  {
+   "code": "26JUL12HERKAZ",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HER": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "KAZ": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783830102,
+   "feasible_window_min": 278.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL12OKAIPE",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "IPE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "OKA": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1783856926,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL12ROMTOD",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "schedule_only",
+   "margin": 9,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ROM": "STOOD_TOO_DEEP",
+    "TOD": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783810433,
+   "feasible_window_min": 572.9,
+   "max_lawful_joint_margin": 8
+  },
+  {
+   "code": "26JUL12WERAMA",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 18,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "AMA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "WER": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783809277,
+   "feasible_window_min": 626.4,
+   "max_lawful_joint_margin": 17
+  },
+  {
+   "code": "26JUL13ARAZID",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ARA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "ZID": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783863730,
+   "feasible_window_min": 2560.6,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL13ARGTAG",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ARG": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TAG": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783895383,
+   "feasible_window_min": 322.5,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL13AVAFET",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "AVA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "FET": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783880611,
+   "feasible_window_min": 645.4,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL13BLISAS",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BLI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SAS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783969092,
+   "feasible_window_min": 962.5,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL13BURLEP",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "BUR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "LEP": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783958954,
+   "feasible_window_min": 32.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13ITOKOR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ITO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KOR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783899099,
+   "feasible_window_min": 2261.8,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL13KAWWAL",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KAW": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "WAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783863318,
+   "feasible_window_min": 1373.7,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL13KRETOM",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "KRE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TOM": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783978081,
+   "feasible_window_min": 1026.0,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13LEPIBR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "IBR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "LEP": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783891995,
+   "feasible_window_min": 845.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL13MATMIC",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAT": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "MIC": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783895556,
+   "feasible_window_min": 1077.4,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL13MORBEJ",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BEJ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MOR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783900189,
+   "feasible_window_min": 709.6,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL13QUERUS",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 15,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "QUE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "RUS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783863378,
+   "feasible_window_min": 1372.3,
+   "max_lawful_joint_margin": 14
+  },
+  {
+   "code": "26JUL13ROMKUL",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KUL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "ROM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783872382,
+   "feasible_window_min": 1041.7,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL13SAKTON",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "SAK": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "TON": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783899700,
+   "feasible_window_min": 1694.5,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL13TAUHIB",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HIB": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TAU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783897440,
+   "feasible_window_min": 1778.9,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL13TIMANN",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "ANN": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "TIM": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783903241,
+   "feasible_window_min": 930.7,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL13ZHEBOU",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_LOSS",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BOU": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "ZHE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783898269,
+   "feasible_window_min": 890.3,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL14AMAJAC",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "AMA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "JAC": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783972984,
+   "feasible_window_min": 1221.0,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL14BULPRI",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BUL": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PRI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1783964810,
+   "feasible_window_min": 783.2,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL15AVAMAR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "AVA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "MAR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784045010,
+   "feasible_window_min": 879.4,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL15OLIPRI",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 7,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "OLI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PRI": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784051872,
+   "feasible_window_min": 217.3,
+   "max_lawful_joint_margin": 6
+  },
+  {
+   "code": "26JUL15SHEQUE",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "QUE": "STOOD_TOO_DEEP",
+    "SHE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784065386,
+   "feasible_window_min": 1845.9,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL16UDVKAW",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KAW": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "UDV": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784139198,
+   "feasible_window_min": 1275.4,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL17PUTSHE",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "PUT": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+    "SHE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784262652,
+   "feasible_window_min": 318.9,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL17UDVBAD",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "UDV": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784234495,
+   "feasible_window_min": 503.8,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL17ZIDMAR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "ZID": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784222746,
+   "feasible_window_min": 1312.0,
+   "max_lawful_joint_margin": 5
+  },
+  {
+   "code": "26JUL18BANGAO",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAN": "STOOD_TOO_DEEP",
+    "GAO": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784329786,
+   "feasible_window_min": 595.0,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL18BERSAI",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_LOSS",
+   "bell": "exact",
+   "margin": 4,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BER": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "SAI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784333546,
+   "feasible_window_min": 649.6,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL18COSHIB",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "COS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "HIB": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784332593,
+   "feasible_window_min": 748.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18HONTHA",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "THA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784349131,
+   "feasible_window_min": 233.2,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL18ITOKNU",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "ITO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "KNU": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784341719,
+   "feasible_window_min": 488.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18MICFRU",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FRU": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "MIC": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784330331,
+   "feasible_window_min": 492.9,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL18OKALEE",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "LEE": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "OKA": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784332532,
+   "feasible_window_min": 624.2,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL18PALHON",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+   "leg_reasons": {
+    "HON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PAL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784330986,
+   "feasible_window_min": 781.4,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL18SALZOL",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "SAL": "STOOD_TOO_DEEP",
+    "ZOL": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784331639,
+   "feasible_window_min": 114.0,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19COSAKS",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "AKS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "COS": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784404818,
+   "feasible_window_min": 887.8,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19GAOFRU",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "FRU": "STOOD_TOO_DEEP",
+    "GAO": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784378446,
+   "feasible_window_min": 1217.3,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19LEPPET",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "LEP": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PET": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784416483,
+   "feasible_window_min": 433.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL19MONPIE",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "MON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PIE": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784407010,
+   "feasible_window_min": 565.2,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL19PRIMAR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 3,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "MAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PRI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784396692,
+   "feasible_window_min": 1287.3,
+   "max_lawful_joint_margin": 2
+  },
+  {
+   "code": "26JUL19RUSKAZ",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "KAZ": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "RUS": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784412352,
+   "feasible_window_min": 627.9,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL19STRPAQ",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "PAQ": "STOOD_TOO_DEEP",
+    "STR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_INFEASIBLE_FLOORS_PRECEDED_PRIMED",
+   "first_primed_epoch": 1784454570,
+   "feasible_window_min": null,
+   "max_lawful_joint_margin": null
+  },
+  {
+   "code": "26JUL19VEDGAR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "GAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "VED": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784396836,
+   "feasible_window_min": 1172.2,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL20AKSCOS",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 9,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "AKS": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "COS": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784491044,
+   "feasible_window_min": 495.6,
+   "max_lawful_joint_margin": 8
+  },
+  {
+   "code": "26JUL20BARYUA",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_LOSS",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BAR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "YUA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784455326,
+   "feasible_window_min": 2827.5,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL20BLIBEJ",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BEJ": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "BLI": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784470233,
+   "feasible_window_min": 2764.8,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL20GAOTAG",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "GAO": "STOOD_TOO_DEEP",
+    "TAG": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784549315,
+   "feasible_window_min": 1357.1,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20KORJIM",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 11,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "JIM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "KOR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784491529,
+   "feasible_window_min": 1987.8,
+   "max_lawful_joint_margin": 10
+  },
+  {
+   "code": "26JUL20OLISCH",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "OLI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SCH": "STOOD_TOO_DEEP"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784496236,
+   "feasible_window_min": 1771.0,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL20PARHAV",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 5,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HAV": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PAR": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784453078,
+   "feasible_window_min": 1645.3,
+   "max_lawful_joint_margin": 4
+  },
+  {
+   "code": "26JUL20PARHON",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 8,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "HON": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "PAR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784485460,
+   "feasible_window_min": 2324.3,
+   "max_lawful_joint_margin": 7
+  },
+  {
+   "code": "26JUL20PODLEE",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "contradictory",
+   "margin": 4,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "LEE": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "POD": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784484524,
+   "feasible_window_min": 651.4,
+   "max_lawful_joint_margin": 3
+  },
+  {
+   "code": "26JUL20PRIBRA",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 6,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "BRA": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+    "PRI": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784503119,
+   "feasible_window_min": 674.0,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20SORCHA",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "clean_interval",
+   "margin": 2,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)",
+   "leg_reasons": {
+    "CHA": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)",
+    "SOR": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784491563,
+   "feasible_window_min": 2392.4,
+   "max_lawful_joint_margin": 1
+  },
+  {
+   "code": "26JUL20TIMSAS",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "live_by_only",
+   "margin": 1,
+   "layer1": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "SAS": "STOOD_TOO_DEEP",
+    "TIM": "STOOD_ELSEWHERE(AT_OR_ABOVE_UNCREDITED_TIMING)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784448986,
+   "feasible_window_min": 2922.5,
+   "max_lawful_joint_margin": 0
+  },
+  {
+   "code": "26JUL20VEDBAR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "bell": "exact",
+   "margin": 1,
+   "layer1": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)+STOOD_TOO_DEEP",
+   "leg_reasons": {
+    "BAR": "STOOD_TOO_DEEP",
+    "VED": "LICENSE_BLOCKED(PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR)"
+   },
+   "layer2": "PLAN_WAS_FEASIBLE",
+   "first_primed_epoch": 1784491978,
+   "feasible_window_min": 869.6,
+   "max_lawful_joint_margin": 0
+  }
+ ]
+}

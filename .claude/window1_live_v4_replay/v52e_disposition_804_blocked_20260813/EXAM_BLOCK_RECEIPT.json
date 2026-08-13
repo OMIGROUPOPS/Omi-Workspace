@@ -1,0 +1,26 @@
+{
+  "status": "BLOCKED_PRE_SCORE_SPECIFICATION_AMBIGUITY",
+  "frozen_policy_commit": "b09aa22b301205d5d44d683497cf3edc5b177cf8",
+  "exact_parent": "11f0fe0e04c315b555a0f02e4c8d44388328039e",
+  "requested_population": 804,
+  "replay_events_processed": 804,
+  "blocking_assertion": "THREE_STATE_VOCABULARY_MUST_BE_EXHAUSTIVE",
+  "observed_unrepresentable_games": 4,
+  "observed_class": "BOTH_LEGS_CREDITED_COMBINED_ENTRY_NOT_STRICTLY_BELOW_100",
+  "requested_states": [
+    "COMPLETE_AT_DELTA",
+    "PARTIAL_FOR_REASON",
+    "NEITHER_FOR_REASON"
+  ],
+  "score_rows_emitted": 0,
+  "score_artifacts_emitted": [],
+  "prohibited_score_artifacts_absent": [
+    "TWO_RULER_SCORECARD.json",
+    "MARKET_GRADE_SCORECARD.json",
+    "STRICT_BUILD_VERIFICATION_SCORECARD.json",
+    "FRONTIER.json",
+    "REGRET_GAUGE.json"
+  ],
+  "rerun_after_specification_block": false,
+  "operator_amendment_required": true
+}

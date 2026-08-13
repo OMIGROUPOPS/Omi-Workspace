@@ -1,0 +1,39 @@
+{
+  "frozen_commit": "b09aa22b301205d5d44d683497cf3edc5b177cf8",
+  "reattestation_commit": "11f0fe0e04c315b555a0f02e4c8d44388328039e",
+  "reattestation_path": ".claude/window1_live_v4_replay/v52e_trace_span_provenance_audit_20260813/POLICY_BYTE_IDENTITY.json",
+  "reattestation_sha256": "46d359844b9f8ef3e38ee210a52e81dca401d4497407694cc6ad88cacfa66295",
+  "files": {
+    "arb-executor/analysis/window1_v52_judgment_gate.js": {
+      "frozen_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "prior_reattest_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "current_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "byte_identical": true
+    },
+    "arb-executor/analysis/window1_v52b_read_level_authority.js": {
+      "frozen_sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "prior_reattest_sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "current_sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "byte_identical": true
+    },
+    "arb-executor/analysis/window1_v52c_full_post_onset_read.js": {
+      "frozen_sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "prior_reattest_sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "current_sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "byte_identical": true
+    },
+    "arb-executor/analysis/window1_v52d_disagreement_referee.js": {
+      "frozen_sha256": "26f379b90ded2bad6ed7a12bb82a95ff33e9937fe841b526edd36179bbd80a70",
+      "prior_reattest_sha256": "26f379b90ded2bad6ed7a12bb82a95ff33e9937fe841b526edd36179bbd80a70",
+      "current_sha256": "26f379b90ded2bad6ed7a12bb82a95ff33e9937fe841b526edd36179bbd80a70",
+      "byte_identical": true
+    },
+    "arb-executor/analysis/window1_v52e_palantir_wiring.js": {
+      "frozen_sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+      "prior_reattest_sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+      "current_sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+      "byte_identical": true
+    }
+  },
+  "all_byte_identical": true
+}

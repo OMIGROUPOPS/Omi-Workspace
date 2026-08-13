@@ -1981,3 +1981,22 @@ V52e policy bytes and the 17/30 observation are unchanged. Two receipt-only
 builds are byte-identical and 108 assertions pass. The full-804 exam remains
 held. Canonical addendum:
 `WINDOW1_V52E_TRACE_SPAN_PROVENANCE_AUDIT_20260813_ADDENDUM.md`.
+
+### 2026-08-13 - V52E FULL-804 DISPOSITION EXAM BLOCK
+
+Frozen V52e processed all 804 development games with policy bytes identical to
+`b09aa22b301205d5d44d683497cf3edc5b177cf8` and the corrected span-close export
+convention from `11f0fe0e04c315b555a0f02e4c8d44388328039e`. The first score-package
+precondition found four games with both legs credited but combined entry not
+strictly below 100. Those games cannot truthfully enter any of the requested
+three states: COMPLETE_AT_DELTA, PARTIAL_FOR_REASON, or NEITHER_FOR_REASON.
+
+The controlling specification-doubt fence stopped the exam before score
+emission. No scorecard, frontier, regret gauge, named grading, or capture result
+against the 612-game offered-post-onset denominator was emitted, and no second
+score build was run. The 804 decision walk is retained in 101 receipt-grain
+trace shards as blocked-exam evidence. A fourth disposition or explicit
+three-state conservation law requires a new operator ruling before any rerun.
+
+Canonical addendum:
+`WINDOW1_V52E_DISPOSITION_804_BLOCK_20260813_ADDENDUM.md`.

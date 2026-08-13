@@ -1,0 +1,40 @@
+{
+  "files": {
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "sha256": "6672372de7b25b17b2a9393360af233ced72a0b0e85819204b929af2f275b4a2",
+      "role": "MECHANICAL_FULL_804_HARNESS_AND_RECEIPT_EXPORT"
+    },
+    "arb-executor/analysis/build_window1_v52e_disposition_804.js": {
+      "sha256": "c410da3af1df20188646002e35299a66a36ccc86c824b8bec41d92564add5bf7",
+      "role": "HEAP_PROPAGATING_ENTRYPOINT"
+    },
+    "arb-executor/analysis/freeze_window1_v52e_disposition_block.js": {
+      "sha256": "539e784a0808532e473ece8a1b483d68d5ca25dd08e9869feb73b11a8d1a1315",
+      "role": "BLOCK_RECEIPT_FREEZER"
+    },
+    "arb-executor/tests/test_window1_v52e_disposition_block.js": {
+      "sha256": "abceddd3ba7741f0c26209a88253356be01cf024521e54df09964f9d4972f753",
+      "role": "BLOCK_PACKAGE_INTEGRITY_TEST"
+    },
+    "arb-executor/analysis/window1_v52_judgment_gate.js": {
+      "sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "role": "FROZEN_POLICY_BYTE_IDENTITY"
+    },
+    "arb-executor/analysis/window1_v52b_read_level_authority.js": {
+      "sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "role": "FROZEN_POLICY_BYTE_IDENTITY"
+    },
+    "arb-executor/analysis/window1_v52c_full_post_onset_read.js": {
+      "sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "role": "FROZEN_POLICY_BYTE_IDENTITY"
+    },
+    "arb-executor/analysis/window1_v52d_disagreement_referee.js": {
+      "sha256": "26f379b90ded2bad6ed7a12bb82a95ff33e9937fe841b526edd36179bbd80a70",
+      "role": "FROZEN_POLICY_BYTE_IDENTITY"
+    },
+    "arb-executor/analysis/window1_v52e_palantir_wiring.js": {
+      "sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+      "role": "FROZEN_POLICY_BYTE_IDENTITY"
+    }
+  }
+}

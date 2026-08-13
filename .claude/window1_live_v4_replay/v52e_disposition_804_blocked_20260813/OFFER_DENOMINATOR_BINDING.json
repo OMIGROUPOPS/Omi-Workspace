@@ -1,0 +1,13 @@
+{
+  "commit": "22441e058f9efa7ea8c3065334a238ec8786416f",
+  "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json",
+  "requested": {
+    "OFFERED_POST_ONSET": 612,
+    "GE_10": 90,
+    "GE_5": 236,
+    "GE_3": 384,
+    "THIN_1_TO_2": 228
+  },
+  "scored_capture": null,
+  "reason_null": "EXAM_BLOCKED_BEFORE_SCORE_EMISSION"
+}

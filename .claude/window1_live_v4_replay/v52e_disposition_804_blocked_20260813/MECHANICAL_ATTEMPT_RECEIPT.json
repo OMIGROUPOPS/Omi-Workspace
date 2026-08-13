@@ -1,0 +1,41 @@
+{
+  "authorization_law": "MECHANICAL_REPAIRS_ONLY; SPEC_DOUBT_STOP",
+  "attempts_before_final_block": [
+    {
+      "stage": "PRE_REPLAY",
+      "failure": "WRAPPER_DID_NOT_PROPAGATE_NODE_HEAP_FLAG",
+      "score_rows_emitted": 0,
+      "repair": "PROPAGATE_PROCESS_EXECARGV"
+    },
+    {
+      "stage": "FIRST_EVENT_EXPORT",
+      "failure": "ARRAY_SPREAD_MAXIMUM_CALL_STACK",
+      "score_rows_emitted": 0,
+      "repair": "BOUNDED_APPEND"
+    },
+    {
+      "stage": "PRE_SCORE_ORCHESTRATION",
+      "failure": "ORPHAN_CHILD_AND_NEW_CHILD_SHARED_PARTIAL_PATH",
+      "score_rows_emitted": 0,
+      "repair": "STOP_BOTH; NEW_UNCONTAMINATED_PATH"
+    },
+    {
+      "stage": "PRE_SCORE_EXPORT_SCALE",
+      "failure": "REPEATED_NESTED_EVIDENCE_GRAPH_NOT_GIT_SAFE",
+      "score_rows_emitted": 0,
+      "repair": "RECEIPT_GRAIN_DIARY_SCHEMA; SOURCE_RECEIPTS_RECONSTRUCT_NESTED_EVIDENCE"
+    },
+    {
+      "stage": "POST_REPLAY_PRE_SCORE",
+      "failure": "SPAN_ASSERTION_WRONGLY_REQUIRED_A_RECEIPT_ON_NO_TAPE_LEGS",
+      "score_rows_emitted": 0,
+      "repair": "EXPLICIT_NO_MATERIALIZED_RECEIPT_INSIDE_EDGE_STATUS"
+    }
+  ],
+  "final_attempt": {
+    "replay_events_processed": 804,
+    "blocking_failure": "FOUR_COMPLETED_NON_DELTA_GAMES_NOT_REPRESENTABLE_IN_THREE_STATE_CENSUS",
+    "score_rows_emitted": 0,
+    "mechanical_repair_authority_exhausted": true
+  }
+}

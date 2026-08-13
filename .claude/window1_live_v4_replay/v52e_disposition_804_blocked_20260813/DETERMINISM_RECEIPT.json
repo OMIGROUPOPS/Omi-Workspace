@@ -1,0 +1,6 @@
+{
+  "clean_score_builds_completed": 0,
+  "byte_identical_score_builds": null,
+  "reason": "SPECIFICATION_BLOCK_CONTROLS_BEFORE_SCORE_AND_SECOND_BUILD",
+  "trace_shards_hash_bound": true
+}

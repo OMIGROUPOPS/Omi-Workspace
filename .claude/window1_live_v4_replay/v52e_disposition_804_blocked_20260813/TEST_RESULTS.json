@@ -1,0 +1,24 @@
+{
+  "status": "PRE_EXAM_FOCUSED_PASS_THEN_EXAM_SPEC_BLOCK",
+  "focused_pre_exam": {
+    "files": 3,
+    "assertions": 108,
+    "failures": 0,
+    "suites": [
+      "test_window1_v52e_palantir_wiring.js:31",
+      "test_window1_v52e_palantir_wiring_package.js:39",
+      "test_window1_v52e_trace_span_provenance_audit.js:38"
+    ]
+  },
+  "post_block_integrity": {
+    "files": 1,
+    "assertions": 16,
+    "failures": 0,
+    "suite": "test_window1_v52e_disposition_block.js:16"
+  },
+  "exam": {
+    "replay_events": 804,
+    "score_rows_emitted": 0,
+    "block": "THREE_STATE_NOT_EXHAUSTIVE_FOR_4_COMPLETED_NON_DELTA_GAMES"
+  }
+}

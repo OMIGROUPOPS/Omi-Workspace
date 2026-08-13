@@ -56,7 +56,9 @@ verification only, never swapped (`fb74c8b8` CONTROL_BINDING).
     · **prints** = "contracts sold at P" · **book side** = "contracts of standing bids at P." No synonyms in
     artifacts. And a logged authorship pattern: **Fable's check-authoring failed outcome-bound twice**
     (POLKUH, MERDRO — both demanded outcomes instead of lawful behavior); **future checks bind to lawful
-    behavior**, never to a result.
+    behavior**, never to a result. **(fold 6): "the bell" RETIRED** — collides with match-start; the event is
+    **THE FULL-804 EXAM**. **(fold 6): priors-inform-never-gate** — a palantir prior may shape a level or a
+    zone weight; it may never veto or grant a license.
 
 ---
 
@@ -127,6 +129,9 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
 | The sealed exam verdict itself (2bae8931: PASS, "generalization confirmed") | **RETIRED** (fold 3) — **it generalized the reflex, not judgment**: 374/374 exam fills were policy-born posts, 65.5% formation-era, 73.5% queue-thin (7157456b). The 14.4% capture number survives as a measurement; the PASS does not. **V52 must re-take sealed post-disposition, against an honest bar of 0.** |
 | ARSMAR renders (fold 4): `arsmar.png` · `arsmar_pair.png` | **arsmar.png SUPERSEDED** (single-leg basis) → **arsmar_pair.png is the game-basis standard.** Its PAIR strip: **102 segments, 50 FIRING_DISAGREEMENT — clause ④ is a blanket freeze on a hair-trigger flag; adjudicate-not-freeze queued as screw #3.** MAR gate strip honestly **ABSENT** (export gap; trace rides in with iteration 2). **Standing render rules: game-basis only; a gate-state strip is standard on every gated render.** |
 | Decision web (2af60dfc; 8 nodes / 613,394 traced receipts / 30 games) | **STANDING-REFERENCE** (fold 5) — the machine as it actually runs, human-language, live frequencies; **supersedes the pre-gate anatomy map (cd592540) at decision grain** — the 18-site map remains historical engineering detail. N6's caveat carried verbatim: *"first-failure ordering means these are frequencies of the named block, not of clause truth."* |
+| Machine palantir v1 (9929e918; 30 assets) | **STANDING-STORE** (fold 6) — the general-knowledge consolidation: **14 CLEAN / 4 UNVALIDATED / 1 QUARANTINED / 11 SUPERSEDED**, provenance triple on every entry, N9 targets named-not-wired; gaps by layer incl. PRIMED sufficiency criteria. **Custody: `macro_projection.db` absent at its recorded path — named.** |
+| Flip query — RUBBAE (9f00b35f) | **RESOLVED** (fold 6, operator-adjudicated) — **better-judgment-worse-outcome**: the pre-gate machine's blind read on an 87¢-wide newborn book rode to a 99-thin pair; the gate's sighted refusal was lawful; **the −1 is the fix working.** Outcome-vs-judgment template alongside the named checks. |
+| Post-onset offer census (22441e05; 804 games) | **RESOLVED — THE EXAM'S DENOMINATOR** (fold 6): **612 offered post-onset** / 72 formation-only (10.1% of the old 711 were mirages) / 82 not-offered / 36 no-onset (47 legs, named) / 2 no-tape; margins p25 2 / med 3 / p75 7 (≥3¢ 384 · ≥5¢ 236 · ≥10¢ 90; 228 thin at 1–2¢); category gradient ATP_MAIN 90% → WTA_CHALL 60% matching the zone table; **A/B sensitivity: 111 games flip offered-status on the onset candidate — PRIMED refinement reclassifies via traces** |
 
 ---
 
@@ -187,6 +192,13 @@ re-run. SHELVED = live finding awaiting an owner, with reopen condition. Nothing
   clause ② evidence horizon, in flight @ Codex.** ⧗ → **30-game confirmation (fold 5, `2af60dfc`): the
   decision web's N2 measures the live starvation rate at 25.9% — no-reading-possible on 158,965 of 613,394
   receipts, cohort-wide, not just ARSMAR.**
+- **ITERATION 2 @ `08ce27c0` (fold 6):** clause ② evidence horizon landed — **READ_ABSENT 103,397 → 55**;
+  the pre-stated falsifiable claim (READ_ABSENT falls on thin tapes) held; **four proofs PASS** (differential
+  purity · law assertions · pin non-regression · operator trace read).
+- **ITERATION 3 @ `893ee4c6` (fold 6):** clause ④ referee landed — adjudicate-not-freeze (screw #3):
+  **15,755 disagreement blocks → 0 via 69,471 adjudications, zero ties** — the tie branch is dormant, logged
+  as a **watch item**, never exercised. Correction on the record: Fable's fold-4 pre-statement of "127"
+  disagreement blocks corrected to **510** (the fold-4 number was the ARS-leg histogram, not the cohort).
 - **Aim-organ hypothesis — RETIRED, tombstone `17664b3f`** (fold): the deep-aim organ (AIM_V2 cell-depth as
   the miss fix) is refuted on this population — median aim error +2, the vault already knew the level, and
   aiming lower worsens every scored leg. Reopen condition: none at replay grain; superseded by V51.
@@ -343,6 +355,12 @@ patience vs live premium → Stage C pilot, zone-mapped.
   do so."* License = evidence-sufficiency per the traces; **no global threshold**; ambiguous cases go to the
   operator in the proving loop (§9). The 591 bracket-dependent legs (dev 478 + sealed 113) **reclassify under
   this standard via traces, not a line.**
+- **The exam's denominator and bar (fold 6, `22441e05`):** the full-804 exam is judged against
+  **OFFERED_POST_ONSET = 612** (margin ladder ≥3¢ 384 / ≥5¢ 236 / ≥10¢ 90 / thin-1–2¢ 228 reported beside
+  capture, never collapsed). The onset-candidate sensitivity is on the record: **111 games flip
+  offered-status between candidates A and B** — PRIMED refinement reclassifies them via traces. **The
+  operator's 700-no-exception bar is recorded as translated: 612/612 — everything the awake market offered**,
+  with the margin ladder beside it.
 
 ## 9 · THE PROVING LOOP — standing dev protocol, gate era
 
@@ -362,6 +380,13 @@ at-or-better, two rulers; **further screws require post-804 evidence.** Per-fix 
 ① differential-receipt purity · ② law assertions (REFLEX_POST 0, license fields present, determinism) ·
 ③ pin non-regression · ④ the fix's **pre-stated falsifiable claim** (iteration 2's: READ_ABSENT falls on
 thin tapes) · ⑤ operator trace read. **Sample scores are observations, never validators.**
+
+**AMENDED BY OPERATOR RULING (fold 6):** ① **Vocabulary: "the bell" is RETIRED** — it collides with
+match-start; the event is **THE FULL-804 EXAM**. ② **The exam moves BEHIND iteration 4 — the machine
+examines complete**: N9 (palantir wiring) is **promoted pre-exam**, with the **priors-inform-never-gate law**
+attached (a prior may shape a level or a zone weight; it may never veto or grant a license). ③ **REUSE
+mandate**: N9 re-points existing dossier/loader machinery, never rebuilds it; a **Step-0 inventory of the
+machinery to be re-pointed is required** before the iteration starts.
 
 ---
 
@@ -390,3 +415,10 @@ pattern logged. Append-only: no prior line deleted.*
 at decision grain, N6 named-block caveat verbatim) · §3 read-starvation rider (25.9% live confirmation) · §7
 amendment 3 (N8: the reflex demoted from actor to reference, 417,636 proposals / obedience zero). Append-only:
 no prior line deleted.*
+*Fold pass 6: §2 +3 rows (palantir STANDING-STORE 9929e918; RUBBAE flip query 9f00b35f better-judgment-worse-
+outcome; post-onset offer census 22441e05 = the exam's denominator) · §3 iterations 2 (08ce27c0, READ_ABSENT
+103,397→55, four proofs PASS) + 3 (893ee4c6, 15,755 disagreement blocks→0 via 69,471 adjudications, tie
+branch dormant/watch, 127→510 correction on the record) · §9 operator amendment (exam behind iteration 4,
+N9 promoted pre-exam, priors-inform-never-gate, REUSE mandate + Step-0 inventory) · §1 law 10 riders ("the
+bell" RETIRED → THE FULL-804 EXAM; priors-inform-never-gate) · §8 the 612 denominator + 700-bar translation
+recorded. Append-only: no prior line deleted.*

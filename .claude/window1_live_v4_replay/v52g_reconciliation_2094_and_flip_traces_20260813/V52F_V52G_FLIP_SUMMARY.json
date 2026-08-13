@@ -1,0 +1,17 @@
+{
+  "adjudication_owner": "ANALYSIS_SEAT",
+  "baseline_candidate_delta": -2,
+  "baseline_complete_at_delta": 2,
+  "candidate_complete_at_delta": 0,
+  "divergence_rows": 5710,
+  "event_ids": [
+    "KXWTAMATCH-26JUL13CRIJEA",
+    "KXWTAMATCH-26JUL19BRAVON"
+  ],
+  "events": 2,
+  "forward_truth_print_rows": 177,
+  "interpretation": null,
+  "pair_budget_time_series_rows": 246,
+  "rows_only": true,
+  "trace_rows_at_divergence": 129
+}

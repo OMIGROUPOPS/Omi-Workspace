@@ -1,0 +1,24 @@
+{
+  "imports": 0,
+  "invocations": 0,
+  "modifications_by_this_build": 0,
+  "pass": true,
+  "policy_files": [
+    {
+      "current_sha256": "e4e6238beaf69ff57e7283ee361b76f3f32adad44d4989f40947c0156075dbec",
+      "path": "arb-executor/analysis/window1_v49b_faithful_stand_at_p.js"
+    },
+    {
+      "current_sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+      "path": "arb-executor/analysis/window1_v52e_palantir_wiring.js"
+    },
+    {
+      "current_sha256": "0c7e9f1273800b3772e38253ab1c22b32460e8776a7b7e7d4716673ff29bc667",
+      "path": "arb-executor/analysis/window1_v52f_pair_entry_conservation.js"
+    },
+    {
+      "current_sha256": "253207995d516e7921193e98b7df7073a13c700341cefc3c24147fb66134335c",
+      "path": "arb-executor/analysis/window1_v52g_joint_target_conservation.js"
+    }
+  ]
+}

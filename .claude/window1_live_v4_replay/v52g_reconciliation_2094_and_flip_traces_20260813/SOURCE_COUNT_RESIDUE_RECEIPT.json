@@ -1,0 +1,8 @@
+{
+  "consequence": "The 2,093 materialized rows are adjudicated; no verdict is invented for the unidentifiable 2,094th count. The source count is a measurement defect and blocks a complete 2,094-of-2,094 certification.",
+  "independently_materialized_moments": 2093,
+  "source_moment_ledger_present_at_e17": false,
+  "source_reported_moments": 2094,
+  "status": "SOURCE_ANOMALY_COUNT_NOT_FULLY_RECONCILABLE_ONE_IDENTITY_NOT_FROZEN",
+  "unexplained_residue": 1
+}

@@ -1,0 +1,37 @@
+{
+  "action_state_ge": 2093,
+  "after_ge": 2093,
+  "after_ge_and_leg_missed_floor": 1879,
+  "any_export_ge": 2093,
+  "before_ge": 2077,
+  "before_ge_and_leg_missed_floor": 1865,
+  "candidate_legs": 692,
+  "conservation": {
+    "materialized": 2093,
+    "pass": true,
+    "verdict_sum": 2093
+  },
+  "corrected_capture_emitted": false,
+  "corrected_four_state_census_emitted": false,
+  "crediting_defects": 0,
+  "export_or_action_ge": 2093,
+  "final_target_ge": 2093,
+  "floor_print_moments": 4507,
+  "games_with_crediting_defect": 0,
+  "independently_materialized_moments": 2093,
+  "shortfall_events": 346,
+  "source_anomaly_already_terminal": 2093,
+  "source_anomaly_standing_precredit": 0,
+  "source_reported_moments": 2094,
+  "source_residue": {
+    "consequence": "The 2,093 materialized rows are adjudicated; no verdict is invented for the unidentifiable 2,094th count. The source count is a measurement defect and blocks a complete 2,094-of-2,094 certification.",
+    "independently_materialized_moments": 2093,
+    "source_moment_ledger_present_at_e17": false,
+    "source_reported_moments": 2094,
+    "status": "SOURCE_ANOMALY_COUNT_NOT_FULLY_RECONCILABLE_ONE_IDENTITY_NOT_FROZEN",
+    "unexplained_residue": 1
+  },
+  "stop_for_operator_review": true,
+  "unexplained_source_residue": 1,
+  "verdict": "2093_EXPORT_GRAIN_ILLUSION__0_CREDITING_DEFECT__1_SOURCE_COUNT_RESIDUE_BLOCK"
+}

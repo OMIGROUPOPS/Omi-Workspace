@@ -1,0 +1,21 @@
+{
+  "behavior_edits": false,
+  "finding": "All 2,093 materialized source moments occur after that leg was already credited; no failing credit path exists among them.",
+  "frozen_score_reconstruction": {
+    "effect": "PRINT merged ahead of same-second BOOK_DECISION; active target credits at-or-below print",
+    "file": "arb-executor/analysis/build_window1_v52e_four_state_score_from_traces.js",
+    "lines": "130-147"
+  },
+  "policy_imports": 0,
+  "policy_invocations": 0,
+  "runner_callsite": {
+    "effect": "fillLeg immediately on tradeTruthCredit",
+    "file": "arb-executor/analysis/build_window1_v38_maker_only.js",
+    "lines": "599-600"
+  },
+  "trade_truth_definition": {
+    "condition": "order exists; lawful integer target; PRINT; print timestamp strictly after action; nonempty trade_id; integer print price <= target",
+    "file": "arb-executor/analysis/window1_v49b_faithful_stand_at_p.js",
+    "lines": "91-99"
+  }
+}

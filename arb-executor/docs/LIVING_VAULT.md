@@ -2069,3 +2069,21 @@ live, or trading access occurred.
 
 Canonical addendum:
 `WINDOW1_V52G_JOINT_TARGET_CONSERVATION_20260813_ADDENDUM.md`.
+
+### 2026-08-13 - V52G 2,094 RECONCILIATION / SOURCE-COUNT BLOCK
+
+The `e17af2dc` analytical receipt froze a count of 2,094
+`AT_OR_ABOVE_UNCREDITED_TIMING` moments but no identity ledger. Independent
+reconstruction materializes 2,093 exact moments. Every materialized leg was
+already terminal and credited before the cited later floor print; the
+decision-only export carried its last standing target beyond credit. Thus
+2,093 are `EXPORT_GRAIN_ILLUSION`, zero are `CREDITING_DEFECT`, and the missing
+one identity is an unexplained source measurement residue. Full 2,094-of-2,094
+certification is BLOCKED. No score or policy is changed, and no corrected
+census is emitted.
+
+The rows-only V52f/V52g flip evidence names CRIJEA and BRAVON and preserves
+both machines at divergence, the joint-budget differentials, forward truth,
+and terminal outcomes without analysis-seat interpretation. Two clean builds
+are byte-identical. Canonical addendum:
+`WINDOW1_V52G_2094_RECONCILIATION_20260813_ADDENDUM.md`.

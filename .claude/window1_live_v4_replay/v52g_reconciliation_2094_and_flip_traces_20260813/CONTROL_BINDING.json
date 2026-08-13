@@ -1,0 +1,13 @@
+{
+  "anomaly_source_commit": "e17af2dc4141686c158a19e86be1fb220b641012",
+  "frozen_score_commit": "4716657a18519d5b90705eb20030a66f5491a91b",
+  "frozen_trace_commit": "d9f83b30c44c3910f40d84b4b4f32daccabf3604",
+  "frozen_v52g_commit": "ab841995f0cefa6011cf839fabf44057188111c4",
+  "live": false,
+  "policy_edits": false,
+  "policy_replay": false,
+  "scope": "DEV_804_RECEIPTS_ONLY_RECONCILIATION_PLUS_V52F_V52G_SHARED_COHORT_FLIPS",
+  "score_correction": false,
+  "score_replay": false,
+  "sealed": false
+}

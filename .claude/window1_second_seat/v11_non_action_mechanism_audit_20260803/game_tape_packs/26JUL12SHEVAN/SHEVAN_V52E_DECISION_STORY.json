@@ -1,0 +1,1153 @@
+{
+ "LABEL": "SHEVAN_V52E_STORY",
+ "rows_source": "V52E_FULL_DECISION_TRACE_30_GAMES @ b09aa22b",
+ "legs": {
+  "SHE": {
+   "receipts": 12325,
+   "first_t": 1783818706,
+   "last_t": 1783864383,
+   "final_action": "HOLD_REST",
+   "final_target": 34,
+   "block_histogram": {
+    "STABILITY_ONSET_NOT_REACHED": 10010,
+    "NO_TAPE_MACHINE_READ_ABSENT": 1,
+    "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 169
+   },
+   "events": [
+    {
+     "t": 1783818706,
+     "tmin_sched": -888.2,
+     "what": "ONSET not-passed",
+     "cand": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE"
+    },
+    {
+     "t": 1783818706,
+     "tmin_sched": -888.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818726,
+     "tmin_sched": -887.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818963,
+     "tmin_sched": -884.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818963,
+     "tmin_sched": -884.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818963,
+     "tmin_sched": -884.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818992,
+     "tmin_sched": -883.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783819004,
+     "tmin_sched": -883.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820436,
+     "tmin_sched": -859.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820728,
+     "tmin_sched": -854.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820728,
+     "tmin_sched": -854.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820768,
+     "tmin_sched": -853.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820981,
+     "tmin_sched": -850.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783821024,
+     "tmin_sched": -849.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783821024,
+     "tmin_sched": -849.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828800,
+     "tmin_sched": -720.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828804,
+     "tmin_sched": -719.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828829,
+     "tmin_sched": -719.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828829,
+     "tmin_sched": -719.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783841637,
+     "tmin_sched": -506.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783841637,
+     "tmin_sched": -506.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783843414,
+     "tmin_sched": -476.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783843414,
+     "tmin_sched": -476.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783843414,
+     "tmin_sched": -476.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783843414,
+     "tmin_sched": -476.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845693,
+     "tmin_sched": -438.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845710,
+     "tmin_sched": -438.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845711,
+     "tmin_sched": -438.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783846304,
+     "tmin_sched": -428.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783846304,
+     "tmin_sched": -428.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783846306,
+     "tmin_sched": -428.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783846306,
+     "tmin_sched": -428.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783847342,
+     "tmin_sched": -411.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783847342,
+     "tmin_sched": -411.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848011,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848011,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848020,
+     "tmin_sched": -399.7,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848756,
+     "tmin_sched": -387.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783854224,
+     "tmin_sched": -296.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783854224,
+     "tmin_sched": -296.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783854404,
+     "tmin_sched": -293.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783854404,
+     "tmin_sched": -293.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783854450,
+     "tmin_sched": -292.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783854450,
+     "tmin_sched": -292.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783859676,
+     "tmin_sched": -205.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860239,
+     "tmin_sched": -196.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860330,
+     "tmin_sched": -194.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860823,
+     "tmin_sched": -186.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860823,
+     "tmin_sched": -186.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860935,
+     "tmin_sched": -184.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860935,
+     "tmin_sched": -184.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861076,
+     "tmin_sched": -182.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861076,
+     "tmin_sched": -182.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861200,
+     "tmin_sched": -180.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861201,
+     "tmin_sched": -180.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861218,
+     "tmin_sched": -179.7,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861218,
+     "tmin_sched": -179.7,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862438,
+     "tmin_sched": -159.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862715,
+     "tmin_sched": -154.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862726,
+     "tmin_sched": -154.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862796,
+     "tmin_sched": -153.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862797,
+     "tmin_sched": -153.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862972,
+     "tmin_sched": -150.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862972,
+     "tmin_sched": -150.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862974,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862974,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862974,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862977,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862977,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862977,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862977,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862978,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862978,
+     "tmin_sched": -150.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783862980,
+     "tmin_sched": -150.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783863032,
+     "tmin_sched": -149.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783863032,
+     "tmin_sched": -149.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    }
+   ],
+   "n_events": 465
+  },
+  "VAN": {
+   "receipts": 10316,
+   "first_t": 1783818706,
+   "last_t": 1783864246,
+   "final_action": "HOLD_REST",
+   "final_target": 58,
+   "block_histogram": {
+    "STABILITY_ONSET_NOT_REACHED": 6375,
+    "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR": 3798
+   },
+   "events": [
+    {
+     "t": 1783818706,
+     "tmin_sched": -888.2,
+     "what": "ONSET not-passed",
+     "cand": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE"
+    },
+    {
+     "t": 1783818706,
+     "tmin_sched": -888.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818726,
+     "tmin_sched": -887.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818963,
+     "tmin_sched": -884.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818964,
+     "tmin_sched": -883.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783818991,
+     "tmin_sched": -883.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783819002,
+     "tmin_sched": -883.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783819004,
+     "tmin_sched": -883.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820436,
+     "tmin_sched": -859.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820436,
+     "tmin_sched": -859.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820436,
+     "tmin_sched": -859.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820768,
+     "tmin_sched": -853.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820768,
+     "tmin_sched": -853.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820768,
+     "tmin_sched": -853.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783820981,
+     "tmin_sched": -850.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783821024,
+     "tmin_sched": -849.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783821024,
+     "tmin_sched": -849.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783821410,
+     "tmin_sched": -843.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783824177,
+     "tmin_sched": -797.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828672,
+     "tmin_sched": -722.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828672,
+     "tmin_sched": -722.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828800,
+     "tmin_sched": -720.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783828829,
+     "tmin_sched": -719.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783834932,
+     "tmin_sched": -617.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783834932,
+     "tmin_sched": -617.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783834932,
+     "tmin_sched": -617.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783834932,
+     "tmin_sched": -617.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783834932,
+     "tmin_sched": -617.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845163,
+     "tmin_sched": -447.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845163,
+     "tmin_sched": -447.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845223,
+     "tmin_sched": -446.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845223,
+     "tmin_sched": -446.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845710,
+     "tmin_sched": -438.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783845710,
+     "tmin_sched": -438.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848010,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848011,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783848011,
+     "tmin_sched": -399.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783849069,
+     "tmin_sched": -382.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783849112,
+     "tmin_sched": -381.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783849329,
+     "tmin_sched": -377.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783849333,
+     "tmin_sched": -377.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783850524,
+     "tmin_sched": -357.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783850547,
+     "tmin_sched": -357.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783850547,
+     "tmin_sched": -357.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783850579,
+     "tmin_sched": -357.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783850991,
+     "tmin_sched": -350.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783851085,
+     "tmin_sched": -348.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783851085,
+     "tmin_sched": -348.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783851086,
+     "tmin_sched": -348.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783851086,
+     "tmin_sched": -348.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783851086,
+     "tmin_sched": -348.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783851116,
+     "tmin_sched": -348.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783851116,
+     "tmin_sched": -348.1,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783855161,
+     "tmin_sched": -280.6,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783857074,
+     "tmin_sched": -248.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783858621,
+     "tmin_sched": -223.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783859221,
+     "tmin_sched": -213.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783859221,
+     "tmin_sched": -213.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783859677,
+     "tmin_sched": -205.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783859689,
+     "tmin_sched": -205.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860239,
+     "tmin_sched": -196.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860279,
+     "tmin_sched": -195.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860843,
+     "tmin_sched": -185.9,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860891,
+     "tmin_sched": -185.2,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860935,
+     "tmin_sched": -184.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783860935,
+     "tmin_sched": -184.4,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861048,
+     "tmin_sched": -182.5,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861089,
+     "tmin_sched": -181.8,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861200,
+     "tmin_sched": -180.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861200,
+     "tmin_sched": -180.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861201,
+     "tmin_sched": -180.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861201,
+     "tmin_sched": -180.0,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861219,
+     "tmin_sched": -179.7,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861219,
+     "tmin_sched": -179.7,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    },
+    {
+     "t": 1783861662,
+     "tmin_sched": -172.3,
+     "what": "READ -> ABSENT",
+     "evidence": "POST_ONSET_EVIDENCE_GENUINELY_INSUFFICIENT_NO_COMPARABLE_TRANSITION",
+     "receipt": null
+    }
+   ],
+   "n_events": 318
+  }
+ }
+}

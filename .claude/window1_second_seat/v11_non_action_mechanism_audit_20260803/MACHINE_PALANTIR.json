@@ -5,47 +5,354 @@
  "rule": "knowledge assets only - anything answering a question about games in general, not one game's tape. Every entry carries the provenance triple (source, SHA, status). CLEAN store = VALIDATED or UNVALIDATED-live; QUARANTINED and SUPERSEDED are inventoried but excluded from the store. N9 wiring targets are named, no wiring performed.",
  "inventory_walk": "FOUNDATIONS grid (.claude/seqfloor_20260708 @ 2f59130e) + vault lesson corpus (LIVING_VAULT / LESSONS / PRIOR_ART_INDEX / CLOCK_AUDIT) + the campaign artifact ledger (WINDOW1_SYNTHESIS S2 @ 275bff5b, itself built on the shelf audit 7aa01f44) + gate-era traces (98d07986). Custody finding: macro_projection.db (pre-migration atlas) ABSENT at its recorded path in OMI-Window1-private - named, not smoothed.",
  "store_CLEAN": [
-  {"id":"P1","name":"THE GRID - cell-conditional expected discount","question":"How deep below its own W1 close does a leg's price dip, given its category and price cell?","layer":"MACRO","method":"per-(cat,cell) edge percentiles on the 90-cell x 6-cat grid; entry-only; ITF exits Challenger-borrowed (labeled)","source":".claude/seqfloor_20260708/recut_cells.json","sha":"2f59130e","status":"VALIDATED - residual 0 vs realized floors (p25 -1 / med 0 / p75 +3, 272 legs) @ 17664b3f; in-sample overlap REPORTED unresolved","coverage":"6 cats x 90 cells [5,95); 2,435 pairs / 4,870 legs; corpus <= 2026-07-08","n9_wiring_target":"N4 level-prior"},
-  {"id":"P2","name":"Zone quality - the discriminator table","question":"Where does this OS's judgment work - by category, volume tier, price cell, mirror state, spread?","layer":"MACRO","method":"RIGHT/WRONG game adjudication vs 30/60/90-min forward truth; splits only","source":"DECISION_AUDIT.json discriminators","sha":"35ac1f5b","status":"VALIDATED - 804 games; mechanism explained (read starvation 25.9% live @ 2af60dfc)","coverage":"dev-804, Jul 12-20; 4 cats; all cells","n9_wiring_target":"N5 referee-prior"},
-  {"id":"P3","name":"The par scoreboard + mechanism league","question":"How much does the market offer per game, and which organ forgoes the difference?","layer":"MACRO","method":"PAR = sum of per-leg lowest true trades in W1; organ attribution","source":"PAR_SHEET_804.csv / PAR_SHEET.json","sha":"b7f12d6f","status":"VALIDATED (par side; offer 711/93 reconciles e995c81b; tape exchange-verified db470ec8) - OURS side SUPERSEDED-for-completes, states pending re-key","coverage":"dev-804; 4 cats","n9_wiring_target":"N5 referee-prior"},
-  {"id":"P4","name":"Read forward-truth calibration","question":"What does a RISING / FALLING / SETTLED read actually predict 30-90 minutes ahead?","layer":"MACRO","method":"read-state vs realized mid path, receipt grain","source":"READ_ORGAN_FORWARD_TRUTH.json","sha":"12d67c8a","status":"VALIDATED - ~604k unique receipts; FALLING inverts 26% (the one dangerous quadrant)","coverage":"dev V47 corpus, all receipts","n9_wiring_target":"N2 read-prior"},
-  {"id":"P5","name":"Queue / formation / reflex spectra","question":"How much of replay credit resembles something a live order could capture, and where?","layer":"MACRO","method":"three stamps per credited fill (sold-vs-standing, onset bracket, post-vs-read)","source":"QUEUE_FORMATION_REFLEX_CENSUS.json + SEALED_TRIPLE_CENSUS.json","sha":"1d5564b5 + 7157456b","status":"VALIDATED - terminal instruments; queue stamps informational-only per the operator ruling (S1 law 9)","coverage":"dev 1,143 fills + sealed 374 fills","n9_wiring_target":"N5 referee-prior (zone weighting only - never gating)"},
-  {"id":"P6","name":"Won-pair leak ordering","question":"On pairs already won, which organ leaks cents between the fill and the floor?","layer":"MACRO","method":"overpay vs eligible standing-span low, organ-keyed","source":"OVERPAY_CENSUS.json","sha":"096241ae","status":"VALID-NARROW - ordering stands (join > cap > tracking); headline ratio retired (denominator error, fold 1)","coverage":"396 V47 dev completes","n9_wiring_target":"N4 level-prior"},
-  {"id":"P7","name":"Sealed capture measurement","question":"What did the replay book capture out-of-sample?","layer":"MACRO","method":"regret gauge vs sealed collectable","source":"sealed regret gauge","sha":"b26cf548","status":"VALIDATED as measurement (14.4%, 571/3,976c) - the exam's PASS is RETIRED (fold 3)","coverage":"sealed-238, Jul 27-Aug 11 span","n9_wiring_target":"none"},
-  {"id":"P8","name":"Executable-vs-presence decomposition","question":"How much of the uncaptured book was executable-lawful vs live-presence territory?","layer":"MACRO","method":"machine-anchored floor law","source":"floor rebuild + presence premium (other seat)","sha":"f730fad1","status":"VALIDATED - 213-leg impossible set killed; 100c/3,444c split","coverage":"dev corpus","n9_wiring_target":"none"},
-  {"id":"P9","name":"Stability-onset method + ledger","question":"When does a market wake, and by which signature (spread+midsum settle vs cadence arrival)?","layer":"MICRO","method":"neutral two-segment SSE splits, 60s grid","source":"window1_v52_stability_onset.js + STABILITY_ONSET_LEDGER.jsonl.gz (+ 9eff493b trajectories incl. MERDRO deep-dive)","sha":"98d07986 (method receipt 9eff493b)","status":"VALIDATED method - binding CODEX-INTERIM; the PRIMED standard supersedes the binding, not the trajectories","coverage":"30-game cohort ledger + 2-leg deep-dive; grid method general","n9_wiring_target":"none (already wired as clause 1)"},
-  {"id":"P10","name":"Edge-clipped flow census","question":"Does discount flow continue past the window's right edge?","layer":"MICRO","method":"post-edge sub-rest prints, full-life tapes","source":"POST_MAZ_TRIAGE.json (1)","sha":"4ba98104","status":"VALIDATED counts (461/568, 81.2%, median 18.1 min past) - conversion UNMEASURED (bell-detector gap)","coverage":"dev 466 + sealed 102 edge-terminated legs","n9_wiring_target":"none"},
-  {"id":"P11","name":"Hidden-book census + inside-print chain","question":"Do sales print inside the displayed BBO, and does the inside-print chain lead price?","layer":"MICRO (chain signature MICRO-MICRO)","method":"every print vs displayed BBO; chain +/-60s","source":"hidden-book census","sha":"6bc169bf","status":"VALIDATED - 373k dev + 580k sealed prints; +4-6 pt lead","coverage":"both corpora, all prints","n9_wiring_target":"N2 read-prior"},
-  {"id":"P12","name":"Divot arrival census","question":"Do dips actually arrive at armed risers, and when they do not, what refused them?","layer":"MICRO","method":"arrival audit at armed joins","source":"divot arrival audit","sha":"f40ac8ea","status":"VALIDATED as measure - absence-not-refusal; V50 preview 9/18","coverage":"74 riser legs dev","n9_wiring_target":"N5 referee-prior"},
-  {"id":"P13","name":"Mirror coherence + one-eyed vindication","question":"Do sibling reads cohere, and whom does the market vindicate when only one side fills?","layer":"MICRO","method":"three concordant instruments (sealed coherence 31.2%; dev one-eyed BOTH-86; sealed 20/22)","source":"b26cf548 + 35ac1f5b + a20e1a85","sha":"b26cf548/35ac1f5b/a20e1a85","status":"VALIDATED - the adjudication prior screw #3 needs","coverage":"sealed-238 + dev-804 partials","n9_wiring_target":"N5 referee-prior (clause 4 adjudicate-not-freeze)"},
-  {"id":"P14","name":"Riser depth signal rank","question":"Which dwell/slide signatures announce a deep excursion before it happens?","layer":"MICRO-MICRO","method":"candidate slate vs control at deep-excursion moments","source":"riser depth signal rank","sha":"78b5cbd4","status":"VALIDATED as measure - dwell + other-slide announce, AUC .708; slate redundant","coverage":"336 riser legs dev","n9_wiring_target":"N2 read-prior"}
+  {
+   "id": "P1",
+   "name": "THE GRID - cell-conditional expected discount",
+   "question": "How deep below its own W1 close does a leg's price dip, given its category and price cell?",
+   "layer": "MACRO",
+   "method": "per-(cat,cell) edge percentiles on the 90-cell x 6-cat grid; entry-only; ITF exits Challenger-borrowed (labeled)",
+   "source": ".claude/seqfloor_20260708/recut_cells.json",
+   "sha": "2f59130e",
+   "status": "VALIDATED - residual 0 vs realized floors (p25 -1 / med 0 / p75 +3, 272 legs) @ 17664b3f; in-sample overlap REPORTED unresolved",
+   "coverage": "6 cats x 90 cells [5,95); 2,435 pairs / 4,870 legs; corpus <= 2026-07-08",
+   "n9_wiring_target": "N4 level-prior"
+  },
+  {
+   "id": "P2",
+   "name": "Zone quality - the discriminator table",
+   "question": "Where does this OS's judgment work - by category, volume tier, price cell, mirror state, spread?",
+   "layer": "MACRO",
+   "method": "RIGHT/WRONG game adjudication vs 30/60/90-min forward truth; splits only",
+   "source": "DECISION_AUDIT.json discriminators",
+   "sha": "35ac1f5b",
+   "status": "VALIDATED - 804 games; mechanism explained (read starvation 25.9% live @ 2af60dfc)",
+   "coverage": "dev-804, Jul 12-20; 4 cats; all cells",
+   "n9_wiring_target": "N5 referee-prior"
+  },
+  {
+   "id": "P3",
+   "name": "The par scoreboard + mechanism league",
+   "question": "How much does the market offer per game, and which organ forgoes the difference?",
+   "layer": "MACRO",
+   "method": "PAR = sum of per-leg lowest true trades in W1; organ attribution",
+   "source": "PAR_SHEET_804.csv / PAR_SHEET.json",
+   "sha": "b7f12d6f",
+   "status": "VALIDATED (par side; offer 711/93 reconciles e995c81b; tape exchange-verified db470ec8) - OURS side SUPERSEDED-for-completes, states pending re-key",
+   "coverage": "dev-804; 4 cats",
+   "n9_wiring_target": "N5 referee-prior"
+  },
+  {
+   "id": "P4",
+   "name": "Read forward-truth calibration",
+   "question": "What does a RISING / FALLING / SETTLED read actually predict 30-90 minutes ahead?",
+   "layer": "MACRO",
+   "method": "read-state vs realized mid path, receipt grain",
+   "source": "READ_ORGAN_FORWARD_TRUTH.json",
+   "sha": "12d67c8a",
+   "status": "VALIDATED - ~604k unique receipts; FALLING inverts 26% (the one dangerous quadrant)",
+   "coverage": "dev V47 corpus, all receipts",
+   "n9_wiring_target": "N2 read-prior"
+  },
+  {
+   "id": "P5",
+   "name": "Queue / formation / reflex spectra",
+   "question": "How much of replay credit resembles something a live order could capture, and where?",
+   "layer": "MACRO",
+   "method": "three stamps per credited fill (sold-vs-standing, onset bracket, post-vs-read)",
+   "source": "QUEUE_FORMATION_REFLEX_CENSUS.json + SEALED_TRIPLE_CENSUS.json",
+   "sha": "1d5564b5 + 7157456b",
+   "status": "VALIDATED - terminal instruments; queue stamps informational-only per the operator ruling (S1 law 9)",
+   "coverage": "dev 1,143 fills + sealed 374 fills",
+   "n9_wiring_target": "N5 referee-prior (zone weighting only - never gating)"
+  },
+  {
+   "id": "P6",
+   "name": "Won-pair leak ordering",
+   "question": "On pairs already won, which organ leaks cents between the fill and the floor?",
+   "layer": "MACRO",
+   "method": "overpay vs eligible standing-span low, organ-keyed",
+   "source": "OVERPAY_CENSUS.json",
+   "sha": "096241ae",
+   "status": "VALID-NARROW - ordering stands (join > cap > tracking); headline ratio retired (denominator error, fold 1)",
+   "coverage": "396 V47 dev completes",
+   "n9_wiring_target": "N4 level-prior"
+  },
+  {
+   "id": "P7",
+   "name": "Sealed capture measurement",
+   "question": "What did the replay book capture out-of-sample?",
+   "layer": "MACRO",
+   "method": "regret gauge vs sealed collectable",
+   "source": "sealed regret gauge",
+   "sha": "b26cf548",
+   "status": "VALIDATED as measurement (14.4%, 571/3,976c) - the exam's PASS is RETIRED (fold 3)",
+   "coverage": "sealed-238, Jul 27-Aug 11 span",
+   "n9_wiring_target": "none"
+  },
+  {
+   "id": "P8",
+   "name": "Executable-vs-presence decomposition",
+   "question": "How much of the uncaptured book was executable-lawful vs live-presence territory?",
+   "layer": "MACRO",
+   "method": "machine-anchored floor law",
+   "source": "floor rebuild + presence premium (other seat)",
+   "sha": "f730fad1",
+   "status": "VALIDATED - 213-leg impossible set killed; 100c/3,444c split",
+   "coverage": "dev corpus",
+   "n9_wiring_target": "none"
+  },
+  {
+   "id": "P9",
+   "name": "Stability-onset method + ledger",
+   "question": "When does a market wake, and by which signature (spread+midsum settle vs cadence arrival)?",
+   "layer": "MICRO",
+   "method": "neutral two-segment SSE splits, 60s grid",
+   "source": "window1_v52_stability_onset.js + STABILITY_ONSET_LEDGER.jsonl.gz (+ 9eff493b trajectories incl. MERDRO deep-dive)",
+   "sha": "98d07986 (method receipt 9eff493b)",
+   "status": "VALIDATED method - binding CODEX-INTERIM; the PRIMED standard supersedes the binding, not the trajectories",
+   "coverage": "30-game cohort ledger + 2-leg deep-dive; grid method general",
+   "n9_wiring_target": "none (already wired as clause 1)"
+  },
+  {
+   "id": "P10",
+   "name": "Edge-clipped flow census",
+   "question": "Does discount flow continue past the window's right edge?",
+   "layer": "MICRO",
+   "method": "post-edge sub-rest prints, full-life tapes",
+   "source": "POST_MAZ_TRIAGE.json (1)",
+   "sha": "4ba98104",
+   "status": "VALIDATED counts (461/568, 81.2%, median 18.1 min past) - conversion UNMEASURED (bell-detector gap)",
+   "coverage": "dev 466 + sealed 102 edge-terminated legs",
+   "n9_wiring_target": "none"
+  },
+  {
+   "id": "P11",
+   "name": "Hidden-book census + inside-print chain",
+   "question": "Do sales print inside the displayed BBO, and does the inside-print chain lead price?",
+   "layer": "MICRO (chain signature MICRO-MICRO)",
+   "method": "every print vs displayed BBO; chain +/-60s",
+   "source": "hidden-book census",
+   "sha": "6bc169bf",
+   "status": "VALIDATED - 373k dev + 580k sealed prints; +4-6 pt lead",
+   "coverage": "both corpora, all prints",
+   "n9_wiring_target": "N2 read-prior"
+  },
+  {
+   "id": "P12",
+   "name": "Divot arrival census",
+   "question": "Do dips actually arrive at armed risers, and when they do not, what refused them?",
+   "layer": "MICRO",
+   "method": "arrival audit at armed joins",
+   "source": "divot arrival audit",
+   "sha": "f40ac8ea",
+   "status": "VALIDATED as measure - absence-not-refusal; V50 preview 9/18",
+   "coverage": "74 riser legs dev",
+   "n9_wiring_target": "N5 referee-prior"
+  },
+  {
+   "id": "P13",
+   "name": "Mirror coherence + one-eyed vindication",
+   "question": "Do sibling reads cohere, and whom does the market vindicate when only one side fills?",
+   "layer": "MICRO",
+   "method": "three concordant instruments (sealed coherence 31.2%; dev one-eyed BOTH-86; sealed 20/22)",
+   "source": "b26cf548 + 35ac1f5b + a20e1a85",
+   "sha": "b26cf548/35ac1f5b/a20e1a85",
+   "status": "VALIDATED - the adjudication prior screw #3 needs",
+   "coverage": "sealed-238 + dev-804 partials",
+   "n9_wiring_target": "N5 referee-prior (clause 4 adjudicate-not-freeze)"
+  },
+  {
+   "id": "P14",
+   "name": "Riser depth signal rank",
+   "question": "Which dwell/slide signatures announce a deep excursion before it happens?",
+   "layer": "MICRO-MICRO",
+   "method": "candidate slate vs control at deep-excursion moments",
+   "source": "riser depth signal rank",
+   "sha": "78b5cbd4",
+   "status": "VALIDATED as measure - dwell + other-slide announce, AUC .708; slate redundant",
+   "coverage": "336 riser legs dev",
+   "n9_wiring_target": "N2 read-prior"
+  }
  ],
  "inventory_UNVALIDATED": [
-  {"id":"U1","name":"Grid timing priors","question":"When in the window does the deepest price arrive, and does the dip precede the rise?","layer":"MACRO","source":"recut_cells.json t_deep_p50 / dip_first_pct","sha":"2f59130e","status":"UNVALIDATED vs machine record (A49/A50 lessons concordant; no receipt)","n9_wiring_target":"N5 referee-prior (patience windows) - after validation"},
-  {"id":"U2","name":"Card-marker clock verdict","question":"How early does each category's market truly begin trading relative to the card?","layer":"MACRO","source":"CLOCK_AUDIT.md (Vault 4I)","sha":"vault 2026-07-05","status":"UNVALIDATED at gate-era grain (+1.8h CHALL / +4.1-4.4h ITF / mains negative; ITF no premarket)","n9_wiring_target":"none (pre-gate discovery gap owner)"},
-  {"id":"U3","name":"Dip-timing lessons A49/A50","question":"Are dips heaviest late-window, and does the T-20m anchor dip >=1c almost always (97%)?","layer":"MACRO","source":"LESSONS A49/A50","sha":"lesson corpus","status":"UNVALIDATED lesson-grade; concordant with U1","n9_wiring_target":"N4 level-prior - after validation"},
-  {"id":"U4","name":"Ratchet / dip-recurrence claim","question":"Do dips recur at climbing rungs inside the window?","layer":"MICRO","source":"ratchet audit","sha":"9ee14bf5","status":"UNVALIDATED - open S5 tension with the edge census (P10); resolution owner corrected-dipless + bell detector","n9_wiring_target":"none until the tension resolves"}
+  {
+   "id": "U1",
+   "name": "Grid timing priors",
+   "question": "When in the window does the deepest price arrive, and does the dip precede the rise?",
+   "layer": "MACRO",
+   "source": "recut_cells.json t_deep_p50 / dip_first_pct",
+   "sha": "2f59130e",
+   "status": "UNVALIDATED vs machine record (A49/A50 lessons concordant; no receipt)",
+   "n9_wiring_target": "N5 referee-prior (patience windows) - after validation"
+  },
+  {
+   "id": "U2",
+   "name": "Card-marker clock verdict",
+   "question": "How early does each category's market truly begin trading relative to the card?",
+   "layer": "MACRO",
+   "source": "CLOCK_AUDIT.md (Vault 4I)",
+   "sha": "vault 2026-07-05",
+   "status": "UNVALIDATED at gate-era grain (+1.8h CHALL / +4.1-4.4h ITF / mains negative; ITF no premarket)",
+   "n9_wiring_target": "none (pre-gate discovery gap owner)"
+  },
+  {
+   "id": "U3",
+   "name": "Dip-timing lessons A49/A50",
+   "question": "Are dips heaviest late-window, and does the T-20m anchor dip >=1c almost always (97%)?",
+   "layer": "MACRO",
+   "source": "LESSONS A49/A50",
+   "sha": "lesson corpus",
+   "status": "UNVALIDATED lesson-grade; concordant with U1",
+   "n9_wiring_target": "N4 level-prior - after validation"
+  },
+  {
+   "id": "U4",
+   "name": "Ratchet / dip-recurrence claim",
+   "question": "Do dips recur at climbing rungs inside the window?",
+   "layer": "MICRO",
+   "source": "ratchet audit",
+   "sha": "9ee14bf5",
+   "status": "UNVALIDATED - open S5 tension with the edge census (P10); resolution owner corrected-dipless + bell detector",
+   "n9_wiring_target": "none until the tension resolves"
+  }
  ],
  "inventory_QUARANTINED": [
-  {"id":"Q1","name":"Dipless-43 complex (raw + capture-cross + identities + MAZ pack)","sha":"aa1cc301/9ff18c8c","status":"QUARANTINED 43/43 - shared reconstruction code path with the MAZ defect (4ba98104); re-run against corrected reconstruction pending"}
+  {
+   "id": "Q1",
+   "name": "Dipless-43 complex (raw + capture-cross + identities + MAZ pack)",
+   "sha": "aa1cc301/9ff18c8c",
+   "status": "QUARANTINED 43/43 - shared reconstruction code path with the MAZ defect (4ba98104); re-run against corrected reconstruction pending"
+  }
  ],
  "inventory_SUPERSEDED": [
-  {"id":"S1","name":"CAUSAL_LEG_TABLE (causal reach, leg grain)","sha":"d3db740f","superseded_by":"f730fad1 machine-anchored floor law"},
-  {"id":"S2","name":"Pre-gate anatomy map (18 dial sites)","sha":"cd592540 (amended 4ba98104)","superseded_by":"2af60dfc decision web at decision grain; retained as historical engineering detail"},
-  {"id":"S3","name":"Pre-migration macro atlas (macro_projection.db)","sha":"n/a","superseded_by":"the grid + gate-era instruments; CUSTODY NOTE: file absent at its recorded path - named, not smoothed"},
-  {"id":"S4","name":"SEQUENTIAL_FLOOR v1 (pre-recut)","sha":"seqfloor_20260708 dir","superseded_by":"2f59130e RECUT on the 90x6 grid"},
-  {"id":"S5","name":"Apr 56-cell grid / VERSION B 41-cell / fav-dog binary","sha":"history","superseded_by":"THE GRID; quoting a retired grid is a C45 failure (grid lineage law)"},
-  {"id":"S6","name":"Maker-reachable offer","sha":"7fcd6614","superseded_by":"RULER_VIOLATION tombstone 3dd57fba"},
-  {"id":"S7","name":"Mirror-trust sizing + mirror-x-divot fusion","sha":"e177c2fb / 63f5ece9","superseded_by":"retired (substituted mechanics bc0ce289 #4/#12); reopen folded into LAW-B family"},
-  {"id":"S8","name":"Wide-spread ask-anchor","sha":"57583640","superseded_by":"retired (median-gate substitution); reopen = per-moment gate"},
-  {"id":"S9","name":"Miss-geometry class taxonomies (V41/V43/V45 eras)","sha":"e17915f3 / 639e8b19 / fdeb7516-corrected","superseded_by":"pre-gate brains; historical"},
-  {"id":"S10","name":"Aim-dispatch static-vs-chased doctrine","sha":"5b924f10/ba08243","superseded_by":"V52b read-level authority (placement law changed at the root: license before level)"},
-  {"id":"S11","name":"A/B onset binary as a ruling frame","sha":"fold-3 retired-frames","superseded_by":"the PRIMED ruling (S8) - calendar answer to an evidence question"}
+  {
+   "id": "S1",
+   "name": "CAUSAL_LEG_TABLE (causal reach, leg grain)",
+   "sha": "d3db740f",
+   "superseded_by": "f730fad1 machine-anchored floor law"
+  },
+  {
+   "id": "S2",
+   "name": "Pre-gate anatomy map (18 dial sites)",
+   "sha": "cd592540 (amended 4ba98104)",
+   "superseded_by": "2af60dfc decision web at decision grain; retained as historical engineering detail"
+  },
+  {
+   "id": "S3",
+   "name": "Pre-migration macro atlas (macro_projection.db)",
+   "sha": "n/a",
+   "superseded_by": "the grid + gate-era instruments; CUSTODY NOTE: file absent at its recorded path - named, not smoothed"
+  },
+  {
+   "id": "S4",
+   "name": "SEQUENTIAL_FLOOR v1 (pre-recut)",
+   "sha": "seqfloor_20260708 dir",
+   "superseded_by": "2f59130e RECUT on the 90x6 grid"
+  },
+  {
+   "id": "S5",
+   "name": "Apr 56-cell grid / VERSION B 41-cell / fav-dog binary",
+   "sha": "history",
+   "superseded_by": "THE GRID; quoting a retired grid is a C45 failure (grid lineage law)"
+  },
+  {
+   "id": "S6",
+   "name": "Maker-reachable offer",
+   "sha": "7fcd6614",
+   "superseded_by": "RULER_VIOLATION tombstone 3dd57fba"
+  },
+  {
+   "id": "S7",
+   "name": "Mirror-trust sizing + mirror-x-divot fusion",
+   "sha": "e177c2fb / 63f5ece9",
+   "superseded_by": "retired (substituted mechanics bc0ce289 #4/#12); reopen folded into LAW-B family"
+  },
+  {
+   "id": "S8",
+   "name": "Wide-spread ask-anchor",
+   "sha": "57583640",
+   "superseded_by": "retired (median-gate substitution); reopen = per-moment gate"
+  },
+  {
+   "id": "S9",
+   "name": "Miss-geometry class taxonomies (V41/V43/V45 eras)",
+   "sha": "e17915f3 / 639e8b19 / fdeb7516-corrected",
+   "superseded_by": "pre-gate brains; historical"
+  },
+  {
+   "id": "S10",
+   "name": "Aim-dispatch static-vs-chased doctrine",
+   "sha": "5b924f10/ba08243",
+   "superseded_by": "V52b read-level authority (placement law changed at the root: license before level)"
+  },
+  {
+   "id": "S11",
+   "name": "A/B onset binary as a ruling frame",
+   "sha": "fold-3 retired-frames",
+   "superseded_by": "the PRIMED ruling (S8) - calendar answer to an evidence question"
+  }
  ],
  "gaps_by_layer": {
-  "MACRO": ["pre-gate discovery (S4-A GATE-vs-WINDOW: does pre-T-8h tape exist and what does it price?)","external book blend (S4-B: sharp-book FV vs pattern OS - organ existence never established)","starting-split coupling (coupling part 4: do 30/70 and 8/92 games carry different dynamics?)"],
-  "MICRO": ["coupling part 1 (tick-by-tick inverse tightness by category/split)","coupling part 3 (pair-shape taxonomy vs leg shapes)","bell detector (schedule_only boundary quality - P10's conversion blocker)","dip-ladder / pulse taxonomy (named in the divot audit, never built)","PRIMED sufficiency criteria (the ruling has no measured prior yet - proving-loop material)"],
-  "MICRO_MICRO": ["divot anatomy (never built)","subsecond directional read (S4-D confirmed absent - no micro layer exists)","queue-position dynamics (replay-invisible - S6 live-pilot bin, priced by P5 but not knowable from tape)"]
+  "MACRO": [
+   "pre-gate discovery (S4-A GATE-vs-WINDOW: does pre-T-8h tape exist and what does it price?)",
+   "external book blend (S4-B: sharp-book FV vs pattern OS - organ existence never established)",
+   "starting-split coupling (coupling part 4: do 30/70 and 8/92 games carry different dynamics?)"
+  ],
+  "MICRO": [
+   "coupling part 1 (tick-by-tick inverse tightness by category/split)",
+   "coupling part 3 (pair-shape taxonomy vs leg shapes)",
+   "bell detector (schedule_only boundary quality - P10's conversion blocker)",
+   "dip-ladder / pulse taxonomy (named in the divot audit, never built)",
+   "PRIMED sufficiency criteria (the ruling has no measured prior yet - proving-loop material)"
+  ],
+  "MICRO_MICRO": [
+   "divot anatomy (never built)",
+   "subsecond directional read (S4-D confirmed absent - no micro layer exists)",
+   "queue-position dynamics (replay-invisible - S6 live-pilot bin, priced by P5 but not knowable from tape)"
+  ]
  },
- "conservation": {"assets_inventoried": 30, "CLEAN": 14, "UNVALIDATED": 4, "QUARANTINED": 1, "SUPERSEDED": 11, "rule_check": "every asset exactly one bin; the inside-print chain signature lives inside P11 (one bin); exemplar trajectories live inside P9; nothing silently omitted - the walk's registries are named in inventory_walk"}
+ "conservation": {
+  "assets_inventoried": 30,
+  "CLEAN": 14,
+  "UNVALIDATED": 4,
+  "QUARANTINED": 1,
+  "SUPERSEDED": 11,
+  "rule_check": "every asset exactly one bin; the inside-print chain signature lives inside P11 (one bin); exemplar trajectories live inside P9; nothing silently omitted - the walk's registries are named in inventory_walk Fold: +3 greek candidates appended (G1-G3), CLEAN/candidate boundary untouched (CLEAN=14).",
+  "candidates_UNVALIDATED_CANDIDATE": 3
+ },
+ "candidates_UNVALIDATED_CANDIDATE": [
+  {
+   "id": "G1",
+   "name": "Partial-delta ledger",
+   "question": "How much one-sided exposure (entry-cents x hours) does the book carry, where does it concentrate, and how does it resolve?",
+   "layer": "MACRO",
+   "source": "GREEK_INSTRUMENTS.json A_partial_delta",
+   "sha": "(this commit)",
+   "status": "UNVALIDATED-CANDIDATE - no decision-input claims; proving-loop claim pre-stated: partial-carry cents-x-hours falls with no completion loss",
+   "coverage": "750 one-sided V49b dev games; V52e panel counts-only (duration gap named)",
+   "n9_wiring_target": "a NEW partial-management consumer (post-validation; prior-not-gate)"
+  },
+  {
+   "id": "G2",
+   "name": "Theta curves (post-onset drift base rates)",
+   "question": "How fast and in which direction does a cell's price drift per hour after onset, and does firming accelerate near the edge?",
+   "layer": "MACRO",
+   "source": "GREEK_INSTRUMENTS.json B_theta",
+   "sha": "(this commit)",
+   "status": "UNVALIDATED-CANDIDATE - median drift 0 in every cell; direction only in aggregate (+0.2c/hr favorites); subsumes the April Kostovic 50->72 anecdote as a tail event",
+   "coverage": "804 dev games, 16 cells, post-onset only",
+   "n9_wiring_target": "N2/N4 (post-validation; prior-not-gate)"
+  },
+  {
+   "id": "G3",
+   "name": "Vega/gamma surfaces (dip depth, recovery, whip)",
+   "question": "How deep do post-onset dips below the running peak go, do they recover within the hour, and how whippy is the tape per unit volume?",
+   "layer": "MICRO",
+   "source": "GREEK_INSTRUMENTS.json C_vega_gamma",
+   "sha": "(this commit)",
+   "status": "UNVALIDATED-CANDIDATE - extends THE GRID (running-peak-anchored + time-conditioning + recovery; close-anchored numbers remain THE GRID's); recovery rises with price region (ge76 ~56% vs 26_50 ~32%); whip low-volume distortion flagged",
+   "coverage": "1,530 legs post-onset, 16 cells",
+   "n9_wiring_target": "N2/N4 (post-validation; prior-not-gate)"
+  }
+ ]
 }

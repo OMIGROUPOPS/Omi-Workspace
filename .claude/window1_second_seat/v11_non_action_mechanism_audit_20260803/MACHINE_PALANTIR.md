@@ -77,3 +77,14 @@ doctrine (→ V52b: license before level) · the A/B onset binary as a ruling fr
 bin; nested signatures assigned to their parent entry once; the walk's registries named above; nothing
 silently omitted. Store versioned v1 — future validations move assets between bins by append, never deletion.
 ANALYTICAL_ESTIMATE.
+
+## Candidates appended (fold: the greek instruments) — UNVALIDATED-CANDIDATE, store boundary untouched
+
+Three entries (G1–G3, provenance triples in the JSON), no decision-input claims, each awaiting its own
+proving-loop iteration with a pre-stated falsifiable claim before any prior-not-gate wiring:
+
+| candidate | question | layer | target (post-validation) |
+|---|---|---|---|
+| G1 partial-delta ledger | how much one-sided exposure does the book carry, where, resolving how? (750 games; 243,275 ¢×h; top decile 40.6%) | MACRO | a new partial-management consumer |
+| G2 theta curves | post-onset drift base rates per cell (median 0 everywhere; +0.2¢/hr favorites in aggregate; Kostovic subsumed as tail) | MACRO | N2/N4 |
+| G3 vega/gamma surfaces | dip depth below running peak, 60-min recovery (rises with price: ge76 56% vs 26_50 32%), whip per volume | MICRO | N2/N4 |

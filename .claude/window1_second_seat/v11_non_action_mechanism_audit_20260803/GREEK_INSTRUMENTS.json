@@ -1,0 +1,700 @@
+{
+ "LABEL": "GREEK_INSTRUMENTS",
+ "stamp": "ANALYTICAL_ESTIMATE - UNVALIDATED-CANDIDATE (all three; no decision-input claims)",
+ "formation_law": "post-onset data only throughout (interim onset per 22441e05; legs without onset excluded and counted)",
+ "A_partial_delta": {
+  "games_ever_one_sided": 750,
+  "completes": 393,
+  "carried_to_edge": 357,
+  "naked_minutes": {
+   "n": 750,
+   "p25": 102.8,
+   "median": 317.9,
+   "p75": 602.9,
+   "total": 328048.9
+  },
+  "cents_x_hours": {
+   "n": 750,
+   "p25": 59.87,
+   "median": 185.82,
+   "p75": 436.73,
+   "total": 243275.24
+  },
+  "total_cents_x_hours": 243275.2,
+  "top_decile_share": 0.406,
+  "by_cat_region": {
+   "ATP_CHALL|26_50": {
+    "n": 113,
+    "p25": 56.0,
+    "median": 194.42,
+    "p75": 333.62,
+    "total": 24887.57
+   },
+   "ATP_CHALL|51_75": {
+    "n": 114,
+    "p25": 100.6,
+    "median": 282.66,
+    "p75": 497.85,
+    "total": 36677.76
+   },
+   "ATP_CHALL|ge76": {
+    "n": 34,
+    "p25": 60.01,
+    "median": 180.04,
+    "p75": 270.4,
+    "total": 8246.34
+   },
+   "ATP_CHALL|le25": {
+    "n": 74,
+    "p25": 21.38,
+    "median": 63.55,
+    "p75": 137.22,
+    "total": 10779.12
+   },
+   "ATP_MAIN|26_50": {
+    "n": 56,
+    "p25": 61.01,
+    "median": 262.29,
+    "p75": 562.84,
+    "total": 21908.87
+   },
+   "ATP_MAIN|51_75": {
+    "n": 49,
+    "p25": 79.74,
+    "median": 421.46,
+    "p75": 964.06,
+    "total": 33779.82
+   },
+   "ATP_MAIN|ge76": {
+    "n": 8,
+    "p25": 98.87,
+    "median": 380.48,
+    "p75": 794.34,
+    "total": 3373.39
+   },
+   "ATP_MAIN|le25": {
+    "n": 29,
+    "p25": 83.47,
+    "median": 248.07,
+    "p75": 476.73,
+    "total": 8261.31
+   },
+   "WTA_CHALL|26_50": {
+    "n": 33,
+    "p25": 59.26,
+    "median": 200.17,
+    "p75": 356.7,
+    "total": 7286.31
+   },
+   "WTA_CHALL|51_75": {
+    "n": 49,
+    "p25": 91.88,
+    "median": 273.89,
+    "p75": 491.3,
+    "total": 14954.54
+   },
+   "WTA_CHALL|ge76": {
+    "n": 16,
+    "p25": 65.92,
+    "median": 154.54,
+    "p75": 515.49,
+    "total": 4438.1
+   },
+   "WTA_CHALL|le25": {
+    "n": 27,
+    "p25": 11.13,
+    "median": 57.09,
+    "p75": 124.88,
+    "total": 1979.55
+   },
+   "WTA_MAIN|26_50": {
+    "n": 37,
+    "p25": 33.68,
+    "median": 241.31,
+    "p75": 713.07,
+    "total": 16830.17
+   },
+   "WTA_MAIN|51_75": {
+    "n": 46,
+    "p25": 140.98,
+    "median": 422.39,
+    "p75": 954.48,
+    "total": 26745.07
+   },
+   "WTA_MAIN|ge76": {
+    "n": 16,
+    "p25": 142.4,
+    "median": 482.61,
+    "p75": 1293.6,
+    "total": 12868.44
+   },
+   "WTA_MAIN|le25": {
+    "n": 49,
+    "p25": 91.44,
+    "median": 151.45,
+    "p75": 212.37,
+    "total": 10258.9
+   }
+  },
+  "top10_rows": [
+   {
+    "code": "26JUL13VALCOS",
+    "cat": "WTA_MAIN",
+    "region": "ge76",
+    "entry": 82,
+    "naked_minutes": 2385.1,
+    "resolution": "CARRIED_ONE_SIDED_TO_EDGE",
+    "cents_x_hours": 3259.65
+   },
+   {
+    "code": "26JUL20KOVTAR",
+    "cat": "WTA_MAIN",
+    "region": "51_75",
+    "entry": 70,
+    "naked_minutes": 2736.4,
+    "resolution": "COMPLETED_LATER",
+    "cents_x_hours": 3192.49
+   },
+   {
+    "code": "26JUL12DROBLO",
+    "cat": "ATP_MAIN",
+    "region": "51_75",
+    "entry": 55,
+    "naked_minutes": 3406.3,
+    "resolution": "CARRIED_ONE_SIDED_TO_EDGE",
+    "cents_x_hours": 3122.46
+   },
+   {
+    "code": "26JUL19STRSHE",
+    "cat": "ATP_MAIN",
+    "region": "51_75",
+    "entry": 59,
+    "naked_minutes": 3133.6,
+    "resolution": "CARRIED_ONE_SIDED_TO_EDGE",
+    "cents_x_hours": 3081.33
+   },
+   {
+    "code": "26JUL12BOOONC",
+    "cat": "ATP_CHALL",
+    "region": "le25",
+    "entry": 64,
+    "naked_minutes": 2789.9,
+    "resolution": "CARRIED_ONE_SIDED_TO_EDGE",
+    "cents_x_hours": 2975.9
+   },
+   {
+    "code": "26JUL20STENOH",
+    "cat": "WTA_MAIN",
+    "region": "ge76",
+    "entry": 70,
+    "naked_minutes": 2280.8,
+    "resolution": "COMPLETED_LATER",
+    "cents_x_hours": 2660.93
+   },
+   {
+    "code": "26JUL12SVRDIM",
+    "cat": "ATP_MAIN",
+    "region": "51_75",
+    "entry": 65,
+    "naked_minutes": 2157.0,
+    "resolution": "CARRIED_ONE_SIDED_TO_EDGE",
+    "cents_x_hours": 2336.73
+   },
+   {
+    "code": "26JUL13QUERUS",
+    "cat": "WTA_MAIN",
+    "region": "26_50",
+    "entry": 48,
+    "naked_minutes": 2611.9,
+    "resolution": "CARRIED_ONE_SIDED_TO_EDGE",
+    "cents_x_hours": 2089.52
+   },
+   {
+    "code": "26JUL12ALTGAS",
+    "cat": "ATP_MAIN",
+    "region": "26_50",
+    "entry": 42,
+    "naked_minutes": 2880.7,
+    "resolution": "CARRIED_ONE_SIDED_TO_EDGE",
+    "cents_x_hours": 2016.51
+   },
+   {
+    "code": "26JUL12STRMUN",
+    "cat": "ATP_MAIN",
+    "region": "51_75",
+    "entry": 74,
+    "naked_minutes": 1623.9,
+    "resolution": "COMPLETED_LATER",
+    "cents_x_hours": 2002.81
+   }
+  ],
+  "v52e_cohort_panel": {
+   "games": 30,
+   "completed_pairs": 17,
+   "note": "V52E flow outcomes carry no credit timestamps at this export grain - durations NOT computable; counts only, gap named"
+  }
+ },
+ "B_theta": {
+  "cells": {
+   "ATP_CHALL|26_50": {
+    "n": 1583,
+    "p25": -0.5,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -226.5
+   },
+   "ATP_CHALL|51_75": {
+    "n": 1614,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.5,
+    "total": 371.0
+   },
+   "ATP_CHALL|ge76": {
+    "n": 771,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.5,
+    "total": 257.0
+   },
+   "ATP_CHALL|le25": {
+    "n": 891,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -109.0
+   },
+   "ATP_MAIN|26_50": {
+    "n": 2016,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -125.5
+   },
+   "ATP_MAIN|51_75": {
+    "n": 2076,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": 183.5
+   },
+   "ATP_MAIN|ge76": {
+    "n": 391,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": 78.0
+   },
+   "ATP_MAIN|le25": {
+    "n": 809,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -121.0
+   },
+   "WTA_CHALL|26_50": {
+    "n": 582,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": 31.5
+   },
+   "WTA_CHALL|51_75": {
+    "n": 548,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -11.5
+   },
+   "WTA_CHALL|ge76": {
+    "n": 318,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -5.0
+   },
+   "WTA_CHALL|le25": {
+    "n": 330,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -3.0
+   },
+   "WTA_MAIN|26_50": {
+    "n": 1746,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -114.0
+   },
+   "WTA_MAIN|51_75": {
+    "n": 1750,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": 189.0
+   },
+   "WTA_MAIN|ge76": {
+    "n": 789,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": 171.5
+   },
+   "WTA_MAIN|le25": {
+    "n": 1072,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": -216.5
+   }
+  },
+  "firming_by_hours_to_edge": {
+   "ATP_CHALL|26_50|1-2h": 0.0,
+   "ATP_CHALL|26_50|2-4h": 0.0,
+   "ATP_CHALL|26_50|4-8h": 0.0,
+   "ATP_CHALL|26_50|8h+": 0.0,
+   "ATP_CHALL|51_75|1-2h": 0.0,
+   "ATP_CHALL|51_75|2-4h": 0.0,
+   "ATP_CHALL|51_75|4-8h": 0.0,
+   "ATP_CHALL|51_75|8h+": 0.0,
+   "ATP_CHALL|ge76|1-2h": 0.0,
+   "ATP_CHALL|ge76|2-4h": 0.0,
+   "ATP_CHALL|ge76|4-8h": 0.0,
+   "ATP_CHALL|ge76|8h+": 0.0,
+   "ATP_CHALL|le25|1-2h": 0.0,
+   "ATP_CHALL|le25|2-4h": 0.0,
+   "ATP_CHALL|le25|4-8h": 0.0,
+   "ATP_CHALL|le25|8h+": 0.0,
+   "ATP_MAIN|26_50|1-2h": 0.0,
+   "ATP_MAIN|26_50|2-4h": 0.0,
+   "ATP_MAIN|26_50|4-8h": 0.0,
+   "ATP_MAIN|26_50|8h+": 0.0,
+   "ATP_MAIN|51_75|1-2h": 0.0,
+   "ATP_MAIN|51_75|2-4h": 0.0,
+   "ATP_MAIN|51_75|4-8h": 0.0,
+   "ATP_MAIN|51_75|8h+": 0.0,
+   "ATP_MAIN|ge76|2-4h": 0.0,
+   "ATP_MAIN|ge76|4-8h": 0.0,
+   "ATP_MAIN|ge76|8h+": 0.0,
+   "ATP_MAIN|le25|1-2h": 0.0,
+   "ATP_MAIN|le25|2-4h": 0.0,
+   "ATP_MAIN|le25|4-8h": 0.0,
+   "ATP_MAIN|le25|8h+": 0.0,
+   "WTA_CHALL|26_50|1-2h": 0.0,
+   "WTA_CHALL|26_50|2-4h": 0.0,
+   "WTA_CHALL|26_50|4-8h": 0.0,
+   "WTA_CHALL|26_50|8h+": 0.0,
+   "WTA_CHALL|51_75|1-2h": 0.0,
+   "WTA_CHALL|51_75|2-4h": 0.0,
+   "WTA_CHALL|51_75|4-8h": 0.0,
+   "WTA_CHALL|51_75|8h+": 0.0,
+   "WTA_CHALL|ge76|1-2h": 0.0,
+   "WTA_CHALL|ge76|2-4h": 0.0,
+   "WTA_CHALL|ge76|4-8h": 0.0,
+   "WTA_CHALL|ge76|8h+": 0.0,
+   "WTA_CHALL|le25|1-2h": 0.0,
+   "WTA_CHALL|le25|2-4h": 0.0,
+   "WTA_CHALL|le25|4-8h": 0.0,
+   "WTA_CHALL|le25|8h+": 0.0,
+   "WTA_MAIN|26_50|1-2h": 0.0,
+   "WTA_MAIN|26_50|2-4h": 0.0,
+   "WTA_MAIN|26_50|4-8h": 0.0,
+   "WTA_MAIN|26_50|8h+": 0.0,
+   "WTA_MAIN|51_75|1-2h": 0.0,
+   "WTA_MAIN|51_75|2-4h": 0.0,
+   "WTA_MAIN|51_75|4-8h": 0.0,
+   "WTA_MAIN|51_75|8h+": 0.0,
+   "WTA_MAIN|ge76|1-2h": 0.0,
+   "WTA_MAIN|ge76|2-4h": 0.0,
+   "WTA_MAIN|ge76|4-8h": 0.0,
+   "WTA_MAIN|ge76|8h+": 0.0,
+   "WTA_MAIN|le25|1-2h": 0.0,
+   "WTA_MAIN|le25|2-4h": 0.0,
+   "WTA_MAIN|le25|4-8h": 0.0,
+   "WTA_MAIN|le25|8h+": 0.0
+  },
+  "prior_art": "April pregame-drift study (Kostovic 50->72) - cited and SUBSUMED: that study was one game's drift anecdote; these are cell-conditional base rates over 804 games, post-onset only"
+ },
+ "C_vega_gamma": {
+  "depth_cells": {
+   "ATP_CHALL|26_50": {
+    "n": 360,
+    "p25": 1.0,
+    "median": 2.0,
+    "p75": 4.0,
+    "total": 1539.5
+   },
+   "ATP_CHALL|51_75": {
+    "n": 389,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 3.0,
+    "total": 1324.0
+   },
+   "ATP_CHALL|ge76": {
+    "n": 180,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 3.0,
+    "total": 612.5
+   },
+   "ATP_CHALL|le25": {
+    "n": 152,
+    "p25": 1.0,
+    "median": 3.0,
+    "p75": 5.5,
+    "total": 724.5
+   },
+   "ATP_MAIN|26_50": {
+    "n": 203,
+    "p25": 1.0,
+    "median": 2.0,
+    "p75": 4.0,
+    "total": 817.0
+   },
+   "ATP_MAIN|51_75": {
+    "n": 287,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 3.0,
+    "total": 870.0
+   },
+   "ATP_MAIN|ge76": {
+    "n": 65,
+    "p25": 1.0,
+    "median": 1.0,
+    "p75": 2.0,
+    "total": 150.0
+   },
+   "ATP_MAIN|le25": {
+    "n": 91,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 4.0,
+    "total": 382.0
+   },
+   "WTA_CHALL|26_50": {
+    "n": 83,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 3.5,
+    "total": 342.5
+   },
+   "WTA_CHALL|51_75": {
+    "n": 102,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 3.0,
+    "total": 382.5
+   },
+   "WTA_CHALL|ge76": {
+    "n": 65,
+    "p25": 1.0,
+    "median": 2.0,
+    "p75": 3.0,
+    "total": 298.5
+   },
+   "WTA_CHALL|le25": {
+    "n": 58,
+    "p25": 1.5,
+    "median": 2.5,
+    "p75": 5.5,
+    "total": 369.0
+   },
+   "WTA_MAIN|26_50": {
+    "n": 173,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 4.0,
+    "total": 587.0
+   },
+   "WTA_MAIN|51_75": {
+    "n": 204,
+    "p25": 1.0,
+    "median": 1.5,
+    "p75": 3.0,
+    "total": 659.0
+   },
+   "WTA_MAIN|ge76": {
+    "n": 88,
+    "p25": 1.0,
+    "median": 1.0,
+    "p75": 2.0,
+    "total": 199.5
+   },
+   "WTA_MAIN|le25": {
+    "n": 131,
+    "p25": 1.0,
+    "median": 1.0,
+    "p75": 4.0,
+    "total": 485.0
+   }
+  },
+  "depth_time_conditioned": {
+   "ATP_CHALL|26_50|1-2h": 1.5,
+   "ATP_CHALL|26_50|2-4h": 2.0,
+   "ATP_CHALL|26_50|4-8h": 1.5,
+   "ATP_CHALL|26_50|8h+": 2.2,
+   "ATP_CHALL|26_50|<1h": 1.8,
+   "ATP_CHALL|51_75|1-2h": 1.5,
+   "ATP_CHALL|51_75|2-4h": 1.5,
+   "ATP_CHALL|51_75|4-8h": 1.5,
+   "ATP_CHALL|51_75|8h+": 1.5,
+   "ATP_CHALL|51_75|<1h": 1.5,
+   "ATP_CHALL|ge76|2-4h": 1.5,
+   "ATP_CHALL|ge76|4-8h": 1.0,
+   "ATP_CHALL|ge76|8h+": 1.5,
+   "ATP_CHALL|le25|1-2h": 2.0,
+   "ATP_CHALL|le25|8h+": 5.5,
+   "ATP_MAIN|26_50|8h+": 2.0,
+   "ATP_MAIN|51_75|8h+": 1.5,
+   "ATP_MAIN|ge76|8h+": 1.0,
+   "ATP_MAIN|le25|8h+": 1.5,
+   "WTA_CHALL|51_75|8h+": 1.0,
+   "WTA_MAIN|26_50|8h+": 1.5,
+   "WTA_MAIN|51_75|8h+": 1.5,
+   "WTA_MAIN|ge76|8h+": 1.2,
+   "WTA_MAIN|le25|8h+": 2.0
+  },
+  "recovery_within_60min": {
+   "ATP_CHALL|26_50": 0.317,
+   "ATP_CHALL|51_75": 0.422,
+   "ATP_CHALL|ge76": 0.561,
+   "ATP_CHALL|le25": 0.336,
+   "ATP_MAIN|26_50": 0.325,
+   "ATP_MAIN|51_75": 0.443,
+   "ATP_MAIN|ge76": 0.569,
+   "ATP_MAIN|le25": 0.341,
+   "WTA_CHALL|26_50": 0.313,
+   "WTA_CHALL|51_75": 0.333,
+   "WTA_CHALL|ge76": 0.6,
+   "WTA_CHALL|le25": 0.276,
+   "WTA_MAIN|26_50": 0.428,
+   "WTA_MAIN|51_75": 0.52,
+   "WTA_MAIN|ge76": 0.466,
+   "WTA_MAIN|le25": 0.405
+  },
+  "whip_cells": {
+   "ATP_CHALL|26_50": {
+    "n": 238,
+    "p25": 0.0,
+    "median": 0.01,
+    "p75": 0.01,
+    "total": 22.26
+   },
+   "ATP_CHALL|51_75": {
+    "n": 235,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 17.56
+   },
+   "ATP_CHALL|ge76": {
+    "n": 96,
+    "p25": 0.01,
+    "median": 0.02,
+    "p75": 0.05,
+    "total": 7.56
+   },
+   "ATP_CHALL|le25": {
+    "n": 111,
+    "p25": 0.0,
+    "median": 0.01,
+    "p75": 0.02,
+    "total": 3050.39
+   },
+   "ATP_MAIN|26_50": {
+    "n": 103,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 2.84
+   },
+   "ATP_MAIN|51_75": {
+    "n": 106,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": 7.06
+   },
+   "ATP_MAIN|ge76": {
+    "n": 27,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 0.24
+   },
+   "ATP_MAIN|le25": {
+    "n": 45,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 7.73
+   },
+   "WTA_CHALL|26_50": {
+    "n": 89,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 98.69
+   },
+   "WTA_CHALL|51_75": {
+    "n": 82,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 93.79
+   },
+   "WTA_CHALL|ge76": {
+    "n": 39,
+    "p25": 0.0,
+    "median": 0.01,
+    "p75": 0.06,
+    "total": 20.37
+   },
+   "WTA_CHALL|le25": {
+    "n": 40,
+    "p25": 0.0,
+    "median": 0.01,
+    "p75": 0.05,
+    "total": 4.93
+   },
+   "WTA_MAIN|26_50": {
+    "n": 84,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 2.58
+   },
+   "WTA_MAIN|51_75": {
+    "n": 85,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.0,
+    "total": 2.28
+   },
+   "WTA_MAIN|ge76": {
+    "n": 51,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 0.54
+   },
+   "WTA_MAIN|le25": {
+    "n": 72,
+    "p25": 0.0,
+    "median": 0.0,
+    "p75": 0.01,
+    "total": 0.65
+   }
+  },
+  "seqfloor_overlap": "SEQFLOOR measures dip depth vs the leg's W1 CLOSE (whole-window, close-anchored); these surfaces measure excursions below the RUNNING post-onset peak with time-conditioning and 60-min recovery - an extension, not a duplicate; close-anchored numbers remain THE GRID's"
+ },
+ "conservation": {
+  "A_games": 750,
+  "BC_legs_with_onset": 1557,
+  "BC_tapes_used": 1530,
+  "BC_excluded_no_onset_or_tape": 27
+ }
+}

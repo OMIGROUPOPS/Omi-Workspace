@@ -2038,3 +2038,34 @@ differences. These are observations only; no full-804 disposition ran.
 Two final clean builds are byte-identical across 47 files; 355 assertions pass.
 Canonical addendum:
 `WINDOW1_V52F_PAIR_ENTRY_CONSERVATION_20260813_ADDENDUM.md`.
+
+### 2026-08-13 - V52G ITERATION 6 / JOINT TARGET CONSERVATION
+
+The canonical onset input is the runtime materialized receipt stream through
+the frozen 60-second onset adapter. All 27 input-grain divergences are
+re-attested there. Zero of 11 sleeper offers becomes retroactively reachable;
+the 11/11 alternative belongs only to the rejected fit-grid counterfactual.
+MATMOR and CORSAC have inverted pre-match spans, so no gate evaluation
+occurred. Four receipt-only provenance rows now state that absence without
+fabricating evaluated flags; policy and scores are unchanged.
+
+V52g adds one receipt-causal identity to frozen V52f:
+`target_A_cents + target_B_cents <= 99` for decision-time-known bought and
+standing values. Existing level authorities speak first; the newly evaluated
+standing value is bounded only when the identity binds. After credit, this is
+the frozen V52f settlement identity. Each game has exactly one minimal
+`PAIR_BUDGET_RECORD`, born at its first licensed standing value and containing
+only its current bought/standing split plus a complete licensed revision
+chain. Goals, predictions, and plan are intentionally absent pending operator
+design.
+
+On five pins plus a fresh 25 with zero B/C/D/E/F overlap, 2,128 revisions have
+zero joint-sum violations; all 30 pair records conserve; the four former loss
+identities remain lawful; pins are unharmed; SANDAN is at-or-better; and
+`REFLEX_POST=0`. V52f observes 12 delta completions and V52g 10. This is an
+unadjudicated observation and caused no policy edit or 804 run. Two builds are
+byte-identical across 52 files; 456 assertions pass. No sealed, deployment,
+live, or trading access occurred.
+
+Canonical addendum:
+`WINDOW1_V52G_JOINT_TARGET_CONSERVATION_20260813_ADDENDUM.md`.

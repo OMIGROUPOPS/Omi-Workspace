@@ -1,0 +1,41 @@
+{
+  "label": "V52G_PART1_ONSET_INPUT_GRAIN_UNIFICATION_RECEIPT",
+  "repair_class": "RECEIPTS_ONLY_NO_POLICY_OR_SCORE_CHANGE",
+  "controlling_source": {
+    "commit": "68a58029c0a6b84eda7750b185861f75d381cd49",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/ONSET_FORENSICS_113.json",
+    "sha256": "172880fc627ebe4bf7b58ad3fd2d649931b46753bbf27ac2d3c7b0fa342dd2a1",
+    "bytes": 124834
+  },
+  "canonical_choice": {
+    "input": "RUNTIME_MATERIALIZED_RECEIPT_STREAM_RESAMPLED_BY_FROZEN_60_SECOND_ONSET_ADAPTER",
+    "reason": "This is the only input available to the executing machine at receipt grain and preserves frozen clause 1. The fit-local minute grid is an analysis reconstruction and is not substituted into the decision path.",
+    "frozen_onset_code": "arb-executor/analysis/window1_v52_stability_onset.js",
+    "behavior_changed": false
+  },
+  "conservation": {
+    "legs_in_source": 226,
+    "canonical_agreements": 199,
+    "divergent_legs_reattested": 27,
+    "total": 226,
+    "pass": true
+  },
+  "sleeper_offers": {
+    "source_count": 11,
+    "become_reachable_under_canonical_runtime_input": [],
+    "become_reachable_only_under_rejected_fit_grid_counterfactual": [
+      "26JUL12DEGEE|DE",
+      "26JUL12GANJAN|GAN",
+      "26JUL12REJMID|MID",
+      "26JUL12SESMER|MER",
+      "26JUL12VOLMAR|MAR",
+      "26JUL13PERTOB|PER",
+      "26JUL13PERTOB|TOB",
+      "26JUL13SHIHAR|SHI",
+      "26JUL17ADDIVA|IVA",
+      "26JUL19MALMOR|MOR",
+      "26JUL19TOKMIY|MIY"
+    ],
+    "ruling": "ZERO_RETROACTIVE_REACHABILITY; ALL_ELEVEN_REMAIN_HISTORICAL_SLEEPER_OFFERS_UNDER_THE_FROZEN_RUNTIME_INPUT"
+  }
+}

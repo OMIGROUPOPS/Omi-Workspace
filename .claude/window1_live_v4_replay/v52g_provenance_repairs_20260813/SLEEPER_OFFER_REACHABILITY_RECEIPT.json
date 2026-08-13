@@ -1,0 +1,143 @@
+{
+  "label": "SLEEPER_OFFER_REACHABILITY_UNDER_CANONICAL_INPUT",
+  "rows": [
+    {
+      "code": "26JUL12DEGEE",
+      "event_category": "ATP_CHALL",
+      "leg": "DE",
+      "offered_floor_cents": 37,
+      "offered_floor_first_print_tmin": 1309.7,
+      "canonical_runtime_onset_tmin": 1726.8,
+      "rejected_fit_grid_onset_tmin": 1190,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 25026
+    },
+    {
+      "code": "26JUL12GANJAN",
+      "event_category": "ATP_CHALL",
+      "leg": "GAN",
+      "offered_floor_cents": 43,
+      "offered_floor_first_print_tmin": 762,
+      "canonical_runtime_onset_tmin": 762.3,
+      "rejected_fit_grid_onset_tmin": 762,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 18
+    },
+    {
+      "code": "26JUL12REJMID",
+      "event_category": "ATP_MAIN",
+      "leg": "MID",
+      "offered_floor_cents": 89,
+      "offered_floor_first_print_tmin": 346.7,
+      "canonical_runtime_onset_tmin": 565.5,
+      "rejected_fit_grid_onset_tmin": 241,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 13128
+    },
+    {
+      "code": "26JUL12SESMER",
+      "event_category": "ATP_MAIN",
+      "leg": "MER",
+      "offered_floor_cents": 87,
+      "offered_floor_first_print_tmin": 4115.4,
+      "canonical_runtime_onset_tmin": 4125.3,
+      "rejected_fit_grid_onset_tmin": 4115,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 594
+    },
+    {
+      "code": "26JUL12VOLMAR",
+      "event_category": "WTA_CHALL",
+      "leg": "MAR",
+      "offered_floor_cents": 55,
+      "offered_floor_first_print_tmin": 10,
+      "canonical_runtime_onset_tmin": 538.1,
+      "rejected_fit_grid_onset_tmin": 4,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 31686
+    },
+    {
+      "code": "26JUL13PERTOB",
+      "event_category": "ATP_CHALL",
+      "leg": "PER",
+      "offered_floor_cents": 51,
+      "offered_floor_first_print_tmin": 68.3,
+      "canonical_runtime_onset_tmin": 641.1,
+      "rejected_fit_grid_onset_tmin": 2,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 34368
+    },
+    {
+      "code": "26JUL13PERTOB",
+      "event_category": "ATP_CHALL",
+      "leg": "TOB",
+      "offered_floor_cents": 45,
+      "offered_floor_first_print_tmin": 639.4,
+      "canonical_runtime_onset_tmin": 641.2,
+      "rejected_fit_grid_onset_tmin": 2,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 108
+    },
+    {
+      "code": "26JUL13SHIHAR",
+      "event_category": "ATP_CHALL",
+      "leg": "SHI",
+      "offered_floor_cents": 38,
+      "offered_floor_first_print_tmin": 462.6,
+      "canonical_runtime_onset_tmin": 634,
+      "rejected_fit_grid_onset_tmin": 11,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 10284
+    },
+    {
+      "code": "26JUL17ADDIVA",
+      "event_category": "ATP_CHALL",
+      "leg": "IVA",
+      "offered_floor_cents": 69,
+      "offered_floor_first_print_tmin": 628.4,
+      "canonical_runtime_onset_tmin": 629,
+      "rejected_fit_grid_onset_tmin": 628,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 36
+    },
+    {
+      "code": "26JUL19MALMOR",
+      "event_category": "ATP_CHALL",
+      "leg": "MOR",
+      "offered_floor_cents": 36,
+      "offered_floor_first_print_tmin": 223.1,
+      "canonical_runtime_onset_tmin": 274,
+      "rejected_fit_grid_onset_tmin": 175,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 3054
+    },
+    {
+      "code": "26JUL19TOKMIY",
+      "event_category": "ATP_CHALL",
+      "leg": "MIY",
+      "offered_floor_cents": 67,
+      "offered_floor_first_print_tmin": 391.1,
+      "canonical_runtime_onset_tmin": 743.1,
+      "rejected_fit_grid_onset_tmin": 86,
+      "reachable_under_canonical_runtime_input": false,
+      "reachable_under_rejected_fit_grid_counterfactual": true,
+      "canonical_sleep_seconds": 21120
+    }
+  ],
+  "conservation": {
+    "rows": 11,
+    "canonical_reachable": 0,
+    "rejected_grid_counterfactual_reachable": 11,
+    "pass": true
+  }
+}

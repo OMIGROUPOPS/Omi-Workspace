@@ -1,0 +1,36 @@
+{
+  "files": {
+    "CONTROL_BINDING.json": {
+      "sha256": "e80707d49519d5fc66e738824f6ebcfa000bdbcfec526c3083edf54f74d8f672",
+      "bytes": 202
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "e9b327a09976bf263e72118ecfd4d2d314f93a20bb5bb8e68116d437a9ef2c5e",
+      "bytes": 93
+    },
+    "MATMOR_CORSAC_MISSING_GATE_BLOCK_REPAIR.json": {
+      "sha256": "67dc30cbaad80c8141ed52d2fc8723a9cc61d0a9aafe8c6fb78dab6b0b967343",
+      "bytes": 1729
+    },
+    "MATMOR_CORSAC_REEMITTED_GATE_BLOCK_ROWS.jsonl.gz": {
+      "sha256": "248b4effda0c2e30acb4296663bbd1ab94219a294e9f591506702f8e4f4ffcca",
+      "bytes": 541
+    },
+    "ONSET_DIVERGENT_27_REATTESTATION.jsonl.gz": {
+      "sha256": "4b1fdd4b7cc11d69765dbf52901f479e0ff7afa08d05caeb1dbc63e6d4a5cab9",
+      "bytes": 1087
+    },
+    "ONSET_INPUT_GRAIN_UNIFICATION_RECEIPT.json": {
+      "sha256": "b01cc1b7aa5bc4f8f5ba0b076f5f5b5bea73df4384c9287399e193db1ae182db",
+      "bytes": 1647
+    },
+    "REPORT.md": {
+      "sha256": "fb481385f6f26ab050cd47516c960655a7572bdbc7dae892fbcc30b3263de00d",
+      "bytes": 697
+    },
+    "SLEEPER_OFFER_REACHABILITY_RECEIPT.json": {
+      "sha256": "2911eafd606eee2d0e4a4064a83c4acf319a0f8562feeee5087f66808df99891",
+      "bytes": 4899
+    }
+  }
+}

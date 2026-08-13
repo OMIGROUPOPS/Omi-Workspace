@@ -1,0 +1,216 @@
+{
+  "files": {
+    "ARSMAR_MAR_GATE_TRACE.jsonl.gz": {
+      "sha256": "0ad3a8bc04d874d2df0577c7d110c4537873d9b1e10bab7e05510eeb94f87c0b",
+      "bytes": 231806
+    },
+    "AUTHORIZED_DOWNSTREAM_INPUT_DIVERGENCE_RECEIPT.json": {
+      "sha256": "7ae99cf30c35d6eda65304fe1a23e41f31ca88e90d8f1a685fa64e85a50ea541",
+      "bytes": 4140
+    },
+    "BEFORE_AFTER_DECISION_DIFFERENTIAL.jsonl.gz": {
+      "sha256": "acd43ec73ef1baf08e7fc00a92c2052ea1504dfa2da25c1474384b58833c23ca",
+      "bytes": 618336
+    },
+    "BEFORE_AFTER_DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "fa4df0d6ba503c229e73e644f6338bbd0525b136e6b8e976921ce759a5030dc8",
+      "bytes": 325
+    },
+    "CHANGED_LEG_STREAMS.jsonl.gz": {
+      "sha256": "61a62fe509c372a72d3dd4b607e2b0418067bcac5fcb8d9983188a7766f9c2b8",
+      "bytes": 11254
+    },
+    "CLAUSE_6_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz": {
+      "sha256": "5ad11a303d853ac79c852d7ab0f34e2b34cc2f26c2627a539e85348b7cf3b1fc",
+      "bytes": 2610
+    },
+    "CLAUSE_6_CORRECTION_RECEIPT.json": {
+      "sha256": "e4cd27964e2fa68f8df6450884d2b8d74f66772edfdc14cc17d30423abc12ff1",
+      "bytes": 9200
+    },
+    "CLEAN_SOURCE_BINDING.json": {
+      "sha256": "8e97e06bc1149067a4698f7375656b76c20587288656cf6a674bd504bde44f54",
+      "bytes": 9960
+    },
+    "CLEAN_STORE_BOOT_ASSERTION.json": {
+      "sha256": "9575ad14f26dba3fab5b5699d956c556ae1f13b15f1885a7e01f9062ae7239ec",
+      "bytes": 375
+    },
+    "COHORT_SELECTION_RECEIPT.json": {
+      "sha256": "3d59712d8314c326afb27fca28aa96226bd3d30638349a0f30d47ee825360745",
+      "bytes": 26460
+    },
+    "CONSTRUCTION_STATUS.json": {
+      "sha256": "ea4938c07e11d31f2f5274e4a7fea41b1927b5a4f2260ee5adf040a40cf5998c",
+      "bytes": 196
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "6d07f3728c495540085d2d582c32fd2f4dd7ee113cbb316edab39f81dbf10ed3",
+      "bytes": 251
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "7763a4ef5cd78f5419b327175c3fe4432c3680982432bb29bec4dcfc3d89fb0e",
+      "bytes": 94
+    },
+    "FLOW_ASSERTIONS.json": {
+      "sha256": "75581b500c940dff277c1b1056c6a202e0c984af138694803fff0602354ebd4b",
+      "bytes": 1871
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4824e08cc375d5171d66a5380d8bf5202ee87aac6bebf143b3e330eed7a3b544",
+      "bytes": 179
+    },
+    "FOUR_STATE_OBSERVATION_30.json": {
+      "sha256": "2b1aeb6ea5ed98650c960e791159ea822be2945b0df39158f43ec10b0f6f6e9e",
+      "bytes": 418
+    },
+    "FULL_DECISION_TRACE_MANIFEST.json": {
+      "sha256": "73604a0b2dfbe07670dd46058bcd9e746ce7b9d89e76bac1fb49e6763fa4f44c",
+      "bytes": 6314
+    },
+    "JOINT_TARGET_CONSERVATION_LICENSE_LEDGER.jsonl.gz": {
+      "sha256": "00143b895c815c92913a565ab680499ab5eb071405397939e1f4e42453805afe",
+      "bytes": 17228131
+    },
+    "N4_ABSTENTION_RECEIPT.json": {
+      "sha256": "0c63b550d0beb47db1da0efeaa55d128fe33f23f91dfc6d9bc589d8f3d855543",
+      "bytes": 164
+    },
+    "N4_PRIOR_INFORMED_RESCUE_LEDGER.jsonl.gz": {
+      "sha256": "c6e3522b3e4e3a083d12eb28251d476eb80f4acb53c4e17a033883a3f282e9b1",
+      "bytes": 384757
+    },
+    "N5_PRIOR_TIE_ADJUDICATION_LEDGER.jsonl.gz": {
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "bytes": 20
+    },
+    "NAMED_CHECKS_OBSERVATION_ONLY.json": {
+      "sha256": "405c9e50830198672b781afa8f3c83878f4ef5f63d356e47915d127c62135f47",
+      "bytes": 2531211
+    },
+    "OUTCOME_OBSERVATIONS_30.json": {
+      "sha256": "3894c285fd3d43151350ec6f1620f5a5996ce9913cb462c2065a8c8b34dc6b8f",
+      "bytes": 1209
+    },
+    "PAIR_BUDGET_RECORDS.jsonl.gz": {
+      "sha256": "cdfc759b4529dcf30f276ceec02edadc8bc1ab71cd2d30aa794698a3fc04421c",
+      "bytes": 825732
+    },
+    "PAIR_BUDGET_RECORD_SUMMARY.json": {
+      "sha256": "126b2b4bc4f470337fb455d1083cf7191076d7c8b0199a254f7316cf0402dcc6",
+      "bytes": 408
+    },
+    "PAIR_JOINT_TARGET_TIME_SERIES.jsonl.gz": {
+      "sha256": "5311548e448520830b8279eb4d0addcfd3d8193eead829ac878877d7686db87b",
+      "bytes": 833445
+    },
+    "PALANTIR_CONSUMPTION_LEDGER.jsonl.gz": {
+      "sha256": "854c5708bc33ebfcd6ba0fffd005bf2cd34c116efba44c25676a69270bf858db",
+      "bytes": 20182456
+    },
+    "PALANTIR_CONSUMPTION_SUMMARY.json": {
+      "sha256": "3a7eb9928d72d2e3d81e01e3fb7aa8aa4c8be33e3358d8711f05cc23ed2883fa",
+      "bytes": 4514
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM.jsonl.gz": {
+      "sha256": "e5f1ef5060cbf8893113d8dfb6ab70dbcc3928c428727855feb58c96b2f53395",
+      "bytes": 5155
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM_SUMMARY.json": {
+      "sha256": "d253034aa03fcbef59f3f2de5e6a9671e858694473e147923d9a7f70ba13e472",
+      "bytes": 755
+    },
+    "PIN_REGRESSION_RECEIPT.json": {
+      "sha256": "e418ca3e1a2b2f2e0f4ee5f8fbf856ae90e2abbc60f0db5bbbca3fbd3f61a500",
+      "bytes": 4000
+    },
+    "PIN_REGRESSION_RECEIPT_V52G.json": {
+      "sha256": "280cc11b8fe2ebbddd52f4a6877b00d72641b7c9aac9d739796c82caba4230de",
+      "bytes": 4043
+    },
+    "PRIOR_AT_LOSS_REATTESTATION.json": {
+      "sha256": "7f979555cd13e848def4ddd13460448b956d40f8afba47c0c684dc8686e344c4",
+      "bytes": 1324
+    },
+    "REPORT.md": {
+      "sha256": "79cc272120b59cf87dfbbafbfb54e690e472731578e0f47751aaab2a8dc60c84",
+      "bytes": 1452
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "1457454a4e5e3d081054509467c4d8f1f811d18952bfce1ee9e5312c351cc735",
+      "bytes": 4060
+    },
+    "STABILITY_ONSET_LEDGER.jsonl.gz": {
+      "sha256": "5b58e48f7e6d541ce1df20ddebe490aa6ad80a5b29ba6ad013312a172c63f022",
+      "bytes": 7625
+    },
+    "STEP0_REUSE_INVENTORY.json": {
+      "sha256": "ead85f2b50e2e18a8efa3beb51eecfed68f7e2946b521719d4177a749b4bba30",
+      "bytes": 3994
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "b39a369ba31bb2bdb06066af52136368df343210f795e755ee5065404619d21f",
+      "bytes": 1892
+    },
+    "V52F_BASELINE_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "248b23a1808d0f9c411a671a6394aa1fccb8ee28b41da94414639ac7a4d4f465",
+      "bytes": 184599
+    },
+    "V52F_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_001.jsonl.gz": {
+      "sha256": "9e3e5f5aad2b2cdde54327b75c4d29fb3c5fb5a826def825973d1bfb09b19340",
+      "bytes": 16253849
+    },
+    "V52F_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_002.jsonl.gz": {
+      "sha256": "99c219d3e6f64e33c7ff0692210141fb563bbe07451dcd8b421eac0c40a6f462",
+      "bytes": 5587139
+    },
+    "V52F_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_003.jsonl.gz": {
+      "sha256": "ba90ddd48a825fe6ff9136929cabb374fd5cecbb7544f2f170449396597156f0",
+      "bytes": 13305602
+    },
+    "V52F_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_004.jsonl.gz": {
+      "sha256": "551cfb3543b12958b0cab18cbc9025ef778ffa54e09213878acb87a1a648ffd9",
+      "bytes": 29757139
+    },
+    "V52F_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_005.jsonl.gz": {
+      "sha256": "78ec53b63fb8adafd6f26cb56175164fccd019e597f9b2dbd61994fe107cc5e5",
+      "bytes": 17977036
+    },
+    "V52F_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_006.jsonl.gz": {
+      "sha256": "1e9b34ec4a0620d8af0369e2de27c505ece676589113fc6d46e19171c233a598",
+      "bytes": 11041994
+    },
+    "V52F_V52G_FOUR_STATE_EVENT_LEDGER_30.jsonl.gz": {
+      "sha256": "88ac35b371a1b8304e2c3cb189af888f5f9dd7b57946a44a1b9d75e9f6d1c0ed",
+      "bytes": 1786
+    },
+    "V52G_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "4f3d389bf1b24defa934dfae6d32b60b594ea9a6461e59d19e97da85f0038ba5",
+      "bytes": 184587
+    },
+    "V52G_FULL_DECISION_TRACE_30_GAMES_CHUNK_001.jsonl.gz": {
+      "sha256": "23b57e2375be1bfaff2cd8354b918ac983a5764cd815ed28e7181d0d7c7380cf",
+      "bytes": 16773152
+    },
+    "V52G_FULL_DECISION_TRACE_30_GAMES_CHUNK_002.jsonl.gz": {
+      "sha256": "948172fca39063ba193797aeb21167bd7570447b3b137338cd4152b9a62d875e",
+      "bytes": 5734628
+    },
+    "V52G_FULL_DECISION_TRACE_30_GAMES_CHUNK_003.jsonl.gz": {
+      "sha256": "bc7f2c7b30c7e802f0069909b8ddc7ad3b531a57e39e917626ba67cd466c5c07",
+      "bytes": 13683695
+    },
+    "V52G_FULL_DECISION_TRACE_30_GAMES_CHUNK_004.jsonl.gz": {
+      "sha256": "9feddf28391fe3b398f7231ece0946f193cad538d093c5c180f605243ea2873a",
+      "bytes": 30540100
+    },
+    "V52G_FULL_DECISION_TRACE_30_GAMES_CHUNK_005.jsonl.gz": {
+      "sha256": "0fd9109f79521fbd96281d78079bf426671f0774a97c8e9b84509591dd922766",
+      "bytes": 18495000
+    },
+    "V52G_FULL_DECISION_TRACE_30_GAMES_CHUNK_006.jsonl.gz": {
+      "sha256": "b098e1a8b1ffdd477fd26c1690bb38e8daf7e8d88ffcbbf6a4210a690e7b7d37",
+      "bytes": 12515897
+    }
+  }
+}

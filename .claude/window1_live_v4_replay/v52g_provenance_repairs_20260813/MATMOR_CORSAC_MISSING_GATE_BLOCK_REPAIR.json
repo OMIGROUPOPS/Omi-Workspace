@@ -1,0 +1,41 @@
+{
+  "label": "V52G_PART1_MATMOR_CORSAC_MISSING_GATE_BLOCK_RECORDING_REPAIR",
+  "repair_class": "RECEIPTS_ONLY_NO_POLICY_OR_SCORE_CHANGE",
+  "controlling_source": {
+    "commit": "4716657a18519d5b90705eb20030a66f5491a91b",
+    "path": ".claude/window1_live_v4_replay/v52e_disposition_804_four_state_20260813/MARKET_EVENT_LEDGER_804.jsonl.gz",
+    "sha256": "910035b47ed5eceafd6d60ca235248c131cef02b03f5a8be9dfb03cfd9197d3b",
+    "bytes": 6278624,
+    "events": 804
+  },
+  "root_cause": {
+    "exact": "Both events bind w1_left_epoch later than w1_right_epoch. The simulator therefore consumes zero in-span two-sided-book receipts. Gate-block counters exist only inside the decision-receipt branch; terminalization assigns NO_TWO_SIDED_BOOK_DECISION_INSIDE_EDGE but emits no gate-block row.",
+    "source_file": "arb-executor/analysis/build_window1_v38_maker_only.js",
+    "lines": {
+      "span_bound_without_order_validation": 1807,
+      "replay_receipt_loop_entry": 1915,
+      "gate_block_counter_only_inside_decision_receipt": 809,
+      "terminal_reason_without_gate_block": 918
+    },
+    "defect_class": "EXPORT_RECORDING_HOLE_AFTER_INVALID_PRE_MATCH_SPAN",
+    "policy_evaluation_occurred": false
+  },
+  "repair": {
+    "row_type": "TERMINAL_GATE_BLOCK_PROVENANCE",
+    "semantics": "Records why no gate evaluation was possible. It does not claim PASS, FLAG, or any evaluated predicate.",
+    "rows": 4,
+    "affected_events": [
+      "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+      "KXATPMATCH-26JUL18CORSAC"
+    ],
+    "behavior_changed": false,
+    "scores_changed": false
+  },
+  "conservation": {
+    "events": 2,
+    "legs": 4,
+    "emitted_rows": 4,
+    "exactly_one_row_per_affected_leg": true,
+    "pass": true
+  }
+}

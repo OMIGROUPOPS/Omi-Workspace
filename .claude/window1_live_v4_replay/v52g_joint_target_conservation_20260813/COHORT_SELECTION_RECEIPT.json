@@ -1,0 +1,660 @@
+{
+  "controlling_parent_commit": "c235363e404c44873d43caa1626bd4ca927eb645",
+  "seed_derivation_law": "SHA256('V52G_ITERATION6_COHORT25|' + frozen_V52f_parent_commit)",
+  "seed_material": "V52G_ITERATION6_COHORT25|c235363e404c44873d43caa1626bd4ca927eb645",
+  "seed_sha256": "7f09caecfc2ec7abd0bc118dcca3ab5af41cc75e90350a65ed8df2ff10f91c26",
+  "source": {
+    "commit": "1d5564b5cdd25de32cfa9244cf21486245ab5b55",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/QUEUE_FORMATION_REFLEX_CENSUS.json",
+    "sha256": "98e7ffa8ae318efe50a50d3f06254dd4614a01a8886cf83b59f7cb5d4d85e226",
+    "rows": 1143
+  },
+  "excluded_prior_fresh_cohorts": [
+    {
+      "iteration": "V52B",
+      "commit": "98d07986fd916c1d75beb45095c75752bbc65102",
+      "path": ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812/COHORT_SELECTION_RECEIPT.json",
+      "sha256": "dbe1c97c917c864ec589f061246b8b8c2978b229edbd4333bc45ea9e136781cb",
+      "events": 25
+    },
+    {
+      "iteration": "V52C",
+      "commit": "08ce27c0a297ed707cfd89aa29e60be223c9df7f",
+      "path": ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/COHORT_SELECTION_RECEIPT.json",
+      "sha256": "991f1c7b829f5bfcd4303fb4d0efabbf55f5a5a3f9b91363a7791025e4009d92",
+      "events": 25
+    },
+    {
+      "iteration": "V52D",
+      "commit": "893ee4c6860179a82c4b42439cf4a94cb2bcc97f",
+      "path": ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812/COHORT_SELECTION_RECEIPT.json",
+      "sha256": "283cc5d7588bb9ce010ecb113f1f56a4b3bad59f6426c65867e16fe56a0eb2e7",
+      "events": 25
+    },
+    {
+      "iteration": "V52E",
+      "commit": "b09aa22b301205d5d44d683497cf3edc5b177cf8",
+      "path": ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812/COHORT_SELECTION_RECEIPT.json",
+      "sha256": "f95228a4c9c3930abf6803d406c3395fcf05e84a533727cb8f5bef8cbab4368d",
+      "events": 25
+    },
+    {
+      "iteration": "V52F",
+      "commit": "c235363e404c44873d43caa1626bd4ca927eb645",
+      "path": ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/COHORT_SELECTION_RECEIPT.json",
+      "sha256": "18254647e38ff72fb3e4292dbfdacf646c52c6f98e37d5e3344149b0914ad922",
+      "events": 25
+    }
+  ],
+  "exclusions": {
+    "prior_V52B_fresh25_overlap_count": 0,
+    "prior_V52C_fresh25_overlap_count": 0,
+    "prior_V52D_fresh25_overlap_count": 0,
+    "prior_V52E_fresh25_overlap_count": 0,
+    "prior_V52F_fresh25_overlap_count": 0,
+    "frozen_pins_are_intentionally_reused": true
+  },
+  "stratification": {
+    "dimensions": [
+      "category",
+      "paired_queue_formation_reflex_census_stamps"
+    ],
+    "method": "HASH_ORDER_STRATA_THEN_ROUND_ROBIN_ONE_EVENT_PER_STRATUM",
+    "strata_available": 116
+  },
+  "pins": [
+    {
+      "code": "26JUL12POLKUH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL13SANDAN",
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL14PUTJEA",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL16MERDRO",
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL19ARSMAR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "role": "FROZEN_PIN"
+    }
+  ],
+  "fresh_25": [
+    {
+      "code": "26JUL12VANCHO",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19EIGCAR",
+      "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12OKAIPE",
+      "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13CRIJEA",
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL15TRANAV",
+      "event_id": "KXATPMATCH-26JUL15TRANAV",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19BOHBOU",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13OUALIN",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19BRAVON",
+      "event_id": "KXWTAMATCH-26JUL19BRAVON",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL20KUDKOR",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL18PALHON",
+      "event_id": "KXWTAMATCH-26JUL18PALHON",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19DEMMAG",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL15CERKEC",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL14RIESEM",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+      "category": "WTA_CHALL",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_CHALL|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13COLSKA",
+      "event_id": "KXATPMATCH-26JUL13COLSKA",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL20SEMKRA",
+      "event_id": "KXWTAMATCH-26JUL20SEMKRA",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST",
+        "NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST+NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19WINSHE",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12FELKEC",
+      "event_id": "KXATPMATCH-26JUL12FELKEC",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12HERKAZ",
+      "event_id": "KXWTAMATCH-26JUL12HERKAZ",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12STRMUN",
+      "event_id": "KXATPMATCH-26JUL12STRMUN",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19ARNPOH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL15KYMTSI",
+      "event_id": "KXATPMATCH-26JUL15KYMTSI",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13LIUIPE",
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL20DJECIN",
+      "event_id": "KXATPMATCH-26JUL20DJECIN",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19TRODAL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL17WONJOH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    }
+  ],
+  "combined_30": [
+    {
+      "code": "26JUL12POLKUH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL13SANDAN",
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL14PUTJEA",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL16MERDRO",
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL19ARSMAR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "role": "FROZEN_PIN"
+    },
+    {
+      "code": "26JUL12VANCHO",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19EIGCAR",
+      "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12OKAIPE",
+      "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13CRIJEA",
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL15TRANAV",
+      "event_id": "KXATPMATCH-26JUL15TRANAV",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19BOHBOU",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13OUALIN",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19BRAVON",
+      "event_id": "KXWTAMATCH-26JUL19BRAVON",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL20KUDKOR",
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL18PALHON",
+      "event_id": "KXWTAMATCH-26JUL18PALHON",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19DEMMAG",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL15CERKEC",
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL14RIESEM",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+      "category": "WTA_CHALL",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_CHALL|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13COLSKA",
+      "event_id": "KXATPMATCH-26JUL13COLSKA",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL20SEMKRA",
+      "event_id": "KXWTAMATCH-26JUL20SEMKRA",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST",
+        "NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST+NO_BOOK_AT_MOMENT|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19WINSHE",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12FELKEC",
+      "event_id": "KXATPMATCH-26JUL12FELKEC",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12HERKAZ",
+      "event_id": "KXWTAMATCH-26JUL12HERKAZ",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL12STRMUN",
+      "event_id": "KXATPMATCH-26JUL12STRMUN",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19ARNPOH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL15KYMTSI",
+      "event_id": "KXATPMATCH-26JUL15KYMTSI",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL13LIUIPE",
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "category": "WTA_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "WTA_MAIN|QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL20DJECIN",
+      "event_id": "KXATPMATCH-26JUL20DJECIN",
+      "category": "ATP_MAIN",
+      "census_stamps": [
+        "QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST",
+        "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_MAIN|QUEUE_PLAUSIBLE|POST_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL19TRODAL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+        "QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST+QUEUE_IMPROBABLE|BRACKET_DEPENDENT|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    },
+    {
+      "code": "26JUL17WONJOH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+      "category": "ATP_CHALL",
+      "census_stamps": [
+        "NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+      ],
+      "stratum": "ATP_CHALL|NO_BOOK_AT_MOMENT|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "role": "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_V52C_V52D_V52E_V52F"
+    }
+  ],
+  "event_list_sha256": "7be7c348a8cc56b390edb224f5f6260e65492918cd4dc8ef1639cbd1340a0dd9"
+}

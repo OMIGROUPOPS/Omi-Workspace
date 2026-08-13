@@ -1,0 +1,8 @@
+{
+  "changed_decision_receipts": 6256,
+  "license_or_metadata_changed_leg_streams": 47,
+  "behavior_changed_leg_streams": 12,
+  "every_behavior_change_starts_at_or_after_authorized_clause": true,
+  "frozen_clause_differences": 0,
+  "all_behavior_changes_authorized_by": "CLAUSE_6_ORDER_FREE_JOINT_TARGET_CONSERVATION_ONLY"
+}

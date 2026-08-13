@@ -1,0 +1,36 @@
+{
+  "source": {
+    "commit": "c235363e404c44873d43caa1626bd4ca927eb645",
+    "path": ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/PRE_STATED_CLAIM_RECEIPT.json"
+  },
+  "named_cases": [
+    {
+      "code": "26JUL15VANDRO",
+      "V52f_candidate_state": "PARTIAL_FOR_REASON",
+      "V52f_candidate_combined_entry_cents": null,
+      "remains_lawful_under_V52g_identity": true
+    },
+    {
+      "code": "26JUL13ZHEBOU",
+      "V52f_candidate_state": "COMPLETE_AT_DELTA",
+      "V52f_candidate_combined_entry_cents": 99,
+      "remains_lawful_under_V52g_identity": true
+    },
+    {
+      "code": "26JUL18BERSAI",
+      "V52f_candidate_state": "COMPLETE_AT_DELTA",
+      "V52f_candidate_combined_entry_cents": 99,
+      "remains_lawful_under_V52g_identity": true
+    },
+    {
+      "code": "26JUL20BARYUA",
+      "V52f_candidate_state": "COMPLETE_AT_DELTA",
+      "V52f_candidate_combined_entry_cents": 97,
+      "remains_lawful_under_V52g_identity": true
+    }
+  ],
+  "replay_scope_note": "The fresh V52g cohort excludes every V52f fresh event. These four identities are therefore re-attested from the frozen V52f receipt plus V52g's universal <=99 invariant, not reinserted into the fresh cohort.",
+  "all_four_remain_lawful": true,
+  "zero_new_COMPLETE_AT_LOSS_in_fresh_30": true,
+  "pass": true
+}

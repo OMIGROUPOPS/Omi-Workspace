@@ -1,0 +1,84 @@
+{
+  "files": {
+    "arb-executor/analysis/window1_v52_judgment_gate.js": {
+      "sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10",
+      "role": "FROZEN_POLICY_BASE"
+    },
+    "arb-executor/analysis/window1_v52b_read_level_authority.js": {
+      "sha256": "416f2fe5a33754c9bfa08213f56d261f59dbcc356f6679796db1b08abcd8e278",
+      "role": "FROZEN_CLAUSE_3_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v38_maker_only.js": {
+      "sha256": "f9586d14b855e720d3a61693bf9f707bfd52d6fd92aca8c6750b45156226a42e",
+      "role": "REPLAY_AND_RECEIPT_BUILDER"
+    },
+    "arb-executor/analysis/window1_v52c_full_post_onset_read.js": {
+      "sha256": "71690965d4c3926ffc44af07f048c5c680f493f3fcaceed80b069b159a8d672b",
+      "role": "FROZEN_CLAUSE_2_POLICY"
+    },
+    "arb-executor/analysis/window1_v52d_disagreement_referee.js": {
+      "sha256": "26f379b90ded2bad6ed7a12bb82a95ff33e9937fe841b526edd36179bbd80a70",
+      "role": "FROZEN_CLAUSE_4_POLICY"
+    },
+    "arb-executor/analysis/window1_n9_clean_store.js": {
+      "sha256": "fb5b7518b44b0ff78e64c71e34f8ee554bd7bb7281701ffa6c16513b313cd5db",
+      "role": "CLEAN_REGISTRY_VALIDATOR_NOT_A_LOADER"
+    },
+    "arb-executor/analysis/window1_v52e_palantir_wiring.js": {
+      "sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+      "role": "N9_CONTINUOUS_PRIOR_WIRING"
+    },
+    "arb-executor/analysis/build_window1_v52e_palantir_wiring.js": {
+      "sha256": "2099e71f3384d1e404ff572edc2c8bdf50b7b486823dffe2e5440895a7a26504",
+      "role": "DETERMINISTIC_ENTRYPOINT"
+    },
+    "arb-executor/tests/test_window1_v52e_palantir_wiring.js": {
+      "sha256": "9b122d80a15934d10941267f20a19df2f98e4ddbed45b38ed02f20468d855fa8",
+      "role": "N9_UNIT_TEST"
+    },
+    "arb-executor/tests/test_window1_v52e_palantir_wiring_package.js": {
+      "sha256": "19eb3c32c0412f463d68888b60eb8fdc54b2a0bed48fe71eeed6f6ce6d2f5cb8",
+      "role": "PACKAGE_INTEGRITY_TEST"
+    },
+    "arb-executor/analysis/window1_v52f_pair_entry_conservation.js": {
+      "sha256": "0c7e9f1273800b3772e38253ab1c22b32460e8776a7b7e7d4716673ff29bc667",
+      "role": "CLAUSE_5_ONLY_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v52f_pair_entry_conservation.js": {
+      "sha256": "449638f85d3910a3ad35ec063f98179e50706734d21b6f67462b1bee70a5ebf8",
+      "role": "DETERMINISTIC_ENTRYPOINT"
+    },
+    "arb-executor/tests/test_window1_v52f_pair_entry_conservation.js": {
+      "sha256": "60d76cd20d4e60f553b131bfc6e3f6412bdfccfaf2df72274858e9c5314ed513",
+      "role": "CLAUSE_5_UNIT_TEST"
+    },
+    "arb-executor/tests/test_window1_v52f_pair_entry_conservation_package.js": {
+      "sha256": "0a6f1a0394cbf0db46fde06b1eb71cdf3300cdeda5012dbe95212d6061bda0e0",
+      "role": "PACKAGE_INTEGRITY_TEST"
+    },
+    "arb-executor/analysis/window1_v52g_joint_target_conservation.js": {
+      "sha256": "253207995d516e7921193e98b7df7073a13c700341cefc3c24147fb66134335c",
+      "role": "CLAUSE_6_ONLY_POLICY"
+    },
+    "arb-executor/analysis/build_window1_v52g_joint_target_conservation.js": {
+      "sha256": "5a546c21e95abb4fe6dcb8285754d18fcdcdf96d1a389917f657fb98a72c41a2",
+      "role": "DETERMINISTIC_ENTRYPOINT"
+    },
+    "arb-executor/analysis/build_window1_v52g_provenance_repairs.js": {
+      "sha256": "e87b257190712dbde3dc9fc35c8a9baa23199497937469afe9f44003539da561",
+      "role": "RECEIPTS_ONLY_PROVENANCE_REPAIR_BUILDER"
+    },
+    "arb-executor/tests/test_window1_v52g_joint_target_conservation.js": {
+      "sha256": "7c31a8eb1e50b4414edb4fb2467dcb5283efc56d0396d7c381626b8baf525c76",
+      "role": "CLAUSE_6_UNIT_TEST"
+    },
+    "arb-executor/tests/test_window1_v52g_joint_target_conservation_package.js": {
+      "sha256": "58f9556b329cb5472b83a06a1c91102eeaabe18a92c6c72807a618866d0f6a83",
+      "role": "PACKAGE_INTEGRITY_TEST"
+    },
+    "arb-executor/tests/test_window1_v52g_provenance_repairs.js": {
+      "sha256": "82725746a8a861ca8af205196ef5ffcd8b8dd027041c2af9c53d50f08fad3a28",
+      "role": "RECEIPTS_ONLY_PROVENANCE_REPAIR_TEST"
+    }
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "authorized_change": "CLAUSE_6_ORDER_FREE_JOINT_TARGET_CONSERVATION_ONLY",
+  "settlement_identity": {
+    "payout_cents": 100,
+    "joint_law": "target_A_cents + target_B_cents <= 99",
+    "tuned_constant": false
+  },
+  "allocation": {
+    "law": "EXISTING_LEVEL_AUTHORITIES_EVALUATED_JOINTLY_AT_EACH_RECEIPT; NEWLY_EVALUATED_SIDE_BOUNDED_BY_99_MINUS_THE_DECISION_TIME_KNOWN_COUNTERPART",
+    "bought_side_immutable_at_entry": true,
+    "standing_side_re_evaluated_receipt_causally": true,
+    "sequence_role_language_used": false
+  },
+  "pair_budget_record": {
+    "one_per_game": true,
+    "born_at": "PAIR_FIRST_LICENSED_POST",
+    "fields": [
+      "current_joint_split",
+      "full_revision_history_with_each_revision_license_fields"
+    ],
+    "goals": "ABSENT_BY_DESIGN",
+    "predictions": "ABSENT_BY_DESIGN",
+    "future_plan_organ_home": "INTENTIONALLY_EMPTY_PENDING_OPERATOR_DESIGN_RULING",
+    "summary": {
+      "records": 30,
+      "born_records": 24,
+      "unborn_records": 6,
+      "revision_rows": 2128,
+      "joint_sum_violations": [],
+      "incomplete_revision_chains": [],
+      "forbidden_plan_fields": [],
+      "exactly_one_record_per_game": true,
+      "pass": true,
+      "minimal_object_law": "ONE_RECORD_PER_GAME; BORN_AT_FIRST_LICENSED_POST; CURRENT_JOINT_SPLIT_AND_COMPLETE_LICENSED_REVISION_HISTORY_ONLY; NO_GOALS_OR_PREDICTIONS"
+    }
+  },
+  "frozen_upstream_proof": {
+    "pre_authorized_clause_differences": 0,
+    "downstream_state_input_divergences_after_clause_6": 34,
+    "law": "FROZEN_CLAUSE_MECHANICS_AND_RECEIPTS_MUST_MATCH THROUGH THE AUTHORIZED CLAUSE_6 DIVERGENCE; LATER CREDIT_AND_STANDING INPUTS MAY DIFFER ONLY AS A CAUSAL CONSEQUENCE AND ARE RECEIPTED_SEPARATELY"
+  },
+  "clause_1": {
+    "status": "FROZEN_CODEX_INTERIM",
+    "behavior_changed": false,
+    "receipt_differences": 0
+  },
+  "clause_2": {
+    "status": "FROZEN_V52C",
+    "behavior_changed": false,
+    "receipt_differences": 0
+  },
+  "clause_3": {
+    "status": "FROZEN_V52B_PLUS_V52E_N4",
+    "machine_read_input_changed": false,
+    "receipt_differences": 0
+  },
+  "clause_4": {
+    "status": "FROZEN_V52D_PLUS_V52E_N5",
+    "behavior_changed": false,
+    "receipt_differences": 0
+  },
+  "clause_5": {
+    "status": "FROZEN_V52F_POST_CREDIT_DEGENERATE_IDENTITY",
+    "source_commit": "c235363e404c44873d43caa1626bd4ca927eb645"
+  },
+  "N9": {
+    "status": "FROZEN_V52E",
+    "palantir_receipt_differences": 0,
+    "clean_store_boot": {
+      "passed": true,
+      "required_ids": [
+        "P1",
+        "P2",
+        "P4",
+        "P6",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "loaded_ids": [
+        "P1",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P2",
+        "P4",
+        "P6"
+      ],
+      "source_inventory": "store_CLEAN",
+      "unvalidated_loaded": 0,
+      "quarantined_loaded": 0,
+      "superseded_loaded": 0,
+      "fallback_loads": 0
+    }
+  },
+  "crediting": {
+    "status": "FROZEN_TRADES_AS_TRUTH",
+    "source_file": "arb-executor/analysis/window1_v52_judgment_gate.js",
+    "source_sha256": "9a4cba7936cabf17b7edc6fbccfffbafee36b36a3ce8765c731dca9e8ba8cc10"
+  },
+  "scavenger": {
+    "enabled": false,
+    "status": "FROZEN"
+  },
+  "differential": {
+    "changed_decision_receipts": 6256,
+    "license_or_metadata_changed_leg_streams": 47,
+    "behavior_changed_leg_streams": 12,
+    "every_behavior_change_starts_at_or_after_clause_6": true
+  },
+  "prior_AT_LOSS_re_attestation": {
+    "source": {
+      "commit": "c235363e404c44873d43caa1626bd4ca927eb645",
+      "path": ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/PRE_STATED_CLAIM_RECEIPT.json"
+    },
+    "named_cases": [
+      {
+        "code": "26JUL15VANDRO",
+        "V52f_candidate_state": "PARTIAL_FOR_REASON",
+        "V52f_candidate_combined_entry_cents": null,
+        "remains_lawful_under_V52g_identity": true
+      },
+      {
+        "code": "26JUL13ZHEBOU",
+        "V52f_candidate_state": "COMPLETE_AT_DELTA",
+        "V52f_candidate_combined_entry_cents": 99,
+        "remains_lawful_under_V52g_identity": true
+      },
+      {
+        "code": "26JUL18BERSAI",
+        "V52f_candidate_state": "COMPLETE_AT_DELTA",
+        "V52f_candidate_combined_entry_cents": 99,
+        "remains_lawful_under_V52g_identity": true
+      },
+      {
+        "code": "26JUL20BARYUA",
+        "V52f_candidate_state": "COMPLETE_AT_DELTA",
+        "V52f_candidate_combined_entry_cents": 97,
+        "remains_lawful_under_V52g_identity": true
+      }
+    ],
+    "replay_scope_note": "The fresh V52g cohort excludes every V52f fresh event. These four identities are therefore re-attested from the frozen V52f receipt plus V52g's universal <=99 invariant, not reinserted into the fresh cohort.",
+    "all_four_remain_lawful": true,
+    "zero_new_COMPLETE_AT_LOSS_in_fresh_30": true,
+    "pass": true
+  },
+  "pins": {
+    "comparisons": [
+      {
+        "code": "26JUL12POLKUH",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "baseline_completed": false,
+        "baseline_combined_entry_cents": null,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "KUH",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 18,
+            "candidate_entry_cents": 18,
+            "unharmed": true
+          },
+          {
+            "leg_id": "POL",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL13SANDAN",
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "baseline_completed": false,
+        "baseline_combined_entry_cents": null,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "DAN",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 77,
+            "candidate_entry_cents": 77,
+            "unharmed": true
+          },
+          {
+            "leg_id": "SAN",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL14PUTJEA",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "baseline_completed": false,
+        "baseline_combined_entry_cents": null,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "JEA",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          },
+          {
+            "leg_id": "PUT",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL16MERDRO",
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "baseline_completed": false,
+        "baseline_combined_entry_cents": null,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "DRO",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 49,
+            "candidate_entry_cents": 49,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MER",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL19ARSMAR",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "baseline_completed": false,
+        "baseline_combined_entry_cents": null,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "ARS",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MAR",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 60,
+            "candidate_entry_cents": 60,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      }
+    ],
+    "SANDAN_at_or_better": true
+  }
+}

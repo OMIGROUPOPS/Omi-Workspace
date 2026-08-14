@@ -1,0 +1,101 @@
+{
+ "LABEL": "26JUL12BALHUA_TAPE_PACK",
+ "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+ "category": "WTA_CHALL",
+ "format": "c09bde99 game_tape_packs + tminus_bell_s + per-leg W1 close (GUEGOM variant @ 03e38798)",
+ "bell": {
+  "actual_bell_epoch": 1783857240.0,
+  "source": "TAPE_SIGNATURE",
+  "source_detail": "TAPE_SIGNATURE: earliest sustained mirrored repricing regime (both legs >=10 true prints, >=3c travel, >=3 direction reversals in 30min; joint >=60 prints sustaining >=60 more in the next hour) - method validated on the 192 machine-known bells: median error +1 min, 89%% within +-30 min. Signature receipts in manifest.",
+  "signature_receipts": {
+   "BAL": {
+    "prints_30m": 328,
+    "travel_c": 27,
+    "direction_changes": 46
+   },
+   "HUA": {
+    "prints_30m": 67,
+    "travel_c": 19,
+    "direction_changes": 12
+   },
+   "joint_prints_30m": 395,
+   "sustain_prints_30_90m": 519
+  },
+  "bell_minus_w1_right_s": -7860,
+  "note": "BELL PRECEDES w1_right by 7860s - the tail of the recorded window is IN-PLAY; rows after tminus_bell_s<0 are post-bell"
+ },
+ "w1_left_epoch": 1783856660,
+ "w1_right_epoch": 1783865100,
+ "heartbeat_caveat": "recorder has no heartbeat channel; book gaps >600s listed per leg - flagged, not smoothed",
+ "legs": {
+  "BAL": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL",
+   "files": [
+    "BAL_book.csv",
+    "BAL_trades.csv"
+   ],
+   "book_rows_per_change": 9224,
+   "book_raw_rows_in_window": 46489,
+   "trades_rows": 596,
+   "true_prints": 596,
+   "trades_post_bell_in_window": 595,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783863240,
+     "exchange_ts": "2026-07-12T13:34:00.229090Z",
+     "tminus_bell_s": -6000.2,
+     "price_cents": 1,
+     "size": 200.0,
+     "trade_id": "4c277d8a-b81c-5f46-a97b-b0339834e11a"
+    },
+    "last_pre_bell_true_trade": {
+     "ts_epoch": 1783857238,
+     "exchange_ts": "2026-07-12T11:53:58.721897Z",
+     "tminus_bell_s": 1.3,
+     "price_cents": 16,
+     "size": 59.02,
+     "trade_id": "2f73b29a-8f95-4851-a046-62147d9b7665"
+    },
+    "last_mid": {
+     "ts_epoch": 1783863097,
+     "tminus_bell_s": -5857.0,
+     "mid_cents": 1.5,
+     "bid_1": 1,
+     "ask_1": 2
+    }
+   },
+   "recorder_gaps_over_600s": []
+  },
+  "HUA": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA",
+   "files": [
+    "HUA_book.csv",
+    "HUA_trades.csv"
+   ],
+   "book_rows_per_change": 8577,
+   "book_raw_rows_in_window": 34145,
+   "trades_rows": 369,
+   "true_prints": 369,
+   "trades_post_bell_in_window": 369,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783863015,
+     "exchange_ts": "2026-07-12T13:30:15.408895Z",
+     "tminus_bell_s": -5775.4,
+     "price_cents": 99,
+     "size": 0.1,
+     "trade_id": "6a34e79d-6479-63a0-1a3b-931e2c6dacfd"
+    },
+    "last_pre_bell_true_trade": null,
+    "last_mid": {
+     "ts_epoch": 1783862780,
+     "tminus_bell_s": -5540.0,
+     "mid_cents": 98.5,
+     "bid_1": 98,
+     "ask_1": 99
+    }
+   },
+   "recorder_gaps_over_600s": []
+  }
+ }
+}

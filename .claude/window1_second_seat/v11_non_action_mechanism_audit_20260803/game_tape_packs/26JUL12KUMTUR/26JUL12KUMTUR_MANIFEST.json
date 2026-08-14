@@ -1,0 +1,250 @@
+{
+ "LABEL": "26JUL12KUMTUR_TAPE_PACK",
+ "event": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+ "category": "ATP_CHALL",
+ "format": "c09bde99 game_tape_packs + tminus_bell_s + per-leg W1 close (GUEGOM variant @ 03e38798)",
+ "bell": {
+  "actual_bell_epoch": 1783877460.0,
+  "source": "TAPE_SIGNATURE",
+  "source_detail": "TAPE_SIGNATURE: earliest sustained mirrored repricing regime (both legs >=10 true prints, >=3c travel, >=3 direction reversals in 30min; joint >=60 prints sustaining >=60 more in the next hour) - method validated on the 192 machine-known bells: median error +1 min, 89%% within +-30 min. Signature receipts in manifest.",
+  "signature_receipts": {
+   "KUM": {
+    "prints_30m": 39,
+    "travel_c": 6,
+    "direction_changes": 3
+   },
+   "TUR": {
+    "prints_30m": 26,
+    "travel_c": 8,
+    "direction_changes": 8
+   },
+   "joint_prints_30m": 245,
+   "sustain_prints_30_90m": 641
+  },
+  "bell_minus_w1_right_s": -11340,
+  "note": "BELL PRECEDES w1_right by 11340s - the tail of the recorded window is IN-PLAY; rows after tminus_bell_s<0 are post-bell"
+ },
+ "w1_left_epoch": 1783835593,
+ "w1_right_epoch": 1783888800,
+ "heartbeat_caveat": "recorder has no heartbeat channel; book gaps >600s listed per leg - flagged, not smoothed",
+ "legs": {
+  "KUM": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12KUMTUR-KUM",
+   "files": [
+    "KUM_book.csv",
+    "KUM_trades.csv"
+   ],
+   "book_rows_per_change": 5307,
+   "book_raw_rows_in_window": 27723,
+   "trades_rows": 461,
+   "true_prints": 461,
+   "trades_post_bell_in_window": 458,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783883157,
+     "exchange_ts": "2026-07-12T19:05:57.097885Z",
+     "tminus_bell_s": -5697.1,
+     "price_cents": 99,
+     "size": 146.08,
+     "trade_id": "ed7f2fb9-e4d3-59fd-bc80-38a3b5545788"
+    },
+    "last_pre_bell_true_trade": {
+     "ts_epoch": 1783877394,
+     "exchange_ts": "2026-07-12T17:29:54.819201Z",
+     "tminus_bell_s": 65.2,
+     "price_cents": 70,
+     "size": 139.91,
+     "trade_id": "bcb97193-eec3-43ef-0f5a-80078f6efc97"
+    },
+    "last_mid": {
+     "ts_epoch": 1783883171,
+     "tminus_bell_s": -5711.0,
+     "mid_cents": 96.5,
+     "bid_1": 99,
+     "ask_1": 94
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1783837370,
+     "to_epoch": 1783838099,
+     "seconds": 729
+    },
+    {
+     "from_epoch": 1783838543,
+     "to_epoch": 1783839183,
+     "seconds": 640
+    },
+    {
+     "from_epoch": 1783839922,
+     "to_epoch": 1783840615,
+     "seconds": 693
+    },
+    {
+     "from_epoch": 1783841830,
+     "to_epoch": 1783843089,
+     "seconds": 1259
+    },
+    {
+     "from_epoch": 1783846279,
+     "to_epoch": 1783846911,
+     "seconds": 632
+    },
+    {
+     "from_epoch": 1783849644,
+     "to_epoch": 1783852967,
+     "seconds": 3323
+    },
+    {
+     "from_epoch": 1783852968,
+     "to_epoch": 1783853593,
+     "seconds": 625
+    },
+    {
+     "from_epoch": 1783853593,
+     "to_epoch": 1783854522,
+     "seconds": 929
+    },
+    {
+     "from_epoch": 1783854523,
+     "to_epoch": 1783855232,
+     "seconds": 709
+    },
+    {
+     "from_epoch": 1783855774,
+     "to_epoch": 1783861575,
+     "seconds": 5801
+    },
+    {
+     "from_epoch": 1783861718,
+     "to_epoch": 1783862442,
+     "seconds": 724
+    },
+    {
+     "from_epoch": 1783862924,
+     "to_epoch": 1783863566,
+     "seconds": 642
+    },
+    {
+     "from_epoch": 1783863566,
+     "to_epoch": 1783864769,
+     "seconds": 1203
+    },
+    {
+     "from_epoch": 1783871674,
+     "to_epoch": 1783872530,
+     "seconds": 856
+    },
+    {
+     "from_epoch": 1783875055,
+     "to_epoch": 1783875848,
+     "seconds": 793
+    }
+   ]
+  },
+  "TUR": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL12KUMTUR-TUR",
+   "files": [
+    "TUR_book.csv",
+    "TUR_trades.csv"
+   ],
+   "book_rows_per_change": 4720,
+   "book_raw_rows_in_window": 26403,
+   "trades_rows": 488,
+   "true_prints": 488,
+   "trades_post_bell_in_window": 481,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783883059,
+     "exchange_ts": "2026-07-12T19:04:19.915847Z",
+     "tminus_bell_s": -5599.9,
+     "price_cents": 1,
+     "size": 93.51,
+     "trade_id": "d57071f0-e01c-4b7f-7f7c-9abafd0eaa57"
+    },
+    "last_pre_bell_true_trade": {
+     "ts_epoch": 1783877150,
+     "exchange_ts": "2026-07-12T17:25:50.312655Z",
+     "tminus_bell_s": 309.7,
+     "price_cents": 30,
+     "size": 9.0,
+     "trade_id": "23100e39-b261-5f54-0844-d81df5aaa988"
+    },
+    "last_mid": {
+     "ts_epoch": 1783883174,
+     "tminus_bell_s": -5714.0,
+     "mid_cents": 3.0,
+     "bid_1": 5,
+     "ask_1": 1
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1783836097,
+     "to_epoch": 1783836922,
+     "seconds": 825
+    },
+    {
+     "from_epoch": 1783838543,
+     "to_epoch": 1783839501,
+     "seconds": 958
+    },
+    {
+     "from_epoch": 1783839920,
+     "to_epoch": 1783840615,
+     "seconds": 695
+    },
+    {
+     "from_epoch": 1783842231,
+     "to_epoch": 1783843089,
+     "seconds": 858
+    },
+    {
+     "from_epoch": 1783846279,
+     "to_epoch": 1783846881,
+     "seconds": 602
+    },
+    {
+     "from_epoch": 1783851161,
+     "to_epoch": 1783851880,
+     "seconds": 719
+    },
+    {
+     "from_epoch": 1783852364,
+     "to_epoch": 1783852967,
+     "seconds": 603
+    },
+    {
+     "from_epoch": 1783852967,
+     "to_epoch": 1783853901,
+     "seconds": 934
+    },
+    {
+     "from_epoch": 1783853901,
+     "to_epoch": 1783854522,
+     "seconds": 621
+    },
+    {
+     "from_epoch": 1783854522,
+     "to_epoch": 1783855232,
+     "seconds": 710
+    },
+    {
+     "from_epoch": 1783855232,
+     "to_epoch": 1783861575,
+     "seconds": 6343
+    },
+    {
+     "from_epoch": 1783873045,
+     "to_epoch": 1783873651,
+     "seconds": 606
+    },
+    {
+     "from_epoch": 1783873651,
+     "to_epoch": 1783874270,
+     "seconds": 619
+    }
+   ]
+  }
+ }
+}

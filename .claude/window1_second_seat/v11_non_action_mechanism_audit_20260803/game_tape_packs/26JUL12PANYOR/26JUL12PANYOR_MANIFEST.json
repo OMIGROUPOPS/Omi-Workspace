@@ -1,0 +1,295 @@
+{
+ "LABEL": "26JUL12PANYOR_TAPE_PACK",
+ "event": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+ "category": "WTA_CHALL",
+ "format": "c09bde99 game_tape_packs + tminus_bell_s + per-leg W1 close (GUEGOM variant @ 03e38798)",
+ "bell": {
+  "actual_bell_epoch": 1783854300.0,
+  "source": "TAPE_SIGNATURE",
+  "source_detail": "TAPE_SIGNATURE: earliest sustained mirrored repricing regime (both legs >=10 true prints, >=3c travel, >=3 direction reversals in 30min; joint >=60 prints sustaining >=60 more in the next hour) - method validated on the 192 machine-known bells: median error +1 min, 89%% within +-30 min. Signature receipts in manifest.",
+  "signature_receipts": {
+   "PAN": {
+    "prints_30m": 27,
+    "travel_c": 10,
+    "direction_changes": 5
+   },
+   "YOR": {
+    "prints_30m": 37,
+    "travel_c": 10,
+    "direction_changes": 6
+   },
+   "joint_prints_30m": 103,
+   "sustain_prints_30_90m": 218
+  },
+  "bell_minus_w1_right_s": -11100,
+  "note": "BELL PRECEDES w1_right by 11100s - the tail of the recorded window is IN-PLAY; rows after tminus_bell_s<0 are post-bell"
+ },
+ "w1_left_epoch": 1783812102,
+ "w1_right_epoch": 1783865400,
+ "heartbeat_caveat": "recorder has no heartbeat channel; book gaps >600s listed per leg - flagged, not smoothed",
+ "legs": {
+  "PAN": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12PANYOR-PAN",
+   "files": [
+    "PAN_book.csv",
+    "PAN_trades.csv"
+   ],
+   "book_rows_per_change": 4641,
+   "book_raw_rows_in_window": 14300,
+   "trades_rows": 198,
+   "true_prints": 198,
+   "trades_post_bell_in_window": 194,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783858255,
+     "exchange_ts": "2026-07-12T12:10:55.919781Z",
+     "tminus_bell_s": -3955.9,
+     "price_cents": 84,
+     "size": 56.28,
+     "trade_id": "0e96e944-c209-7275-4b35-ce6fd9e2cf1b"
+    },
+    "last_pre_bell_true_trade": {
+     "ts_epoch": 1783844193,
+     "exchange_ts": "2026-07-12T08:16:33.870255Z",
+     "tminus_bell_s": 10106.1,
+     "price_cents": 85,
+     "size": 22.35,
+     "trade_id": "fc4da1e7-3385-7d36-4753-44ba421e419f"
+    },
+    "last_mid": {
+     "ts_epoch": 1783858020,
+     "tminus_bell_s": -3720.0,
+     "mid_cents": 98.5,
+     "bid_1": 98,
+     "ask_1": 99
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1783813817,
+     "to_epoch": 1783814517,
+     "seconds": 700
+    },
+    {
+     "from_epoch": 1783814873,
+     "to_epoch": 1783815582,
+     "seconds": 709
+    },
+    {
+     "from_epoch": 1783816252,
+     "to_epoch": 1783816968,
+     "seconds": 716
+    },
+    {
+     "from_epoch": 1783817322,
+     "to_epoch": 1783818502,
+     "seconds": 1180
+    },
+    {
+     "from_epoch": 1783818502,
+     "to_epoch": 1783819348,
+     "seconds": 846
+    },
+    {
+     "from_epoch": 1783821469,
+     "to_epoch": 1783822209,
+     "seconds": 740
+    },
+    {
+     "from_epoch": 1783822983,
+     "to_epoch": 1783823760,
+     "seconds": 777
+    },
+    {
+     "from_epoch": 1783825230,
+     "to_epoch": 1783826928,
+     "seconds": 1698
+    },
+    {
+     "from_epoch": 1783826998,
+     "to_epoch": 1783828822,
+     "seconds": 1824
+    },
+    {
+     "from_epoch": 1783828923,
+     "to_epoch": 1783831187,
+     "seconds": 2264
+    },
+    {
+     "from_epoch": 1783831187,
+     "to_epoch": 1783832179,
+     "seconds": 992
+    },
+    {
+     "from_epoch": 1783832421,
+     "to_epoch": 1783834481,
+     "seconds": 2060
+    },
+    {
+     "from_epoch": 1783835133,
+     "to_epoch": 1783836065,
+     "seconds": 932
+    },
+    {
+     "from_epoch": 1783837455,
+     "to_epoch": 1783838064,
+     "seconds": 609
+    },
+    {
+     "from_epoch": 1783838065,
+     "to_epoch": 1783838691,
+     "seconds": 626
+    },
+    {
+     "from_epoch": 1783838928,
+     "to_epoch": 1783841051,
+     "seconds": 2123
+    },
+    {
+     "from_epoch": 1783842232,
+     "to_epoch": 1783843177,
+     "seconds": 945
+    },
+    {
+     "from_epoch": 1783843177,
+     "to_epoch": 1783844194,
+     "seconds": 1017
+    },
+    {
+     "from_epoch": 1783845721,
+     "to_epoch": 1783846848,
+     "seconds": 1127
+    },
+    {
+     "from_epoch": 1783846848,
+     "to_epoch": 1783847976,
+     "seconds": 1128
+    },
+    {
+     "from_epoch": 1783849036,
+     "to_epoch": 1783854452,
+     "seconds": 5416
+    }
+   ]
+  },
+  "YOR": {
+   "ticker": "KXWTACHALLENGERMATCH-26JUL12PANYOR-YOR",
+   "files": [
+    "YOR_book.csv",
+    "YOR_trades.csv"
+   ],
+   "book_rows_per_change": 3884,
+   "book_raw_rows_in_window": 14381,
+   "trades_rows": 138,
+   "true_prints": 138,
+   "trades_post_bell_in_window": 127,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783858255,
+     "exchange_ts": "2026-07-12T12:10:55.949572Z",
+     "tminus_bell_s": -3955.9,
+     "price_cents": 1,
+     "size": 84.0,
+     "trade_id": "21b52e86-9aef-6d34-ca04-54c5e0129748"
+    },
+    "last_pre_bell_true_trade": {
+     "ts_epoch": 1783853440,
+     "exchange_ts": "2026-07-12T10:50:40.024430Z",
+     "tminus_bell_s": 860.0,
+     "price_cents": 17,
+     "size": 10.0,
+     "trade_id": "57de9193-b799-4602-d831-88403410a8a5"
+    },
+    "last_mid": {
+     "ts_epoch": 1783858020,
+     "tminus_bell_s": -3720.0,
+     "mid_cents": 1.5,
+     "bid_1": 1,
+     "ask_1": 2
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1783813816,
+     "to_epoch": 1783814516,
+     "seconds": 700
+    },
+    {
+     "from_epoch": 1783824209,
+     "to_epoch": 1783825213,
+     "seconds": 1004
+    },
+    {
+     "from_epoch": 1783825232,
+     "to_epoch": 1783826167,
+     "seconds": 935
+    },
+    {
+     "from_epoch": 1783826232,
+     "to_epoch": 1783826928,
+     "seconds": 696
+    },
+    {
+     "from_epoch": 1783826982,
+     "to_epoch": 1783828822,
+     "seconds": 1840
+    },
+    {
+     "from_epoch": 1783829324,
+     "to_epoch": 1783834480,
+     "seconds": 5156
+    },
+    {
+     "from_epoch": 1783834481,
+     "to_epoch": 1783835133,
+     "seconds": 652
+    },
+    {
+     "from_epoch": 1783835133,
+     "to_epoch": 1783836065,
+     "seconds": 932
+    },
+    {
+     "from_epoch": 1783839695,
+     "to_epoch": 1783840580,
+     "seconds": 885
+    },
+    {
+     "from_epoch": 1783842219,
+     "to_epoch": 1783843177,
+     "seconds": 958
+    },
+    {
+     "from_epoch": 1783843177,
+     "to_epoch": 1783844349,
+     "seconds": 1172
+    },
+    {
+     "from_epoch": 1783844813,
+     "to_epoch": 1783846848,
+     "seconds": 2035
+    },
+    {
+     "from_epoch": 1783847367,
+     "to_epoch": 1783847976,
+     "seconds": 609
+    },
+    {
+     "from_epoch": 1783848556,
+     "to_epoch": 1783851685,
+     "seconds": 3129
+    },
+    {
+     "from_epoch": 1783852368,
+     "to_epoch": 1783853440,
+     "seconds": 1072
+    },
+    {
+     "from_epoch": 1783853440,
+     "to_epoch": 1783854180,
+     "seconds": 740
+    }
+   ]
+  }
+ }
+}

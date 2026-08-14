@@ -1,0 +1,232 @@
+{
+ "LABEL": "26JUL19ARSMAR_TAPE_PACK",
+ "event": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+ "category": "ATP_CHALL",
+ "format": "c09bde99 game_tape_packs + tminus_bell_s + per-leg W1 close (GUEGOM variant @ 03e38798)",
+ "bell": {
+  "actual_bell_epoch": 1784477100.0,
+  "source": "MACHINE_RECEIPT",
+  "source_detail": "MACHINE_RECEIPT: exact, from the dev-804 ledger t_minus_actual_bell fields (66 receipts, zero spread)",
+  "signature_receipts": null,
+  "bell_minus_w1_right_s": 0,
+  "note": "bell at/after the window edge"
+ },
+ "w1_left_epoch": 1784434536,
+ "w1_right_epoch": 1784477100,
+ "heartbeat_caveat": "recorder has no heartbeat channel; book gaps >600s listed per leg - flagged, not smoothed",
+ "legs": {
+  "ARS": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS",
+   "files": [
+    "ARS_book.csv",
+    "ARS_trades.csv"
+   ],
+   "book_rows_per_change": 661,
+   "book_raw_rows_in_window": 1366,
+   "trades_rows": 7,
+   "true_prints": 7,
+   "trades_post_bell_in_window": 0,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1784476533,
+     "exchange_ts": "2026-07-19T15:55:33.648591Z",
+     "tminus_bell_s": 566.4,
+     "price_cents": 40,
+     "size": 1.0,
+     "trade_id": "828eadc8-9d2d-5949-0cf8-1d1cccf98f00"
+    },
+    "last_pre_bell_true_trade": {
+     "ts_epoch": 1784476533,
+     "exchange_ts": "2026-07-19T15:55:33.648591Z",
+     "tminus_bell_s": 566.4,
+     "price_cents": 40,
+     "size": 1.0,
+     "trade_id": "828eadc8-9d2d-5949-0cf8-1d1cccf98f00"
+    },
+    "last_mid": {
+     "ts_epoch": 1784477077,
+     "tminus_bell_s": 23.0,
+     "mid_cents": 39.5,
+     "bid_1": 38,
+     "ask_1": 41
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1784434967,
+     "to_epoch": 1784436777,
+     "seconds": 1810
+    },
+    {
+     "from_epoch": 1784436777,
+     "to_epoch": 1784437783,
+     "seconds": 1006
+    },
+    {
+     "from_epoch": 1784437962,
+     "to_epoch": 1784440364,
+     "seconds": 2402
+    },
+    {
+     "from_epoch": 1784440364,
+     "to_epoch": 1784443969,
+     "seconds": 3605
+    },
+    {
+     "from_epoch": 1784443969,
+     "to_epoch": 1784447253,
+     "seconds": 3284
+    },
+    {
+     "from_epoch": 1784447555,
+     "to_epoch": 1784448368,
+     "seconds": 813
+    },
+    {
+     "from_epoch": 1784448472,
+     "to_epoch": 1784450706,
+     "seconds": 2234
+    },
+    {
+     "from_epoch": 1784453489,
+     "to_epoch": 1784455957,
+     "seconds": 2468
+    },
+    {
+     "from_epoch": 1784457933,
+     "to_epoch": 1784458657,
+     "seconds": 724
+    },
+    {
+     "from_epoch": 1784458657,
+     "to_epoch": 1784459372,
+     "seconds": 715
+    },
+    {
+     "from_epoch": 1784460928,
+     "to_epoch": 1784461742,
+     "seconds": 814
+    },
+    {
+     "from_epoch": 1784462450,
+     "to_epoch": 1784463245,
+     "seconds": 795
+    },
+    {
+     "from_epoch": 1784475180,
+     "to_epoch": 1784475879,
+     "seconds": 699
+    },
+    {
+     "from_epoch": 1784475879,
+     "to_epoch": 1784476540,
+     "seconds": 661
+    }
+   ]
+  },
+  "MAR": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR",
+   "files": [
+    "MAR_book.csv",
+    "MAR_trades.csv"
+   ],
+   "book_rows_per_change": 417,
+   "book_raw_rows_in_window": 1143,
+   "trades_rows": 13,
+   "true_prints": 13,
+   "trades_post_bell_in_window": 0,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1784477086,
+     "exchange_ts": "2026-07-19T16:04:46.787324Z",
+     "tminus_bell_s": 13.2,
+     "price_cents": 62,
+     "size": 31.0,
+     "trade_id": "c2f1606f-6974-5cdc-7f0d-efda41391a5d"
+    },
+    "last_pre_bell_true_trade": {
+     "ts_epoch": 1784477086,
+     "exchange_ts": "2026-07-19T16:04:46.787324Z",
+     "tminus_bell_s": 13.2,
+     "price_cents": 62,
+     "size": 31.0,
+     "trade_id": "c2f1606f-6974-5cdc-7f0d-efda41391a5d"
+    },
+    "last_mid": {
+     "ts_epoch": 1784477100,
+     "tminus_bell_s": 0.0,
+     "mid_cents": 61.0,
+     "bid_1": 59,
+     "ask_1": 63
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1784434536,
+     "to_epoch": 1784436777,
+     "seconds": 2241
+    },
+    {
+     "from_epoch": 1784436777,
+     "to_epoch": 1784437780,
+     "seconds": 1003
+    },
+    {
+     "from_epoch": 1784437962,
+     "to_epoch": 1784440364,
+     "seconds": 2402
+    },
+    {
+     "from_epoch": 1784440364,
+     "to_epoch": 1784443969,
+     "seconds": 3605
+    },
+    {
+     "from_epoch": 1784443969,
+     "to_epoch": 1784447253,
+     "seconds": 3284
+    },
+    {
+     "from_epoch": 1784447555,
+     "to_epoch": 1784448368,
+     "seconds": 813
+    },
+    {
+     "from_epoch": 1784448368,
+     "to_epoch": 1784450706,
+     "seconds": 2338
+    },
+    {
+     "from_epoch": 1784454545,
+     "to_epoch": 1784455155,
+     "seconds": 610
+    },
+    {
+     "from_epoch": 1784456992,
+     "to_epoch": 1784457931,
+     "seconds": 939
+    },
+    {
+     "from_epoch": 1784458657,
+     "to_epoch": 1784459372,
+     "seconds": 715
+    },
+    {
+     "from_epoch": 1784460927,
+     "to_epoch": 1784461718,
+     "seconds": 791
+    },
+    {
+     "from_epoch": 1784462385,
+     "to_epoch": 1784463536,
+     "seconds": 1151
+    },
+    {
+     "from_epoch": 1784465983,
+     "to_epoch": 1784466687,
+     "seconds": 704
+    }
+   ]
+  }
+ }
+}

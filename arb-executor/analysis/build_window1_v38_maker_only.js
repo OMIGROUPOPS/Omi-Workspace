@@ -2927,7 +2927,7 @@ async function main() {
       const writeCohortTraceChunks = async (prefix, rows) => {
         const eventIds = [...new Set(rows.map((row) => row.event_id))].sort();
         const chunks = [];
-        const chunkEventCount = isV52i ? 2 : 5;
+        const chunkEventCount = isV52i ? 1 : 5;
         for (let start = 0; start < eventIds.length; start += chunkEventCount) {
           const ids = eventIds.slice(start, start + chunkEventCount), idSet = new Set(ids);
           const chunkRows = rows.filter((row) => idSet.has(row.event_id));

@@ -1,0 +1,1349 @@
+{
+ "LABEL": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+ "stamp": [
+  "ANALYTICAL_ESTIMATE",
+  "UNVALIDATED-CANDIDATE"
+ ],
+ "charter": "the library the wiring consumes - averages die, shapes replace them; priors-inform-never-gate",
+ "provenance_triples": [
+  {
+   "commit": "e269779b",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.csv",
+   "sha256": "3e99b58929e05e71c1190f432671bbfc718e48019f1bc246ee7c426955d5c330"
+  },
+  {
+   "commit": "c0056976",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+   "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729"
+  }
+ ],
+ "method": {
+  "depth": "post-formation open minus verified-span floor, cents, per leg",
+  "timing": "floor position as fraction of verified span (carried from e269779b)",
+  "early_call": "DIRECTIONAL families: first path sample where drift from open reaches 2c in the family direction (f* fraction; % declared by f=0.25/0.5). STILL families: % still within +-2c of open at f=0.25/0.5"
+ },
+ "rows": [
+  {
+   "family": "DRIFT_DOWN",
+   "category": "ALL",
+   "legs": 44,
+   "depth_below_open_c": {
+    "n": 44,
+    "p25": 7.0,
+    "med": 8.5,
+    "p75": 10.0,
+    "p90": 13.5
+   },
+   "floor_pos": {
+    "n": 44,
+    "p25": 0.8761364276433456,
+    "med": 0.9651573760290688,
+    "p75": 0.9904089880382749,
+    "p90": 0.9976139752895361
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.25,
+    "declared_by_f025_pct": 59,
+    "declared_by_f05_pct": 95,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_DOWN",
+   "category": "ATP_CHALL",
+   "legs": 16,
+   "depth_below_open_c": {
+    "n": 16,
+    "p25": 8.0,
+    "med": 10.0,
+    "p75": 12.0,
+    "p90": 14.0
+   },
+   "floor_pos": {
+    "n": 16,
+    "p25": 0.7730864972303183,
+    "med": 0.9436749335283799,
+    "p75": 0.9871953643096745,
+    "p90": 0.993996119762991
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.375,
+    "declared_by_f025_pct": 44,
+    "declared_by_f05_pct": 94,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_DOWN",
+   "category": "ATP_MAIN",
+   "legs": 11,
+   "depth_below_open_c": {
+    "n": 11,
+    "p25": 6.5,
+    "med": 9.0,
+    "p75": 10.0,
+    "p90": 12.5
+   },
+   "floor_pos": {
+    "n": 11,
+    "p25": 0.7161878720374413,
+    "med": 0.9322661926110357,
+    "p75": 0.9723343608084689,
+    "p90": 0.9773216982145786
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.25,
+    "declared_by_f025_pct": 64,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_DOWN",
+   "category": "WTA_CHALL",
+   "legs": 5,
+   "depth_below_open_c": {
+    "n": 5,
+    "p25": 6.0,
+    "med": 7.0,
+    "p75": 7.0,
+    "p90": 8.5
+   },
+   "floor_pos": {
+    "n": 5,
+    "p25": 0.9918073082064119,
+    "med": 0.9970888059268429,
+    "p75": 0.9977436256891093,
+    "p90": 0.9995479992646915
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.25,
+    "declared_by_f025_pct": 80,
+    "declared_by_f05_pct": 80,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_DOWN",
+   "category": "WTA_MAIN",
+   "legs": 12,
+   "depth_below_open_c": {
+    "n": 12,
+    "p25": 7.0,
+    "med": 8.0,
+    "p75": 10.0,
+    "p90": 13.5
+   },
+   "floor_pos": {
+    "n": 12,
+    "p25": 0.9402105633448917,
+    "med": 0.9710133231398955,
+    "p75": 0.9772790380012952,
+    "p90": 0.9972031886789342
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.1875,
+    "declared_by_f025_pct": 67,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_UP",
+   "category": "ALL",
+   "legs": 95,
+   "depth_below_open_c": {
+    "n": 95,
+    "p25": -3.0,
+    "med": -2.0,
+    "p75": -1.0,
+    "p90": 1.0
+   },
+   "floor_pos": {
+    "n": 95,
+    "p25": 0.03076314425254427,
+    "med": 0.0743511897132673,
+    "p75": 0.22209732581770317,
+    "p90": 0.39199138353813034
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 80,
+    "declared_by_f05_pct": 96,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_UP",
+   "category": "ATP_CHALL",
+   "legs": 43,
+   "depth_below_open_c": {
+    "n": 43,
+    "p25": -3.0,
+    "med": -2.0,
+    "p75": -1.0,
+    "p90": 0.0
+   },
+   "floor_pos": {
+    "n": 43,
+    "p25": 0.03898461765834626,
+    "med": 0.10271398254903637,
+    "p75": 0.27020287402887416,
+    "p90": 0.39199138353813034
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 72,
+    "declared_by_f05_pct": 95,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_UP",
+   "category": "ATP_MAIN",
+   "legs": 24,
+   "depth_below_open_c": {
+    "n": 24,
+    "p25": -2.5,
+    "med": -1.5,
+    "p75": -1.0,
+    "p90": 2.0
+   },
+   "floor_pos": {
+    "n": 24,
+    "p25": 0.02286779480533183,
+    "med": 0.06252403602736323,
+    "p75": 0.14402576031319966,
+    "p90": 0.24788320575037057
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 83,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_UP",
+   "category": "WTA_CHALL",
+   "legs": 6,
+   "depth_below_open_c": {
+    "n": 6,
+    "p25": -3.0,
+    "med": -2.5,
+    "p75": -1.0,
+    "p90": -1.0
+   },
+   "floor_pos": {
+    "n": 6,
+    "p25": 0.04942736446619649,
+    "med": 0.14327491714143362,
+    "p75": 0.4426978963226295,
+    "p90": 0.4426978963226295
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 83,
+    "declared_by_f05_pct": 83,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "DRIFT_UP",
+   "category": "WTA_MAIN",
+   "legs": 22,
+   "depth_below_open_c": {
+    "n": 22,
+    "p25": -3.5,
+    "med": -2.5,
+    "p75": 0.0,
+    "p90": 1.0
+   },
+   "floor_pos": {
+    "n": 22,
+    "p25": 0.018691588785046728,
+    "med": 0.05378229022838165,
+    "p75": 0.09238554102989238,
+    "p90": 0.39767969876514947
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 91,
+    "declared_by_f05_pct": 95,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_DOWN",
+   "category": "ALL",
+   "legs": 62,
+   "depth_below_open_c": {
+    "n": 62,
+    "p25": 7.5,
+    "med": 9.0,
+    "p75": 11.0,
+    "p90": 14.0
+   },
+   "floor_pos": {
+    "n": 62,
+    "p25": 0.2926683877001791,
+    "med": 0.5902244660590413,
+    "p75": 0.920501839500593,
+    "p90": 0.9721996872815537
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_DOWN",
+   "category": "ATP_CHALL",
+   "legs": 21,
+   "depth_below_open_c": {
+    "n": 21,
+    "p25": 8.0,
+    "med": 8.0,
+    "p75": 10.0,
+    "p90": 13.0
+   },
+   "floor_pos": {
+    "n": 21,
+    "p25": 0.3555171934837391,
+    "med": 0.6427315379180846,
+    "p75": 0.920501839500593,
+    "p90": 0.9721996872815537
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_DOWN",
+   "category": "ATP_MAIN",
+   "legs": 19,
+   "depth_below_open_c": {
+    "n": 19,
+    "p25": 7.5,
+    "med": 9.5,
+    "p75": 11.0,
+    "p90": 14.0
+   },
+   "floor_pos": {
+    "n": 19,
+    "p25": 0.2914394233632614,
+    "med": 0.48502662586540707,
+    "p75": 0.6939867186117908,
+    "p90": 0.8780012364279608
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_DOWN",
+   "category": "WTA_MAIN",
+   "legs": 19,
+   "depth_below_open_c": {
+    "n": 19,
+    "p25": 7.0,
+    "med": 10.0,
+    "p75": 11.0,
+    "p90": 14.0
+   },
+   "floor_pos": {
+    "n": 19,
+    "p25": 0.32176653505654457,
+    "med": 0.724280187486937,
+    "p75": 0.9447108236109053,
+    "p90": 0.9747951183152629
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_UP",
+   "category": "ALL",
+   "legs": 80,
+   "depth_below_open_c": {
+    "n": 80,
+    "p25": -4.0,
+    "med": -3.0,
+    "p75": -2.0,
+    "p90": -0.5
+   },
+   "floor_pos": {
+    "n": 80,
+    "p25": 0.020463371581980746,
+    "med": 0.05701372321774097,
+    "p75": 0.20682851260629684,
+    "p90": 0.6605876510129126
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_UP",
+   "category": "ATP_CHALL",
+   "legs": 30,
+   "depth_below_open_c": {
+    "n": 30,
+    "p25": -5.0,
+    "med": -4.0,
+    "p75": -2.5,
+    "p90": -2.0
+   },
+   "floor_pos": {
+    "n": 30,
+    "p25": 0.029715153299470106,
+    "med": 0.10466573063874127,
+    "p75": 0.4439062068790055,
+    "p90": 0.8686159017484223
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_UP",
+   "category": "ATP_MAIN",
+   "legs": 21,
+   "depth_below_open_c": {
+    "n": 21,
+    "p25": -3.0,
+    "med": -3.0,
+    "p75": -1.5,
+    "p90": 2.0
+   },
+   "floor_pos": {
+    "n": 21,
+    "p25": 0.01631550436220562,
+    "med": 0.028532185019807643,
+    "p75": 0.12304513818045348,
+    "p90": 0.4341277734452049
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "EARLY_SET_UP",
+   "category": "WTA_MAIN",
+   "legs": 25,
+   "depth_below_open_c": {
+    "n": 25,
+    "p25": -4.0,
+    "med": -3.0,
+    "p75": -1.5,
+    "p90": 1.0
+   },
+   "floor_pos": {
+    "n": 25,
+    "p25": 0.02321861791320916,
+    "med": 0.04446721962238171,
+    "p75": 0.1584402713873055,
+    "p90": 0.4850052405585421
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "GRIND_WOBBLE_DOWN",
+   "category": "ALL",
+   "legs": 3,
+   "depth_below_open_c": {
+    "n": 3,
+    "p25": 7.0,
+    "med": 7.0,
+    "p75": 8.5,
+    "p90": 8.5
+   },
+   "floor_pos": {
+    "n": 3,
+    "p25": 0.7246713548381474,
+    "med": 0.8565541568675102,
+    "p75": 0.9423349014273597,
+    "p90": 0.9423349014273597
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "GRIND_WOBBLE_UP",
+   "category": "ALL",
+   "legs": 4,
+   "depth_below_open_c": {
+    "n": 4,
+    "p25": -2.0,
+    "med": -1.0,
+    "p75": -1.0,
+    "p90": 0.0
+   },
+   "floor_pos": {
+    "n": 4,
+    "p25": 0.09821368174413203,
+    "med": 0.13751626696477637,
+    "p75": 0.13751626696477637,
+    "p90": 0.567664895098602
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.1875,
+    "declared_by_f025_pct": 100,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_DOWN",
+   "category": "ALL",
+   "legs": 37,
+   "depth_below_open_c": {
+    "n": 37,
+    "p25": 7.0,
+    "med": 8.0,
+    "p75": 12.0,
+    "p90": 15.0
+   },
+   "floor_pos": {
+    "n": 37,
+    "p25": 0.9643342218844835,
+    "med": 0.9932936710021834,
+    "p75": 0.99673087414595,
+    "p90": 0.9986225257552958
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.9375,
+    "declared_by_f025_pct": 11,
+    "declared_by_f05_pct": 16,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_DOWN",
+   "category": "ATP_CHALL",
+   "legs": 19,
+   "depth_below_open_c": {
+    "n": 19,
+    "p25": 7.0,
+    "med": 8.0,
+    "p75": 14.0,
+    "p90": 18.0
+   },
+   "floor_pos": {
+    "n": 19,
+    "p25": 0.9321541025210931,
+    "med": 0.9882213873940124,
+    "p75": 0.9953867399122873,
+    "p90": 0.99673087414595
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.9375,
+    "declared_by_f025_pct": 5,
+    "declared_by_f05_pct": 11,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_DOWN",
+   "category": "ATP_MAIN",
+   "legs": 5,
+   "depth_below_open_c": {
+    "n": 5,
+    "p25": 6.0,
+    "med": 6.0,
+    "p75": 7.0,
+    "p90": 8.0
+   },
+   "floor_pos": {
+    "n": 5,
+    "p25": 0.9643342218844835,
+    "med": 0.9963822294223125,
+    "p75": 0.9983797226688103,
+    "p90": 0.9989851737908132
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 60,
+    "declared_by_f05_pct": 80,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_DOWN",
+   "category": "WTA_CHALL",
+   "legs": 9,
+   "depth_below_open_c": {
+    "n": 9,
+    "p25": 8.0,
+    "med": 12.0,
+    "p75": 15.0,
+    "p90": 15.0
+   },
+   "floor_pos": {
+    "n": 9,
+    "p25": 0.9932936710021834,
+    "med": 0.9956160418331315,
+    "p75": 0.9972700605579257,
+    "p90": 0.9995929360014737
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 1.0,
+    "declared_by_f025_pct": 0,
+    "declared_by_f05_pct": 0,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_UP",
+   "category": "ALL",
+   "legs": 39,
+   "depth_below_open_c": {
+    "n": 39,
+    "p25": -1.0,
+    "med": 0.0,
+    "p75": 1.5,
+    "p90": 2.0
+   },
+   "floor_pos": {
+    "n": 39,
+    "p25": 0.293858389026198,
+    "med": 0.4903467532157602,
+    "p75": 0.8185847847741521,
+    "p90": 0.9618522769093851
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.8125,
+    "declared_by_f025_pct": 28,
+    "declared_by_f05_pct": 31,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_UP",
+   "category": "ATP_CHALL",
+   "legs": 21,
+   "depth_below_open_c": {
+    "n": 21,
+    "p25": -1.0,
+    "med": 0.0,
+    "p75": 2.0,
+    "p90": 2.0
+   },
+   "floor_pos": {
+    "n": 21,
+    "p25": 0.17056477157963154,
+    "med": 0.45795371453585465,
+    "p75": 0.8419357118866266,
+    "p90": 0.9025386435516173
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.8125,
+    "declared_by_f025_pct": 19,
+    "declared_by_f05_pct": 24,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_UP",
+   "category": "ATP_MAIN",
+   "legs": 6,
+   "depth_below_open_c": {
+    "n": 6,
+    "p25": 0.0,
+    "med": 0.0,
+    "p75": 3.0,
+    "p90": 3.0
+   },
+   "floor_pos": {
+    "n": 6,
+    "p25": 0.09808054841422789,
+    "med": 0.17305385778937174,
+    "p75": 0.7998465274819921,
+    "p90": 0.7998465274819921
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 50,
+    "declared_by_f05_pct": 50,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "LATE_BREAK_UP",
+   "category": "WTA_CHALL",
+   "legs": 12,
+   "depth_below_open_c": {
+    "n": 12,
+    "p25": -1.0,
+    "med": 0.0,
+    "p75": 0.0,
+    "p90": 1.5
+   },
+   "floor_pos": {
+    "n": 12,
+    "p25": 0.46839042392014374,
+    "med": 0.6852817591835434,
+    "p75": 0.8185847847741521,
+    "p90": 0.9898143752396356
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.875,
+    "declared_by_f025_pct": 33,
+    "declared_by_f05_pct": 33,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_DOWN",
+   "category": "ALL",
+   "legs": 53,
+   "depth_below_open_c": {
+    "n": 53,
+    "p25": 6.0,
+    "med": 8.0,
+    "p75": 9.0,
+    "p90": 13.0
+   },
+   "floor_pos": {
+    "n": 53,
+    "p25": 0.5509364155938027,
+    "med": 0.7776705874161259,
+    "p75": 0.9264920881867315,
+    "p90": 0.9801980499690465
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.375,
+    "declared_by_f025_pct": 36,
+    "declared_by_f05_pct": 77,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_DOWN",
+   "category": "ATP_CHALL",
+   "legs": 31,
+   "depth_below_open_c": {
+    "n": 31,
+    "p25": 6.0,
+    "med": 8.0,
+    "p75": 8.5,
+    "p90": 13.0
+   },
+   "floor_pos": {
+    "n": 31,
+    "p25": 0.5843787286784885,
+    "med": 0.8055909299107795,
+    "p75": 0.9264920881867315,
+    "p90": 0.9535383888921284
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.4375,
+    "declared_by_f025_pct": 29,
+    "declared_by_f05_pct": 68,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_DOWN",
+   "category": "ATP_MAIN",
+   "legs": 9,
+   "depth_below_open_c": {
+    "n": 9,
+    "p25": 7.0,
+    "med": 8.0,
+    "p75": 9.0,
+    "p90": 10.0
+   },
+   "floor_pos": {
+    "n": 9,
+    "p25": 0.7660748241957334,
+    "med": 0.8463258565067421,
+    "p75": 0.9801980499690465,
+    "p90": 0.9874033776912616
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.375,
+    "declared_by_f025_pct": 44,
+    "declared_by_f05_pct": 89,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_DOWN",
+   "category": "WTA_MAIN",
+   "legs": 11,
+   "depth_below_open_c": {
+    "n": 11,
+    "p25": 6.0,
+    "med": 8.0,
+    "p75": 10.0,
+    "p90": 13.0
+   },
+   "floor_pos": {
+    "n": 11,
+    "p25": 0.3427841581702847,
+    "med": 0.6441035693106719,
+    "p75": 0.7908191561100321,
+    "p90": 0.819517133015048
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.1875,
+    "declared_by_f025_pct": 55,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_UP",
+   "category": "ALL",
+   "legs": 105,
+   "depth_below_open_c": {
+    "n": 105,
+    "p25": -4.0,
+    "med": -2.5,
+    "p75": 0.0,
+    "p90": 3.0
+   },
+   "floor_pos": {
+    "n": 105,
+    "p25": 0.0855032296070273,
+    "med": 0.234446993440822,
+    "p75": 0.5321310299136858,
+    "p90": 0.8619574357979171
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 62,
+    "declared_by_f05_pct": 85,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_UP",
+   "category": "ATP_CHALL",
+   "legs": 57,
+   "depth_below_open_c": {
+    "n": 57,
+    "p25": -5.0,
+    "med": -3.0,
+    "p75": -2.0,
+    "p90": 0.0
+   },
+   "floor_pos": {
+    "n": 57,
+    "p25": 0.10399040307284774,
+    "med": 0.3599432035646692,
+    "p75": 0.677447140132483,
+    "p90": 0.9174226617073392
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.375,
+    "declared_by_f025_pct": 46,
+    "declared_by_f05_pct": 74,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_UP",
+   "category": "ATP_MAIN",
+   "legs": 19,
+   "depth_below_open_c": {
+    "n": 19,
+    "p25": -3.0,
+    "med": -1.0,
+    "p75": 3.0,
+    "p90": 4.0
+   },
+   "floor_pos": {
+    "n": 19,
+    "p25": 0.05499397106229109,
+    "med": 0.1994123888007964,
+    "p75": 0.42193479391941274,
+    "p90": 0.4904818997743481
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 79,
+    "declared_by_f05_pct": 95,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_UP",
+   "category": "WTA_CHALL",
+   "legs": 7,
+   "depth_below_open_c": {
+    "n": 7,
+    "p25": -3.0,
+    "med": -3.0,
+    "p75": -2.0,
+    "p90": -1.5
+   },
+   "floor_pos": {
+    "n": 7,
+    "p25": 0.2220749306655236,
+    "med": 0.25397616101321446,
+    "p75": 0.27699351240965897,
+    "p90": 0.8043725767039225
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.125,
+    "declared_by_f025_pct": 57,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "ONE_STEP_UP",
+   "category": "WTA_MAIN",
+   "legs": 22,
+   "depth_below_open_c": {
+    "n": 22,
+    "p25": -2.5,
+    "med": 0.0,
+    "p75": 3.0,
+    "p90": 4.0
+   },
+   "floor_pos": {
+    "n": 22,
+    "p25": 0.03829581520482586,
+    "med": 0.13079984082859955,
+    "p75": 0.234446993440822,
+    "p90": 0.4528795008967304
+   },
+   "early_call": {
+    "kind": "DIRECTIONAL",
+    "median_declare_f": 0.0625,
+    "declared_by_f025_pct": 91,
+    "declared_by_f05_pct": 100,
+    "ever_declares_pct": 100
+   }
+  },
+  {
+   "family": "QUIET_WOBBLE",
+   "category": "ALL",
+   "legs": 615,
+   "depth_below_open_c": {
+    "n": 615,
+    "p25": 0.0,
+    "med": 1.0,
+    "p75": 3.0,
+    "p90": 4.0
+   },
+   "floor_pos": {
+    "n": 615,
+    "p25": 0.23560736849882166,
+    "med": 0.5417192308835248,
+    "p75": 0.82507882778337,
+    "p90": 0.9619765966434587
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 62,
+    "still_at_f05_pct": 44
+   }
+  },
+  {
+   "family": "QUIET_WOBBLE",
+   "category": "ATP_CHALL",
+   "legs": 303,
+   "depth_below_open_c": {
+    "n": 303,
+    "p25": 0.0,
+    "med": 1.0,
+    "p75": 3.0,
+    "p90": 4.0
+   },
+   "floor_pos": {
+    "n": 303,
+    "p25": 0.29214965845580626,
+    "med": 0.6351055832706896,
+    "p75": 0.8728842953878608,
+    "p90": 0.9762963538980407
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 70,
+    "still_at_f05_pct": 52
+   }
+  },
+  {
+   "family": "QUIET_WOBBLE",
+   "category": "ATP_MAIN",
+   "legs": 72,
+   "depth_below_open_c": {
+    "n": 72,
+    "p25": 0.0,
+    "med": 2.0,
+    "p75": 3.5,
+    "p90": 5.0
+   },
+   "floor_pos": {
+    "n": 72,
+    "p25": 0.17066108007504288,
+    "med": 0.4516830086849275,
+    "p75": 0.7930072925522594,
+    "p90": 0.9407233130837449
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 50,
+    "still_at_f05_pct": 31
+   }
+  },
+  {
+   "family": "QUIET_WOBBLE",
+   "category": "WTA_CHALL",
+   "legs": 145,
+   "depth_below_open_c": {
+    "n": 145,
+    "p25": -0.5,
+    "med": 0.5,
+    "p75": 2.0,
+    "p90": 3.0
+   },
+   "floor_pos": {
+    "n": 145,
+    "p25": 0.1890106352478958,
+    "med": 0.4494235095601874,
+    "p75": 0.7781915543410154,
+    "p90": 0.9325173775334207
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 59,
+    "still_at_f05_pct": 41
+   }
+  },
+  {
+   "family": "QUIET_WOBBLE",
+   "category": "WTA_MAIN",
+   "legs": 95,
+   "depth_below_open_c": {
+    "n": 95,
+    "p25": 0.0,
+    "med": 1.5,
+    "p75": 4.0,
+    "p90": 5.0
+   },
+   "floor_pos": {
+    "n": 95,
+    "p25": 0.21965601705094895,
+    "med": 0.4629098938269285,
+    "p75": 0.7069328409877683,
+    "p90": 0.949493512649352
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 48,
+    "still_at_f05_pct": 29
+   }
+  },
+  {
+   "family": "ROUND_TRIP",
+   "category": "ALL",
+   "legs": 274,
+   "depth_below_open_c": {
+    "n": 274,
+    "p25": 0.5,
+    "med": 3.0,
+    "p75": 4.5,
+    "p90": 6.0
+   },
+   "floor_pos": {
+    "n": 274,
+    "p25": 0.19385763034679787,
+    "med": 0.47008799763511094,
+    "p75": 0.8169952425583451,
+    "p90": 0.9748162639479556
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 16,
+    "still_at_f05_pct": 6
+   }
+  },
+  {
+   "family": "ROUND_TRIP",
+   "category": "ATP_CHALL",
+   "legs": 103,
+   "depth_below_open_c": {
+    "n": 103,
+    "p25": 1.0,
+    "med": 3.0,
+    "p75": 4.5,
+    "p90": 6.5
+   },
+   "floor_pos": {
+    "n": 103,
+    "p25": 0.282917006170357,
+    "med": 0.5484484495140739,
+    "p75": 0.8867086263932389,
+    "p90": 0.9748162639479556
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 25,
+    "still_at_f05_pct": 7
+   }
+  },
+  {
+   "family": "ROUND_TRIP",
+   "category": "ATP_MAIN",
+   "legs": 82,
+   "depth_below_open_c": {
+    "n": 82,
+    "p25": 0.5,
+    "med": 3.0,
+    "p75": 5.0,
+    "p90": 5.0
+   },
+   "floor_pos": {
+    "n": 82,
+    "p25": 0.16750164330508624,
+    "med": 0.4269005955667239,
+    "p75": 0.7109647678612782,
+    "p90": 0.967533032220703
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 11,
+    "still_at_f05_pct": 4
+   }
+  },
+  {
+   "family": "ROUND_TRIP",
+   "category": "WTA_CHALL",
+   "legs": 22,
+   "depth_below_open_c": {
+    "n": 22,
+    "p25": 2.0,
+    "med": 3.0,
+    "p75": 4.0,
+    "p90": 4.5
+   },
+   "floor_pos": {
+    "n": 22,
+    "p25": 0.21104637448470615,
+    "med": 0.6944693101808848,
+    "p75": 0.995809121616688,
+    "p90": 0.9985625786444834
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 18,
+    "still_at_f05_pct": 18
+   }
+  },
+  {
+   "family": "ROUND_TRIP",
+   "category": "WTA_MAIN",
+   "legs": 67,
+   "depth_below_open_c": {
+    "n": 67,
+    "p25": 0.0,
+    "med": 3.0,
+    "p75": 4.0,
+    "p90": 6.0
+   },
+   "floor_pos": {
+    "n": 67,
+    "p25": 0.1662630329144978,
+    "med": 0.35804839112093156,
+    "p75": 0.6675030989923033,
+    "p90": 0.8779848998387392
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 9,
+    "still_at_f05_pct": 3
+   }
+  },
+  {
+   "family": "SLEEPER",
+   "category": "ALL",
+   "legs": 127,
+   "depth_below_open_c": {
+    "n": 127,
+    "p25": -0.5,
+    "med": 0.5,
+    "p75": 1.0,
+    "p90": 2.0
+   },
+   "floor_pos": {
+    "n": 127,
+    "p25": 0.29377706085049476,
+    "med": 0.5939128224679121,
+    "p75": 0.9329348003059319,
+    "p90": 0.9891991862389569
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 94,
+    "still_at_f05_pct": 89
+   }
+  },
+  {
+   "family": "SLEEPER",
+   "category": "ATP_CHALL",
+   "legs": 70,
+   "depth_below_open_c": {
+    "n": 70,
+    "p25": 0.0,
+    "med": 0.5,
+    "p75": 2.0,
+    "p90": 2.5
+   },
+   "floor_pos": {
+    "n": 70,
+    "p25": 0.40471590150901204,
+    "med": 0.8590746476211709,
+    "p75": 0.9769405503328863,
+    "p90": 0.9946755692528609
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 95,
+    "still_at_f05_pct": 87
+   }
+  },
+  {
+   "family": "SLEEPER",
+   "category": "ATP_MAIN",
+   "legs": 5,
+   "depth_below_open_c": {
+    "n": 5,
+    "p25": -1.0,
+    "med": 0.0,
+    "p75": 0.0,
+    "p90": 2.0
+   },
+   "floor_pos": {
+    "n": 5,
+    "p25": 0.11095900078296292,
+    "med": 0.3971815965729178,
+    "p75": 0.5084566958924149,
+    "p90": 0.5666774196890518
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 89,
+    "still_at_f05_pct": 78
+   }
+  },
+  {
+   "family": "SLEEPER",
+   "category": "WTA_CHALL",
+   "legs": 44,
+   "depth_below_open_c": {
+    "n": 44,
+    "p25": -0.5,
+    "med": 0.0,
+    "p75": 1.0,
+    "p90": 2.0
+   },
+   "floor_pos": {
+    "n": 44,
+    "p25": 0.17901143125200603,
+    "med": 0.5387803490113959,
+    "p75": 0.8260143090429247,
+    "p90": 0.9823237810653409
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 96,
+    "still_at_f05_pct": 96
+   }
+  },
+  {
+   "family": "SLEEPER",
+   "category": "WTA_MAIN",
+   "legs": 8,
+   "depth_below_open_c": {
+    "n": 8,
+    "p25": -2.0,
+    "med": -0.5,
+    "p75": 0.0,
+    "p90": 1.0
+   },
+   "floor_pos": {
+    "n": 8,
+    "p25": 0.29377706085049476,
+    "med": 0.40286405261217473,
+    "p75": 0.5812470139087649,
+    "p90": 0.8064328028492509
+   },
+   "early_call": {
+    "kind": "STILL",
+    "still_within_2c_at_f025_pct": 91,
+    "still_at_f05_pct": 82
+   }
+  }
+ ]
+}

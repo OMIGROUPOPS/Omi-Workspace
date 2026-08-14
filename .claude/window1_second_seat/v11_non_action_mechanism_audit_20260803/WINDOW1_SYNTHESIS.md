@@ -422,3 +422,60 @@ branch dormant/watch, 127→510 correction on the record) · §9 operator amendm
 N9 promoted pre-exam, priors-inform-never-gate, REUSE mandate + Step-0 inventory) · §1 law 10 riders ("the
 bell" RETIRED → THE FULL-804 EXAM; priors-inform-never-gate) · §8 the 612 denominator + 700-bar translation
 recorded. Append-only: no prior line deleted.*
+
+---
+
+## FOLD 7 — the verified-ground refoundation (append-only)
+
+**① THE TRUTH TABLE IS STANDING-SOURCE.** `W1_GROUND_TRUTH_TABLE` @ `c0056976` (804 rows, per-game window /
+formation end / bell-with-source-and-precision / verified pre-match span / in-span market per leg / our fills
+stamped) is henceforth **the single source Window 1 is read from — charts, reviews, exams, the library,
+everything. No number about W1 exists outside it.** Bell provenance: 192 MACHINE_RECEIPT (exact) · 21
+TAPE_INFERENCE_CORROBORATED · 550 TAPE_INFERENCE (labeled, ±30 min validated) · 20
+OBSERVED_STARTS_UPPER_BOUND · 20 UNKNOWN (stated, never guessed) · 1 SETTLEMENT_NO_MATCH (DJECIN) — with
+spans 776 OK / 3 EMPTY / 20 UNKNOWN / 5 NO_FORMATION.
+
+**② THE HONEST SCOREBOARD** @ `2aa454af` (from the table exclusively): corrected census **COMPLETE_VALID 214
+· PARTIAL_VALID 218 · NEITHER_VALID 357 · UNKNOWN_BELL 11 · COMPLETE_VALID_AT_OR_ABOVE_PAR 4** = 804;
+**350¢ locked on valid fills** (139 of the 214 at 1¢); offered pre-match 680 games / 3,123¢; **capture 11%**
+(214/680 games, 350/3,123¢). **The violent-complete dissolution is named**: 85 games invalidated old→new —
+the entire violent-collapse complete set (DODDEL, RAFAGU, SHEVAN, BALHUA, KUMTUR, …) fell to
+NEITHER/PARTIAL_VALID; their "margins" were in-play money inside a mis-set window (ruler re-cut @
+`3c7bc577`: 142 early bells; census margin pool −51%).
+
+**③ THE BELL ROOT-CAUSE + THE PREVENTION TRIO.** Root cause: `w1_right` edges trusted as pre-match
+boundaries while actual bells rang up to 12 h earlier (live_by_only edges; 17 of 19 violent pairs in-play
+inside the window). The prevention trio, named for the plan organ (no mechanisms designed here): **the
+observed edge** (an independent bell observation feeds the window edge, never a schedule echo), **the
+detector lag spec** (the in-play detector's latency budget stated and validated — the tape-signature
+validation showed median +1 min, 89% ±30 min is achievable offline; live must beat it), **the in-play
+guard** (sustained mirrored repricing halts posting regardless of what the edge claims).
+
+**④ THE TRIPLE-FLATLINE = THE AVERAGES-CAN'T-AIM-DEPTH PROOF.** V52i depth-informed levels @ `576c705f`
+(four-state identical 18/10/2, entry-vs-later-floor toward-zero claim FALSE), V52j role-conditioned levels @
+`604a3e7`→`604ab3e7` (GUEGOM named observation: converts false; no behavioral edit), V52k library-backed
+evidence @ `de266f2e` (converts false; no behavioral edit): **three consecutive average-fed aiming
+iterations changed nothing.** The lesson is structural, not parametric — average depth priors cannot aim
+stands; shape-conditioned floors are the replacement (the per-shape library @ this fold's companion
+artifact). **V52h remains lineage** (@ `b43d7cde`; the market-proof precondition removal stands proven).
+
+**⑤ THE TAXONOMY IS HIRED.** Shape taxonomy build 1 @ `e269779b` [CANDIDATE]: 13 plain-English families on
+the 776 verified spans; floor-timing law by shape (up-shapes floor at 0.05–0.23 of span, down-shapes
+0.78–0.99); benchmark at the identical posting receipts on verified truth: **95.1% called-leg / 72.5% pair /
+1.7% full-inversion vs the machine's 73.3% / 63.1% / 16.9%** — the bar is beaten on its own receipts.
+Its per-shape floor-depth library (depth × timing × early-callability, provenance-tripled) is the wiring's
+consumable. **The MORNEP standard is the target row**: `26JUL12MORNEP` @ `c0056976` — reads matching roles,
+targets at library floors (71/24), fills at those floors pre-bell, 5¢ locked on valid fills. The taxonomy's
+job is making that row reproducible on purpose.
+
+**⑥ VOCABULARY (law-10 riders).** **"Collapse-game" is RETIRED** → the class is **decided-early pair** (the
+market decided the pair before our window closed; nothing "collapsed" — the window was mis-set). One-sided
+motion words (climber, faller, collapse, drift, break) are **leg-only** — a pair has states and spans, never
+a direction.
+
+*Fold pass 7 (verified-ground refoundation): §2 +6 rows (truth table STANDING-SOURCE c0056976 · honest
+scoreboard 2aa454af · ruler re-cut 3c7bc577 · collapse-class settlement audit 3f4b0046 with the Kalshi
+fair-price rule verbatim · taxonomy e269779b HIRED-CANDIDATE · per-shape floor-depth library, this commit) ·
+§1 law-10 riders (decided-early pair; motion words leg-only) · §9 the prevention trio named (observed edge /
+detector lag spec / in-play guard) · the triple-flatline recorded, V52h lineage affirmed. Append-only: no
+prior line deleted.*

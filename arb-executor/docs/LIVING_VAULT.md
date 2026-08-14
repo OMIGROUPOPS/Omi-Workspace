@@ -2135,7 +2135,7 @@ claim fails. Completes are not reduced, pins are unharmed, and V52i creates
 zero new one-sided exposures beside V52h's six.
 
 Two clean builds are byte-identical. Nineteen focused and inherited suites
-pass 790,742 assertions with zero failures, omissions, or deselections. This
+pass 790,744 assertions with zero failures, omissions, or deselections. This
 is observation-only; no full-804, sealed, deployment, live, or trading action
 occurred. Canonical addendum:
 `WINDOW1_V52I_DEPTH_INFORMED_LEVEL_SELECTION_20260813_ADDENDUM.md`.

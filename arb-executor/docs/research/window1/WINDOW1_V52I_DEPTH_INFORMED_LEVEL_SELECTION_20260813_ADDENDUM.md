@@ -44,7 +44,7 @@ quarantined, superseded, or fallback asset loads. The pair-budget records
 conserve with zero joint-target sum above 99, and `REFLEX_POST=0`.
 
 Two clean builds are byte-identical. Nineteen focused and inherited suites
-pass 790,742 assertions with zero failures, omissions, or deselections. This
+pass 790,744 assertions with zero failures, omissions, or deselections. This
 is a 30-game observation, not a disposition-804 run or an operative ruling.
 No sealed population, deployment, authorization, live, network-runtime,
 order, position, exit, settlement, or DCA action occurred.

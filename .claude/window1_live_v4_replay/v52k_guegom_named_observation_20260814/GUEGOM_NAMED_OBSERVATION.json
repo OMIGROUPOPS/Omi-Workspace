@@ -1,0 +1,92 @@
+{
+  "event_id": "KXATPMATCH-26JUL12GUEGOM",
+  "provenance": {
+    "code": "26JUL12GUEGOM",
+    "event_id": "KXATPMATCH-26JUL12GUEGOM",
+    "category": "ATP_MAIN",
+    "census_stamps": [
+      "QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+      "QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST"
+    ],
+    "stratum": "ATP_MAIN|QUEUE_IMPROBABLE|PRE_ONSET_UNDER_ALL|REFLEX_POST+QUEUE_PLAUSIBLE|PRE_ONSET_UNDER_ALL|REFLEX_POST",
+    "role": "EXPLICITLY_REUSED_NAMED_OBSERVATION_OUTSIDE_FRESH_25",
+    "original_prior_iteration": "V52I",
+    "latest_observation_iteration": "V52J",
+    "latest_observation_commit": "604ab3e730efe5c649b7820a3daa3a34bec2033d"
+  },
+  "baseline": {
+    "completed": false,
+    "combined_entry_cents": null,
+    "pair_under_par": false
+  },
+  "candidate": {
+    "completed": false,
+    "combined_entry_cents": null,
+    "pair_under_par": false
+  },
+  "legs": [
+    {
+      "leg_identity": "KXATPMATCH-26JUL12GUEGOM|GOM",
+      "role_at_fill_or_terminal": null,
+      "role_receipt": null,
+      "library_evidence_authority_at_fill_or_terminal": "POST_ONSET_TAPE",
+      "library_supported_floor_cents": 96,
+      "library_receipt": "KXATPMATCH-26JUL12GUEGOM-GOM.csv.gz#row-99348",
+      "baseline": {
+        "credited": false,
+        "entry_cents": null,
+        "fill_timestamp_epoch": null,
+        "fill_clock": null
+      },
+      "candidate": {
+        "credited": false,
+        "entry_cents": null,
+        "fill_timestamp_epoch": null,
+        "fill_clock": null
+      },
+      "post_onset_offer_floor_cents": 42,
+      "candidate_entry_minus_floor_cents": null,
+      "fill_delay_seconds": null
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL12GUEGOM|GUE",
+      "role_at_fill_or_terminal": null,
+      "role_receipt": null,
+      "library_evidence_authority_at_fill_or_terminal": "POST_ONSET_TAPE",
+      "library_supported_floor_cents": 62,
+      "library_receipt": "KXATPMATCH-26JUL12GUEGOM-GUE.csv.gz#row-46339",
+      "baseline": {
+        "credited": true,
+        "entry_cents": 62,
+        "fill_timestamp_epoch": 1783871264.775,
+        "fill_clock": {
+          "timestamp_epoch": 1783871264.775,
+          "t_minus_scheduled_seconds": 7935.224999904633,
+          "t_minus_actual_bell_seconds": null,
+          "t_minus_pre_match_boundary_seconds": 7935.224999904633
+        }
+      },
+      "candidate": {
+        "credited": true,
+        "entry_cents": 62,
+        "fill_timestamp_epoch": 1783871264.775,
+        "fill_clock": {
+          "timestamp_epoch": 1783871264.775,
+          "t_minus_scheduled_seconds": 7935.224999904633,
+          "t_minus_actual_bell_seconds": null,
+          "t_minus_pre_match_boundary_seconds": 7935.224999904633
+        }
+      },
+      "post_onset_offer_floor_cents": 1,
+      "candidate_entry_minus_floor_cents": 61,
+      "fill_delay_seconds": 0
+    }
+  ],
+  "pre_stated_GUEGOM_class_claim": {
+    "faller_side_identified": false,
+    "all_candidate_faller_fills_later_than_baseline": false,
+    "all_candidate_faller_fills_at_or_near_later_floor_0_to_1c": false,
+    "converts": false,
+    "adjudication": "OBSERVATION_ONLY; FAILURE DOES_NOT_AUTHORIZE_POLICY_EDIT"
+  }
+}

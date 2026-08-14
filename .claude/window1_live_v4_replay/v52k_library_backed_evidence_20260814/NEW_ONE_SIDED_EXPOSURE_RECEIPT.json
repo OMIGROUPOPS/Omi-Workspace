@@ -1,0 +1,30 @@
+{
+  "newly_created_partials": 0,
+  "duration_seconds": {
+    "n": 0,
+    "null_n": 0,
+    "sum": 0,
+    "min": null,
+    "p25": null,
+    "median": null,
+    "p75": null,
+    "p90": null,
+    "max": null
+  },
+  "rows": [],
+  "V52h_baseline": {
+    "newly_created_partials": 6,
+    "duration_seconds": {
+      "n": 6,
+      "null_n": 0,
+      "sum": 187448.9319999218,
+      "min": 32.44799995422363,
+      "p25": 4260.020999908447,
+      "median": 6573.041000127792,
+      "p75": 43112.954999923706,
+      "p90": 113232.757999897,
+      "max": 113232.757999897
+    }
+  },
+  "requested_baseline_count_six": true
+}

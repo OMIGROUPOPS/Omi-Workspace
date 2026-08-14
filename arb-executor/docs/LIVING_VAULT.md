@@ -2139,3 +2139,25 @@ pass 790,744 assertions with zero failures, omissions, or deselections. This
 is observation-only; no full-804, sealed, deployment, live, or trading action
 occurred. Canonical addendum:
 `WINDOW1_V52I_DEPTH_INFORMED_LEVEL_SELECTION_20260813_ADDENDUM.md`.
+
+### 2026-08-14 - V52K ITERATION 10 / LIBRARY-BACKED LEVEL EVIDENCE
+
+V52k changes clause 3 only over frozen V52h. Hash-bound G-grid and G3 library
+evidence may license a receipt-local level below the game's shown range while
+the clause-2 read, current-touch bound, library-floor bound, and clause-6 joint
+sum remain binding. V52i and V52j behavior remains reverted. All other clauses,
+the referee, trades-as-truth crediting, scavenger OFF, and `REFLEX_POST=0` are
+frozen.
+
+On five pins plus a fresh 25 with zero V52b-j overlap, actual rests stand below
+the shown range on 1,021 receipts across two legs in one game. V52h and V52k
+both observe 16 complete-at-delta, zero complete-at-loss, 12 partial, two
+neither, 44 credited legs, and 33 cents locked per contract. Faller timing and
+floor depth do not improve; climber preservation and all pins pass; mean banked
+delta is unchanged; no one-sided exposure is created or resolved. The current
+floor ruler is explicitly pre-re-cut and awaits analysis-seat regrading.
+
+Two clean builds are byte-identical; 21 suites pass 766 assertions with zero
+failures, omissions, or deselections. No 804, sealed, deployment, live, or
+trading action occurred. Canonical addendum:
+`WINDOW1_V52K_LIBRARY_BACKED_EVIDENCE_20260814_ADDENDUM.md`.

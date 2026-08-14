@@ -1,0 +1,113 @@
+{
+  "law": "REUSE_EXISTING_CONSULTATION_MACHINERY; PARALLEL_DISCOVERY_OR_FALLBACK_LOADER_IS_A_DEFECT",
+  "components": [
+    {
+      "component": "vault-wired entry ten-surface dossier assembly",
+      "symbol": "live_v4.py::_entry_dossier",
+      "source": {
+        "file": "arb-executor/live_v4.py",
+        "line": 3271
+      },
+      "disposition": "REUSED",
+      "exact_role": "DOSSIER_ASSEMBLY_AND_PER-SURFACE_PROVENANCE_CONTRACT",
+      "runtime_note": "REPLAY_EMITS_THE_SAME_ASSET_SHA_STATUS_FIELDS_IN_EVERY_LICENSE; LIVE_ENTRY_CODE_NOT_MODIFIED"
+    },
+    {
+      "component": "C-ONE-TRUTH surface registry",
+      "symbol": "live_v4.py boot truth/INDEX.json",
+      "source": {
+        "file": "arb-executor/live_v4.py",
+        "line": 17638
+      },
+      "disposition": "RE-POINTED",
+      "exact_role": "SINGLE_REGISTRY_SEMANTICS_REPOINTED_TO_PINNED_MACHINE_PALANTIR.store_CLEAN",
+      "target": {
+        "commit": "9929e91802dc0e0f7ed1af50c5526b2c9a730c7c",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MACHINE_PALANTIR.json",
+        "sha256": "2f5e6e5856e7f879cbf9a64395a36c82a730487581a10b30da93f70f874c339c"
+      }
+    },
+    {
+      "component": "entry table loader",
+      "symbol": "live_v4.py::_load_entry_table",
+      "source": {
+        "file": "arb-executor/live_v4.py",
+        "line": 2657
+      },
+      "disposition": "RE-POINTED",
+      "exact_role": "P1_GRID_BYTES_READ_THROUGH_EXISTING_PINNED_GIT_OBJECT_PATH_AND_VALIDATED_BY_CLEAN_REGISTRY"
+    },
+    {
+      "component": "aim atlas loader",
+      "symbol": "live_v4.py::_aim_load",
+      "source": {
+        "file": "arb-executor/live_v4.py",
+        "line": 2735
+      },
+      "disposition": "RETIRED-WITH-REASON",
+      "reason": "HOT_MUTABLE_ATLAS_NOT_A_HASH-BOUND_CLEAN_N9_ASSET"
+    },
+    {
+      "component": "trend-path ATLAS loader",
+      "symbol": "live_v4.py::_trendpath_atlas",
+      "source": {
+        "file": "arb-executor/live_v4.py",
+        "line": 2947
+      },
+      "disposition": "RETIRED-WITH-REASON",
+      "reason": "MTIME-HOT-RELOAD_AND_PRE-MIGRATION_ATLAS_IS_SUPERSEDED_IN_MACHINE_PALANTIR"
+    },
+    {
+      "component": "cohort surface loader",
+      "symbol": "live_v4.py::_cohort_surface",
+      "source": {
+        "file": "arb-executor/live_v4.py",
+        "line": 3921
+      },
+      "disposition": "RETIRED-WITH-REASON",
+      "reason": "MUTABLE_COHORT_SURFACE_NOT_PRESENT_IN_CLEAN_STORE_AND_NO_FALLBACK_ALLOWED"
+    },
+    {
+      "component": "BCASC maps loader",
+      "symbol": "live_v4.py::_bcasc_maps",
+      "source": {
+        "file": "arb-executor/live_v4.py",
+        "line": 3988
+      },
+      "disposition": "RETIRED-WITH-REASON",
+      "reason": "NOT_A_REQUIRED_CLEAN_N2_N4_N5_ASSET"
+    },
+    {
+      "component": "N8 frozen-chain organ loads",
+      "source": {
+        "commit": "2af60dfc",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DECISION_WEB.json"
+      },
+      "disposition": "REUSED",
+      "exact_role": "FROZEN_V52D_INCUMBENT_UNGUARDED_DECISION_AND_TARGET_CHAIN; N9_CONSULTS_BESIDE_IT"
+    },
+    {
+      "component": "pinned Git object loader",
+      "symbol": "build_window1_v38_maker_only.js::gitShow",
+      "source": {
+        "file": "arb-executor/analysis/build_window1_v38_maker_only.js",
+        "line": 271
+      },
+      "disposition": "REUSED",
+      "exact_role": "ONLY_BYTE_READER_FOR_MACHINE_PALANTIR_AND_ALL_N9_ASSETS"
+    },
+    {
+      "component": "CLEAN-store adapter",
+      "symbol": "window1_n9_clean_store.js::makeCleanStore",
+      "source": {
+        "file": "arb-executor/analysis/window1_n9_clean_store.js",
+        "line": 15
+      },
+      "disposition": "REUSED",
+      "exact_role": "NO_DISCOVERY_NO_FALLBACK_STATUS_AND_PROVENANCE_ASSERTION; VALIDATOR_NOT_LOADER"
+    }
+  ],
+  "parallel_loader_built": false,
+  "byte_read_path": "EXISTING_gitShow_ONLY",
+  "adapter_role": "VALIDATE_AND_COMPACT_ALREADY_READ_BYTES_ONLY"
+}

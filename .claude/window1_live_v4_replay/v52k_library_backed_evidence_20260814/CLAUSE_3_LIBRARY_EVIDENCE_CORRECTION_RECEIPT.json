@@ -1,0 +1,124 @@
+{
+  "authorized_change": "CLAUSE_3_LIBRARY_BACKED_LEVEL_EVIDENCE_ONLY",
+  "behavioral_base": {
+    "policy": "V52H",
+    "commit": "b43d7cde56aac5fe5cc553419286119adf378d6d",
+    "direct_import": true
+  },
+  "reverted_non_validating_iterations": {
+    "V52i": "576c705fb0a3fd9b48910738632119fa3fdc2da2",
+    "V52j": "604ab3e730efe5c649b7820a3daa3a34bec2033d",
+    "inherited_behavior": false
+  },
+  "law": "A_LEVEL_IS_EVIDENCE_BACKED_BY_THIS_GAME_POST_ONSET_TAPE_OR_BY_GRID_PLUS_G3_LIBRARY_EVIDENCE; LIBRARY_MAY_LICENSE_BELOW_SHOWN_RANGE_BUT_NEVER_BELOW_ITS_OWN_SUPPORTED_FLOOR_OR_AT_ABOVE_CURRENT_TOUCH; CLAUSE_6_REMAINS_BINDING",
+  "weighting_law_reused_not_refit": "ROUND(G_GRID_DISCOUNT*G3_RECOVERY + G3_MEDIAN_DIP_DEPTH*(1-G3_RECOVERY))",
+  "constants_added": 0,
+  "timing_rules_added": 0,
+  "assets": {
+    "G_GRID": {
+      "id": "G_GRID_LEVEL_DISCOUNT",
+      "source_asset": "P1_THE_GRID",
+      "canonical_asset_status_unchanged": "VALIDATED",
+      "behavioral_role": "UNDER-VALIDATION_CONTINUED_V52K"
+    },
+    "G3": {
+      "id": "G3_DIP_RECOVERY_GRADIENT",
+      "source_asset": "G3",
+      "source_commit": "2d48e4ee65e2d4b320accafcd4ac39669591d64b",
+      "canonical_status": "UNVALIDATED-CANDIDATE",
+      "behavioral_role": "UNDER-VALIDATION_CONTINUED_V52K"
+    }
+  },
+  "authority_union": {
+    "post_onset_tape": true,
+    "validated_library": true,
+    "library_can_create_clause_3_authority": true,
+    "library_can_bypass_clause_2_read": false,
+    "current_touch_upper_bound": true,
+    "library_floor_lower_bound": true,
+    "clause_6_joint_sum": true
+  },
+  "clean_store": {
+    "canonical_manifest_unchanged": true,
+    "exact_under_validation_aliases": [
+      "G_GRID_LEVEL_DISCOUNT",
+      "G3_DIP_RECOVERY_GRADIENT"
+    ],
+    "boot_assertion": {
+      "passed": true,
+      "required_ids": [
+        "P1",
+        "P2",
+        "P4",
+        "P6",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "loaded_ids": [
+        "P1",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P2",
+        "P4",
+        "P6"
+      ],
+      "source_inventory": "store_CLEAN_PLUS_EXACT_V52I_UNDER_VALIDATION_ALIASES",
+      "unvalidated_loaded": 0,
+      "quarantined_loaded": 0,
+      "superseded_loaded": 0,
+      "fallback_loads": 0,
+      "canonical_clean_store_unchanged": true,
+      "under_validation_loaded": 2,
+      "under_validation_loaded_ids": [
+        "G_GRID_LEVEL_DISCOUNT",
+        "G3_DIP_RECOVERY_GRADIENT"
+      ],
+      "candidate_fallback_loads": 0,
+      "rejected_inventory_classes": [
+        "inventory_UNVALIDATED_EXCEPT_EXACT_OPERATOR_BOUND_ALIASES",
+        "inventory_QUARANTINED",
+        "inventory_SUPERSEDED"
+      ]
+    }
+  },
+  "frozen_clauses": {
+    "clause_1": true,
+    "clause_2": true,
+    "clause_4_and_referee": true,
+    "clause_5": true,
+    "clause_6": true,
+    "crediting": "TRADES_AS_TRUTH_UNCHANGED",
+    "scavenger": false,
+    "REFLEX_POST": 0
+  },
+  "differential": {
+    "changed_decision_receipts": 439895,
+    "license_or_metadata_changed_leg_streams": 57,
+    "behavior_changed_leg_streams": 2,
+    "every_behavior_change_starts_at_or_after_library_evidence": true,
+    "frozen_pre_authorized_differences": 0
+  },
+  "pre_stated_claims": {
+    "library_backed_levels_actually_stand_below_shown_range": true,
+    "faller_side_fills_move_later_and_nearer_floor": false,
+    "climber_side_completions_preserved": true,
+    "mean_banked_delta_rises": false,
+    "new_one_sided_exposure_counted_both_ways_per_game": true,
+    "pins_unharmed": true,
+    "REFLEX_POST_zero": true,
+    "adjudication": "OBSERVATION_ONLY; CURRENT_PRE_RE-CUT_FLOOR_BASIS; NO_BEHAVIORAL_REPAIR_PERMITTED"
+  },
+  "floor_basis": {
+    "status": "CURRENT_PRE_RE-CUT",
+    "source": {
+      "commit": "22441e05",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json",
+      "law": "PER_LEG_POST_ONSET_FLOOR_SEL"
+    },
+    "future_analysis_regrade_required": true
+  }
+}

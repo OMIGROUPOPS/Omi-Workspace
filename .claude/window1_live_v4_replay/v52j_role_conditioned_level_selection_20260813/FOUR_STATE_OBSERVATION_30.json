@@ -1,0 +1,24 @@
+{
+  "baseline": {
+    "states": {
+      "COMPLETE_AT_DELTA": 16,
+      "PARTIAL_FOR_REASON": 13,
+      "NEITHER_FOR_REASON": 1
+    },
+    "rows": 30
+  },
+  "candidate": {
+    "states": {
+      "COMPLETE_AT_DELTA": 16,
+      "PARTIAL_FOR_REASON": 13,
+      "NEITHER_FOR_REASON": 1
+    },
+    "rows": 30
+  },
+  "conservation": {
+    "expected": 30,
+    "baseline_sum": 30,
+    "candidate_sum": 30,
+    "pass": true
+  }
+}

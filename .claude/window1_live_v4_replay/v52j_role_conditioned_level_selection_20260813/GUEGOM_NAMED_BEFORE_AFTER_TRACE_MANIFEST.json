@@ -1,0 +1,188 @@
+{
+  "format": "FULL_RECEIPT_GRAIN_JSONL_GZIP_ROW_CHUNKS",
+  "chunk_row_limit": 10000,
+  "rows": 291370,
+  "chunks": [
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_001.jsonl.gz",
+      "rows": 10000,
+      "sha256": "277bd4795df10f6567a5de7eae273e5ed7c86fcd3d9d89d000cdb26034d81eed",
+      "bytes": 1645030
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_002.jsonl.gz",
+      "rows": 10000,
+      "sha256": "12237edcac5b05314409fa3d2a5237f79d663f32f7acc479270143fbc6cb0ba0",
+      "bytes": 1341097
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_003.jsonl.gz",
+      "rows": 10000,
+      "sha256": "a0601a72be5a4026af4b296f30d78ea0c68be5d8bd862cc3e959edb821127734",
+      "bytes": 1366914
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_004.jsonl.gz",
+      "rows": 10000,
+      "sha256": "21964fe21cfb4ae1d2afc626f6c1af7056ac1169ee2c89792910aa70987d41ad",
+      "bytes": 1405251
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_005.jsonl.gz",
+      "rows": 10000,
+      "sha256": "f102790bc5aeea04dfdcdfc90a1d22fb20b3b8bf664e7ba78a85deb1359b4c6f",
+      "bytes": 1387019
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_006.jsonl.gz",
+      "rows": 10000,
+      "sha256": "d0d60996313086ffbc1ede489b95e32be0288cac5c5f3bc5def7852d997d316c",
+      "bytes": 1387859
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_007.jsonl.gz",
+      "rows": 10000,
+      "sha256": "4696542d22a7002e60afde1ab2f0ffabb647e1dfd26a93ce5cfcd662b6b99523",
+      "bytes": 1387593
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_008.jsonl.gz",
+      "rows": 10000,
+      "sha256": "487658bce18dc91c06e6ba18d3fc8ac5053248a76743e565df5b4d9e5f15bc6e",
+      "bytes": 1412420
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_009.jsonl.gz",
+      "rows": 10000,
+      "sha256": "a4148f8211d16cfcbee57e938c3578c18e5973846d7ca41c4d1ac609962da623",
+      "bytes": 1394128
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_010.jsonl.gz",
+      "rows": 10000,
+      "sha256": "b3a4135aa79f51ed6cf759791ac42f0cf28241f25f5ee01fd9db38ba76c3905c",
+      "bytes": 1527389
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_011.jsonl.gz",
+      "rows": 10000,
+      "sha256": "73fc0cd077b53639acd769e030c313ef8aa0964cd3f1a7b7fa49158c80fd5dca",
+      "bytes": 1525237
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_012.jsonl.gz",
+      "rows": 10000,
+      "sha256": "5139271e35aae593b7584321321289a2ed88c277436b34c77abfa191c7e7e1a2",
+      "bytes": 2030030
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_013.jsonl.gz",
+      "rows": 10000,
+      "sha256": "5e4e758bf5ceea4fda7e8033a22550997ff593382c6aa8068ad73cc95f38b8fd",
+      "bytes": 2062028
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_014.jsonl.gz",
+      "rows": 10000,
+      "sha256": "9324e1dd8cc367dd9fc64c3593185b2f56e1ee1e22f61c2ec71e5386633d5127",
+      "bytes": 2064375
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_015.jsonl.gz",
+      "rows": 10000,
+      "sha256": "c844b28bfb4676eb68a034f294e2c0b3195fb369508df6bd0a1838771a5d8a0e",
+      "bytes": 9157966
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_016.jsonl.gz",
+      "rows": 10000,
+      "sha256": "328455ec06550b7b619e3d344ba9f876a7aad30fc6692b10dafb14da3d00b77a",
+      "bytes": 18045577
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_017.jsonl.gz",
+      "rows": 10000,
+      "sha256": "75c0f190524a0b1763704426a52225534fc2958ec4014f13dc15d64fe50c2348",
+      "bytes": 17960874
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_018.jsonl.gz",
+      "rows": 10000,
+      "sha256": "97a311596e9df0cf94772f207bdf710b7a5353282097e66649da209cced47ccd",
+      "bytes": 17991529
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_019.jsonl.gz",
+      "rows": 10000,
+      "sha256": "d86f228ff2806d535d3e114e8316098096046e699ebc60b5a52861035a9b316a",
+      "bytes": 17982031
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_020.jsonl.gz",
+      "rows": 10000,
+      "sha256": "4f58020777607d2e50afba2ce11629e8c75de9c79ae61e374f545760fa58d9b3",
+      "bytes": 17965745
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_021.jsonl.gz",
+      "rows": 10000,
+      "sha256": "437b40c722acc5803623a8d31fcf0592ac2a530324eb78a199bd9e92ac247694",
+      "bytes": 17977317
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_022.jsonl.gz",
+      "rows": 10000,
+      "sha256": "28143b10e144c24ba54c6a02781356859d35e639843a5edb10aa626ff962de5f",
+      "bytes": 17938866
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_023.jsonl.gz",
+      "rows": 10000,
+      "sha256": "60aaa8dc7fcb3d4a8ef427da55c09bc72052d9de895af4cabc35a2a602ba201d",
+      "bytes": 17990968
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_024.jsonl.gz",
+      "rows": 10000,
+      "sha256": "40f043d65976cc4d88c6c44fe99880143e0a933eeeb4bd96d70770f3c68831ed",
+      "bytes": 17991347
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_025.jsonl.gz",
+      "rows": 10000,
+      "sha256": "55e0b63ed4e61ee2e75b7cec60fb51fb07a334d08b9a2238dd0ac625ee7da704",
+      "bytes": 18419580
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_026.jsonl.gz",
+      "rows": 10000,
+      "sha256": "2710a69b6b549d7fb39f1601123a8616c788af2bc8fd9aa7a9fab8328c83373f",
+      "bytes": 18947448
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_027.jsonl.gz",
+      "rows": 10000,
+      "sha256": "7cd6a44d0e97ac9a432ed2ccaa17a00e5551552c4db41cb63f7956c9b4227cc5",
+      "bytes": 20461094
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_028.jsonl.gz",
+      "rows": 10000,
+      "sha256": "2314ba129d73b920dbec9f28f8317eeeeffeb71a9e54f4a74fc16641abf45753",
+      "bytes": 20054122
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_029.jsonl.gz",
+      "rows": 10000,
+      "sha256": "7c449f591ab029f74ebcac10cb3036ca19875c5d6dabd1ae1291994fe7480e73",
+      "bytes": 20416630
+    },
+    {
+      "name": "GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_030.jsonl.gz",
+      "rows": 1370,
+      "sha256": "692dbbc2d584a8e1c00db3d19d49692cc07debda74defbd02cfaa88e2b45cca2",
+      "bytes": 2768770
+    }
+  ],
+  "conservation_pass": true
+}

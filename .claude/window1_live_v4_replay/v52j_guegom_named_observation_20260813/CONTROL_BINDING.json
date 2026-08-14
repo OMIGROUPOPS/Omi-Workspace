@@ -1,0 +1,8 @@
+{
+  "parent_commit": "576c705fb0a3fd9b48910738632119fa3fdc2da2",
+  "controlling_policy_base_commit": "b43d7cde56aac5fe5cc553419286119adf378d6d",
+  "branch": "codex/window1-v52j-role-conditioned-level-selection-20260813",
+  "scope": "GUEGOM_NAMED_OBSERVATION_OUTSIDE_COHORT30",
+  "score_or_disposition_804_run": false,
+  "policy_edits": false
+}

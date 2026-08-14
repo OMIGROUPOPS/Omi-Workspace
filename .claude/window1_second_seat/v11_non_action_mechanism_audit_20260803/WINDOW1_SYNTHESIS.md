@@ -479,3 +479,6 @@ fair-price rule verbatim · taxonomy e269779b HIRED-CANDIDATE · per-shape floor
 §1 law-10 riders (decided-early pair; motion words leg-only) · §9 the prevention trio named (observed edge /
 detector lag spec / in-play guard) · the triple-flatline recorded, V52h lineage affirmed. Append-only: no
 prior line deleted.*
+
+*Fold 7 corrigendum (same day): the V52j pin in ④ reads `604ab3e7`; the stray "604a3e7→" prefix is a typo,
+void. Append-only: corrected by rider, not by edit.*

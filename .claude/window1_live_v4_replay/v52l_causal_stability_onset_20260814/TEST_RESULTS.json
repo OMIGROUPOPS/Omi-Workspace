@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "test_files": 10,
+  "assertions": 269,
+  "failures": 0,
+  "omissions": 0,
+  "deselections": 0,
+  "suites": [
+    {
+      "file": "arb-executor/tests/test_window1_v52_judgment_gate.js",
+      "assertions": 14
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52b_read_level_authority.js",
+      "assertions": 17
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52c_full_post_onset_read.js",
+      "assertions": 25
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52d_disagreement_referee.js",
+      "assertions": 31
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52e_palantir_wiring.js",
+      "assertions": 31
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52f_pair_entry_conservation.js",
+      "assertions": 27
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52g_joint_target_conservation.js",
+      "assertions": 31
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52h_remove_pair_lows_precondition.js",
+      "assertions": 24
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52l_causal_stability_onset.js",
+      "assertions": 14
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52l_causal_stability_onset_package.js",
+      "assertions": 55
+    }
+  ]
+}

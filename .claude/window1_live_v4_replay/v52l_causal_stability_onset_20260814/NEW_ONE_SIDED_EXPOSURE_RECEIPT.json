@@ -1,0 +1,55 @@
+{
+  "newly_created_partials": 3,
+  "duration_seconds": {
+    "n": 3,
+    "null_n": 0,
+    "sum": 258486.32800006866,
+    "min": 22382.3710000515,
+    "p25": 22382.3710000515,
+    "median": 30481.273000001907,
+    "p75": 205622.68400001526,
+    "p90": 205622.68400001526,
+    "max": 205622.68400001526
+  },
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+      "category": "ATP_CHALL",
+      "price_region": "26_50+51_75",
+      "baseline_state": "NEITHER_FOR_REASON",
+      "credited_leg": "KXATPCHALLENGERMATCH-26JUL12FANBIG|BIG",
+      "credited_entry_cents": 64,
+      "credited_timestamp_epoch": 1783839118.727,
+      "missing_leg": "KXATPCHALLENGERMATCH-26JUL12FANBIG|FAN",
+      "missing_terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+      "exposure_to_window_edge_seconds": 30481.273000001907,
+      "second_side_never_kissed": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DROBLO",
+      "category": "ATP_MAIN",
+      "price_region": "26_50+51_75",
+      "baseline_state": "COMPLETE_AT_DELTA",
+      "credited_leg": "KXATPMATCH-26JUL12DROBLO|DRO",
+      "credited_entry_cents": 55,
+      "credited_timestamp_epoch": 1783850277.316,
+      "missing_leg": "KXATPMATCH-26JUL12DROBLO|BLO",
+      "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+      "exposure_to_window_edge_seconds": 205622.68400001526,
+      "second_side_never_kissed": true
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+      "category": "WTA_CHALL",
+      "price_region": "26_50+51_75",
+      "baseline_state": "PARTIAL_FOR_REASON",
+      "credited_leg": "KXWTACHALLENGERMATCH-26JUL18ERJGRA|ERJ",
+      "credited_entry_cents": 56,
+      "credited_timestamp_epoch": 1784353317.629,
+      "missing_leg": "KXWTACHALLENGERMATCH-26JUL18ERJGRA|GRA",
+      "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+      "exposure_to_window_edge_seconds": 22382.3710000515,
+      "second_side_never_kissed": true
+    }
+  ]
+}

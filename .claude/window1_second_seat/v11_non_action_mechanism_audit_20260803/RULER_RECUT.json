@@ -1,0 +1,1328 @@
+{
+ "LABEL": "RULER_RECUT_CREDIT_BELL_AWARE",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "bell_method": {
+  "sources_ranked": [
+   "MACHINE_RECEIPT (dev-804 ledger t_minus_actual_bell fields; 192 games, zero within-game spread)",
+   "TAPE_SIGNATURE (earliest sustained mirrored repricing: joint>=60 true prints/30min, each leg >=10 prints with >=3c travel and >=3 direction reversals, sustaining >=60 prints in the following hour; refined to the first 5-min burst >=25). VALIDATION on the 192 machine-known bells: median error +1 min, 89% within +-30 min, 14 early >30min, 6 late >30min, 3 undetected",
+   "SETTLEMENT_NO_MATCH (DJECIN: Kalshi finalized scalar - match never began; overrides the detected burst)",
+   "BELL_UNRESOLVED (no sustained regime found)"
+  ],
+  "observed_starts_caveat": "replay-live-v4/observed_starts.db kept as corroboration only: 128 rows, Jul14-29 coverage, first_inplay_at lags the bell by hours (recorder discovery time), suffix collisions",
+  "histogram": {
+   "MACHINE_RECEIPT": 192,
+   "TAPE_SIGNATURE": 591,
+   "BELL_UNRESOLVED": 20,
+   "SETTLEMENT_NO_MATCH": 1
+  },
+  "bells_before_w1_right_gt60s": 142
+ },
+ "recut": {
+  "stats": {
+   "legs_scored": 1536,
+   "legs_floor_vanishes": 69,
+   "post_bell_fills": 93,
+   "legs_floor_rises": 85,
+   "legs_unscanable": 51
+  },
+  "census_deltas_vs_22441e05": {
+   "offered_print_grain_old": 612,
+   "offered_new": 564,
+   "note": "print-grain old offered = 612 EXACTLY reconciles the frozen census count @ 22441e05",
+   "lost_offered_games": [
+    "26JUL12ALVVAN",
+    "26JUL12ARIZHA",
+    "26JUL12BALHUA",
+    "26JUL12BALPET",
+    "26JUL12BOUVIT",
+    "26JUL12BROGIU",
+    "26JUL12BUEMAR",
+    "26JUL12CHAJON",
+    "26JUL12CHISEA",
+    "26JUL12CRIBAS",
+    "26JUL12DODDEL",
+    "26JUL12ECHMUN",
+    "26JUL12FEAWAL",
+    "26JUL12FORPAM",
+    "26JUL12GANJAN",
+    "26JUL12GARPRI",
+    "26JUL12GIUBAR",
+    "26JUL12GUEGOM",
+    "26JUL12HECISO",
+    "26JUL12HERALM",
+    "26JUL12HESKOT",
+    "26JUL12KRUFER",
+    "26JUL12KUMTUR",
+    "26JUL12KUZDE",
+    "26JUL12LINMAL",
+    "26JUL12MEJSOT",
+    "26JUL12MICKUL",
+    "26JUL12PALMAR",
+    "26JUL12PANYOR",
+    "26JUL12PIETAB",
+    "26JUL12POLVIN",
+    "26JUL12PRASAI",
+    "26JUL12PRIBAL",
+    "26JUL12RAFAGU",
+    "26JUL12RAQKUM",
+    "26JUL12SHEVAN",
+    "26JUL12VILRAH",
+    "26JUL13KHOZHA",
+    "26JUL14KHONUG",
+    "26JUL14PIGSAM",
+    "26JUL14SMIILA",
+    "26JUL14TANHAV",
+    "26JUL15ASTNOH",
+    "26JUL15ROMGAL",
+    "26JUL17VANTAN",
+    "26JUL19PIENES",
+    "26JUL19ZAMKIN",
+    "26JUL20GALARN"
+   ],
+   "margin_cents_old": 4603,
+   "margin_cents_new": 2258,
+   "margin_delta": -2345,
+   "pair_floor_rises_games": 63,
+   "pair_unmeasurable_post_cut": 36
+  },
+  "post_bell_fills": {
+   "credited_legs": 93,
+   "games": 63,
+   "completed_pairs": 44,
+   "completed_pair_margin_cents": 178,
+   "exemplars": [
+    "26JUL12DODDEL(16c)",
+    "26JUL12VILRAH(16c)",
+    "26JUL12RAFAGU(12c)"
+   ]
+  }
+ },
+ "open_rule": {
+  "name": "SPREAD_SETTLE_OPEN",
+  "rule": "post-formation open = mid of the FIRST book row with spread <= 10c that holds spread <= 20c for the next 30 minutes; never the onset-adapter price",
+  "measured_on_DELXIL": "books open placeholder-wide (DEL 4/94, XIL 5/94, spread ~90c) and collapse in a single repricing wave at +153s to spread <=6c, never re-widening: DEL open 82.0, XIL open 17.5"
+ },
+ "violent_19_bells": {
+  "26JUL12BASABB": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783871940.0,
+   "vs_w1_right_s": -7860
+  },
+  "26JUL12BROGIU": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783859520.0,
+   "vs_w1_right_s": -10680
+  },
+  "26JUL12BUEMAR": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783844760.0,
+   "vs_w1_right_s": -9240
+  },
+  "26JUL12DODDEL": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783851000.0,
+   "vs_w1_right_s": -42583
+  },
+  "26JUL12GANJAN": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783843980.0,
+   "vs_w1_right_s": -10020
+  },
+  "26JUL12GUEGOM": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783868460.0,
+   "vs_w1_right_s": -10740
+  },
+  "26JUL12HESKOT": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783865700.0,
+   "vs_w1_right_s": -9900
+  },
+  "26JUL12KULZAA": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783839180.0,
+   "vs_w1_right_s": -11220
+  },
+  "26JUL12MICKUL": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783870620.0,
+   "vs_w1_right_s": -9180
+  },
+  "26JUL12PALCOL": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783853280.0,
+   "vs_w1_right_s": -9720
+  },
+  "26JUL12PRASAI": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783868220.0,
+   "vs_w1_right_s": -10980
+  },
+  "26JUL12RAFAGU": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783869000.0,
+   "vs_w1_right_s": -10200
+  },
+  "26JUL12ROUGAN": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783867080.0,
+   "vs_w1_right_s": -8520
+  },
+  "26JUL12SHEVAN": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783863120.0,
+   "vs_w1_right_s": -5760
+  },
+  "26JUL12SKASAC": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783854120.0,
+   "vs_w1_right_s": -8880
+  },
+  "26JUL12TABHUE": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783829100.0,
+   "vs_w1_right_s": -24900
+  },
+  "26JUL12VILRAH": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1783843680.0,
+   "vs_w1_right_s": -10320
+  },
+  "26JUL20DJECIN": {
+   "source": "SETTLEMENT_NO_MATCH",
+   "bell": null,
+   "vs_w1_right_s": null
+  },
+  "26JUL20GALARN": {
+   "source": "TAPE_SIGNATURE",
+   "bell": 1784549220.0,
+   "vs_w1_right_s": -10955
+  }
+ },
+ "corrected_30_game_table": [
+  {
+   "code": "26JUL12BALHUA",
+   "bell": 1783857240.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "BAL": {
+     "open_post_formation": {
+      "open_mid": 20.0,
+      "ts": 1783857540,
+      "bid": 15,
+      "ask": 25,
+      "seconds_after_w1_left": 880
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 1,
+     "fill_entry": 17,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 1
+    },
+    "HUA": {
+     "open_post_formation": {
+      "open_mid": 82.5,
+      "ts": 1783857546,
+      "bid": 78,
+      "ask": 87,
+      "seconds_after_w1_left": 886
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 66,
+     "fill_entry": 78,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 99
+    }
+   }
+  },
+  {
+   "code": "26JUL12DAHBAE",
+   "bell": 1784041800,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "BAE": {
+     "open_post_formation": {
+      "open_mid": 89.5,
+      "ts": 1783796505,
+      "bid": 86,
+      "ask": 93,
+      "seconds_after_w1_left": 18772
+     },
+     "floor_pre_bell": 92,
+     "floor_old_ruler": 92,
+     "fill_entry": 94,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 95,
+     "last_old_ruler": 95
+    },
+    "DAH": {
+     "open_post_formation": {
+      "open_mid": 9.0,
+      "ts": 1783796172,
+      "bid": 6,
+      "ask": 12,
+      "seconds_after_w1_left": 18439
+     },
+     "floor_pre_bell": 4,
+     "floor_old_ruler": 4,
+     "fill_entry": 4,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 6,
+     "last_old_ruler": 6
+    }
+   }
+  },
+  {
+   "code": "26JUL12GUEGOM",
+   "bell": 1783868460.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "GOM": {
+     "open_post_formation": {
+      "open_mid": 39.5,
+      "ts": 1783802514,
+      "bid": 36,
+      "ask": 43,
+      "seconds_after_w1_left": 2173
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 42,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": null,
+     "last_old_ruler": 99
+    },
+    "GUE": {
+     "open_post_formation": {
+      "open_mid": 58.0,
+      "ts": 1783801882,
+      "bid": 53,
+      "ask": 63,
+      "seconds_after_w1_left": 1541
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 1,
+     "fill_entry": 58,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 1
+    }
+   }
+  },
+  {
+   "code": "26JUL12KUMTUR",
+   "bell": 1783877460.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "KUM": {
+     "open_post_formation": {
+      "open_mid": 69.5,
+      "ts": 1783835593,
+      "bid": 65,
+      "ask": 74,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 69,
+     "fill_entry": 72,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 99
+    },
+    "TUR": {
+     "open_post_formation": {
+      "open_mid": 29.5,
+      "ts": 1783835593,
+      "bid": 25,
+      "ask": 34,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 1,
+     "fill_entry": 20,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 1
+    }
+   }
+  },
+  {
+   "code": "26JUL12MORNEP",
+   "bell": 1783870200.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "MOR": {
+     "open_post_formation": {
+      "open_mid": 71.0,
+      "ts": 1783807741,
+      "bid": 66,
+      "ask": 76,
+      "seconds_after_w1_left": 8000
+     },
+     "floor_pre_bell": 71,
+     "floor_old_ruler": 70,
+     "fill_entry": 71,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 78,
+     "last_old_ruler": 99
+    },
+    "NEP": {
+     "open_post_formation": {
+      "open_mid": 24.0,
+      "ts": 1783804515,
+      "bid": 19,
+      "ask": 29,
+      "seconds_after_w1_left": 4774
+     },
+     "floor_pre_bell": 24,
+     "floor_old_ruler": 1,
+     "fill_entry": 24,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 24,
+     "last_old_ruler": 1
+    }
+   }
+  },
+  {
+   "code": "26JUL12PANYOR",
+   "bell": 1783854300.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "PAN": {
+     "open_post_formation": {
+      "open_mid": 82.0,
+      "ts": 1783812102,
+      "bid": 77,
+      "ask": 87,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 80,
+     "fill_entry": 96,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 99
+    },
+    "YOR": {
+     "open_post_formation": {
+      "open_mid": 18.0,
+      "ts": 1783812102,
+      "bid": 13,
+      "ask": 23,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 1,
+     "fill_entry": 3,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 1
+    }
+   }
+  },
+  {
+   "code": "26JUL12POLKUH",
+   "bell": 1783879200,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "KUH": {
+     "open_post_formation": {
+      "open_mid": 21.0,
+      "ts": 1783831173,
+      "bid": 16,
+      "ask": 26,
+      "seconds_after_w1_left": 436
+     },
+     "floor_pre_bell": 15,
+     "floor_old_ruler": 15,
+     "fill_entry": 18,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 20,
+     "last_old_ruler": 20
+    },
+    "POL": {
+     "open_post_formation": {
+      "open_mid": 79.0,
+      "ts": 1783831173,
+      "bid": 74,
+      "ask": 84,
+      "seconds_after_w1_left": 436
+     },
+     "floor_pre_bell": 80,
+     "floor_old_ruler": 80,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 85,
+     "last_old_ruler": 85
+    }
+   }
+  },
+  {
+   "code": "26JUL12PRIBAL",
+   "bell": 1783851900.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "BAL": {
+     "open_post_formation": {
+      "open_mid": 9.0,
+      "ts": 1783810092,
+      "bid": 4,
+      "ask": 14,
+      "seconds_after_w1_left": 5199
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 1,
+     "fill_entry": 1,
+     "fill_validity": "POST_BELL_FILL",
+     "last_pre_bell": null,
+     "last_old_ruler": 1
+    },
+    "PRI": {
+     "open_post_formation": {
+      "open_mid": 90.5,
+      "ts": 1783810092,
+      "bid": 86,
+      "ask": 95,
+      "seconds_after_w1_left": 5199
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": 98,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": null,
+     "last_old_ruler": 99
+    }
+   }
+  },
+  {
+   "code": "26JUL13BLISAS",
+   "bell": 1784053020.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "BLI": {
+     "open_post_formation": {
+      "open_mid": 43.5,
+      "ts": 1783851036,
+      "bid": 39,
+      "ask": 48,
+      "seconds_after_w1_left": 1
+     },
+     "floor_pre_bell": 42,
+     "floor_old_ruler": 42,
+     "fill_entry": 43,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 43,
+     "last_old_ruler": 43
+    },
+    "SAS": {
+     "open_post_formation": {
+      "open_mid": 55.5,
+      "ts": 1783851035,
+      "bid": 51,
+      "ask": 60,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 55,
+     "floor_old_ruler": 55,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 59,
+     "last_old_ruler": 59
+    }
+   }
+  },
+  {
+   "code": "26JUL13JONSPI",
+   "bell": 1783932060.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "JON": {
+     "open_post_formation": {
+      "open_mid": 48.5,
+      "ts": 1783898835,
+      "bid": 46,
+      "ask": 51,
+      "seconds_after_w1_left": 9947
+     },
+     "floor_pre_bell": 89,
+     "floor_old_ruler": 89,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 89,
+     "last_old_ruler": 89
+    },
+    "SPI": {
+     "open_post_formation": {
+      "open_mid": 11.5,
+      "ts": 1783902229,
+      "bid": 8,
+      "ask": 15,
+      "seconds_after_w1_left": 13341
+     },
+     "floor_pre_bell": 12,
+     "floor_old_ruler": 12,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 12,
+     "last_old_ruler": 12
+    }
+   }
+  },
+  {
+   "code": "26JUL13SANDAN",
+   "bell": 1783942500,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "DAN": {
+     "open_post_formation": {
+      "open_mid": 63.0,
+      "ts": 1783880145,
+      "bid": 58,
+      "ask": 68,
+      "seconds_after_w1_left": 9555
+     },
+     "floor_pre_bell": 75,
+     "floor_old_ruler": 75,
+     "fill_entry": 77,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 76,
+     "last_old_ruler": 76
+    },
+    "SAN": {
+     "open_post_formation": {
+      "open_mid": 36.0,
+      "ts": 1783880145,
+      "bid": 31,
+      "ask": 41,
+      "seconds_after_w1_left": 9555
+     },
+     "floor_pre_bell": 22,
+     "floor_old_ruler": 22,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 25,
+     "last_old_ruler": 25
+    }
+   }
+  },
+  {
+   "code": "26JUL13VANLEE",
+   "bell": 1783945800.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "LEE": {
+     "open_post_formation": {
+      "open_mid": 46.0,
+      "ts": 1783902523,
+      "bid": 43,
+      "ask": 49,
+      "seconds_after_w1_left": 4080
+     },
+     "floor_pre_bell": 45,
+     "floor_old_ruler": 45,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 46,
+     "last_old_ruler": 46
+    },
+    "VAN": {
+     "open_post_formation": {
+      "open_mid": 54.0,
+      "ts": 1783902523,
+      "bid": 51,
+      "ask": 57,
+      "seconds_after_w1_left": 4080
+     },
+     "floor_pre_bell": 55,
+     "floor_old_ruler": 55,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 57,
+     "last_old_ruler": 57
+    }
+   }
+  },
+  {
+   "code": "26JUL14DELXIL",
+   "bell": 1784113860.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "DEL": {
+     "open_post_formation": {
+      "open_mid": 82.0,
+      "ts": 1783986212,
+      "bid": 79,
+      "ask": 85,
+      "seconds_after_w1_left": 153
+     },
+     "floor_pre_bell": 83,
+     "floor_old_ruler": 83,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 84,
+     "last_old_ruler": 84
+    },
+    "XIL": {
+     "open_post_formation": {
+      "open_mid": 17.5,
+      "ts": 1783986212,
+      "bid": 14,
+      "ask": 21,
+      "seconds_after_w1_left": 153
+     },
+     "floor_pre_bell": 15,
+     "floor_old_ruler": 15,
+     "fill_entry": 17,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 17,
+     "last_old_ruler": 17
+    }
+   }
+  },
+  {
+   "code": "26JUL14PUTJEA",
+   "bell": null,
+   "bell_source": "BELL_UNRESOLVED",
+   "legs": {
+    "JEA": {
+     "open_post_formation": null,
+     "floor_pre_bell": null,
+     "floor_old_ruler": null,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": null,
+     "last_old_ruler": null
+    },
+    "PUT": {
+     "open_post_formation": {
+      "open_mid": 50.0,
+      "ts": 1783963099,
+      "bid": 46,
+      "ask": 54,
+      "seconds_after_w1_left": 26546
+     },
+     "floor_pre_bell": null,
+     "floor_old_ruler": null,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": null,
+     "last_old_ruler": null
+    }
+   }
+  },
+  {
+   "code": "26JUL14SALIBR",
+   "bell": 1784029740.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "IBR": {
+     "open_post_formation": {
+      "open_mid": 43.0,
+      "ts": 1783964797,
+      "bid": 38,
+      "ask": 48,
+      "seconds_after_w1_left": 6360
+     },
+     "floor_pre_bell": 44,
+     "floor_old_ruler": 44,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 44,
+     "last_old_ruler": 44
+    },
+    "SAL": {
+     "open_post_formation": {
+      "open_mid": 57.0,
+      "ts": 1783964797,
+      "bid": 52,
+      "ask": 62,
+      "seconds_after_w1_left": 6360
+     },
+     "floor_pre_bell": 56,
+     "floor_old_ruler": 56,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 57,
+     "last_old_ruler": 57
+    }
+   }
+  },
+  {
+   "code": "26JUL14WOLVAN",
+   "bell": 1784046900,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "VAN": {
+     "open_post_formation": {
+      "open_mid": 78.0,
+      "ts": 1783985525,
+      "bid": 73,
+      "ask": 83,
+      "seconds_after_w1_left": 76
+     },
+     "floor_pre_bell": 79,
+     "floor_old_ruler": 79,
+     "fill_entry": 79,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 80,
+     "last_old_ruler": 80
+    },
+    "WOL": {
+     "open_post_formation": {
+      "open_mid": 22.0,
+      "ts": 1783985525,
+      "bid": 17,
+      "ask": 27,
+      "seconds_after_w1_left": 76
+     },
+     "floor_pre_bell": 20,
+     "floor_old_ruler": 20,
+     "fill_entry": 20,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 22,
+     "last_old_ruler": 22
+    }
+   }
+  },
+  {
+   "code": "26JUL15PRIMOL",
+   "bell": 1784142060.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "MOL": {
+     "open_post_formation": {
+      "open_mid": 29.0,
+      "ts": 1784053532,
+      "bid": 26,
+      "ask": 32,
+      "seconds_after_w1_left": 8185
+     },
+     "floor_pre_bell": 28,
+     "floor_old_ruler": 28,
+     "fill_entry": 29,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 28,
+     "last_old_ruler": 28
+    },
+    "PRI": {
+     "open_post_formation": {
+      "open_mid": 70.0,
+      "ts": 1784052602,
+      "bid": 66,
+      "ask": 74,
+      "seconds_after_w1_left": 7255
+     },
+     "floor_pre_bell": 68,
+     "floor_old_ruler": 68,
+     "fill_entry": 69,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 73,
+     "last_old_ruler": 73
+    }
+   }
+  },
+  {
+   "code": "26JUL15ROMGAL",
+   "bell": 1784106120.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "GAL": {
+     "open_post_formation": {
+      "open_mid": 67.0,
+      "ts": 1784063548,
+      "bid": 64,
+      "ask": 70,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 67,
+     "floor_old_ruler": 66,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 67,
+     "last_old_ruler": 66
+    },
+    "ROM": {
+     "open_post_formation": {
+      "open_mid": 32.5,
+      "ts": 1784063548,
+      "bid": 30,
+      "ask": 35,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 33,
+     "floor_old_ruler": 30,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 33,
+     "last_old_ruler": 35
+    }
+   }
+  },
+  {
+   "code": "26JUL15TABMID",
+   "bell": 1784213400.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "MID": {
+     "open_post_formation": {
+      "open_mid": 27.0,
+      "ts": 1784036944,
+      "bid": 22,
+      "ask": 32,
+      "seconds_after_w1_left": 2058
+     },
+     "floor_pre_bell": 23,
+     "floor_old_ruler": 23,
+     "fill_entry": 23,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 24,
+     "last_old_ruler": 24
+    },
+    "TAB": {
+     "open_post_formation": {
+      "open_mid": 73.0,
+      "ts": 1784036944,
+      "bid": 68,
+      "ask": 78,
+      "seconds_after_w1_left": 2058
+     },
+     "floor_pre_bell": 74,
+     "floor_old_ruler": 74,
+     "fill_entry": 76,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 76,
+     "last_old_ruler": 76
+    }
+   }
+  },
+  {
+   "code": "26JUL15WESCOP",
+   "bell": 1784105760.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "COP": {
+     "open_post_formation": {
+      "open_mid": 80.5,
+      "ts": 1784063548,
+      "bid": 78,
+      "ask": 83,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 83,
+     "floor_old_ruler": 83,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 83,
+     "last_old_ruler": 83
+    },
+    "WES": {
+     "open_post_formation": {
+      "open_mid": 19.0,
+      "ts": 1784063548,
+      "bid": 16,
+      "ask": 22,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 17,
+     "floor_old_ruler": 17,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 17,
+     "last_old_ruler": 17
+    }
+   }
+  },
+  {
+   "code": "26JUL16MERDRO",
+   "bell": 1784210700,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "DRO": {
+     "open_post_formation": {
+      "open_mid": 49.0,
+      "ts": 1784153679,
+      "bid": 46,
+      "ask": 52,
+      "seconds_after_w1_left": 4925
+     },
+     "floor_pre_bell": 39,
+     "floor_old_ruler": 39,
+     "fill_entry": 49,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 40,
+     "last_old_ruler": 40
+    },
+    "MER": {
+     "open_post_formation": {
+      "open_mid": 54.0,
+      "ts": 1784153697,
+      "bid": 49,
+      "ask": 59,
+      "seconds_after_w1_left": 4943
+     },
+     "floor_pre_bell": 48,
+     "floor_old_ruler": 48,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 61,
+     "last_old_ruler": 61
+    }
+   }
+  },
+  {
+   "code": "26JUL17BURMER",
+   "bell": 1784303880.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "BUR": {
+     "open_post_formation": {
+      "open_mid": 44.0,
+      "ts": 1784230700,
+      "bid": 41,
+      "ask": 47,
+      "seconds_after_w1_left": 1797
+     },
+     "floor_pre_bell": 37,
+     "floor_old_ruler": 37,
+     "fill_entry": 42,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 38,
+     "last_old_ruler": 38
+    },
+    "MER": {
+     "open_post_formation": {
+      "open_mid": 57.0,
+      "ts": 1784230700,
+      "bid": 53,
+      "ask": 61,
+      "seconds_after_w1_left": 1797
+     },
+     "floor_pre_bell": 55,
+     "floor_old_ruler": 55,
+     "fill_entry": 57,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 62,
+     "last_old_ruler": 62
+    }
+   }
+  },
+  {
+   "code": "26JUL17HOLBOU",
+   "bell": 1784316060.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "BOU": {
+     "open_post_formation": {
+      "open_mid": 34.0,
+      "ts": 1784270596,
+      "bid": 32,
+      "ask": 36,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 33,
+     "floor_old_ruler": 33,
+     "fill_entry": 33,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 34,
+     "last_old_ruler": 34
+    },
+    "HOL": {
+     "open_post_formation": {
+      "open_mid": 66.5,
+      "ts": 1784270596,
+      "bid": 64,
+      "ask": 69,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 66,
+     "floor_old_ruler": 66,
+     "fill_entry": 66,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 67,
+     "last_old_ruler": 67
+    }
+   }
+  },
+  {
+   "code": "26JUL18BADZID",
+   "bell": 1784390700,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "BAD": {
+     "open_post_formation": {
+      "open_mid": 75.0,
+      "ts": 1784320715,
+      "bid": 73,
+      "ask": 77,
+      "seconds_after_w1_left": 1704
+     },
+     "floor_pre_bell": 74,
+     "floor_old_ruler": 74,
+     "fill_entry": 74,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 77,
+     "last_old_ruler": 77
+    },
+    "ZID": {
+     "open_post_formation": {
+      "open_mid": 28.0,
+      "ts": 1784320715,
+      "bid": 23,
+      "ask": 33,
+      "seconds_after_w1_left": 1704
+     },
+     "floor_pre_bell": 23,
+     "floor_old_ruler": 23,
+     "fill_entry": 25,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 24,
+     "last_old_ruler": 24
+    }
+   }
+  },
+  {
+   "code": "26JUL18CASGEA",
+   "bell": 1784406900,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "CAS": {
+     "open_post_formation": {
+      "open_mid": 36.5,
+      "ts": 1784345040,
+      "bid": 34,
+      "ask": 39,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 29,
+     "floor_old_ruler": 29,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 29,
+     "last_old_ruler": 29
+    },
+    "GEA": {
+     "open_post_formation": {
+      "open_mid": 63.0,
+      "ts": 1784345040,
+      "bid": 61,
+      "ask": 65,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 65,
+     "floor_old_ruler": 65,
+     "fill_entry": 69,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 72,
+     "last_old_ruler": 72
+    }
+   }
+  },
+  {
+   "code": "26JUL19ARSMAR",
+   "bell": 1784477100,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "ARS": {
+     "open_post_formation": {
+      "open_mid": 34.0,
+      "ts": 1784448368,
+      "bid": 29,
+      "ask": 39,
+      "seconds_after_w1_left": 13832
+     },
+     "floor_pre_bell": 35,
+     "floor_old_ruler": 35,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 40,
+     "last_old_ruler": 40
+    },
+    "MAR": {
+     "open_post_formation": {
+      "open_mid": 66.0,
+      "ts": 1784448368,
+      "bid": 61,
+      "ask": 71,
+      "seconds_after_w1_left": 13832
+     },
+     "floor_pre_bell": 59,
+     "floor_old_ruler": 59,
+     "fill_entry": 60,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 62,
+     "last_old_ruler": 62
+    }
+   }
+  },
+  {
+   "code": "26JUL20ARSRIC",
+   "bell": 1784649840.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "ARS": {
+     "open_post_formation": {
+      "open_mid": 36.0,
+      "ts": 1784549210,
+      "bid": 34,
+      "ask": 38,
+      "seconds_after_w1_left": 76
+     },
+     "floor_pre_bell": 36,
+     "floor_old_ruler": 36,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 36,
+     "last_old_ruler": 36
+    },
+    "RIC": {
+     "open_post_formation": {
+      "open_mid": 61.5,
+      "ts": 1784549134,
+      "bid": 57,
+      "ask": 66,
+      "seconds_after_w1_left": 0
+     },
+     "floor_pre_bell": 62,
+     "floor_old_ruler": 62,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 66,
+     "last_old_ruler": 66
+    }
+   }
+  },
+  {
+   "code": "26JUL20KYMCLA",
+   "bell": 1784570700.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "CLA": {
+     "open_post_formation": {
+      "open_mid": 24.5,
+      "ts": 1784528030,
+      "bid": 22,
+      "ask": 27,
+      "seconds_after_w1_left": 6
+     },
+     "floor_pre_bell": 23,
+     "floor_old_ruler": 23,
+     "fill_entry": 24,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 24,
+     "last_old_ruler": 24
+    },
+    "KYM": {
+     "open_post_formation": {
+      "open_mid": 74.5,
+      "ts": 1784528031,
+      "bid": 71,
+      "ask": 78,
+      "seconds_after_w1_left": 7
+     },
+     "floor_pre_bell": 75,
+     "floor_old_ruler": 75,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 79,
+     "last_old_ruler": 79
+    }
+   }
+  },
+  {
+   "code": "26JUL20QUEKAL",
+   "bell": 1784550900,
+   "bell_source": "MACHINE_RECEIPT",
+   "legs": {
+    "KAL": {
+     "open_post_formation": {
+      "open_mid": 65.0,
+      "ts": 1784471840,
+      "bid": 60,
+      "ask": 70,
+      "seconds_after_w1_left": 11277
+     },
+     "floor_pre_bell": 68,
+     "floor_old_ruler": 68,
+     "fill_entry": 69,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 69,
+     "last_old_ruler": 69
+    },
+    "QUE": {
+     "open_post_formation": {
+      "open_mid": 35.0,
+      "ts": 1784471840,
+      "bid": 30,
+      "ask": 40,
+      "seconds_after_w1_left": 11277
+     },
+     "floor_pre_bell": 30,
+     "floor_old_ruler": 30,
+     "fill_entry": 30,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 32,
+     "last_old_ruler": 32
+    }
+   }
+  },
+  {
+   "code": "26JUL20TROISO",
+   "bell": 1784574660.0,
+   "bell_source": "TAPE_SIGNATURE",
+   "legs": {
+    "ISO": {
+     "open_post_formation": {
+      "open_mid": 24.0,
+      "ts": 1784525417,
+      "bid": 19,
+      "ask": 29,
+      "seconds_after_w1_left": 413
+     },
+     "floor_pre_bell": 21,
+     "floor_old_ruler": 21,
+     "fill_entry": 21,
+     "fill_validity": "PRE_BELL_OK",
+     "last_pre_bell": 22,
+     "last_old_ruler": 22
+    },
+    "TRO": {
+     "open_post_formation": {
+      "open_mid": 76.0,
+      "ts": 1784525417,
+      "bid": 71,
+      "ask": 81,
+      "seconds_after_w1_left": 413
+     },
+     "floor_pre_bell": 77,
+     "floor_old_ruler": 77,
+     "fill_entry": null,
+     "fill_validity": null,
+     "last_pre_bell": 79,
+     "last_old_ruler": 79
+    }
+   }
+  }
+ ],
+ "review_packs": "pushed @ 76f82dd8: ARSMAR (machine-exact bell; the c09bde99-format ARSMAR CSVs regenerated in GUEGOM format - originals remain at c09bde99), KUMTUR, BALHUA, MORNEP, PANYOR; GUEGOM @ 03e38798, DELXIL @ 5c5bf82c",
+ "conservation": {
+  "games": 804,
+  "bell_sources": {
+   "MACHINE_RECEIPT": 192,
+   "TAPE_SIGNATURE": 591,
+   "BELL_UNRESOLVED": 20,
+   "SETTLEMENT_NO_MATCH": 1
+  },
+  "legs": {
+   "total": 1608,
+   "scored": 1536,
+   "no_onset_or_tape": 51,
+   "onset_but_no_window_prints": 21
+  },
+  "floors": {
+   "vanish_pre_bell": 69,
+   "rise": 85
+  }
+ }
+}

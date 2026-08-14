@@ -2111,3 +2111,31 @@ no full-804, sealed, deployment, live, or trading action occurred.
 
 Canonical addendum:
 `WINDOW1_V52H_REMOVE_PAIR_LOWS_PRECONDITION_20260813_ADDENDUM.md`.
+
+### 2026-08-13 - V52I ITERATION 8 / DEPTH-INFORMED LEVEL SELECTION
+
+V52i changes clause 3/N4 only. An incumbent receipt-local live read must earn
+authority before the G-grid cell discount and G3 dip-recovery gradient may
+refine its target downward inside live post-onset bounds. Priors inform and
+never gate. Clauses 1, 2, 4, 5, and 6, the referee, trades-as-truth crediting,
+scavenger OFF, and `REFLEX_POST=0` are frozen.
+
+G3 moves from `UNVALIDATED-CANDIDATE` to `UNDER-VALIDATION_V52I` only for this
+run. Because the Greek registry contains no separately named G-grid asset, the
+G-grid role is the under-validation behavioral use of validated P1 THE GRID;
+canonical P1 bytes/status and the CLEAN manifest remain unchanged. Exactly
+two candidate identities load with full provenance and no fallback.
+
+On five pins plus a fresh 25 with zero overlap across V52b-h, both V52h and
+V52i observe 18 complete-at-delta, 10 partial, two neither, and zero at-loss.
+There are 24,597 depth target refinements but no credited-entry or outcome
+change. The entry-minus-later-floor distribution is unchanged (46 credited
+legs; signed median 1c, p75 2c, total 202c), so the pre-stated toward-zero
+claim fails. Completes are not reduced, pins are unharmed, and V52i creates
+zero new one-sided exposures beside V52h's six.
+
+Two clean builds are byte-identical. Nineteen focused and inherited suites
+pass 790,742 assertions with zero failures, omissions, or deselections. This
+is observation-only; no full-804, sealed, deployment, live, or trading action
+occurred. Canonical addendum:
+`WINDOW1_V52I_DEPTH_INFORMED_LEVEL_SELECTION_20260813_ADDENDUM.md`.

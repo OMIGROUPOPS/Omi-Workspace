@@ -1,0 +1,119 @@
+{
+ "LABEL": "SHAPE_TAXONOMY_BUILD1",
+ "stamp": [
+  "ANALYTICAL_ESTIMATE",
+  "UNVALIDATED-CANDIDATE"
+ ],
+ "corpus": "W1_GROUND_TRUTH_TABLE @ c0056976: 776 verified clean spans; excluded and named: [[\"26JUL12BALHUA\", \"EMPTY (bell before formation end)\"], [\"26JUL12BRUGAD\", \"UNKNOWN\"], [\"26JUL12CIRHUA\", \"UNKNOWN\"], [\"26JUL12KHOVIG\", \"UNKNOWN\"], [\"26JUL12OUAFER\", \"UNKNOWN\"], [\"26JUL12SAIETO\", \"UNKNOWN\"], [\"26JUL12WESSEL\", \"UNKNOWN\"], [\"26JUL13CRIJEA\", \"UNKNOWN\"], [\"26JUL13TAUTOM\", \"UNKNOWN\"], [\"26JUL14MARPRA\", \"UNKNOWN\"], [\"26JUL14MATMOR\", \"NO_FORMATION\"], [\"26JUL14PUTJEA\", \"UNKNOWN\"], [\"26JUL14RABRUS\", \"UNKNOWN\"], [\"26JUL15BURJAC\", \"NO_FORMATION\"], [\"26JUL15KREMON\", \"EMPTY (bell before formation end)\"], [\"26JUL16BURUGO\", \"NO_FORMATION\"], [\"26JUL18CORSAC\", \"NO_FORMATION\"], [\"26JUL18GAUTSE\", \"UNKNOWN\"], [\"26JUL18JACDA\", \"UNKNOWN\"], [\"26JUL18TONSPI\", \"UNKNOWN\"], [\"26JUL19CHODEJ\", \"UNKNOWN\"], [\"26JUL19KRUCAS\", \"UNKNOWN\"], [\"26JUL19SALVRB\", \"UNKNOWN\"], [\"26JUL19VUKGEA\", \"NO_FORMATION\"], [\"26JUL19ZAMKIN\", \"EMPTY (bell before formation end)\"], [\"26JUL20CRECOP\", \"UNKNOWN\"], [\"26JUL20KUDKOR\", \"UNKNOWN\"], [\"26JUL20LYSVAL\", \"UNKNOWN\"]]",
+ "signature_method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)",
+ "families": {
+  "DRIFT_UP": 95,
+  "LATE_BREAK_DOWN": 37,
+  "LATE_BREAK_UP": 39,
+  "ONE_STEP_UP": 105,
+  "DRIFT_DOWN": 44,
+  "QUIET_WOBBLE": 615,
+  "ROUND_TRIP": 274,
+  "SLEEPER": 141,
+  "ONE_STEP_DOWN": 53,
+  "EARLY_SET_DOWN": 62,
+  "EARLY_SET_UP": 80,
+  "GRIND_WOBBLE_UP": 4,
+  "GRIND_WOBBLE_DOWN": 3
+ },
+ "pair_pairings_top": {
+  "QUIET_WOBBLE + QUIET_WOBBLE": 180,
+  "QUIET_WOBBLE + ROUND_TRIP": 102,
+  "QUIET_WOBBLE + SLEEPER": 78,
+  "ROUND_TRIP + ROUND_TRIP": 54,
+  "EARLY_SET_DOWN + EARLY_SET_UP": 33,
+  "ONE_STEP_UP + QUIET_WOBBLE": 31,
+  "DRIFT_DOWN + DRIFT_UP": 26,
+  "DRIFT_UP + ONE_STEP_DOWN": 24,
+  "SLEEPER + SLEEPER": 21,
+  "ONE_STEP_UP + ROUND_TRIP": 20,
+  "LATE_BREAK_DOWN + LATE_BREAK_UP": 19,
+  "ONE_STEP_DOWN + ONE_STEP_UP": 17,
+  "EARLY_SET_UP + ROUND_TRIP": 17,
+  "EARLY_SET_UP + QUIET_WOBBLE": 16,
+  "EARLY_SET_DOWN + ONE_STEP_UP": 12
+ },
+ "pair_classes_verified": {
+  "MIRRORED": 298,
+  "FLAT_BOTH": 440,
+  "OPPOSED_UNBALANCED": 20,
+  "DECOUPLED_SAME_DIRECTION": 18
+ },
+ "benchmark": {
+  "receipts": "identical actual first-post receipts (census @ 336f42bf / FIRST_POST_LEDGER @ 4716657a); truth = verified-ground roles (mirrored pairs on clean spans, CANDIDATE)",
+  "classifier": "early-window drift alone: last in-span print before the receipt minus post-formation open; >=+2c CLIMBER, <=-2c FALLER, else ABSTAIN",
+  "role_legs_posted": 483,
+  "signature_called": {
+   "n": 405,
+   "coverage_pct": 84,
+   "acc_pct": 95.1
+  },
+  "signature_forced": {
+   "n": 483,
+   "acc_pct": 87.2
+  },
+  "machine_same_receipts_same_truth": {
+   "n": 483,
+   "acc_pct": 73.3,
+   "note": "the census 63.5%/51.9%/25% were scored on old-ruler truth; recomputed here on verified truth for like-for-like"
+  },
+  "pairs_both_posted": 236,
+  "pair_both_right": {
+   "signature_pct": 72.5,
+   "machine_pct": 63.1
+  },
+  "full_inversion": {
+   "signature_pct": 1.7,
+   "machine_pct": 16.9,
+   "census_old_ruler_pct": 25.2
+  },
+  "by_time_quarter_signature": {
+   "Q1": "88%",
+   "Q2": "97%",
+   "Q3": "97%",
+   "Q4": "97%"
+  },
+  "by_family_acc": {
+   "DRIFT_UP": "100%",
+   "DRIFT_DOWN": "100%",
+   "EARLY_SET_UP": "98%",
+   "EARLY_SET_DOWN": "98%",
+   "ONE_STEP_DOWN": "95%",
+   "QUIET_WOBBLE": "96%",
+   "ONE_STEP_UP": "90%",
+   "LATE_BREAK_DOWN": "90%",
+   "ROUND_TRIP": "88%",
+   "LATE_BREAK_UP": "81%"
+  }
+ },
+ "honest_split": {
+  "callable_early": "DRIFT_*, EARLY_SET_*, ONE_STEP_* (drift declares by the post moment; 90-100% called accuracy)",
+  "indistinguishable_early": "LATE_BREAK_* by construction (the move IS the last quarter) plus the abstain set (72 of 483 posted role-legs, mostly QUIET_WOBBLE/ROUND_TRIP ties)",
+  "priced_residual": "mirrored offered games containing a LATE_BREAK leg: 47 games / 368c of pre-match margin (exemplars ALVVAN 27c, ARIZHA 18c, RAQKUM 17c) vs callable-family mirrored offered: 233 games / 1,358c (FETPIE 22c, SAKKOR 17c, BORDIM 16c)"
+ },
+ "mornep_standard": {
+  "row": "26JUL12MORNEP @ c0056976",
+  "facts": {
+   "span": "OK",
+   "floors": "MOR 71 / NEP 24",
+   "fills": "71 and 24, both PRE_BELL_VALID, at the library floors",
+   "locked_delta_valid_c": 5
+  },
+  "statement": "the target row: reads matching roles, targets at library floors, fills pre-bell - the taxonomy exists to make this row reproducible on purpose"
+ },
+ "conservation": {
+  "games": 804,
+  "clean_spans": 776,
+  "excluded": 28,
+  "legs_signed": 1552,
+  "mirrored_pairs": 298,
+  "role_legs": 596,
+  "role_legs_posted": 483,
+  "pairs_both_posted": 236
+ }
+}

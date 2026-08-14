@@ -1,0 +1,8 @@
+{
+  "clean_builds": 2,
+  "byte_identical": true,
+  "compared_files": 13,
+  "core_manifest_sha256": "72784381d659320d903196107133c4eb58d3160c3cc292b784ee2b839fc2af9b",
+  "policy_replay_invocations": 0,
+  "grading_builds": 2
+}

@@ -1,0 +1,301 @@
+{
+  "source": {
+    "label": "W1_GROUND_TRUTH_TABLE",
+    "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+    "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+    "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+    "bytes": 1426420,
+    "sole_grading_source": true,
+    "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+    "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+    "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+  },
+  "input_events": 30,
+  "D": 29,
+  "UNKNOWN_BELL": 1,
+  "classes": {
+    "OFFERED_UNDER_PAR": 28,
+    "OFFERED_AT_OR_ABOVE_PAR": 1,
+    "UNKNOWN_BELL": 1
+  },
+  "offered_under_par": 28,
+  "margin_ladder": {
+    "GE_10": 5,
+    "GE_5": 14,
+    "GE_3": 18,
+    "THIN_1_TO_2": 10
+  },
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 99,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 1
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 97,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 3
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 95,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 96,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 4
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 95,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 5
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 98,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 2
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 94,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 6
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 92,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 8
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 86,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 14
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 95,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 5
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12REJMID",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 94,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 6
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 91,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 9
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15VANVAL",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 98,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 2
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 87,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 13
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19LUZTAB",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 93,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 7
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 82,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 18
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 89,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 11
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 100,
+      "offer_class": "OFFERED_AT_OR_ABOVE_PAR",
+      "margin_cents": 0
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 98,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 2
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 99,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 1
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KRETOM",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 96,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 4
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13SAKTON",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 93,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 7
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 99,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 1
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "category": "WTA_MAIN",
+      "scoring_eligible": false,
+      "scoring_class": "UNKNOWN_BELL",
+      "pair_floor_cents": null,
+      "offer_class": "UNKNOWN_BELL",
+      "margin_cents": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16VALSAS",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 98,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 2
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18SALZOL",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 98,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 2
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19AVDNIE",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 99,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 1
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 87,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 13
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20STENOH",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 97,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 3
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20VEDBAR",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "scoring_class": "VERIFIED_BELL",
+      "pair_floor_cents": 99,
+      "offer_class": "OFFERED_UNDER_PAR",
+      "margin_cents": 1
+    }
+  ]
+}

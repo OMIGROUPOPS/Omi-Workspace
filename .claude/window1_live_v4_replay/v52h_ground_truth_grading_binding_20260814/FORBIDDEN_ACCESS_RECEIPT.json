@@ -1,0 +1,13 @@
+{
+  "source_sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+  "holdout": false,
+  "sealed": false,
+  "live": false,
+  "network_runtime": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "deployment": false,
+  "policy_replay_invocations": 0
+}

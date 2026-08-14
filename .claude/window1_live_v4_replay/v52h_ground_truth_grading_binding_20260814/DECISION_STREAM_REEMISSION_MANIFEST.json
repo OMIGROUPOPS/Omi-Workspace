@@ -1,0 +1,68 @@
+{
+  "pass": true,
+  "proof": "BYTE_PRESERVING_GIT_OBJECT_REEMISSION",
+  "frozen_commit": "b43d7cde56aac5fe5cc553419286119adf378d6d",
+  "input_events": 30,
+  "frozen_rows": 712896,
+  "reemitted_rows": 712896,
+  "policy_field_differences": 0,
+  "receipt_key_differences": 0,
+  "decision_stream_differences": 0,
+  "chunks": [
+    {
+      "name": "V52H_FULL_DECISION_TRACE_30_GAMES_CHUNK_001.jsonl.gz",
+      "events": 5,
+      "rows": 149756,
+      "git_blob": "b90e06aaf3b81494b95816091da3b048d81348a8",
+      "sha256": "26d4e527ece99b3e8f8484ebc5d9cb8c35414632e038bd504cda4822e87e2fe2",
+      "bytes": 28524039,
+      "reemission": "IMMUTABLE_GIT_OBJECT_REFERENCE"
+    },
+    {
+      "name": "V52H_FULL_DECISION_TRACE_30_GAMES_CHUNK_002.jsonl.gz",
+      "events": 5,
+      "rows": 17956,
+      "git_blob": "d21086e8529ff56c6196e21c8b7682a972125a05",
+      "sha256": "734a9523dd93d25cd67b89925be8ea571ded185d540af81c5255a1117393eeab",
+      "bytes": 4224699,
+      "reemission": "IMMUTABLE_GIT_OBJECT_REFERENCE"
+    },
+    {
+      "name": "V52H_FULL_DECISION_TRACE_30_GAMES_CHUNK_003.jsonl.gz",
+      "events": 5,
+      "rows": 19741,
+      "git_blob": "5d20cdaac2469cbd300eaa3530a6b8f253862f28",
+      "sha256": "61470a2054e386a8fe6bf92545a9836dc41bff0d65df6fd85f3f4adbbc796895",
+      "bytes": 4106155,
+      "reemission": "IMMUTABLE_GIT_OBJECT_REFERENCE"
+    },
+    {
+      "name": "V52H_FULL_DECISION_TRACE_30_GAMES_CHUNK_004.jsonl.gz",
+      "events": 5,
+      "rows": 419209,
+      "git_blob": "d49615ad254e95943b9d2bf60ef7bc56d9c97cfa",
+      "sha256": "57a2c8d5ba4cc8d868c9914a0af6a321dc6c160a2413601b50dadadbe7aa5d26",
+      "bytes": 61715586,
+      "reemission": "IMMUTABLE_GIT_OBJECT_REFERENCE"
+    },
+    {
+      "name": "V52H_FULL_DECISION_TRACE_30_GAMES_CHUNK_005.jsonl.gz",
+      "events": 5,
+      "rows": 32961,
+      "git_blob": "c06ad8fca8bbd9e3abf53bac5d02a45fb17715a7",
+      "sha256": "fd7f4497399a9e1c894b1c239665c92a8158695063b3bfe0d3c6b76a19092057",
+      "bytes": 9060027,
+      "reemission": "IMMUTABLE_GIT_OBJECT_REFERENCE"
+    },
+    {
+      "name": "V52H_FULL_DECISION_TRACE_30_GAMES_CHUNK_006.jsonl.gz",
+      "events": 5,
+      "rows": 73273,
+      "git_blob": "b9a91485db96e5c04b19b5bf96b226b3074fabf1",
+      "sha256": "002ef138647f1e2e9347d58fc7e8a9a27dcf92ca58ce893305e489ed750112e7",
+      "bytes": 17188452,
+      "reemission": "IMMUTABLE_GIT_OBJECT_REFERENCE"
+    }
+  ],
+  "note": "No replay window was rebound and no decision code was invoked by the grading adapter."
+}

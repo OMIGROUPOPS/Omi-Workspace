@@ -1,0 +1,31 @@
+{
+  "sources": {
+    "window_table": {
+      "label": "W1_GROUND_TRUTH_TABLE",
+      "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+      "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+      "bytes": 1426420,
+      "sole_grading_source": true,
+      "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+      "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+      "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+    },
+    "frozen_v52h_policy": {
+      "commit": "b43d7cde56aac5fe5cc553419286119adf378d6d"
+    },
+    "frozen_decision_trace": {
+      "commit": "b43d7cde56aac5fe5cc553419286119adf378d6d",
+      "manifest": ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813/FULL_DECISION_TRACE_MANIFEST.json"
+    },
+    "adapter": {
+      "path": "arb-executor/analysis/window1_ground_truth_window_adapter.js",
+      "sha256": "356f91b577aa7063e4b129791609f27049bd98bcbf7a9b0fff5679e91fe8875b"
+    },
+    "proof_builder": {
+      "path": "arb-executor/analysis/build_window1_ground_truth_binding_proof.js",
+      "sha256": "446a330bafbcd98cf8149b50f9e758aa08f3104cc9ac8d097eec2321dcdaed10"
+    }
+  }
+}

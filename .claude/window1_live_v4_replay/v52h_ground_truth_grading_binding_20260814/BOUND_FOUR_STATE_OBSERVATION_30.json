@@ -1,0 +1,685 @@
+{
+  "source_sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+  "D": 29,
+  "UNKNOWN_BELL": 1,
+  "states": {
+    "COMPLETE_AT_DELTA": 13,
+    "PARTIAL_FOR_REASON": 11,
+    "NEITHER_FOR_REASON": 5,
+    "UNKNOWN_BELL": 1
+  },
+  "conservation": {
+    "rows": 30,
+    "pass": true
+  },
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "NEITHER_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": true,
+      "retained_fills": [],
+      "removed_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BALPET|BAL",
+          "entry_cents": 13,
+          "fill_timestamp_epoch": 1783849262.082
+        }
+      ],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "NEITHER_FOR_REASON",
+      "before_combined_entry_cents": 99,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": true,
+      "retained_fills": [],
+      "removed_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOUVIT|BOU",
+          "entry_cents": 90,
+          "fill_timestamp_epoch": 1783869921.783
+        },
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BOUVIT|VIT",
+          "entry_cents": 9,
+          "fill_timestamp_epoch": 1783867821.902
+        }
+      ],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 99,
+      "after_combined_entry_cents": 99,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "entry_cents": 18,
+          "fill_timestamp_epoch": 1783879149.48
+        },
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+          "entry_cents": 81,
+          "fill_timestamp_epoch": 1783872979.377
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12TOKROZ|ROZ",
+          "entry_cents": 56,
+          "fill_timestamp_epoch": 1783883219.979
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 97,
+      "after_combined_entry_cents": 97,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL13FORRAF|FOR",
+          "entry_cents": 85,
+          "fill_timestamp_epoch": 1783945770.255
+        },
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL13FORRAF|RAF",
+          "entry_cents": 12,
+          "fill_timestamp_epoch": 1783921705.256
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL13VILGAN|VIL",
+          "entry_cents": 92,
+          "fill_timestamp_epoch": 1783916154.496
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+          "entry_cents": 60,
+          "fill_timestamp_epoch": 1784475080.668
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 95,
+      "after_combined_entry_cents": 95,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|BRU",
+          "entry_cents": 57,
+          "fill_timestamp_epoch": 1784434571.756
+        },
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|KRA",
+          "entry_cents": 38,
+          "fill_timestamp_epoch": 1784431184.213
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+      "category": "ATP_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ|KUZ",
+          "entry_cents": 57,
+          "fill_timestamp_epoch": 1784464062.291
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 96,
+      "after_combined_entry_cents": 96,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL12CERKOL|CER",
+          "entry_cents": 72,
+          "fill_timestamp_epoch": 1783800088.944
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL12CERKOL|KOL",
+          "entry_cents": 24,
+          "fill_timestamp_epoch": 1783822216.46
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12REJMID",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL12REJMID|REJ",
+          "entry_cents": 11,
+          "fill_timestamp_epoch": 1783813934.108
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 99,
+      "after_combined_entry_cents": 99,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "entry_cents": 75,
+          "fill_timestamp_epoch": 1783934902.427
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+          "entry_cents": 24,
+          "fill_timestamp_epoch": 1783897604.673
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15VANVAL",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL15VANVAL|VAN",
+          "entry_cents": 42,
+          "fill_timestamp_epoch": 1784048162.348
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 97,
+      "after_combined_entry_cents": 97,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+          "entry_cents": 49,
+          "fill_timestamp_epoch": 1784158597.805
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+          "entry_cents": 48,
+          "fill_timestamp_epoch": 1784157227.552
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19LUZTAB",
+      "category": "ATP_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 98,
+      "after_combined_entry_cents": 98,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL19LUZTAB|LUZ",
+          "entry_cents": 10,
+          "fill_timestamp_epoch": 1784403221.986
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL19LUZTAB|TAB",
+          "entry_cents": 88,
+          "fill_timestamp_epoch": 1784410460.441
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "NEITHER_FOR_REASON",
+      "before_combined_entry_cents": 98,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": true,
+      "retained_fills": [],
+      "removed_fills": [
+        {
+          "leg_identity": "KXWTACHALLENGERMATCH-26JUL12ARIZHA|ARI",
+          "entry_cents": 12,
+          "fill_timestamp_epoch": 1783853562.056
+        },
+        {
+          "leg_identity": "KXWTACHALLENGERMATCH-26JUL12ARIZHA|ZHA",
+          "entry_cents": 86,
+          "fill_timestamp_epoch": 1783852363.305
+        }
+      ],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "NEITHER_FOR_REASON",
+      "before_combined_entry_cents": 92,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": true,
+      "retained_fills": [],
+      "removed_fills": [
+        {
+          "leg_identity": "KXWTACHALLENGERMATCH-26JUL12HESKOT|HES",
+          "entry_cents": 36,
+          "fill_timestamp_epoch": 1783871076.71
+        },
+        {
+          "leg_identity": "KXWTACHALLENGERMATCH-26JUL12HESKOT|KOT",
+          "entry_cents": 56,
+          "fill_timestamp_epoch": 1783871786.695
+        }
+      ],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "NEITHER_FOR_REASON",
+      "after_state": "NEITHER_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTACHALLENGERMATCH-26JUL14PACVED|PAC",
+          "entry_cents": 19,
+          "fill_timestamp_epoch": 1784008287.045
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+      "category": "WTA_CHALL",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTACHALLENGERMATCH-26JUL15YANLAN|YAN",
+          "entry_cents": 81,
+          "fill_timestamp_epoch": 1784085553.633
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KRETOM",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 99,
+      "after_combined_entry_cents": 99,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL13KRETOM|KRE",
+          "entry_cents": 89,
+          "fill_timestamp_epoch": 1784028911.093
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL13KRETOM|TOM",
+          "entry_cents": 10,
+          "fill_timestamp_epoch": 1784030692.627
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13SAKTON",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL13SAKTON|TON",
+          "entry_cents": 45,
+          "fill_timestamp_epoch": 1783930367.242
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 99,
+      "after_combined_entry_cents": 99,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL14BULPRI|BUL",
+          "entry_cents": 19,
+          "fill_timestamp_epoch": 1784002167.454
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL14BULPRI|PRI",
+          "entry_cents": 80,
+          "fill_timestamp_epoch": 1783995759.657
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "category": "WTA_MAIN",
+      "scoring_eligible": false,
+      "window_class": "UNKNOWN_BELL",
+      "before_state": "NEITHER_FOR_REASON",
+      "after_state": "UNKNOWN_BELL",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": true,
+      "retained_fills": [],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16VALSAS",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 99,
+      "after_combined_entry_cents": 99,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL16VALSAS|SAS",
+          "entry_cents": 32,
+          "fill_timestamp_epoch": 1784141991.018
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL16VALSAS|VAL",
+          "entry_cents": 67,
+          "fill_timestamp_epoch": 1784142045.147
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18SALZOL",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL18SALZOL|ZOL",
+          "entry_cents": 24,
+          "fill_timestamp_epoch": 1784336186.017
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19AVDNIE",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "PARTIAL_FOR_REASON",
+      "after_state": "PARTIAL_FOR_REASON",
+      "before_combined_entry_cents": null,
+      "after_combined_entry_cents": null,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL19AVDNIE|AVD",
+          "entry_cents": 61,
+          "fill_timestamp_epoch": 1784427344.381
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 97,
+      "after_combined_entry_cents": 97,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL20FRUKRE|FRU",
+          "entry_cents": 19,
+          "fill_timestamp_epoch": 1784516107.203
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL20FRUKRE|KRE",
+          "entry_cents": 78,
+          "fill_timestamp_epoch": 1784510336.679
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20STENOH",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 97,
+      "after_combined_entry_cents": 97,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL20STENOH|NOH",
+          "entry_cents": 76,
+          "fill_timestamp_epoch": 1784535548.103
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL20STENOH|STE",
+          "entry_cents": 21,
+          "fill_timestamp_epoch": 1784610692.856
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20VEDBAR",
+      "category": "WTA_MAIN",
+      "scoring_eligible": true,
+      "window_class": "VERIFIED_BELL",
+      "before_state": "COMPLETE_AT_DELTA",
+      "after_state": "COMPLETE_AT_DELTA",
+      "before_combined_entry_cents": 99,
+      "after_combined_entry_cents": 99,
+      "state_changed_by_grading": false,
+      "retained_fills": [
+        {
+          "leg_identity": "KXWTAMATCH-26JUL20VEDBAR|BAR",
+          "entry_cents": 39,
+          "fill_timestamp_epoch": 1784531396.554
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL20VEDBAR|VED",
+          "entry_cents": 60,
+          "fill_timestamp_epoch": 1784520873.907
+        }
+      ],
+      "removed_fills": [],
+      "decision_stream_changed": false
+    }
+  ]
+}

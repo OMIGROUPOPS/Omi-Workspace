@@ -20,6 +20,7 @@
 - **Boot gates:** paginated exchange truth must show no same-side buy stacks; resting exit quantity equals held quantity; no held >=1-share side lacks an exit except the named hold/ITM handling; no resting buy exceeds the lot on an owned/ordered side; and out-of-[5,95] bids are flagged; any failed assertion halts conceptions while exits remain live. (`053c42a5f619b9a8f486662e07c1f94a9d063eaf`)
 - **CANON.md is the single check surface:** every supersession stamp points here, and anything conflicting with it does not ship from any seat. (`63e463183803e69f17b778f10db8e5e0319b5469`)
 - **Direction-classifier research is open:** V39's causal classifier measured 437/1,279 (34.17%) at union-reach moments; no build may gate on a new direction read until it validates above V36's incumbent read on held-out legs. V40 severs that classifier and is rejected at 249 completions with a `12/23/66` frontier; V36 remains operative at 270. (`af3ef0e8b89502700d637c28e1ff42f247b44c4d`)
+- **Window grading has one source:** all floors, fill validity, offer denominators, and deltas bind to `W1_GROUND_TRUTH_TABLE`; `UNKNOWN_BELL` is non-gradeable and separate. Historical replay windows remain untouched unless a separately authorized causal-policy iteration changes them. (`c0056976c446afcb4d9603796a2e06c068ee94d6`)
 
 ## RETIRED FRAMES
 

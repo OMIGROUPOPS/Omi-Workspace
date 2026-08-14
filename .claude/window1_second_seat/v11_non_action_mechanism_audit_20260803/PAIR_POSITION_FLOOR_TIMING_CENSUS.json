@@ -1,0 +1,4361 @@
+{
+ "LABEL": "PAIR_POSITION_FLOOR_TIMING_CENSUS",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "role_tables": "UNVALIDATED-CANDIDATE",
+ "inputs": {
+  "journeys": "ec88f8e3 MACRO_JOURNEY_TABLE.json (1,602 legs; pair-class rule reproduced exactly: 547/196/37/21)",
+  "dev804": "4716657a (MARKET_EVENT_LEDGER_804 fills/credits, POST_ONSET_OFFER_CAPTURE onsets, FIRST_POST_LEDGER 1,173 first posts, POSTING_TIME_AND_READ_AT_POST)",
+  "tape": "OMI-Window1-private/fit-local/prints.jsonl"
+ },
+ "pair_classes": {
+  "MIRRORED": 547,
+  "FLAT_BOTH": 196,
+  "OPPOSED_UNBALANCED": 37,
+  "DECOUPLED_SAME_DIRECTION": 21
+ },
+ "floor_position_by_role": {
+  "('ATP_CHALL', '26_50')": {
+   "CLIMBER": {
+    "n": 188,
+    "p10": 0.024,
+    "p25": 0.128,
+    "med": 0.433,
+    "p75": 0.773,
+    "p90": 0.962
+   },
+   "FALLER": {
+    "n": 195,
+    "p10": 0.088,
+    "p25": 0.333,
+    "med": 0.744,
+    "p75": 0.946,
+    "p90": 0.992
+   }
+  },
+  "('ALL', 'ALL')": {
+   "CLIMBER": {
+    "n": 532,
+    "p10": 0.016,
+    "p25": 0.071,
+    "med": 0.302,
+    "p75": 0.688,
+    "p90": 0.928
+   },
+   "FALLER": {
+    "n": 527,
+    "p10": 0.069,
+    "p25": 0.273,
+    "med": 0.647,
+    "p75": 0.925,
+    "p90": 0.989
+   }
+  },
+  "('ATP_CHALL', '51_75')": {
+   "CLIMBER": {
+    "n": 18,
+    "p10": 0.015,
+    "p25": 0.051,
+    "med": 0.246,
+    "p75": 0.653,
+    "p90": 0.866
+   },
+   "FALLER": {
+    "n": 10,
+    "p10": 0.115,
+    "p25": 0.222,
+    "med": 0.517,
+    "p75": 0.609,
+    "p90": 0.696
+   }
+  },
+  "('ATP_CHALL', 'ge76')": {
+   "CLIMBER": {
+    "n": 5,
+    "p10": 0.017,
+    "p25": 0.026,
+    "med": 0.057,
+    "p75": 0.099,
+    "p90": 0.264
+   },
+   "FALLER": null
+  },
+  "('ATP_CHALL', 'le25')": {
+   "CLIMBER": null,
+   "FALLER": {
+    "n": 4,
+    "p10": 0.396,
+    "p25": 0.508,
+    "med": 0.619,
+    "p75": 0.701,
+    "p90": 0.764
+   }
+  },
+  "('ATP_MAIN', '26_50')": {
+   "CLIMBER": {
+    "n": 124,
+    "p10": 0.015,
+    "p25": 0.05,
+    "med": 0.204,
+    "p75": 0.559,
+    "p90": 0.847
+   },
+   "FALLER": {
+    "n": 124,
+    "p10": 0.064,
+    "p25": 0.205,
+    "med": 0.582,
+    "p75": 0.927,
+    "p90": 0.987
+   }
+  },
+  "('ATP_MAIN', '51_75')": {
+   "CLIMBER": {
+    "n": 2,
+    "p10": 0.007,
+    "p25": 0.016,
+    "med": 0.033,
+    "p75": 0.049,
+    "p90": 0.059
+   },
+   "FALLER": null
+  },
+  "('WTA_CHALL', '26_50')": {
+   "CLIMBER": {
+    "n": 66,
+    "p10": 0.053,
+    "p25": 0.088,
+    "med": 0.338,
+    "p75": 0.66,
+    "p90": 0.989
+   },
+   "FALLER": {
+    "n": 62,
+    "p10": 0.18,
+    "p25": 0.335,
+    "med": 0.691,
+    "p75": 0.924,
+    "p90": 0.99
+   }
+  },
+  "('WTA_CHALL', '51_75')": {
+   "CLIMBER": {
+    "n": 6,
+    "p10": 0.285,
+    "p25": 0.561,
+    "med": 0.731,
+    "p75": 0.838,
+    "p90": 0.921
+   },
+   "FALLER": {
+    "n": 7,
+    "p10": 0.098,
+    "p25": 0.217,
+    "med": 0.56,
+    "p75": 0.82,
+    "p90": 0.998
+   }
+  },
+  "('WTA_CHALL', 'ge76')": {
+   "CLIMBER": {
+    "n": 3,
+    "p10": 0.147,
+    "p25": 0.192,
+    "med": 0.266,
+    "p75": 0.519,
+    "p90": 0.67
+   },
+   "FALLER": null
+  },
+  "('WTA_CHALL', 'le25')": {
+   "CLIMBER": null,
+   "FALLER": {
+    "n": 4,
+    "p10": 0.5,
+    "p25": 0.78,
+    "med": 0.965,
+    "p75": 0.995,
+    "p90": 0.995
+   }
+  },
+  "('WTA_MAIN', '51_75')": {
+   "CLIMBER": {
+    "n": 111,
+    "p10": 0.015,
+    "p25": 0.041,
+    "med": 0.176,
+    "p75": 0.558,
+    "p90": 0.903
+   },
+   "FALLER": {
+    "n": 113,
+    "p10": 0.035,
+    "p25": 0.239,
+    "med": 0.585,
+    "p75": 0.855,
+    "p90": 0.961
+   }
+  },
+  "('WTA_MAIN', 'ge76')": {
+   "CLIMBER": {
+    "n": 2,
+    "p10": 0.084,
+    "p25": 0.207,
+    "med": 0.413,
+    "p75": 0.619,
+    "p90": 0.743
+   },
+   "FALLER": null
+  },
+  "('WTA_MAIN', 'le25')": {
+   "CLIMBER": null,
+   "FALLER": {
+    "n": 2,
+    "p10": 0.862,
+    "p25": 0.874,
+    "med": 0.894,
+    "p75": 0.914,
+    "p90": 0.926
+   }
+  },
+  "('WTA_MAIN', '26_50')": {
+   "CLIMBER": {
+    "n": 7,
+    "p10": 0.032,
+    "p25": 0.062,
+    "med": 0.301,
+    "p75": 0.642,
+    "p90": 0.816
+   },
+   "FALLER": {
+    "n": 6,
+    "p10": 0.038,
+    "p25": 0.123,
+    "med": 0.564,
+    "p75": 0.914,
+    "p90": 0.952
+   }
+  }
+ },
+ "floor_role_exceptions": {
+  "climber_floor_late_n": 193,
+  "of_climbers": 532,
+  "faller_floor_early_n": 208,
+  "of_fallers": 527,
+  "climber_late_exemplars": [
+   [
+    1.0,
+    "26JUL13KHOZHA",
+    "KHO"
+   ],
+   [
+    1.0,
+    "26JUL14CASGHI",
+    "GHI"
+   ],
+   [
+    1.0,
+    "26JUL19IMATRA",
+    "IMA"
+   ]
+  ],
+  "faller_early_exemplars": [
+   [
+    0.0,
+    "26JUL19MARSKA",
+    "SKA"
+   ],
+   [
+    0.0,
+    "26JUL20OLIZIE",
+    "ZIE"
+   ],
+   [
+    0.001,
+    "26JUL19SINMAT",
+    "SIN"
+   ]
+  ]
+ },
+ "bought_faller_early": {
+  "n": 186,
+  "cents_sum": 1741,
+  "rows": [
+   {
+    "code": "26JUL12KULZAA",
+    "leg": "ZAA",
+    "entry": 66,
+    "floor": 1,
+    "cents": 65,
+    "minutes": 581.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20GALARN",
+    "leg": "GAL",
+    "entry": 60,
+    "floor": 1,
+    "cents": 59,
+    "minutes": 91.4,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12HECISO",
+    "leg": "HEC",
+    "entry": 82,
+    "floor": 24,
+    "cents": 58,
+    "minutes": 38.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12GUEGOM",
+    "leg": "GUE",
+    "entry": 58,
+    "floor": 1,
+    "cents": 57,
+    "minutes": 54.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12BROGIU",
+    "leg": "GIU",
+    "entry": 56,
+    "floor": 1,
+    "cents": 55,
+    "minutes": 36.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SKASAC",
+    "leg": "SAC",
+    "entry": 50,
+    "floor": 1,
+    "cents": 49,
+    "minutes": 56.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MICKUL",
+    "leg": "KUL",
+    "entry": 50,
+    "floor": 1,
+    "cents": 49,
+    "minutes": 31.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12VILRAH",
+    "leg": "RAH",
+    "entry": 48,
+    "floor": 1,
+    "cents": 47,
+    "minutes": 41.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12TABHUE",
+    "leg": "HUE",
+    "entry": 48,
+    "floor": 1,
+    "cents": 47,
+    "minutes": 1135.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12BASABB",
+    "leg": "ABB",
+    "entry": 46,
+    "floor": 1,
+    "cents": 45,
+    "minutes": 45.4,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ROUJAK",
+    "leg": "ROU",
+    "entry": 43,
+    "floor": 1,
+    "cents": 42,
+    "minutes": 50.2,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12HESKOT",
+    "leg": "HES",
+    "entry": 43,
+    "floor": 3,
+    "cents": 40,
+    "minutes": 61.7,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12GANJAN",
+    "leg": "JAN",
+    "entry": 38,
+    "floor": 1,
+    "cents": 37,
+    "minutes": 34.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CRIBAS",
+    "leg": "BAS",
+    "entry": 50,
+    "floor": 17,
+    "cents": 33,
+    "minutes": 31.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SHEVAN",
+    "leg": "SHE",
+    "entry": 34,
+    "floor": 1,
+    "cents": 33,
+    "minutes": 40.5,
+    "cat": "WTA_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12GARPRI",
+    "leg": "PRI",
+    "entry": 33,
+    "floor": 1,
+    "cents": 32,
+    "minutes": 77.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12BUEMAR",
+    "leg": "BUE",
+    "entry": 31,
+    "floor": 1,
+    "cents": 30,
+    "minutes": 17.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12HERALM",
+    "leg": "HER",
+    "entry": 30,
+    "floor": 1,
+    "cents": 29,
+    "minutes": 10.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MORPET",
+    "leg": "PET",
+    "entry": 30,
+    "floor": 1,
+    "cents": 29,
+    "minutes": 137.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12DODDEL",
+    "leg": "DOD",
+    "entry": 27,
+    "floor": 1,
+    "cents": 26,
+    "minutes": 101.9,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CINHEM",
+    "leg": "HEM",
+    "entry": 26,
+    "floor": 1,
+    "cents": 25,
+    "minutes": 61.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12PRASAI",
+    "leg": "SAI",
+    "entry": 26,
+    "floor": 1,
+    "cents": 25,
+    "minutes": 78.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MARARS",
+    "leg": "ARS",
+    "entry": 40,
+    "floor": 16,
+    "cents": 24,
+    "minutes": 133.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12RAQKUM",
+    "leg": "RAQ",
+    "entry": 24,
+    "floor": 1,
+    "cents": 23,
+    "minutes": 33.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MORNEP",
+    "leg": "NEP",
+    "entry": 24,
+    "floor": 1,
+    "cents": 23,
+    "minutes": 85.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12CECOLI",
+    "leg": "OLI",
+    "entry": 23,
+    "floor": 1,
+    "cents": 22,
+    "minutes": 79.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12KRUFER",
+    "leg": "FER",
+    "entry": 21,
+    "floor": 1,
+    "cents": 20,
+    "minutes": 32.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12KUMTUR",
+    "leg": "TUR",
+    "entry": 20,
+    "floor": 1,
+    "cents": 19,
+    "minutes": 67.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ZELFAL",
+    "leg": "ZEL",
+    "entry": 19,
+    "floor": 1,
+    "cents": 18,
+    "minutes": 103.7,
+    "cat": "WTA_CHALL",
+    "origin": "le25"
+   },
+   {
+    "code": "26JUL12ITOMAN",
+    "leg": "MAN",
+    "entry": 19,
+    "floor": 1,
+    "cents": 18,
+    "minutes": 49.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12ECHMUN",
+    "leg": "MUN",
+    "entry": 17,
+    "floor": 1,
+    "cents": 16,
+    "minutes": 30.2,
+    "cat": "ATP_CHALL",
+    "origin": "le25"
+   },
+   {
+    "code": "26JUL20VISNIK",
+    "leg": "NIK",
+    "entry": 17,
+    "floor": 1,
+    "cents": 16,
+    "minutes": 2.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CHISEA",
+    "leg": "CHI",
+    "entry": 15,
+    "floor": 1,
+    "cents": 14,
+    "minutes": 42.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12WERAMA",
+    "leg": "AMA",
+    "entry": 19,
+    "floor": 5,
+    "cents": 14,
+    "minutes": 163.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12MEJSOT",
+    "leg": "SOT",
+    "entry": 14,
+    "floor": 1,
+    "cents": 13,
+    "minutes": 18.6,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12BALPET",
+    "leg": "BAL",
+    "entry": 13,
+    "floor": 1,
+    "cents": 12,
+    "minutes": 19.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12FEAWAL",
+    "leg": "FEA",
+    "entry": 40,
+    "floor": 28,
+    "cents": 12,
+    "minutes": 7.9,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12HIBTON",
+    "leg": "TON",
+    "entry": 13,
+    "floor": 1,
+    "cents": 12,
+    "minutes": 949.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12HODYAS",
+    "leg": "YAS",
+    "entry": 13,
+    "floor": 1,
+    "cents": 12,
+    "minutes": 234.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12POLVIN",
+    "leg": "POL",
+    "entry": 17,
+    "floor": 6,
+    "cents": 11,
+    "minutes": 35.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18BUTTAB",
+    "leg": "BUT",
+    "entry": 31,
+    "floor": 20,
+    "cents": 11,
+    "minutes": 72.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ARIZHA",
+    "leg": "ARI",
+    "entry": 12,
+    "floor": 1,
+    "cents": 11,
+    "minutes": 26.2,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12AVEFOR",
+    "leg": "FOR",
+    "entry": 53,
+    "floor": 43,
+    "cents": 10,
+    "minutes": 118.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19PIENES",
+    "leg": "PIE",
+    "entry": 41,
+    "floor": 31,
+    "cents": 10,
+    "minutes": 0.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MULSHE",
+    "leg": "MUL",
+    "entry": 45,
+    "floor": 35,
+    "cents": 10,
+    "minutes": 2861.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL16MERDRO",
+    "leg": "DRO",
+    "entry": 49,
+    "floor": 39,
+    "cents": 10,
+    "minutes": 272.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20KORJIM",
+    "leg": "JIM",
+    "entry": 40,
+    "floor": 30,
+    "cents": 10,
+    "minutes": 1673.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12GURDAL",
+    "leg": "GUR",
+    "entry": 10,
+    "floor": 1,
+    "cents": 9,
+    "minutes": 65.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ROMTOD",
+    "leg": "TOD",
+    "entry": 10,
+    "floor": 1,
+    "cents": 9,
+    "minutes": 491.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12TAGSIE",
+    "leg": "SIE",
+    "entry": 10,
+    "floor": 1,
+    "cents": 9,
+    "minutes": 64.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19KRESAK",
+    "leg": "SAK",
+    "entry": 52,
+    "floor": 43,
+    "cents": 9,
+    "minutes": 343.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12TSIBUS",
+    "leg": "TSI",
+    "entry": 46,
+    "floor": 38,
+    "cents": 8,
+    "minutes": 2588.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13BONSOR",
+    "leg": "SOR",
+    "entry": 49,
+    "floor": 41,
+    "cents": 8,
+    "minutes": 578.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12RAFAGU",
+    "leg": "RAF",
+    "entry": 8,
+    "floor": 1,
+    "cents": 7,
+    "minutes": 45.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15YIBYUN",
+    "leg": "YUN",
+    "entry": 48,
+    "floor": 41,
+    "cents": 7,
+    "minutes": 681.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19DJOMAT",
+    "leg": "DJO",
+    "entry": 11,
+    "floor": 4,
+    "cents": 7,
+    "minutes": 0.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19NIKVRB",
+    "leg": "NIK",
+    "entry": 25,
+    "floor": 18,
+    "cents": 7,
+    "minutes": 30.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12JACTRU",
+    "leg": "JAC",
+    "entry": 51,
+    "floor": 44,
+    "cents": 7,
+    "minutes": 1545.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12LAJVAN",
+    "leg": "LAJ",
+    "entry": 50,
+    "floor": 43,
+    "cents": 7,
+    "minutes": 1040.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12STRMUN",
+    "leg": "STR",
+    "entry": 27,
+    "floor": 20,
+    "cents": 7,
+    "minutes": 1046.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15VANDRO",
+    "leg": "VAN",
+    "entry": 49,
+    "floor": 42,
+    "cents": 7,
+    "minutes": 640.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18PELSIL",
+    "leg": "SIL",
+    "entry": 10,
+    "floor": 3,
+    "cents": 7,
+    "minutes": 639.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12PRIION",
+    "leg": "ION",
+    "entry": 11,
+    "floor": 4,
+    "cents": 7,
+    "minutes": 546.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13PRIGAR",
+    "leg": "GAR",
+    "entry": 8,
+    "floor": 1,
+    "cents": 7,
+    "minutes": 608.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL17UDVBAD",
+    "leg": "UDV",
+    "entry": 33,
+    "floor": 26,
+    "cents": 7,
+    "minutes": 180.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL14OUAFIC",
+    "leg": "OUA",
+    "entry": 31,
+    "floor": 25,
+    "cents": 6,
+    "minutes": 1.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MARHAN",
+    "leg": "MAR",
+    "entry": 31,
+    "floor": 25,
+    "cents": 6,
+    "minutes": 134.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13QUERUS",
+    "leg": "QUE",
+    "entry": 35,
+    "floor": 29,
+    "cents": 6,
+    "minutes": 831.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL14PUTLIU",
+    "leg": "LIU",
+    "entry": 44,
+    "floor": 38,
+    "cents": 6,
+    "minutes": 178.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15AVAMAR",
+    "leg": "AVA",
+    "entry": 43,
+    "floor": 37,
+    "cents": 6,
+    "minutes": 636.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12ALVVAN",
+    "leg": "VAN",
+    "entry": 29,
+    "floor": 24,
+    "cents": 5,
+    "minutes": 5.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12BOUVIT",
+    "leg": "VIT",
+    "entry": 6,
+    "floor": 1,
+    "cents": 5,
+    "minutes": 5.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12OUAFER",
+    "leg": "FER",
+    "entry": 6,
+    "floor": 1,
+    "cents": 5,
+    "minutes": 37.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12PALMAR",
+    "leg": "MAR",
+    "entry": 6,
+    "floor": 1,
+    "cents": 5,
+    "minutes": 50.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12TROHOR",
+    "leg": "HOR",
+    "entry": 6,
+    "floor": 1,
+    "cents": 5,
+    "minutes": 166.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15ZINGAL",
+    "leg": "ZIN",
+    "entry": 32,
+    "floor": 27,
+    "cents": 5,
+    "minutes": 316.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19CASVAS",
+    "leg": "CAS",
+    "entry": 42,
+    "floor": 37,
+    "cents": 5,
+    "minutes": 123.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19YEVSTR",
+    "leg": "YEV",
+    "entry": 9,
+    "floor": 4,
+    "cents": 5,
+    "minutes": 1.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12KOPPRI",
+    "leg": "KOP",
+    "entry": 29,
+    "floor": 24,
+    "cents": 5,
+    "minutes": 853.8,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13TABROD",
+    "leg": "ROD",
+    "entry": 45,
+    "floor": 40,
+    "cents": 5,
+    "minutes": 406.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14GOMMCD",
+    "leg": "MCD",
+    "entry": 45,
+    "floor": 40,
+    "cents": 5,
+    "minutes": 747.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14KYMDIE",
+    "leg": "DIE",
+    "entry": 41,
+    "floor": 36,
+    "cents": 5,
+    "minutes": 580.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17BURMER",
+    "leg": "BUR",
+    "entry": 42,
+    "floor": 37,
+    "cents": 5,
+    "minutes": 842.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19LUZTAB",
+    "leg": "LUZ",
+    "entry": 10,
+    "floor": 5,
+    "cents": 5,
+    "minutes": 935.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20DIACIN",
+    "leg": "CIN",
+    "entry": 40,
+    "floor": 35,
+    "cents": 5,
+    "minutes": 588.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SHITUR",
+    "leg": "TUR",
+    "entry": 6,
+    "floor": 1,
+    "cents": 5,
+    "minutes": 20.8,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13ARGTAG",
+    "leg": "ARG",
+    "entry": 7,
+    "floor": 2,
+    "cents": 5,
+    "minutes": 303.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13ROMKUL",
+    "leg": "KUL",
+    "entry": 28,
+    "floor": 23,
+    "cents": 5,
+    "minutes": 719.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13SAKTON",
+    "leg": "TON",
+    "entry": 45,
+    "floor": 40,
+    "cents": 5,
+    "minutes": 7.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19EIGCAR",
+    "leg": "EIG",
+    "entry": 10,
+    "floor": 5,
+    "cents": 5,
+    "minutes": 802.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12DELMAK",
+    "leg": "DEL",
+    "entry": 5,
+    "floor": 1,
+    "cents": 4,
+    "minutes": 19.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14PERCRA",
+    "leg": "PER",
+    "entry": 9,
+    "floor": 5,
+    "cents": 4,
+    "minutes": 404.5,
+    "cat": "ATP_CHALL",
+    "origin": "le25"
+   },
+   {
+    "code": "26JUL19VANGOR",
+    "leg": "VAN",
+    "entry": 51,
+    "floor": 47,
+    "cents": 4,
+    "minutes": 30.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20NOGSHI",
+    "leg": "SHI",
+    "entry": 47,
+    "floor": 43,
+    "cents": 4,
+    "minutes": 224.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20ZHESHE",
+    "leg": "SHE",
+    "entry": 22,
+    "floor": 18,
+    "cents": 4,
+    "minutes": 183.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17TABTIR",
+    "leg": "TIR",
+    "entry": 46,
+    "floor": 42,
+    "cents": 4,
+    "minutes": 220.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19DELDJE",
+    "leg": "DEL",
+    "entry": 37,
+    "floor": 33,
+    "cents": 4,
+    "minutes": 314.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19PELBUE",
+    "leg": "BUE",
+    "entry": 32,
+    "floor": 28,
+    "cents": 4,
+    "minutes": 271.8,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20SCHROD",
+    "leg": "SCH",
+    "entry": 42,
+    "floor": 38,
+    "cents": 4,
+    "minutes": 449.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14BRAPIE",
+    "leg": "PIE",
+    "entry": 21,
+    "floor": 17,
+    "cents": 4,
+    "minutes": 0.0,
+    "cat": "WTA_CHALL",
+    "origin": "le25"
+   },
+   {
+    "code": "26JUL15BONZID",
+    "leg": "ZID",
+    "entry": 32,
+    "floor": 28,
+    "cents": 4,
+    "minutes": 1000.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BARYUA",
+    "leg": "YUA",
+    "entry": 29,
+    "floor": 25,
+    "cents": 4,
+    "minutes": 512.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BLIBEJ",
+    "leg": "BLI",
+    "entry": 40,
+    "floor": 36,
+    "cents": 4,
+    "minutes": 1479.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20OKTDOD",
+    "leg": "DOD",
+    "entry": 33,
+    "floor": 29,
+    "cents": 4,
+    "minutes": 510.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12BROBAR",
+    "leg": "BAR",
+    "entry": 23,
+    "floor": 20,
+    "cents": 3,
+    "minutes": 577.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12POLKUH",
+    "leg": "KUH",
+    "entry": 18,
+    "floor": 15,
+    "cents": 3,
+    "minutes": 0.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ROUGAN",
+    "leg": "ROU",
+    "entry": 4,
+    "floor": 1,
+    "cents": 3,
+    "minutes": 5.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SIAIVA",
+    "leg": "SIA",
+    "entry": 4,
+    "floor": 1,
+    "cents": 3,
+    "minutes": 101.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ALTGAS",
+    "leg": "GAS",
+    "entry": 41,
+    "floor": 38,
+    "cents": 3,
+    "minutes": 2196.8,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12DZUROC",
+    "leg": "DZU",
+    "entry": 46,
+    "floor": 43,
+    "cents": 3,
+    "minutes": 401.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15KYMTSI",
+    "leg": "KYM",
+    "entry": 29,
+    "floor": 26,
+    "cents": 3,
+    "minutes": 784.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17RINTSI",
+    "leg": "RIN",
+    "entry": 39,
+    "floor": 36,
+    "cents": 3,
+    "minutes": 1063.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18VALDAR",
+    "leg": "VAL",
+    "entry": 33,
+    "floor": 30,
+    "cents": 3,
+    "minutes": 673.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19CINGIU",
+    "leg": "GIU",
+    "entry": 29,
+    "floor": 26,
+    "cents": 3,
+    "minutes": 282.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13TAUHIB",
+    "leg": "HIB",
+    "entry": 24,
+    "floor": 21,
+    "cents": 3,
+    "minutes": 591.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15KREMON",
+    "leg": "MON",
+    "entry": 10,
+    "floor": 7,
+    "cents": 3,
+    "minutes": 1704.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18HONTHA",
+    "leg": "THA",
+    "entry": 16,
+    "floor": 13,
+    "cents": 3,
+    "minutes": 55.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20PARHAV",
+    "leg": "HAV",
+    "entry": 36,
+    "floor": 33,
+    "cents": 3,
+    "minutes": 478.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20SEISNI",
+    "leg": "SEI",
+    "entry": 21,
+    "floor": 18,
+    "cents": 3,
+    "minutes": 221.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13REHJUS",
+    "leg": "JUS",
+    "entry": 39,
+    "floor": 37,
+    "cents": 2,
+    "minutes": 44.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14DELXIL",
+    "leg": "XIL",
+    "entry": 17,
+    "floor": 15,
+    "cents": 2,
+    "minutes": 143.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19DEMMAG",
+    "leg": "DEM",
+    "entry": 6,
+    "floor": 4,
+    "cents": 2,
+    "minutes": 257.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19IMATRA",
+    "leg": "TRA",
+    "entry": 32,
+    "floor": 30,
+    "cents": 2,
+    "minutes": 2.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15BASTIR",
+    "leg": "BAS",
+    "entry": 32,
+    "floor": 30,
+    "cents": 2,
+    "minutes": 5.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17CERRUU",
+    "leg": "CER",
+    "entry": 27,
+    "floor": 25,
+    "cents": 2,
+    "minutes": 789.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18RUBTAB",
+    "leg": "TAB",
+    "entry": 31,
+    "floor": 29,
+    "cents": 2,
+    "minutes": 458.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19CERTRU",
+    "leg": "TRU",
+    "entry": 32,
+    "floor": 30,
+    "cents": 2,
+    "minutes": 0.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19KOPBUS",
+    "leg": "KOP",
+    "entry": 37,
+    "floor": 35,
+    "cents": 2,
+    "minutes": 664.8,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19MULNAV",
+    "leg": "MUL",
+    "entry": 17,
+    "floor": 15,
+    "cents": 2,
+    "minutes": 0.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19NEUHAN",
+    "leg": "NEU",
+    "entry": 30,
+    "floor": 28,
+    "cents": 2,
+    "minutes": 614.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19RUBDAR",
+    "leg": "DAR",
+    "entry": 44,
+    "floor": 42,
+    "cents": 2,
+    "minutes": 237.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19TORBAS",
+    "leg": "TOR",
+    "entry": 24,
+    "floor": 22,
+    "cents": 2,
+    "minutes": 137.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12PANYOR",
+    "leg": "YOR",
+    "entry": 3,
+    "floor": 1,
+    "cents": 2,
+    "minutes": 30.7,
+    "cat": "WTA_CHALL",
+    "origin": "le25"
+   },
+   {
+    "code": "26JUL14KOSRUG",
+    "leg": "RUG",
+    "entry": 26,
+    "floor": 24,
+    "cents": 2,
+    "minutes": 178.2,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12FETPIE",
+    "leg": "FET",
+    "entry": 35,
+    "floor": 33,
+    "cents": 2,
+    "minutes": 5.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13AVAFET",
+    "leg": "FET",
+    "entry": 10,
+    "floor": 8,
+    "cents": 2,
+    "minutes": 480.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18BADZID",
+    "leg": "ZID",
+    "entry": 25,
+    "floor": 23,
+    "cents": 2,
+    "minutes": 159.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19PRIMAR",
+    "leg": "MAR",
+    "entry": 12,
+    "floor": 10,
+    "cents": 2,
+    "minutes": 461.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19VEDGAR",
+    "leg": "GAR",
+    "entry": 13,
+    "floor": 11,
+    "cents": 2,
+    "minutes": 761.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BONUCH",
+    "leg": "UCH",
+    "entry": 28,
+    "floor": 26,
+    "cents": 2,
+    "minutes": 894.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20PIECAR",
+    "leg": "PIE",
+    "entry": 17,
+    "floor": 15,
+    "cents": 2,
+    "minutes": 562.5,
+    "cat": "WTA_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20PRIBRA",
+    "leg": "BRA",
+    "entry": 9,
+    "floor": 7,
+    "cents": 2,
+    "minutes": 637.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20ROMERJ",
+    "leg": "ROM",
+    "entry": 44,
+    "floor": 42,
+    "cents": 2,
+    "minutes": 76.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12ARNROM",
+    "leg": "ROM",
+    "entry": 39,
+    "floor": 38,
+    "cents": 1,
+    "minutes": 688.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12FORPAM",
+    "leg": "PAM",
+    "entry": 2,
+    "floor": 1,
+    "cents": 1,
+    "minutes": 45.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13INCSTE",
+    "leg": "STE",
+    "entry": 46,
+    "floor": 45,
+    "cents": 1,
+    "minutes": 0.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13ROZISO",
+    "leg": "ISO",
+    "entry": 29,
+    "floor": 28,
+    "cents": 1,
+    "minutes": 82.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19JONISO",
+    "leg": "JON",
+    "entry": 37,
+    "floor": 36,
+    "cents": 1,
+    "minutes": 10.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19MONTHO",
+    "leg": "THO",
+    "entry": 6,
+    "floor": 5,
+    "cents": 1,
+    "minutes": 502.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19OLILAS",
+    "leg": "LAS",
+    "entry": 5,
+    "floor": 4,
+    "cents": 1,
+    "minutes": 213.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19RODIVA",
+    "leg": "IVA",
+    "entry": 35,
+    "floor": 34,
+    "cents": 1,
+    "minutes": 73.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19SURPER",
+    "leg": "PER",
+    "entry": 4,
+    "floor": 3,
+    "cents": 1,
+    "minutes": 304.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20BICWAL",
+    "leg": "BIC",
+    "entry": 15,
+    "floor": 14,
+    "cents": 1,
+    "minutes": 196.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20GADGUI",
+    "leg": "GAD",
+    "entry": 47,
+    "floor": 46,
+    "cents": 1,
+    "minutes": 0.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20IMAKIN",
+    "leg": "KIN",
+    "entry": 32,
+    "floor": 31,
+    "cents": 1,
+    "minutes": 65.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CARSAN",
+    "leg": "SAN",
+    "entry": 20,
+    "floor": 19,
+    "cents": 1,
+    "minutes": 300.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12FELKEC",
+    "leg": "FEL",
+    "entry": 27,
+    "floor": 26,
+    "cents": 1,
+    "minutes": 615.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SONSCH",
+    "leg": "SCH",
+    "entry": 31,
+    "floor": 30,
+    "cents": 1,
+    "minutes": 337.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13COLSKA",
+    "leg": "SKA",
+    "entry": 13,
+    "floor": 12,
+    "cents": 1,
+    "minutes": 102.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14RINTAB",
+    "leg": "TAB",
+    "entry": 33,
+    "floor": 32,
+    "cents": 1,
+    "minutes": 238.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14TRAKRU",
+    "leg": "TRA",
+    "entry": 43,
+    "floor": 42,
+    "cents": 1,
+    "minutes": 267.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14VALDAM",
+    "leg": "DAM",
+    "entry": 19,
+    "floor": 18,
+    "cents": 1,
+    "minutes": 251.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15BORDIM",
+    "leg": "DIM",
+    "entry": 34,
+    "floor": 33,
+    "cents": 1,
+    "minutes": 251.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15BUBHAL",
+    "leg": "HAL",
+    "entry": 32,
+    "floor": 31,
+    "cents": 1,
+    "minutes": 681.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15COLSON",
+    "leg": "SON",
+    "entry": 34,
+    "floor": 33,
+    "cents": 1,
+    "minutes": 9.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15PRIMOL",
+    "leg": "MOL",
+    "entry": 29,
+    "floor": 28,
+    "cents": 1,
+    "minutes": 74.8,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15TRANAV",
+    "leg": "TRA",
+    "entry": 17,
+    "floor": 16,
+    "cents": 1,
+    "minutes": 434.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL16DZUARN",
+    "leg": "DZU",
+    "entry": 33,
+    "floor": 32,
+    "cents": 1,
+    "minutes": 84.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17DZUMOL",
+    "leg": "DZU",
+    "entry": 33,
+    "floor": 32,
+    "cents": 1,
+    "minutes": 500.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18JACDA",
+    "leg": "DA",
+    "entry": 5,
+    "floor": 4,
+    "cents": 1,
+    "minutes": 1.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18MERDZU",
+    "leg": "DZU",
+    "entry": 32,
+    "floor": 31,
+    "cents": 1,
+    "minutes": 768.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18ROCBUE",
+    "leg": "ROC",
+    "entry": 17,
+    "floor": 16,
+    "cents": 1,
+    "minutes": 570.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18RODCHE",
+    "leg": "CHE",
+    "entry": 17,
+    "floor": 16,
+    "cents": 1,
+    "minutes": 0.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18WALDJE",
+    "leg": "WAL",
+    "entry": 5,
+    "floor": 4,
+    "cents": 1,
+    "minutes": 193.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SAIETO",
+    "leg": "ETO",
+    "entry": 2,
+    "floor": 1,
+    "cents": 1,
+    "minutes": 24.2,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13BADKAL",
+    "leg": "KAL",
+    "entry": 40,
+    "floor": 39,
+    "cents": 1,
+    "minutes": 1307.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13BURPUT",
+    "leg": "BUR",
+    "entry": 32,
+    "floor": 31,
+    "cents": 1,
+    "minutes": 181.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13MORBEJ",
+    "leg": "MOR",
+    "entry": 12,
+    "floor": 11,
+    "cents": 1,
+    "minutes": 178.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15MICZHE",
+    "leg": "MIC",
+    "entry": 6,
+    "floor": 5,
+    "cents": 1,
+    "minutes": 377.4,
+    "cat": "WTA_MAIN",
+    "origin": "le25"
+   },
+   {
+    "code": "26JUL16TAUTON",
+    "leg": "TON",
+    "entry": 6,
+    "floor": 5,
+    "cents": 1,
+    "minutes": 1018.9,
+    "cat": "WTA_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL16UDVKAW",
+    "leg": "KAW",
+    "entry": 47,
+    "floor": 46,
+    "cents": 1,
+    "minutes": 236.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18BERSAI",
+    "leg": "BER",
+    "entry": 10,
+    "floor": 9,
+    "cents": 1,
+    "minutes": 169.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18PODKRE",
+    "leg": "KRE",
+    "entry": 8,
+    "floor": 7,
+    "cents": 1,
+    "minutes": 367.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19YASBAR",
+    "leg": "YAS",
+    "entry": 8,
+    "floor": 7,
+    "cents": 1,
+    "minutes": 741.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BOUBOU2",
+    "leg": "BOU2",
+    "entry": 28,
+    "floor": 27,
+    "cents": 1,
+    "minutes": 466.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20RUSPAQ",
+    "leg": "PAQ",
+    "entry": 38,
+    "floor": 37,
+    "cents": 1,
+    "minutes": 27.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   }
+  ]
+ },
+ "missed_climber_by_waiting": {
+  "measurable_mirrored_pairs": 492,
+  "positive_cost_pairs": 257,
+  "cents_sum": 2523,
+  "climber_unprintable_after_faller_floor": 27,
+  "rows": [
+   {
+    "code": "26JUL12BROGIU",
+    "climber": "BRO",
+    "delta_cents": 83,
+    "minutes_floor_gap": 52.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MICKUL",
+    "climber": "MIC",
+    "delta_cents": 81,
+    "minutes_floor_gap": 22.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12KULZAA",
+    "climber": "KUL",
+    "delta_cents": 78,
+    "minutes_floor_gap": 68.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20GALARN",
+    "climber": "ARN",
+    "delta_cents": 75,
+    "minutes_floor_gap": 95.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12VILRAH",
+    "climber": "VIL",
+    "delta_cents": 66,
+    "minutes_floor_gap": 29.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12DODDEL",
+    "climber": "DEL",
+    "delta_cents": 63,
+    "minutes_floor_gap": 59.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12HECISO",
+    "climber": "ISO",
+    "delta_cents": 63,
+    "minutes_floor_gap": 38.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12TABHUE",
+    "climber": "TAB",
+    "delta_cents": 58,
+    "minutes_floor_gap": 85.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SKASAC",
+    "climber": "SKA",
+    "delta_cents": 57,
+    "minutes_floor_gap": 60.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12GANJAN",
+    "climber": "GAN",
+    "delta_cents": 56,
+    "minutes_floor_gap": 65.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12GUEGOM",
+    "climber": "GOM",
+    "delta_cents": 56,
+    "minutes_floor_gap": 54.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12PRASAI",
+    "climber": "PRA",
+    "delta_cents": 55,
+    "minutes_floor_gap": 37.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12BASABB",
+    "climber": "BAS",
+    "delta_cents": 50,
+    "minutes_floor_gap": 39.2,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12HESKOT",
+    "climber": "KOT",
+    "delta_cents": 47,
+    "minutes_floor_gap": 28.3,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ROUJAK",
+    "climber": "JAK",
+    "delta_cents": 47,
+    "minutes_floor_gap": 320.7,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12RAQKUM",
+    "climber": "KUM",
+    "delta_cents": 43,
+    "minutes_floor_gap": 51.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MORPET",
+    "climber": "MOR",
+    "delta_cents": 42,
+    "minutes_floor_gap": 22.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12GARPRI",
+    "climber": "GAR",
+    "delta_cents": 41,
+    "minutes_floor_gap": 33.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12HERALM",
+    "climber": "ALM",
+    "delta_cents": 40,
+    "minutes_floor_gap": 14.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ARIZHA",
+    "climber": "ZHA",
+    "delta_cents": 37,
+    "minutes_floor_gap": 34.8,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CRIBAS",
+    "climber": "CRI",
+    "delta_cents": 36,
+    "minutes_floor_gap": 32.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CINHEM",
+    "climber": "CIN",
+    "delta_cents": 36,
+    "minutes_floor_gap": 66.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12HIBTON",
+    "climber": "HIB",
+    "delta_cents": 35,
+    "minutes_floor_gap": 43.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18PELSIL",
+    "climber": "PEL",
+    "delta_cents": 32,
+    "minutes_floor_gap": 827.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12KUMTUR",
+    "climber": "KUM",
+    "delta_cents": 30,
+    "minutes_floor_gap": 62.7,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12BUEMAR",
+    "climber": "MAR",
+    "delta_cents": 29,
+    "minutes_floor_gap": 17.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12KRUFER",
+    "climber": "KRU",
+    "delta_cents": 29,
+    "minutes_floor_gap": 52.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MORNEP",
+    "climber": "MOR",
+    "delta_cents": 28,
+    "minutes_floor_gap": 22.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20VISNIK",
+    "climber": "VIS",
+    "delta_cents": 24,
+    "minutes_floor_gap": 4.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CECOLI",
+    "climber": "CEC",
+    "delta_cents": 24,
+    "minutes_floor_gap": 72.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MEJSOT",
+    "climber": "MEJ",
+    "delta_cents": 23,
+    "minutes_floor_gap": 27.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ITOMAN",
+    "climber": "ITO",
+    "delta_cents": 23,
+    "minutes_floor_gap": 46.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12BALPET",
+    "climber": "PET",
+    "delta_cents": 21,
+    "minutes_floor_gap": 24.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ECHMUN",
+    "climber": "ECH",
+    "delta_cents": 21,
+    "minutes_floor_gap": 38.0,
+    "cat": "ATP_CHALL",
+    "origin": "ge76"
+   },
+   {
+    "code": "26JUL12HODYAS",
+    "climber": "HOD",
+    "delta_cents": 21,
+    "minutes_floor_gap": 42.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12ALVVAN",
+    "climber": "ALV",
+    "delta_cents": 20,
+    "minutes_floor_gap": 14.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12FEAWAL",
+    "climber": "WAL",
+    "delta_cents": 20,
+    "minutes_floor_gap": 11.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ZELFAL",
+    "climber": "FAL",
+    "delta_cents": 20,
+    "minutes_floor_gap": 105.1,
+    "cat": "WTA_CHALL",
+    "origin": "ge76"
+   },
+   {
+    "code": "26JUL12CHISEA",
+    "climber": "SEA",
+    "delta_cents": 17,
+    "minutes_floor_gap": 30.7,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12WERAMA",
+    "climber": "WER",
+    "delta_cents": 17,
+    "minutes_floor_gap": 604.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12GURDAL",
+    "climber": "DAL",
+    "delta_cents": 14,
+    "minutes_floor_gap": 43.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SHEVAN",
+    "climber": "VAN",
+    "delta_cents": 14,
+    "minutes_floor_gap": 29.8,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CHAJON",
+    "climber": "JON",
+    "delta_cents": 13,
+    "minutes_floor_gap": 164.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12FORPAM",
+    "climber": "FOR",
+    "delta_cents": 13,
+    "minutes_floor_gap": 3.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12POLVIN",
+    "climber": "VIN",
+    "delta_cents": 13,
+    "minutes_floor_gap": 37.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SHITUR",
+    "climber": "SHI",
+    "delta_cents": 13,
+    "minutes_floor_gap": 60.9,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL16MERDRO",
+    "climber": "MER",
+    "delta_cents": 12,
+    "minutes_floor_gap": 294.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ARNROM",
+    "climber": "ARN",
+    "delta_cents": 11,
+    "minutes_floor_gap": 1096.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13PRIGAR",
+    "climber": "PRI",
+    "delta_cents": 11,
+    "minutes_floor_gap": 989.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13QUERUS",
+    "climber": "RUS",
+    "delta_cents": 11,
+    "minutes_floor_gap": 837.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19KRESAK",
+    "climber": "KRE",
+    "delta_cents": 11,
+    "minutes_floor_gap": 542.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13ROZISO",
+    "climber": "ROZ",
+    "delta_cents": 10,
+    "minutes_floor_gap": 504.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19CASVAS",
+    "climber": "VAS",
+    "delta_cents": 10,
+    "minutes_floor_gap": 223.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20KORJIM",
+    "climber": "KOR",
+    "delta_cents": 10,
+    "minutes_floor_gap": 1791.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15YIBYUN",
+    "climber": "YIB",
+    "delta_cents": 9,
+    "minutes_floor_gap": 741.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MULSHE",
+    "climber": "SHE",
+    "delta_cents": 9,
+    "minutes_floor_gap": 3237.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19WAWBUR",
+    "climber": "BUR",
+    "delta_cents": 9,
+    "minutes_floor_gap": 344.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20AKSCOS",
+    "climber": "COS",
+    "delta_cents": 9,
+    "minutes_floor_gap": 461.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12AVEFOR",
+    "climber": "AVE",
+    "delta_cents": 8,
+    "minutes_floor_gap": 591.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12BOOONC",
+    "climber": "ONC",
+    "delta_cents": 8,
+    "minutes_floor_gap": 783.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12PALMAR",
+    "climber": "PAL",
+    "delta_cents": 8,
+    "minutes_floor_gap": 64.9,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13KUMLAG",
+    "climber": "LAG",
+    "delta_cents": 8,
+    "minutes_floor_gap": 418.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15ZINGAL",
+    "climber": "GAL",
+    "delta_cents": 8,
+    "minutes_floor_gap": 559.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19DEMMAG",
+    "climber": "MAG",
+    "delta_cents": 8,
+    "minutes_floor_gap": 291.9,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19NIKVRB",
+    "climber": "VRB",
+    "delta_cents": 8,
+    "minutes_floor_gap": 235.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12JACTRU",
+    "climber": "TRU",
+    "delta_cents": 8,
+    "minutes_floor_gap": 2026.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12KOPPRI",
+    "climber": "PRI",
+    "delta_cents": 8,
+    "minutes_floor_gap": 1970.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15VANDRO",
+    "climber": "DRO",
+    "delta_cents": 8,
+    "minutes_floor_gap": 656.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SOKNUG",
+    "climber": "NUG",
+    "delta_cents": 8,
+    "minutes_floor_gap": 565.3,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13BONSOR",
+    "climber": "BON",
+    "delta_cents": 8,
+    "minutes_floor_gap": 606.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20LEPAVA",
+    "climber": "AVA",
+    "delta_cents": 8,
+    "minutes_floor_gap": 341.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL14PERCRA",
+    "climber": "CRA",
+    "delta_cents": 7,
+    "minutes_floor_gap": 509.7,
+    "cat": "ATP_CHALL",
+    "origin": "ge76"
+   },
+   {
+    "code": "26JUL19JONISO",
+    "climber": "ISO",
+    "delta_cents": 7,
+    "minutes_floor_gap": 548.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20TORSTR",
+    "climber": "STR",
+    "delta_cents": 7,
+    "minutes_floor_gap": 313.6,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12MARHAN",
+    "climber": "HAN",
+    "delta_cents": 7,
+    "minutes_floor_gap": 226.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SONSCH",
+    "climber": "SON",
+    "delta_cents": 7,
+    "minutes_floor_gap": 432.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12STRMUN",
+    "climber": "MUN",
+    "delta_cents": 7,
+    "minutes_floor_gap": 1434.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18ROCBUE",
+    "climber": "BUE",
+    "delta_cents": 7,
+    "minutes_floor_gap": 699.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14FERZAN",
+    "climber": "FER",
+    "delta_cents": 7,
+    "minutes_floor_gap": 357.9,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12OKAIPE",
+    "climber": "IPE",
+    "delta_cents": 7,
+    "minutes_floor_gap": 744.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12PRIION",
+    "climber": "PRI",
+    "delta_cents": 7,
+    "minutes_floor_gap": 516.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12TAGSIE",
+    "climber": "TAG",
+    "delta_cents": 7,
+    "minutes_floor_gap": 317.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13ROMKUL",
+    "climber": "ROM",
+    "delta_cents": 7,
+    "minutes_floor_gap": 753.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13SAKTON",
+    "climber": "SAK",
+    "delta_cents": 7,
+    "minutes_floor_gap": 644.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13TAUHIB",
+    "climber": "TAU",
+    "delta_cents": 7,
+    "minutes_floor_gap": 1720.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12DELMAK",
+    "climber": "MAK",
+    "delta_cents": 6,
+    "minutes_floor_gap": 28.9,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12OUAFER",
+    "climber": "OUA",
+    "delta_cents": 6,
+    "minutes_floor_gap": 95.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13INCSTE",
+    "climber": "INC",
+    "delta_cents": 6,
+    "minutes_floor_gap": 516.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19KUZOPI",
+    "climber": "KUZ",
+    "delta_cents": 6,
+    "minutes_floor_gap": 186.2,
+    "cat": "ATP_CHALL",
+    "origin": "ge76"
+   },
+   {
+    "code": "26JUL19VANGOR",
+    "climber": "GOR",
+    "delta_cents": 6,
+    "minutes_floor_gap": 275.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12OFNTIR",
+    "climber": "TIR",
+    "delta_cents": 6,
+    "minutes_floor_gap": 991.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17BURMER",
+    "climber": "MER",
+    "delta_cents": 6,
+    "minutes_floor_gap": 843.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17RINTSI",
+    "climber": "TSI",
+    "delta_cents": 6,
+    "minutes_floor_gap": 1309.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL16HERVAN",
+    "climber": "VAN",
+    "delta_cents": 6,
+    "minutes_floor_gap": 95.2,
+    "cat": "WTA_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL14PUTLIU",
+    "climber": "PUT",
+    "delta_cents": 6,
+    "minutes_floor_gap": 268.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15AVAMAR",
+    "climber": "MAR",
+    "delta_cents": 6,
+    "minutes_floor_gap": 736.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15BONZID",
+    "climber": "BON",
+    "delta_cents": 6,
+    "minutes_floor_gap": 1128.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19EIGCAR",
+    "climber": "CAR",
+    "delta_cents": 6,
+    "minutes_floor_gap": 803.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20PRIBRA",
+    "climber": "PRI",
+    "delta_cents": 6,
+    "minutes_floor_gap": 642.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12POLKUH",
+    "climber": "POL",
+    "delta_cents": 5,
+    "minutes_floor_gap": 102.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20ZHESHE",
+    "climber": "ZHE",
+    "delta_cents": 5,
+    "minutes_floor_gap": 502.6,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12LAJVAN",
+    "climber": "VAN",
+    "delta_cents": 5,
+    "minutes_floor_gap": 1092.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12TSIBUS",
+    "climber": "BUS",
+    "delta_cents": 5,
+    "minutes_floor_gap": 2746.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13TABROD",
+    "climber": "TAB",
+    "delta_cents": 5,
+    "minutes_floor_gap": 441.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14GOMMCD",
+    "climber": "GOM",
+    "delta_cents": 5,
+    "minutes_floor_gap": 927.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14KYMDIE",
+    "climber": "KYM",
+    "delta_cents": 5,
+    "minutes_floor_gap": 658.6,
+    "cat": "ATP_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15HANVAC",
+    "climber": "HAN",
+    "delta_cents": 5,
+    "minutes_floor_gap": 306.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18BUTTAB",
+    "climber": "TAB",
+    "delta_cents": 5,
+    "minutes_floor_gap": 655.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18RODCHE",
+    "climber": "ROD",
+    "delta_cents": 5,
+    "minutes_floor_gap": 421.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18VALDAR",
+    "climber": "DAR",
+    "delta_cents": 5,
+    "minutes_floor_gap": 991.2,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19CINGIU",
+    "climber": "CIN",
+    "delta_cents": 5,
+    "minutes_floor_gap": 1244.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19PELBUE",
+    "climber": "PEL",
+    "delta_cents": 5,
+    "minutes_floor_gap": 838.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20DIACIN",
+    "climber": "DIA",
+    "delta_cents": 5,
+    "minutes_floor_gap": 842.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13KNUKUR",
+    "climber": "KNU",
+    "delta_cents": 5,
+    "minutes_floor_gap": 354.9,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13MATMIC",
+    "climber": "MIC",
+    "delta_cents": 5,
+    "minutes_floor_gap": 135.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13MORBEJ",
+    "climber": "BEJ",
+    "delta_cents": 5,
+    "minutes_floor_gap": 700.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15KREMON",
+    "climber": "KRE",
+    "delta_cents": 5,
+    "minutes_floor_gap": 1916.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL17UDVBAD",
+    "climber": "BAD",
+    "delta_cents": 5,
+    "minutes_floor_gap": 203.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19VEDGAR",
+    "climber": "VED",
+    "delta_cents": 5,
+    "minutes_floor_gap": 1100.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BARYUA",
+    "climber": "BAR",
+    "delta_cents": 5,
+    "minutes_floor_gap": 1983.6,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BOUBOU2",
+    "climber": "BOU",
+    "delta_cents": 5,
+    "minutes_floor_gap": 1456.0,
+    "cat": "WTA_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20PARHAV",
+    "climber": "PAR",
+    "delta_cents": 5,
+    "minutes_floor_gap": 679.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13PERTOB",
+    "climber": "PER",
+    "delta_cents": 4,
+    "minutes_floor_gap": 571.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14LAGSAN",
+    "climber": "SAN",
+    "delta_cents": 4,
+    "minutes_floor_gap": 46.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14ZHUYUN",
+    "climber": "YUN",
+    "delta_cents": 4,
+    "minutes_floor_gap": 237.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18CASGEA",
+    "climber": "GEA",
+    "delta_cents": 4,
+    "minutes_floor_gap": 346.5,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12ALTGAS",
+    "climber": "ALT",
+    "delta_cents": 4,
+    "minutes_floor_gap": 2937.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12DZUROC",
+    "climber": "ROC",
+    "delta_cents": 4,
+    "minutes_floor_gap": 259.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12REJMID",
+    "climber": "MID",
+    "delta_cents": 4,
+    "minutes_floor_gap": 273.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15KYMTSI",
+    "climber": "TSI",
+    "delta_cents": 4,
+    "minutes_floor_gap": 624.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18MERDZU",
+    "climber": "MER",
+    "delta_cents": 4,
+    "minutes_floor_gap": 945.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18WALDJE",
+    "climber": "DJE",
+    "delta_cents": 4,
+    "minutes_floor_gap": 310.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19DELDJE",
+    "climber": "DJE",
+    "delta_cents": 4,
+    "minutes_floor_gap": 894.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19TORBAS",
+    "climber": "BAS",
+    "delta_cents": 4,
+    "minutes_floor_gap": 525.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13BAIPRO",
+    "climber": "PRO",
+    "delta_cents": 4,
+    "minutes_floor_gap": 347.8,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14BRAPIE",
+    "climber": "BRA",
+    "delta_cents": 4,
+    "minutes_floor_gap": 165.6,
+    "cat": "WTA_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL14KOSRUG",
+    "climber": "KOS",
+    "delta_cents": 4,
+    "minutes_floor_gap": 383.5,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18PALHON",
+    "climber": "HON",
+    "delta_cents": 4,
+    "minutes_floor_gap": 673.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BLIBEJ",
+    "climber": "BEJ",
+    "delta_cents": 4,
+    "minutes_floor_gap": 1971.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12TROHOR",
+    "climber": "TRO",
+    "delta_cents": 3,
+    "minutes_floor_gap": 591.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13GREVAN",
+    "climber": "GRE",
+    "delta_cents": 3,
+    "minutes_floor_gap": 207.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19JOHGEO",
+    "climber": "JOH",
+    "delta_cents": 3,
+    "minutes_floor_gap": 124.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19RODIVA",
+    "climber": "ROD",
+    "delta_cents": 3,
+    "minutes_floor_gap": 408.9,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20BICWAL",
+    "climber": "WAL",
+    "delta_cents": 3,
+    "minutes_floor_gap": 616.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20TOKHUR",
+    "climber": "TOK",
+    "delta_cents": 3,
+    "minutes_floor_gap": 331.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CARSAN",
+    "climber": "CAR",
+    "delta_cents": 3,
+    "minutes_floor_gap": 406.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12DEJGAU",
+    "climber": "DEJ",
+    "delta_cents": 3,
+    "minutes_floor_gap": 150.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MOLFAU",
+    "climber": "MOL",
+    "delta_cents": 3,
+    "minutes_floor_gap": 652.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15PRIMOL",
+    "climber": "PRI",
+    "delta_cents": 3,
+    "minutes_floor_gap": 925.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17CERRUU",
+    "climber": "RUU",
+    "delta_cents": 3,
+    "minutes_floor_gap": 1044.7,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19NEUHAN",
+    "climber": "HAN",
+    "delta_cents": 3,
+    "minutes_floor_gap": 828.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20SCHROD",
+    "climber": "ROD",
+    "delta_cents": 3,
+    "minutes_floor_gap": 517.8,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13AVAFET",
+    "climber": "AVA",
+    "delta_cents": 3,
+    "minutes_floor_gap": 483.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13HODDAR",
+    "climber": "DAR",
+    "delta_cents": 3,
+    "minutes_floor_gap": 526.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15MICZHE",
+    "climber": "ZHE",
+    "delta_cents": 3,
+    "minutes_floor_gap": 706.6,
+    "cat": "WTA_MAIN",
+    "origin": "ge76"
+   },
+   {
+    "code": "26JUL18MICFRU",
+    "climber": "FRU",
+    "delta_cents": 3,
+    "minutes_floor_gap": 339.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19MONPIE",
+    "climber": "MON",
+    "delta_cents": 3,
+    "minutes_floor_gap": 163.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19PRIMAR",
+    "climber": "PRI",
+    "delta_cents": 3,
+    "minutes_floor_gap": 1209.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20PIECAR",
+    "climber": "CAR",
+    "delta_cents": 3,
+    "minutes_floor_gap": 218.4,
+    "cat": "WTA_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20ROMERJ",
+    "climber": "ERJ",
+    "delta_cents": 3,
+    "minutes_floor_gap": 322.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20RUSPAQ",
+    "climber": "RUS",
+    "delta_cents": 3,
+    "minutes_floor_gap": 625.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20SEISNI",
+    "climber": "SNI",
+    "delta_cents": 3,
+    "minutes_floor_gap": 1183.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12BROBAR",
+    "climber": "BRO",
+    "delta_cents": 2,
+    "minutes_floor_gap": 852.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SALARN",
+    "climber": "ARN",
+    "delta_cents": 2,
+    "minutes_floor_gap": 350.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SIAIVA",
+    "climber": "IVA",
+    "delta_cents": 2,
+    "minutes_floor_gap": 435.3,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12TOKROZ",
+    "climber": "ROZ",
+    "delta_cents": 2,
+    "minutes_floor_gap": 15.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14DALMAY",
+    "climber": "MAY",
+    "delta_cents": 2,
+    "minutes_floor_gap": 103.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15IVACRA",
+    "climber": "CRA",
+    "delta_cents": 2,
+    "minutes_floor_gap": 62.6,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL16GRESAN",
+    "climber": "GRE",
+    "delta_cents": 2,
+    "minutes_floor_gap": 49.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17SMIYUN",
+    "climber": "YUN",
+    "delta_cents": 2,
+    "minutes_floor_gap": 532.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19KIRAGU",
+    "climber": "AGU",
+    "delta_cents": 2,
+    "minutes_floor_gap": 121.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19OLILAS",
+    "climber": "OLI",
+    "delta_cents": 2,
+    "minutes_floor_gap": 761.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19SURPER",
+    "climber": "SUR",
+    "delta_cents": 2,
+    "minutes_floor_gap": 65.3,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19TOKMIY",
+    "climber": "MIY",
+    "delta_cents": 2,
+    "minutes_floor_gap": 422.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20NOGSHI",
+    "climber": "NOG",
+    "delta_cents": 2,
+    "minutes_floor_gap": 276.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20PALLEO",
+    "climber": "LEO",
+    "delta_cents": 2,
+    "minutes_floor_gap": 16.2,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20TROISO",
+    "climber": "TRO",
+    "delta_cents": 2,
+    "minutes_floor_gap": 189.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20VALGOM",
+    "climber": "GOM",
+    "delta_cents": 2,
+    "minutes_floor_gap": 314.9,
+    "cat": "ATP_CHALL",
+    "origin": "ge76"
+   },
+   {
+    "code": "26JUL12BORKOU",
+    "climber": "BOR",
+    "delta_cents": 2,
+    "minutes_floor_gap": 114.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SLADAM",
+    "climber": "DAM",
+    "delta_cents": 2,
+    "minutes_floor_gap": 459.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14DIAMID",
+    "climber": "DIA",
+    "delta_cents": 2,
+    "minutes_floor_gap": 388.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14VALDAM",
+    "climber": "VAL",
+    "delta_cents": 2,
+    "minutes_floor_gap": 777.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15TRANAV",
+    "climber": "NAV",
+    "delta_cents": 2,
+    "minutes_floor_gap": 716.5,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL16DZUARN",
+    "climber": "ARN",
+    "delta_cents": 2,
+    "minutes_floor_gap": 388.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17TABTIR",
+    "climber": "TAB",
+    "delta_cents": 2,
+    "minutes_floor_gap": 323.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18JACDA",
+    "climber": "JAC",
+    "delta_cents": 2,
+    "minutes_floor_gap": 68.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18KOPHER",
+    "climber": "KOP",
+    "delta_cents": 2,
+    "minutes_floor_gap": 54.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18MARJOR",
+    "climber": "MAR",
+    "delta_cents": 2,
+    "minutes_floor_gap": 62.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18RUBTAB",
+    "climber": "RUB",
+    "delta_cents": 2,
+    "minutes_floor_gap": 564.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19KOPBUS",
+    "climber": "BUS",
+    "delta_cents": 2,
+    "minutes_floor_gap": 1147.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19RUBDAR",
+    "climber": "RUB",
+    "delta_cents": 2,
+    "minutes_floor_gap": 247.0,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12VOLMAR",
+    "climber": "MAR",
+    "delta_cents": 2,
+    "minutes_floor_gap": 641.6,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL16BENKRA",
+    "climber": "KRA",
+    "delta_cents": 2,
+    "minutes_floor_gap": 592.9,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17ERJFEI",
+    "climber": "ERJ",
+    "delta_cents": 2,
+    "minutes_floor_gap": 238.9,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20GORMIN",
+    "climber": "MIN",
+    "delta_cents": 2,
+    "minutes_floor_gap": 33.1,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13ARGTAG",
+    "climber": "TAG",
+    "delta_cents": 2,
+    "minutes_floor_gap": 280.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL16UDVKAW",
+    "climber": "UDV",
+    "delta_cents": 2,
+    "minutes_floor_gap": 439.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18BADZID",
+    "climber": "BAD",
+    "delta_cents": 2,
+    "minutes_floor_gap": 43.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18HONTHA",
+    "climber": "HON",
+    "delta_cents": 2,
+    "minutes_floor_gap": 152.7,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18PODKRE",
+    "climber": "POD",
+    "delta_cents": 2,
+    "minutes_floor_gap": 928.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19RYSHON",
+    "climber": "HON",
+    "delta_cents": 2,
+    "minutes_floor_gap": 316.9,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19YASBAR",
+    "climber": "BAR",
+    "delta_cents": 2,
+    "minutes_floor_gap": 1082.8,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20BONUCH",
+    "climber": "BON",
+    "delta_cents": 2,
+    "minutes_floor_gap": 1181.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20GAOTAG",
+    "climber": "TAG",
+    "delta_cents": 2,
+    "minutes_floor_gap": 755.1,
+    "cat": "WTA_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20OLISCH",
+    "climber": "OLI",
+    "delta_cents": 2,
+    "minutes_floor_gap": 1406.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20STENOH",
+    "climber": "NOH",
+    "delta_cents": 2,
+    "minutes_floor_gap": 1133.5,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL12GUTCAM",
+    "climber": "CAM",
+    "delta_cents": 1,
+    "minutes_floor_gap": 312.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13MORFAN",
+    "climber": "MOR",
+    "delta_cents": 1,
+    "minutes_floor_gap": 567.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13RADIVA",
+    "climber": "RAD",
+    "delta_cents": 1,
+    "minutes_floor_gap": 5.5,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14ADDLEO",
+    "climber": "ADD",
+    "delta_cents": 1,
+    "minutes_floor_gap": 554.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14DELXIL",
+    "climber": "DEL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 206.9,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14ROZRIC",
+    "climber": "RIC",
+    "delta_cents": 1,
+    "minutes_floor_gap": 222.8,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15LAJKRU",
+    "climber": "LAJ",
+    "delta_cents": 1,
+    "minutes_floor_gap": 113.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15RODINC",
+    "climber": "ROD",
+    "delta_cents": 1,
+    "minutes_floor_gap": 169.2,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL15SCHHOU",
+    "climber": "SCH",
+    "delta_cents": 1,
+    "minutes_floor_gap": 82.6,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL16FUESEY",
+    "climber": "SEY",
+    "delta_cents": 1,
+    "minutes_floor_gap": 22.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17DRAGEA",
+    "climber": "GEA",
+    "delta_cents": 1,
+    "minutes_floor_gap": 24.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18PERIVA",
+    "climber": "IVA",
+    "delta_cents": 1,
+    "minutes_floor_gap": 83.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19ARNPOH",
+    "climber": "ARN",
+    "delta_cents": 1,
+    "minutes_floor_gap": 63.6,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19BIAYOU",
+    "climber": "YOU",
+    "delta_cents": 1,
+    "minutes_floor_gap": 244.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19MILFAN",
+    "climber": "MIL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 316.0,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19POUJAN",
+    "climber": "JAN",
+    "delta_cents": 1,
+    "minutes_floor_gap": 387.9,
+    "cat": "ATP_CHALL",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL19TRODAL",
+    "climber": "TRO",
+    "delta_cents": 1,
+    "minutes_floor_gap": 268.7,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19VALCAS",
+    "climber": "VAL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 53.3,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19WINSHE",
+    "climber": "WIN",
+    "delta_cents": 1,
+    "minutes_floor_gap": 24.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19YEVSTR",
+    "climber": "STR",
+    "delta_cents": 1,
+    "minutes_floor_gap": 75.4,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20GADGUI",
+    "climber": "GUI",
+    "delta_cents": 1,
+    "minutes_floor_gap": 519.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL20ZHUMAL",
+    "climber": "ZHU",
+    "delta_cents": 1,
+    "minutes_floor_gap": 18.1,
+    "cat": "ATP_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12CERKOL",
+    "climber": "CER",
+    "delta_cents": 1,
+    "minutes_floor_gap": 359.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12FELKEC",
+    "climber": "KEC",
+    "delta_cents": 1,
+    "minutes_floor_gap": 285.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12MOLROY",
+    "climber": "MOL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 1888.8,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SESMER",
+    "climber": "MER",
+    "delta_cents": 1,
+    "minutes_floor_gap": 44.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15BASTIR",
+    "climber": "TIR",
+    "delta_cents": 1,
+    "minutes_floor_gap": 150.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15BORDIM",
+    "climber": "BOR",
+    "delta_cents": 1,
+    "minutes_floor_gap": 577.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15BUBHAL",
+    "climber": "BUB",
+    "delta_cents": 1,
+    "minutes_floor_gap": 1126.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15COLSON",
+    "climber": "COL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 70.9,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL17DZUMOL",
+    "climber": "MOL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 567.3,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18DANPRA",
+    "climber": "DAN",
+    "delta_cents": 1,
+    "minutes_floor_gap": 54.1,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19MULNAV",
+    "climber": "NAV",
+    "delta_cents": 1,
+    "minutes_floor_gap": 40.4,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL19RODSAC",
+    "climber": "ROD",
+    "delta_cents": 1,
+    "minutes_floor_gap": 669.6,
+    "cat": "ATP_MAIN",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12ERJBOS",
+    "climber": "ERJ",
+    "delta_cents": 1,
+    "minutes_floor_gap": 334.5,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL12SAIETO",
+    "climber": "SAI",
+    "delta_cents": 1,
+    "minutes_floor_gap": 29.7,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13PENTHA",
+    "climber": "PEN",
+    "delta_cents": 1,
+    "minutes_floor_gap": 502.2,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13RAMNOH",
+    "climber": "NOH",
+    "delta_cents": 1,
+    "minutes_floor_gap": 188.3,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13SELYAN",
+    "climber": "SEL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 90.4,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL14PACVED",
+    "climber": "VED",
+    "delta_cents": 1,
+    "minutes_floor_gap": 205.0,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL15JONURG",
+    "climber": "JON",
+    "delta_cents": 1,
+    "minutes_floor_gap": 309.6,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL18RENGIA",
+    "climber": "REN",
+    "delta_cents": 1,
+    "minutes_floor_gap": 124.5,
+    "cat": "WTA_CHALL",
+    "origin": "26_50"
+   },
+   {
+    "code": "26JUL13BADKAL",
+    "climber": "BAD",
+    "delta_cents": 1,
+    "minutes_floor_gap": 2357.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL13KRETOM",
+    "climber": "KRE",
+    "delta_cents": 1,
+    "minutes_floor_gap": 29.7,
+    "cat": "WTA_MAIN",
+    "origin": "ge76"
+   },
+   {
+    "code": "26JUL14AVAUCH",
+    "climber": "AVA",
+    "delta_cents": 1,
+    "minutes_floor_gap": 416.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL16TAUTON",
+    "climber": "TAU",
+    "delta_cents": 1,
+    "minutes_floor_gap": 1261.2,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18MORAKS",
+    "climber": "AKS",
+    "delta_cents": 1,
+    "minutes_floor_gap": 0.0,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL18OKALEE",
+    "climber": "LEE",
+    "delta_cents": 1,
+    "minutes_floor_gap": 414.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20QUEKAL",
+    "climber": "KAL",
+    "delta_cents": 1,
+    "minutes_floor_gap": 906.1,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20SORCHA",
+    "climber": "CHA",
+    "delta_cents": 1,
+    "minutes_floor_gap": 120.3,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   },
+   {
+    "code": "26JUL20VEDBAR",
+    "climber": "VED",
+    "delta_cents": 1,
+    "minutes_floor_gap": 175.4,
+    "cat": "WTA_MAIN",
+    "origin": "51_75"
+   }
+  ]
+ },
+ "readability": {
+  "leg_grain": {
+   "match": 532,
+   "mismatch": 306
+  },
+  "pair_grain": {
+   "both_match": 210,
+   "not_both": 195
+  },
+  "read_pair_hist": {
+   "('RISING', 'FALLING')": 153,
+   "('FALLING', 'FALLING')": 66,
+   "('FALLING', 'RISING')": 159,
+   "('RISING', 'RISING')": 27
+  },
+  "by_time_bucket": {
+   "3": [
+    183,
+    309
+   ],
+   "2": [
+    112,
+    183
+   ],
+   "1": [
+    147,
+    207
+   ],
+   "0": [
+    90,
+    139
+   ]
+  },
+  "by_cell": {
+   "('ATP_CHALL', '26_50')": [
+    164,
+    271
+   ],
+   "('ATP_CHALL', '51_75')": [
+    11,
+    21
+   ],
+   "('ATP_CHALL', 'ge76')": [
+    3,
+    4
+   ],
+   "('ATP_CHALL', 'le25')": [
+    1,
+    3
+   ],
+   "('ATP_MAIN', '26_50')": [
+    137,
+    222
+   ],
+   "('ATP_MAIN', '51_75')": [
+    1,
+    2
+   ],
+   "('WTA_CHALL', '26_50')": [
+    56,
+    83
+   ],
+   "('WTA_CHALL', 'ge76')": [
+    2,
+    3
+   ],
+   "('WTA_CHALL', 'le25')": [
+    1,
+    3
+   ],
+   "('WTA_CHALL', '51_75')": [
+    3,
+    9
+   ],
+   "('WTA_MAIN', '51_75')": [
+    140,
+    201
+   ],
+   "('WTA_MAIN', 'ge76')": [
+    2,
+    2
+   ],
+   "('WTA_MAIN', 'le25')": [
+    1,
+    2
+   ],
+   "('WTA_MAIN', '26_50')": [
+    10,
+    12
+   ]
+  },
+  "both_reads_wrong_pairs": 102,
+  "both_wrong_exemplars": [
+   [
+    59.0,
+    "26JUL20GALARN",
+    [
+     [
+      "ARN",
+      "FALLING",
+      "CLIMBER"
+     ],
+     [
+      "GAL",
+      "RISING",
+      "FALLER"
+     ]
+    ]
+   ],
+   [
+    49.0,
+    "26JUL12GURDAL",
+    [
+     [
+      "DAL",
+      "FALLING",
+      "CLIMBER"
+     ],
+     [
+      "GUR",
+      "RISING",
+      "FALLER"
+     ]
+    ]
+   ],
+   [
+    49.0,
+    "26JUL12ARIZHA",
+    [
+     [
+      "ARI",
+      "RISING",
+      "FALLER"
+     ],
+     [
+      "ZHA",
+      "FALLING",
+      "CLIMBER"
+     ]
+    ]
+   ]
+  ]
+ },
+ "conservation": {
+  "legs_journeyed": 1602,
+  "pairs_classed": 801,
+  "mirrored_role_legs": 1094,
+  "role_legs_with_floors": 1059,
+  "first_posts": 1173,
+  "mirrored_legs_posted": 838,
+  "mirrored_pairs_both_posted": 405
+ }
+}

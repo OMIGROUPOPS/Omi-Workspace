@@ -1,0 +1,195 @@
+{
+  "authorized_change": "CLAUSE_3_N4_DEPTH_INFORMED_LEVEL_SELECTION_ONLY",
+  "law": "DEPTH_PRIORS_MAY_WEIGHT_AN_ALREADY_AUTHORIZED_LIVE_EVIDENCE_LEVEL; PRIORS_INFORM_NEVER_GATE; SELECTED_TARGET_CAN_ONLY_MOVE_DOWN_INSIDE_LIVE_POST_ONSET_BOUNDS",
+  "weighting_law": "ROUND(G_GRID_DISCOUNT*G3_RECOVERY + G3_MEDIAN_DIP_DEPTH*(1-G3_RECOVERY))",
+  "assets": {
+    "G_GRID": {
+      "id": "G_GRID_LEVEL_DISCOUNT",
+      "source_asset": "P1_THE_GRID",
+      "canonical_asset_status_unchanged": "VALIDATED",
+      "behavioral_weighting_role_before": "UNVALIDATED-CANDIDATE",
+      "behavioral_weighting_role_this_run": "UNDER-VALIDATION_V52I",
+      "note": "Operator label G-grid is bound as the candidate behavioral use of the existing P1 cell-conditional grid; no parallel asset was invented."
+    },
+    "G3": {
+      "id": "G3_DIP_RECOVERY_GRADIENT",
+      "source_asset": "G3",
+      "source_commit": "2d48e4ee65e2d4b320accafcd4ac39669591d64b",
+      "status_before": "UNVALIDATED-CANDIDATE",
+      "status_this_run": "UNDER-VALIDATION_V52I"
+    }
+  },
+  "clean_store": {
+    "canonical_manifest_unchanged": true,
+    "exact_under_validation_aliases": [
+      "G_GRID_LEVEL_DISCOUNT",
+      "G3_DIP_RECOVERY_GRADIENT"
+    ],
+    "boot_assertion": {
+      "passed": true,
+      "required_ids": [
+        "P1",
+        "P2",
+        "P4",
+        "P6",
+        "P11",
+        "P12",
+        "P13",
+        "P14"
+      ],
+      "loaded_ids": [
+        "P1",
+        "P11",
+        "P12",
+        "P13",
+        "P14",
+        "P2",
+        "P4",
+        "P6"
+      ],
+      "source_inventory": "store_CLEAN_PLUS_EXACT_V52I_UNDER_VALIDATION_ALIASES",
+      "unvalidated_loaded": 0,
+      "quarantined_loaded": 0,
+      "superseded_loaded": 0,
+      "fallback_loads": 0,
+      "canonical_clean_store_unchanged": true,
+      "under_validation_loaded": 2,
+      "under_validation_loaded_ids": [
+        "G_GRID_LEVEL_DISCOUNT",
+        "G3_DIP_RECOVERY_GRADIENT"
+      ],
+      "candidate_fallback_loads": 0,
+      "rejected_inventory_classes": [
+        "inventory_UNVALIDATED_EXCEPT_EXACT_OPERATOR_BOUND_ALIASES",
+        "inventory_QUARANTINED",
+        "inventory_SUPERSEDED"
+      ]
+    }
+  },
+  "live_evidence_authority": {
+    "retained": true,
+    "candidate_authority_without_frozen_machine_read": false,
+    "assertions": {
+      "violations": [],
+      "pass": true
+    }
+  },
+  "frozen_clauses": {
+    "clause_1": true,
+    "clause_2": true,
+    "clause_4_and_referee": true,
+    "clause_5": true,
+    "clause_6": true,
+    "crediting": "TRADES_AS_TRUTH_UNCHANGED",
+    "scavenger": false,
+    "REFLEX_POST": 0
+  },
+  "differential": {
+    "changed_decision_receipts": 24597,
+    "license_or_metadata_changed_leg_streams": 57,
+    "behavior_changed_leg_streams": 0,
+    "every_behavior_change_starts_at_or_after_depth_selection": true,
+    "frozen_pre_authorized_differences": 0
+  },
+  "pre_stated_claims": {
+    "entry_minus_later_floor": {
+      "floor_source": {
+        "commit": "22441e05",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json",
+        "law": "PER_LEG_POST_ONSET_FLOOR_SEL"
+      },
+      "baseline": {
+        "credited_legs": 46,
+        "floor_available": 46,
+        "signed_entry_minus_later_floor_cents": {
+          "n": 46,
+          "null_n": 0,
+          "sum": 202,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 16,
+          "max": 61
+        },
+        "bought_above_later_floor_only": {
+          "n": 30,
+          "null_n": 0,
+          "sum": 202,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 6,
+          "p90": 16,
+          "max": 61
+        }
+      },
+      "candidate": {
+        "credited_legs": 46,
+        "floor_available": 46,
+        "signed_entry_minus_later_floor_cents": {
+          "n": 46,
+          "null_n": 0,
+          "sum": 202,
+          "min": 0,
+          "p25": 0,
+          "median": 1,
+          "p75": 2,
+          "p90": 16,
+          "max": 61
+        },
+        "bought_above_later_floor_only": {
+          "n": 30,
+          "null_n": 0,
+          "sum": 202,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 6,
+          "p90": 16,
+          "max": 61
+        }
+      },
+      "pre_stated_claim": {
+        "bought_above_later_floor_depth_shifts_toward_zero": false,
+        "adjudication": "OBSERVATION_ONLY; NO_BEHAVIORAL_REPAIR_PERMITTED"
+      }
+    },
+    "completes_not_reduced": {
+      "baseline": 18,
+      "candidate": 18,
+      "pass": true
+    },
+    "pins_unharmed": true,
+    "one_sided_exposure": {
+      "newly_created_partials": 0,
+      "duration_seconds": {
+        "n": 0,
+        "null_n": 0,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      },
+      "rows": [],
+      "V52h_baseline": {
+        "newly_created_partials": 6,
+        "duration_seconds": {
+          "n": 6,
+          "null_n": 0,
+          "sum": 187448.9319999218,
+          "min": 32.44799995422363,
+          "p25": 4260.020999908447,
+          "median": 6573.041000127792,
+          "p75": 43112.954999923706,
+          "p90": 113232.757999897,
+          "max": 113232.757999897
+        }
+      },
+      "requested_baseline_count_six": true
+    }
+  }
+}

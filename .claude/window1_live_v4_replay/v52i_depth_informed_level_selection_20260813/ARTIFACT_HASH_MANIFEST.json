@@ -1,0 +1,428 @@
+{
+  "files": {
+    "ARSMAR_MAR_GATE_TRACE.jsonl.gz": {
+      "sha256": "ed2e0b0bc98fe836053cac5ccbae8ea3522b27cd1650e906450fdba3caeece6d",
+      "bytes": 1351708
+    },
+    "AUTHORIZED_DOWNSTREAM_INPUT_DIVERGENCE_RECEIPT.json": {
+      "sha256": "b609d41e7715b063483698597ec25bf568be306edd724be53e0ea66ad4b280b5",
+      "bytes": 186
+    },
+    "BEFORE_AFTER_DECISION_DIFFERENTIAL.jsonl.gz": {
+      "sha256": "2edeb42b6b1a4c9acabda6c04359b4e44915a9c41baece45ccba631e61d58cbc",
+      "bytes": 2608873
+    },
+    "BEFORE_AFTER_DIFFERENTIAL_RECEIPT.json": {
+      "sha256": "c7d84cea68e376f76a23609c2d2157f4d76c87194d4aa557d66f5521d0c2f080",
+      "bytes": 322
+    },
+    "CHANGED_LEG_STREAMS.jsonl.gz": {
+      "sha256": "11ffd908549038f7b0c545f3c453a0c996985ce5601be4b1bc49212f3a24e5e7",
+      "bytes": 16420
+    },
+    "CLAUSE_3_N4_DEPTH_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz": {
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "bytes": 20
+    },
+    "CLAUSE_3_N4_DEPTH_CORRECTION_RECEIPT.json": {
+      "sha256": "f8043d8f89ab23a27723ecbe0b511e9e8f59d088addf09fde41a09dc21f2fa7f",
+      "bytes": 5405
+    },
+    "CLEAN_SOURCE_BINDING.json": {
+      "sha256": "8ae09fcab301afcb12f40ed14f814bd1978797427922553ae351044183e0b286",
+      "bytes": 12407
+    },
+    "CLEAN_STORE_BOOT_ASSERTION.json": {
+      "sha256": "a2895a2ea925af936886dacc79b971987f0445f7ff238362f469f35fc7f00167",
+      "bytes": 784
+    },
+    "COHORT_SELECTION_RECEIPT.json": {
+      "sha256": "4744161f3c728aecca6097b8aaa7d0bc57fc88172ba6b2c075bdba56fbdc3149",
+      "bytes": 28357
+    },
+    "CONSTRUCTION_STATUS.json": {
+      "sha256": "e3f77c548ad1e9baf3530155be0eb4eb6e4fa91b44b9c6880b12ddcaca51ebef",
+      "bytes": 204
+    },
+    "CONTROL_BINDING.json": {
+      "sha256": "65e6e9a8f54e8f5bfaa298e5e84eb11b58638eb62734b57b1d69fae5334f5cd9",
+      "bytes": 256
+    },
+    "DEPTH_PRIOR_CONSUMPTION_LEDGER.jsonl.gz": {
+      "sha256": "be41b2e8c866d0d489106d68f0e38b1644b0698b26a1cb6e3100212ffe22b142",
+      "bytes": 37841411
+    },
+    "DEPTH_UNDER_VALIDATION_BOOT_RECEIPT.json": {
+      "sha256": "a2895a2ea925af936886dacc79b971987f0445f7ff238362f469f35fc7f00167",
+      "bytes": 784
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "8376129fd792dd20c6ac411b6187bcd348c558741db4d48ac9eccab7e0bd4cf3",
+      "bytes": 95
+    },
+    "ENTRY_LATER_FLOOR_COMPARISON.json": {
+      "sha256": "c465b7d8e56b38c6c499d19f32c2f06ccfa503f1946de46a843a08f1dcf4193c",
+      "bytes": 1323
+    },
+    "ENTRY_LATER_FLOOR_LEDGER.jsonl.gz": {
+      "sha256": "d468bf484f2886da4fcce10952977466cf1551c085647f89c68711d417dab743",
+      "bytes": 1428
+    },
+    "FLOW_ASSERTIONS.json": {
+      "sha256": "f226b947ecace128957fda8de78556dc0d57b568f4b2a6d9ea8ba919b3fffc4c",
+      "bytes": 2056
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "4824e08cc375d5171d66a5380d8bf5202ee87aac6bebf143b3e330eed7a3b544",
+      "bytes": 179
+    },
+    "FOUR_STATE_OBSERVATION_30.json": {
+      "sha256": "5541ed14b60e786c5d49b54f896e5a41586ba24e8e40ddf0f0c8f3ef125d6a34",
+      "bytes": 419
+    },
+    "FULL_DECISION_TRACE_MANIFEST.json": {
+      "sha256": "103ee00b82a82c1e914fd047256c741bee6f09874ab7253dcd4b7a38e36853c0",
+      "bytes": 19884
+    },
+    "JOINT_TARGET_CONSERVATION_LICENSE_LEDGER.jsonl.gz": {
+      "sha256": "a23c38a7127afed86fffe59bde0de42e8b458042ee0fa5cc8cade10e55dfe5cc",
+      "bytes": 29890730
+    },
+    "N4_ABSTENTION_RECEIPT.json": {
+      "sha256": "16a2ad8d6195ef7c8fdba6ace6a74cf828555ddf071b8f07bc85cd1bf3f68816",
+      "bytes": 165
+    },
+    "N4_PRIOR_INFORMED_RESCUE_LEDGER.jsonl.gz": {
+      "sha256": "274b4696a716dd84f37fb708447760afe3ad2c4acdded139acf79d28985671ef",
+      "bytes": 86512015
+    },
+    "N5_PRIOR_TIE_ADJUDICATION_LEDGER.jsonl.gz": {
+      "sha256": "46b50c321b39e89a491b6727a01628c34245605a30beb3e7414c5e01cff90e6e",
+      "bytes": 20
+    },
+    "NAMED_CHECKS_OBSERVATION_ONLY.json": {
+      "sha256": "f3a8da84bdecb47a5159bd13cb1e05fa25c968d290405080c91c802e1ad2b715",
+      "bytes": 43337027
+    },
+    "NEW_ONE_SIDED_EXPOSURE_RECEIPT.json": {
+      "sha256": "2c451a0fd6ef818d2c0d5bc87a2e3bf08737f427e6e9bb2d89bb8db7eb70321b",
+      "bytes": 613
+    },
+    "OUTCOME_OBSERVATIONS_30.json": {
+      "sha256": "e29dd50eeffb662742fbb2d42fe4c3fa5ec4233866f5dc344178458b961854fb",
+      "bytes": 1210
+    },
+    "PAIR_BUDGET_RECORDS.jsonl.gz": {
+      "sha256": "af8f80b17722007ad03e875fc1e7ca2dc159fc1ea2e3c42c36f378408c97f830",
+      "bytes": 1179599
+    },
+    "PAIR_BUDGET_RECORD_SUMMARY.json": {
+      "sha256": "086669b5a651d8a0fbdb52c7c9f12428d59c03d0b860f4ad2a42fa45dfe33109",
+      "bytes": 408
+    },
+    "PAIR_JOINT_TARGET_TIME_SERIES.jsonl.gz": {
+      "sha256": "475ead0430344e030766bbdce5004493909cc10918ca1c541b53b90ed4bd8277",
+      "bytes": 1178872
+    },
+    "PALANTIR_CONSUMPTION_LEDGER.jsonl.gz": {
+      "sha256": "1cc1e24a68d39352b2b764f9e0dba4f880679f8bdd66f55ff6bd0fe1d58b6134",
+      "bytes": 23730306
+    },
+    "PALANTIR_CONSUMPTION_SUMMARY.json": {
+      "sha256": "8a57729f71c774c3bf8def0647ca58c6cc779f0c902f401152edd5aa957f4058",
+      "bytes": 4669
+    },
+    "PER_GAME_OUTCOME_TABLE.json": {
+      "sha256": "d1ee8de3a2553469f8dfef7a83d344b2d9264af0d75a15d14c5f0a035efd5a32",
+      "bytes": 17201
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM.jsonl.gz": {
+      "sha256": "84557669dd10445186a7a8069d4aa59ea6145f1af296b6c56c4fc6f71e0e46fb",
+      "bytes": 4809
+    },
+    "PER_LEG_BLOCK_REASON_HISTOGRAM_SUMMARY.json": {
+      "sha256": "78c59f4f5c2eeaef744c82f4078e7eceb95606456d15b430815b1ef48dffd9c8",
+      "bytes": 655
+    },
+    "PIN_REGRESSION_RECEIPT.json": {
+      "sha256": "83bb6d543909db02b19221b099f38a2564862cdcd945911e92816fa3df5b1439",
+      "bytes": 3964
+    },
+    "PIN_REGRESSION_RECEIPT_V52I.json": {
+      "sha256": "e8be2b3ca0472d1e32d75e0de369ffd25a395604a532a12ae54d558fbd612a95",
+      "bytes": 3976
+    },
+    "REPORT.md": {
+      "sha256": "1a421076970361880448b8771f3acbd4cb6dcf2115890a1a60c7c9bedb069b30",
+      "bytes": 1869
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "42686fabd9aef3e0834d0f06a01796c716666d9711d64e373ed68bce0da5fcdd",
+      "bytes": 6013
+    },
+    "STABILITY_ONSET_LEDGER.jsonl.gz": {
+      "sha256": "94de56dd6b642de51b61d30595151d66c1ebd7b2c6a4528a8c4e4bfbc09878bd",
+      "bytes": 7603
+    },
+    "STEP0_REUSE_INVENTORY.json": {
+      "sha256": "781002167d9ba9eab6006b71c669285f338a9ea937bf017c845149500afb68b6",
+      "bytes": 3994
+    },
+    "TEST_RESULTS.json": {
+      "sha256": "e68f150d29faa092b68f3b0d40097a0dc36f2c1c181ad6a9e8d044f8c06a91b7",
+      "bytes": 2409
+    },
+    "V52H_BASELINE_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "9ea527e1717c5072d2c84862994aef63907bb35a2e869e80aa7ec8a14eb02d60",
+      "bytes": 182083
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_001.jsonl.gz": {
+      "sha256": "827a3c07f8ca6961433640e6867a53970478698d036038a8a984e4189a0be18d",
+      "bytes": 5597998
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_002.jsonl.gz": {
+      "sha256": "fb6131ab569d32a7218e607afacb39a7f798b36f1a8409137b478150a6f2eed8",
+      "bytes": 2987968
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_003.jsonl.gz": {
+      "sha256": "09ef008dd6ea32c8527b25c05a34b0efdc7dcdcb3ab32349e41ab321ce7c89bb",
+      "bytes": 2217647
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_004.jsonl.gz": {
+      "sha256": "4ecf9d746150226703cf0878fee197e5878ef12eae72c0f1f3a65d3adcc26da5",
+      "bytes": 868582
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_005.jsonl.gz": {
+      "sha256": "2df55b828169873d174d1f56bd77a740bb6830e851248081a5ccb0e2fbcc3bf0",
+      "bytes": 1751891
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_006.jsonl.gz": {
+      "sha256": "4b39a6b827568623446d7f4e46949865b456ce73b619c041bdcf028acb65de7e",
+      "bytes": 599715
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_007.jsonl.gz": {
+      "sha256": "0ecaf6322ba808695ac320b747a2248d75180ff47d548d8ab6e6fd8e10c40707",
+      "bytes": 473055
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_008.jsonl.gz": {
+      "sha256": "65893b01fe0c07a4e8ee7327437c338ad772afe6a86ff3765473d8da50ff600b",
+      "bytes": 5222071
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_009.jsonl.gz": {
+      "sha256": "603216a216a9e352ed2d92777d7902acb5a55864b4c3ebdfe5a0c3f3067b14fc",
+      "bytes": 972784
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_010.jsonl.gz": {
+      "sha256": "035538feacd3957c3754ed9dcb043bef5459d6506646fe603be2de19da5c684f",
+      "bytes": 1951788
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_011.jsonl.gz": {
+      "sha256": "ff6645c65e006feec4069f81543c94f4cd0213b9c33fee0ee2227b0ec98cca2b",
+      "bytes": 979266
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_012.jsonl.gz": {
+      "sha256": "80f4d21bd1a95f8e7584800a2401090aa4781a39ad5f171e465d474aa1943d7a",
+      "bytes": 509208
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_013.jsonl.gz": {
+      "sha256": "7924e5fc1d298eb0a41b93bc4cbc13460e12c2406dfb508c824c4b81b569dbb2",
+      "bytes": 1104922
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_014.jsonl.gz": {
+      "sha256": "b383e4b0a78b6d22a3c45693ea87444a707873fb2fdd86c8ec1b0c8de1729b82",
+      "bytes": 22559832
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_015.jsonl.gz": {
+      "sha256": "c02071016c5bb628108882f1324622dcab48907ed73c2cb647265429b4fece6d",
+      "bytes": 1120302
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_016.jsonl.gz": {
+      "sha256": "7d99720db776b301d59f830ae6546fa6a468ee4107cc10636adc048c74786eec",
+      "bytes": 2800194
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_017.jsonl.gz": {
+      "sha256": "f7a3eeadb4c84daf4ebba3da0d38c163b4ff320fa006507e5ec6ccf9ae0f9497",
+      "bytes": 1378286
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_018.jsonl.gz": {
+      "sha256": "a152784560d16dc53ff918d4ca1970f72d8f32845b48f6d6c3a2bbd47da28d17",
+      "bytes": 917262
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_019.jsonl.gz": {
+      "sha256": "7eb315f0899c386d443d0e61dfbe4a425a19b047b57d27e03146788b75d034cd",
+      "bytes": 2737550
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_020.jsonl.gz": {
+      "sha256": "c3bbd83611d9360fc922fc58d6efc762a73dad32bbfd29623c427426564a0eeb",
+      "bytes": 865577
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_021.jsonl.gz": {
+      "sha256": "a87890b039abdc14eaccb31e9e2068ca201b6c2804bc51e0f8192a678c315ce0",
+      "bytes": 3588185
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_022.jsonl.gz": {
+      "sha256": "e78a9442d816147a48b4c26c54f35a861fc6f9dc0b8e5a7b56f5cdc91ad50f4c",
+      "bytes": 173892
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_023.jsonl.gz": {
+      "sha256": "96c5f054d75cde47006325070f6f42b2f7b6034443501fceb0476b891838c4b4",
+      "bytes": 421031
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_024.jsonl.gz": {
+      "sha256": "131dc1b46c6e18053ca202f5d2a1ef69b893356914d466d4ab4c8de12db5033d",
+      "bytes": 2013034
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_025.jsonl.gz": {
+      "sha256": "f2ba2c6b3635da088c45e21eacd3132c2236f34b71b78b6b8391d3c8f5cb3569",
+      "bytes": 700150
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_026.jsonl.gz": {
+      "sha256": "0977aee144c4c46b64962c2519072af878417aa1291b2c982cfd7edb67717785",
+      "bytes": 2466710
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_027.jsonl.gz": {
+      "sha256": "43b5af59a3b00180bed70b01f34979e98cc9107626a584380c5faeda3e6959a6",
+      "bytes": 532365
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_028.jsonl.gz": {
+      "sha256": "7ef17e7a68c3569a02316dcd373e29ba03579fad47216dc6512307815dbfe4d5",
+      "bytes": 4995784
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_029.jsonl.gz": {
+      "sha256": "ad4a9804e6fec340a06ed57e475fd3f34652df574fc70e2118a7dec034637f8b",
+      "bytes": 513505
+    },
+    "V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_030.jsonl.gz": {
+      "sha256": "944c0fa6647e22fe444877dbb6ad0fa03d2fbc2e402163553baf9e1ab0219882",
+      "bytes": 2445731
+    },
+    "V52H_V52I_FOUR_STATE_EVENT_LEDGER_30.jsonl.gz": {
+      "sha256": "0acc10b68c6447d09b83525bc9f428b6d18b514d200b15f382480f6142f1fdb9",
+      "bytes": 1584
+    },
+    "V52I_FLOW_OUTCOMES_OBSERVATION_ONLY.json": {
+      "sha256": "9ea527e1717c5072d2c84862994aef63907bb35a2e869e80aa7ec8a14eb02d60",
+      "bytes": 182083
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_001.jsonl.gz": {
+      "sha256": "c02b2e309cae0b5d480a150ae128eaff54499cd60ec655003c2a6df566dcc70d",
+      "bytes": 16748110
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_002.jsonl.gz": {
+      "sha256": "f0ca64d4a00569f9bf74e9966ddd99dc9600693437c48dc62d6e65b0bffdb42f",
+      "bytes": 17738034
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_003.jsonl.gz": {
+      "sha256": "f1587d4db0b7e8071f873720500d62d2859094cc2a9ea77805c6c5132e806970",
+      "bytes": 7663201
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_004.jsonl.gz": {
+      "sha256": "0f0ceb6585e32517eca3d93c3234cde97bfcc3025e793b5ccad3619221f483e7",
+      "bytes": 6186290
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_005.jsonl.gz": {
+      "sha256": "e88b214ce07d6a74b39df8187ba1df67dc2bddd2866f9d964d5eb5cc91cdf687",
+      "bytes": 7859110
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_006.jsonl.gz": {
+      "sha256": "3acad95fe221ad5020cbb23f34a9ae964600f71ed41eb181751718acc2ad1e04",
+      "bytes": 2449448
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_007.jsonl.gz": {
+      "sha256": "077f3564ba148810eaaec72050d39238aabe737eaa46da397dc20dca4db6fecb",
+      "bytes": 1941725
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_008.jsonl.gz": {
+      "sha256": "e93bd11c9b9d2a2ab43b1b07fe48a3fd18c86399b2b55b922ad81222ac5fff4f",
+      "bytes": 10933298
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_009.jsonl.gz": {
+      "sha256": "8ccce6483a36d2ba92bf0a8d7878ad41221bc440963258799a0a08b0096cc532",
+      "bytes": 4058273
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_010.jsonl.gz": {
+      "sha256": "0552dde386c225808a85736d742661f4b46d5f926e3063dc395ebc8fbddc1a60",
+      "bytes": 5749490
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_011.jsonl.gz": {
+      "sha256": "e83857bf4544b80fa6cd9856beb512571a3cab91c6e0e449435c096b9c647a3d",
+      "bytes": 5580608
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_012.jsonl.gz": {
+      "sha256": "725e9db8632c7d8f51cfbbdbc792a8d8315cb25f340459a156b0b89e3eba7481",
+      "bytes": 2867725
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_013.jsonl.gz": {
+      "sha256": "b17d8c0c79025e6e4ee6c40ba3f7b68ff08920cf4054d7a7e7176d02ae94f12b",
+      "bytes": 6374087
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_014.jsonl.gz": {
+      "sha256": "d356bf9c29011adebe32253390b80efb43b8782cea4c901c490b2a52d425c068",
+      "bytes": 95284483
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_015.jsonl.gz": {
+      "sha256": "49d00e7171a9e12d5c0d866e4059b04ba4e2c4c803e68f1b72ec7017038f7a41",
+      "bytes": 4033023
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_016.jsonl.gz": {
+      "sha256": "29125bbe454043bce3ca80b14128fe5a29644ecc242c41d47cf70ba1974bb6ba",
+      "bytes": 10662812
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_017.jsonl.gz": {
+      "sha256": "e95695519e2eb3cb6ccf8294aa37d79352fb90b9e217da853c39c798b85dac73",
+      "bytes": 5507243
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_018.jsonl.gz": {
+      "sha256": "7b337ea245a3700b16275ddd1861f0ee2f7fca608ce42f909c90d94b5adea929",
+      "bytes": 1617977
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_019.jsonl.gz": {
+      "sha256": "72aef3d2d447ce8e3f3c371d2c58048c90bbea4e43e7670b61ef113276c64009",
+      "bytes": 7917639
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_020.jsonl.gz": {
+      "sha256": "ee4ff5f12e83110e80d680eca30589844769d1668a2e407b4c83eb747f7b9413",
+      "bytes": 2961857
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_021.jsonl.gz": {
+      "sha256": "1b1054c48319c86e97afbd7e6047c8945414e95b1fc2b22c0b36237ed512251d",
+      "bytes": 12221217
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_022.jsonl.gz": {
+      "sha256": "b24df9aea7f6e97b605e974c939274116f84cae5f93efe6b8db3c71a588da55f",
+      "bytes": 439512
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_023.jsonl.gz": {
+      "sha256": "7c15d21f941942b8d283280cd7b29aa472c2c4e1d97afbd723cb7f507dd20702",
+      "bytes": 743112
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_024.jsonl.gz": {
+      "sha256": "dd7084ab1dbfbb7aec192297abaffe3bc5b99eda40253a428d188f5d6f707fe9",
+      "bytes": 11308714
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_025.jsonl.gz": {
+      "sha256": "de2f803b130914234900bd6bb6d39b061c58d70b507d2aedd452071776777685",
+      "bytes": 3260378
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_026.jsonl.gz": {
+      "sha256": "85ef615af8feeadeff250dccb720bf2f1005ec5d956cffa06178c47df4ad9ff5",
+      "bytes": 5163488
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_027.jsonl.gz": {
+      "sha256": "862bd227e597d140611a92e231adc4fd263e6fcf269dc3bf08a073760c84f279",
+      "bytes": 1201370
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_028.jsonl.gz": {
+      "sha256": "4928c39be53995469da29484d2fedd70a3240ea99176c9caffef4ebbd6bf255d",
+      "bytes": 32982622
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_029.jsonl.gz": {
+      "sha256": "46e091fd5e8fe5948c55120a0b131d0d6f1c329d4cdae58d3c9f49abc15e5d10",
+      "bytes": 1316220
+    },
+    "V52I_FULL_DECISION_TRACE_30_GAMES_CHUNK_030.jsonl.gz": {
+      "sha256": "61ab74d578889af1af33afaf32a78fb8633b7e454b5d92168034e600fe6fd765",
+      "bytes": 8544657
+    }
+  }
+}

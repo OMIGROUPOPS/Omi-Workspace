@@ -1,0 +1,63 @@
+{
+  "floor_source": {
+    "commit": "22441e05",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json",
+    "law": "PER_LEG_POST_ONSET_FLOOR_SEL"
+  },
+  "baseline": {
+    "credited_legs": 46,
+    "floor_available": 46,
+    "signed_entry_minus_later_floor_cents": {
+      "n": 46,
+      "null_n": 0,
+      "sum": 202,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 2,
+      "p90": 16,
+      "max": 61
+    },
+    "bought_above_later_floor_only": {
+      "n": 30,
+      "null_n": 0,
+      "sum": 202,
+      "min": 1,
+      "p25": 1,
+      "median": 2,
+      "p75": 6,
+      "p90": 16,
+      "max": 61
+    }
+  },
+  "candidate": {
+    "credited_legs": 46,
+    "floor_available": 46,
+    "signed_entry_minus_later_floor_cents": {
+      "n": 46,
+      "null_n": 0,
+      "sum": 202,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 2,
+      "p90": 16,
+      "max": 61
+    },
+    "bought_above_later_floor_only": {
+      "n": 30,
+      "null_n": 0,
+      "sum": 202,
+      "min": 1,
+      "p25": 1,
+      "median": 2,
+      "p75": 6,
+      "p90": 16,
+      "max": 61
+    }
+  },
+  "pre_stated_claim": {
+    "bought_above_later_floor_depth_shifts_toward_zero": false,
+    "adjudication": "OBSERVATION_ONLY; NO_BEHAVIORAL_REPAIR_PERMITTED"
+  }
+}

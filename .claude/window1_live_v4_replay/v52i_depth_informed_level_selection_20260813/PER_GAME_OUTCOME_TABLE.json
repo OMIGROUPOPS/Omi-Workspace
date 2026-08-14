@@ -1,0 +1,604 @@
+[
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+    "category": "ATP_CHALL",
+    "price_region": "26_50+51_75",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 94,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12KUMTUR|KUM",
+        "entry_cents": 72
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12KUMTUR|TUR",
+        "entry_cents": 22
+      }
+    ],
+    "combined_entry_minus_100_cents": -6,
+    "locked_delta_vs_100_cents": 6,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 30,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+    "category": "ATP_CHALL",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+        "entry_cents": 18
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+        "entry_cents": 81
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 5,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+    "category": "ATP_CHALL",
+    "price_region": "ge75+le25",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PRIBAL|BAL",
+        "entry_cents": 3
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 1,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+    "category": "ATP_CHALL",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL14DELXIL|DEL",
+        "entry_cents": 83
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL14DELXIL|XIL",
+        "entry_cents": 16
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 2,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+    "category": "ATP_CHALL",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL15ROMGAL|GAL",
+        "entry_cents": 67
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 5,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+    "category": "ATP_CHALL",
+    "price_region": "ge75+le25",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL15WESCOP|WES",
+        "entry_cents": 18
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "FORMATION_ONLY_OFFER",
+    "offer_margin_cents": null,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+    "category": "ATP_CHALL",
+    "price_region": "26_50+51_75",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL17HOLBOU|BOU",
+        "entry_cents": 33
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL17HOLBOU|HOL",
+        "entry_cents": 66
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 1,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+    "category": "ATP_CHALL",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL18CASGEA|GEA",
+        "entry_cents": 65
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 6,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+    "category": "ATP_CHALL",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+        "entry_cents": 60
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 6,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+    "category": "ATP_CHALL",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20ARSRIC|RIC",
+        "entry_cents": 62
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 2,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL20KYMCLA",
+    "category": "ATP_CHALL",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20KYMCLA|CLA",
+        "entry_cents": 24
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20KYMCLA|KYM",
+        "entry_cents": 75
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 2,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL20TROISO",
+    "category": "ATP_CHALL",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20TROISO|ISO",
+        "entry_cents": 22
+      },
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL20TROISO|TRO",
+        "entry_cents": 77
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 2,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL12DAHBAE",
+    "category": "ATP_MAIN",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL12DAHBAE|BAE",
+        "entry_cents": 94
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL12DAHBAE|DAH",
+        "entry_cents": 5
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 4,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL12GUEGOM",
+    "category": "ATP_MAIN",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL12GUEGOM|GUE",
+        "entry_cents": 62
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 57,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL13SANDAN",
+    "category": "ATP_MAIN",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+        "entry_cents": 75
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+        "entry_cents": 24
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 3,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL15PRIMOL",
+    "category": "ATP_MAIN",
+    "price_region": "26_50+51_75",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 98,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL15PRIMOL|MOL",
+        "entry_cents": 29
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL15PRIMOL|PRI",
+        "entry_cents": 69
+      }
+    ],
+    "combined_entry_minus_100_cents": -2,
+    "locked_delta_vs_100_cents": 2,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 4,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL15TABMID",
+    "category": "ATP_MAIN",
+    "price_region": "26_50+ge75",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 98,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL15TABMID|MID",
+        "entry_cents": 24
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL15TABMID|TAB",
+        "entry_cents": 74
+      }
+    ],
+    "combined_entry_minus_100_cents": -2,
+    "locked_delta_vs_100_cents": 2,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 3,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL16MERDRO",
+    "category": "ATP_MAIN",
+    "price_region": "26_50+51_75",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 97,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+        "entry_cents": 49
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+        "entry_cents": 48
+      }
+    ],
+    "combined_entry_minus_100_cents": -3,
+    "locked_delta_vs_100_cents": 3,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 13,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXATPMATCH-26JUL17BURMER",
+    "category": "ATP_MAIN",
+    "price_region": "26_50+51_75",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 98,
+    "credited_legs": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL17BURMER|BUR",
+        "entry_cents": 41
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL17BURMER|MER",
+        "entry_cents": 57
+      }
+    ],
+    "combined_entry_minus_100_cents": -2,
+    "locked_delta_vs_100_cents": 2,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 8,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+    "category": "WTA_CHALL",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL12BALHUA|BAL",
+        "entry_cents": 17
+      },
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL12BALHUA|HUA",
+        "entry_cents": 82
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 33,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+    "category": "WTA_CHALL",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL12PANYOR|PAN",
+        "entry_cents": 86
+      },
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL12PANYOR|YOR",
+        "entry_cents": 13
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 19,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+    "category": "WTA_CHALL",
+    "price_region": "ge75+le25",
+    "state": "NEITHER_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "FORMATION_ONLY_OFFER",
+    "offer_margin_cents": null,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+    "category": "WTA_CHALL",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL13VANLEE|VAN",
+        "entry_cents": 55
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "NOT_OFFERED_POST_ONSET",
+    "offer_margin_cents": null,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+    "category": "WTA_CHALL",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL14WOLVAN|VAN",
+        "entry_cents": 79
+      },
+      {
+        "leg_identity": "KXWTACHALLENGERMATCH-26JUL14WOLVAN|WOL",
+        "entry_cents": 20
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 1,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL12MORNEP",
+    "category": "WTA_MAIN",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 97,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL12MORNEP|MOR",
+        "entry_cents": 71
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL12MORNEP|NEP",
+        "entry_cents": 26
+      }
+    ],
+    "combined_entry_minus_100_cents": -3,
+    "locked_delta_vs_100_cents": 3,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 29,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL13BLISAS",
+    "category": "WTA_MAIN",
+    "price_region": "26_50+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 98,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL13BLISAS|BLI",
+        "entry_cents": 43
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL13BLISAS|SAS",
+        "entry_cents": 55
+      }
+    ],
+    "combined_entry_minus_100_cents": -2,
+    "locked_delta_vs_100_cents": 2,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 3,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+    "category": "WTA_MAIN",
+    "price_region": "le25+le25",
+    "state": "NEITHER_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "FORMATION_ONLY_OFFER",
+    "offer_margin_cents": null,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL14SALIBR",
+    "category": "WTA_MAIN",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL14SALIBR|SAL",
+        "entry_cents": 56
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "FORMATION_ONLY_OFFER",
+    "offer_margin_cents": null,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL18BADZID",
+    "category": "WTA_MAIN",
+    "price_region": "ge75+le25",
+    "state": "COMPLETE_AT_DELTA",
+    "combined_entry_cents": 99,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL18BADZID|BAD",
+        "entry_cents": 74
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL18BADZID|ZID",
+        "entry_cents": 25
+      }
+    ],
+    "combined_entry_minus_100_cents": -1,
+    "locked_delta_vs_100_cents": 1,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 3,
+    "offer_census_source_commit": "22441e05"
+  },
+  {
+    "event_id": "KXWTAMATCH-26JUL20QUEKAL",
+    "category": "WTA_MAIN",
+    "price_region": "26_50+51_75",
+    "state": "PARTIAL_FOR_REASON",
+    "combined_entry_cents": null,
+    "credited_legs": [
+      {
+        "leg_identity": "KXWTAMATCH-26JUL20QUEKAL|QUE",
+        "entry_cents": 31
+      }
+    ],
+    "combined_entry_minus_100_cents": null,
+    "locked_delta_vs_100_cents": null,
+    "offer_class": "OFFERED_POST_ONSET",
+    "offer_margin_cents": 2,
+    "offer_census_source_commit": "22441e05"
+  }
+]

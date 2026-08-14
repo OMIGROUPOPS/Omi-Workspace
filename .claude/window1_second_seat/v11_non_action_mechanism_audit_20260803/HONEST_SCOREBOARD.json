@@ -1,0 +1,658 @@
+{
+ "LABEL": "HONEST_SCOREBOARD",
+ "source": "W1_GROUND_TRUTH_TABLE @ c0056976 exclusively",
+ "census_new": {
+  "PARTIAL_VALID": 218,
+  "NEITHER_VALID": 357,
+  "COMPLETE_VALID": 214,
+  "UNKNOWN_BELL_GAME": 11,
+  "COMPLETE_VALID_AT_OR_ABOVE_PAR": 4
+ },
+ "census_old": {
+  "PARTIAL_FOR_REASON": 232,
+  "COMPLETE_AT_DELTA": 267,
+  "NEITHER_FOR_REASON": 301,
+  "COMPLETE_AT_LOSS": 4
+ },
+ "complete_valid_deltas": {
+  "1": 139,
+  "2": 46,
+  "3": 16,
+  "4": 4,
+  "5": 5,
+  "6": 1,
+  "7": 1,
+  "8": 1,
+  "9": 1
+ },
+ "complete_valid_delta_cents_total": 350,
+ "offered_pre_match": {
+  "games": 680,
+  "margin_cents": 3123,
+  "ladder": [
+   {
+    "margin_c": 1,
+    "offered_games": 110,
+    "offered_cents": 110,
+    "captured_games": 9,
+    "captured_delta_cents": 9
+   },
+   {
+    "margin_c": 2,
+    "offered_games": 135,
+    "offered_cents": 270,
+    "captured_games": 35,
+    "captured_delta_cents": 40
+   },
+   {
+    "margin_c": 3,
+    "offered_games": 94,
+    "offered_cents": 282,
+    "captured_games": 23,
+    "captured_delta_cents": 32
+   },
+   {
+    "margin_c": 4,
+    "offered_games": 76,
+    "offered_cents": 304,
+    "captured_games": 34,
+    "captured_delta_cents": 50
+   },
+   {
+    "margin_c": 5,
+    "offered_games": 69,
+    "offered_cents": 345,
+    "captured_games": 25,
+    "captured_delta_cents": 40
+   },
+   {
+    "margin_c": 6,
+    "offered_games": 37,
+    "offered_cents": 222,
+    "captured_games": 11,
+    "captured_delta_cents": 18
+   },
+   {
+    "margin_c": 7,
+    "offered_games": 53,
+    "offered_cents": 371,
+    "captured_games": 24,
+    "captured_delta_cents": 49
+   },
+   {
+    "margin_c": 8,
+    "offered_games": 30,
+    "offered_cents": 240,
+    "captured_games": 17,
+    "captured_delta_cents": 26
+   },
+   {
+    "margin_c": 9,
+    "offered_games": 18,
+    "offered_cents": 162,
+    "captured_games": 8,
+    "captured_delta_cents": 11
+   },
+   {
+    "margin_c": 10,
+    "offered_games": 9,
+    "offered_cents": 90,
+    "captured_games": 6,
+    "captured_delta_cents": 17
+   },
+   {
+    "margin_c": 11,
+    "offered_games": 12,
+    "offered_cents": 132,
+    "captured_games": 4,
+    "captured_delta_cents": 6
+   },
+   {
+    "margin_c": 12,
+    "offered_games": 10,
+    "offered_cents": 120,
+    "captured_games": 6,
+    "captured_delta_cents": 11
+   },
+   {
+    "margin_c": 13,
+    "offered_games": 5,
+    "offered_cents": 65,
+    "captured_games": 3,
+    "captured_delta_cents": 11
+   },
+   {
+    "margin_c": 14,
+    "offered_games": 7,
+    "offered_cents": 98,
+    "captured_games": 3,
+    "captured_delta_cents": 6
+   },
+   {
+    "margin_c": 15,
+    "offered_games": 4,
+    "offered_cents": 60,
+    "captured_games": 2,
+    "captured_delta_cents": 5
+   },
+   {
+    "margin_c": 16,
+    "offered_games": 1,
+    "offered_cents": 16,
+    "captured_games": 1,
+    "captured_delta_cents": 1
+   },
+   {
+    "margin_c": 17,
+    "offered_games": 3,
+    "offered_cents": 51,
+    "captured_games": 2,
+    "captured_delta_cents": 10
+   },
+   {
+    "margin_c": 18,
+    "offered_games": 1,
+    "offered_cents": 18,
+    "captured_games": 0,
+    "captured_delta_cents": 0
+   },
+   {
+    "margin_c": 19,
+    "offered_games": 1,
+    "offered_cents": 19,
+    "captured_games": 0,
+    "captured_delta_cents": 0
+   },
+   {
+    "margin_c": 20,
+    "offered_games": 1,
+    "offered_cents": 20,
+    "captured_games": 0,
+    "captured_delta_cents": 0
+   },
+   {
+    "margin_c": 22,
+    "offered_games": 1,
+    "offered_cents": 22,
+    "captured_games": 0,
+    "captured_delta_cents": 0
+   },
+   {
+    "margin_c": 27,
+    "offered_games": 1,
+    "offered_cents": 27,
+    "captured_games": 0,
+    "captured_delta_cents": 0
+   },
+   {
+    "margin_c": 35,
+    "offered_games": 1,
+    "offered_cents": 35,
+    "captured_games": 0,
+    "captured_delta_cents": 0
+   },
+   {
+    "margin_c": 44,
+    "offered_games": 1,
+    "offered_cents": 44,
+    "captured_games": 1,
+    "captured_delta_cents": 8
+   }
+  ]
+ },
+ "capture": {
+  "games": 214,
+  "delta_cents": 350
+ },
+ "at_or_above_par_completes": [
+  "26JUL13ZHEBOU",
+  "26JUL15VANDRO",
+  "26JUL18BERSAI",
+  "26JUL20BARYUA"
+ ],
+ "unknown_bell_games": [
+  "26JUL12OUAFER",
+  "26JUL12SAIETO",
+  "26JUL13CRIJEA",
+  "26JUL14MARPRA",
+  "26JUL14RINTAB",
+  "26JUL15ALTDAR",
+  "26JUL15CARUGO",
+  "26JUL15JONURG",
+  "26JUL17DZUMOL",
+  "26JUL18COLCER",
+  "26JUL18JACDA"
+ ],
+ "invalidated": [
+  {
+   "code": "26JUL12ALVVAN",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12ARIZHA",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12BALHUA",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12BALPET",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12BASABB",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12BOUVIT",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12BROGIU",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12BUEMAR",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12CECOLI",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12CHISEA",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12CINHEM",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12CRIBAS",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12DELMAK",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12DODDEL",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12ECHMUN",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12FEAWAL",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12FORPAM",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12GANJAN",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12GARPRI",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12GEOMAG",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12GIUBAR",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12GUEGOM",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12GURDAL",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12HECISO",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12HERALM",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12HESKOT",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12ITOMAN",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12KRUFER",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12KUMTUR",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12LINMAL",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12MARARS",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12MEJSOT",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12MICKUL",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12MORPET",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12OUAFER",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL12PALCOL",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12PALMAR",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12PANYOR",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12PIETAB",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12POLVIN",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12PRASAI",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12PRIBAL",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12RAFAGU",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12RAQKUM",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12ROUGAN",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12SAIETO",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL12SHEVAN",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12SKASAC",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12TABHUE",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL12TAGSIE",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12VILRAH",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL12ZELFAL",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL13BURPUT",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL13CRIJEA",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL13PRIGAR",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL13ZHEBOU",
+   "old": "COMPLETE_AT_LOSS",
+   "new": "COMPLETE_VALID_AT_OR_ABOVE_PAR"
+  },
+  {
+   "code": "26JUL14BRAPIE",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL14MARPRA",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL14OUAFIC",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL14RIESEM",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL14RINTAB",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL15ALTDAR",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL15ASTNOH",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL15BASTIR",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL15CARUGO",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL15JONURG",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL15KREMON",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL15TABMID",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL15VANDRO",
+   "old": "COMPLETE_AT_LOSS",
+   "new": "COMPLETE_VALID_AT_OR_ABOVE_PAR"
+  },
+  {
+   "code": "26JUL17ADDIVA",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL17DZUMOL",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL18BERSAI",
+   "old": "COMPLETE_AT_LOSS",
+   "new": "COMPLETE_VALID_AT_OR_ABOVE_PAR"
+  },
+  {
+   "code": "26JUL18COLCER",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL18JACDA",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "UNKNOWN_BELL_GAME"
+  },
+  {
+   "code": "26JUL19FERVAN",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL19PIENES",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL19RODSAC",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL19SALKNU",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL19VANFAR",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL19ZAMKIN",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL20AKSCOS",
+   "old": "PARTIAL_FOR_REASON",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL20BARYUA",
+   "old": "COMPLETE_AT_LOSS",
+   "new": "COMPLETE_VALID_AT_OR_ABOVE_PAR"
+  },
+  {
+   "code": "26JUL20GALARN",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  },
+  {
+   "code": "26JUL20GALLLA",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "PARTIAL_VALID"
+  },
+  {
+   "code": "26JUL20VISNIK",
+   "old": "COMPLETE_AT_DELTA",
+   "new": "NEITHER_VALID"
+  }
+ ],
+ "conservation": {
+  "rows": 804,
+  "census_sum": 804,
+  "invalidated": 85
+ }
+}

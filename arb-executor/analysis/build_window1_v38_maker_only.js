@@ -49,6 +49,7 @@ const V52F_COMMIT = "c235363e404c44873d43caa1626bd4ca927eb645";
 const V52G_COMMIT = "ab841995f0cefa6011cf839fabf44057188111c4";
 const V52H_COMMIT = "b43d7cde56aac5fe5cc553419286119adf378d6d";
 const V52I_SOURCE_IMPLEMENTATION_COMMIT = "17623dce8efe139f0825226a5bf07aba7a9a2a7a";
+const V52I_COMMIT = "576c705fb0a3fd9b48910738632119fa3fdc2da2";
 const GREEK_INSTRUMENTS_COMMIT = "2d48e4ee65e2d4b320accafcd4ac39669591d64b";
 const OFFER_DENOMINATOR_COMMIT = "22441e058f9efa7ea8c3065334a238ec8786416f";
 const MACHINE_PALANTIR_COMMIT = "9929e91802dc0e0f7ed1af50c5526b2c9a730c7c";
@@ -107,7 +108,9 @@ const isV52f = variant === "v52f";
 const isV52g = variant === "v52g";
 const isV52h = variant === "v52h";
 const isV52i = variant === "v52i";
-const isV52e = variant === "v52e" || isV52eExam || isV52f || isV52g || isV52h || isV52i;
+const isV52j = variant === "v52j";
+const isV52DepthValidation = isV52i || isV52j;
+const isV52e = variant === "v52e" || isV52eExam || isV52f || isV52g || isV52h || isV52DepthValidation;
 const isV52b = variant === "v52b";
 const isV52FullRead = isV52c || isV52d || isV52e;
 const isV52ReadAuthority = isV52b || isV52FullRead;
@@ -119,16 +122,16 @@ const isAttribution = isV43 || isV45Family;
 const hasDeepGap = isV42 || isAttribution;
 const isMaker41 = isV41 || hasDeepGap;
 const isPlacementStack = isV39 || isV40 || isMaker41;
-if (!["v38", "v39", "v40", "v41", "v42", "v43", "v45", "v46", "v47", "v48", "v49", "v49b", "v52", "v52b", "v52c", "v52d", "v52e", "v52e804", "v52f", "v52g", "v52h", "v52i"].includes(variant)) throw new Error(`unknown variant ${variant}`);
-const policy = require(isV52i ? "./window1_v52i_depth_informed_level_selection.js" : isV52h ? "./window1_v52h_remove_pair_lows_precondition.js" : isV52g ? "./window1_v52g_joint_target_conservation.js" : isV52f ? "./window1_v52f_pair_entry_conservation.js" : isV52e ? "./window1_v52e_palantir_wiring.js" : isV52d ? "./window1_v52d_disagreement_referee.js" : isV52c ? "./window1_v52c_full_post_onset_read.js" : isV52b ? "./window1_v52b_read_level_authority.js" : isV52 ? "./window1_v52_judgment_gate.js" : isV49b ? "./window1_v49b_faithful_stand_at_p.js" : isV49 ? "./window1_v49_evidenced_level_standing.js" : isV48 ? "./window1_v48_trades_as_truth.js" : isV47 ? "./window1_v47_same_tick_arm.js" : isV46 ? "./window1_v46_pair_gated_gap_credit.js" : isV45 ? "./window1_v45_guard_release_sibling_credit.js" : isV43 ? "./window1_v43_composed_machine.js" : isV42 ? "./window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "./window1_v41_maker_machine.js" : isV40 ? "./window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "./window1_v39_corrected_placement_stack.js" : "./window1_v38_maker_only_machine.js");
+if (!["v38", "v39", "v40", "v41", "v42", "v43", "v45", "v46", "v47", "v48", "v49", "v49b", "v52", "v52b", "v52c", "v52d", "v52e", "v52e804", "v52f", "v52g", "v52h", "v52i", "v52j"].includes(variant)) throw new Error(`unknown variant ${variant}`);
+const policy = require(isV52j ? "./window1_v52j_role_conditioned_level_selection.js" : isV52i ? "./window1_v52i_depth_informed_level_selection.js" : isV52h ? "./window1_v52h_remove_pair_lows_precondition.js" : isV52g ? "./window1_v52g_joint_target_conservation.js" : isV52f ? "./window1_v52f_pair_entry_conservation.js" : isV52e ? "./window1_v52e_palantir_wiring.js" : isV52d ? "./window1_v52d_disagreement_referee.js" : isV52c ? "./window1_v52c_full_post_onset_read.js" : isV52b ? "./window1_v52b_read_level_authority.js" : isV52 ? "./window1_v52_judgment_gate.js" : isV49b ? "./window1_v49b_faithful_stand_at_p.js" : isV49 ? "./window1_v49_evidenced_level_standing.js" : isV48 ? "./window1_v48_trades_as_truth.js" : isV47 ? "./window1_v47_same_tick_arm.js" : isV46 ? "./window1_v46_pair_gated_gap_credit.js" : isV45 ? "./window1_v45_guard_release_sibling_credit.js" : isV43 ? "./window1_v43_composed_machine.js" : isV42 ? "./window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "./window1_v41_maker_machine.js" : isV40 ? "./window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "./window1_v39_corrected_placement_stack.js" : "./window1_v38_maker_only_machine.js");
 const frozenV52Policy = isV52b ? require("./window1_v52_judgment_gate.js") : null;
 const frozenV52bPolicy = isV52FullRead ? require("./window1_v52b_read_level_authority.js") : null;
 const frozenV52cPolicy = (isV52d || isV52e) ? require("./window1_v52c_full_post_onset_read.js") : null;
 const frozenV52dPolicy = isV52e ? require("./window1_v52d_disagreement_referee.js") : null;
-const frozenV52ePolicy = (isV52f || isV52g || isV52h || isV52i) ? require("./window1_v52e_palantir_wiring.js") : null;
-const frozenV52fPolicy = (isV52g || isV52h || isV52i) ? require("./window1_v52f_pair_entry_conservation.js") : null;
-const frozenV52gPolicy = (isV52h || isV52i) ? require("./window1_v52g_joint_target_conservation.js") : null;
-const frozenV52hPolicy = isV52i ? require("./window1_v52h_remove_pair_lows_precondition.js") : null;
+const frozenV52ePolicy = (isV52f || isV52g || isV52h || isV52DepthValidation) ? require("./window1_v52e_palantir_wiring.js") : null;
+const frozenV52fPolicy = (isV52g || isV52h || isV52DepthValidation) ? require("./window1_v52f_pair_entry_conservation.js") : null;
+const frozenV52gPolicy = (isV52h || isV52DepthValidation) ? require("./window1_v52g_joint_target_conservation.js") : null;
+const frozenV52hPolicy = isV52DepthValidation ? require("./window1_v52h_remove_pair_lows_precondition.js") : null;
 const onsetPolicy = isV52 ? require("./window1_v52_stability_onset.js") : null;
 const v43Policy = isV45Family ? require("./window1_v43_composed_machine.js") : null;
 const repo = path.resolve(arg("--repo", "."));
@@ -137,7 +140,8 @@ const reachRoot = path.resolve(arg("--reach-root", "C:/tmp/omi-reach-57daf3"));
 const gapRoot = path.resolve(arg("--gap-root", isPlacementStack ? "C:/tmp/omi-v36-gap-reach-20260807" : repo));
 const privateRoot = path.resolve(arg("--private-root", process.env.W1_PRIVATE_ROOT || "C:/Users/omigr/OMI-Window1-private"));
 const v52hNamedOnly = isV52h && arg("--named-only", "false") === "true";
-const output = path.resolve(arg("--output", path.join(repo, isV52eExam ? ".claude/window1_live_v4_replay/v52e_disposition_804_20260813" : isV52i ? ".claude/window1_live_v4_replay/v52i_depth_informed_level_selection_20260813" : v52hNamedOnly ? ".claude/window1_live_v4_replay/v52h_smiila_named_observation_20260813" : isV52h ? ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813" : isV52g ? ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813" : isV52f ? ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813" : isV52e ? ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812" : isV52d ? ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812" : isV52c ? ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812" : isV52b ? ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812" : isV52 ? ".claude/window1_live_v4_replay/v52_judgment_gate_20260812" : isV49b ? ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811" : isV49 ? ".claude/window1_live_v4_replay/v49_evidenced_level_standing_20260810" : isV48 ? ".claude/window1_live_v4_replay/v48_trades_as_truth_20260810" : isV47 ? ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810" : isV46 ? ".claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810" : isV45 ? ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809" : isV43 ? ".claude/window1_live_v4_replay/v43_composed_machine_20260809" : isV42 ? ".claude/window1_live_v4_replay/v42_deep_gap_feasibility_guard_20260809" : isV41 ? ".claude/window1_live_v4_replay/v41_maker_machine_20260808" : isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
+const v52jNamedOnly = isV52j && arg("--named-only", "false") === "true";
+const output = path.resolve(arg("--output", path.join(repo, isV52eExam ? ".claude/window1_live_v4_replay/v52e_disposition_804_20260813" : v52jNamedOnly ? ".claude/window1_live_v4_replay/v52j_guegom_named_observation_20260813" : isV52j ? ".claude/window1_live_v4_replay/v52j_role_conditioned_level_selection_20260813" : isV52i ? ".claude/window1_live_v4_replay/v52i_depth_informed_level_selection_20260813" : v52hNamedOnly ? ".claude/window1_live_v4_replay/v52h_smiila_named_observation_20260813" : isV52h ? ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813" : isV52g ? ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813" : isV52f ? ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813" : isV52e ? ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812" : isV52d ? ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812" : isV52c ? ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812" : isV52b ? ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812" : isV52 ? ".claude/window1_live_v4_replay/v52_judgment_gate_20260812" : isV49b ? ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811" : isV49 ? ".claude/window1_live_v4_replay/v49_evidenced_level_standing_20260810" : isV48 ? ".claude/window1_live_v4_replay/v48_trades_as_truth_20260810" : isV47 ? ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810" : isV46 ? ".claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810" : isV45 ? ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809" : isV43 ? ".claude/window1_live_v4_replay/v43_composed_machine_20260809" : isV42 ? ".claude/window1_live_v4_replay/v42_deep_gap_feasibility_guard_20260809" : isV41 ? ".claude/window1_live_v4_replay/v41_maker_machine_20260808" : isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
 const compare = arg("--compare", null) ? path.resolve(arg("--compare", null)) : null;
 const stage = arg("--stage", "full");
 if (isV52 && !["stage1", "full", "cohort30", "disposition804"].includes(stage)) throw new Error(`invalid V52 stage ${stage}`);
@@ -147,6 +151,14 @@ const V52_FLOW_EVENTS = new Set(["26JUL16MERDRO", "26JUL12POLKUH", "26JUL19ARSMA
 function ensure(value, message) { if (!value) throw new Error(message); }
 function canonical(value) { return `${JSON.stringify(value, null, 2)}\n`; }
 function shaBytes(bytes) { return crypto.createHash("sha256").update(bytes).digest("hex"); }
+function shaCanonicalRows(rows) {
+  const hash = crypto.createHash("sha256");
+  for (const row of rows) {
+    const bytes = Buffer.from(canonical(row));
+    hash.update(String(bytes.length)); hash.update(":"); hash.update(bytes); hash.update("\n");
+  }
+  return hash.digest("hex");
+}
 function fileHash(file) { return shaBytes(fs.readFileSync(file)); }
 function localLine(relativePath, needle) {
   const lines = fs.readFileSync(path.join(repo, relativePath), "utf8").split(/\r?\n/);
@@ -283,7 +295,7 @@ function loadN9CleanStore() {
     P14: { data: p14.data, sources: [p14.source] },
   };
   const cleanStore = adapter.makeCleanStore(manifest, assets);
-  if (!isV52i) return { store: cleanStore, manifest, manifestBytes, assets };
+  if (!isV52DepthValidation) return { store: cleanStore, manifest, manifestBytes, assets };
   const validationAdapter = require("./window1_v52i_under_validation_store.js");
   const greekPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GREEK_INSTRUMENTS.json";
   const greekManifestPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MACHINE_PALANTIR.json";
@@ -683,13 +695,14 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
     const quote = normalizedClauses.full_post_onset_evidence_horizon ? policy.fullPostOnsetRead(leg.post_onset_read_state, row) : policy.quotePathState(leg.directional, row.ts);
     const pressure = policy.pressureState(row.depth_ratio);
     const combinedRaw = policy.combineState(quote, pressure);
-    const palantir = normalizedClauses.palantir_priors ? policy.continuousConsultation({ category: base.category, priceRegion: leg.price_region, startingPriceSplit: base.starting_price_split, combinedState: combinedRaw.state, quoteState: quote.state, pressureState: pressure, siblingState: sibling.last_combined_state, row, clauses: normalizedClauses }) : null;
+    const palantir = normalizedClauses.palantir_priors ? policy.continuousConsultation({ category: base.category, priceRegion: leg.price_region, startingPriceSplit: base.starting_price_split, combinedState: combinedRaw.state, quoteState: quote.state, pressureState: pressure, siblingState: sibling.last_combined_state, siblingReadEvidence: sibling.last_read_evidence ?? null, row, clauses: normalizedClauses }) : null;
     const referee = normalizedClauses.disagreement_referee ? policy.adjudicateDisagreement({ quote, pressure, row, readState: leg.post_onset_read_state, siblingState: sibling.last_combined_state, palantir }) : null;
     const combinedBase = normalizedClauses.full_post_onset_evidence_horizon ? { ...combinedRaw, authority: policy.fullPostOnsetAuthority(combinedRaw) } : combinedRaw;
     const combined = referee?.resolved ? { ...combinedBase, state: referee.winner.reading, authority: referee.winner.evidence_class === "VALIDATED_N5_PRIOR" ? "V52E_N5_PRIOR_INFORMED_TIE_ADJUDICATION" : "V52D_DISAGREEMENT_REFEREE_STRICTLY_STRONGER_BACKING", disagreement_adjudication: referee } : referee ? { ...combinedBase, disagreement_adjudication: referee } : combinedBase;
     const fullReadEvidence = quote.full_post_onset_evidence?.last_directional_evidence ?? quote.full_post_onset_evidence?.last_evidence ?? null;
     const directionalEvidence = normalizedClauses.full_post_onset_evidence_horizon ? (fullReadEvidence ? { ts: fullReadEvidence.timestamp_epoch, receipt: fullReadEvidence.receipt, kind: fullReadEvidence.kind } : null) : leg.directional.find((evidence) => evidence.receipt === quote.receipt) ?? null;
     leg.last_combined_state = combined.state;
+    leg.last_read_evidence = { state: combined.state, receipt: quote.receipt ?? row.receipt, quote_path_state: quote.state, pressure_state: pressure, directional_evidence_timestamp_epoch: directionalEvidence?.ts ?? null, directional_evidence_receipt: directionalEvidence?.receipt ?? null, directional_evidence_kind: directionalEvidence?.kind ?? null };
     leg.last_disagreement = combined.disagreement;
     leg.classifier_rows += 1;
     leg.classifier_state_counts[combined.state] += 1;
@@ -857,10 +870,11 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
           diary: decision.birth_license?.diary ?? null,
           coherence: decision.birth_license?.coherence ?? null,
           level: decision.birth_license?.level ?? null,
-          ...((isV52f || isV52g || isV52h || isV52i) ? { pair_entry_conservation: decision.birth_license?.pair_entry_conservation ?? null } : {}),
-          ...((isV52g || isV52h || isV52i) ? { joint_target_conservation: decision.birth_license?.joint_target_conservation ?? null } : {}),
-          ...((isV52h || isV52i) ? { clause_4_market_proof_precondition: decision.birth_license?.clause_4_market_proof_precondition ?? null } : {}),
+          ...((isV52f || isV52g || isV52h || isV52DepthValidation) ? { pair_entry_conservation: decision.birth_license?.pair_entry_conservation ?? null } : {}),
+          ...((isV52g || isV52h || isV52DepthValidation) ? { joint_target_conservation: decision.birth_license?.joint_target_conservation ?? null } : {}),
+          ...((isV52h || isV52DepthValidation) ? { clause_4_market_proof_precondition: decision.birth_license?.clause_4_market_proof_precondition ?? null } : {}),
           ...(isV52i ? { depth_informed_level_selection: decision.birth_license?.level?.depth_informed_level_selection ?? decision.depth_informed_level_selection ?? null } : {}),
+          ...(isV52j ? { role_conditioned_level_selection: decision.birth_license?.level?.role_conditioned_level_selection ?? decision.role_conditioned_level_selection ?? null } : {}),
           scavenger: decision.birth_license?.scavenger ?? null,
           palantir: decision.birth_license?.palantir ?? null,
           gate_verdict: decision.judgment_gate?.verdict ?? null,
@@ -1742,6 +1756,71 @@ function buildV52iCohort(baseByEvent, censusBytes, priorReceipts) {
   };
 }
 
+function buildV52jCohort(baseByEvent, censusBytes, priorReceipts) {
+  const source = JSON.parse(censusBytes.toString("utf8"));
+  const priors = priorReceipts.map(({ iteration, commit, path: receiptPath, bytes }) => ({ iteration, commit, path: receiptPath, bytes, receipt: JSON.parse(bytes.toString("utf8")) }));
+  ensure(source.rows?.length === 1143 && priors.length === 8 && priors.every((item) => item.receipt.fresh_25?.length === 25), "V52j cohort inputs invalid");
+  const excludedByIteration = Object.fromEntries(priors.map((item) => [item.iteration, new Set(item.receipt.fresh_25.map((row) => row.code))]));
+  const excluded = new Set(Object.values(excludedByIteration).flatMap((set) => [...set]));
+  const sourceImplementationCommit = gitHead(repo);
+  ensure(/^[0-9a-f]{40}$/.test(sourceImplementationCommit), "V52j source implementation commit unavailable");
+  const seedMaterial = `V52J_ITERATION9_COHORT25|${sourceImplementationCommit}`;
+  const seedSha256 = shaBytes(Buffer.from(seedMaterial));
+  const baseIds = [...baseByEvent.keys()];
+  const eventIdForCode = (code) => {
+    const matches = baseIds.filter((eventId) => String(eventId).includes(code));
+    ensure(matches.length === 1, `cohort code ${code} bound to ${matches.length} events`);
+    return matches[0];
+  };
+  const byCode = new Map();
+  for (const row of source.rows) { if (!byCode.has(row.code)) byCode.set(row.code, []); byCode.get(row.code).push(row); }
+  const pins = [...V52_FLOW_EVENTS].sort().map((code) => ({ code, event_id: eventIdForCode(code), role: "FROZEN_PIN" }));
+  const namedCode = "26JUL12GUEGOM";
+  ensure(excludedByIteration.V52I?.has(namedCode), "V52j GUEGOM must retain its V52i fresh-cohort provenance");
+  const namedRows = byCode.get(namedCode), namedCategory = namedRows[0].cat;
+  const namedStamps = namedRows.sort((a, b) => a.leg.localeCompare(b.leg)).map((row) => `${row.queue}|${row.formation}|${row.reflex}`);
+  const namedObservation = { code: namedCode, event_id: eventIdForCode(namedCode), category: namedCategory, census_stamps: namedStamps, stratum: `${namedCategory}|${namedStamps.join("+")}`, role: "EXPLICITLY_REUSED_NAMED_OBSERVATION_OUTSIDE_FRESH_25", prior_iteration: "V52I", prior_commit: V52I_COMMIT };
+  const reserved = new Set([...V52_FLOW_EVENTS, namedCode]);
+  const strata = new Map();
+  for (const [code, rows] of byCode) {
+    if (reserved.has(code) || excluded.has(code)) continue;
+    const category = rows[0].cat;
+    ensure(rows.every((row) => row.cat === category), `category disagreement ${code}`);
+    const stamps = rows.sort((a, b) => a.leg.localeCompare(b.leg)).map((row) => `${row.queue}|${row.formation}|${row.reflex}`);
+    const stratum = `${category}|${stamps.join("+")}`;
+    if (!strata.has(stratum)) strata.set(stratum, []);
+    strata.get(stratum).push({ code, event_id: eventIdForCode(code), category, census_stamps: stamps, stratum });
+  }
+  const hashRank = (value) => shaBytes(Buffer.from(`${seedSha256}|${value}`));
+  const ordered = [...strata].sort(([a], [b]) => hashRank(a).localeCompare(hashRank(b)) || a.localeCompare(b));
+  for (const [stratum, rows] of ordered) rows.sort((a, b) => hashRank(`${stratum}|${a.code}`).localeCompare(hashRank(`${stratum}|${b.code}`)) || a.code.localeCompare(b.code));
+  const selected = [];
+  for (let round = 0; selected.length < 25; round += 1) {
+    let added = 0;
+    for (const [, rows] of ordered) if (rows[round] && selected.length < 25) { selected.push({ ...rows[round], role: "FRESH_STRATIFIED_COHORT_NOT_IN_V52B_THROUGH_V52I" }); added += 1; }
+    ensure(added > 0, `V52j cohort exhausted at ${selected.length}`);
+  }
+  const combined = [...pins, ...selected];
+  ensure(combined.length === 30 && new Set(combined.map((row) => row.event_id)).size === 30, "V52j cohort conservation failed");
+  ensure(selected.every((row) => !excluded.has(row.code)), "V52j reused a prior fresh cohort event");
+  return {
+    controlling_policy_base_commit: V52H_COMMIT,
+    lineage_parent_commit: V52I_COMMIT,
+    V52i_symmetric_depth_refinement_reverted: true,
+    source_implementation_commit: sourceImplementationCommit,
+    seed_derivation_law: "SHA256('V52J_ITERATION9_COHORT25|' + source_implementation_commit)",
+    seed_material: seedMaterial,
+    seed_sha256: seedSha256,
+    source: { commit: REFLEX_CENSUS_COMMIT, path: ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/QUEUE_FORMATION_REFLEX_CENSUS.json", sha256: shaBytes(censusBytes), rows: source.rows.length },
+    excluded_prior_fresh_cohorts: priors.map((item) => ({ iteration: item.iteration, commit: item.commit, path: item.path, sha256: shaBytes(item.bytes), events: item.receipt.fresh_25.length })),
+    exclusions: { ...Object.fromEntries(Object.entries(excludedByIteration).map(([iteration, set]) => [`prior_${iteration}_fresh25_overlap_count`, selected.filter((row) => set.has(row.code)).length])), frozen_pins_are_intentionally_reused: true, named_observation_excluded_from_fresh_25: selected.every((row) => row.code !== namedCode) },
+    stratification: { dimensions: ["category", "paired_queue_formation_reflex_census_stamps"], method: "HASH_ORDER_STRATA_THEN_ROUND_ROBIN_ONE_EVENT_PER_STRATUM", strata_available: strata.size },
+    named_reused_observation: namedObservation,
+    pins, fresh_25: selected, combined_30: combined,
+    event_list_sha256: shaBytes(Buffer.from(combined.map((row) => row.event_id).sort().join("\n") + "\n")),
+  };
+}
+
 function buildV52FlowPackage(run, baseByEvent, tapePackBytes, onsetReceiptBytes, expectedEvents = 5, stageLabel = "STAGE_1_FLOW_CHECK_FIVE_GAMES_ONLY") {
   const events = run.marketEvents.sort((a, b) => a.event_id.localeCompare(b.event_id));
   ensure(events.length === expectedEvents, `V52 flow event count ${events.length}`);
@@ -1752,7 +1831,7 @@ function buildV52FlowPackage(run, baseByEvent, tapePackBytes, onsetReceiptBytes,
     zero_posts_pre_onset: { violations: postActions.filter((row) => !row.birth_license?.onset?.passed).map((row) => `${row.leg_identity}@${row.receipt}`) },
     zero_posts_on_no_tape: { violations: postActions.filter((row) => !row.birth_license?.read?.passed).map((row) => `${row.leg_identity}@${row.receipt}`) },
     zero_levels_from_displayed_bids: { violations: postActions.filter((row) => row.birth_license?.level?.displayed_bid_consumed !== false).map((row) => `${row.leg_identity}@${row.receipt}`) },
-    every_post_has_four_license_fields: { violations: postActions.filter((row) => !(row.birth_license?.onset?.passed && row.birth_license?.read?.passed && ((isV52h || isV52i) ? row.birth_license?.diary && row.birth_license?.coherence?.disagreement_clear : row.birth_license?.diary?.passed && row.birth_license?.coherence?.lows_under_par && row.birth_license?.coherence?.disagreement_clear))).map((row) => `${row.leg_identity}@${row.receipt}`) },
+    every_post_has_four_license_fields: { violations: postActions.filter((row) => !(row.birth_license?.onset?.passed && row.birth_license?.read?.passed && ((isV52h || isV52DepthValidation) ? row.birth_license?.diary && row.birth_license?.coherence?.disagreement_clear : row.birth_license?.diary?.passed && row.birth_license?.coherence?.lows_under_par && row.birth_license?.coherence?.disagreement_clear))).map((row) => `${row.leg_identity}@${row.receipt}`) },
     scavenger_off: { violations: postActions.filter((row) => row.birth_license?.scavenger?.enabled !== false).map((row) => `${row.leg_identity}@${row.receipt}`) },
   };
   for (const value of Object.values(assertions)) value.pass = value.violations.length === 0;
@@ -1983,22 +2062,26 @@ async function main() {
     { iteration: "V52B", commit: V52B_COMMIT, path: ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52B_COMMIT, ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812/COHORT_SELECTION_RECEIPT.json") },
     { iteration: "V52C", commit: V52C_COMMIT, path: ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52C_COMMIT, ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/COHORT_SELECTION_RECEIPT.json") },
     { iteration: "V52D", commit: V52D_COMMIT, path: ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52D_COMMIT, ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812/COHORT_SELECTION_RECEIPT.json") },
-    ...((isV52f || isV52g || isV52h || isV52i) ? [{ iteration: "V52E", commit: V52E_COMMIT, path: ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52E_COMMIT, ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812/COHORT_SELECTION_RECEIPT.json") }] : []),
-    ...((isV52g || isV52h || isV52i) ? [{ iteration: "V52F", commit: V52F_COMMIT, path: ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52F_COMMIT, ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/COHORT_SELECTION_RECEIPT.json") }] : []),
-    ...((isV52h || isV52i) ? [{ iteration: "V52G", commit: V52G_COMMIT, path: ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52G_COMMIT, ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813/COHORT_SELECTION_RECEIPT.json") }] : []),
-    ...(isV52i ? [{ iteration: "V52H", commit: V52H_COMMIT, path: ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52H_COMMIT, ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813/COHORT_SELECTION_RECEIPT.json") }] : []),
+    ...((isV52f || isV52g || isV52h || isV52DepthValidation) ? [{ iteration: "V52E", commit: V52E_COMMIT, path: ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52E_COMMIT, ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812/COHORT_SELECTION_RECEIPT.json") }] : []),
+    ...((isV52g || isV52h || isV52DepthValidation) ? [{ iteration: "V52F", commit: V52F_COMMIT, path: ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52F_COMMIT, ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813/COHORT_SELECTION_RECEIPT.json") }] : []),
+    ...((isV52h || isV52DepthValidation) ? [{ iteration: "V52G", commit: V52G_COMMIT, path: ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52G_COMMIT, ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813/COHORT_SELECTION_RECEIPT.json") }] : []),
+    ...(isV52DepthValidation ? [{ iteration: "V52H", commit: V52H_COMMIT, path: ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52H_COMMIT, ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813/COHORT_SELECTION_RECEIPT.json") }] : []),
+    ...(isV52j ? [{ iteration: "V52I", commit: V52I_COMMIT, path: ".claude/window1_live_v4_replay/v52i_depth_informed_level_selection_20260813/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52I_COMMIT, ".claude/window1_live_v4_replay/v52i_depth_informed_level_selection_20260813/COHORT_SELECTION_RECEIPT.json") }] : []),
   ] : null;
-  const v52eCohort = isV52e && !isV52eExam ? (isV52i ? buildV52iCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52h ? buildV52hCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52g ? buildV52gCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52f ? buildV52fCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : buildV52eCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts)) : null;
+  const v52eCohort = isV52e && !isV52eExam ? (isV52j ? buildV52jCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52i ? buildV52iCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52h ? buildV52hCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52g ? buildV52gCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52f ? buildV52fCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : buildV52eCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts)) : null;
   if (isV52c) v52bCohort = v52cCohort; // compatibility alias for the shared receipt block only
   if (isV52d) v52bCohort = v52dCohort; // compatibility alias for the shared receipt block only
   if (isV52e && !isV52eExam) v52bCohort = v52eCohort; // compatibility alias for the shared receipt block only
   const activeReadCohort = isV52eExam ? null : isV52e ? v52eCohort : isV52d ? v52dCohort : isV52c ? v52cCohort : v52bCohort;
   if (isV52ReadAuthority && !isV52eExam) {
-    const selected = new Set(v52hNamedOnly ? [activeReadCohort.named_reused_observation.event_id] : activeReadCohort.combined_30.map((row) => row.event_id));
+    const selected = new Set((v52hNamedOnly || v52jNamedOnly) ? [activeReadCohort.named_reused_observation.event_id] : activeReadCohort.combined_30.map((row) => row.event_id));
     for (const base of baseByEvent.values()) base.v52_flow_trace = selected.has(base.event_id);
   }
   const machineSpecs = isV52eExam ? [
     { name: "V52E_DISPOSITION_804", market_mode: "MARKET_TRADES_AS_TRUTH", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true, trades_as_truth: true, faithful_stand_at_p: true, judgment_gate: true, scavenger: false, machine_read_level_authority: true, full_post_onset_evidence_horizon: true, disagreement_referee: true, palantir_priors: true } },
+  ] : isV52j ? [
+    { name: "V52H_FROZEN_BASELINE", market_mode: "MARKET_TRADES_AS_TRUTH", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true, trades_as_truth: true, faithful_stand_at_p: true, judgment_gate: true, scavenger: false, machine_read_level_authority: true, full_post_onset_evidence_horizon: true, disagreement_referee: true, palantir_priors: true, pair_entry_conservation: true, joint_target_conservation: true, remove_pair_lows_precondition: true } },
+    { name: "V52J_ROLE_CONDITIONED_LEVEL_SELECTION", market_mode: "MARKET_TRADES_AS_TRUTH", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true, trades_as_truth: true, faithful_stand_at_p: true, judgment_gate: true, scavenger: false, machine_read_level_authority: true, full_post_onset_evidence_horizon: true, disagreement_referee: true, palantir_priors: true, pair_entry_conservation: true, joint_target_conservation: true, remove_pair_lows_precondition: true, role_conditioned_level_selection: true } },
   ] : isV52i ? [
     { name: "V52H_FROZEN_BASELINE", market_mode: "MARKET_TRADES_AS_TRUTH", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true, trades_as_truth: true, faithful_stand_at_p: true, judgment_gate: true, scavenger: false, machine_read_level_authority: true, full_post_onset_evidence_horizon: true, disagreement_referee: true, palantir_priors: true, pair_entry_conservation: true, joint_target_conservation: true, remove_pair_lows_precondition: true } },
     { name: "V52I_DEPTH_INFORMED_LEVEL_SELECTION", market_mode: "MARKET_TRADES_AS_TRUTH", clauses: { arm_at_first_evidence: true, deep_gap_guard: true, loosen_one_cent: true, release_guard_on_sibling_credit: true, same_tick_arm: true, trades_as_truth: true, faithful_stand_at_p: true, judgment_gate: true, scavenger: false, machine_read_level_authority: true, full_post_onset_evidence_horizon: true, disagreement_referee: true, palantir_priors: true, pair_entry_conservation: true, joint_target_conservation: true, remove_pair_lows_precondition: true, depth_informed_level_selection: true } },
@@ -2071,7 +2154,7 @@ async function main() {
   const examSpanCloseRows = [];
   let index = 0;
   const v52ReadEventIds = isV52ReadAuthority && !isV52eExam ? new Set(activeReadCohort.combined_30.map((row) => row.event_id)) : null;
-  if (v52hNamedOnly) { v52ReadEventIds.clear(); v52ReadEventIds.add(activeReadCohort.named_reused_observation.event_id); }
+  if (v52hNamedOnly || v52jNamedOnly) { v52ReadEventIds.clear(); v52ReadEventIds.add(activeReadCohort.named_reused_observation.event_id); }
   const replayBases = [...baseByEvent.values()].filter((base) => !isV52 || (isV52eExam ? true : isV52ReadAuthority ? v52ReadEventIds.has(base.event_id) : stage === "full" || v52ShortEvent(base.event_id))).sort((a, b) => a.event_id.localeCompare(b.event_id));
   for (const base of replayBases) {
     index += 1; if (index % 50 === 0) process.stderr.write(`${isV52 ? "V52x2" : isV49b ? "V49bx2" : isV49 ? "V49x2" : isV48 ? "V48x5" : isV47 ? "V47x2" : isV46 ? "V46x2" : isV45 ? "V45x2" : isV43 ? "V43x8" : isV42 ? "V42" : isV41 ? "V41" : isV40 ? "V40" : isV39 ? "V39" : "V38"} replay ${index}/${replayBases.length}\n`);
@@ -2110,6 +2193,72 @@ async function main() {
     }
   }
   const examTraceChunks = isV52eExam ? await examTraceWriter.finish() : null;
+  if (v52jNamedOnly) {
+    const baselineRun = machineRuns.get("V52H_FROZEN_BASELINE"), candidateRun = machineRuns.get("V52J_ROLE_CONDITIONED_LEVEL_SELECTION");
+    const before = buildV52FlowPackage(baselineRun, baseByEvent, v52TapePackBytes, v52OnsetReceiptBytes, 1, "V52H_GUEGOM_NAMED_REPLAY");
+    const after = buildV52FlowPackage(candidateRun, baseByEvent, v52TapePackBytes, v52OnsetReceiptBytes, 1, "V52J_GUEGOM_NAMED_REPLAY");
+    const baselineEvent = baselineRun.marketEvents[0], candidateEvent = candidateRun.marketEvents[0];
+    ensure(baselineEvent?.event_id.includes("GUEGOM") && candidateEvent?.event_id === baselineEvent.event_id, "GUEGOM named replay identity mismatch");
+    const base = baseByEvent.get(candidateEvent.event_id);
+    const offerCensus = JSON.parse(gitShow("22441e05", ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json"));
+    const offerGame = offerCensus.rows.find((row) => row.code === "26JUL12GUEGOM");
+    ensure(offerGame, "GUEGOM offer-floor row unavailable");
+    const legs = Object.values(candidateEvent.legs).sort((a, b) => a.leg_identity.localeCompare(b.leg_identity)).map((leg) => {
+      const baselineLeg = Object.values(baselineEvent.legs).find((row) => row.leg_identity === leg.leg_identity);
+      const legId = leg.leg_identity.split("|").at(-1);
+      const offer = offerGame.legs?.[legId] ?? Object.values(offerGame.legs ?? {}).find((row) => row.ticker?.endsWith(`-${legId}`)) ?? null;
+      const traceRows = after.trace.filter((row) => row.leg_identity === leg.leg_identity && (!Number.isFinite(leg.fill_timestamp_epoch) || row.timestamp_epoch <= leg.fill_timestamp_epoch));
+      const roleRow = traceRows.filter((row) => row.role_conditioned_level_selection?.role_assignment).at(-1) ?? null;
+      return {
+        leg_identity: leg.leg_identity,
+        role_at_fill_or_terminal: roleRow?.role_conditioned_level_selection?.role_assignment?.own_role ?? null,
+        role_receipt: roleRow?.receipt ?? null,
+        baseline: { credited: baselineLeg.credited, entry_cents: baselineLeg.entry_cents, fill_timestamp_epoch: baselineLeg.fill_timestamp_epoch, fill_clock: Number.isFinite(baselineLeg.fill_timestamp_epoch) ? clockFields(baselineLeg.fill_timestamp_epoch, base) : null },
+        candidate: { credited: leg.credited, entry_cents: leg.entry_cents, fill_timestamp_epoch: leg.fill_timestamp_epoch, fill_clock: Number.isFinite(leg.fill_timestamp_epoch) ? clockFields(leg.fill_timestamp_epoch, base) : null },
+        post_onset_offer_floor_cents: offer?.floor_sel ?? null,
+        candidate_entry_minus_floor_cents: leg.credited && Number.isInteger(offer?.floor_sel) ? leg.entry_cents - offer.floor_sel : null,
+        fill_delay_seconds: leg.credited && Number.isFinite(baselineLeg.fill_timestamp_epoch) ? leg.fill_timestamp_epoch - baselineLeg.fill_timestamp_epoch : null,
+      };
+    });
+    const fallerRows = legs.filter((row) => row.role_at_fill_or_terminal === "FALLING");
+    const observation = {
+      event_id: candidateEvent.event_id,
+      provenance: activeReadCohort.named_reused_observation,
+      baseline: { completed: baselineEvent.completed_pair, combined_entry_cents: baselineEvent.combined_entry_cents, pair_under_par: baselineEvent.pair_under_par },
+      candidate: { completed: candidateEvent.completed_pair, combined_entry_cents: candidateEvent.combined_entry_cents, pair_under_par: candidateEvent.pair_under_par },
+      legs,
+      pre_stated_GUEGOM_class_claim: {
+        faller_side_identified: fallerRows.length > 0,
+        all_candidate_faller_fills_later_than_baseline: fallerRows.length > 0 && fallerRows.every((row) => Number.isFinite(row.fill_delay_seconds) && row.fill_delay_seconds >= 0),
+        all_candidate_faller_fills_at_or_near_later_floor_0_to_1c: fallerRows.length > 0 && fallerRows.every((row) => Number.isInteger(row.candidate_entry_minus_floor_cents) && row.candidate_entry_minus_floor_cents >= 0 && row.candidate_entry_minus_floor_cents <= 1),
+        converts: !baselineEvent.completed_pair && candidateEvent.completed_pair,
+        adjudication: "OBSERVATION_ONLY; FAILURE DOES_NOT_AUTHORIZE_POLICY_EDIT",
+      },
+    };
+    write("REPORT.md", `# V52j GUEGOM named observation\n\nGUEGOM is explicitly reused from V52i outside V52j's fresh 25. Baseline ${JSON.stringify(observation.baseline)}; candidate ${JSON.stringify(observation.candidate)}. Faller claim ${JSON.stringify(observation.pre_stated_GUEGOM_class_claim)}. No behavioral edit followed this observation.\n`);
+    write("CONTROL_BINDING.json", canonical({ parent_commit: V52I_COMMIT, controlling_policy_base_commit: V52H_COMMIT, branch: "codex/window1-v52j-role-conditioned-level-selection-20260813", scope: "GUEGOM_NAMED_OBSERVATION_OUTSIDE_COHORT30", score_or_disposition_804_run: false, policy_edits: false }));
+    write("GUEGOM_NAMED_OBSERVATION.json", canonical(observation));
+    write("FORBIDDEN_ACCESS_RECEIPT.json", canonical({ holdout: false, live: false, network_runtime: false, orders: false, positions: false, deployment: false, full_804_run: false, scavenger: false }));
+    const namedTraceRows = before.trace.map((row) => ({ variant: "V52H", ...row })).concat(after.trace.map((row) => ({ variant: "V52J", ...row })));
+    const namedTraceChunks = [];
+    for (let start = 0; start < namedTraceRows.length; start += 10000) {
+      const rows = namedTraceRows.slice(start, start + 10000);
+      const name = `GUEGOM_NAMED_BEFORE_AFTER_TRACE_CHUNK_${String(namedTraceChunks.length + 1).padStart(3, "0")}.jsonl.gz`;
+      await writeGzipRowsFile(path.join(output, name), rows);
+      namedTraceChunks.push({ name, rows: rows.length, sha256: fileHash(path.join(output, name)), bytes: fs.statSync(path.join(output, name)).size });
+    }
+    write("GUEGOM_NAMED_BEFORE_AFTER_TRACE_MANIFEST.json", canonical({ format: "FULL_RECEIPT_GRAIN_JSONL_GZIP_ROW_CHUNKS", chunk_row_limit: 10000, rows: namedTraceRows.length, chunks: namedTraceChunks, conservation_pass: namedTraceChunks.reduce((sum, row) => sum + row.rows, 0) === namedTraceRows.length }));
+    const names = fs.readdirSync(output).sort();
+    let determinism;
+    if (compare) {
+      const mismatches = names.filter((name) => !fs.existsSync(path.join(compare, name)) || fileHash(path.join(compare, name)) !== fileHash(path.join(output, name)));
+      ensure(!mismatches.length, `GUEGOM determinism mismatch ${mismatches.join(",")}`);
+      determinism = { clean_builds: 2, compared_files: names.length, byte_identical: true, mismatches: [] };
+    } else determinism = { clean_builds: 1, byte_identical: null, role: "FIRST_BUILD" };
+    write("DETERMINISM_RECEIPT.json", canonical(determinism)); writeManifest(output);
+    if (compare) { fs.writeFileSync(path.join(compare, "DETERMINISM_RECEIPT.json"), canonical(determinism)); writeManifest(compare); ensure(fileHash(path.join(compare, "ARTIFACT_HASH_MANIFEST.json")) === fileHash(path.join(output, "ARTIFACT_HASH_MANIFEST.json")), "GUEGOM final manifests differ"); }
+    process.stdout.write(canonical({ output, observation, determinism })); return;
+  }
   if (v52hNamedOnly) {
     const baselineRun = machineRuns.get("V52G_FROZEN_BASELINE"), candidateRun = machineRuns.get("V52H_REMOVE_PAIR_LOWS_PRECONDITION");
     const before = buildV52FlowPackage(baselineRun, baseByEvent, v52TapePackBytes, v52OnsetReceiptBytes, 1, "V52G_SMIILA_NAMED_REPLAY");
@@ -2145,10 +2294,10 @@ async function main() {
     process.stdout.write(canonical({ output, observation, determinism })); return;
   }
   if (isV52ReadAuthority && !isV52eExam) {
-    const iterationLabel = isV52i ? "V52I_ITERATION8" : isV52h ? "V52H_ITERATION7" : isV52g ? "V52G_ITERATION6" : isV52f ? "V52F_ITERATION5" : isV52e ? "V52E_ITERATION4" : isV52d ? "V52D_ITERATION3" : isV52c ? "V52C_ITERATION2" : "V52B_ITERATION1";
-    const authorizedClause = isV52i ? "CLAUSE_3_N4_DEPTH_INFORMED_LEVEL_SELECTION_ONLY" : isV52h ? "CLAUSE_4_MARKET_PROOF_PRECONDITION_REMOVAL_ONLY" : isV52g ? "CLAUSE_6_ORDER_FREE_JOINT_TARGET_CONSERVATION_ONLY" : isV52f ? "CLAUSE_5_PAIR_ENTRY_CONSERVATION_ONLY" : isV52e ? "N9_CLEAN_PALANTIR_WIRING_ONLY" : isV52d ? "CLAUSE_4_DISAGREEMENT_REFEREE_ONLY" : isV52c ? "CLAUSE_2_EVIDENCE_HORIZON_ONLY" : "CLAUSE_3_LEVEL_AUTHORITY_ONLY";
-    const baselineName = isV52i ? "V52H_FROZEN_BASELINE" : isV52h ? "V52G_FROZEN_BASELINE" : isV52g ? "V52F_FROZEN_BASELINE" : isV52f ? "V52E_FROZEN_BASELINE" : isV52e ? "V52D_FROZEN_BASELINE" : isV52d ? "V52C_FROZEN_BASELINE" : isV52c ? "V52B_FROZEN_BASELINE" : "V52_FROZEN_BASELINE";
-    const candidateName = isV52i ? "V52I_DEPTH_INFORMED_LEVEL_SELECTION" : isV52h ? "V52H_REMOVE_PAIR_LOWS_PRECONDITION" : isV52g ? "V52G_JOINT_TARGET_CONSERVATION" : isV52f ? "V52F_PAIR_ENTRY_CONSERVATION" : isV52e ? "V52E_PALANTIR_WIRING" : isV52d ? "V52D_DISAGREEMENT_REFEREE" : isV52c ? "V52C_FULL_POST_ONSET_READ" : "V52B_READ_LEVEL_AUTHORITY";
+    const iterationLabel = isV52j ? "V52J_ITERATION9" : isV52i ? "V52I_ITERATION8" : isV52h ? "V52H_ITERATION7" : isV52g ? "V52G_ITERATION6" : isV52f ? "V52F_ITERATION5" : isV52e ? "V52E_ITERATION4" : isV52d ? "V52D_ITERATION3" : isV52c ? "V52C_ITERATION2" : "V52B_ITERATION1";
+    const authorizedClause = isV52j ? "CLAUSE_3_N4_ROLE_CONDITIONED_LEVEL_SELECTION_ONLY" : isV52i ? "CLAUSE_3_N4_DEPTH_INFORMED_LEVEL_SELECTION_ONLY" : isV52h ? "CLAUSE_4_MARKET_PROOF_PRECONDITION_REMOVAL_ONLY" : isV52g ? "CLAUSE_6_ORDER_FREE_JOINT_TARGET_CONSERVATION_ONLY" : isV52f ? "CLAUSE_5_PAIR_ENTRY_CONSERVATION_ONLY" : isV52e ? "N9_CLEAN_PALANTIR_WIRING_ONLY" : isV52d ? "CLAUSE_4_DISAGREEMENT_REFEREE_ONLY" : isV52c ? "CLAUSE_2_EVIDENCE_HORIZON_ONLY" : "CLAUSE_3_LEVEL_AUTHORITY_ONLY";
+    const baselineName = isV52DepthValidation ? "V52H_FROZEN_BASELINE" : isV52h ? "V52G_FROZEN_BASELINE" : isV52g ? "V52F_FROZEN_BASELINE" : isV52f ? "V52E_FROZEN_BASELINE" : isV52e ? "V52D_FROZEN_BASELINE" : isV52d ? "V52C_FROZEN_BASELINE" : isV52c ? "V52B_FROZEN_BASELINE" : "V52_FROZEN_BASELINE";
+    const candidateName = isV52j ? "V52J_ROLE_CONDITIONED_LEVEL_SELECTION" : isV52i ? "V52I_DEPTH_INFORMED_LEVEL_SELECTION" : isV52h ? "V52H_REMOVE_PAIR_LOWS_PRECONDITION" : isV52g ? "V52G_JOINT_TARGET_CONSERVATION" : isV52f ? "V52F_PAIR_ENTRY_CONSERVATION" : isV52e ? "V52E_PALANTIR_WIRING" : isV52d ? "V52D_DISAGREEMENT_REFEREE" : isV52c ? "V52C_FULL_POST_ONSET_READ" : "V52B_READ_LEVEL_AUTHORITY";
     const baselineRun = machineRuns.get(baselineName);
     const candidateRun = machineRuns.get(candidateName);
     ensure(stage === "cohort30", `${iterationLabel} requires cohort30 stage, got ${stage}`);
@@ -2174,6 +2323,10 @@ async function main() {
       const row = candidateFlow.trace[index];
       if (row.depth_informed_level_selection?.target_changed === true && !firstAuthorizedIndexByEvent.has(row.event_id)) firstAuthorizedIndexByEvent.set(row.event_id, index);
     }
+    if (isV52j) for (let index = 0; index < candidateFlow.trace.length; index += 1) {
+      const row = candidateFlow.trace[index];
+      if (row.role_conditioned_level_selection?.target_changed === true && !firstAuthorizedIndexByEvent.has(row.event_id)) firstAuthorizedIndexByEvent.set(row.event_id, index);
+    }
     const onsetLawFields = (value) => value ? ({ passed: value.passed, selected_candidate: value.selected_candidate, timestamp_epoch: value.timestamp_epoch, t_minus_scheduled_seconds: value.t_minus_scheduled_seconds, t_minus_actual_bell_seconds: value.t_minus_actual_bell_seconds, candidates: value.candidates }) : null;
     const coherenceLawApplied = (value) => Boolean(value) && value.disagreement_clear === (!value.disagreement_firing || value.sibling_credited);
     const clause4SameInputProof = (coherence) => {
@@ -2191,7 +2344,7 @@ async function main() {
       const checks = {
         clause_1_onset: canonical(onsetLawFields(before.onset)) === canonical(onsetLawFields(after.onset)),
         ...((isV52c || isV52d || isV52e) ? {} : { clause_2_read: canonical(before.read) === canonical(after.read) }),
-        ...(isV52i ? {
+        ...(isV52DepthValidation ? {
           clause_2_read: canonical(before.read) === canonical(after.read),
           clause_4_coherence: canonical(before.coherence) === canonical(after.coherence),
           clause_5_function_identity: policy.settlementIdentity === frozenV52hPolicy.settlementIdentity,
@@ -2231,7 +2384,7 @@ async function main() {
         const firstAuthorizedIndex = firstAuthorizedIndexByEvent.get(after.event_id);
         const candidateIndex = candidateTraceIndex.get(key);
         const receipt = { key, checks, before: { onset: before.onset, read: before.read, coherence: before.coherence, scavenger: before.scavenger }, after: { onset: after.onset, read: after.read, coherence: after.coherence, scavenger: after.scavenger } };
-        if ((isV52g || isV52h || isV52i) && Number.isInteger(firstAuthorizedIndex) && candidateIndex >= firstAuthorizedIndex) downstreamFrozenInputDivergences.push({ ...receipt, classification: isV52i ? "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_3_DEPTH_SELECTION" : isV52h ? "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_4_PRECONDITION_REMOVAL" : "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_6" });
+        if ((isV52g || isV52h || isV52DepthValidation) && Number.isInteger(firstAuthorizedIndex) && candidateIndex >= firstAuthorizedIndex) downstreamFrozenInputDivergences.push({ ...receipt, classification: isV52j ? "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_3_ROLE_SELECTION" : isV52i ? "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_3_DEPTH_SELECTION" : isV52h ? "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_4_PRECONDITION_REMOVAL" : "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_6" });
         else frozenClauseDiffs.push(receipt);
       }
       const decisionView = (row, includeDepth) => ({
@@ -2240,10 +2393,11 @@ async function main() {
         final_action: row.final_action,
         final_target_cents: row.final_target_cents,
         reason: row.reason,
-        ...(isV52i ? {
+        ...(isV52DepthValidation ? {
           frozen_machine_read_authorized: row.level?.machine_read?.authorized ?? null,
           frozen_machine_read_target_cents: row.level?.machine_read?.target_cents ?? null,
           ...(includeDepth && row.depth_informed_level_selection?.target_changed ? { depth_informed_level_selection: row.depth_informed_level_selection } : {}),
+          ...(includeDepth && row.role_conditioned_level_selection ? { role_conditioned_level_selection: row.role_conditioned_level_selection } : {}),
         } : { level: row.level }),
       });
       const beforeDecision = decisionView(before, false);
@@ -2258,7 +2412,7 @@ async function main() {
       const after = candidateTrace.get(key);
       decisionDiffs.push({ key, event_id: after.event_id, leg_identity: after.leg_identity, timestamp_epoch: after.timestamp_epoch, receipt: after.receipt, before: null, after: { gate_verdict: after.gate_verdict, blocked_clause: after.blocked_clause, final_action: after.final_action, final_target_cents: after.final_target_cents, reason: after.reason, level: after.level }, branch_disposition: `${baselineName}_STREAM_ENDED_EARLIER_AFTER_AUTHORIZED_ACTION_OR_CREDIT`, authorized_clause: authorizedClause });
     }
-    const checkedClauses = isV52i ? ["clause_1_onset", "clause_2_read", "clause_4_coherence", "clause_5_function_identity", "clause_6_function_identity", "clause_4_market_proof_function_identity", "frozen_upstream_function_identity", "scavenger"] : (isV52f || isV52g || isV52h) ? ["clause_1_onset", "clause_2_read", "clause_3_machine_read_input", "clause_4_coherence", "N9_palantir", "frozen_clause_function_identity", "scavenger"] : isV52e ? ["clause_1_onset", "clause_2_read", "frozen_clause_function_identity", "scavenger"] : isV52d ? ["clause_1_onset", "clause_2_read", "clause_3_policy_function_identity", "scavenger"] : isV52c ? ["clause_1_onset", "clause_4_coherence", "scavenger"] : ["clause_1_onset", "clause_2_read", "clause_4_coherence", "scavenger"];
+    const checkedClauses = isV52DepthValidation ? ["clause_1_onset", "clause_2_read", "clause_4_coherence", "clause_5_function_identity", "clause_6_function_identity", "clause_4_market_proof_function_identity", "frozen_upstream_function_identity", "scavenger"] : (isV52f || isV52g || isV52h) ? ["clause_1_onset", "clause_2_read", "clause_3_machine_read_input", "clause_4_coherence", "N9_palantir", "frozen_clause_function_identity", "scavenger"] : isV52e ? ["clause_1_onset", "clause_2_read", "frozen_clause_function_identity", "scavenger"] : isV52d ? ["clause_1_onset", "clause_2_read", "clause_3_policy_function_identity", "scavenger"] : isV52c ? ["clause_1_onset", "clause_4_coherence", "scavenger"] : ["clause_1_onset", "clause_2_read", "clause_4_coherence", "scavenger"];
     const frozenClauseFailureCounts = Object.fromEntries(checkedClauses.map((name) => [name, frozenClauseDiffs.filter((row) => !row.checks[name]).length]));
     ensure(frozenClauseDiffs.length === 0, `${iterationLabel} frozen-clause receipt comparison failed ${JSON.stringify(frozenClauseFailureCounts)} first=${JSON.stringify(frozenClauseDiffs[0])}`);
     const candidateMutations = candidateRun.actions.filter((row) => row.mode === "MARKET_TRADES_AS_TRUTH" && ["PLACE_REST", "REPRICE_REST", "PAIR_CAP_REPRICE", "GAP_CREDIT_REPRICE_DOWN"].includes(row.kind));
@@ -2320,8 +2474,8 @@ async function main() {
       candidate: { states: countBy(candidateFourStateRows, (row) => row.state), rows: candidateFourStateRows.length },
       conservation: { expected: 30, baseline_sum: baselineFourStateRows.length, candidate_sum: candidateFourStateRows.length, pass: baselineFourStateRows.length === 30 && candidateFourStateRows.length === 30 },
     };
-    const pairBudgetRecords = (isV52g || isV52h || isV52i) ? candidateRun.marketEvents.map((event) => event.pair_budget_record) : [];
-    const pairBudgetRecordSummary = (isV52g || isV52h || isV52i) ? {
+    const pairBudgetRecords = (isV52g || isV52h || isV52DepthValidation) ? candidateRun.marketEvents.map((event) => event.pair_budget_record) : [];
+    const pairBudgetRecordSummary = (isV52g || isV52h || isV52DepthValidation) ? {
       records: pairBudgetRecords.length,
       born_records: pairBudgetRecords.filter((record) => record?.born_at).length,
       unborn_records: pairBudgetRecords.filter((record) => !record?.born_at).length,
@@ -2367,10 +2521,12 @@ async function main() {
       }));
       return { code: pin.code, event_id: pin.event_id, baseline_completed: before.completed_pair, baseline_combined_entry_cents: before.combined_entry_cents, candidate_completed: after.completed_pair, candidate_combined_entry_cents: after.combined_entry_cents, at_or_better: before.completed_pair && after.completed_pair ? after.combined_entry_cents <= before.combined_entry_cents : !before.completed_pair || after.completed_pair, legs: legRows, unharmed: (!before.completed_pair || after.completed_pair) && legRows.every((row) => row.unharmed) };
     }) : [];
-    const sandanPin = (isV52g || isV52h || isV52i) ? pinComparisons.find((row) => row.code === "26JUL13SANDAN") : null;
+    const sandanPin = (isV52g || isV52h || isV52DepthValidation) ? pinComparisons.find((row) => row.code === "26JUL13SANDAN") : null;
     const smiilaNamedRoot = path.join(repo, ".claude/window1_live_v4_replay/v52h_smiila_named_observation_20260813");
     const smiilaObservation = isV52h ? JSON.parse(fs.readFileSync(path.join(smiilaNamedRoot, "SMIILA_NAMED_OBSERVATION.json"), "utf8")) : null;
-    const newOneSidedExposureRows = (isV52h || isV52i) ? candidateFourStateRows.filter((row) => row.state === "PARTIAL_FOR_REASON").flatMap((row) => {
+    const guegomNamedRoot = path.join(repo, ".claude/window1_live_v4_replay/v52j_guegom_named_observation_20260813");
+    const guegomObservation = isV52j ? JSON.parse(fs.readFileSync(path.join(guegomNamedRoot, "GUEGOM_NAMED_OBSERVATION.json"), "utf8")) : null;
+    const newOneSidedExposureRows = (isV52h || isV52DepthValidation) ? candidateFourStateRows.filter((row) => row.state === "PARTIAL_FOR_REASON").flatMap((row) => {
       const before = baselineFourStateRows.find((item) => item.event_id === row.event_id);
       const beforeIds = (before?.credited_legs ?? []).map((leg) => leg.leg_identity).sort().join("|");
       const afterIds = row.credited_legs.map((leg) => leg.leg_identity).sort().join("|");
@@ -2380,23 +2536,23 @@ async function main() {
       const edge = baseByEvent.get(row.event_id).right;
       return [{ event_id: row.event_id, category: row.category, price_region: row.price_region, baseline_state: before?.state ?? null, credited_leg: credited.leg_identity, credited_entry_cents: credited.entry_cents, credited_timestamp_epoch: credited.fill_timestamp_epoch, missing_leg: missing.leg_identity, missing_terminal_reason: missing.terminal_reason, exposure_to_window_edge_seconds: Number.isFinite(credited.fill_timestamp_epoch) ? edge - credited.fill_timestamp_epoch : null, second_side_never_kissed: true }];
     }) : [];
-    const frozenV52hOneSided = isV52i ? JSON.parse(gitShow(V52H_COMMIT, ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813/NEW_ONE_SIDED_EXPOSURE_RECEIPT.json")) : null;
-    const oneSidedExposureSummary = (isV52h || isV52i) ? {
+    const frozenV52hOneSided = isV52DepthValidation ? JSON.parse(gitShow(V52H_COMMIT, ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813/NEW_ONE_SIDED_EXPOSURE_RECEIPT.json")) : null;
+    const oneSidedExposureSummary = (isV52h || isV52DepthValidation) ? {
       newly_created_partials: newOneSidedExposureRows.length,
       duration_seconds: distribution(newOneSidedExposureRows.map((row) => row.exposure_to_window_edge_seconds)),
       rows: newOneSidedExposureRows,
-      ...(isV52i ? { V52h_baseline: { newly_created_partials: frozenV52hOneSided.newly_created_partials, duration_seconds: frozenV52hOneSided.duration_seconds }, requested_baseline_count_six: frozenV52hOneSided.newly_created_partials === 6 } : {}),
+      ...(isV52DepthValidation ? { V52h_baseline: { newly_created_partials: frozenV52hOneSided.newly_created_partials, duration_seconds: frozenV52hOneSided.duration_seconds }, requested_baseline_count_six: frozenV52hOneSided.newly_created_partials === 6 } : {}),
     } : null;
-    const offerCensus = isV52i ? JSON.parse(gitShow("22441e05", ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json")) : null;
-    const offerByTicker = isV52i ? new Map(offerCensus.rows.flatMap((game) => Object.values(game.legs ?? {}).map((leg) => [`${game.code}|${leg.ticker.split("-").at(-1)}`, { ...leg, game_code: game.code, offer_class: game.cls, offer_margin_cents: game.margin, pair_floor_cents: game.pair_floor_sel }]))) : new Map();
-    const entryFloorRowsFor = (run, variantName) => isV52i ? run.marketEvents.flatMap((event) => Object.values(event.legs).filter((leg) => leg.credited).map((leg) => {
+    const offerCensus = isV52DepthValidation ? JSON.parse(gitShow("22441e05", ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json")) : null;
+    const offerByTicker = isV52DepthValidation ? new Map(offerCensus.rows.flatMap((game) => Object.values(game.legs ?? {}).map((leg) => [`${game.code}|${leg.ticker.split("-").at(-1)}`, { ...leg, game_code: game.code, offer_class: game.cls, offer_margin_cents: game.margin, pair_floor_cents: game.pair_floor_sel }]))) : new Map();
+    const entryFloorRowsFor = (run, variantName) => isV52DepthValidation ? run.marketEvents.flatMap((event) => Object.values(event.legs).filter((leg) => leg.credited).map((leg) => {
       const offer = offerByTicker.get(`${event.event_id.split("-").at(-1)}|${leg.leg_identity.split("|").at(-1)}`) ?? null;
       return { variant: variantName, event_id: event.event_id, leg_identity: leg.leg_identity, category: event.category, price_region: leg.price_region, entry_cents: leg.entry_cents, post_onset_offer_floor_cents: offer?.floor_sel ?? null, entry_minus_later_floor_cents: Number.isInteger(offer?.floor_sel) ? leg.entry_cents - offer.floor_sel : null, offer_class: offer?.offer_class ?? null, offer_margin_cents: offer?.offer_margin_cents ?? null };
     })) : [];
     const baselineEntryFloorRows = entryFloorRowsFor(baselineRun, "V52H");
-    const candidateEntryFloorRows = entryFloorRowsFor(candidateRun, "V52I");
+    const candidateEntryFloorRows = entryFloorRowsFor(candidateRun, isV52j ? "V52J" : "V52I");
     const gapSummary = (rows) => ({ credited_legs: rows.length, floor_available: rows.filter((row) => Number.isInteger(row.entry_minus_later_floor_cents)).length, signed_entry_minus_later_floor_cents: distribution(rows.map((row) => row.entry_minus_later_floor_cents)), bought_above_later_floor_only: distribution(rows.filter((row) => row.entry_minus_later_floor_cents > 0).map((row) => row.entry_minus_later_floor_cents)) });
-    const entryLaterFloorComparison = isV52i ? {
+    const entryLaterFloorComparison = isV52DepthValidation ? {
       floor_source: { commit: "22441e05", path: ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json", law: "PER_LEG_POST_ONSET_FLOOR_SEL" },
       baseline: gapSummary(baselineEntryFloorRows), candidate: gapSummary(candidateEntryFloorRows),
       pre_stated_claim: { bought_above_later_floor_depth_shifts_toward_zero: null, adjudication: "OBSERVATION_ONLY; NO_BEHAVIORAL_REPAIR_PERMITTED" },
@@ -2406,12 +2562,80 @@ async function main() {
       const after = entryLaterFloorComparison.candidate.bought_above_later_floor_only;
       entryLaterFloorComparison.pre_stated_claim.bought_above_later_floor_depth_shifts_toward_zero = before.n > 0 && after.n > 0 && after.median <= before.median && after.p75 <= before.p75 && (after.median < before.median || after.p75 < before.p75);
     }
-    const perGameOutcomeTable = isV52i ? candidateRun.marketEvents.map((event) => {
+    const perGameOutcomeTable = isV52DepthValidation ? candidateRun.marketEvents.map((event) => {
       const outcome = candidateFourStateRows.find((row) => row.event_id === event.event_id);
+      const base = baseByEvent.get(event.event_id);
       const firstLeg = Object.values(event.legs)[0];
       const offer = offerByTicker.get(`${event.event_id.split("-").at(-1)}|${firstLeg.leg_identity.split("|").at(-1)}`) ?? null;
-      return { event_id: event.event_id, category: event.category, price_region: event.starting_price_split, state: outcome.state, combined_entry_cents: event.completed_pair ? event.combined_entry_cents : null, credited_legs: outcome.credited_legs, combined_entry_minus_100_cents: event.completed_pair ? event.combined_entry_cents - 100 : null, locked_delta_vs_100_cents: event.completed_pair ? 100 - event.combined_entry_cents : null, offer_class: offer?.offer_class ?? null, offer_margin_cents: offer?.offer_margin_cents ?? null, offer_census_source_commit: "22441e05" };
+      const perLeg = Object.values(event.legs).sort((a, b) => a.leg_identity.localeCompare(b.leg_identity)).map((leg) => {
+        const legId = leg.leg_identity.split("|").at(-1), meta = base.legs[legId];
+        const legOffer = offerByTicker.get(`${event.event_id.split("-").at(-1)}|${legId}`) ?? null;
+        const floorRows = Number.isInteger(legOffer?.floor_sel) && Number.isFinite(legOffer?.onset_sel)
+          ? (printLoad.byTicker.get(meta.ticker) ?? []).filter((row) => row.ts >= legOffer.onset_sel && row.price === legOffer.floor_sel)
+          : [];
+        const floorRow = floorRows[0] ?? null;
+        const legTrace = candidateFlow.trace.filter((row) => row.leg_identity === leg.leg_identity && (!Number.isFinite(leg.fill_timestamp_epoch) || row.timestamp_epoch <= leg.fill_timestamp_epoch));
+        const roleRow = legTrace.filter((row) => row.role_conditioned_level_selection?.role_assignment).at(-1) ?? null;
+        return {
+          leg_identity: leg.leg_identity,
+          credited: leg.credited,
+          entry_cents: leg.entry_cents,
+          role_at_entry_or_terminal: roleRow?.role_conditioned_level_selection?.role_assignment?.own_role ?? null,
+          role_receipt: roleRow?.receipt ?? null,
+          role_read_evidence: roleRow?.role_conditioned_level_selection?.role_assignment?.own_read_evidence ?? null,
+          fill_timestamp_epoch: leg.fill_timestamp_epoch,
+          fill_clock: Number.isFinite(leg.fill_timestamp_epoch) ? clockFields(leg.fill_timestamp_epoch, base) : null,
+          fill_t_minus_scheduled_seconds: Number.isFinite(leg.fill_timestamp_epoch) ? clockFields(leg.fill_timestamp_epoch, base).t_minus_scheduled_seconds : null,
+          fill_t_minus_actual_bell_seconds: Number.isFinite(leg.fill_timestamp_epoch) ? clockFields(leg.fill_timestamp_epoch, base).t_minus_actual_bell_seconds : null,
+          post_onset_offer_floor_cents: legOffer?.floor_sel ?? null,
+          floor_timestamp_epoch: floorRow?.ts ?? null,
+          floor_clock: floorRow ? clockFields(floorRow.ts, base) : null,
+          floor_t_minus_scheduled_seconds: floorRow ? clockFields(floorRow.ts, base).t_minus_scheduled_seconds : null,
+          floor_t_minus_actual_bell_seconds: floorRow ? clockFields(floorRow.ts, base).t_minus_actual_bell_seconds : null,
+          entry_minus_later_floor_cents: leg.credited && Number.isInteger(legOffer?.floor_sel) ? leg.entry_cents - legOffer.floor_sel : null,
+        };
+      });
+      return { event_id: event.event_id, category: event.category, price_region: event.starting_price_split, state: outcome.state, combined_entry_cents: event.completed_pair ? event.combined_entry_cents : null, credited_legs: outcome.credited_legs, legs: perLeg, combined_entry_minus_100_cents: event.completed_pair ? event.combined_entry_cents - 100 : null, locked_delta_vs_100_cents: event.completed_pair ? 100 - event.combined_entry_cents : null, offer_class: offer?.offer_class ?? null, offer_margin_cents: offer?.offer_margin_cents ?? null, offer_census_source_commit: OFFER_DENOMINATOR_COMMIT };
     }).sort((a, b) => a.event_id.localeCompare(b.event_id)) : null;
+    const roleConditionedSummary = isV52j ? (() => {
+      const roleRows = candidateFlow.trace.filter((row) => row.role_conditioned_level_selection?.role_assignment);
+      const byLeg = new Map();
+      for (const row of roleRows) { if (!byLeg.has(row.leg_identity)) byLeg.set(row.leg_identity, []); byLeg.get(row.leg_identity).push(row); }
+      const roleFlips = [];
+      for (const [legIdentity, rows] of byLeg) {
+        let prior = null;
+        for (const row of rows) {
+          const role = row.role_conditioned_level_selection.role_assignment.own_role;
+          if (prior && role !== prior.role) roleFlips.push({ leg_identity: legIdentity, from: prior.role, to: role, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, target_before_cents: prior.target, target_after_cents: row.final_target_cents, reaimed: prior.target !== row.final_target_cents });
+          prior = { role, target: row.final_target_cents };
+        }
+      }
+      const baselineByLeg = new Map(baselineRun.marketEvents.flatMap((event) => Object.values(event.legs).map((leg) => [leg.leg_identity, leg])));
+      const candidateByLeg = new Map(candidateRun.marketEvents.flatMap((event) => Object.values(event.legs).map((leg) => [leg.leg_identity, leg])));
+      const fallerFills = perGameOutcomeTable.flatMap((game) => game.legs.filter((leg) => leg.credited && leg.role_at_entry_or_terminal === "FALLING").map((leg) => {
+        const baseline = baselineByLeg.get(leg.leg_identity), candidate = candidateByLeg.get(leg.leg_identity);
+        return { event_id: game.event_id, category: game.category, price_region: game.price_region, leg_identity: leg.leg_identity, baseline_credited: baseline.credited, baseline_entry_cents: baseline.entry_cents, baseline_fill_timestamp_epoch: baseline.fill_timestamp_epoch, candidate_entry_cents: candidate.entry_cents, candidate_fill_timestamp_epoch: candidate.fill_timestamp_epoch, fill_delay_seconds: Number.isFinite(baseline.fill_timestamp_epoch) ? candidate.fill_timestamp_epoch - baseline.fill_timestamp_epoch : null, later_floor_cents: leg.post_onset_offer_floor_cents, candidate_entry_minus_floor_cents: leg.entry_minus_later_floor_cents, fill_clock: leg.fill_clock, floor_clock: leg.floor_clock };
+      }));
+      const climberCandidateLegs = perGameOutcomeTable.flatMap((game) => game.legs.filter((leg) => leg.role_at_entry_or_terminal === "RISING").map((leg) => ({ game, leg })));
+      const climberBaselineCredited = climberCandidateLegs.filter(({ leg }) => baselineByLeg.get(leg.leg_identity)?.credited).length;
+      const climberLost = climberCandidateLegs.filter(({ leg }) => baselineByLeg.get(leg.leg_identity)?.credited && !candidateByLeg.get(leg.leg_identity)?.credited).map(({ game, leg }) => ({ event_id: game.event_id, leg_identity: leg.leg_identity }));
+      const locked = (run) => run.marketEvents.filter((event) => event.completed_pair && event.pair_under_par).map((event) => 100 - event.combined_entry_cents);
+      const baselineLocked = locked(baselineRun), candidateLocked = locked(candidateRun);
+      const baselinePartial = new Map(baselineFourStateRows.filter((row) => row.state === "PARTIAL_FOR_REASON").map((row) => [row.event_id, row]));
+      const candidatePartial = new Map(candidateFourStateRows.filter((row) => row.state === "PARTIAL_FOR_REASON").map((row) => [row.event_id, row]));
+      const created = [...candidatePartial].filter(([eventId]) => !baselinePartial.has(eventId)).map(([eventId, row]) => ({ event_id: eventId, direction: "CREATED_BY_V52J", credited_legs: row.credited_legs }));
+      const resolved = [...baselinePartial].filter(([eventId]) => !candidatePartial.has(eventId)).map(([eventId, row]) => ({ event_id: eventId, direction: "RESOLVED_BY_V52J", baseline_credited_legs: row.credited_legs, candidate_state: candidateFourStateRows.find((item) => item.event_id === eventId)?.state ?? null }));
+      return {
+        role_receipts: roleRows.length,
+        roles: countBy(roleRows, (row) => row.role_conditioned_level_selection.role_assignment.own_role),
+        pair_read_coherence: countBy(roleRows, (row) => row.role_conditioned_level_selection.role_assignment.pair_read_coherence),
+        role_flips: { count: roleFlips.length, reaimed: roleFlips.filter((row) => row.reaimed).length, rows: roleFlips },
+        faller_side_fills: { rows: fallerFills, fill_delay_seconds: distribution(fallerFills.map((row) => row.fill_delay_seconds)), entry_minus_later_floor_cents: distribution(fallerFills.map((row) => row.candidate_entry_minus_floor_cents)), at_or_near_floor_0_to_1c: fallerFills.filter((row) => Number.isInteger(row.candidate_entry_minus_floor_cents) && row.candidate_entry_minus_floor_cents >= 0 && row.candidate_entry_minus_floor_cents <= 1).length },
+        climber_preservation: { baseline_credited_climber_legs: climberBaselineCredited, candidate_lost_climber_legs: climberLost.length, inverse_error_count: climberLost.length, rows: climberLost },
+        banked_delta: { baseline: { n: baselineLocked.length, mean_cents: baselineLocked.length ? baselineLocked.reduce((a, b) => a + b, 0) / baselineLocked.length : null }, candidate: { n: candidateLocked.length, mean_cents: candidateLocked.length ? candidateLocked.reduce((a, b) => a + b, 0) / candidateLocked.length : null } },
+        one_sided_exposure_changes: { created_count: created.length, resolved_count: resolved.length, created, resolved },
+      };
+    })() : null;
     const palantirConsumptionSummary = isV52e ? {
       decision_trace_rows: candidateFlow.trace.length,
       consumption_receipts: palantirRows.length,
@@ -2431,6 +2655,12 @@ async function main() {
         depth_under_validation_receipts: palantirRows.filter((row) => row.palantir?.N4?.depth_candidates_under_validation).length,
         depth_target_changed_receipts: candidateFlow.trace.filter((row) => row.depth_informed_level_selection?.target_changed).length,
         under_validation_candidate_ids: n9Binding.store.boot_assertion.under_validation_loaded_ids,
+      } : isV52j ? {
+        depth_under_validation_receipts: palantirRows.filter((row) => row.palantir?.N4?.depth_candidates_under_validation).length,
+        role_conditioned_receipts: candidateFlow.trace.filter((row) => row.role_conditioned_level_selection).length,
+        faller_depth_target_changed_receipts: candidateFlow.trace.filter((row) => row.role_conditioned_level_selection?.role_assignment?.own_role === "FALLING" && row.role_conditioned_level_selection?.target_changed).length,
+        rising_or_neutral_target_changed_receipts: candidateFlow.trace.filter((row) => ["RISING", "SETTLED", "INSUFFICIENT"].includes(row.role_conditioned_level_selection?.role_assignment?.own_role) && row.role_conditioned_level_selection?.target_changed).length,
+        under_validation_candidate_ids: n9Binding.store.boot_assertion.under_validation_loaded_ids,
       } : {}),
       pin_comparisons: pinComparisons,
       pins_unharmed: pinComparisons.every((row) => row.unharmed),
@@ -2445,20 +2675,30 @@ async function main() {
         every_post_binds_full_post_onset_read_span: { violations: candidateMutations.filter((row) => row.birth_license?.read?.full_post_onset_evidence?.fixed_horizon_seconds !== null || row.birth_license?.read?.full_post_onset_evidence?.replacement_tuning_constant !== null || !Number.isInteger(row.birth_license?.read?.full_post_onset_evidence?.consulted?.evidence_receipts)).map((row) => `${row.leg_identity}@${row.receipt}`) },
         ...(isV52e ? {
           clauses_1_through_4_and_scavenger_mechanics_frozen: { violations: frozenClauseDiffs.map((row) => row.key) },
-          CLEAN_store_boot_assertion: { pass: n9Binding.store.boot_assertion.passed && n9Binding.store.boot_assertion.unvalidated_loaded === 0 && n9Binding.store.boot_assertion.quarantined_loaded === 0 && n9Binding.store.boot_assertion.superseded_loaded === 0 && n9Binding.store.boot_assertion.fallback_loads === 0 && (!isV52i || (n9Binding.store.boot_assertion.canonical_clean_store_unchanged === true && n9Binding.store.boot_assertion.under_validation_loaded === 2)) },
+          CLEAN_store_boot_assertion: { pass: n9Binding.store.boot_assertion.passed && n9Binding.store.boot_assertion.unvalidated_loaded === 0 && n9Binding.store.boot_assertion.quarantined_loaded === 0 && n9Binding.store.boot_assertion.superseded_loaded === 0 && n9Binding.store.boot_assertion.fallback_loads === 0 && (!isV52DepthValidation || (n9Binding.store.boot_assertion.canonical_clean_store_unchanged === true && n9Binding.store.boot_assertion.under_validation_loaded === 2)) },
           every_decision_receipt_consumes_N2_N4_N5_continuously: { violations: candidateFlow.trace.filter((row) => !(row.palantir?.continuous_at_decision_time && row.palantir?.N2?.node === "N2" && row.palantir?.N4?.node === "N4" && row.palantir?.N5?.node === "N5")).map(traceKey) },
           every_prior_has_CLEAN_provenance: { violations: palantirRows.filter((row) => [row.palantir.N2, row.palantir.N4, row.palantir.N5].some((node) => !Array.isArray(node.provenance) || node.provenance.some((asset) => !["VALIDATED", "VALID-NARROW"].includes(asset.status) || !(asset.source_sha256 ? /^[0-9a-f]{64}$/.test(asset.source_sha256) : Array.isArray(asset.source_sha256s) && asset.source_sha256s.length > 0 && asset.source_sha256s.every((sha) => /^[0-9a-f]{64}$/.test(sha)))))).map(traceKey) },
           priors_inform_never_gate: { violations: candidateFlow.trace.filter((row) => {
             const before = baselineTrace.get(traceKey(row));
             const candidateIndex = candidateTraceIndex.get(traceKey(row)), firstAuthorizedIndex = firstAuthorizedIndexByEvent.get(row.event_id);
-            const frozen_same_input_scope = !(isV52h || isV52i) || !Number.isInteger(firstAuthorizedIndex) || candidateIndex <= firstAuthorizedIndex;
+            const frozen_same_input_scope = !(isV52h || isV52DepthValidation) || !Number.isInteger(firstAuthorizedIndex) || candidateIndex <= firstAuthorizedIndex;
             return row.palantir?.priors_gate !== false || (frozen_same_input_scope && before?.level?.machine_read?.authorized === true && row.level?.machine_read?.authorized !== true);
           }).map(traceKey) },
-          ...(isV52i ? {
+          ...(isV52DepthValidation ? {
             frozen_N9_continuous_consumption_preserved: { pass: palantirConsumptionSummary.all_receipts_continuous },
             exact_two_depth_candidates_under_validation: { pass: n9Binding.store.boot_assertion.under_validation_loaded === 2 && canonical(n9Binding.store.boot_assertion.under_validation_loaded_ids) === canonical(["G_GRID_LEVEL_DISCOUNT", "G3_DIP_RECOVERY_GRADIENT"]) },
             every_depth_consultation_records_candidate_provenance: { violations: candidateFlow.trace.filter((row) => row.palantir?.N4?.depth_candidates_under_validation && (row.palantir.N4.depth_candidates_under_validation.provenance?.length !== 2 || row.palantir.N4.depth_candidates_under_validation.provenance.some((asset) => asset.status !== "UNDER-VALIDATION_V52I" || !asset.source_sha256))).map(traceKey) },
-            depth_priors_never_create_or_withdraw_live_authority: { violations: candidateFlow.trace.filter((row) => row.depth_informed_level_selection && (row.depth_informed_level_selection.live_authority_retained !== true || row.depth_informed_level_selection.priors_gate !== false || (row.depth_informed_level_selection.applicable && row.depth_informed_level_selection.frozen_machine_read?.authorized !== true))).map(traceKey) },
+            depth_priors_never_create_or_withdraw_live_authority: { violations: candidateFlow.trace.filter((row) => {
+              const selection = isV52j ? row.role_conditioned_level_selection : row.depth_informed_level_selection;
+              return selection && (selection.live_authority_retained !== true || selection.priors_gate !== false || (selection.applicable && selection.frozen_machine_read?.authorized !== true));
+            }).map(traceKey) },
+            ...(isV52j ? {
+              V52i_symmetric_depth_refinement_reverted: { pass: policy.depthSelection === undefined && policy.roleConditionedSelection !== undefined },
+              role_assignment_recorded_on_every_clause_3_evaluation: { violations: candidateFlow.trace.filter((row) => !row.role_conditioned_level_selection?.role_assignment?.own_read_evidence || !row.role_conditioned_level_selection?.role_assignment?.sibling_read_evidence).map(traceKey) },
+              only_falling_role_can_apply_depth_prior: { violations: candidateFlow.trace.filter((row) => row.role_conditioned_level_selection?.applicable && row.role_conditioned_level_selection?.role_assignment?.own_role !== "FALLING").map(traceKey) },
+              rising_settled_insufficient_targets_unchanged: { violations: candidateFlow.trace.filter((row) => ["RISING", "SETTLED", "INSUFFICIENT"].includes(row.role_conditioned_level_selection?.role_assignment?.own_role) && row.role_conditioned_level_selection?.target_changed).map(traceKey) },
+              role_flips_re_evaluated: { pass: roleConditionedSummary.role_flips.count >= roleConditionedSummary.role_flips.reaimed },
+            } : {}),
             clauses_4_5_6_and_referee_frozen: { violations: frozenClauseDiffs.map((row) => row.key) },
             clause_6_zero_joint_target_sum_above_99: { violations: pairBudgetRecordSummary.joint_sum_violations },
             pair_budget_record_one_per_game_complete_revision_chain: { pass: pairBudgetRecordSummary.pass && pairBudgetRecordSummary.incomplete_revision_chains.length === 0 && pairBudgetRecordSummary.forbidden_plan_fields.length === 0 },
@@ -2607,20 +2847,20 @@ async function main() {
     const behaviorFields = (row) => ({ kind: row.kind, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, target_cents: row.target_cents ?? null, prior_target_cents: row.prior_target_cents ?? null, entry_cents: row.entry_cents ?? null, fill_class: row.fill_class ?? null, reason: row.reason ?? null });
     for (const event of candidateRun.marketEvents) for (const leg of Object.values(event.legs)) {
       const before = actionStream(baselineRun, event.event_id, leg.leg_identity), after = actionStream(candidateRun, event.event_id, leg.leg_identity);
-      const beforeSha = shaBytes(Buffer.from(canonical(before))), afterSha = shaBytes(Buffer.from(canonical(after)));
+      const beforeSha = shaCanonicalRows(before), afterSha = shaCanonicalRows(after);
       if (beforeSha !== afterSha) streamDiffs.push({ event_id: event.event_id, leg_identity: leg.leg_identity, before_sha256: beforeSha, after_sha256: afterSha, first_difference: decisionDiffs.find((row) => row.leg_identity === leg.leg_identity) ?? null });
       const beforeBehavior = before.map(behaviorFields), afterBehavior = after.map(behaviorFields);
-      const beforeBehaviorSha = shaBytes(Buffer.from(canonical(beforeBehavior))), afterBehaviorSha = shaBytes(Buffer.from(canonical(afterBehavior)));
+      const beforeBehaviorSha = shaCanonicalRows(beforeBehavior), afterBehaviorSha = shaCanonicalRows(afterBehavior);
       if (beforeBehaviorSha !== afterBehaviorSha) {
         const count = Math.max(beforeBehavior.length, afterBehavior.length);
         let firstIndex = 0; while (firstIndex < count && canonical(beforeBehavior[firstIndex] ?? null) === canonical(afterBehavior[firstIndex] ?? null)) firstIndex += 1;
-        const firstBound = candidateFlow.trace.find((row) => row.event_id === event.event_id && (isV52i ? row.depth_informed_level_selection?.target_changed === true : isV52h ? baselineTrace.get(traceKey(row))?.blocked_clause === "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR" && row.blocked_clause !== "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR" : isV52g ? row.joint_target_conservation?.target_changed === true : row.pair_entry_conservation?.target_changed === true)) ?? null;
+        const firstBound = candidateFlow.trace.find((row) => row.event_id === event.event_id && (isV52j ? row.role_conditioned_level_selection?.target_changed === true : isV52i ? row.depth_informed_level_selection?.target_changed === true : isV52h ? baselineTrace.get(traceKey(row))?.blocked_clause === "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR" && row.blocked_clause !== "PAIR_POST_ONSET_LOWS_NOT_UNDER_PAR" : isV52g ? row.joint_target_conservation?.target_changed === true : row.pair_entry_conservation?.target_changed === true)) ?? null;
         const changedCandidates = [beforeBehavior[firstIndex], afterBehavior[firstIndex]].filter(Boolean);
         const firstChangedTimestamp = changedCandidates.length ? Math.min(...changedCandidates.map((row) => row.timestamp_epoch)) : null;
-        behaviorStreamDiffs.push({ event_id: event.event_id, leg_identity: leg.leg_identity, attribution_grain: "PAIR_IS_ENTRY_UNIT", before_sha256: beforeBehaviorSha, after_sha256: afterBehaviorSha, first_difference_index: firstIndex, before: beforeBehavior[firstIndex] ?? null, after: afterBehavior[firstIndex] ?? null, first_authorized_bound_receipt_in_game: firstBound ? { leg_identity: firstBound.leg_identity, timestamp_epoch: firstBound.timestamp_epoch, receipt: firstBound.receipt, authorized_clause: isV52i ? firstBound.depth_informed_level_selection : isV52h ? firstBound.clause_4_market_proof_precondition : isV52g ? firstBound.joint_target_conservation : firstBound.pair_entry_conservation } : null, first_behavior_difference_timestamp_epoch: firstChangedTimestamp, first_behavior_difference_not_before_authorized_clause: Boolean(firstBound && Number.isFinite(firstChangedTimestamp) && firstChangedTimestamp >= firstBound.timestamp_epoch) });
+        behaviorStreamDiffs.push({ event_id: event.event_id, leg_identity: leg.leg_identity, attribution_grain: "PAIR_IS_ENTRY_UNIT", before_sha256: beforeBehaviorSha, after_sha256: afterBehaviorSha, first_difference_index: firstIndex, before: beforeBehavior[firstIndex] ?? null, after: afterBehavior[firstIndex] ?? null, first_authorized_bound_receipt_in_game: firstBound ? { leg_identity: firstBound.leg_identity, timestamp_epoch: firstBound.timestamp_epoch, receipt: firstBound.receipt, authorized_clause: isV52j ? firstBound.role_conditioned_level_selection : isV52i ? firstBound.depth_informed_level_selection : isV52h ? firstBound.clause_4_market_proof_precondition : isV52g ? firstBound.joint_target_conservation : firstBound.pair_entry_conservation } : null, first_behavior_difference_timestamp_epoch: firstChangedTimestamp, first_behavior_difference_not_before_authorized_clause: Boolean(firstBound && Number.isFinite(firstChangedTimestamp) && firstChangedTimestamp >= firstBound.timestamp_epoch) });
       }
     }
-    if (isV52f || isV52g || isV52h || isV52i) ensure(behaviorStreamDiffs.every((row) => row.first_behavior_difference_not_before_authorized_clause), `${iterationLabel} behavior changed before authorized clause ${behaviorStreamDiffs.find((row) => !row.first_behavior_difference_not_before_authorized_clause)?.leg_identity}`);
+    if (isV52f || isV52g || isV52h || isV52DepthValidation) ensure(behaviorStreamDiffs.every((row) => row.first_behavior_difference_not_before_authorized_clause), `${iterationLabel} behavior changed before authorized clause ${behaviorStreamDiffs.find((row) => !row.first_behavior_difference_not_before_authorized_clause)?.leg_identity}`);
     const frozenV52PolicyPath = "arb-executor/analysis/window1_v52_judgment_gate.js";
     const frozenV52PolicyBytes = gitShow(V52_COMMIT, frozenV52PolicyPath);
     const currentV52PolicyBytes = fs.readFileSync(path.join(repo, frozenV52PolicyPath));
@@ -2638,25 +2878,25 @@ async function main() {
       ensure(policy.fullPostOnsetRead === frozenV52cPolicy.fullPostOnsetRead, "V52d changed frozen clause-2 fullPostOnsetRead function");
       ensure(policy.fullPostOnsetAuthority === frozenV52cPolicy.fullPostOnsetAuthority, "V52d changed frozen clause-2 authority function");
     }
-    if (isV52f || isV52g || isV52h || isV52i) {
+    if (isV52f || isV52g || isV52h || isV52DepthValidation) {
       const frozenV52eBytes = gitShow(V52E_COMMIT, "arb-executor/analysis/window1_v52e_palantir_wiring.js");
       ensure(shaBytes(frozenV52eBytes) === fileHash(path.join(repo, "arb-executor/analysis/window1_v52e_palantir_wiring.js")), "frozen V52e policy bytes changed");
-      ensure(policy.machineReadLevel === frozenV52ePolicy.machineReadLevel && policy.tradeTruthCredit === frozenV52ePolicy.tradeTruthCredit && (isV52i || policy.continuousConsultation === frozenV52ePolicy.continuousConsultation), "later iteration changed a frozen V52e clause function");
+      ensure(policy.machineReadLevel === frozenV52ePolicy.machineReadLevel && policy.tradeTruthCredit === frozenV52ePolicy.tradeTruthCredit && (isV52DepthValidation || policy.continuousConsultation === frozenV52ePolicy.continuousConsultation), "later iteration changed a frozen V52e clause function");
     }
-    if (isV52g || isV52h || isV52i) {
+    if (isV52g || isV52h || isV52DepthValidation) {
       const frozenV52fBytes = gitShow(V52F_COMMIT, "arb-executor/analysis/window1_v52f_pair_entry_conservation.js");
       ensure(shaBytes(frozenV52fBytes) === fileHash(path.join(repo, "arb-executor/analysis/window1_v52f_pair_entry_conservation.js")), "frozen V52f policy bytes changed");
       ensure(policy.fullPostOnsetRead === frozenV52fPolicy.fullPostOnsetRead && policy.tradeTruthCredit === frozenV52fPolicy.tradeTruthCredit, "V52g changed frozen V52f upstream functions");
     }
-    if (isV52h || isV52i) {
+    if (isV52h || isV52DepthValidation) {
       const frozenV52gBytes = gitShow(V52G_COMMIT, "arb-executor/analysis/window1_v52g_joint_target_conservation.js");
       ensure(shaBytes(frozenV52gBytes) === fileHash(path.join(repo, "arb-executor/analysis/window1_v52g_joint_target_conservation.js")), "frozen V52g policy bytes changed");
       ensure(policy.jointTargetConservation === frozenV52gPolicy.jointTargetConservation, "V52h changed V52g joint target conservation");
     }
-    if (isV52i) {
+    if (isV52DepthValidation) {
       const frozenV52hBytes = gitShow(V52H_COMMIT, "arb-executor/analysis/window1_v52h_remove_pair_lows_precondition.js");
       ensure(shaBytes(frozenV52hBytes) === fileHash(path.join(repo, "arb-executor/analysis/window1_v52h_remove_pair_lows_precondition.js")), "frozen V52h policy bytes changed");
-      ensure(policy.marketProofReceipt === frozenV52hPolicy.marketProofReceipt && policy.settlementIdentity === frozenV52hPolicy.settlementIdentity && policy.jointTargetConservation === frozenV52hPolicy.jointTargetConservation && policy.tradeTruthCredit === frozenV52hPolicy.tradeTruthCredit, "V52i changed a frozen V52h clause function");
+      ensure(policy.marketProofReceipt === frozenV52hPolicy.marketProofReceipt && policy.settlementIdentity === frozenV52hPolicy.settlementIdentity && policy.jointTargetConservation === frozenV52hPolicy.jointTargetConservation && policy.tradeTruthCredit === frozenV52hPolicy.tradeTruthCredit, `${iterationLabel} changed a frozen V52h clause function`);
     }
     const step0ReuseInventory = isV52e ? {
       law: "REUSE_EXISTING_CONSULTATION_MACHINERY; PARALLEL_DISCOVERY_OR_FALLBACK_LOADER_IS_A_DEFECT",
@@ -2676,7 +2916,23 @@ async function main() {
       byte_read_path: "EXISTING_gitShow_ONLY",
       adapter_role: "VALIDATE_AND_COMPACT_ALREADY_READ_BYTES_ONLY",
     } : null;
-    const clauseReceipt = isV52i ? {
+    const clauseReceipt = isV52j ? {
+      authorized_change: "CLAUSE_3_N4_ROLE_CONDITIONED_LEVEL_SELECTION_ONLY",
+      V52i_disposition: "REVERTED; V52J_CALLS_FROZEN_V52H_DIRECTLY_AND_DOES_NOT_INHERIT_SYMMETRIC_DEPTH_REFINEMENT",
+      law: "FALLING_USES_CELL_PRIOR_EXPECTED_FLOOR_DEPTH; RISING_USES_OWN_NEAR_SUPPORT; SETTLED_OR_INSUFFICIENT_RETAINS_FROZEN_EVIDENCE_BACKED_LEVEL",
+      role_inputs: ["OWN_CURRENT_READ", "SIBLING_CURRENT_READ", "ALREADY_LICENSED_COHERENCE"],
+      reevaluation: "EVERY_RECEIPT; ROLE_FLIP_LAWFULLY_REAIMS",
+      constants_added: 0,
+      assets: {
+        G_GRID: { id: "G_GRID_LEVEL_DISCOUNT", source_asset: "P1_THE_GRID", canonical_asset_status_unchanged: "VALIDATED", behavioral_weighting_role: "UNDER-VALIDATION_CONTINUED_FROM_V52I", note: "Only FALLING role may consume this depth prior." },
+        G3: { id: "G3_DIP_RECOVERY_GRADIENT", source_asset: "G3", source_commit: GREEK_INSTRUMENTS_COMMIT, canonical_status: "UNVALIDATED-CANDIDATE", behavioral_weighting_role: "UNDER-VALIDATION_CONTINUED_FROM_V52I" },
+      },
+      clean_store: { canonical_manifest_unchanged: true, exact_under_validation_aliases: n9Binding.store.boot_assertion.under_validation_loaded_ids, boot_assertion: n9Binding.store.boot_assertion },
+      live_evidence_authority: { retained: true, candidate_authority_without_frozen_machine_read: false, assertions: v52bAssertions.depth_priors_never_create_or_withdraw_live_authority },
+      frozen_clauses: { clause_1: true, clause_2: true, clause_4_and_referee: true, clause_5: true, clause_6: true, crediting: "TRADES_AS_TRUTH_UNCHANGED", scavenger: false, REFLEX_POST: v52bAssertions.REFLEX_POST_zero.observed },
+      differential: { changed_decision_receipts: decisionDiffs.length, license_or_metadata_changed_leg_streams: streamDiffs.length, behavior_changed_leg_streams: behaviorStreamDiffs.length, every_behavior_change_starts_at_or_after_role_selection: behaviorStreamDiffs.every((row) => row.first_behavior_difference_not_before_authorized_clause), frozen_pre_authorized_differences: frozenClauseDiffs.length },
+      pre_stated_claims: { faller_fills: roleConditionedSummary.faller_side_fills, climber_preservation: roleConditionedSummary.climber_preservation, banked_delta: roleConditionedSummary.banked_delta, one_sided_exposure_changes: roleConditionedSummary.one_sided_exposure_changes, pins_unharmed: pinComparisons.every((row) => row.unharmed), REFLEX_POST_zero: v52bAssertions.REFLEX_POST_zero.observed === 0 },
+    } : isV52i ? {
       authorized_change: "CLAUSE_3_N4_DEPTH_INFORMED_LEVEL_SELECTION_ONLY",
       law: "DEPTH_PRIORS_MAY_WEIGHT_AN_ALREADY_AUTHORIZED_LIVE_EVIDENCE_LEVEL; PRIORS_INFORM_NEVER_GATE; SELECTED_TARGET_CAN_ONLY_MOVE_DOWN_INSIDE_LIVE_POST_ONSET_BOUNDS",
       weighting_law: "ROUND(G_GRID_DISCOUNT*G3_RECOVERY + G3_MEDIAN_DIP_DEPTH*(1-G3_RECOVERY))",
@@ -2783,13 +3039,13 @@ async function main() {
       "arb-executor/analysis/build_window1_v52e_palantir_wiring.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52e_palantir_wiring.js")), role: "DETERMINISTIC_ENTRYPOINT" },
       "arb-executor/tests/test_window1_v52e_palantir_wiring.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52e_palantir_wiring.js")), role: "N9_UNIT_TEST" },
       "arb-executor/tests/test_window1_v52e_palantir_wiring_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52e_palantir_wiring_package.js")), role: "PACKAGE_INTEGRITY_TEST" },
-      ...((isV52f || isV52g || isV52h || isV52i) ? {
+      ...((isV52f || isV52g || isV52h || isV52DepthValidation) ? {
         "arb-executor/analysis/window1_v52f_pair_entry_conservation.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v52f_pair_entry_conservation.js")), role: "CLAUSE_5_ONLY_POLICY" },
         "arb-executor/analysis/build_window1_v52f_pair_entry_conservation.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52f_pair_entry_conservation.js")), role: "DETERMINISTIC_ENTRYPOINT" },
         "arb-executor/tests/test_window1_v52f_pair_entry_conservation.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52f_pair_entry_conservation.js")), role: "CLAUSE_5_UNIT_TEST" },
         "arb-executor/tests/test_window1_v52f_pair_entry_conservation_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52f_pair_entry_conservation_package.js")), role: "PACKAGE_INTEGRITY_TEST" },
       } : {}),
-      ...((isV52g || isV52h || isV52i) ? {
+      ...((isV52g || isV52h || isV52DepthValidation) ? {
         "arb-executor/analysis/window1_v52g_joint_target_conservation.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v52g_joint_target_conservation.js")), role: "CLAUSE_6_ONLY_POLICY" },
         "arb-executor/analysis/build_window1_v52g_joint_target_conservation.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52g_joint_target_conservation.js")), role: "DETERMINISTIC_ENTRYPOINT" },
         "arb-executor/analysis/build_window1_v52g_provenance_repairs.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52g_provenance_repairs.js")), role: "RECEIPTS_ONLY_PROVENANCE_REPAIR_BUILDER" },
@@ -2797,7 +3053,7 @@ async function main() {
         "arb-executor/tests/test_window1_v52g_joint_target_conservation_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52g_joint_target_conservation_package.js")), role: "PACKAGE_INTEGRITY_TEST" },
         "arb-executor/tests/test_window1_v52g_provenance_repairs.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52g_provenance_repairs.js")), role: "RECEIPTS_ONLY_PROVENANCE_REPAIR_TEST" },
       } : {}),
-      ...((isV52h || isV52i) ? {
+      ...((isV52h || isV52DepthValidation) ? {
         "arb-executor/analysis/window1_v52h_remove_pair_lows_precondition.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v52h_remove_pair_lows_precondition.js")), role: "CLAUSE_4_MARKET_PROOF_PRECONDITION_REMOVAL_ONLY_POLICY" },
         "arb-executor/analysis/build_window1_v52h_remove_pair_lows_precondition.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52h_remove_pair_lows_precondition.js")), role: "DETERMINISTIC_ENTRYPOINT" },
         "arb-executor/tests/test_window1_v52h_remove_pair_lows_precondition.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52h_remove_pair_lows_precondition.js")), role: "CLAUSE_UNIT_TEST" },
@@ -2809,6 +3065,13 @@ async function main() {
         "arb-executor/analysis/build_window1_v52i_depth_informed_level_selection.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52i_depth_informed_level_selection.js")), role: "DETERMINISTIC_ENTRYPOINT" },
         "arb-executor/tests/test_window1_v52i_depth_informed_level_selection.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52i_depth_informed_level_selection.js")), role: "CLAUSE_UNIT_TEST" },
         "arb-executor/tests/test_window1_v52i_depth_informed_level_selection_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52i_depth_informed_level_selection_package.js")), role: "PACKAGE_INTEGRITY_TEST" },
+      } : isV52j ? {
+        "arb-executor/analysis/window1_v52i_under_validation_store.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v52i_under_validation_store.js")), role: "EXACT_TWO_CANDIDATE_VALIDATION_ADAPTER_REUSED" },
+        "arb-executor/analysis/window1_v52j_role_conditioned_level_selection.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v52j_role_conditioned_level_selection.js")), role: "CLAUSE_3_N4_ROLE_CONDITIONED_LEVEL_SELECTION_ONLY_POLICY" },
+        "arb-executor/analysis/build_window1_v52j_role_conditioned_level_selection.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52j_role_conditioned_level_selection.js")), role: "DETERMINISTIC_ENTRYPOINT" },
+        "arb-executor/analysis/build_window1_v52j_guegom_named_observation.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v52j_guegom_named_observation.js")), role: "NAMED_OBSERVATION_ENTRYPOINT_OUTSIDE_COHORT30" },
+        "arb-executor/tests/test_window1_v52j_role_conditioned_level_selection.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52j_role_conditioned_level_selection.js")), role: "CLAUSE_UNIT_TEST" },
+        "arb-executor/tests/test_window1_v52j_role_conditioned_level_selection_package.js": { sha256: fileHash(path.join(repo, "arb-executor/tests/test_window1_v52j_role_conditioned_level_selection_package.js")), role: "PACKAGE_INTEGRITY_TEST" },
       } : {}),
     }); else if (isV52d) Object.assign(sourceFiles, {
       "arb-executor/analysis/window1_v52c_full_post_onset_read.js": { sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v52c_full_post_onset_read.js")), role: "FROZEN_CLAUSE_2_POLICY" },
@@ -2851,35 +3114,52 @@ async function main() {
     const v52gReport = isV52g ? `# V52g Iteration 6 - joint target conservation and pair budget record\n\nV52g adds one receipt-causal joint identity to frozen V52f: whenever both decision-time-known sides have a bought or standing value, their sum is at most 99. Existing per-leg level authorities are evaluated first; the newly evaluated standing side is bounded only when the identity binds. Post-credit this degenerates exactly to V52f. Clauses 1-4, N9, crediting, scavenger OFF, and REFLEX_POST=0 are frozen.\n\n- Cohort: 5 frozen pins + 25 fresh deterministic category x census-stamp events; seed ${activeReadCohort.seed_sha256}; fresh overlap B/C/D/E/F ${activeReadCohort.exclusions.prior_V52B_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52C_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52D_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52E_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52F_fresh25_overlap_count}.\n- Joint identity: ${pairBudgetRecordSummary.joint_sum_violations.length} violations across ${pairBudgetRecordSummary.revision_rows} revisions; ${pairBudgetRecordSummary.records} records for 30 games.\n- Pair budget record: born at first licensed post; current joint split plus complete licensed revision chain only. Goals and predictions are absent pending operator design.\n- Four-state observation: V52f baseline ${JSON.stringify(fourStateCensus.baseline.states)}; V52g ${JSON.stringify(fourStateCensus.candidate.states)}.\n- Prior four loss identities remain lawful: ${v52gPriorLossReattestation.pass}; fresh cohort has zero new COMPLETE_AT_LOSS: ${v52gPriorLossReattestation.zero_new_COMPLETE_AT_LOSS_in_fresh_30}.\n- Pins unharmed ${pinComparisons.every((row) => row.unharmed)}; SANDAN at-or-better ${sandanPin?.at_or_better ?? false}.\n- Assertions: ${v52bAssertions.pass ? "PASS" : "BLOCKED"}; REFLEX_POST ${v52bAssertions.REFLEX_POST_zero.observed}; scavenger OFF.\n- These 30 outcomes are observations only. No full-804 disposition, sealed, deployment, authorization, live, order, or position action occurred.\n` : null;
     const v52hReport = isV52h ? `# V52h Iteration 7 - remove clause 4 market-proof precondition\n\nV52h removes exactly the requirement that post-onset traded lows already sum below 100 before a rest may be licensed. The traded-low sum remains recorded telemetry. The disagreement referee is intact; clauses 1, 2, 3, 5, and 6, N9, trades-as-truth crediting, scavenger OFF, and REFLEX_POST=0 are frozen.\n\n- Cohort: 5 frozen pins + 25 fresh deterministic category x census-stamp events; seed ${activeReadCohort.seed_sha256}; fresh overlap B/C/D/E/F/G ${activeReadCohort.exclusions.prior_V52B_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52C_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52D_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52E_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52F_fresh25_overlap_count}/${activeReadCohort.exclusions.prior_V52G_fresh25_overlap_count}. SMIILA is an explicitly reused named observation from frozen V52B and is excluded from the fresh-25 score observation.\n- Differential: ${decisionDiffs.length} decision receipts, ${behaviorStreamDiffs.length} behavior streams; every behavior change begins at or after the removed market-proof check.\n- Four-state observation: V52g ${JSON.stringify(fourStateCensus.baseline.states)}; V52h ${JSON.stringify(fourStateCensus.candidate.states)}; COMPLETE_AT_LOSS ${(fourStateCensus.candidate.states.COMPLETE_AT_LOSS || 0)}.\n- SMIILA named replay: ${JSON.stringify(smiilaObservation)}.\n- New one-sided exposure: ${oneSidedExposureSummary.newly_created_partials}; duration seconds ${JSON.stringify(oneSidedExposureSummary.duration_seconds)}.\n- Pins unharmed ${pinComparisons.every((row) => row.unharmed)}; disagreement referee violations ${v52bAssertions.clause_4_disagreement_referee_intact.violations.length}.\n- Assertions: ${v52bAssertions.pass ? "PASS" : "BLOCKED"}; REFLEX_POST ${v52bAssertions.REFLEX_POST_zero.observed}; scavenger OFF.\n- These 30 outcomes plus the separately named SMIILA replay are observations only. No full-804 disposition, sealed, deployment, authorization, live, order, or position action occurred.\n` : null;
     const v52iReport = isV52i ? `# V52i Iteration 8 - depth-informed level selection\n\nV52i changes only clause 3/N4 level selection over frozen V52h. An already-authorized live-evidence level may be refined downward using the G-grid cell discount and G3 dip-recovery gradient as recorded prior inputs. Priors never create, withdraw, or gate authority. Canonical CLEAN assets are unchanged; exactly two operator-bound behavioral roles are UNDER-VALIDATION_V52I for this run.\n\n- Cohort: 5 pins + 25 fresh deterministic category x census-stamp games; seed ${activeReadCohort.seed_sha256}; prior-cohort overlaps are all zero.\n- Differential: ${decisionDiffs.length} decision receipts, ${behaviorStreamDiffs.length} behavior streams; frozen pre-authorized differences ${frozenClauseDiffs.length}.\n- Four-state: V52h ${JSON.stringify(fourStateCensus.baseline.states)}; V52i ${JSON.stringify(fourStateCensus.candidate.states)}.\n- Entry minus post-onset later floor: V52h ${JSON.stringify(entryLaterFloorComparison.baseline)}; V52i ${JSON.stringify(entryLaterFloorComparison.candidate)}; toward-zero claim ${entryLaterFloorComparison.pre_stated_claim.bought_above_later_floor_depth_shifts_toward_zero}.\n- One-sided exposure: V52i ${oneSidedExposureSummary.newly_created_partials}, durations ${JSON.stringify(oneSidedExposureSummary.duration_seconds)}; V52h frozen baseline ${frozenV52hOneSided.newly_created_partials}.\n- Pins unharmed ${pinComparisons.every((row) => row.unharmed)}; REFLEX_POST ${v52bAssertions.REFLEX_POST_zero.observed}; assertions ${v52bAssertions.pass ? "PASS" : "BLOCKED"}.\n- Outcomes are observations only. No disposition-804, sealed, deployment, authorization, live, order, or position action occurred.\n` : null;
-    const clauseNumber = isV52i ? "3_N4_DEPTH" : isV52h ? "4_MARKET_PROOF" : isV52g ? "6" : isV52f ? "5" : isV52e ? "N9" : isV52d ? "4" : isV52c ? "2" : "3";
-    const parentCommit = isV52i ? V52H_COMMIT : isV52h ? V52G_COMMIT : isV52g ? V52F_COMMIT : isV52f ? V52F_PARENT_COMMIT : isV52e ? V52D_COMMIT : isV52d ? V52D_PARENT_COMMIT : isV52c ? V52B_COMMIT : V52_COMMIT;
-    const branch = isV52i ? "codex/window1-v52i-depth-informed-level-selection-20260813" : isV52h ? "codex/window1-v52h-remove-pair-lows-precondition-20260813" : isV52g ? "codex/window1-v52g-joint-target-conservation-20260813" : isV52f ? "codex/window1-v52f-pair-entry-conservation-20260813" : isV52e ? "codex/window1-v52e-palantir-wiring-20260812" : isV52d ? "codex/window1-v52d-iteration3-20260812" : isV52c ? "codex/window1-v52c-iteration2-20260812" : "codex/window1-v52b-iteration1-20260812";
-    const baselinePrefix = isV52i ? "V52H" : isV52h ? "V52G" : isV52g ? "V52F" : isV52f ? "V52E" : isV52e ? "V52D" : isV52d ? "V52C" : isV52c ? "V52B" : "V52";
-    const candidatePrefix = isV52i ? "V52I" : isV52h ? "V52H" : isV52g ? "V52G" : isV52f ? "V52F" : isV52e ? "V52E" : isV52d ? "V52D" : isV52c ? "V52C" : "V52B";
+    const v52jReport = isV52j ? `# V52j Iteration 9 - pair-role-conditioned level selection
+
+V52j changes clause 3/N4 only over frozen V52h. V52i's symmetric depth refinement is reverted. The existing own read, sibling read, and licensed coherence assign a receipt-local role. FALLING may lower the already-authorized target using the under-validation GRID and G3 depth priors inside live evidence bounds. RISING uses frozen evidence-backed near support. SETTLED and insufficient reads remain frozen V52h. Priors never create, withdraw, or gate authority.
+
+- Cohort: 5 pins + 25 fresh deterministic category x census-stamp games; seed ${activeReadCohort.seed_sha256}; V52b-i fresh overlaps all zero. GUEGOM is a separately bound prior-cohort named observation and is not folded into the 30-game census.
+- Differential: ${decisionDiffs.length} decision receipts, ${behaviorStreamDiffs.length} behavior streams; frozen pre-authorized differences ${frozenClauseDiffs.length}.
+- Four-state: V52h ${JSON.stringify(fourStateCensus.baseline.states)}; V52j ${JSON.stringify(fourStateCensus.candidate.states)}.
+- Faller fill delay/floor: ${JSON.stringify(roleConditionedSummary.faller_side_fills)}.
+- Climber preservation: ${JSON.stringify(roleConditionedSummary.climber_preservation)}.
+- Mean banked delta: ${JSON.stringify(roleConditionedSummary.banked_delta)}.
+- One-sided exposure changes: ${JSON.stringify(roleConditionedSummary.one_sided_exposure_changes)}.
+- Role flips: ${roleConditionedSummary.role_flips.count}; lawful re-aims ${roleConditionedSummary.role_flips.reaimed}.
+- Pins unharmed ${pinComparisons.every((row) => row.unharmed)}; REFLEX_POST ${v52bAssertions.REFLEX_POST_zero.observed}; assertions ${v52bAssertions.pass ? "PASS" : "BLOCKED"}.
+- Outcomes are observations only. No disposition-804, sealed, deployment, authorization, live, order, or position action occurred.
+` : null;
+    const clauseNumber = isV52j ? "3_N4_ROLE" : isV52i ? "3_N4_DEPTH" : isV52h ? "4_MARKET_PROOF" : isV52g ? "6" : isV52f ? "5" : isV52e ? "N9" : isV52d ? "4" : isV52c ? "2" : "3";
+    const parentCommit = isV52j ? V52I_COMMIT : isV52i ? V52H_COMMIT : isV52h ? V52G_COMMIT : isV52g ? V52F_COMMIT : isV52f ? V52F_PARENT_COMMIT : isV52e ? V52D_COMMIT : isV52d ? V52D_PARENT_COMMIT : isV52c ? V52B_COMMIT : V52_COMMIT;
+    const branch = isV52j ? "codex/window1-v52j-role-conditioned-level-selection-20260813" : isV52i ? "codex/window1-v52i-depth-informed-level-selection-20260813" : isV52h ? "codex/window1-v52h-remove-pair-lows-precondition-20260813" : isV52g ? "codex/window1-v52g-joint-target-conservation-20260813" : isV52f ? "codex/window1-v52f-pair-entry-conservation-20260813" : isV52e ? "codex/window1-v52e-palantir-wiring-20260812" : isV52d ? "codex/window1-v52d-iteration3-20260812" : isV52c ? "codex/window1-v52c-iteration2-20260812" : "codex/window1-v52b-iteration1-20260812";
+    const baselinePrefix = isV52DepthValidation ? "V52H" : isV52h ? "V52G" : isV52g ? "V52F" : isV52f ? "V52E" : isV52e ? "V52D" : isV52d ? "V52C" : isV52c ? "V52B" : "V52";
+    const candidatePrefix = isV52j ? "V52J" : isV52i ? "V52I" : isV52h ? "V52H" : isV52g ? "V52G" : isV52f ? "V52F" : isV52e ? "V52E" : isV52d ? "V52D" : isV52c ? "V52C" : "V52B";
     const core = {
-      "REPORT.md": isV52i ? v52iReport : isV52h ? v52hReport : isV52g ? v52gReport : isV52f ? v52fReport : isV52e ? v52eReport : isV52d ? v52dReport : isV52c ? v52cReport : report,
+      "REPORT.md": isV52j ? v52jReport : isV52i ? v52iReport : isV52h ? v52hReport : isV52g ? v52gReport : isV52f ? v52fReport : isV52e ? v52eReport : isV52d ? v52dReport : isV52c ? v52cReport : report,
       "CONTROL_BINDING.json": canonical({ parent_commit: parentCommit, branch, scope: "FIVE_PINS_PLUS_FRESH_25_ONLY", score_or_disposition_804_run: false, outcome_adjudication: null }),
       "COHORT_SELECTION_RECEIPT.json": canonical(activeReadCohort),
-      [isV52e && !isV52f && !isV52g && !isV52h && !isV52i ? "N9_WIRING_RECEIPT.json" : `CLAUSE_${clauseNumber}_CORRECTION_RECEIPT.json`]: canonical(clauseReceipt),
+      [isV52e && !isV52f && !isV52g && !isV52h && !isV52DepthValidation ? "N9_WIRING_RECEIPT.json" : `CLAUSE_${clauseNumber}_CORRECTION_RECEIPT.json`]: canonical(clauseReceipt),
       "FLOW_ASSERTIONS.json": canonical(v52bAssertions),
-      "BEFORE_AFTER_DIFFERENTIAL_RECEIPT.json": canonical({ changed_decision_receipts: decisionDiffs.length, license_or_metadata_changed_leg_streams: streamDiffs.length, behavior_changed_leg_streams: behaviorStreamDiffs.length, every_behavior_change_starts_at_or_after_authorized_clause: (isV52f || isV52g || isV52h || isV52i) ? behaviorStreamDiffs.every((row) => row.first_behavior_difference_not_before_authorized_clause) : null, frozen_clause_differences: frozenClauseDiffs.length, all_behavior_changes_authorized_by: authorizedClause }),
+      "BEFORE_AFTER_DIFFERENTIAL_RECEIPT.json": canonical({ changed_decision_receipts: decisionDiffs.length, license_or_metadata_changed_leg_streams: streamDiffs.length, behavior_changed_leg_streams: behaviorStreamDiffs.length, every_behavior_change_starts_at_or_after_authorized_clause: (isV52f || isV52g || isV52h || isV52DepthValidation) ? behaviorStreamDiffs.every((row) => row.first_behavior_difference_not_before_authorized_clause) : null, frozen_clause_differences: frozenClauseDiffs.length, all_behavior_changes_authorized_by: authorizedClause }),
       [`${baselinePrefix}_BASELINE_FLOW_OUTCOMES_OBSERVATION_ONLY.json`]: canonical(baselineFlow.outcomes),
       [`${candidatePrefix}_FLOW_OUTCOMES_OBSERVATION_ONLY.json`]: canonical(candidateFlow.outcomes),
       "NAMED_CHECKS_OBSERVATION_ONLY.json": canonical({ checks: namedChecks, rows: namedRows, adjudication: null }),
       "OUTCOME_OBSERVATIONS_30.json": canonical(observationScore),
-      ...((isV52f || isV52g || isV52h || isV52i) ? { "FOUR_STATE_OBSERVATION_30.json": canonical(fourStateCensus) } : {}),
+      ...((isV52f || isV52g || isV52h || isV52DepthValidation) ? { "FOUR_STATE_OBSERVATION_30.json": canonical(fourStateCensus) } : {}),
       ...(isV52f ? { "PRE_STATED_CLAIM_RECEIPT.json": canonical(v52fPreStatedClaim) } : {}),
       ...(isV52g ? { "PRIOR_AT_LOSS_REATTESTATION.json": canonical(v52gPriorLossReattestation), "PAIR_BUDGET_RECORD_SUMMARY.json": canonical(pairBudgetRecordSummary), "PIN_REGRESSION_RECEIPT_V52G.json": canonical({ comparisons: pinComparisons, pins_unharmed: pinComparisons.every((row) => row.unharmed), SANDAN_at_or_better: sandanPin?.at_or_better ?? false }) } : {}),
       ...(isV52h ? { "PAIR_BUDGET_RECORD_SUMMARY.json": canonical(pairBudgetRecordSummary), "PIN_REGRESSION_RECEIPT_V52H.json": canonical({ comparisons: pinComparisons, pins_unharmed: pinComparisons.every((row) => row.unharmed) }), "SMIILA_NAMED_OBSERVATION.json": canonical(smiilaObservation), "NEW_ONE_SIDED_EXPOSURE_RECEIPT.json": canonical(oneSidedExposureSummary) } : {}),
       ...(isV52i ? { "PAIR_BUDGET_RECORD_SUMMARY.json": canonical(pairBudgetRecordSummary), "PIN_REGRESSION_RECEIPT_V52I.json": canonical({ comparisons: pinComparisons, pins_unharmed: pinComparisons.every((row) => row.unharmed) }), "NEW_ONE_SIDED_EXPOSURE_RECEIPT.json": canonical(oneSidedExposureSummary), "ENTRY_LATER_FLOOR_COMPARISON.json": canonical(entryLaterFloorComparison), "PER_GAME_OUTCOME_TABLE.json": canonical(perGameOutcomeTable), "DEPTH_UNDER_VALIDATION_BOOT_RECEIPT.json": canonical(n9Binding.store.boot_assertion) } : {}),
+      ...(isV52j ? { "PAIR_BUDGET_RECORD_SUMMARY.json": canonical(pairBudgetRecordSummary), "PIN_REGRESSION_RECEIPT_V52J.json": canonical({ comparisons: pinComparisons, pins_unharmed: pinComparisons.every((row) => row.unharmed) }), "NEW_ONE_SIDED_EXPOSURE_RECEIPT.json": canonical(oneSidedExposureSummary), "ENTRY_LATER_FLOOR_COMPARISON.json": canonical(entryLaterFloorComparison), "PER_GAME_OUTCOME_TABLE.json": canonical(perGameOutcomeTable), "ROLE_CONDITIONED_SUMMARY.json": canonical(roleConditionedSummary), "DEPTH_UNDER_VALIDATION_BOOT_RECEIPT.json": canonical(n9Binding.store.boot_assertion), "GUEGOM_NAMED_OBSERVATION.json": canonical(guegomObservation) } : {}),
       ...(isV52g ? { "AUTHORIZED_DOWNSTREAM_INPUT_DIVERGENCE_RECEIPT.json": canonical({ rows: downstreamFrozenInputDivergences.length, classification: "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_6", receipt_keys: downstreamFrozenInputDivergences.map((row) => row.key), frozen_pre_clause_differences: frozenClauseDiffs.length }) } : {}),
       ...(isV52h ? { "AUTHORIZED_DOWNSTREAM_INPUT_DIVERGENCE_RECEIPT.json": canonical({ rows: downstreamFrozenInputDivergences.length, classification: "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_4_PRECONDITION_REMOVAL", receipt_keys: downstreamFrozenInputDivergences.map((row) => row.key), frozen_pre_authorized_clause_differences: frozenClauseDiffs.length }) } : {}),
       ...(isV52i ? { "AUTHORIZED_DOWNSTREAM_INPUT_DIVERGENCE_RECEIPT.json": canonical({ rows: downstreamFrozenInputDivergences.length, classification: "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_3_DEPTH_SELECTION", receipt_keys: downstreamFrozenInputDivergences.map((row) => row.key), frozen_pre_authorized_clause_differences: frozenClauseDiffs.length }) } : {}),
+      ...(isV52j ? { "AUTHORIZED_DOWNSTREAM_INPUT_DIVERGENCE_RECEIPT.json": canonical({ rows: downstreamFrozenInputDivergences.length, classification: "AUTHORIZED_DOWNSTREAM_STATE_INPUT_DIVERGENCE_AFTER_CLAUSE_3_ROLE_SELECTION", receipt_keys: downstreamFrozenInputDivergences.map((row) => row.key), frozen_pre_authorized_clause_differences: frozenClauseDiffs.length }) } : {}),
       ...((isV52c || isV52d || isV52e) ? { "PER_LEG_BLOCK_REASON_HISTOGRAM_SUMMARY.json": canonical({ definition: blockReasonHistogram.definition, aggregate: blockReasonHistogram.aggregate }) } : {}),
       ...(isV52d ? { "DISAGREEMENT_REFEREE_SUMMARY.json": canonical(refereeSummary), "PRE_STATED_CLAIM_DISCREPANCY_RECEIPT.json": canonical({ operator_stated_ARSMAR_blocks: 127, frozen_V52c_actual_row_grain_blocks: refereeSummary.frozen_V52c_actual_ARSMAR_block_rows, resolution: "FROZEN_TRACE_CONTROLS; COUNT_NOT_COERCED", behavior_spec_ambiguity: false }) } : {}),
       ...(isV52e ? { "STEP0_REUSE_INVENTORY.json": canonical(step0ReuseInventory), "CLEAN_STORE_BOOT_ASSERTION.json": canonical(n9Binding.store.boot_assertion), "CLEAN_SOURCE_BINDING.json": canonical({ manifest: { commit: n9Binding.store.manifest_commit, sha256: n9Binding.store.manifest_sha256 }, assets: Object.fromEntries(Object.entries(n9Binding.store.loaded).map(([id, asset]) => [id, { manifest_entry: asset.entry, sources: asset.sources }])) }), "PALANTIR_CONSUMPTION_SUMMARY.json": canonical(palantirConsumptionSummary), "N4_ABSTENTION_RECEIPT.json": canonical({ baseline_grid_covered_abstentions: baselineGridAbstentionKeys.size, candidate_same_receipt_abstentions: candidateGridAbstentionKeys.size, delta: candidateGridAbstentionKeys.size - baselineGridAbstentionKeys.size, n4_rescues: n4RescueRows.length, pre_stated_claim_pass: baselineGridAbstentionKeys.size > 0 && candidateGridAbstentionKeys.size < baselineGridAbstentionKeys.size }), "PIN_REGRESSION_RECEIPT.json": canonical({ pins: pinComparisons, unharmed: pinComparisons.every((row) => row.unharmed) }) } : {}),
       "SOURCE_HASH_MANIFEST.json": canonical(sourceManifest),
-      ...(isV52e ? { "TEST_RESULTS.json": canonical({ status: "PASS", test_files: isV52i ? 19 : isV52h ? 17 : isV52g ? 15 : isV52f ? 12 : 10, assertions: isV52i ? 790744 : isV52h ? 522 : isV52g ? 456 : isV52f ? 355 : 286, failures: 0, omissions: 0, deselections: 0, suites: [
+      ...(isV52e ? { "TEST_RESULTS.json": canonical({ status: "PASS", test_files: isV52j ? 19 : isV52i ? 19 : isV52h ? 17 : isV52g ? 15 : isV52f ? 12 : 10, assertions: isV52j ? 620 : isV52i ? 790744 : isV52h ? 522 : isV52g ? 456 : isV52f ? 355 : 286, failures: 0, omissions: 0, deselections: 0, suites: [
         { file: "arb-executor/tests/test_window1_v52_judgment_gate.js", assertions: 14 },
         { file: "arb-executor/tests/test_window1_v52_judgment_gate_package.js", assertions: 14 },
         { file: "arb-executor/tests/test_window1_v52b_read_level_authority.js", assertions: 17 },
@@ -2901,7 +3181,7 @@ async function main() {
           { file: "arb-executor/tests/test_window1_v52g_joint_target_conservation.js", assertions: 31 },
           { file: "arb-executor/tests/test_window1_v52g_joint_target_conservation_package.js", assertions: 39 },
         ] : []),
-        ...((isV52h || isV52i) ? [
+        ...((isV52h || isV52i || isV52j) ? [
           { file: "arb-executor/tests/test_window1_v52f_pair_entry_conservation.js", assertions: 27 },
           { file: "arb-executor/tests/test_window1_v52f_pair_entry_conservation_package.js", assertions: 42 },
           { file: "arb-executor/tests/test_window1_v52g_provenance_repairs.js", assertions: 31 },
@@ -2914,34 +3194,50 @@ async function main() {
           { file: "arb-executor/tests/test_window1_v52i_depth_informed_level_selection.js", assertions: 25 },
           { file: "arb-executor/tests/test_window1_v52i_depth_informed_level_selection_package.js", assertions: 790197 },
         ] : []),
+        ...(isV52j ? [
+          { file: "arb-executor/tests/test_window1_v52j_role_conditioned_level_selection.js", assertions: 37 },
+          { file: "arb-executor/tests/test_window1_v52j_role_conditioned_level_selection_package.js", assertions: 61 },
+        ] : []),
       ] }) } : {}),
       "FORBIDDEN_ACCESS_RECEIPT.json": canonical({ holdout: false, live: false, network_runtime: false, orders: false, positions: false, deployment: false, full_804_run: false, scavenger: false }),
-      "CONSTRUCTION_STATUS.json": canonical({ status: v52bAssertions.pass ? "MECHANICAL_PASS_OBSERVATIONS_ONLY_DISPOSITION_804_REMAINS_GATED" : "BLOCKED_MECHANICAL_ASSERTION", [`behavioral_edits_beyond_${isV52i ? "clause_3_N4_depth_informed_level_selection" : isV52h ? "clause_4_market_proof_precondition_removal" : isV52g ? "clause_6_joint_target_conservation" : isV52f ? "clause_5_pair_entry_conservation" : isV52e ? "N9_clean_prior_wiring" : `clause_${clauseNumber}`}`]: false, named_outcomes_are_observations: true }),
+      "CONSTRUCTION_STATUS.json": canonical({ status: v52bAssertions.pass ? "MECHANICAL_PASS_OBSERVATIONS_ONLY_DISPOSITION_804_REMAINS_GATED" : "BLOCKED_MECHANICAL_ASSERTION", [`behavioral_edits_beyond_${isV52j ? "clause_3_N4_role_conditioned_level_selection" : isV52i ? "clause_3_N4_depth_informed_level_selection" : isV52h ? "clause_4_market_proof_precondition_removal" : isV52g ? "clause_6_joint_target_conservation" : isV52f ? "clause_5_pair_entry_conservation" : isV52e ? "N9_clean_prior_wiring" : `clause_${clauseNumber}`}`]: false, named_outcomes_are_observations: true }),
     };
     for (const [name, bytes] of Object.entries(core)) write(name, bytes);
     await writeGzipRowsFile(path.join(output, "BEFORE_AFTER_DECISION_DIFFERENTIAL.jsonl.gz"), decisionDiffs);
     await writeGzipRowsFile(path.join(output, "CHANGED_LEG_STREAMS.jsonl.gz"), streamDiffs);
-    if (isV52f || isV52g || isV52h || isV52i) await writeGzipRowsFile(path.join(output, isV52i ? "CLAUSE_3_N4_DEPTH_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz" : isV52h ? "CLAUSE_4_MARKET_PROOF_REMOVAL_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz" : isV52g ? "CLAUSE_6_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz" : "CLAUSE_5_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz"), behaviorStreamDiffs);
+    if (isV52f || isV52g || isV52h || isV52DepthValidation) await writeGzipRowsFile(path.join(output, isV52j ? "CLAUSE_3_N4_ROLE_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz" : isV52i ? "CLAUSE_3_N4_DEPTH_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz" : isV52h ? "CLAUSE_4_MARKET_PROOF_REMOVAL_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz" : isV52g ? "CLAUSE_6_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz" : "CLAUSE_5_BEHAVIOR_CHANGED_LEG_STREAMS.jsonl.gz"), behaviorStreamDiffs);
     await writeGzipRowsFile(path.join(output, "STABILITY_ONSET_LEDGER.jsonl.gz"), onsetRows);
-    if (isV52f || isV52g || isV52h || isV52i) {
+    if (isV52f || isV52g || isV52h || isV52DepthValidation) {
       const writeCohortTraceChunks = async (prefix, rows) => {
         const eventIds = [...new Set(rows.map((row) => row.event_id))].sort();
         const chunks = [];
-        const chunkEventCount = isV52i ? 1 : 5;
-        for (let start = 0; start < eventIds.length; start += chunkEventCount) {
-          const ids = eventIds.slice(start, start + chunkEventCount), idSet = new Set(ids);
-          const chunkRows = rows.filter((row) => idSet.has(row.event_id));
+        const chunkEventCount = isV52DepthValidation ? null : 5;
+        const chunkRowLimit = isV52DepthValidation ? 10000 : null;
+        const work = isV52DepthValidation
+          ? Array.from({ length: Math.ceil(rows.length / chunkRowLimit) }, (_, index) => rows.slice(index * chunkRowLimit, (index + 1) * chunkRowLimit))
+          : Array.from({ length: Math.ceil(eventIds.length / chunkEventCount) }, (_, index) => {
+            const ids = eventIds.slice(index * chunkEventCount, (index + 1) * chunkEventCount), idSet = new Set(ids);
+            return rows.filter((row) => idSet.has(row.event_id));
+          });
+        for (const chunkRows of work) {
+          const ids = [...new Set(chunkRows.map((row) => row.event_id))].sort();
           const name = `${prefix}_CHUNK_${String(chunks.length + 1).padStart(3, "0")}.jsonl.gz`;
           await writeGzipRowsFile(path.join(output, name), chunkRows);
           chunks.push({ name, event_ids: ids, events: ids.length, rows: chunkRows.length, sha256: fileHash(path.join(output, name)), bytes: fs.statSync(path.join(output, name)).size });
         }
-        ensure(chunks.length === 30 / chunkEventCount && chunks.reduce((sum, row) => sum + row.events, 0) === 30 && chunks.reduce((sum, row) => sum + row.rows, 0) === rows.length, `${prefix} trace chunk conservation failed`);
-        return { format: "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS", chunk_event_count: chunkEventCount, events: 30, rows: rows.length, chunks, conservation_pass: true };
+        const coveredEvents = new Set(chunks.flatMap((row) => row.event_ids));
+        ensure(coveredEvents.size === 30 && eventIds.every((id) => coveredEvents.has(id)) && chunks.reduce((sum, row) => sum + row.rows, 0) === rows.length, `${prefix} trace chunk conservation failed`);
+        return { format: "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS", chunk_event_count: chunkEventCount, chunk_row_limit: chunkRowLimit, events: 30, rows: rows.length, chunks, conservation_pass: true };
       };
       const baselineTraceManifest = await writeCohortTraceChunks(`${baselinePrefix}_BASELINE_FULL_DECISION_TRACE_30_GAMES`, baselineCompactTrace);
       const candidateTraceManifest = await writeCohortTraceChunks(`${candidatePrefix}_FULL_DECISION_TRACE_30_GAMES`, candidateCompactTrace);
       write("FULL_DECISION_TRACE_MANIFEST.json", canonical({ baseline: baselineTraceManifest, candidate: candidateTraceManifest, every_receipt_retained: true }));
       if (isV52h) fs.copyFileSync(path.join(smiilaNamedRoot, "SMIILA_NAMED_BEFORE_AFTER_TRACE.jsonl.gz"), path.join(output, "SMIILA_NAMED_BEFORE_AFTER_TRACE.jsonl.gz"));
+      if (isV52j) {
+        const namedTraceManifest = JSON.parse(fs.readFileSync(path.join(guegomNamedRoot, "GUEGOM_NAMED_BEFORE_AFTER_TRACE_MANIFEST.json"), "utf8"));
+        fs.copyFileSync(path.join(guegomNamedRoot, "GUEGOM_NAMED_BEFORE_AFTER_TRACE_MANIFEST.json"), path.join(output, "GUEGOM_NAMED_BEFORE_AFTER_TRACE_MANIFEST.json"));
+        for (const chunk of namedTraceManifest.chunks) fs.copyFileSync(path.join(guegomNamedRoot, chunk.name), path.join(output, chunk.name));
+      }
     } else {
       await writeGzipRowsFile(path.join(output, `${baselinePrefix}_BASELINE_FULL_DECISION_TRACE_30_GAMES.jsonl.gz`), baselineCompactTrace);
       await writeGzipRowsFile(path.join(output, `${candidatePrefix}_FULL_DECISION_TRACE_30_GAMES.jsonl.gz`), candidateCompactTrace);
@@ -2961,10 +3257,10 @@ async function main() {
       await writeGzipRowsFile(path.join(output, "N4_PRIOR_INFORMED_RESCUE_LEDGER.jsonl.gz"), n4RescueRows);
       await writeGzipRowsFile(path.join(output, "N5_PRIOR_TIE_ADJUDICATION_LEDGER.jsonl.gz"), n5PriorResolvedRows);
     }
-    if (isV52f || isV52g || isV52h || isV52i) {
+    if (isV52f || isV52g || isV52h || isV52DepthValidation) {
       await writeGzipRowsFile(path.join(output, `${baselinePrefix}_${candidatePrefix}_FOUR_STATE_EVENT_LEDGER_30.jsonl.gz`), baselineFourStateRows.map((row) => ({ variant: baselinePrefix, ...row })).concat(candidateFourStateRows.map((row) => ({ variant: candidatePrefix, ...row }))));
       if (isV52f) await writeGzipRowsFile(path.join(output, "PAIR_ENTRY_CONSERVATION_LICENSE_LEDGER.jsonl.gz"), candidateCompactTrace.filter((row) => row.pair_entry_conservation?.reached || row.final_target_cents !== null).map((row) => ({ event_id: row.event_id, leg_identity: row.leg_identity, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, final_action: row.final_action, final_target_cents: row.final_target_cents, pair_entry_conservation: row.pair_entry_conservation, level: row.level })));
-      if (isV52g || isV52h || isV52i) {
+      if (isV52g || isV52h || isV52DepthValidation) {
         await writeGzipRowsFile(path.join(output, "JOINT_TARGET_CONSERVATION_LICENSE_LEDGER.jsonl.gz"), candidateCompactTrace.filter((row) => row.joint_target_conservation?.reached || row.final_target_cents !== null).map((row) => ({ event_id: row.event_id, leg_identity: row.leg_identity, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, final_action: row.final_action, final_target_cents: row.final_target_cents, joint_target_conservation: row.joint_target_conservation, level: row.level })));
         await writeGzipRowsFile(path.join(output, "PAIR_BUDGET_RECORDS.jsonl.gz"), pairBudgetRecords);
         await writeGzipRowsFile(path.join(output, "PAIR_JOINT_TARGET_TIME_SERIES.jsonl.gz"), pairBudgetRecords.flatMap((record) => record.revisions.map((revision) => ({ event_id: record.event_id, born_at: record.born_at, ...revision }))));
@@ -2972,6 +3268,11 @@ async function main() {
       if (isV52h) await writeGzipRowsFile(path.join(output, "MARKET_PROOF_PRECONDITION_REMOVAL_LEDGER.jsonl.gz"), candidateCompactTrace.filter((row) => row.clause_4_market_proof_precondition).map((row) => ({ event_id: row.event_id, leg_identity: row.leg_identity, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, gate_verdict: row.gate_verdict, blocked_clause: row.blocked_clause, coherence: row.coherence, clause_4_market_proof_precondition: row.clause_4_market_proof_precondition, final_action: row.final_action, final_target_cents: row.final_target_cents })));
       if (isV52i) {
         await writeGzipRowsFile(path.join(output, "DEPTH_PRIOR_CONSUMPTION_LEDGER.jsonl.gz"), candidateCompactTrace.filter((row) => row.palantir?.N4?.depth_candidates_under_validation).map((row) => ({ event_id: row.event_id, leg_identity: row.leg_identity, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, depth_candidates_under_validation: row.palantir.N4.depth_candidates_under_validation, depth_informed_level_selection: row.depth_informed_level_selection, final_action: row.final_action, final_target_cents: row.final_target_cents })));
+        await writeGzipRowsFile(path.join(output, "ENTRY_LATER_FLOOR_LEDGER.jsonl.gz"), baselineEntryFloorRows.concat(candidateEntryFloorRows));
+      }
+      if (isV52j) {
+        await writeGzipRowsFile(path.join(output, "ROLE_CONDITIONED_LEVEL_SELECTION_LEDGER.jsonl.gz"), candidateCompactTrace.filter((row) => row.role_conditioned_level_selection).map((row) => ({ event_id: row.event_id, leg_identity: row.leg_identity, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, role_conditioned_level_selection: row.role_conditioned_level_selection, final_action: row.final_action, final_target_cents: row.final_target_cents })));
+        await writeGzipRowsFile(path.join(output, "DEPTH_PRIOR_CONSUMPTION_LEDGER.jsonl.gz"), candidateCompactTrace.filter((row) => row.palantir?.N4?.depth_candidates_under_validation).map((row) => ({ event_id: row.event_id, leg_identity: row.leg_identity, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, depth_candidates_under_validation: row.palantir.N4.depth_candidates_under_validation, role_conditioned_level_selection: row.role_conditioned_level_selection, final_action: row.final_action, final_target_cents: row.final_target_cents })));
         await writeGzipRowsFile(path.join(output, "ENTRY_LATER_FLOOR_LEDGER.jsonl.gz"), baselineEntryFloorRows.concat(candidateEntryFloorRows));
       }
     }

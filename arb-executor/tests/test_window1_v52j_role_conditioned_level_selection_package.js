@@ -1,0 +1,78 @@
+#!/usr/bin/env node
+"use strict";
+
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+const readline = require("readline");
+const zlib = require("zlib");
+
+const repo = path.resolve(__dirname, "../..");
+const root = path.join(repo, ".claude/window1_live_v4_replay/v52j_role_conditioned_level_selection_20260813");
+const json = (name) => JSON.parse(fs.readFileSync(path.join(root, name), "utf8"));
+let tests = 0;
+const check = (value, message) => { tests += 1; assert(value, message); };
+const equal = (actual, expected, message) => { tests += 1; assert.deepStrictEqual(actual, expected, message); };
+async function scan(name, visit = () => {}) {
+  const lines = readline.createInterface({ input: fs.createReadStream(path.join(root, name)).pipe(zlib.createGunzip()), crlfDelay: Infinity });
+  let count = 0; const events = new Set();
+  for await (const line of lines) { if (!line) continue; const row = JSON.parse(line); visit(row); count += 1; if (row.event_id) events.add(row.event_id); }
+  return { count, events };
+}
+
+async function main() {
+  check(fs.existsSync(root));
+  const cohort = json("COHORT_SELECTION_RECEIPT.json");
+  equal(cohort.pins.length, 5); equal(cohort.fresh_25.length, 25); equal(cohort.combined_30.length, 30);
+  for (const key of ["prior_V52B_fresh25_overlap_count", "prior_V52C_fresh25_overlap_count", "prior_V52D_fresh25_overlap_count", "prior_V52E_fresh25_overlap_count", "prior_V52F_fresh25_overlap_count", "prior_V52G_fresh25_overlap_count", "prior_V52H_fresh25_overlap_count", "prior_V52I_fresh25_overlap_count"]) equal(cohort.exclusions[key], 0);
+  check(/^[0-9a-f]{40}$/.test(cohort.source_implementation_commit));
+  equal(cohort.seed_derivation_law, "SHA256('V52J_ITERATION9_COHORT25|' + source_implementation_commit)");
+  const receipt = json("CLAUSE_3_N4_ROLE_CORRECTION_RECEIPT.json");
+  equal(receipt.authorized_change, "CLAUSE_3_N4_ROLE_CONDITIONED_LEVEL_SELECTION_ONLY");
+  check(receipt.V52i_disposition.startsWith("REVERTED"));
+  equal(receipt.crediting, undefined);
+  const boot = json("DEPTH_UNDER_VALIDATION_BOOT_RECEIPT.json");
+  equal(boot.canonical_clean_store_unchanged, true); equal(boot.under_validation_loaded, 2); equal(boot.unvalidated_loaded, 0);
+  const assertions = json("FLOW_ASSERTIONS.json");
+  equal(assertions.pass, true); equal(assertions.REFLEX_POST_zero.observed, 0);
+  equal(assertions.V52i_symmetric_depth_refinement_reverted.pass, true);
+  equal(assertions.role_assignment_recorded_on_every_clause_3_evaluation.violations.length, 0);
+  equal(assertions.only_falling_role_can_apply_depth_prior.violations.length, 0);
+  equal(assertions.rising_settled_insufficient_targets_unchanged.violations.length, 0);
+  equal(assertions.pins_unharmed.pass, true);
+  const differential = json("BEFORE_AFTER_DIFFERENTIAL_RECEIPT.json");
+  equal(differential.frozen_clause_differences, 0); equal(differential.every_behavior_change_starts_at_or_after_authorized_clause, true);
+  const states = json("FOUR_STATE_OBSERVATION_30.json");
+  equal(states.conservation.pass, true); equal(states.candidate.states.COMPLETE_AT_LOSS || 0, 0);
+  const outcomes = json("PER_GAME_OUTCOME_TABLE.json");
+  equal(outcomes.length, 30); equal(new Set(outcomes.map((row) => row.event_id)).size, 30);
+  check(outcomes.every((row) => ["COMPLETE_AT_DELTA", "PARTIAL_FOR_REASON", "NEITHER_FOR_REASON"].includes(row.state)));
+  check(outcomes.every((row) => Object.prototype.hasOwnProperty.call(row, "offer_margin_cents")));
+  check(outcomes.every((row) => row.legs.every((leg) => Object.prototype.hasOwnProperty.call(leg, "role_at_entry_or_terminal") && Object.prototype.hasOwnProperty.call(leg, "fill_t_minus_scheduled_seconds") && Object.prototype.hasOwnProperty.call(leg, "floor_t_minus_scheduled_seconds"))));
+  const roles = json("ROLE_CONDITIONED_SUMMARY.json");
+  check(roles.role_receipts > 0);
+  check(Object.prototype.hasOwnProperty.call(roles, "faller_side_fills"));
+  check(Object.prototype.hasOwnProperty.call(roles, "climber_preservation"));
+  check(Object.prototype.hasOwnProperty.call(roles, "banked_delta"));
+  check(Object.prototype.hasOwnProperty.call(roles, "one_sided_exposure_changes"));
+  const consumptionViolations = { provenance_count: 0, provenance_status: 0, own_read: 0, sibling_read: 0 };
+  const consumption = await scan("DEPTH_PRIOR_CONSUMPTION_LEDGER.jsonl.gz", (row) => {
+    if (row.depth_candidates_under_validation.provenance.length !== 2) consumptionViolations.provenance_count += 1;
+    if (!row.depth_candidates_under_validation.provenance.every((asset) => asset.status === "UNDER-VALIDATION_V52I")) consumptionViolations.provenance_status += 1;
+    if (!row.role_conditioned_level_selection.role_assignment.own_read_evidence) consumptionViolations.own_read += 1;
+    if (!row.role_conditioned_level_selection.role_assignment.sibling_read_evidence) consumptionViolations.sibling_read += 1;
+  });
+  equal(consumptionViolations.provenance_count, 0); equal(consumptionViolations.provenance_status, 0);
+  equal(consumptionViolations.own_read, 0); equal(consumptionViolations.sibling_read, 0);
+  check(consumption.count > 0);
+  const traces = json("FULL_DECISION_TRACE_MANIFEST.json");
+  equal(traces.baseline.events, 30); equal(traces.candidate.events, 30); equal(traces.candidate.chunk_event_count, null); equal(traces.candidate.chunk_row_limit, 10000);
+  equal(new Set(traces.candidate.chunks.flatMap((row) => row.event_ids)).size, 30);
+  check(traces.candidate.chunks.every((row) => row.bytes < 100000000));
+  const namedTrace = json("GUEGOM_NAMED_BEFORE_AFTER_TRACE_MANIFEST.json");
+  equal(namedTrace.conservation_pass, true); equal(namedTrace.chunk_row_limit, 10000); check(namedTrace.chunks.every((row) => row.bytes < 100000000));
+  const det = json("DETERMINISM_RECEIPT.json"); equal(det.clean_builds, 2); equal(det.byte_identical, true);
+  const forbidden = json("FORBIDDEN_ACCESS_RECEIPT.json"); equal(forbidden.full_804_run, false); equal(forbidden.live, false); equal(forbidden.holdout, false); equal(forbidden.deployment, false);
+  console.log(JSON.stringify({ tests, pass: true, role_receipts: consumption.count }));
+}
+main().catch((error) => { console.error(error.stack || error); process.exitCode = 1; });

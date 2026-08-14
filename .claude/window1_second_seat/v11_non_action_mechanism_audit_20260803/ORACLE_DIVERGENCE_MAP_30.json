@@ -1,0 +1,2302 @@
+{
+ "LABEL": "ORACLE_DIVERGENCE_MAP_SAMPLE_30",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "inputs": {
+  "v52h_machine": "b43d7cde (V52h born: market-proof precondition removed)",
+  "traces_outcomes_onsets": "576c705f .claude/window1_live_v4_replay/v52i_depth_informed_level_selection_20260813 (V52H_BASELINE_FULL_DECISION_TRACE_30_GAMES chunks 001-030, PER_GAME_OUTCOME_TABLE.json, STABILITY_ONSET_LEDGER.jsonl.gz)",
+  "tape": "OMI-Window1-private/fit-local/prints.jsonl (hash-bound replay source)"
+ },
+ "conservation": {
+  "games": 30,
+  "cents": 213,
+  "cells": {
+   "level(stood-above-floor)|FORESIGHT_REQUIRED": {
+    "games": 18,
+    "cents": 173,
+    "codes": [
+     "26JUL12BALHUA",
+     "26JUL12DAHBAE",
+     "26JUL12GUEGOM",
+     "26JUL12MORNEP",
+     "26JUL12PANYOR",
+     "26JUL12POLKUH",
+     "26JUL12PRIBAL",
+     "26JUL13BLISAS",
+     "26JUL13SANDAN",
+     "26JUL14DELXIL",
+     "26JUL15PRIMOL",
+     "26JUL15ROMGAL",
+     "26JUL15TABMID",
+     "26JUL16MERDRO",
+     "26JUL17BURMER",
+     "26JUL18BADZID",
+     "26JUL20KYMCLA",
+     "26JUL20TROISO"
+    ]
+   },
+   "level(stood-below-floor)|KNOWABLE_DEFECT": {
+    "games": 4,
+    "cents": 38,
+    "codes": [
+     "26JUL12KUMTUR",
+     "26JUL18CASGEA",
+     "26JUL19ARSMAR",
+     "26JUL20QUEKAL"
+    ]
+   },
+   "NO_WINNING_LINE|NONE": {
+    "games": 5,
+    "cents": 0,
+    "codes": [
+     "26JUL13JONSPI",
+     "26JUL13VANLEE",
+     "26JUL14PUTJEA",
+     "26JUL14SALIBR",
+     "26JUL15WESCOP"
+    ]
+   },
+   "CONFORMED|NONE": {
+    "games": 2,
+    "cents": 0,
+    "codes": [
+     "26JUL14WOLVAN",
+     "26JUL17HOLBOU"
+    ]
+   },
+   "level(authority-not-earned)|KNOWABLE_DEFECT": {
+    "games": 1,
+    "cents": 2,
+    "codes": [
+     "26JUL20ARSRIC"
+    ]
+   }
+  },
+  "leg_histogram": {
+   "level(stood-above-floor)": 28,
+   "level(stood-below-floor)": 11,
+   "CONFORMED": 16,
+   "level(authority-not-earned)": 3,
+   "NO_POST_ONSET_PRINTS": 2
+  },
+  "shallow_win_cents": 134,
+  "miss_cents": 79
+ },
+ "games": [
+  {
+   "code": "26JUL12BALHUA",
+   "cat": "WTA_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 33,
+   "print_margin": 33,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 32,
+   "first_leg": "HUA",
+   "first": {
+    "floor": 66,
+    "entry": 82,
+    "onset": 1783857200,
+    "credit_ts": 1783857494.336524,
+    "ts_star": 1783858620.618157,
+    "floor_size": 2.0,
+    "n_floor_prints": 3,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1452",
+    "divergence_ts": 1783857466,
+    "machine_answer": "rest licensed at 82\u00a2 (credited 82\u00a2 @ 1783857494, 1126s before the 66\u00a2 floor print)",
+    "needed_answer": "stand at 66\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=1242 print=0; ask=93 bid=82",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 66\u00a2 existed before the kiss consumed the rest; the 66\u00a2 floor print @ 1783858620 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "BAL": {
+     "floor": 1,
+     "entry": 17,
+     "onset": 1783857260,
+     "credit_ts": 1783857770.019694,
+     "ts_star": 1783862793.528318,
+     "floor_size": 100.0,
+     "n_floor_prints": 19,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTACHALLENGERMATCH-26JUL12BALHUA-BAL.csv.gz#row-2386",
+     "divergence_ts": 1783857764,
+     "machine_answer": "rest licensed at 17\u00a2 (credited 17\u00a2 @ 1783857770, 5024s before the 1\u00a2 floor print)",
+     "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=2039 print=113; ask=21 bid=17",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783862793 was the first evidence at that level"
+     ]
+    },
+    "HUA": {
+     "floor": 66,
+     "entry": 82,
+     "onset": 1783857200,
+     "credit_ts": 1783857494.336524,
+     "ts_star": 1783858620.618157,
+     "floor_size": 2.0,
+     "n_floor_prints": 3,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTACHALLENGERMATCH-26JUL12BALHUA-HUA.csv.gz#row-1452",
+     "divergence_ts": 1783857466,
+     "machine_answer": "rest licensed at 82\u00a2 (credited 82\u00a2 @ 1783857494, 1126s before the 66\u00a2 floor print)",
+     "needed_answer": "stand at 66\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1242 print=0; ask=93 bid=82",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 66\u00a2 existed before the kiss consumed the rest; the 66\u00a2 floor print @ 1783858620 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL12DAHBAE",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 4,
+   "print_margin": 4,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 3,
+   "first_leg": "BAE",
+   "first": {
+    "floor": 92,
+    "entry": 94,
+    "onset": 1783818833,
+    "credit_ts": 1783869220.747164,
+    "ts_star": 1783869241.750214,
+    "floor_size": 8.0,
+    "n_floor_prints": 2,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-692",
+    "divergence_ts": 1783824518,
+    "machine_answer": "rest licensed at 94\u00a2 (credited 94\u00a2 @ 1783869220, 21s before the 92\u00a2 floor print)",
+    "needed_answer": "stand at 92\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=261 print=4; ask=96 bid=94",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 92\u00a2 existed before the kiss consumed the rest; the 92\u00a2 floor print @ 1783869241 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "BAE": {
+     "floor": 92,
+     "entry": 94,
+     "onset": 1783818833,
+     "credit_ts": 1783869220.747164,
+     "ts_star": 1783869241.750214,
+     "floor_size": 8.0,
+     "n_floor_prints": 2,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL12DAHBAE-BAE.csv.gz#row-692",
+     "divergence_ts": 1783824518,
+     "machine_answer": "rest licensed at 94\u00a2 (credited 94\u00a2 @ 1783869220, 21s before the 92\u00a2 floor print)",
+     "needed_answer": "stand at 92\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=261 print=4; ask=96 bid=94",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 92\u00a2 existed before the kiss consumed the rest; the 92\u00a2 floor print @ 1783869241 was the first evidence at that level"
+     ]
+    },
+    "DAH": {
+     "floor": 4,
+     "entry": 5,
+     "onset": 1783818833,
+     "credit_ts": 1783862081.03584,
+     "ts_star": 1783843328.035523,
+     "floor_size": 7.0,
+     "n_floor_prints": 90,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL12DAHBAE-DAH.csv.gz#row-1443",
+     "divergence_ts": 1783843328,
+     "machine_answer": "standing rest at 3\u00a2 through the 4\u00a2 floor print; later repriced and credited at 5\u00a2 @ 1783862081",
+     "needed_answer": "rest at exactly 4\u00a2 standing into the floor print @ 1783843328",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=800 print=15; ask=6 bid=3",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 4\u00a2 existed before the floor print @ 1783843328 - the print itself was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL12GUEGOM",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": 57,
+   "print_margin": 57,
+   "banked": null,
+   "game_class": "level(stood-above-floor)",
+   "cents": 57,
+   "first_leg": "GUE",
+   "first": {
+    "floor": 1,
+    "entry": 62,
+    "onset": 1783871021,
+    "credit_ts": 1783871264.775716,
+    "ts_star": 1783875071.364843,
+    "floor_size": 195.0,
+    "n_floor_prints": 45,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPMATCH-26JUL12GUEGOM-GUE.csv.gz#row-46316",
+    "divergence_ts": 1783871249,
+    "machine_answer": "rest licensed at 62\u00a2 (credited 62\u00a2 @ 1783871264, 3807s before the 1\u00a2 floor print)",
+    "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=2356 print=44; ask=63 bid=62",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783875071 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "GOM": {
+     "floor": 42,
+     "entry": null,
+     "onset": 1783871801,
+     "credit_ts": null,
+     "ts_star": 1783871811.704738,
+     "floor_size": 63.0,
+     "n_floor_prints": 2,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL12GUEGOM-GOM.csv.gz#row-64999",
+     "divergence_ts": 1783871803,
+     "machine_answer": "standing rest at 37\u00a2 through the 42\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 42\u00a2 standing into the floor print @ 1783871811",
+     "reason_string": "V52F_LICENSED_TARGET_SETTLEMENT_BOUND",
+     "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL+V52F_PAIR_ENTRY_CONSERVATION",
+     "consulted": "read passed=True, comparable transitions book=1 print=0; ask=41 bid=40",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1783871803,
+       41,
+       null,
+       "KXATPMATCH-26JUL12GUEGOM-GOM.csv.gz#row-64998"
+      ]
+     ]
+    },
+    "GUE": {
+     "floor": 1,
+     "entry": 62,
+     "onset": 1783871021,
+     "credit_ts": 1783871264.775716,
+     "ts_star": 1783875071.364843,
+     "floor_size": 195.0,
+     "n_floor_prints": 45,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL12GUEGOM-GUE.csv.gz#row-46316",
+     "divergence_ts": 1783871249,
+     "machine_answer": "rest licensed at 62\u00a2 (credited 62\u00a2 @ 1783871264, 3807s before the 1\u00a2 floor print)",
+     "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=2356 print=44; ask=63 bid=62",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783875071 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL12KUMTUR",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 30,
+   "print_margin": 30,
+   "banked": 6,
+   "game_class": "level(stood-below-floor)",
+   "cents": 24,
+   "first_leg": "KUM",
+   "first": {
+    "floor": 69,
+    "entry": 72,
+    "onset": 1783878673,
+    "credit_ts": 1783879324.437595,
+    "ts_star": 1783879146.81739,
+    "floor_size": 45.0,
+    "n_floor_prints": 1,
+    "verdict": "DIVERGED",
+    "node": "level(stood-below-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12KUMTUR-KUM.csv.gz#row-19909",
+    "divergence_ts": 1783878673,
+    "machine_answer": "standing rest at 60\u00a2 through the 69\u00a2 floor print; later repriced and credited at 72\u00a2 @ 1783879324",
+    "needed_answer": "rest at exactly 69\u00a2 standing into the floor print @ 1783879146",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=1 print=0; ask=60 bid=75",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "KNOWABLE_DEFECT",
+     [
+      "displayed_ask",
+      1783878673,
+      60,
+      null,
+      "KXATPCHALLENGERMATCH-26JUL12KUMTUR-KUM.csv.gz#row-19908"
+     ]
+    ]
+   },
+   "knowability": "KNOWABLE_DEFECT",
+   "legs": {
+    "KUM": {
+     "floor": 69,
+     "entry": 72,
+     "onset": 1783878673,
+     "credit_ts": 1783879324.437595,
+     "ts_star": 1783879146.81739,
+     "floor_size": 45.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12KUMTUR-KUM.csv.gz#row-19909",
+     "divergence_ts": 1783878673,
+     "machine_answer": "standing rest at 60\u00a2 through the 69\u00a2 floor print; later repriced and credited at 72\u00a2 @ 1783879324",
+     "needed_answer": "rest at exactly 69\u00a2 standing into the floor print @ 1783879146",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1 print=0; ask=60 bid=75",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1783878673,
+       60,
+       null,
+       "KXATPCHALLENGERMATCH-26JUL12KUMTUR-KUM.csv.gz#row-19908"
+      ]
+     ]
+    },
+    "TUR": {
+     "floor": 1,
+     "entry": 22,
+     "onset": 1783878493,
+     "credit_ts": 1783878698.757238,
+     "ts_star": 1783882906.608942,
+     "floor_size": 4218.0,
+     "n_floor_prints": 29,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12KUMTUR-TUR.csv.gz#row-13904",
+     "divergence_ts": 1783878698,
+     "machine_answer": "rest licensed at 22\u00a2 (credited 22\u00a2 @ 1783878698, 4208s before the 1\u00a2 floor print)",
+     "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=2874 print=4; ask=23 bid=23",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783882906 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL12MORNEP",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 29,
+   "print_margin": 29,
+   "banked": 3,
+   "game_class": "level(stood-above-floor)",
+   "cents": 26,
+   "first_leg": "NEP",
+   "first": {
+    "floor": 1,
+    "entry": 26,
+    "onset": 1783807781,
+    "credit_ts": 1783815184.115138,
+    "ts_star": 1783874171.780706,
+    "floor_size": 18.28,
+    "n_floor_prints": 45,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXWTAMATCH-26JUL12MORNEP-NEP.csv.gz#row-1786",
+    "divergence_ts": 1783815184,
+    "machine_answer": "rest licensed at 26\u00a2 (credited 26\u00a2 @ 1783815184, 58988s before the 1\u00a2 floor print)",
+    "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=276 print=1; ask=27 bid=26",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783874171 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "MOR": {
+     "floor": 70,
+     "entry": 71,
+     "onset": 1783807781,
+     "credit_ts": 1783848455.8942,
+     "ts_star": 1783872841.313774,
+     "floor_size": 3.0,
+     "n_floor_prints": 3,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTAMATCH-26JUL12MORNEP-MOR.csv.gz#row-1638",
+     "divergence_ts": 1783848454,
+     "machine_answer": "rest licensed at 71\u00a2 (credited 71\u00a2 @ 1783848455, 24385s before the 70\u00a2 floor print)",
+     "needed_answer": "stand at 70\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1462 print=12; ask=73 bid=71",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 70\u00a2 existed before the kiss consumed the rest; the 70\u00a2 floor print @ 1783872841 was the first evidence at that level"
+     ]
+    },
+    "NEP": {
+     "floor": 1,
+     "entry": 26,
+     "onset": 1783807781,
+     "credit_ts": 1783815184.115138,
+     "ts_star": 1783874171.780706,
+     "floor_size": 18.28,
+     "n_floor_prints": 45,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTAMATCH-26JUL12MORNEP-NEP.csv.gz#row-1786",
+     "divergence_ts": 1783815184,
+     "machine_answer": "rest licensed at 26\u00a2 (credited 26\u00a2 @ 1783815184, 58988s before the 1\u00a2 floor print)",
+     "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=276 print=1; ask=27 bid=26",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783874171 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL12PANYOR",
+   "cat": "WTA_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 19,
+   "print_margin": 19,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 18,
+   "first_leg": "YOR",
+   "first": {
+    "floor": 1,
+    "entry": 13,
+    "onset": 1783854642,
+    "credit_ts": 1783855171.696546,
+    "ts_star": 1783858018.613998,
+    "floor_size": 150.0,
+    "n_floor_prints": 26,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXWTACHALLENGERMATCH-26JUL12PANYOR-YOR.csv.gz#row-5832",
+    "divergence_ts": 1783855058,
+    "machine_answer": "rest licensed at 13\u00a2 (credited 13\u00a2 @ 1783855171, 2847s before the 1\u00a2 floor print)",
+    "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=3349 print=11; ask=15 bid=13",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783858018 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "PAN": {
+     "floor": 80,
+     "entry": 86,
+     "onset": 1783855662,
+     "credit_ts": 1783858255.908364,
+     "ts_star": 1783858255.919781,
+     "floor_size": 1.0,
+     "n_floor_prints": 3,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTACHALLENGERMATCH-26JUL12PANYOR-PAN.csv.gz#row-14146",
+     "divergence_ts": 1783857981,
+     "machine_answer": "rest licensed at 86\u00a2 (credited 86\u00a2 @ 1783858255, 0s before the 80\u00a2 floor print)",
+     "needed_answer": "stand at 80\u00a2 and let the tape come to it",
+     "reason_string": "V52E_BIRTH_BLOCKED_MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED",
+     "authority": "V52B_MACHINE_READ_LEVEL_ABSTAIN",
+     "consulted": "read passed=True, comparable transitions book=5157 print=71; ask=99 bid=97",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 80\u00a2 existed before the kiss consumed the rest; the 80\u00a2 floor print @ 1783858255 was the first evidence at that level"
+     ]
+    },
+    "YOR": {
+     "floor": 1,
+     "entry": 13,
+     "onset": 1783854642,
+     "credit_ts": 1783855171.696546,
+     "ts_star": 1783858018.613998,
+     "floor_size": 150.0,
+     "n_floor_prints": 26,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTACHALLENGERMATCH-26JUL12PANYOR-YOR.csv.gz#row-5832",
+     "divergence_ts": 1783855058,
+     "machine_answer": "rest licensed at 13\u00a2 (credited 13\u00a2 @ 1783855171, 2847s before the 1\u00a2 floor print)",
+     "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=3349 print=11; ask=15 bid=13",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783858018 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL12POLKUH",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 5,
+   "print_margin": 5,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 4,
+   "first_leg": "POL",
+   "first": {
+    "floor": 80,
+    "entry": 81,
+    "onset": 1783831217,
+    "credit_ts": 1783872979.377097,
+    "ts_star": 1783872979.377097,
+    "floor_size": 18.67,
+    "n_floor_prints": 1,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-2696",
+    "divergence_ts": 1783872381,
+    "machine_answer": "standing rest at 81\u00a2 through the 80\u00a2 floor print; later repriced and credited at 81\u00a2 @ 1783872979",
+    "needed_answer": "rest at exactly 80\u00a2 standing into the floor print @ 1783872979",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=2673 print=4; ask=82 bid=81",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 80\u00a2 existed before the floor print @ 1783872979 - the print itself was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "KUH": {
+     "floor": 15,
+     "entry": 18,
+     "onset": 1783831217,
+     "credit_ts": 1783879149.480609,
+     "ts_star": 1783879149.480609,
+     "floor_size": 72.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-5538",
+     "divergence_ts": 1783878330,
+     "machine_answer": "standing rest at 18\u00a2 through the 15\u00a2 floor print; later repriced and credited at 18\u00a2 @ 1783879149",
+     "needed_answer": "rest at exactly 15\u00a2 standing into the floor print @ 1783879149",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=5391 print=5; ask=20 bid=18",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 15\u00a2 existed before the floor print @ 1783879149 - the print itself was the first evidence at that level"
+     ]
+    },
+    "POL": {
+     "floor": 80,
+     "entry": 81,
+     "onset": 1783831217,
+     "credit_ts": 1783872979.377097,
+     "ts_star": 1783872979.377097,
+     "floor_size": 18.67,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-2696",
+     "divergence_ts": 1783872381,
+     "machine_answer": "standing rest at 81\u00a2 through the 80\u00a2 floor print; later repriced and credited at 81\u00a2 @ 1783872979",
+     "needed_answer": "rest at exactly 80\u00a2 standing into the floor print @ 1783872979",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=2673 print=4; ask=82 bid=81",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 80\u00a2 existed before the floor print @ 1783872979 - the print itself was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL12PRIBAL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": 1,
+   "print_margin": 1,
+   "banked": null,
+   "game_class": "level(stood-above-floor)",
+   "cents": 1,
+   "first_leg": "BAL",
+   "first": {
+    "floor": 1,
+    "entry": 3,
+    "onset": 1783852293,
+    "credit_ts": 1783852303.101636,
+    "ts_star": 1783852726.66349,
+    "floor_size": 500.0,
+    "n_floor_prints": 33,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-BAL.csv.gz#row-3780",
+    "divergence_ts": 1783852303,
+    "machine_answer": "rest licensed at 3\u00a2 (credited 3\u00a2 @ 1783852303, 424s before the 1\u00a2 floor print)",
+    "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=1 print=0; ask=3 bid=4",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783852726 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "BAL": {
+     "floor": 1,
+     "entry": 3,
+     "onset": 1783852293,
+     "credit_ts": 1783852303.101636,
+     "ts_star": 1783852726.66349,
+     "floor_size": 500.0,
+     "n_floor_prints": 33,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-BAL.csv.gz#row-3780",
+     "divergence_ts": 1783852303,
+     "machine_answer": "rest licensed at 3\u00a2 (credited 3\u00a2 @ 1783852303, 424s before the 1\u00a2 floor print)",
+     "needed_answer": "stand at 1\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1 print=0; ask=3 bid=4",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 1\u00a2 existed before the kiss consumed the rest; the 1\u00a2 floor print @ 1783852726 was the first evidence at that level"
+     ]
+    },
+    "PRI": {
+     "floor": 98,
+     "entry": null,
+     "onset": 1783852353,
+     "credit_ts": null,
+     "ts_star": 1783852366.381062,
+     "floor_size": 5.0,
+     "n_floor_prints": 31,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL12PRIBAL-PRI.csv.gz#row-4135",
+     "divergence_ts": 1783852357,
+     "machine_answer": "standing rest at 96\u00a2 through the 98\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 98\u00a2 standing into the floor print @ 1783852366",
+     "reason_string": "V52F_LICENSED_TARGET_SETTLEMENT_BOUND",
+     "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL+V52F_PAIR_ENTRY_CONSERVATION",
+     "consulted": "read passed=True, comparable transitions book=1 print=0; ask=98 bid=97",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1783852357,
+       98,
+       null,
+       "KXATPCHALLENGERMATCH-26JUL12PRIBAL-PRI.csv.gz#row-4134"
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL13BLISAS",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 3,
+   "print_margin": 3,
+   "banked": 2,
+   "game_class": "level(stood-above-floor)",
+   "cents": 1,
+   "first_leg": "BLI",
+   "first": {
+    "floor": 42,
+    "entry": 43,
+    "onset": 1783968995,
+    "credit_ts": 1783999939.4802,
+    "ts_star": 1784018210.504441,
+    "floor_size": 1.0,
+    "n_floor_prints": 10,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXWTAMATCH-26JUL13BLISAS-BLI.csv.gz#row-12520",
+    "divergence_ts": 1783998996,
+    "machine_answer": "rest licensed at 43\u00a2 (credited 43\u00a2 @ 1783999939, 18271s before the 42\u00a2 floor print)",
+    "needed_answer": "stand at 42\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=1517 print=9; ask=45 bid=43",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 42\u00a2 existed before the kiss consumed the rest; the 42\u00a2 floor print @ 1784018210 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "BLI": {
+     "floor": 42,
+     "entry": 43,
+     "onset": 1783968995,
+     "credit_ts": 1783999939.4802,
+     "ts_star": 1784018210.504441,
+     "floor_size": 1.0,
+     "n_floor_prints": 10,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTAMATCH-26JUL13BLISAS-BLI.csv.gz#row-12520",
+     "divergence_ts": 1783998996,
+     "machine_answer": "rest licensed at 43\u00a2 (credited 43\u00a2 @ 1783999939, 18271s before the 42\u00a2 floor print)",
+     "needed_answer": "stand at 42\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1517 print=9; ask=45 bid=43",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 42\u00a2 existed before the kiss consumed the rest; the 42\u00a2 floor print @ 1784018210 was the first evidence at that level"
+     ]
+    },
+    "SAS": {
+     "floor": 55,
+     "entry": 55,
+     "onset": 1783968995,
+     "credit_ts": 1783978880.692941,
+     "ts_star": 1783978880.692941,
+     "floor_size": 5.0,
+     "n_floor_prints": 2,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 55\u00a2 floor @ 1783978880"
+    }
+   }
+  },
+  {
+   "code": "26JUL13JONSPI",
+   "cat": "WTA_CHALL",
+   "state": "NEITHER_FOR_REASON",
+   "offer_margin": null,
+   "print_margin": -1,
+   "banked": null,
+   "game_class": "NO_WINNING_LINE",
+   "cents": 0,
+   "first_leg": null,
+   "first": null,
+   "knowability": null,
+   "legs": {
+    "JON": {
+     "floor": 89,
+     "entry": null,
+     "onset": 1783902268,
+     "credit_ts": null,
+     "ts_star": 1783902269.531688,
+     "floor_size": 1.0,
+     "n_floor_prints": 2,
+     "verdict": "DIVERGED",
+     "node": "level(authority-not-earned)",
+     "divergence_rx": "KXWTACHALLENGERMATCH-26JUL13JONSPI-JON.csv.gz#row-165",
+     "divergence_ts": 1783902269,
+     "machine_answer": "gate BLOCKED, blocked_clause=MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED (held from this receipt through the floor print)",
+     "needed_answer": "a licensed standing rest at 89\u00a2 before the floor print @ 1783902269",
+     "reason_string": "V52E_BIRTH_BLOCKED_MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED",
+     "authority": "V52B_MACHINE_READ_LEVEL_ABSTAIN",
+     "consulted": "read passed=True, comparable transitions book=1 print=0, evidence receipts=2; ask=51",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1783902269,
+       51,
+       null,
+       "KXWTACHALLENGERMATCH-26JUL13JONSPI-JON.csv.gz#row-164"
+      ]
+     ]
+    },
+    "SPI": {
+     "floor": 12,
+     "entry": null,
+     "onset": 1783902268,
+     "credit_ts": null,
+     "ts_star": 1783903900.954306,
+     "floor_size": 5.73,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXWTACHALLENGERMATCH-26JUL13JONSPI-SPI.csv.gz#row-328",
+     "divergence_ts": 1783903619,
+     "machine_answer": "standing rest at 10\u00a2 through the 12\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 12\u00a2 standing into the floor print @ 1783903900",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=76 print=0; ask=12 bid=10",
+     "knowability_at_divergence": "KNOWABLE",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1783902328,
+       12,
+       null,
+       "KXWTACHALLENGERMATCH-26JUL13JONSPI-SPI.csv.gz#row-273"
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL13SANDAN",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 3,
+   "print_margin": 3,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 2,
+   "first_leg": "SAN",
+   "first": {
+    "floor": 22,
+    "entry": 24,
+    "onset": 1783895430,
+    "credit_ts": 1783897604.673801,
+    "ts_star": 1783919819.680416,
+    "floor_size": 315.0,
+    "n_floor_prints": 1,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-668",
+    "divergence_ts": 1783895658,
+    "machine_answer": "rest licensed at 24\u00a2 (credited 24\u00a2 @ 1783897604, 22215s before the 22\u00a2 floor print)",
+    "needed_answer": "stand at 22\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=88 print=0; ask=24 bid=26",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 22\u00a2 existed before the kiss consumed the rest; the 22\u00a2 floor print @ 1783919819 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "DAN": {
+     "floor": 75,
+     "entry": 75,
+     "onset": 1783895430,
+     "credit_ts": 1783934902.427157,
+     "ts_star": 1783934902.427157,
+     "floor_size": 5.0,
+     "n_floor_prints": 6,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 75\u00a2 floor @ 1783934902"
+    },
+    "SAN": {
+     "floor": 22,
+     "entry": 24,
+     "onset": 1783895430,
+     "credit_ts": 1783897604.673801,
+     "ts_star": 1783919819.680416,
+     "floor_size": 315.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-668",
+     "divergence_ts": 1783895658,
+     "machine_answer": "rest licensed at 24\u00a2 (credited 24\u00a2 @ 1783897604, 22215s before the 22\u00a2 floor print)",
+     "needed_answer": "stand at 22\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=88 print=0; ask=24 bid=26",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 22\u00a2 existed before the kiss consumed the rest; the 22\u00a2 floor print @ 1783919819 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL13VANLEE",
+   "cat": "WTA_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": null,
+   "print_margin": 0,
+   "banked": null,
+   "game_class": "NO_WINNING_LINE",
+   "cents": 0,
+   "first_leg": null,
+   "first": null,
+   "knowability": null,
+   "legs": {
+    "LEE": {
+     "floor": 45,
+     "entry": null,
+     "onset": 1783901923,
+     "credit_ts": null,
+     "ts_star": 1783918331.049581,
+     "floor_size": 100.0,
+     "n_floor_prints": 2,
+     "verdict": "DIVERGED",
+     "node": "level(authority-not-earned)",
+     "divergence_rx": "KXWTACHALLENGERMATCH-26JUL13VANLEE-LEE.csv.gz#row-907",
+     "divergence_ts": 1783902204,
+     "machine_answer": "gate BLOCKED, blocked_clause=MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED (held from this receipt through the floor print)",
+     "needed_answer": "a licensed standing rest at 45\u00a2 before the floor print @ 1783918331",
+     "reason_string": "V52E_BIRTH_BLOCKED_MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED",
+     "authority": "V52B_MACHINE_READ_LEVEL_ABSTAIN",
+     "consulted": "read passed=True, comparable transitions book=193 print=0, evidence receipts=195; ask=45",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1783909754,
+       45,
+       null,
+       "KXWTACHALLENGERMATCH-26JUL13VANLEE-LEE.csv.gz#row-1055"
+      ]
+     ]
+    },
+    "VAN": {
+     "floor": 55,
+     "entry": 55,
+     "onset": 1783901923,
+     "credit_ts": 1783918342.146405,
+     "ts_star": 1783918342.146405,
+     "floor_size": 3.0,
+     "n_floor_prints": 4,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 55\u00a2 floor @ 1783918342"
+    }
+   }
+  },
+  {
+   "code": "26JUL14DELXIL",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 2,
+   "print_margin": 2,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 1,
+   "first_leg": "XIL",
+   "first": {
+    "floor": 15,
+    "entry": 16,
+    "onset": 1783986239,
+    "credit_ts": 1784005026.758939,
+    "ts_star": 1784047334.618812,
+    "floor_size": 1.0,
+    "n_floor_prints": 1,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL.csv.gz#row-585",
+    "divergence_ts": 1784005026,
+    "machine_answer": "rest licensed at 16\u00a2 (credited 16\u00a2 @ 1784005026, 42308s before the 15\u00a2 floor print)",
+    "needed_answer": "stand at 15\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=522 print=0; ask=18 bid=16",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 15\u00a2 existed before the kiss consumed the rest; the 15\u00a2 floor print @ 1784047334 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "DEL": {
+     "floor": 83,
+     "entry": 83,
+     "onset": 1783986239,
+     "credit_ts": 1784034918.345002,
+     "ts_star": 1784034918.345002,
+     "floor_size": 39.63,
+     "n_floor_prints": 10,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 83\u00a2 floor @ 1784034918"
+    },
+    "XIL": {
+     "floor": 15,
+     "entry": 16,
+     "onset": 1783986239,
+     "credit_ts": 1784005026.758939,
+     "ts_star": 1784047334.618812,
+     "floor_size": 1.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL.csv.gz#row-585",
+     "divergence_ts": 1784005026,
+     "machine_answer": "rest licensed at 16\u00a2 (credited 16\u00a2 @ 1784005026, 42308s before the 15\u00a2 floor print)",
+     "needed_answer": "stand at 15\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=522 print=0; ask=18 bid=16",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 15\u00a2 existed before the kiss consumed the rest; the 15\u00a2 floor print @ 1784047334 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL14PUTJEA",
+   "cat": "WTA_MAIN",
+   "state": "NEITHER_FOR_REASON",
+   "offer_margin": null,
+   "print_margin": null,
+   "banked": null,
+   "game_class": "NO_WINNING_LINE",
+   "cents": 0,
+   "first_leg": null,
+   "first": null,
+   "knowability": null,
+   "legs": {
+    "JEA": {
+     "floor": null,
+     "entry": null,
+     "onset": 1783955813,
+     "credit_ts": null,
+     "verdict": "NO_POST_ONSET_PRINTS"
+    },
+    "PUT": {
+     "floor": null,
+     "entry": null,
+     "onset": 1783963133,
+     "credit_ts": null,
+     "verdict": "NO_POST_ONSET_PRINTS"
+    }
+   }
+  },
+  {
+   "code": "26JUL14SALIBR",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": null,
+   "print_margin": 0,
+   "banked": null,
+   "game_class": "NO_WINNING_LINE",
+   "cents": 0,
+   "first_leg": null,
+   "first": null,
+   "knowability": null,
+   "legs": {
+    "IBR": {
+     "floor": 44,
+     "entry": null,
+     "onset": 1783970137,
+     "credit_ts": null,
+     "ts_star": 1784000908.527998,
+     "floor_size": 39.36,
+     "n_floor_prints": 7,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXWTAMATCH-26JUL14SALIBR-IBR.csv.gz#row-1118",
+     "divergence_ts": 1783984804,
+     "machine_answer": "standing rest at 43\u00a2 through the 44\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 44\u00a2 standing into the floor print @ 1784000908",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=835 print=0; ask=44 bid=43",
+     "knowability_at_divergence": "KNOWABLE",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1783971329,
+       42,
+       null,
+       "KXWTAMATCH-26JUL14SALIBR-IBR.csv.gz#row-314"
+      ]
+     ]
+    },
+    "SAL": {
+     "floor": 56,
+     "entry": 56,
+     "onset": 1783970137,
+     "credit_ts": 1784000914.144093,
+     "ts_star": 1784000914.144093,
+     "floor_size": 39.36,
+     "n_floor_prints": 2,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 56\u00a2 floor @ 1784000914"
+    }
+   }
+  },
+  {
+   "code": "26JUL14WOLVAN",
+   "cat": "WTA_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 1,
+   "print_margin": 1,
+   "banked": 1,
+   "game_class": "CONFORMED",
+   "cents": 0,
+   "first_leg": null,
+   "first": null,
+   "knowability": null,
+   "legs": {
+    "VAN": {
+     "floor": 79,
+     "entry": 79,
+     "onset": 1784006029,
+     "credit_ts": 1784041196.255349,
+     "ts_star": 1784029048.473575,
+     "floor_size": 0.12,
+     "n_floor_prints": 2,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 79\u00a2 floor @ 1784041196 (a later floor print; first was @ 1784029048)"
+    },
+    "WOL": {
+     "floor": 20,
+     "entry": 20,
+     "onset": 1784006029,
+     "credit_ts": 1784034884.89953,
+     "ts_star": 1784034884.89953,
+     "floor_size": 2.0,
+     "n_floor_prints": 3,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 20\u00a2 floor @ 1784034884"
+    }
+   }
+  },
+  {
+   "code": "26JUL15PRIMOL",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 4,
+   "print_margin": 4,
+   "banked": 2,
+   "game_class": "level(stood-above-floor)",
+   "cents": 2,
+   "first_leg": "PRI",
+   "first": {
+    "floor": 68,
+    "entry": 69,
+    "onset": 1784053567,
+    "credit_ts": 1784060397.663277,
+    "ts_star": 1784081632.782759,
+    "floor_size": 125.0,
+    "n_floor_prints": 11,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPMATCH-26JUL15PRIMOL-PRI.csv.gz#row-1399",
+    "divergence_ts": 1784060397,
+    "machine_answer": "rest licensed at 69\u00a2 (credited 69\u00a2 @ 1784060397, 21235s before the 68\u00a2 floor print)",
+    "needed_answer": "stand at 68\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=1084 print=5; ask=72 bid=69",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 68\u00a2 existed before the kiss consumed the rest; the 68\u00a2 floor print @ 1784081632 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "MOL": {
+     "floor": 28,
+     "entry": 29,
+     "onset": 1784053567,
+     "credit_ts": 1784132676.330578,
+     "ts_star": 1784137165.627831,
+     "floor_size": 5.62,
+     "n_floor_prints": 7,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL15PRIMOL-MOL.csv.gz#row-9840",
+     "divergence_ts": 1784115850,
+     "machine_answer": "rest licensed at 29\u00a2 (credited 29\u00a2 @ 1784132676, 4489s before the 28\u00a2 floor print)",
+     "needed_answer": "stand at 28\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=9400 print=20; ask=31 bid=29",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 28\u00a2 existed before the kiss consumed the rest; the 28\u00a2 floor print @ 1784137165 was the first evidence at that level"
+     ]
+    },
+    "PRI": {
+     "floor": 68,
+     "entry": 69,
+     "onset": 1784053567,
+     "credit_ts": 1784060397.663277,
+     "ts_star": 1784081632.782759,
+     "floor_size": 125.0,
+     "n_floor_prints": 11,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL15PRIMOL-PRI.csv.gz#row-1399",
+     "divergence_ts": 1784060397,
+     "machine_answer": "rest licensed at 69\u00a2 (credited 69\u00a2 @ 1784060397, 21235s before the 68\u00a2 floor print)",
+     "needed_answer": "stand at 68\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1084 print=5; ask=72 bid=69",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 68\u00a2 existed before the kiss consumed the rest; the 68\u00a2 floor print @ 1784081632 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL15ROMGAL",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": 5,
+   "print_margin": 4,
+   "banked": null,
+   "game_class": "level(stood-above-floor)",
+   "cents": 5,
+   "first_leg": "GAL",
+   "first": {
+    "floor": 66,
+    "entry": 67,
+    "onset": 1784091928,
+    "credit_ts": 1784094983.300892,
+    "ts_star": 1784106241.62171,
+    "floor_size": 2.79,
+    "n_floor_prints": 1,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL15ROMGAL-GAL.csv.gz#row-3459",
+    "divergence_ts": 1784094983,
+    "machine_answer": "rest licensed at 67\u00a2 (credited 67\u00a2 @ 1784094983, 11258s before the 66\u00a2 floor print)",
+    "needed_answer": "stand at 66\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=146 print=1; ask=68 bid=67",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 66\u00a2 existed before the kiss consumed the rest; the 66\u00a2 floor print @ 1784106241 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "GAL": {
+     "floor": 66,
+     "entry": 67,
+     "onset": 1784091928,
+     "credit_ts": 1784094983.300892,
+     "ts_star": 1784106241.62171,
+     "floor_size": 2.79,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL15ROMGAL-GAL.csv.gz#row-3459",
+     "divergence_ts": 1784094983,
+     "machine_answer": "rest licensed at 67\u00a2 (credited 67\u00a2 @ 1784094983, 11258s before the 66\u00a2 floor print)",
+     "needed_answer": "stand at 66\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=146 print=1; ask=68 bid=67",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 66\u00a2 existed before the kiss consumed the rest; the 66\u00a2 floor print @ 1784106241 was the first evidence at that level"
+     ]
+    },
+    "ROM": {
+     "floor": 30,
+     "entry": null,
+     "onset": 1784096848,
+     "credit_ts": null,
+     "ts_star": 1784106586.315437,
+     "floor_size": 71.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL15ROMGAL-ROM.csv.gz#row-4580",
+     "divergence_ts": 1784106586,
+     "machine_answer": "standing rest at 29\u00a2 through the 30\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 30\u00a2 standing into the floor print @ 1784106586",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=2494 print=13; ask=31 bid=29",
+     "knowability_at_divergence": "KNOWABLE",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1784106558,
+       30,
+       null,
+       "KXATPCHALLENGERMATCH-26JUL15ROMGAL-ROM.csv.gz#row-4277"
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL15TABMID",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 3,
+   "print_margin": 3,
+   "banked": 2,
+   "game_class": "level(stood-above-floor)",
+   "cents": 1,
+   "first_leg": "MID",
+   "first": {
+    "floor": 23,
+    "entry": 24,
+    "onset": 1784050006,
+    "credit_ts": 1784125923.820667,
+    "ts_star": 1784125923.820667,
+    "floor_size": 81.47,
+    "n_floor_prints": 1,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPMATCH-26JUL15TABMID-MID.csv.gz#row-2471",
+    "divergence_ts": 1784114954,
+    "machine_answer": "standing rest at 24\u00a2 through the 23\u00a2 floor print; later repriced and credited at 24\u00a2 @ 1784125923",
+    "needed_answer": "rest at exactly 23\u00a2 standing into the floor print @ 1784125923",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=2080 print=7; ask=25 bid=24",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 23\u00a2 existed before the floor print @ 1784125923 - the print itself was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "MID": {
+     "floor": 23,
+     "entry": 24,
+     "onset": 1784050006,
+     "credit_ts": 1784125923.820667,
+     "ts_star": 1784125923.820667,
+     "floor_size": 81.47,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL15TABMID-MID.csv.gz#row-2471",
+     "divergence_ts": 1784114954,
+     "machine_answer": "standing rest at 24\u00a2 through the 23\u00a2 floor print; later repriced and credited at 24\u00a2 @ 1784125923",
+     "needed_answer": "rest at exactly 23\u00a2 standing into the floor print @ 1784125923",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=2080 print=7; ask=25 bid=24",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 23\u00a2 existed before the floor print @ 1784125923 - the print itself was the first evidence at that level"
+     ]
+    },
+    "TAB": {
+     "floor": 74,
+     "entry": 74,
+     "onset": 1784050006,
+     "credit_ts": 1784089121.632134,
+     "ts_star": 1784089121.632134,
+     "floor_size": 4.0,
+     "n_floor_prints": 7,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 74\u00a2 floor @ 1784089121"
+    }
+   }
+  },
+  {
+   "code": "26JUL15WESCOP",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": null,
+   "print_margin": 0,
+   "banked": null,
+   "game_class": "NO_WINNING_LINE",
+   "cents": 0,
+   "first_leg": null,
+   "first": null,
+   "knowability": null,
+   "legs": {
+    "COP": {
+     "floor": 83,
+     "entry": null,
+     "onset": 1784093788,
+     "credit_ts": null,
+     "ts_star": 1784096859.366173,
+     "floor_size": 30.0,
+     "n_floor_prints": 7,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL15WESCOP-COP.csv.gz#row-981",
+     "divergence_ts": 1784094200,
+     "machine_answer": "standing rest at 81\u00a2 through the 83\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 83\u00a2 standing into the floor print @ 1784096859",
+     "reason_string": "V52F_LICENSED_TARGET_SETTLEMENT_BOUND",
+     "authority": "V52E_N4_PRIOR_INFORMED_LIVE_BOUND_LEVEL+V52F_PAIR_ENTRY_CONSERVATION",
+     "consulted": "read passed=True, comparable transitions book=1 print=0; ask=83 bid=82",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1784094200,
+       83,
+       null,
+       "KXATPCHALLENGERMATCH-26JUL15WESCOP-COP.csv.gz#row-980"
+      ]
+     ]
+    },
+    "WES": {
+     "floor": 17,
+     "entry": 18,
+     "onset": 1784086228,
+     "credit_ts": 1784091897.267764,
+     "ts_star": 1784095747.143986,
+     "floor_size": 6.54,
+     "n_floor_prints": 4,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL15WESCOP-WES.csv.gz#row-844",
+     "divergence_ts": 1784086266,
+     "machine_answer": "rest licensed at 18\u00a2 (credited 18\u00a2 @ 1784091897, 3850s before the 17\u00a2 floor print)",
+     "needed_answer": "stand at 17\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1 print=0; ask=19 bid=18",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 17\u00a2 existed before the kiss consumed the rest; the 17\u00a2 floor print @ 1784095747 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL16MERDRO",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 13,
+   "print_margin": 13,
+   "banked": 3,
+   "game_class": "level(stood-above-floor)",
+   "cents": 10,
+   "first_leg": "DRO",
+   "first": {
+    "floor": 39,
+    "entry": 49,
+    "onset": 1784156734,
+    "credit_ts": 1784158597.805874,
+    "ts_star": 1784174922.51219,
+    "floor_size": 1.0,
+    "n_floor_prints": 16,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-3797",
+    "divergence_ts": 1784158103,
+    "machine_answer": "rest licensed at 49\u00a2 (credited 49\u00a2 @ 1784158597, 16325s before the 39\u00a2 floor print)",
+    "needed_answer": "stand at 39\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=125 print=0; ask=53 bid=49",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 39\u00a2 existed before the kiss consumed the rest; the 39\u00a2 floor print @ 1784174922 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "DRO": {
+     "floor": 39,
+     "entry": 49,
+     "onset": 1784156734,
+     "credit_ts": 1784158597.805874,
+     "ts_star": 1784174922.51219,
+     "floor_size": 1.0,
+     "n_floor_prints": 16,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-3797",
+     "divergence_ts": 1784158103,
+     "machine_answer": "rest licensed at 49\u00a2 (credited 49\u00a2 @ 1784158597, 16325s before the 39\u00a2 floor print)",
+     "needed_answer": "stand at 39\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=125 print=0; ask=53 bid=49",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 39\u00a2 existed before the kiss consumed the rest; the 39\u00a2 floor print @ 1784174922 was the first evidence at that level"
+     ]
+    },
+    "MER": {
+     "floor": 48,
+     "entry": 48,
+     "onset": 1784156734,
+     "credit_ts": 1784157227.552314,
+     "ts_star": 1784157227.552314,
+     "floor_size": 20.0,
+     "n_floor_prints": 1,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 48\u00a2 floor @ 1784157227"
+    }
+   }
+  },
+  {
+   "code": "26JUL17BURMER",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 8,
+   "print_margin": 8,
+   "banked": 2,
+   "game_class": "level(stood-above-floor)",
+   "cents": 6,
+   "first_leg": "BUR",
+   "first": {
+    "floor": 37,
+    "entry": 41,
+    "onset": 1784230343,
+    "credit_ts": 1784237667.408259,
+    "ts_star": 1784297372.615772,
+    "floor_size": 9.76,
+    "n_floor_prints": 4,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPMATCH-26JUL17BURMER-BUR.csv.gz#row-1227",
+    "divergence_ts": 1784234321,
+    "machine_answer": "rest licensed at 41\u00a2 (credited 41\u00a2 @ 1784237667, 59705s before the 37\u00a2 floor print)",
+    "needed_answer": "stand at 37\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=1189 print=3; ask=46 bid=41",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 37\u00a2 existed before the kiss consumed the rest; the 37\u00a2 floor print @ 1784297372 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "BUR": {
+     "floor": 37,
+     "entry": 41,
+     "onset": 1784230343,
+     "credit_ts": 1784237667.408259,
+     "ts_star": 1784297372.615772,
+     "floor_size": 9.76,
+     "n_floor_prints": 4,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL17BURMER-BUR.csv.gz#row-1227",
+     "divergence_ts": 1784234321,
+     "machine_answer": "rest licensed at 41\u00a2 (credited 41\u00a2 @ 1784237667, 59705s before the 37\u00a2 floor print)",
+     "needed_answer": "stand at 37\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1189 print=3; ask=46 bid=41",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 37\u00a2 existed before the kiss consumed the rest; the 37\u00a2 floor print @ 1784297372 was the first evidence at that level"
+     ]
+    },
+    "MER": {
+     "floor": 55,
+     "entry": 57,
+     "onset": 1784230343,
+     "credit_ts": 1784243024.014692,
+     "ts_star": 1784246785.949084,
+     "floor_size": 5.0,
+     "n_floor_prints": 3,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPMATCH-26JUL17BURMER-MER.csv.gz#row-5184",
+     "divergence_ts": 1784242610,
+     "machine_answer": "rest licensed at 57\u00a2 (credited 57\u00a2 @ 1784243024, 3762s before the 55\u00a2 floor print)",
+     "needed_answer": "stand at 55\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=5157 print=39; ask=58 bid=57",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 55\u00a2 existed before the kiss consumed the rest; the 55\u00a2 floor print @ 1784246785 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL17HOLBOU",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 1,
+   "print_margin": 1,
+   "banked": 1,
+   "game_class": "CONFORMED",
+   "cents": 0,
+   "first_leg": null,
+   "first": null,
+   "knowability": null,
+   "legs": {
+    "BOU": {
+     "floor": 33,
+     "entry": 33,
+     "onset": 1784291056,
+     "credit_ts": 1784308381.191971,
+     "ts_star": 1784301756.147454,
+     "floor_size": 14.47,
+     "n_floor_prints": 3,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 33\u00a2 floor @ 1784308381 (a later floor print; first was @ 1784301756)"
+    },
+    "HOL": {
+     "floor": 66,
+     "entry": 66,
+     "onset": 1784291056,
+     "credit_ts": 1784302749.420211,
+     "ts_star": 1784302749.420211,
+     "floor_size": 5.0,
+     "n_floor_prints": 2,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 66\u00a2 floor @ 1784302749"
+    }
+   }
+  },
+  {
+   "code": "26JUL18BADZID",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 3,
+   "print_margin": 3,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 2,
+   "first_leg": "ZID",
+   "first": {
+    "floor": 23,
+    "entry": 25,
+    "onset": 1784320751,
+    "credit_ts": 1784333260.102157,
+    "ts_star": 1784353393.958534,
+    "floor_size": 28.0,
+    "n_floor_prints": 14,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXWTAMATCH-26JUL18BADZID-ZID.csv.gz#row-632",
+    "divergence_ts": 1784333260,
+    "machine_answer": "rest licensed at 25\u00a2 (credited 25\u00a2 @ 1784333260, 20134s before the 23\u00a2 floor print)",
+    "needed_answer": "stand at 23\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=451 print=13; ask=26 bid=25",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 23\u00a2 existed before the kiss consumed the rest; the 23\u00a2 floor print @ 1784353393 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "BAD": {
+     "floor": 74,
+     "entry": 74,
+     "onset": 1784320751,
+     "credit_ts": 1784350814.828786,
+     "ts_star": 1784350814.828786,
+     "floor_size": 8.0,
+     "n_floor_prints": 1,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 74\u00a2 floor @ 1784350814"
+    },
+    "ZID": {
+     "floor": 23,
+     "entry": 25,
+     "onset": 1784320751,
+     "credit_ts": 1784333260.102157,
+     "ts_star": 1784353393.958534,
+     "floor_size": 28.0,
+     "n_floor_prints": 14,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTAMATCH-26JUL18BADZID-ZID.csv.gz#row-632",
+     "divergence_ts": 1784333260,
+     "machine_answer": "rest licensed at 25\u00a2 (credited 25\u00a2 @ 1784333260, 20134s before the 23\u00a2 floor print)",
+     "needed_answer": "stand at 23\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=451 print=13; ask=26 bid=25",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 23\u00a2 existed before the kiss consumed the rest; the 23\u00a2 floor print @ 1784353393 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL18CASGEA",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": 6,
+   "print_margin": 6,
+   "banked": null,
+   "game_class": "level(stood-below-floor)",
+   "cents": 6,
+   "first_leg": "CAS",
+   "first": {
+    "floor": 29,
+    "entry": null,
+    "onset": 1784404620,
+    "credit_ts": null,
+    "ts_star": 1784406306.712802,
+    "floor_size": 3.28,
+    "n_floor_prints": 2,
+    "verdict": "DIVERGED",
+    "node": "level(stood-below-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL18CASGEA-CAS.csv.gz#row-28543",
+    "divergence_ts": 1784406210,
+    "machine_answer": "standing rest at 28\u00a2 through the 29\u00a2 floor print; never credited",
+    "needed_answer": "rest at exactly 29\u00a2 standing into the floor print @ 1784406306",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=325 print=12; ask=30 bid=28",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "KNOWABLE_DEFECT",
+     [
+      "displayed_ask",
+      1784406290,
+      29,
+      null,
+      "KXATPCHALLENGERMATCH-26JUL18CASGEA-CAS.csv.gz#row-28592"
+     ]
+    ]
+   },
+   "knowability": "KNOWABLE_DEFECT",
+   "legs": {
+    "CAS": {
+     "floor": 29,
+     "entry": null,
+     "onset": 1784404620,
+     "credit_ts": null,
+     "ts_star": 1784406306.712802,
+     "floor_size": 3.28,
+     "n_floor_prints": 2,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL18CASGEA-CAS.csv.gz#row-28543",
+     "divergence_ts": 1784406210,
+     "machine_answer": "standing rest at 28\u00a2 through the 29\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 29\u00a2 standing into the floor print @ 1784406306",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=325 print=12; ask=30 bid=28",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1784406290,
+       29,
+       null,
+       "KXATPCHALLENGERMATCH-26JUL18CASGEA-CAS.csv.gz#row-28592"
+      ]
+     ]
+    },
+    "GEA": {
+     "floor": 65,
+     "entry": 65,
+     "onset": 1784385120,
+     "credit_ts": 1784385519.627763,
+     "ts_star": 1784385519.627763,
+     "floor_size": 35.52,
+     "n_floor_prints": 1,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 65\u00a2 floor @ 1784385519"
+    }
+   }
+  },
+  {
+   "code": "26JUL19ARSMAR",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": 6,
+   "print_margin": 6,
+   "banked": null,
+   "game_class": "level(stood-below-floor)",
+   "cents": 6,
+   "first_leg": "ARS",
+   "first": {
+    "floor": 35,
+    "entry": null,
+    "onset": 1784448396,
+    "credit_ts": null,
+    "ts_star": 1784451046.437011,
+    "floor_size": 30.0,
+    "n_floor_prints": 2,
+    "verdict": "DIVERGED",
+    "node": "level(stood-below-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-50",
+    "divergence_ts": 1784448427,
+    "machine_answer": "standing rest at 29\u00a2 through the 35\u00a2 floor print; never credited",
+    "needed_answer": "rest at exactly 35\u00a2 standing into the floor print @ 1784451046",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=1 print=0; ask=39 bid=29",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "KNOWABLE_DEFECT",
+     [
+      "displayed_ask",
+      1784450843,
+      35,
+      null,
+      "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-138"
+     ]
+    ]
+   },
+   "knowability": "KNOWABLE_DEFECT",
+   "legs": {
+    "ARS": {
+     "floor": 35,
+     "entry": null,
+     "onset": 1784448396,
+     "credit_ts": null,
+     "ts_star": 1784451046.437011,
+     "floor_size": 30.0,
+     "n_floor_prints": 2,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-50",
+     "divergence_ts": 1784448427,
+     "machine_answer": "standing rest at 29\u00a2 through the 35\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 35\u00a2 standing into the floor print @ 1784451046",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1 print=0; ask=39 bid=29",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1784450843,
+       35,
+       null,
+       "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-138"
+      ]
+     ]
+    },
+    "MAR": {
+     "floor": 59,
+     "entry": 60,
+     "onset": 1784456556,
+     "credit_ts": 1784475080.668077,
+     "ts_star": 1784476175.396917,
+     "floor_size": 1.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-981",
+     "divergence_ts": 1784474609,
+     "machine_answer": "rest licensed at 60\u00a2 (credited 60\u00a2 @ 1784475080, 1095s before the 59\u00a2 floor print)",
+     "needed_answer": "stand at 59\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=594 print=2; ask=61 bid=60",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 59\u00a2 existed before the kiss consumed the rest; the 59\u00a2 floor print @ 1784476175 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL20ARSRIC",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": 2,
+   "print_margin": 2,
+   "banked": null,
+   "game_class": "level(authority-not-earned)",
+   "cents": 2,
+   "first_leg": "ARS",
+   "first": {
+    "floor": 36,
+    "entry": null,
+    "onset": 1784569354,
+    "credit_ts": null,
+    "ts_star": 1784576759.434267,
+    "floor_size": 3.98,
+    "n_floor_prints": 31,
+    "verdict": "DIVERGED",
+    "node": "level(authority-not-earned)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL20ARSRIC-ARS.csv.gz#row-1651",
+    "divergence_ts": 1784569372,
+    "machine_answer": "gate BLOCKED, blocked_clause=MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED (held from this receipt through the floor print)",
+    "needed_answer": "a licensed standing rest at 36\u00a2 before the floor print @ 1784576759",
+    "reason_string": "V52E_BIRTH_BLOCKED_MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED",
+    "authority": "V52B_MACHINE_READ_LEVEL_ABSTAIN",
+    "consulted": "read passed=True, comparable transitions book=3550 print=1, evidence receipts=3553; ask=36",
+    "knowability": [
+     "KNOWABLE_DEFECT",
+     [
+      "displayed_ask",
+      1784574691,
+      36,
+      null,
+      "KXATPCHALLENGERMATCH-26JUL20ARSRIC-ARS.csv.gz#row-4457"
+     ]
+    ]
+   },
+   "knowability": "KNOWABLE_DEFECT",
+   "legs": {
+    "ARS": {
+     "floor": 36,
+     "entry": null,
+     "onset": 1784569354,
+     "credit_ts": null,
+     "ts_star": 1784576759.434267,
+     "floor_size": 3.98,
+     "n_floor_prints": 31,
+     "verdict": "DIVERGED",
+     "node": "level(authority-not-earned)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL20ARSRIC-ARS.csv.gz#row-1651",
+     "divergence_ts": 1784569372,
+     "machine_answer": "gate BLOCKED, blocked_clause=MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED (held from this receipt through the floor print)",
+     "needed_answer": "a licensed standing rest at 36\u00a2 before the floor print @ 1784576759",
+     "reason_string": "V52E_BIRTH_BLOCKED_MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED",
+     "authority": "V52B_MACHINE_READ_LEVEL_ABSTAIN",
+     "consulted": "read passed=True, comparable transitions book=3550 print=1, evidence receipts=3553; ask=36",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1784574691,
+       36,
+       null,
+       "KXATPCHALLENGERMATCH-26JUL20ARSRIC-ARS.csv.gz#row-4457"
+      ]
+     ]
+    },
+    "RIC": {
+     "floor": 62,
+     "entry": 62,
+     "onset": 1784551834,
+     "credit_ts": 1784562680.918825,
+     "ts_star": 1784562680.918825,
+     "floor_size": 2.0,
+     "n_floor_prints": 3,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 62\u00a2 floor @ 1784562680"
+    }
+   }
+  },
+  {
+   "code": "26JUL20KYMCLA",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 2,
+   "print_margin": 2,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 1,
+   "first_leg": "CLA",
+   "first": {
+    "floor": 23,
+    "entry": 24,
+    "onset": 1784528084,
+    "credit_ts": 1784561928.956775,
+    "ts_star": 1784565276.07509,
+    "floor_size": 0.72,
+    "n_floor_prints": 9,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL20KYMCLA-CLA.csv.gz#row-133",
+    "divergence_ts": 1784532770,
+    "machine_answer": "rest licensed at 24\u00a2 (credited 24\u00a2 @ 1784561928, 3347s before the 23\u00a2 floor print)",
+    "needed_answer": "stand at 23\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=123 print=0; ask=27 bid=24",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 23\u00a2 existed before the kiss consumed the rest; the 23\u00a2 floor print @ 1784565276 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "CLA": {
+     "floor": 23,
+     "entry": 24,
+     "onset": 1784528084,
+     "credit_ts": 1784561928.956775,
+     "ts_star": 1784565276.07509,
+     "floor_size": 0.72,
+     "n_floor_prints": 9,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL20KYMCLA-CLA.csv.gz#row-133",
+     "divergence_ts": 1784532770,
+     "machine_answer": "rest licensed at 24\u00a2 (credited 24\u00a2 @ 1784561928, 3347s before the 23\u00a2 floor print)",
+     "needed_answer": "stand at 23\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=123 print=0; ask=27 bid=24",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 23\u00a2 existed before the kiss consumed the rest; the 23\u00a2 floor print @ 1784565276 was the first evidence at that level"
+     ]
+    },
+    "KYM": {
+     "floor": 75,
+     "entry": 75,
+     "onset": 1784528084,
+     "credit_ts": 1784561164.089513,
+     "ts_star": 1784561164.089513,
+     "floor_size": 12.94,
+     "n_floor_prints": 1,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 75\u00a2 floor @ 1784561164"
+    }
+   }
+  },
+  {
+   "code": "26JUL20QUEKAL",
+   "cat": "WTA_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "offer_margin": 2,
+   "print_margin": 2,
+   "banked": null,
+   "game_class": "level(stood-below-floor)",
+   "cents": 2,
+   "first_leg": "KAL",
+   "first": {
+    "floor": 68,
+    "entry": null,
+    "onset": 1784480843,
+    "credit_ts": null,
+    "ts_star": 1784492824.804364,
+    "floor_size": 8.64,
+    "n_floor_prints": 26,
+    "verdict": "DIVERGED",
+    "node": "level(stood-below-floor)",
+    "divergence_rx": "KXWTAMATCH-26JUL20QUEKAL-KAL.csv.gz#row-347",
+    "divergence_ts": 1784480922,
+    "machine_answer": "standing rest at 67\u00a2 through the 68\u00a2 floor print; never credited",
+    "needed_answer": "rest at exactly 68\u00a2 standing into the floor print @ 1784492824",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=27 print=0; ask=69 bid=67",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "KNOWABLE_DEFECT",
+     [
+      "displayed_ask",
+      1784491702,
+      68,
+      null,
+      "KXWTAMATCH-26JUL20QUEKAL-KAL.csv.gz#row-588"
+     ]
+    ]
+   },
+   "knowability": "KNOWABLE_DEFECT",
+   "legs": {
+    "KAL": {
+     "floor": 68,
+     "entry": null,
+     "onset": 1784480843,
+     "credit_ts": null,
+     "ts_star": 1784492824.804364,
+     "floor_size": 8.64,
+     "n_floor_prints": 26,
+     "verdict": "DIVERGED",
+     "node": "level(stood-below-floor)",
+     "divergence_rx": "KXWTAMATCH-26JUL20QUEKAL-KAL.csv.gz#row-347",
+     "divergence_ts": 1784480922,
+     "machine_answer": "standing rest at 67\u00a2 through the 68\u00a2 floor print; never credited",
+     "needed_answer": "rest at exactly 68\u00a2 standing into the floor print @ 1784492824",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=27 print=0; ask=69 bid=67",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "KNOWABLE_DEFECT",
+      [
+       "displayed_ask",
+       1784491702,
+       68,
+       null,
+       "KXWTAMATCH-26JUL20QUEKAL-KAL.csv.gz#row-588"
+      ]
+     ]
+    },
+    "QUE": {
+     "floor": 30,
+     "entry": 31,
+     "onset": 1784480843,
+     "credit_ts": 1784541006.029279,
+     "ts_star": 1784547190.002846,
+     "floor_size": 5.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXWTAMATCH-26JUL20QUEKAL-QUE.csv.gz#row-1678",
+     "divergence_ts": 1784519727,
+     "machine_answer": "rest licensed at 31\u00a2 (credited 31\u00a2 @ 1784541006, 6184s before the 30\u00a2 floor print)",
+     "needed_answer": "stand at 30\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=1580 print=12; ask=33 bid=31",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 30\u00a2 existed before the kiss consumed the rest; the 30\u00a2 floor print @ 1784547190 was the first evidence at that level"
+     ]
+    }
+   }
+  },
+  {
+   "code": "26JUL20TROISO",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "offer_margin": 2,
+   "print_margin": 2,
+   "banked": 1,
+   "game_class": "level(stood-above-floor)",
+   "cents": 1,
+   "first_leg": "ISO",
+   "first": {
+    "floor": 21,
+    "entry": 22,
+    "onset": 1784525424,
+    "credit_ts": 1784567482.774138,
+    "ts_star": 1784570406.976184,
+    "floor_size": 2.0,
+    "n_floor_prints": 1,
+    "verdict": "DIVERGED",
+    "node": "level(stood-above-floor)",
+    "divergence_rx": "KXATPCHALLENGERMATCH-26JUL20TROISO-ISO.csv.gz#row-226",
+    "divergence_ts": 1784533862,
+    "machine_answer": "rest licensed at 22\u00a2 (credited 22\u00a2 @ 1784567482, 2924s before the 21\u00a2 floor print)",
+    "needed_answer": "stand at 21\u00a2 and let the tape come to it",
+    "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+    "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+    "consulted": "read passed=True, comparable transitions book=186 print=0; ask=25 bid=22",
+    "knowability_at_divergence": "FORESIGHT",
+    "knowability": [
+     "FORESIGHT_REQUIRED",
+     "no post-onset print or displayed ask at/below 21\u00a2 existed before the kiss consumed the rest; the 21\u00a2 floor print @ 1784570406 was the first evidence at that level"
+    ]
+   },
+   "knowability": "FORESIGHT_REQUIRED",
+   "legs": {
+    "ISO": {
+     "floor": 21,
+     "entry": 22,
+     "onset": 1784525424,
+     "credit_ts": 1784567482.774138,
+     "ts_star": 1784570406.976184,
+     "floor_size": 2.0,
+     "n_floor_prints": 1,
+     "verdict": "DIVERGED",
+     "node": "level(stood-above-floor)",
+     "divergence_rx": "KXATPCHALLENGERMATCH-26JUL20TROISO-ISO.csv.gz#row-226",
+     "divergence_ts": 1784533862,
+     "machine_answer": "rest licensed at 22\u00a2 (credited 22\u00a2 @ 1784567482, 2924s before the 21\u00a2 floor print)",
+     "needed_answer": "stand at 21\u00a2 and let the tape come to it",
+     "reason_string": "V52E_LICENSED_PRIOR_INFORMED_LEVEL_POST",
+     "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+     "consulted": "read passed=True, comparable transitions book=186 print=0; ask=25 bid=22",
+     "knowability_at_divergence": "FORESIGHT",
+     "knowability": [
+      "FORESIGHT_REQUIRED",
+      "no post-onset print or displayed ask at/below 21\u00a2 existed before the kiss consumed the rest; the 21\u00a2 floor print @ 1784570406 was the first evidence at that level"
+     ]
+    },
+    "TRO": {
+     "floor": 77,
+     "entry": 77,
+     "onset": 1784525424,
+     "credit_ts": 1784559065.096206,
+     "ts_star": 1784559065.096206,
+     "floor_size": 5.0,
+     "n_floor_prints": 21,
+     "verdict": "CONFORMED",
+     "capture": "credited at the 77\u00a2 floor @ 1784559065"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,1370 @@
+{
+ "LABEL": "COLLAPSE_CLASS_SETTLEMENT_AUDIT",
+ "stamp": "ANALYTICAL_ESTIMATE",
+ "class_definition": "dev-804 leg whose post-onset Window-1 tape (canonical onset_sel -> w1_right_epoch) contains a true print >=50c followed later by a print <=9c",
+ "inputs": {
+  "dev804_ledgers": "4716657a v52e_disposition_804_four_state (MARKET_EVENT_LEDGER_804, FOUR_STATE_EVENT_LEDGER_804, POST_ONSET_OFFER_CAPTURE_LEDGER_804)",
+  "iceberg_method": "db470ec8 TAPE_VS_EXCHANGE_DIFF (trade_id match, price exact, size<=0.011, ts<=2s)",
+  "tape": "OMI-Window1-private/fit-local/prints.jsonl",
+  "exchange_api": "GET https://api.elections.kalshi.com/trade-api/v2/markets/{ticker}, /markets/trades, /series/{series} (fetched 2026-08-13)",
+  "rulebook_pdf": {
+   "url": "https://assets.kalshi.com/regulatory/product-certifications/TENNISMATCH.pdf",
+   "sha256": "7d33c5b7eb4ad4099141f584f37fe9de3a7008461401c50a273b1269e7909e92",
+   "note": "templated generic certification; the operative tennis fair-price clause lives in per-market rules_primary/rules_secondary and series product_metadata, quoted verbatim below"
+  }
+ },
+ "settlement_terms_verbatim": {
+  "rules_primary_example_GUE": "If Andrea Guerrieri wins the Guerrieri vs Gomez professional tennis match in the 2026 ATP Umag Qualification Final after a ball has been played, then the market resolves to Yes.",
+  "rules_secondary_example_GUE": "The following market refers to the Guerrieri vs Gomez professional tennis match in the 2026 ATP Umag Qualification Final after a ball has been played. If the match does not occur (signaled by a ball being played) due to a player injury, walkover, forfeiture, or any other cancellation (all before the match starts), the market will resolve to a fair price in accordance with the rules. If this match is postponed or delayed, the market will remain open and close after the rescheduled match has finished (within two weeks).\n\nKalshi is not affiliated, associated, authorized, endorsed by, or in any way officially connected with the Governing League. All trademarks, logos, and brand names are the property of their respective owners.",
+  "series_important_info": {
+   "KXATPMATCH": {
+    "id": "KXATPMATCH-2026-04-09",
+    "markdown": "**Important information**: If the match does not begin (signaled by a ball being played), all markets, including set winner markets, will resolve to a **fair price** for each player in accordance with the rules. If a player withdraws or forfeits after the match has begun, that player will resolve to **No** for the main match market. Any markets that can be definitively determined at that point will be settled accordingly, while any additional prop markets will resolve to a **fair price**.",
+    "message": "",
+    "title": ""
+   },
+   "KXATPCHALLENGERMATCH": {
+    "id": "KXATPCHALLENGERMATCH-2026-04-09",
+    "markdown": "**Important information:** If the match does not start (signaled by a ball being played), the market will resolve to a fair price for each player in accordance with the rules. If a player withdraws or forfeits after a match has started, that player will resolve to no.",
+    "message": "",
+    "title": ""
+   },
+   "KXWTAMATCH": {
+    "id": "KXWTAMATCH-2026-04-09",
+    "markdown": "**Important information**: If the match does not start (signaled by a ball being played), the market will resolve to a fair price for each player in accordance with the rules. If a player withdraws or forfeits after a match has started, that player will resolve to no.",
+    "message": "",
+    "title": ""
+   },
+   "KXWTACHALLENGERMATCH": null
+  },
+  "series_settlement_sources": {
+   "KXATPMATCH": [
+    {
+     "name": "ATP",
+     "url": "https://www.atptour.com/"
+    }
+   ],
+   "KXATPCHALLENGERMATCH": [
+    {
+     "name": "ATP",
+     "url": "https://www.atptour.com/"
+    }
+   ],
+   "KXWTAMATCH": [
+    {
+     "name": "WTA",
+     "url": "https://www.wtatennis.com/"
+    }
+   ],
+   "KXWTACHALLENGERMATCH": [
+    {
+     "name": "WTA",
+     "url": "https://www.wtatennis.com/"
+    }
+   ]
+  },
+  "series_contract_url": {
+   "KXATPMATCH": "https://assets.kalshi.com/regulatory/product-certifications/TENNISMATCH.pdf",
+   "KXATPCHALLENGERMATCH": "https://assets.kalshi.com/regulatory/product-certifications/TENNISMATCH.pdf",
+   "KXWTAMATCH": "https://assets.kalshi.com/regulatory/product-certifications/TENNISMATCH.pdf",
+   "KXWTACHALLENGERMATCH": "https://assets.kalshi.com/regulatory/product-certifications/TENNISMATCH.pdf"
+  }
+ },
+ "conservation": {
+  "dev804_games": 804,
+  "games_with_onset": 802,
+  "no_tape_games_excluded": [
+   "26JUL14MATMOR",
+   "26JUL18CORSAC"
+  ],
+  "legs": 1608,
+  "legs_scanned_with_window_prints": 1536,
+  "legs_no_onset": 49,
+  "legs_zero_window_prints": 23,
+  "collapse_legs": 19,
+  "collapse_games": 19,
+  "iceberg": {
+   "our_window_prints": 28074,
+   "matched": 28074,
+   "missing": 0,
+   "field_mismatch": 0,
+   "official_trades_fetched": 38988,
+   "pages": 46,
+   "collapse_prints": 4756,
+   "collapse_prints_verified": 4756
+  },
+  "resolutions_histogram": {
+   "yes/no (finalized)": 18,
+   "scalar/scalar (finalized, fair-price)": 1
+  },
+  "collapse_leg_resolutions": {
+   "no": 16,
+   "yes": 2,
+   "scalar": 1
+  },
+  "exam_credited": {
+   "complete_games": 17,
+   "complete_margin_cents": 97,
+   "partial_games": 2,
+   "partial_margin_cents": 0,
+   "margin_on_nonpaying_resolutions_cents": 0,
+   "scalar_case": "26JUL20DJECIN: DJE settlement_value_dollars=0.6500 + CIN 0.3500 = 1.0000 exactly; the credited 92c pair pays its 8c margin in full"
+  }
+ },
+ "games": [
+  {
+   "code": "26JUL12BASABB",
+   "leg": "ABB",
+   "cat": "WTA_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 98,
+   "margin": 2,
+   "window_prints": 314,
+   "hi": 50,
+   "lo": 1,
+   "first_ge50_ts": 1783873048.537037,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "1a59b64e-abb8-4978-6436-9f6a767bb3ec",
+   "collapse_prints": 81,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783874639.845168,
+    9,
+    1.0,
+    "2104af61-cf6d-4c9b-9361-26ba90f706be"
+   ],
+   "last_collapse": [
+    1783876148.858215,
+    1,
+    50.0,
+    "682b4135-f275-54f1-5551-0373e77dc4fe"
+   ],
+   "iceberg": {
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12BASABB-ABB",
+    "pages": 1,
+    "official_trades": 314,
+    "our_window_prints": 314,
+    "matched": 314,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 81,
+    "collapse_matched": 81,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "ABB": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12BASABB-ABB",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Noemi Basiletti",
+     "close_time": "2026-07-12T17:20:18Z"
+    },
+    "BAS": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12BASABB-BAS",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Noemi Basiletti",
+     "close_time": "2026-07-12T17:20:18Z"
+    }
+   },
+   "credited": [
+    "ABB",
+    "BAS"
+   ],
+   "entries": {
+    "ABB": 46,
+    "BAS": 52
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12BROGIU",
+   "leg": "GIU",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 99,
+   "margin": 1,
+   "window_prints": 2791,
+   "hi": 82,
+   "lo": 1,
+   "first_ge50_ts": 1783864430.7837,
+   "first_ge50_cents": 52,
+   "first_ge50_trade": "ae293902-8238-6d26-d229-d7ed658ea439",
+   "collapse_prints": 244,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783868008.067227,
+    9,
+    631.0,
+    "75d5cc19-21d9-78d9-37ae-9118b454f336"
+   ],
+   "last_collapse": [
+    1783868521.400065,
+    1,
+    137.03,
+    "0eab2464-d249-6ded-2a4e-b11818dcf6a5"
+   ],
+   "iceberg": {
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12BROGIU-GIU",
+    "pages": 4,
+    "official_trades": 3903,
+    "our_window_prints": 2791,
+    "matched": 2791,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 244,
+    "collapse_matched": 244,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "BRO": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12BROGIU-BRO",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Florian Broska",
+     "close_time": "2026-07-12T15:10:20Z"
+    },
+    "GIU": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12BROGIU-GIU",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Florian Broska",
+     "close_time": "2026-07-12T15:10:20Z"
+    }
+   },
+   "credited": [
+    "BRO",
+    "GIU"
+   ],
+   "entries": {
+    "BRO": 43,
+    "GIU": 56
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12BUEMAR",
+   "leg": "BUE",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 99,
+   "margin": 1,
+   "window_prints": 401,
+   "hi": 53,
+   "lo": 1,
+   "first_ge50_ts": 1783849734.057698,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "a7312e48-d442-6822-81ae-2f0260ad5fd4",
+   "collapse_prints": 61,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783851424.798345,
+    9,
+    1.0,
+    "1339eb04-21a2-4845-da2e-bb8fce4dd500"
+   ],
+   "last_collapse": [
+    1783851528.585822,
+    1,
+    187.03,
+    "9c5539a8-3647-410c-0ca8-918ab6cd62fd"
+   ],
+   "iceberg": {
+    "ticker": "KXATPMATCH-26JUL12BUEMAR-BUE",
+    "pages": 1,
+    "official_trades": 615,
+    "our_window_prints": 401,
+    "matched": 401,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 61,
+    "collapse_matched": 61,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "BUE": {
+     "ticker": "KXATPMATCH-26JUL12BUEMAR-BUE",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Igor Marcondes",
+     "close_time": "2026-07-12T10:20:37Z"
+    },
+    "MAR": {
+     "ticker": "KXATPMATCH-26JUL12BUEMAR-MAR",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Igor Marcondes",
+     "close_time": "2026-07-12T10:20:37Z"
+    }
+   },
+   "credited": [
+    "BUE",
+    "MAR"
+   ],
+   "entries": {
+    "BUE": 31,
+    "MAR": 68
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12DODDEL",
+   "leg": "DOD",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 84,
+   "margin": 16,
+   "window_prints": 3608,
+   "hi": 87,
+   "lo": 1,
+   "first_ge50_ts": 1783854449.921834,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "6aec9e45-65db-5258-7857-86aeca7763c9",
+   "collapse_prints": 535,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783858800.9426,
+    9,
+    15.0,
+    "d946e381-3e13-4b9a-2c1a-3d93882b30e9"
+   ],
+   "last_collapse": [
+    1783860285.875747,
+    1,
+    15.0,
+    "525ab34f-a44e-4cd0-5849-26db70cb4339"
+   ],
+   "iceberg": {
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12DODDEL-DOD",
+    "pages": 4,
+    "official_trades": 3847,
+    "our_window_prints": 3608,
+    "matched": 3608,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 535,
+    "collapse_matched": 535,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "DEL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12DODDEL-DEL",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Hugo Dellien",
+     "close_time": "2026-07-12T12:50:21Z"
+    },
+    "DOD": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12DODDEL-DOD",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Hugo Dellien",
+     "close_time": "2026-07-12T12:50:21Z"
+    }
+   },
+   "credited": [
+    "DEL",
+    "DOD"
+   ],
+   "entries": {
+    "DEL": 57,
+    "DOD": 27
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12GANJAN",
+   "leg": "JAN",
+   "cat": "ATP_CHALL",
+   "state": "PARTIAL_FOR_REASON",
+   "combined": null,
+   "margin": null,
+   "window_prints": 532,
+   "hi": 51,
+   "lo": 1,
+   "first_ge50_ts": 1783848039.852284,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "e988782a-8363-7f29-44fe-413a25497a08",
+   "collapse_prints": 177,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783849104.960445,
+    9,
+    0.25,
+    "a3694d87-42cd-4e03-ab80-085cdfe3bcc1"
+   ],
+   "last_collapse": [
+    1783850315.024416,
+    1,
+    1915.57,
+    "df899816-12be-48de-ffb6-5da8d34d70ad"
+   ],
+   "iceberg": {
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN",
+    "pages": 1,
+    "official_trades": 764,
+    "our_window_prints": 532,
+    "matched": 532,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 177,
+    "collapse_matched": 177,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "GAN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-GAN",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Giammarco Gandolfi",
+     "close_time": "2026-07-12T10:01:25Z"
+    },
+    "JAN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12GANJAN-JAN",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Giammarco Gandolfi",
+     "close_time": "2026-07-12T10:01:25Z"
+    }
+   },
+   "credited": [
+    "JAN"
+   ],
+   "entries": {
+    "JAN": 38
+   },
+   "pays": "NO_MARGIN_SCORED"
+  },
+  {
+   "code": "26JUL12GUEGOM",
+   "leg": "GUE",
+   "cat": "ATP_MAIN",
+   "state": "PARTIAL_FOR_REASON",
+   "combined": null,
+   "margin": null,
+   "window_prints": 1641,
+   "hi": 72,
+   "lo": 1,
+   "first_ge50_ts": 1783871022.311579,
+   "first_ge50_cents": 61,
+   "first_ge50_trade": "ccc330c0-bb96-42f0-9f65-444f4f8be369",
+   "collapse_prints": 268,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783874169.583507,
+    9,
+    5.0,
+    "a7164638-781b-71c4-7227-9edeb8b83c93"
+   ],
+   "last_collapse": [
+    1783875173.337594,
+    1,
+    441.29,
+    "f347ed87-d73e-791f-fac0-95c94c3f1119"
+   ],
+   "iceberg": {
+    "ticker": "KXATPMATCH-26JUL12GUEGOM-GUE",
+    "pages": 3,
+    "official_trades": 2140,
+    "our_window_prints": 1641,
+    "matched": 1641,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 268,
+    "collapse_matched": 268,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "GOM": {
+     "ticker": "KXATPMATCH-26JUL12GUEGOM-GOM",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Federico Agustin Gomez",
+     "close_time": "2026-07-12T17:00:49Z"
+    },
+    "GUE": {
+     "ticker": "KXATPMATCH-26JUL12GUEGOM-GUE",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Federico Agustin Gomez",
+     "close_time": "2026-07-12T17:00:49Z"
+    }
+   },
+   "credited": [
+    "GUE"
+   ],
+   "entries": {
+    "GUE": 58
+   },
+   "pays": "NO_MARGIN_SCORED"
+  },
+  {
+   "code": "26JUL12HESKOT",
+   "leg": "HES",
+   "cat": "WTA_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 99,
+   "margin": 1,
+   "window_prints": 1339,
+   "hi": 60,
+   "lo": 3,
+   "first_ge50_ts": 1783871239.606453,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "b9f4639e-f956-7a90-1fc2-e8ae1556b51a",
+   "collapse_prints": 89,
+   "collapse_lo": 3,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783875218.430581,
+    8,
+    7.0,
+    "b78d946c-3c83-6928-791b-b56864b30c2d"
+   ],
+   "last_collapse": [
+    1783875589.5488,
+    8,
+    58.8,
+    "2fae9260-0dbc-78f4-7efd-1b93f0c8cc4b"
+   ],
+   "iceberg": {
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12HESKOT-HES",
+    "pages": 2,
+    "official_trades": 1939,
+    "our_window_prints": 1339,
+    "matched": 1339,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 89,
+    "collapse_matched": 89,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "HES": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12HESKOT-HES",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Yelyzaveta Kotliar",
+     "close_time": "2026-07-12T17:05:22Z"
+    },
+    "KOT": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12HESKOT-KOT",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Yelyzaveta Kotliar",
+     "close_time": "2026-07-12T17:05:22Z"
+    }
+   },
+   "credited": [
+    "HES",
+    "KOT"
+   ],
+   "entries": {
+    "HES": 43,
+    "KOT": 56
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12KULZAA",
+   "leg": "ZAA",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 97,
+   "margin": 3,
+   "window_prints": 2370,
+   "hi": 81,
+   "lo": 1,
+   "first_ge50_ts": 1783809395.416967,
+   "first_ge50_cents": 69,
+   "first_ge50_trade": "e855a01e-a473-60ef-2dfb-02194aee881d",
+   "collapse_prints": 169,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783846566.832664,
+    9,
+    9.66,
+    "4383f80a-3370-4a94-96ec-218153fb64ea"
+   ],
+   "last_collapse": [
+    1783847700.881819,
+    1,
+    935.19,
+    "bc5b8bbb-1c19-5e80-4dd2-414eb6e5d6ed"
+   ],
+   "iceberg": {
+    "ticker": "KXWTAMATCH-26JUL12KULZAA-ZAA",
+    "pages": 3,
+    "official_trades": 2371,
+    "our_window_prints": 2370,
+    "matched": 2370,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 169,
+    "collapse_matched": 169,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "KUL": {
+     "ticker": "KXWTAMATCH-26JUL12KULZAA-KUL",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Zhibek Kulambayeva",
+     "close_time": "2026-07-12T09:15:18Z"
+    },
+    "ZAA": {
+     "ticker": "KXWTAMATCH-26JUL12KULZAA-ZAA",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Zhibek Kulambayeva",
+     "close_time": "2026-07-12T09:15:18Z"
+    }
+   },
+   "credited": [
+    "KUL",
+    "ZAA"
+   ],
+   "entries": {
+    "KUL": 31,
+    "ZAA": 66
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12MICKUL",
+   "leg": "KUL",
+   "cat": "WTA_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 91,
+   "margin": 9,
+   "window_prints": 1309,
+   "hi": 82,
+   "lo": 1,
+   "first_ge50_ts": 1783874814.805787,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "ab5f983e-b509-6047-4ed1-816af677a8cf",
+   "collapse_prints": 202,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783876476.907138,
+    9,
+    7.0,
+    "34eb4489-e0c5-6f51-80cc-cfe642f292cd"
+   ],
+   "last_collapse": [
+    1783877322.452913,
+    1,
+    93.51,
+    "a5f4db20-d609-5c19-0eb9-b3bac1b10348"
+   ],
+   "iceberg": {
+    "ticker": "KXWTAMATCH-26JUL12MICKUL-KUL",
+    "pages": 2,
+    "official_trades": 1766,
+    "our_window_prints": 1309,
+    "matched": 1309,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 202,
+    "collapse_matched": 202,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "KUL": {
+     "ticker": "KXWTAMATCH-26JUL12MICKUL-KUL",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Elena Micic",
+     "close_time": "2026-07-12T17:35:19Z"
+    },
+    "MIC": {
+     "ticker": "KXWTAMATCH-26JUL12MICKUL-MIC",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Elena Micic",
+     "close_time": "2026-07-12T17:35:19Z"
+    }
+   },
+   "credited": [
+    "KUL",
+    "MIC"
+   ],
+   "entries": {
+    "KUL": 50,
+    "MIC": 41
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12PALCOL",
+   "leg": "PAL",
+   "cat": "WTA_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 93,
+   "margin": 7,
+   "window_prints": 904,
+   "hi": 86,
+   "lo": 1,
+   "first_ge50_ts": 1783850130.767461,
+   "first_ge50_cents": 77,
+   "first_ge50_trade": "553e070d-2055-607a-e063-fe63fa427fed",
+   "collapse_prints": 119,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783857115.509961,
+    9,
+    1.0,
+    "7d5b5a5a-dc0d-7e24-ef5b-c2f58b26d33a"
+   ],
+   "last_collapse": [
+    1783859980.77816,
+    1,
+    187.03,
+    "8b257c0b-2934-7ee4-fccc-609b8dc7c38a"
+   ],
+   "iceberg": {
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12PALCOL-PAL",
+    "pages": 1,
+    "official_trades": 904,
+    "our_window_prints": 904,
+    "matched": 904,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 119,
+    "collapse_matched": 119,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "COL": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12PALCOL-COL",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Martina Colmegna",
+     "close_time": "2026-07-12T12:50:24Z"
+    },
+    "PAL": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12PALCOL-PAL",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Martina Colmegna",
+     "close_time": "2026-07-12T12:50:24Z"
+    }
+   },
+   "credited": [
+    "COL",
+    "PAL"
+   ],
+   "entries": {
+    "COL": 22,
+    "PAL": 71
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12PRASAI",
+   "leg": "SAI",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 99,
+   "margin": 1,
+   "window_prints": 1908,
+   "hi": 56,
+   "lo": 1,
+   "first_ge50_ts": 1783873326.82269,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "0709d3c9-44a6-5528-63f4-ea2786381af6",
+   "collapse_prints": 175,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783877070.042054,
+    9,
+    11.0,
+    "bef54d95-6653-64ac-8bc0-4bfadf05aa69"
+   ],
+   "last_collapse": [
+    1783877439.458275,
+    1,
+    5.0,
+    "cf97972d-b0e0-76a5-4904-f365fc36e6a6"
+   ],
+   "iceberg": {
+    "ticker": "KXATPMATCH-26JUL12PRASAI-SAI",
+    "pages": 3,
+    "official_trades": 2428,
+    "our_window_prints": 1908,
+    "matched": 1908,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 175,
+    "collapse_matched": 175,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "PRA": {
+     "ticker": "KXATPMATCH-26JUL12PRASAI-PRA",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Juan Carlos Prado Angelo",
+     "close_time": "2026-07-12T17:35:14Z"
+    },
+    "SAI": {
+     "ticker": "KXATPMATCH-26JUL12PRASAI-SAI",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Juan Carlos Prado Angelo",
+     "close_time": "2026-07-12T17:35:14Z"
+    }
+   },
+   "credited": [
+    "PRA",
+    "SAI"
+   ],
+   "entries": {
+    "PRA": 73,
+    "SAI": 26
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12RAFAGU",
+   "leg": "RAF",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 88,
+   "margin": 12,
+   "window_prints": 3405,
+   "hi": 79,
+   "lo": 1,
+   "first_ge50_ts": 1783873602.373092,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "6d956637-2acd-564b-8a33-7e03348885fc",
+   "collapse_prints": 688,
+   "collapse_lo": 3,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783876187.440967,
+    7,
+    7.0,
+    "15bec22b-3a20-6622-8bca-254fe1001bad"
+   ],
+   "last_collapse": [
+    1783878602.363245,
+    9,
+    15.33,
+    "36c72e29-79d5-4c20-9bf6-4cf0c9f5f903"
+   ],
+   "iceberg": {
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-RAF",
+    "pages": 5,
+    "official_trades": 4610,
+    "our_window_prints": 3405,
+    "matched": 3405,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 688,
+    "collapse_matched": 688,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "AGU": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-AGU",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Aniss Rafiq",
+     "close_time": "2026-07-12T18:15:03Z"
+    },
+    "RAF": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12RAFAGU-RAF",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Aniss Rafiq",
+     "close_time": "2026-07-12T18:15:03Z"
+    }
+   },
+   "credited": [
+    "AGU",
+    "RAF"
+   ],
+   "entries": {
+    "AGU": 80,
+    "RAF": 8
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12ROUGAN",
+   "leg": "ROU",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 99,
+   "margin": 1,
+   "window_prints": 648,
+   "hi": 70,
+   "lo": 1,
+   "first_ge50_ts": 1783865436.478273,
+   "first_ge50_cents": 62,
+   "first_ge50_trade": "cc2436cf-78d1-4c04-9917-8a7178682067",
+   "collapse_prints": 601,
+   "collapse_lo": 1,
+   "collapse_hi": 7,
+   "first_collapse": [
+    1783865441.168264,
+    6,
+    78.18,
+    "f38bd8ed-8154-7cf0-1cc6-ecdfe63e8fde"
+   ],
+   "last_collapse": [
+    1783870177.727917,
+    1,
+    50.0,
+    "59d0aec2-9e0e-6b9a-1444-e6bd689042d2"
+   ],
+   "iceberg": {
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12ROUGAN-ROU",
+    "pages": 1,
+    "official_trades": 661,
+    "our_window_prints": 648,
+    "matched": 648,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 601,
+    "collapse_matched": 601,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "GAN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12ROUGAN-GAN",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Adhithya Ganesan",
+     "close_time": "2026-07-12T15:30:18Z"
+    },
+    "ROU": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12ROUGAN-ROU",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Adhithya Ganesan",
+     "close_time": "2026-07-12T15:30:18Z"
+    }
+   },
+   "credited": [
+    "GAN",
+    "ROU"
+   ],
+   "entries": {
+    "GAN": 95,
+    "ROU": 4
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12SHEVAN",
+   "leg": "SHE",
+   "cat": "WTA_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 92,
+   "margin": 8,
+   "window_prints": 1290,
+   "hi": 50,
+   "lo": 1,
+   "first_ge50_ts": 1783865031.164329,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "3cbad15f-6879-56e1-65e4-16c996b19ef9",
+   "collapse_prints": 439,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783866190.752653,
+    9,
+    1.0,
+    "48c40c8d-2b61-6fdc-65a1-179fbef89f49"
+   ],
+   "last_collapse": [
+    1783868403.338347,
+    9,
+    12.0,
+    "26285cd0-6240-4067-8397-cd0124c0bb27"
+   ],
+   "iceberg": {
+    "ticker": "KXWTACHALLENGERMATCH-26JUL12SHEVAN-SHE",
+    "pages": 7,
+    "official_trades": 6483,
+    "our_window_prints": 1290,
+    "matched": 1290,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 439,
+    "collapse_matched": 439,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "SHE": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12SHEVAN-SHE",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Maiar Sherif Ahmed Abdelaziz",
+     "close_time": "2026-07-12T16:40:09Z"
+    },
+    "VAN": {
+     "ticker": "KXWTACHALLENGERMATCH-26JUL12SHEVAN-VAN",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Maiar Sherif Ahmed Abdelaziz",
+     "close_time": "2026-07-12T16:40:09Z"
+    }
+   },
+   "credited": [
+    "SHE",
+    "VAN"
+   ],
+   "entries": {
+    "SHE": 34,
+    "VAN": 58
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12SKASAC",
+   "leg": "SAC",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 99,
+   "margin": 1,
+   "window_prints": 952,
+   "hi": 64,
+   "lo": 1,
+   "first_ge50_ts": 1783807259.532975,
+   "first_ge50_cents": 50,
+   "first_ge50_trade": "6107f8f3-f901-7e47-56d0-565ab2bbe36b",
+   "collapse_prints": 302,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783858189.027519,
+    9,
+    8.0,
+    "9c866dc5-dcfd-4243-9e13-1a044c07b4bc"
+   ],
+   "last_collapse": [
+    1783859412.284279,
+    1,
+    33.33,
+    "0cc9b2c4-61a1-67df-6e17-368059a17456"
+   ],
+   "iceberg": {
+    "ticker": "KXATPMATCH-26JUL12SKASAC-SAC",
+    "pages": 1,
+    "official_trades": 953,
+    "our_window_prints": 952,
+    "matched": 952,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 302,
+    "collapse_matched": 302,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "SAC": {
+     "ticker": "KXATPMATCH-26JUL12SKASAC-SAC",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Timofey Skatov",
+     "close_time": "2026-07-12T12:30:42Z"
+    },
+    "SKA": {
+     "ticker": "KXATPMATCH-26JUL12SKASAC-SKA",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Timofey Skatov",
+     "close_time": "2026-07-12T12:30:42Z"
+    }
+   },
+   "credited": [
+    "SAC",
+    "SKA"
+   ],
+   "entries": {
+    "SAC": 50,
+    "SKA": 49
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12TABHUE",
+   "leg": "HUE",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 94,
+   "margin": 6,
+   "window_prints": 978,
+   "hi": 62,
+   "lo": 1,
+   "first_ge50_ts": 1783782328.268774,
+   "first_ge50_cents": 51,
+   "first_ge50_trade": "c703f78c-2258-595a-1959-8a7bb6335f12",
+   "collapse_prints": 195,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783850252.094426,
+    9,
+    1.0,
+    "eceffad4-eac5-468f-95d8-f038cb5f90c2"
+   ],
+   "last_collapse": [
+    1783853325.843023,
+    2,
+    16.0,
+    "b041e1dd-7a65-40aa-ade2-b0eaafe2bbdc"
+   ],
+   "iceberg": {
+    "ticker": "KXATPMATCH-26JUL12TABHUE-HUE",
+    "pages": 1,
+    "official_trades": 982,
+    "our_window_prints": 978,
+    "matched": 978,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 195,
+    "collapse_matched": 195,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "HUE": {
+     "ticker": "KXATPMATCH-26JUL12TABHUE-HUE",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Clement Tabur",
+     "close_time": "2026-07-12T10:50:31Z"
+    },
+    "TAB": {
+     "ticker": "KXATPMATCH-26JUL12TABHUE-TAB",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Clement Tabur",
+     "close_time": "2026-07-12T10:50:31Z"
+    }
+   },
+   "credited": [
+    "HUE",
+    "TAB"
+   ],
+   "entries": {
+    "HUE": 48,
+    "TAB": 46
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL12VILRAH",
+   "leg": "RAH",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 84,
+   "margin": 16,
+   "window_prints": 729,
+   "hi": 66,
+   "lo": 1,
+   "first_ge50_ts": 1783847881.604951,
+   "first_ge50_cents": 64,
+   "first_ge50_trade": "bc2681eb-f2cf-584d-8439-62ab4bf32c0f",
+   "collapse_prints": 50,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1783850708.008531,
+    9,
+    200.0,
+    "c59dae99-419f-5a11-5360-90dccaa38874"
+   ],
+   "last_collapse": [
+    1783851023.531456,
+    1,
+    122.51,
+    "0d407878-bc77-5436-c06a-6108c6df64c6"
+   ],
+   "iceberg": {
+    "ticker": "KXATPCHALLENGERMATCH-26JUL12VILRAH-RAH",
+    "pages": 2,
+    "official_trades": 1016,
+    "our_window_prints": 729,
+    "matched": 729,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 50,
+    "collapse_matched": 50,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "RAH": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12VILRAH-RAH",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Gonzalo Villanueva",
+     "close_time": "2026-07-12T10:10:28Z"
+    },
+    "VIL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL12VILRAH-VIL",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Gonzalo Villanueva",
+     "close_time": "2026-07-12T10:10:28Z"
+    }
+   },
+   "credited": [
+    "RAH",
+    "VIL"
+   ],
+   "entries": {
+    "RAH": 48,
+    "VIL": 36
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  },
+  {
+   "code": "26JUL20DJECIN",
+   "leg": "CIN",
+   "cat": "ATP_MAIN",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 92,
+   "margin": 8,
+   "window_prints": 124,
+   "hi": 75,
+   "lo": 9,
+   "first_ge50_ts": 1784512714.451187,
+   "first_ge50_cents": 62,
+   "first_ge50_trade": "c3d8f918-8689-43d0-e1c6-2ec60118275d",
+   "collapse_prints": 3,
+   "collapse_lo": 9,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1784536702.176049,
+    9,
+    2.0,
+    "5c90d6e4-9cb3-7730-18f5-ba50d6b8deac"
+   ],
+   "last_collapse": [
+    1784543305.485961,
+    9,
+    1.4,
+    "de97c653-ceef-523c-d3c1-cea5b35bb6c0"
+   ],
+   "iceberg": {
+    "ticker": "KXATPMATCH-26JUL20DJECIN-CIN",
+    "pages": 1,
+    "official_trades": 442,
+    "our_window_prints": 124,
+    "matched": 124,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 3,
+    "collapse_matched": 3,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "CIN": {
+     "ticker": "KXATPMATCH-26JUL20DJECIN-CIN",
+     "status": "finalized",
+     "result": "scalar",
+     "expiration_value": "",
+     "close_time": "2026-07-21T00:43:59Z",
+     "settlement_value_dollars": "0.3500",
+     "settlement_ts": "2026-07-21T00:44:59.806602Z"
+    },
+    "DJE": {
+     "ticker": "KXATPMATCH-26JUL20DJECIN-DJE",
+     "status": "finalized",
+     "result": "scalar",
+     "expiration_value": "",
+     "close_time": "2026-07-21T00:43:59Z",
+     "settlement_value_dollars": "0.6500",
+     "settlement_ts": "2026-07-21T00:44:59.806602Z"
+    }
+   },
+   "credited": [
+    "CIN",
+    "DJE"
+   ],
+   "entries": {
+    "CIN": 36,
+    "DJE": 56
+   },
+   "pays": "OTHER_SCALAR"
+  },
+  {
+   "code": "26JUL20GALARN",
+   "leg": "GAL",
+   "cat": "ATP_CHALL",
+   "state": "COMPLETE_AT_DELTA",
+   "combined": 96,
+   "margin": 4,
+   "window_prints": 2831,
+   "hi": 82,
+   "lo": 1,
+   "first_ge50_ts": 1784527642.99736,
+   "first_ge50_cents": 61,
+   "first_ge50_trade": "3ba77153-f14f-6e45-9484-87c6ca061719",
+   "collapse_prints": 358,
+   "collapse_lo": 1,
+   "collapse_hi": 9,
+   "first_collapse": [
+    1784554923.183415,
+    9,
+    1.0,
+    "97e2b022-7a6b-4b11-ac64-a121bdab818e"
+   ],
+   "last_collapse": [
+    1784555642.241016,
+    1,
+    622.0,
+    "5c536ba9-95e6-69a2-9082-dbfec7124440"
+   ],
+   "iceberg": {
+    "ticker": "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL",
+    "pages": 3,
+    "official_trades": 2850,
+    "our_window_prints": 2831,
+    "matched": 2831,
+    "missing": 0,
+    "field_mismatch": 0,
+    "collapse_prints": 358,
+    "collapse_matched": 358,
+    "missing_examples": []
+   },
+   "resolutions": {
+    "ARN": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL20GALARN-ARN",
+     "status": "finalized",
+     "result": "yes",
+     "expiration_value": "Gilles Arnaud Bailly",
+     "close_time": "2026-07-20T13:55:05Z"
+    },
+    "GAL": {
+     "ticker": "KXATPCHALLENGERMATCH-26JUL20GALARN-GAL",
+     "status": "finalized",
+     "result": "no",
+     "expiration_value": "Gilles Arnaud Bailly",
+     "close_time": "2026-07-20T13:55:05Z"
+    }
+   },
+   "credited": [
+    "ARN",
+    "GAL"
+   ],
+   "entries": {
+    "ARN": 36,
+    "GAL": 60
+   },
+   "pays": "YES_PAYS_AS_SCORED"
+  }
+ ]
+}

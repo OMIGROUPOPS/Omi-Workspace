@@ -2927,15 +2927,16 @@ async function main() {
       const writeCohortTraceChunks = async (prefix, rows) => {
         const eventIds = [...new Set(rows.map((row) => row.event_id))].sort();
         const chunks = [];
-        for (let start = 0; start < eventIds.length; start += 5) {
-          const ids = eventIds.slice(start, start + 5), idSet = new Set(ids);
+        const chunkEventCount = isV52i ? 2 : 5;
+        for (let start = 0; start < eventIds.length; start += chunkEventCount) {
+          const ids = eventIds.slice(start, start + chunkEventCount), idSet = new Set(ids);
           const chunkRows = rows.filter((row) => idSet.has(row.event_id));
           const name = `${prefix}_CHUNK_${String(chunks.length + 1).padStart(3, "0")}.jsonl.gz`;
           await writeGzipRowsFile(path.join(output, name), chunkRows);
           chunks.push({ name, event_ids: ids, events: ids.length, rows: chunkRows.length, sha256: fileHash(path.join(output, name)), bytes: fs.statSync(path.join(output, name)).size });
         }
-        ensure(chunks.length === 6 && chunks.reduce((sum, row) => sum + row.events, 0) === 30 && chunks.reduce((sum, row) => sum + row.rows, 0) === rows.length, `${prefix} trace chunk conservation failed`);
-        return { format: "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS", chunk_event_count: 5, events: 30, rows: rows.length, chunks, conservation_pass: true };
+        ensure(chunks.length === 30 / chunkEventCount && chunks.reduce((sum, row) => sum + row.events, 0) === 30 && chunks.reduce((sum, row) => sum + row.rows, 0) === rows.length, `${prefix} trace chunk conservation failed`);
+        return { format: "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS", chunk_event_count: chunkEventCount, events: 30, rows: rows.length, chunks, conservation_pass: true };
       };
       const baselineTraceManifest = await writeCohortTraceChunks(`${baselinePrefix}_BASELINE_FULL_DECISION_TRACE_30_GAMES`, baselineCompactTrace);
       const candidateTraceManifest = await writeCohortTraceChunks(`${candidatePrefix}_FULL_DECISION_TRACE_30_GAMES`, candidateCompactTrace);

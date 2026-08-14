@@ -57,7 +57,8 @@ async function main() {
   });
   check(consumption.count > 0);
   const traces = json("FULL_DECISION_TRACE_MANIFEST.json");
-  equal(traces.baseline.events, 30); equal(traces.candidate.events, 30); equal(traces.candidate.chunks.length, 6);
+  equal(traces.baseline.events, 30); equal(traces.candidate.events, 30); equal(traces.candidate.chunk_event_count, 2); equal(traces.candidate.chunks.length, 15);
+  check(traces.candidate.chunks.every((row) => row.bytes < 100000000));
   const det = json("DETERMINISM_RECEIPT.json"); equal(det.clean_builds, 2); equal(det.byte_identical, true);
   const forbidden = json("FORBIDDEN_ACCESS_RECEIPT.json"); equal(forbidden.full_804_run, false); equal(forbidden.live, false); equal(forbidden.holdout, false); equal(forbidden.deployment, false);
   console.log(JSON.stringify({ tests, pass: true, depth_receipts: consumption.count }));

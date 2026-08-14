@@ -1,0 +1,325 @@
+{
+ "LABEL": "GUEGOM_TAPE_PACK",
+ "event": "KXATPMATCH-26JUL12GUEGOM",
+ "category": "ATP_MAIN",
+ "ticker_source": "dev-804 MARKET_EVENT_LEDGER_804 @ 4716657a (GUEGOM is NOT in the b43d7cde cohort receipt - that package traces a different 30-game cohort; ticker confirmed against Kalshi API market object)",
+ "format": "c09bde99 game_tape_packs + tminus_bell_s column on every row + per-leg W1 close",
+ "bell": {
+  "actual_bell_epoch": null,
+  "live_by_bell_edge_epoch": 1783879200.0,
+  "scheduled_bell_epoch": 1783879200,
+  "pre_match_boundary_epoch": 1783879200,
+  "derivation": "machine t_minus_* fields of V52H_BASELINE chunk 014 @ 576c705f; t_minus_actual_bell_seconds is NULL on all 145,685 GUEGOM rows and observed_starts.db carries no GUEGOM row - the actual bell was never observed. tminus_bell_s on every row is T-minus to the LIVE-BY BELL EDGE (= scheduled = pre_match_boundary = w1_right = 1783879200)",
+  "bell_confidence": "live_by_only (dev-804 four-state ledger @ 4716657a)"
+ },
+ "w1_left_epoch": 1783800341,
+ "w1_right_epoch": 1783879200,
+ "heartbeat_caveat": "recorder has no heartbeat channel; book gaps >600s listed per leg, quiet-or-outage undistinguishable - flagged, not smoothed",
+ "legs": {
+  "GUE": {
+   "ticker": "KXATPMATCH-26JUL12GUEGOM-GUE",
+   "files": [
+    "GUE_book.csv",
+    "GUE_trades.csv"
+   ],
+   "book_rows_per_change": 17209,
+   "book_raw_rows_in_window": 90629,
+   "trades_rows": 2140,
+   "true_prints": 2140,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783875173,
+     "exchange_ts": "2026-07-12T16:52:53.337594Z",
+     "tminus_bell_s": 4026.7,
+     "price_cents": 1,
+     "size": 100.0,
+     "trade_id": "24ab40cb-1921-71a8-ebb7-ced57e0e20d9"
+    },
+    "last_mid": {
+     "ts_epoch": 1783875688,
+     "tminus_bell_s": 3512.0,
+     "mid_cents": 1.0,
+     "bid_1": 1,
+     "ask_1": 1
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1783800553,
+     "to_epoch": 1783801860,
+     "seconds": 1307
+    },
+    {
+     "from_epoch": 1783802111,
+     "to_epoch": 1783803011,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783803228,
+     "to_epoch": 1783804128,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783804877,
+     "to_epoch": 1783805626,
+     "seconds": 749
+    },
+    {
+     "from_epoch": 1783805626,
+     "to_epoch": 1783806526,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783808023,
+     "to_epoch": 1783808923,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783809221,
+     "to_epoch": 1783810121,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783810426,
+     "to_epoch": 1783811326,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783811686,
+     "to_epoch": 1783812519,
+     "seconds": 833
+    },
+    {
+     "from_epoch": 1783812819,
+     "to_epoch": 1783813719,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783814018,
+     "to_epoch": 1783814918,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783815217,
+     "to_epoch": 1783816117,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783816422,
+     "to_epoch": 1783817322,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783818814,
+     "to_epoch": 1783819714,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783820013,
+     "to_epoch": 1783820913,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783821215,
+     "to_epoch": 1783822115,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783822414,
+     "to_epoch": 1783823314,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783823612,
+     "to_epoch": 1783824512,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783824810,
+     "to_epoch": 1783825710,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783826009,
+     "to_epoch": 1783826695,
+     "seconds": 686
+    },
+    {
+     "from_epoch": 1783828490,
+     "to_epoch": 1783829305,
+     "seconds": 815
+    },
+    {
+     "from_epoch": 1783829747,
+     "to_epoch": 1783830505,
+     "seconds": 758
+    },
+    {
+     "from_epoch": 1783831057,
+     "to_epoch": 1783831732,
+     "seconds": 675
+    },
+    {
+     "from_epoch": 1783832004,
+     "to_epoch": 1783832903,
+     "seconds": 899
+    },
+    {
+     "from_epoch": 1783835598,
+     "to_epoch": 1783836498,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783836799,
+     "to_epoch": 1783837699,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783837996,
+     "to_epoch": 1783838896,
+     "seconds": 900
+    },
+    {
+     "from_epoch": 1783845452,
+     "to_epoch": 1783846090,
+     "seconds": 638
+    },
+    {
+     "from_epoch": 1783847589,
+     "to_epoch": 1783848487,
+     "seconds": 898
+    },
+    {
+     "from_epoch": 1783858613,
+     "to_epoch": 1783859338,
+     "seconds": 725
+    }
+   ]
+  },
+  "GOM": {
+   "ticker": "KXATPMATCH-26JUL12GUEGOM-GOM",
+   "files": [
+    "GOM_book.csv",
+    "GOM_trades.csv"
+   ],
+   "book_rows_per_change": 12756,
+   "book_raw_rows_in_window": 99347,
+   "trades_rows": 2389,
+   "true_prints": 2389,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1783875666,
+     "exchange_ts": "2026-07-12T17:01:06.659910Z",
+     "tminus_bell_s": 3533.3,
+     "price_cents": 99,
+     "size": 538.79,
+     "trade_id": "806ce678-d89b-54e7-7fb0-9a220c28b355"
+    },
+    "last_mid": {
+     "ts_epoch": 1783875688,
+     "tminus_bell_s": 3512.0,
+     "mid_cents": 98.5,
+     "bid_1": 99,
+     "ask_1": 98
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1783800556,
+     "to_epoch": 1783801860,
+     "seconds": 1304
+    },
+    {
+     "from_epoch": 1783802514,
+     "to_epoch": 1783803304,
+     "seconds": 790
+    },
+    {
+     "from_epoch": 1783803809,
+     "to_epoch": 1783804876,
+     "seconds": 1067
+    },
+    {
+     "from_epoch": 1783804877,
+     "to_epoch": 1783806439,
+     "seconds": 1562
+    },
+    {
+     "from_epoch": 1783807618,
+     "to_epoch": 1783810323,
+     "seconds": 2705
+    },
+    {
+     "from_epoch": 1783810323,
+     "to_epoch": 1783811687,
+     "seconds": 1364
+    },
+    {
+     "from_epoch": 1783811687,
+     "to_epoch": 1783814400,
+     "seconds": 2713
+    },
+    {
+     "from_epoch": 1783815122,
+     "to_epoch": 1783818194,
+     "seconds": 3072
+    },
+    {
+     "from_epoch": 1783818413,
+     "to_epoch": 1783822414,
+     "seconds": 4001
+    },
+    {
+     "from_epoch": 1783822414,
+     "to_epoch": 1783826695,
+     "seconds": 4281
+    },
+    {
+     "from_epoch": 1783826695,
+     "to_epoch": 1783827306,
+     "seconds": 611
+    },
+    {
+     "from_epoch": 1783828468,
+     "to_epoch": 1783829358,
+     "seconds": 890
+    },
+    {
+     "from_epoch": 1783829663,
+     "to_epoch": 1783830505,
+     "seconds": 842
+    },
+    {
+     "from_epoch": 1783831057,
+     "to_epoch": 1783831732,
+     "seconds": 675
+    },
+    {
+     "from_epoch": 1783835464,
+     "to_epoch": 1783836281,
+     "seconds": 817
+    },
+    {
+     "from_epoch": 1783836281,
+     "to_epoch": 1783839193,
+     "seconds": 2912
+    },
+    {
+     "from_epoch": 1783840111,
+     "to_epoch": 1783840771,
+     "seconds": 660
+    },
+    {
+     "from_epoch": 1783840771,
+     "to_epoch": 1783846848,
+     "seconds": 6077
+    },
+    {
+     "from_epoch": 1783846848,
+     "to_epoch": 1783848824,
+     "seconds": 1976
+    }
+   ]
+  }
+ }
+}

@@ -114,7 +114,7 @@ async function main() {
   const summary = json("LIBRARY_BACKED_EVIDENCE_SUMMARY.json");
   check(summary.evaluation_receipts > 0);
   check(summary.applicable_library_receipts > 0);
-  equal(summary.pre_stated_claims.library_backed_levels_actually_stand_below_shown_range, summary.library_backed_stands_below_shown_range.receipts > 0);
+  equal(summary.pre_stated_claims.library_backed_levels_actually_stand_below_shown_range, summary.library_backed_stands_below_shown_range.receipts > 0 && summary.library_backed_stands_below_shown_range.rows.every((row) => row.target_cents < row.tape_min_cents));
   equal(summary.pre_stated_claims.new_one_sided_exposure_counted_both_ways_per_game, true);
   equal(summary.pre_stated_claims.REFLEX_POST_zero, true);
   check(Array.isArray(summary.faller_side_fills.rows));

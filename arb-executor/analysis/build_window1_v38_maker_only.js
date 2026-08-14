@@ -2730,7 +2730,10 @@ async function main() {
     const libraryBackedEvidenceSummary = isV52k ? (() => {
       const evaluationRows = candidateFlow.trace.filter((row) => row.library_backed_level_evidence);
       const applicableRows = evaluationRows.filter((row) => row.library_backed_level_evidence.applicable === true);
-      const belowShownRows = applicableRows.filter((row) => row.library_backed_level_evidence.below_shown_range === true && Number.isInteger(row.final_target_cents));
+      const belowShownRows = applicableRows.filter((row) => row.library_backed_level_evidence.below_shown_range === true
+        && Number.isInteger(row.final_target_cents)
+        && Number.isInteger(row.library_backed_level_evidence.original_tape_bounds?.min_cents)
+        && row.final_target_cents < row.library_backed_level_evidence.original_tape_bounds.min_cents);
       const mutationRows = candidateRun.actions.filter((row) => row.mode === "MARKET_TRADES_AS_TRUTH" && ["PLACE_REST", "REPRICE_REST", "PAIR_CAP_REPRICE", "GAP_CREDIT_REPRICE_DOWN"].includes(row.kind) && row.birth_license?.level?.library_backed_level_evidence?.applicable === true);
       const baselineByLeg = new Map(baselineRun.marketEvents.flatMap((event) => Object.values(event.legs).map((leg) => [leg.leg_identity, leg])));
       const candidateByLeg = new Map(candidateRun.marketEvents.flatMap((event) => Object.values(event.legs).map((leg) => [leg.leg_identity, leg])));

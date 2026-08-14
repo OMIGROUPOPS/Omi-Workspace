@@ -1,0 +1,245 @@
+{
+ "LABEL": "DELXIL_TAPE_PACK",
+ "event": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+ "category": "ATP_CHALL",
+ "ticker_source": "dev-804 MARKET_EVENT_LEDGER_804 @ 4716657a - the operator-suggested KXATPMATCH prefix corrected to KXATPCHALLENGERMATCH per the ledger",
+ "format": "c09bde99 game_tape_packs + tminus_bell_s column on every row + per-leg W1 close (exact GUEGOM-pack format @ 03e38798)",
+ "bell": {
+  "actual_bell_epoch": null,
+  "live_by_bell_edge_epoch": 1784049342.9,
+  "scheduled_bell_epoch": 1784039400.0,
+  "pre_match_boundary_epoch": 1784049342.9,
+  "derivation": "machine t_minus_* fields of V52H_BASELINE chunk 004 @ 576c705f; t_minus_actual_bell_seconds is NULL on all 3,232 DELXIL rows and observed_starts.db has no 26JUL14DELXIL row (its sole DEL row is a different Jul-25 match) - the actual bell was never observed. tminus_bell_s on every row is T-minus to the LIVE-BY BELL EDGE (= pre_match_boundary = w1_right = 1784049342.9; NOTE the scheduled bell 1784039400 is 2.8h EARLIER - a delayed start, the live-by edge governs)",
+  "bell_confidence": "live_by_only (dev-804 four-state ledger @ 4716657a)"
+ },
+ "w1_left_epoch": 1783986059,
+ "w1_right_epoch": 1784049342.914,
+ "heartbeat_caveat": "recorder has no heartbeat channel; book gaps >600s listed per leg, quiet-or-outage undistinguishable - flagged, not smoothed",
+ "legs": {
+  "DEL": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-DEL",
+   "files": [
+    "DEL_book.csv",
+    "DEL_trades.csv"
+   ],
+   "book_rows_per_change": 1323,
+   "book_raw_rows_in_window": 3644,
+   "trades_rows": 32,
+   "true_prints": 32,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1784048897,
+     "exchange_ts": "2026-07-14T17:08:17.570929Z",
+     "tminus_bell_s": 445.3,
+     "price_cents": 84,
+     "size": 8.0,
+     "trade_id": "3ba6dc71-0e46-6f16-9e75-5cc4ab06c7d5"
+    },
+    "last_mid": {
+     "ts_epoch": 1784049333,
+     "tminus_bell_s": 9.9,
+     "mid_cents": 83.5,
+     "bid_1": 82,
+     "ask_1": 85
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1783996087,
+     "to_epoch": 1783996938,
+     "seconds": 851
+    },
+    {
+     "from_epoch": 1783996938,
+     "to_epoch": 1783997629,
+     "seconds": 691
+    },
+    {
+     "from_epoch": 1783997954,
+     "to_epoch": 1783998712,
+     "seconds": 758
+    },
+    {
+     "from_epoch": 1783999277,
+     "to_epoch": 1784001157,
+     "seconds": 1880
+    },
+    {
+     "from_epoch": 1784001888,
+     "to_epoch": 1784002929,
+     "seconds": 1041
+    },
+    {
+     "from_epoch": 1784003262,
+     "to_epoch": 1784004321,
+     "seconds": 1059
+    },
+    {
+     "from_epoch": 1784007408,
+     "to_epoch": 1784008034,
+     "seconds": 626
+    },
+    {
+     "from_epoch": 1784008326,
+     "to_epoch": 1784009011,
+     "seconds": 685
+    },
+    {
+     "from_epoch": 1784015001,
+     "to_epoch": 1784016030,
+     "seconds": 1029
+    },
+    {
+     "from_epoch": 1784016030,
+     "to_epoch": 1784016666,
+     "seconds": 636
+    },
+    {
+     "from_epoch": 1784022856,
+     "to_epoch": 1784023536,
+     "seconds": 680
+    },
+    {
+     "from_epoch": 1784027162,
+     "to_epoch": 1784027820,
+     "seconds": 658
+    },
+    {
+     "from_epoch": 1784030541,
+     "to_epoch": 1784031158,
+     "seconds": 617
+    },
+    {
+     "from_epoch": 1784032374,
+     "to_epoch": 1784033159,
+     "seconds": 785
+    },
+    {
+     "from_epoch": 1784033159,
+     "to_epoch": 1784033894,
+     "seconds": 735
+    },
+    {
+     "from_epoch": 1784041154,
+     "to_epoch": 1784042723,
+     "seconds": 1569
+    }
+   ]
+  },
+  "XIL": {
+   "ticker": "KXATPCHALLENGERMATCH-26JUL14DELXIL-XIL",
+   "files": [
+    "XIL_book.csv",
+    "XIL_trades.csv"
+   ],
+   "book_rows_per_change": 2356,
+   "book_raw_rows_in_window": 5428,
+   "trades_rows": 29,
+   "true_prints": 29,
+   "w1_close": {
+    "last_true_trade": {
+     "ts_epoch": 1784049294,
+     "exchange_ts": "2026-07-14T17:14:54.772826Z",
+     "tminus_bell_s": 48.1,
+     "price_cents": 17,
+     "size": 5.55,
+     "trade_id": "e86926da-9cff-541b-3fc7-17b93ed83e29"
+    },
+    "last_mid": {
+     "ts_epoch": 1784049337,
+     "tminus_bell_s": 5.9,
+     "mid_cents": 15.5,
+     "bid_1": 14,
+     "ask_1": 17
+    }
+   },
+   "recorder_gaps_over_600s": [
+    {
+     "from_epoch": 1784003262,
+     "to_epoch": 1784004321,
+     "seconds": 1059
+    },
+    {
+     "from_epoch": 1784007010,
+     "to_epoch": 1784008573,
+     "seconds": 1563
+    },
+    {
+     "from_epoch": 1784010823,
+     "to_epoch": 1784011428,
+     "seconds": 605
+    },
+    {
+     "from_epoch": 1784011499,
+     "to_epoch": 1784012201,
+     "seconds": 702
+    },
+    {
+     "from_epoch": 1784013347,
+     "to_epoch": 1784013969,
+     "seconds": 622
+    },
+    {
+     "from_epoch": 1784014766,
+     "to_epoch": 1784015569,
+     "seconds": 803
+    },
+    {
+     "from_epoch": 1784016080,
+     "to_epoch": 1784016701,
+     "seconds": 621
+    },
+    {
+     "from_epoch": 1784016890,
+     "to_epoch": 1784017615,
+     "seconds": 725
+    },
+    {
+     "from_epoch": 1784017836,
+     "to_epoch": 1784018931,
+     "seconds": 1095
+    },
+    {
+     "from_epoch": 1784020311,
+     "to_epoch": 1784021031,
+     "seconds": 720
+    },
+    {
+     "from_epoch": 1784021665,
+     "to_epoch": 1784022553,
+     "seconds": 888
+    },
+    {
+     "from_epoch": 1784023922,
+     "to_epoch": 1784024527,
+     "seconds": 605
+    },
+    {
+     "from_epoch": 1784025168,
+     "to_epoch": 1784026395,
+     "seconds": 1227
+    },
+    {
+     "from_epoch": 1784026840,
+     "to_epoch": 1784027498,
+     "seconds": 658
+    },
+    {
+     "from_epoch": 1784033160,
+     "to_epoch": 1784033895,
+     "seconds": 735
+    },
+    {
+     "from_epoch": 1784040696,
+     "to_epoch": 1784042719,
+     "seconds": 2023
+    },
+    {
+     "from_epoch": 1784043496,
+     "to_epoch": 1784044933,
+     "seconds": 1437
+    }
+   ]
+  }
+ }
+}

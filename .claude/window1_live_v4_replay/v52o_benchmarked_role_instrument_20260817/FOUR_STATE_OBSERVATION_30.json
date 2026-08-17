@@ -1,0 +1,38 @@
+{
+  "grading_binding": {
+    "label": "W1_GROUND_TRUTH_TABLE",
+    "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+    "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+    "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+    "bytes": 1426420,
+    "sole_grading_source": true,
+    "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+    "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+    "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+  },
+  "baseline": {
+    "states": {
+      "COMPLETE_AT_DELTA": 16,
+      "PARTIAL_FOR_REASON": 10,
+      "NEITHER_FOR_REASON": 3,
+      "UNKNOWN_BELL_NON_GRADEABLE": 1
+    },
+    "rows": 30
+  },
+  "candidate": {
+    "states": {
+      "COMPLETE_AT_DELTA": 13,
+      "PARTIAL_FOR_REASON": 13,
+      "NEITHER_FOR_REASON": 3,
+      "UNKNOWN_BELL_NON_GRADEABLE": 1
+    },
+    "rows": 30
+  },
+  "conservation": {
+    "expected": 30,
+    "baseline_sum": 30,
+    "candidate_sum": 30,
+    "pass": true
+  }
+}

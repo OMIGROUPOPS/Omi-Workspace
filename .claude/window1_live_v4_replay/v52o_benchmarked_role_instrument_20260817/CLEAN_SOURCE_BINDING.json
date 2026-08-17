@@ -1,0 +1,217 @@
+{
+  "manifest": {
+    "commit": "9929e91802dc0e0f7ed1af50c5526b2c9a730c7c",
+    "sha256": "2f5e6e5856e7f879cbf9a64395a36c82a730487581a10b30da93f70f874c339c"
+  },
+  "assets": {
+    "P1": {
+      "manifest_entry": {
+        "id": "P1",
+        "name": "THE GRID - cell-conditional expected discount",
+        "question": "How deep below its own W1 close does a leg's price dip, given its category and price cell?",
+        "layer": "MACRO",
+        "method": "per-(cat,cell) edge percentiles on the 90-cell x 6-cat grid; entry-only; ITF exits Challenger-borrowed (labeled)",
+        "source": ".claude/seqfloor_20260708/recut_cells.json",
+        "sha": "2f59130e",
+        "status": "VALIDATED - residual 0 vs realized floors (p25 -1 / med 0 / p75 +3, 272 legs) @ 17664b3f; in-sample overlap REPORTED unresolved",
+        "coverage": "6 cats x 90 cells [5,95); 2,435 pairs / 4,870 legs; corpus <= 2026-07-08",
+        "n9_wiring_target": "N4 level-prior"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "2f59130e6ffe9c1ef54b79c10a57b06f8c4cc279",
+          "path": ".claude/seqfloor_20260708/recut_cells.json",
+          "sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+          "bytes": 82073,
+          "status": "VALIDATED - residual 0 vs realized floors (p25 -1 / med 0 / p75 +3, 272 legs) @ 17664b3f; in-sample overlap REPORTED unresolved"
+        }
+      ]
+    },
+    "P2": {
+      "manifest_entry": {
+        "id": "P2",
+        "name": "Zone quality - the discriminator table",
+        "question": "Where does this OS's judgment work - by category, volume tier, price cell, mirror state, spread?",
+        "layer": "MACRO",
+        "method": "RIGHT/WRONG game adjudication vs 30/60/90-min forward truth; splits only",
+        "source": "DECISION_AUDIT.json discriminators",
+        "sha": "35ac1f5b",
+        "status": "VALIDATED - 804 games; mechanism explained (read starvation 25.9% live @ 2af60dfc)",
+        "coverage": "dev-804, Jul 12-20; 4 cats; all cells",
+        "n9_wiring_target": "N5 referee-prior"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "35ac1f5b1ce345427bbeaa1b8bc6ee85c1db8d14",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DECISION_AUDIT.json",
+          "sha256": "005d5407954b86790d121ce54731417163ce5c6b9f5802b4b7b3b0965e9a3f70",
+          "bytes": 360155,
+          "status": "VALIDATED - 804 games; mechanism explained (read starvation 25.9% live @ 2af60dfc)"
+        }
+      ]
+    },
+    "P4": {
+      "manifest_entry": {
+        "id": "P4",
+        "name": "Read forward-truth calibration",
+        "question": "What does a RISING / FALLING / SETTLED read actually predict 30-90 minutes ahead?",
+        "layer": "MACRO",
+        "method": "read-state vs realized mid path, receipt grain",
+        "source": "READ_ORGAN_FORWARD_TRUTH.json",
+        "sha": "12d67c8a",
+        "status": "VALIDATED - ~604k unique receipts; FALLING inverts 26% (the one dangerous quadrant)",
+        "coverage": "dev V47 corpus, all receipts",
+        "n9_wiring_target": "N2 read-prior"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "12d67c8ac58992e6634c5c32ac8e710980533e07",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/READ_ORGAN_FORWARD_TRUTH.json",
+          "sha256": "1671179f5d8c04fb441618d66f927b483dc3bafad1a0dabd394f662a92a5e239",
+          "bytes": 3196,
+          "status": "VALIDATED - ~604k unique receipts; FALLING inverts 26% (the one dangerous quadrant)"
+        }
+      ]
+    },
+    "P6": {
+      "manifest_entry": {
+        "id": "P6",
+        "name": "Won-pair leak ordering",
+        "question": "On pairs already won, which organ leaks cents between the fill and the floor?",
+        "layer": "MACRO",
+        "method": "overpay vs eligible standing-span low, organ-keyed",
+        "source": "OVERPAY_CENSUS.json",
+        "sha": "096241ae",
+        "status": "VALID-NARROW - ordering stands (join > cap > tracking); headline ratio retired (denominator error, fold 1)",
+        "coverage": "396 V47 dev completes",
+        "n9_wiring_target": "N4 level-prior"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "096241ae9512bc20fec7bf89b199551622a4c482",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/OVERPAY_CENSUS.json",
+          "sha256": "b738db027fe68bb10f6c5542bde959e47c07cada42e6a55532ec94317e379067",
+          "bytes": 4721,
+          "status": "VALID-NARROW - ordering stands (join > cap > tracking); headline ratio retired (denominator error, fold 1)"
+        }
+      ]
+    },
+    "P11": {
+      "manifest_entry": {
+        "id": "P11",
+        "name": "Hidden-book census + inside-print chain",
+        "question": "Do sales print inside the displayed BBO, and does the inside-print chain lead price?",
+        "layer": "MICRO (chain signature MICRO-MICRO)",
+        "method": "every print vs displayed BBO; chain +/-60s",
+        "source": "hidden-book census",
+        "sha": "6bc169bf",
+        "status": "VALIDATED - 373k dev + 580k sealed prints; +4-6 pt lead",
+        "coverage": "both corpora, all prints",
+        "n9_wiring_target": "N2 read-prior"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "6bc169bfcc448d6df8a6cd0b8dae5638e3853ebf",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/HIDDEN_BOOK_CENSUS.json",
+          "sha256": "df040425677710ecc2dc276eb7dc79f5a8483ae9ca3579eba8a8c2009313101a",
+          "bytes": 3622,
+          "status": "VALIDATED - 373k dev + 580k sealed prints; +4-6 pt lead"
+        }
+      ]
+    },
+    "P12": {
+      "manifest_entry": {
+        "id": "P12",
+        "name": "Divot arrival census",
+        "question": "Do dips actually arrive at armed risers, and when they do not, what refused them?",
+        "layer": "MICRO",
+        "method": "arrival audit at armed joins",
+        "source": "divot arrival audit",
+        "sha": "f40ac8ea",
+        "status": "VALIDATED as measure - absence-not-refusal; V50 preview 9/18",
+        "coverage": "74 riser legs dev",
+        "n9_wiring_target": "N5 referee-prior"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "f40ac8eae23b021bbe9c60e867ee0a2df24b731a",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DIVOT_ARRIVAL_AUDIT.json",
+          "sha256": "4633984385b94628838084e8814002b99b14ad2d2eb5eaac12d157f3ddfff5c6",
+          "bytes": 2698,
+          "status": "VALIDATED as measure - absence-not-refusal; V50 preview 9/18"
+        }
+      ]
+    },
+    "P13": {
+      "manifest_entry": {
+        "id": "P13",
+        "name": "Mirror coherence + one-eyed vindication",
+        "question": "Do sibling reads cohere, and whom does the market vindicate when only one side fills?",
+        "layer": "MICRO",
+        "method": "three concordant instruments (sealed coherence 31.2%; dev one-eyed BOTH-86; sealed 20/22)",
+        "source": "b26cf548 + 35ac1f5b + a20e1a85",
+        "sha": "b26cf548/35ac1f5b/a20e1a85",
+        "status": "VALIDATED - the adjudication prior screw #3 needs",
+        "coverage": "sealed-238 + dev-804 partials",
+        "n9_wiring_target": "N5 referee-prior (clause 4 adjudicate-not-freeze)"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "b26cf54803d85567f799bfdafe2bfe75403bbe2f",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SEALED_REGRET_GAUGE_238.json",
+          "sha256": "5b3d1e264d94efae2d9936165430823f31a3bd9b32f91b7c75db08b3dd20838b",
+          "bytes": 154356,
+          "status": "VALIDATED - the adjudication prior screw #3 needs"
+        },
+        {
+          "inventory": "store_CLEAN",
+          "commit": "35ac1f5b1ce345427bbeaa1b8bc6ee85c1db8d14",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DECISION_AUDIT.json",
+          "sha256": "005d5407954b86790d121ce54731417163ce5c6b9f5802b4b7b3b0965e9a3f70",
+          "bytes": 360155,
+          "status": "VALIDATED - 804 games; mechanism explained (read starvation 25.9% live @ 2af60dfc)",
+          "asset_id": "P13_SHARED_P2_SOURCE"
+        },
+        {
+          "inventory": "store_CLEAN",
+          "commit": "a20e1a85976aefee6a6f0567957174133b692df6",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAPBOUND_ANATOMY_TAIL_CHECK.json",
+          "sha256": "b2d7ceb63ed2863706b1e2282ff5ad4bdc16a292892b2931d4b2d8e9608fef97",
+          "bytes": 24169,
+          "status": "VALIDATED - the adjudication prior screw #3 needs"
+        }
+      ]
+    },
+    "P14": {
+      "manifest_entry": {
+        "id": "P14",
+        "name": "Riser depth signal rank",
+        "question": "Which dwell/slide signatures announce a deep excursion before it happens?",
+        "layer": "MICRO-MICRO",
+        "method": "candidate slate vs control at deep-excursion moments",
+        "source": "riser depth signal rank",
+        "sha": "78b5cbd4",
+        "status": "VALIDATED as measure - dwell + other-slide announce, AUC .708; slate redundant",
+        "coverage": "336 riser legs dev",
+        "n9_wiring_target": "N2 read-prior"
+      },
+      "sources": [
+        {
+          "inventory": "store_CLEAN",
+          "commit": "78b5cbd40ad7188466ac04d56467b2946b247b75",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_DEPTH_SIGNAL_RANK.json",
+          "sha256": "c5460889ecc231d9bd759a21723fc3a53b614aa06d1dedfaf1b32e75d477c78d",
+          "bytes": 12026,
+          "status": "VALIDATED as measure - dwell + other-slide announce, AUC .708; slate redundant"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "source": {
+    "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+    "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+    "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+  },
+  "rows": [
+    {
+      "row_identity": "ROLE_DOWN_AGGREGATE|ATP_MAIN",
+      "category": "ATP_MAIN",
+      "method": "FREQUENCY_WEIGHTED_MEAN_OF_EXISTING_CATEGORY_DOWN_FAMILY_MEDIAN_DEPTHS",
+      "component_rows": [
+        {
+          "row_identity": "DRIFT_DOWN|ATP_MAIN",
+          "family": "DRIFT_DOWN",
+          "legs": 11,
+          "median_depth_below_open_cents": 9
+        },
+        {
+          "row_identity": "EARLY_SET_DOWN|ATP_MAIN",
+          "family": "EARLY_SET_DOWN",
+          "legs": 19,
+          "median_depth_below_open_cents": 9.5
+        },
+        {
+          "row_identity": "LATE_BREAK_DOWN|ATP_MAIN",
+          "family": "LATE_BREAK_DOWN",
+          "legs": 5,
+          "median_depth_below_open_cents": 6
+        },
+        {
+          "row_identity": "ONE_STEP_DOWN|ATP_MAIN",
+          "family": "ONE_STEP_DOWN",
+          "legs": 9,
+          "median_depth_below_open_cents": 8
+        }
+      ],
+      "total_frequency_weight": 44,
+      "weighted_numerator": 381.5,
+      "depth_below_open_cents": 8.670454545454545,
+      "omitted_category_rows": [
+        "GRIND_WOBBLE_DOWN"
+      ],
+      "borrowed_from": null,
+      "interpolation": false,
+      "provenance": {
+        "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+        "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+        "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+      }
+    },
+    {
+      "row_identity": "ROLE_DOWN_AGGREGATE|ATP_CHALL",
+      "category": "ATP_CHALL",
+      "method": "FREQUENCY_WEIGHTED_MEAN_OF_EXISTING_CATEGORY_DOWN_FAMILY_MEDIAN_DEPTHS",
+      "component_rows": [
+        {
+          "row_identity": "DRIFT_DOWN|ATP_CHALL",
+          "family": "DRIFT_DOWN",
+          "legs": 16,
+          "median_depth_below_open_cents": 10
+        },
+        {
+          "row_identity": "EARLY_SET_DOWN|ATP_CHALL",
+          "family": "EARLY_SET_DOWN",
+          "legs": 21,
+          "median_depth_below_open_cents": 8
+        },
+        {
+          "row_identity": "LATE_BREAK_DOWN|ATP_CHALL",
+          "family": "LATE_BREAK_DOWN",
+          "legs": 19,
+          "median_depth_below_open_cents": 8
+        },
+        {
+          "row_identity": "ONE_STEP_DOWN|ATP_CHALL",
+          "family": "ONE_STEP_DOWN",
+          "legs": 31,
+          "median_depth_below_open_cents": 8
+        }
+      ],
+      "total_frequency_weight": 87,
+      "weighted_numerator": 728,
+      "depth_below_open_cents": 8.367816091954023,
+      "omitted_category_rows": [
+        "GRIND_WOBBLE_DOWN"
+      ],
+      "borrowed_from": null,
+      "interpolation": false,
+      "provenance": {
+        "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+        "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+        "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+      }
+    },
+    {
+      "row_identity": "ROLE_DOWN_AGGREGATE|WTA_MAIN",
+      "category": "WTA_MAIN",
+      "method": "FREQUENCY_WEIGHTED_MEAN_OF_EXISTING_CATEGORY_DOWN_FAMILY_MEDIAN_DEPTHS",
+      "component_rows": [
+        {
+          "row_identity": "DRIFT_DOWN|WTA_MAIN",
+          "family": "DRIFT_DOWN",
+          "legs": 12,
+          "median_depth_below_open_cents": 8
+        },
+        {
+          "row_identity": "EARLY_SET_DOWN|WTA_MAIN",
+          "family": "EARLY_SET_DOWN",
+          "legs": 19,
+          "median_depth_below_open_cents": 10
+        },
+        {
+          "row_identity": "ONE_STEP_DOWN|WTA_MAIN",
+          "family": "ONE_STEP_DOWN",
+          "legs": 11,
+          "median_depth_below_open_cents": 8
+        }
+      ],
+      "total_frequency_weight": 42,
+      "weighted_numerator": 374,
+      "depth_below_open_cents": 8.904761904761905,
+      "omitted_category_rows": [
+        "LATE_BREAK_DOWN",
+        "GRIND_WOBBLE_DOWN"
+      ],
+      "borrowed_from": null,
+      "interpolation": false,
+      "provenance": {
+        "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+        "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+        "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+      }
+    },
+    {
+      "row_identity": "ROLE_DOWN_AGGREGATE|WTA_CHALL",
+      "category": "WTA_CHALL",
+      "method": "FREQUENCY_WEIGHTED_MEAN_OF_EXISTING_CATEGORY_DOWN_FAMILY_MEDIAN_DEPTHS",
+      "component_rows": [
+        {
+          "row_identity": "DRIFT_DOWN|WTA_CHALL",
+          "family": "DRIFT_DOWN",
+          "legs": 5,
+          "median_depth_below_open_cents": 7
+        },
+        {
+          "row_identity": "LATE_BREAK_DOWN|WTA_CHALL",
+          "family": "LATE_BREAK_DOWN",
+          "legs": 9,
+          "median_depth_below_open_cents": 12
+        }
+      ],
+      "total_frequency_weight": 14,
+      "weighted_numerator": 143,
+      "depth_below_open_cents": 10.214285714285714,
+      "omitted_category_rows": [
+        "EARLY_SET_DOWN",
+        "ONE_STEP_DOWN",
+        "GRIND_WOBBLE_DOWN"
+      ],
+      "borrowed_from": null,
+      "interpolation": false,
+      "provenance": {
+        "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+        "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+        "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+      }
+    }
+  ]
+}

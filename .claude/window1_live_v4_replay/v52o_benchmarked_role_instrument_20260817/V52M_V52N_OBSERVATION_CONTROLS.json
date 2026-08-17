@@ -1,0 +1,3456 @@
+{
+  "V52M_OBSERVATION_CONTROL": {
+    "score": {
+      "D": 29,
+      "unknown_bell": 1,
+      "completed_pairs": 12,
+      "under_par_pairs": 12,
+      "states": {
+        "PARTIAL_FOR_REASON": 15,
+        "COMPLETE_AT_DELTA": 12,
+        "NEITHER_FOR_REASON": 2,
+        "UNKNOWN_BELL_NON_GRADEABLE": 1
+      },
+      "offer_denominator_under_par": 29,
+      "binding": {
+        "label": "W1_GROUND_TRUTH_TABLE",
+        "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+        "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+        "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+        "bytes": 1426420,
+        "sole_grading_source": true,
+        "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+        "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+        "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+      },
+      "conservation": {
+        "rows": 30,
+        "eligible": 29,
+        "unknown_bell": 1,
+        "pass": true
+      }
+    },
+    "states": {
+      "PARTIAL_FOR_REASON": 15,
+      "COMPLETE_AT_DELTA": 12,
+      "NEITHER_FOR_REASON": 2,
+      "UNKNOWN_BELL_NON_GRADEABLE": 1
+    },
+    "rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BROHUA|HUA",
+            "leg_id": "HUA",
+            "entry_cents": 28,
+            "fill_timestamp_epoch": 1783828569.691,
+            "ground_truth_floor_cents": 28,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BROHUA|BRO",
+            "leg_id": "BRO",
+            "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 9,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 5877
+            },
+            "ground_truth_floor_cents": 63
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 91,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+          "code": "26JUL12BROHUA",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783853880,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783801048,
+          "verified_span": "OK",
+          "span_start_epoch": 1783817319,
+          "span_end_epoch": 1783853880,
+          "legs": {
+            "BRO": {
+              "leg_id": "BRO",
+              "floor_cents": 63,
+              "floor_epoch": 1783851804.8
+            },
+            "HUA": {
+              "leg_id": "HUA",
+              "floor_cents": 28,
+              "floor_epoch": 1783828569.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12DROPIR|DRO",
+            "leg_id": "DRO",
+            "entry_cents": 59,
+            "fill_timestamp_epoch": 1783841157.124,
+            "ground_truth_floor_cents": 59,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12DROPIR|PIR",
+            "leg_id": "PIR",
+            "entry_cents": 40,
+            "fill_timestamp_epoch": 1783836117.262,
+            "ground_truth_floor_cents": 40,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+          "code": "26JUL12DROPIR",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783872300,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (29 receipts, zero spread)",
+          "w1_left_epoch": 1783829536,
+          "verified_span": "OK",
+          "span_start_epoch": 1783829748,
+          "span_end_epoch": 1783872300,
+          "legs": {
+            "DRO": {
+              "leg_id": "DRO",
+              "floor_cents": 59,
+              "floor_epoch": 1783841157.1
+            },
+            "PIR": {
+              "leg_id": "PIR",
+              "floor_cents": 40,
+              "floor_epoch": 1783836117.3
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "NEITHER_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PIETAB|PIE",
+            "leg_id": "PIE",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 5,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 1
+            },
+            "ground_truth_floor_cents": 66
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PIETAB|TAB",
+            "leg_id": "TAB",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 5,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 33
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+          "code": "26JUL12PIETAB",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783856760,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783809087,
+          "verified_span": "OK",
+          "span_start_epoch": 1783810443,
+          "span_end_epoch": 1783856760,
+          "legs": {
+            "PIE": {
+              "leg_id": "PIE",
+              "floor_cents": 66,
+              "floor_epoch": 1783843023
+            },
+            "TAB": {
+              "leg_id": "TAB",
+              "floor_cents": 33,
+              "floor_epoch": 1783834482.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "category": "ATP_CHALL",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+            "leg_id": "KUH",
+            "entry_cents": 18,
+            "fill_timestamp_epoch": 1783879149.48,
+            "ground_truth_floor_cents": 15,
+            "entry_minus_floor_cents": 3
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+            "leg_id": "POL",
+            "entry_cents": 81,
+            "fill_timestamp_epoch": 1783872979.377,
+            "ground_truth_floor_cents": 80,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "code": "26JUL12POLKUH",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783879200,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (6 receipts, zero spread)",
+          "w1_left_epoch": 1783830737,
+          "verified_span": "OK",
+          "span_start_epoch": 1783831173,
+          "span_end_epoch": 1783879200,
+          "legs": {
+            "KUH": {
+              "leg_id": "KUH",
+              "floor_cents": 15,
+              "floor_epoch": 1783879149.5
+            },
+            "POL": {
+              "leg_id": "POL",
+              "floor_cents": 80,
+              "floor_epoch": 1783872979.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+        "category": "ATP_CHALL",
+        "price_region": "51_75+le25",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL13POLMIY|MIY",
+            "leg_id": "MIY",
+            "entry_cents": 70,
+            "fill_timestamp_epoch": 1783925511.22,
+            "ground_truth_floor_cents": 70,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL13POLMIY|POL",
+            "leg_id": "POL",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 7,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 791
+            },
+            "ground_truth_floor_cents": 25
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+          "code": "26JUL13POLMIY",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783961820,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783912883,
+          "verified_span": "OK",
+          "span_start_epoch": 1783924694,
+          "span_end_epoch": 1783947173.069,
+          "legs": {
+            "MIY": {
+              "leg_id": "MIY",
+              "floor_cents": 70,
+              "floor_epoch": 1783925511.2
+            },
+            "POL": {
+              "leg_id": "POL",
+              "floor_cents": 25,
+              "floor_epoch": 1783946624.8
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+        "category": "ATP_CHALL",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": -3,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL16ALCANG|ALC",
+            "leg_id": "ALC",
+            "entry_cents": 81,
+            "fill_timestamp_epoch": 1784154980.247,
+            "ground_truth_floor_cents": 81,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL16ALCANG|ANG",
+            "leg_id": "ANG",
+            "entry_cents": 16,
+            "fill_timestamp_epoch": 1784150790.701,
+            "ground_truth_floor_cents": 16,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+          "code": "26JUL16ALCANG",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784192160,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784146536,
+          "verified_span": "OK",
+          "span_start_epoch": 1784146536,
+          "span_end_epoch": 1784159714.124,
+          "legs": {
+            "ALC": {
+              "leg_id": "ALC",
+              "floor_cents": 81,
+              "floor_epoch": 1784154980.2
+            },
+            "ANG": {
+              "leg_id": "ANG",
+              "floor_cents": 16,
+              "floor_epoch": 1784150790.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+            "leg_id": "MAR",
+            "entry_cents": 60,
+            "fill_timestamp_epoch": 1784475080.668,
+            "ground_truth_floor_cents": 59,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+            "leg_id": "ARS",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 8,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 35
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 94,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "code": "26JUL19ARSMAR",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784477100,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (66 receipts, zero spread)",
+          "w1_left_epoch": 1784434536,
+          "verified_span": "OK",
+          "span_start_epoch": 1784448368,
+          "span_end_epoch": 1784477100,
+          "legs": {
+            "ARS": {
+              "leg_id": "ARS",
+              "floor_cents": 35,
+              "floor_epoch": 1784451046.4
+            },
+            "MAR": {
+              "leg_id": "MAR",
+              "floor_cents": 59,
+              "floor_epoch": 1784476175.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "category": "ATP_CHALL",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MENKUM|KUM",
+            "leg_id": "KUM",
+            "entry_cents": 94,
+            "fill_timestamp_epoch": 1784459651.308,
+            "ground_truth_floor_cents": 94,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MENKUM|MEN",
+            "leg_id": "MEN",
+            "entry_cents": 5,
+            "fill_timestamp_epoch": 1784440309.335,
+            "ground_truth_floor_cents": 5,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+          "code": "26JUL19MENKUM",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784463060,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784414096,
+          "verified_span": "OK",
+          "span_start_epoch": 1784435532,
+          "span_end_epoch": 1784463060,
+          "legs": {
+            "KUM": {
+              "leg_id": "KUM",
+              "floor_cents": 94,
+              "floor_epoch": 1784459651.3
+            },
+            "MEN": {
+              "leg_id": "MEN",
+              "floor_cents": 5,
+              "floor_epoch": 1784437461.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GALARN|ARN",
+            "leg_id": "ARN",
+            "entry_cents": 39,
+            "fill_timestamp_epoch": 1784532960.812,
+            "ground_truth_floor_cents": 39,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GALARN|GAL",
+            "leg_id": "GAL",
+            "entry_cents": 60,
+            "fill_timestamp_epoch": 1784526892.609,
+            "ground_truth_floor_cents": 60,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+          "code": "26JUL20GALARN",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784549220,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784508493,
+          "verified_span": "OK",
+          "span_start_epoch": 1784508493,
+          "span_end_epoch": 1784549220,
+          "legs": {
+            "ARN": {
+              "leg_id": "ARN",
+              "floor_cents": 39,
+              "floor_epoch": 1784508946.4
+            },
+            "GAL": {
+              "leg_id": "GAL",
+              "floor_cents": 60,
+              "floor_epoch": 1784526864.1
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20KOZPAS|KOZ",
+            "leg_id": "KOZ",
+            "entry_cents": 64,
+            "fill_timestamp_epoch": 1784558005.712,
+            "ground_truth_floor_cents": 64,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20KOZPAS|PAS",
+            "leg_id": "PAS",
+            "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 61,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 1001
+            },
+            "ground_truth_floor_cents": 35
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+          "code": "26JUL20KOZPAS",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784564340,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784517832,
+          "verified_span": "OK",
+          "span_start_epoch": 1784517991,
+          "span_end_epoch": 1784558340,
+          "legs": {
+            "KOZ": {
+              "leg_id": "KOZ",
+              "floor_cents": 64,
+              "floor_epoch": 1784558005.7
+            },
+            "PAS": {
+              "leg_id": "PAS",
+              "floor_cents": 35,
+              "floor_epoch": 1784522085.5
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VANOUA|VAN",
+            "leg_id": "VAN",
+            "entry_cents": 54,
+            "fill_timestamp_epoch": 1784508636.412,
+            "ground_truth_floor_cents": 48,
+            "entry_minus_floor_cents": 6
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VANOUA|OUA",
+            "leg_id": "OUA",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 76,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 44
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 92,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+          "code": "26JUL20VANOUA",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784545200,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784502833,
+          "verified_span": "OK",
+          "span_start_epoch": 1784503006,
+          "span_end_epoch": 1784545200,
+          "legs": {
+            "OUA": {
+              "leg_id": "OUA",
+              "floor_cents": 44,
+              "floor_epoch": 1784507014.3
+            },
+            "VAN": {
+              "leg_id": "VAN",
+              "floor_cents": 48,
+              "floor_epoch": 1784519490.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": -3,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|FER",
+            "leg_id": "FER",
+            "entry_cents": 43,
+            "fill_timestamp_epoch": 1783808988.001,
+            "ground_truth_floor_cents": 43,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|KRU",
+            "leg_id": "KRU",
+            "entry_cents": 54,
+            "fill_timestamp_epoch": 1783845392,
+            "ground_truth_floor_cents": 54,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL12KRUFER",
+          "code": "26JUL12KRUFER",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1783845420,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783789837,
+          "verified_span": "OK",
+          "span_start_epoch": 1783795748,
+          "span_end_epoch": 1783845420,
+          "legs": {
+            "FER": {
+              "leg_id": "FER",
+              "floor_cents": 43,
+              "floor_epoch": 1783808988
+            },
+            "KRU": {
+              "leg_id": "KRU",
+              "floor_cents": 54,
+              "floor_epoch": 1783845392
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "category": "ATP_MAIN",
+        "price_region": "ge75+le25",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+            "leg_id": "SAN",
+            "entry_cents": 27,
+            "fill_timestamp_epoch": 1783893637.26,
+            "ground_truth_floor_cents": 22,
+            "entry_minus_floor_cents": 5
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+            "leg_id": "DAN",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 244,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 69
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 91,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "code": "26JUL13SANDAN",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1783942500,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (3 receipts, zero spread)",
+          "w1_left_epoch": 1783870590,
+          "verified_span": "OK",
+          "span_start_epoch": 1783880145,
+          "span_end_epoch": 1783942500,
+          "legs": {
+            "DAN": {
+              "leg_id": "DAN",
+              "floor_cents": 69,
+              "floor_epoch": 1783883837.7
+            },
+            "SAN": {
+              "leg_id": "SAN",
+              "floor_cents": 22,
+              "floor_epoch": 1783919819.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL14TRAKRU",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL14TRAKRU|TRA",
+            "leg_id": "TRA",
+            "entry_cents": 46,
+            "fill_timestamp_epoch": 1783970744.944,
+            "ground_truth_floor_cents": 42,
+            "entry_minus_floor_cents": 4
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL14TRAKRU|KRU",
+            "leg_id": "KRU",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 4,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 50
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 92,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL14TRAKRU",
+          "code": "26JUL14TRAKRU",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784033100,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (57 receipts, zero spread)",
+          "w1_left_epoch": 1783956292,
+          "verified_span": "OK",
+          "span_start_epoch": 1783967431,
+          "span_end_epoch": 1784033100,
+          "legs": {
+            "KRU": {
+              "leg_id": "KRU",
+              "floor_cents": 50,
+              "floor_epoch": 1783969008.3
+            },
+            "TRA": {
+              "leg_id": "TRA",
+              "floor_cents": 42,
+              "floor_epoch": 1784002773.5
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL15ALTDAR",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15ALTDAR|ALT",
+            "leg_id": "ALT",
+            "entry_cents": 36,
+            "fill_timestamp_epoch": 1784046357.418,
+            "ground_truth_floor_cents": 36,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15ALTDAR|DAR",
+            "leg_id": "DAR",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 17,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 61
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL15ALTDAR",
+          "code": "26JUL15ALTDAR",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784114025,
+          "bell_source": "OBSERVED_STARTS_UPPER_BOUND",
+          "bell_precision": "discovery-lagged upper bound; tape inference later, contradicted",
+          "w1_left_epoch": 1784043936,
+          "verified_span": "OK",
+          "span_start_epoch": 1784044991,
+          "span_end_epoch": 1784114025,
+          "legs": {
+            "ALT": {
+              "leg_id": "ALT",
+              "floor_cents": 36,
+              "floor_epoch": 1784046357.4
+            },
+            "DAR": {
+              "leg_id": "DAR",
+              "floor_cents": 61,
+              "floor_epoch": 1784074739.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL15CARUGO",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15CARUGO|CAR",
+            "leg_id": "CAR",
+            "entry_cents": 62,
+            "fill_timestamp_epoch": 1784056587.937,
+            "ground_truth_floor_cents": 60,
+            "entry_minus_floor_cents": 2
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15CARUGO|UGO",
+            "leg_id": "UGO",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 30,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 38
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 98,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL15CARUGO",
+          "code": "26JUL15CARUGO",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784121225,
+          "bell_source": "OBSERVED_STARTS_UPPER_BOUND",
+          "bell_precision": "discovery-lagged upper bound; tape inference later, contradicted",
+          "w1_left_epoch": 1784050034,
+          "verified_span": "OK",
+          "span_start_epoch": 1784055184,
+          "span_end_epoch": 1784121225,
+          "legs": {
+            "CAR": {
+              "leg_id": "CAR",
+              "floor_cents": 60,
+              "floor_epoch": 1784063858.9
+            },
+            "UGO": {
+              "leg_id": "UGO",
+              "floor_cents": 38,
+              "floor_epoch": 1784085980.8
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "NEITHER_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+            "leg_id": "DRO",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 7,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 39
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+            "leg_id": "MER",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 4,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 48
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 87,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "code": "26JUL16MERDRO",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784210700,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784148754,
+          "verified_span": "OK",
+          "span_start_epoch": 1784153697,
+          "span_end_epoch": 1784210700,
+          "legs": {
+            "DRO": {
+              "leg_id": "DRO",
+              "floor_cents": 39,
+              "floor_epoch": 1784174922.5
+            },
+            "MER": {
+              "leg_id": "MER",
+              "floor_cents": 48,
+              "floor_epoch": 1784157227.6
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "category": "ATP_MAIN",
+        "price_region": "ge75+le25",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL18ROCBUE|ROC",
+            "leg_id": "ROC",
+            "entry_cents": 22,
+            "fill_timestamp_epoch": 1784332764.693,
+            "ground_truth_floor_cents": 16,
+            "entry_minus_floor_cents": 6
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL18ROCBUE|BUE",
+            "leg_id": "BUE",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 70,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 80
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 96,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL18ROCBUE",
+          "code": "26JUL18ROCBUE",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784377620,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784316994,
+          "verified_span": "OK",
+          "span_start_epoch": 1784332665,
+          "span_end_epoch": 1784375100,
+          "legs": {
+            "BUE": {
+              "leg_id": "BUE",
+              "floor_cents": 80,
+              "floor_epoch": 1784332794.7
+            },
+            "ROC": {
+              "leg_id": "ROC",
+              "floor_cents": 16,
+              "floor_epoch": 1784374592.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19KOPBUS",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL19KOPBUS|BUS",
+            "leg_id": "BUS",
+            "entry_cents": 65,
+            "fill_timestamp_epoch": 1784458375.733,
+            "ground_truth_floor_cents": 61,
+            "entry_minus_floor_cents": 4
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL19KOPBUS|KOP",
+            "leg_id": "KOP",
+            "entry_cents": 34,
+            "fill_timestamp_epoch": 1784457568.803,
+            "ground_truth_floor_cents": 34,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL19KOPBUS",
+          "code": "26JUL19KOPBUS",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784557500,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784373580,
+          "verified_span": "OK",
+          "span_start_epoch": 1784390996,
+          "span_end_epoch": 1784557500,
+          "legs": {
+            "BUS": {
+              "leg_id": "BUS",
+              "floor_cents": 61,
+              "floor_epoch": 1784488249.6
+            },
+            "KOP": {
+              "leg_id": "KOP",
+              "floor_cents": 34,
+              "floor_epoch": 1784428373.3
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+        "category": "WTA_CHALL",
+        "price_region": "ge75+le25",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RADREN|RAD",
+            "leg_id": "RAD",
+            "entry_cents": 84,
+            "fill_timestamp_epoch": 1783909626.206,
+            "ground_truth_floor_cents": 84,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RADREN|REN",
+            "leg_id": "REN",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 85,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 15
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+          "code": "26JUL13RADREN",
+          "category": "WTA_CHALL",
+          "bell_epoch": 1783932180,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783888888,
+          "verified_span": "OK",
+          "span_start_epoch": 1783902207,
+          "span_end_epoch": 1783931718.629,
+          "legs": {
+            "RAD": {
+              "leg_id": "RAD",
+              "floor_cents": 84,
+              "floor_epoch": 1783902566.7
+            },
+            "REN": {
+              "leg_id": "REN",
+              "floor_cents": 15,
+              "floor_epoch": 1783907811.6
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+        "category": "WTA_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 98,
+        "delta_vs_100_cents": -2,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL14AKSVAL|AKS",
+            "leg_id": "AKS",
+            "entry_cents": 45,
+            "fill_timestamp_epoch": 1784034532.698,
+            "ground_truth_floor_cents": 45,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL14AKSVAL|VAL",
+            "leg_id": "VAL",
+            "entry_cents": 53,
+            "fill_timestamp_epoch": 1784000990.03,
+            "ground_truth_floor_cents": 50,
+            "entry_minus_floor_cents": 3
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+          "code": "26JUL14AKSVAL",
+          "category": "WTA_CHALL",
+          "bell_epoch": 1784035740,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783984845,
+          "verified_span": "OK",
+          "span_start_epoch": 1783984939,
+          "span_end_epoch": 1784034780,
+          "legs": {
+            "AKS": {
+              "leg_id": "AKS",
+              "floor_cents": 45,
+              "floor_epoch": 1784034532.7
+            },
+            "VAL": {
+              "leg_id": "VAL",
+              "floor_cents": 50,
+              "floor_epoch": 1784034773
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+        "category": "WTA_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL15TANGAS|GAS",
+            "leg_id": "GAS",
+            "entry_cents": 56,
+            "fill_timestamp_epoch": 1784079858.839,
+            "ground_truth_floor_cents": 55,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL15TANGAS|TAN",
+            "leg_id": "TAN",
+            "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 38,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 1442
+            },
+            "ground_truth_floor_cents": 44
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+          "code": "26JUL15TANGAS",
+          "category": "WTA_CHALL",
+          "bell_epoch": 1784113800,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784070889,
+          "verified_span": "OK",
+          "span_start_epoch": 1784070889,
+          "span_end_epoch": 1784113537.781,
+          "legs": {
+            "GAS": {
+              "leg_id": "GAS",
+              "floor_cents": 55,
+              "floor_epoch": 1784086091.2
+            },
+            "TAN": {
+              "leg_id": "TAN",
+              "floor_cents": 44,
+              "floor_epoch": 1784080469.5
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12HIBTON",
+        "category": "WTA_MAIN",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 98,
+        "delta_vs_100_cents": -2,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL12HIBTON|HIB",
+            "leg_id": "HIB",
+            "entry_cents": 85,
+            "fill_timestamp_epoch": 1783829587.542,
+            "ground_truth_floor_cents": 84,
+            "entry_minus_floor_cents": 1
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL12HIBTON|TON",
+            "leg_id": "TON",
+            "entry_cents": 13,
+            "fill_timestamp_epoch": 1783802041.604,
+            "ground_truth_floor_cents": 12,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 96,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL12HIBTON",
+          "code": "26JUL12HIBTON",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1783865280,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783799741,
+          "verified_span": "OK",
+          "span_start_epoch": 1783800043,
+          "span_end_epoch": 1783865280,
+          "legs": {
+            "HIB": {
+              "leg_id": "HIB",
+              "floor_cents": 84,
+              "floor_epoch": 1783829587.5
+            },
+            "TON": {
+              "leg_id": "TON",
+              "floor_cents": 12,
+              "floor_epoch": 1783861673.1
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13KAWWAL|KAW",
+            "leg_id": "KAW",
+            "entry_cents": 35,
+            "fill_timestamp_epoch": 1783866648.204,
+            "ground_truth_floor_cents": 31,
+            "entry_minus_floor_cents": 4
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13KAWWAL|WAL",
+            "leg_id": "WAL",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 13819,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 66
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+          "code": "26JUL13KAWWAL",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784050380,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783843801,
+          "verified_span": "OK",
+          "span_start_epoch": 1783864828,
+          "span_end_epoch": 1783945758.672,
+          "legs": {
+            "KAW": {
+              "leg_id": "KAW",
+              "floor_cents": 31,
+              "floor_epoch": 1783945740.7
+            },
+            "WAL": {
+              "leg_id": "WAL",
+              "floor_cents": 66,
+              "floor_epoch": 1783865879.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL13MONMAS",
+        "category": "WTA_MAIN",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": -3,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13MONMAS|MAS",
+            "leg_id": "MAS",
+            "entry_cents": 81,
+            "fill_timestamp_epoch": 1783894258.702,
+            "ground_truth_floor_cents": 81,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13MONMAS|MON",
+            "leg_id": "MON",
+            "entry_cents": 16,
+            "fill_timestamp_epoch": 1783906372.802,
+            "ground_truth_floor_cents": 15,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 96,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL13MONMAS",
+          "code": "26JUL13MONMAS",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784040300,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1783851035,
+          "verified_span": "OK",
+          "span_start_epoch": 1783851035,
+          "span_end_epoch": 1784040300,
+          "legs": {
+            "MAS": {
+              "leg_id": "MAS",
+              "floor_cents": 81,
+              "floor_epoch": 1783894258.7
+            },
+            "MON": {
+              "leg_id": "MON",
+              "floor_cents": 15,
+              "floor_epoch": 1783906372.8
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "category": "WTA_MAIN",
+        "price_region": "le25+le25",
+        "state": "UNKNOWN_BELL_NON_GRADEABLE",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [],
+        "missing_legs": [],
+        "offered_under_par": null,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "code": "26JUL14PUTJEA",
+          "category": "WTA_MAIN",
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "bell_precision": "no evidence; not guessed",
+          "w1_left_epoch": 1783936553,
+          "verified_span": "UNKNOWN",
+          "span_start_epoch": null,
+          "span_end_epoch": null,
+          "legs": {
+            "JEA": {
+              "leg_id": "JEA",
+              "floor_cents": null,
+              "floor_epoch": null
+            },
+            "PUT": {
+              "leg_id": "PUT",
+              "floor_cents": null,
+              "floor_epoch": null
+            }
+          },
+          "scoring_class": "UNKNOWN_BELL",
+          "scoring_eligible": false
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL14UDVROM",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14UDVROM|ROM",
+            "leg_id": "ROM",
+            "entry_cents": 48,
+            "fill_timestamp_epoch": 1783995258.921,
+            "ground_truth_floor_cents": 47,
+            "entry_minus_floor_cents": 1
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14UDVROM|UDV",
+            "leg_id": "UDV",
+            "entry_cents": 51,
+            "fill_timestamp_epoch": 1783990429.616,
+            "ground_truth_floor_cents": 51,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 98,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL14UDVROM",
+          "code": "26JUL14UDVROM",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784041680,
+          "bell_source": "TAPE_INFERENCE_CORROBORATED",
+          "bell_precision": "inferred +-30min (89% val.); observed in-play discovery +18175s after corroborates",
+          "w1_left_epoch": 1783958437,
+          "verified_span": "OK",
+          "span_start_epoch": 1783964777,
+          "span_end_epoch": 1784039280,
+          "legs": {
+            "ROM": {
+              "leg_id": "ROM",
+              "floor_cents": 47,
+              "floor_epoch": 1783995258.9
+            },
+            "UDV": {
+              "leg_id": "UDV",
+              "floor_cents": 51,
+              "floor_epoch": 1783990429.6
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL16UDVKAW|KAW",
+            "leg_id": "KAW",
+            "entry_cents": 50,
+            "fill_timestamp_epoch": 1784134289.101,
+            "ground_truth_floor_cents": 46,
+            "entry_minus_floor_cents": 4
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL16UDVKAW|UDV",
+            "leg_id": "UDV",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 189,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 51
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+          "code": "26JUL16UDVKAW",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784220840,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784106426,
+          "verified_span": "OK",
+          "span_start_epoch": 1784106633,
+          "span_end_epoch": 1784215800,
+          "legs": {
+            "KAW": {
+              "leg_id": "KAW",
+              "floor_cents": 46,
+              "floor_epoch": 1784170421.6
+            },
+            "UDV": {
+              "leg_id": "UDV",
+              "floor_cents": 51,
+              "floor_epoch": 1784144057.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL17UDVBAD|BAD",
+            "leg_id": "BAD",
+            "entry_cents": 71,
+            "fill_timestamp_epoch": 1784284872.567,
+            "ground_truth_floor_cents": 66,
+            "entry_minus_floor_cents": 5
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL17UDVBAD|UDV",
+            "leg_id": "UDV",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 10,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 147
+            },
+            "ground_truth_floor_cents": 26
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 92,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+          "code": "26JUL17UDVBAD",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784301960,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784231952,
+          "verified_span": "OK",
+          "span_start_epoch": 1784234455,
+          "span_end_epoch": 1784297460,
+          "legs": {
+            "BAD": {
+              "leg_id": "BAD",
+              "floor_cents": 66,
+              "floor_epoch": 1784234484.7
+            },
+            "UDV": {
+              "leg_id": "UDV",
+              "floor_cents": 26,
+              "floor_epoch": 1784246669
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL18MORAKS",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 95,
+        "delta_vs_100_cents": -5,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18MORAKS|AKS",
+            "leg_id": "AKS",
+            "entry_cents": 65,
+            "fill_timestamp_epoch": 1784326954.302,
+            "ground_truth_floor_cents": 65,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18MORAKS|MOR",
+            "leg_id": "MOR",
+            "entry_cents": 30,
+            "fill_timestamp_epoch": 1784326956.216,
+            "ground_truth_floor_cents": 30,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL18MORAKS",
+          "code": "26JUL18MORAKS",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784393700,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784305222,
+          "verified_span": "OK",
+          "span_start_epoch": 1784325926,
+          "span_end_epoch": 1784393700,
+          "legs": {
+            "AKS": {
+              "leg_id": "AKS",
+              "floor_cents": 65,
+              "floor_epoch": 1784326954.3
+            },
+            "MOR": {
+              "leg_id": "MOR",
+              "floor_cents": 30,
+              "floor_epoch": 1784326956.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      }
+    ]
+  },
+  "V52N_OBSERVATION_CONTROL": {
+    "score": {
+      "D": 29,
+      "unknown_bell": 1,
+      "completed_pairs": 15,
+      "under_par_pairs": 15,
+      "states": {
+        "COMPLETE_AT_DELTA": 15,
+        "PARTIAL_FOR_REASON": 12,
+        "NEITHER_FOR_REASON": 2,
+        "UNKNOWN_BELL_NON_GRADEABLE": 1
+      },
+      "offer_denominator_under_par": 29,
+      "binding": {
+        "label": "W1_GROUND_TRUTH_TABLE",
+        "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+        "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+        "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+        "bytes": 1426420,
+        "sole_grading_source": true,
+        "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+        "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+        "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+      },
+      "conservation": {
+        "rows": 30,
+        "eligible": 29,
+        "unknown_bell": 1,
+        "pass": true
+      }
+    },
+    "states": {
+      "COMPLETE_AT_DELTA": 15,
+      "PARTIAL_FOR_REASON": 12,
+      "NEITHER_FOR_REASON": 2,
+      "UNKNOWN_BELL_NON_GRADEABLE": 1
+    },
+    "rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BROHUA|HUA",
+            "leg_id": "HUA",
+            "entry_cents": 28,
+            "fill_timestamp_epoch": 1783828569.691,
+            "ground_truth_floor_cents": 28,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12BROHUA|BRO",
+            "leg_id": "BRO",
+            "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 9,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 5877
+            },
+            "ground_truth_floor_cents": 63
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 91,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+          "code": "26JUL12BROHUA",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783853880,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783801048,
+          "verified_span": "OK",
+          "span_start_epoch": 1783817319,
+          "span_end_epoch": 1783853880,
+          "legs": {
+            "BRO": {
+              "leg_id": "BRO",
+              "floor_cents": 63,
+              "floor_epoch": 1783851804.8
+            },
+            "HUA": {
+              "leg_id": "HUA",
+              "floor_cents": 28,
+              "floor_epoch": 1783828569.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12DROPIR|DRO",
+            "leg_id": "DRO",
+            "entry_cents": 59,
+            "fill_timestamp_epoch": 1783841157.124,
+            "ground_truth_floor_cents": 59,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12DROPIR|PIR",
+            "leg_id": "PIR",
+            "entry_cents": 40,
+            "fill_timestamp_epoch": 1783836117.262,
+            "ground_truth_floor_cents": 40,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+          "code": "26JUL12DROPIR",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783872300,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (29 receipts, zero spread)",
+          "w1_left_epoch": 1783829536,
+          "verified_span": "OK",
+          "span_start_epoch": 1783829748,
+          "span_end_epoch": 1783872300,
+          "legs": {
+            "DRO": {
+              "leg_id": "DRO",
+              "floor_cents": 59,
+              "floor_epoch": 1783841157.1
+            },
+            "PIR": {
+              "leg_id": "PIR",
+              "floor_cents": 40,
+              "floor_epoch": 1783836117.3
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "NEITHER_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PIETAB|PIE",
+            "leg_id": "PIE",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 5,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 1
+            },
+            "ground_truth_floor_cents": 66
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12PIETAB|TAB",
+            "leg_id": "TAB",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 5,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 33
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+          "code": "26JUL12PIETAB",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783856760,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783809087,
+          "verified_span": "OK",
+          "span_start_epoch": 1783810443,
+          "span_end_epoch": 1783856760,
+          "legs": {
+            "PIE": {
+              "leg_id": "PIE",
+              "floor_cents": 66,
+              "floor_epoch": 1783843023
+            },
+            "TAB": {
+              "leg_id": "TAB",
+              "floor_cents": 33,
+              "floor_epoch": 1783834482.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "category": "ATP_CHALL",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+            "leg_id": "KUH",
+            "entry_cents": 18,
+            "fill_timestamp_epoch": 1783879149.48,
+            "ground_truth_floor_cents": 15,
+            "entry_minus_floor_cents": 3
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+            "leg_id": "POL",
+            "entry_cents": 81,
+            "fill_timestamp_epoch": 1783872979.377,
+            "ground_truth_floor_cents": 80,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "code": "26JUL12POLKUH",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783879200,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (6 receipts, zero spread)",
+          "w1_left_epoch": 1783830737,
+          "verified_span": "OK",
+          "span_start_epoch": 1783831173,
+          "span_end_epoch": 1783879200,
+          "legs": {
+            "KUH": {
+              "leg_id": "KUH",
+              "floor_cents": 15,
+              "floor_epoch": 1783879149.5
+            },
+            "POL": {
+              "leg_id": "POL",
+              "floor_cents": 80,
+              "floor_epoch": 1783872979.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+        "category": "ATP_CHALL",
+        "price_region": "51_75+le25",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL13POLMIY|MIY",
+            "leg_id": "MIY",
+            "entry_cents": 70,
+            "fill_timestamp_epoch": 1783925511.22,
+            "ground_truth_floor_cents": 70,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL13POLMIY|POL",
+            "leg_id": "POL",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 7,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 791
+            },
+            "ground_truth_floor_cents": 25
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+          "code": "26JUL13POLMIY",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1783961820,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783912883,
+          "verified_span": "OK",
+          "span_start_epoch": 1783924694,
+          "span_end_epoch": 1783947173.069,
+          "legs": {
+            "MIY": {
+              "leg_id": "MIY",
+              "floor_cents": 70,
+              "floor_epoch": 1783925511.2
+            },
+            "POL": {
+              "leg_id": "POL",
+              "floor_cents": 25,
+              "floor_epoch": 1783946624.8
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+        "category": "ATP_CHALL",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": -3,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL16ALCANG|ALC",
+            "leg_id": "ALC",
+            "entry_cents": 81,
+            "fill_timestamp_epoch": 1784154980.247,
+            "ground_truth_floor_cents": 81,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL16ALCANG|ANG",
+            "leg_id": "ANG",
+            "entry_cents": 16,
+            "fill_timestamp_epoch": 1784150790.701,
+            "ground_truth_floor_cents": 16,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+          "code": "26JUL16ALCANG",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784192160,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784146536,
+          "verified_span": "OK",
+          "span_start_epoch": 1784146536,
+          "span_end_epoch": 1784159714.124,
+          "legs": {
+            "ALC": {
+              "leg_id": "ALC",
+              "floor_cents": 81,
+              "floor_epoch": 1784154980.2
+            },
+            "ANG": {
+              "leg_id": "ANG",
+              "floor_cents": 16,
+              "floor_epoch": 1784150790.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+            "leg_id": "MAR",
+            "entry_cents": 60,
+            "fill_timestamp_epoch": 1784475080.668,
+            "ground_truth_floor_cents": 59,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+            "leg_id": "ARS",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 8,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 35
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 94,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "code": "26JUL19ARSMAR",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784477100,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (66 receipts, zero spread)",
+          "w1_left_epoch": 1784434536,
+          "verified_span": "OK",
+          "span_start_epoch": 1784448368,
+          "span_end_epoch": 1784477100,
+          "legs": {
+            "ARS": {
+              "leg_id": "ARS",
+              "floor_cents": 35,
+              "floor_epoch": 1784451046.4
+            },
+            "MAR": {
+              "leg_id": "MAR",
+              "floor_cents": 59,
+              "floor_epoch": 1784476175.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "category": "ATP_CHALL",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MENKUM|KUM",
+            "leg_id": "KUM",
+            "entry_cents": 94,
+            "fill_timestamp_epoch": 1784459651.308,
+            "ground_truth_floor_cents": 94,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19MENKUM|MEN",
+            "leg_id": "MEN",
+            "entry_cents": 5,
+            "fill_timestamp_epoch": 1784440309.335,
+            "ground_truth_floor_cents": 5,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+          "code": "26JUL19MENKUM",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784463060,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784414096,
+          "verified_span": "OK",
+          "span_start_epoch": 1784435532,
+          "span_end_epoch": 1784463060,
+          "legs": {
+            "KUM": {
+              "leg_id": "KUM",
+              "floor_cents": 94,
+              "floor_epoch": 1784459651.3
+            },
+            "MEN": {
+              "leg_id": "MEN",
+              "floor_cents": 5,
+              "floor_epoch": 1784437461.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GALARN|ARN",
+            "leg_id": "ARN",
+            "entry_cents": 39,
+            "fill_timestamp_epoch": 1784532960.812,
+            "ground_truth_floor_cents": 39,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GALARN|GAL",
+            "leg_id": "GAL",
+            "entry_cents": 60,
+            "fill_timestamp_epoch": 1784526892.609,
+            "ground_truth_floor_cents": 60,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+          "code": "26JUL20GALARN",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784549220,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784508493,
+          "verified_span": "OK",
+          "span_start_epoch": 1784508493,
+          "span_end_epoch": 1784549220,
+          "legs": {
+            "ARN": {
+              "leg_id": "ARN",
+              "floor_cents": 39,
+              "floor_epoch": 1784508946.4
+            },
+            "GAL": {
+              "leg_id": "GAL",
+              "floor_cents": 60,
+              "floor_epoch": 1784526864.1
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20KOZPAS|KOZ",
+            "leg_id": "KOZ",
+            "entry_cents": 64,
+            "fill_timestamp_epoch": 1784558005.712,
+            "ground_truth_floor_cents": 64,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20KOZPAS|PAS",
+            "leg_id": "PAS",
+            "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 61,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 1001
+            },
+            "ground_truth_floor_cents": 35
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+          "code": "26JUL20KOZPAS",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784564340,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784517832,
+          "verified_span": "OK",
+          "span_start_epoch": 1784517991,
+          "span_end_epoch": 1784558340,
+          "legs": {
+            "KOZ": {
+              "leg_id": "KOZ",
+              "floor_cents": 64,
+              "floor_epoch": 1784558005.7
+            },
+            "PAS": {
+              "leg_id": "PAS",
+              "floor_cents": 35,
+              "floor_epoch": 1784522085.5
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+        "category": "ATP_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VANOUA|OUA",
+            "leg_id": "OUA",
+            "entry_cents": 45,
+            "fill_timestamp_epoch": 1784537954.011,
+            "ground_truth_floor_cents": 44,
+            "entry_minus_floor_cents": 1
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL20VANOUA|VAN",
+            "leg_id": "VAN",
+            "entry_cents": 54,
+            "fill_timestamp_epoch": 1784508636.412,
+            "ground_truth_floor_cents": 48,
+            "entry_minus_floor_cents": 6
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 92,
+        "window_binding": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+          "code": "26JUL20VANOUA",
+          "category": "ATP_CHALL",
+          "bell_epoch": 1784545200,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784502833,
+          "verified_span": "OK",
+          "span_start_epoch": 1784503006,
+          "span_end_epoch": 1784545200,
+          "legs": {
+            "OUA": {
+              "leg_id": "OUA",
+              "floor_cents": 44,
+              "floor_epoch": 1784507014.3
+            },
+            "VAN": {
+              "leg_id": "VAN",
+              "floor_cents": 48,
+              "floor_epoch": 1784519490.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12KRUFER",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 97,
+        "delta_vs_100_cents": -3,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|FER",
+            "leg_id": "FER",
+            "entry_cents": 43,
+            "fill_timestamp_epoch": 1783808988.001,
+            "ground_truth_floor_cents": 43,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL12KRUFER|KRU",
+            "leg_id": "KRU",
+            "entry_cents": 54,
+            "fill_timestamp_epoch": 1783845392,
+            "ground_truth_floor_cents": 54,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL12KRUFER",
+          "code": "26JUL12KRUFER",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1783845420,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783789837,
+          "verified_span": "OK",
+          "span_start_epoch": 1783795748,
+          "span_end_epoch": 1783845420,
+          "legs": {
+            "FER": {
+              "leg_id": "FER",
+              "floor_cents": 43,
+              "floor_epoch": 1783808988
+            },
+            "KRU": {
+              "leg_id": "KRU",
+              "floor_cents": 54,
+              "floor_epoch": 1783845392
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "category": "ATP_MAIN",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+            "leg_id": "DAN",
+            "entry_cents": 73,
+            "fill_timestamp_epoch": 1783895397.711,
+            "ground_truth_floor_cents": 69,
+            "entry_minus_floor_cents": 4
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+            "leg_id": "SAN",
+            "entry_cents": 26,
+            "fill_timestamp_epoch": 1783893637.26,
+            "ground_truth_floor_cents": 22,
+            "entry_minus_floor_cents": 4
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 91,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "code": "26JUL13SANDAN",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1783942500,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (3 receipts, zero spread)",
+          "w1_left_epoch": 1783870590,
+          "verified_span": "OK",
+          "span_start_epoch": 1783880145,
+          "span_end_epoch": 1783942500,
+          "legs": {
+            "DAN": {
+              "leg_id": "DAN",
+              "floor_cents": 69,
+              "floor_epoch": 1783883837.7
+            },
+            "SAN": {
+              "leg_id": "SAN",
+              "floor_cents": 22,
+              "floor_epoch": 1783919819.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL14TRAKRU",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL14TRAKRU|TRA",
+            "leg_id": "TRA",
+            "entry_cents": 46,
+            "fill_timestamp_epoch": 1783970744.944,
+            "ground_truth_floor_cents": 42,
+            "entry_minus_floor_cents": 4
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL14TRAKRU|KRU",
+            "leg_id": "KRU",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 4,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 50
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 92,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL14TRAKRU",
+          "code": "26JUL14TRAKRU",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784033100,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (57 receipts, zero spread)",
+          "w1_left_epoch": 1783956292,
+          "verified_span": "OK",
+          "span_start_epoch": 1783967431,
+          "span_end_epoch": 1784033100,
+          "legs": {
+            "KRU": {
+              "leg_id": "KRU",
+              "floor_cents": 50,
+              "floor_epoch": 1783969008.3
+            },
+            "TRA": {
+              "leg_id": "TRA",
+              "floor_cents": 42,
+              "floor_epoch": 1784002773.5
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL15ALTDAR",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15ALTDAR|ALT",
+            "leg_id": "ALT",
+            "entry_cents": 36,
+            "fill_timestamp_epoch": 1784046357.418,
+            "ground_truth_floor_cents": 36,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15ALTDAR|DAR",
+            "leg_id": "DAR",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 17,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 61
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL15ALTDAR",
+          "code": "26JUL15ALTDAR",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784114025,
+          "bell_source": "OBSERVED_STARTS_UPPER_BOUND",
+          "bell_precision": "discovery-lagged upper bound; tape inference later, contradicted",
+          "w1_left_epoch": 1784043936,
+          "verified_span": "OK",
+          "span_start_epoch": 1784044991,
+          "span_end_epoch": 1784114025,
+          "legs": {
+            "ALT": {
+              "leg_id": "ALT",
+              "floor_cents": 36,
+              "floor_epoch": 1784046357.4
+            },
+            "DAR": {
+              "leg_id": "DAR",
+              "floor_cents": 61,
+              "floor_epoch": 1784074739.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL15CARUGO",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15CARUGO|CAR",
+            "leg_id": "CAR",
+            "entry_cents": 62,
+            "fill_timestamp_epoch": 1784056587.937,
+            "ground_truth_floor_cents": 60,
+            "entry_minus_floor_cents": 2
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL15CARUGO|UGO",
+            "leg_id": "UGO",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 30,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 38
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 98,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL15CARUGO",
+          "code": "26JUL15CARUGO",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784121225,
+          "bell_source": "OBSERVED_STARTS_UPPER_BOUND",
+          "bell_precision": "discovery-lagged upper bound; tape inference later, contradicted",
+          "w1_left_epoch": 1784050034,
+          "verified_span": "OK",
+          "span_start_epoch": 1784055184,
+          "span_end_epoch": 1784121225,
+          "legs": {
+            "CAR": {
+              "leg_id": "CAR",
+              "floor_cents": 60,
+              "floor_epoch": 1784063858.9
+            },
+            "UGO": {
+              "leg_id": "UGO",
+              "floor_cents": 38,
+              "floor_epoch": 1784085980.8
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "NEITHER_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+            "leg_id": "DRO",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 7,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 39
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+            "leg_id": "MER",
+            "terminal_reason": "HISTORICAL_FILL_OUTSIDE_GROUND_TRUTH_WINDOW",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 4,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 48
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 87,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "code": "26JUL16MERDRO",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784210700,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784148754,
+          "verified_span": "OK",
+          "span_start_epoch": 1784153697,
+          "span_end_epoch": 1784210700,
+          "legs": {
+            "DRO": {
+              "leg_id": "DRO",
+              "floor_cents": 39,
+              "floor_epoch": 1784174922.5
+            },
+            "MER": {
+              "leg_id": "MER",
+              "floor_cents": 48,
+              "floor_epoch": 1784157227.6
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18ROCBUE",
+        "category": "ATP_MAIN",
+        "price_region": "ge75+le25",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL18ROCBUE|ROC",
+            "leg_id": "ROC",
+            "entry_cents": 22,
+            "fill_timestamp_epoch": 1784332764.693,
+            "ground_truth_floor_cents": 16,
+            "entry_minus_floor_cents": 6
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL18ROCBUE|BUE",
+            "leg_id": "BUE",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 70,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 80
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 96,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL18ROCBUE",
+          "code": "26JUL18ROCBUE",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784377620,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784316994,
+          "verified_span": "OK",
+          "span_start_epoch": 1784332665,
+          "span_end_epoch": 1784375100,
+          "legs": {
+            "BUE": {
+              "leg_id": "BUE",
+              "floor_cents": 80,
+              "floor_epoch": 1784332794.7
+            },
+            "ROC": {
+              "leg_id": "ROC",
+              "floor_cents": 16,
+              "floor_epoch": 1784374592.4
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL19KOPBUS",
+        "category": "ATP_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL19KOPBUS|BUS",
+            "leg_id": "BUS",
+            "entry_cents": 65,
+            "fill_timestamp_epoch": 1784458375.733,
+            "ground_truth_floor_cents": 61,
+            "entry_minus_floor_cents": 4
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL19KOPBUS|KOP",
+            "leg_id": "KOP",
+            "entry_cents": 34,
+            "fill_timestamp_epoch": 1784457568.803,
+            "ground_truth_floor_cents": 34,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXATPMATCH-26JUL19KOPBUS",
+          "code": "26JUL19KOPBUS",
+          "category": "ATP_MAIN",
+          "bell_epoch": 1784557500,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784373580,
+          "verified_span": "OK",
+          "span_start_epoch": 1784390996,
+          "span_end_epoch": 1784557500,
+          "legs": {
+            "BUS": {
+              "leg_id": "BUS",
+              "floor_cents": 61,
+              "floor_epoch": 1784488249.6
+            },
+            "KOP": {
+              "leg_id": "KOP",
+              "floor_cents": 34,
+              "floor_epoch": 1784428373.3
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+        "category": "WTA_CHALL",
+        "price_region": "ge75+le25",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RADREN|RAD",
+            "leg_id": "RAD",
+            "entry_cents": 84,
+            "fill_timestamp_epoch": 1783909626.206,
+            "ground_truth_floor_cents": 84,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL13RADREN|REN",
+            "leg_id": "REN",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 85,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 15
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+          "code": "26JUL13RADREN",
+          "category": "WTA_CHALL",
+          "bell_epoch": 1783932180,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783888888,
+          "verified_span": "OK",
+          "span_start_epoch": 1783902207,
+          "span_end_epoch": 1783931718.629,
+          "legs": {
+            "RAD": {
+              "leg_id": "RAD",
+              "floor_cents": 84,
+              "floor_epoch": 1783902566.7
+            },
+            "REN": {
+              "leg_id": "REN",
+              "floor_cents": 15,
+              "floor_epoch": 1783907811.6
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+        "category": "WTA_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 98,
+        "delta_vs_100_cents": -2,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL14AKSVAL|AKS",
+            "leg_id": "AKS",
+            "entry_cents": 45,
+            "fill_timestamp_epoch": 1784034532.698,
+            "ground_truth_floor_cents": 45,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL14AKSVAL|VAL",
+            "leg_id": "VAL",
+            "entry_cents": 53,
+            "fill_timestamp_epoch": 1784000990.03,
+            "ground_truth_floor_cents": 50,
+            "entry_minus_floor_cents": 3
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+          "code": "26JUL14AKSVAL",
+          "category": "WTA_CHALL",
+          "bell_epoch": 1784035740,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783984845,
+          "verified_span": "OK",
+          "span_start_epoch": 1783984939,
+          "span_end_epoch": 1784034780,
+          "legs": {
+            "AKS": {
+              "leg_id": "AKS",
+              "floor_cents": 45,
+              "floor_epoch": 1784034532.7
+            },
+            "VAL": {
+              "leg_id": "VAL",
+              "floor_cents": 50,
+              "floor_epoch": 1784034773
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+        "category": "WTA_CHALL",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL15TANGAS|GAS",
+            "leg_id": "GAS",
+            "entry_cents": 56,
+            "fill_timestamp_epoch": 1784079858.839,
+            "ground_truth_floor_cents": 55,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTACHALLENGERMATCH-26JUL15TANGAS|TAN",
+            "leg_id": "TAN",
+            "terminal_reason": "NO_LAWFUL_REST_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 38,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1,
+              "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 1442
+            },
+            "ground_truth_floor_cents": 44
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 99,
+        "window_binding": {
+          "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+          "code": "26JUL15TANGAS",
+          "category": "WTA_CHALL",
+          "bell_epoch": 1784113800,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784070889,
+          "verified_span": "OK",
+          "span_start_epoch": 1784070889,
+          "span_end_epoch": 1784113537.781,
+          "legs": {
+            "GAS": {
+              "leg_id": "GAS",
+              "floor_cents": 55,
+              "floor_epoch": 1784086091.2
+            },
+            "TAN": {
+              "leg_id": "TAN",
+              "floor_cents": 44,
+              "floor_epoch": 1784080469.5
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL12HIBTON",
+        "category": "WTA_MAIN",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 98,
+        "delta_vs_100_cents": -2,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL12HIBTON|HIB",
+            "leg_id": "HIB",
+            "entry_cents": 85,
+            "fill_timestamp_epoch": 1783829587.542,
+            "ground_truth_floor_cents": 84,
+            "entry_minus_floor_cents": 1
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL12HIBTON|TON",
+            "leg_id": "TON",
+            "entry_cents": 13,
+            "fill_timestamp_epoch": 1783802041.604,
+            "ground_truth_floor_cents": 12,
+            "entry_minus_floor_cents": 1
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 96,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL12HIBTON",
+          "code": "26JUL12HIBTON",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1783865280,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783799741,
+          "verified_span": "OK",
+          "span_start_epoch": 1783800043,
+          "span_end_epoch": 1783865280,
+          "legs": {
+            "HIB": {
+              "leg_id": "HIB",
+              "floor_cents": 84,
+              "floor_epoch": 1783829587.5
+            },
+            "TON": {
+              "leg_id": "TON",
+              "floor_cents": 12,
+              "floor_epoch": 1783861673.1
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13KAWWAL|KAW",
+            "leg_id": "KAW",
+            "entry_cents": 35,
+            "fill_timestamp_epoch": 1783866648.204,
+            "ground_truth_floor_cents": 31,
+            "entry_minus_floor_cents": 4
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13KAWWAL|WAL",
+            "leg_id": "WAL",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 13819,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 66
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+          "code": "26JUL13KAWWAL",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784050380,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1783843801,
+          "verified_span": "OK",
+          "span_start_epoch": 1783864828,
+          "span_end_epoch": 1783945758.672,
+          "legs": {
+            "KAW": {
+              "leg_id": "KAW",
+              "floor_cents": 31,
+              "floor_epoch": 1783945740.7
+            },
+            "WAL": {
+              "leg_id": "WAL",
+              "floor_cents": 66,
+              "floor_epoch": 1783865879.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL13MONMAS",
+        "category": "WTA_MAIN",
+        "price_region": "ge75+le25",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 96,
+        "delta_vs_100_cents": -4,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13MONMAS|MAS",
+            "leg_id": "MAS",
+            "entry_cents": 81,
+            "fill_timestamp_epoch": 1783894258.702,
+            "ground_truth_floor_cents": 81,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL13MONMAS|MON",
+            "leg_id": "MON",
+            "entry_cents": 15,
+            "fill_timestamp_epoch": 1783906372.802,
+            "ground_truth_floor_cents": 15,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 96,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL13MONMAS",
+          "code": "26JUL13MONMAS",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784040300,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1783851035,
+          "verified_span": "OK",
+          "span_start_epoch": 1783851035,
+          "span_end_epoch": 1784040300,
+          "legs": {
+            "MAS": {
+              "leg_id": "MAS",
+              "floor_cents": 81,
+              "floor_epoch": 1783894258.7
+            },
+            "MON": {
+              "leg_id": "MON",
+              "floor_cents": 15,
+              "floor_epoch": 1783906372.8
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "category": "WTA_MAIN",
+        "price_region": "le25+le25",
+        "state": "UNKNOWN_BELL_NON_GRADEABLE",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [],
+        "missing_legs": [],
+        "offered_under_par": null,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "code": "26JUL14PUTJEA",
+          "category": "WTA_MAIN",
+          "bell_epoch": null,
+          "bell_source": "UNKNOWN",
+          "bell_precision": "no evidence; not guessed",
+          "w1_left_epoch": 1783936553,
+          "verified_span": "UNKNOWN",
+          "span_start_epoch": null,
+          "span_end_epoch": null,
+          "legs": {
+            "JEA": {
+              "leg_id": "JEA",
+              "floor_cents": null,
+              "floor_epoch": null
+            },
+            "PUT": {
+              "leg_id": "PUT",
+              "floor_cents": null,
+              "floor_epoch": null
+            }
+          },
+          "scoring_class": "UNKNOWN_BELL",
+          "scoring_eligible": false
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL14UDVROM",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14UDVROM|ROM",
+            "leg_id": "ROM",
+            "entry_cents": 48,
+            "fill_timestamp_epoch": 1783995258.921,
+            "ground_truth_floor_cents": 47,
+            "entry_minus_floor_cents": 1
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14UDVROM|UDV",
+            "leg_id": "UDV",
+            "entry_cents": 51,
+            "fill_timestamp_epoch": 1783990429.616,
+            "ground_truth_floor_cents": 51,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 98,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL14UDVROM",
+          "code": "26JUL14UDVROM",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784041680,
+          "bell_source": "TAPE_INFERENCE_CORROBORATED",
+          "bell_precision": "inferred +-30min (89% val.); observed in-play discovery +18175s after corroborates",
+          "w1_left_epoch": 1783958437,
+          "verified_span": "OK",
+          "span_start_epoch": 1783964777,
+          "span_end_epoch": 1784039280,
+          "legs": {
+            "ROM": {
+              "leg_id": "ROM",
+              "floor_cents": 47,
+              "floor_epoch": 1783995258.9
+            },
+            "UDV": {
+              "leg_id": "UDV",
+              "floor_cents": 51,
+              "floor_epoch": 1783990429.6
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "PARTIAL_FOR_REASON",
+        "combined_entry_cents": null,
+        "delta_vs_100_cents": null,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL16UDVKAW|KAW",
+            "leg_id": "KAW",
+            "entry_cents": 50,
+            "fill_timestamp_epoch": 1784134289.101,
+            "ground_truth_floor_cents": 46,
+            "entry_minus_floor_cents": 4
+          }
+        ],
+        "missing_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL16UDVKAW|UDV",
+            "leg_id": "UDV",
+            "terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+            "judgment_gate_blocks": {
+              "STABILITY_ONSET_NOT_REACHED": 189,
+              "NO_TAPE_MACHINE_READ_ABSENT": 1
+            },
+            "ground_truth_floor_cents": 51
+          }
+        ],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 97,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+          "code": "26JUL16UDVKAW",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784220840,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784106426,
+          "verified_span": "OK",
+          "span_start_epoch": 1784106633,
+          "span_end_epoch": 1784215800,
+          "legs": {
+            "KAW": {
+              "leg_id": "KAW",
+              "floor_cents": 46,
+              "floor_epoch": 1784170421.6
+            },
+            "UDV": {
+              "leg_id": "UDV",
+              "floor_cents": 51,
+              "floor_epoch": 1784144057.7
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 99,
+        "delta_vs_100_cents": -1,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL17UDVBAD|BAD",
+            "leg_id": "BAD",
+            "entry_cents": 73,
+            "fill_timestamp_epoch": 1784244257.665,
+            "ground_truth_floor_cents": 66,
+            "entry_minus_floor_cents": 7
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL17UDVBAD|UDV",
+            "leg_id": "UDV",
+            "entry_cents": 26,
+            "fill_timestamp_epoch": 1784246669.043,
+            "ground_truth_floor_cents": 26,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 92,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+          "code": "26JUL17UDVBAD",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784301960,
+          "bell_source": "TAPE_INFERENCE",
+          "bell_precision": "inferred, last resort: +-30min (89% validation)",
+          "w1_left_epoch": 1784231952,
+          "verified_span": "OK",
+          "span_start_epoch": 1784234455,
+          "span_end_epoch": 1784297460,
+          "legs": {
+            "BAD": {
+              "leg_id": "BAD",
+              "floor_cents": 66,
+              "floor_epoch": 1784234484.7
+            },
+            "UDV": {
+              "leg_id": "UDV",
+              "floor_cents": 26,
+              "floor_epoch": 1784246669
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL18MORAKS",
+        "category": "WTA_MAIN",
+        "price_region": "26_50+51_75",
+        "state": "COMPLETE_AT_DELTA",
+        "combined_entry_cents": 95,
+        "delta_vs_100_cents": -5,
+        "credited_legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18MORAKS|AKS",
+            "leg_id": "AKS",
+            "entry_cents": 65,
+            "fill_timestamp_epoch": 1784326954.302,
+            "ground_truth_floor_cents": 65,
+            "entry_minus_floor_cents": 0
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL18MORAKS|MOR",
+            "leg_id": "MOR",
+            "entry_cents": 30,
+            "fill_timestamp_epoch": 1784326956.216,
+            "ground_truth_floor_cents": 30,
+            "entry_minus_floor_cents": 0
+          }
+        ],
+        "missing_legs": [],
+        "offered_under_par": true,
+        "offered_floor_sum_cents": 95,
+        "window_binding": {
+          "event_id": "KXWTAMATCH-26JUL18MORAKS",
+          "code": "26JUL18MORAKS",
+          "category": "WTA_MAIN",
+          "bell_epoch": 1784393700,
+          "bell_source": "MACHINE_RECEIPT",
+          "bell_precision": "EXACT (4 receipts, zero spread)",
+          "w1_left_epoch": 1784305222,
+          "verified_span": "OK",
+          "span_start_epoch": 1784325926,
+          "span_end_epoch": 1784393700,
+          "legs": {
+            "AKS": {
+              "leg_id": "AKS",
+              "floor_cents": 65,
+              "floor_epoch": 1784326954.3
+            },
+            "MOR": {
+              "leg_id": "MOR",
+              "floor_cents": 30,
+              "floor_epoch": 1784326956.2
+            }
+          },
+          "scoring_class": "VERIFIED_BELL",
+          "scoring_eligible": true
+        }
+      }
+    ]
+  }
+}

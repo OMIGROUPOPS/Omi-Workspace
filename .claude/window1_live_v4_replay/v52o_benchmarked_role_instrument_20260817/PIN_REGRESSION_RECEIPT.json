@@ -1,0 +1,145 @@
+{
+  "pins": [
+    {
+      "code": "26JUL12POLKUH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "baseline_completed": true,
+      "baseline_combined_entry_cents": 99,
+      "candidate_completed": true,
+      "candidate_combined_entry_cents": 99,
+      "at_or_better": true,
+      "legs": [
+        {
+          "leg_id": "KUH",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 18,
+          "candidate_entry_cents": 18,
+          "unharmed": true
+        },
+        {
+          "leg_id": "POL",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 81,
+          "candidate_entry_cents": 81,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL13SANDAN",
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "baseline_completed": true,
+      "baseline_combined_entry_cents": 99,
+      "candidate_completed": true,
+      "candidate_combined_entry_cents": 97,
+      "at_or_better": true,
+      "legs": [
+        {
+          "leg_id": "DAN",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 73,
+          "candidate_entry_cents": 73,
+          "unharmed": true
+        },
+        {
+          "leg_id": "SAN",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 26,
+          "candidate_entry_cents": 24,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL14PUTJEA",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "baseline_completed": true,
+      "baseline_combined_entry_cents": 73,
+      "candidate_completed": true,
+      "candidate_combined_entry_cents": 73,
+      "at_or_better": true,
+      "legs": [
+        {
+          "leg_id": "JEA",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 64,
+          "candidate_entry_cents": 64,
+          "unharmed": true
+        },
+        {
+          "leg_id": "PUT",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 9,
+          "candidate_entry_cents": 9,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL16MERDRO",
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "baseline_completed": true,
+      "baseline_combined_entry_cents": 12,
+      "candidate_completed": true,
+      "candidate_combined_entry_cents": 12,
+      "at_or_better": true,
+      "legs": [
+        {
+          "leg_id": "DRO",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 6,
+          "candidate_entry_cents": 6,
+          "unharmed": true
+        },
+        {
+          "leg_id": "MER",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 6,
+          "candidate_entry_cents": 6,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    {
+      "code": "26JUL19ARSMAR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "baseline_completed": false,
+      "baseline_combined_entry_cents": null,
+      "candidate_completed": false,
+      "candidate_combined_entry_cents": null,
+      "at_or_better": true,
+      "legs": [
+        {
+          "leg_id": "ARS",
+          "baseline_credited": false,
+          "candidate_credited": false,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": null,
+          "unharmed": true
+        },
+        {
+          "leg_id": "MAR",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 60,
+          "candidate_entry_cents": 60,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    }
+  ],
+  "unharmed": true
+}

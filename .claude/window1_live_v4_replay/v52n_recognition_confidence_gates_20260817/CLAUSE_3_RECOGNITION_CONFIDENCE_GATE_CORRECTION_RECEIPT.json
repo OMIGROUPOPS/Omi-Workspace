@@ -1,0 +1,516 @@
+{
+  "authorized_change": "CLAUSE_3_RECOGNITION_CONFIDENCE_GATE_ONLY",
+  "behavioral_base": {
+    "policy": "V52M",
+    "commit": "da4fd13b2c2ba068ceefc7ba10d6dee6c7667626",
+    "parent_commit": "da4fd13b2c2ba068ceefc7ba10d6dee6c7667626",
+    "V52l_lineage": "6678fd0c13dcc4de2bc153bbf769f5a2a9227ccc",
+    "depth_targeting_on_bound_down_families_unchanged": true
+  },
+  "taxonomy": {
+    "method_commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+    "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+    "families": [
+      "SLEEPER",
+      "ROUND_TRIP",
+      "QUIET_WOBBLE",
+      "LATE_BREAK_DOWN",
+      "LATE_BREAK_UP",
+      "EARLY_SET_DOWN",
+      "EARLY_SET_UP",
+      "ONE_STEP_DOWN",
+      "ONE_STEP_UP",
+      "GRIND_WOBBLE_DOWN",
+      "GRIND_WOBBLE_UP",
+      "DRIFT_DOWN",
+      "DRIFT_UP"
+    ],
+    "method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)"
+  },
+  "floor_depth_table": {
+    "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+    "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70",
+    "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+    "stamp": [
+      "ANALYTICAL_ESTIMATE",
+      "UNVALIDATED-CANDIDATE"
+    ],
+    "rows": 52,
+    "early_call_method": "DIRECTIONAL families: first path sample where drift from open reaches 2c in the family direction (f* fraction; % declared by f=0.25/0.5). STILL families: % still within +-2c of open at f=0.25/0.5"
+  },
+  "confidence_gate": {
+    "law": "BIND_ONLY_WHEN_PINNED_FAMILY_MEDIAN_DECLARATION_IS_AT_OR_BEFORE_THE_TABLES_F05_CHECKPOINT_AND_THIS_RECEIPT_HAS_THE_TABLES_2C_DIRECTIONAL_DECLARATION; OTHERWISE_ABSTAIN_TO_V52L_AND_REATTEMPT_EVERY_RECEIPT",
+    "pinned_early_checkpoint_f": 0.5,
+    "pinned_directional_declaration_cents": 2,
+    "new_constants": 0,
+    "right_edge_consumed": false,
+    "full_span_fit_consumed": false
+  },
+  "mechanical_repairs": [
+    {
+      "defect": "INHERITED_V52M_WRAPPER_DROPPED_V45_GUARD_AUTHORITY_TERMINATED_RECEIPT_BIT_WHILE_RETAINING_GUARD_NULL",
+      "scope": "RECEIPT_STAMP_ONLY",
+      "action_target_and_predicates_changed": false,
+      "applied_symmetrically_to_frozen_V52m_control_and_V52n_candidate": true
+    },
+    {
+      "defect": "NAMED_CHECK_EXPORT_USED_SUFFIX_SUBSTRING_AND_COLLIDED_WITH_A_FRESH_EVENT_SHARING_ARSMAR",
+      "scope": "EXPORT_IDENTITY_LOOKUP_ONLY",
+      "correction": "EXACT_PINNED_EVENT_ID_FROM_COHORT_RECEIPT",
+      "action_target_predicates_and_outcomes_changed": false
+    }
+  ],
+  "frozen_clauses": {
+    "clause_1_causal_onset": true,
+    "clause_2": true,
+    "clause_3_depth_target_on_bound_down_family": true,
+    "clause_4_and_referee": true,
+    "clause_5": true,
+    "clause_6": true,
+    "crediting": "TRADES_AS_TRUTH_UNCHANGED",
+    "scavenger": false,
+    "REFLEX_POST": 0
+  },
+  "ground_truth_grading_binding": {
+    "label": "W1_GROUND_TRUTH_TABLE",
+    "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+    "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+    "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+    "bytes": 1426420,
+    "sole_grading_source": true,
+    "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+    "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+    "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+  },
+  "differential": {
+    "changed_decision_receipts": 245095,
+    "license_or_metadata_changed_leg_streams": 58,
+    "behavior_changed_leg_streams": 16,
+    "every_behavior_change_starts_at_or_after_confidence_gate": true,
+    "frozen_pre_authorized_differences": 0,
+    "authorized_downstream_input_divergences": 19395
+  },
+  "pre_stated_claims": {
+    "classifications": {
+      "evaluation_receipt_rows": 223490,
+      "classified_receipt_rows": 198427,
+      "receipt_rows": 198427,
+      "receipt_rows_legacy_alias": "classified_receipt_rows",
+      "terminal_leg_rows": 60,
+      "signable_terminal_legs": 9,
+      "abstain_terminal_legs": 51,
+      "receipt_frequency": {
+        "ABSTAIN": 179436,
+        "ONE_STEP_UP": 9627,
+        "EARLY_SET_DOWN": 2707,
+        "ONE_STEP_DOWN": 2167,
+        "LATE_BREAK_UP": 1642,
+        "EARLY_SET_UP": 1258,
+        "DRIFT_DOWN": 799,
+        "DRIFT_UP": 780,
+        "LATE_BREAK_DOWN": 11
+      },
+      "proposed_receipt_frequency": {
+        "QUIET_WOBBLE": 122299,
+        "SLEEPER": 50178,
+        "ONE_STEP_UP": 9627,
+        "LATE_BREAK_UP": 8027,
+        "EARLY_SET_DOWN": 2707,
+        "ONE_STEP_DOWN": 2167,
+        "EARLY_SET_UP": 1258,
+        "DRIFT_DOWN": 799,
+        "DRIFT_UP": 780,
+        "ROUND_TRIP": 300,
+        "LATE_BREAK_DOWN": 285
+      },
+      "terminal_frequency": {
+        "EARLY_SET_DOWN": 2,
+        "ONE_STEP_DOWN": 2,
+        "ONE_STEP_UP": 2,
+        "DRIFT_DOWN": 1,
+        "EARLY_SET_UP": 1,
+        "LATE_BREAK_DOWN": 1
+      },
+      "proposed_terminal_frequency": {
+        "SLEEPER": 32,
+        "QUIET_WOBBLE": 11,
+        "EARLY_SET_DOWN": 2,
+        "ONE_STEP_DOWN": 2,
+        "ONE_STEP_UP": 2,
+        "DRIFT_DOWN": 1,
+        "EARLY_SET_UP": 1,
+        "LATE_BREAK_DOWN": 1
+      },
+      "frequency_comparison": [
+        {
+          "family": "SLEEPER",
+          "taxonomy_legs": 141,
+          "taxonomy_share": 0.09085051546391752,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.09085051546391752
+        },
+        {
+          "family": "ROUND_TRIP",
+          "taxonomy_legs": 274,
+          "taxonomy_share": 0.17654639175257733,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.17654639175257733
+        },
+        {
+          "family": "QUIET_WOBBLE",
+          "taxonomy_legs": 615,
+          "taxonomy_share": 0.3962628865979381,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.3962628865979381
+        },
+        {
+          "family": "LATE_BREAK_DOWN",
+          "taxonomy_legs": 37,
+          "taxonomy_share": 0.02384020618556701,
+          "cohort_terminal_legs": 1,
+          "cohort_terminal_share": 0.016666666666666666,
+          "absolute_share_difference": 0.0071735395189003424
+        },
+        {
+          "family": "LATE_BREAK_UP",
+          "taxonomy_legs": 39,
+          "taxonomy_share": 0.025128865979381444,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.025128865979381444
+        },
+        {
+          "family": "EARLY_SET_DOWN",
+          "taxonomy_legs": 62,
+          "taxonomy_share": 0.03994845360824742,
+          "cohort_terminal_legs": 2,
+          "cohort_terminal_share": 0.03333333333333333,
+          "absolute_share_difference": 0.006615120274914087
+        },
+        {
+          "family": "EARLY_SET_UP",
+          "taxonomy_legs": 80,
+          "taxonomy_share": 0.05154639175257732,
+          "cohort_terminal_legs": 1,
+          "cohort_terminal_share": 0.016666666666666666,
+          "absolute_share_difference": 0.034879725085910654
+        },
+        {
+          "family": "ONE_STEP_DOWN",
+          "taxonomy_legs": 53,
+          "taxonomy_share": 0.03414948453608247,
+          "cohort_terminal_legs": 2,
+          "cohort_terminal_share": 0.03333333333333333,
+          "absolute_share_difference": 0.000816151202749138
+        },
+        {
+          "family": "ONE_STEP_UP",
+          "taxonomy_legs": 105,
+          "taxonomy_share": 0.06765463917525773,
+          "cohort_terminal_legs": 2,
+          "cohort_terminal_share": 0.03333333333333333,
+          "absolute_share_difference": 0.034321305841924395
+        },
+        {
+          "family": "GRIND_WOBBLE_DOWN",
+          "taxonomy_legs": 3,
+          "taxonomy_share": 0.0019329896907216496,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.0019329896907216496
+        },
+        {
+          "family": "GRIND_WOBBLE_UP",
+          "taxonomy_legs": 4,
+          "taxonomy_share": 0.002577319587628866,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.002577319587628866
+        },
+        {
+          "family": "DRIFT_DOWN",
+          "taxonomy_legs": 44,
+          "taxonomy_share": 0.028350515463917526,
+          "cohort_terminal_legs": 1,
+          "cohort_terminal_share": 0.016666666666666666,
+          "absolute_share_difference": 0.01168384879725086
+        },
+        {
+          "family": "DRIFT_UP",
+          "taxonomy_legs": 95,
+          "taxonomy_share": 0.061211340206185565,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.061211340206185565
+        }
+      ],
+      "sleeper_bound_share": 0,
+      "broad_match_adjudication": "REPORTED_NOT_FORCED; NO NUMERIC DISTANCE BAR INVENTED"
+    },
+    "down_family_fills": {
+      "rows": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL13KUMLAG|KUM",
+          "family": "EARLY_SET_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 41,
+          "baseline_fill_timestamp_epoch": 1783950402.91,
+          "candidate_entry_cents": 41,
+          "candidate_fill_timestamp_epoch": 1783950402.91,
+          "candidate_minus_baseline_fill_seconds": 0,
+          "ground_truth_floor_cents": 41,
+          "baseline_entry_minus_floor_cents": 0,
+          "candidate_entry_minus_floor_cents": 0
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL18VALDAR|DAR",
+          "family": "EARLY_SET_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 66,
+          "baseline_fill_timestamp_epoch": 1784305782.179,
+          "candidate_entry_cents": 66,
+          "candidate_fill_timestamp_epoch": 1784305782.179,
+          "candidate_minus_baseline_fill_seconds": 0,
+          "ground_truth_floor_cents": 63,
+          "baseline_entry_minus_floor_cents": 3,
+          "candidate_entry_minus_floor_cents": 3
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL18VALDAR|VAL",
+          "family": "DRIFT_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 31,
+          "baseline_fill_timestamp_epoch": 1784356354.805,
+          "candidate_entry_cents": 31,
+          "candidate_fill_timestamp_epoch": 1784356354.805,
+          "candidate_minus_baseline_fill_seconds": 0,
+          "ground_truth_floor_cents": 30,
+          "baseline_entry_minus_floor_cents": 1,
+          "candidate_entry_minus_floor_cents": 1
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL19TSICOL|TSI",
+          "family": "LATE_BREAK_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 54,
+          "baseline_fill_timestamp_epoch": 1784385399.453,
+          "candidate_entry_cents": 52,
+          "candidate_fill_timestamp_epoch": 1784385402.31,
+          "candidate_minus_baseline_fill_seconds": 2.8569998741149902,
+          "ground_truth_floor_cents": 44,
+          "baseline_entry_minus_floor_cents": 10,
+          "candidate_entry_minus_floor_cents": 8
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL12FETPIE|FET",
+          "family": "ONE_STEP_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 53,
+          "baseline_fill_timestamp_epoch": 1783811507.274,
+          "candidate_entry_cents": 53,
+          "candidate_fill_timestamp_epoch": 1783811507.274,
+          "candidate_minus_baseline_fill_seconds": 0,
+          "ground_truth_floor_cents": 33,
+          "baseline_entry_minus_floor_cents": 20,
+          "candidate_entry_minus_floor_cents": 20
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL15SHEQUE|QUE",
+          "family": "ONE_STEP_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 87,
+          "baseline_fill_timestamp_epoch": 1784035849.685,
+          "candidate_entry_cents": 46,
+          "candidate_fill_timestamp_epoch": 1784036392.331,
+          "candidate_minus_baseline_fill_seconds": 542.6460001468658,
+          "ground_truth_floor_cents": 35,
+          "baseline_entry_minus_floor_cents": 52,
+          "candidate_entry_minus_floor_cents": 11
+        }
+      ],
+      "comparable_rows": 6,
+      "fill_delay_seconds_vs_V52m": {
+        "n": 6,
+        "null_n": 0,
+        "sum": 545.5030000209808,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 2.8569998741149902,
+        "p90": 542.6460001468658,
+        "max": 542.6460001468658
+      },
+      "V52m_entry_minus_ground_truth_floor_cents": {
+        "n": 6,
+        "null_n": 0,
+        "sum": 86,
+        "min": 0,
+        "p25": 1,
+        "median": 3,
+        "p75": 20,
+        "p90": 52,
+        "max": 52
+      },
+      "V52n_entry_minus_ground_truth_floor_cents": {
+        "n": 6,
+        "null_n": 0,
+        "sum": 43,
+        "min": 0,
+        "p25": 1,
+        "median": 3,
+        "p75": 11,
+        "p90": 20,
+        "max": 20
+      },
+      "retained_at_or_near_one_cent": false,
+      "moved_later": false,
+      "landed_nearer_true_floor": false
+    },
+    "up_and_still_preservation": {
+      "V52l_credited_legs": 36,
+      "V52m_credited_legs": 32,
+      "candidate_credited_legs": 35,
+      "lost_vs_V52l": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL19RODSAC|ROD",
+          "family": "EARLY_SET_UP",
+          "V52l_entry_cents": 60,
+          "V52m_credited": false,
+          "V52m_entry_cents": null,
+          "candidate_credited": false,
+          "candidate_entry_cents": null
+        }
+      ],
+      "restored_from_V52m": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL15SCHHOU|SCH",
+          "family": "QUIET_WOBBLE",
+          "V52l_entry_cents": 59,
+          "V52m_credited": false,
+          "V52m_entry_cents": null,
+          "candidate_credited": true,
+          "candidate_entry_cents": 59
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "family": "QUIET_WOBBLE",
+          "V52l_entry_cents": 73,
+          "V52m_credited": false,
+          "V52m_entry_cents": null,
+          "candidate_credited": true,
+          "candidate_entry_cents": 73
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL15SHEQUE|SHE",
+          "family": "QUIET_WOBBLE",
+          "V52l_entry_cents": 40,
+          "V52m_credited": false,
+          "V52m_entry_cents": null,
+          "candidate_credited": true,
+          "candidate_entry_cents": 40
+        }
+      ],
+      "preserved": false
+    },
+    "banked_delta": {
+      "baseline": {
+        "n": 12,
+        "mean_cents": 1.8333333333333333
+      },
+      "candidate": {
+        "n": 14,
+        "mean_cents": 1.7142857142857142
+      },
+      "rises": false,
+      "at_or_above": false
+    },
+    "one_sided_exposure_both_ways": {
+      "created_count": 0,
+      "resolved_count": 4,
+      "created": [],
+      "resolved": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+          "direction": "RESOLVED_BY_V52N",
+          "baseline_credited_legs": [
+            {
+              "leg_identity": "KXATPCHALLENGERMATCH-26JUL15SCHHOU|HOU",
+              "entry_cents": 40
+            }
+          ],
+          "candidate_state": "COMPLETE_AT_DELTA"
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "direction": "RESOLVED_BY_V52N",
+          "baseline_credited_legs": [
+            {
+              "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+              "entry_cents": 27
+            }
+          ],
+          "candidate_state": "COMPLETE_AT_DELTA"
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL19RODSAC",
+          "direction": "RESOLVED_BY_V52N",
+          "baseline_credited_legs": [
+            {
+              "leg_identity": "KXATPMATCH-26JUL19RODSAC|SAC",
+              "entry_cents": 39
+            }
+          ],
+          "candidate_state": "NEITHER_FOR_REASON"
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL15SHEQUE",
+          "direction": "RESOLVED_BY_V52N",
+          "baseline_credited_legs": [
+            {
+              "leg_identity": "KXWTAMATCH-26JUL15SHEQUE|QUE",
+              "entry_cents": 87
+            }
+          ],
+          "candidate_state": "COMPLETE_AT_DELTA"
+        }
+      ]
+    },
+    "pins_lawful": true,
+    "SANDAN": {
+      "code": "26JUL13SANDAN",
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "baseline_completed": false,
+      "baseline_combined_entry_cents": null,
+      "candidate_completed": true,
+      "candidate_combined_entry_cents": 99,
+      "at_or_better": true,
+      "legs": [
+        {
+          "leg_id": "DAN",
+          "baseline_credited": false,
+          "candidate_credited": true,
+          "baseline_entry_cents": null,
+          "candidate_entry_cents": 73,
+          "unharmed": true
+        },
+        {
+          "leg_id": "SAN",
+          "baseline_credited": true,
+          "candidate_credited": true,
+          "baseline_entry_cents": 27,
+          "candidate_entry_cents": 26,
+          "unharmed": true
+        }
+      ],
+      "unharmed": true
+    },
+    "REFLEX_POST_zero": true
+  },
+  "disposition": "OBSERVATION_ONLY; ADOPT_OR_HOLD_RESERVED_TO_OPERATOR_AT_DOCK"
+}

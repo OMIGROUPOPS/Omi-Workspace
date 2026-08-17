@@ -1,0 +1,387 @@
+{
+  "authorized_change": "CLAUSE_3_CAUSAL_MACRO_RECOGNITION_FLOOR_DEPTH_ONLY",
+  "behavioral_base": {
+    "policy": "V52L",
+    "commit": "6678fd0c13dcc4de2bc153bbf769f5a2a9227ccc",
+    "adopted_by_operator": true,
+    "causal_onset_byte_behavior_frozen": true
+  },
+  "taxonomy": {
+    "method_commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+    "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+    "families": [
+      "SLEEPER",
+      "ROUND_TRIP",
+      "QUIET_WOBBLE",
+      "LATE_BREAK_DOWN",
+      "LATE_BREAK_UP",
+      "EARLY_SET_DOWN",
+      "EARLY_SET_UP",
+      "ONE_STEP_DOWN",
+      "ONE_STEP_UP",
+      "GRIND_WOBBLE_DOWN",
+      "GRIND_WOBBLE_UP",
+      "DRIFT_DOWN",
+      "DRIFT_UP"
+    ],
+    "method": "per leg, T-minus axis normalized to the verified span [formation end -> bell]: forward-filled last-true-print path sampled at 17 points (leading value = post-formation open); features net/travel/maxstep/bigstep_share/early(first-quarter) net/late(last-quarter) net/reversals; families by stated rules in family() (rule order: SLEEPER, ROUND_TRIP/QUIET_WOBBLE if |net|<5, LATE_BREAK if last quarter >=70% of net, EARLY_SET if first quarter >=70% and flat after, ONE_STEP if one inter-sample step >=60% of net, GRIND_WOBBLE if >=4 reversals and travel>=2|net|, else DRIFT)"
+  },
+  "floor_depth_table": {
+    "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+    "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70",
+    "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+    "stamp": [
+      "ANALYTICAL_ESTIMATE",
+      "UNVALIDATED-CANDIDATE"
+    ],
+    "rows": 52
+  },
+  "causal_classifier": {
+    "input": "TRUE_PRINT_HISTORY_AT_OR_BEFORE_EVALUATION_RECEIPT_ONLY",
+    "sample_points": 17,
+    "completed_path_consumed": false,
+    "right_edge_consumed": false,
+    "abstain_families": [
+      "GRIND_WOBBLE_DOWN",
+      "GRIND_WOBBLE_UP",
+      "SLEEPER"
+    ],
+    "abstain_behavior": "FROZEN_V52L"
+  },
+  "consumption_law": "SIGNABLE_FAMILY_MEDIAN_DEPTH_BELOW_CAUSAL_OPEN_NAMES_THE_LEVEL_TARGET; CURRENT_ASK_MINUS_ONE_AND_CLAUSE_6_BOUND_IT; THE_TABLE_INFORMS_LEVEL_AND_NEVER_GATES_THE_LICENSE",
+  "frozen_clauses": {
+    "clause_1_causal_onset": true,
+    "clause_2": true,
+    "clause_4_and_referee": true,
+    "clause_5": true,
+    "clause_6": true,
+    "crediting": "TRADES_AS_TRUTH_UNCHANGED",
+    "scavenger": false,
+    "REFLEX_POST": 0
+  },
+  "ground_truth_grading_binding": {
+    "label": "W1_GROUND_TRUTH_TABLE",
+    "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+    "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+    "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+    "bytes": 1426420,
+    "sole_grading_source": true,
+    "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+    "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+    "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+  },
+  "differential": {
+    "changed_decision_receipts": 179174,
+    "license_or_metadata_changed_leg_streams": 60,
+    "behavior_changed_leg_streams": 21,
+    "every_behavior_change_starts_at_or_after_macro_target": true,
+    "frozen_pre_authorized_differences": 0,
+    "authorized_downstream_input_divergences": 5409
+  },
+  "pre_stated_claims": {
+    "classifications": {
+      "evaluation_receipt_rows": 179174,
+      "classified_receipt_rows": 150865,
+      "receipt_rows": 150865,
+      "receipt_rows_legacy_alias": "classified_receipt_rows",
+      "terminal_leg_rows": 60,
+      "signable_terminal_legs": 21,
+      "abstain_terminal_legs": 39,
+      "receipt_frequency": {
+        "SLEEPER": 63635,
+        "DRIFT_UP": 19105,
+        "EARLY_SET_UP": 17062,
+        "ONE_STEP_DOWN": 15883,
+        "QUIET_WOBBLE": 14732,
+        "LATE_BREAK_UP": 7010,
+        "ONE_STEP_UP": 5754,
+        "LATE_BREAK_DOWN": 3970,
+        "EARLY_SET_DOWN": 2884,
+        "DRIFT_DOWN": 809,
+        "ROUND_TRIP": 21
+      },
+      "terminal_frequency": {
+        "SLEEPER": 33,
+        "QUIET_WOBBLE": 9,
+        "LATE_BREAK_UP": 3,
+        "DRIFT_UP": 2,
+        "EARLY_SET_DOWN": 2,
+        "ONE_STEP_UP": 2,
+        "EARLY_SET_UP": 1,
+        "ONE_STEP_DOWN": 1,
+        "ROUND_TRIP": 1
+      },
+      "frequency_comparison": [
+        {
+          "family": "SLEEPER",
+          "taxonomy_legs": 141,
+          "taxonomy_share": 0.09085051546391752,
+          "cohort_terminal_legs": 33,
+          "cohort_terminal_share": 0.55,
+          "absolute_share_difference": 0.4591494845360825
+        },
+        {
+          "family": "ROUND_TRIP",
+          "taxonomy_legs": 274,
+          "taxonomy_share": 0.17654639175257733,
+          "cohort_terminal_legs": 1,
+          "cohort_terminal_share": 0.016666666666666666,
+          "absolute_share_difference": 0.15987972508591067
+        },
+        {
+          "family": "QUIET_WOBBLE",
+          "taxonomy_legs": 615,
+          "taxonomy_share": 0.3962628865979381,
+          "cohort_terminal_legs": 9,
+          "cohort_terminal_share": 0.15,
+          "absolute_share_difference": 0.24626288659793813
+        },
+        {
+          "family": "LATE_BREAK_DOWN",
+          "taxonomy_legs": 37,
+          "taxonomy_share": 0.02384020618556701,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.02384020618556701
+        },
+        {
+          "family": "LATE_BREAK_UP",
+          "taxonomy_legs": 39,
+          "taxonomy_share": 0.025128865979381444,
+          "cohort_terminal_legs": 3,
+          "cohort_terminal_share": 0.05,
+          "absolute_share_difference": 0.02487113402061856
+        },
+        {
+          "family": "EARLY_SET_DOWN",
+          "taxonomy_legs": 62,
+          "taxonomy_share": 0.03994845360824742,
+          "cohort_terminal_legs": 2,
+          "cohort_terminal_share": 0.03333333333333333,
+          "absolute_share_difference": 0.006615120274914087
+        },
+        {
+          "family": "EARLY_SET_UP",
+          "taxonomy_legs": 80,
+          "taxonomy_share": 0.05154639175257732,
+          "cohort_terminal_legs": 1,
+          "cohort_terminal_share": 0.016666666666666666,
+          "absolute_share_difference": 0.034879725085910654
+        },
+        {
+          "family": "ONE_STEP_DOWN",
+          "taxonomy_legs": 53,
+          "taxonomy_share": 0.03414948453608247,
+          "cohort_terminal_legs": 1,
+          "cohort_terminal_share": 0.016666666666666666,
+          "absolute_share_difference": 0.017482817869415804
+        },
+        {
+          "family": "ONE_STEP_UP",
+          "taxonomy_legs": 105,
+          "taxonomy_share": 0.06765463917525773,
+          "cohort_terminal_legs": 2,
+          "cohort_terminal_share": 0.03333333333333333,
+          "absolute_share_difference": 0.034321305841924395
+        },
+        {
+          "family": "GRIND_WOBBLE_DOWN",
+          "taxonomy_legs": 3,
+          "taxonomy_share": 0.0019329896907216496,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.0019329896907216496
+        },
+        {
+          "family": "GRIND_WOBBLE_UP",
+          "taxonomy_legs": 4,
+          "taxonomy_share": 0.002577319587628866,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.002577319587628866
+        },
+        {
+          "family": "DRIFT_DOWN",
+          "taxonomy_legs": 44,
+          "taxonomy_share": 0.028350515463917526,
+          "cohort_terminal_legs": 0,
+          "cohort_terminal_share": 0,
+          "absolute_share_difference": 0.028350515463917526
+        },
+        {
+          "family": "DRIFT_UP",
+          "taxonomy_legs": 95,
+          "taxonomy_share": 0.061211340206185565,
+          "cohort_terminal_legs": 2,
+          "cohort_terminal_share": 0.03333333333333333,
+          "absolute_share_difference": 0.027878006872852232
+        }
+      ],
+      "broad_match_adjudication": "REPORTED_NOT_FORCED; OPERATOR_GAVE_NO_NUMERIC_DISTANCE_BAR"
+    },
+    "down_family_fills": {
+      "rows": [
+        {
+          "leg_identity": "KXATPMATCH-26JUL14VALDAM|DAM",
+          "family": "ONE_STEP_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 19,
+          "baseline_fill_timestamp_epoch": 1784006381.101,
+          "candidate_entry_cents": 18,
+          "candidate_fill_timestamp_epoch": 1784021442.276,
+          "candidate_minus_baseline_fill_seconds": 15061.174999952316,
+          "ground_truth_floor_cents": 18,
+          "baseline_entry_minus_floor_cents": 1,
+          "candidate_entry_minus_floor_cents": 0
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL17RINTSI|RIN",
+          "family": "EARLY_SET_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 39,
+          "baseline_fill_timestamp_epoch": 1784233812.161,
+          "candidate_entry_cents": 37,
+          "candidate_fill_timestamp_epoch": 1784264493.376,
+          "candidate_minus_baseline_fill_seconds": 30681.21499991417,
+          "ground_truth_floor_cents": 36,
+          "baseline_entry_minus_floor_cents": 3,
+          "candidate_entry_minus_floor_cents": 1
+        },
+        {
+          "leg_identity": "KXWTAMATCH-26JUL20PIECAR|PIE",
+          "family": "EARLY_SET_DOWN",
+          "baseline_credited": true,
+          "baseline_entry_cents": 22,
+          "baseline_fill_timestamp_epoch": 1784482190.317,
+          "candidate_entry_cents": 22,
+          "candidate_fill_timestamp_epoch": 1784482190.317,
+          "candidate_minus_baseline_fill_seconds": 0,
+          "ground_truth_floor_cents": 15,
+          "baseline_entry_minus_floor_cents": 7,
+          "candidate_entry_minus_floor_cents": 7
+        }
+      ],
+      "comparable_rows": 3,
+      "fill_delay_seconds_vs_V52l": {
+        "n": 3,
+        "null_n": 0,
+        "sum": 45742.389999866486,
+        "min": 0,
+        "p25": 0,
+        "median": 15061.174999952316,
+        "p75": 30681.21499991417,
+        "p90": 30681.21499991417,
+        "max": 30681.21499991417
+      },
+      "V52l_entry_minus_ground_truth_floor_cents": {
+        "n": 3,
+        "null_n": 0,
+        "sum": 11,
+        "min": 1,
+        "p25": 1,
+        "median": 3,
+        "p75": 7,
+        "p90": 7,
+        "max": 7
+      },
+      "V52m_entry_minus_ground_truth_floor_cents": {
+        "n": 3,
+        "null_n": 0,
+        "sum": 8,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 7,
+        "p90": 7,
+        "max": 7
+      },
+      "moved_later": true,
+      "landed_nearer_true_floor": true
+    },
+    "up_and_still_preservation": {
+      "baseline_credited_legs": 43,
+      "candidate_credited_legs": 40,
+      "lost_legs": [
+        {
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MUNLEO|LEO",
+          "family": "DRIFT_UP",
+          "baseline_entry_cents": 65,
+          "candidate_credited": false,
+          "candidate_entry_cents": null
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "family": "ONE_STEP_UP",
+          "baseline_entry_cents": 73,
+          "candidate_credited": false,
+          "candidate_entry_cents": null
+        },
+        {
+          "leg_identity": "KXATPMATCH-26JUL14VALDAM|VAL",
+          "family": "EARLY_SET_UP",
+          "baseline_entry_cents": 80,
+          "candidate_credited": false,
+          "candidate_entry_cents": null
+        }
+      ],
+      "preserved": false
+    },
+    "banked_delta": {
+      "baseline": {
+        "n": 17,
+        "mean_cents": 2.1176470588235294
+      },
+      "candidate": {
+        "n": 14,
+        "mean_cents": 2.2857142857142856
+      },
+      "rises": true
+    },
+    "one_sided_exposure_both_ways": {
+      "created_count": 3,
+      "resolved_count": 0,
+      "created": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+          "direction": "CREATED_BY_V52M",
+          "credited_legs": [
+            {
+              "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MUNLEO|MUN",
+              "entry_cents": 31
+            }
+          ],
+          "exposure_to_window_edge_seconds": 17764.87599992752
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "direction": "CREATED_BY_V52M",
+          "credited_legs": [
+            {
+              "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+              "entry_cents": 27
+            }
+          ],
+          "exposure_to_window_edge_seconds": 48862.74000000954
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL14VALDAM",
+          "direction": "CREATED_BY_V52M",
+          "credited_legs": [
+            {
+              "leg_identity": "KXATPMATCH-26JUL14VALDAM|DAM",
+              "entry_cents": 18
+            }
+          ],
+          "exposure_to_window_edge_seconds": 1937.7239999771118
+        }
+      ],
+      "resolved": []
+    },
+    "pins_lawful": true,
+    "REFLEX_POST_zero": true
+  },
+  "disposition": "OBSERVATION_ONLY; ADOPT_OR_HOLD_RESERVED_TO_OPERATOR_AT_DOCK"
+}

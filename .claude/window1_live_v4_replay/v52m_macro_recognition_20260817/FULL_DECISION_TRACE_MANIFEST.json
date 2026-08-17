@@ -1,0 +1,452 @@
+{
+  "baseline": {
+    "format": "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS",
+    "chunk_event_count": null,
+    "chunk_row_limit": 10000,
+    "events": 30,
+    "rows": 138221,
+    "chunks": [
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_001.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "KXWTAMATCH-26JUL12ITOMAN"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "0dc6e0374dc883b51ca24f556cfee766caad2a0063ad42245d31a8a89152cc9d",
+        "bytes": 3145116
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_002.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "KXWTAMATCH-26JUL12ITOMAN",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "40127e5d361e4fcdf10556d9ac017f51f318ee69fb5ff95295f922a8ace485a3",
+        "bytes": 3236654
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_003.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "KXWTAMATCH-26JUL12ITOMAN",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 7,
+        "rows": 10000,
+        "sha256": "61a2fefc395362813639f1013ab04bf176aa697f51274a3e03f6be85778dec78",
+        "bytes": 4589577
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_004.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "8ed75242e66347e4e3828b6c579cdb144eb7d8430ba603a82f20a07f517b318a",
+        "bytes": 3165595
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_005.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 3,
+        "rows": 10000,
+        "sha256": "63e692309421a365db9d8dc6e124285d413cfc5ff195c007bf0ef1b2f6333c1b",
+        "bytes": 2810051
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_006.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXATPMATCH-26JUL14VALDAM",
+          "KXWTAMATCH-26JUL13TIMANN",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "f3190c9cf123f2452ed7a354e9ae6b5c84c5be6d1b9f6d07d87d37c175bf2e4c",
+        "bytes": 3213034
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_007.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL14VALDAM",
+          "KXWTACHALLENGERMATCH-26JUL14KOVBAS"
+        ],
+        "events": 2,
+        "rows": 10000,
+        "sha256": "c360615e1006ac640015b3ad123f5ea02079d7c046b2a2aa83207cccaa4621a2",
+        "bytes": 3268847
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_008.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL16MERDRO",
+          "KXATPMATCH-26JUL16SHESTR",
+          "KXATPMATCH-26JUL17COLVAC",
+          "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+          "KXWTACHALLENGERMATCH-26JUL15CARPAL"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "b492086db0557a6603b916aa8d3661bfca504118465b33e4fa7720945dbc2666",
+        "bytes": 2621089
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_009.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL16SHESTR",
+          "KXATPMATCH-26JUL17COLVAC",
+          "KXATPMATCH-26JUL17VALTRA",
+          "KXWTAMATCH-26JUL17ZIDMAR"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "80bd6c796743ce27ca37adc95c48acf7529a2683e5d52c81006f9464c557346f",
+        "bytes": 3618626
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_010.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+          "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+          "KXATPMATCH-26JUL16SHESTR",
+          "KXATPMATCH-26JUL17COLVAC",
+          "KXATPMATCH-26JUL17RINTSI",
+          "KXATPMATCH-26JUL17TABTIR",
+          "KXATPMATCH-26JUL17VALTRA",
+          "KXWTAMATCH-26JUL17ZIDMAR"
+        ],
+        "events": 8,
+        "rows": 10000,
+        "sha256": "02f95f8ea9bee0a5b66e9238d922998b86148ff8f40ae48eea664e04ffcd6056",
+        "bytes": 4153535
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_011.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+          "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+          "KXATPMATCH-26JUL18DELRIB",
+          "KXATPMATCH-26JUL19CINGIU"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "272158bd84764974757fd56a14b34c423a2d3e811895fb1b67171ec718d05131",
+        "bytes": 2978934
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_012.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL19CINGIU"
+        ],
+        "events": 1,
+        "rows": 10000,
+        "sha256": "a0fc4f27eea2961e6cfc687b4c31e418160ed087e6d1b709f9d6abb99ac90e0a",
+        "bytes": 2339786
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_013.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "KXATPMATCH-26JUL19CINGIU",
+          "KXWTACHALLENGERMATCH-26JUL19BASSHI"
+        ],
+        "events": 3,
+        "rows": 10000,
+        "sha256": "142843100b21d6e66bbd55d2c2230d818d143f79fb927bfef48b25f6e17fd157",
+        "bytes": 3115888
+      },
+      {
+        "name": "V52L_BASELINE_FULL_DECISION_TRACE_30_GAMES_CHUNK_014.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+          "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+          "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+          "KXATPCHALLENGERMATCH-26JUL20POHWES",
+          "KXATPMATCH-26JUL19CINGIU",
+          "KXWTAMATCH-26JUL20PIECAR"
+        ],
+        "events": 7,
+        "rows": 8221,
+        "sha256": "7b3ebb3946bfaaa1c8739d53d607e542fb5bd03b43fce93ba939e29563edd806",
+        "bytes": 2947251
+      }
+    ],
+    "conservation_pass": true
+  },
+  "candidate": {
+    "format": "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS",
+    "chunk_event_count": null,
+    "chunk_row_limit": 10000,
+    "events": 30,
+    "rows": 179174,
+    "chunks": [
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_001.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "KXWTAMATCH-26JUL12ITOMAN"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "3097860b63d7641ad803a49009a4fdddc8344dea9141dc1ee1f6a872755ff4a4",
+        "bytes": 3984292
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_002.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "KXWTAMATCH-26JUL12ITOMAN",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "dac16821e78cf7ae774f2b10732d6ef96892f2b76d90b44071c27fe032e4532e",
+        "bytes": 13897980
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_003.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+          "KXWTAMATCH-26JUL12ITOMAN",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "8b948fe70ed3c52288d84cb06eac6db13234707ec3ec8d5b6ecf24f671a465c7",
+        "bytes": 15877594
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_004.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXWTAMATCH-26JUL12ITOMAN",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 6,
+        "rows": 10000,
+        "sha256": "2c51a2a44afd9d1cf0978b92a7098b1808818014d4b29f9e2256ce6ea4989889",
+        "bytes": 8229798
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_005.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 3,
+        "rows": 10000,
+        "sha256": "cd8e677358f2631d095420ffd143ae5ca6e3e785d829827dd596ec15cf0679f8",
+        "bytes": 18256383
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_006.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "d82d6dcb8404bce92f2831b58876f7825c9db92071ec8b0c6ce8a4a706383948",
+        "bytes": 20848337
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_007.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL13TABROD",
+          "KXATPMATCH-26JUL14VALDAM",
+          "KXWTAMATCH-26JUL13TIMANN",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "events": 6,
+        "rows": 10000,
+        "sha256": "9cf7c018a71af6300c331bd791cda2990102c8e9b418b2c939fedf7ddacd6b4b",
+        "bytes": 17385844
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_008.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+          "KXATPMATCH-26JUL14VALDAM",
+          "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+          "KXWTAMATCH-26JUL13TIMANN"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "d7d2f2f1a3fdead99d99659e494d12e45bba1a03416555acbfeff946ba57aa9c",
+        "bytes": 17977398
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_009.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL14VALDAM",
+          "KXWTACHALLENGERMATCH-26JUL14KOVBAS"
+        ],
+        "events": 2,
+        "rows": 10000,
+        "sha256": "4e8f28b4d068773e5b3a0df0dd50fde061aaa4573c3ffa072b4ee9aae4c10c1c",
+        "bytes": 23837075
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_010.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL14VALDAM",
+          "KXWTACHALLENGERMATCH-26JUL14KOVBAS"
+        ],
+        "events": 2,
+        "rows": 10000,
+        "sha256": "4aeb7edda663240c3d1c91bdd60019ec39f0f1ac29dba89a096b4f0802bd1d57",
+        "bytes": 23435213
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_011.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL14VALDAM",
+          "KXATPMATCH-26JUL16SHESTR",
+          "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+          "KXWTACHALLENGERMATCH-26JUL15CARPAL"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "e82e04971a01b84c4c9ac2c4db6a7a964ecaaa7c7f858f228ab870dae77ceb9a",
+        "bytes": 17503378
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_012.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL16MERDRO",
+          "KXATPMATCH-26JUL16SHESTR",
+          "KXATPMATCH-26JUL17COLVAC",
+          "KXATPMATCH-26JUL17VALTRA",
+          "KXWTAMATCH-26JUL17ZIDMAR"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "1ea094ff7a08c8e30da2fa50e5f8593b64db8777b3941171884063362c7739a6",
+        "bytes": 4186755
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_013.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL16SHESTR",
+          "KXATPMATCH-26JUL17COLVAC",
+          "KXATPMATCH-26JUL17RINTSI",
+          "KXATPMATCH-26JUL17VALTRA",
+          "KXWTAMATCH-26JUL17ZIDMAR"
+        ],
+        "events": 5,
+        "rows": 10000,
+        "sha256": "c3c49215119ff0b0ee0072f8220a767dac4c7583ee49b174ac1176183f04744b",
+        "bytes": 11418419
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_014.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+          "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+          "KXATPMATCH-26JUL17COLVAC",
+          "KXATPMATCH-26JUL17RINTSI",
+          "KXATPMATCH-26JUL17TABTIR",
+          "KXATPMATCH-26JUL17VALTRA",
+          "KXWTAMATCH-26JUL17ZIDMAR"
+        ],
+        "events": 7,
+        "rows": 10000,
+        "sha256": "4ad532b7db224c29118c73863ff7a9e2f7c9f58517a61af2a230465489178f84",
+        "bytes": 11649249
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_015.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+          "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+          "KXATPMATCH-26JUL18DELRIB",
+          "KXATPMATCH-26JUL19CINGIU"
+        ],
+        "events": 4,
+        "rows": 10000,
+        "sha256": "c0885403da5f37efda3c4666f10b2985d2ab580340353f9fb62dcd29150c4ec8",
+        "bytes": 4253853
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_016.jsonl.gz",
+        "event_ids": [
+          "KXATPMATCH-26JUL19CINGIU"
+        ],
+        "events": 1,
+        "rows": 10000,
+        "sha256": "718c33142f1afbf90d4f85975c13b6a7abb1665775ade948ac343e87685001a2",
+        "bytes": 3085786
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_017.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "KXATPMATCH-26JUL19CINGIU",
+          "KXWTACHALLENGERMATCH-26JUL19BASSHI"
+        ],
+        "events": 3,
+        "rows": 10000,
+        "sha256": "5f20551eafe69cac2563eab079f900a40c10bc29deabec8cc25b505e31807722",
+        "bytes": 4363071
+      },
+      {
+        "name": "V52M_FULL_DECISION_TRACE_30_GAMES_CHUNK_018.jsonl.gz",
+        "event_ids": [
+          "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+          "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+          "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+          "KXATPCHALLENGERMATCH-26JUL20POHWES",
+          "KXATPMATCH-26JUL19CINGIU",
+          "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+          "KXWTAMATCH-26JUL20PIECAR"
+        ],
+        "events": 8,
+        "rows": 9174,
+        "sha256": "3580f9b9d533539541bde25fa1d2ecb2cd6be605f91537ddf58ac6ba4a9cc165",
+        "bytes": 11442057
+      }
+    ],
+    "conservation_pass": true
+  },
+  "every_receipt_retained": true
+}

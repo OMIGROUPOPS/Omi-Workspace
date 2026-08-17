@@ -1,0 +1,1010 @@
+{
+  "provenance": {
+    "taxonomy": {
+      "label": "SHAPE_TAXONOMY_BUILD1",
+      "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+      "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599"
+    },
+    "floor_depth_table": {
+      "label": "PER_SHAPE_FLOOR_DEPTH_TABLES",
+      "commit": "8ab4f2d9e8c831235dc7cb4570c88daa3caded50",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PER_SHAPE_FLOOR_DEPTH_TABLES.json",
+      "sha256": "f49da1ae5ad7d4811e3b557b9c431030e4fb92961604666c4994259a551f7f70"
+    }
+  },
+  "causal_law": "EVERY_SIGNATURE_USES_ONLY_TRUE_PRINTS_AT_OR_BEFORE_THE_EVALUATION_RECEIPT; RIGHT_EDGE_AND_COMPLETED_PATH_ARE_NOT_INPUTS",
+  "classifications": {
+    "evaluation_receipt_rows": 179174,
+    "classified_receipt_rows": 150865,
+    "receipt_rows": 150865,
+    "receipt_rows_legacy_alias": "classified_receipt_rows",
+    "terminal_leg_rows": 60,
+    "signable_terminal_legs": 21,
+    "abstain_terminal_legs": 39,
+    "receipt_frequency": {
+      "SLEEPER": 63635,
+      "DRIFT_UP": 19105,
+      "EARLY_SET_UP": 17062,
+      "ONE_STEP_DOWN": 15883,
+      "QUIET_WOBBLE": 14732,
+      "LATE_BREAK_UP": 7010,
+      "ONE_STEP_UP": 5754,
+      "LATE_BREAK_DOWN": 3970,
+      "EARLY_SET_DOWN": 2884,
+      "DRIFT_DOWN": 809,
+      "ROUND_TRIP": 21
+    },
+    "terminal_frequency": {
+      "SLEEPER": 33,
+      "QUIET_WOBBLE": 9,
+      "LATE_BREAK_UP": 3,
+      "DRIFT_UP": 2,
+      "EARLY_SET_DOWN": 2,
+      "ONE_STEP_UP": 2,
+      "EARLY_SET_UP": 1,
+      "ONE_STEP_DOWN": 1,
+      "ROUND_TRIP": 1
+    },
+    "frequency_comparison": [
+      {
+        "family": "SLEEPER",
+        "taxonomy_legs": 141,
+        "taxonomy_share": 0.09085051546391752,
+        "cohort_terminal_legs": 33,
+        "cohort_terminal_share": 0.55,
+        "absolute_share_difference": 0.4591494845360825
+      },
+      {
+        "family": "ROUND_TRIP",
+        "taxonomy_legs": 274,
+        "taxonomy_share": 0.17654639175257733,
+        "cohort_terminal_legs": 1,
+        "cohort_terminal_share": 0.016666666666666666,
+        "absolute_share_difference": 0.15987972508591067
+      },
+      {
+        "family": "QUIET_WOBBLE",
+        "taxonomy_legs": 615,
+        "taxonomy_share": 0.3962628865979381,
+        "cohort_terminal_legs": 9,
+        "cohort_terminal_share": 0.15,
+        "absolute_share_difference": 0.24626288659793813
+      },
+      {
+        "family": "LATE_BREAK_DOWN",
+        "taxonomy_legs": 37,
+        "taxonomy_share": 0.02384020618556701,
+        "cohort_terminal_legs": 0,
+        "cohort_terminal_share": 0,
+        "absolute_share_difference": 0.02384020618556701
+      },
+      {
+        "family": "LATE_BREAK_UP",
+        "taxonomy_legs": 39,
+        "taxonomy_share": 0.025128865979381444,
+        "cohort_terminal_legs": 3,
+        "cohort_terminal_share": 0.05,
+        "absolute_share_difference": 0.02487113402061856
+      },
+      {
+        "family": "EARLY_SET_DOWN",
+        "taxonomy_legs": 62,
+        "taxonomy_share": 0.03994845360824742,
+        "cohort_terminal_legs": 2,
+        "cohort_terminal_share": 0.03333333333333333,
+        "absolute_share_difference": 0.006615120274914087
+      },
+      {
+        "family": "EARLY_SET_UP",
+        "taxonomy_legs": 80,
+        "taxonomy_share": 0.05154639175257732,
+        "cohort_terminal_legs": 1,
+        "cohort_terminal_share": 0.016666666666666666,
+        "absolute_share_difference": 0.034879725085910654
+      },
+      {
+        "family": "ONE_STEP_DOWN",
+        "taxonomy_legs": 53,
+        "taxonomy_share": 0.03414948453608247,
+        "cohort_terminal_legs": 1,
+        "cohort_terminal_share": 0.016666666666666666,
+        "absolute_share_difference": 0.017482817869415804
+      },
+      {
+        "family": "ONE_STEP_UP",
+        "taxonomy_legs": 105,
+        "taxonomy_share": 0.06765463917525773,
+        "cohort_terminal_legs": 2,
+        "cohort_terminal_share": 0.03333333333333333,
+        "absolute_share_difference": 0.034321305841924395
+      },
+      {
+        "family": "GRIND_WOBBLE_DOWN",
+        "taxonomy_legs": 3,
+        "taxonomy_share": 0.0019329896907216496,
+        "cohort_terminal_legs": 0,
+        "cohort_terminal_share": 0,
+        "absolute_share_difference": 0.0019329896907216496
+      },
+      {
+        "family": "GRIND_WOBBLE_UP",
+        "taxonomy_legs": 4,
+        "taxonomy_share": 0.002577319587628866,
+        "cohort_terminal_legs": 0,
+        "cohort_terminal_share": 0,
+        "absolute_share_difference": 0.002577319587628866
+      },
+      {
+        "family": "DRIFT_DOWN",
+        "taxonomy_legs": 44,
+        "taxonomy_share": 0.028350515463917526,
+        "cohort_terminal_legs": 0,
+        "cohort_terminal_share": 0,
+        "absolute_share_difference": 0.028350515463917526
+      },
+      {
+        "family": "DRIFT_UP",
+        "taxonomy_legs": 95,
+        "taxonomy_share": 0.061211340206185565,
+        "cohort_terminal_legs": 2,
+        "cohort_terminal_share": 0.03333333333333333,
+        "absolute_share_difference": 0.027878006872852232
+      }
+    ],
+    "broad_match_adjudication": "REPORTED_NOT_FORCED; OPERATOR_GAVE_NO_NUMERIC_DISTANCE_BAR"
+  },
+  "consumption": {
+    "applicable_receipts": 87230,
+    "changed_target_receipts": 48824,
+    "legs": 21,
+    "games": 17,
+    "abstain_class_behavior": "FROZEN_V52L_UNCHANGED"
+  },
+  "down_family_fills": {
+    "rows": [
+      {
+        "leg_identity": "KXATPMATCH-26JUL14VALDAM|DAM",
+        "family": "ONE_STEP_DOWN",
+        "baseline_credited": true,
+        "baseline_entry_cents": 19,
+        "baseline_fill_timestamp_epoch": 1784006381.101,
+        "candidate_entry_cents": 18,
+        "candidate_fill_timestamp_epoch": 1784021442.276,
+        "candidate_minus_baseline_fill_seconds": 15061.174999952316,
+        "ground_truth_floor_cents": 18,
+        "baseline_entry_minus_floor_cents": 1,
+        "candidate_entry_minus_floor_cents": 0
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL17RINTSI|RIN",
+        "family": "EARLY_SET_DOWN",
+        "baseline_credited": true,
+        "baseline_entry_cents": 39,
+        "baseline_fill_timestamp_epoch": 1784233812.161,
+        "candidate_entry_cents": 37,
+        "candidate_fill_timestamp_epoch": 1784264493.376,
+        "candidate_minus_baseline_fill_seconds": 30681.21499991417,
+        "ground_truth_floor_cents": 36,
+        "baseline_entry_minus_floor_cents": 3,
+        "candidate_entry_minus_floor_cents": 1
+      },
+      {
+        "leg_identity": "KXWTAMATCH-26JUL20PIECAR|PIE",
+        "family": "EARLY_SET_DOWN",
+        "baseline_credited": true,
+        "baseline_entry_cents": 22,
+        "baseline_fill_timestamp_epoch": 1784482190.317,
+        "candidate_entry_cents": 22,
+        "candidate_fill_timestamp_epoch": 1784482190.317,
+        "candidate_minus_baseline_fill_seconds": 0,
+        "ground_truth_floor_cents": 15,
+        "baseline_entry_minus_floor_cents": 7,
+        "candidate_entry_minus_floor_cents": 7
+      }
+    ],
+    "comparable_rows": 3,
+    "fill_delay_seconds_vs_V52l": {
+      "n": 3,
+      "null_n": 0,
+      "sum": 45742.389999866486,
+      "min": 0,
+      "p25": 0,
+      "median": 15061.174999952316,
+      "p75": 30681.21499991417,
+      "p90": 30681.21499991417,
+      "max": 30681.21499991417
+    },
+    "V52l_entry_minus_ground_truth_floor_cents": {
+      "n": 3,
+      "null_n": 0,
+      "sum": 11,
+      "min": 1,
+      "p25": 1,
+      "median": 3,
+      "p75": 7,
+      "p90": 7,
+      "max": 7
+    },
+    "V52m_entry_minus_ground_truth_floor_cents": {
+      "n": 3,
+      "null_n": 0,
+      "sum": 8,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 7,
+      "p90": 7,
+      "max": 7
+    },
+    "moved_later": true,
+    "landed_nearer_true_floor": true
+  },
+  "up_and_still_preservation": {
+    "baseline_credited_legs": 43,
+    "candidate_credited_legs": 40,
+    "lost_legs": [
+      {
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MUNLEO|LEO",
+        "family": "DRIFT_UP",
+        "baseline_entry_cents": 65,
+        "candidate_credited": false,
+        "candidate_entry_cents": null
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+        "family": "ONE_STEP_UP",
+        "baseline_entry_cents": 73,
+        "candidate_credited": false,
+        "candidate_entry_cents": null
+      },
+      {
+        "leg_identity": "KXATPMATCH-26JUL14VALDAM|VAL",
+        "family": "EARLY_SET_UP",
+        "baseline_entry_cents": 80,
+        "candidate_credited": false,
+        "candidate_entry_cents": null
+      }
+    ],
+    "preserved": false
+  },
+  "banked_delta": {
+    "baseline": {
+      "n": 17,
+      "mean_cents": 2.1176470588235294
+    },
+    "candidate": {
+      "n": 14,
+      "mean_cents": 2.2857142857142856
+    },
+    "rises": true
+  },
+  "one_sided_exposure_both_ways": {
+    "created_count": 3,
+    "resolved_count": 0,
+    "created": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+        "direction": "CREATED_BY_V52M",
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MUNLEO|MUN",
+            "entry_cents": 31
+          }
+        ],
+        "exposure_to_window_edge_seconds": 17764.87599992752
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "direction": "CREATED_BY_V52M",
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+            "entry_cents": 27
+          }
+        ],
+        "exposure_to_window_edge_seconds": 48862.74000000954
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL14VALDAM",
+        "direction": "CREATED_BY_V52M",
+        "credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL14VALDAM|DAM",
+            "entry_cents": 18
+          }
+        ],
+        "exposure_to_window_edge_seconds": 1937.7239999771118
+      }
+    ],
+    "resolved": []
+  },
+  "pins": {
+    "lawful": true,
+    "comparisons": [
+      {
+        "code": "26JUL12POLKUH",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 99,
+        "candidate_completed": true,
+        "candidate_combined_entry_cents": 99,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "KUH",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 18,
+            "candidate_entry_cents": 18,
+            "unharmed": true
+          },
+          {
+            "leg_id": "POL",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 81,
+            "candidate_entry_cents": 81,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL13SANDAN",
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 99,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": false,
+        "legs": [
+          {
+            "leg_id": "DAN",
+            "baseline_credited": true,
+            "candidate_credited": false,
+            "baseline_entry_cents": 73,
+            "candidate_entry_cents": null,
+            "unharmed": false
+          },
+          {
+            "leg_id": "SAN",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 26,
+            "candidate_entry_cents": 27,
+            "unharmed": true
+          }
+        ],
+        "unharmed": false
+      },
+      {
+        "code": "26JUL14PUTJEA",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 73,
+        "candidate_completed": true,
+        "candidate_combined_entry_cents": 73,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "JEA",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 64,
+            "candidate_entry_cents": 64,
+            "unharmed": true
+          },
+          {
+            "leg_id": "PUT",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 9,
+            "candidate_entry_cents": 9,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL16MERDRO",
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 12,
+        "candidate_completed": true,
+        "candidate_combined_entry_cents": 12,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "DRO",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 6,
+            "candidate_entry_cents": 6,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MER",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 6,
+            "candidate_entry_cents": 6,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL19ARSMAR",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "baseline_completed": false,
+        "baseline_combined_entry_cents": null,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "ARS",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MAR",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 60,
+            "candidate_entry_cents": 60,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      }
+    ]
+  },
+  "REFLEX_POST_zero": true,
+  "terminal_classifications": [
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12OUAFER|FER",
+      "family": null,
+      "confidence": null,
+      "signable": false,
+      "status": "NO_CLASSIFICATION_RECEIPT",
+      "receipt": null,
+      "timestamp_epoch": null
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12OUAFER|OUA",
+      "family": "LATE_BREAK_UP",
+      "confidence": 0.81,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12OUAFER-OUA.csv.gz#row-6805",
+      "timestamp_epoch": 1783874957
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224",
+      "timestamp_epoch": 1783878855
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-2707",
+      "timestamp_epoch": 1783872967
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MUNLEO|LEO",
+      "family": "DRIFT_UP",
+      "confidence": 1,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL13MUNLEO-LEO.csv.gz#row-6704",
+      "timestamp_epoch": 1783965900
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL13MUNLEO|MUN",
+      "family": null,
+      "confidence": null,
+      "signable": false,
+      "status": "NO_CLASSIFICATION_RECEIPT",
+      "receipt": null,
+      "timestamp_epoch": null
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17ADDIVA|ADD",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-ADD.csv.gz#row-425",
+      "timestamp_epoch": 1784271654
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17ADDIVA|IVA",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL17ADDIVA-IVA.csv.gz#row-1435",
+      "timestamp_epoch": 1784302127
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17NAPVIL|NAP",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL17NAPVIL-NAP.csv.gz#row-3999",
+      "timestamp_epoch": 1784297532
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL17NAPVIL|VIL",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL17NAPVIL-VIL.csv.gz#row-2830",
+      "timestamp_epoch": 1784297976
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367",
+      "timestamp_epoch": 1784477100
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-1042",
+      "timestamp_epoch": 1784475077
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN|KIN",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN-KIN.csv.gz#row-896",
+      "timestamp_epoch": 1784492868
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN|ZAM",
+      "family": "ROUND_TRIP",
+      "confidence": 0.88,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN-ZAM.csv.gz#row-94",
+      "timestamp_epoch": 1784492204
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GORYOU|GOR",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL20GORYOU-GOR.csv.gz#row-20",
+      "timestamp_epoch": 1784514338
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GORYOU|YOU",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL20GORYOU-YOU.csv.gz#row-212",
+      "timestamp_epoch": 1784518196
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20PIRNAP|NAP",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL20PIRNAP-NAP.csv.gz#row-761",
+      "timestamp_epoch": 1784525928
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20PIRNAP|PIR",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL20PIRNAP-PIR.csv.gz#row-1882",
+      "timestamp_epoch": 1784551918
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20POHWES|POH",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL20POHWES-POH.csv.gz#row-1304",
+      "timestamp_epoch": 1784518153
+    },
+    {
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20POHWES|WES",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPCHALLENGERMATCH-26JUL20POHWES-WES.csv.gz#row-365",
+      "timestamp_epoch": 1784507026
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+      "family": "ONE_STEP_UP",
+      "confidence": 0.9,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169",
+      "timestamp_epoch": 1783942499
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-440",
+      "timestamp_epoch": 1783893637
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13TABROD|ROD",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL13TABROD-ROD.csv.gz#row-443",
+      "timestamp_epoch": 1783893652
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL13TABROD|TAB",
+      "family": "DRIFT_UP",
+      "confidence": 1,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL13TABROD-TAB.csv.gz#row-17527",
+      "timestamp_epoch": 1783937699
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14VALDAM|DAM",
+      "family": "ONE_STEP_DOWN",
+      "confidence": 0.95,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL14VALDAM-DAM.csv.gz#row-15974",
+      "timestamp_epoch": 1784021442
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL14VALDAM|VAL",
+      "family": "EARLY_SET_UP",
+      "confidence": 0.98,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL14VALDAM-VAL.csv.gz#row-14605",
+      "timestamp_epoch": 1784023376
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-86",
+      "timestamp_epoch": 1784150892
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-9",
+      "timestamp_epoch": 1784150210
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16SHESTR|SHE",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL16SHESTR-SHE.csv.gz#row-13697",
+      "timestamp_epoch": 1784217632
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL16SHESTR|STR",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL16SHESTR-STR.csv.gz#row-153",
+      "timestamp_epoch": 1784126212
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17COLVAC|COL",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL17COLVAC-COL.csv.gz#row-4356",
+      "timestamp_epoch": 1784238382
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17COLVAC|VAC",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL17COLVAC-VAC.csv.gz#row-389",
+      "timestamp_epoch": 1784196317
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17RINTSI|RIN",
+      "family": "EARLY_SET_DOWN",
+      "confidence": 0.98,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL17RINTSI-RIN.csv.gz#row-4224",
+      "timestamp_epoch": 1784264493
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17RINTSI|TSI",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL17RINTSI-TSI.csv.gz#row-222",
+      "timestamp_epoch": 1784218829
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17TABTIR|TAB",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL17TABTIR-TAB.csv.gz#row-207",
+      "timestamp_epoch": 1784228299
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17TABTIR|TIR",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL17TABTIR-TIR.csv.gz#row-442",
+      "timestamp_epoch": 1784234635
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17VALTRA|TRA",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL17VALTRA-TRA.csv.gz#row-1846",
+      "timestamp_epoch": 1784223368
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL17VALTRA|VAL",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL17VALTRA-VAL.csv.gz#row-815",
+      "timestamp_epoch": 1784205121
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18DELRIB|DEL",
+      "family": null,
+      "confidence": null,
+      "signable": false,
+      "status": "NO_CLASSIFICATION_RECEIPT",
+      "receipt": null,
+      "timestamp_epoch": null
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL18DELRIB|RIB",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL18DELRIB-RIB.csv.gz#row-277",
+      "timestamp_epoch": 1784341077
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CINGIU|CIN",
+      "family": "LATE_BREAK_UP",
+      "confidence": 0.81,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXATPMATCH-26JUL19CINGIU-CIN.csv.gz#row-10302",
+      "timestamp_epoch": 1784457206
+    },
+    {
+      "leg_identity": "KXATPMATCH-26JUL19CINGIU|GIU",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXATPMATCH-26JUL19CINGIU-GIU.csv.gz#row-13963",
+      "timestamp_epoch": 1784436423
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12PALCOL|COL",
+      "family": "ONE_STEP_UP",
+      "confidence": 0.9,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL12PALCOL-COL.csv.gz#row-8815",
+      "timestamp_epoch": 1783853592
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12PALCOL|PAL",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL12PALCOL-PAL.csv.gz#row-2766",
+      "timestamp_epoch": 1783853037
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14KOVBAS|BAS",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL14KOVBAS-BAS.csv.gz#row-659",
+      "timestamp_epoch": 1784000198
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL14KOVBAS|KOV",
+      "family": "LATE_BREAK_UP",
+      "confidence": 0.81,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL14KOVBAS-KOV.csv.gz#row-3044",
+      "timestamp_epoch": 1784018579
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15CARPAL|CAR",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL15CARPAL-CAR.csv.gz#row-412",
+      "timestamp_epoch": 1784091145
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL15CARPAL|PAL",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL15CARPAL-PAL.csv.gz#row-313",
+      "timestamp_epoch": 1784099229
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL19BASSHI|BAS",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL19BASSHI-BAS.csv.gz#row-767",
+      "timestamp_epoch": 1784448387
+    },
+    {
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL19BASSHI|SHI",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTACHALLENGERMATCH-26JUL19BASSHI-SHI.csv.gz#row-334",
+      "timestamp_epoch": 1784441721
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12ITOMAN|ITO",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTAMATCH-26JUL12ITOMAN-ITO.csv.gz#row-419",
+      "timestamp_epoch": 1783829590
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL12ITOMAN|MAN",
+      "family": "QUIET_WOBBLE",
+      "confidence": 0.96,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXWTAMATCH-26JUL12ITOMAN-MAN.csv.gz#row-8428",
+      "timestamp_epoch": 1783865357
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13TIMANN|ANN",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTAMATCH-26JUL13TIMANN-ANN.csv.gz#row-949",
+      "timestamp_epoch": 1783903194
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL13TIMANN|TIM",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTAMATCH-26JUL13TIMANN-TIM.csv.gz#row-3027",
+      "timestamp_epoch": 1783967295
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+      "family": null,
+      "confidence": null,
+      "signable": false,
+      "status": "NO_CLASSIFICATION_RECEIPT",
+      "receipt": null,
+      "timestamp_epoch": null
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+      "family": null,
+      "confidence": null,
+      "signable": false,
+      "status": "NO_CLASSIFICATION_RECEIPT",
+      "receipt": null,
+      "timestamp_epoch": null
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL17ZIDMAR|MAR",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTAMATCH-26JUL17ZIDMAR-MAR.csv.gz#row-734",
+      "timestamp_epoch": 1784226679
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL17ZIDMAR|ZID",
+      "family": "SLEEPER",
+      "confidence": null,
+      "signable": false,
+      "status": "CLASSIFIED_ABSTAIN_FAMILY",
+      "receipt": "KXWTAMATCH-26JUL17ZIDMAR-ZID.csv.gz#row-1129",
+      "timestamp_epoch": 1784229314
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20PIECAR|CAR",
+      "family": null,
+      "confidence": null,
+      "signable": false,
+      "status": "NO_CLASSIFICATION_RECEIPT",
+      "receipt": null,
+      "timestamp_epoch": null
+    },
+    {
+      "leg_identity": "KXWTAMATCH-26JUL20PIECAR|PIE",
+      "family": "EARLY_SET_DOWN",
+      "confidence": 0.98,
+      "signable": true,
+      "status": "CLASSIFIED_SIGNABLE",
+      "receipt": "KXWTAMATCH-26JUL20PIECAR-PIE.csv.gz#row-124",
+      "timestamp_epoch": 1784482048
+    }
+  ]
+}

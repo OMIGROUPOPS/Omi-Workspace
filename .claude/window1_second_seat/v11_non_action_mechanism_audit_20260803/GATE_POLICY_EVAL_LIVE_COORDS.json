@@ -1,0 +1,6646 @@
+{
+ "LABEL": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+ "stamp": [
+  "ANALYTICAL_ESTIMATE",
+  "MEASUREMENT_ONLY"
+ ],
+ "provenance_triples": [
+  {
+   "commit": "c0056976",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+   "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+   "bytes": 1426420
+  },
+  {
+   "commit": "020b775c",
+   "path": ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/CLAUSE_3_RIPENESS_GATED_ROLE_BINDING_CORRECTION_RECEIPT.json",
+   "sha256": "b42ed9a4067e3eb109867c00787e9ca8624232f29a441253d29132db2dcc32a1",
+   "bytes": 67462865
+  },
+  {
+   "commit": "620fe4c1",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INSTRUMENT_PARITY_AND_LIVE_CLOCK.json",
+   "sha256": "6a7be3e48d0dad8830fdf54cbdb1313c1077e340a6b7c569d0c3412c2a782469",
+   "bytes": 8819
+  }
+ ],
+ "corpus": "582 simulable role legs (of 596; 14 lack onset or open, named in method) on verified pre-match spans @ c0056976",
+ "instrument": "published rule @ e269779b with the corrected anchor (parity exact @ a059264d: 139,430/139,430 ungated)",
+ "binding_rule": "bind at first gate crossing with a directional call; hold unless the instrument itself flips (re-bind, count flip); act per V52p/q policy (DOWN -> open minus frequency-weighted category down-depth aggregate from the V52p receipt: ATP_MAIN 8.67c, ATP_CHALL 8.37c, WTA_MAIN 8.90c, WTA_CHALL 10.21c; UP -> immediate)",
+ "coordinate_zero": "max(canonical leg onset_sel, game formation end) - both live-knowable",
+ "TAUTOLOGY_NOTE": "held-at-end accuracy is 100.0% at every gate on verified spans BY CONSTRUCTION: the held call at span end and the role truth are both the sign of the same end-of-span drift. The policy-grain accuracy is FIRST-BIND accuracy - the role actually acted on - reported throughout; flip rate is the cost of the hold-until-flip rule.",
+ "grid": {
+  "MIN0": {
+   "cfg": {
+    "mm": 0
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 548,
+    "coverage_pct": 94.2,
+    "FIRST_BIND_acc_pct": 90.3,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 11.7,
+    "bind_minutes": {
+     "n": 548,
+     "p25": 9.0,
+     "med": 43.0,
+     "p75": 164.0
+    },
+    "down_binds": 247,
+    "up_binds": 301,
+    "down_first_acc_pct": 93.9,
+    "down_kissable_pct": 30.0,
+    "down_floor_gap": {
+     "n": 240,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 87.4,
+    "up_catch_gap": {
+     "n": 301,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 23.6
+   },
+   "live": {
+    "legs": 559,
+    "bound": 459,
+    "coverage_pct": 82.1,
+    "FIRST_BIND_acc_pct": 90.2,
+    "held_acc_pct": 96.5,
+    "flip_rate_pct": 8.3,
+    "bind_minutes": {
+     "n": 459,
+     "p25": 10.0,
+     "med": 44.0,
+     "p75": 165.0
+    },
+    "down_binds": 200,
+    "up_binds": 259,
+    "down_first_acc_pct": 94.5,
+    "down_kissable_pct": 18.0,
+    "down_floor_gap": {
+     "n": 186,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 86.9,
+    "up_catch_gap": {
+     "n": 259,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 22.0
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 243,
+     "coverage_pct": 91.0,
+     "FIRST_BIND_acc_pct": 91.8,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.3,
+     "bind_minutes": {
+      "n": 243,
+      "p25": 9.0,
+      "med": 44.0,
+      "p75": 180.0
+     },
+     "down_binds": 104,
+     "up_binds": 139,
+     "down_first_acc_pct": 97.1,
+     "down_kissable_pct": 33.7,
+     "down_floor_gap": {
+      "n": 100,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 87.8,
+     "up_catch_gap": {
+      "n": 139,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 18.0
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 126,
+     "coverage_pct": 97.7,
+     "FIRST_BIND_acc_pct": 85.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 17.5,
+     "bind_minutes": {
+      "n": 126,
+      "p25": 10.0,
+      "med": 32.0,
+      "p75": 114.0
+     },
+     "down_binds": 64,
+     "up_binds": 62,
+     "down_first_acc_pct": 85.9,
+     "down_kissable_pct": 32.8,
+     "down_floor_gap": {
+      "n": 62,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 85.5,
+     "up_catch_gap": {
+      "n": 62,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 32.3
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 46,
+     "coverage_pct": 88.5,
+     "FIRST_BIND_acc_pct": 89.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.9,
+     "bind_minutes": {
+      "n": 46,
+      "p25": 29.0,
+      "med": 77.0,
+      "p75": 486.0
+     },
+     "down_binds": 19,
+     "up_binds": 27,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -4,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 85.2,
+     "up_catch_gap": {
+      "n": 27,
+      "p25": 2.5,
+      "med": 3.5,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 29.6
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 133,
+     "coverage_pct": 99.3,
+     "FIRST_BIND_acc_pct": 92.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 9.0,
+     "bind_minutes": {
+      "n": 133,
+      "p25": 8.0,
+      "med": 37.0,
+      "p75": 107.0
+     },
+     "down_binds": 60,
+     "up_binds": 73,
+     "down_first_acc_pct": 96.7,
+     "down_kissable_pct": 28.3,
+     "down_floor_gap": {
+      "n": 60,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 89.0,
+     "up_catch_gap": {
+      "n": 73,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 24.7
+    }
+   }
+  },
+  "MIN5": {
+   "cfg": {
+    "mm": 5
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 544,
+    "coverage_pct": 93.5,
+    "FIRST_BIND_acc_pct": 91.0,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 11.0,
+    "bind_minutes": {
+     "n": 544,
+     "p25": 19.0,
+     "med": 54.0,
+     "p75": 174.0
+    },
+    "down_binds": 247,
+    "up_binds": 297,
+    "down_first_acc_pct": 94.3,
+    "down_kissable_pct": 30.4,
+    "down_floor_gap": {
+     "n": 241,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 88.2,
+    "up_catch_gap": {
+     "n": 297,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 22.9
+   },
+   "live": {
+    "legs": 559,
+    "bound": 446,
+    "coverage_pct": 79.8,
+    "FIRST_BIND_acc_pct": 90.8,
+    "held_acc_pct": 96.6,
+    "flip_rate_pct": 8.1,
+    "bind_minutes": {
+     "n": 446,
+     "p25": 21.0,
+     "med": 62.0,
+     "p75": 174.0
+    },
+    "down_binds": 195,
+    "up_binds": 251,
+    "down_first_acc_pct": 94.9,
+    "down_kissable_pct": 17.4,
+    "down_floor_gap": {
+     "n": 182,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 87.6,
+    "up_catch_gap": {
+     "n": 251,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 21.1
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 240,
+     "coverage_pct": 89.9,
+     "FIRST_BIND_acc_pct": 93.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.8,
+     "bind_minutes": {
+      "n": 240,
+      "p25": 22.0,
+      "med": 63.0,
+      "p75": 198.0
+     },
+     "down_binds": 107,
+     "up_binds": 133,
+     "down_first_acc_pct": 97.2,
+     "down_kissable_pct": 33.6,
+     "down_floor_gap": {
+      "n": 103,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 90.2,
+     "up_catch_gap": {
+      "n": 133,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 15.8
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 125,
+     "coverage_pct": 96.9,
+     "FIRST_BIND_acc_pct": 86.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 17.6,
+     "bind_minutes": {
+      "n": 125,
+      "p25": 13.0,
+      "med": 42.0,
+      "p75": 122.0
+     },
+     "down_binds": 62,
+     "up_binds": 63,
+     "down_first_acc_pct": 87.1,
+     "down_kissable_pct": 33.9,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 85.7,
+     "up_catch_gap": {
+      "n": 63,
+      "p25": 2.0,
+      "med": 3.5,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 33.3
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 46,
+     "coverage_pct": 88.5,
+     "FIRST_BIND_acc_pct": 89.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.9,
+     "bind_minutes": {
+      "n": 46,
+      "p25": 43.0,
+      "med": 147.0,
+      "p75": 486.0
+     },
+     "down_binds": 19,
+     "up_binds": 27,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -4,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 85.2,
+     "up_catch_gap": {
+      "n": 27,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 29.6
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 133,
+     "coverage_pct": 99.3,
+     "FIRST_BIND_acc_pct": 91.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 9.0,
+     "bind_minutes": {
+      "n": 133,
+      "p25": 15.0,
+      "med": 42.0,
+      "p75": 113.0
+     },
+     "down_binds": 59,
+     "up_binds": 74,
+     "down_first_acc_pct": 96.6,
+     "down_kissable_pct": 28.8,
+     "down_floor_gap": {
+      "n": 59,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 87.8,
+     "up_catch_gap": {
+      "n": 74,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 24.3
+    }
+   }
+  },
+  "MIN15": {
+   "cfg": {
+    "mm": 15
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 542,
+    "coverage_pct": 93.1,
+    "FIRST_BIND_acc_pct": 92.1,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 10.0,
+    "bind_minutes": {
+     "n": 542,
+     "p25": 28.0,
+     "med": 68.0,
+     "p75": 185.0
+    },
+    "down_binds": 247,
+    "up_binds": 295,
+    "down_first_acc_pct": 95.1,
+    "down_kissable_pct": 30.8,
+    "down_floor_gap": {
+     "n": 242,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 89.5,
+    "up_catch_gap": {
+     "n": 295,
+     "p25": 2.5,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 21.7
+   },
+   "live": {
+    "legs": 559,
+    "bound": 434,
+    "coverage_pct": 77.6,
+    "FIRST_BIND_acc_pct": 91.5,
+    "held_acc_pct": 96.5,
+    "flip_rate_pct": 7.4,
+    "bind_minutes": {
+     "n": 434,
+     "p25": 32.0,
+     "med": 75.0,
+     "p75": 185.0
+    },
+    "down_binds": 190,
+    "up_binds": 244,
+    "down_first_acc_pct": 95.3,
+    "down_kissable_pct": 17.9,
+    "down_floor_gap": {
+     "n": 179,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 88.5,
+    "up_catch_gap": {
+     "n": 244,
+     "p25": 2.5,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 20.1
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 239,
+     "coverage_pct": 89.5,
+     "FIRST_BIND_acc_pct": 93.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.4,
+     "bind_minutes": {
+      "n": 239,
+      "p25": 29.0,
+      "med": 75.0,
+      "p75": 209.0
+     },
+     "down_binds": 107,
+     "up_binds": 132,
+     "down_first_acc_pct": 97.2,
+     "down_kissable_pct": 34.6,
+     "down_floor_gap": {
+      "n": 104,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 90.9,
+     "up_catch_gap": {
+      "n": 132,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 15.2
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 125,
+     "coverage_pct": 96.9,
+     "FIRST_BIND_acc_pct": 88.8,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 15.2,
+     "bind_minutes": {
+      "n": 125,
+      "p25": 27.0,
+      "med": 55.0,
+      "p75": 132.0
+     },
+     "down_binds": 61,
+     "up_binds": 64,
+     "down_first_acc_pct": 90.2,
+     "down_kissable_pct": 34.4,
+     "down_floor_gap": {
+      "n": 60,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 87.5,
+     "up_catch_gap": {
+      "n": 64,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 31.2
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 46,
+     "coverage_pct": 88.5,
+     "FIRST_BIND_acc_pct": 89.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.9,
+     "bind_minutes": {
+      "n": 46,
+      "p25": 67.0,
+      "med": 147.0,
+      "p75": 486.0
+     },
+     "down_binds": 19,
+     "up_binds": 27,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -4,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 85.2,
+     "up_catch_gap": {
+      "n": 27,
+      "p25": 2.5,
+      "med": 3.5,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 29.6
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 132,
+     "coverage_pct": 98.5,
+     "FIRST_BIND_acc_pct": 93.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 7.6,
+     "bind_minutes": {
+      "n": 132,
+      "p25": 25.0,
+      "med": 52.0,
+      "p75": 137.0
+     },
+     "down_binds": 60,
+     "up_binds": 72,
+     "down_first_acc_pct": 96.7,
+     "down_kissable_pct": 28.3,
+     "down_floor_gap": {
+      "n": 60,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 90.3,
+     "up_catch_gap": {
+      "n": 72,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 22.2
+    }
+   }
+  },
+  "MIN30": {
+   "cfg": {
+    "mm": 30
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 541,
+    "coverage_pct": 93.0,
+    "FIRST_BIND_acc_pct": 93.0,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 8.9,
+    "bind_minutes": {
+     "n": 541,
+     "p25": 43.0,
+     "med": 82.0,
+     "p75": 209.0
+    },
+    "down_binds": 249,
+    "up_binds": 292,
+    "down_first_acc_pct": 95.6,
+    "down_kissable_pct": 30.9,
+    "down_floor_gap": {
+     "n": 244,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 90.8,
+    "up_catch_gap": {
+     "n": 292,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 19.5
+   },
+   "live": {
+    "legs": 559,
+    "bound": 420,
+    "coverage_pct": 75.1,
+    "FIRST_BIND_acc_pct": 91.9,
+    "held_acc_pct": 96.4,
+    "flip_rate_pct": 6.7,
+    "bind_minutes": {
+     "n": 420,
+     "p25": 47.0,
+     "med": 95.0,
+     "p75": 212.0
+    },
+    "down_binds": 183,
+    "up_binds": 237,
+    "down_first_acc_pct": 95.6,
+    "down_kissable_pct": 18.6,
+    "down_floor_gap": {
+     "n": 172,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 89.0,
+    "up_catch_gap": {
+     "n": 237,
+     "p25": 2.5,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 18.6
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 238,
+     "coverage_pct": 89.1,
+     "FIRST_BIND_acc_pct": 94.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 7.6,
+     "bind_minutes": {
+      "n": 238,
+      "p25": 43.0,
+      "med": 87.0,
+      "p75": 214.0
+     },
+     "down_binds": 108,
+     "up_binds": 130,
+     "down_first_acc_pct": 97.2,
+     "down_kissable_pct": 35.2,
+     "down_floor_gap": {
+      "n": 105,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 92.3,
+     "up_catch_gap": {
+      "n": 130,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 12.3
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 125,
+     "coverage_pct": 96.9,
+     "FIRST_BIND_acc_pct": 88.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 15.2,
+     "bind_minutes": {
+      "n": 125,
+      "p25": 41.0,
+      "med": 80.0,
+      "p75": 145.0
+     },
+     "down_binds": 62,
+     "up_binds": 63,
+     "down_first_acc_pct": 88.7,
+     "down_kissable_pct": 33.9,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 87.3,
+     "up_catch_gap": {
+      "n": 63,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 5.5
+     },
+     "up_still_available_pct": 30.2
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 46,
+     "coverage_pct": 88.5,
+     "FIRST_BIND_acc_pct": 91.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.7,
+     "bind_minutes": {
+      "n": 46,
+      "p25": 73.0,
+      "med": 177.0,
+      "p75": 492.0
+     },
+     "down_binds": 20,
+     "up_binds": 26,
+     "down_first_acc_pct": 95.0,
+     "down_kissable_pct": 5.0,
+     "down_floor_gap": {
+      "n": 19,
+      "p25": -6,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 88.5,
+     "up_catch_gap": {
+      "n": 26,
+      "p25": 2.0,
+      "med": 3.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 26.9
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 132,
+     "coverage_pct": 98.5,
+     "FIRST_BIND_acc_pct": 95.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.3,
+     "bind_minutes": {
+      "n": 132,
+      "p25": 42.0,
+      "med": 74.0,
+      "p75": 164.0
+     },
+     "down_binds": 59,
+     "up_binds": 73,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 28.8,
+     "down_floor_gap": {
+      "n": 59,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 91.8,
+     "up_catch_gap": {
+      "n": 73,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 20.5
+    }
+   }
+  },
+  "MIN60": {
+   "cfg": {
+    "mm": 60
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 528,
+    "coverage_pct": 90.7,
+    "FIRST_BIND_acc_pct": 93.9,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 7.4,
+    "bind_minutes": {
+     "n": 528,
+     "p25": 75.0,
+     "med": 118.0,
+     "p75": 236.0
+    },
+    "down_binds": 245,
+    "up_binds": 283,
+    "down_first_acc_pct": 95.9,
+    "down_kissable_pct": 31.4,
+    "down_floor_gap": {
+     "n": 239,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 92.2,
+    "up_catch_gap": {
+     "n": 283,
+     "p25": 3.0,
+     "med": 4.5,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 17.0
+   },
+   "live": {
+    "legs": 559,
+    "bound": 402,
+    "coverage_pct": 71.9,
+    "FIRST_BIND_acc_pct": 92.8,
+    "held_acc_pct": 97.0,
+    "flip_rate_pct": 5.2,
+    "bind_minutes": {
+     "n": 402,
+     "p25": 81.0,
+     "med": 129.0,
+     "p75": 238.0
+    },
+    "down_binds": 180,
+    "up_binds": 222,
+    "down_first_acc_pct": 95.6,
+    "down_kissable_pct": 18.9,
+    "down_floor_gap": {
+     "n": 169,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 90.5,
+    "up_catch_gap": {
+     "n": 222,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 15.3
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 227,
+     "coverage_pct": 85.0,
+     "FIRST_BIND_acc_pct": 95.6,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.2,
+     "bind_minutes": {
+      "n": 227,
+      "p25": 80.0,
+      "med": 137.0,
+      "p75": 252.0
+     },
+     "down_binds": 103,
+     "up_binds": 124,
+     "down_first_acc_pct": 98.1,
+     "down_kissable_pct": 36.9,
+     "down_floor_gap": {
+      "n": 99,
+      "p25": -3,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 93.5,
+     "up_catch_gap": {
+      "n": 124,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 12.1
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 124,
+     "coverage_pct": 96.1,
+     "FIRST_BIND_acc_pct": 90.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 12.1,
+     "bind_minutes": {
+      "n": 124,
+      "p25": 70.0,
+      "med": 97.0,
+      "p75": 187.0
+     },
+     "down_binds": 62,
+     "up_binds": 62,
+     "down_first_acc_pct": 90.3,
+     "down_kissable_pct": 35.5,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 90.3,
+     "up_catch_gap": {
+      "n": 62,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 24.2
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 45,
+     "coverage_pct": 86.5,
+     "FIRST_BIND_acc_pct": 91.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.9,
+     "bind_minutes": {
+      "n": 45,
+      "p25": 78.0,
+      "med": 185.0,
+      "p75": 492.0
+     },
+     "down_binds": 19,
+     "up_binds": 26,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 88.5,
+     "up_catch_gap": {
+      "n": 26,
+      "p25": 2.0,
+      "med": 3.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 26.9
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 132,
+     "coverage_pct": 98.5,
+     "FIRST_BIND_acc_pct": 95.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.5,
+     "bind_minutes": {
+      "n": 132,
+      "p25": 73.0,
+      "med": 106.0,
+      "p75": 186.0
+     },
+     "down_binds": 61,
+     "up_binds": 71,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 26.2,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -3,
+      "p75": 1
+     },
+     "up_first_acc_pct": 93.0,
+     "up_catch_gap": {
+      "n": 71,
+      "p25": 3.0,
+      "med": 4.5,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 15.5
+    }
+   }
+  },
+  "MIN120": {
+   "cfg": {
+    "mm": 120
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 507,
+    "coverage_pct": 87.1,
+    "FIRST_BIND_acc_pct": 95.3,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.9,
+    "bind_minutes": {
+     "n": 507,
+     "p25": 134.0,
+     "med": 176.0,
+     "p75": 299.0
+    },
+    "down_binds": 237,
+    "up_binds": 270,
+    "down_first_acc_pct": 97.5,
+    "down_kissable_pct": 30.4,
+    "down_floor_gap": {
+     "n": 231,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 93.3,
+    "up_catch_gap": {
+     "n": 270,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 14.8
+   },
+   "live": {
+    "legs": 559,
+    "bound": 371,
+    "coverage_pct": 66.4,
+    "FIRST_BIND_acc_pct": 94.1,
+    "held_acc_pct": 97.6,
+    "flip_rate_pct": 4.3,
+    "bind_minutes": {
+     "n": 371,
+     "p25": 140.0,
+     "med": 185.0,
+     "p75": 300.0
+    },
+    "down_binds": 167,
+    "up_binds": 204,
+    "down_first_acc_pct": 97.0,
+    "down_kissable_pct": 17.4,
+    "down_floor_gap": {
+     "n": 158,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 91.7,
+    "up_catch_gap": {
+     "n": 204,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 13.7
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 210,
+     "coverage_pct": 78.7,
+     "FIRST_BIND_acc_pct": 95.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.2,
+     "bind_minutes": {
+      "n": 210,
+      "p25": 141.0,
+      "med": 196.0,
+      "p75": 307.0
+     },
+     "down_binds": 97,
+     "up_binds": 113,
+     "down_first_acc_pct": 97.9,
+     "down_kissable_pct": 36.1,
+     "down_floor_gap": {
+      "n": 93,
+      "p25": -3,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.8,
+     "up_catch_gap": {
+      "n": 113,
+      "p25": 3.5,
+      "med": 5.0,
+      "p75": 7.5
+     },
+     "up_still_available_pct": 10.6
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 124,
+     "coverage_pct": 96.1,
+     "FIRST_BIND_acc_pct": 94.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 7.3,
+     "bind_minutes": {
+      "n": 124,
+      "p25": 130.0,
+      "med": 149.0,
+      "p75": 246.0
+     },
+     "down_binds": 59,
+     "up_binds": 65,
+     "down_first_acc_pct": 96.6,
+     "down_kissable_pct": 37.3,
+     "down_floor_gap": {
+      "n": 58,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 92.3,
+     "up_catch_gap": {
+      "n": 65,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 21.5
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 41,
+     "coverage_pct": 78.8,
+     "FIRST_BIND_acc_pct": 92.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 7.3,
+     "bind_minutes": {
+      "n": 41,
+      "p25": 165.0,
+      "med": 318.0,
+      "p75": 530.0
+     },
+     "down_binds": 19,
+     "up_binds": 22,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 0.0,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 90.9,
+     "up_catch_gap": {
+      "n": 22,
+      "p25": 2.5,
+      "med": 3.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 22.7
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 132,
+     "coverage_pct": 98.5,
+     "FIRST_BIND_acc_pct": 96.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.8,
+     "bind_minutes": {
+      "n": 132,
+      "p25": 131.0,
+      "med": 164.0,
+      "p75": 270.0
+     },
+     "down_binds": 62,
+     "up_binds": 70,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 24.2,
+     "down_floor_gap": {
+      "n": 62,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 94.3,
+     "up_catch_gap": {
+      "n": 70,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 12.9
+    }
+   }
+  },
+  "MIN240": {
+   "cfg": {
+    "mm": 240
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 481,
+    "coverage_pct": 82.6,
+    "FIRST_BIND_acc_pct": 95.6,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.0,
+    "bind_minutes": {
+     "n": 481,
+     "p25": 255.0,
+     "med": 291.0,
+     "p75": 397.0
+    },
+    "down_binds": 234,
+    "up_binds": 247,
+    "down_first_acc_pct": 97.0,
+    "down_kissable_pct": 29.1,
+    "down_floor_gap": {
+     "n": 226,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 94.3,
+    "up_catch_gap": {
+     "n": 247,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 13.0
+   },
+   "live": {
+    "legs": 559,
+    "bound": 329,
+    "coverage_pct": 58.9,
+    "FIRST_BIND_acc_pct": 95.1,
+    "held_acc_pct": 98.2,
+    "flip_rate_pct": 3.3,
+    "bind_minutes": {
+     "n": 329,
+     "p25": 262.0,
+     "med": 307.0,
+     "p75": 409.0
+    },
+    "down_binds": 154,
+    "up_binds": 175,
+    "down_first_acc_pct": 97.4,
+    "down_kissable_pct": 16.2,
+    "down_floor_gap": {
+     "n": 147,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 93.1,
+    "up_catch_gap": {
+     "n": 175,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 6.5
+    },
+    "up_still_available_pct": 12.0
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 187,
+     "coverage_pct": 70.0,
+     "FIRST_BIND_acc_pct": 96.8,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.8,
+     "bind_minutes": {
+      "n": 187,
+      "p25": 264.0,
+      "med": 313.0,
+      "p75": 408.0
+     },
+     "down_binds": 93,
+     "up_binds": 94,
+     "down_first_acc_pct": 97.8,
+     "down_kissable_pct": 33.3,
+     "down_floor_gap": {
+      "n": 88,
+      "p25": -3,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 95.7,
+     "up_catch_gap": {
+      "n": 94,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 9.6
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 124,
+     "coverage_pct": 96.1,
+     "FIRST_BIND_acc_pct": 93.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.5,
+     "bind_minutes": {
+      "n": 124,
+      "p25": 249.0,
+      "med": 267.0,
+      "p75": 321.0
+     },
+     "down_binds": 60,
+     "up_binds": 64,
+     "down_first_acc_pct": 95.0,
+     "down_kissable_pct": 36.7,
+     "down_floor_gap": {
+      "n": 58,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 92.2,
+     "up_catch_gap": {
+      "n": 64,
+      "p25": 2.5,
+      "med": 4.5,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 17.2
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 41,
+     "coverage_pct": 78.8,
+     "FIRST_BIND_acc_pct": 92.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 7.3,
+     "bind_minutes": {
+      "n": 41,
+      "p25": 317.0,
+      "med": 437.0,
+      "p75": 562.0
+     },
+     "down_binds": 19,
+     "up_binds": 22,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 0.0,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 90.9,
+     "up_catch_gap": {
+      "n": 22,
+      "p25": 3.0,
+      "med": 3.5,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 18.2
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 129,
+     "coverage_pct": 96.3,
+     "FIRST_BIND_acc_pct": 96.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.1,
+     "bind_minutes": {
+      "n": 129,
+      "p25": 253.0,
+      "med": 285.0,
+      "p75": 371.0
+     },
+     "down_binds": 62,
+     "up_binds": 67,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 24.2,
+     "down_floor_gap": {
+      "n": 62,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 95.5,
+     "up_catch_gap": {
+      "n": 67,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 11.9
+    }
+   }
+  },
+  "TRD3": {
+   "cfg": {
+    "mt": 3
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 547,
+    "coverage_pct": 94.0,
+    "FIRST_BIND_acc_pct": 93.2,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 8.4,
+    "bind_minutes": {
+     "n": 547,
+     "p25": 20.0,
+     "med": 79.0,
+     "p75": 305.0
+    },
+    "down_binds": 254,
+    "up_binds": 293,
+    "down_first_acc_pct": 95.7,
+    "down_kissable_pct": 30.3,
+    "down_floor_gap": {
+     "n": 247,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 91.1,
+    "up_catch_gap": {
+     "n": 293,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 17.7
+   },
+   "live": {
+    "legs": 559,
+    "bound": 450,
+    "coverage_pct": 80.5,
+    "FIRST_BIND_acc_pct": 93.6,
+    "held_acc_pct": 96.7,
+    "flip_rate_pct": 5.1,
+    "bind_minutes": {
+     "n": 450,
+     "p25": 24.0,
+     "med": 85.0,
+     "p75": 292.0
+    },
+    "down_binds": 200,
+    "up_binds": 250,
+    "down_first_acc_pct": 97.0,
+    "down_kissable_pct": 18.0,
+    "down_floor_gap": {
+     "n": 185,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 90.8,
+    "up_catch_gap": {
+     "n": 250,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 16.0
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 243,
+     "coverage_pct": 91.0,
+     "FIRST_BIND_acc_pct": 94.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.6,
+     "bind_minutes": {
+      "n": 243,
+      "p25": 20.0,
+      "med": 84.0,
+      "p75": 307.0
+     },
+     "down_binds": 111,
+     "up_binds": 132,
+     "down_first_acc_pct": 97.3,
+     "down_kissable_pct": 34.2,
+     "down_floor_gap": {
+      "n": 106,
+      "p25": -3,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 92.4,
+     "up_catch_gap": {
+      "n": 132,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 11.4
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 126,
+     "coverage_pct": 97.7,
+     "FIRST_BIND_acc_pct": 88.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 15.1,
+     "bind_minutes": {
+      "n": 126,
+      "p25": 13.0,
+      "med": 62.0,
+      "p75": 246.0
+     },
+     "down_binds": 63,
+     "up_binds": 63,
+     "down_first_acc_pct": 88.9,
+     "down_kissable_pct": 33.3,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 87.3,
+     "up_catch_gap": {
+      "n": 63,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 28.6
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 45,
+     "coverage_pct": 86.5,
+     "FIRST_BIND_acc_pct": 91.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.9,
+     "bind_minutes": {
+      "n": 45,
+      "p25": 67.0,
+      "med": 300.0,
+      "p75": 525.0
+     },
+     "down_binds": 19,
+     "up_binds": 26,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 19,
+      "p25": -6,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 88.5,
+     "up_catch_gap": {
+      "n": 26,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 26.9
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 133,
+     "coverage_pct": 99.3,
+     "FIRST_BIND_acc_pct": 96.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.3,
+     "bind_minutes": {
+      "n": 133,
+      "p25": 20.0,
+      "med": 74.0,
+      "p75": 206.0
+     },
+     "down_binds": 61,
+     "up_binds": 72,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 27.9,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.1,
+     "up_catch_gap": {
+      "n": 72,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 5.5
+     },
+     "up_still_available_pct": 16.7
+    }
+   }
+  },
+  "TRD5": {
+   "cfg": {
+    "mt": 5
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 538,
+    "coverage_pct": 92.4,
+    "FIRST_BIND_acc_pct": 94.8,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 6.5,
+    "bind_minutes": {
+     "n": 538,
+     "p25": 26.0,
+     "med": 120.0,
+     "p75": 382.0
+    },
+    "down_binds": 251,
+    "up_binds": 287,
+    "down_first_acc_pct": 96.8,
+    "down_kissable_pct": 29.9,
+    "down_floor_gap": {
+     "n": 243,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 93.0,
+    "up_catch_gap": {
+     "n": 287,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 16.0
+   },
+   "live": {
+    "legs": 559,
+    "bound": 437,
+    "coverage_pct": 78.2,
+    "FIRST_BIND_acc_pct": 95.2,
+    "held_acc_pct": 97.0,
+    "flip_rate_pct": 3.2,
+    "bind_minutes": {
+     "n": 437,
+     "p25": 32.0,
+     "med": 137.0,
+     "p75": 367.0
+    },
+    "down_binds": 196,
+    "up_binds": 241,
+    "down_first_acc_pct": 98.0,
+    "down_kissable_pct": 16.8,
+    "down_floor_gap": {
+     "n": 176,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 92.9,
+    "up_catch_gap": {
+     "n": 241,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 13.7
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 236,
+     "coverage_pct": 88.4,
+     "FIRST_BIND_acc_pct": 96.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.1,
+     "bind_minutes": {
+      "n": 236,
+      "p25": 26.0,
+      "med": 122.0,
+      "p75": 390.0
+     },
+     "down_binds": 109,
+     "up_binds": 127,
+     "down_first_acc_pct": 98.2,
+     "down_kissable_pct": 33.9,
+     "down_floor_gap": {
+      "n": 103,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 94.5,
+     "up_catch_gap": {
+      "n": 127,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 9.4
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 125,
+     "coverage_pct": 96.9,
+     "FIRST_BIND_acc_pct": 89.6,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 12.0,
+     "bind_minutes": {
+      "n": 125,
+      "p25": 14.0,
+      "med": 85.0,
+      "p75": 300.0
+     },
+     "down_binds": 60,
+     "up_binds": 65,
+     "down_first_acc_pct": 91.7,
+     "down_kissable_pct": 35.0,
+     "down_floor_gap": {
+      "n": 59,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 87.7,
+     "up_catch_gap": {
+      "n": 65,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 27.7
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 44,
+     "coverage_pct": 84.6,
+     "FIRST_BIND_acc_pct": 93.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.8,
+     "bind_minutes": {
+      "n": 44,
+      "p25": 70.0,
+      "med": 317.0,
+      "p75": 638.0
+     },
+     "down_binds": 19,
+     "up_binds": 25,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -6,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 92.0,
+     "up_catch_gap": {
+      "n": 25,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 24.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 133,
+     "coverage_pct": 99.3,
+     "FIRST_BIND_acc_pct": 97.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.8,
+     "bind_minutes": {
+      "n": 133,
+      "p25": 28.0,
+      "med": 114.0,
+      "p75": 344.0
+     },
+     "down_binds": 63,
+     "up_binds": 70,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 25.4,
+     "down_floor_gap": {
+      "n": 63,
+      "p25": -4,
+      "med": -2,
+      "p75": -1
+     },
+     "up_first_acc_pct": 95.7,
+     "up_catch_gap": {
+      "n": 70,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 14.3
+    }
+   }
+  },
+  "TRD10": {
+   "cfg": {
+    "mt": 10
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 507,
+    "coverage_pct": 87.1,
+    "FIRST_BIND_acc_pct": 95.5,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.5,
+    "bind_minutes": {
+     "n": 507,
+     "p25": 44.0,
+     "med": 228.0,
+     "p75": 524.0
+    },
+    "down_binds": 234,
+    "up_binds": 273,
+    "down_first_acc_pct": 97.0,
+    "down_kissable_pct": 31.2,
+    "down_floor_gap": {
+     "n": 224,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 94.1,
+    "up_catch_gap": {
+     "n": 273,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 11.7
+   },
+   "live": {
+    "legs": 559,
+    "bound": 366,
+    "coverage_pct": 65.5,
+    "FIRST_BIND_acc_pct": 96.2,
+    "held_acc_pct": 97.3,
+    "flip_rate_pct": 1.9,
+    "bind_minutes": {
+     "n": 366,
+     "p25": 67.0,
+     "med": 251.0,
+     "p75": 480.0
+    },
+    "down_binds": 157,
+    "up_binds": 209,
+    "down_first_acc_pct": 98.1,
+    "down_kissable_pct": 16.6,
+    "down_floor_gap": {
+     "n": 139,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 94.7,
+    "up_catch_gap": {
+     "n": 209,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 9.1
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 216,
+     "coverage_pct": 80.9,
+     "FIRST_BIND_acc_pct": 97.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.2,
+     "bind_minutes": {
+      "n": 216,
+      "p25": 49.0,
+      "med": 238.0,
+      "p75": 474.0
+     },
+     "down_binds": 102,
+     "up_binds": 114,
+     "down_first_acc_pct": 98.0,
+     "down_kissable_pct": 35.3,
+     "down_floor_gap": {
+      "n": 95,
+      "p25": -4,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 96.5,
+     "up_catch_gap": {
+      "n": 114,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 4.4
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 124,
+     "coverage_pct": 96.1,
+     "FIRST_BIND_acc_pct": 91.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.5,
+     "bind_minutes": {
+      "n": 124,
+      "p25": 28.0,
+      "med": 142.0,
+      "p75": 398.0
+     },
+     "down_binds": 59,
+     "up_binds": 65,
+     "down_first_acc_pct": 93.2,
+     "down_kissable_pct": 35.6,
+     "down_floor_gap": {
+      "n": 58,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 89.2,
+     "up_catch_gap": {
+      "n": 65,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 24.6
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 36,
+     "coverage_pct": 69.2,
+     "FIRST_BIND_acc_pct": 94.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.6,
+     "bind_minutes": {
+      "n": 36,
+      "p25": 90.0,
+      "med": 492.0,
+      "p75": 697.0
+     },
+     "down_binds": 11,
+     "up_binds": 25,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 9.1,
+     "down_floor_gap": {
+      "n": 10,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 92.0,
+     "up_catch_gap": {
+      "n": 25,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 16.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 131,
+     "coverage_pct": 97.8,
+     "FIRST_BIND_acc_pct": 96.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.1,
+     "bind_minutes": {
+      "n": 131,
+      "p25": 54.0,
+      "med": 228.0,
+      "p75": 579.0
+     },
+     "down_binds": 62,
+     "up_binds": 69,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 24.2,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 95.7,
+     "up_catch_gap": {
+      "n": 69,
+      "p25": 3.5,
+      "med": 5.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 10.1
+    }
+   }
+  },
+  "TRD20": {
+   "cfg": {
+    "mt": 20
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 411,
+    "coverage_pct": 70.6,
+    "FIRST_BIND_acc_pct": 95.9,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 4.9,
+    "bind_minutes": {
+     "n": 411,
+     "p25": 94.0,
+     "med": 358.0,
+     "p75": 632.0
+    },
+    "down_binds": 184,
+    "up_binds": 227,
+    "down_first_acc_pct": 96.7,
+    "down_kissable_pct": 31.0,
+    "down_floor_gap": {
+     "n": 176,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.2,
+    "up_catch_gap": {
+     "n": 227,
+     "p25": 3.5,
+     "med": 5.5,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 11.0
+   },
+   "live": {
+    "legs": 559,
+    "bound": 233,
+    "coverage_pct": 41.7,
+    "FIRST_BIND_acc_pct": 96.1,
+    "held_acc_pct": 97.4,
+    "flip_rate_pct": 1.7,
+    "bind_minutes": {
+     "n": 233,
+     "p25": 96.0,
+     "med": 356.0,
+     "p75": 569.0
+    },
+    "down_binds": 87,
+    "up_binds": 146,
+    "down_first_acc_pct": 97.7,
+    "down_kissable_pct": 19.5,
+    "down_floor_gap": {
+     "n": 76,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 95.2,
+    "up_catch_gap": {
+     "n": 146,
+     "p25": 3.5,
+     "med": 5.0,
+     "p75": 7.5
+    },
+    "up_still_available_pct": 7.5
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 149,
+     "coverage_pct": 55.8,
+     "FIRST_BIND_acc_pct": 95.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.4,
+     "bind_minutes": {
+      "n": 149,
+      "p25": 86.0,
+      "med": 367.0,
+      "p75": 550.0
+     },
+     "down_binds": 67,
+     "up_binds": 82,
+     "down_first_acc_pct": 97.0,
+     "down_kissable_pct": 31.3,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -3,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.9,
+     "up_catch_gap": {
+      "n": 82,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.5
+     },
+     "up_still_available_pct": 7.3
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 118,
+     "coverage_pct": 91.5,
+     "FIRST_BIND_acc_pct": 94.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 7.6,
+     "bind_minutes": {
+      "n": 118,
+      "p25": 82.0,
+      "med": 312.0,
+      "p75": 618.0
+     },
+     "down_binds": 56,
+     "up_binds": 62,
+     "down_first_acc_pct": 94.6,
+     "down_kissable_pct": 37.5,
+     "down_floor_gap": {
+      "n": 56,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 93.5,
+     "up_catch_gap": {
+      "n": 62,
+      "p25": 2.0,
+      "med": 4.5,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 19.4
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 22,
+     "coverage_pct": 42.3,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 22,
+      "p25": 220.0,
+      "med": 497.0,
+      "p75": 711.0
+     },
+     "down_binds": 5,
+     "up_binds": 17,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 40.0,
+     "down_floor_gap": {
+      "n": 5,
+      "p25": -3,
+      "med": -3,
+      "p75": 2
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 17,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 10.0
+     },
+     "up_still_available_pct": 11.8
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 122,
+     "coverage_pct": 91.0,
+     "FIRST_BIND_acc_pct": 97.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 122,
+      "p25": 133.0,
+      "med": 408.0,
+      "p75": 822.0
+     },
+     "down_binds": 56,
+     "up_binds": 66,
+     "down_first_acc_pct": 98.2,
+     "down_kissable_pct": 23.2,
+     "down_floor_gap": {
+      "n": 54,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 97.0,
+     "up_catch_gap": {
+      "n": 66,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 7.6
+    }
+   }
+  },
+  "TRD50": {
+   "cfg": {
+    "mt": 50
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 248,
+    "coverage_pct": 42.6,
+    "FIRST_BIND_acc_pct": 96.4,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 4.4,
+    "bind_minutes": {
+     "n": 248,
+     "p25": 253.0,
+     "med": 568.0,
+     "p75": 866.0
+    },
+    "down_binds": 114,
+    "up_binds": 134,
+    "down_first_acc_pct": 96.5,
+    "down_kissable_pct": 33.3,
+    "down_floor_gap": {
+     "n": 112,
+     "p25": -4,
+     "med": -2,
+     "p75": 1
+    },
+    "up_first_acc_pct": 96.3,
+    "up_catch_gap": {
+     "n": 134,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 8.5
+    },
+    "up_still_available_pct": 10.4
+   },
+   "live": {
+    "legs": 559,
+    "bound": 56,
+    "coverage_pct": 10.0,
+    "FIRST_BIND_acc_pct": 92.9,
+    "held_acc_pct": 94.6,
+    "flip_rate_pct": 1.8,
+    "bind_minutes": {
+     "n": 56,
+     "p25": 244.0,
+     "med": 459.0,
+     "p75": 674.0
+    },
+    "down_binds": 17,
+    "up_binds": 39,
+    "down_first_acc_pct": 94.1,
+    "down_kissable_pct": 11.8,
+    "down_floor_gap": {
+     "n": 15,
+     "p25": -5,
+     "med": -4,
+     "p75": -3
+    },
+    "up_first_acc_pct": 92.3,
+    "up_catch_gap": {
+     "n": 39,
+     "p25": 4.0,
+     "med": 5.5,
+     "p75": 8.5
+    },
+    "up_still_available_pct": 7.7
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 62,
+     "coverage_pct": 23.2,
+     "FIRST_BIND_acc_pct": 95.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.8,
+     "bind_minutes": {
+      "n": 62,
+      "p25": 116.0,
+      "med": 459.0,
+      "p75": 627.0
+     },
+     "down_binds": 29,
+     "up_binds": 33,
+     "down_first_acc_pct": 96.6,
+     "down_kissable_pct": 41.4,
+     "down_floor_gap": {
+      "n": 28,
+      "p25": -3,
+      "med": -1,
+      "p75": 2
+     },
+     "up_first_acc_pct": 93.9,
+     "up_catch_gap": {
+      "n": 33,
+      "p25": 5.5,
+      "med": 7.0,
+      "p75": 10.0
+     },
+     "up_still_available_pct": 9.1
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 101,
+     "coverage_pct": 78.3,
+     "FIRST_BIND_acc_pct": 96.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.9,
+     "bind_minutes": {
+      "n": 101,
+      "p25": 268.0,
+      "med": 591.0,
+      "p75": 915.0
+     },
+     "down_binds": 46,
+     "up_binds": 55,
+     "down_first_acc_pct": 95.7,
+     "down_kissable_pct": 34.8,
+     "down_floor_gap": {
+      "n": 46,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 96.4,
+     "up_catch_gap": {
+      "n": 55,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 14.5
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 4,
+     "coverage_pct": 7.7,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 4,
+      "p25": 573.0,
+      "med": 773.0,
+      "p75": 773.0
+     },
+     "down_binds": 2,
+     "up_binds": 2,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 0.0,
+     "down_floor_gap": {
+      "n": 2,
+      "p25": -8,
+      "med": -8,
+      "p75": -3
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 2,
+      "p25": 6.0,
+      "med": 6.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 0.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 81,
+     "coverage_pct": 60.4,
+     "FIRST_BIND_acc_pct": 97.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 81,
+      "p25": 277.0,
+      "med": 609.0,
+      "p75": 956.0
+     },
+     "down_binds": 37,
+     "up_binds": 44,
+     "down_first_acc_pct": 97.3,
+     "down_kissable_pct": 27.0,
+     "down_floor_gap": {
+      "n": 36,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 97.7,
+     "up_catch_gap": {
+      "n": 44,
+      "p25": 5.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 6.8
+    }
+   }
+  },
+  "TRD100": {
+   "cfg": {
+    "mt": 100
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 156,
+    "coverage_pct": 26.8,
+    "FIRST_BIND_acc_pct": 98.7,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 1.3,
+    "bind_minutes": {
+     "n": 156,
+     "p25": 385.0,
+     "med": 736.0,
+     "p75": 1116.0
+    },
+    "down_binds": 73,
+    "up_binds": 83,
+    "down_first_acc_pct": 98.6,
+    "down_kissable_pct": 31.5,
+    "down_floor_gap": {
+     "n": 73,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 98.8,
+    "up_catch_gap": {
+     "n": 83,
+     "p25": 4.5,
+     "med": 5.5,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 7.2
+   },
+   "live": {
+    "legs": 559,
+    "bound": 15,
+    "coverage_pct": 2.7,
+    "FIRST_BIND_acc_pct": 100.0,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 0.0,
+    "bind_minutes": {
+     "n": 15,
+     "p25": 447.0,
+     "med": 793.0,
+     "p75": 880.0
+    },
+    "down_binds": 3,
+    "up_binds": 12,
+    "down_first_acc_pct": 100.0,
+    "down_kissable_pct": 0.0,
+    "down_floor_gap": {
+     "n": 3,
+     "p25": -8,
+     "med": -6,
+     "p75": -1
+    },
+    "up_first_acc_pct": 100.0,
+    "up_catch_gap": {
+     "n": 12,
+     "p25": 4.0,
+     "med": 5.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 8.3
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 25,
+     "coverage_pct": 9.4,
+     "FIRST_BIND_acc_pct": 96.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.0,
+     "bind_minutes": {
+      "n": 25,
+      "p25": 55.0,
+      "med": 332.0,
+      "p75": 639.0
+     },
+     "down_binds": 13,
+     "up_binds": 12,
+     "down_first_acc_pct": 92.3,
+     "down_kissable_pct": 38.5,
+     "down_floor_gap": {
+      "n": 13,
+      "p25": -2,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 12,
+      "p25": 4.5,
+      "med": 5.5,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 8.3
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 81,
+     "coverage_pct": 62.8,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 81,
+      "p25": 514.0,
+      "med": 817.0,
+      "p75": 1372.0
+     },
+     "down_binds": 38,
+     "up_binds": 43,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 34.2,
+     "down_floor_gap": {
+      "n": 38,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 43,
+      "p25": 4.5,
+      "med": 6.0,
+      "p75": 8.5
+     },
+     "up_still_available_pct": 7.0
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 2,
+     "coverage_pct": 3.8,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 2,
+      "p25": 648.0,
+      "med": 648.0,
+      "p75": 816.0
+     },
+     "down_binds": 2,
+     "up_binds": 0,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 0.0,
+     "down_floor_gap": {
+      "n": 2,
+      "p25": -8,
+      "med": -8,
+      "p75": -4
+     }
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 48,
+     "coverage_pct": 35.8,
+     "FIRST_BIND_acc_pct": 97.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.1,
+     "bind_minutes": {
+      "n": 48,
+      "p25": 427.0,
+      "med": 736.0,
+      "p75": 1070.0
+     },
+     "down_binds": 20,
+     "up_binds": 28,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 25.0,
+     "down_floor_gap": {
+      "n": 20,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 96.4,
+     "up_catch_gap": {
+      "n": 28,
+      "p25": 5.0,
+      "med": 6.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 7.1
+    }
+   }
+  },
+  "TRV2": {
+   "cfg": {
+    "mv": 2
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 548,
+    "coverage_pct": 94.2,
+    "FIRST_BIND_acc_pct": 90.3,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 11.7,
+    "bind_minutes": {
+     "n": 548,
+     "p25": 9.0,
+     "med": 43.0,
+     "p75": 164.0
+    },
+    "down_binds": 247,
+    "up_binds": 301,
+    "down_first_acc_pct": 93.9,
+    "down_kissable_pct": 30.0,
+    "down_floor_gap": {
+     "n": 240,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 87.4,
+    "up_catch_gap": {
+     "n": 301,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 23.6
+   },
+   "live": {
+    "legs": 559,
+    "bound": 459,
+    "coverage_pct": 82.1,
+    "FIRST_BIND_acc_pct": 90.2,
+    "held_acc_pct": 96.5,
+    "flip_rate_pct": 8.3,
+    "bind_minutes": {
+     "n": 459,
+     "p25": 10.0,
+     "med": 44.0,
+     "p75": 165.0
+    },
+    "down_binds": 200,
+    "up_binds": 259,
+    "down_first_acc_pct": 94.5,
+    "down_kissable_pct": 18.0,
+    "down_floor_gap": {
+     "n": 186,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 86.9,
+    "up_catch_gap": {
+     "n": 259,
+     "p25": 3.0,
+     "med": 4.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 22.0
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 243,
+     "coverage_pct": 91.0,
+     "FIRST_BIND_acc_pct": 91.8,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.3,
+     "bind_minutes": {
+      "n": 243,
+      "p25": 9.0,
+      "med": 44.0,
+      "p75": 180.0
+     },
+     "down_binds": 104,
+     "up_binds": 139,
+     "down_first_acc_pct": 97.1,
+     "down_kissable_pct": 33.7,
+     "down_floor_gap": {
+      "n": 100,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 87.8,
+     "up_catch_gap": {
+      "n": 139,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 18.0
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 126,
+     "coverage_pct": 97.7,
+     "FIRST_BIND_acc_pct": 85.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 17.5,
+     "bind_minutes": {
+      "n": 126,
+      "p25": 10.0,
+      "med": 32.0,
+      "p75": 114.0
+     },
+     "down_binds": 64,
+     "up_binds": 62,
+     "down_first_acc_pct": 85.9,
+     "down_kissable_pct": 32.8,
+     "down_floor_gap": {
+      "n": 62,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 85.5,
+     "up_catch_gap": {
+      "n": 62,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 32.3
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 46,
+     "coverage_pct": 88.5,
+     "FIRST_BIND_acc_pct": 89.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.9,
+     "bind_minutes": {
+      "n": 46,
+      "p25": 29.0,
+      "med": 77.0,
+      "p75": 486.0
+     },
+     "down_binds": 19,
+     "up_binds": 27,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -4,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 85.2,
+     "up_catch_gap": {
+      "n": 27,
+      "p25": 2.5,
+      "med": 3.5,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 29.6
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 133,
+     "coverage_pct": 99.3,
+     "FIRST_BIND_acc_pct": 92.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 9.0,
+     "bind_minutes": {
+      "n": 133,
+      "p25": 8.0,
+      "med": 37.0,
+      "p75": 107.0
+     },
+     "down_binds": 60,
+     "up_binds": 73,
+     "down_first_acc_pct": 96.7,
+     "down_kissable_pct": 28.3,
+     "down_floor_gap": {
+      "n": 60,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 89.0,
+     "up_catch_gap": {
+      "n": 73,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 24.7
+    }
+   }
+  },
+  "TRV4": {
+   "cfg": {
+    "mv": 4
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 541,
+    "coverage_pct": 93.0,
+    "FIRST_BIND_acc_pct": 92.6,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 9.1,
+    "bind_minutes": {
+     "n": 541,
+     "p25": 11.0,
+     "med": 59.0,
+     "p75": 222.0
+    },
+    "down_binds": 248,
+    "up_binds": 293,
+    "down_first_acc_pct": 95.2,
+    "down_kissable_pct": 31.0,
+    "down_floor_gap": {
+     "n": 239,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 90.4,
+    "up_catch_gap": {
+     "n": 293,
+     "p25": 4.0,
+     "med": 5.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 18.4
+   },
+   "live": {
+    "legs": 559,
+    "bound": 439,
+    "coverage_pct": 78.5,
+    "FIRST_BIND_acc_pct": 92.7,
+    "held_acc_pct": 97.0,
+    "flip_rate_pct": 5.9,
+    "bind_minutes": {
+     "n": 439,
+     "p25": 12.0,
+     "med": 63.0,
+     "p75": 203.0
+    },
+    "down_binds": 195,
+    "up_binds": 244,
+    "down_first_acc_pct": 95.9,
+    "down_kissable_pct": 19.0,
+    "down_floor_gap": {
+     "n": 181,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 90.2,
+    "up_catch_gap": {
+     "n": 244,
+     "p25": 4.0,
+     "med": 5.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 16.0
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 238,
+     "coverage_pct": 89.1,
+     "FIRST_BIND_acc_pct": 94.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.0,
+     "bind_minutes": {
+      "n": 238,
+      "p25": 11.0,
+      "med": 55.0,
+      "p75": 222.0
+     },
+     "down_binds": 103,
+     "up_binds": 135,
+     "down_first_acc_pct": 98.1,
+     "down_kissable_pct": 36.9,
+     "down_floor_gap": {
+      "n": 97,
+      "p25": -3,
+      "med": -1,
+      "p75": 1
+     },
+     "up_first_acc_pct": 91.1,
+     "up_catch_gap": {
+      "n": 135,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 14.1
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 125,
+     "coverage_pct": 96.9,
+     "FIRST_BIND_acc_pct": 86.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 16.0,
+     "bind_minutes": {
+      "n": 125,
+      "p25": 11.0,
+      "med": 48.0,
+      "p75": 149.0
+     },
+     "down_binds": 64,
+     "up_binds": 61,
+     "down_first_acc_pct": 85.9,
+     "down_kissable_pct": 32.8,
+     "down_floor_gap": {
+      "n": 62,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 86.9,
+     "up_catch_gap": {
+      "n": 61,
+      "p25": 2.5,
+      "med": 4.5,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 27.9
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 46,
+     "coverage_pct": 88.5,
+     "FIRST_BIND_acc_pct": 91.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.7,
+     "bind_minutes": {
+      "n": 46,
+      "p25": 54.0,
+      "med": 224.0,
+      "p75": 493.0
+     },
+     "down_binds": 20,
+     "up_binds": 26,
+     "down_first_acc_pct": 95.0,
+     "down_kissable_pct": 5.0,
+     "down_floor_gap": {
+      "n": 19,
+      "p25": -6,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 88.5,
+     "up_catch_gap": {
+      "n": 26,
+      "p25": 3.5,
+      "med": 4.0,
+      "p75": 5.0
+     },
+     "up_still_available_pct": 23.1
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 132,
+     "coverage_pct": 98.5,
+     "FIRST_BIND_acc_pct": 96.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.5,
+     "bind_minutes": {
+      "n": 132,
+      "p25": 10.0,
+      "med": 49.0,
+      "p75": 158.0
+     },
+     "down_binds": 61,
+     "up_binds": 71,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 27.9,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.0,
+     "up_catch_gap": {
+      "n": 71,
+      "p25": 4.0,
+      "med": 4.5,
+      "p75": 5.5
+     },
+     "up_still_available_pct": 16.9
+    }
+   }
+  },
+  "TRV6": {
+   "cfg": {
+    "mv": 6
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 530,
+    "coverage_pct": 91.1,
+    "FIRST_BIND_acc_pct": 94.9,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 6.6,
+    "bind_minutes": {
+     "n": 530,
+     "p25": 24.0,
+     "med": 107.0,
+     "p75": 359.0
+    },
+    "down_binds": 252,
+    "up_binds": 278,
+    "down_first_acc_pct": 95.6,
+    "down_kissable_pct": 32.1,
+    "down_floor_gap": {
+     "n": 245,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 94.2,
+    "up_catch_gap": {
+     "n": 278,
+     "p25": 4.0,
+     "med": 5.5,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 13.7
+   },
+   "live": {
+    "legs": 559,
+    "bound": 406,
+    "coverage_pct": 72.6,
+    "FIRST_BIND_acc_pct": 95.3,
+    "held_acc_pct": 97.3,
+    "flip_rate_pct": 3.4,
+    "bind_minutes": {
+     "n": 406,
+     "p25": 26.0,
+     "med": 116.0,
+     "p75": 327.0
+    },
+    "down_binds": 183,
+    "up_binds": 223,
+    "down_first_acc_pct": 96.7,
+    "down_kissable_pct": 21.3,
+    "down_floor_gap": {
+     "n": 170,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 94.2,
+    "up_catch_gap": {
+     "n": 223,
+     "p25": 4.0,
+     "med": 5.5,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 11.2
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 228,
+     "coverage_pct": 85.4,
+     "FIRST_BIND_acc_pct": 96.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.3,
+     "bind_minutes": {
+      "n": 228,
+      "p25": 24.0,
+      "med": 105.0,
+      "p75": 323.0
+     },
+     "down_binds": 105,
+     "up_binds": 123,
+     "down_first_acc_pct": 97.1,
+     "down_kissable_pct": 39.0,
+     "down_floor_gap": {
+      "n": 101,
+      "p25": -3,
+      "med": -1,
+      "p75": 1
+     },
+     "up_first_acc_pct": 95.9,
+     "up_catch_gap": {
+      "n": 123,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 8.1
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 125,
+     "coverage_pct": 96.9,
+     "FIRST_BIND_acc_pct": 90.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 12.8,
+     "bind_minutes": {
+      "n": 125,
+      "p25": 14.0,
+      "med": 73.0,
+      "p75": 269.0
+     },
+     "down_binds": 65,
+     "up_binds": 60,
+     "down_first_acc_pct": 89.2,
+     "down_kissable_pct": 32.3,
+     "down_floor_gap": {
+      "n": 63,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 91.7,
+     "up_catch_gap": {
+      "n": 60,
+      "p25": 3.0,
+      "med": 4.5,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 25.0
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 45,
+     "coverage_pct": 86.5,
+     "FIRST_BIND_acc_pct": 93.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.7,
+     "bind_minutes": {
+      "n": 45,
+      "p25": 94.0,
+      "med": 390.0,
+      "p75": 629.0
+     },
+     "down_binds": 18,
+     "up_binds": 27,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 5.6,
+     "down_floor_gap": {
+      "n": 17,
+      "p25": -6,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 88.9,
+     "up_catch_gap": {
+      "n": 27,
+      "p25": 3.5,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 18.5
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 132,
+     "coverage_pct": 98.5,
+     "FIRST_BIND_acc_pct": 97.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.0,
+     "bind_minutes": {
+      "n": 132,
+      "p25": 21.0,
+      "med": 120.0,
+      "p75": 324.0
+     },
+     "down_binds": 64,
+     "up_binds": 68,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 28.1,
+     "down_floor_gap": {
+      "n": 64,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 95.6,
+     "up_catch_gap": {
+      "n": 68,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 11.8
+    }
+   }
+  },
+  "TRV10": {
+   "cfg": {
+    "mv": 10
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 449,
+    "coverage_pct": 77.1,
+    "FIRST_BIND_acc_pct": 95.8,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 6.0,
+    "bind_minutes": {
+     "n": 449,
+     "p25": 43.0,
+     "med": 209.0,
+     "p75": 546.0
+    },
+    "down_binds": 221,
+    "up_binds": 228,
+    "down_first_acc_pct": 95.5,
+    "down_kissable_pct": 34.8,
+    "down_floor_gap": {
+     "n": 213,
+     "p25": -4,
+     "med": -2,
+     "p75": 1
+    },
+    "up_first_acc_pct": 96.1,
+    "up_catch_gap": {
+     "n": 228,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 11.0
+   },
+   "live": {
+    "legs": 559,
+    "bound": 289,
+    "coverage_pct": 51.7,
+    "FIRST_BIND_acc_pct": 96.2,
+    "held_acc_pct": 96.5,
+    "flip_rate_pct": 2.4,
+    "bind_minutes": {
+     "n": 289,
+     "p25": 41.0,
+     "med": 180.0,
+     "p75": 423.0
+    },
+    "down_binds": 132,
+    "up_binds": 157,
+    "down_first_acc_pct": 97.0,
+    "down_kissable_pct": 25.8,
+    "down_floor_gap": {
+     "n": 120,
+     "p25": -5,
+     "med": -3,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.5,
+    "up_catch_gap": {
+     "n": 157,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 8.9
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 178,
+     "coverage_pct": 66.7,
+     "FIRST_BIND_acc_pct": 96.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.6,
+     "bind_minutes": {
+      "n": 178,
+      "p25": 33.0,
+      "med": 188.0,
+      "p75": 459.0
+     },
+     "down_binds": 88,
+     "up_binds": 90,
+     "down_first_acc_pct": 95.5,
+     "down_kissable_pct": 42.0,
+     "down_floor_gap": {
+      "n": 84,
+      "p25": -3,
+      "med": -1,
+      "p75": 1
+     },
+     "up_first_acc_pct": 96.7,
+     "up_catch_gap": {
+      "n": 90,
+      "p25": 5.5,
+      "med": 7.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 4.4
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 121,
+     "coverage_pct": 93.8,
+     "FIRST_BIND_acc_pct": 92.6,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.7,
+     "bind_minutes": {
+      "n": 121,
+      "p25": 31.0,
+      "med": 177.0,
+      "p75": 543.0
+     },
+     "down_binds": 62,
+     "up_binds": 59,
+     "down_first_acc_pct": 91.9,
+     "down_kissable_pct": 35.5,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.2,
+     "up_catch_gap": {
+      "n": 59,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 23.7
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 31,
+     "coverage_pct": 59.6,
+     "FIRST_BIND_acc_pct": 96.8,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.2,
+     "bind_minutes": {
+      "n": 31,
+      "p25": 220.0,
+      "med": 494.0,
+      "p75": 708.0
+     },
+     "down_binds": 11,
+     "up_binds": 20,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 18.2,
+     "down_floor_gap": {
+      "n": 8,
+      "p25": -6,
+      "med": -3,
+      "p75": -2
+     },
+     "up_first_acc_pct": 95.0,
+     "up_catch_gap": {
+      "n": 20,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 10.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 119,
+     "coverage_pct": 88.8,
+     "FIRST_BIND_acc_pct": 98.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 119,
+      "p25": 44.0,
+      "med": 188.0,
+      "p75": 609.0
+     },
+     "down_binds": 60,
+     "up_binds": 59,
+     "down_first_acc_pct": 98.3,
+     "down_kissable_pct": 26.7,
+     "down_floor_gap": {
+      "n": 60,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 98.3,
+     "up_catch_gap": {
+      "n": 59,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 8.5
+    }
+   }
+  },
+  "TRV15": {
+   "cfg": {
+    "mv": 15
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 344,
+    "coverage_pct": 59.1,
+    "FIRST_BIND_acc_pct": 95.9,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.5,
+    "bind_minutes": {
+     "n": 344,
+     "p25": 82.0,
+     "med": 367.0,
+     "p75": 701.0
+    },
+    "down_binds": 164,
+    "up_binds": 180,
+    "down_first_acc_pct": 96.3,
+    "down_kissable_pct": 38.4,
+    "down_floor_gap": {
+     "n": 159,
+     "p25": -3,
+     "med": -2,
+     "p75": 1
+    },
+    "up_first_acc_pct": 95.6,
+    "up_catch_gap": {
+     "n": 180,
+     "p25": 4.0,
+     "med": 5.5,
+     "p75": 8.5
+    },
+    "up_still_available_pct": 11.1
+   },
+   "live": {
+    "legs": 559,
+    "bound": 159,
+    "coverage_pct": 28.4,
+    "FIRST_BIND_acc_pct": 96.2,
+    "held_acc_pct": 96.9,
+    "flip_rate_pct": 2.5,
+    "bind_minutes": {
+     "n": 159,
+     "p25": 68.0,
+     "med": 278.0,
+     "p75": 505.0
+    },
+    "down_binds": 66,
+    "up_binds": 93,
+    "down_first_acc_pct": 98.5,
+    "down_kissable_pct": 28.8,
+    "down_floor_gap": {
+     "n": 58,
+     "p25": -4,
+     "med": -3,
+     "p75": 1
+    },
+    "up_first_acc_pct": 94.6,
+    "up_catch_gap": {
+     "n": 93,
+     "p25": 3.5,
+     "med": 5.5,
+     "p75": 9.0
+    },
+    "up_still_available_pct": 5.4
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 117,
+     "coverage_pct": 43.8,
+     "FIRST_BIND_acc_pct": 97.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.1,
+     "bind_minutes": {
+      "n": 117,
+      "p25": 68.0,
+      "med": 298.0,
+      "p75": 525.0
+     },
+     "down_binds": 58,
+     "up_binds": 59,
+     "down_first_acc_pct": 98.3,
+     "down_kissable_pct": 48.3,
+     "down_floor_gap": {
+      "n": 55,
+      "p25": -2,
+      "med": 0,
+      "p75": 2
+     },
+     "up_first_acc_pct": 96.6,
+     "up_catch_gap": {
+      "n": 59,
+      "p25": 5.0,
+      "med": 7.0,
+      "p75": 10.0
+     },
+     "up_still_available_pct": 6.8
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 111,
+     "coverage_pct": 86.0,
+     "FIRST_BIND_acc_pct": 92.8,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 9.0,
+     "bind_minutes": {
+      "n": 111,
+      "p25": 85.0,
+      "med": 372.0,
+      "p75": 770.0
+     },
+     "down_binds": 53,
+     "up_binds": 58,
+     "down_first_acc_pct": 92.5,
+     "down_kissable_pct": 37.7,
+     "down_floor_gap": {
+      "n": 53,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 93.1,
+     "up_catch_gap": {
+      "n": 58,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 20.7
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 19,
+     "coverage_pct": 36.5,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 19,
+      "p25": 285.0,
+      "med": 499.0,
+      "p75": 713.0
+     },
+     "down_binds": 7,
+     "up_binds": 12,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 28.6,
+     "down_floor_gap": {
+      "n": 6,
+      "p25": -7,
+      "med": -6,
+      "p75": 2
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 12,
+      "p25": 5.0,
+      "med": 7.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 0.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 97,
+     "coverage_pct": 72.4,
+     "FIRST_BIND_acc_pct": 96.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.1,
+     "bind_minutes": {
+      "n": 97,
+      "p25": 88.0,
+      "med": 382.0,
+      "p75": 874.0
+     },
+     "down_binds": 46,
+     "up_binds": 51,
+     "down_first_acc_pct": 97.8,
+     "down_kissable_pct": 28.3,
+     "down_floor_gap": {
+      "n": 45,
+      "p25": -3,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 96.1,
+     "up_catch_gap": {
+      "n": 51,
+      "p25": 5.0,
+      "med": 5.5,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 7.8
+    }
+   }
+  },
+  "MIN15+TRD10": {
+   "cfg": {
+    "mm": 15,
+    "mt": 10
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 501,
+    "coverage_pct": 86.1,
+    "FIRST_BIND_acc_pct": 96.0,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.0,
+    "bind_minutes": {
+     "n": 501,
+     "p25": 56.0,
+     "med": 232.0,
+     "p75": 526.0
+    },
+    "down_binds": 231,
+    "up_binds": 270,
+    "down_first_acc_pct": 97.4,
+    "down_kissable_pct": 31.2,
+    "down_floor_gap": {
+     "n": 223,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 94.8,
+    "up_catch_gap": {
+     "n": 270,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 11.1
+   },
+   "live": {
+    "legs": 559,
+    "bound": 348,
+    "coverage_pct": 62.3,
+    "FIRST_BIND_acc_pct": 96.3,
+    "held_acc_pct": 97.4,
+    "flip_rate_pct": 2.0,
+    "bind_minutes": {
+     "n": 348,
+     "p25": 89.0,
+     "med": 269.0,
+     "p75": 493.0
+    },
+    "down_binds": 149,
+    "up_binds": 199,
+    "down_first_acc_pct": 98.0,
+    "down_kissable_pct": 15.4,
+    "down_floor_gap": {
+     "n": 133,
+     "p25": -5,
+     "med": -3,
+     "p75": -2
+    },
+    "up_first_acc_pct": 95.0,
+    "up_catch_gap": {
+     "n": 199,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 8.0
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 212,
+     "coverage_pct": 79.4,
+     "FIRST_BIND_acc_pct": 98.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.3,
+     "bind_minutes": {
+      "n": 212,
+      "p25": 73.0,
+      "med": 244.0,
+      "p75": 479.0
+     },
+     "down_binds": 102,
+     "up_binds": 110,
+     "down_first_acc_pct": 98.0,
+     "down_kissable_pct": 35.3,
+     "down_floor_gap": {
+      "n": 96,
+      "p25": -4,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 98.2,
+     "up_catch_gap": {
+      "n": 110,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 2.7
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 123,
+     "coverage_pct": 95.3,
+     "FIRST_BIND_acc_pct": 91.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 9.8,
+     "bind_minutes": {
+      "n": 123,
+      "p25": 38.0,
+      "med": 167.0,
+      "p75": 410.0
+     },
+     "down_binds": 57,
+     "up_binds": 66,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 36.8,
+     "down_floor_gap": {
+      "n": 57,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 89.4,
+     "up_catch_gap": {
+      "n": 66,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 25.8
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 36,
+     "coverage_pct": 69.2,
+     "FIRST_BIND_acc_pct": 94.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.6,
+     "bind_minutes": {
+      "n": 36,
+      "p25": 114.0,
+      "med": 492.0,
+      "p75": 697.0
+     },
+     "down_binds": 11,
+     "up_binds": 25,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 9.1,
+     "down_floor_gap": {
+      "n": 10,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 92.0,
+     "up_catch_gap": {
+      "n": 25,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 16.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 130,
+     "coverage_pct": 97.0,
+     "FIRST_BIND_acc_pct": 96.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.1,
+     "bind_minutes": {
+      "n": 130,
+      "p25": 59.0,
+      "med": 228.0,
+      "p75": 579.0
+     },
+     "down_binds": 61,
+     "up_binds": 69,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 23.0,
+     "down_floor_gap": {
+      "n": 60,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 95.7,
+     "up_catch_gap": {
+      "n": 69,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 8.7
+    }
+   }
+  },
+  "MIN30+TRD10": {
+   "cfg": {
+    "mm": 30,
+    "mt": 10
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 500,
+    "coverage_pct": 85.9,
+    "FIRST_BIND_acc_pct": 96.2,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 4.8,
+    "bind_minutes": {
+     "n": 500,
+     "p25": 72.0,
+     "med": 236.0,
+     "p75": 526.0
+    },
+    "down_binds": 231,
+    "up_binds": 269,
+    "down_first_acc_pct": 97.4,
+    "down_kissable_pct": 30.7,
+    "down_floor_gap": {
+     "n": 223,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.2,
+    "up_catch_gap": {
+     "n": 269,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.5
+    },
+    "up_still_available_pct": 10.8
+   },
+   "live": {
+    "legs": 559,
+    "bound": 342,
+    "coverage_pct": 61.2,
+    "FIRST_BIND_acc_pct": 96.2,
+    "held_acc_pct": 97.4,
+    "flip_rate_pct": 2.0,
+    "bind_minutes": {
+     "n": 342,
+     "p25": 96.0,
+     "med": 279.0,
+     "p75": 497.0
+    },
+    "down_binds": 146,
+    "up_binds": 196,
+    "down_first_acc_pct": 97.9,
+    "down_kissable_pct": 15.8,
+    "down_floor_gap": {
+     "n": 131,
+     "p25": -5,
+     "med": -3,
+     "p75": -2
+    },
+    "up_first_acc_pct": 94.9,
+    "up_catch_gap": {
+     "n": 196,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 8.2
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 211,
+     "coverage_pct": 79.0,
+     "FIRST_BIND_acc_pct": 98.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.3,
+     "bind_minutes": {
+      "n": 211,
+      "p25": 79.0,
+      "med": 244.0,
+      "p75": 480.0
+     },
+     "down_binds": 101,
+     "up_binds": 110,
+     "down_first_acc_pct": 98.0,
+     "down_kissable_pct": 34.7,
+     "down_floor_gap": {
+      "n": 95,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 98.2,
+     "up_catch_gap": {
+      "n": 110,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 2.7
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 123,
+     "coverage_pct": 95.3,
+     "FIRST_BIND_acc_pct": 91.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 9.8,
+     "bind_minutes": {
+      "n": 123,
+      "p25": 48.0,
+      "med": 167.0,
+      "p75": 410.0
+     },
+     "down_binds": 57,
+     "up_binds": 66,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 36.8,
+     "down_floor_gap": {
+      "n": 57,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 89.4,
+     "up_catch_gap": {
+      "n": 66,
+      "p25": 2.0,
+      "med": 3.5,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 25.8
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 36,
+     "coverage_pct": 69.2,
+     "FIRST_BIND_acc_pct": 94.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.6,
+     "bind_minutes": {
+      "n": 36,
+      "p25": 114.0,
+      "med": 492.0,
+      "p75": 697.0
+     },
+     "down_binds": 11,
+     "up_binds": 25,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 9.1,
+     "down_floor_gap": {
+      "n": 10,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 92.0,
+     "up_catch_gap": {
+      "n": 25,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 16.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 130,
+     "coverage_pct": 97.0,
+     "FIRST_BIND_acc_pct": 97.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.3,
+     "bind_minutes": {
+      "n": 130,
+      "p25": 69.0,
+      "med": 228.0,
+      "p75": 579.0
+     },
+     "down_binds": 62,
+     "up_binds": 68,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 22.6,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 97.1,
+     "up_catch_gap": {
+      "n": 68,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 7.4
+    }
+   }
+  },
+  "MIN30+TRD20": {
+   "cfg": {
+    "mm": 30,
+    "mt": 20
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 409,
+    "coverage_pct": 70.3,
+    "FIRST_BIND_acc_pct": 96.3,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 4.4,
+    "bind_minutes": {
+     "n": 409,
+     "p25": 96.0,
+     "med": 359.0,
+     "p75": 632.0
+    },
+    "down_binds": 182,
+    "up_binds": 227,
+    "down_first_acc_pct": 97.3,
+    "down_kissable_pct": 30.8,
+    "down_floor_gap": {
+     "n": 175,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.6,
+    "up_catch_gap": {
+     "n": 227,
+     "p25": 3.5,
+     "med": 5.5,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 10.6
+   },
+   "live": {
+    "legs": 559,
+    "bound": 219,
+    "coverage_pct": 39.2,
+    "FIRST_BIND_acc_pct": 95.9,
+    "held_acc_pct": 97.3,
+    "flip_rate_pct": 1.8,
+    "bind_minutes": {
+     "n": 219,
+     "p25": 150.0,
+     "med": 374.0,
+     "p75": 602.0
+    },
+    "down_binds": 80,
+    "up_binds": 139,
+    "down_first_acc_pct": 97.5,
+    "down_kissable_pct": 17.5,
+    "down_floor_gap": {
+     "n": 71,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 95.0,
+    "up_catch_gap": {
+     "n": 139,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.5
+    },
+    "up_still_available_pct": 7.2
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 148,
+     "coverage_pct": 55.4,
+     "FIRST_BIND_acc_pct": 95.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.7,
+     "bind_minutes": {
+      "n": 148,
+      "p25": 102.0,
+      "med": 375.0,
+      "p75": 550.0
+     },
+     "down_binds": 67,
+     "up_binds": 81,
+     "down_first_acc_pct": 97.0,
+     "down_kissable_pct": 31.3,
+     "down_floor_gap": {
+      "n": 62,
+      "p25": -3,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 95.1,
+     "up_catch_gap": {
+      "n": 81,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.5
+     },
+     "up_still_available_pct": 6.2
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 118,
+     "coverage_pct": 91.5,
+     "FIRST_BIND_acc_pct": 94.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.8,
+     "bind_minutes": {
+      "n": 118,
+      "p25": 82.0,
+      "med": 312.0,
+      "p75": 618.0
+     },
+     "down_binds": 55,
+     "up_binds": 63,
+     "down_first_acc_pct": 96.4,
+     "down_kissable_pct": 38.2,
+     "down_floor_gap": {
+      "n": 55,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 93.7,
+     "up_catch_gap": {
+      "n": 63,
+      "p25": 2.0,
+      "med": 4.5,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 20.6
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 22,
+     "coverage_pct": 42.3,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 22,
+      "p25": 220.0,
+      "med": 497.0,
+      "p75": 711.0
+     },
+     "down_binds": 5,
+     "up_binds": 17,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 40.0,
+     "down_floor_gap": {
+      "n": 5,
+      "p25": -3,
+      "med": -3,
+      "p75": 2
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 17,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 10.0
+     },
+     "up_still_available_pct": 11.8
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 121,
+     "coverage_pct": 90.3,
+     "FIRST_BIND_acc_pct": 97.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 121,
+      "p25": 150.0,
+      "med": 409.0,
+      "p75": 822.0
+     },
+     "down_binds": 55,
+     "up_binds": 66,
+     "down_first_acc_pct": 98.2,
+     "down_kissable_pct": 21.8,
+     "down_floor_gap": {
+      "n": 53,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 97.0,
+     "up_catch_gap": {
+      "n": 66,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 7.5
+     },
+     "up_still_available_pct": 6.1
+    }
+   }
+  },
+  "MIN60+TRD20": {
+   "cfg": {
+    "mm": 60,
+    "mt": 20
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 401,
+    "coverage_pct": 68.9,
+    "FIRST_BIND_acc_pct": 96.8,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 4.0,
+    "bind_minutes": {
+     "n": 401,
+     "p25": 116.0,
+     "med": 371.0,
+     "p75": 639.0
+    },
+    "down_binds": 174,
+    "up_binds": 227,
+    "down_first_acc_pct": 98.3,
+    "down_kissable_pct": 32.2,
+    "down_floor_gap": {
+     "n": 167,
+     "p25": -4,
+     "med": -2,
+     "p75": 1
+    },
+    "up_first_acc_pct": 95.6,
+    "up_catch_gap": {
+     "n": 227,
+     "p25": 4.0,
+     "med": 5.5,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 11.5
+   },
+   "live": {
+    "legs": 559,
+    "bound": 207,
+    "coverage_pct": 37.0,
+    "FIRST_BIND_acc_pct": 96.6,
+    "held_acc_pct": 98.1,
+    "flip_rate_pct": 1.9,
+    "bind_minutes": {
+     "n": 207,
+     "p25": 199.0,
+     "med": 396.0,
+     "p75": 608.0
+    },
+    "down_binds": 75,
+    "up_binds": 132,
+    "down_first_acc_pct": 98.7,
+    "down_kissable_pct": 17.3,
+    "down_floor_gap": {
+     "n": 66,
+     "p25": -4,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 95.5,
+    "up_catch_gap": {
+     "n": 132,
+     "p25": 3.5,
+     "med": 5.0,
+     "p75": 7.5
+    },
+    "up_still_available_pct": 7.6
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 141,
+     "coverage_pct": 52.8,
+     "FIRST_BIND_acc_pct": 96.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.3,
+     "bind_minutes": {
+      "n": 141,
+      "p25": 119.0,
+      "med": 379.0,
+      "p75": 572.0
+     },
+     "down_binds": 61,
+     "up_binds": 80,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 34.4,
+     "down_floor_gap": {
+      "n": 56,
+      "p25": -3,
+      "med": -1,
+      "p75": 1
+     },
+     "up_first_acc_pct": 95.0,
+     "up_catch_gap": {
+      "n": 80,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 9.0
+     },
+     "up_still_available_pct": 7.5
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 117,
+     "coverage_pct": 90.7,
+     "FIRST_BIND_acc_pct": 95.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.0,
+     "bind_minutes": {
+      "n": 117,
+      "p25": 94.0,
+      "med": 315.0,
+      "p75": 618.0
+     },
+     "down_binds": 53,
+     "up_binds": 64,
+     "down_first_acc_pct": 98.1,
+     "down_kissable_pct": 39.6,
+     "down_floor_gap": {
+      "n": 53,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 93.8,
+     "up_catch_gap": {
+      "n": 64,
+      "p25": 2.5,
+      "med": 4.5,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 21.9
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 22,
+     "coverage_pct": 42.3,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 22,
+      "p25": 220.0,
+      "med": 497.0,
+      "p75": 711.0
+     },
+     "down_binds": 5,
+     "up_binds": 17,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 40.0,
+     "down_floor_gap": {
+      "n": 5,
+      "p25": -3,
+      "med": -3,
+      "p75": 2
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 17,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 10.0
+     },
+     "up_still_available_pct": 11.8
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 121,
+     "coverage_pct": 90.3,
+     "FIRST_BIND_acc_pct": 97.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 121,
+      "p25": 154.0,
+      "med": 409.0,
+      "p75": 822.0
+     },
+     "down_binds": 55,
+     "up_binds": 66,
+     "down_first_acc_pct": 98.2,
+     "down_kissable_pct": 21.8,
+     "down_floor_gap": {
+      "n": 53,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 97.0,
+     "up_catch_gap": {
+      "n": 66,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 7.5
+     },
+     "up_still_available_pct": 6.1
+    }
+   }
+  },
+  "MIN120+TRD20": {
+   "cfg": {
+    "mm": 120,
+    "mt": 20
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 388,
+    "coverage_pct": 66.7,
+    "FIRST_BIND_acc_pct": 97.4,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 3.1,
+    "bind_minutes": {
+     "n": 388,
+     "p25": 182.0,
+     "med": 379.0,
+     "p75": 669.0
+    },
+    "down_binds": 171,
+    "up_binds": 217,
+    "down_first_acc_pct": 98.8,
+    "down_kissable_pct": 32.2,
+    "down_floor_gap": {
+     "n": 165,
+     "p25": -4,
+     "med": -2,
+     "p75": 1
+    },
+    "up_first_acc_pct": 96.3,
+    "up_catch_gap": {
+     "n": 217,
+     "p25": 4.0,
+     "med": 5.5,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 10.1
+   },
+   "live": {
+    "legs": 559,
+    "bound": 197,
+    "coverage_pct": 35.2,
+    "FIRST_BIND_acc_pct": 97.0,
+    "held_acc_pct": 98.5,
+    "flip_rate_pct": 2.0,
+    "bind_minutes": {
+     "n": 197,
+     "p25": 243.0,
+     "med": 406.0,
+     "p75": 616.0
+    },
+    "down_binds": 73,
+    "up_binds": 124,
+    "down_first_acc_pct": 98.6,
+    "down_kissable_pct": 17.8,
+    "down_floor_gap": {
+     "n": 66,
+     "p25": -4,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 96.0,
+    "up_catch_gap": {
+     "n": 124,
+     "p25": 4.0,
+     "med": 5.0,
+     "p75": 7.5
+    },
+    "up_still_available_pct": 7.3
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 131,
+     "coverage_pct": 49.1,
+     "FIRST_BIND_acc_pct": 96.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.8,
+     "bind_minutes": {
+      "n": 131,
+      "p25": 219.0,
+      "med": 397.0,
+      "p75": 576.0
+     },
+     "down_binds": 59,
+     "up_binds": 72,
+     "down_first_acc_pct": 98.3,
+     "down_kissable_pct": 35.6,
+     "down_floor_gap": {
+      "n": 55,
+      "p25": -3,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 95.8,
+     "up_catch_gap": {
+      "n": 72,
+      "p25": 4.5,
+      "med": 6.0,
+      "p75": 9.0
+     },
+     "up_still_available_pct": 5.6
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 117,
+     "coverage_pct": 90.7,
+     "FIRST_BIND_acc_pct": 97.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.4,
+     "bind_minutes": {
+      "n": 117,
+      "p25": 142.0,
+      "med": 321.0,
+      "p75": 618.0
+     },
+     "down_binds": 53,
+     "up_binds": 64,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 39.6,
+     "down_floor_gap": {
+      "n": 53,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 95.3,
+     "up_catch_gap": {
+      "n": 64,
+      "p25": 3.0,
+      "med": 4.5,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 18.8
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 19,
+     "coverage_pct": 36.5,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 19,
+      "p25": 347.0,
+      "med": 530.0,
+      "p75": 711.0
+     },
+     "down_binds": 4,
+     "up_binds": 15,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 25.0,
+     "down_floor_gap": {
+      "n": 4,
+      "p25": -3,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 15,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 13.3
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 121,
+     "coverage_pct": 90.3,
+     "FIRST_BIND_acc_pct": 97.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 121,
+      "p25": 181.0,
+      "med": 409.0,
+      "p75": 822.0
+     },
+     "down_binds": 55,
+     "up_binds": 66,
+     "down_first_acc_pct": 98.2,
+     "down_kissable_pct": 21.8,
+     "down_floor_gap": {
+      "n": 53,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 97.0,
+     "up_catch_gap": {
+      "n": 66,
+      "p25": 4.5,
+      "med": 5.0,
+      "p75": 7.5
+     },
+     "up_still_available_pct": 6.1
+    }
+   }
+  },
+  "MIN15+TRV4": {
+   "cfg": {
+    "mm": 15,
+    "mv": 4
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 535,
+    "coverage_pct": 91.9,
+    "FIRST_BIND_acc_pct": 94.4,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 7.5,
+    "bind_minutes": {
+     "n": 535,
+     "p25": 31.0,
+     "med": 82.0,
+     "p75": 236.0
+    },
+    "down_binds": 248,
+    "up_binds": 287,
+    "down_first_acc_pct": 96.4,
+    "down_kissable_pct": 31.9,
+    "down_floor_gap": {
+     "n": 241,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 92.7,
+    "up_catch_gap": {
+     "n": 287,
+     "p25": 3.5,
+     "med": 5.0,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 16.7
+   },
+   "live": {
+    "legs": 559,
+    "bound": 415,
+    "coverage_pct": 74.2,
+    "FIRST_BIND_acc_pct": 94.0,
+    "held_acc_pct": 97.1,
+    "flip_rate_pct": 5.1,
+    "bind_minutes": {
+     "n": 415,
+     "p25": 36.0,
+     "med": 93.0,
+     "p75": 232.0
+    },
+    "down_binds": 185,
+    "up_binds": 230,
+    "down_first_acc_pct": 96.8,
+    "down_kissable_pct": 18.9,
+    "down_floor_gap": {
+     "n": 173,
+     "p25": -4,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 91.7,
+    "up_catch_gap": {
+     "n": 230,
+     "p25": 3.0,
+     "med": 4.5,
+     "p75": 6.0
+    },
+    "up_still_available_pct": 14.3
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 234,
+     "coverage_pct": 87.6,
+     "FIRST_BIND_acc_pct": 96.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.0,
+     "bind_minutes": {
+      "n": 234,
+      "p25": 30.0,
+      "med": 87.0,
+      "p75": 238.0
+     },
+     "down_binds": 106,
+     "up_binds": 128,
+     "down_first_acc_pct": 98.1,
+     "down_kissable_pct": 37.7,
+     "down_floor_gap": {
+      "n": 101,
+      "p25": -3,
+      "med": -1,
+      "p75": 1
+     },
+     "up_first_acc_pct": 94.5,
+     "up_catch_gap": {
+      "n": 128,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 10.9
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 124,
+     "coverage_pct": 96.1,
+     "FIRST_BIND_acc_pct": 89.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 13.7,
+     "bind_minutes": {
+      "n": 124,
+      "p25": 28.0,
+      "med": 73.0,
+      "p75": 227.0
+     },
+     "down_binds": 61,
+     "up_binds": 63,
+     "down_first_acc_pct": 90.2,
+     "down_kissable_pct": 34.4,
+     "down_floor_gap": {
+      "n": 60,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 88.9,
+     "up_catch_gap": {
+      "n": 63,
+      "p25": 2.5,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 28.6
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 46,
+     "coverage_pct": 88.5,
+     "FIRST_BIND_acc_pct": 91.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 8.7,
+     "bind_minutes": {
+      "n": 46,
+      "p25": 73.0,
+      "med": 224.0,
+      "p75": 493.0
+     },
+     "down_binds": 20,
+     "up_binds": 26,
+     "down_first_acc_pct": 95.0,
+     "down_kissable_pct": 5.0,
+     "down_floor_gap": {
+      "n": 19,
+      "p25": -6,
+      "med": -3,
+      "p75": -3
+     },
+     "up_first_acc_pct": 88.5,
+     "up_catch_gap": {
+      "n": 26,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 23.1
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 131,
+     "coverage_pct": 97.8,
+     "FIRST_BIND_acc_pct": 96.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.8,
+     "bind_minutes": {
+      "n": 131,
+      "p25": 26.0,
+      "med": 74.0,
+      "p75": 166.0
+     },
+     "down_binds": 61,
+     "up_binds": 70,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 27.9,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 94.3,
+     "up_catch_gap": {
+      "n": 70,
+      "p25": 4.0,
+      "med": 4.5,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 14.3
+    }
+   }
+  },
+  "MIN30+TRV6": {
+   "cfg": {
+    "mm": 30,
+    "mv": 6
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 523,
+    "coverage_pct": 89.9,
+    "FIRST_BIND_acc_pct": 95.6,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.7,
+    "bind_minutes": {
+     "n": 523,
+     "p25": 53.0,
+     "med": 142.0,
+     "p75": 372.0
+    },
+    "down_binds": 251,
+    "up_binds": 272,
+    "down_first_acc_pct": 95.6,
+    "down_kissable_pct": 31.9,
+    "down_floor_gap": {
+     "n": 246,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.6,
+    "up_catch_gap": {
+     "n": 272,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 11.4
+   },
+   "live": {
+    "legs": 559,
+    "bound": 377,
+    "coverage_pct": 67.4,
+    "FIRST_BIND_acc_pct": 95.2,
+    "held_acc_pct": 97.1,
+    "flip_rate_pct": 3.2,
+    "bind_minutes": {
+     "n": 377,
+     "p25": 67.0,
+     "med": 167.0,
+     "p75": 370.0
+    },
+    "down_binds": 171,
+    "up_binds": 206,
+    "down_first_acc_pct": 95.9,
+    "down_kissable_pct": 21.1,
+    "down_floor_gap": {
+     "n": 161,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 94.7,
+    "up_catch_gap": {
+     "n": 206,
+     "p25": 3.5,
+     "med": 5.5,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 8.7
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 223,
+     "coverage_pct": 83.5,
+     "FIRST_BIND_acc_pct": 97.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.5,
+     "bind_minutes": {
+      "n": 223,
+      "p25": 51.0,
+      "med": 158.0,
+      "p75": 329.0
+     },
+     "down_binds": 104,
+     "up_binds": 119,
+     "down_first_acc_pct": 97.1,
+     "down_kissable_pct": 39.4,
+     "down_floor_gap": {
+      "n": 101,
+      "p25": -3,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 97.5,
+     "up_catch_gap": {
+      "n": 119,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 6.7
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 124,
+     "coverage_pct": 96.1,
+     "FIRST_BIND_acc_pct": 90.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 12.1,
+     "bind_minutes": {
+      "n": 124,
+      "p25": 47.0,
+      "med": 96.0,
+      "p75": 287.0
+     },
+     "down_binds": 64,
+     "up_binds": 60,
+     "down_first_acc_pct": 89.1,
+     "down_kissable_pct": 32.8,
+     "down_floor_gap": {
+      "n": 63,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 91.7,
+     "up_catch_gap": {
+      "n": 60,
+      "p25": 2.5,
+      "med": 4.5,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 23.3
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 45,
+     "coverage_pct": 86.5,
+     "FIRST_BIND_acc_pct": 95.6,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.4,
+     "bind_minutes": {
+      "n": 45,
+      "p25": 123.0,
+      "med": 390.0,
+      "p75": 629.0
+     },
+     "down_binds": 19,
+     "up_binds": 26,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 5.3,
+     "down_floor_gap": {
+      "n": 18,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 92.3,
+     "up_catch_gap": {
+      "n": 26,
+      "p25": 3.5,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 15.4
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 131,
+     "coverage_pct": 97.8,
+     "FIRST_BIND_acc_pct": 97.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.3,
+     "bind_minutes": {
+      "n": 131,
+      "p25": 53.0,
+      "med": 146.0,
+      "p75": 370.0
+     },
+     "down_binds": 64,
+     "up_binds": 67,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 26.6,
+     "down_floor_gap": {
+      "n": 64,
+      "p25": -4,
+      "med": -3,
+      "p75": 0
+     },
+     "up_first_acc_pct": 97.0,
+     "up_catch_gap": {
+      "n": 67,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 7.5
+    }
+   }
+  },
+  "MIN60+TRV6": {
+   "cfg": {
+    "mm": 60,
+    "mv": 6
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 510,
+    "coverage_pct": 87.6,
+    "FIRST_BIND_acc_pct": 95.9,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.3,
+    "bind_minutes": {
+     "n": 510,
+     "p25": 80.0,
+     "med": 167.0,
+     "p75": 390.0
+    },
+    "down_binds": 241,
+    "up_binds": 269,
+    "down_first_acc_pct": 96.3,
+    "down_kissable_pct": 32.4,
+    "down_floor_gap": {
+     "n": 236,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.5,
+    "up_catch_gap": {
+     "n": 269,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 11.5
+   },
+   "live": {
+    "legs": 559,
+    "bound": 361,
+    "coverage_pct": 64.6,
+    "FIRST_BIND_acc_pct": 95.3,
+    "held_acc_pct": 97.5,
+    "flip_rate_pct": 3.0,
+    "bind_minutes": {
+     "n": 361,
+     "p25": 88.0,
+     "med": 188.0,
+     "p75": 390.0
+    },
+    "down_binds": 163,
+    "up_binds": 198,
+    "down_first_acc_pct": 96.3,
+    "down_kissable_pct": 20.9,
+    "down_floor_gap": {
+     "n": 154,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 94.4,
+    "up_catch_gap": {
+     "n": 198,
+     "p25": 3.5,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 8.6
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 212,
+     "coverage_pct": 79.4,
+     "FIRST_BIND_acc_pct": 97.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.2,
+     "bind_minutes": {
+      "n": 212,
+      "p25": 86.0,
+      "med": 187.0,
+      "p75": 361.0
+     },
+     "down_binds": 96,
+     "up_binds": 116,
+     "down_first_acc_pct": 97.9,
+     "down_kissable_pct": 40.6,
+     "down_floor_gap": {
+      "n": 93,
+      "p25": -3,
+      "med": -1,
+      "p75": 1
+     },
+     "up_first_acc_pct": 96.6,
+     "up_catch_gap": {
+      "n": 116,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 7.5
+     },
+     "up_still_available_pct": 8.6
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 123,
+     "coverage_pct": 95.3,
+     "FIRST_BIND_acc_pct": 91.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.6,
+     "bind_minutes": {
+      "n": 123,
+      "p25": 71.0,
+      "med": 118.0,
+      "p75": 325.0
+     },
+     "down_binds": 63,
+     "up_binds": 60,
+     "down_first_acc_pct": 90.5,
+     "down_kissable_pct": 34.9,
+     "down_floor_gap": {
+      "n": 62,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.3,
+     "up_catch_gap": {
+      "n": 60,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 20.0
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 44,
+     "coverage_pct": 84.6,
+     "FIRST_BIND_acc_pct": 95.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.5,
+     "bind_minutes": {
+      "n": 44,
+      "p25": 131.0,
+      "med": 424.0,
+      "p75": 629.0
+     },
+     "down_binds": 18,
+     "up_binds": 26,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 5.6,
+     "down_floor_gap": {
+      "n": 17,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 92.3,
+     "up_catch_gap": {
+      "n": 26,
+      "p25": 3.5,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 15.4
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 131,
+     "coverage_pct": 97.8,
+     "FIRST_BIND_acc_pct": 97.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.3,
+     "bind_minutes": {
+      "n": 131,
+      "p25": 79.0,
+      "med": 161.0,
+      "p75": 370.0
+     },
+     "down_binds": 64,
+     "up_binds": 67,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 25.0,
+     "down_floor_gap": {
+      "n": 64,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 97.0,
+     "up_catch_gap": {
+      "n": 67,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 7.5
+    }
+   }
+  },
+  "MIN60+TRV10": {
+   "cfg": {
+    "mm": 60,
+    "mv": 10
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 432,
+    "coverage_pct": 74.2,
+    "FIRST_BIND_acc_pct": 96.1,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.1,
+    "bind_minutes": {
+     "n": 432,
+     "p25": 88.0,
+     "med": 243.0,
+     "p75": 569.0
+    },
+    "down_binds": 207,
+    "up_binds": 225,
+    "down_first_acc_pct": 96.1,
+    "down_kissable_pct": 35.3,
+    "down_floor_gap": {
+     "n": 200,
+     "p25": -4,
+     "med": -2,
+     "p75": 1
+    },
+    "up_first_acc_pct": 96.0,
+    "up_catch_gap": {
+     "n": 225,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 10.2
+   },
+   "live": {
+    "legs": 559,
+    "bound": 255,
+    "coverage_pct": 45.6,
+    "FIRST_BIND_acc_pct": 95.7,
+    "held_acc_pct": 96.9,
+    "flip_rate_pct": 2.4,
+    "bind_minutes": {
+     "n": 255,
+     "p25": 107.0,
+     "med": 234.0,
+     "p75": 459.0
+    },
+    "down_binds": 114,
+    "up_binds": 141,
+    "down_first_acc_pct": 96.5,
+    "down_kissable_pct": 25.4,
+    "down_floor_gap": {
+     "n": 105,
+     "p25": -4,
+     "med": -3,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.0,
+    "up_catch_gap": {
+     "n": 141,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 6.4
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 164,
+     "coverage_pct": 61.4,
+     "FIRST_BIND_acc_pct": 96.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.9,
+     "bind_minutes": {
+      "n": 164,
+      "p25": 93.0,
+      "med": 230.0,
+      "p75": 483.0
+     },
+     "down_binds": 78,
+     "up_binds": 86,
+     "down_first_acc_pct": 96.2,
+     "down_kissable_pct": 43.6,
+     "down_floor_gap": {
+      "n": 75,
+      "p25": -3,
+      "med": -1,
+      "p75": 1
+     },
+     "up_first_acc_pct": 96.5,
+     "up_catch_gap": {
+      "n": 86,
+      "p25": 5.0,
+      "med": 7.0,
+      "p75": 9.0
+     },
+     "up_still_available_pct": 5.8
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 120,
+     "coverage_pct": 93.0,
+     "FIRST_BIND_acc_pct": 93.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 9.2,
+     "bind_minutes": {
+      "n": 120,
+      "p25": 78.0,
+      "med": 234.0,
+      "p75": 543.0
+     },
+     "down_binds": 60,
+     "up_binds": 60,
+     "down_first_acc_pct": 93.3,
+     "down_kissable_pct": 36.7,
+     "down_floor_gap": {
+      "n": 59,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.3,
+     "up_catch_gap": {
+      "n": 60,
+      "p25": 3.0,
+      "med": 4.5,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 21.7
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 30,
+     "coverage_pct": 57.7,
+     "FIRST_BIND_acc_pct": 96.7,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.3,
+     "bind_minutes": {
+      "n": 30,
+      "p25": 220.0,
+      "med": 494.0,
+      "p75": 710.0
+     },
+     "down_binds": 10,
+     "up_binds": 20,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 20.0,
+     "down_floor_gap": {
+      "n": 7,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 95.0,
+     "up_catch_gap": {
+      "n": 20,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 10.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 118,
+     "coverage_pct": 88.1,
+     "FIRST_BIND_acc_pct": 98.3,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 1.7,
+     "bind_minutes": {
+      "n": 118,
+      "p25": 88.0,
+      "med": 211.0,
+      "p75": 625.0
+     },
+     "down_binds": 59,
+     "up_binds": 59,
+     "down_first_acc_pct": 98.3,
+     "down_kissable_pct": 25.4,
+     "down_floor_gap": {
+      "n": 59,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 98.3,
+     "up_catch_gap": {
+      "n": 59,
+      "p25": 4.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 5.1
+    }
+   }
+  },
+  "TRD10+TRV4": {
+   "cfg": {
+    "mt": 10,
+    "mv": 4
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 504,
+    "coverage_pct": 86.6,
+    "FIRST_BIND_acc_pct": 95.4,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 5.6,
+    "bind_minutes": {
+     "n": 504,
+     "p25": 44.0,
+     "med": 228.0,
+     "p75": 526.0
+    },
+    "down_binds": 232,
+    "up_binds": 272,
+    "down_first_acc_pct": 97.0,
+    "down_kissable_pct": 31.5,
+    "down_floor_gap": {
+     "n": 221,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 94.1,
+    "up_catch_gap": {
+     "n": 272,
+     "p25": 3.5,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 11.8
+   },
+   "live": {
+    "legs": 559,
+    "bound": 362,
+    "coverage_pct": 64.8,
+    "FIRST_BIND_acc_pct": 96.1,
+    "held_acc_pct": 97.2,
+    "flip_rate_pct": 1.9,
+    "bind_minutes": {
+     "n": 362,
+     "p25": 67.0,
+     "med": 248.0,
+     "p75": 492.0
+    },
+    "down_binds": 155,
+    "up_binds": 207,
+    "down_first_acc_pct": 98.1,
+    "down_kissable_pct": 16.8,
+    "down_floor_gap": {
+     "n": 137,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 94.7,
+    "up_catch_gap": {
+     "n": 207,
+     "p25": 3.0,
+     "med": 5.0,
+     "p75": 7.0
+    },
+    "up_still_available_pct": 9.2
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 214,
+     "coverage_pct": 80.1,
+     "FIRST_BIND_acc_pct": 97.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.2,
+     "bind_minutes": {
+      "n": 214,
+      "p25": 49.0,
+      "med": 237.0,
+      "p75": 474.0
+     },
+     "down_binds": 100,
+     "up_binds": 114,
+     "down_first_acc_pct": 98.0,
+     "down_kissable_pct": 36.0,
+     "down_floor_gap": {
+      "n": 92,
+      "p25": -3,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 96.5,
+     "up_catch_gap": {
+      "n": 114,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 4.4
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 124,
+     "coverage_pct": 96.1,
+     "FIRST_BIND_acc_pct": 91.1,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 10.5,
+     "bind_minutes": {
+      "n": 124,
+      "p25": 28.0,
+      "med": 142.0,
+      "p75": 424.0
+     },
+     "down_binds": 59,
+     "up_binds": 65,
+     "down_first_acc_pct": 93.2,
+     "down_kissable_pct": 35.6,
+     "down_floor_gap": {
+      "n": 58,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 89.2,
+     "up_catch_gap": {
+      "n": 65,
+      "p25": 2.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 24.6
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 36,
+     "coverage_pct": 69.2,
+     "FIRST_BIND_acc_pct": 94.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.6,
+     "bind_minutes": {
+      "n": 36,
+      "p25": 90.0,
+      "med": 493.0,
+      "p75": 697.0
+     },
+     "down_binds": 11,
+     "up_binds": 25,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 9.1,
+     "down_floor_gap": {
+      "n": 10,
+      "p25": -6,
+      "med": -4,
+      "p75": -3
+     },
+     "up_first_acc_pct": 92.0,
+     "up_catch_gap": {
+      "n": 25,
+      "p25": 3.0,
+      "med": 5.0,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 16.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 130,
+     "coverage_pct": 97.0,
+     "FIRST_BIND_acc_pct": 96.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.1,
+     "bind_minutes": {
+      "n": 130,
+      "p25": 54.0,
+      "med": 220.0,
+      "p75": 579.0
+     },
+     "down_binds": 62,
+     "up_binds": 68,
+     "down_first_acc_pct": 98.4,
+     "down_kissable_pct": 24.2,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 95.6,
+     "up_catch_gap": {
+      "n": 68,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 10.3
+    }
+   }
+  },
+  "TRD20+TRV6": {
+   "cfg": {
+    "mt": 20,
+    "mv": 6
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 408,
+    "coverage_pct": 70.1,
+    "FIRST_BIND_acc_pct": 96.1,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 4.7,
+    "bind_minutes": {
+     "n": 408,
+     "p25": 94.0,
+     "med": 359.0,
+     "p75": 639.0
+    },
+    "down_binds": 184,
+    "up_binds": 224,
+    "down_first_acc_pct": 96.7,
+    "down_kissable_pct": 31.0,
+    "down_floor_gap": {
+     "n": 177,
+     "p25": -4,
+     "med": -2,
+     "p75": 0
+    },
+    "up_first_acc_pct": 95.5,
+    "up_catch_gap": {
+     "n": 224,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 8.0
+    },
+    "up_still_available_pct": 10.7
+   },
+   "live": {
+    "legs": 559,
+    "bound": 227,
+    "coverage_pct": 40.6,
+    "FIRST_BIND_acc_pct": 96.5,
+    "held_acc_pct": 97.4,
+    "flip_rate_pct": 1.3,
+    "bind_minutes": {
+     "n": 227,
+     "p25": 96.0,
+     "med": 356.0,
+     "p75": 602.0
+    },
+    "down_binds": 86,
+    "up_binds": 141,
+    "down_first_acc_pct": 97.7,
+    "down_kissable_pct": 19.8,
+    "down_floor_gap": {
+     "n": 76,
+     "p25": -5,
+     "med": -3,
+     "p75": -1
+    },
+    "up_first_acc_pct": 95.7,
+    "up_catch_gap": {
+     "n": 141,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 7.5
+    },
+    "up_still_available_pct": 7.1
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 146,
+     "coverage_pct": 54.7,
+     "FIRST_BIND_acc_pct": 95.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.5,
+     "bind_minutes": {
+      "n": 146,
+      "p25": 85.0,
+      "med": 358.0,
+      "p75": 572.0
+     },
+     "down_binds": 66,
+     "up_binds": 80,
+     "down_first_acc_pct": 97.0,
+     "down_kissable_pct": 31.8,
+     "down_floor_gap": {
+      "n": 61,
+      "p25": -3,
+      "med": -1,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.8,
+     "up_catch_gap": {
+      "n": 80,
+      "p25": 4.5,
+      "med": 6.5,
+      "p75": 8.5
+     },
+     "up_still_available_pct": 7.5
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 118,
+     "coverage_pct": 91.5,
+     "FIRST_BIND_acc_pct": 94.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.8,
+     "bind_minutes": {
+      "n": 118,
+      "p25": 82.0,
+      "med": 312.0,
+      "p75": 694.0
+     },
+     "down_binds": 57,
+     "up_binds": 61,
+     "down_first_acc_pct": 94.7,
+     "down_kissable_pct": 36.8,
+     "down_floor_gap": {
+      "n": 57,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 95.1,
+     "up_catch_gap": {
+      "n": 61,
+      "p25": 2.5,
+      "med": 4.5,
+      "p75": 6.5
+     },
+     "up_still_available_pct": 18.0
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 22,
+     "coverage_pct": 42.3,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 22,
+      "p25": 220.0,
+      "med": 515.0,
+      "p75": 711.0
+     },
+     "down_binds": 5,
+     "up_binds": 17,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 40.0,
+     "down_floor_gap": {
+      "n": 5,
+      "p25": -3,
+      "med": -3,
+      "p75": 2
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 17,
+      "p25": 4.5,
+      "med": 6.0,
+      "p75": 10.0
+     },
+     "up_still_available_pct": 11.8
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 122,
+     "coverage_pct": 91.0,
+     "FIRST_BIND_acc_pct": 97.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 122,
+      "p25": 133.0,
+      "med": 408.0,
+      "p75": 822.0
+     },
+     "down_binds": 56,
+     "up_binds": 66,
+     "down_first_acc_pct": 98.2,
+     "down_kissable_pct": 23.2,
+     "down_floor_gap": {
+      "n": 54,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 97.0,
+     "up_catch_gap": {
+      "n": 66,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 7.6
+    }
+   }
+  },
+  "TRD50+TRV10": {
+   "cfg": {
+    "mt": 50,
+    "mv": 10
+   },
+   "verified": {
+    "legs": 582,
+    "bound": 247,
+    "coverage_pct": 42.4,
+    "FIRST_BIND_acc_pct": 96.4,
+    "held_acc_pct": 100.0,
+    "flip_rate_pct": 4.5,
+    "bind_minutes": {
+     "n": 247,
+     "p25": 254.0,
+     "med": 568.0,
+     "p75": 872.0
+    },
+    "down_binds": 114,
+    "up_binds": 133,
+    "down_first_acc_pct": 96.5,
+    "down_kissable_pct": 33.3,
+    "down_floor_gap": {
+     "n": 112,
+     "p25": -4,
+     "med": -2,
+     "p75": 1
+    },
+    "up_first_acc_pct": 96.2,
+    "up_catch_gap": {
+     "n": 133,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 8.5
+    },
+    "up_still_available_pct": 10.5
+   },
+   "live": {
+    "legs": 559,
+    "bound": 52,
+    "coverage_pct": 9.3,
+    "FIRST_BIND_acc_pct": 92.3,
+    "held_acc_pct": 94.2,
+    "flip_rate_pct": 1.9,
+    "bind_minutes": {
+     "n": 52,
+     "p25": 294.0,
+     "med": 459.0,
+     "p75": 699.0
+    },
+    "down_binds": 16,
+    "up_binds": 36,
+    "down_first_acc_pct": 93.8,
+    "down_kissable_pct": 12.5,
+    "down_floor_gap": {
+     "n": 14,
+     "p25": -6,
+     "med": -4,
+     "p75": -2
+    },
+    "up_first_acc_pct": 91.7,
+    "up_catch_gap": {
+     "n": 36,
+     "p25": 4.0,
+     "med": 6.0,
+     "p75": 9.0
+    },
+    "up_still_available_pct": 8.3
+   },
+   "by_category_verified": {
+    "ATP_CHALL": {
+     "legs": 267,
+     "bound": 62,
+     "coverage_pct": 23.2,
+     "FIRST_BIND_acc_pct": 95.2,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 4.8,
+     "bind_minutes": {
+      "n": 62,
+      "p25": 116.0,
+      "med": 459.0,
+      "p75": 689.0
+     },
+     "down_binds": 29,
+     "up_binds": 33,
+     "down_first_acc_pct": 96.6,
+     "down_kissable_pct": 41.4,
+     "down_floor_gap": {
+      "n": 28,
+      "p25": -3,
+      "med": -1,
+      "p75": 2
+     },
+     "up_first_acc_pct": 93.9,
+     "up_catch_gap": {
+      "n": 33,
+      "p25": 5.5,
+      "med": 7.0,
+      "p75": 10.0
+     },
+     "up_still_available_pct": 9.1
+    },
+    "ATP_MAIN": {
+     "legs": 129,
+     "bound": 101,
+     "coverage_pct": 78.3,
+     "FIRST_BIND_acc_pct": 96.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 5.9,
+     "bind_minutes": {
+      "n": 101,
+      "p25": 268.0,
+      "med": 591.0,
+      "p75": 951.0
+     },
+     "down_binds": 46,
+     "up_binds": 55,
+     "down_first_acc_pct": 95.7,
+     "down_kissable_pct": 34.8,
+     "down_floor_gap": {
+      "n": 46,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 96.4,
+     "up_catch_gap": {
+      "n": 55,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 14.5
+    },
+    "WTA_CHALL": {
+     "legs": 52,
+     "bound": 4,
+     "coverage_pct": 7.7,
+     "FIRST_BIND_acc_pct": 100.0,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 0.0,
+     "bind_minutes": {
+      "n": 4,
+      "p25": 642.0,
+      "med": 773.0,
+      "p75": 773.0
+     },
+     "down_binds": 2,
+     "up_binds": 2,
+     "down_first_acc_pct": 100.0,
+     "down_kissable_pct": 0.0,
+     "down_floor_gap": {
+      "n": 2,
+      "p25": -8,
+      "med": -8,
+      "p75": -4
+     },
+     "up_first_acc_pct": 100.0,
+     "up_catch_gap": {
+      "n": 2,
+      "p25": 6.0,
+      "med": 6.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 0.0
+    },
+    "WTA_MAIN": {
+     "legs": 134,
+     "bound": 80,
+     "coverage_pct": 59.7,
+     "FIRST_BIND_acc_pct": 97.5,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 2.5,
+     "bind_minutes": {
+      "n": 80,
+      "p25": 294.0,
+      "med": 609.0,
+      "p75": 956.0
+     },
+     "down_binds": 37,
+     "up_binds": 43,
+     "down_first_acc_pct": 97.3,
+     "down_kissable_pct": 27.0,
+     "down_floor_gap": {
+      "n": 36,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 97.7,
+     "up_catch_gap": {
+      "n": 43,
+      "p25": 5.0,
+      "med": 6.0,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 7.0
+    }
+   }
+  }
+ },
+ "nondominated_coverage_vs_first_bind_acc": [
+  "MIN0",
+  "TRD3",
+  "TRD5",
+  "TRD100",
+  "TRV2",
+  "TRV6",
+  "MIN15+TRD10",
+  "MIN30+TRD10",
+  "MIN30+TRD20",
+  "MIN60+TRD20",
+  "MIN120+TRD20",
+  "MIN30+TRV6",
+  "MIN60+TRV6"
+ ],
+ "dominated_count": 17,
+ "three_cleanest_candidates_no_selection": {
+  "TRD5": {
+   "why": "trade-count scheme knee: cov 92.4 / first-bind 94.8 / flip 6.5 / bind median 120min; live cov 78.2 acc 95.2",
+   "receipts": {
+    "cfg": {
+     "mt": 5
+    },
+    "verified": {
+     "legs": 582,
+     "bound": 538,
+     "coverage_pct": 92.4,
+     "FIRST_BIND_acc_pct": 94.8,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.5,
+     "bind_minutes": {
+      "n": 538,
+      "p25": 26.0,
+      "med": 120.0,
+      "p75": 382.0
+     },
+     "down_binds": 251,
+     "up_binds": 287,
+     "down_first_acc_pct": 96.8,
+     "down_kissable_pct": 29.9,
+     "down_floor_gap": {
+      "n": 243,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 93.0,
+     "up_catch_gap": {
+      "n": 287,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 16.0
+    },
+    "live": {
+     "legs": 559,
+     "bound": 437,
+     "coverage_pct": 78.2,
+     "FIRST_BIND_acc_pct": 95.2,
+     "held_acc_pct": 97.0,
+     "flip_rate_pct": 3.2,
+     "bind_minutes": {
+      "n": 437,
+      "p25": 32.0,
+      "med": 137.0,
+      "p75": 367.0
+     },
+     "down_binds": 196,
+     "up_binds": 241,
+     "down_first_acc_pct": 98.0,
+     "down_kissable_pct": 16.8,
+     "down_floor_gap": {
+      "n": 176,
+      "p25": -5,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 92.9,
+     "up_catch_gap": {
+      "n": 241,
+      "p25": 3.0,
+      "med": 4.0,
+      "p75": 6.0
+     },
+     "up_still_available_pct": 13.7
+    },
+    "by_category_verified": {
+     "ATP_CHALL": {
+      "legs": 267,
+      "bound": 236,
+      "coverage_pct": 88.4,
+      "FIRST_BIND_acc_pct": 96.2,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 5.1,
+      "bind_minutes": {
+       "n": 236,
+       "p25": 26.0,
+       "med": 122.0,
+       "p75": 390.0
+      },
+      "down_binds": 109,
+      "up_binds": 127,
+      "down_first_acc_pct": 98.2,
+      "down_kissable_pct": 33.9,
+      "down_floor_gap": {
+       "n": 103,
+       "p25": -4,
+       "med": -2,
+       "p75": 0
+      },
+      "up_first_acc_pct": 94.5,
+      "up_catch_gap": {
+       "n": 127,
+       "p25": 3.0,
+       "med": 5.0,
+       "p75": 7.0
+      },
+      "up_still_available_pct": 9.4
+     },
+     "ATP_MAIN": {
+      "legs": 129,
+      "bound": 125,
+      "coverage_pct": 96.9,
+      "FIRST_BIND_acc_pct": 89.6,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 12.0,
+      "bind_minutes": {
+       "n": 125,
+       "p25": 14.0,
+       "med": 85.0,
+       "p75": 300.0
+      },
+      "down_binds": 60,
+      "up_binds": 65,
+      "down_first_acc_pct": 91.7,
+      "down_kissable_pct": 35.0,
+      "down_floor_gap": {
+       "n": 59,
+       "p25": -4,
+       "med": -2,
+       "p75": 0
+      },
+      "up_first_acc_pct": 87.7,
+      "up_catch_gap": {
+       "n": 65,
+       "p25": 2.0,
+       "med": 4.0,
+       "p75": 6.0
+      },
+      "up_still_available_pct": 27.7
+     },
+     "WTA_CHALL": {
+      "legs": 52,
+      "bound": 44,
+      "coverage_pct": 84.6,
+      "FIRST_BIND_acc_pct": 93.2,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 6.8,
+      "bind_minutes": {
+       "n": 44,
+       "p25": 70.0,
+       "med": 317.0,
+       "p75": 638.0
+      },
+      "down_binds": 19,
+      "up_binds": 25,
+      "down_first_acc_pct": 94.7,
+      "down_kissable_pct": 5.3,
+      "down_floor_gap": {
+       "n": 18,
+       "p25": -6,
+       "med": -3,
+       "p75": -3
+      },
+      "up_first_acc_pct": 92.0,
+      "up_catch_gap": {
+       "n": 25,
+       "p25": 3.0,
+       "med": 4.0,
+       "p75": 6.0
+      },
+      "up_still_available_pct": 24.0
+     },
+     "WTA_MAIN": {
+      "legs": 134,
+      "bound": 133,
+      "coverage_pct": 99.3,
+      "FIRST_BIND_acc_pct": 97.7,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 3.8,
+      "bind_minutes": {
+       "n": 133,
+       "p25": 28.0,
+       "med": 114.0,
+       "p75": 344.0
+      },
+      "down_binds": 63,
+      "up_binds": 70,
+      "down_first_acc_pct": 100.0,
+      "down_kissable_pct": 25.4,
+      "down_floor_gap": {
+       "n": 63,
+       "p25": -4,
+       "med": -2,
+       "p75": -1
+      },
+      "up_first_acc_pct": 95.7,
+      "up_catch_gap": {
+       "n": 70,
+       "p25": 2.5,
+       "med": 4.0,
+       "p75": 6.0
+      },
+      "up_still_available_pct": 14.3
+     }
+    }
+   }
+  },
+  "TRV6": {
+   "why": "travel scheme knee: cov 91.1 / 94.9 / 6.6 / 107min; best high-coverage DOWN kissable (32.1%); live 72.6/95.3",
+   "receipts": {
+    "cfg": {
+     "mv": 6
+    },
+    "verified": {
+     "legs": 582,
+     "bound": 530,
+     "coverage_pct": 91.1,
+     "FIRST_BIND_acc_pct": 94.9,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 6.6,
+     "bind_minutes": {
+      "n": 530,
+      "p25": 24.0,
+      "med": 107.0,
+      "p75": 359.0
+     },
+     "down_binds": 252,
+     "up_binds": 278,
+     "down_first_acc_pct": 95.6,
+     "down_kissable_pct": 32.1,
+     "down_floor_gap": {
+      "n": 245,
+      "p25": -4,
+      "med": -2,
+      "p75": 0
+     },
+     "up_first_acc_pct": 94.2,
+     "up_catch_gap": {
+      "n": 278,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 13.7
+    },
+    "live": {
+     "legs": 559,
+     "bound": 406,
+     "coverage_pct": 72.6,
+     "FIRST_BIND_acc_pct": 95.3,
+     "held_acc_pct": 97.3,
+     "flip_rate_pct": 3.4,
+     "bind_minutes": {
+      "n": 406,
+      "p25": 26.0,
+      "med": 116.0,
+      "p75": 327.0
+     },
+     "down_binds": 183,
+     "up_binds": 223,
+     "down_first_acc_pct": 96.7,
+     "down_kissable_pct": 21.3,
+     "down_floor_gap": {
+      "n": 170,
+      "p25": -5,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 94.2,
+     "up_catch_gap": {
+      "n": 223,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 7.0
+     },
+     "up_still_available_pct": 11.2
+    },
+    "by_category_verified": {
+     "ATP_CHALL": {
+      "legs": 267,
+      "bound": 228,
+      "coverage_pct": 85.4,
+      "FIRST_BIND_acc_pct": 96.5,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 5.3,
+      "bind_minutes": {
+       "n": 228,
+       "p25": 24.0,
+       "med": 105.0,
+       "p75": 323.0
+      },
+      "down_binds": 105,
+      "up_binds": 123,
+      "down_first_acc_pct": 97.1,
+      "down_kissable_pct": 39.0,
+      "down_floor_gap": {
+       "n": 101,
+       "p25": -3,
+       "med": -1,
+       "p75": 1
+      },
+      "up_first_acc_pct": 95.9,
+      "up_catch_gap": {
+       "n": 123,
+       "p25": 4.0,
+       "med": 6.0,
+       "p75": 7.0
+      },
+      "up_still_available_pct": 8.1
+     },
+     "ATP_MAIN": {
+      "legs": 129,
+      "bound": 125,
+      "coverage_pct": 96.9,
+      "FIRST_BIND_acc_pct": 90.4,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 12.8,
+      "bind_minutes": {
+       "n": 125,
+       "p25": 14.0,
+       "med": 73.0,
+       "p75": 269.0
+      },
+      "down_binds": 65,
+      "up_binds": 60,
+      "down_first_acc_pct": 89.2,
+      "down_kissable_pct": 32.3,
+      "down_floor_gap": {
+       "n": 63,
+       "p25": -4,
+       "med": -2,
+       "p75": 0
+      },
+      "up_first_acc_pct": 91.7,
+      "up_catch_gap": {
+       "n": 60,
+       "p25": 3.0,
+       "med": 4.5,
+       "p75": 6.5
+      },
+      "up_still_available_pct": 25.0
+     },
+     "WTA_CHALL": {
+      "legs": 52,
+      "bound": 45,
+      "coverage_pct": 86.5,
+      "FIRST_BIND_acc_pct": 93.3,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 6.7,
+      "bind_minutes": {
+       "n": 45,
+       "p25": 94.0,
+       "med": 390.0,
+       "p75": 629.0
+      },
+      "down_binds": 18,
+      "up_binds": 27,
+      "down_first_acc_pct": 100.0,
+      "down_kissable_pct": 5.6,
+      "down_floor_gap": {
+       "n": 17,
+       "p25": -6,
+       "med": -3,
+       "p75": -3
+      },
+      "up_first_acc_pct": 88.9,
+      "up_catch_gap": {
+       "n": 27,
+       "p25": 3.5,
+       "med": 5.0,
+       "p75": 7.0
+      },
+      "up_still_available_pct": 18.5
+     },
+     "WTA_MAIN": {
+      "legs": 134,
+      "bound": 132,
+      "coverage_pct": 98.5,
+      "FIRST_BIND_acc_pct": 97.0,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 3.0,
+      "bind_minutes": {
+       "n": 132,
+       "p25": 21.0,
+       "med": 120.0,
+       "p75": 324.0
+      },
+      "down_binds": 64,
+      "up_binds": 68,
+      "down_first_acc_pct": 98.4,
+      "down_kissable_pct": 28.1,
+      "down_floor_gap": {
+       "n": 64,
+       "p25": -4,
+       "med": -2,
+       "p75": 0
+      },
+      "up_first_acc_pct": 95.6,
+      "up_catch_gap": {
+       "n": 68,
+       "p25": 4.0,
+       "med": 5.0,
+       "p75": 6.5
+      },
+      "up_still_available_pct": 11.8
+     }
+    }
+   }
+  },
+  "MIN120+TRD20": {
+   "why": "high-accuracy low-flip corner: cov 66.7 / 97.4 / 3.1 / 379min; live cov collapses to 35.2 (trade-count starves under the live clock)",
+   "receipts": {
+    "cfg": {
+     "mm": 120,
+     "mt": 20
+    },
+    "verified": {
+     "legs": 582,
+     "bound": 388,
+     "coverage_pct": 66.7,
+     "FIRST_BIND_acc_pct": 97.4,
+     "held_acc_pct": 100.0,
+     "flip_rate_pct": 3.1,
+     "bind_minutes": {
+      "n": 388,
+      "p25": 182.0,
+      "med": 379.0,
+      "p75": 669.0
+     },
+     "down_binds": 171,
+     "up_binds": 217,
+     "down_first_acc_pct": 98.8,
+     "down_kissable_pct": 32.2,
+     "down_floor_gap": {
+      "n": 165,
+      "p25": -4,
+      "med": -2,
+      "p75": 1
+     },
+     "up_first_acc_pct": 96.3,
+     "up_catch_gap": {
+      "n": 217,
+      "p25": 4.0,
+      "med": 5.5,
+      "p75": 8.0
+     },
+     "up_still_available_pct": 10.1
+    },
+    "live": {
+     "legs": 559,
+     "bound": 197,
+     "coverage_pct": 35.2,
+     "FIRST_BIND_acc_pct": 97.0,
+     "held_acc_pct": 98.5,
+     "flip_rate_pct": 2.0,
+     "bind_minutes": {
+      "n": 197,
+      "p25": 243.0,
+      "med": 406.0,
+      "p75": 616.0
+     },
+     "down_binds": 73,
+     "up_binds": 124,
+     "down_first_acc_pct": 98.6,
+     "down_kissable_pct": 17.8,
+     "down_floor_gap": {
+      "n": 66,
+      "p25": -4,
+      "med": -3,
+      "p75": -1
+     },
+     "up_first_acc_pct": 96.0,
+     "up_catch_gap": {
+      "n": 124,
+      "p25": 4.0,
+      "med": 5.0,
+      "p75": 7.5
+     },
+     "up_still_available_pct": 7.3
+    },
+    "by_category_verified": {
+     "ATP_CHALL": {
+      "legs": 267,
+      "bound": 131,
+      "coverage_pct": 49.1,
+      "FIRST_BIND_acc_pct": 96.9,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 3.8,
+      "bind_minutes": {
+       "n": 131,
+       "p25": 219.0,
+       "med": 397.0,
+       "p75": 576.0
+      },
+      "down_binds": 59,
+      "up_binds": 72,
+      "down_first_acc_pct": 98.3,
+      "down_kissable_pct": 35.6,
+      "down_floor_gap": {
+       "n": 55,
+       "p25": -3,
+       "med": -1,
+       "p75": 0
+      },
+      "up_first_acc_pct": 95.8,
+      "up_catch_gap": {
+       "n": 72,
+       "p25": 4.5,
+       "med": 6.0,
+       "p75": 9.0
+      },
+      "up_still_available_pct": 5.6
+     },
+     "ATP_MAIN": {
+      "legs": 129,
+      "bound": 117,
+      "coverage_pct": 90.7,
+      "FIRST_BIND_acc_pct": 97.4,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 3.4,
+      "bind_minutes": {
+       "n": 117,
+       "p25": 142.0,
+       "med": 321.0,
+       "p75": 618.0
+      },
+      "down_binds": 53,
+      "up_binds": 64,
+      "down_first_acc_pct": 100.0,
+      "down_kissable_pct": 39.6,
+      "down_floor_gap": {
+       "n": 53,
+       "p25": -4,
+       "med": -2,
+       "p75": 1
+      },
+      "up_first_acc_pct": 95.3,
+      "up_catch_gap": {
+       "n": 64,
+       "p25": 3.0,
+       "med": 4.5,
+       "p75": 6.5
+      },
+      "up_still_available_pct": 18.8
+     },
+     "WTA_CHALL": {
+      "legs": 52,
+      "bound": 19,
+      "coverage_pct": 36.5,
+      "FIRST_BIND_acc_pct": 100.0,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 0.0,
+      "bind_minutes": {
+       "n": 19,
+       "p25": 347.0,
+       "med": 530.0,
+       "p75": 711.0
+      },
+      "down_binds": 4,
+      "up_binds": 15,
+      "down_first_acc_pct": 100.0,
+      "down_kissable_pct": 25.0,
+      "down_floor_gap": {
+       "n": 4,
+       "p25": -3,
+       "med": -3,
+       "p75": -3
+      },
+      "up_first_acc_pct": 100.0,
+      "up_catch_gap": {
+       "n": 15,
+       "p25": 4.0,
+       "med": 5.5,
+       "p75": 8.0
+      },
+      "up_still_available_pct": 13.3
+     },
+     "WTA_MAIN": {
+      "legs": 134,
+      "bound": 121,
+      "coverage_pct": 90.3,
+      "FIRST_BIND_acc_pct": 97.5,
+      "held_acc_pct": 100.0,
+      "flip_rate_pct": 2.5,
+      "bind_minutes": {
+       "n": 121,
+       "p25": 181.0,
+       "med": 409.0,
+       "p75": 822.0
+      },
+      "down_binds": 55,
+      "up_binds": 66,
+      "down_first_acc_pct": 98.2,
+      "down_kissable_pct": 21.8,
+      "down_floor_gap": {
+       "n": 53,
+       "p25": -4,
+       "med": -3,
+       "p75": -1
+      },
+      "up_first_acc_pct": 97.0,
+      "up_catch_gap": {
+       "n": 66,
+       "p25": 4.5,
+       "med": 5.0,
+       "p75": 7.5
+      },
+      "up_still_available_pct": 6.1
+     }
+    }
+   }
+  }
+ },
+ "downstream_gate_insensitive": {
+  "DOWN": "kissable 29-38% at EVERY gate; floor gap median -2c (the category-aggregate target sits 2c below the reachable floor) - the averages-cannot-aim-depth proof extends to category aggregates at policy grain",
+  "UP": "catch gap median 4-5.5c above open at bind, still-available 10-24% and falling with gate strictness - the early catch is spent by the time any gate opens"
+ },
+ "live_fidelity_delta": "coverage costs 12-31 points under the live composite clock @ 620fe4c1 (trade-count gates starve worst: TRD20 -28.9, MIN120+TRD20 -31.5); FIRST-BIND ACCURACY IS UNCHANGED (deltas -1.2..+0.4) - the live clock costs coverage, never correctness",
+ "conservation": {
+  "role_legs": 596,
+  "simulable": 582,
+  "excluded_no_onset_or_open": 14,
+  "gate_configs": 30,
+  "clocks": 2,
+  "nondominated": 13
+ }
+}

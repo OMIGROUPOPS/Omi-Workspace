@@ -1,0 +1,246 @@
+{
+ "LABEL": "INSTRUMENT_PARITY_AND_LIVE_CLOCK_ERROR",
+ "stamp": [
+  "ANALYTICAL_ESTIMATE",
+  "MEASUREMENT_ONLY"
+ ],
+ "provenance_triples": [
+  {
+   "commit": "020b775c",
+   "path": ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/BENCHMARKED_ROLE_CONSUMPTION_LEDGER.jsonl.gz",
+   "sha256": "1529bc32f7074740d513d27951b4f117b3b518c67da64d7077ac77e4fb2b7748",
+   "bytes": 56141306
+  },
+  {
+   "commit": "c0056976",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+   "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+   "bytes": 1426420
+  },
+  {
+   "commit": "e269779b",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.md",
+   "sha256": "aea12f2f3eeb5717779f1fed71e4f7de295a9e62b71a56c763c375fb945ea49d",
+   "bytes": 5108
+  },
+  {
+   "commit": "41c1f724",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RECOGNITION_OPERATING_POINT.json",
+   "sha256": "e2a216299804ba16b6dec4d1b0f09e60babbae2be6a6e59135629b1c5d3a3011",
+   "bytes": 224130
+  }
+ ],
+ "PART_A_INSTRUMENT_PARITY": {
+  "cohort": "V52p @ 020b775c: 60 legs / 30 games, 424,549 runtime role receipts; 339,993 carry both anchor and series",
+  "method": "offline recomputation of the published rule @ e269779b at the EXACT receipt timestamps the runtime evaluated",
+  "component_1_post_formation_open_anchor": {
+   "legs_mismatch": 46,
+   "legs_match": 6,
+   "legs_unavailable": 8,
+   "runtime_anchor_identified_as": "FIRST_TRUE_PRINT_AT_OR_AFTER_FORMATION_END",
+   "hypothesis_matches_of_52": {
+    "first_true_print_after_formation": 41,
+    "ask_at_formation": 9,
+    "mid_at_formation": 6,
+    "bid_at_formation": 3,
+    "last_true_print_before_formation": 1
+   },
+   "published_anchor": "SPREAD_SETTLE_MID (first mid with spread<=10c holding <=20c for 30min) @ 3c7bc577 / c0056976",
+   "anchor_delta_cents_runtime_minus_published": {
+    "n": 52,
+    "p05": -3.0,
+    "p25": 0.0,
+    "med": 3.0,
+    "p75": 5.0,
+    "p95": 46.0,
+    "min": -5.0,
+    "max": 66.0
+   },
+   "legs_with_abs_delta_at_or_above_2c_threshold": 38,
+   "legs_compared": 52,
+   "sign": {
+    "runtime_above_mid": 37,
+    "equal": 6,
+    "runtime_below_mid": 9
+   }
+  },
+  "component_2_price_series": {
+   "runtime_vs_offline_true_prints_leg_floor": "324618/339993 = 95.48%",
+   "game_floor": "324070/339993 = 95.32%",
+   "no_formation_floor": "334048/340184 = 98.20%",
+   "reading": "the runtime series does not floor at formation end; secondary, not decisive"
+  },
+  "component_3_drift_computation": {
+   "internally_consistent": "339993/339993 = 100.000%"
+  },
+  "component_4_receipt_sampling": {
+   "note": "identical set by construction - offline evaluated at the runtime timestamps"
+  },
+  "isolation": {
+   "offline_rule_with_RUNTIME_anchor_vs_runtime_call": "329095/339993 = 96.795%",
+   "residual_10898_receipts": "ALL status ABSTAIN_BELOW_EFFECTIVE_RIPENESS_GATE (7850 offline ROLE_UP, 3048 offline ROLE_DOWN) - the gate, not the read",
+   "ungated_reproduction": "329095/329095 = 100.000%",
+   "offline_rule_with_PUBLISHED_anchor_same_series": "159710/339993 = 46.974%",
+   "offline_full_published_method_vs_runtime": "160511/329746 = 48.677%"
+  },
+  "disagreement_modes_published_vs_runtime": {
+   "ROLE_DOWN_to_ABSTAIN": 102137,
+   "ROLE_UP_to_ABSTAIN": 62084,
+   "ABSTAIN_to_ROLE_UP": 3331,
+   "ROLE_UP_to_ROLE_DOWN": 914,
+   "ABSTAIN_to_ROLE_DOWN": 769
+  },
+  "NAMED_DEFECT": "POST_FORMATION_OPEN_ANCHOR_BINDING - the runtime binds the anchor to the first true print at or after formation end; the published method binds it to the spread-settle mid. Median offset +3c; 38 of 52 legs (73%) offset at or beyond the 2c decision threshold. The rule itself reproduces 100% on ungated receipts.",
+  "VERDICT": "THE INSTRUMENT IS FAITHFUL; THE WIRING FEEDS IT THE WRONG ANCHOR. Fault = input binding (wiring), not the rule (instrument)."
+ },
+ "PART_B_LIVE_CLOCK_ERROR": {
+  "post_hoc_certification_of_the_bell": {
+   "LABEL": "POST-HOC CERTIFICATION OF THE BELL - NOT A LIVE INPUT",
+   "source": ".claude/window1_start_recovery_round2_20260724/REAL_START_LEDGER_V4.jsonl; freeze arb-executor/docs/research/window1/WINDOW1_START_TRUTH_ROUND2_FREEZE.md; ledger sha256 9d972c17837d3e36789c10396bd3a7c825c512c2eac3aa2fcbeabf96ed6a23e0",
+   "why_not_live": "TennisExplorer HISTORICAL RESULTS start clock - present only after the match completes",
+   "precision_classes": {
+    "exact": 687,
+    "live_by_only": 52,
+    "clean_interval": 31,
+    "schedule_only": 20,
+    "contradictory": 14
+   },
+   "verified_bell_minus_honest_exact_seconds_by_bell_source": {
+    "MACHINE_RECEIPT": {
+     "n": 192,
+     "p05": 0,
+     "p25": 0,
+     "med": 0,
+     "p75": 0,
+     "p95": 0,
+     "min": 0,
+     "max": 0,
+     "note": "EXACT AGREEMENT AT EVERY PERCENTILE"
+    },
+    "TAPE_INFERENCE": {
+     "n": 457,
+     "p05": -1860,
+     "p25": -420,
+     "med": -180,
+     "p75": 120,
+     "p95": 960
+    },
+    "TAPE_INFERENCE_CORROBORATED": {
+     "n": 18,
+     "med": -360
+    },
+    "OBSERVED_STARTS_UPPER_BOUND": {
+     "n": 16,
+     "med": -15975,
+     "note": "badly early - the upper-bound label is confirmed correct"
+    }
+   },
+   "overall": {
+    "n": 683,
+    "within_5min_pct": 66.0,
+    "within_15min_pct": 83.5,
+    "within_30min_pct": 92.4
+   }
+  },
+  "live_inputs_and_coverage": {
+   "catalog_scheduled_start": "joined/events.jsonl scheduled_start_exchange_ts - 804/804 coverage; source exchange_catalog_occurrence_datetime_current_snapshot; only 2 of 804 revised against the final occurrence field",
+   "kalshi_metadata": "open_time / occurrence_datetime / expected_expiration_time are live; close_time and settlement_ts are post-hoc and were NOT used as live inputs",
+   "in_play_tape_guard": "July law (REAL_START_LEDGER_V4 live_by family): >=5 true prints in a trailing 15 min on BOTH legs, evaluated causally"
+  },
+  "schedule_alone_vs_verified_bell_seconds": {
+   "n": 778,
+   "p05": -97200.0,
+   "p25": -720.0,
+   "med": 7020.0,
+   "p75": 10200.0,
+   "p95": 11340.0,
+   "min": -192300.0,
+   "max": 76548.0
+  },
+  "schedule_alone_bands": {
+   "within_15min_pct": 3.1,
+   "within_30min_pct": 7.1,
+   "late_pct": 73.7,
+   "late_by_over_30min_pct": 70.3
+  },
+  "in_play_guard_latency_after_true_bell_seconds": {
+   "n": 241,
+   "p05": 40.0,
+   "p25": 146.0,
+   "med": 233.0,
+   "p75": 375,
+   "p95": 1205,
+   "min": 1.0,
+   "max": 80103.0
+  },
+  "in_play_guard_bands": {
+   "fires_within_5min_pct": 67.6,
+   "within_15min_pct": 91.7,
+   "within_30min_pct": 95.9
+  },
+  "LIVE_USABLE_CLOCK": {
+   "LABEL": "COMPOSITE LIVE SPAN END = min(catalog scheduled start, in-play tape-guard fire)",
+   "error_vs_verified_bell_seconds": {
+    "n": 778,
+    "p05": -102600.0,
+    "p25": -29505,
+    "med": -4020.0,
+    "p75": 27.0,
+    "p95": 547,
+    "min": -207301,
+    "max": 76448.0
+   },
+   "bands": {
+    "within_15min_pct": 34.8,
+    "within_30min_pct": 41.3,
+    "late_pct": 25.7,
+    "late_by_over_30min_pct": 1.9
+   },
+   "which_bound_governs": {
+    "SCHEDULE_PRIOR": 157,
+    "TAPE_GUARD_CAP": 640
+   },
+   "reading": "the guard converts a wildly-late schedule into a mostly-early (span-shortening) estimate; late-by-more-than-30min falls from 70.3% to 1.9%"
+  },
+  "v52p_binding_under_live_vs_verified_span": {
+   "v52p_own_recorded_scheduled_proxy_divergence": "51384 receipts / 21 legs / 17 games (12.10% of receipts) - reproduces the V52p REPORT exactly",
+   "recomputed_with_composite_live_span": {
+    "legs_whose_binding_changes": 1,
+    "of_legs": 60,
+    "games": 1,
+    "bound_legs_verified": 13,
+    "bound_legs_live": 12,
+    "accuracy_on_truth_role_legs_verified": "6/8 = 75.0%",
+    "accuracy_on_truth_role_legs_live": "5/7 = 71.4%",
+    "caveat": "only 7-8 bound truth-role legs exist in this cohort; far too small to certify the accuracy delta"
+   }
+  },
+  "span_fraction_distortion_verified_over_live": {
+   "n": 761,
+   "p05": 0.84,
+   "p25": 0.991,
+   "med": 1.017,
+   "p75": 1.619,
+   "p95": 6.882,
+   "min": 0.025,
+   "max": 536.3,
+   "within_10pct_of_1_pct": 54.3,
+   "within_25pct_pct": 63.2,
+   "live_span_shorter_f_inflated_pct": 57.2
+  }
+ },
+ "conservation": {
+  "games": 804,
+  "v52p_legs": 60,
+  "v52p_receipts": 424549,
+  "receipts_with_both_components": 339993,
+  "gated_residual": 10898,
+  "ungated": 329095,
+  "anchor_legs_compared": 52,
+  "live_estimates_available": 804,
+  "comparable_to_known_bell": 783,
+  "with_formation_span_start": 778,
+  "honest_clock_comparable": 683,
+  "bell_unknown": 21
+ }
+}

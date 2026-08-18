@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "test_files": 20,
+  "assertions": 795,
+  "failures": 0,
+  "omissions": 0,
+  "deselections": 0,
+  "count_status": "MEASURED_FOCUSED_AND_INHERITED_RUN",
+  "suites": [
+    {
+      "file": "arb-executor/tests/test_window1_v52_judgment_gate.js",
+      "assertions": 14
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52b_read_level_authority.js",
+      "assertions": 17
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52c_full_post_onset_read.js",
+      "assertions": 25
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52d_disagreement_referee.js",
+      "assertions": 31
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52e_palantir_wiring.js",
+      "assertions": 31
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52f_pair_entry_conservation.js",
+      "assertions": 27
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52g_joint_target_conservation.js",
+      "assertions": 31
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52h_remove_pair_lows_precondition.js",
+      "assertions": 24
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52l_causal_stability_onset.js",
+      "assertions": 14
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52l_causal_stability_onset_package.js",
+      "assertions": 55
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52m_macro_recognition.js",
+      "assertions": 18
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52m_macro_recognition_package.js",
+      "assertions": 82
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52n_recognition_confidence_gates.js",
+      "assertions": 22
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52n_recognition_confidence_gates_package.js",
+      "assertions": 90
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52o_benchmarked_role_instrument.js",
+      "assertions": 36
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52o_benchmarked_role_instrument_package.js",
+      "assertions": 92
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52p_ripeness_gated_role_binding.js",
+      "assertions": 26
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52p_ripeness_gated_role_binding_package.js",
+      "assertions": 63
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52q_anchor_correction.js",
+      "assertions": 29
+    },
+    {
+      "file": "arb-executor/tests/test_window1_v52q_anchor_correction_package.js",
+      "assertions": 68
+    }
+  ]
+}

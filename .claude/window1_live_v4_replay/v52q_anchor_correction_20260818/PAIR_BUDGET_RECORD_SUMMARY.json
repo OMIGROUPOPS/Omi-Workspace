@@ -1,0 +1,12 @@
+{
+  "records": 30,
+  "born_records": 30,
+  "unborn_records": 0,
+  "revision_rows": 4915,
+  "joint_sum_violations": [],
+  "incomplete_revision_chains": [],
+  "forbidden_plan_fields": [],
+  "exactly_one_record_per_game": true,
+  "pass": true,
+  "minimal_object_law": "ONE_RECORD_PER_GAME; BORN_AT_FIRST_LICENSED_POST; CURRENT_JOINT_SPLIT_AND_COMPLETE_LICENSED_REVISION_HISTORY_ONLY; NO_GOALS_OR_PREDICTIONS"
+}

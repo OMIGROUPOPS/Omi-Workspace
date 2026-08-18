@@ -1,0 +1,42 @@
+{
+  "newly_created_partials": 2,
+  "duration_seconds": {
+    "n": 2,
+    "null_n": 0,
+    "sum": 61056.60700011253,
+    "min": 168.42700004577637,
+    "p25": 168.42700004577637,
+    "median": 168.42700004577637,
+    "p75": 60888.18000006676,
+    "p90": 60888.18000006676,
+    "max": 60888.18000006676
+  },
+  "rows": [
+    {
+      "event_id": "KXATPMATCH-26JUL19VANFAR",
+      "category": "ATP_MAIN",
+      "price_region": "26_50+51_75",
+      "baseline_state": "NEITHER_FOR_REASON",
+      "credited_leg": "KXATPMATCH-26JUL19VANFAR|FAR",
+      "credited_entry_cents": 57,
+      "credited_timestamp_epoch": 1784458031.82,
+      "missing_leg": "KXATPMATCH-26JUL19VANFAR|VAN",
+      "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+      "exposure_to_window_edge_seconds": 60888.18000006676,
+      "second_side_never_kissed": true
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "category": "WTA_CHALL",
+      "price_region": "ge75+le25",
+      "baseline_state": "NEITHER_FOR_REASON",
+      "credited_leg": "KXWTACHALLENGERMATCH-26JUL16KHOPRO|KHO",
+      "credited_entry_cents": 15,
+      "credited_timestamp_epoch": 1784203871.573,
+      "missing_leg": "KXWTACHALLENGERMATCH-26JUL16KHOPRO|PRO",
+      "missing_terminal_reason": "REST_UNFILLED_AT_HARD_PREBELL_EDGE",
+      "exposure_to_window_edge_seconds": 168.42700004577637,
+      "second_side_never_kissed": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "format": "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS",
+  "chunk_row_limit": 50000,
+  "rows": 237680,
+  "chunks": [
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_001.jsonl.gz",
+      "rows": 50000,
+      "sha256": "baf495220636ca18d05b475be10de5f25f6a5296a0387c7b4a1d1e56b7d33718",
+      "bytes": 26526847
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_002.jsonl.gz",
+      "rows": 50000,
+      "sha256": "b91dfe40e70d6cede52887a2811ebd4b3584cc4e702f2b674545ec2208609dcc",
+      "bytes": 35273509
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_003.jsonl.gz",
+      "rows": 50000,
+      "sha256": "0200fe8810800e2a213a819a528fae01be86f5c66d4cf8cf7f9334454d8e4a87",
+      "bytes": 30762557
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_004.jsonl.gz",
+      "rows": 50000,
+      "sha256": "31d2872f822f1f18a556413ab43b5ef12261261d66bee49d9e68e417a503b6df",
+      "bytes": 27014956
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_005.jsonl.gz",
+      "rows": 37680,
+      "sha256": "1bf4a7037e5a175dc175c74a1e4ee0f25884f0ec3c705398e15a27648508ab00",
+      "bytes": 7661557
+    }
+  ],
+  "conservation_pass": true
+}

@@ -50,8 +50,8 @@ function loadGroundTruthTable(repo) {
       span_start_epoch: Number.isFinite(row.span_start_epoch) ? row.span_start_epoch : null,
       span_end_epoch: Number.isFinite(row.span_end_epoch) ? row.span_end_epoch : null,
       legs: Object.freeze({
-        [row.legA]: Object.freeze({ leg_id: row.legA, floor_cents: Number.isInteger(row.legA_floor_c) ? row.legA_floor_c : null, floor_epoch: Number.isFinite(row.legA_floor_epoch) ? row.legA_floor_epoch : null }),
-        [row.legB]: Object.freeze({ leg_id: row.legB, floor_cents: Number.isInteger(row.legB_floor_c) ? row.legB_floor_c : null, floor_epoch: Number.isFinite(row.legB_floor_epoch) ? row.legB_floor_epoch : null }),
+        [row.legA]: Object.freeze({ leg_id: row.legA, formation_end_epoch: Number.isFinite(row.legA_formation_end_epoch) ? row.legA_formation_end_epoch : null, open_postformation_cents: Number.isInteger(row.legA_open_postformation_c) ? row.legA_open_postformation_c : null, floor_cents: Number.isInteger(row.legA_floor_c) ? row.legA_floor_c : null, floor_epoch: Number.isFinite(row.legA_floor_epoch) ? row.legA_floor_epoch : null }),
+        [row.legB]: Object.freeze({ leg_id: row.legB, formation_end_epoch: Number.isFinite(row.legB_formation_end_epoch) ? row.legB_formation_end_epoch : null, open_postformation_cents: Number.isInteger(row.legB_open_postformation_c) ? row.legB_open_postformation_c : null, floor_cents: Number.isInteger(row.legB_floor_c) ? row.legB_floor_c : null, floor_epoch: Number.isFinite(row.legB_floor_epoch) ? row.legB_floor_epoch : null }),
       }),
       scoring_class: unknown ? "UNKNOWN_BELL" : settlementNoMatch ? "VERIFIED_PREMATCH_SPAN_NO_MATCH" : "VERIFIED_BELL",
       scoring_eligible: !unknown,

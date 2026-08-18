@@ -1,0 +1,158 @@
+{
+  "flow_assertions": {
+    "zero_posts_pre_onset": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_posts_on_no_tape": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_levels_from_displayed_bids": {
+      "violations": [],
+      "pass": true
+    },
+    "every_post_has_four_license_fields": {
+      "violations": [],
+      "pass": true
+    },
+    "scavenger_off": {
+      "violations": [],
+      "pass": true
+    }
+  },
+  "clause_1_V52L_CAUSAL_PREFIX": {
+    "violations": [],
+    "pass": true
+  },
+  "machine_read_evidence_on_every_post": {
+    "violations": [],
+    "pass": true
+  },
+  "diary_demoted_not_removed": {
+    "violations": [],
+    "pass": true
+  },
+  "REFLEX_POST_zero": {
+    "observed": 0,
+    "expected": 0,
+    "pass": true
+  },
+  "every_post_binds_full_post_onset_read_span": {
+    "violations": [],
+    "pass": true
+  },
+  "clauses_1_through_4_and_scavenger_mechanics_frozen": {
+    "violations": [],
+    "pass": true
+  },
+  "CLEAN_store_boot_assertion": {
+    "pass": true
+  },
+  "every_decision_receipt_consumes_N2_N4_N5_continuously": {
+    "violations": [],
+    "pass": true
+  },
+  "every_prior_has_CLEAN_provenance": {
+    "violations": [],
+    "pass": true
+  },
+  "priors_inform_never_gate": {
+    "violations": [],
+    "pass": true
+  },
+  "frozen_N9_continuous_consumption_preserved": {
+    "pass": true
+  },
+  "causal_onset_right_edge_independence": {
+    "violations": [],
+    "evaluated_games": 30,
+    "pass": true
+  },
+  "no_full_span_or_right_edge_input_in_clause_1": {
+    "violations": [],
+    "pass": true
+  },
+  "clause_4_market_proof_removal_recorded_on_every_rest_mutation": {
+    "violations": [],
+    "pass": true
+  },
+  "clause_4_disagreement_referee_intact": {
+    "violations": [],
+    "pass": true
+  },
+  "clauses_2_through_6_function_identity": {
+    "pass": true
+  },
+  "clauses_5_and_6_recorded_on_every_rest_mutation": {
+    "violations": [],
+    "pass": true
+  },
+  "clause_6_zero_joint_target_sum_above_99": {
+    "violations": [],
+    "pass": true
+  },
+  "pair_budget_record_one_per_game_complete_revision_chain": {
+    "pass": true
+  },
+  "zero_COMPLETE_AT_LOSS": {
+    "violations": [],
+    "pass": true
+  },
+  "pins_lawful_not_outcome_bound": {
+    "violations": [],
+    "pass": true
+  },
+  "every_macro_signature_is_receipt_causal": {
+    "violations": [],
+    "pass": true
+  },
+  "exact_TRD5_source_and_gate_on_every_evaluation": {
+    "violations": [],
+    "pass": true
+  },
+  "spread_settle_anchor_receipted_on_every_evaluation": {
+    "violations": [],
+    "pass": true
+  },
+  "coordinate_zero_is_max_onset_formation": {
+    "violations": [],
+    "pass": true
+  },
+  "candidate_role_matches_literal_drift_arithmetic": {
+    "violations": [],
+    "pass": true
+  },
+  "no_directional_bind_before_five_post_onset_trades": {
+    "violations": [],
+    "pass": true
+  },
+  "held_role_changes_only_on_instrument_flip": {
+    "violations": [],
+    "pass": true
+  },
+  "UP_STILL_ABSTAIN_preserve_V52l_level": {
+    "violations": [],
+    "pass": true
+  },
+  "every_ROLE_DOWN_consumption_is_LOW1_with_source": {
+    "violations": [],
+    "pass": true
+  },
+  "every_consumed_ROLE_DOWN_target_reaches_final_license": {
+    "violations": [],
+    "pass": true
+  },
+  "LOW1_target_respects_touch_and_clause_6": {
+    "violations": [],
+    "pass": true
+  },
+  "LOW1_is_not_decorative": {
+    "pass": true
+  },
+  "both_clocks_present_side_by_side": {
+    "violations": [],
+    "pass": true
+  },
+  "pass": true
+}

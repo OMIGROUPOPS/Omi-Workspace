@@ -1,0 +1,90 @@
+#!/usr/bin/env node
+"use strict";
+
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+
+const repo = path.resolve(__dirname, "../..");
+const root = path.join(repo, ".claude/window1_live_v4_replay/v52r_assembled_policy_20260818");
+const json = (name) => JSON.parse(fs.readFileSync(path.join(root, name), "utf8"));
+let assertions = 0;
+const equal = (actual, expected, message) => { assertions += 1; assert.deepStrictEqual(actual, expected, message); };
+const check = (value, message) => { assertions += 1; assert(value, message); };
+
+check(fs.existsSync(root));
+const control = json("CONTROL_BINDING.json");
+equal(control.parent_commit, "a059264d447ce071fd24f2cda4d9c3ea57aefa09");
+equal(control.branch, "codex/window1-v52r-assembled-policy-20260818");
+equal(control.score_or_disposition_804_run, false);
+const cohort = json("COHORT_SELECTION_RECEIPT.json");
+equal(cohort.pins.length, 5);
+equal(cohort.fresh_25.length, 25);
+equal(cohort.combined_30.length, 30);
+equal(cohort.excluded_prior_fresh_cohorts.length, 16);
+for (const key of Object.keys(cohort.exclusions).filter((key) => key.endsWith("fresh25_overlap_count"))) equal(cohort.exclusions[key], 0, key);
+const receipt = json("CLAUSE_3_TRD5_LOW1_ASSEMBLY_CORRECTION_RECEIPT.json");
+equal(receipt.authorized_change, "CLAUSE_3_TRD5_ROLE_AND_LOW_MINUS_ONE_ASSEMBLY_ONLY");
+equal(receipt.parent.commit, "a059264d447ce071fd24f2cda4d9c3ea57aefa09");
+equal(receipt.behavioral_lineage.commit, "6678fd0c13dcc4de2bc153bbf769f5a2a9227ccc");
+equal(receipt.recognition.name, "TRD5");
+equal(receipt.recognition.threshold_post_onset_trades, 5);
+equal(receipt.recognition.provenance.commit, "71de534a3f9e21faf569cd487d9aae735a084e7a");
+equal(receipt.recognition.corrected_anchor.method.name, "SPREAD_SETTLE_MID_AT_FORMATION_END");
+equal(receipt.level.delta_cents, 1);
+equal(receipt.level.provenance.commit, "ab609761c5df44097f46ad2364f539bbd0751d54");
+equal(receipt.defaults.static_shape_depth_consumed, false);
+equal(receipt.frozen_clauses.REFLEX_POST, 0);
+equal(receipt.both_clocks.present_on_role_receipts, true);
+
+const summary = json("ASSEMBLED_POLICY_SUMMARY.json");
+equal(summary.coverage.terminal_legs, 60);
+check(summary.coverage.called_all_legs_share === null || summary.coverage.called_all_legs_share >= 0);
+check(summary.accuracy.accuracy === null || (summary.accuracy.accuracy >= 0 && summary.accuracy.accuracy <= 1));
+check(summary.ROLE_DOWN_fills.floor_gap_cents.n >= 0);
+check(summary.ROLE_DOWN_fills.kiss_share === null || (summary.ROLE_DOWN_fills.kiss_share >= 0 && summary.ROLE_DOWN_fills.kiss_share <= 1));
+equal(summary.REFLEX_POST_zero, true);
+const parity = json("ANCHOR_CORRECTION_PARITY_RECEIPT.json");
+equal(parity.runtime_vs_offline_parity.claim_at_least_99pct, true);
+equal(parity.runtime_vs_offline_parity.mismatches.length, 0);
+const clocks = json("BOTH_CLOCKS_RECEIPT.json");
+equal(clocks.every_row_has_both_fields, true);
+check(clocks.rows > 0);
+
+const flow = json("FLOW_ASSERTIONS.json");
+equal(flow.REFLEX_POST_zero.observed, 0);
+equal(flow.exact_TRD5_source_and_gate_on_every_evaluation.violations.length, 0);
+equal(flow.coordinate_zero_is_max_onset_formation.violations.length, 0);
+equal(flow.no_directional_bind_before_five_post_onset_trades.violations.length, 0);
+equal(flow.UP_STILL_ABSTAIN_preserve_V52l_level.violations.length, 0);
+equal(flow.every_ROLE_DOWN_consumption_is_LOW1_with_source.violations.length, 0);
+equal(flow.every_consumed_ROLE_DOWN_target_reaches_final_license.violations.length, 0);
+equal(flow.LOW1_target_respects_touch_and_clause_6.violations.length, 0);
+equal(flow.both_clocks_present_side_by_side.violations.length, 0);
+equal(flow.pass, true);
+
+const outcomes = json("PER_GAME_OUTCOME_TABLE.json");
+equal(outcomes.length, 30);
+const four = json("FOUR_STATE_OBSERVATION_30.json");
+equal(four.candidate.rows, 30);
+const trace = json("FULL_DECISION_TRACE_MANIFEST.json");
+equal(trace.baseline.events, 30);
+equal(trace.candidate.events, 30);
+equal(trace.every_receipt_retained, true);
+const differential = json("BEFORE_AFTER_DECISION_DIFFERENTIAL_MANIFEST.json");
+equal(differential.chunks.reduce((sum, row) => sum + row.rows, 0), differential.rows);
+equal(differential.conservation_pass, true);
+check(differential.chunks.every((row) => row.bytes < 100000000));
+const source = json("SOURCE_HASH_MANIFEST.json");
+check(source.files["arb-executor/analysis/window1_v52r_assembled_policy.js"]);
+check(source.files["arb-executor/analysis/build_window1_v52r_assembled_policy.js"]);
+check(source.files["71de534a3f9e21faf569cd487d9aae735a084e7a:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json"]);
+check(source.files["ab609761c5df44097f46ad2364f539bbd0751d54:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json"]);
+const forbidden = json("FORBIDDEN_ACCESS_RECEIPT.json");
+for (const key of ["holdout", "live", "network_runtime", "orders", "positions", "deployment", "full_804_run", "scavenger"]) equal(forbidden[key], false, key);
+const deterministic = json("DETERMINISM_RECEIPT.json");
+equal(deterministic.clean_builds, 2);
+equal(deterministic.byte_identical, true);
+equal(deterministic.mismatches.length, 0);
+
+process.stdout.write(`${JSON.stringify({ assertions, failures: 0, omissions: 0, deselections: 0 })}\n`);

@@ -1,0 +1,864 @@
+{
+  "recognition": {
+    "rule": {
+      "name": "TRD5_CORRECTED_ANCHOR_HELD_DIRECTIONAL_ROLE",
+      "expression": "after max(causal_onset,formation_end), first directional corrected-anchor call with post_onset_trade_count>=5 binds; hold through STILL; opposite directional call flips",
+      "threshold_post_onset_trades": 5,
+      "corrected_anchor": {
+        "method": {
+          "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+          "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+          "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+          "literal": "first mid with spread<=10c holding <=20c for 30min"
+        },
+        "ground_truth": {
+          "label": "W1_GROUND_TRUTH_TABLE",
+          "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+          "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+          "bytes": 1426420,
+          "sole_grading_source": true,
+          "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+          "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+          "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS",
+          "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+        },
+        "discrepancy": {
+          "commit": "620fe4c1",
+          "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INSTRUMENT_PARITY_AND_LIVE_CLOCK.json",
+          "sha256": "6a7be3e48d0dad8830fdf54cbdb1313c1077e340a6b7c569d0c3412c2a782469"
+        },
+        "series_floor": "FORMATION_END_INCLUSIVE"
+      },
+      "provenance": {
+        "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+        "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+        "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+        "bytes": 141086
+      },
+      "new_constants": 0
+    },
+    "recognition": {
+      "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+      "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+      "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+      "bytes": 141086
+    },
+    "down_target": {
+      "label": "DOWN_TARGET_FRONTIER",
+      "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+      "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+      "bytes": 39394
+    },
+    "anchor_correction": {
+      "method": {
+        "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+        "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+        "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+        "literal": "first mid with spread<=10c holding <=20c for 30min"
+      },
+      "ground_truth": {
+        "label": "W1_GROUND_TRUTH_TABLE",
+        "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+        "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+        "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+        "bytes": 1426420,
+        "sole_grading_source": true,
+        "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+        "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+        "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS",
+        "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      },
+      "discrepancy": {
+        "commit": "620fe4c1",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INSTRUMENT_PARITY_AND_LIVE_CLOCK.json",
+        "sha256": "6a7be3e48d0dad8830fdf54cbdb1313c1077e340a6b7c569d0c3412c2a782469"
+      },
+      "series_floor": "FORMATION_END_INCLUSIVE"
+    },
+    "threshold_source": "TRD5_OPERATOR_PICK_FROM_SEALED_FRONTIER",
+    "delta_source": "LOW_1_OPERATOR_PICK_FROM_DOWN_TARGET_FRONTIER_AND_INTEGER_TRAIL1_IDENTITY",
+    "new_constants": 0
+  },
+  "coverage": {
+    "terminal_grain": "LAST_DECISION_RECEIPT_BEFORE_ENTRY_OR_AVAILABLE_REPLAY_TERMINAL",
+    "terminal_legs": 60,
+    "called_all_legs": 26,
+    "called_all_legs_share": 0.43333333333333335,
+    "benchmark_truth_role_legs": 58,
+    "called_truth_role_legs": 26,
+    "called_truth_role_legs_share": 0.4482758620689655,
+    "benchmark_reference_called_coverage": 0.924,
+    "target_band": [
+      0.85,
+      1
+    ],
+    "lands_in_target_band": false
+  },
+  "accuracy": {
+    "called_truth_role_legs": 26,
+    "correct": 13,
+    "accuracy": 0.5,
+    "benchmark_reference_accuracy": 0.951,
+    "target_near_benchmark_reported_not_forced": true
+  },
+  "ROLE_DOWN_fills": {
+    "rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+        "category": "ATP_CHALL",
+        "price_region": "le25",
+        "role": "ROLE_DOWN",
+        "candidate_role": "ROLE_DOWN",
+        "ripeness": null,
+        "trd5": {
+          "post_onset_trade_count": 6,
+          "threshold": 5,
+          "gate_passed": true,
+          "transition": "HELD_SAME_DIRECTION",
+          "first_bind": {
+            "timestamp_epoch": 1783878062,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-5120",
+            "role": "ROLE_DOWN",
+            "trade_count": 6
+          },
+          "last_flip": null,
+          "flip_count": 0,
+          "held_unless_instrument_flips": true,
+          "provenance": {
+            "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+            "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+            "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+            "bytes": 141086
+          }
+        },
+        "drift_cents": -2,
+        "anchor_correction": {
+          "anchor_cents": 21,
+          "anchor_receipt": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "formation_end_epoch": 1783831173,
+          "method": {
+            "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+            "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+            "literal": "first mid with spread<=10c holding <=20c for 30min"
+          },
+          "series_floor": "FORMATION_END_INCLUSIVE"
+        },
+        "post_formation_open_cents": 21,
+        "last_causal_print_cents": 19,
+        "evaluation_timestamp_epoch": 1783878855,
+        "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224",
+        "expected_verified_role": "ROLE_STILL",
+        "verified_family": "SLEEPER",
+        "called": true,
+        "correct": false,
+        "credited": true,
+        "entry_cents": 18,
+        "fill_timestamp_epoch": 1783879149.48,
+        "depth_consumption": {
+          "applicable": true,
+          "reason": "ROLE_DOWN_LOW_MINUS_ONE_CONSUMED",
+          "level_policy": "ROLE_DOWN_RUNNING_POST_ONSET_SESSION_LOW_MINUS_ONE",
+          "level_policy_consumed": true,
+          "session_low_cents": 19,
+          "session_low_receipt": "dda1abcb-a598-630f-7ac4-fef3823fac6b",
+          "delta_cents": 1,
+          "arithmetic": "19-1=18;min(18,20-1,18)=18",
+          "current_touch_ask_cents": 20,
+          "clause_6_cap_cents": 18,
+          "selected_target_cents": 18,
+          "target_changed": false,
+          "low1_identity": "TRAIL1_IDENTICAL_TO_LOW_1_ON_INTEGER_TAPE",
+          "provenance": {
+            "label": "DOWN_TARGET_FRONTIER",
+            "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+            "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+            "bytes": 39394
+          }
+        },
+        "ground_truth_floor_cents": 15,
+        "entry_minus_ground_truth_floor_cents": 3,
+        "V52l_credited": true,
+        "V52l_entry_cents": 18,
+        "V52l_entry_minus_ground_truth_floor_cents": 3,
+        "fill_delay_seconds_vs_V52l": 0
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL14MILCHA|MIL",
+        "category": "ATP_CHALL",
+        "price_region": "51_75",
+        "role": "ROLE_DOWN",
+        "candidate_role": "ROLE_DOWN",
+        "ripeness": null,
+        "trd5": {
+          "post_onset_trade_count": 15,
+          "threshold": 5,
+          "gate_passed": true,
+          "transition": "HELD_SAME_DIRECTION",
+          "first_bind": {
+            "timestamp_epoch": 1784048015,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL14MILCHA-MIL.csv.gz#row-3126",
+            "role": "ROLE_DOWN",
+            "trade_count": 5
+          },
+          "last_flip": null,
+          "flip_count": 0,
+          "held_unless_instrument_flips": true,
+          "provenance": {
+            "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+            "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+            "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+            "bytes": 141086
+          }
+        },
+        "drift_cents": -4,
+        "anchor_correction": {
+          "anchor_cents": 56,
+          "anchor_receipt": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL14MILCHA|MIL",
+          "formation_end_epoch": 1784012211,
+          "method": {
+            "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+            "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+            "literal": "first mid with spread<=10c holding <=20c for 30min"
+          },
+          "series_floor": "FORMATION_END_INCLUSIVE"
+        },
+        "post_formation_open_cents": 56,
+        "last_causal_print_cents": 52,
+        "evaluation_timestamp_epoch": 1784059855,
+        "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL14MILCHA-MIL.csv.gz#row-3943",
+        "expected_verified_role": "ROLE_UP",
+        "verified_family": "LATE_BREAK_UP",
+        "called": true,
+        "correct": false,
+        "credited": true,
+        "entry_cents": 51,
+        "fill_timestamp_epoch": 1784059855.256,
+        "depth_consumption": {
+          "applicable": true,
+          "reason": "ROLE_DOWN_LOW_MINUS_ONE_CONSUMED",
+          "level_policy": "ROLE_DOWN_RUNNING_POST_ONSET_SESSION_LOW_MINUS_ONE",
+          "level_policy_consumed": true,
+          "session_low_cents": 52,
+          "session_low_receipt": "ef231880-6f19-5998-fe24-d6140b4821a1",
+          "delta_cents": 1,
+          "arithmetic": "52-1=51;min(51,52-1,52)=51",
+          "current_touch_ask_cents": 52,
+          "clause_6_cap_cents": 52,
+          "selected_target_cents": 51,
+          "target_changed": false,
+          "low1_identity": "TRAIL1_IDENTICAL_TO_LOW_1_ON_INTEGER_TAPE",
+          "provenance": {
+            "label": "DOWN_TARGET_FRONTIER",
+            "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+            "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+            "bytes": 39394
+          }
+        },
+        "ground_truth_floor_cents": 51,
+        "entry_minus_ground_truth_floor_cents": 0,
+        "V52l_credited": true,
+        "V52l_entry_cents": 51,
+        "V52l_entry_minus_ground_truth_floor_cents": 0,
+        "fill_delay_seconds_vs_V52l": 0
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+        "leg_identity": "KXATPCHALLENGERMATCH-26JUL15NOGSUR|NOG",
+        "category": "ATP_CHALL",
+        "price_region": "51_75",
+        "role": "ROLE_DOWN",
+        "candidate_role": "ROLE_DOWN",
+        "ripeness": null,
+        "trd5": {
+          "post_onset_trade_count": 5,
+          "threshold": 5,
+          "gate_passed": true,
+          "transition": "HELD_SAME_DIRECTION",
+          "first_bind": {
+            "timestamp_epoch": 1784107961,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-NOG.csv.gz#row-932",
+            "role": "ROLE_DOWN",
+            "trade_count": 5
+          },
+          "last_flip": null,
+          "flip_count": 0,
+          "held_unless_instrument_flips": true,
+          "provenance": {
+            "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+            "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+            "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+            "bytes": 141086
+          }
+        },
+        "drift_cents": -5,
+        "anchor_correction": {
+          "anchor_cents": 51,
+          "anchor_receipt": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPCHALLENGERMATCH-26JUL15NOGSUR|NOG",
+          "formation_end_epoch": 1784096022,
+          "method": {
+            "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+            "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+            "literal": "first mid with spread<=10c holding <=20c for 30min"
+          },
+          "series_floor": "FORMATION_END_INCLUSIVE"
+        },
+        "post_formation_open_cents": 51,
+        "last_causal_print_cents": 46,
+        "evaluation_timestamp_epoch": 1784110572,
+        "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL15NOGSUR-NOG.csv.gz#row-1768",
+        "expected_verified_role": "ROLE_DOWN",
+        "verified_family": "ONE_STEP_DOWN",
+        "called": true,
+        "correct": true,
+        "credited": true,
+        "entry_cents": 43,
+        "fill_timestamp_epoch": 1784110643.019,
+        "depth_consumption": {
+          "applicable": true,
+          "reason": "ROLE_DOWN_LOW_MINUS_ONE_CONSUMED",
+          "level_policy": "ROLE_DOWN_RUNNING_POST_ONSET_SESSION_LOW_MINUS_ONE",
+          "level_policy_consumed": true,
+          "session_low_cents": 46,
+          "session_low_receipt": "b111554a-922a-4527-f514-ad703c68c4ae",
+          "delta_cents": 1,
+          "arithmetic": "46-1=45;min(45,44-1,43)=43",
+          "current_touch_ask_cents": 44,
+          "clause_6_cap_cents": 43,
+          "selected_target_cents": 43,
+          "target_changed": false,
+          "low1_identity": "TRAIL1_IDENTICAL_TO_LOW_1_ON_INTEGER_TAPE",
+          "provenance": {
+            "label": "DOWN_TARGET_FRONTIER",
+            "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+            "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+            "bytes": 39394
+          }
+        },
+        "ground_truth_floor_cents": 43,
+        "entry_minus_ground_truth_floor_cents": 0,
+        "V52l_credited": true,
+        "V52l_entry_cents": 43,
+        "V52l_entry_minus_ground_truth_floor_cents": 0,
+        "fill_delay_seconds_vs_V52l": 0
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL12CORDAN",
+        "leg_identity": "KXATPMATCH-26JUL12CORDAN|DAN",
+        "category": "ATP_MAIN",
+        "price_region": "51_75",
+        "role": "ROLE_DOWN",
+        "candidate_role": "ROLE_DOWN",
+        "ripeness": null,
+        "trd5": {
+          "post_onset_trade_count": 47,
+          "threshold": 5,
+          "gate_passed": true,
+          "transition": "HELD_SAME_DIRECTION",
+          "first_bind": {
+            "timestamp_epoch": 1783803284,
+            "receipt": "KXATPMATCH-26JUL12CORDAN-DAN.csv.gz#row-366",
+            "role": "ROLE_DOWN",
+            "trade_count": 5
+          },
+          "last_flip": null,
+          "flip_count": 0,
+          "held_unless_instrument_flips": true,
+          "provenance": {
+            "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+            "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+            "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+            "bytes": 141086
+          }
+        },
+        "drift_cents": -4,
+        "anchor_correction": {
+          "anchor_cents": 73,
+          "anchor_receipt": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL12CORDAN|DAN",
+          "formation_end_epoch": 1783795776,
+          "method": {
+            "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+            "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+            "literal": "first mid with spread<=10c holding <=20c for 30min"
+          },
+          "series_floor": "FORMATION_END_INCLUSIVE"
+        },
+        "post_formation_open_cents": 73,
+        "last_causal_print_cents": 69,
+        "evaluation_timestamp_epoch": 1783849227,
+        "evaluation_receipt": "KXATPMATCH-26JUL12CORDAN-DAN.csv.gz#row-3290",
+        "expected_verified_role": "ROLE_DOWN",
+        "verified_family": "LATE_BREAK_DOWN",
+        "called": true,
+        "correct": true,
+        "credited": true,
+        "entry_cents": 68,
+        "fill_timestamp_epoch": 1783849228.899,
+        "depth_consumption": {
+          "applicable": true,
+          "reason": "ROLE_DOWN_LOW_MINUS_ONE_CONSUMED",
+          "level_policy": "ROLE_DOWN_RUNNING_POST_ONSET_SESSION_LOW_MINUS_ONE",
+          "level_policy_consumed": true,
+          "session_low_cents": 69,
+          "session_low_receipt": "a6e84102-f8aa-70d5-a4a4-bce4aa798d0a",
+          "delta_cents": 1,
+          "arithmetic": "69-1=68;min(68,69-1,69)=68",
+          "current_touch_ask_cents": 69,
+          "clause_6_cap_cents": 69,
+          "selected_target_cents": 68,
+          "target_changed": false,
+          "low1_identity": "TRAIL1_IDENTICAL_TO_LOW_1_ON_INTEGER_TAPE",
+          "provenance": {
+            "label": "DOWN_TARGET_FRONTIER",
+            "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+            "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+            "bytes": 39394
+          }
+        },
+        "ground_truth_floor_cents": 66,
+        "entry_minus_ground_truth_floor_cents": 2,
+        "V52l_credited": true,
+        "V52l_entry_cents": 69,
+        "V52l_entry_minus_ground_truth_floor_cents": 3,
+        "fill_delay_seconds_vs_V52l": 191.6289999485016
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL14TOPUGO",
+        "leg_identity": "KXATPMATCH-26JUL14TOPUGO|TOP",
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "role": "ROLE_DOWN",
+        "candidate_role": "ROLE_DOWN",
+        "ripeness": null,
+        "trd5": {
+          "post_onset_trade_count": 7,
+          "threshold": 5,
+          "gate_passed": true,
+          "transition": "HELD_SAME_DIRECTION",
+          "first_bind": {
+            "timestamp_epoch": 1783965479,
+            "receipt": "KXATPMATCH-26JUL14TOPUGO-TOP.csv.gz#row-626",
+            "role": "ROLE_DOWN",
+            "trade_count": 5
+          },
+          "last_flip": null,
+          "flip_count": 0,
+          "held_unless_instrument_flips": true,
+          "provenance": {
+            "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+            "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+            "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+            "bytes": 141086
+          }
+        },
+        "drift_cents": -3,
+        "anchor_correction": {
+          "anchor_cents": 29,
+          "anchor_receipt": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL14TOPUGO|TOP",
+          "formation_end_epoch": 1783951740,
+          "method": {
+            "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+            "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+            "literal": "first mid with spread<=10c holding <=20c for 30min"
+          },
+          "series_floor": "FORMATION_END_INCLUSIVE"
+        },
+        "post_formation_open_cents": 29,
+        "last_causal_print_cents": 26,
+        "evaluation_timestamp_epoch": 1783966403,
+        "evaluation_receipt": "KXATPMATCH-26JUL14TOPUGO-TOP.csv.gz#row-679",
+        "expected_verified_role": "ROLE_STILL",
+        "verified_family": "QUIET_WOBBLE",
+        "called": true,
+        "correct": false,
+        "credited": true,
+        "entry_cents": 25,
+        "fill_timestamp_epoch": 1783966403.168,
+        "depth_consumption": {
+          "applicable": true,
+          "reason": "ROLE_DOWN_LOW_MINUS_ONE_CONSUMED",
+          "level_policy": "ROLE_DOWN_RUNNING_POST_ONSET_SESSION_LOW_MINUS_ONE",
+          "level_policy_consumed": true,
+          "session_low_cents": 26,
+          "session_low_receipt": "cb17bbd2-9378-4811-076e-3d4789cdcc16",
+          "delta_cents": 1,
+          "arithmetic": "26-1=25;min(25,26-1,26)=25",
+          "current_touch_ask_cents": 26,
+          "clause_6_cap_cents": 26,
+          "selected_target_cents": 25,
+          "target_changed": false,
+          "low1_identity": "TRAIL1_IDENTICAL_TO_LOW_1_ON_INTEGER_TAPE",
+          "provenance": {
+            "label": "DOWN_TARGET_FRONTIER",
+            "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+            "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+            "bytes": 39394
+          }
+        },
+        "ground_truth_floor_cents": 25,
+        "entry_minus_ground_truth_floor_cents": 0,
+        "V52l_credited": true,
+        "V52l_entry_cents": 25,
+        "V52l_entry_minus_ground_truth_floor_cents": 0,
+        "fill_delay_seconds_vs_V52l": 0
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18RUBTAB",
+        "leg_identity": "KXATPMATCH-26JUL18RUBTAB|TAB",
+        "category": "ATP_MAIN",
+        "price_region": "26_50",
+        "role": "ROLE_DOWN",
+        "candidate_role": "ROLE_DOWN",
+        "ripeness": null,
+        "trd5": {
+          "post_onset_trade_count": 99,
+          "threshold": 5,
+          "gate_passed": true,
+          "transition": "HELD_SAME_DIRECTION",
+          "first_bind": {
+            "timestamp_epoch": 1784317610,
+            "receipt": "KXATPMATCH-26JUL18RUBTAB-TAB.csv.gz#row-493",
+            "role": "ROLE_DOWN",
+            "trade_count": 11
+          },
+          "last_flip": null,
+          "flip_count": 0,
+          "held_unless_instrument_flips": true,
+          "provenance": {
+            "label": "GATE_POLICY_EVALUATION_LIVE_COORDINATES",
+            "commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+            "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+            "bytes": 141086
+          }
+        },
+        "drift_cents": -2,
+        "anchor_correction": {
+          "anchor_cents": 32,
+          "anchor_receipt": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json#KXATPMATCH-26JUL18RUBTAB|TAB",
+          "formation_end_epoch": 1784304972,
+          "method": {
+            "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+            "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+            "literal": "first mid with spread<=10c holding <=20c for 30min"
+          },
+          "series_floor": "FORMATION_END_INCLUSIVE"
+        },
+        "post_formation_open_cents": 32,
+        "last_causal_print_cents": 30,
+        "evaluation_timestamp_epoch": 1784352830,
+        "evaluation_receipt": "KXATPMATCH-26JUL18RUBTAB-TAB.csv.gz#row-2373",
+        "expected_verified_role": "ROLE_STILL",
+        "verified_family": "QUIET_WOBBLE",
+        "called": true,
+        "correct": false,
+        "credited": true,
+        "entry_cents": 29,
+        "fill_timestamp_epoch": 1784352830.082,
+        "depth_consumption": {
+          "applicable": true,
+          "reason": "ROLE_DOWN_LOW_MINUS_ONE_CONSUMED",
+          "level_policy": "ROLE_DOWN_RUNNING_POST_ONSET_SESSION_LOW_MINUS_ONE",
+          "level_policy_consumed": true,
+          "session_low_cents": 30,
+          "session_low_receipt": "27c846df-7a7c-6905-713f-cf39e3c70b29",
+          "delta_cents": 1,
+          "arithmetic": "30-1=29;min(29,31-1,29)=29",
+          "current_touch_ask_cents": 31,
+          "clause_6_cap_cents": 29,
+          "selected_target_cents": 29,
+          "target_changed": false,
+          "low1_identity": "TRAIL1_IDENTICAL_TO_LOW_1_ON_INTEGER_TAPE",
+          "provenance": {
+            "label": "DOWN_TARGET_FRONTIER",
+            "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+            "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+            "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+            "bytes": 39394
+          }
+        },
+        "ground_truth_floor_cents": 29,
+        "entry_minus_ground_truth_floor_cents": 0,
+        "V52l_credited": false,
+        "V52l_entry_cents": null,
+        "V52l_entry_minus_ground_truth_floor_cents": null,
+        "fill_delay_seconds_vs_V52l": null
+      }
+    ],
+    "floor_gap_cents": {
+      "n": 6,
+      "null_n": 0,
+      "sum": 5,
+      "min": 0,
+      "p25": 0,
+      "median": 0,
+      "p75": 2,
+      "p90": 3,
+      "max": 3
+    },
+    "V52l_floor_gap_cents": {
+      "n": 5,
+      "null_n": 1,
+      "sum": 6,
+      "min": 0,
+      "p25": 0,
+      "median": 0,
+      "p75": 3,
+      "p90": 3,
+      "max": 3
+    },
+    "fill_delay_seconds_vs_V52l": {
+      "n": 5,
+      "null_n": 1,
+      "sum": 191.6289999485016,
+      "min": 0,
+      "p25": 0,
+      "median": 0,
+      "p75": 0,
+      "p90": 191.6289999485016,
+      "max": 191.6289999485016
+    },
+    "claim_median_gap_at_or_below_1_5c": true,
+    "claim_median_gap_at_or_below_2c": true,
+    "kiss_count": 4,
+    "kiss_share": 0.6666666666666666
+  },
+  "up_and_still_completion_preservation": {
+    "V52l_credited_legs": 37,
+    "V52o_credited_legs": 37,
+    "candidate_credited_legs": 37,
+    "lost": [],
+    "preserved": true
+  },
+  "banked_delta": {
+    "V52l": {
+      "n": 15,
+      "mean_cents": 2.933333333333333
+    },
+    "V52o": {
+      "n": 16,
+      "mean_cents": 2.875
+    },
+    "candidate": {
+      "n": 16,
+      "mean_cents": 2.875
+    },
+    "exceeds_V52m_1_83c": true,
+    "exceeds_claim_bar_cents": 2.4,
+    "exceeds_claim_bar": true
+  },
+  "one_sided_exposure_both_ways": {
+    "created_count": 0,
+    "resolved_count": 1,
+    "created_duration_seconds": {
+      "n": 0,
+      "null_n": 0,
+      "sum": 0,
+      "min": null,
+      "p25": null,
+      "median": null,
+      "p75": null,
+      "p90": null,
+      "max": null
+    },
+    "created": [],
+    "resolved": [
+      {
+        "event_id": "KXATPMATCH-26JUL18RUBTAB",
+        "baseline_credited_legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL18RUBTAB|RUB",
+            "entry_cents": 72
+          }
+        ],
+        "candidate_state": "COMPLETE_AT_DELTA"
+      }
+    ]
+  },
+  "pins": {
+    "comparisons": [
+      {
+        "code": "26JUL12POLKUH",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 99,
+        "candidate_completed": true,
+        "candidate_combined_entry_cents": 99,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "KUH",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 18,
+            "candidate_entry_cents": 18,
+            "unharmed": true
+          },
+          {
+            "leg_id": "POL",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 81,
+            "candidate_entry_cents": 81,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL13SANDAN",
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 99,
+        "candidate_completed": true,
+        "candidate_combined_entry_cents": 99,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "DAN",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 73,
+            "candidate_entry_cents": 73,
+            "unharmed": true
+          },
+          {
+            "leg_id": "SAN",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 26,
+            "candidate_entry_cents": 26,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL14PUTJEA",
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 73,
+        "candidate_completed": true,
+        "candidate_combined_entry_cents": 73,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "JEA",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 64,
+            "candidate_entry_cents": 64,
+            "unharmed": true
+          },
+          {
+            "leg_id": "PUT",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 9,
+            "candidate_entry_cents": 9,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL16MERDRO",
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "baseline_completed": true,
+        "baseline_combined_entry_cents": 12,
+        "candidate_completed": true,
+        "candidate_combined_entry_cents": 12,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "DRO",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 6,
+            "candidate_entry_cents": 6,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MER",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 6,
+            "candidate_entry_cents": 6,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      },
+      {
+        "code": "26JUL19ARSMAR",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "baseline_completed": false,
+        "baseline_combined_entry_cents": null,
+        "candidate_completed": false,
+        "candidate_combined_entry_cents": null,
+        "at_or_better": true,
+        "legs": [
+          {
+            "leg_id": "ARS",
+            "baseline_credited": false,
+            "candidate_credited": false,
+            "baseline_entry_cents": null,
+            "candidate_entry_cents": null,
+            "unharmed": true
+          },
+          {
+            "leg_id": "MAR",
+            "baseline_credited": true,
+            "candidate_credited": true,
+            "baseline_entry_cents": 60,
+            "candidate_entry_cents": 60,
+            "unharmed": true
+          }
+        ],
+        "unharmed": true
+      }
+    ],
+    "lawful": true
+  },
+  "REFLEX_POST_zero": true,
+  "both_clocks": {
+    "trace_fields": [
+      "t_minus_scheduled_seconds",
+      "t_minus_actual_bell_seconds"
+    ],
+    "present_on_role_receipts": true
+  }
+}

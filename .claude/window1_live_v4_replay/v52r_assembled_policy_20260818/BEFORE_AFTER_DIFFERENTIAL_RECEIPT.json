@@ -1,0 +1,8 @@
+{
+  "changed_decision_receipts": 209596,
+  "license_or_metadata_changed_leg_streams": 59,
+  "behavior_changed_leg_streams": 7,
+  "every_behavior_change_starts_at_or_after_authorized_clause": true,
+  "frozen_clause_differences": 0,
+  "all_behavior_changes_authorized_by": "CLAUSE_3_TRD5_ROLE_AND_LOW_MINUS_ONE_ASSEMBLY_ONLY"
+}

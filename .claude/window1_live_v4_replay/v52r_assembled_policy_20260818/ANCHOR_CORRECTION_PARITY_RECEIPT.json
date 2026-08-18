@@ -1,0 +1,39 @@
+{
+  "binding": {
+    "method": {
+      "name": "SPREAD_SETTLE_MID_AT_FORMATION_END",
+      "commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+      "sha256": "5d821226544f9e1891d0572b82386ac4907dc0692c0c91852d146105a446d599",
+      "literal": "first mid with spread<=10c holding <=20c for 30min"
+    },
+    "ground_truth": {
+      "label": "W1_GROUND_TRUTH_TABLE",
+      "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+      "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+      "bytes": 1426420,
+      "sole_grading_source": true,
+      "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+      "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+      "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS",
+      "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+    },
+    "discrepancy": {
+      "commit": "620fe4c1",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INSTRUMENT_PARITY_AND_LIVE_CLOCK.json",
+      "sha256": "6a7be3e48d0dad8830fdf54cbdb1313c1077e340a6b7c569d0c3412c2a782469"
+    },
+    "series_floor": "FORMATION_END_INCLUSIVE"
+  },
+  "runtime_vs_offline_parity": {
+    "grain": "UNGATED_ROLE_EVALUATION_RECEIPTS_WITH_PUBLISHED_ANCHOR_AND_POST_FORMATION_PRINT",
+    "rows": 133074,
+    "matching": 133074,
+    "parity": 1,
+    "claim_at_least_99pct": true,
+    "mismatches": []
+  }
+}

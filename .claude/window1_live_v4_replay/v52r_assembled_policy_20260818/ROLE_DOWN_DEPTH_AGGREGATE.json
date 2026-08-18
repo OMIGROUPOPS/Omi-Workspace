@@ -1,0 +1,24 @@
+{
+  "source": {
+    "label": "DOWN_TARGET_FRONTIER",
+    "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+    "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+    "bytes": 39394
+  },
+  "rows": [
+    {
+      "rule": "LOW-1",
+      "expression": "running_post_onset_session_low-1c",
+      "delta_cents": 1,
+      "provenance": {
+        "label": "DOWN_TARGET_FRONTIER",
+        "commit": "ab609761c5df44097f46ad2364f539bbd0751d54",
+        "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+        "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+        "bytes": 39394
+      },
+      "static_shape_aggregate_consumed": false
+    }
+  ]
+}

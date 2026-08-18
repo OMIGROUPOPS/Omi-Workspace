@@ -1,0 +1,8 @@
+{
+  "fields": [
+    "t_minus_scheduled_seconds",
+    "t_minus_actual_bell_seconds"
+  ],
+  "rows": 207568,
+  "every_row_has_both_fields": true
+}

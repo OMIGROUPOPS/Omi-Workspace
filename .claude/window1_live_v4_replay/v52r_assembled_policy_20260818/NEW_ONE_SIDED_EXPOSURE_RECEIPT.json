@@ -1,0 +1,15 @@
+{
+  "newly_created_partials": 0,
+  "duration_seconds": {
+    "n": 0,
+    "null_n": 0,
+    "sum": 0,
+    "min": null,
+    "p25": null,
+    "median": null,
+    "p75": null,
+    "p90": null,
+    "max": null
+  },
+  "rows": []
+}

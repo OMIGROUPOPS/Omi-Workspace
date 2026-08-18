@@ -1,0 +1,310 @@
+{
+  "law": "CLAUSE_1_READS_NO_RIGHT_EDGE_AND_NO_FULL_SPAN_FIT; PERTURBING_RIGHT_EDGE_BY_PLUS_OR_MINUS_86400_SECONDS_MUST_NOT_CHANGE_ANY_ONSET",
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CORDAN",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12JACTRU",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13MARMID",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14GOMMCD",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14TOPUGO",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18RUBTAB",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13AMAHER",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ITOKOR",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16TAUTON",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17PUTSHE",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19VEDGAR",
+      "perturbations_seconds": [
+        0,
+        -86400,
+        86400
+      ],
+      "pass": true,
+      "identical_onsets": true
+    }
+  ],
+  "pass": true,
+  "conservation": {
+    "expected_games": 30,
+    "rows": 30
+  }
+}

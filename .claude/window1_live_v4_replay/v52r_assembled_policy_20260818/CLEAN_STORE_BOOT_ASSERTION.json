@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "required_ids": [
+    "P1",
+    "P2",
+    "P4",
+    "P6",
+    "P11",
+    "P12",
+    "P13",
+    "P14"
+  ],
+  "loaded_ids": [
+    "P1",
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P2",
+    "P4",
+    "P6"
+  ],
+  "source_inventory": "store_CLEAN",
+  "unvalidated_loaded": 0,
+  "quarantined_loaded": 0,
+  "superseded_loaded": 0,
+  "fallback_loads": 0
+}

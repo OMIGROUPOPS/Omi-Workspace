@@ -1,0 +1,2177 @@
+{
+ "LABEL": "DOWN_TARGET_FRONTIER",
+ "stamp": [
+  "ANALYTICAL_ESTIMATE",
+  "MEASUREMENT_ONLY"
+ ],
+ "provenance_triples": [
+  {
+   "commit": "c0056976",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+   "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+   "bytes": 1426420
+  },
+  {
+   "commit": "71de534a",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/GATE_POLICY_EVAL_LIVE_COORDS.json",
+   "sha256": "a002897e8956e1115a028eb120caf9f164215c0982378c7c6fbd757af49bf68e",
+   "bytes": 141086
+  },
+  {
+   "commit": "620fe4c1",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INSTRUMENT_PARITY_AND_LIVE_CLOCK.json",
+   "sha256": "6a7be3e48d0dad8830fdf54cbdb1313c1077e340a6b7c569d0c3412c2a782469",
+   "bytes": 8819
+  }
+ ],
+ "setup": "TRD5 binding fixed (simulator @ 71de534a, corrected anchor); DOWN-bound legs: 251 verified / 196 live; sibling model: UP sibling fills at its TRD5 bind price (V52p/q immediate); target clamp >=1c; session low = running post-onset true-print low",
+ "library_percentiles_pooled": {
+  "ATP_MAIN": {
+   "p25": 7.0,
+   "p40": 7.0,
+   "p50": 8.0,
+   "n": 47
+  },
+  "ATP_CHALL": {
+   "p25": 7.0,
+   "p40": 8.0,
+   "p50": 8.0,
+   "n": 87
+  },
+  "WTA_CHALL": {
+   "p25": 7.0,
+   "p40": 7.0,
+   "p50": 7.0,
+   "n": 19
+  },
+  "WTA_MAIN": {
+   "p25": 6.5,
+   "p40": 8.0,
+   "p50": 8.0,
+   "n": 46
+  }
+ },
+ "rules": {
+  "P25/P40/P50": "anchor minus pooled category down-depth percentile (static)",
+  "LOW-k": "session low at bind minus k, k in 0/1/2 (static after bind)",
+  "MAXpkL1": "max(percentile target, session low minus 1)",
+  "TRAILd": "re-target to running low minus delta as new lows print"
+ },
+ "STRUCTURAL_IDENTITY": "TRAIL1 is IDENTICAL to LOW-1 on every scored column: with integer prices a new session low cannot print without first kissing a stand at low-1 - at delta=1 trailing is impossible by construction",
+ "verified": {
+  "P25": {
+   "down_binds": 251,
+   "kiss_pct": 53.8,
+   "fill_vs_floor": {
+    "n": 135,
+    "p25": 1,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 76,
+   "banked_delta": {
+    "n": 76,
+    "p25": 2,
+    "med": 3,
+    "p75": 4
+   },
+   "banked_total_c": 229,
+   "pairs_lost_down_unkissed": 111,
+   "pairs_lost_up_missing": 4,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 49.5,
+     "fill_vs_floor": {
+      "n": 54,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 56.7,
+     "fill_vs_floor": {
+      "n": 34,
+      "p25": 0,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 52.6,
+     "fill_vs_floor": {
+      "n": 10,
+      "p25": 0,
+      "med": 0,
+      "p75": 1
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 58.7,
+     "fill_vs_floor": {
+      "n": 37,
+      "p25": 1,
+      "med": 2,
+      "p75": 5
+     }
+    }
+   },
+   "residual_pairs": 60
+  },
+  "P40": {
+   "down_binds": 251,
+   "kiss_pct": 42.2,
+   "fill_vs_floor": {
+    "n": 106,
+    "p25": 0,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 66,
+   "banked_delta": {
+    "n": 66,
+    "p25": 2,
+    "med": 3,
+    "p75": 5
+   },
+   "banked_total_c": 222,
+   "pairs_lost_down_unkissed": 140,
+   "pairs_lost_up_missing": 4,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 35.8,
+     "fill_vs_floor": {
+      "n": 39,
+      "p25": 0,
+      "med": 1,
+      "p75": 4
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 56.7,
+     "fill_vs_floor": {
+      "n": 34,
+      "p25": 0,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 52.6,
+     "fill_vs_floor": {
+      "n": 10,
+      "p25": 0,
+      "med": 0,
+      "p75": 1
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 36.5,
+     "fill_vs_floor": {
+      "n": 23,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    }
+   },
+   "residual_pairs": 41
+  },
+  "P50": {
+   "down_binds": 251,
+   "kiss_pct": 38.2,
+   "fill_vs_floor": {
+    "n": 96,
+    "p25": 0,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 62,
+   "banked_delta": {
+    "n": 62,
+    "p25": 2,
+    "med": 3,
+    "p75": 5
+   },
+   "banked_total_c": 210,
+   "pairs_lost_down_unkissed": 149,
+   "pairs_lost_up_missing": 3,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 35.8,
+     "fill_vs_floor": {
+      "n": 39,
+      "p25": 0,
+      "med": 1,
+      "p75": 4
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 40.0,
+     "fill_vs_floor": {
+      "n": 24,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 52.6,
+     "fill_vs_floor": {
+      "n": 10,
+      "p25": 0,
+      "med": 0,
+      "p75": 1
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 36.5,
+     "fill_vs_floor": {
+      "n": 23,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    }
+   },
+   "residual_pairs": 37
+  },
+  "LOW-0": {
+   "down_binds": 251,
+   "kiss_pct": 88.4,
+   "fill_vs_floor": {
+    "n": 222,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 66,
+   "banked_delta": {
+    "n": 66,
+    "p25": 1,
+    "med": 1,
+    "p75": 3
+   },
+   "banked_total_c": 142,
+   "pairs_lost_down_unkissed": 26,
+   "pairs_lost_up_missing": 6,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 86.2,
+     "fill_vs_floor": {
+      "n": 94,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 90.0,
+     "fill_vs_floor": {
+      "n": 54,
+      "p25": 2,
+      "med": 3,
+      "p75": 5
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 78.9,
+     "fill_vs_floor": {
+      "n": 15,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 93.7,
+     "fill_vs_floor": {
+      "n": 59,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    }
+   },
+   "residual_pairs": 153
+  },
+  "LOW-1": {
+   "down_binds": 251,
+   "kiss_pct": 74.1,
+   "fill_vs_floor": {
+    "n": 186,
+    "p25": 1,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 111,
+   "banked_delta": {
+    "n": 111,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 233,
+   "pairs_lost_down_unkissed": 59,
+   "pairs_lost_up_missing": 3,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 68.8,
+     "fill_vs_floor": {
+      "n": 75,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 81.7,
+     "fill_vs_floor": {
+      "n": 49,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 57.9,
+     "fill_vs_floor": {
+      "n": 11,
+      "p25": 0,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 81.0,
+     "fill_vs_floor": {
+      "n": 51,
+      "p25": 1,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 78
+  },
+  "LOW-2": {
+   "down_binds": 251,
+   "kiss_pct": 54.2,
+   "fill_vs_floor": {
+    "n": 136,
+    "p25": 0,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 101,
+   "banked_delta": {
+    "n": 101,
+    "p25": 2,
+    "med": 2,
+    "p75": 3
+   },
+   "banked_total_c": 266,
+   "pairs_lost_down_unkissed": 108,
+   "pairs_lost_up_missing": 2,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 46.8,
+     "fill_vs_floor": {
+      "n": 51,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 66.7,
+     "fill_vs_floor": {
+      "n": 40,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 42.1,
+     "fill_vs_floor": {
+      "n": 8,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 58.7,
+     "fill_vs_floor": {
+      "n": 37,
+      "p25": 0,
+      "med": 2,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 40
+  },
+  "MAX25L1": {
+   "down_binds": 251,
+   "kiss_pct": 80.5,
+   "fill_vs_floor": {
+    "n": 202,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 101,
+   "banked_delta": {
+    "n": 101,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 189,
+   "pairs_lost_down_unkissed": 44,
+   "pairs_lost_up_missing": 4,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 76.1,
+     "fill_vs_floor": {
+      "n": 83,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 83.3,
+     "fill_vs_floor": {
+      "n": 50,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 63.2,
+     "fill_vs_floor": {
+      "n": 12,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 90.5,
+     "fill_vs_floor": {
+      "n": 57,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    }
+   },
+   "residual_pairs": 102
+  },
+  "MAX40L1": {
+   "down_binds": 251,
+   "kiss_pct": 78.5,
+   "fill_vs_floor": {
+    "n": 197,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 108,
+   "banked_delta": {
+    "n": 108,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 210,
+   "pairs_lost_down_unkissed": 49,
+   "pairs_lost_up_missing": 4,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 73.4,
+     "fill_vs_floor": {
+      "n": 80,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 83.3,
+     "fill_vs_floor": {
+      "n": 50,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 63.2,
+     "fill_vs_floor": {
+      "n": 12,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 87.3,
+     "fill_vs_floor": {
+      "n": 55,
+      "p25": 1,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 90
+  },
+  "MAX50L1": {
+   "down_binds": 251,
+   "kiss_pct": 78.5,
+   "fill_vs_floor": {
+    "n": 197,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 110,
+   "banked_delta": {
+    "n": 110,
+    "p25": 1,
+    "med": 1,
+    "p75": 2
+   },
+   "banked_total_c": 213,
+   "pairs_lost_down_unkissed": 49,
+   "pairs_lost_up_missing": 4,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 73.4,
+     "fill_vs_floor": {
+      "n": 80,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 83.3,
+     "fill_vs_floor": {
+      "n": 50,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 63.2,
+     "fill_vs_floor": {
+      "n": 12,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 87.3,
+     "fill_vs_floor": {
+      "n": 55,
+      "p25": 1,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 88
+  },
+  "TRAIL1": {
+   "down_binds": 251,
+   "kiss_pct": 74.1,
+   "fill_vs_floor": {
+    "n": 186,
+    "p25": 1,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 111,
+   "banked_delta": {
+    "n": 111,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 233,
+   "pairs_lost_down_unkissed": 59,
+   "pairs_lost_up_missing": 3,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 68.8,
+     "fill_vs_floor": {
+      "n": 75,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 81.7,
+     "fill_vs_floor": {
+      "n": 49,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 57.9,
+     "fill_vs_floor": {
+      "n": 11,
+      "p25": 0,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 81.0,
+     "fill_vs_floor": {
+      "n": 51,
+      "p25": 1,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 78
+  },
+  "TRAIL2": {
+   "down_binds": 251,
+   "kiss_pct": 29.5,
+   "fill_vs_floor": {
+    "n": 74,
+    "p25": 0,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 49,
+   "banked_delta": {
+    "n": 49,
+    "p25": 2,
+    "med": 2,
+    "p75": 3
+   },
+   "banked_total_c": 144,
+   "pairs_lost_down_unkissed": 168,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 1,
+    "p75": 2
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 31.2,
+     "fill_vs_floor": {
+      "n": 34,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 31.7,
+     "fill_vs_floor": {
+      "n": 19,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 42.1,
+     "fill_vs_floor": {
+      "n": 8,
+      "p25": 0,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 20.6,
+     "fill_vs_floor": {
+      "n": 13,
+      "p25": 0,
+      "med": 2,
+      "p75": 2
+     }
+    }
+   },
+   "residual_pairs": 34
+  },
+  "TRAIL3": {
+   "down_binds": 251,
+   "kiss_pct": 11.2,
+   "fill_vs_floor": {
+    "n": 28,
+    "p25": 1,
+    "med": 1,
+    "p75": 2
+   },
+   "completes": 19,
+   "banked_delta": {
+    "n": 19,
+    "p25": 2,
+    "med": 3,
+    "p75": 4
+   },
+   "banked_total_c": 59,
+   "pairs_lost_down_unkissed": 214,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 251,
+    "p25": 0,
+    "med": 1,
+    "p75": 2
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 109,
+     "kiss_pct": 15.6,
+     "fill_vs_floor": {
+      "n": 17,
+      "p25": 0,
+      "med": 1,
+      "p75": 1
+     }
+    },
+    "ATP_MAIN": {
+     "n": 60,
+     "kiss_pct": 5.0,
+     "fill_vs_floor": {
+      "n": 3,
+      "p25": 2,
+      "med": 2,
+      "p75": 6
+     }
+    },
+    "WTA_CHALL": {
+     "n": 19,
+     "kiss_pct": 26.3,
+     "fill_vs_floor": {
+      "n": 5,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 63,
+     "kiss_pct": 4.8,
+     "fill_vs_floor": {
+      "n": 3,
+      "p25": 1,
+      "med": 2,
+      "p75": 17
+     }
+    }
+   },
+   "residual_pairs": 18
+  }
+ },
+ "live": {
+  "P25": {
+   "down_binds": 196,
+   "kiss_pct": 35.7,
+   "fill_vs_floor": {
+    "n": 70,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 33,
+   "banked_delta": {
+    "n": 33,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "banked_total_c": 86,
+   "pairs_lost_down_unkissed": 114,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 30.6,
+     "fill_vs_floor": {
+      "n": 26,
+      "p25": 1,
+      "med": 2,
+      "p75": 5
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 33.3,
+     "fill_vs_floor": {
+      "n": 14,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 50.0,
+     "fill_vs_floor": {
+      "n": 9,
+      "p25": 0,
+      "med": 0,
+      "p75": 1
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 41.2,
+     "fill_vs_floor": {
+      "n": 21,
+      "p25": 1,
+      "med": 3,
+      "p75": 5
+     }
+    }
+   },
+   "residual_pairs": 49
+  },
+  "P40": {
+   "down_binds": 196,
+   "kiss_pct": 27.0,
+   "fill_vs_floor": {
+    "n": 53,
+    "p25": 0,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 28,
+   "banked_delta": {
+    "n": 28,
+    "p25": 1,
+    "med": 3,
+    "p75": 4
+   },
+   "banked_total_c": 77,
+   "pairs_lost_down_unkissed": 131,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 21.2,
+     "fill_vs_floor": {
+      "n": 18,
+      "p25": 0,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 33.3,
+     "fill_vs_floor": {
+      "n": 14,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 50.0,
+     "fill_vs_floor": {
+      "n": 9,
+      "p25": 0,
+      "med": 0,
+      "p75": 1
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 23.5,
+     "fill_vs_floor": {
+      "n": 12,
+      "p25": 2,
+      "med": 3,
+      "p75": 5
+     }
+    }
+   },
+   "residual_pairs": 37
+  },
+  "P50": {
+   "down_binds": 196,
+   "kiss_pct": 24.5,
+   "fill_vs_floor": {
+    "n": 48,
+    "p25": 0,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 25,
+   "banked_delta": {
+    "n": 25,
+    "p25": 1,
+    "med": 3,
+    "p75": 5
+   },
+   "banked_total_c": 73,
+   "pairs_lost_down_unkissed": 136,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 21.2,
+     "fill_vs_floor": {
+      "n": 18,
+      "p25": 0,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 21.4,
+     "fill_vs_floor": {
+      "n": 9,
+      "p25": 1,
+      "med": 1,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 50.0,
+     "fill_vs_floor": {
+      "n": 9,
+      "p25": 0,
+      "med": 0,
+      "p75": 1
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 23.5,
+     "fill_vs_floor": {
+      "n": 12,
+      "p25": 2,
+      "med": 3,
+      "p75": 5
+     }
+    }
+   },
+   "residual_pairs": 35
+  },
+  "LOW-0": {
+   "down_binds": 196,
+   "kiss_pct": 78.1,
+   "fill_vs_floor": {
+    "n": 153,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 45,
+   "banked_delta": {
+    "n": 45,
+    "p25": 1,
+    "med": 1,
+    "p75": 2
+   },
+   "banked_total_c": 87,
+   "pairs_lost_down_unkissed": 36,
+   "pairs_lost_up_missing": 5,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 72.9,
+     "fill_vs_floor": {
+      "n": 62,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 88.1,
+     "fill_vs_floor": {
+      "n": 37,
+      "p25": 2,
+      "med": 4,
+      "p75": 5
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 77.8,
+     "fill_vs_floor": {
+      "n": 14,
+      "p25": 0,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 78.4,
+     "fill_vs_floor": {
+      "n": 40,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    }
+   },
+   "residual_pairs": 110
+  },
+  "LOW-1": {
+   "down_binds": 196,
+   "kiss_pct": 57.1,
+   "fill_vs_floor": {
+    "n": 112,
+    "p25": 0,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 62,
+   "banked_delta": {
+    "n": 62,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 128,
+   "pairs_lost_down_unkissed": 73,
+   "pairs_lost_up_missing": 1,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 50.6,
+     "fill_vs_floor": {
+      "n": 43,
+      "p25": 0,
+      "med": 1,
+      "p75": 2
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 66.7,
+     "fill_vs_floor": {
+      "n": 28,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 55.6,
+     "fill_vs_floor": {
+      "n": 10,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 60.8,
+     "fill_vs_floor": {
+      "n": 31,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 60
+  },
+  "LOW-2": {
+   "down_binds": 196,
+   "kiss_pct": 31.6,
+   "fill_vs_floor": {
+    "n": 62,
+    "p25": 1,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 40,
+   "banked_delta": {
+    "n": 40,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 87,
+   "pairs_lost_down_unkissed": 122,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 27.1,
+     "fill_vs_floor": {
+      "n": 23,
+      "p25": 0,
+      "med": 1,
+      "p75": 2
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 35.7,
+     "fill_vs_floor": {
+      "n": 15,
+      "p25": 2,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 44.4,
+     "fill_vs_floor": {
+      "n": 8,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 31.4,
+     "fill_vs_floor": {
+      "n": 16,
+      "p25": 1,
+      "med": 2,
+      "p75": 2
+     }
+    }
+   },
+   "residual_pairs": 34
+  },
+  "MAX25L1": {
+   "down_binds": 196,
+   "kiss_pct": 63.8,
+   "fill_vs_floor": {
+    "n": 125,
+    "p25": 1,
+    "med": 2,
+    "p75": 4
+   },
+   "completes": 59,
+   "banked_delta": {
+    "n": 59,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 109,
+   "pairs_lost_down_unkissed": 60,
+   "pairs_lost_up_missing": 1,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 58.8,
+     "fill_vs_floor": {
+      "n": 50,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 69.0,
+     "fill_vs_floor": {
+      "n": 29,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 61.1,
+     "fill_vs_floor": {
+      "n": 11,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 68.6,
+     "fill_vs_floor": {
+      "n": 35,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    }
+   },
+   "residual_pairs": 76
+  },
+  "MAX40L1": {
+   "down_binds": 196,
+   "kiss_pct": 62.2,
+   "fill_vs_floor": {
+    "n": 122,
+    "p25": 1,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 63,
+   "banked_delta": {
+    "n": 63,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 119,
+   "pairs_lost_down_unkissed": 63,
+   "pairs_lost_up_missing": 1,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 56.5,
+     "fill_vs_floor": {
+      "n": 48,
+      "p25": 0,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 69.0,
+     "fill_vs_floor": {
+      "n": 29,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 61.1,
+     "fill_vs_floor": {
+      "n": 11,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 66.7,
+     "fill_vs_floor": {
+      "n": 34,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 69
+  },
+  "MAX50L1": {
+   "down_binds": 196,
+   "kiss_pct": 62.2,
+   "fill_vs_floor": {
+    "n": 122,
+    "p25": 0,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 64,
+   "banked_delta": {
+    "n": 64,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 121,
+   "pairs_lost_down_unkissed": 63,
+   "pairs_lost_up_missing": 1,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 56.5,
+     "fill_vs_floor": {
+      "n": 48,
+      "p25": 0,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 69.0,
+     "fill_vs_floor": {
+      "n": 29,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 61.1,
+     "fill_vs_floor": {
+      "n": 11,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 66.7,
+     "fill_vs_floor": {
+      "n": 34,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 68
+  },
+  "TRAIL1": {
+   "down_binds": 196,
+   "kiss_pct": 57.1,
+   "fill_vs_floor": {
+    "n": 112,
+    "p25": 0,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 62,
+   "banked_delta": {
+    "n": 62,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 128,
+   "pairs_lost_down_unkissed": 73,
+   "pairs_lost_up_missing": 1,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 0
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 50.6,
+     "fill_vs_floor": {
+      "n": 43,
+      "p25": 0,
+      "med": 1,
+      "p75": 2
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 66.7,
+     "fill_vs_floor": {
+      "n": 28,
+      "p25": 1,
+      "med": 3,
+      "p75": 4
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 55.6,
+     "fill_vs_floor": {
+      "n": 10,
+      "p25": 1,
+      "med": 2,
+      "p75": 4
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 60.8,
+     "fill_vs_floor": {
+      "n": 31,
+      "p25": 0,
+      "med": 1,
+      "p75": 3
+     }
+    }
+   },
+   "residual_pairs": 60
+  },
+  "TRAIL2": {
+   "down_binds": 196,
+   "kiss_pct": 20.9,
+   "fill_vs_floor": {
+    "n": 41,
+    "p25": 0,
+    "med": 2,
+    "p75": 3
+   },
+   "completes": 24,
+   "banked_delta": {
+    "n": 24,
+    "p25": 2,
+    "med": 2,
+    "p75": 2
+   },
+   "banked_total_c": 57,
+   "pairs_lost_down_unkissed": 143,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 0,
+    "p75": 1
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 18.8,
+     "fill_vs_floor": {
+      "n": 16,
+      "p25": 0,
+      "med": 1,
+      "p75": 2
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 23.8,
+     "fill_vs_floor": {
+      "n": 10,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 44.4,
+     "fill_vs_floor": {
+      "n": 8,
+      "p25": 0,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 13.7,
+     "fill_vs_floor": {
+      "n": 7,
+      "p25": 2,
+      "med": 2,
+      "p75": 2
+     }
+    }
+   },
+   "residual_pairs": 29
+  },
+  "TRAIL3": {
+   "down_binds": 196,
+   "kiss_pct": 7.7,
+   "fill_vs_floor": {
+    "n": 15,
+    "p25": 1,
+    "med": 2,
+    "p75": 2
+   },
+   "completes": 10,
+   "banked_delta": {
+    "n": 10,
+    "p25": 2,
+    "med": 3,
+    "p75": 3
+   },
+   "banked_total_c": 27,
+   "pairs_lost_down_unkissed": 169,
+   "pairs_lost_up_missing": 0,
+   "retargets_med": {
+    "n": 196,
+    "p25": 0,
+    "med": 1,
+    "p75": 1
+   },
+   "by_category": {
+    "ATP_CHALL": {
+     "n": 85,
+     "kiss_pct": 8.2,
+     "fill_vs_floor": {
+      "n": 7,
+      "p25": 0,
+      "med": 0,
+      "p75": 1
+     }
+    },
+    "ATP_MAIN": {
+     "n": 42,
+     "kiss_pct": 2.4,
+     "fill_vs_floor": {
+      "n": 1,
+      "p25": 2,
+      "med": 2,
+      "p75": 2
+     }
+    },
+    "WTA_CHALL": {
+     "n": 18,
+     "kiss_pct": 27.8,
+     "fill_vs_floor": {
+      "n": 5,
+      "p25": 1,
+      "med": 2,
+      "p75": 3
+     }
+    },
+    "WTA_MAIN": {
+     "n": 51,
+     "kiss_pct": 3.9,
+     "fill_vs_floor": {
+      "n": 2,
+      "p25": 2,
+      "med": 2,
+      "p75": 17
+     }
+    }
+   },
+   "residual_pairs": 17
+  }
+ },
+ "nondominated_kiss_vs_banked": {
+  "verified": [
+   "LOW-0",
+   "LOW-1",
+   "LOW-2",
+   "MAX25L1",
+   "MAX50L1",
+   "TRAIL1"
+  ],
+  "live": [
+   "LOW-0",
+   "LOW-1",
+   "MAX25L1",
+   "MAX50L1",
+   "TRAIL1"
+  ]
+ },
+ "dominated_named": "ALL percentile rules (P25/P40/P50: 38-54% kiss, more pairs stranded than every LOW rule at equal-or-worse banked, both clocks - the session low beats every static library aggregate); TRAIL2/TRAIL3 (chasing the low away: 29.5%/11.2% kiss, worst banked on the board); LOW-2 under the LIVE clock (its 266c verified best collapses to 87c, dominated by LOW-0 at equal banked and 2.5x the kissability)",
+ "live_reversal": "the verified ranking (LOW-2 > LOW-1 > P25 on banked) REVERSES under the live clock (LOW-1 128c > LOW-0/LOW-2 87c > ...): deeper static targets need time the live span does not grant",
+ "depth_insensitivity": "fill-vs-floor median is 2c on essentially every rule and both clocks - the rules differ in WHETHER you fill and how many pairs you strand, never in how deep a fill lands",
+ "three_cleanest_candidates_no_selection": {
+  "LOW-0": {
+   "why": "highest kissability both clocks (88.4/78.1%), fewest stranded pairs (26/45 down-unkissed), live-robust; banks least on verified (142c)",
+   "receipts_verified": {
+    "down_binds": 251,
+    "kiss_pct": 88.4,
+    "fill_vs_floor": {
+     "n": 222,
+     "p25": 1,
+     "med": 2,
+     "p75": 4
+    },
+    "completes": 66,
+    "banked_delta": {
+     "n": 66,
+     "p25": 1,
+     "med": 1,
+     "p75": 3
+    },
+    "banked_total_c": 142,
+    "pairs_lost_down_unkissed": 26,
+    "pairs_lost_up_missing": 6,
+    "retargets_med": {
+     "n": 251,
+     "p25": 0,
+     "med": 0,
+     "p75": 0
+    },
+    "by_category": {
+     "ATP_CHALL": {
+      "n": 109,
+      "kiss_pct": 86.2,
+      "fill_vs_floor": {
+       "n": 94,
+       "p25": 1,
+       "med": 2,
+       "p75": 3
+      }
+     },
+     "ATP_MAIN": {
+      "n": 60,
+      "kiss_pct": 90.0,
+      "fill_vs_floor": {
+       "n": 54,
+       "p25": 2,
+       "med": 3,
+       "p75": 5
+      }
+     },
+     "WTA_CHALL": {
+      "n": 19,
+      "kiss_pct": 78.9,
+      "fill_vs_floor": {
+       "n": 15,
+       "p25": 1,
+       "med": 2,
+       "p75": 4
+      }
+     },
+     "WTA_MAIN": {
+      "n": 63,
+      "kiss_pct": 93.7,
+      "fill_vs_floor": {
+       "n": 59,
+       "p25": 1,
+       "med": 2,
+       "p75": 4
+      }
+     }
+    },
+    "residual_pairs": 153
+   },
+   "receipts_live": {
+    "down_binds": 196,
+    "kiss_pct": 78.1,
+    "fill_vs_floor": {
+     "n": 153,
+     "p25": 1,
+     "med": 2,
+     "p75": 4
+    },
+    "completes": 45,
+    "banked_delta": {
+     "n": 45,
+     "p25": 1,
+     "med": 1,
+     "p75": 2
+    },
+    "banked_total_c": 87,
+    "pairs_lost_down_unkissed": 36,
+    "pairs_lost_up_missing": 5,
+    "retargets_med": {
+     "n": 196,
+     "p25": 0,
+     "med": 0,
+     "p75": 0
+    },
+    "by_category": {
+     "ATP_CHALL": {
+      "n": 85,
+      "kiss_pct": 72.9,
+      "fill_vs_floor": {
+       "n": 62,
+       "p25": 1,
+       "med": 2,
+       "p75": 3
+      }
+     },
+     "ATP_MAIN": {
+      "n": 42,
+      "kiss_pct": 88.1,
+      "fill_vs_floor": {
+       "n": 37,
+       "p25": 2,
+       "med": 4,
+       "p75": 5
+      }
+     },
+     "WTA_CHALL": {
+      "n": 18,
+      "kiss_pct": 77.8,
+      "fill_vs_floor": {
+       "n": 14,
+       "p25": 0,
+       "med": 2,
+       "p75": 4
+      }
+     },
+     "WTA_MAIN": {
+      "n": 51,
+      "kiss_pct": 78.4,
+      "fill_vs_floor": {
+       "n": 40,
+       "p25": 1,
+       "med": 2,
+       "p75": 4
+      }
+     }
+    },
+    "residual_pairs": 110
+   }
+  },
+  "LOW-1": {
+   "why": "best banked under the LIVE clock (128c) and second verified (233c); 74.1/57.1% kiss; identical to TRAIL1 by the integer-tape identity",
+   "receipts_verified": {
+    "down_binds": 251,
+    "kiss_pct": 74.1,
+    "fill_vs_floor": {
+     "n": 186,
+     "p25": 1,
+     "med": 2,
+     "p75": 3
+    },
+    "completes": 111,
+    "banked_delta": {
+     "n": 111,
+     "p25": 1,
+     "med": 2,
+     "p75": 2
+    },
+    "banked_total_c": 233,
+    "pairs_lost_down_unkissed": 59,
+    "pairs_lost_up_missing": 3,
+    "retargets_med": {
+     "n": 251,
+     "p25": 0,
+     "med": 0,
+     "p75": 0
+    },
+    "by_category": {
+     "ATP_CHALL": {
+      "n": 109,
+      "kiss_pct": 68.8,
+      "fill_vs_floor": {
+       "n": 75,
+       "p25": 0,
+       "med": 1,
+       "p75": 3
+      }
+     },
+     "ATP_MAIN": {
+      "n": 60,
+      "kiss_pct": 81.7,
+      "fill_vs_floor": {
+       "n": 49,
+       "p25": 1,
+       "med": 3,
+       "p75": 4
+      }
+     },
+     "WTA_CHALL": {
+      "n": 19,
+      "kiss_pct": 57.9,
+      "fill_vs_floor": {
+       "n": 11,
+       "p25": 0,
+       "med": 2,
+       "p75": 4
+      }
+     },
+     "WTA_MAIN": {
+      "n": 63,
+      "kiss_pct": 81.0,
+      "fill_vs_floor": {
+       "n": 51,
+       "p25": 1,
+       "med": 1,
+       "p75": 3
+      }
+     }
+    },
+    "residual_pairs": 78
+   },
+   "receipts_live": {
+    "down_binds": 196,
+    "kiss_pct": 57.1,
+    "fill_vs_floor": {
+     "n": 112,
+     "p25": 0,
+     "med": 2,
+     "p75": 3
+    },
+    "completes": 62,
+    "banked_delta": {
+     "n": 62,
+     "p25": 1,
+     "med": 2,
+     "p75": 2
+    },
+    "banked_total_c": 128,
+    "pairs_lost_down_unkissed": 73,
+    "pairs_lost_up_missing": 1,
+    "retargets_med": {
+     "n": 196,
+     "p25": 0,
+     "med": 0,
+     "p75": 0
+    },
+    "by_category": {
+     "ATP_CHALL": {
+      "n": 85,
+      "kiss_pct": 50.6,
+      "fill_vs_floor": {
+       "n": 43,
+       "p25": 0,
+       "med": 1,
+       "p75": 2
+      }
+     },
+     "ATP_MAIN": {
+      "n": 42,
+      "kiss_pct": 66.7,
+      "fill_vs_floor": {
+       "n": 28,
+       "p25": 1,
+       "med": 3,
+       "p75": 4
+      }
+     },
+     "WTA_CHALL": {
+      "n": 18,
+      "kiss_pct": 55.6,
+      "fill_vs_floor": {
+       "n": 10,
+       "p25": 1,
+       "med": 2,
+       "p75": 4
+      }
+     },
+     "WTA_MAIN": {
+      "n": 51,
+      "kiss_pct": 60.8,
+      "fill_vs_floor": {
+       "n": 31,
+       "p25": 0,
+       "med": 1,
+       "p75": 3
+      }
+     }
+    },
+    "residual_pairs": 60
+   }
+  },
+  "MAX50L1": {
+   "why": "the non-dominated interior point: 78.5/62.2% kiss, 213/121c banked - library depth only as a backstop to the session-low reference, both clocks (MAX40L1 dominated one fill inside it)",
+   "receipts_verified": {
+    "down_binds": 251,
+    "kiss_pct": 78.5,
+    "fill_vs_floor": {
+     "n": 197,
+     "p25": 1,
+     "med": 2,
+     "p75": 4
+    },
+    "completes": 110,
+    "banked_delta": {
+     "n": 110,
+     "p25": 1,
+     "med": 1,
+     "p75": 2
+    },
+    "banked_total_c": 213,
+    "pairs_lost_down_unkissed": 49,
+    "pairs_lost_up_missing": 4,
+    "retargets_med": {
+     "n": 251,
+     "p25": 0,
+     "med": 0,
+     "p75": 0
+    },
+    "by_category": {
+     "ATP_CHALL": {
+      "n": 109,
+      "kiss_pct": 73.4,
+      "fill_vs_floor": {
+       "n": 80,
+       "p25": 1,
+       "med": 2,
+       "p75": 4
+      }
+     },
+     "ATP_MAIN": {
+      "n": 60,
+      "kiss_pct": 83.3,
+      "fill_vs_floor": {
+       "n": 50,
+       "p25": 1,
+       "med": 3,
+       "p75": 4
+      }
+     },
+     "WTA_CHALL": {
+      "n": 19,
+      "kiss_pct": 63.2,
+      "fill_vs_floor": {
+       "n": 12,
+       "p25": 1,
+       "med": 2,
+       "p75": 3
+      }
+     },
+     "WTA_MAIN": {
+      "n": 63,
+      "kiss_pct": 87.3,
+      "fill_vs_floor": {
+       "n": 55,
+       "p25": 1,
+       "med": 1,
+       "p75": 3
+      }
+     }
+    }
+   },
+   "receipts_live": {
+    "down_binds": 196,
+    "kiss_pct": 62.2,
+    "fill_vs_floor": {
+     "n": 122,
+     "p25": 0,
+     "med": 2,
+     "p75": 3
+    },
+    "completes": 64,
+    "banked_delta": {
+     "n": 64,
+     "p25": 1,
+     "med": 2,
+     "p75": 2
+    },
+    "banked_total_c": 121,
+    "pairs_lost_down_unkissed": 63,
+    "pairs_lost_up_missing": 1,
+    "retargets_med": {
+     "n": 196,
+     "p25": 0,
+     "med": 0,
+     "p75": 0
+    },
+    "by_category": {
+     "ATP_CHALL": {
+      "n": 85,
+      "kiss_pct": 56.5,
+      "fill_vs_floor": {
+       "n": 48,
+       "p25": 0,
+       "med": 2,
+       "p75": 3
+      }
+     },
+     "ATP_MAIN": {
+      "n": 42,
+      "kiss_pct": 69.0,
+      "fill_vs_floor": {
+       "n": 29,
+       "p25": 1,
+       "med": 3,
+       "p75": 4
+      }
+     },
+     "WTA_CHALL": {
+      "n": 18,
+      "kiss_pct": 61.1,
+      "fill_vs_floor": {
+       "n": 11,
+       "p25": 1,
+       "med": 2,
+       "p75": 4
+      }
+     },
+     "WTA_MAIN": {
+      "n": 51,
+      "kiss_pct": 66.7,
+      "fill_vs_floor": {
+       "n": 34,
+       "p25": 0,
+       "med": 1,
+       "p75": 3
+      }
+     }
+    }
+   }
+  }
+ },
+ "conservation": {
+  "down_binds": {
+   "verified": 251,
+   "live": 196
+  },
+  "up_siblings": {
+   "verified": 287,
+   "live": 241
+  },
+  "per_rule_pair_accounting": "down_binds = completes + lost_down_unkissed + lost_up_missing + residual_pairs (residual = unfilled with no UP sibling, or filled pair summing >=100) - carried per rule in verified/live blocks",
+  "rules": 12,
+  "clocks": 2
+ }
+}

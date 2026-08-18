@@ -1,0 +1,62 @@
+{
+  "format": "FULL_RECEIPT_GRAIN_JSONL_GZIP_CHUNKS",
+  "chunk_row_limit": 50000,
+  "rows": 424549,
+  "chunks": [
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_001.jsonl.gz",
+      "rows": 50000,
+      "sha256": "3c121351a0875c168fd9126c34da8ace2a36dcce3cfc62e72eed70a999a03fc7",
+      "bytes": 14915964
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_002.jsonl.gz",
+      "rows": 50000,
+      "sha256": "1ae2133bbf9386173c0c1dfc12776e74e2247836567ddb23d84cbb6e039ac0e1",
+      "bytes": 12786943
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_003.jsonl.gz",
+      "rows": 50000,
+      "sha256": "b86b05eec13f6d71a372d7e07c334fcb36c171cc235e83b31b460fe565c743e0",
+      "bytes": 18265099
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_004.jsonl.gz",
+      "rows": 50000,
+      "sha256": "d6b52353e9252f00c5e0d4c2eb507f87922a7fe05e453e5e6bbc59cce96a2e37",
+      "bytes": 13102160
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_005.jsonl.gz",
+      "rows": 50000,
+      "sha256": "756632236bc2854b1a1df9bab85750f7d3b480153a9b05fbbd35396e5cb82c03",
+      "bytes": 12180775
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_006.jsonl.gz",
+      "rows": 50000,
+      "sha256": "2762bce9632b4ccb4e2b4e0df2dbc82c20a0049125dece4da64e6b9c19073421",
+      "bytes": 13994225
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_007.jsonl.gz",
+      "rows": 50000,
+      "sha256": "549ebc56e2e936a322aa7827a464647e654590831dfaec12246f4685245b9d29",
+      "bytes": 13602531
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_008.jsonl.gz",
+      "rows": 50000,
+      "sha256": "a05863d306f7dced27302355cf825dce9bcb1a99b93d587f63c3bf1c8d982ee9",
+      "bytes": 12559027
+    },
+    {
+      "name": "BEFORE_AFTER_DECISION_DIFFERENTIAL_CHUNK_009.jsonl.gz",
+      "rows": 24549,
+      "sha256": "a0c38c992b350feb7f0bcc8bcb39f1ad3f1987dbccafbf95e6fa2493709e5ca8",
+      "bytes": 5918733
+    }
+  ],
+  "conservation_pass": true
+}

@@ -1,0 +1,218 @@
+{
+  "V52M_OBSERVATION_CONTROL": {
+    "retained_not_replayed": true,
+    "commit": "da4fd13b2c2ba068ceefc7ba10d6dee6c7667626",
+    "path": ".claude/window1_live_v4_replay/v52m_macro_recognition_20260817/OUTCOME_OBSERVATIONS_30.json",
+    "sha256": "184c38fec2437260ff551fb730f137db74981ba5f398c82ac82763bb2fe4573d",
+    "observation": {
+      "baseline": {
+        "D": 28,
+        "unknown_bell": 2,
+        "completed_pairs": 17,
+        "under_par_pairs": 17,
+        "states": {
+          "COMPLETE_AT_DELTA": 17,
+          "PARTIAL_FOR_REASON": 9,
+          "NEITHER_FOR_REASON": 2,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "offer_denominator_under_par": 27,
+        "binding": {
+          "label": "W1_GROUND_TRUTH_TABLE",
+          "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+          "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+          "bytes": 1426420,
+          "sole_grading_source": true,
+          "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+          "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+          "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+        },
+        "conservation": {
+          "rows": 30,
+          "eligible": 28,
+          "unknown_bell": 2,
+          "pass": true
+        }
+      },
+      "candidate": {
+        "D": 28,
+        "unknown_bell": 2,
+        "completed_pairs": 14,
+        "under_par_pairs": 14,
+        "states": {
+          "COMPLETE_AT_DELTA": 14,
+          "PARTIAL_FOR_REASON": 12,
+          "NEITHER_FOR_REASON": 2,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "offer_denominator_under_par": 27,
+        "binding": {
+          "label": "W1_GROUND_TRUTH_TABLE",
+          "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+          "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+          "bytes": 1426420,
+          "sole_grading_source": true,
+          "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+          "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+          "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+        },
+        "conservation": {
+          "rows": 30,
+          "eligible": 28,
+          "unknown_bell": 2,
+          "pass": true
+        }
+      },
+      "adjudication": null,
+      "role": "OBSERVATION_ONLY_30_GAME_GROUND_TRUTH_BOUND_GRADING"
+    }
+  },
+  "V52N_OBSERVATION_CONTROL": {
+    "retained_not_replayed": true,
+    "commit": "74a702c8b100dedcba69a3637531ce6d77896eb2",
+    "path": ".claude/window1_live_v4_replay/v52n_recognition_confidence_gates_20260817/OUTCOME_OBSERVATIONS_30.json",
+    "sha256": "7b60d23ae404fffe7b3c64dfd633c0417bd6f922c833a9b4042561e6a2aee7a0",
+    "observation": {
+      "baseline": {
+        "D": 28,
+        "unknown_bell": 2,
+        "completed_pairs": 12,
+        "under_par_pairs": 12,
+        "states": {
+          "COMPLETE_AT_DELTA": 12,
+          "PARTIAL_FOR_REASON": 9,
+          "NEITHER_FOR_REASON": 7,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "offer_denominator_under_par": 26,
+        "binding": {
+          "label": "W1_GROUND_TRUTH_TABLE",
+          "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+          "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+          "bytes": 1426420,
+          "sole_grading_source": true,
+          "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+          "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+          "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+        },
+        "conservation": {
+          "rows": 30,
+          "eligible": 28,
+          "unknown_bell": 2,
+          "pass": true
+        }
+      },
+      "candidate": {
+        "D": 28,
+        "unknown_bell": 2,
+        "completed_pairs": 14,
+        "under_par_pairs": 14,
+        "states": {
+          "COMPLETE_AT_DELTA": 14,
+          "PARTIAL_FOR_REASON": 8,
+          "NEITHER_FOR_REASON": 6,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "offer_denominator_under_par": 26,
+        "binding": {
+          "label": "W1_GROUND_TRUTH_TABLE",
+          "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+          "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+          "bytes": 1426420,
+          "sole_grading_source": true,
+          "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+          "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+          "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+        },
+        "conservation": {
+          "rows": 30,
+          "eligible": 28,
+          "unknown_bell": 2,
+          "pass": true
+        }
+      },
+      "adjudication": null,
+      "role": "OBSERVATION_ONLY_30_GAME_GROUND_TRUTH_BOUND_GRADING"
+    }
+  },
+  "V52O_OBSERVATION_CONTROL": {
+    "retained_not_replayed": true,
+    "commit": "fe9387b2832f499b3cf9ed6d64ac576c098d15f0",
+    "path": ".claude/window1_live_v4_replay/v52o_benchmarked_role_instrument_20260817/OUTCOME_OBSERVATIONS_30.json",
+    "sha256": "bb0250b655a2cd06fe935b394e3e78d7fd903d7caae3aece4d3d00c7a29ec489",
+    "observation": {
+      "baseline": {
+        "D": 29,
+        "unknown_bell": 1,
+        "completed_pairs": 16,
+        "under_par_pairs": 16,
+        "states": {
+          "COMPLETE_AT_DELTA": 16,
+          "PARTIAL_FOR_REASON": 10,
+          "NEITHER_FOR_REASON": 3,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "offer_denominator_under_par": 29,
+        "binding": {
+          "label": "W1_GROUND_TRUTH_TABLE",
+          "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+          "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+          "bytes": 1426420,
+          "sole_grading_source": true,
+          "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+          "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+          "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+        },
+        "conservation": {
+          "rows": 30,
+          "eligible": 29,
+          "unknown_bell": 1,
+          "pass": true
+        }
+      },
+      "candidate": {
+        "D": 29,
+        "unknown_bell": 1,
+        "completed_pairs": 13,
+        "under_par_pairs": 13,
+        "states": {
+          "COMPLETE_AT_DELTA": 13,
+          "PARTIAL_FOR_REASON": 13,
+          "NEITHER_FOR_REASON": 3,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "offer_denominator_under_par": 29,
+        "binding": {
+          "label": "W1_GROUND_TRUTH_TABLE",
+          "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+          "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+          "bytes": 1426420,
+          "sole_grading_source": true,
+          "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+          "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+          "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+        },
+        "conservation": {
+          "rows": 30,
+          "eligible": 29,
+          "unknown_bell": 1,
+          "pass": true
+        }
+      },
+      "adjudication": null,
+      "role": "OBSERVATION_ONLY_30_GAME_GROUND_TRUTH_BOUND_GRADING"
+    }
+  }
+}

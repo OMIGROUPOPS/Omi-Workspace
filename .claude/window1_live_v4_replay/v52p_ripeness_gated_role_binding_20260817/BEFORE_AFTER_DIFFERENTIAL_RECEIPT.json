@@ -1,0 +1,8 @@
+{
+  "changed_decision_receipts": 424549,
+  "license_or_metadata_changed_leg_streams": 60,
+  "behavior_changed_leg_streams": 3,
+  "every_behavior_change_starts_at_or_after_authorized_clause": true,
+  "frozen_clause_differences": 0,
+  "all_behavior_changes_authorized_by": "CLAUSE_3_RIPENESS_GATED_ROLE_BINDING_ONLY"
+}

@@ -397,3 +397,95 @@ itself closed. `DUPLICATE-of-X` = same content at a second path.
 | era-pkg | V52r full-804 disposition exam — the lane 804: 300/662c market valid-fill; V52l lineage 311/714c = L17; 802-chunk diary | LIVE | `96597c98` (branch package) |
 | era-pkg | V52r grading binding — grading bound to the truth table byte-exact (L11) | LIVE | `fc17d0d3` (branch package) |
 | era-pkg | V52s joint-budget yield-priority — closed-loop lift/yield invariant, full 804: 310/581c vs L17 311/714c (deltas -1/-133c); mechanism bar FAIL - operator disposition pending | LIVE | `16895d3f` (branch package) |
+
+
+---
+
+# VAULT_MAP v2 — COMPLETENESS SWEEP (append; license: LAW_INDEX @ `ae731326`; L7 · L18)
+
+**Conservation v2:** ① 128 branches walked × all paths = **10,656 unique paths in 366 path families**
+(triaged at family grain, stated): **RELEVANT 6,991 · ADJACENT 2,977 · OUT 688**. ② organ table 15 rows.
+③ script/artifact families as counted below. ④ 1 in-repo data store + 10 external named. ⑤ **0 deleted +
+0 renamed** documents across all branches and all docs paths — **the vault is append-only in fact, not
+only by law**.
+
+## ① The branch census (128 branches, all walked)
+
+`add-ask-tracking`, `audit/window1-independent`, `b-convergence-fix-and-cells`, `blend/abort-orphan-carve`, `blend/abort-rearm`, `blend/agent-derivation`, `blend/bestbid-repost`, `blend/c1-staircase-hold`, `blend/complete-all`, `blend/completion-ceiling`, `blend/depth-governor`, `blend/eng-depth`, `blend/event-cat-override`, `blend/fv-anchor`, `blend/fv-anchor-corrected`, `blend/grace-kill`, `blend/join-the-bid`, `blend/kalshi-occ-fallback`, `blend/liquid-repost`, `blend/pair-governor`, `blend/pair-governor-rev`, `blend/sf-obs`, `blend/sustained-flow`, `blend/vol-gate`, `claude/decision-chain-ledger-audit-g7x56z`, `codex/casuka-live-safety-deployment-control-v2`, `codex/casuka-live-safety-deployment-prerun`, `codex/casuka-live-safety-integration-v2`, `codex/casuka-live-safety-repair`, `codex/casuka-live-safety-rollback-v2`, `codex/integrated-p0v4-casuka-file-only`, `codex/integrated-p0v4-casuka-prerun`, `codex/integrated-p0v4-casuka-rollback`, `codex/live-boot-gate-stage-a-audit`, `codex/live-boot-gate-stage-b-recorder-seal`, `codex/ops-schedule-liar-containment-20260728`, `codex/p0-real-start-v4-prerun`, `codex/stage-c-v36-cutover-prep-20260807`, `codex/v36-gap-to-reach-grading-20260807`, `codex/window1-analysis-seat`, `codex/window1-cell-refit`, `codex/window1-definition`, `codex/window1-fresh-holdout-exam-20260806`, `codex/window1-fresh-holdout-exam-adapter-20260806`, `codex/window1-fresh-holdout-exam-serializer-repair-20260807`, `codex/window1-fresh-holdout-exam-unblock-20260807`, `codex/window1-fresh-holdout-seal-exam`, `codex/window1-ground-truth-window-binding-20260814`, `codex/window1-holdout-seal-audit-20260806`, `codex/window1-live-consolidated`, `codex/window1-recognition-laps`, `codex/window1-t2-scoring-package-prerun`, `codex/window1-t2-scoring-package-v2-prerun`, `codex/window1-t2-scoring-package-v3-prerun`, `codex/window1-t2-scoring-package-v4-prerun`, `codex/window1-t2-scoring-package-v5-prerun`, `codex/window1-t2-scoring-results-v2`, `codex/window1-t2-scoring-results-v3`, `codex/window1-t2-scoring-results-v5`, `codex/window1-table-free-full-os`, `codex/window1-trades-truth-admission-harmonization-20260811`, `codex/window1-v36-faller-mirror-anatomy-20260807`, `codex/window1-v37-floor-arithmetic-take-bound`, `codex/window1-v38-maker-only-20260807`, `codex/window1-v39-corrected-placement-stack-20260807`, `codex/window1-v40-incumbent-direction-placement-20260808`, `codex/window1-v41-maker-machine-20260808`, `codex/window1-v43-composed-machine-20260809`, `codex/window1-v44-guard-swap-20260809`, `codex/window1-v45-guard-release-sibling-credit-20260809`, `codex/window1-v46-pair-gated-gap-credit-20260810`, `codex/window1-v47-maz-crediting-forensic`, `codex/window1-v47-same-tick-arm-20260810`, `codex/window1-v47-sealed-exam-20260811`, `codex/window1-v48-trades-as-truth-20260810`, `codex/window1-v49-evidenced-level-standing-20260810`, `codex/window1-v49b-faithful-stand-at-p-20260811`, `codex/window1-v49b-machine-anchored-floor-20260812`, `codex/window1-v50-first-fill-price-discipline`, `codex/window1-v51-continuity-of-standing-20260812`, `codex/window1-v52-judgment-gate-20260812`, `codex/window1-v52b-iteration1-20260812`, `codex/window1-v52c-iteration2-20260812`, `codex/window1-v52d-iteration3-20260812`, `codex/window1-v52e-disposition-804-20260813`, `codex/window1-v52e-palantir-wiring-20260812`, `codex/window1-v52e-trace-span-audit-20260813`, `codex/window1-v52f-pair-entry-conservation-20260813`, `codex/window1-v52g-joint-target-conservation-20260813`, `codex/window1-v52h-remove-pair-lows-precondition-20260813`, `codex/window1-v52i-depth-informed-level-selection-20260813`, `codex/window1-v52i-oversize-rejected-local`, `codex/window1-v52j-role-conditioned-level-selection-20260813`, `codex/window1-v52k-library-backed-evidence-20260814`, `codex/window1-v52l-causal-onset-20260814`, `codex/window1-v52m-macro-recognition-20260817`, `codex/window1-v52n-recognition-confidence-gates-20260817`, `codex/window1-v52o-benchmarked-role-instrument-20260817`, `codex/window1-v52p-ripeness-gated-role-binding-20260817`, `codex/window1-v52q-anchor-correction-20260818`, `codex/window1-v52r-assembled-policy-20260818`, `codex/window1-v52r-full-804-exam-20260818`, `codex/window1-v52s-joint-budget-yield-priority-20260819`, `cycle1/graze-zone-placement`, `enable-atp-leader-cells`, `entry-window-4h`, `exit-recalibration`, `fable/crawford-rodionov-tick`, `fable/fill-timing`, `fable/omqs-harness`, `fable/premarket-fv-check`, `fable/progress-4day`, `fable/today-bands`, `fable/today-latch-diag`, `fv-anchored-cells`, `fv-stability-fixes`, `lane-a/live-safety-repairs`, `main`, `ops/producer-keepalive`, `origin`, `p0/real-start-entry-guard`, `plex/daysheet-digit-grammar`, `plex/daysheet-live-panel`, `plex/daysheet-panel`, `plex/daysheet-render-ownership`, `race-and-tombstone-fixes`, `schedule-fallback-fix`, `scratch/ship2-09ebdb29`
+
+Triage is at path-family grain (a family = top-level tree or `.claude` package stem). RELEVANT = any
+window1/premarket family; ADJACENT = arb-executor engine, ops/containment, other `.claude` seats; OUT =
+non-market app surfaces. Largest families (paths · branches carrying · triage):
+
+| family | paths | branches | triage |
+|---|--:|--:|---|
+| `.claude/window1_live_v4_replay` | 5384 | 58 | RELEVANT |
+| `analysis` | 994 | 128 | ADJACENT |
+| `.claude/window1_second_seat` | 416 | 2 | RELEVANT |
+| `tests` | 348 | 118 | ADJACENT |
+| `tmp` | 242 | 128 | OUT |
+| `arb-executor/data` | 236 | 119 | ADJACENT |
+| `docs/research/window1` | 202 | 68 | RELEVANT |
+| `docs/other` | 197 | 127 | ADJACENT |
+| `app` | 107 | 128 | OUT |
+| `components` | 94 | 128 | OUT |
+| `.claude/window1_t2_causal_divot_prerun` | 85 | 64 | RELEVANT |
+| `.claude/window1` | 76 | 64 | RELEVANT |
+| `backend` | 64 | 128 | OUT |
+| `truth` | 64 | 86 | OUT |
+| `.claude/autopsy_20260706` | 57 | 87 | ADJACENT |
+| `.claude/audit_halt` | 55 | 87 | ADJACENT |
+| `.claude/window1_fresh_holdout_exam_results` | 53 | 2 | RELEVANT |
+| `arb-executor-v2` | 49 | 128 | ADJACENT |
+
+Full 366-family table retained in the sweep receipts (`sweep_families.txt` grain, regenerable from the
+stated rule); families, not lines, are the v2 conservation unit for ①.
+
+## ② The code stratum — the OS's executable organs
+
+| file | role | LOC | described by | flag |
+|---|---|--:|---|---|
+| `arb-executor/live_v4.py` (HEAD) | the live engine, July lineage | 18,051 | LIVE_V4_REGISTRY(_V1).md · LIVE_V4_ORGAN_INVENTORY.md | — |
+| `arb-executor/analysis/window1_live_v4_replay.py` (HEAD) | replay driver | 1,874 | CLAUDE_CHAT_SOURCE_HANDOFF_20260729.md | — |
+| `analysis/build_window1_v38_maker_only.js` @ `96597c98` | **the replay-and-receipt builder hosting every exam** | 6,539 | indirectly by every package REPORT | **UNDOCUMENTED-DEDICATED** |
+| `analysis/window1_v52_judgment_gate.js` @ `96597c98` | clause frame (the gate) | 84 | QUEUE_FORMATION_REFLEX_CENSUS.md · synthesis §3 | — |
+| `analysis/window1_v52_stability_onset.js` | clause ① onset (frozen adapter) | 125 | ONSET_FORENSICS_113.md · V52L addendum | — |
+| `analysis/window1_v52b_read_level_authority.js` | clause ③ authority | 124 | V52B addendum | — |
+| `analysis/window1_v52c_full_post_onset_read.js` | clause ② read | 124 | V52C addendum | — |
+| `analysis/window1_v52d_disagreement_referee.js` | clause ④ referee | 110 | V52D addendum | — |
+| `analysis/window1_n9_clean_store.js` | N9 registry validator | 51 | MACHINE_PALANTIR.md | — |
+| `analysis/window1_v52e_palantir_wiring.js` | N9 prior wiring | 197 | V52E palantír addendum | — |
+| `analysis/build_window1_v52l_causal_stability_onset.js` | causal onset builder (lineage) | — | V52L addendum · `6678fd0c` | — |
+| `analysis/build_window1_v52p_ripeness_gated_role_binding.js` … `v52r_assembled_policy.js` | role/ripeness/policy lane builders | — | V52M–S addenda · `020b775c`–`16895d3f` | — |
+| `analysis/check_window1_v52r_exam_sanity.js` @ `96597c98` | exam byte-identity fence | — | V52r REPORT | — |
+| recorder daemons (ticks/prints/depth) | book+tape capture | ext. | CAPTURE_FIDELITY_AND_CENSUS.md · PUBLIC_TAPE_MANIFEST | **EXTERNAL — see ④** |
+| `deploy/deploy_live_v4.sh` (HEAD) | engine deploy | — | P0/CASUKA audit receipts | — |
+
+**The reading, one line: the OS's judgment is ~800 lines of clause code riding a 6,539-line replay builder
+and an 18,051-line live engine — and the builder itself has no dedicated document (flagged).**
+
+## ③ Script & artifact families
+
+window1 analysis code: **216 files at HEAD / 372 across branches** (129 of them `build_window1_*`
+builders — one per iteration, matching the addendum chronology one-for-one); window1 tests travel with
+their builders; `.claude/window1_*` package bodies (`.json/.jsonl.gz/.csv`) are the documents' data and
+were mapped with them in v1 (367 lines).
+
+## ④ Data stores
+
+**In-repo (1):** `.claude/window1_live_v4_replay/vps_inputs_20260729/db/observed_starts.db` — a committed
+SNAPSHOT of the VPS observed-starts DB (te_match_id · players · kalshi leg suffix · first_inplay_at) —
+duplicate-custody of the external live copy, flagged.
+**External, named explicitly (custody: `OMI-Window1-private/` local + VPS):**
+`fit-local/ticks/*.csv.gz` (per-ticker dual-book store — **the sole standing-state source, L8**) ·
+`fit-local/prints.jsonl` (4.84M true prints, exchange-verified) · `fit-local/depth_recorder` + `ws-depth`
+(5.39 GB) · `fit-local/macro_projection.db` · `fit-local/guarded-cache-v3` · `fit-local/os-family-cache` ·
+`calibration-v1/ws_public_trade_reconcile.sqlite` · `replay-live-v4/observed_starts.db` (live) ·
+`joined/events.jsonl` (schedule catalog) · `holdout-exam-20260807/prints/`. **Absent custody:** a recorder
+heartbeat channel — does not exist anywhere (known-unmeasurable, synthesis §6).
+
+## ⑤ Git-history-only documents
+
+**None.** Across all 128 branches and every docs path: 0 deletions, 0 renames. Nothing was ever removed
+or moved — superseded documents stand in place with their stamps. The map's SUPERSEDED/RETIRED columns
+are the only graveyard there is.

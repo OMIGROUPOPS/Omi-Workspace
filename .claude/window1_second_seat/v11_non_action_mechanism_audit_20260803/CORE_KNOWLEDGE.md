@@ -130,3 +130,30 @@ This document consulted L7 and L18.
 
 *Conservation: companion map = 367 lines = 256 HEAD + 85 branch + 26 packages, exactly. Every § claim
 above carries a SHA; the 10 standing contradictions live in the map header, unresolved by design.*
+
+---
+
+## v2 FOLD-IN — the code stratum, data custody, and the vault's shape (sweep @ VAULT_MAP v2)
+
+**The code stratum** (`96597c98` for branch modules; HEAD for the engine): the OS's judgment is **~800
+lines of clause code** (gate 84 · onset 125 · read 124 · authority 124 · referee 110 · N9 51 · palantír
+wiring 197) riding a **6,539-line replay-and-receipt builder** (`build_window1_v38_maker_only.js` — hosts
+every exam since V38, no dedicated document, flagged UNDOCUMENTED-DEDICATED) and an **18,051-line live
+engine** (`arb-executor/live_v4.py`, at HEAD, documented by the live_v4 registries). **129
+`build_window1_*` builders across branches match the addendum chronology one-for-one** — one builder, one
+addendum, one branch per iteration: the iteration discipline is structural, not editorial.
+
+**Data custody:** book truth (the dual-book tick store), the verified tape, the depth capture (5.39 GB),
+the schedule catalog, and the live observed-starts DB are all **external** to the repo
+(`OMI-Window1-private/`, VPS) — the repo holds exactly **one** committed DB (a `vps_inputs_20260729`
+snapshot of observed-starts, duplicate-custody, flagged). Everything the exams cite from these stores is
+hash-bound at the consuming package (L8; e.g. `96597c98` SOURCE_HASH_MANIFEST). No recorder heartbeat
+channel exists anywhere (known-unmeasurable, synthesis §6).
+
+**The vault's shape** (128 branches, 10,656 unique paths, 366 families — VAULT_MAP v2): **append-only in
+fact — 0 documents deleted, 0 renamed, ever.** Supersession is done by stamp and successor, never by
+removal; the map's status column is the only graveyard. Branch topology: one codex branch per iteration
+(V19→V52s), analysis-seat and audit branches beside them, engine/ops branches adjacent.
+
+*Conservation v2: figures above are the sweep's own counts (128 · 10,656 · 366 · 6,991/2,977/688 · 0/0);
+sources: VAULT_MAP v2 section, `96597c98`, HEAD `24f7154f` lineage.*

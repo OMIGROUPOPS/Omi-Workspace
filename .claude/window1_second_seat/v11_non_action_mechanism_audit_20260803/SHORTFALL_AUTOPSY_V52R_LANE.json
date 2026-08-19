@@ -1,0 +1,186 @@
+{
+ "LABEL": "SHORTFALL_AUTOPSY_V52R_LANE",
+ "stamp": [
+  "ANALYTICAL_ESTIMATE"
+ ],
+ "lane": "V52r full-804 disposition exam @ 96597c98 (V52l lineage - the adopted lane); decisive-moment walk over its own 802-chunk receipt-grain diary; valid fills; truth-table spans @ c0056976 only",
+ "provenance_triples": [
+  {
+   "commit": "96597c98",
+   "path": ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/OFFER_DENOMINATOR_EVENT_LEDGER_804.jsonl.gz",
+   "sha256": "7f2e0b6725eb36111edf757958668692330aa20907925205aecc73f1b7cc30f0",
+   "bytes": 9551
+  },
+  {
+   "commit": "96597c98",
+   "path": ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/FOUR_STATE_MARKET_EVENT_LEDGER_804.jsonl.gz",
+   "sha256": "ce983ed8a33a5cde7496fab5f8afee5e366493415b145a53e23cfa2d05c48fe7",
+   "bytes": 168369
+  },
+  {
+   "commit": "96597c98",
+   "path": ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/TRACE_CHUNK_MANIFEST.json",
+   "sha256": "1e65d8532df4f498d2d40f064e41e907f20e0c8ebc0af71355eeed14acf7d535",
+   "bytes": 241907
+  },
+  {
+   "commit": "c0056976",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+   "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+   "bytes": 1426420
+  }
+ ],
+ "population": "680 offered - 300 lane completes = 380 offered-but-not-completed (the lane s own census); 345 PARTIAL + 35 NEITHER; 415 unbought legs, floor values 415/415 identical to the lane ledger",
+ "bands": {
+  "main": {
+   "games": 301,
+   "cents": 1575
+  },
+  "thin_structurally_correct_abstentions_margin_le_1c": {
+   "games": 79,
+   "cents": 79,
+   "reasons": {
+    "STOOD_TOO_DEEP": 69,
+    "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_TOO_DEEP": 1,
+    "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)": 9
+   }
+  }
+ },
+ "ranked_main": [
+  {
+   "join": "STOOD_TOO_DEEP",
+   "games": 240,
+   "cents": 1201,
+   "cats": {
+    "ATP_MAIN": 47,
+    "ATP_CHALL": 125,
+    "WTA_CHALL": 17,
+    "WTA_MAIN": 51
+   },
+   "exemplars_exact_bell": [
+    {
+     "code": "26JUL12DEGEE",
+     "margin": 15
+    },
+    {
+     "code": "26JUL18PELSIL",
+     "margin": 15
+    },
+    {
+     "code": "26JUL12OKAIPE",
+     "margin": 14
+    }
+   ]
+  },
+  {
+   "join": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)",
+   "games": 37,
+   "cents": 152,
+   "cats": {
+    "ATP_CHALL": 19,
+    "ATP_MAIN": 5,
+    "WTA_MAIN": 3,
+    "WTA_CHALL": 10
+   },
+   "exemplars_exact_bell": [
+    {
+     "code": "26JUL12MALTUR",
+     "margin": 5
+    },
+    {
+     "code": "26JUL20KABCHI",
+     "margin": 3
+    }
+   ]
+  },
+  {
+   "join": "STOOD_ELSEWHERE+STOOD_TOO_DEEP",
+   "games": 9,
+   "cents": 96,
+   "cats": {
+    "ATP_CHALL": 2,
+    "ATP_MAIN": 5,
+    "WTA_MAIN": 2
+   },
+   "exemplars_exact_bell": [
+    {
+     "code": "26JUL12DROBLO",
+     "margin": 9
+    },
+    {
+     "code": "26JUL15BUBHAL",
+     "margin": 5
+    }
+   ]
+  },
+  {
+   "join": "STOOD_ELSEWHERE",
+   "games": 7,
+   "cents": 83,
+   "cats": {
+    "ATP_MAIN": 2,
+    "ATP_CHALL": 1,
+    "WTA_MAIN": 4
+   },
+   "exemplars_exact_bell": [
+    {
+     "code": "26JUL20OKTDOD",
+     "margin": 15
+    },
+    {
+     "code": "26JUL12DAHBAE",
+     "margin": 4
+    }
+   ]
+  },
+  {
+   "join": "LICENSE_BLOCKED(STABILITY_ONSET_NOT_REACHED)",
+   "games": 6,
+   "cents": 37,
+   "cats": {
+    "ATP_MAIN": 2,
+    "WTA_CHALL": 1,
+    "ATP_CHALL": 2,
+    "WTA_MAIN": 1
+   },
+   "exemplars_exact_bell": [
+    {
+     "code": "26JUL15ERJBAR",
+     "margin": 2
+    }
+   ]
+  },
+  {
+   "join": "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)+STOOD_ELSEWHERE",
+   "games": 1,
+   "cents": 4,
+   "cats": {
+    "ATP_MAIN": 1
+   },
+   "exemplars_exact_bell": []
+  },
+  {
+   "join": "LICENSE_BLOCKED(STABILITY_ONSET_NOT_REACHED)+STOOD_TOO_DEEP",
+   "games": 1,
+   "cents": 2,
+   "cats": {
+    "ATP_CHALL": 1
+   },
+   "exemplars_exact_bell": []
+  }
+ ],
+ "leg_grain": {
+  "STOOD_TOO_DEEP": 341,
+  "STOOD_ELSEWHERE": 18,
+  "LICENSE_BLOCKED(MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED)": 49,
+  "LICENSE_BLOCKED(STABILITY_ONSET_NOT_REACHED)": 7
+ },
+ "conservation": {
+  "population": 380,
+  "main_plus_thin": 380,
+  "legs_walked": 415,
+  "leg_reasons_sum": 415,
+  "skips": {},
+  "offer_denominator": "680 games / 3,123c @ 96597c98, bound to c0056976 byte-exact"
+ }
+}

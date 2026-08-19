@@ -482,3 +482,46 @@ prior line deleted.*
 
 *Fold 7 corrigendum (same day): the V52j pin in ④ reads `604ab3e7`; the stray "604a3e7→" prefix is a typo,
 void. Append-only: corrected by rider, not by edit.*
+
+---
+
+## FOLD 8 — the measured-instrument era + the dispatch license (append-only)
+
+**① THE BACKLOG, SEALED AND CITED.** Recognition operating-point reconciliation @ `41c1f724` (coverage is a
+pure function of clock position; ripeness is five numbers, not one; the "27%" is now identified: **V52o's
+called coverage 16/60 = 26.7%** @ `fe9387b2`, an early-clock operating point — reconciled by f, not by rule).
+Instrument parity + live clock @ `620fe4c1` (the anchor-binding defect NAMED with receipts; ungated
+reproduction 100%; the bell certified post-hoc by the honest clock — MACHINE_RECEIPT 192/192 exact; the
+live-usable clock = min(schedule, in-play guard), late-by->30min 70.3%→1.9%). Gate-policy evaluation in
+live coordinates @ `71de534a` (held-accuracy tautology named; first-bind is policy grain; TRD5/TRV6 knee;
+live clock costs coverage never correctness). Down-target frontier @ `ab609761` (TRAIL1≡LOW-1 by the
+integer tape; depth-of-fill rule-insensitive at 2¢; session low beats every static aggregate; the live
+clock reverses the verified ranking).
+
+**② V52m→r, VERDICTS WITH PINS.** V52m family-conditioned depth @ `da4fd13b` — completes 17→14, worse than
+its V52l control. V52n confidence gates @ `74a702c8` — four pre-stated claims NOT MET. V52o literal
+benchmark instrument @ `fe9387b2` — coverage 26.7%, called accuracy 85.7% vs the 95.1% reference; the
+early-clock lesson. V52p ripeness-gated binding @ `020b775c` — 55% called accuracy, explained entirely by
+the anchor defect (@ `620fe4c1`). V52q anchor correction @ `a059264d` — **parity exact 139,430/139,430**;
+claims still short on the 30. **V52r full-804 @ `96597c98` — the lane's first honest 804: market
+valid-fill 300 completes / 662¢; V52l lineage 311 / 714¢ on the same grading — L17 BASELINE (46% of
+offered games, 23% of offered cents; supersedes the 214/350 standing baseline).**
+
+**③ THE AUTOPSY CROSS-REFERENCE (→ L14).** The 804 shortfall autopsy on the adopted lane @ `1c9419a0`:
+of 380 offered-not-completed, **STOOD_TOO_DEEP is 240 games / 1,201¢ = 76% of the forgone money (341/415
+unbought legs)** — a licensed rest standing a few cents below the printed floor; licenses carry 195¢;
+pair-lows blocks appear at zero moments; thin ≤1¢ abstentions banded apart (79/79¢). L14
+(AIM-PAST-THE-MARKET) now carries its lane-default receipt.
+
+**④ THE LAW INDEX + THE DISPATCH LICENSE (L18).** `LAW_INDEX.md` (this directory, this commit) is the
+one-line-per-law standing index — L0–L18, each line SHA-cited and verified against the record before
+commit. **L18, logged as a seat-enforced standing law: every dispatch to any seat must open with the
+LAW_INDEX SHA it was read at and the law IDs consulted; SEATS REFUSE dispatches lacking this block —
+enforcement is the receiver's, not memory's.** Both seats bounce unlicensed dispatches; the rule stands in
+the seats' own standing rules, not only here.
+
+*Fold pass 8 (measured-instrument era): §2 +6 rows (41c1f724 · 620fe4c1 · 71de534a · ab609761 · 96597c98
+lane exam · 1c9419a0 autopsy) · §1 rider: LAW_INDEX.md created, L11–L18 join the law set (truth-table
+source law, causal onset lineage, policy-grain ripeness, aim-past-the-market, live-clock law, anchor law,
+L17 baseline, L18 dispatch license) · V52m/n/o/p/q verdicts pinned (da4fd13b · 74a702c8 · fe9387b2 ·
+020b775c · a059264d) · the "27%" identified as V52o's coverage. Append-only: no prior line deleted.*

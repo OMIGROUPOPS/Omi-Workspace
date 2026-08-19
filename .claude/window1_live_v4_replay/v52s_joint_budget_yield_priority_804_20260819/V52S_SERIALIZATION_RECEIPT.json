@@ -1,0 +1,9 @@
+{
+  "role": "MECHANICAL_STREAMING_GZIP_ONLY",
+  "row_ledger": "V52S_DEPTH_LIFT_AND_YIELD_LEDGER.jsonl.gz",
+  "summary": "V52S_DEPTH_LIFT_AND_YIELD_LEDGER.json",
+  "rows": 504729,
+  "policy_bytes_changed": false,
+  "decisions_changed": false,
+  "scores_changed": false
+}

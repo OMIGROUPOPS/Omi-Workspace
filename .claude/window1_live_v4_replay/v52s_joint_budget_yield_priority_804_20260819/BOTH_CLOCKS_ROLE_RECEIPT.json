@@ -1,0 +1,10 @@
+{
+  "role": "V52S_DEPTH_LIFT_AND_YIELD_RECEIPTS",
+  "rows": 504729,
+  "fields": [
+    "t_minus_scheduled_seconds",
+    "t_minus_actual_bell_seconds"
+  ],
+  "missing_field_rows": [],
+  "pass": true
+}

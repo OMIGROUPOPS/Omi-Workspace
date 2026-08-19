@@ -1,0 +1,514 @@
+{
+  "ruler": "VALID_ENTRY_MINUS_W1_GROUND_TRUTH_PER_LEG_POST_ONSET_FLOOR",
+  "aggregate": {
+    "legs": 1608,
+    "credited_with_floor": 1002,
+    "uncredited_with_floor": 536,
+    "regret_cents": {
+      "n": 1002,
+      "null_n": 606,
+      "sum": 2047,
+      "min": 0,
+      "p25": 0,
+      "median": 1,
+      "p75": 3,
+      "p90": 6,
+      "max": 20
+    }
+  },
+  "by_category_x_price_region": [
+    {
+      "cell": "ATP_CHALL|26_50+26_50",
+      "legs": 2,
+      "credited_with_floor": 2,
+      "uncredited_with_floor": 0,
+      "regret_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 4,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 4,
+        "p90": 4,
+        "max": 4
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+51_75",
+      "legs": 476,
+      "credited_with_floor": 282,
+      "uncredited_with_floor": 184,
+      "regret_cents": {
+        "n": 282,
+        "null_n": 194,
+        "sum": 556,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 6,
+        "max": 20
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+ge75",
+      "legs": 8,
+      "credited_with_floor": 5,
+      "uncredited_with_floor": 3,
+      "regret_cents": {
+        "n": 5,
+        "null_n": 3,
+        "sum": 32,
+        "min": 1,
+        "p25": 1,
+        "median": 7,
+        "p75": 9,
+        "p90": 14,
+        "max": 14
+      }
+    },
+    {
+      "cell": "ATP_CHALL|26_50+le25",
+      "legs": 2,
+      "credited_with_floor": 0,
+      "uncredited_with_floor": 1,
+      "regret_cents": {
+        "n": 0,
+        "null_n": 2,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+51_75",
+      "legs": 2,
+      "credited_with_floor": 0,
+      "uncredited_with_floor": 1,
+      "regret_cents": {
+        "n": 0,
+        "null_n": 2,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+ge75",
+      "legs": 2,
+      "credited_with_floor": 1,
+      "uncredited_with_floor": 1,
+      "regret_cents": {
+        "n": 1,
+        "null_n": 1,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      }
+    },
+    {
+      "cell": "ATP_CHALL|51_75+le25",
+      "legs": 12,
+      "credited_with_floor": 4,
+      "uncredited_with_floor": 7,
+      "regret_cents": {
+        "n": 4,
+        "null_n": 8,
+        "sum": 24,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 3,
+        "p90": 19,
+        "max": 19
+      }
+    },
+    {
+      "cell": "ATP_CHALL|ge75+le25",
+      "legs": 204,
+      "credited_with_floor": 134,
+      "uncredited_with_floor": 68,
+      "regret_cents": {
+        "n": 134,
+        "null_n": 70,
+        "sum": 239,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 5,
+        "max": 10
+      }
+    },
+    {
+      "cell": "ATP_CHALL|le25+le25",
+      "legs": 30,
+      "credited_with_floor": 9,
+      "uncredited_with_floor": 12,
+      "regret_cents": {
+        "n": 9,
+        "null_n": 21,
+        "sum": 49,
+        "min": 0,
+        "p25": 3,
+        "median": 3,
+        "p75": 8,
+        "p90": 16,
+        "max": 16
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+26_50",
+      "legs": 2,
+      "credited_with_floor": 2,
+      "uncredited_with_floor": 0,
+      "regret_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 4,
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+51_75",
+      "legs": 206,
+      "credited_with_floor": 135,
+      "uncredited_with_floor": 58,
+      "regret_cents": {
+        "n": 135,
+        "null_n": 71,
+        "sum": 373,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 4,
+        "p90": 6,
+        "max": 14
+      }
+    },
+    {
+      "cell": "ATP_MAIN|26_50+ge75",
+      "legs": 8,
+      "credited_with_floor": 5,
+      "uncredited_with_floor": 3,
+      "regret_cents": {
+        "n": 5,
+        "null_n": 3,
+        "sum": 26,
+        "min": 0,
+        "p25": 4,
+        "median": 5,
+        "p75": 8,
+        "p90": 9,
+        "max": 9
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+51_75",
+      "legs": 2,
+      "credited_with_floor": 1,
+      "uncredited_with_floor": 1,
+      "regret_cents": {
+        "n": 1,
+        "null_n": 1,
+        "sum": 3,
+        "min": 3,
+        "p25": 3,
+        "median": 3,
+        "p75": 3,
+        "p90": 3,
+        "max": 3
+      }
+    },
+    {
+      "cell": "ATP_MAIN|51_75+le25",
+      "legs": 4,
+      "credited_with_floor": 1,
+      "uncredited_with_floor": 3,
+      "regret_cents": {
+        "n": 1,
+        "null_n": 3,
+        "sum": 4,
+        "min": 4,
+        "p25": 4,
+        "median": 4,
+        "p75": 4,
+        "p90": 4,
+        "max": 4
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+ge75",
+      "legs": 2,
+      "credited_with_floor": 0,
+      "uncredited_with_floor": 2,
+      "regret_cents": {
+        "n": 0,
+        "null_n": 2,
+        "sum": 0,
+        "min": null,
+        "p25": null,
+        "median": null,
+        "p75": null,
+        "p90": null,
+        "max": null
+      }
+    },
+    {
+      "cell": "ATP_MAIN|ge75+le25",
+      "legs": 58,
+      "credited_with_floor": 38,
+      "uncredited_with_floor": 18,
+      "regret_cents": {
+        "n": 38,
+        "null_n": 20,
+        "sum": 84,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 3,
+        "p90": 6,
+        "max": 7
+      }
+    },
+    {
+      "cell": "ATP_MAIN|le25+le25",
+      "legs": 12,
+      "credited_with_floor": 8,
+      "uncredited_with_floor": 3,
+      "regret_cents": {
+        "n": 8,
+        "null_n": 4,
+        "sum": 16,
+        "min": 0,
+        "p25": 0,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 4
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+26_50",
+      "legs": 4,
+      "credited_with_floor": 3,
+      "uncredited_with_floor": 1,
+      "regret_cents": {
+        "n": 3,
+        "null_n": 1,
+        "sum": 5,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 4,
+        "max": 4
+      }
+    },
+    {
+      "cell": "WTA_CHALL|26_50+51_75",
+      "legs": 176,
+      "credited_with_floor": 108,
+      "uncredited_with_floor": 66,
+      "regret_cents": {
+        "n": 108,
+        "null_n": 68,
+        "sum": 116,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 7
+      }
+    },
+    {
+      "cell": "WTA_CHALL|51_75+le25",
+      "legs": 2,
+      "credited_with_floor": 1,
+      "uncredited_with_floor": 1,
+      "regret_cents": {
+        "n": 1,
+        "null_n": 1,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      }
+    },
+    {
+      "cell": "WTA_CHALL|ge75+le25",
+      "legs": 88,
+      "credited_with_floor": 53,
+      "uncredited_with_floor": 24,
+      "regret_cents": {
+        "n": 53,
+        "null_n": 35,
+        "sum": 65,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 3,
+        "max": 12
+      }
+    },
+    {
+      "cell": "WTA_CHALL|le25+le25",
+      "legs": 2,
+      "credited_with_floor": 2,
+      "uncredited_with_floor": 0,
+      "regret_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 1,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 1,
+        "p90": 1,
+        "max": 1
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+51_75",
+      "legs": 154,
+      "credited_with_floor": 107,
+      "uncredited_with_floor": 38,
+      "regret_cents": {
+        "n": 107,
+        "null_n": 47,
+        "sum": 248,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 4,
+        "p90": 7,
+        "max": 20
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+ge75",
+      "legs": 2,
+      "credited_with_floor": 2,
+      "uncredited_with_floor": 0,
+      "regret_cents": {
+        "n": 2,
+        "null_n": 0,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|26_50+le25",
+      "legs": 6,
+      "credited_with_floor": 4,
+      "uncredited_with_floor": 2,
+      "regret_cents": {
+        "n": 4,
+        "null_n": 2,
+        "sum": 7,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+51_75",
+      "legs": 2,
+      "credited_with_floor": 1,
+      "uncredited_with_floor": 1,
+      "regret_cents": {
+        "n": 1,
+        "null_n": 1,
+        "sum": 0,
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      }
+    },
+    {
+      "cell": "WTA_MAIN|51_75+le25",
+      "legs": 8,
+      "credited_with_floor": 5,
+      "uncredited_with_floor": 3,
+      "regret_cents": {
+        "n": 5,
+        "null_n": 3,
+        "sum": 11,
+        "min": 0,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 5,
+        "max": 5
+      }
+    },
+    {
+      "cell": "WTA_MAIN|ge75+le25",
+      "legs": 112,
+      "credited_with_floor": 80,
+      "uncredited_with_floor": 30,
+      "regret_cents": {
+        "n": 80,
+        "null_n": 32,
+        "sum": 155,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 3,
+        "p90": 5,
+        "max": 9
+      }
+    },
+    {
+      "cell": "WTA_MAIN|le25+le25",
+      "legs": 20,
+      "credited_with_floor": 9,
+      "uncredited_with_floor": 5,
+      "regret_cents": {
+        "n": 9,
+        "null_n": 11,
+        "sum": 25,
+        "min": 0,
+        "p25": 0,
+        "median": 1,
+        "p75": 2,
+        "p90": 13,
+        "max": 13
+      }
+    }
+  ]
+}

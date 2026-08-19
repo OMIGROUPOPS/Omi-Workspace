@@ -88,10 +88,11 @@ function v52eProtectedBlock(bytes) {
   const source = bytes.toString("utf8").replaceAll("\r\n", "\n");
   const startNeedle = "\n  if (isV52eExam) {\n    const run = machineRuns.get(\"V52E_DISPOSITION_804\");";
   const start = source.indexOf(startNeedle);
+  const v52sEndNeedle = "\n  if (isV52sExam) {";
   const v52rEndNeedle = "\n  if (isV52rExam) {";
   const legacyEndNeedle = "\n  if (isV52 && stage === \"stage1\") {";
-  const v52rEnd = source.indexOf(v52rEndNeedle, start + 1);
-  const end = v52rEnd >= 0 ? v52rEnd : source.indexOf(legacyEndNeedle, start + 1);
+  const v52sEnd = source.indexOf(v52sEndNeedle, start + 1), v52rEnd = source.indexOf(v52rEndNeedle, start + 1);
+  const end = v52sEnd >= 0 ? v52sEnd : v52rEnd >= 0 ? v52rEnd : source.indexOf(legacyEndNeedle, start + 1);
   ensure(start >= 0 && end > start, "V52e protected exam block markers missing");
   return Buffer.from(source.slice(start, end), "utf8");
 }

@@ -1,0 +1,7 @@
+{
+  "clean_builds": 2,
+  "compared_files": 846,
+  "byte_identical": true,
+  "mismatches": [],
+  "post_build_serialization_repair": "MECHANICAL_STREAMING_GZIP_ONLY"
+}

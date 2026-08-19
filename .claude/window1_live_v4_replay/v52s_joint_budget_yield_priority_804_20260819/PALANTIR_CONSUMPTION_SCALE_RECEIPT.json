@@ -1,0 +1,72 @@
+{
+  "rows": 8032326,
+  "palantir_consumption_rows": 8032326,
+  "continuous_rows": 8032326,
+  "priors_gate_true_rows": 0,
+  "N2_rows": 8032326,
+  "N4_rows": 8032326,
+  "N5_rows": 8032326,
+  "N4_grid_rows": 7254996,
+  "N4_rescue_rows": 15084,
+  "N5_adjudication_rows": 0,
+  "by_block_reason": {
+    "STABILITY_ONSET_NOT_REACHED": 192048,
+    "NO_TAPE_MACHINE_READ_ABSENT": 1598,
+    "MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 399241
+  },
+  "by_category_x_block_reason": {
+    "ATP_CHALL|STABILITY_ONSET_NOT_REACHED": 37842,
+    "ATP_CHALL|NO_TAPE_MACHINE_READ_ABSENT": 734,
+    "ATP_CHALL|MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 89370,
+    "ATP_MAIN|STABILITY_ONSET_NOT_REACHED": 61517,
+    "ATP_MAIN|NO_TAPE_MACHINE_READ_ABSENT": 290,
+    "ATP_MAIN|MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 11417,
+    "WTA_CHALL|STABILITY_ONSET_NOT_REACHED": 36311,
+    "WTA_CHALL|NO_TAPE_MACHINE_READ_ABSENT": 272,
+    "WTA_CHALL|MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 264610,
+    "WTA_MAIN|STABILITY_ONSET_NOT_REACHED": 56378,
+    "WTA_MAIN|NO_TAPE_MACHINE_READ_ABSENT": 302,
+    "WTA_MAIN|MACHINE_READ_LEVEL_AUTHORITY_NOT_EARNED": 33844
+  },
+  "provenance_asset_ids": [
+    "P1",
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P2",
+    "P4",
+    "P6"
+  ],
+  "trace_dictionary_entries": 1,
+  "clean_store_boot_assertion": {
+    "passed": true,
+    "required_ids": [
+      "P1",
+      "P2",
+      "P4",
+      "P6",
+      "P11",
+      "P12",
+      "P13",
+      "P14"
+    ],
+    "loaded_ids": [
+      "P1",
+      "P11",
+      "P12",
+      "P13",
+      "P14",
+      "P2",
+      "P4",
+      "P6"
+    ],
+    "source_inventory": "store_CLEAN",
+    "unvalidated_loaded": 0,
+    "quarantined_loaded": 0,
+    "superseded_loaded": 0,
+    "fallback_loads": 0
+  },
+  "all_decision_rows_consumed_N2_N4_N5": true,
+  "priors_never_gate": true
+}

@@ -1,0 +1,4039 @@
+{
+  "V52L": {
+    "created_resolved": 387,
+    "created_unresolved": 350,
+    "not_created": 67
+  },
+  "V52S": {
+    "created_resolved": 383,
+    "created_unresolved": 367,
+    "not_created": 54
+  },
+  "delta": {
+    "created_resolved": -4,
+    "created_unresolved": 17,
+    "not_created": -13
+  },
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9796.56500005722
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 24491.726000070572
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AVEFOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 39390.40100002289
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12AZKLEO",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10647.471999883652
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BARVIS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOOONC",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOSCOP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 50199.12900018692
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BOUVIT",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 14604.322000026703
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROBAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 32466.49499988556
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROHUA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5022.450000047684
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BRUGAD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CALRAD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHISEA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 21692.992000102997
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CHOGAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12CRIBAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DELMAK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DEVGON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DODDEL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16763.039000034332
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5039.861999988556
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ECHMUN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1197.9029998779297
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FANBIG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FORPAM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GANJAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6522.918999910355
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GEOMAG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIESHE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 41559.923000097275
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 171.3420000076294
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GUTCAM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HECISO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 11217.933000087738
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5875.851999998093
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HOHSUR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12HOUJOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KARMAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KRALOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1644.8250000476837
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUZDE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LAGTEP",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LANKOB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 36021.296999931335
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12LINMAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2208.582000017166
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARARS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 36028.111000061035
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MARFOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MEJSOT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MIYKUZ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MOLDON",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12MORPET",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 30873.802000045776
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12OUAFER",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PALMAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4175.572000026703
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PEAKIR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 40868.44799995422
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 493.50999999046326
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6170.102999925613
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6138.269000053406
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12PRIBAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 22357.275000095367
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAFAGU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33699.74399995804
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAIZHU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12RAQKUM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 25779.708999872208
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SALARN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SIAIVA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 8491.455999851227
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TOKROZ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VALNIJ",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VANCHO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 40415.43799996376
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12VILRAH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 257.0329999923706
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12WINROB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YEVBOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YIBMAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 11432.936999797821
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12YOUDLI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 8627.393000125885
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13AGABAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ALVKUM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSDAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 26.342000007629395
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUGAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13CHOSUR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13DONWES",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORHUA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3.5840001106262207
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORMAK",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13FORRAF",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 24064.99900007248
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13GIUALM",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13HOLWAT",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13INCSTE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 31010.042999982834
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13JONPET",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KENSHE",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRASAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KRUMAR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KUMLAG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 25109.236999988556
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13KUZNIJ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13LANSHE",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MONANG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MORFAN",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13MUNLEO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18354.52600002289
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NOGBRO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13OUALIN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PALGON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2.574000120162964
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PERTOB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13POLMIY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13PRICRI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 20624.46700000763
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RADIVA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13REHJUS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4421.098000049591
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13RODALK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ROZISO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 25369.78800010681
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13SANLOP",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13SHIHAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7196.1269998550415
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TABVIN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5920.789000034332
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VILGAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 20806.450000047684
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16839.84599995613
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WINKIR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7758.710000038147
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WONTUN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13YEVCAM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13YIBMAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 25834.78600001335
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ZHUDLI",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ADDLEO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ALCTAB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 8580.992000102997
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ALMGRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 40460.11899995804
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BLATOM",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14BRUNIJ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 30414.197999954224
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CASGHI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 495.0059998035431
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CLAWES",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 27789.44000005722
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DALMAY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29891.587000131607
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16912.493000030518
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14FUEPRI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GALFOR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3243.2309999465942
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GENPET",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GLIJOH",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14GUIBON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IVAGIU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5354.426000118256
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 0.0010001659393310547
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14JONIVA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KIRSEK",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 442.39400005340576
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14KRATOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAGSAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 32620.87199997902
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 921.8669998645782
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MAKSEY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MARCAM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MARMAY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MILCHA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1838.7179999351501
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14MRVCAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14NAGCRE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14NEDDAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 47352.35100007057
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14OUAFIC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16780.55999994278
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6599.179999828339
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14RONGIU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ROZRIC",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SMIILA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 38031.51999998093
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SQUKUM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SUNGEA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14SURECH",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14UCHGAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9300.386000156403
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VUKARS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 11123.986999988556
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7216.6340000629425
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15GENDE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15HOLMAY",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 19892.958999872208
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15IVACRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15LAJKRU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NAGTOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13207.292000055313
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NAPBAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 41473.50499987602
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15NOGSUR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 11129.226999998093
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10783.781999826431
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ROMGAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 26750.172000169754
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SANERE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33455.18300008774
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15VILMAR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WESCOP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16337.605000019073
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 14931.957999944687
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WONSHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3077.6029999256134
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ZHOPER",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15ZINGAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33581.18099999428
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16ADDGHI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16ALCANG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4189.546000003815
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 790.3669998645782
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16DELDAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16DENBAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16DRAMIL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5842.144000053406
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16FUESEY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16GLISEK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 11166.40299987793
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16IVAOUA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1.2099997997283936
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16KUMBRO",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16MCCTOM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16PALALM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9870.351999998093
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16SMIMAT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33834.27600002289
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ADDIVA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 30490.106999874115
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17DELFUE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17DRAGEA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 23832.730000019073
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GALCOP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 24400.7460000515
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17GENHOU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17HOLBOU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17KUMBOO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6412.948999881744
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17LAJNOG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NAGBON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NAPVIL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 32975.6970000267
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17NIJDEN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 28474.0569999218
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17RODCRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SANALM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 212.53400015830994
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SEKCAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 34286.75999999046
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17VUKGAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 627.2460000514984
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17WONJOH",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18ALCVIL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2279.7409999370575
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18FUEBON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18GENKUM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10545.274999856949
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2873.3620002269745
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18PERIVA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18RODSAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 14983.459000110626
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18VUKHOL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5608.643999814987
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19AVECHA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BANZHU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARLEO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BARSTA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BIAYOU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BOHBOU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18513.159999847412
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BONALC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 981.1410000324249
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3387.542999982834
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CALTEP",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CASVAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9.217999935150146
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DEMMAG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2453.736000061035
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DENGEN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3444.420000076294
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DJOMAT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19DONTOP",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19GIUDEV",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HERECH",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29509.62600016594
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19IMATRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 23790.700000047684
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19JOHGEO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19JONISO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KIRAGU",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KOZVIT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KRUCAS",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KUHPAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4118.588999986649
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19KUZOPI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19LANMAY",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MALMOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MARWAZ",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MCKOUA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MILFAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MONTHO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1607.8150000572205
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19NIKVRB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PALMUN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PAPROS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PETALO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 39605.8140001297
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PIENES",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POLSCH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1625.4329998493195
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19PONZIE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19POUJAN",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19REJWES",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 14910.164999961853
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RITGOM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33361.03500008583
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ROZSHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SINMAT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 284.99900007247925
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TOKMIY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TOMLAJ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TORSEN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19TRODAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VALCAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VANGOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18683.172999858856
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VANRAD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VARBOI",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VASTAB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 45717.673000097275
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VUKGEA",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19YEVSTR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 181.8069999217987
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMKIN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 387.2229998111725
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ZAMPOL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15484.46899986267
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6636.930999994278
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20BICWAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3661.6299998760223
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CHABOU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CRECOP",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20CREMAT",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4368.228000164032
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ECHHAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18740.83699989319
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20FAURIN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 31146.290999889374
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6068.203000068665
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GIUHER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 165.35600018501282
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GORYOU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3844.875
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20HSUHAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20IMAKIN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3133.3289999961853
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20JOHAGU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KOZPAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1227.5390000343323
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KYMCLA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 764.8670001029968
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARBIT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 707.8629999160767
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MILSHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONBAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 20047.002999782562
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5200.327999830246
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20NOGSHI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10900.899999856949
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PALLEO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PETTAB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20PIRNAP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 23522.666000127792
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10697.254999876022
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20POLBRU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20SEYKOL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20STAMAT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20SURKUZ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 778.5659999847412
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TOKHUR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TORSTR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20TROISO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 8417.677999973297
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VALGOM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VANOUA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29317.59899997711
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VARDON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20VISNIK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WATILA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29770.509999990463
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 22467.28600001335
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHOGEE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7930.788999795914
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1104.324000120163
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZINZHA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12ALTGAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12BORKOU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 121230.3149998188
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12BUDPEL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 57103.27300000191
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12BUEMAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 11744.08999991417
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CARSAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 50459.93099999428
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CECOLI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 22127.516000032425
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CHOBAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13602.625
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CINHEM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 21349.118000030518
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12CORDAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 46659.97300004959
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DAHBAE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 73118.13000011444
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DEJGAU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DIEMON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DODCAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DROBLO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DZUROC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13667.006999969482
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12FARWAW",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29507.50200009346
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12FELKEC",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12GUEGOM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 873.9229998588562
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12JACTRU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 28837.84700012207
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12KOPPRI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4454.346999883652
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12KRUFER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 36403.99900007248
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12LAJVAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 46286.75099992752
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MARHAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 20085.609000205994
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MOLFAU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4349.305999994278
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MOLROY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12MULSHE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 104632.9960000515
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12NEUTOP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 32439.193999767303
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12OFNTIR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12PASKAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12PRASAI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 26618.302999973297
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12REJMID",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SESMER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 88506.05099987984
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SKASAC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9684.360000133514
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SLADAM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16524.272000074387
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SONSCH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 64851.18300008774
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12STRMUN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 97434.23900008202
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12SVRDIM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12TABHUE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 62954.94200015068
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12TSIBUS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5276.31299996376
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13COLSKA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9.82099986076355
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13FAUDAM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13MARMID",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16027.355000019073
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13PASKRU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13476.944000005722
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1760.4509999752045
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13TABROD",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1683.630000114441
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14CECBUR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14CINHAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14DIAMID",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1338.3610000610352
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14GOMMCD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14KYMDIE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4227.892999887466
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14MARPRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 74618.41499996185
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14NEUPRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14RINTAB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2899.042000055313
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14TOPUGO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 535.6670000553131
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14TRAKRU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14VALDAM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 31577.46600008011
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL14VANDAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15ALTDAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 28381.828000068665
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15BASTIR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 36892.90100002289
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15BORDIM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1318.7050001621246
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15BUBHAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1973.3050000667572
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15CARUGO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15CERKEC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 516.8519999980927
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15COBBUR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15COLSON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15ETCMER",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15GOMARN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15HANVAC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3.2799999713897705
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15KYMTSI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3622.0490000247955
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15PRADZU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10320.501999855042
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15PRIMOL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 72278.6669998169
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15RUBPEL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15173.523000001907
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15TABMID",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 80870.79999995232
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15TRANAV",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16910.174000024796
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15TRUDAV",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15VANDRO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 14212.644000053406
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15VANVAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16BURUGO",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16DEJBAE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16DZUARN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2829.0520000457764
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16FARRUU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15202.636000156403
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 666.2999999523163
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16MOLDAV",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 133.54099988937378
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16SHESTR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17BORDAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15318.570000171661
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17BURMER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9118.540999889374
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17CERRUU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17COLVAC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 42044.88400006294
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17DZUMOL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17HALSHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17RINTSI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10632.166000127792
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17RUBBAE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 17603.673999786377
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17TABTIR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6177.5
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL17VALTRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18253.741000175476
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18BUTTAB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18CINMIC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 24976.136000156403
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18COLCER",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18CORSAC",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DELRIB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5873.205000162125
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18GAUTSE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 38230.109999895096
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18HEIFEL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18HIPGIU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18JACDA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 65.05000019073486
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18KOPHER",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18LUZTSE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18MARJOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1738.1389999389648
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18MERDZU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5697.578000068665
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18PELSIL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6179.489000082016
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18ROCBUE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18RODCHE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16392.759000062943
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18RUBTAB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18SHETSI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 35580.14699983597
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18VALDAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 12324.989000082016
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18WALDJE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19ALTCOL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19BAEKEC",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19CERTRU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19CHODEJ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19CINGIU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DELDJE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 90684.76600003242
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19FELKOP",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19FERVAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7570.7590000629425
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19GASDZU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19GAUCAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 47458.263999938965
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19JACDAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 35031.15100002289
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19KOPBUS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 806.9300000667572
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19LUZTAB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7238.454999923706
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MARSKA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MOLOFN",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19MULNAV",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19NEUHAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19PELBUE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 37900.25400018692
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19RODSAC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4052.0520000457764
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19RUBDAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 598.3919999599457
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19STRSHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19TORBAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 52958.59799981117
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19TSICOL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 885.4700000286102
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19VANFAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19WAWBUR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 20652.606000185013
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL20DIACIN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL20DJECIN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL20ROCMAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 30451.28099989891
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL20SCHROD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ARIZHA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 22356.78299999237
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 275.68300008773804
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BASABB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3902.4379999637604
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BOSKOV",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 261.4579999446869
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12CIRHUA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 32326.173000097275
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12FEICHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12HESKOT",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5866.178000211716
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12KHOVIG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 30390.549000024796
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MALTUR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12MAZGAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 32693.3180000782
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PALCOL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3592.2170000076294
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12PANYOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 16541.546999931335
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ROUJAK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SAIETO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHEVAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6298.474999904633
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SHITUR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 446.14600014686584
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12VOLMAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7138.6900000572205
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ZELFAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 23293.58899998665
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13BAIPRO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GASBAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 28600.322000026703
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GJOCHI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GRABER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9648.882999897003
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13HERJAK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13JONSPI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KABPER",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KHOZHA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15860.62299990654
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 30791.707000017166
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KOTURG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13LANMAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13OKATAR",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PANFAL",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PAPAND",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13PENTHA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RADREN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RINAST",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RISPOH",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SAINUG",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13SHIHUA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13TIKBEN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13VANLEE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14AKSVAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33542.667999982834
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BARKOL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 26903.947000026703
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BASFRI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14BRAPIE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14CARVON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13489.338999986649
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14COLPAL",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14DILFAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FALYUA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 21474.78600001335
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FRUGAO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 28917.96899986267
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14HRUBUY",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14IATZVO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4354.059000015259
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KHONUG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 8658.43799996376
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14KOVBAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14MAZBRO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14PACVED",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14PIGSAM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18490.43299984932
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15281.141999959946
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14RIESEM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6527.645999908447
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14SHUSHI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TREGRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15226.460000038147
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14WOLVAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7945.279000043869
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14ZAKTKA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 639.4629998207092
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ASTNOH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9680.141999959946
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ERJBAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1829.7409999370575
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15JONURG",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 22109.111999988556
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3122.7039999961853
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15PENFAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2003.518000125885
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15RADCHI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15TANGAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6784.873999834061
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6666.9909999370575
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BENKRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BRAVED",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 40881.22200012207
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33726.823999881744
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16HERVAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 8516.049999952316
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KOVRIE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 36525.114000082016
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZAKSHU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 14473.790000200272
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ANDKRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17BASCAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18906.11699986458
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17BRARIE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7049.429999828339
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17CHIBRO",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ERJFEI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13880.865999937057
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17GRAVAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17JONNOH",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VALFAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17VANTAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 15321.350000143051
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3944.3959999084473
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZAKPRO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL17ZVOTAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5140.303999900818
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASKRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 23149.144999980927
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BROBRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ERJGRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18MCASHI",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18RENGIA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18SERBER",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TONSPI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18TREJON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18URGKOT",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18VALTAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18WEBHOD",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7537.99599981308
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19BASSHI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6636.145999908447
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19GRAKRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19JONBRO",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 35855.90299987793
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19RENTON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13686.828999996185
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19SERTOT",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2542.815999984741
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19VANTAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 17157.287999868393
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20FERREN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9603.350000143051
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 41333.27399992943
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20GORMIN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5671.417999982834
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20KABCHI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20LANRAD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20TOTRUG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20URGYAN",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12AVASEI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12FETPIE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5.434000015258789
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12GARPRI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 28841.236999988556
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12HERKAZ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12HIBTON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 27545.93799996376
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12HODYAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29309.68699979782
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12ITOMAN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 56420.52099990845
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12KOZIBR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12KULZAA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13529.934000015259
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12LEPBUR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 17871.75300002098
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12LIUPOP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 48673.575000047684
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12MICKUL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 24456.15299987793
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12MORNEP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 33271.77900004387
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12OKAIPE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3177.2880001068115
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12PRIION",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 5033.178999900818
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12ROMTOD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12TAGSIE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1126.6429998874664
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL12WERAMA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 22563.52800011635
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13AMAHER",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13265.868000030518
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ARAZID",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ARGTAG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13AVAFET",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BADKAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 58239.730999946594
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BLISAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2506.899999856949
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BONSOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 150.78600001335144
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BURLEP",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 471.4319999217987
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13BURPUT",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13335.50300002098
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13CHAJIM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1088.2330000400543
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 17545.921999931335
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13HODDAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 31607.24599981308
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ITOKOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 43833.59400010109
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KAWWAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KRETOM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 53253.74300003052
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13KUDSAK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13LEPIBR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 30621.417999982834
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13LINHON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6545.116000175476
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13479.601999998093
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MATMIC",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MONMAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 12114.100000143051
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MORBEJ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13PODMAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13QUERUS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ROMKUL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13SAKTON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13SHEGAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13TAUHIB",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10412.515999794006
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13TAUTOM",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13TIMANN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 47152.68099999428
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13VALCOS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10457.740000009537
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13ZHEBOU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 39091.764999866486
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14AMAJAC",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 50595.201999902725
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14AVAUCH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 24978.444999933243
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6407.796999931335
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14OLIIPE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29796.960000038147
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13869.555999994278
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTLIU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 28302.201999902725
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14SALIBR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14UDVROM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4829.305000066757
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15AVAMAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 0.0009999275207519531
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15BONZID",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7574.837999820709
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15BURJAC",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15DARSAK",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15HONPAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 46979.917999982834
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15IBRBAD",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9367.990999937057
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15KREMON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 67684.58100008965
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15MICZHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15OLIPRI",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15PUTCHA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 7813.6740000247955
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15SHEQUE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL15TAGBEJ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 17563.882999897003
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16KORANN",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 19537.707000017166
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16TAUTON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 8191.765000104904
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16UDVKAW",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL16VALSAS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 54.129000186920166
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17KREZHE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4688.072000026703
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17OLIBUR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17PARSAK",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1.8450000286102295
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17PUTSHE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17TAUBEJ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17VALKOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 6.21399998664856
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL17ZIDMAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2655.005000114441
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18BADZID",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 9619.366999864578
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18BANGAO",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10797.046999931335
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18BERSAI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 46399.43099999428
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18COSHIB",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18HONTHA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18ITOKNU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18MASRYS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 35.509000062942505
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18MICFRU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 27587.645999908447
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18MORAKS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1.9140000343322754
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18OKALEE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 24861.614000082016
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18PALHON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18PODKRE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18SAKKOR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18SALZOL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18SHEOLI",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18TAUKRE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19AVDNIE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19BRAVON",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3845.523999929428
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19COSAKS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19EIGCAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1428.608999967575
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19GAOFRU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 29047.544000148773
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19HONLEE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19JAKAVA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4338.141000032425
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19KRESAK",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 27082.807000160217
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19LEPPET",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 693.3329999446869
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19MALZAA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19MONPIE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19PODSAI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 14776.818000078201
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19PRIMAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19RUSKAZ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19RYSHON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19SALKNU",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19SHEBAD",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19STRPAQ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 12181.699000120163
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19VEDGAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL19YASBAR",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20AKSCOS",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 27684.90700006485
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20BARYUA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 72742.86299991608
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20BLIBEJ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 84079.91700005531
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20BONUCH",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20BOUBOU2",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4859.5609998703
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20GAOTAG",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KORJIM",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1924.1579999923706
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KOVTAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 164185.2190001011
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20KUDKOR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 4811.476000070572
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20LEPAVA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 0.9429998397827148
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20LYSVAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20NIEMAL",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10946.328999996185
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20OKTDOD",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 1468.7430000305176
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20OLISCH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 62820.00900006294
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PARHAV",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 94295.78299999237
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PARHON",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PIECAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 2607.2919998168945
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PODLEE",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 26121.97399997711
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PODSTU",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 3588.2109999656677
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20PRIBRA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20QUEKAL",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20ROMERJ",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 13218.177999973297
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20RUSPAQ",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20RUZSAL",
+      "disposition": "NOT_CREATED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20SAMJOI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 49872.09700012207
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20SEISNI",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 193.518000125885
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20SEMKRA",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 18684.787999868393
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20SORCHA",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20STENOH",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 136847.89499998093
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20TIMSAS",
+      "disposition": "CREATED_UNRESOLVED",
+      "duration_seconds": null
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20VEDBAR",
+      "disposition": "CREATED_RESOLVED",
+      "duration_seconds": 10522.646999835968
+    }
+  ]
+}

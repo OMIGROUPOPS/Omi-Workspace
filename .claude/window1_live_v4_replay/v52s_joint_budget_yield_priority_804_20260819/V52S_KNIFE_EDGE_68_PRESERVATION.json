@@ -1,0 +1,497 @@
+{
+  "source": {
+    "commit": "f30ea3ebeca4eec15790bb013a9c8e9f5a4fb852",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SLACK_CONDITIONAL_SHIFT.json",
+    "sha256": "4c37c34a7491c9cc3af3fc631d32959d36ee730e37e245dd2757db04876c615f",
+    "bytes": 43094,
+    "stamp": [
+      "ANALYTICAL_ESTIMATE",
+      "MEASUREMENT_ONLY"
+    ],
+    "verdict": "OPEN_LOOP_SLACK_REJECTED; CLOSED_LOOP_FORM_AUTHORIZED_FOR_EXECUTABLE_TEST",
+    "incumbent_verified_completes": 305,
+    "open_loop_slack1_verified_completes": 332
+  },
+  "expected": 68,
+  "rows": [
+    {
+      "simulation_event_id": "26JUL12BROGIU",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL12CERKOL",
+      "event_id": "KXATPMATCH-26JUL12CERKOL",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL12DAHBAE",
+      "event_id": "KXATPMATCH-26JUL12DAHBAE",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL12DROPIR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL12ERJBOS",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL12FELKEC",
+      "event_id": "KXATPMATCH-26JUL12FELKEC",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL12GARPRI",
+      "event_id": "KXWTAMATCH-26JUL12GARPRI",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL12KOZIBR",
+      "event_id": "KXWTAMATCH-26JUL12KOZIBR",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL12LIUPOP",
+      "event_id": "KXWTAMATCH-26JUL12LIUPOP",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL12ROUGAN",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12ROUGAN",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL12SANSCH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL12SESMER",
+      "event_id": "KXATPMATCH-26JUL12SESMER",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL13ARSMAR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL13BLISAS",
+      "event_id": "KXWTAMATCH-26JUL13BLISAS",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL13BURLEP",
+      "event_id": "KXWTAMATCH-26JUL13BURLEP",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL13GRABER",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13GRABER",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL13KUDSAK",
+      "event_id": "KXWTAMATCH-26JUL13KUDSAK",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL13LIUIPE",
+      "event_id": "KXWTAMATCH-26JUL13LIUIPE",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL13PRIGAR",
+      "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL13WOLFEN",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13WOLFEN",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL14AMAJAC",
+      "event_id": "KXWTAMATCH-26JUL14AMAJAC",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL14BULPRI",
+      "event_id": "KXWTAMATCH-26JUL14BULPRI",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL14DELXIL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DELXIL",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL14EREPAV",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL14VILRIB",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL15BONZID",
+      "event_id": "KXWTAMATCH-26JUL15BONZID",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15CARPAL",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL15CARUGO",
+      "event_id": "KXATPMATCH-26JUL15CARUGO",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL15GRAPER",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15HONPAR",
+      "event_id": "KXWTAMATCH-26JUL15HONPAR",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15IBRBAD",
+      "event_id": "KXWTAMATCH-26JUL15IBRBAD",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15PRIMOL",
+      "event_id": "KXATPMATCH-26JUL15PRIMOL",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15TRANAV",
+      "event_id": "KXATPMATCH-26JUL15TRANAV",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15VANDRO",
+      "event_id": "KXATPMATCH-26JUL15VANDRO",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15WOLJOH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL15YANLAN",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15YANLAN",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL16DZUARN",
+      "event_id": "KXATPMATCH-26JUL16DZUARN",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL16KOSBRO",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16KOSBRO",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL16RICGEA",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16RICGEA",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL16ZANTRE",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16ZANTRE",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL17DZUMOL",
+      "event_id": "KXATPMATCH-26JUL17DZUMOL",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL17FORTOM",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17FORTOM",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL18BADZID",
+      "event_id": "KXWTAMATCH-26JUL18BADZID",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL18BERSAI",
+      "event_id": "KXWTAMATCH-26JUL18BERSAI",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL18CASGEA",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18CASGEA",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL18SAKKOR",
+      "event_id": "KXWTAMATCH-26JUL18SAKKOR",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL18TOMJOH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18TOMJOH",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL18ZAKVAN",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+      "V52s_state": "PARTIAL_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL19CLAKUZ",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19CLAKUZ",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19GAUCAR",
+      "event_id": "KXATPMATCH-26JUL19GAUCAR",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19JAKAVA",
+      "event_id": "KXWTAMATCH-26JUL19JAKAVA",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19KOTHOD",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL19KOTHOD",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 98,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19LEPPET",
+      "event_id": "KXWTAMATCH-26JUL19LEPPET",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19REJWES",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19REJWES",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 97,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19SURPER",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19SURPER",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19TORBAS",
+      "event_id": "KXATPMATCH-26JUL19TORBAS",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 97,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL19VISAHT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 97,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20ALKFIC",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ALKFIC",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20FRUKRE",
+      "event_id": "KXWTAMATCH-26JUL20FRUKRE",
+      "V52s_state": "NEITHER_FOR_REASON",
+      "combined_entry_cents": null,
+      "preserved": false
+    },
+    {
+      "simulation_event_id": "26JUL20GALARN",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20GJOAND",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL20GJOAND",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20KUZJAN",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20KUZJAN",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20MONNES",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20POHWES",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20POHWES",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20ROMERJ",
+      "event_id": "KXWTAMATCH-26JUL20ROMERJ",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20VEDBAR",
+      "event_id": "KXWTAMATCH-26JUL20VEDBAR",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20ZHESHE",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHESHE",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    },
+    {
+      "simulation_event_id": "26JUL20ZHUMAL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20ZHUMAL",
+      "V52s_state": "COMPLETE_AT_DELTA",
+      "combined_entry_cents": 99,
+      "preserved": true
+    }
+  ],
+  "preserved": 51,
+  "lost": 17,
+  "pass": false
+}

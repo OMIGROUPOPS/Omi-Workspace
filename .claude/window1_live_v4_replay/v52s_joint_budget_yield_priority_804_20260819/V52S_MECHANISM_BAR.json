@@ -1,0 +1,45 @@
+{
+  "completed_pairs_at_least_305": {
+    "value": 310,
+    "threshold": 305,
+    "pass": true
+  },
+  "net_banked_cents_above_714": {
+    "value": 581,
+    "threshold_exclusive": 714,
+    "pass": false
+  },
+  "all_68_open_loop_knife_edges_preserved": {
+    "preserved": 51,
+    "expected": 68,
+    "lost": [
+      "KXATPCHALLENGERMATCH-26JUL12BROGIU",
+      "KXATPMATCH-26JUL12DAHBAE",
+      "KXATPMATCH-26JUL12FELKEC",
+      "KXWTAMATCH-26JUL12GARPRI",
+      "KXWTAMATCH-26JUL12KOZIBR",
+      "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "KXATPCHALLENGERMATCH-26JUL13ARSMAR",
+      "KXWTAMATCH-26JUL13KUDSAK",
+      "KXWTAMATCH-26JUL13PRIGAR",
+      "KXATPCHALLENGERMATCH-26JUL14EREPAV",
+      "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "KXWTACHALLENGERMATCH-26JUL15CARPAL",
+      "KXATPMATCH-26JUL15CARUGO",
+      "KXATPMATCH-26JUL17DZUMOL",
+      "KXWTAMATCH-26JUL18SAKKOR",
+      "KXWTACHALLENGERMATCH-26JUL18ZAKVAN",
+      "KXWTAMATCH-26JUL20FRUKRE"
+    ],
+    "pass": false
+  },
+  "zero_par_crossing_completions": {
+    "value": 0,
+    "pass": true
+  },
+  "REFLEX_POST_zero": {
+    "value": 0,
+    "pass": true
+  },
+  "overall_pass": false
+}

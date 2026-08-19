@@ -1,0 +1,9 @@
+{
+  "rows_externalized_to": "V52S_DEPTH_LIFT_AND_YIELD_LEDGER.jsonl.gz",
+  "count": 504729,
+  "by_kind": {
+    "V52S_DEPTH_LIFT": 255087,
+    "V52S_YIELD_TO_SENIOR_DEFAULT": 249642
+  },
+  "both_clocks_pass": true
+}

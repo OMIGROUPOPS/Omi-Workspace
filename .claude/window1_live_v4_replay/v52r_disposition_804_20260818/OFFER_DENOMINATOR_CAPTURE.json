@@ -1,0 +1,156 @@
+{
+  "source": {
+    "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+    "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729"
+  },
+  "denominator": {
+    "games": 680,
+    "cents": 3123,
+    "margin_ladder": {
+      "GE_10_CENTS": 58,
+      "GE_5_CENTS": 265,
+      "GE_3_CENTS": 435,
+      "THIN_1_TO_2_CENTS": 245
+    },
+    "other_classes": {
+      "OFFERED_UNDER_PAR": 680,
+      "NOT_OFFERED_UNDER_PAR": 84,
+      "FORMATION_OR_FLOOR_UNAVAILABLE": 20,
+      "UNKNOWN_BELL": 20
+    }
+  },
+  "standing_baseline": {
+    "valid_completed_pairs": 214,
+    "locked_cents": 350,
+    "game_capture_rate": 0.31470588235294117,
+    "cents_capture_rate": 0.11207172590457894
+  },
+  "market": {
+    "GE_10_CENTS": {
+      "denominator_games": 58,
+      "denominator_cents": 817,
+      "captured_games": 28,
+      "captured_locked_cents": 133
+    },
+    "GE_5_CENTS": {
+      "denominator_games": 265,
+      "denominator_cents": 2157,
+      "captured_games": 136,
+      "captured_locked_cents": 406
+    },
+    "GE_3_CENTS": {
+      "denominator_games": 435,
+      "denominator_cents": 2743,
+      "captured_games": 211,
+      "captured_locked_cents": 551
+    },
+    "THIN_1_TO_2_CENTS": {
+      "denominator_games": 245,
+      "denominator_cents": 380,
+      "captured_games": 89,
+      "captured_locked_cents": 111
+    },
+    "ALL_OFFERED": {
+      "denominator_games": 680,
+      "denominator_cents": 3123,
+      "captured_games": 300,
+      "captured_locked_cents": 662
+    }
+  },
+  "strict": {
+    "GE_10_CENTS": {
+      "denominator_games": 58,
+      "denominator_cents": 817,
+      "captured_games": 21,
+      "captured_locked_cents": 85
+    },
+    "GE_5_CENTS": {
+      "denominator_games": 265,
+      "denominator_cents": 2157,
+      "captured_games": 106,
+      "captured_locked_cents": 283
+    },
+    "GE_3_CENTS": {
+      "denominator_games": 435,
+      "denominator_cents": 2743,
+      "captured_games": 170,
+      "captured_locked_cents": 389
+    },
+    "THIN_1_TO_2_CENTS": {
+      "denominator_games": 245,
+      "denominator_cents": 380,
+      "captured_games": 64,
+      "captured_locked_cents": 83
+    },
+    "ALL_OFFERED": {
+      "denominator_games": 680,
+      "denominator_cents": 3123,
+      "captured_games": 234,
+      "captured_locked_cents": 472
+    }
+  },
+  "by_category": [
+    {
+      "category": "ATP_CHALL",
+      "market": {
+        "denominator_games": 312,
+        "denominator_cents": 1310,
+        "captured_games": 116,
+        "captured_locked_cents": 234
+      },
+      "strict": {
+        "denominator_games": 312,
+        "denominator_cents": 1310,
+        "captured_games": 84,
+        "captured_locked_cents": 147
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "market": {
+        "denominator_games": 135,
+        "denominator_cents": 769,
+        "captured_games": 69,
+        "captured_locked_cents": 136
+      },
+      "strict": {
+        "denominator_games": 135,
+        "denominator_cents": 769,
+        "captured_games": 71,
+        "captured_locked_cents": 152
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "market": {
+        "denominator_games": 95,
+        "denominator_cents": 340,
+        "captured_games": 46,
+        "captured_locked_cents": 104
+      },
+      "strict": {
+        "denominator_games": 95,
+        "denominator_cents": 340,
+        "captured_games": 31,
+        "captured_locked_cents": 47
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "market": {
+        "denominator_games": 138,
+        "denominator_cents": 704,
+        "captured_games": 69,
+        "captured_locked_cents": 188
+      },
+      "strict": {
+        "denominator_games": 138,
+        "denominator_cents": 704,
+        "captured_games": 48,
+        "captured_locked_cents": 126
+      }
+    }
+  ],
+  "formation_only_and_not_offered_separate": true
+}

@@ -1,0 +1,32 @@
+{
+  "first_placements": 1555,
+  "rest_mutations": 540531,
+  "REFLEX_POST": 0,
+  "first_post_t_minus_scheduled_seconds": {
+    "n": 1555,
+    "null_n": 0,
+    "sum": 92289134.63000011,
+    "min": -14742,
+    "p25": 51644,
+    "median": 52974,
+    "p75": 67344,
+    "p90": 82150,
+    "max": 117646.81500005722
+  },
+  "first_post_t_minus_actual_bell_seconds": {
+    "n": 467,
+    "null_n": 1088,
+    "sum": 32684241,
+    "min": 3862,
+    "p25": 42609,
+    "median": 50387,
+    "p75": 71219,
+    "p90": 142857,
+    "max": 265110
+  },
+  "read_at_first_post": {
+    "SETTLED|FULL_POST_ONSET_PRINT_AND_BOOK_HISTORY_RECENCY_WEIGHTED_BY_CAUSAL_RANK": 758,
+    "FALLING|FULL_POST_ONSET_PRINT_AND_BOOK_HISTORY_RECENCY_WEIGHTED_BY_CAUSAL_RANK": 491,
+    "RISING|FULL_POST_ONSET_PRINT_AND_BOOK_HISTORY_RECENCY_WEIGHTED_BY_CAUSAL_RANK": 306
+  }
+}

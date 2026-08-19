@@ -1,0 +1,47 @@
+{
+  "exact_parent": "e79c1feef76d7dfd7ec2737b3663670ddce0d342",
+  "existing_lane_modifications": [
+    {
+      "path": "arb-executor/analysis/build_window1_v38_maker_only.js",
+      "role": "MINIMAL_V52R804_REGISTRATION_AND_OUTPUT_DISPATCH_ONLY"
+    }
+  ],
+  "additions": [
+    "arb-executor/analysis/window1_v52r_exam_adapter.js",
+    "arb-executor/analysis/build_window1_v52r_disposition_804.js",
+    "arb-executor/analysis/check_window1_v52r_exam_sanity.js",
+    "arb-executor/tests/test_window1_v52r_exam_adapter.js",
+    ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/*"
+  ],
+  "policy_files_modified": 0,
+  "v52e804_protected_block_modified": false,
+  "v52e804_attestation": {
+    "frozen_commit": "e79c1feef76d7dfd7ec2737b3663670ddce0d342",
+    "files": {
+      "arb-executor/analysis/build_window1_v52e_disposition_804.js": {
+        "frozen_sha256": "c410da3af1df20188646002e35299a66a36ccc86c824b8bec41d92564add5bf7",
+        "current_sha256": "c410da3af1df20188646002e35299a66a36ccc86c824b8bec41d92564add5bf7",
+        "byte_identical": true
+      },
+      "arb-executor/analysis/window1_v52e_palantir_wiring.js": {
+        "frozen_sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+        "current_sha256": "41db9aa4299686bdf248b20b7ba94e1109233ff4d6fc4e7fa25f2be05c02aea4",
+        "byte_identical": true
+      },
+      "arb-executor/tests/test_window1_v52e_palantir_wiring.js": {
+        "frozen_sha256": "9b122d80a15934d10941267f20a19df2f98e4ddbed45b38ed02f20468d855fa8",
+        "current_sha256": "9b122d80a15934d10941267f20a19df2f98e4ddbed45b38ed02f20468d855fa8",
+        "byte_identical": true
+      }
+    },
+    "protected_exam_block": {
+      "frozen_sha256": "693b09449c0c7a4218ba6cc919ffcc5455ca0647cacfd66ffbdf2b3ea84c4986",
+      "current_sha256": "693b09449c0c7a4218ba6cc919ffcc5455ca0647cacfd66ffbdf2b3ea84c4986",
+      "frozen_bytes": 24176,
+      "current_bytes": 24176,
+      "byte_identical": true
+    },
+    "shared_builder_whole_file_expected_to_change_only_for_v52r804_registration": true,
+    "pass": true
+  }
+}

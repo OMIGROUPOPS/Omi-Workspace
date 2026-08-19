@@ -8,6 +8,7 @@ const readline = require("readline");
 const stream = require("stream/promises");
 const zlib = require("zlib");
 const groundTruthWindowAdapter = require("./window1_ground_truth_window_adapter.js");
+const v52rExamAdapter = require("./window1_v52r_exam_adapter.js");
 const V36_COMMIT = "bfde0d8d1135f5c5f48a5f3d619ab30050efab83";
 const REACH_COMMIT = "57daf3c15ad618098a810566d24127df8f17f3f9";
 const GAP_COMMIT = "b581cbb58f660939ed9b0c2e88ddc42163dbab9a";
@@ -126,6 +127,8 @@ const isV49 = variant === "v49";
 const isV52c = variant === "v52c";
 const isV52d = variant === "v52d";
 const isV52eExam = variant === "v52e804";
+const isV52rExam = variant === "v52r804";
+const isV52FullExam = isV52eExam || isV52rExam;
 const isV52f = variant === "v52f";
 const isV52g = variant === "v52g";
 const isV52h = variant === "v52h";
@@ -138,7 +141,7 @@ const isV52n = variant === "v52n";
 const isV52o = variant === "v52o";
 const isV52p = variant === "v52p";
 const isV52q = variant === "v52q";
-const isV52r = variant === "v52r";
+const isV52r = variant === "v52r" || isV52rExam;
 const isV52Ripeness = isV52p || isV52q;
 const isV52MacroRecognition = isV52m || isV52n || isV52o || isV52Ripeness || isV52r;
 const isV52CausalOnset = isV52l || isV52MacroRecognition;
@@ -155,7 +158,7 @@ const isAttribution = isV43 || isV45Family;
 const hasDeepGap = isV42 || isAttribution;
 const isMaker41 = isV41 || hasDeepGap;
 const isPlacementStack = isV39 || isV40 || isMaker41;
-if (!["v38", "v39", "v40", "v41", "v42", "v43", "v45", "v46", "v47", "v48", "v49", "v49b", "v52", "v52b", "v52c", "v52d", "v52e", "v52e804", "v52f", "v52g", "v52h", "v52i", "v52j", "v52k", "v52l", "v52m", "v52n", "v52o", "v52p", "v52q", "v52r"].includes(variant)) throw new Error(`unknown variant ${variant}`);
+if (!["v38", "v39", "v40", "v41", "v42", "v43", "v45", "v46", "v47", "v48", "v49", "v49b", "v52", "v52b", "v52c", "v52d", "v52e", "v52e804", "v52f", "v52g", "v52h", "v52i", "v52j", "v52k", "v52l", "v52m", "v52n", "v52o", "v52p", "v52q", "v52r", "v52r804"].includes(variant)) throw new Error(`unknown variant ${variant}`);
 const policy = require(isV52r ? "./window1_v52r_assembled_policy.js" : isV52q ? "./window1_v52q_anchor_correction.js" : isV52p ? "./window1_v52p_ripeness_gated_role_binding.js" : isV52o ? "./window1_v52o_benchmarked_role_instrument.js" : isV52n ? "./window1_v52n_recognition_confidence_gates.js" : isV52m ? "./window1_v52m_macro_recognition.js" : isV52l ? "./window1_v52h_remove_pair_lows_precondition.js" : isV52k ? "./window1_v52k_library_backed_evidence.js" : isV52j ? "./window1_v52j_role_conditioned_level_selection.js" : isV52i ? "./window1_v52i_depth_informed_level_selection.js" : isV52h ? "./window1_v52h_remove_pair_lows_precondition.js" : isV52g ? "./window1_v52g_joint_target_conservation.js" : isV52f ? "./window1_v52f_pair_entry_conservation.js" : isV52e ? "./window1_v52e_palantir_wiring.js" : isV52d ? "./window1_v52d_disagreement_referee.js" : isV52c ? "./window1_v52c_full_post_onset_read.js" : isV52b ? "./window1_v52b_read_level_authority.js" : isV52 ? "./window1_v52_judgment_gate.js" : isV49b ? "./window1_v49b_faithful_stand_at_p.js" : isV49 ? "./window1_v49_evidenced_level_standing.js" : isV48 ? "./window1_v48_trades_as_truth.js" : isV47 ? "./window1_v47_same_tick_arm.js" : isV46 ? "./window1_v46_pair_gated_gap_credit.js" : isV45 ? "./window1_v45_guard_release_sibling_credit.js" : isV43 ? "./window1_v43_composed_machine.js" : isV42 ? "./window1_v42_deep_gap_feasibility_guard.js" : isV41 ? "./window1_v41_maker_machine.js" : isV40 ? "./window1_v40_incumbent_direction_placement_stack.js" : isV39 ? "./window1_v39_corrected_placement_stack.js" : "./window1_v38_maker_only_machine.js");
 const frozenV52Policy = isV52b ? require("./window1_v52_judgment_gate.js") : null;
 const frozenV52bPolicy = isV52FullRead ? require("./window1_v52b_read_level_authority.js") : null;
@@ -177,11 +180,13 @@ const privateRoot = path.resolve(arg("--private-root", process.env.W1_PRIVATE_RO
 const v52hNamedOnly = isV52h && arg("--named-only", "false") === "true";
 const v52jNamedOnly = isV52j && arg("--named-only", "false") === "true";
 const v52kNamedOnly = isV52k && arg("--named-only", "false") === "true";
-const output = path.resolve(arg("--output", path.join(repo, isV52r ? ".claude/window1_live_v4_replay/v52r_assembled_policy_20260818" : isV52q ? ".claude/window1_live_v4_replay/v52q_anchor_correction_20260818" : isV52p ? ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817" : isV52o ? ".claude/window1_live_v4_replay/v52o_benchmarked_role_instrument_20260817" : isV52n ? ".claude/window1_live_v4_replay/v52n_recognition_confidence_gates_20260817" : isV52m ? ".claude/window1_live_v4_replay/v52m_macro_recognition_20260817" : isV52l ? ".claude/window1_live_v4_replay/v52l_causal_stability_onset_20260814" : isV52eExam ? ".claude/window1_live_v4_replay/v52e_disposition_804_20260813" : v52kNamedOnly ? ".claude/window1_live_v4_replay/v52k_guegom_named_observation_20260814" : isV52k ? ".claude/window1_live_v4_replay/v52k_library_backed_evidence_20260814" : v52jNamedOnly ? ".claude/window1_live_v4_replay/v52j_guegom_named_observation_20260813" : isV52j ? ".claude/window1_live_v4_replay/v52j_role_conditioned_level_selection_20260813" : isV52i ? ".claude/window1_live_v4_replay/v52i_depth_informed_level_selection_20260813" : v52hNamedOnly ? ".claude/window1_live_v4_replay/v52h_smiila_named_observation_20260813" : isV52h ? ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813" : isV52g ? ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813" : isV52f ? ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813" : isV52e ? ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812" : isV52d ? ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812" : isV52c ? ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812" : isV52b ? ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812" : isV52 ? ".claude/window1_live_v4_replay/v52_judgment_gate_20260812" : isV49b ? ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811" : isV49 ? ".claude/window1_live_v4_replay/v49_evidenced_level_standing_20260810" : isV48 ? ".claude/window1_live_v4_replay/v48_trades_as_truth_20260810" : isV47 ? ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810" : isV46 ? ".claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810" : isV45 ? ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809" : isV43 ? ".claude/window1_live_v4_replay/v43_composed_machine_20260809" : isV42 ? ".claude/window1_live_v4_replay/v42_deep_gap_feasibility_guard_20260809" : isV41 ? ".claude/window1_live_v4_replay/v41_maker_machine_20260808" : isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
+const output = path.resolve(arg("--output", path.join(repo, isV52rExam ? ".claude/window1_live_v4_replay/v52r_disposition_804_20260818" : isV52r ? ".claude/window1_live_v4_replay/v52r_assembled_policy_20260818" : isV52q ? ".claude/window1_live_v4_replay/v52q_anchor_correction_20260818" : isV52p ? ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817" : isV52o ? ".claude/window1_live_v4_replay/v52o_benchmarked_role_instrument_20260817" : isV52n ? ".claude/window1_live_v4_replay/v52n_recognition_confidence_gates_20260817" : isV52m ? ".claude/window1_live_v4_replay/v52m_macro_recognition_20260817" : isV52l ? ".claude/window1_live_v4_replay/v52l_causal_stability_onset_20260814" : isV52eExam ? ".claude/window1_live_v4_replay/v52e_disposition_804_20260813" : v52kNamedOnly ? ".claude/window1_live_v4_replay/v52k_guegom_named_observation_20260814" : isV52k ? ".claude/window1_live_v4_replay/v52k_library_backed_evidence_20260814" : v52jNamedOnly ? ".claude/window1_live_v4_replay/v52j_guegom_named_observation_20260813" : isV52j ? ".claude/window1_live_v4_replay/v52j_role_conditioned_level_selection_20260813" : isV52i ? ".claude/window1_live_v4_replay/v52i_depth_informed_level_selection_20260813" : v52hNamedOnly ? ".claude/window1_live_v4_replay/v52h_smiila_named_observation_20260813" : isV52h ? ".claude/window1_live_v4_replay/v52h_remove_pair_lows_precondition_20260813" : isV52g ? ".claude/window1_live_v4_replay/v52g_joint_target_conservation_20260813" : isV52f ? ".claude/window1_live_v4_replay/v52f_pair_entry_conservation_20260813" : isV52e ? ".claude/window1_live_v4_replay/v52e_palantir_wiring_20260812" : isV52d ? ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812" : isV52c ? ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812" : isV52b ? ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812" : isV52 ? ".claude/window1_live_v4_replay/v52_judgment_gate_20260812" : isV49b ? ".claude/window1_live_v4_replay/v49b_faithful_stand_at_p_20260811" : isV49 ? ".claude/window1_live_v4_replay/v49_evidenced_level_standing_20260810" : isV48 ? ".claude/window1_live_v4_replay/v48_trades_as_truth_20260810" : isV47 ? ".claude/window1_live_v4_replay/v47_same_tick_arm_20260810" : isV46 ? ".claude/window1_live_v4_replay/v46_pair_gated_gap_credit_20260810" : isV45 ? ".claude/window1_live_v4_replay/v45_guard_release_sibling_credit_20260809" : isV43 ? ".claude/window1_live_v4_replay/v43_composed_machine_20260809" : isV42 ? ".claude/window1_live_v4_replay/v42_deep_gap_feasibility_guard_20260809" : isV41 ? ".claude/window1_live_v4_replay/v41_maker_machine_20260808" : isV40 ? ".claude/window1_live_v4_replay/v40_incumbent_direction_placement_stack_20260808" : isV39 ? ".claude/window1_live_v4_replay/v39_corrected_placement_stack_20260807" : OUT_REL)));
 const compare = arg("--compare", null) ? path.resolve(arg("--compare", null)) : null;
+const sanityReceiptPath = arg("--sanity-receipt", null) ? path.resolve(arg("--sanity-receipt", null)) : null;
 const stage = arg("--stage", "full");
 if (isV52 && !["stage1", "full", "cohort30", "disposition804"].includes(stage)) throw new Error(`invalid V52 stage ${stage}`);
 if (isV52eExam && stage !== "disposition804") throw new Error(`V52e full exam requires disposition804 stage, got ${stage}`);
+if (isV52rExam && stage !== "disposition804") throw new Error(`V52r full exam requires disposition804 stage, got ${stage}`);
 const V52_FLOW_EVENTS = new Set(["26JUL16MERDRO", "26JUL12POLKUH", "26JUL19ARSMAR", "26JUL13SANDAN", "26JUL14PUTJEA"]);
 
 function ensure(value, message) { if (!value) throw new Error(message); }
@@ -270,13 +275,13 @@ function makeLosslessTraceNormalizer() {
     rows() { return [...sequenceByLeg.values()].reduce((sum, value) => sum + value, 0); },
   };
 }
-function makeTraceChunkWriter(dir, eventsPerChunk = 8, normalizer = null) {
+function makeTraceChunkWriter(dir, eventsPerChunk = 8, normalizer = null, filePrefix = "V52E_FULL_DECISION_TRACE_804_CHUNK") {
   let rows = [], eventIds = [], ordinal = 0;
   const chunks = [];
   const flush = async () => {
     if (!rows.length) return;
     ordinal += 1;
-    const name = `V52E_FULL_DECISION_TRACE_804_CHUNK_${String(ordinal).padStart(3, "0")}.jsonl.gz`;
+    const name = `${filePrefix}_${String(ordinal).padStart(3, "0")}.jsonl.gz`;
     await writeGzipRowsFile(path.join(dir, name), rows);
     chunks.push({ name, events: [...eventIds], event_count: eventIds.length, row_count: rows.length, sha256: fileHash(path.join(dir, name)), bytes: fs.statSync(path.join(dir, name)).size });
     rows = []; eventIds = [];
@@ -297,6 +302,26 @@ function readRows(file) {
 function readRowsBytes(bytes) {
   const text = zlib.gunzipSync(bytes).toString("utf8").trim();
   return text ? text.split(/\r?\n/).map(JSON.parse) : [];
+}
+function compactV52rExamEvent(event) {
+  return {
+    event_id: event.event_id,
+    category: event.category,
+    starting_price_split: event.starting_price_split,
+    bell_confidence: event.bell_confidence,
+    legs: Object.fromEntries(Object.entries(event.legs).map(([legId, leg]) => [legId, {
+      leg_id: leg.leg_id,
+      leg_identity: leg.leg_identity,
+      ticker: leg.ticker,
+      credited: leg.credited,
+      entry_cents: leg.entry_cents,
+      fill_timestamp_epoch: leg.fill_timestamp_epoch,
+      fill_receipt: leg.fill_receipt ?? null,
+      fill_class: leg.fill_class ?? null,
+      terminal_reason: leg.terminal_reason,
+      judgment_gate_blocks: leg.judgment_gate_blocks ?? {},
+    }])),
+  };
 }
 function gitHead(root) {
   return require("child_process").execFileSync("git", ["-c", `safe.directory=${path.resolve(root).replaceAll("\\", "/")}`, "rev-parse", "HEAD"], { cwd: root, encoding: "utf8" }).trim();
@@ -958,7 +983,7 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
           final_target_cents: decision.target_cents,
           reason: decision.reason,
         };
-        if (isV52eExam) {
+        if (isV52FullExam) {
           accumulateExamTraceStats(traceRow);
           leg.judgment_trace_rows.push(activeExamTraceNormalizer.normalize(traceRow));
         } else leg.judgment_trace_rows.push(traceRow);
@@ -2522,6 +2547,14 @@ async function main() {
   ensure(gitHead(reachRoot) === REACH_COMMIT, "reach frozen worktree mismatch");
   ensure(gitHead(gapRoot) === GAP_COMMIT, "gap-grade frozen worktree mismatch");
   ensure(isPlacementStack || gitHead(repo) === GAP_COMMIT || compare, "V38 must build from b581cbb parent before commit");
+  const examPolicyIdentity = isV52rExam ? v52rExamAdapter.attestFrozenPolicy(repo) : null;
+  const examV52eLaneIdentity = isV52rExam ? v52rExamAdapter.attestV52eLaneUnchanged(repo) : null;
+  const examSanityFence = isV52rExam ? (() => {
+    ensure(sanityReceiptPath && fs.existsSync(sanityReceiptPath), "V52r disposition804 requires a completed 30-game sanity receipt");
+    const receipt = JSON.parse(fs.readFileSync(sanityReceiptPath, "utf8"));
+    ensure(receipt.pass === true && receipt.outcomes_and_score_artifacts_byte_identical === true && receipt.frozen_commit === v52rExamAdapter.FROZEN_V52R_COMMIT, "V52r 30-game sanity receipt is invalid");
+    return receipt;
+  })() : null;
   safeOutput(output);
   const n9Binding = isV52e ? loadN9CleanStore() : null;
   if (isV52e) policy.configurePalantir(n9Binding.store);
@@ -2555,7 +2588,7 @@ async function main() {
   for (const span of spans) {
     const scheduled = Number.isFinite(span.formation_clock?.t_minus_scheduled_seconds) ? span.w1_left_epoch + span.formation_clock.t_minus_scheduled_seconds : null;
     const actualBell = Number.isFinite(span.formation_clock?.t_minus_actual_bell_seconds) ? span.w1_left_epoch + span.formation_clock.t_minus_actual_bell_seconds : null;
-    const base = { event_id: span.event_id, category: span.category, starting_price_split: span.starting_price_split, bell_confidence: span.precision_class, edge_source_field: span.edge_source_field, left: span.w1_left_epoch, right: span.w1_right_epoch, scheduled, actual_bell: actualBell, v52_flow_trace: isV52eExam || (isV52 && Boolean(v52ShortEvent(span.event_id))), legs: {} };
+    const base = { event_id: span.event_id, category: span.category, starting_price_split: span.starting_price_split, bell_confidence: span.precision_class, edge_source_field: span.edge_source_field, left: span.w1_left_epoch, right: span.w1_right_epoch, scheduled, actual_bell: actualBell, v52_flow_trace: isV52FullExam || (isV52 && Boolean(v52ShortEvent(span.event_id))), legs: {} };
     for (const leg of span.per_leg) {
       const prior = traceByLeg.get(leg.leg_identity), reach = reachByLeg.get(leg.leg_identity);
       ensure(prior && reach, `missing leg binding ${leg.leg_identity}`);
@@ -2606,8 +2639,8 @@ async function main() {
   const v52dPriorBCohortBytes = isV52d ? gitShow(V52B_COMMIT, ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812/COHORT_SELECTION_RECEIPT.json") : null;
   const v52dPriorCCohortBytes = isV52d ? gitShow(V52C_COMMIT, ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/COHORT_SELECTION_RECEIPT.json") : null;
   const v52dCohort = isV52d ? buildV52dCohort(baseByEvent, v52dCensusBytes, v52dPriorBCohortBytes, v52dPriorCCohortBytes) : null;
-  const v52eCensusBytes = isV52e && !isV52eExam ? gitShow(REFLEX_CENSUS_COMMIT, ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/QUEUE_FORMATION_REFLEX_CENSUS.json") : null;
-  const v52ePriorReceipts = isV52e && !isV52eExam ? [
+  const v52eCensusBytes = isV52e && !isV52FullExam ? gitShow(REFLEX_CENSUS_COMMIT, ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/QUEUE_FORMATION_REFLEX_CENSUS.json") : null;
+  const v52ePriorReceipts = isV52e && !isV52FullExam ? [
     { iteration: "V52B", commit: V52B_COMMIT, path: ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52B_COMMIT, ".claude/window1_live_v4_replay/v52b_read_level_authority_20260812/COHORT_SELECTION_RECEIPT.json") },
     { iteration: "V52C", commit: V52C_COMMIT, path: ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52C_COMMIT, ".claude/window1_live_v4_replay/v52c_full_post_onset_read_20260812/COHORT_SELECTION_RECEIPT.json") },
     { iteration: "V52D", commit: V52D_COMMIT, path: ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52D_COMMIT, ".claude/window1_live_v4_replay/v52d_disagreement_referee_20260812/COHORT_SELECTION_RECEIPT.json") },
@@ -2625,12 +2658,12 @@ async function main() {
     ...((isV52q || isV52r) ? [{ iteration: "V52P", commit: V52P_COMMIT, path: ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52P_COMMIT, ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/COHORT_SELECTION_RECEIPT.json") }] : []),
     ...(isV52r ? [{ iteration: "V52Q", commit: V52Q_COMMIT, path: ".claude/window1_live_v4_replay/v52q_anchor_correction_20260818/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52Q_COMMIT, ".claude/window1_live_v4_replay/v52q_anchor_correction_20260818/COHORT_SELECTION_RECEIPT.json") }] : []),
   ] : null;
-  const v52eCohort = isV52e && !isV52eExam ? (isV52r ? buildV52rCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52q ? buildV52qCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52p ? buildV52pCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52o ? buildV52oCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52n ? buildV52nCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52m ? buildV52mCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52l ? buildV52lCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52k ? buildV52kCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52j ? buildV52jCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52i ? buildV52iCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52h ? buildV52hCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52g ? buildV52gCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52f ? buildV52fCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : buildV52eCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts)) : null;
+  const v52eCohort = isV52e && !isV52FullExam ? (isV52r ? buildV52rCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52q ? buildV52qCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52p ? buildV52pCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52o ? buildV52oCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52n ? buildV52nCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52m ? buildV52mCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52l ? buildV52lCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52k ? buildV52kCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52j ? buildV52jCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52i ? buildV52iCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52h ? buildV52hCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52g ? buildV52gCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : isV52f ? buildV52fCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts) : buildV52eCohort(baseByEvent, v52eCensusBytes, v52ePriorReceipts)) : null;
   if (isV52c) v52bCohort = v52cCohort; // compatibility alias for the shared receipt block only
   if (isV52d) v52bCohort = v52dCohort; // compatibility alias for the shared receipt block only
-  if (isV52e && !isV52eExam) v52bCohort = v52eCohort; // compatibility alias for the shared receipt block only
-  const activeReadCohort = isV52eExam ? null : isV52e ? v52eCohort : isV52d ? v52dCohort : isV52c ? v52cCohort : v52bCohort;
-  if (isV52ReadAuthority && !isV52eExam) {
+  if (isV52e && !isV52FullExam) v52bCohort = v52eCohort; // compatibility alias for the shared receipt block only
+  const activeReadCohort = isV52FullExam ? null : isV52e ? v52eCohort : isV52d ? v52dCohort : isV52c ? v52cCohort : v52bCohort;
+  if (isV52ReadAuthority && !isV52FullExam) {
     const selected = new Set((v52hNamedOnly || v52jNamedOnly || v52kNamedOnly) ? [activeReadCohort.named_reused_observation.event_id] : activeReadCohort.combined_30.map((row) => row.event_id));
     for (const base of baseByEvent.values()) base.v52_flow_trace = selected.has(base.event_id);
   }
@@ -2732,16 +2765,17 @@ async function main() {
   const v52OnsetReceiptPath = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MERDRO_CLOSEOUT.json";
   const v52TapePackBytes = isV52 ? gitShow(FIVE_GAME_TAPE_PACK_COMMIT, v52TapePackPath) : null;
   const v52OnsetReceiptBytes = isV52 ? gitShow(STABILITY_ONSET_COMMIT, v52OnsetReceiptPath) : null;
-  const examTraceNormalizer = isV52eExam ? makeLosslessTraceNormalizer() : null;
-  const examTraceWriter = isV52eExam ? makeTraceChunkWriter(output, 8, null) : null;
+  const examRoleStats = { role_receipt_rows: 0, missing_both_clock_fields: [], terminal_by_leg: new Map() };
+  const examTraceNormalizer = isV52rExam ? v52rExamAdapter.makeExamTraceNormalizer(examRoleStats) : isV52eExam ? makeLosslessTraceNormalizer() : null;
+  const examTraceWriter = isV52rExam ? makeTraceChunkWriter(output, 1, null, "V52R_FULL_DECISION_TRACE_804_CHUNK") : isV52eExam ? makeTraceChunkWriter(output, 8, null) : null;
   const examTraceStats = { rows: 0, palantir_consumption_rows: 0, continuous_rows: 0, priors_gate_true_rows: 0, N2_rows: 0, N4_rows: 0, N5_rows: 0, N4_grid_rows: 0, N4_rescue_rows: 0, N5_adjudication_rows: 0, by_block_reason: {}, by_category_x_block_reason: {}, provenance_asset_ids: new Set() };
-  if (isV52eExam) { activeExamTraceNormalizer = examTraceNormalizer; activeExamTraceStats = examTraceStats; }
+  if (isV52FullExam) { activeExamTraceNormalizer = examTraceNormalizer; activeExamTraceStats = examTraceStats; }
   const examSpanCloseRows = [];
   const rightEdgeIndependenceRows = [];
   let index = 0;
-  const v52ReadEventIds = isV52ReadAuthority && !isV52eExam ? new Set(activeReadCohort.combined_30.map((row) => row.event_id)) : null;
+  const v52ReadEventIds = isV52ReadAuthority && !isV52FullExam ? new Set(activeReadCohort.combined_30.map((row) => row.event_id)) : null;
   if (v52hNamedOnly || v52jNamedOnly || v52kNamedOnly) { v52ReadEventIds.clear(); v52ReadEventIds.add(activeReadCohort.named_reused_observation.event_id); }
-  const replayBases = [...baseByEvent.values()].filter((base) => !isV52 || (isV52eExam ? true : isV52ReadAuthority ? v52ReadEventIds.has(base.event_id) : stage === "full" || v52ShortEvent(base.event_id))).sort((a, b) => a.event_id.localeCompare(b.event_id));
+  const replayBases = [...baseByEvent.values()].filter((base) => !isV52 || (isV52FullExam ? true : isV52ReadAuthority ? v52ReadEventIds.has(base.event_id) : stage === "full" || v52ShortEvent(base.event_id))).sort((a, b) => a.event_id.localeCompare(b.event_id));
   for (const base of replayBases) {
     index += 1; if (index % 50 === 0) process.stderr.write(`${isV52 ? "V52x2" : isV49b ? "V49bx2" : isV49 ? "V49x2" : isV48 ? "V48x5" : isV47 ? "V47x2" : isV46 ? "V46x2" : isV45 ? "V45x2" : isV43 ? "V43x8" : isV42 ? "V42" : isV41 ? "V41" : isV40 ? "V40" : isV39 ? "V39" : "V38"} replay ${index}/${replayBases.length}\n`);
     const tapes = new Map(), prints = new Map();
@@ -2754,7 +2788,11 @@ async function main() {
       frozenOnsets = onsetPolicy.computeEventOnsets(base, tapes, prints);
       if (isV52CausalOnset) {
         causalOnsets = causalOnsetPolicy.computeEventOnsets(base, tapes, prints);
-        rightEdgeIndependenceRows.push(causalOnsetPolicy.assertRightEdgeIndependence(base, tapes, prints));
+        const independence = causalOnsetPolicy.assertRightEdgeIndependence(base, tapes, prints);
+        if (isV52rExam) {
+          ensure(independence.pass === true, `V52r right-edge independence failed ${base.event_id}`);
+          rightEdgeIndependenceRows.push({ event_id: base.event_id, pass: true });
+        } else rightEdgeIndependenceRows.push(independence);
       } else for (const id of Object.keys(base.legs)) base.legs[id].v52_onset = frozenOnsets[id];
     }
     for (const spec of machineSpecs) {
@@ -2763,14 +2801,24 @@ async function main() {
       const specBase = isV52CausalOnset ? { ...base, v52_onset_mode: spec.onset_mode, legs: Object.fromEntries(Object.entries(base.legs).map(([id, leg]) => [id, { ...leg, v52_onset: specOnsets[id] }])) } : base;
       // Strict-ruler decisions are scored but never exported as a second receipt diary.
       // Suppressing that duplicate trace is serializer/memory hygiene only.
-      const strictBase = (isV52eExam || isV52ReadAuthority) ? { ...specBase, v52_flow_trace: false } : specBase;
-      const run = machineRuns.get(spec.name), market = simulate(specBase, tapes, prints, marketMode, spec.clauses), strict = simulate(strictBase, tapes, prints, "STRICT_PRINT_CROSS", spec.clauses);
-      run.marketEvents.push(market.event); run.strictEvents.push(strict.event);
-      for (const row of market.joinQualifications) run.joinQualifications.push({ machine: spec.name, ...row });
-      for (const row of strict.joinQualifications) run.joinQualifications.push({ machine: spec.name, ...row });
-      for (const row of market.actions) run.actions.push({ machine: spec.name, mode: marketMode, ...row });
-      for (const row of strict.actions) run.actions.push({ machine: spec.name, mode: "STRICT_PRINT_CROSS", ...row });
-      if (isV52eExam) {
+      const collectExamTrace = isV52eExam || (isV52rExam && spec.name === "V52R_ASSEMBLED_POLICY");
+      const marketBase = isV52rExam && !collectExamTrace ? { ...specBase, v52_flow_trace: false } : specBase;
+      const strictBase = (isV52FullExam || isV52ReadAuthority) ? { ...specBase, v52_flow_trace: false } : specBase;
+      const run = machineRuns.get(spec.name), market = simulate(marketBase, tapes, prints, marketMode, spec.clauses), strict = simulate(strictBase, tapes, prints, "STRICT_PRINT_CROSS", spec.clauses);
+      run.marketEvents.push(isV52rExam ? compactV52rExamEvent(market.event) : market.event);
+      run.strictEvents.push(isV52rExam ? compactV52rExamEvent(strict.event) : strict.event);
+      if (isV52rExam) {
+        if (spec.name === "V52R_ASSEMBLED_POLICY") for (const row of market.actions) {
+          if (!["PLACE_REST", "REPRICE_REST", "PAIR_CAP_REPRICE", "GAP_CREDIT_REPRICE_DOWN"].includes(row.kind)) continue;
+          run.actions.push({ machine: spec.name, mode: marketMode, event_id: row.event_id, leg_identity: row.leg_identity, kind: row.kind, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, t_minus_scheduled_seconds: row.t_minus_scheduled_seconds, t_minus_actual_bell_seconds: row.t_minus_actual_bell_seconds, birth_license: row.birth_license ? { read: row.birth_license.read ? { passed: row.birth_license.read.passed, state: row.birth_license.read.state, evidence: row.birth_license.read.evidence } : null } : null });
+        }
+      } else {
+        for (const row of market.joinQualifications) run.joinQualifications.push({ machine: spec.name, ...row });
+        for (const row of strict.joinQualifications) run.joinQualifications.push({ machine: spec.name, ...row });
+        for (const row of market.actions) run.actions.push({ machine: spec.name, mode: marketMode, ...row });
+        for (const row of strict.actions) run.actions.push({ machine: spec.name, mode: "STRICT_PRINT_CROSS", ...row });
+      }
+      if (collectExamTrace) {
         const traceRows = Object.values(market.event.legs).flatMap((leg) => leg.judgment_trace_rows).sort((a, b) => a[5] - b[5] || a[1].localeCompare(b[1]) || a[9].localeCompare(b[9]));
         await examTraceWriter.append(base.event_id, traceRows);
         for (const [id, leg] of Object.entries(market.event.legs)) {
@@ -2784,7 +2832,7 @@ async function main() {
       }
     }
   }
-  const examTraceChunks = isV52eExam ? await examTraceWriter.finish() : null;
+  const examTraceChunks = isV52FullExam ? await examTraceWriter.finish() : null;
   if (v52jNamedOnly || v52kNamedOnly) {
     const namedIteration = isV52k ? "V52K" : "V52J";
     const baselineRun = machineRuns.get("V52H_FROZEN_BASELINE"), candidateRun = machineRuns.get(isV52k ? "V52K_LIBRARY_BACKED_EVIDENCE" : "V52J_ROLE_CONDITIONED_LEVEL_SELECTION");
@@ -2890,7 +2938,7 @@ async function main() {
     if (compare) { fs.writeFileSync(path.join(compare, "DETERMINISM_RECEIPT.json"), canonical(determinism)); writeManifest(compare); ensure(fileHash(path.join(compare, "ARTIFACT_HASH_MANIFEST.json")) === fileHash(path.join(output, "ARTIFACT_HASH_MANIFEST.json")), "SMIILA final manifests differ"); }
     process.stdout.write(canonical({ output, observation, determinism })); return;
   }
-  if (isV52ReadAuthority && !isV52eExam) {
+  if (isV52ReadAuthority && !isV52FullExam) {
     const iterationLabel = isV52r ? "V52R_ITERATION_ASSEMBLED_POLICY" : isV52q ? "V52Q_ITERATION_ANCHOR_CORRECTION" : isV52p ? "V52P_ITERATION_RIPENESS_GATED_ROLE_BINDING" : isV52o ? "V52O_ITERATION_BENCHMARKED_ROLE_INSTRUMENT" : isV52n ? "V52N_ITERATION_RECOGNITION_CONFIDENCE_GATES" : isV52m ? "V52M_ITERATION_MACRO_RECOGNITION" : isV52l ? "V52L_CAUSAL_ONSET" : isV52k ? "V52K_ITERATION10" : isV52j ? "V52J_ITERATION9" : isV52i ? "V52I_ITERATION8" : isV52h ? "V52H_ITERATION7" : isV52g ? "V52G_ITERATION6" : isV52f ? "V52F_ITERATION5" : isV52e ? "V52E_ITERATION4" : isV52d ? "V52D_ITERATION3" : isV52c ? "V52C_ITERATION2" : "V52B_ITERATION1";
     const authorizedClause = isV52r ? "CLAUSE_3_TRD5_ROLE_AND_LOW_MINUS_ONE_ASSEMBLY_ONLY" : isV52q ? "CLAUSE_3_ROLE_ANCHOR_CORRECTION_ONLY" : isV52p ? "CLAUSE_3_RIPENESS_GATED_ROLE_BINDING_ONLY" : isV52o ? "CLAUSE_3_BENCHMARKED_EARLY_ROLE_INSTRUMENT_ONLY" : isV52n ? "CLAUSE_3_RECOGNITION_CONFIDENCE_GATE_ONLY" : isV52m ? "CLAUSE_3_CAUSAL_MACRO_RECOGNITION_FLOOR_DEPTH_ONLY" : isV52l ? "CLAUSE_1_CAUSAL_STABILITY_ONSET_ONLY" : isV52k ? "CLAUSE_3_LIBRARY_BACKED_LEVEL_EVIDENCE_ONLY" : isV52j ? "CLAUSE_3_N4_ROLE_CONDITIONED_LEVEL_SELECTION_ONLY" : isV52i ? "CLAUSE_3_N4_DEPTH_INFORMED_LEVEL_SELECTION_ONLY" : isV52h ? "CLAUSE_4_MARKET_PROOF_PRECONDITION_REMOVAL_ONLY" : isV52g ? "CLAUSE_6_ORDER_FREE_JOINT_TARGET_CONSERVATION_ONLY" : isV52f ? "CLAUSE_5_PAIR_ENTRY_CONSERVATION_ONLY" : isV52e ? "N9_CLEAN_PALANTIR_WIRING_ONLY" : isV52d ? "CLAUSE_4_DISAGREEMENT_REFEREE_ONLY" : isV52c ? "CLAUSE_2_EVIDENCE_HORIZON_ONLY" : "CLAUSE_3_LEVEL_AUTHORITY_ONLY";
     const baselineName = isV52r ? "V52L_FROZEN_BASELINE" : isV52q ? "V52P_FROZEN_BASELINE" : (isV52p || isV52o) ? "V52L_FROZEN_BASELINE" : isV52n ? "V52M_FROZEN_BASELINE" : isV52m ? "V52L_FROZEN_BASELINE" : (isV52l || isV52DepthValidation) ? "V52H_FROZEN_BASELINE" : isV52h ? "V52G_FROZEN_BASELINE" : isV52g ? "V52F_FROZEN_BASELINE" : isV52f ? "V52E_FROZEN_BASELINE" : isV52e ? "V52D_FROZEN_BASELINE" : isV52d ? "V52C_FROZEN_BASELINE" : isV52c ? "V52B_FROZEN_BASELINE" : "V52_FROZEN_BASELINE";
@@ -5145,6 +5193,64 @@ V52r is an operator-selected assembly over adopted V52l. Recognition is the pinn
       ensure(fileHash(path.join(compare, "ARTIFACT_HASH_MANIFEST.json")) === fileHash(path.join(output, "ARTIFACT_HASH_MANIFEST.json")), "V52e disposition final manifests differ");
     }
     process.stdout.write(canonical({ output, market, strict, states: stateCensus.states, offer_capture: offerCapture.market_ladder, REFLEX_POST: posting.REFLEX_POST, trace_rows: examTraceStats.rows, trace_chunks: examTraceChunks.length, determinism }));
+    return;
+  }
+  if (isV52rExam) {
+    const candidateRun = machineRuns.get("V52R_ASSEMBLED_POLICY");
+    const baselineRun = machineRuns.get("V52L_FROZEN_BASELINE");
+    ensure(candidateRun?.marketEvents.length === 804 && candidateRun?.strictEvents.length === 804, "V52r candidate event conservation failed");
+    ensure(baselineRun?.marketEvents.length === 804, "V52l baseline event conservation failed");
+    const built = v52rExamAdapter.buildExamArtifacts({
+      candidateRun,
+      baselineRun,
+      groundTruth: groundTruthWindowBinding,
+      terminalRoles: examRoleStats.terminal_by_leg,
+      roleStats: examRoleStats,
+      traceStats: examTraceStats,
+      traceNormalizer: examTraceNormalizer,
+      traceChunks: examTraceChunks,
+      spanCloseRows: examSpanCloseRows,
+      n9Binding,
+      policyIdentity: examPolicyIdentity,
+      v52eLaneIdentity: examV52eLaneIdentity,
+      sanityFence: examSanityFence,
+    });
+    const traceDictionary = examTraceNormalizer.entries();
+    await writeGzipRowsFile(path.join(output, "V52R_TRACE_DICTIONARY.jsonl.gz"), traceDictionary);
+    await writeGzipRowsFile(path.join(output, "V52R_CORRECTED_DECISION_SPAN_CLOSE_1608.jsonl.gz"), examSpanCloseRows.sort((a, b) => a.leg_identity.localeCompare(b.leg_identity)));
+    await writeGzipRowsFile(path.join(output, "MARKET_EVENT_LEDGER_804.jsonl.gz"), candidateRun.marketEvents.sort((a, b) => a.event_id.localeCompare(b.event_id)));
+    await writeGzipRowsFile(path.join(output, "STRICT_EVENT_LEDGER_804.jsonl.gz"), candidateRun.strictEvents.sort((a, b) => a.event_id.localeCompare(b.event_id)));
+    await writeGzipRowsFile(path.join(output, "V52L_MARKET_EVENT_LEDGER_804.jsonl.gz"), baselineRun.marketEvents.sort((a, b) => a.event_id.localeCompare(b.event_id)));
+    await writeGzipRowsFile(path.join(output, "FOUR_STATE_MARKET_EVENT_LEDGER_804.jsonl.gz"), built.rows.marketRows.sort((a, b) => a.event_id.localeCompare(b.event_id)));
+    await writeGzipRowsFile(path.join(output, "FOUR_STATE_STRICT_EVENT_LEDGER_804.jsonl.gz"), built.rows.strictRows.sort((a, b) => a.event_id.localeCompare(b.event_id)));
+    await writeGzipRowsFile(path.join(output, "PER_GAME_OUTCOME_TABLE.jsonl.gz"), built.rows.perGame.sort((a, b) => a.event_id.localeCompare(b.event_id)));
+    await writeGzipRowsFile(path.join(output, "REGRET_LEDGER_1608.jsonl.gz"), built.rows.regretRows.sort((a, b) => a.leg_identity.localeCompare(b.leg_identity)));
+    await writeGzipRowsFile(path.join(output, "OFFER_DENOMINATOR_EVENT_LEDGER_804.jsonl.gz"), built.rows.offerRows.sort((a, b) => a.event_id.localeCompare(b.event_id)));
+    await writeGzipRowsFile(path.join(output, "FIRST_POST_LEDGER.jsonl.gz"), built.rows.firstPosts.sort((a, b) => a.leg_identity.localeCompare(b.leg_identity)));
+    await writeGzipRowsFile(path.join(output, "TERMINAL_ROLE_LEDGER_1608.jsonl.gz"), built.rows.terminalRoles);
+    for (const [name, value] of Object.entries(built.artifacts)) write(name, canonical(value));
+    write("TRACE_CHUNK_MANIFEST.json", canonical({ format: "V52R_RECEIPT_GRAIN_DECISION_DIARY_V1_JSONL_GZIP", reconstruction: "Map each row array through V52R_TRACE_DICTIONARY.fields; every V52r candidate policy decision receipt is retained with TRD5/LOW-1 evidence and both clocks", chunks: examTraceChunks, rows: examTraceChunks.reduce((sum, row) => sum + row.row_count, 0), events: examTraceChunks.reduce((sum, row) => sum + row.event_count, 0), schema_rows: traceDictionary.length, every_candidate_decision_receipt_retained: true }));
+    write("SOURCE_HASH_MANIFEST.json", canonical({ sources: { frozen_policy: examPolicyIdentity, ground_truth: groundTruthWindowBinding.binding, prints: printLoad.receipt, stability_spans: { path: `${V36_PACKAGE}/WINDOW1_SPAN_804.json`, sha256: fileHash(path.join(v36Package, "WINDOW1_SPAN_804.json")) }, clean_store_manifest: { commit: n9Binding.store.manifest_commit, sha256: n9Binding.store.manifest_sha256 }, tape_files: tapeHashes } }));
+    write("ADDITIONS_ONLY_ADAPTER_DIFF_RECEIPT.json", canonical({ exact_parent: v52rExamAdapter.FROZEN_V52R_COMMIT, existing_lane_modifications: [{ path: "arb-executor/analysis/build_window1_v38_maker_only.js", role: "MINIMAL_V52R804_REGISTRATION_AND_OUTPUT_DISPATCH_ONLY" }], additions: ["arb-executor/analysis/window1_v52r_exam_adapter.js", "arb-executor/analysis/build_window1_v52r_disposition_804.js", "arb-executor/analysis/check_window1_v52r_exam_sanity.js", "arb-executor/tests/test_window1_v52r_exam_adapter.js", ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/*"], policy_files_modified: 0, v52e804_protected_block_modified: false, v52e804_attestation: examV52eLaneIdentity }));
+    write("REPORT.md", built.report);
+
+    const namesBeforeDeterminism = fs.readdirSync(output).sort();
+    let determinism;
+    if (compare) {
+      const mismatches = namesBeforeDeterminism.filter((name) => !fs.existsSync(path.join(compare, name)) || fileHash(path.join(compare, name)) !== fileHash(path.join(output, name)));
+      const extra = fs.readdirSync(compare).filter((name) => ![...namesBeforeDeterminism, "DETERMINISM_RECEIPT.json", "ARTIFACT_HASH_MANIFEST.json"].includes(name));
+      ensure(!mismatches.length && !extra.length, `V52r disposition determinism mismatch: ${[...mismatches, ...extra].join(",")}`);
+      determinism = { clean_builds: 2, compared_files: namesBeforeDeterminism.length, byte_identical: true, mismatches: [] };
+    } else determinism = { clean_builds: 1, byte_identical: null, role: "FIRST_BUILD" };
+    write("DETERMINISM_RECEIPT.json", canonical(determinism));
+    writeManifest(output);
+    if (compare) {
+      fs.writeFileSync(path.join(compare, "DETERMINISM_RECEIPT.json"), canonical(determinism));
+      writeManifest(compare);
+      ensure(fileHash(path.join(compare, "ARTIFACT_HASH_MANIFEST.json")) === fileHash(path.join(output, "ARTIFACT_HASH_MANIFEST.json")), "V52r disposition final manifests differ");
+    }
+    const score = built.artifacts["TWO_RULER_SCORECARD.json"].CANON_MARKET_GRADE;
+    process.stdout.write(canonical({ output, states: score.states, completed_pairs: score.completed_pairs, under_par_pairs: score.under_par_pairs, locked_cents: score.locked_cents, offer_capture: built.artifacts["OFFER_DENOMINATOR_CAPTURE.json"].market, REFLEX_POST: built.artifacts["POSTING_TIME_AND_READ_AT_POST.json"].REFLEX_POST, trace_rows: examTraceStats.rows, trace_chunks: examTraceChunks.length, determinism }));
     return;
   }
   if (isV52 && stage === "stage1") {

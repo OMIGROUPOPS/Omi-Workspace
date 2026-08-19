@@ -1,0 +1,13 @@
+{
+  "sealed": false,
+  "holdout": false,
+  "deployment": false,
+  "live": false,
+  "network": false,
+  "orders": false,
+  "positions": false,
+  "exits": false,
+  "settlement": false,
+  "DCA": false,
+  "policy_edits": false
+}

@@ -1,0 +1,9 @@
+{
+  "role_receipt_rows": 8248167,
+  "fields": [
+    "t_minus_scheduled_seconds",
+    "t_minus_actual_bell_seconds"
+  ],
+  "missing_field_rows": [],
+  "pass": true
+}

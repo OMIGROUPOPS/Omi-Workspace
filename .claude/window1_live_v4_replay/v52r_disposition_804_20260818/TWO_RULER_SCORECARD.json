@@ -1,0 +1,2302 @@
+{
+  "CANON_MARKET_GRADE": {
+    "population_D": 804,
+    "scoring_D": 784,
+    "unknown_bell": 20,
+    "states": {
+      "PARTIAL_FOR_REASON": 387,
+      "COMPLETE_AT_DELTA": 300,
+      "NEITHER_FOR_REASON": 97,
+      "UNKNOWN_BELL_NON_GRADEABLE": 20
+    },
+    "valid_credited_legs": 987,
+    "completed_pairs": 300,
+    "under_par_pairs": 300,
+    "completed_at_loss": 0,
+    "locked_cents": 662,
+    "frontier": {
+      "LE_93": 13,
+      "LE_95": 27,
+      "LE_97": 79,
+      "LT_100": 300,
+      "ANY_PRICE": 300
+    },
+    "valid_delta_distribution": {
+      "n": 300,
+      "null_n": 0,
+      "sum": 662,
+      "min": 1,
+      "p25": 1,
+      "median": 2,
+      "p75": 3,
+      "p90": 4,
+      "max": 17
+    },
+    "role": "PRIMARY_VALID_FILL_GRADE_W1_GROUND_TRUTH_BOUND",
+    "by_category": [
+      {
+        "category": "ATP_CHALL",
+        "population_D": 369,
+        "scoring_D": 363,
+        "unknown_bell": 6,
+        "states": {
+          "PARTIAL_FOR_REASON": 200,
+          "COMPLETE_AT_DELTA": 116,
+          "NEITHER_FOR_REASON": 47,
+          "UNKNOWN_BELL_NON_GRADEABLE": 6
+        },
+        "valid_credited_legs": 432,
+        "completed_pairs": 116,
+        "under_par_pairs": 116,
+        "completed_at_loss": 0,
+        "locked_cents": 234,
+        "frontier": {
+          "LE_93": 3,
+          "LE_95": 8,
+          "LE_97": 26,
+          "LT_100": 116,
+          "ANY_PRICE": 116
+        },
+        "valid_delta_distribution": {
+          "n": 116,
+          "null_n": 0,
+          "sum": 234,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 4,
+          "max": 10
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "population_D": 147,
+        "scoring_D": 143,
+        "unknown_bell": 4,
+        "states": {
+          "COMPLETE_AT_DELTA": 69,
+          "PARTIAL_FOR_REASON": 57,
+          "NEITHER_FOR_REASON": 17,
+          "UNKNOWN_BELL_NON_GRADEABLE": 4
+        },
+        "valid_credited_legs": 195,
+        "completed_pairs": 69,
+        "under_par_pairs": 69,
+        "completed_at_loss": 0,
+        "locked_cents": 136,
+        "frontier": {
+          "LE_93": 1,
+          "LE_95": 4,
+          "LE_97": 17,
+          "LT_100": 69,
+          "ANY_PRICE": 69
+        },
+        "valid_delta_distribution": {
+          "n": 69,
+          "null_n": 0,
+          "sum": 136,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 4,
+          "max": 8
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "population_D": 136,
+        "scoring_D": 131,
+        "unknown_bell": 5,
+        "states": {
+          "PARTIAL_FOR_REASON": 63,
+          "COMPLETE_AT_DELTA": 46,
+          "NEITHER_FOR_REASON": 22,
+          "UNKNOWN_BELL_NON_GRADEABLE": 5
+        },
+        "valid_credited_legs": 155,
+        "completed_pairs": 46,
+        "under_par_pairs": 46,
+        "completed_at_loss": 0,
+        "locked_cents": 104,
+        "frontier": {
+          "LE_93": 4,
+          "LE_95": 6,
+          "LE_97": 9,
+          "LT_100": 46,
+          "ANY_PRICE": 46
+        },
+        "valid_delta_distribution": {
+          "n": 46,
+          "null_n": 0,
+          "sum": 104,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 2,
+          "p90": 6,
+          "max": 9
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "population_D": 152,
+        "scoring_D": 147,
+        "unknown_bell": 5,
+        "states": {
+          "COMPLETE_AT_DELTA": 69,
+          "PARTIAL_FOR_REASON": 67,
+          "NEITHER_FOR_REASON": 11,
+          "UNKNOWN_BELL_NON_GRADEABLE": 5
+        },
+        "valid_credited_legs": 205,
+        "completed_pairs": 69,
+        "under_par_pairs": 69,
+        "completed_at_loss": 0,
+        "locked_cents": 188,
+        "frontier": {
+          "LE_93": 5,
+          "LE_95": 9,
+          "LE_97": 27,
+          "LT_100": 69,
+          "ANY_PRICE": 69
+        },
+        "valid_delta_distribution": {
+          "n": 69,
+          "null_n": 0,
+          "sum": 188,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 5,
+          "max": 17
+        }
+      }
+    ],
+    "by_category_x_price_region": [
+      {
+        "cell": "ATP_CHALL|26_50+26_50",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 1,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 1,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75",
+        "population_D": 238,
+        "scoring_D": 236,
+        "unknown_bell": 2,
+        "states": {
+          "PARTIAL_FOR_REASON": 128,
+          "COMPLETE_AT_DELTA": 74,
+          "NEITHER_FOR_REASON": 34,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "valid_credited_legs": 276,
+        "completed_pairs": 74,
+        "under_par_pairs": 74,
+        "completed_at_loss": 0,
+        "locked_cents": 144,
+        "frontier": {
+          "LE_93": 2,
+          "LE_95": 5,
+          "LE_97": 13,
+          "LT_100": 74,
+          "ANY_PRICE": 74
+        },
+        "valid_delta_distribution": {
+          "n": 74,
+          "null_n": 0,
+          "sum": 144,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 4,
+          "max": 10
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+ge75",
+        "population_D": 4,
+        "scoring_D": 4,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 2,
+          "COMPLETE_AT_DELTA": 1,
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 4,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 2,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 2,
+          "min": 2,
+          "p25": 2,
+          "median": 2,
+          "p75": 2,
+          "p90": 2,
+          "max": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+le25",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+51_75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+ge75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+le25",
+        "population_D": 6,
+        "scoring_D": 6,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 4,
+          "NEITHER_FOR_REASON": 2
+        },
+        "valid_credited_legs": 4,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge75+le25",
+        "population_D": 102,
+        "scoring_D": 101,
+        "unknown_bell": 1,
+        "states": {
+          "PARTIAL_FOR_REASON": 58,
+          "COMPLETE_AT_DELTA": 38,
+          "NEITHER_FOR_REASON": 5,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "valid_credited_legs": 134,
+        "completed_pairs": 38,
+        "under_par_pairs": 38,
+        "completed_at_loss": 0,
+        "locked_cents": 73,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 1,
+          "LE_97": 11,
+          "LT_100": 38,
+          "ANY_PRICE": 38
+        },
+        "valid_delta_distribution": {
+          "n": 38,
+          "null_n": 0,
+          "sum": 73,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 3,
+          "p90": 4,
+          "max": 6
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25",
+        "population_D": 15,
+        "scoring_D": 12,
+        "unknown_bell": 3,
+        "states": {
+          "PARTIAL_FOR_REASON": 7,
+          "NEITHER_FOR_REASON": 3,
+          "UNKNOWN_BELL_NON_GRADEABLE": 3,
+          "COMPLETE_AT_DELTA": 2
+        },
+        "valid_credited_legs": 11,
+        "completed_pairs": 2,
+        "under_par_pairs": 2,
+        "completed_at_loss": 0,
+        "locked_cents": 14,
+        "frontier": {
+          "LE_93": 1,
+          "LE_95": 2,
+          "LE_97": 2,
+          "LT_100": 2,
+          "ANY_PRICE": 2
+        },
+        "valid_delta_distribution": {
+          "n": 2,
+          "null_n": 0,
+          "sum": 14,
+          "min": 5,
+          "p25": 5,
+          "median": 5,
+          "p75": 9,
+          "p90": 9,
+          "max": 9
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+26_50",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 4,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 4,
+          "min": 4,
+          "p25": 4,
+          "median": 4,
+          "p75": 4,
+          "p90": 4,
+          "max": 4
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+51_75",
+        "population_D": 103,
+        "scoring_D": 100,
+        "unknown_bell": 3,
+        "states": {
+          "COMPLETE_AT_DELTA": 48,
+          "PARTIAL_FOR_REASON": 41,
+          "NEITHER_FOR_REASON": 11,
+          "UNKNOWN_BELL_NON_GRADEABLE": 3
+        },
+        "valid_credited_legs": 137,
+        "completed_pairs": 48,
+        "under_par_pairs": 48,
+        "completed_at_loss": 0,
+        "locked_cents": 84,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 11,
+          "LT_100": 48,
+          "ANY_PRICE": 48
+        },
+        "valid_delta_distribution": {
+          "n": 48,
+          "null_n": 0,
+          "sum": 84,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 4
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+ge75",
+        "population_D": 4,
+        "scoring_D": 4,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 3,
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 5,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 3,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 3,
+          "min": 3,
+          "p25": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 3,
+          "max": 3
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+51_75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+le25",
+        "population_D": 2,
+        "scoring_D": 2,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 2
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+ge75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+le25",
+        "population_D": 29,
+        "scoring_D": 28,
+        "unknown_bell": 1,
+        "states": {
+          "COMPLETE_AT_DELTA": 16,
+          "PARTIAL_FOR_REASON": 8,
+          "NEITHER_FOR_REASON": 4,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "valid_credited_legs": 40,
+        "completed_pairs": 16,
+        "under_par_pairs": 16,
+        "completed_at_loss": 0,
+        "locked_cents": 41,
+        "frontier": {
+          "LE_93": 1,
+          "LE_95": 4,
+          "LE_97": 4,
+          "LT_100": 16,
+          "ANY_PRICE": 16
+        },
+        "valid_delta_distribution": {
+          "n": 16,
+          "null_n": 0,
+          "sum": 41,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 2,
+          "p90": 5,
+          "max": 8
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25",
+        "population_D": 6,
+        "scoring_D": 6,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 3,
+          "PARTIAL_FOR_REASON": 2,
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 8,
+        "completed_pairs": 3,
+        "under_par_pairs": 3,
+        "completed_at_loss": 0,
+        "locked_cents": 4,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 3,
+          "ANY_PRICE": 3
+        },
+        "valid_delta_distribution": {
+          "n": 3,
+          "null_n": 0,
+          "sum": 4,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 2,
+          "max": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+26_50",
+        "population_D": 2,
+        "scoring_D": 2,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 1,
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 3,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 2,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 2,
+          "min": 2,
+          "p25": 2,
+          "median": 2,
+          "p75": 2,
+          "p90": 2,
+          "max": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+51_75",
+        "population_D": 88,
+        "scoring_D": 87,
+        "unknown_bell": 1,
+        "states": {
+          "PARTIAL_FOR_REASON": 44,
+          "COMPLETE_AT_DELTA": 29,
+          "NEITHER_FOR_REASON": 14,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "valid_credited_legs": 102,
+        "completed_pairs": 29,
+        "under_par_pairs": 29,
+        "completed_at_loss": 0,
+        "locked_cents": 74,
+        "frontier": {
+          "LE_93": 4,
+          "LE_95": 5,
+          "LE_97": 7,
+          "LT_100": 29,
+          "ANY_PRICE": 29
+        },
+        "valid_delta_distribution": {
+          "n": 29,
+          "null_n": 0,
+          "sum": 74,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 2,
+          "p90": 7,
+          "max": 9
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75+le25",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge75+le25",
+        "population_D": 44,
+        "scoring_D": 40,
+        "unknown_bell": 4,
+        "states": {
+          "PARTIAL_FOR_REASON": 17,
+          "COMPLETE_AT_DELTA": 15,
+          "NEITHER_FOR_REASON": 8,
+          "UNKNOWN_BELL_NON_GRADEABLE": 4
+        },
+        "valid_credited_legs": 47,
+        "completed_pairs": 15,
+        "under_par_pairs": 15,
+        "completed_at_loss": 0,
+        "locked_cents": 27,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 1,
+          "LE_97": 2,
+          "LT_100": 15,
+          "ANY_PRICE": 15
+        },
+        "valid_delta_distribution": {
+          "n": 15,
+          "null_n": 0,
+          "sum": 27,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 2,
+          "p90": 3,
+          "max": 5
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+le25",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 1,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 1,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+51_75",
+        "population_D": 77,
+        "scoring_D": 75,
+        "unknown_bell": 2,
+        "states": {
+          "COMPLETE_AT_DELTA": 36,
+          "PARTIAL_FOR_REASON": 32,
+          "NEITHER_FOR_REASON": 7,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "valid_credited_legs": 104,
+        "completed_pairs": 36,
+        "under_par_pairs": 36,
+        "completed_at_loss": 0,
+        "locked_cents": 103,
+        "frontier": {
+          "LE_93": 3,
+          "LE_95": 4,
+          "LE_97": 14,
+          "LT_100": 36,
+          "ANY_PRICE": 36
+        },
+        "valid_delta_distribution": {
+          "n": 36,
+          "null_n": 0,
+          "sum": 103,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 5,
+          "max": 17
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+ge75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+le25",
+        "population_D": 3,
+        "scoring_D": 3,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 2,
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 4,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 3,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 3,
+          "min": 3,
+          "p25": 3,
+          "median": 3,
+          "p75": 3,
+          "p90": 3,
+          "max": 3
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+51_75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+le25",
+        "population_D": 4,
+        "scoring_D": 4,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 3,
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 5,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 1,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 1,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge75+le25",
+        "population_D": 56,
+        "scoring_D": 56,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 28,
+          "PARTIAL_FOR_REASON": 25,
+          "NEITHER_FOR_REASON": 3
+        },
+        "valid_credited_legs": 81,
+        "completed_pairs": 28,
+        "under_par_pairs": 28,
+        "completed_at_loss": 0,
+        "locked_cents": 74,
+        "frontier": {
+          "LE_93": 2,
+          "LE_95": 5,
+          "LE_97": 11,
+          "LT_100": 28,
+          "ANY_PRICE": 28
+        },
+        "valid_delta_distribution": {
+          "n": 28,
+          "null_n": 0,
+          "sum": 74,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 4,
+          "p90": 6,
+          "max": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25",
+        "population_D": 10,
+        "scoring_D": 7,
+        "unknown_bell": 3,
+        "states": {
+          "PARTIAL_FOR_REASON": 4,
+          "COMPLETE_AT_DELTA": 3,
+          "UNKNOWN_BELL_NON_GRADEABLE": 3
+        },
+        "valid_credited_legs": 10,
+        "completed_pairs": 3,
+        "under_par_pairs": 3,
+        "completed_at_loss": 0,
+        "locked_cents": 7,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 3,
+          "ANY_PRICE": 3
+        },
+        "valid_delta_distribution": {
+          "n": 3,
+          "null_n": 0,
+          "sum": 7,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 4,
+          "p90": 4,
+          "max": 4
+        }
+      }
+    ]
+  },
+  "STRICT_PRINT_CROSS": {
+    "population_D": 804,
+    "scoring_D": 784,
+    "unknown_bell": 20,
+    "states": {
+      "PARTIAL_FOR_REASON": 407,
+      "COMPLETE_AT_DELTA": 234,
+      "NEITHER_FOR_REASON": 143,
+      "UNKNOWN_BELL_NON_GRADEABLE": 20
+    },
+    "valid_credited_legs": 875,
+    "completed_pairs": 234,
+    "under_par_pairs": 234,
+    "completed_at_loss": 0,
+    "locked_cents": 472,
+    "frontier": {
+      "LE_93": 8,
+      "LE_95": 15,
+      "LE_97": 49,
+      "LT_100": 234,
+      "ANY_PRICE": 234
+    },
+    "valid_delta_distribution": {
+      "n": 234,
+      "null_n": 0,
+      "sum": 472,
+      "min": 1,
+      "p25": 1,
+      "median": 1,
+      "p75": 2,
+      "p90": 4,
+      "max": 17
+    },
+    "role": "BUILD_VERIFICATION_ONLY",
+    "by_category": [
+      {
+        "category": "ATP_CHALL",
+        "population_D": 369,
+        "scoring_D": 363,
+        "unknown_bell": 6,
+        "states": {
+          "PARTIAL_FOR_REASON": 209,
+          "COMPLETE_AT_DELTA": 84,
+          "NEITHER_FOR_REASON": 70,
+          "UNKNOWN_BELL_NON_GRADEABLE": 6
+        },
+        "valid_credited_legs": 377,
+        "completed_pairs": 84,
+        "under_par_pairs": 84,
+        "completed_at_loss": 0,
+        "locked_cents": 147,
+        "frontier": {
+          "LE_93": 2,
+          "LE_95": 3,
+          "LE_97": 12,
+          "LT_100": 84,
+          "ANY_PRICE": 84
+        },
+        "valid_delta_distribution": {
+          "n": 84,
+          "null_n": 0,
+          "sum": 147,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 9
+        }
+      },
+      {
+        "category": "ATP_MAIN",
+        "population_D": 147,
+        "scoring_D": 143,
+        "unknown_bell": 4,
+        "states": {
+          "COMPLETE_AT_DELTA": 71,
+          "PARTIAL_FOR_REASON": 56,
+          "NEITHER_FOR_REASON": 16,
+          "UNKNOWN_BELL_NON_GRADEABLE": 4
+        },
+        "valid_credited_legs": 198,
+        "completed_pairs": 71,
+        "under_par_pairs": 71,
+        "completed_at_loss": 0,
+        "locked_cents": 152,
+        "frontier": {
+          "LE_93": 3,
+          "LE_95": 5,
+          "LE_97": 20,
+          "LT_100": 71,
+          "ANY_PRICE": 71
+        },
+        "valid_delta_distribution": {
+          "n": 71,
+          "null_n": 0,
+          "sum": 152,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 4,
+          "max": 8
+        }
+      },
+      {
+        "category": "WTA_CHALL",
+        "population_D": 136,
+        "scoring_D": 131,
+        "unknown_bell": 5,
+        "states": {
+          "PARTIAL_FOR_REASON": 56,
+          "NEITHER_FOR_REASON": 44,
+          "COMPLETE_AT_DELTA": 31,
+          "UNKNOWN_BELL_NON_GRADEABLE": 5
+        },
+        "valid_credited_legs": 118,
+        "completed_pairs": 31,
+        "under_par_pairs": 31,
+        "completed_at_loss": 0,
+        "locked_cents": 47,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 2,
+          "LT_100": 31,
+          "ANY_PRICE": 31
+        },
+        "valid_delta_distribution": {
+          "n": 31,
+          "null_n": 0,
+          "sum": 47,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 2,
+          "max": 3
+        }
+      },
+      {
+        "category": "WTA_MAIN",
+        "population_D": 152,
+        "scoring_D": 147,
+        "unknown_bell": 5,
+        "states": {
+          "PARTIAL_FOR_REASON": 86,
+          "COMPLETE_AT_DELTA": 48,
+          "NEITHER_FOR_REASON": 13,
+          "UNKNOWN_BELL_NON_GRADEABLE": 5
+        },
+        "valid_credited_legs": 182,
+        "completed_pairs": 48,
+        "under_par_pairs": 48,
+        "completed_at_loss": 0,
+        "locked_cents": 126,
+        "frontier": {
+          "LE_93": 3,
+          "LE_95": 7,
+          "LE_97": 15,
+          "LT_100": 48,
+          "ANY_PRICE": 48
+        },
+        "valid_delta_distribution": {
+          "n": 48,
+          "null_n": 0,
+          "sum": 126,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 5,
+          "max": 17
+        }
+      }
+    ],
+    "by_category_x_price_region": [
+      {
+        "cell": "ATP_CHALL|26_50+26_50",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 1,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 1,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+51_75",
+        "population_D": 238,
+        "scoring_D": 236,
+        "unknown_bell": 2,
+        "states": {
+          "PARTIAL_FOR_REASON": 134,
+          "COMPLETE_AT_DELTA": 55,
+          "NEITHER_FOR_REASON": 47,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "valid_credited_legs": 244,
+        "completed_pairs": 55,
+        "under_par_pairs": 55,
+        "completed_at_loss": 0,
+        "locked_cents": 87,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 7,
+          "LT_100": 55,
+          "ANY_PRICE": 55
+        },
+        "valid_delta_distribution": {
+          "n": 55,
+          "null_n": 0,
+          "sum": 87,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 4
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+ge75",
+        "population_D": 4,
+        "scoring_D": 4,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 2,
+          "COMPLETE_AT_DELTA": 1,
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 4,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 2,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 2,
+          "min": 2,
+          "p25": 2,
+          "median": 2,
+          "p75": 2,
+          "p90": 2,
+          "max": 2
+        }
+      },
+      {
+        "cell": "ATP_CHALL|26_50+le25",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+51_75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+ge75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|51_75+le25",
+        "population_D": 6,
+        "scoring_D": 6,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 3,
+          "PARTIAL_FOR_REASON": 3
+        },
+        "valid_credited_legs": 3,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_CHALL|ge75+le25",
+        "population_D": 102,
+        "scoring_D": 101,
+        "unknown_bell": 1,
+        "states": {
+          "PARTIAL_FOR_REASON": 64,
+          "COMPLETE_AT_DELTA": 25,
+          "NEITHER_FOR_REASON": 12,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "valid_credited_legs": 114,
+        "completed_pairs": 25,
+        "under_par_pairs": 25,
+        "completed_at_loss": 0,
+        "locked_cents": 44,
+        "frontier": {
+          "LE_93": 1,
+          "LE_95": 2,
+          "LE_97": 3,
+          "LT_100": 25,
+          "ANY_PRICE": 25
+        },
+        "valid_delta_distribution": {
+          "n": 25,
+          "null_n": 0,
+          "sum": 44,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 3,
+          "max": 7
+        }
+      },
+      {
+        "cell": "ATP_CHALL|le25+le25",
+        "population_D": 15,
+        "scoring_D": 12,
+        "unknown_bell": 3,
+        "states": {
+          "NEITHER_FOR_REASON": 5,
+          "PARTIAL_FOR_REASON": 5,
+          "UNKNOWN_BELL_NON_GRADEABLE": 3,
+          "COMPLETE_AT_DELTA": 2
+        },
+        "valid_credited_legs": 9,
+        "completed_pairs": 2,
+        "under_par_pairs": 2,
+        "completed_at_loss": 0,
+        "locked_cents": 13,
+        "frontier": {
+          "LE_93": 1,
+          "LE_95": 1,
+          "LE_97": 2,
+          "LT_100": 2,
+          "ANY_PRICE": 2
+        },
+        "valid_delta_distribution": {
+          "n": 2,
+          "null_n": 0,
+          "sum": 13,
+          "min": 4,
+          "p25": 4,
+          "median": 4,
+          "p75": 9,
+          "p90": 9,
+          "max": 9
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+26_50",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 4,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 4,
+          "min": 4,
+          "p25": 4,
+          "median": 4,
+          "p75": 4,
+          "p90": 4,
+          "max": 4
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+51_75",
+        "population_D": 103,
+        "scoring_D": 100,
+        "unknown_bell": 3,
+        "states": {
+          "COMPLETE_AT_DELTA": 48,
+          "PARTIAL_FOR_REASON": 43,
+          "NEITHER_FOR_REASON": 9,
+          "UNKNOWN_BELL_NON_GRADEABLE": 3
+        },
+        "valid_credited_legs": 139,
+        "completed_pairs": 48,
+        "under_par_pairs": 48,
+        "completed_at_loss": 0,
+        "locked_cents": 92,
+        "frontier": {
+          "LE_93": 1,
+          "LE_95": 2,
+          "LE_97": 13,
+          "LT_100": 48,
+          "ANY_PRICE": 48
+        },
+        "valid_delta_distribution": {
+          "n": 48,
+          "null_n": 0,
+          "sum": 92,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 3,
+          "p90": 4,
+          "max": 7
+        }
+      },
+      {
+        "cell": "ATP_MAIN|26_50+ge75",
+        "population_D": 4,
+        "scoring_D": 4,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 3,
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 3,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+51_75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|51_75+le25",
+        "population_D": 2,
+        "scoring_D": 2,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 2
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+ge75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "ATP_MAIN|ge75+le25",
+        "population_D": 29,
+        "scoring_D": 28,
+        "unknown_bell": 1,
+        "states": {
+          "COMPLETE_AT_DELTA": 19,
+          "PARTIAL_FOR_REASON": 5,
+          "NEITHER_FOR_REASON": 4,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "valid_credited_legs": 43,
+        "completed_pairs": 19,
+        "under_par_pairs": 19,
+        "completed_at_loss": 0,
+        "locked_cents": 52,
+        "frontier": {
+          "LE_93": 2,
+          "LE_95": 3,
+          "LE_97": 6,
+          "LT_100": 19,
+          "ANY_PRICE": 19
+        },
+        "valid_delta_distribution": {
+          "n": 19,
+          "null_n": 0,
+          "sum": 52,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 4,
+          "p90": 8,
+          "max": 8
+        }
+      },
+      {
+        "cell": "ATP_MAIN|le25+le25",
+        "population_D": 6,
+        "scoring_D": 6,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 3,
+          "PARTIAL_FOR_REASON": 2,
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 8,
+        "completed_pairs": 3,
+        "under_par_pairs": 3,
+        "completed_at_loss": 0,
+        "locked_cents": 4,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 3,
+          "ANY_PRICE": 3
+        },
+        "valid_delta_distribution": {
+          "n": 3,
+          "null_n": 0,
+          "sum": 4,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 2,
+          "max": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+26_50",
+        "population_D": 2,
+        "scoring_D": 2,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 1,
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 2,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 2,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 2,
+          "min": 2,
+          "p25": 2,
+          "median": 2,
+          "p75": 2,
+          "p90": 2,
+          "max": 2
+        }
+      },
+      {
+        "cell": "WTA_CHALL|26_50+51_75",
+        "population_D": 88,
+        "scoring_D": 87,
+        "unknown_bell": 1,
+        "states": {
+          "PARTIAL_FOR_REASON": 40,
+          "NEITHER_FOR_REASON": 27,
+          "COMPLETE_AT_DELTA": 20,
+          "UNKNOWN_BELL_NON_GRADEABLE": 1
+        },
+        "valid_credited_legs": 80,
+        "completed_pairs": 20,
+        "under_par_pairs": 20,
+        "completed_at_loss": 0,
+        "locked_cents": 28,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 20,
+          "ANY_PRICE": 20
+        },
+        "valid_delta_distribution": {
+          "n": 20,
+          "null_n": 0,
+          "sum": 28,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 2,
+          "p90": 2,
+          "max": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|51_75+le25",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "WTA_CHALL|ge75+le25",
+        "population_D": 44,
+        "scoring_D": 40,
+        "unknown_bell": 4,
+        "states": {
+          "NEITHER_FOR_REASON": 15,
+          "PARTIAL_FOR_REASON": 15,
+          "COMPLETE_AT_DELTA": 10,
+          "UNKNOWN_BELL_NON_GRADEABLE": 4
+        },
+        "valid_credited_legs": 35,
+        "completed_pairs": 10,
+        "under_par_pairs": 10,
+        "completed_at_loss": 0,
+        "locked_cents": 17,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 10,
+          "ANY_PRICE": 10
+        },
+        "valid_delta_distribution": {
+          "n": 10,
+          "null_n": 0,
+          "sum": 17,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 2,
+          "p90": 2,
+          "max": 3
+        }
+      },
+      {
+        "cell": "WTA_CHALL|le25+le25",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+51_75",
+        "population_D": 77,
+        "scoring_D": 75,
+        "unknown_bell": 2,
+        "states": {
+          "PARTIAL_FOR_REASON": 46,
+          "COMPLETE_AT_DELTA": 22,
+          "NEITHER_FOR_REASON": 7,
+          "UNKNOWN_BELL_NON_GRADEABLE": 2
+        },
+        "valid_credited_legs": 90,
+        "completed_pairs": 22,
+        "under_par_pairs": 22,
+        "completed_at_loss": 0,
+        "locked_cents": 67,
+        "frontier": {
+          "LE_93": 2,
+          "LE_95": 4,
+          "LE_97": 8,
+          "LT_100": 22,
+          "ANY_PRICE": 22
+        },
+        "valid_delta_distribution": {
+          "n": 22,
+          "null_n": 0,
+          "sum": 67,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 5,
+          "max": 17
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+ge75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "NEITHER_FOR_REASON": 1
+        },
+        "valid_credited_legs": 0,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|26_50+le25",
+        "population_D": 3,
+        "scoring_D": 3,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 2,
+          "COMPLETE_AT_DELTA": 1
+        },
+        "valid_credited_legs": 4,
+        "completed_pairs": 1,
+        "under_par_pairs": 1,
+        "completed_at_loss": 0,
+        "locked_cents": 1,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 1,
+          "ANY_PRICE": 1
+        },
+        "valid_delta_distribution": {
+          "n": 1,
+          "null_n": 0,
+          "sum": 1,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+51_75",
+        "population_D": 1,
+        "scoring_D": 1,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 1
+        },
+        "valid_credited_legs": 1,
+        "completed_pairs": 0,
+        "under_par_pairs": 0,
+        "completed_at_loss": 0,
+        "locked_cents": 0,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 0,
+          "ANY_PRICE": 0
+        },
+        "valid_delta_distribution": {
+          "n": 0,
+          "null_n": 0,
+          "sum": 0,
+          "min": null,
+          "p25": null,
+          "median": null,
+          "p75": null,
+          "p90": null,
+          "max": null
+        }
+      },
+      {
+        "cell": "WTA_MAIN|51_75+le25",
+        "population_D": 4,
+        "scoring_D": 4,
+        "unknown_bell": 0,
+        "states": {
+          "COMPLETE_AT_DELTA": 2,
+          "PARTIAL_FOR_REASON": 2
+        },
+        "valid_credited_legs": 6,
+        "completed_pairs": 2,
+        "under_par_pairs": 2,
+        "completed_at_loss": 0,
+        "locked_cents": 2,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 0,
+          "LT_100": 2,
+          "ANY_PRICE": 2
+        },
+        "valid_delta_distribution": {
+          "n": 2,
+          "null_n": 0,
+          "sum": 2,
+          "min": 1,
+          "p25": 1,
+          "median": 1,
+          "p75": 1,
+          "p90": 1,
+          "max": 1
+        }
+      },
+      {
+        "cell": "WTA_MAIN|ge75+le25",
+        "population_D": 56,
+        "scoring_D": 56,
+        "unknown_bell": 0,
+        "states": {
+          "PARTIAL_FOR_REASON": 31,
+          "COMPLETE_AT_DELTA": 20,
+          "NEITHER_FOR_REASON": 5
+        },
+        "valid_credited_legs": 71,
+        "completed_pairs": 20,
+        "under_par_pairs": 20,
+        "completed_at_loss": 0,
+        "locked_cents": 48,
+        "frontier": {
+          "LE_93": 1,
+          "LE_95": 3,
+          "LE_97": 6,
+          "LT_100": 20,
+          "ANY_PRICE": 20
+        },
+        "valid_delta_distribution": {
+          "n": 20,
+          "null_n": 0,
+          "sum": 48,
+          "min": 1,
+          "p25": 1,
+          "median": 2,
+          "p75": 3,
+          "p90": 5,
+          "max": 7
+        }
+      },
+      {
+        "cell": "WTA_MAIN|le25+le25",
+        "population_D": 10,
+        "scoring_D": 7,
+        "unknown_bell": 3,
+        "states": {
+          "PARTIAL_FOR_REASON": 4,
+          "COMPLETE_AT_DELTA": 3,
+          "UNKNOWN_BELL_NON_GRADEABLE": 3
+        },
+        "valid_credited_legs": 10,
+        "completed_pairs": 3,
+        "under_par_pairs": 3,
+        "completed_at_loss": 0,
+        "locked_cents": 8,
+        "frontier": {
+          "LE_93": 0,
+          "LE_95": 0,
+          "LE_97": 1,
+          "LT_100": 3,
+          "ANY_PRICE": 3
+        },
+        "valid_delta_distribution": {
+          "n": 3,
+          "null_n": 0,
+          "sum": 8,
+          "min": 2,
+          "p25": 2,
+          "median": 2,
+          "p75": 4,
+          "p90": 4,
+          "max": 4
+        }
+      }
+    ]
+  },
+  "grading_binding": {
+    "label": "W1_GROUND_TRUTH_TABLE",
+    "source_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+    "source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+    "git_blob": "4fe8975b8d824f5a942fa407561ce664452a3e73",
+    "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+    "bytes": 1426420,
+    "sole_grading_source": true,
+    "policy_replay_window_source": "HISTORICAL_VARIANT_WINDOW_UNTOUCHED",
+    "right_edge_law": "PER_GAME_VERIFIED_BELL_EPOCH; SETTLEMENT_NO_MATCH_USES_TABLE_VERIFIED_SPAN_END",
+    "unknown_bell_law": "EXCLUDED_FROM_ALL_SCORING_DENOMINATORS_AND_REPORTED_AS_OWN_CLASS"
+  }
+}

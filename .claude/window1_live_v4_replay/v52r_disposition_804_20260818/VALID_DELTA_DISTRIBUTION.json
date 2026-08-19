@@ -1,0 +1,126 @@
+{
+  "market": {
+    "n": 300,
+    "null_n": 0,
+    "sum": 662,
+    "min": 1,
+    "p25": 1,
+    "median": 2,
+    "p75": 3,
+    "p90": 4,
+    "max": 17
+  },
+  "strict": {
+    "n": 234,
+    "null_n": 0,
+    "sum": 472,
+    "min": 1,
+    "p25": 1,
+    "median": 1,
+    "p75": 2,
+    "p90": 4,
+    "max": 17
+  },
+  "per_category": [
+    {
+      "category": "ATP_CHALL",
+      "market": {
+        "n": 116,
+        "null_n": 0,
+        "sum": 234,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 10
+      },
+      "strict": {
+        "n": 84,
+        "null_n": 0,
+        "sum": 147,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 3,
+        "max": 9
+      }
+    },
+    {
+      "category": "ATP_MAIN",
+      "market": {
+        "n": 69,
+        "null_n": 0,
+        "sum": 136,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 4,
+        "max": 8
+      },
+      "strict": {
+        "n": 71,
+        "null_n": 0,
+        "sum": 152,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 4,
+        "max": 8
+      }
+    },
+    {
+      "category": "WTA_CHALL",
+      "market": {
+        "n": 46,
+        "null_n": 0,
+        "sum": 104,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 2,
+        "p90": 6,
+        "max": 9
+      },
+      "strict": {
+        "n": 31,
+        "null_n": 0,
+        "sum": 47,
+        "min": 1,
+        "p25": 1,
+        "median": 1,
+        "p75": 2,
+        "p90": 2,
+        "max": 3
+      }
+    },
+    {
+      "category": "WTA_MAIN",
+      "market": {
+        "n": 69,
+        "null_n": 0,
+        "sum": 188,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 5,
+        "max": 17
+      },
+      "strict": {
+        "n": 48,
+        "null_n": 0,
+        "sum": 126,
+        "min": 1,
+        "p25": 1,
+        "median": 2,
+        "p75": 3,
+        "p90": 5,
+        "max": 17
+      }
+    }
+  ]
+}

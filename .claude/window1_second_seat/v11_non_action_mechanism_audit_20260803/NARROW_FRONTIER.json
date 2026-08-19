@@ -1,0 +1,169 @@
+{
+ "LABEL": "NARROW_FRONTIER",
+ "stamp": [
+  "ANALYTICAL_ESTIMATE",
+  "MEASUREMENT_ONLY"
+ ],
+ "law_block": "LAW_INDEX read at ae731326; laws consulted: L11 L13 L14 L15 L16 L17",
+ "provenance_triples": [
+  {
+   "commit": "96597c98",
+   "path": ".claude/window1_live_v4_replay/v52r_disposition_804_20260818/TRACE_CHUNK_MANIFEST.json",
+   "sha256": "1e65d8532df4f498d2d40f064e41e907f20e0c8ebc0af71355eeed14acf7d535",
+   "bytes": 241907
+  },
+  {
+   "commit": "c0056976",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+   "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729",
+   "bytes": 1426420
+  },
+  {
+   "commit": "ab609761",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DOWN_TARGET_FRONTIER.json",
+   "sha256": "60ed459127f4e996d551a21844f77e317426242b23610f55437575b2de8b5c8e",
+   "bytes": 39394
+  },
+  {
+   "commit": "1c9419a0",
+   "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHORTFALL_AUTOPSY_V52R_LANE.json",
+   "sha256": "efbeeb299aecd14105edf931359c07969b3756070266876a4480a860b138ce32",
+   "bytes": 4494
+  }
+ ],
+ "part_a_gap_distribution": {
+  "class_games": 240,
+  "gap_moments": 1263,
+  "distribution": {
+   "n": 1263,
+   "p10": 1,
+   "p25": 1,
+   "med": 1,
+   "p75": 2,
+   "p90": 5
+  },
+  "histogram": {
+   "1": 736,
+   "2": 248,
+   "4": 46,
+   "21": 3,
+   "7": 14,
+   "3": 74,
+   "9": 3,
+   "6": 37,
+   "55": 3,
+   "20": 2,
+   "5": 43,
+   "8": 3,
+   "70": 1,
+   "12": 13,
+   "53": 2,
+   "56": 2,
+   "26": 5,
+   "19": 5,
+   "41": 1,
+   "33": 16,
+   "42": 1,
+   "10": 5
+  },
+  "reading": "736 of 1,263 too-deep floor moments (58%) are exactly ONE CENT deep; median 1c, p90 5c"
+ },
+ "part_b_lane_wide": {
+  "machinery": "ab609761 simulator lineage over the lane s own standing timelines (transition anchors from all 802 V52r chunks @ 96597c98); level replaced, timing and licensing preserved; kiss=credit at the rest; both clocks",
+  "grid": {
+   "DEF+0|verified": {
+    "completes": 305,
+    "banked_c": 690,
+    "leg_fills": 1003
+   },
+   "DEF+0|live": {
+    "completes": 229,
+    "banked_c": 486,
+    "leg_fills": 879
+   },
+   "DEF+1|verified": {
+    "completes": 145,
+    "banked_c": 392,
+    "leg_fills": 1318
+   },
+   "DEF+1|live": {
+    "completes": 137,
+    "banked_c": 371,
+    "leg_fills": 1257
+   },
+   "DEF+2|verified": {
+    "completes": 69,
+    "banked_c": 186,
+    "leg_fills": 1395
+   },
+   "DEF+2|live": {
+    "completes": 65,
+    "banked_c": 178,
+    "leg_fills": 1348
+   },
+   "DEF+3|verified": {
+    "completes": 33,
+    "banked_c": 80,
+    "leg_fills": 1415
+   },
+   "DEF+3|live": {
+    "completes": 32,
+    "banked_c": 79,
+    "leg_fills": 1379
+   },
+   "LOW+0|verified": {
+    "completes": 44,
+    "banked_c": 109,
+    "leg_fills": 1292
+   },
+   "LOW+0|live": {
+    "completes": 34,
+    "banked_c": 76,
+    "leg_fills": 1137
+   },
+   "LOW+1|verified": {
+    "completes": 17,
+    "banked_c": 61,
+    "leg_fills": 1343
+   },
+   "LOW+1|live": {
+    "completes": 11,
+    "banked_c": 41,
+    "leg_fills": 1182
+   },
+   "LOW+2|verified": {
+    "completes": 5,
+    "banked_c": 31,
+    "leg_fills": 1349
+   },
+   "LOW+2|live": {
+    "completes": 4,
+    "banked_c": 22,
+    "leg_fills": 1190
+   }
+  },
+  "reproduction_check": "DEF+0 = 305 completes / 690c verified vs the lane census 300 / 662c (anchor-grain reconstruction; +5 games / +28c deviation, stated)",
+  "decomposition_DEF0_to_DEF1": {
+   "retained": 94,
+   "lost_to_par_crossing": 211,
+   "lost_to_fill": 0,
+   "gained_rescued_misses": 51
+  },
+  "baseline_L17": "V52l lineage 311 completes / 714c of 680 / 3,123c @ 96597c98"
+ },
+ "three_candidates_no_selection": {
+  "DEF+0 (the lane itself)": "dominant on this grid both clocks: 305/690c verified, 229/486c live; every uniform shift is worse",
+  "DEF+1": "the only meaningful rescuer: 51 misses rescued, but 211 knife-edge completes re-priced past par; 145/392c verified, 137/371c live",
+  "LOW+0": "the ab609761 DOWN-side winner, shown scope-bound: applied lane-wide it collapses to 44/109c verified - the DOWN-only-vs-lane-wide scope lesson, receipted"
+ },
+ "conclusion_measured": "THE FRONTIER IS NARROW IN THE STRONGEST SENSE: the shortfall is mostly one cent of standing distance (part a), and the same uniform cent that closes it re-prices 211 of 305 completes past par (part b). Any repair must be conditional, not uniform - measured, not proposed.",
+ "conservation": {
+  "corpus_span_ok": 776,
+  "class_games": 240,
+  "gap_moments": 1263,
+  "gap_hist_sum": 1263,
+  "grid_cells": 14,
+  "decomposition_sum": 356,
+  "def0_completes": 305
+ }
+}

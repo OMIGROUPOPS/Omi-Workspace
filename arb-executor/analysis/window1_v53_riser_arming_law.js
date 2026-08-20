@@ -1,38 +1,55 @@
 "use strict";
 
-// V53-04 changes one behavioral surface on frozen V52l lineage: a leg whose
-// receipt-causal machine state is RISING may not carry a rest until two
-// operator-defined, joint-state-qualified, trade-backed divot episodes have
-// each resumed.  Falling/settled/unclassified decisions and every target,
-// guard, credit, and conservation input remain frozen lineage values.
+// V53-04b changes one behavioral surface on frozen V52l lineage: the causal
+// receipt that arms a RISING leg.  The six selectable laws exist only for the
+// engine-space pins sweep. Falling/settled/unclassified decisions and every
+// target, guard, credit, and conservation input remain frozen lineage values.
 
 const view = require("./window1_v53_understanding_organ.js");
 const frozen = require("./window1_v52h_remove_pair_lows_precondition.js");
 
-const ARMING_LAW = Object.freeze({
-  id: "T1_SECOND_TRUE_DIVOT_VISIT",
-  method_revision: 2,
-  source_commit: "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
-  source_path: ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
-  proxy_instrument_consumed: false,
-  shape_offset_aim_consumed: false,
-  latchcal_consumed: false,
+const REBASE_SOURCE = Object.freeze({ source_commit: "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf", source_path: ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json" });
+const ARMING_LAWS = Object.freeze({
+  A0_CONTROL_PROXY_SECOND_VISIT: Object.freeze({ id: "A0_CONTROL_PROXY_SECOND_VISIT", source_commit: "c1fd51ececb7de1885a88f8672b1e5ce7444e3a1", source_path: ".claude/window1_live_v4_replay/v53_04_riser_arming_law_pins_smoke_20260820/PINS_SMOKE_RECEIPT.json", engine_effect: "FROZEN_V52L_CHAMPION_BYTE_EQUAL", proxy_instrument_consumed: true }),
+  A1_PROXY_FIRST_VISIT: Object.freeze({ id: "A1_PROXY_FIRST_VISIT", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_CAUSAL_PROXY_TROUGH_AND_RETURN", proxy_instrument_consumed: true }),
+  A2_FIRST_TRUE_DIVOT_AND_RESUME: Object.freeze({ id: "A2_FIRST_TRUE_DIVOT_AND_RESUME", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_OPERATOR_DIVOT_LATER_RESUME", proxy_instrument_consumed: false }),
+  A3_FIRST_SELLER_HIT: Object.freeze({ id: "A3_FIRST_SELLER_HIT", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT", proxy_instrument_consumed: false }),
+  A4_BID_PERSISTENCE_300S: Object.freeze({ id: "A4_BID_PERSISTENCE_300S", ...REBASE_SOURCE, engine_effect: "ARM_ON_RISING_BID_PERSISTENCE_300S", persistence_seconds: 300, persistence_source_commit: "084df12553928677869bd2857516caa3f0490416", persistence_source_path: ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_TRIGGER_FRONTIER.json", proxy_instrument_consumed: false }),
+  A5_FIRST_TWO_SIDED_BOOK: Object.freeze({ id: "A5_FIRST_TWO_SIDED_BOOK", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_TWO_SIDED_BOOK", proxy_instrument_consumed: false }),
 });
+let selectedArmingLaw = ARMING_LAWS.A2_FIRST_TRUE_DIVOT_AND_RESUME;
+
+function withCommonProvenance(law) { return { ...law, method_revision: 3, shape_offset_aim_consumed: false, latchcal_consumed: false }; }
+function configureArmingLaw(id) {
+  if (!Object.hasOwn(ARMING_LAWS, id)) throw new Error(`unknown V53-04b arming law ${id}`);
+  selectedArmingLaw = ARMING_LAWS[id];
+  return withCommonProvenance(selectedArmingLaw);
+}
+function armingLaw() { return withCommonProvenance(selectedArmingLaw); }
 
 function lawfulCent(value) { return Number.isInteger(value) && value >= 1 && value <= 99; }
 
 function emptyLegState(onsetTimestampEpoch) {
+  const law = armingLaw();
   return {
     ...view.emptyLegState(onsetTimestampEpoch),
     machine_state: null,
     machine_state_receipt: null,
     riser_arm: {
+      law_id: law.id,
       prior_trade_high_cents: null,
       pending_trough: null,
       qualified_divots: [],
-      armed: false,
-      armed_receipt: null,
-      armed_timestamp_epoch: null,
+      armed: law.id === "A0_CONTROL_PROXY_SECOND_VISIT",
+      armed_receipt: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? "FROZEN_V52L_CONTROL" : null,
+      armed_timestamp_epoch: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? onsetTimestampEpoch : null,
+      arm_count: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? 1 : 0,
+      arm_reason: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? "FROZEN_V52L_CHAMPION_BYTE_EQUAL" : null,
+      prior_ask_cents: null,
+      pending_proxy_trough: null,
+      qualified_proxy_visits: [],
+      current_bid_cents: null,
+      current_bid_since_epoch: null,
     },
   };
 }
@@ -45,20 +62,57 @@ function observeMachineState(state, machineState, row) {
   return state;
 }
 
-function observeRiserPrint(state, row, ownBook, siblingBook, machineState) {
+function armAt(state, row, reason, evidence = null) {
   const arm = state.riser_arm;
+  if (!arm.armed) {
+    arm.armed = true;
+    arm.armed_receipt = row.receipt;
+    arm.armed_timestamp_epoch = row.ts;
+    arm.arm_count += 1;
+    arm.arm_reason = reason;
+    arm.arm_evidence = evidence;
+  }
+  return state;
+}
+
+function observeRiserBook(state, row, priorBook, machineState) {
+  observeMachineState(state, machineState, row);
+  const arm = state.riser_arm, law = armingLaw();
+  if (!arm || row?.kind !== "BOOK" || !lawfulCent(row.bid) || !lawfulCent(row.ask)) return state;
+  if (law.id === "A5_FIRST_TWO_SIDED_BOOK") armAt(state, row, law.engine_effect, { bid_cents: row.bid, ask_cents: row.ask });
+  if (arm.pending_proxy_trough && row.ts > arm.pending_proxy_trough.timestamp_epoch && row.ask > arm.pending_proxy_trough.ask_cents) {
+    const visit = { ...arm.pending_proxy_trough, resume_timestamp_epoch: row.ts, resume_receipt: row.receipt, resume_ask_cents: row.ask, definition: "ASK_DESCENT_AND_LATER_RETURN_WITHOUT_TRADE_OR_JOINT_STATE_REQUIREMENT" };
+    arm.qualified_proxy_visits.push(visit);
+    arm.pending_proxy_trough = null;
+    if (law.id === "A1_PROXY_FIRST_VISIT") armAt(state, row, law.engine_effect, visit);
+  }
+  if (machineState === "RISING" && priorBook && lawfulCent(priorBook.ask) && row.ask < priorBook.ask) {
+    const trough = { timestamp_epoch: row.ts, receipt: row.receipt, prior_ask_cents: priorBook.ask, ask_cents: row.ask, proxy_only: true };
+    if (!arm.pending_proxy_trough || row.ask < arm.pending_proxy_trough.ask_cents) arm.pending_proxy_trough = trough;
+  }
+  if (law.id === "A4_BID_PERSISTENCE_300S") {
+    if (arm.current_bid_cents !== row.bid) { arm.current_bid_cents = row.bid; arm.current_bid_since_epoch = row.ts; }
+    if (machineState === "RISING" && Number.isFinite(arm.current_bid_since_epoch) && row.ts - arm.current_bid_since_epoch >= law.persistence_seconds) {
+      armAt(state, row, law.engine_effect, { bid_cents: row.bid, persistence_seconds: row.ts - arm.current_bid_since_epoch, qualification_started_epoch: arm.current_bid_since_epoch });
+    }
+  }
+  arm.prior_ask_cents = row.ask;
+  return state;
+}
+
+function observeRiserPrint(state, row, ownBook, siblingBook, machineState) {
+  const arm = state.riser_arm, law = armingLaw();
   if (!arm || row?.kind !== "PRINT" || !lawfulCent(row.price)) return state;
+  if (law.id === "A3_FIRST_SELLER_HIT" && machineState === "RISING" && (row.taker_side === "no" || row.taker_book_side === "bid")) {
+    armAt(state, row, law.engine_effect, { trade_id: row.trade_id, price_cents: row.price, size: row.size, taker_side: row.taker_side, taker_book_side: row.taker_book_side });
+  }
   // A prior pending trough becomes a divot only on the later higher print.
   // That resume receipt is the causal arm receipt; no future row is read.
   if (arm.pending_trough && row.ts > arm.pending_trough.timestamp_epoch && row.price > arm.pending_trough.price_cents) {
     const qualified = { ...arm.pending_trough, resume_timestamp_epoch: row.ts, resume_receipt: row.receipt, resume_price_cents: row.price };
     arm.qualified_divots.push(qualified);
     arm.pending_trough = null;
-    if (arm.qualified_divots.length >= 2 && !arm.armed) {
-      arm.armed = true;
-      arm.armed_receipt = row.receipt;
-      arm.armed_timestamp_epoch = row.ts;
-    }
+    if (law.id === "A2_FIRST_TRUE_DIVOT_AND_RESUME" && arm.qualified_divots.length >= 1) armAt(state, row, law.engine_effect, qualified);
   }
   const jointFormed = ownBook && siblingBook && lawfulCent(ownBook.bid) && lawfulCent(ownBook.ask) && lawfulCent(siblingBook.bid) && lawfulCent(siblingBook.ask);
   const strengthening = machineState === "RISING" && lawfulCent(arm.prior_trade_high_cents) && row.price < arm.prior_trade_high_cents;
@@ -82,7 +136,8 @@ function observeRiserPrint(state, row, ownBook, siblingBook, machineState) {
 }
 
 function stance(state) {
-  if (state.machine_state === "RISING") return { value: "EARLY_FLOOR_SIDE", classification: "RISING", arming_law: ARMING_LAW, armed: state.riser_arm.armed, qualified_divots: state.riser_arm.qualified_divots.length, armed_receipt: state.riser_arm.armed_receipt };
+  const law = armingLaw();
+  if (state.machine_state === "RISING") return { value: "EARLY_FLOOR_SIDE", classification: "RISING", arming_law: law, armed: state.riser_arm.armed, qualified_divots: state.riser_arm.qualified_divots.length, qualified_proxy_visits: state.riser_arm.qualified_proxy_visits.length, armed_receipt: state.riser_arm.armed_receipt, armed_timestamp_epoch: state.riser_arm.armed_timestamp_epoch, arm_count: state.riser_arm.arm_count, arm_reason: state.riser_arm.arm_reason };
   if (state.machine_state === "FALLING") return { value: "LATE_FLOOR_SIDE", classification: "FALLING", authority: "FROZEN_LINEAGE_TRACKING_CLAUSE" };
   return { value: "CLASSIFICATION_ABSENT", classification: state.machine_state, authority: "SILENCE_TO_FROZEN_LINEAGE" };
 }
@@ -91,8 +146,8 @@ function buildGameView(states, context) {
   const base = view.buildGameView(states, context), ids = Object.keys(states).sort();
   return {
     ...base,
-    legs: Object.fromEntries(ids.map((id) => [id, { ...base.legs[id], machine_state: { value: states[id].machine_state, producer_receipt: states[id].machine_state_receipt }, stance: stance(states[id]), riser_arm: { ...states[id].riser_arm, qualified_divots: [...states[id].riser_arm.qualified_divots] } }])),
-    provenance: { ...base.provenance, v53_04_arming_law: ARMING_LAW, post_onset_only: true, no_span_fraction_consumed: true, no_static_depth_target_consumed: true },
+    legs: Object.fromEntries(ids.map((id) => [id, { ...base.legs[id], machine_state: { value: states[id].machine_state, producer_receipt: states[id].machine_state_receipt }, stance: stance(states[id]), riser_arm: { ...states[id].riser_arm, qualified_divots: [...states[id].riser_arm.qualified_divots], qualified_proxy_visits: [...states[id].riser_arm.qualified_proxy_visits] } }])),
+    provenance: { ...base.provenance, v53_04_arming_law: armingLaw(), post_onset_only: true, no_span_fraction_consumed: true, no_static_depth_target_consumed: true },
   };
 }
 
@@ -104,7 +159,7 @@ function buildPlan(gameView, context) {
     stances: Object.fromEntries(ids.map((id) => [id, gameView.legs[id].stance])),
     both_states: Object.fromEntries(ids.map((id) => [id, gameView.legs[id].machine_state])),
     split_authority: "FROZEN_CLAUSE_5_AND_CLAUSE_6_INPUTS_BYTE_EQUAL",
-    arming_law: ARMING_LAW,
+    arming_law: armingLaw(),
     evidence_receipt: context.row.receipt,
   };
 }
@@ -127,7 +182,7 @@ function jointLicense(inputs, plan, lineage, decision) {
     budget_split: { evaluated_side_target_cents: lawfulCent(decision.target_cents) ? decision.target_cents : null, counterpart_kind: counterpartKind, counterpart_cents: inputs.siblingCredited ? inputs.siblingEntryCents : inputs.siblingStandingTarget, pair_cap_cents: inputs.pairCap },
     split_authority: "FROZEN_CLAUSE_5_AND_CLAUSE_6_INPUTS_BYTE_EQUAL",
     evaluation_receipt: inputs.book?.receipt ?? null,
-    arming_law: ARMING_LAW,
+    arming_law: armingLaw(),
     lineage_action: lineage.action,
     lineage_target_cents: lawfulCent(lineage.target_cents) ? lineage.target_cents : null,
   };
@@ -139,7 +194,7 @@ function annotate(inputs, plan, lineage, decision, reason) {
   return {
     ...decision,
     reason,
-    birth_license: license ? { ...license, game_view: inputs.v53GameView, plan, joint_license: joint, level: { ...(license.level ?? {}), v53_04_arming_law: ARMING_LAW, N9_role: "ADVISORY_ONLY_NOT_TARGET_AUTHORITY" } } : license,
+    birth_license: license ? { ...license, game_view: inputs.v53GameView, plan, joint_license: joint, level: { ...(license.level ?? {}), v53_04_arming_law: armingLaw(), N9_role: "ADVISORY_ONLY_NOT_TARGET_AUTHORITY" } } : license,
     lineage_decision: { action: lineage.action, target_cents: lineage.target_cents, reason: lineage.reason },
     lineage_target_cents: lawfulCent(lineage.target_cents) ? lineage.target_cents : null,
     v53_riser_arming: { enabled: true, stance: plan?.stances?.[inputs.legId] ?? null, applied: inputs.state === "RISING", armed: plan?.stances?.[inputs.legId]?.armed ?? null, reason },
@@ -151,17 +206,18 @@ function annotate(inputs, plan, lineage, decision, reason) {
 function decide(inputs) {
   const clauses = normalizedClauses(inputs.clauses), lineage = frozen.decide({ ...inputs, clauses });
   if (!clauses.v53_riser_arming_law) return lineage;
+  if (armingLaw().id === "A0_CONTROL_PROXY_SECOND_VISIT") return annotate(inputs, inputs.v53Plan, lineage, lineage, "V53_04B_A0_FROZEN_V52L_CONTROL_BYTE_EQUAL");
   const plan = inputs.v53Plan;
   const ownStance = plan?.stances?.[inputs.legId];
   if (!ownStance || ownStance.value === "CLASSIFICATION_ABSENT") return annotate(inputs, plan, lineage, lineage, "V53_04_CLASSIFICATION_ABSENT_SILENCE_TO_LINEAGE");
-  if (ownStance.value !== "EARLY_FLOOR_SIDE" || ownStance.armed) return annotate(inputs, plan, lineage, lineage, ownStance.value === "LATE_FLOOR_SIDE" ? "V53_04_LATE_FLOOR_FROZEN_TRACKING_BYTE_EQUAL" : "V53_04_EARLY_FLOOR_SECOND_TRUE_DIVOT_ARMED_LINEAGE_RELEASED");
+  if (ownStance.value !== "EARLY_FLOOR_SIDE" || ownStance.armed) return annotate(inputs, plan, lineage, lineage, ownStance.value === "LATE_FLOOR_SIDE" ? "V53_04_LATE_FLOOR_FROZEN_TRACKING_BYTE_EQUAL" : `V53_04B_EARLY_FLOOR_ARMED_${armingLaw().id}_LINEAGE_RELEASED`);
   const active = lawfulCent(inputs.activeTarget) ? inputs.activeTarget : null;
   const blocked = active === null
     ? { action: "HOLD_REST", target_cents: null }
     : { action: "CANCEL_REST", target_cents: null, direction: undefined };
-  return annotate(inputs, plan, lineage, { ...lineage, ...blocked, judgment_gate: { ...(lineage.judgment_gate ?? {}), verdict: "BLOCKED", failure: "RISER_T1_SECOND_TRUE_DIVOT_NOT_ARMED" } }, "V53_04_RISER_ARMING_BLOCKED_PENDING_SECOND_TRUE_DIVOT_RESUME");
+  return annotate(inputs, plan, lineage, { ...lineage, ...blocked, judgment_gate: { ...(lineage.judgment_gate ?? {}), verdict: "BLOCKED", failure: `RISER_ARMING_NOT_YET_QUALIFIED_${armingLaw().id}` } }, `V53_04B_RISER_ARMING_BLOCKED_${armingLaw().id}`);
 }
 
 function decideReceipt(inputs) { return { decision: decide(inputs), v53_riser_arming_law_enabled: true }; }
 
-module.exports = { ...frozen, ARMING_LAW, emptyLegState, observePostOnset, observeMachineState, observeRiserPrint, stance, buildGameView, buildPlan, normalizedClauses, conservationInputs, jointLicense, decide, decideReceipt };
+module.exports = { ...frozen, ARMING_LAWS, configureArmingLaw, armingLaw, emptyLegState, observePostOnset, observeMachineState, observeRiserBook, observeRiserPrint, stance, buildGameView, buildPlan, normalizedClauses, conservationInputs, jointLicense, decide, decideReceipt };

@@ -1,0 +1,1201 @@
+{
+  "label": "V53_04B_ENGINE_PINS_SWEEP",
+  "object_under_test": "ACTUAL_V53_04_ENGINE_BYTE_EQUAL_OUTSIDE_RISER_ARMING_CLAUSE",
+  "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+  "control_fence": {
+    "expected": {
+      "completed_pairs": 4,
+      "locked_cents": 117
+    },
+    "observed": {
+      "completed_pairs": 4,
+      "locked_cents": 117
+    },
+    "identity_exact": true,
+    "assertions_clean": true,
+    "pass": true
+  },
+  "selector": {
+    "pre_registered": true,
+    "survivor_law": "IDENTITY_HELD_AND_COMPLETES_GE_4_AND_ASSERTS_CLEAN",
+    "winner_law": "HIGHEST_LOCKED_CENTS_THEN_FEWER_ARMS",
+    "stable_final_tie_break": "DECLARED_A0_TO_A5_ORDER",
+    "survivors": [
+      "A0_CONTROL_PROXY_SECOND_VISIT",
+      "A4_BID_PERSISTENCE_300S",
+      "A5_FIRST_TWO_SIDED_BOOK",
+      "A1_PROXY_FIRST_VISIT"
+    ],
+    "winner": "A0_CONTROL_PROXY_SECOND_VISIT"
+  },
+  "laws": [
+    {
+      "selector_order": 0,
+      "law_id": "A0_CONTROL_PROXY_SECOND_VISIT",
+      "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+      "completes": 4,
+      "under_par_pairs": 4,
+      "locked_cents": 117,
+      "average_game_delta_cents": 29.25,
+      "completed_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "champion_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "identity_vs_champion": {
+        "held": [
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL16MERDRO",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "lost": [],
+        "gained": []
+      },
+      "asserts_clean": true,
+      "assertion_receipt_sha256": "80ac32a9b8022d8a58f2ed8d419ab0c943e65a916d6dd938d5458ff80c2d1a71",
+      "arming_events": 7,
+      "armed_legs": 7,
+      "first_arm_timing_by_leg": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783876595,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-3277",
+          "first_arm_reason": "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783876595,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-3277",
+            "t_minus_scheduled_seconds": 7405,
+            "t_minus_actual_bell_seconds": 2605
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783851376,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-518",
+          "first_arm_reason": "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783851376,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-518",
+            "t_minus_scheduled_seconds": 32624,
+            "t_minus_actual_bell_seconds": 27824
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784447479,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-38",
+          "first_arm_reason": "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784447479,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-38",
+            "t_minus_scheduled_seconds": 40121,
+            "t_minus_actual_bell_seconds": 29621
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784450810,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-88",
+          "first_arm_reason": "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784450810,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-88",
+            "t_minus_scheduled_seconds": 36790,
+            "t_minus_actual_bell_seconds": 26290
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783881676,
+          "first_arm_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-222",
+          "first_arm_reason": "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783881676,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-222",
+            "t_minus_scheduled_seconds": 71324,
+            "t_minus_actual_bell_seconds": 60824
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784150807,
+          "first_arm_receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-11",
+          "first_arm_reason": "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784150807,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-11",
+            "t_minus_scheduled_seconds": 70393,
+            "t_minus_actual_bell_seconds": 59893
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783948877,
+          "first_arm_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-179",
+          "first_arm_reason": "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783948877,
+            "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-179",
+            "t_minus_scheduled_seconds": 77923,
+            "t_minus_actual_bell_seconds": null
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+          "arming_law": "A0_CONTROL_PROXY_SECOND_VISIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        }
+      ],
+      "source_package_hashes": {
+        "pins_receipt": "1e956381b234019cf992abf62f32e7f5bd05d99de68065ad09dcd1d5fad022f7",
+        "f24_scoreboard": "42f439d3d0a31f2c19e0c55b3185303300cbb4f72cc36ae18c76ce883434195b",
+        "market_event_ledger": "299861a06dbe5f309a2fd8b031fa0d412e080c06df8df809032d0afbf14982b6"
+      },
+      "selector": {
+        "identity_held": true,
+        "completes_at_least_4": true,
+        "asserts_clean": true,
+        "survivor": true
+      }
+    },
+    {
+      "selector_order": 1,
+      "law_id": "A1_PROXY_FIRST_VISIT",
+      "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+      "completes": 4,
+      "under_par_pairs": 4,
+      "locked_cents": 66,
+      "average_game_delta_cents": 16.5,
+      "completed_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "champion_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "identity_vs_champion": {
+        "held": [
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL16MERDRO",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "lost": [],
+        "gained": []
+      },
+      "asserts_clean": true,
+      "assertion_receipt_sha256": "80ac32a9b8022d8a58f2ed8d419ab0c943e65a916d6dd938d5458ff80c2d1a71",
+      "arming_events": 9,
+      "armed_legs": 9,
+      "first_arm_timing_by_leg": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783830740,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-5",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783830740,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-5",
+            "t_minus_scheduled_seconds": 53260,
+            "t_minus_actual_bell_seconds": 48460
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783830740,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783830740,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5",
+            "t_minus_scheduled_seconds": 53260,
+            "t_minus_actual_bell_seconds": 48460
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784437962,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-16",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784437962,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-16",
+            "t_minus_scheduled_seconds": 49638,
+            "t_minus_actual_bell_seconds": 39138
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784437784,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-11",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784437784,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-11",
+            "t_minus_scheduled_seconds": 49816,
+            "t_minus_actual_bell_seconds": 39316
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783871486,
+          "first_arm_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-8",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783871486,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-8",
+            "t_minus_scheduled_seconds": 81514,
+            "t_minus_actual_bell_seconds": 71014
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783871486,
+          "first_arm_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-8",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783871486,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-8",
+            "t_minus_scheduled_seconds": 81514,
+            "t_minus_actual_bell_seconds": 71014
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784150809,
+          "first_arm_receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-30",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784150809,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-30",
+            "t_minus_scheduled_seconds": 70391,
+            "t_minus_actual_bell_seconds": 59891
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784150612,
+          "first_arm_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-13",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784150612,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-13",
+            "t_minus_scheduled_seconds": 70588,
+            "t_minus_actual_bell_seconds": 60088
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783943435,
+          "first_arm_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-25",
+          "first_arm_reason": "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783943435,
+            "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-25",
+            "t_minus_scheduled_seconds": 83365,
+            "t_minus_actual_bell_seconds": null
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+          "arming_law": "A1_PROXY_FIRST_VISIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        }
+      ],
+      "source_package_hashes": {
+        "pins_receipt": "e1dd589c36dd23d5e9fe5107e94c098e7d4d75a7f7d73fe60b21b642bce9b627",
+        "f24_scoreboard": "a065c09b4a02413738c62540f38a36af49bb2c5dca9c2f1ecb218b894e193c12",
+        "market_event_ledger": "08424ba4c0fb985606b1348eff6160614393f7a10255bc828b290efbea7c6340"
+      },
+      "selector": {
+        "identity_held": true,
+        "completes_at_least_4": true,
+        "asserts_clean": true,
+        "survivor": true
+      }
+    },
+    {
+      "selector_order": 2,
+      "law_id": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+      "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+      "completes": 1,
+      "under_par_pairs": 1,
+      "locked_cents": 37,
+      "average_game_delta_cents": 37,
+      "completed_event_ids": [
+        "KXATPMATCH-26JUL16MERDRO"
+      ],
+      "champion_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "identity_vs_champion": {
+        "held": [
+          "KXATPMATCH-26JUL16MERDRO"
+        ],
+        "lost": [
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "gained": []
+      },
+      "asserts_clean": true,
+      "assertion_receipt_sha256": "80ac32a9b8022d8a58f2ed8d419ab0c943e65a916d6dd938d5458ff80c2d1a71",
+      "arming_events": 3,
+      "armed_legs": 3,
+      "first_arm_timing_by_leg": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783874564.119,
+          "first_arm_receipt": "20a7f4a8-cc55-7a94-3efa-b1e1896524e7",
+          "first_arm_reason": "ARM_ON_FIRST_OPERATOR_DIVOT_LATER_RESUME",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783874566,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-2794",
+            "t_minus_scheduled_seconds": 9434,
+            "t_minus_actual_bell_seconds": 4634
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783915544.039,
+          "first_arm_receipt": "8976d042-cd1d-4861-9005-6321bc63247c",
+          "first_arm_reason": "ARM_ON_FIRST_OPERATOR_DIVOT_LATER_RESUME",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783915549,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-1924",
+            "t_minus_scheduled_seconds": 37451,
+            "t_minus_actual_bell_seconds": 26951
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784150609.2,
+          "first_arm_receipt": "bb7399c0-3291-697e-46a4-5533bd1dbf57",
+          "first_arm_reason": "ARM_ON_FIRST_OPERATOR_DIVOT_LATER_RESUME",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784150612,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-12",
+            "t_minus_scheduled_seconds": 70588,
+            "t_minus_actual_bell_seconds": 60088
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+          "arming_law": "A2_FIRST_TRUE_DIVOT_AND_RESUME",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        }
+      ],
+      "source_package_hashes": {
+        "pins_receipt": "e1fbf210ae0a5edc3628011e89d72f180ae38ec7d40b67ed0cacc32005a0051e",
+        "f24_scoreboard": "cb29ab6883e6e11d5140a62969bd8466080094dfbbe4bc2ed9122ced06181af8",
+        "market_event_ledger": "e2515537f0daaec1f82a90c3bc78b83bf3f9fa2c88e885c53e268bdbacfa9e06"
+      },
+      "selector": {
+        "identity_held": false,
+        "completes_at_least_4": false,
+        "asserts_clean": true,
+        "survivor": false
+      }
+    },
+    {
+      "selector_order": 3,
+      "law_id": "A3_FIRST_SELLER_HIT",
+      "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+      "completes": 3,
+      "under_par_pairs": 3,
+      "locked_cents": 116,
+      "average_game_delta_cents": 38.666666666666664,
+      "completed_event_ids": [
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "champion_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "identity_vs_champion": {
+        "held": [
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL16MERDRO",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "lost": [
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH"
+        ],
+        "gained": []
+      },
+      "asserts_clean": true,
+      "assertion_receipt_sha256": "80ac32a9b8022d8a58f2ed8d419ab0c943e65a916d6dd938d5458ff80c2d1a71",
+      "arming_events": 6,
+      "armed_legs": 6,
+      "first_arm_timing_by_leg": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783838365.701,
+          "first_arm_receipt": "81bcba84-2efa-72fd-762d-21ebaeb931ba",
+          "first_arm_reason": "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783838376,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-240",
+            "t_minus_scheduled_seconds": 45624,
+            "t_minus_actual_bell_seconds": 40824
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784472683.838,
+          "first_arm_receipt": "411f2fd6-4e04-4e07-4e03-c514eafe2746",
+          "first_arm_reason": "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784472685,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1133",
+            "t_minus_scheduled_seconds": 14915,
+            "t_minus_actual_bell_seconds": 4415
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784475080.668,
+          "first_arm_receipt": "46a39f4f-a857-501e-78d3-8723619708fc",
+          "first_arm_reason": "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784475082,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-1043",
+            "t_minus_scheduled_seconds": 12518,
+            "t_minus_actual_bell_seconds": 2018
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783885942.581,
+          "first_arm_receipt": "9886e207-30c5-5838-f472-5d29b60723e4",
+          "first_arm_reason": "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783885944,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-304",
+            "t_minus_scheduled_seconds": 67056,
+            "t_minus_actual_bell_seconds": 56556
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784150197.543,
+          "first_arm_receipt": "7827545f-f0b1-70f2-d1b5-a73c5f9053b3",
+          "first_arm_reason": "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784150210,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-9",
+            "t_minus_scheduled_seconds": 70990,
+            "t_minus_actual_bell_seconds": 60490
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783955766.839,
+          "first_arm_receipt": "d0bd5ace-2c53-63ac-3231-55e00680b97d",
+          "first_arm_reason": "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783955770,
+            "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-726",
+            "t_minus_scheduled_seconds": 71030,
+            "t_minus_actual_bell_seconds": null
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+          "arming_law": "A3_FIRST_SELLER_HIT",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        }
+      ],
+      "source_package_hashes": {
+        "pins_receipt": "5f9c7bfb5119da653239409df0fa0f9fd8312837c33975984b5f7c55cdca879b",
+        "f24_scoreboard": "e80c48406e49abe9cbbb4196bb737982a48e2af3a1723b0d28bb4c27b06415fd",
+        "market_event_ledger": "87178218cc119335c9b390eb5e45c49d84249a75051b76f4dcc0e9b920db7463"
+      },
+      "selector": {
+        "identity_held": false,
+        "completes_at_least_4": false,
+        "asserts_clean": true,
+        "survivor": false
+      }
+    },
+    {
+      "selector_order": 4,
+      "law_id": "A4_BID_PERSISTENCE_300S",
+      "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+      "completes": 4,
+      "under_par_pairs": 4,
+      "locked_cents": 117,
+      "average_game_delta_cents": 29.25,
+      "completed_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "champion_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "identity_vs_champion": {
+        "held": [
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL16MERDRO",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "lost": [],
+        "gained": []
+      },
+      "asserts_clean": true,
+      "assertion_receipt_sha256": "80ac32a9b8022d8a58f2ed8d419ab0c943e65a916d6dd938d5458ff80c2d1a71",
+      "arming_events": 9,
+      "armed_legs": 9,
+      "first_arm_timing_by_leg": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783831734,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-159",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783831734,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-159",
+            "t_minus_scheduled_seconds": 52266,
+            "t_minus_actual_bell_seconds": 47466
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783831734,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-34",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783831734,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-34",
+            "t_minus_scheduled_seconds": 52266,
+            "t_minus_actual_bell_seconds": 47466
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784434967,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-7",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784434967,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-7",
+            "t_minus_scheduled_seconds": 52633,
+            "t_minus_actual_bell_seconds": 42133
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784438138,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-23",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784438138,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-23",
+            "t_minus_scheduled_seconds": 49462,
+            "t_minus_actual_bell_seconds": 38962
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783871486,
+          "first_arm_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-8",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783871486,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-8",
+            "t_minus_scheduled_seconds": 81514,
+            "t_minus_actual_bell_seconds": 71014
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783871486,
+          "first_arm_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-8",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783871486,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-8",
+            "t_minus_scheduled_seconds": 81514,
+            "t_minus_actual_bell_seconds": 71014
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784150807,
+          "first_arm_receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-11",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784150807,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-11",
+            "t_minus_scheduled_seconds": 70393,
+            "t_minus_actual_bell_seconds": 59893
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784150176,
+          "first_arm_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-7",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784150176,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-7",
+            "t_minus_scheduled_seconds": 71024,
+            "t_minus_actual_bell_seconds": 60524
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783943168,
+          "first_arm_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-23",
+          "first_arm_reason": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783943168,
+            "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-23",
+            "t_minus_scheduled_seconds": 83632,
+            "t_minus_actual_bell_seconds": null
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+          "arming_law": "A4_BID_PERSISTENCE_300S",
+          "armed": false,
+          "arm_count": 0,
+          "first_arm_timestamp_epoch": null,
+          "first_arm_receipt": null,
+          "first_arm_reason": null,
+          "first_arm_observed_at": null
+        }
+      ],
+      "source_package_hashes": {
+        "pins_receipt": "3c067310330b50c77758131a89dbb14eccd0e8881bd2612608aa6f73cade46ff",
+        "f24_scoreboard": "42f439d3d0a31f2c19e0c55b3185303300cbb4f72cc36ae18c76ce883434195b",
+        "market_event_ledger": "299861a06dbe5f309a2fd8b031fa0d412e080c06df8df809032d0afbf14982b6"
+      },
+      "selector": {
+        "identity_held": true,
+        "completes_at_least_4": true,
+        "asserts_clean": true,
+        "survivor": true
+      }
+    },
+    {
+      "selector_order": 5,
+      "law_id": "A5_FIRST_TWO_SIDED_BOOK",
+      "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+      "completes": 4,
+      "under_par_pairs": 4,
+      "locked_cents": 117,
+      "average_game_delta_cents": 29.25,
+      "completed_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "champion_event_ids": [
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "KXATPMATCH-26JUL13SANDAN",
+        "KXATPMATCH-26JUL16MERDRO",
+        "KXWTAMATCH-26JUL14PUTJEA"
+      ],
+      "identity_vs_champion": {
+        "held": [
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "KXATPMATCH-26JUL13SANDAN",
+          "KXATPMATCH-26JUL16MERDRO",
+          "KXWTAMATCH-26JUL14PUTJEA"
+        ],
+        "lost": [],
+        "gained": []
+      },
+      "asserts_clean": true,
+      "assertion_receipt_sha256": "80ac32a9b8022d8a58f2ed8d419ab0c943e65a916d6dd938d5458ff80c2d1a71",
+      "arming_events": 10,
+      "armed_legs": 10,
+      "first_arm_timing_by_leg": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783830737,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783830737,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 53263,
+            "t_minus_actual_bell_seconds": 48463
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783830737,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783830737,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 53263,
+            "t_minus_actual_bell_seconds": 48463
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784434536,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784434536,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 53064,
+            "t_minus_actual_bell_seconds": 42564
+          }
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784434536,
+          "first_arm_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784434536,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 53064,
+            "t_minus_actual_bell_seconds": 42564
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783870590,
+          "first_arm_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783870590,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 82410,
+            "t_minus_actual_bell_seconds": 71910
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783870590,
+          "first_arm_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783870590,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 82410,
+            "t_minus_actual_bell_seconds": 71910
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784148754,
+          "first_arm_receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784148754,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 72446,
+            "t_minus_actual_bell_seconds": 61946
+          }
+        },
+        {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1784148754,
+          "first_arm_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1784148754,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 72446,
+            "t_minus_actual_bell_seconds": 61946
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783936553,
+          "first_arm_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783936553,
+            "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 90247,
+            "t_minus_actual_bell_seconds": null
+          }
+        },
+        {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+          "arming_law": "A5_FIRST_TWO_SIDED_BOOK",
+          "armed": true,
+          "arm_count": 1,
+          "first_arm_timestamp_epoch": 1783936553,
+          "first_arm_receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-2",
+          "first_arm_reason": "ARM_ON_FIRST_TWO_SIDED_BOOK",
+          "first_arm_observed_at": {
+            "timestamp_epoch": 1783936553,
+            "receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-2",
+            "t_minus_scheduled_seconds": 90247,
+            "t_minus_actual_bell_seconds": null
+          }
+        }
+      ],
+      "source_package_hashes": {
+        "pins_receipt": "ba2fe21bb1032b5899ccced8f05da8b110565773f88d28f1ccf95f2bf9149ac7",
+        "f24_scoreboard": "42f439d3d0a31f2c19e0c55b3185303300cbb4f72cc36ae18c76ce883434195b",
+        "market_event_ledger": "299861a06dbe5f309a2fd8b031fa0d412e080c06df8df809032d0afbf14982b6"
+      },
+      "selector": {
+        "identity_held": true,
+        "completes_at_least_4": true,
+        "asserts_clean": true,
+        "survivor": true
+      }
+    }
+  ],
+  "disposition": "SURVIVOR_EXISTS_FRESH25_PREREGISTRATION_PERMITTED",
+  "full_804_run": false
+}

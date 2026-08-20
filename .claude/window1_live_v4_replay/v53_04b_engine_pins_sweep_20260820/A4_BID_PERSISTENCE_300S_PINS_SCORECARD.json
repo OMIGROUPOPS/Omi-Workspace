@@ -1,0 +1,49 @@
+{
+  "scope": "V53_04_PINS_SMOKE_5_ONLY",
+  "full_804_run": false,
+  "arming_law": {
+    "id": "A4_BID_PERSISTENCE_300S",
+    "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+    "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+    "engine_effect": "ARM_ON_RISING_BID_PERSISTENCE_300S",
+    "persistence_seconds": 300,
+    "persistence_source_commit": "084df12553928677869bd2857516caa3f0490416",
+    "persistence_source_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_TRIGGER_FRONTIER.json",
+    "proxy_instrument_consumed": false,
+    "method_revision": 3,
+    "shape_offset_aim_consumed": false,
+    "latchcal_consumed": false
+  },
+  "comparator": {
+    "games": 5,
+    "completed_pairs": 4,
+    "under_par_pairs": 4,
+    "locked_cents": 117,
+    "average_locked_delta_cents": 29.25,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "KXATPMATCH-26JUL13SANDAN",
+      "KXATPMATCH-26JUL16MERDRO",
+      "KXWTAMATCH-26JUL14PUTJEA"
+    ]
+  },
+  "candidate": {
+    "games": 5,
+    "completed_pairs": 4,
+    "under_par_pairs": 4,
+    "locked_cents": 117,
+    "average_locked_delta_cents": 29.25,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "KXATPMATCH-26JUL13SANDAN",
+      "KXATPMATCH-26JUL16MERDRO",
+      "KXWTAMATCH-26JUL14PUTJEA"
+    ]
+  },
+  "pins_smoke_gate": {
+    "candidate_locked_cents_at_least_lineage": true,
+    "zero_build_assertion_violations": true,
+    "pass": true
+  },
+  "disposition": "PINS_SMOKE_PASS_PREREGISTRATION_PERMITTED"
+}

@@ -1,0 +1,12 @@
+{
+  "implementation_commit": "165ec926c0448ab8e7ae7370649ca4fcc40d75c7",
+  "runner": {
+    "path": "arb-executor/analysis/build_window1_v38_maker_only.js",
+    "sha256": "32d685c464d76709ad4fb8fab5f3b00d0eb54263cfbda2de6088268f0487cf62"
+  },
+  "policy": {
+    "path": "arb-executor/analysis/window1_v53_riser_arming_law.js",
+    "sha256": "d33e04d8df45bf8281e98fdbca33b3546d0c17b27ed6f604119fa642f835da9e"
+  },
+  "unchanged_outside_riser_arming_clause": true
+}

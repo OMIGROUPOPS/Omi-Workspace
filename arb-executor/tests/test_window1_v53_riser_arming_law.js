@@ -28,17 +28,18 @@ assert.equal(rising.arming_law.latchcal_consumed, false);
 
 policy.configureArmingLaw("A0_CONTROL_PROXY_SECOND_VISIT");
 const control = policy.emptyLegState(100);
-assert.equal(control.riser_arm.armed, true);
-assert.equal(control.riser_arm.arm_reason, "FROZEN_V52L_CHAMPION_BYTE_EQUAL");
+policy.observeRiserBook(control, { kind: "BOOK", ts: 101, receipt: "control-60-first", bid: 58, ask: 60 }, null, "RISING");
+policy.observeRiserBook(control, { kind: "BOOK", ts: 102, receipt: "control-59", bid: 57, ask: 59 }, { bid: 58, ask: 60 }, "RISING");
+assert.equal(control.riser_arm.armed, false);
+policy.observeRiserBook(control, { kind: "BOOK", ts: 103, receipt: "control-60-second", bid: 58, ask: 60 }, { bid: 57, ask: 59 }, "RISING");
+assert.equal(control.riser_arm.armed_receipt, "control-60-second");
+assert.equal(control.riser_arm.arm_count, 1);
 
 policy.configureArmingLaw("A1_PROXY_FIRST_VISIT");
 const proxy = policy.emptyLegState(100);
 policy.observeRiserBook(proxy, { kind: "BOOK", ts: 101, receipt: "proxy-0", bid: 58, ask: 60 }, null, "RISING");
 policy.observeRiserBook(proxy, { kind: "BOOK", ts: 102, receipt: "proxy-1", bid: 57, ask: 59 }, { bid: 58, ask: 60 }, "RISING");
-assert.equal(proxy.riser_arm.armed, false, "the proxy trough is not a visit until the ask returns");
-policy.observeRiserBook(proxy, { kind: "BOOK", ts: 103, receipt: "proxy-resume", bid: 58, ask: 60 }, { bid: 57, ask: 59 }, "RISING");
-assert.equal(proxy.riser_arm.armed_receipt, "proxy-resume");
-assert.equal(proxy.riser_arm.qualified_proxy_visits.length, 1);
+assert.equal(proxy.riser_arm.armed_receipt, "proxy-1");
 
 policy.configureArmingLaw("A3_FIRST_SELLER_HIT");
 const seller = policy.emptyLegState(100);

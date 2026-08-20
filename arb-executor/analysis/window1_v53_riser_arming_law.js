@@ -10,8 +10,8 @@ const frozen = require("./window1_v52h_remove_pair_lows_precondition.js");
 
 const REBASE_SOURCE = Object.freeze({ source_commit: "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf", source_path: ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json" });
 const ARMING_LAWS = Object.freeze({
-  A0_CONTROL_PROXY_SECOND_VISIT: Object.freeze({ id: "A0_CONTROL_PROXY_SECOND_VISIT", source_commit: "c1fd51ececb7de1885a88f8672b1e5ce7444e3a1", source_path: ".claude/window1_live_v4_replay/v53_04_riser_arming_law_pins_smoke_20260820/PINS_SMOKE_RECEIPT.json", engine_effect: "FROZEN_V52L_CHAMPION_BYTE_EQUAL", proxy_instrument_consumed: true }),
-  A1_PROXY_FIRST_VISIT: Object.freeze({ id: "A1_PROXY_FIRST_VISIT", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_CAUSAL_PROXY_TROUGH_AND_RETURN", proxy_instrument_consumed: true }),
+  A0_CONTROL_PROXY_SECOND_VISIT: Object.freeze({ id: "A0_CONTROL_PROXY_SECOND_VISIT", source_commit: "c1fd51ececb7de1885a88f8672b1e5ce7444e3a1", source_path: ".claude/window1_live_v4_replay/v53_04_riser_arming_law_pins_smoke_20260820/PINS_SMOKE_RECEIPT.json", engine_effect: "ARM_ON_SECOND_PROXY_ASK_LEVEL_VISIT_INSIDE_FROZEN_300S_HORIZON", horizon_seconds: frozen.LOOKBACK_SECONDS, horizon_source_commit: "d1ac94973252e2f8c28ba32374c29ff7bd605a7e", horizon_source_path: ".claude/window1_live_v4_replay/quote_reachability_20260730/WINDOW1_QUOTE_DIVOT_CENSUS.json", proxy_instrument_consumed: true }),
+  A1_PROXY_FIRST_VISIT: Object.freeze({ id: "A1_PROXY_FIRST_VISIT", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_CAUSAL_RISING_ASK_DESCENT", proxy_instrument_consumed: true }),
   A2_FIRST_TRUE_DIVOT_AND_RESUME: Object.freeze({ id: "A2_FIRST_TRUE_DIVOT_AND_RESUME", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_OPERATOR_DIVOT_LATER_RESUME", proxy_instrument_consumed: false }),
   A3_FIRST_SELLER_HIT: Object.freeze({ id: "A3_FIRST_SELLER_HIT", ...REBASE_SOURCE, engine_effect: "ARM_ON_FIRST_RISING_SIDE_SELLER_AGGRESSED_PRINT", proxy_instrument_consumed: false }),
   A4_BID_PERSISTENCE_300S: Object.freeze({ id: "A4_BID_PERSISTENCE_300S", ...REBASE_SOURCE, engine_effect: "ARM_ON_RISING_BID_PERSISTENCE_300S", persistence_seconds: 300, persistence_source_commit: "084df12553928677869bd2857516caa3f0490416", persistence_source_path: ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_TRIGGER_FRONTIER.json", proxy_instrument_consumed: false }),
@@ -40,14 +40,13 @@ function emptyLegState(onsetTimestampEpoch) {
       prior_trade_high_cents: null,
       pending_trough: null,
       qualified_divots: [],
-      armed: law.id === "A0_CONTROL_PROXY_SECOND_VISIT",
-      armed_receipt: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? "FROZEN_V52L_CONTROL" : null,
-      armed_timestamp_epoch: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? onsetTimestampEpoch : null,
-      arm_count: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? 1 : 0,
-      arm_reason: law.id === "A0_CONTROL_PROXY_SECOND_VISIT" ? "FROZEN_V52L_CHAMPION_BYTE_EQUAL" : null,
+      armed: false,
+      armed_receipt: null,
+      armed_timestamp_epoch: null,
+      arm_count: 0,
+      arm_reason: null,
       prior_ask_cents: null,
-      pending_proxy_trough: null,
-      qualified_proxy_visits: [],
+      proxy_level_visits: [],
       current_bid_cents: null,
       current_bid_since_epoch: null,
     },
@@ -80,15 +79,14 @@ function observeRiserBook(state, row, priorBook, machineState) {
   const arm = state.riser_arm, law = armingLaw();
   if (!arm || row?.kind !== "BOOK" || !lawfulCent(row.bid) || !lawfulCent(row.ask)) return state;
   if (law.id === "A5_FIRST_TWO_SIDED_BOOK") armAt(state, row, law.engine_effect, { bid_cents: row.bid, ask_cents: row.ask });
-  if (arm.pending_proxy_trough && row.ts > arm.pending_proxy_trough.timestamp_epoch && row.ask > arm.pending_proxy_trough.ask_cents) {
-    const visit = { ...arm.pending_proxy_trough, resume_timestamp_epoch: row.ts, resume_receipt: row.receipt, resume_ask_cents: row.ask, definition: "ASK_DESCENT_AND_LATER_RETURN_WITHOUT_TRADE_OR_JOINT_STATE_REQUIREMENT" };
-    arm.qualified_proxy_visits.push(visit);
-    arm.pending_proxy_trough = null;
-    if (law.id === "A1_PROXY_FIRST_VISIT") armAt(state, row, law.engine_effect, visit);
+  if (!priorBook || row.ask !== priorBook.ask) {
+    arm.proxy_level_visits.push({ timestamp_epoch: row.ts, receipt: row.receipt, ask_cents: row.ask });
+    arm.proxy_level_visits = arm.proxy_level_visits.filter((visit) => visit.timestamp_epoch >= row.ts - frozen.LOOKBACK_SECONDS);
+    const matching = arm.proxy_level_visits.filter((visit) => visit.ask_cents === row.ask);
+    if (law.id === "A0_CONTROL_PROXY_SECOND_VISIT" && matching.length >= frozen.PULSE_REVISIT_MIN) armAt(state, row, law.engine_effect, { ask_cents: row.ask, visits: matching, horizon_seconds: frozen.LOOKBACK_SECONDS });
   }
-  if (machineState === "RISING" && priorBook && lawfulCent(priorBook.ask) && row.ask < priorBook.ask) {
-    const trough = { timestamp_epoch: row.ts, receipt: row.receipt, prior_ask_cents: priorBook.ask, ask_cents: row.ask, proxy_only: true };
-    if (!arm.pending_proxy_trough || row.ask < arm.pending_proxy_trough.ask_cents) arm.pending_proxy_trough = trough;
+  if (law.id === "A1_PROXY_FIRST_VISIT" && machineState === "RISING" && priorBook && lawfulCent(priorBook.ask) && row.ask < priorBook.ask) {
+    armAt(state, row, law.engine_effect, { prior_ask_cents: priorBook.ask, ask_cents: row.ask, proxy_only: true });
   }
   if (law.id === "A4_BID_PERSISTENCE_300S") {
     if (arm.current_bid_cents !== row.bid) { arm.current_bid_cents = row.bid; arm.current_bid_since_epoch = row.ts; }
@@ -137,7 +135,7 @@ function observeRiserPrint(state, row, ownBook, siblingBook, machineState) {
 
 function stance(state) {
   const law = armingLaw();
-  if (state.machine_state === "RISING") return { value: "EARLY_FLOOR_SIDE", classification: "RISING", arming_law: law, armed: state.riser_arm.armed, qualified_divots: state.riser_arm.qualified_divots.length, qualified_proxy_visits: state.riser_arm.qualified_proxy_visits.length, armed_receipt: state.riser_arm.armed_receipt, armed_timestamp_epoch: state.riser_arm.armed_timestamp_epoch, arm_count: state.riser_arm.arm_count, arm_reason: state.riser_arm.arm_reason };
+  if (state.machine_state === "RISING") return { value: "EARLY_FLOOR_SIDE", classification: "RISING", arming_law: law, armed: state.riser_arm.armed, qualified_divots: state.riser_arm.qualified_divots.length, proxy_level_visits: state.riser_arm.proxy_level_visits.length, armed_receipt: state.riser_arm.armed_receipt, armed_timestamp_epoch: state.riser_arm.armed_timestamp_epoch, arm_count: state.riser_arm.arm_count, arm_reason: state.riser_arm.arm_reason };
   if (state.machine_state === "FALLING") return { value: "LATE_FLOOR_SIDE", classification: "FALLING", authority: "FROZEN_LINEAGE_TRACKING_CLAUSE" };
   return { value: "CLASSIFICATION_ABSENT", classification: state.machine_state, authority: "SILENCE_TO_FROZEN_LINEAGE" };
 }
@@ -146,7 +144,7 @@ function buildGameView(states, context) {
   const base = view.buildGameView(states, context), ids = Object.keys(states).sort();
   return {
     ...base,
-    legs: Object.fromEntries(ids.map((id) => [id, { ...base.legs[id], machine_state: { value: states[id].machine_state, producer_receipt: states[id].machine_state_receipt }, stance: stance(states[id]), riser_arm: { ...states[id].riser_arm, qualified_divots: [...states[id].riser_arm.qualified_divots], qualified_proxy_visits: [...states[id].riser_arm.qualified_proxy_visits] } }])),
+    legs: Object.fromEntries(ids.map((id) => [id, { ...base.legs[id], machine_state: { value: states[id].machine_state, producer_receipt: states[id].machine_state_receipt }, stance: stance(states[id]), riser_arm: { ...states[id].riser_arm, qualified_divots: [...states[id].riser_arm.qualified_divots], proxy_level_visits: [...states[id].riser_arm.proxy_level_visits] } }])),
     provenance: { ...base.provenance, v53_04_arming_law: armingLaw(), post_onset_only: true, no_span_fraction_consumed: true, no_static_depth_target_consumed: true },
   };
 }
@@ -206,7 +204,6 @@ function annotate(inputs, plan, lineage, decision, reason) {
 function decide(inputs) {
   const clauses = normalizedClauses(inputs.clauses), lineage = frozen.decide({ ...inputs, clauses });
   if (!clauses.v53_riser_arming_law) return lineage;
-  if (armingLaw().id === "A0_CONTROL_PROXY_SECOND_VISIT") return annotate(inputs, inputs.v53Plan, lineage, lineage, "V53_04B_A0_FROZEN_V52L_CONTROL_BYTE_EQUAL");
   const plan = inputs.v53Plan;
   const ownStance = plan?.stances?.[inputs.legId];
   if (!ownStance || ownStance.value === "CLASSIFICATION_ABSENT") return annotate(inputs, plan, lineage, lineage, "V53_04_CLASSIFICATION_ABSENT_SILENCE_TO_LINEAGE");

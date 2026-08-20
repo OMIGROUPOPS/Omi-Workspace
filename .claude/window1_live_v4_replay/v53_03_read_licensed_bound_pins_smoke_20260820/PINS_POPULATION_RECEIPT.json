@@ -1,0 +1,38 @@
+{
+  "label": "V53_03_PINS_SMOKE_POPULATION",
+  "fresh_cohort_drawn": false,
+  "source_path": ".claude/window1_v53_02_preregistration_20260820/PRE_REGISTRATION.json",
+  "source_label": "V53_02_STAGE1_PRE_REGISTRATION",
+  "standing_pins": [
+    {
+      "code": "26JUL12POLKUH",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "category": "ATP_CHALL",
+      "role": "STANDING_PIN_FILED_IN_V52L_LINEAGE"
+    },
+    {
+      "code": "26JUL13SANDAN",
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "category": "ATP_MAIN",
+      "role": "STANDING_PIN_FILED_IN_V52L_LINEAGE"
+    },
+    {
+      "code": "26JUL14PUTJEA",
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "category": "WTA_MAIN",
+      "role": "STANDING_PIN_FILED_IN_V52L_LINEAGE"
+    },
+    {
+      "code": "26JUL16MERDRO",
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "category": "ATP_MAIN",
+      "role": "STANDING_PIN_FILED_IN_V52L_LINEAGE"
+    },
+    {
+      "code": "26JUL19ARSMAR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "category": "ATP_CHALL",
+      "role": "STANDING_PIN_FILED_IN_V52L_LINEAGE"
+    }
+  ]
+}

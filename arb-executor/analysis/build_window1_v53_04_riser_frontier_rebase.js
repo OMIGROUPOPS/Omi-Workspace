@@ -23,6 +23,7 @@ const CAUSAL_PATH = ".claude/window1_second_seat/v11_non_action_mechanism_audit_
 const PRIOR_PATH = ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_TRIGGER_FRONTIER.json";
 const TRIGGERS = ["T1_SECOND_TRUE_DIVOT_VISIT", "T2_FIRST_TRUE_DIVOT_AND_RESUME", "T3_FIRST_SELLER_HIT", "T4_BID_PERSISTENCE_300S", "T5_FIRST_TWO_SIDED_BOOK"];
 const PERSIST_SECONDS = 300;
+const METHOD_REVISION = 2;
 
 function ensure(value, message) { if (!value) throw new Error(message); }
 function sha(bytes) { return crypto.createHash("sha256").update(bytes).digest("hex"); }
@@ -83,15 +84,18 @@ async function loadPrints(bounds) {
 }
 function trueDivots(prints, ownBooks, siblingBooks) {
   const candidates = [];
-  let runningHigh = null;
+  let runningHigh = null, pending = null;
   for (let i = 0; i < prints.length; i += 1) {
     const p = prints[i], own = latestAt(ownBooks, p.ts), sibling = latestAt(siblingBooks, p.ts);
     const joint = own && sibling ? { own: { bid: own.bid, ask: own.ask, receipt: own.receipt }, sibling: { bid: sibling.bid, ask: sibling.ask, receipt: sibling.receipt } } : null;
-    const nextHigher = prints.slice(i + 1).find((q) => q.price > p.price);
     const strengthening = Number.isInteger(runningHigh) && p.price < runningHigh;
     const tradeBackedAtTrough = own && p.price <= own.bid;
-    if (joint && strengthening && tradeBackedAtTrough && nextHigher) {
-      candidates.push({ trough_ts: p.ts, trough_receipt: p.receipt, trough_price_cents: p.price, trough_size: p.size, joint_state: joint, resume_ts: nextHigher.ts, resume_receipt: nextHigher.receipt, resume_price_cents: nextHigher.price });
+    if (joint && strengthening && tradeBackedAtTrough) {
+      if (!pending || p.price < pending.trough_price_cents) pending = { trough_ts: p.ts, trough_receipt: p.receipt, trough_price_cents: p.price, trough_size: p.size, joint_state: joint };
+    }
+    if (pending && p.ts > pending.trough_ts && p.price > pending.trough_price_cents) {
+      candidates.push({ ...pending, resume_ts: p.ts, resume_receipt: p.receipt, resume_price_cents: p.price });
+      pending = null;
     }
     runningHigh = runningHigh === null ? p.price : Math.max(runningHigh, p.price);
   }
@@ -120,7 +124,7 @@ function triggerRows(prints, ownBooks, siblingBooks, divotMode) {
   }
   const t1 = divots.length >= 2 ? divots[1] : null, t2 = divots[0] || null;
   return {
-    T1_SECOND_TRUE_DIVOT_VISIT: t1 ? { ts: t1.trough_ts, receipt: t1.trough_receipt, level: t1.trough_price_cents, evidence: t1 } : null,
+    T1_SECOND_TRUE_DIVOT_VISIT: t1 ? { ts: t1.resume_ts, receipt: t1.resume_receipt, level: latestAt(ownBooks, t1.resume_ts)?.bid ?? t1.trough_price_cents, evidence: t1 } : null,
     T2_FIRST_TRUE_DIVOT_AND_RESUME: t2 ? { ts: t2.resume_ts, receipt: t2.resume_receipt, level: latestAt(ownBooks, t2.resume_ts)?.bid ?? t2.trough_price_cents, evidence: t2 } : null,
     T3_FIRST_SELLER_HIT: firstSeller ? { ts: firstSeller.ts, receipt: firstSeller.receipt, level: latestAt(ownBooks, firstSeller.ts)?.bid ?? firstSeller.price, evidence: firstSeller } : null,
     T4_BID_PERSISTENCE_300S: persist ? { ts: persist.ts, receipt: persist.receipt, level: persist.bid, evidence: { qualification_started_ts: persist.qualification_started_ts, qualification_seconds: persist.ts - persist.qualification_started_ts, provenance: `${PRIOR_COMMIT}:${PRIOR_PATH}` } } : null,
@@ -163,7 +167,7 @@ async function main() {
   for (const row of risers) { const t = truthByEvent.get(row.event); bounds.set(row.ticker, { left: t.span_start_epoch, right: t.span_end_epoch }); }
   const detailCache = path.join(output, "RISER_TRIGGER_DETAIL.jsonl.gz"), priorResultPath = path.join(output, "RISER_TRIGGER_FRONTIER_REBASED.json"), bookCache = path.join(output, "PRIVATE_BOOK_INPUT_MANIFEST.json");
   let printLoad, bookHashes = {}, perRiser = [];
-  if (fs.existsSync(detailCache) && fs.existsSync(priorResultPath) && fs.existsSync(bookCache)) {
+  if (fs.existsSync(detailCache) && fs.existsSync(priorResultPath) && fs.existsSync(bookCache) && JSON.parse(fs.readFileSync(priorResultPath, "utf8")).method_revision === METHOD_REVISION) {
     perRiser = zlib.gunzipSync(fs.readFileSync(detailCache)).toString("utf8").trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);
     printLoad = { receipt: JSON.parse(fs.readFileSync(priorResultPath, "utf8")).private_inputs.prints };
     bookHashes = JSON.parse(fs.readFileSync(bookCache, "utf8"));
@@ -242,9 +246,10 @@ async function main() {
   fs.mkdirSync(output, { recursive: true });
   const result = {
     label: "RISER_TRIGGER_FRONTIER_REBASED",
+    method_revision: METHOD_REVISION,
     stamp: "DESCRIPTIVE_MEASUREMENT_NOT_MECHANISM_EXAM",
     authorities: { truth_table: { commit: TRUTH_COMMIT, path: TRUTH_PATH, sha256: sha(truthBytes) }, causal_leg_table: { commit: CAUSAL_COMMIT, path: CAUSAL_PATH, sha256: sha(causalBytes), role: "RISING_IDENTITY_AND_FIXED_NON_RISER_MACHINERY" }, retained_method: { commit: PRIOR_COMMIT, path: PRIOR_PATH, sha256: sha(priorBytes) } },
-    definitions: { DIVOT: "STRENGTHENING_SIDE_ONLY; BOTH_BOOKS_FORMED_AT_TROUGH; TRUE_PRINT_AT_OR_BELOW_DISPLAYED_BID; PRIOR_HIGH_EXISTS; STRICTLY_LATER_HIGHER_PRINT RESUMES", PROXY_ONLY_TROUGH: "ASK_DESCENT_AND_LATER_RETURN_WITHOUT_TRADE_OR_JOINT_STATE_REQUIREMENT; NEVER CALLED A DIVOT", CANON_CREDIT: "ANY TRUE TRADE AT_OR_BELOW A PRIOR STANDING LEVEL; FRONTIER REACH IS LOWEST TRUE TRADE AT_OR_AFTER CAUSAL ARM", T4_constant: { seconds: PERSIST_SECONDS, provenance: `${PRIOR_COMMIT}:${PRIOR_PATH}` } },
+    definitions: { DIVOT: "STRENGTHENING_SIDE_ONLY; BOTH_BOOKS_FORMED_AT_TROUGH; TRUE_PRINT_AT_OR_BELOW_DISPLAYED_BID; PRIOR_HIGH_EXISTS; STRICTLY_LATER_HIGHER_PRINT RESUMES; ONE DIP/RESUME EPISODE COUNTS ONCE; ARM RECEIPT IS THE RESUME THAT MAKES THE DIVOT CAUSALLY KNOWABLE", PROXY_ONLY_TROUGH: "ASK_DESCENT_AND_LATER_RETURN_WITHOUT_TRADE_OR_JOINT_STATE_REQUIREMENT; NEVER CALLED A DIVOT", CANON_CREDIT: "ANY TRUE TRADE AT_OR_BELOW A PRIOR STANDING LEVEL; FRONTIER REACH IS LOWEST TRUE TRADE AT_OR_AFTER CAUSAL ARM", T4_constant: { seconds: PERSIST_SECONDS, provenance: `${PRIOR_COMMIT}:${PRIOR_PATH}` } },
     conservation: { full_population: truth.rows.length, verified_span_OK: truth.rows.filter((r) => r.verified_span === "OK").length, scored_fixed_reach_events: scoredEvents.length, causal_leg_rows: causalRows.length, riser_legs_rebased: perRiser.length, old_frontier_games: prior.conservation.games, old_frontier_risers: prior.conservation.risers },
     score_columns: scoreColumns,
     pick_rule: { expression: "MAX_TRUE_DIVOT_COLUMN_UNDER_PAR_WITH_FALSE_ARM_CENTS_LE_1_5X_INCUMBENT; TIE_FEWER_HARD_ARMS", incumbent_false_arm_cents: incumbent.false_arm_cents, maximum_allowed_false_arm_cents: 1.5 * incumbent.false_arm_cents, eligible, picked },

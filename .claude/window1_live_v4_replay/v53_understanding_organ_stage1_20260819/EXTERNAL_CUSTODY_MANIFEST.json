@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "law": "L8_HASH_BOUND_EXTERNAL_CUSTODY",
+  "source_commit": "9361166c685afb3260ad25cdb4f4831ad35da702",
+  "committed_artifact_cap_bytes": 50000000,
+  "custody_root": "C:\\Users\\omigr\\OMI-Window1-private\\replay-live-v4\\stage1-store\\v53_understanding_organ_stage1_20260819",
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/v53_understanding_organ_stage1_20260819/FULL_DECISION_TRACE_30.jsonl.gz",
+      "sha256": "6981729656ff819893d7253c415600e66beccb77b1e4f9af9d6edd8ac6586a5b",
+      "bytes": 118263050,
+      "row_count": 264290,
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\replay-live-v4\\stage1-store\\v53_understanding_organ_stage1_20260819\\FULL_DECISION_TRACE_30.jsonl.gz",
+      "externalized_reason": "GH001_GT_100_MB"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v53_understanding_organ_stage1_20260819/V52L_COMPARATOR_TRACE_30.jsonl.gz",
+      "sha256": "bd67f83d8a76423af31011e43dab1a82eed37cae69ec2caca15eae2df97f1402",
+      "bytes": 63935636,
+      "row_count": 195458,
+      "custody_location": "C:\\Users\\omigr\\OMI-Window1-private\\replay-live-v4\\stage1-store\\v53_understanding_organ_stage1_20260819\\V52L_COMPARATOR_TRACE_30.jsonl.gz",
+      "externalized_reason": "COMMITTED_ARTIFACT_CAP_GT_50_MB"
+    }
+  ],
+  "conservation": {
+    "externalized_files": 2,
+    "bytes": 182198686,
+    "rows": 459748
+  }
+}

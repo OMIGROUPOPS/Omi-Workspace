@@ -1,0 +1,52 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "b5d5be5e7cb9a20d48ae2090183c4ee47600bb93b5859af0dcf9a91c7cd361c6",
+      "bytes": 94
+    },
+    "FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz": {
+      "sha256": "48c32e2a40b0f8cea2721bcaa42a60419595c3c2c203bf5f98b2d26846d208d1",
+      "bytes": 9785504
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "3fb679f58f5ee6abb0fcf47041c3d2a394b421ac7fb3d153d98db61a1da06f02",
+      "bytes": 172
+    },
+    "FULL_DECISION_TRACE_30.jsonl.gz": {
+      "sha256": "6981729656ff819893d7253c415600e66beccb77b1e4f9af9d6edd8ac6586a5b",
+      "bytes": 118263050
+    },
+    "MARKET_EVENT_LEDGER_30.jsonl.gz": {
+      "sha256": "9fe370f9a4656b66fc08606e716eedd329b7a907bd1671d88af88743d9345183",
+      "bytes": 2011
+    },
+    "PER_GAME_L1_L8.json": {
+      "sha256": "79fab9f019e71492db7d62d8eddae5f215c8858c67dfd70fb4401c01ccce38f5",
+      "bytes": 528085
+    },
+    "PRE_REGISTRATION.json": {
+      "sha256": "5904c80eeb9d7e5f7ad9f5037de3e763d8af388e22077955d1e08b2d0513cb08",
+      "bytes": 26121
+    },
+    "REPORT.md": {
+      "sha256": "ee924963111cb01c20d93129adaf1368d32c0c81c8ace0690d6b82d503a76cb7",
+      "bytes": 231
+    },
+    "STAGE1_BUILD_ASSERTIONS.json": {
+      "sha256": "0294c5b27bdf6649c5c76df965d40c39348545ae6e2a08f32a149304a8c57ea5",
+      "bytes": 735
+    },
+    "STAGE1_SCORECARD.json": {
+      "sha256": "2d2c222737baf66fcbf3a10e8ad96eb957df1a55f925558eb0a56699a9d04e6f",
+      "bytes": 1654
+    },
+    "V53_FAILURE_CAUSE_RECEIPT.json": {
+      "sha256": "1e6e1c759ce3e97327148a699610b712f5a41b96b8910291e51f6b7b3bf61b5c",
+      "bytes": 36703
+    },
+    "V52L_COMPARATOR_TRACE_30.jsonl.gz": {
+      "sha256": "bd67f83d8a76423af31011e43dab1a82eed37cae69ec2caca15eae2df97f1402",
+      "bytes": 63935636
+    }
+  }
+}

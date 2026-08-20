@@ -1,0 +1,34 @@
+{
+  "pass": true,
+  "assertions": {
+    "no_pre_onset_inputs": [],
+    "no_span_fraction_inputs": [],
+    "no_static_depth_targets": [],
+    "complete_license_on_every_bid": [],
+    "joint_plan_within_par": [],
+    "N9_advisory_only": [],
+    "WTA_CHALL_role_disabled": []
+  },
+  "inherited_flow_assertions": {
+    "zero_posts_pre_onset": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_posts_on_no_tape": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_levels_from_displayed_bids": {
+      "violations": [],
+      "pass": true
+    },
+    "every_post_has_four_license_fields": {
+      "violations": [],
+      "pass": true
+    },
+    "scavenger_off": {
+      "violations": [],
+      "pass": true
+    }
+  }
+}

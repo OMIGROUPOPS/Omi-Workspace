@@ -1,0 +1,53 @@
+{
+  "scope": "V53_01_STAGE1_FRESH_30_ONLY",
+  "full_804_run": false,
+  "comparator": {
+    "games": 30,
+    "completed_pairs": 18,
+    "under_par_pairs": 18,
+    "locked_cents": 167,
+    "average_locked_delta_cents": 9.277777777777779,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "KXATPCHALLENGERMATCH-26JUL13TROGEO",
+      "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+      "KXATPCHALLENGERMATCH-26JUL15WOLJOH",
+      "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "KXATPMATCH-26JUL12SESMER",
+      "KXATPMATCH-26JUL13SANDAN",
+      "KXATPMATCH-26JUL16MERDRO",
+      "KXATPMATCH-26JUL17DZUMOL",
+      "KXATPMATCH-26JUL18SHETSI",
+      "KXWTACHALLENGERMATCH-26JUL15KNUTAR",
+      "KXWTACHALLENGERMATCH-26JUL20FERREN",
+      "KXWTAMATCH-26JUL14OLIIPE",
+      "KXWTAMATCH-26JUL14PUTJEA",
+      "KXWTAMATCH-26JUL14PUTLIU",
+      "KXWTAMATCH-26JUL17VALKOR"
+    ]
+  },
+  "candidate": {
+    "games": 30,
+    "completed_pairs": 5,
+    "under_par_pairs": 5,
+    "locked_cents": 15,
+    "average_locked_delta_cents": 3,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "KXATPMATCH-26JUL12SESMER",
+      "KXATPMATCH-26JUL17DZUMOL",
+      "KXWTAMATCH-26JUL14PUTLIU"
+    ]
+  },
+  "acceptance_bar": {
+    "candidate_completes_strictly_more": false,
+    "every_lineage_complete_held_by_identity": false,
+    "candidate_average_locked_delta_at_least_lineage": false,
+    "zero_build_assertion_violations": true,
+    "pass": false
+  },
+  "disposition": "STAGE1_FAILED_STOP_NO_804"
+}

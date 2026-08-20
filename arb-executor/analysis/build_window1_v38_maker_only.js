@@ -391,7 +391,7 @@ function loadN9CleanStore() {
 }
 function safeOutput(dir) {
   const resolved = path.resolve(dir);
-  ensure(path.basename(resolved).includes(isV52 ? "v52" : isV49b ? "v49b" : isV49 ? "v49" : isV48 ? "v48" : isV47 ? "v47" : isV46 ? "v46" : isV45 ? "v45" : isV43 ? "v43" : isV42 ? "v42" : isV41 ? "v41" : isV40 ? "v40" : isV39 ? "v39" : "v38"), `unsafe output ${resolved}`);
+  ensure(path.basename(resolved).includes(isV53 ? "v53" : isV52 ? "v52" : isV49b ? "v49b" : isV49 ? "v49" : isV48 ? "v48" : isV47 ? "v47" : isV46 ? "v46" : isV45 ? "v45" : isV43 ? "v43" : isV42 ? "v42" : isV41 ? "v41" : isV40 ? "v40" : isV39 ? "v39" : "v38"), `unsafe output ${resolved}`);
   ensure(resolved !== repo && resolved !== path.parse(resolved).root, `unsafe output ${resolved}`);
   fs.rmSync(resolved, { recursive: true, force: true });
   fs.mkdirSync(resolved, { recursive: true });
@@ -1011,7 +1011,7 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
     const v53Plan = isV53 ? v53Organ.buildPlan(v53GameView, v53Context) : null;
     const placementInputs = { legId: row.leg_id, state: combined.state, category: base.category, priceRegion: leg.price_region, book: row, priorAsk: prior?.ask ?? null, askGapCents, activeTarget: incumbentBefore, pairCap: leg.pair_cap_cents, pulseFloor: pulse.floor_cents, persistentJoinLevel: isPlacementStack ? leg.persistent_join_level : null, wtaInverseFalling, causalOwnReachLow, activeEvidenceFloor, floorFirstFlickerLive: activeEvidenceFloor === leg.running_qualified_ask_low && leg.running_qualified_ask_low_unabsorbed, floorMature, recentTradeLow, priorTrueTradeLow: leg.prior_true_trade_low_cents, priorTrueTradeLowReceipt: leg.prior_true_trade_low_receipt, priorExactBidEvidence, evidencedStandingLevel: leg.evidenced_standing_level_cents, evidencedStandingAuthority: leg.evidenced_standing_authority, doctrineStanding, birthLicense, v53GameView, v53Plan, siblingBestAsk: normalizedClauses.deep_gap_guard ? (sibling.prior_book?.ask ?? null) : undefined, siblingEntryCents: sibling.entry_cents, siblingCredited: sibling.credited, siblingStandingTarget: base.v52s_enabled ? (sibling.active_order?.v52s_default_target_cents ?? sibling.active_order?.target_cents ?? null) : (sibling.active_order?.target_cents ?? null), clauses: normalizedClauses };
     leg.last_placement_inputs = placementInputs;
-    const atomicReceiptDecision = (isV47 || isTradeTruthVariant) && normalizedClauses.same_tick_arm ? policy.decideReceipt({ ...placementInputs, currentJoinLevel: joinLevelBeforeReceipt, residencySeconds: row.ts - leg.current_bid_since }) : null;
+    const atomicReceiptDecision = !isV53 && (isV47 || isTradeTruthVariant) && normalizedClauses.same_tick_arm ? policy.decideReceipt({ ...placementInputs, currentJoinLevel: joinLevelBeforeReceipt, residencySeconds: row.ts - leg.current_bid_since }) : null;
     if (atomicReceiptDecision) ensure(atomicReceiptDecision.effective_join_level_cents === leg.persistent_join_level, `V47 atomic join mismatch ${leg.leg_identity} ${row.receipt}`);
     if (isV49) {
       leg.evidenced_standing_level_cents = atomicReceiptDecision.next_evidenced_standing_level_cents;
@@ -2771,7 +2771,7 @@ async function main() {
   if (isV52d) v52bCohort = v52dCohort; // compatibility alias for the shared receipt block only
   if (isV52e && !isV52FullExam) v52bCohort = v52eCohort; // compatibility alias for the shared receipt block only
   const activeReadCohort = isV52FullExam ? null : isV52e ? v52eCohort : isV52d ? v52dCohort : isV52c ? v52cCohort : v52bCohort;
-  if (isV53) {
+  const emitV53Stage1 = async () => {
     ensure(stage === "cohort30", `V53-01 requires cohort30 stage, got ${stage}`);
     const baselineRun = machineRuns.get("V52L_FROZEN_BASELINE");
     const candidateRun = machineRuns.get("V53_UNDERSTANDING_ORGAN");
@@ -2852,7 +2852,26 @@ async function main() {
     await writeGzipRowsFile(path.join(output, "FULL_DECISION_TRACE_30.jsonl.gz"), candidateFlow.trace);
     await writeGzipRowsFile(path.join(output, "V52L_COMPARATOR_TRACE_30.jsonl.gz"), baselineFlow.trace);
     await writeGzipRowsFile(path.join(output, "FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz"), exemplarRows);
-    await writeGzipRowsFile(path.join(output, "MARKET_EVENT_LEDGER_30.jsonl.gz"), candidateScore.rows);
+    const compactMarketRows = candidateScore.rows.map((event) => ({
+      event_id: event.event_id,
+      category: event.category,
+      starting_price_split: event.starting_price_split,
+      bell_confidence: event.bell_confidence,
+      completed_pair: event.completed_pair,
+      combined_entry_cents: event.combined_entry_cents,
+      pair_under_par: event.pair_under_par,
+      legs: Object.fromEntries(Object.entries(event.legs).map(([id, leg]) => [id, {
+        leg_identity: leg.leg_identity,
+        credited: leg.credited,
+        entry_cents: leg.entry_cents,
+        fill_class: leg.fill_class,
+        action_timestamp_epoch: leg.action_timestamp_epoch,
+        fill_timestamp_epoch: leg.fill_timestamp_epoch,
+        terminal_reason: leg.terminal_reason,
+        resting_target_at_edge_cents: leg.resting_target_at_edge_cents,
+      }])),
+    }));
+    await writeGzipRowsFile(path.join(output, "MARKET_EVENT_LEDGER_30.jsonl.gz"), compactMarketRows);
     const names = fs.readdirSync(output).sort();
     let determinism;
     if (compare) {
@@ -2864,8 +2883,7 @@ async function main() {
     writeManifest(output);
     if (compare) { fs.writeFileSync(path.join(compare, "DETERMINISM_RECEIPT.json"), canonical(determinism)); writeManifest(compare); ensure(fileHash(path.join(compare, "ARTIFACT_HASH_MANIFEST.json")) === fileHash(path.join(output, "ARTIFACT_HASH_MANIFEST.json")), "V53 final manifests differ"); }
     process.stdout.write(canonical({ output, scorecard, determinism }));
-    return;
-  }
+  };
   if (isV52ReadAuthority && !isV52FullExam) {
     const selected = new Set((v52hNamedOnly || v52jNamedOnly || v52kNamedOnly) ? [activeReadCohort.named_reused_observation.event_id] : activeReadCohort.combined_30.map((row) => row.event_id));
     for (const base of baseByEvent.values()) base.v52_flow_trace = selected.has(base.event_id);
@@ -3154,6 +3172,7 @@ async function main() {
     if (compare) { fs.writeFileSync(path.join(compare, "DETERMINISM_RECEIPT.json"), canonical(determinism)); writeManifest(compare); ensure(fileHash(path.join(compare, "ARTIFACT_HASH_MANIFEST.json")) === fileHash(path.join(output, "ARTIFACT_HASH_MANIFEST.json")), "SMIILA final manifests differ"); }
     process.stdout.write(canonical({ output, observation, determinism })); return;
   }
+  if (isV53) { await emitV53Stage1(); return; }
   if (isV52ReadAuthority && !isV52FullExam) {
     const iterationLabel = isV52r ? "V52R_ITERATION_ASSEMBLED_POLICY" : isV52q ? "V52Q_ITERATION_ANCHOR_CORRECTION" : isV52p ? "V52P_ITERATION_RIPENESS_GATED_ROLE_BINDING" : isV52o ? "V52O_ITERATION_BENCHMARKED_ROLE_INSTRUMENT" : isV52n ? "V52N_ITERATION_RECOGNITION_CONFIDENCE_GATES" : isV52m ? "V52M_ITERATION_MACRO_RECOGNITION" : isV52l ? "V52L_CAUSAL_ONSET" : isV52k ? "V52K_ITERATION10" : isV52j ? "V52J_ITERATION9" : isV52i ? "V52I_ITERATION8" : isV52h ? "V52H_ITERATION7" : isV52g ? "V52G_ITERATION6" : isV52f ? "V52F_ITERATION5" : isV52e ? "V52E_ITERATION4" : isV52d ? "V52D_ITERATION3" : isV52c ? "V52C_ITERATION2" : "V52B_ITERATION1";
     const authorizedClause = isV52r ? "CLAUSE_3_TRD5_ROLE_AND_LOW_MINUS_ONE_ASSEMBLY_ONLY" : isV52q ? "CLAUSE_3_ROLE_ANCHOR_CORRECTION_ONLY" : isV52p ? "CLAUSE_3_RIPENESS_GATED_ROLE_BINDING_ONLY" : isV52o ? "CLAUSE_3_BENCHMARKED_EARLY_ROLE_INSTRUMENT_ONLY" : isV52n ? "CLAUSE_3_RECOGNITION_CONFIDENCE_GATE_ONLY" : isV52m ? "CLAUSE_3_CAUSAL_MACRO_RECOGNITION_FLOOR_DEPTH_ONLY" : isV52l ? "CLAUSE_1_CAUSAL_STABILITY_ONSET_ONLY" : isV52k ? "CLAUSE_3_LIBRARY_BACKED_LEVEL_EVIDENCE_ONLY" : isV52j ? "CLAUSE_3_N4_ROLE_CONDITIONED_LEVEL_SELECTION_ONLY" : isV52i ? "CLAUSE_3_N4_DEPTH_INFORMED_LEVEL_SELECTION_ONLY" : isV52h ? "CLAUSE_4_MARKET_PROOF_PRECONDITION_REMOVAL_ONLY" : isV52g ? "CLAUSE_6_ORDER_FREE_JOINT_TARGET_CONSERVATION_ONLY" : isV52f ? "CLAUSE_5_PAIR_ENTRY_CONSERVATION_ONLY" : isV52e ? "N9_CLEAN_PALANTIR_WIRING_ONLY" : isV52d ? "CLAUSE_4_DISAGREEMENT_REFEREE_ONLY" : isV52c ? "CLAUSE_2_EVIDENCE_HORIZON_ONLY" : "CLAUSE_3_LEVEL_AUTHORITY_ONLY";

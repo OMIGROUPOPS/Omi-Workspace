@@ -106,8 +106,14 @@ function observePostOnset(state, row) {
 function legView(state, context) {
   const current = state.observations[state.observations.length - 1] ?? null;
   const refs = state.observations.map((row) => row.reference_cents).filter(Number.isInteger);
-  const min = refs.length ? Math.min(...refs) : null;
-  const max = refs.length ? Math.max(...refs) : null;
+  // Dense tapes can contain more arguments than V8 permits a spread call to
+  // materialize.  The loop is byte-for-byte equivalent in value while keeping
+  // the receipt walk bounded-memory.
+  let min = null, max = null;
+  for (const value of refs) {
+    min = min === null || value < min ? value : min;
+    max = max === null || value > max ? value : max;
+  }
   const currentRef = current?.reference_cents ?? null;
   const net = Number.isInteger(currentRef) && Number.isInteger(state.anchor_cents) ? currentRef - state.anchor_cents : null;
   const travel = Number.isInteger(min) && Number.isInteger(max) ? max - min : null;
@@ -117,10 +123,11 @@ function legView(state, context) {
     : state.last_step_receipt && current?.receipt !== state.last_step_receipt.receipt ? "SETTLED" : "STILL";
   let family = { status: "PENDING", value: null, reason: "ENDPOINT_DEPENDENT_FAMILIES_NOT_LIVE_CALLABLE", producer_receipt: current?.receipt ?? null, provenance: V53_CONSTANT_PROVENANCE.FAMILY_RESTATEMENT };
   if (state.prints.length >= TRD5_PRINT_COUNT && Number.isInteger(net) && Number.isInteger(travel)) {
-    const maxStep = Math.max(0, ...state.observations.slice(1).map((row, i) => {
+    let maxStep = 0;
+    state.observations.slice(1).forEach((row, i) => {
       const previous = state.observations[i].reference_cents;
-      return Number.isInteger(row.reference_cents) && Number.isInteger(previous) ? Math.abs(row.reference_cents - previous) : 0;
-    }));
+      if (Number.isInteger(row.reference_cents) && Number.isInteger(previous)) maxStep = Math.max(maxStep, Math.abs(row.reference_cents - previous));
+    });
     const absNet = Math.abs(net);
     let value;
     if (travel >= FAMILY_RESTATEMENT_THRESHOLDS.round_trip_travel_cents && absNet < FAMILY_RESTATEMENT_THRESHOLDS.round_trip_abs_net_ceiling_cents && state.reversals > 0) value = "ROUND_TRIP";

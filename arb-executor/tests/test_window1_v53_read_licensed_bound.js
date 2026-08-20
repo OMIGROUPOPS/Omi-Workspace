@@ -56,4 +56,12 @@ assert.equal(unripe.reason, "QUOTE_PATH_CLASS_UNRIPE");
 const conservation = policy.conservationInputs({ siblingCredited: true, siblingEntryCents: 54, siblingStandingTarget: 53, pairCap: 45 });
 assert.deepEqual(conservation, { sibling_credited: true, sibling_entry_cents: 54, sibling_standing_target_cents: 53, pair_cap_cents: 45 });
 
+const dense = policy.emptyLegState(100);
+dense.anchor_cents = 50;
+dense.anchor_receipt = "dense-0";
+dense.observations = Array.from({ length: 150000 }, (_, index) => ({ reference_cents: 50 + (index % 3), receipt: `dense-${index}` }));
+dense.prints = Array.from({ length: 5 }, (_, index) => ({ price: 50 + index }));
+const denseView = policy.buildGameView({ DENSE: dense }, { ...context, event_id: "DENSE", states: { DENSE: dense } });
+assert.equal(denseView.legs.DENSE.travel.value_cents, 2);
+
 process.stdout.write("window1_v53_read_licensed_bound: PASS\n");

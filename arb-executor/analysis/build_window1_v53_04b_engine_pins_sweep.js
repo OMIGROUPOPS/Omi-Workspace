@@ -74,7 +74,7 @@ async function main() {
   const implementationCommit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: repo, encoding: "utf8" }).trim();
   const rows = [], ledgers = {};
   for (const [ordinal, law] of laws.entries()) {
-    const childOutput = path.join(runRoot, law);
+    const childOutput = path.join(runRoot, `v53_04b_${law}`);
     const args = [runner, "--repo", repo, "--variant", "v53-04", "--stage", "pins5", "--v53-arming-law", law, "--private-root", privateRoot, "--output", childOutput];
     execFileSync(process.execPath, args, { cwd: repo, stdio: ["ignore", "pipe", "inherit"], maxBuffer: 16 * 1024 * 1024 });
     const score = readJson(path.join(childOutput, "PINS_SMOKE_RECEIPT.json"));

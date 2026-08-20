@@ -1,0 +1,753 @@
+{
+  "label": "RISER_TRIGGER_FRONTIER_REBASED",
+  "stamp": "DESCRIPTIVE_MEASUREMENT_NOT_MECHANISM_EXAM",
+  "authorities": {
+    "truth_table": {
+      "commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729"
+    },
+    "causal_leg_table": {
+      "commit": "d3db740f143646614bc10778c0b4e27fa519dcd8",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CAUSAL_LEG_TABLE.json",
+      "sha256": "d8a627c9349ee1c4c95681e71000aa5cce60df26e53c623f96330cb6201e21ae",
+      "role": "RISING_IDENTITY_AND_FIXED_NON_RISER_MACHINERY"
+    },
+    "retained_method": {
+      "commit": "084df12553928677869bd2857516caa3f0490416",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_TRIGGER_FRONTIER.json",
+      "sha256": "673f46b517d18321570a83ac5828e5603c400ee89f705fb3a6f1ad9eed20baa0"
+    }
+  },
+  "definitions": {
+    "DIVOT": "STRENGTHENING_SIDE_ONLY; BOTH_BOOKS_FORMED_AT_TROUGH; TRUE_PRINT_AT_OR_BELOW_DISPLAYED_BID; PRIOR_HIGH_EXISTS; STRICTLY_LATER_HIGHER_PRINT RESUMES",
+    "PROXY_ONLY_TROUGH": "ASK_DESCENT_AND_LATER_RETURN_WITHOUT_TRADE_OR_JOINT_STATE_REQUIREMENT; NEVER CALLED A DIVOT",
+    "CANON_CREDIT": "ANY TRUE TRADE AT_OR_BELOW A PRIOR STANDING LEVEL; FRONTIER REACH IS LOWEST TRUE TRADE AT_OR_AFTER CAUSAL ARM",
+    "T4_constant": {
+      "seconds": 300,
+      "provenance": "084df12553928677869bd2857516caa3f0490416:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/RISER_TRIGGER_FRONTIER.json"
+    }
+  },
+  "conservation": {
+    "full_population": 804,
+    "verified_span_OK": 776,
+    "scored_fixed_reach_events": 637,
+    "causal_leg_rows": 1274,
+    "riser_legs_rebased": 400,
+    "old_frontier_games": 637,
+    "old_frontier_risers": 409
+  },
+  "score_columns": {
+    "TRUE_DIVOT": {
+      "T1_SECOND_TRUE_DIVOT_VISIT": {
+        "completed": 511,
+        "under_par": 506,
+        "locked_cents": 3435,
+        "frontier": {
+          "LE_93": 87,
+          "LE_95": 135,
+          "LE_97": 266,
+          "LT_100": 506
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 219,
+            "under_par": 218,
+            "locked_cents": 1223,
+            "frontier": {
+              "LE_93": 37,
+              "LE_95": 55,
+              "LE_97": 107,
+              "LT_100": 218
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 116,
+            "under_par": 115,
+            "locked_cents": 626,
+            "frontier": {
+              "LE_93": 17,
+              "LE_95": 35,
+              "LE_97": 79,
+              "LT_100": 115
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 67,
+            "under_par": 66,
+            "locked_cents": 1026,
+            "frontier": {
+              "LE_93": 20,
+              "LE_95": 23,
+              "LE_97": 28,
+              "LT_100": 66
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 109,
+            "under_par": 107,
+            "locked_cents": 560,
+            "frontier": {
+              "LE_93": 13,
+              "LE_95": 22,
+              "LE_97": 52,
+              "LT_100": 107
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 124,
+        "false_arms": 0,
+        "false_arm_cents": 0,
+        "hard_arms": 0
+      },
+      "T2_FIRST_TRUE_DIVOT_AND_RESUME": {
+        "completed": 556,
+        "under_par": 519,
+        "locked_cents": 3604,
+        "frontier": {
+          "LE_93": 93,
+          "LE_95": 145,
+          "LE_97": 268,
+          "LT_100": 519
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 248,
+            "under_par": 224,
+            "locked_cents": 1292,
+            "frontier": {
+              "LE_93": 37,
+              "LE_95": 57,
+              "LE_97": 105,
+              "LT_100": 224
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 120,
+            "under_par": 118,
+            "locked_cents": 634,
+            "frontier": {
+              "LE_93": 18,
+              "LE_95": 36,
+              "LE_97": 79,
+              "LT_100": 118
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 74,
+            "under_par": 67,
+            "locked_cents": 1098,
+            "frontier": {
+              "LE_93": 23,
+              "LE_95": 26,
+              "LE_97": 30,
+              "LT_100": 67
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 114,
+            "under_par": 110,
+            "locked_cents": 580,
+            "frontier": {
+              "LE_93": 15,
+              "LE_95": 26,
+              "LE_97": 54,
+              "LT_100": 110
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 76,
+        "false_arms": 111,
+        "false_arm_cents": 177,
+        "hard_arms": 0
+      },
+      "T3_FIRST_SELLER_HIT": {
+        "completed": 629,
+        "under_par": 622,
+        "locked_cents": 4516,
+        "frontier": {
+          "LE_93": 126,
+          "LE_95": 199,
+          "LE_97": 358,
+          "LT_100": 622
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 293,
+            "under_par": 288,
+            "locked_cents": 1649,
+            "frontier": {
+              "LE_93": 51,
+              "LE_95": 77,
+              "LE_97": 153,
+              "LT_100": 288
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 126,
+            "under_par": 125,
+            "locked_cents": 827,
+            "frontier": {
+              "LE_93": 23,
+              "LE_95": 48,
+              "LE_97": 93,
+              "LT_100": 125
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 95,
+            "under_par": 94,
+            "locked_cents": 1367,
+            "frontier": {
+              "LE_93": 30,
+              "LE_95": 35,
+              "LE_97": 47,
+              "LT_100": 94
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 115,
+            "under_par": 115,
+            "locked_cents": 673,
+            "frontier": {
+              "LE_93": 22,
+              "LE_95": 39,
+              "LE_97": 65,
+              "LT_100": 115
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 0,
+        "false_arms": 166,
+        "false_arm_cents": 440,
+        "hard_arms": 0
+      },
+      "T4_BID_PERSISTENCE_300S": {
+        "completed": 628,
+        "under_par": 621,
+        "locked_cents": 4403,
+        "frontier": {
+          "LE_93": 121,
+          "LE_95": 196,
+          "LE_97": 354,
+          "LT_100": 621
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 293,
+            "under_par": 288,
+            "locked_cents": 1645,
+            "frontier": {
+              "LE_93": 50,
+              "LE_95": 77,
+              "LE_97": 152,
+              "LT_100": 288
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 125,
+            "under_par": 124,
+            "locked_cents": 731,
+            "frontier": {
+              "LE_93": 21,
+              "LE_95": 46,
+              "LE_97": 91,
+              "LT_100": 124
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 95,
+            "under_par": 94,
+            "locked_cents": 1365,
+            "frontier": {
+              "LE_93": 30,
+              "LE_95": 35,
+              "LE_97": 46,
+              "LT_100": 94
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 115,
+            "under_par": 115,
+            "locked_cents": 662,
+            "frontier": {
+              "LE_93": 20,
+              "LE_95": 38,
+              "LE_97": 65,
+              "LT_100": 115
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 1,
+        "false_arms": 229,
+        "false_arm_cents": 794,
+        "hard_arms": 1
+      },
+      "T5_FIRST_TWO_SIDED_BOOK": {
+        "completed": 629,
+        "under_par": 622,
+        "locked_cents": 4516,
+        "frontier": {
+          "LE_93": 126,
+          "LE_95": 199,
+          "LE_97": 358,
+          "LT_100": 622
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 293,
+            "under_par": 288,
+            "locked_cents": 1649,
+            "frontier": {
+              "LE_93": 51,
+              "LE_95": 77,
+              "LE_97": 153,
+              "LT_100": 288
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 126,
+            "under_par": 125,
+            "locked_cents": 827,
+            "frontier": {
+              "LE_93": 23,
+              "LE_95": 48,
+              "LE_97": 93,
+              "LT_100": 125
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 95,
+            "under_par": 94,
+            "locked_cents": 1367,
+            "frontier": {
+              "LE_93": 30,
+              "LE_95": 35,
+              "LE_97": 47,
+              "LT_100": 94
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 115,
+            "under_par": 115,
+            "locked_cents": 673,
+            "frontier": {
+              "LE_93": 22,
+              "LE_95": 39,
+              "LE_97": 65,
+              "LT_100": 115
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 0,
+        "false_arms": 275,
+        "false_arm_cents": 1674,
+        "hard_arms": 0
+      }
+    },
+    "PROXY_ONLY_TROUGH": {
+      "T1_SECOND_TRUE_DIVOT_VISIT": {
+        "completed": 607,
+        "under_par": 596,
+        "locked_cents": 4227,
+        "frontier": {
+          "LE_93": 119,
+          "LE_95": 187,
+          "LE_97": 341,
+          "LT_100": 596
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 286,
+            "under_par": 279,
+            "locked_cents": 1563,
+            "frontier": {
+              "LE_93": 50,
+              "LE_95": 75,
+              "LE_97": 147,
+              "LT_100": 279
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 122,
+            "under_par": 120,
+            "locked_cents": 719,
+            "frontier": {
+              "LE_93": 22,
+              "LE_95": 44,
+              "LE_97": 88,
+              "LT_100": 120
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 90,
+            "under_par": 89,
+            "locked_cents": 1315,
+            "frontier": {
+              "LE_93": 29,
+              "LE_95": 34,
+              "LE_97": 45,
+              "LT_100": 89
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 109,
+            "under_par": 108,
+            "locked_cents": 630,
+            "frontier": {
+              "LE_93": 18,
+              "LE_95": 34,
+              "LE_97": 61,
+              "LT_100": 108
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 24,
+        "false_arms": 12,
+        "false_arm_cents": 15,
+        "hard_arms": 3
+      },
+      "T2_FIRST_TRUE_DIVOT_AND_RESUME": {
+        "completed": 611,
+        "under_par": 578,
+        "locked_cents": 4074,
+        "frontier": {
+          "LE_93": 106,
+          "LE_95": 160,
+          "LE_97": 305,
+          "LT_100": 578
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 287,
+            "under_par": 266,
+            "locked_cents": 1456,
+            "frontier": {
+              "LE_93": 43,
+              "LE_95": 63,
+              "LE_97": 126,
+              "LT_100": 266
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 125,
+            "under_par": 121,
+            "locked_cents": 785,
+            "frontier": {
+              "LE_93": 21,
+              "LE_95": 41,
+              "LE_97": 84,
+              "LT_100": 121
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 86,
+            "under_par": 81,
+            "locked_cents": 1249,
+            "frontier": {
+              "LE_93": 27,
+              "LE_95": 31,
+              "LE_97": 39,
+              "LT_100": 81
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 113,
+            "under_par": 110,
+            "locked_cents": 584,
+            "frontier": {
+              "LE_93": 15,
+              "LE_95": 25,
+              "LE_97": 56,
+              "LT_100": 110
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 19,
+        "false_arms": 162,
+        "false_arm_cents": 461,
+        "hard_arms": 10
+      },
+      "T3_FIRST_SELLER_HIT": {
+        "completed": 629,
+        "under_par": 622,
+        "locked_cents": 4516,
+        "frontier": {
+          "LE_93": 126,
+          "LE_95": 199,
+          "LE_97": 358,
+          "LT_100": 622
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 293,
+            "under_par": 288,
+            "locked_cents": 1649,
+            "frontier": {
+              "LE_93": 51,
+              "LE_95": 77,
+              "LE_97": 153,
+              "LT_100": 288
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 126,
+            "under_par": 125,
+            "locked_cents": 827,
+            "frontier": {
+              "LE_93": 23,
+              "LE_95": 48,
+              "LE_97": 93,
+              "LT_100": 125
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 95,
+            "under_par": 94,
+            "locked_cents": 1367,
+            "frontier": {
+              "LE_93": 30,
+              "LE_95": 35,
+              "LE_97": 47,
+              "LT_100": 94
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 115,
+            "under_par": 115,
+            "locked_cents": 673,
+            "frontier": {
+              "LE_93": 22,
+              "LE_95": 39,
+              "LE_97": 65,
+              "LT_100": 115
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 0,
+        "false_arms": 166,
+        "false_arm_cents": 440,
+        "hard_arms": 0
+      },
+      "T4_BID_PERSISTENCE_300S": {
+        "completed": 628,
+        "under_par": 621,
+        "locked_cents": 4403,
+        "frontier": {
+          "LE_93": 121,
+          "LE_95": 196,
+          "LE_97": 354,
+          "LT_100": 621
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 293,
+            "under_par": 288,
+            "locked_cents": 1645,
+            "frontier": {
+              "LE_93": 50,
+              "LE_95": 77,
+              "LE_97": 152,
+              "LT_100": 288
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 125,
+            "under_par": 124,
+            "locked_cents": 731,
+            "frontier": {
+              "LE_93": 21,
+              "LE_95": 46,
+              "LE_97": 91,
+              "LT_100": 124
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 95,
+            "under_par": 94,
+            "locked_cents": 1365,
+            "frontier": {
+              "LE_93": 30,
+              "LE_95": 35,
+              "LE_97": 46,
+              "LT_100": 94
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 115,
+            "under_par": 115,
+            "locked_cents": 662,
+            "frontier": {
+              "LE_93": 20,
+              "LE_95": 38,
+              "LE_97": 65,
+              "LT_100": 115
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 1,
+        "false_arms": 229,
+        "false_arm_cents": 794,
+        "hard_arms": 1
+      },
+      "T5_FIRST_TWO_SIDED_BOOK": {
+        "completed": 629,
+        "under_par": 622,
+        "locked_cents": 4516,
+        "frontier": {
+          "LE_93": 126,
+          "LE_95": 199,
+          "LE_97": 358,
+          "LT_100": 622
+        },
+        "by_category": {
+          "ATP_CHALL": {
+            "population": 295,
+            "completed": 293,
+            "under_par": 288,
+            "locked_cents": 1649,
+            "frontier": {
+              "LE_93": 51,
+              "LE_95": 77,
+              "LE_97": 153,
+              "LT_100": 288
+            }
+          },
+          "ATP_MAIN": {
+            "population": 128,
+            "completed": 126,
+            "under_par": 125,
+            "locked_cents": 827,
+            "frontier": {
+              "LE_93": 23,
+              "LE_95": 48,
+              "LE_97": 93,
+              "LT_100": 125
+            }
+          },
+          "WTA_CHALL": {
+            "population": 98,
+            "completed": 95,
+            "under_par": 94,
+            "locked_cents": 1367,
+            "frontier": {
+              "LE_93": 30,
+              "LE_95": 35,
+              "LE_97": 47,
+              "LT_100": 94
+            }
+          },
+          "WTA_MAIN": {
+            "population": 116,
+            "completed": 115,
+            "under_par": 115,
+            "locked_cents": 673,
+            "frontier": {
+              "LE_93": 22,
+              "LE_95": 39,
+              "LE_97": 65,
+              "LT_100": 115
+            }
+          }
+        },
+        "riser_legs": 400,
+        "riser_legs_without_trigger_or_post_trigger_trade": 0,
+        "false_arms": 275,
+        "false_arm_cents": 1674,
+        "hard_arms": 0
+      }
+    }
+  },
+  "pick_rule": {
+    "expression": "MAX_TRUE_DIVOT_COLUMN_UNDER_PAR_WITH_FALSE_ARM_CENTS_LE_1_5X_INCUMBENT; TIE_FEWER_HARD_ARMS",
+    "incumbent_false_arm_cents": 0,
+    "maximum_allowed_false_arm_cents": 0,
+    "eligible": [
+      "T1_SECOND_TRUE_DIVOT_VISIT"
+    ],
+    "picked": "T1_SECOND_TRUE_DIVOT_VISIT"
+  },
+  "secondary_anchor_minus_k": {
+    "ANCHOR_MINUS_1": {
+      "observations": 60,
+      "unique_events": 55,
+      "completed": 4,
+      "under_par": 3,
+      "locked_cents": 5,
+      "too_deep_legs": 54
+    },
+    "ANCHOR_MINUS_2": {
+      "observations": 60,
+      "unique_events": 55,
+      "completed": 4,
+      "under_par": 4,
+      "locked_cents": 13,
+      "too_deep_legs": 56
+    },
+    "ANCHOR_MINUS_3": {
+      "observations": 60,
+      "unique_events": 55,
+      "completed": 2,
+      "under_par": 2,
+      "locked_cents": 10,
+      "too_deep_legs": 62
+    }
+  },
+  "private_inputs": {
+    "prints": {
+      "path_class": "PRIVATE_FIT_DEVELOPMENT_PRINTS_HASH_ONLY",
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+      "bytes": 1766090446,
+      "raw_rows": 4836462,
+      "admitted_unique_rows": 42584,
+      "duplicate_trade_ids_rejected": 0
+    },
+    "book_files": 710,
+    "book_manifest_sha256": "973c9238b26b540925eaaf6e233cc6ae9f2abc48094b254b70d54b35263f2a00"
+  }
+}

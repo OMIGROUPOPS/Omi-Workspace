@@ -1,0 +1,190 @@
+{
+  "label": "V53_02_INCOMPLETE_PAIR_CREDITED_LEG_DELTAS",
+  "credited_legs": 14,
+  "gradeable_legs": 13,
+  "unavailable_close_legs": 1,
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12SALARN",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL12SALARN|SAL",
+      "category": "ATP_CHALL",
+      "entry_cents": 15,
+      "own_W1_close_cents": 17,
+      "signed_entry_minus_own_close_cents": -2,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DENYEV",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL14DENYEV|DEN",
+      "category": "ATP_CHALL",
+      "entry_cents": 86,
+      "own_W1_close_cents": 86,
+      "signed_entry_minus_own_close_cents": 0,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL18DENCOP",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL18DENCOP|DEN",
+      "category": "ATP_CHALL",
+      "entry_cents": 48,
+      "own_W1_close_cents": 47,
+      "signed_entry_minus_own_close_cents": 1,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+      "category": "ATP_CHALL",
+      "entry_cents": 60,
+      "own_W1_close_cents": 62,
+      "signed_entry_minus_own_close_cents": -2,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20GONTOB",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20GONTOB|TOB",
+      "category": "ATP_CHALL",
+      "entry_cents": 65,
+      "own_W1_close_cents": 63,
+      "signed_entry_minus_own_close_cents": 2,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "leg_identity": "KXATPCHALLENGERMATCH-26JUL20OLIZIE|ZIE",
+      "category": "ATP_CHALL",
+      "entry_cents": 25,
+      "own_W1_close_cents": 19,
+      "signed_entry_minus_own_close_cents": 6,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL15COBBUR",
+      "leg_identity": "KXATPMATCH-26JUL15COBBUR|COB",
+      "category": "ATP_MAIN",
+      "entry_cents": 71,
+      "own_W1_close_cents": 67,
+      "signed_entry_minus_own_close_cents": 4,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19ALTCOL",
+      "leg_identity": "KXATPMATCH-26JUL19ALTCOL|COL",
+      "category": "ATP_MAIN",
+      "entry_cents": 62,
+      "own_W1_close_cents": 58,
+      "signed_entry_minus_own_close_cents": 4,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL19DELDJE",
+      "leg_identity": "KXATPMATCH-26JUL19DELDJE|DEL",
+      "category": "ATP_MAIN",
+      "entry_cents": 37,
+      "own_W1_close_cents": 34,
+      "signed_entry_minus_own_close_cents": 3,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12SOKNUG",
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL12SOKNUG|SOK",
+      "category": "WTA_CHALL",
+      "entry_cents": 33,
+      "own_W1_close_cents": 26,
+      "signed_entry_minus_own_close_cents": 7,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL18BASBOE",
+      "leg_identity": "KXWTACHALLENGERMATCH-26JUL18BASBOE|BOE",
+      "category": "WTA_CHALL",
+      "entry_cents": 5,
+      "own_W1_close_cents": 4,
+      "signed_entry_minus_own_close_cents": 1,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MATMIC",
+      "leg_identity": "KXWTAMATCH-26JUL13MATMIC|MIC",
+      "category": "WTA_MAIN",
+      "entry_cents": 58,
+      "own_W1_close_cents": 59,
+      "signed_entry_minus_own_close_cents": -1,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13MORBEJ",
+      "leg_identity": "KXWTAMATCH-26JUL13MORBEJ|MOR",
+      "category": "WTA_MAIN",
+      "entry_cents": 12,
+      "own_W1_close_cents": 12,
+      "signed_entry_minus_own_close_cents": 0,
+      "gradeable": true,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL20LYSVAL",
+      "leg_identity": "KXWTAMATCH-26JUL20LYSVAL|VAL",
+      "category": "WTA_MAIN",
+      "entry_cents": 67,
+      "own_W1_close_cents": null,
+      "signed_entry_minus_own_close_cents": null,
+      "gradeable": false,
+      "source": {
+        "entry": ".claude/window1_live_v4_replay/v53_02_understanding_bounds_stage1_20260820/PER_GAME_L1_L8.json:L7_CREDIT",
+        "close": "c0056976c446afcb4d9603796a2e06c068ee94d6:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+      }
+    }
+  ]
+}

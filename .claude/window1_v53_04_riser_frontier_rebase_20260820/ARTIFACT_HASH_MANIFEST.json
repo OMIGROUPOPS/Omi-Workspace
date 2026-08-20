@@ -1,0 +1,26 @@
+{
+  "ANCHOR_MINUS_K_DETAIL.jsonl.gz": {
+    "sha256": "369863fa9c58124c72cc866140d7e042181c5ba7a3b08b6c68596554c7e98b7f",
+    "bytes": 2445
+  },
+  "BACKFILL_LEG_DELTAS.json": {
+    "sha256": "7e00a4376ac4a16eed3375b7236f0a24c95ec09352f1371908be177c6d958a44",
+    "bytes": 8421
+  },
+  "PRIVATE_BOOK_INPUT_MANIFEST.json": {
+    "sha256": "973c9238b26b540925eaaf6e233cc6ae9f2abc48094b254b70d54b35263f2a00",
+    "bytes": 105984
+  },
+  "REPORT.md": {
+    "sha256": "df003d3b4f57f09731ed9816b70c6d0802c6b9454df77024ba94eed4b14ed49a",
+    "bytes": 952
+  },
+  "RISER_TRIGGER_DETAIL.jsonl.gz": {
+    "sha256": "c126b1d7e0f275c872da2b7ce4581b5db45624fb92bb6617789678f08570c896",
+    "bytes": 149482
+  },
+  "RISER_TRIGGER_FRONTIER_REBASED.json": {
+    "sha256": "ce0234fd893f08731b7050c81231d482b3fcf1c08fddca2dc1b7a3aefd9c7e9e",
+    "bytes": 20399
+  }
+}

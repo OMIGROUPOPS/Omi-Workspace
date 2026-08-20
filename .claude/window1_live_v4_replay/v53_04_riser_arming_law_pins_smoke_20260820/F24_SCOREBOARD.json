@@ -1,0 +1,301 @@
+{
+  "law": "F_V53_024_SCOREBOARD_LAW",
+  "offer_source": {
+    "commit": "22441e058f9efa7ea8c3065334a238ec8786416f",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/POST_ONSET_OFFER_CENSUS.json",
+    "sha256": "6bc197aaf4cd187d596fe1b4f731db30f2b2e249a82e7c6705cc20237695f955"
+  },
+  "own_w1_close_source": {
+    "commit": "a30f5ccdf0c4233b30bf4017af48707f0db8ff1f",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/INDEPENDENT_CLOSE_AUDIT_1608.csv",
+    "sha256": "51d542d9c1f18c6b30b6bb5e8f458d9cf3adeebf1895399f8f7b2ba416836303"
+  },
+  "comparator": {
+    "games": 5,
+    "offered_games": 4,
+    "percent_of_offered_completed_under_par": 75,
+    "margin_ladder": {
+      "GE_10_CENTS": {
+        "offered_games": 1,
+        "completed_under_par": 1,
+        "percent_of_offered": 100
+      },
+      "GE_5_CENTS": {
+        "offered_games": 3,
+        "completed_under_par": 2,
+        "percent_of_offered": 66.66666666666667
+      },
+      "THIN_1_TO_2_CENTS": {
+        "offered_games": 0,
+        "completed_under_par": 0,
+        "percent_of_offered": null
+      }
+    },
+    "game_rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 5,
+        "completed_pair": true,
+        "combined_entry_cents": 99,
+        "signed_game_delta_vs_100_cents": -1,
+        "legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+            "credited": true,
+            "entry_cents": 18,
+            "own_w1_close_cents": 19,
+            "signed_entry_minus_own_w1_close_cents": -1
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+            "credited": true,
+            "entry_cents": 81,
+            "own_w1_close_cents": 84,
+            "signed_entry_minus_own_w1_close_cents": -3
+          }
+        ]
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 6,
+        "completed_pair": false,
+        "combined_entry_cents": null,
+        "signed_game_delta_vs_100_cents": null,
+        "legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+            "credited": false,
+            "entry_cents": null,
+            "own_w1_close_cents": 40,
+            "signed_entry_minus_own_w1_close_cents": null
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+            "credited": true,
+            "entry_cents": 60,
+            "own_w1_close_cents": 60,
+            "signed_entry_minus_own_w1_close_cents": 0
+          }
+        ]
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 3,
+        "completed_pair": true,
+        "combined_entry_cents": 99,
+        "signed_game_delta_vs_100_cents": -1,
+        "legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+            "credited": true,
+            "entry_cents": 73,
+            "own_w1_close_cents": 75,
+            "signed_entry_minus_own_w1_close_cents": -2
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+            "credited": true,
+            "entry_cents": 26,
+            "own_w1_close_cents": 25,
+            "signed_entry_minus_own_w1_close_cents": 1
+          }
+        ]
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 13,
+        "completed_pair": true,
+        "combined_entry_cents": 12,
+        "signed_game_delta_vs_100_cents": -88,
+        "legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+            "credited": true,
+            "entry_cents": 6,
+            "own_w1_close_cents": 40,
+            "signed_entry_minus_own_w1_close_cents": -34
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+            "credited": true,
+            "entry_cents": 6,
+            "own_w1_close_cents": 60,
+            "signed_entry_minus_own_w1_close_cents": -54
+          }
+        ]
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "offer_class": "FORMATION_ONLY_OFFER",
+        "offer_margin_cents": null,
+        "completed_pair": true,
+        "combined_entry_cents": 73,
+        "signed_game_delta_vs_100_cents": -27,
+        "legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+            "credited": true,
+            "entry_cents": 64,
+            "own_w1_close_cents": null,
+            "signed_entry_minus_own_w1_close_cents": null
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+            "credited": true,
+            "entry_cents": 9,
+            "own_w1_close_cents": null,
+            "signed_entry_minus_own_w1_close_cents": null
+          }
+        ]
+      }
+    ]
+  },
+  "candidate": {
+    "games": 5,
+    "offered_games": 4,
+    "percent_of_offered_completed_under_par": 25,
+    "margin_ladder": {
+      "GE_10_CENTS": {
+        "offered_games": 1,
+        "completed_under_par": 1,
+        "percent_of_offered": 100
+      },
+      "GE_5_CENTS": {
+        "offered_games": 3,
+        "completed_under_par": 1,
+        "percent_of_offered": 33.333333333333336
+      },
+      "THIN_1_TO_2_CENTS": {
+        "offered_games": 0,
+        "completed_under_par": 0,
+        "percent_of_offered": null
+      }
+    },
+    "game_rows": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 5,
+        "completed_pair": false,
+        "combined_entry_cents": null,
+        "signed_game_delta_vs_100_cents": null,
+        "legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH",
+            "credited": false,
+            "entry_cents": null,
+            "own_w1_close_cents": 19,
+            "signed_entry_minus_own_w1_close_cents": null
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL",
+            "credited": false,
+            "entry_cents": null,
+            "own_w1_close_cents": 84,
+            "signed_entry_minus_own_w1_close_cents": null
+          }
+        ]
+      },
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 6,
+        "completed_pair": false,
+        "combined_entry_cents": null,
+        "signed_game_delta_vs_100_cents": null,
+        "legs": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS",
+            "credited": false,
+            "entry_cents": null,
+            "own_w1_close_cents": 40,
+            "signed_entry_minus_own_w1_close_cents": null
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR",
+            "credited": true,
+            "entry_cents": 59,
+            "own_w1_close_cents": 60,
+            "signed_entry_minus_own_w1_close_cents": -1
+          }
+        ]
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL13SANDAN",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 3,
+        "completed_pair": false,
+        "combined_entry_cents": null,
+        "signed_game_delta_vs_100_cents": null,
+        "legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|DAN",
+            "credited": false,
+            "entry_cents": null,
+            "own_w1_close_cents": 75,
+            "signed_entry_minus_own_w1_close_cents": null
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL13SANDAN|SAN",
+            "credited": true,
+            "entry_cents": 26,
+            "own_w1_close_cents": 25,
+            "signed_entry_minus_own_w1_close_cents": 1
+          }
+        ]
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL16MERDRO",
+        "offer_class": "OFFERED_POST_ONSET",
+        "offer_margin_cents": 13,
+        "completed_pair": true,
+        "combined_entry_cents": 63,
+        "signed_game_delta_vs_100_cents": -37,
+        "legs": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|DRO",
+            "credited": true,
+            "entry_cents": 6,
+            "own_w1_close_cents": 40,
+            "signed_entry_minus_own_w1_close_cents": -34
+          },
+          {
+            "leg_identity": "KXATPMATCH-26JUL16MERDRO|MER",
+            "credited": true,
+            "entry_cents": 57,
+            "own_w1_close_cents": 60,
+            "signed_entry_minus_own_w1_close_cents": -3
+          }
+        ]
+      },
+      {
+        "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+        "offer_class": "FORMATION_ONLY_OFFER",
+        "offer_margin_cents": null,
+        "completed_pair": false,
+        "combined_entry_cents": null,
+        "signed_game_delta_vs_100_cents": null,
+        "legs": [
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|JEA",
+            "credited": false,
+            "entry_cents": null,
+            "own_w1_close_cents": null,
+            "signed_entry_minus_own_w1_close_cents": null
+          },
+          {
+            "leg_identity": "KXWTAMATCH-26JUL14PUTJEA|PUT",
+            "credited": true,
+            "entry_cents": 9,
+            "own_w1_close_cents": null,
+            "signed_entry_minus_own_w1_close_cents": null
+          }
+        ]
+      }
+    ]
+  }
+}

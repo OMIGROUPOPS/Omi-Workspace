@@ -1,0 +1,3978 @@
+{
+  "rows": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "category": "ATP_CHALL",
+      "L1_ADMISSION": {
+        "result": "PASS",
+        "why": {
+          "passed": true,
+          "selected_candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+          "timestamp_epoch": 1783831277,
+          "t_minus_scheduled_seconds": 52723,
+          "t_minus_actual_bell_seconds": 47923,
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "inferred_shift_timestamp_epoch": 1783831217,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 8,
+                  "shift_timestamp_epoch": 1783831217,
+                  "before_mean": 87.875,
+                  "after_mean": 9,
+                  "sse": 18.875,
+                  "before_n": 8,
+                  "after_n": 2
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 8,
+                  "shift_timestamp_epoch": 1783831217,
+                  "before_mean": 10.4375,
+                  "after_mean": 2.25,
+                  "sse": 177.34375,
+                  "before_n": 8,
+                  "after_n": 2
+                }
+              }
+            },
+            "B": null
+          },
+          "binding_status": "V52L_CAUSAL_PREFIX",
+          "binding_changed_by_V52e": false,
+          "binding_changed_by_V52l": true,
+          "causal_prefix_receipt_law": "EVERY_VALUE_FROM_RECEIPTS_AT_OR_BEFORE_CAUSAL_RECOGNITION",
+          "maximum_consumed_timestamp_epoch": 1783831277,
+          "right_edge_consumed": false,
+          "full_span_fit": false
+        }
+      },
+      "L2_GAME_VIEW": {
+        "result": "PASS",
+        "why": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+          "evaluation": {
+            "timestamp_epoch": 1783878889,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+          },
+          "joint_observation": {
+            "KUH": {
+              "value": {
+                "timestamp_epoch": 1783878855,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224",
+                "kind": "BOOK",
+                "bid_cents": 18,
+                "ask_cents": 20,
+                "last_traded_cents": 20,
+                "spread_cents": 2,
+                "dwell_seconds": null,
+                "reference_cents": 20,
+                "reference_source": "BOOK_LAST_TRADED"
+              },
+              "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+            },
+            "POL": {
+              "value": {
+                "timestamp_epoch": 1783878889,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674",
+                "kind": "BOOK",
+                "bid_cents": 80,
+                "ask_cents": 82,
+                "last_traded_cents": 82,
+                "spread_cents": 2,
+                "dwell_seconds": null,
+                "reference_cents": 82,
+                "reference_source": "BOOK_LAST_TRADED"
+              },
+              "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+            }
+          },
+          "belief_anchor_pair": {
+            "KUH": {
+              "value_cents": 19,
+              "producer_receipt": {
+                "timestamp_epoch": 1783831306,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-152",
+                "kind": "BOOK"
+              }
+            },
+            "POL": {
+              "value_cents": 78,
+              "producer_receipt": {
+                "timestamp_epoch": 1783831310,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+                "kind": "BOOK"
+              }
+            }
+          },
+          "legs": {
+            "KUH": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1783878855,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224",
+                  "kind": "BOOK",
+                  "bid_cents": 18,
+                  "ask_cents": 20,
+                  "last_traded_cents": 20,
+                  "spread_cents": 2,
+                  "dwell_seconds": null,
+                  "reference_cents": 20,
+                  "reference_source": "BOOK_LAST_TRADED"
+                },
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+              },
+              "belief_anchor": {
+                "value_cents": 19,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783831306,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-152",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 2,
+                "net_cents": 1,
+                "min_cents": 18,
+                "max_cents": 20,
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+              },
+              "family": {
+                "status": "DECLARED",
+                "value": "ONE_STEP_UP",
+                "reason": "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "UNRIPE",
+                "drift_cents": 1,
+                "drift_anchor_cents": 19,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1783831306,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-152",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 6,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 2,
+                  "reversals": 15
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+              },
+              "reach": {
+                "running_session_low_cents": 19,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783872381,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-2840",
+                  "kind": "BOOK"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "RISING",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+              },
+              "stance": {
+                "value": "EARLY_FLOOR_SIDE",
+                "classification": "RISING",
+                "arming_law": {
+                  "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                  "method_revision": 2,
+                  "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                  "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                  "proxy_instrument_consumed": false,
+                  "shape_offset_aim_consumed": false,
+                  "latchcal_consumed": false
+                },
+                "armed": false,
+                "qualified_divots": 0,
+                "armed_receipt": null
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 20,
+                "pending_trough": null,
+                "qualified_divots": [],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            },
+            "POL": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1783878889,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674",
+                  "kind": "BOOK",
+                  "bid_cents": 80,
+                  "ask_cents": 82,
+                  "last_traded_cents": 82,
+                  "spread_cents": 2,
+                  "dwell_seconds": null,
+                  "reference_cents": 82,
+                  "reference_source": "BOOK_LAST_TRADED"
+                },
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+              },
+              "belief_anchor": {
+                "value_cents": 78,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783831310,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 5,
+                "net_cents": 4,
+                "min_cents": 78,
+                "max_cents": 83,
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+              },
+              "family": {
+                "status": "DECLARED",
+                "value": "ONE_STEP_UP",
+                "reason": "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "CLIMBER",
+                "drift_cents": 4,
+                "drift_anchor_cents": 78,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1783831310,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 11,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 5,
+                  "reversals": 5
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+              },
+              "reach": {
+                "running_session_low_cents": 80,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783872979.377,
+                  "receipt": "83be3a6a-3261-75e3-ac29-638d39cfd707",
+                  "kind": "PRINT"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "RISING",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+              },
+              "stance": {
+                "value": "EARLY_FLOOR_SIDE",
+                "classification": "RISING",
+                "arming_law": {
+                  "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                  "method_revision": 2,
+                  "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                  "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                  "proxy_instrument_consumed": false,
+                  "shape_offset_aim_consumed": false,
+                  "latchcal_consumed": false
+                },
+                "armed": false,
+                "qualified_divots": 1,
+                "armed_receipt": null
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 83,
+                "pending_trough": null,
+                "qualified_divots": [
+                  {
+                    "timestamp_epoch": 1783872979.377,
+                    "receipt": "83be3a6a-3261-75e3-ac29-638d39cfd707",
+                    "trade_id": "83be3a6a-3261-75e3-ac29-638d39cfd707",
+                    "price_cents": 80,
+                    "size": 18.67,
+                    "own_joint_book": {
+                      "bid_cents": 81,
+                      "ask_cents": 82,
+                      "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-2707"
+                    },
+                    "sibling_joint_book": {
+                      "bid_cents": 18,
+                      "ask_cents": 19,
+                      "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-2846"
+                    },
+                    "machine_state": "RISING",
+                    "definition": "OPERATOR_DIVOT_STRENGTHENING_SIDE_JOINT_STATE_TRADE_BACKED",
+                    "resume_timestamp_epoch": 1783874564.119,
+                    "resume_receipt": "20a7f4a8-cc55-7a94-3efa-b1e1896524e7",
+                    "resume_price_cents": 82
+                  }
+                ],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            }
+          },
+          "provenance": {
+            "shape_taxonomy_commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "shape_taxonomy_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "TRD5_commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "no_endpoint_labels_consumed": true,
+            "no_span_fraction_consumed": true,
+            "no_static_depth_target_consumed": true,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "post_onset_only": true
+          }
+        }
+      },
+      "L3_ROLE": {
+        "result": "PASS",
+        "why": {
+          "KUH": {
+            "value": "UNRIPE",
+            "drift_cents": 1,
+            "drift_anchor_cents": 19,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1783831306,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-152",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 6,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 2,
+              "reversals": 15
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+          },
+          "POL": {
+            "value": "CLIMBER",
+            "drift_cents": 4,
+            "drift_anchor_cents": 78,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1783831310,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 11,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 5,
+              "reversals": 5
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+          }
+        }
+      },
+      "L4_POSITION": {
+        "result": "PASS",
+        "why": {
+          "KUH": {
+            "value": "SETTLED",
+            "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+          },
+          "POL": {
+            "value": "SETTLED",
+            "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+          }
+        }
+      },
+      "L5_PLAN": {
+        "result": "PASS",
+        "why": {
+          "licensed": true,
+          "reason": "L23_ONE_GAME_ONE_JOINT_LICENSE",
+          "stances": {
+            "KUH": {
+              "value": "EARLY_FLOOR_SIDE",
+              "classification": "RISING",
+              "arming_law": {
+                "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                "method_revision": 2,
+                "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                "proxy_instrument_consumed": false,
+                "shape_offset_aim_consumed": false,
+                "latchcal_consumed": false
+              },
+              "armed": false,
+              "qualified_divots": 0,
+              "armed_receipt": null
+            },
+            "POL": {
+              "value": "EARLY_FLOOR_SIDE",
+              "classification": "RISING",
+              "arming_law": {
+                "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                "method_revision": 2,
+                "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                "proxy_instrument_consumed": false,
+                "shape_offset_aim_consumed": false,
+                "latchcal_consumed": false
+              },
+              "armed": false,
+              "qualified_divots": 1,
+              "armed_receipt": null
+            }
+          },
+          "both_states": {
+            "KUH": {
+              "value": "RISING",
+              "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-KUH.csv.gz#row-6224"
+            },
+            "POL": {
+              "value": "RISING",
+              "producer_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+            }
+          },
+          "split_authority": "FROZEN_CLAUSE_5_AND_CLAUSE_6_INPUTS_BYTE_EQUAL",
+          "arming_law": {
+            "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+            "method_revision": 2,
+            "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+            "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+            "proxy_instrument_consumed": false,
+            "shape_offset_aim_consumed": false,
+            "latchcal_consumed": false
+          },
+          "evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-5674"
+        }
+      },
+      "L6_TARGET": {
+        "result": "PASS",
+        "why": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+          "target_cents": 74,
+          "license": {
+            "target_cents": 74,
+            "own_diary_cents": null,
+            "pair_cap_cents": null,
+            "post_only_ask_bound_cents": 82,
+            "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+            "displayed_bid_consumed": false,
+            "machine_read_evidence": {
+              "evaluation_timestamp_epoch": 1783831310,
+              "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+              "directional_evidence_timestamp_epoch": 1783831310,
+              "directional_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+              "directional_evidence_kind": "BOOK",
+              "combined_state": "SETTLED",
+              "quote_path_state": "SETTLED",
+              "pressure_state": "SETTLED",
+              "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+              "disagreement": false,
+              "post_onset_observation_bounds": {
+                "min_cents": 74,
+                "max_cents": 83,
+                "first": {
+                  "timestamp_epoch": 1783831310,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    74,
+                    83
+                  ]
+                },
+                "last": {
+                  "timestamp_epoch": 1783831310,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    74,
+                    83
+                  ]
+                }
+              },
+              "current_book": {
+                "bid": 74,
+                "ask": 83,
+                "last_traded": 0,
+                "spread": 9,
+                "ask_dwell_seconds": 122,
+                "top_ask_size": 39,
+                "bid_depth_5": 1084,
+                "ask_depth_5": 758
+              },
+              "receipt_local_inputs": {
+                "pulse_floor_cents": null,
+                "persistent_join_level_cents": 74,
+                "causal_own_reach_low_cents": null,
+                "active_evidence_floor_cents": null,
+                "recent_true_trade_low_cents": null,
+                "prior_true_trade_low_cents": null
+              },
+              "post_onset_read": {
+                "sufficient": true,
+                "onset_timestamp_epoch": 1783831277,
+                "evaluation_timestamp_epoch": 1783831310,
+                "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                "first_evidence": {
+                  "timestamp_epoch": 1783831310,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+                  "kind": "BOOK",
+                  "causal_rank": 1
+                },
+                "last_evidence": {
+                  "timestamp_epoch": 1783831310,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                  "kind": "BOOK",
+                  "causal_rank": 2
+                },
+                "last_directional_evidence": null,
+                "span_seconds": 0,
+                "consulted": {
+                  "evidence_receipts": 2,
+                  "book_receipts": 2,
+                  "print_receipts": 0,
+                  "comparable_book_transitions": 1,
+                  "comparable_print_transitions": 0,
+                  "cross_source_comparisons": 0
+                },
+                "weighted_scores_cents": {
+                  "rising": 0,
+                  "falling": 0
+                },
+                "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                "fixed_horizon_seconds": null,
+                "replacement_tuning_constant": null
+              }
+            },
+            "machine_read": {
+              "authorized": true,
+              "target_cents": 74,
+              "proposed_target_cents": 74,
+              "incumbent_authority": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+              "supported_authority": true,
+              "inside_post_onset_observation_bounds": true,
+              "evidence_is_post_onset": true,
+              "receipt_bound": true,
+              "evidence": {
+                "evaluation_timestamp_epoch": 1783831310,
+                "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                "directional_evidence_timestamp_epoch": 1783831310,
+                "directional_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                "directional_evidence_kind": "BOOK",
+                "combined_state": "SETTLED",
+                "quote_path_state": "SETTLED",
+                "pressure_state": "SETTLED",
+                "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+                "disagreement": false,
+                "post_onset_observation_bounds": {
+                  "min_cents": 74,
+                  "max_cents": 83,
+                  "first": {
+                    "timestamp_epoch": 1783831310,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      74,
+                      83
+                    ]
+                  },
+                  "last": {
+                    "timestamp_epoch": 1783831310,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      74,
+                      83
+                    ]
+                  }
+                },
+                "current_book": {
+                  "bid": 74,
+                  "ask": 83,
+                  "last_traded": 0,
+                  "spread": 9,
+                  "ask_dwell_seconds": 122,
+                  "top_ask_size": 39,
+                  "bid_depth_5": 1084,
+                  "ask_depth_5": 758
+                },
+                "receipt_local_inputs": {
+                  "pulse_floor_cents": null,
+                  "persistent_join_level_cents": 74,
+                  "causal_own_reach_low_cents": null,
+                  "active_evidence_floor_cents": null,
+                  "recent_true_trade_low_cents": null,
+                  "prior_true_trade_low_cents": null
+                },
+                "post_onset_read": {
+                  "sufficient": true,
+                  "onset_timestamp_epoch": 1783831277,
+                  "evaluation_timestamp_epoch": 1783831310,
+                  "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                  "first_evidence": {
+                    "timestamp_epoch": 1783831310,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-23",
+                    "kind": "BOOK",
+                    "causal_rank": 1
+                  },
+                  "last_evidence": {
+                    "timestamp_epoch": 1783831310,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                    "kind": "BOOK",
+                    "causal_rank": 2
+                  },
+                  "last_directional_evidence": null,
+                  "span_seconds": 0,
+                  "consulted": {
+                    "evidence_receipts": 2,
+                    "book_receipts": 2,
+                    "print_receipts": 0,
+                    "comparable_book_transitions": 1,
+                    "comparable_print_transitions": 0,
+                    "cross_source_comparisons": 0
+                  },
+                  "weighted_scores_cents": {
+                    "rising": 0,
+                    "falling": 0
+                  },
+                  "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                  "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                  "fixed_horizon_seconds": null,
+                  "replacement_tuning_constant": null
+                }
+              },
+              "palantir": {
+                "node": "N4",
+                "consulted_at_receipt": "KXATPCHALLENGERMATCH-26JUL12POLKUH-POL.csv.gz#row-24",
+                "consulted_at_timestamp_epoch": 1783831310,
+                "decision_time_cell_source": "CURRENT_QUALIFYING_BOOK_ASK_NOT_EX_POST_CLOSE",
+                "grid": {
+                  "cell_cents": 83,
+                  "n": 8,
+                  "edge_p25": 0,
+                  "edge_p50": 23,
+                  "edge_p75": 35,
+                  "edge_ge5_pct": 62.5,
+                  "t_deep_p50": -91,
+                  "dip_first_pct": 75
+                },
+                "zone": {
+                  "category": {
+                    "n": 369,
+                    "right": 233,
+                    "share": 0.631
+                  },
+                  "starting_price_split": {
+                    "n": 231,
+                    "right": 145,
+                    "share": 0.628
+                  }
+                },
+                "leak_ordering": {
+                  "counts": {
+                    "WALKED_AWAY_FROM_LOW": 11,
+                    "CAP_BOUND": 27,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 25
+                  },
+                  "cents": {
+                    "WALKED_AWAY_FROM_LOW": 12,
+                    "CAP_BOUND": 48,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 59
+                  }
+                },
+                "role": "REFERENCE_BOUND_BESIDE_LIVE_EVIDENCE_NEVER_SOLE_AUTHORITY",
+                "provenance": [
+                  {
+                    "asset_id": "P1",
+                    "status": "VALIDATED",
+                    "source_sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P2",
+                    "status": "VALIDATED",
+                    "source_sha256": "005d5407954b86790d121ce54731417163ce5c6b9f5802b4b7b3b0965e9a3f70",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P6",
+                    "status": "VALID-NARROW",
+                    "source_sha256": "b738db027fe68bb10f6c5542bde959e47c07cada42e6a55532ec94317e379067",
+                    "source_sha256s": null
+                  }
+                ]
+              },
+              "palantir_rescue": false,
+              "frozen_authority_preserved": true
+            },
+            "palantir_prior_informed": false,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "N9_role": "ADVISORY_ONLY_NOT_TARGET_AUTHORITY"
+          }
+        }
+      },
+      "L7_CREDIT": {
+        "result": "FLAG",
+        "why": {
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH|KUH": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null
+          },
+          "KXATPCHALLENGERMATCH-26JUL12POLKUH|POL": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null
+          }
+        }
+      },
+      "L8_OUTCOME": {
+        "result": "FLAG",
+        "candidate": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        },
+        "comparator": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      }
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "category": "ATP_CHALL",
+      "L1_ADMISSION": {
+        "result": "PASS",
+        "why": {
+          "passed": true,
+          "selected_candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+          "timestamp_epoch": 1784436816,
+          "t_minus_scheduled_seconds": 50784,
+          "t_minus_actual_bell_seconds": 40284,
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "inferred_shift_timestamp_epoch": 1784436816,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 38,
+                  "shift_timestamp_epoch": 1784436816,
+                  "before_mean": 87,
+                  "after_mean": 86,
+                  "sse": 0,
+                  "before_n": 38,
+                  "after_n": 1
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 38,
+                  "shift_timestamp_epoch": 1784436816,
+                  "before_mean": 3,
+                  "after_mean": 2,
+                  "sse": 0,
+                  "before_n": 38,
+                  "after_n": 1
+                }
+              }
+            },
+            "B": null
+          },
+          "binding_status": "V52L_CAUSAL_PREFIX",
+          "binding_changed_by_V52e": false,
+          "binding_changed_by_V52l": true,
+          "causal_prefix_receipt_law": "EVERY_VALUE_FROM_RECEIPTS_AT_OR_BEFORE_CAUSAL_RECOGNITION",
+          "maximum_consumed_timestamp_epoch": 1784436816,
+          "right_edge_consumed": false,
+          "full_span_fit": false
+        }
+      },
+      "L2_GAME_VIEW": {
+        "result": "PASS",
+        "why": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+          "evaluation": {
+            "timestamp_epoch": 1784477100,
+            "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+          },
+          "joint_observation": {
+            "ARS": {
+              "value": {
+                "timestamp_epoch": 1784477100,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367",
+                "kind": "BOOK",
+                "bid_cents": 38,
+                "ask_cents": 41,
+                "last_traded_cents": 41,
+                "spread_cents": 3,
+                "dwell_seconds": null,
+                "reference_cents": 41,
+                "reference_source": "BOOK_LAST_TRADED"
+              },
+              "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+            },
+            "MAR": {
+              "value": {
+                "timestamp_epoch": 1784476175.396,
+                "receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002",
+                "kind": "PRINT",
+                "bid_cents": null,
+                "ask_cents": null,
+                "last_traded_cents": 59,
+                "spread_cents": null,
+                "dwell_seconds": null,
+                "reference_cents": 59,
+                "reference_source": "TRUE_TRADE"
+              },
+              "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002"
+            }
+          },
+          "belief_anchor_pair": {
+            "ARS": {
+              "value_cents": 49,
+              "producer_receipt": {
+                "timestamp_epoch": 1784436855,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-10",
+                "kind": "BOOK"
+              }
+            },
+            "MAR": {
+              "value_cents": 49,
+              "producer_receipt": {
+                "timestamp_epoch": 1784436855,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+                "kind": "BOOK"
+              }
+            }
+          },
+          "legs": {
+            "ARS": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1784477100,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367",
+                  "kind": "BOOK",
+                  "bid_cents": 38,
+                  "ask_cents": 41,
+                  "last_traded_cents": 41,
+                  "spread_cents": 3,
+                  "dwell_seconds": null,
+                  "reference_cents": 41,
+                  "reference_source": "BOOK_LAST_TRADED"
+                },
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+              },
+              "belief_anchor": {
+                "value_cents": 49,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784436855,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-10",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 25,
+                "net_cents": -8,
+                "min_cents": 34,
+                "max_cents": 59,
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+              },
+              "family": {
+                "status": "DECLARED",
+                "value": "ONE_STEP_DOWN",
+                "reason": "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "FALLER",
+                "drift_cents": -8,
+                "drift_anchor_cents": 49,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1784436855,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-10",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 7,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 25,
+                  "reversals": 14
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+              },
+              "reach": {
+                "running_session_low_cents": 34,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784451492,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-148",
+                  "kind": "BOOK"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "RISING",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+              },
+              "stance": {
+                "value": "EARLY_FLOOR_SIDE",
+                "classification": "RISING",
+                "arming_law": {
+                  "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                  "method_revision": 2,
+                  "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                  "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                  "proxy_instrument_consumed": false,
+                  "shape_offset_aim_consumed": false,
+                  "latchcal_consumed": false
+                },
+                "armed": false,
+                "qualified_divots": 0,
+                "armed_receipt": null
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 41,
+                "pending_trough": null,
+                "qualified_divots": [],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            },
+            "MAR": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1784476175.396,
+                  "receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002",
+                  "kind": "PRINT",
+                  "bid_cents": null,
+                  "ask_cents": null,
+                  "last_traded_cents": 59,
+                  "spread_cents": null,
+                  "dwell_seconds": null,
+                  "reference_cents": 59,
+                  "reference_source": "TRUE_TRADE"
+                },
+                "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002"
+              },
+              "belief_anchor": {
+                "value_cents": 49,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784436855,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 25,
+                "net_cents": 10,
+                "min_cents": 49,
+                "max_cents": 74,
+                "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002"
+              },
+              "leg_state": {
+                "value": "STEPPING",
+                "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002"
+              },
+              "family": {
+                "status": "DECLARED",
+                "value": "ONE_STEP_UP",
+                "reason": "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY",
+                "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "CLIMBER",
+                "drift_cents": 10,
+                "drift_anchor_cents": 49,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1784436855,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 6,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 25,
+                  "reversals": 47
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002"
+              },
+              "reach": {
+                "running_session_low_cents": 59,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784476175.396,
+                  "receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002",
+                  "kind": "PRINT"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "FALLING",
+                "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-1086"
+              },
+              "stance": {
+                "value": "LATE_FLOOR_SIDE",
+                "classification": "FALLING",
+                "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 61,
+                "pending_trough": {
+                  "timestamp_epoch": 1784475080.668,
+                  "receipt": "46a39f4f-a857-501e-78d3-8723619708fc",
+                  "trade_id": "46a39f4f-a857-501e-78d3-8723619708fc",
+                  "price_cents": 60,
+                  "size": 100,
+                  "own_joint_book": {
+                    "bid_cents": 60,
+                    "ask_cents": 61,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-1042"
+                  },
+                  "sibling_joint_book": {
+                    "bid_cents": 38,
+                    "ask_cents": 40,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1226"
+                  },
+                  "machine_state": "RISING",
+                  "definition": "OPERATOR_DIVOT_STRENGTHENING_SIDE_JOINT_STATE_TRADE_BACKED"
+                },
+                "qualified_divots": [],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            }
+          },
+          "provenance": {
+            "shape_taxonomy_commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "shape_taxonomy_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "TRD5_commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "no_endpoint_labels_consumed": true,
+            "no_span_fraction_consumed": true,
+            "no_static_depth_target_consumed": true,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "post_onset_only": true
+          }
+        }
+      },
+      "L3_ROLE": {
+        "result": "PASS",
+        "why": {
+          "ARS": {
+            "value": "FALLER",
+            "drift_cents": -8,
+            "drift_anchor_cents": 49,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1784436855,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-10",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 7,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 25,
+              "reversals": 14
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+          },
+          "MAR": {
+            "value": "CLIMBER",
+            "drift_cents": 10,
+            "drift_anchor_cents": 49,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1784436855,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 6,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 25,
+              "reversals": 47
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002"
+          }
+        }
+      },
+      "L4_POSITION": {
+        "result": "PASS",
+        "why": {
+          "ARS": {
+            "value": "SETTLED",
+            "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+          },
+          "MAR": {
+            "value": "STEPPING",
+            "producer_receipt": "f798392a-5fec-6d14-8c30-6fd90cedf002"
+          }
+        }
+      },
+      "L5_PLAN": {
+        "result": "PASS",
+        "why": {
+          "licensed": true,
+          "reason": "L23_ONE_GAME_ONE_JOINT_LICENSE",
+          "stances": {
+            "ARS": {
+              "value": "EARLY_FLOOR_SIDE",
+              "classification": "RISING",
+              "arming_law": {
+                "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                "method_revision": 2,
+                "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                "proxy_instrument_consumed": false,
+                "shape_offset_aim_consumed": false,
+                "latchcal_consumed": false
+              },
+              "armed": false,
+              "qualified_divots": 0,
+              "armed_receipt": null
+            },
+            "MAR": {
+              "value": "LATE_FLOOR_SIDE",
+              "classification": "FALLING",
+              "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+            }
+          },
+          "both_states": {
+            "ARS": {
+              "value": "RISING",
+              "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+            },
+            "MAR": {
+              "value": "FALLING",
+              "producer_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-1086"
+            }
+          },
+          "split_authority": "FROZEN_CLAUSE_5_AND_CLAUSE_6_INPUTS_BYTE_EQUAL",
+          "arming_law": {
+            "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+            "method_revision": 2,
+            "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+            "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+            "proxy_instrument_consumed": false,
+            "shape_offset_aim_consumed": false,
+            "latchcal_consumed": false
+          },
+          "evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-ARS.csv.gz#row-1367"
+        }
+      },
+      "L6_TARGET": {
+        "result": "PASS",
+        "why": {
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+          "target_cents": 6,
+          "license": {
+            "target_cents": 6,
+            "own_diary_cents": null,
+            "pair_cap_cents": null,
+            "post_only_ask_bound_cents": 91,
+            "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+            "displayed_bid_consumed": false,
+            "machine_read_evidence": {
+              "evaluation_timestamp_epoch": 1784436976,
+              "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+              "directional_evidence_timestamp_epoch": 1784436976,
+              "directional_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+              "directional_evidence_kind": "BOOK",
+              "combined_state": "SETTLED",
+              "quote_path_state": "SETTLED",
+              "pressure_state": "SETTLED",
+              "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+              "disagreement": false,
+              "post_onset_observation_bounds": {
+                "min_cents": 6,
+                "max_cents": 92,
+                "first": {
+                  "timestamp_epoch": 1784436855,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    6,
+                    92
+                  ]
+                },
+                "last": {
+                  "timestamp_epoch": 1784436976,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    6,
+                    92
+                  ]
+                }
+              },
+              "current_book": {
+                "bid": 6,
+                "ask": 92,
+                "last_traded": 0,
+                "spread": 86,
+                "ask_dwell_seconds": 2440,
+                "top_ask_size": 30,
+                "bid_depth_5": 889,
+                "ask_depth_5": 1074
+              },
+              "receipt_local_inputs": {
+                "pulse_floor_cents": null,
+                "persistent_join_level_cents": 5,
+                "causal_own_reach_low_cents": null,
+                "active_evidence_floor_cents": null,
+                "recent_true_trade_low_cents": null,
+                "prior_true_trade_low_cents": null
+              },
+              "post_onset_read": {
+                "sufficient": true,
+                "onset_timestamp_epoch": 1784436816,
+                "evaluation_timestamp_epoch": 1784436976,
+                "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                "first_evidence": {
+                  "timestamp_epoch": 1784436855,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+                  "kind": "BOOK",
+                  "causal_rank": 1
+                },
+                "last_evidence": {
+                  "timestamp_epoch": 1784436976,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                  "kind": "BOOK",
+                  "causal_rank": 2
+                },
+                "last_directional_evidence": null,
+                "span_seconds": 121,
+                "consulted": {
+                  "evidence_receipts": 2,
+                  "book_receipts": 2,
+                  "print_receipts": 0,
+                  "comparable_book_transitions": 1,
+                  "comparable_print_transitions": 0,
+                  "cross_source_comparisons": 0
+                },
+                "weighted_scores_cents": {
+                  "rising": 0,
+                  "falling": 0
+                },
+                "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                "fixed_horizon_seconds": null,
+                "replacement_tuning_constant": null
+              }
+            },
+            "machine_read": {
+              "authorized": true,
+              "target_cents": 6,
+              "proposed_target_cents": 6,
+              "incumbent_authority": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+              "supported_authority": true,
+              "inside_post_onset_observation_bounds": true,
+              "evidence_is_post_onset": true,
+              "receipt_bound": true,
+              "evidence": {
+                "evaluation_timestamp_epoch": 1784436976,
+                "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                "directional_evidence_timestamp_epoch": 1784436976,
+                "directional_evidence_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                "directional_evidence_kind": "BOOK",
+                "combined_state": "SETTLED",
+                "quote_path_state": "SETTLED",
+                "pressure_state": "SETTLED",
+                "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+                "disagreement": false,
+                "post_onset_observation_bounds": {
+                  "min_cents": 6,
+                  "max_cents": 92,
+                  "first": {
+                    "timestamp_epoch": 1784436855,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      6,
+                      92
+                    ]
+                  },
+                  "last": {
+                    "timestamp_epoch": 1784436976,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      6,
+                      92
+                    ]
+                  }
+                },
+                "current_book": {
+                  "bid": 6,
+                  "ask": 92,
+                  "last_traded": 0,
+                  "spread": 86,
+                  "ask_dwell_seconds": 2440,
+                  "top_ask_size": 30,
+                  "bid_depth_5": 889,
+                  "ask_depth_5": 1074
+                },
+                "receipt_local_inputs": {
+                  "pulse_floor_cents": null,
+                  "persistent_join_level_cents": 5,
+                  "causal_own_reach_low_cents": null,
+                  "active_evidence_floor_cents": null,
+                  "recent_true_trade_low_cents": null,
+                  "prior_true_trade_low_cents": null
+                },
+                "post_onset_read": {
+                  "sufficient": true,
+                  "onset_timestamp_epoch": 1784436816,
+                  "evaluation_timestamp_epoch": 1784436976,
+                  "evaluation_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                  "first_evidence": {
+                    "timestamp_epoch": 1784436855,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-8",
+                    "kind": "BOOK",
+                    "causal_rank": 1
+                  },
+                  "last_evidence": {
+                    "timestamp_epoch": 1784436976,
+                    "receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                    "kind": "BOOK",
+                    "causal_rank": 2
+                  },
+                  "last_directional_evidence": null,
+                  "span_seconds": 121,
+                  "consulted": {
+                    "evidence_receipts": 2,
+                    "book_receipts": 2,
+                    "print_receipts": 0,
+                    "comparable_book_transitions": 1,
+                    "comparable_print_transitions": 0,
+                    "cross_source_comparisons": 0
+                  },
+                  "weighted_scores_cents": {
+                    "rising": 0,
+                    "falling": 0
+                  },
+                  "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                  "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                  "fixed_horizon_seconds": null,
+                  "replacement_tuning_constant": null
+                }
+              },
+              "palantir": {
+                "node": "N4",
+                "consulted_at_receipt": "KXATPCHALLENGERMATCH-26JUL19ARSMAR-MAR.csv.gz#row-9",
+                "consulted_at_timestamp_epoch": 1784436976,
+                "decision_time_cell_source": "CURRENT_QUALIFYING_BOOK_ASK_NOT_EX_POST_CLOSE",
+                "grid": {
+                  "cell_cents": 92,
+                  "n": 10,
+                  "edge_p25": 1,
+                  "edge_p50": 9,
+                  "edge_p75": 18,
+                  "edge_ge5_pct": 60,
+                  "t_deep_p50": -48,
+                  "dip_first_pct": 90
+                },
+                "zone": {
+                  "category": {
+                    "n": 369,
+                    "right": 233,
+                    "share": 0.631
+                  },
+                  "starting_price_split": {
+                    "n": 506,
+                    "right": 334,
+                    "share": 0.66
+                  }
+                },
+                "leak_ordering": {
+                  "counts": {
+                    "WALKED_AWAY_FROM_LOW": 11,
+                    "CAP_BOUND": 27,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 25
+                  },
+                  "cents": {
+                    "WALKED_AWAY_FROM_LOW": 12,
+                    "CAP_BOUND": 48,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 59
+                  }
+                },
+                "role": "REFERENCE_BOUND_BESIDE_LIVE_EVIDENCE_NEVER_SOLE_AUTHORITY",
+                "provenance": [
+                  {
+                    "asset_id": "P1",
+                    "status": "VALIDATED",
+                    "source_sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P2",
+                    "status": "VALIDATED",
+                    "source_sha256": "005d5407954b86790d121ce54731417163ce5c6b9f5802b4b7b3b0965e9a3f70",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P6",
+                    "status": "VALID-NARROW",
+                    "source_sha256": "b738db027fe68bb10f6c5542bde959e47c07cada42e6a55532ec94317e379067",
+                    "source_sha256s": null
+                  }
+                ]
+              },
+              "palantir_rescue": false,
+              "frozen_authority_preserved": true
+            },
+            "palantir_prior_informed": false,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "N9_role": "ADVISORY_ONLY_NOT_TARGET_AUTHORITY"
+          }
+        }
+      },
+      "L7_CREDIT": {
+        "result": "FLAG",
+        "why": {
+          "KXATPCHALLENGERMATCH-26JUL19ARSMAR|ARS": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null
+          },
+          "KXATPCHALLENGERMATCH-26JUL19ARSMAR|MAR": {
+            "credited": true,
+            "entry_cents": 59,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null
+          }
+        }
+      },
+      "L8_OUTCOME": {
+        "result": "FLAG",
+        "candidate": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        },
+        "comparator": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "category": "ATP_MAIN",
+      "L1_ADMISSION": {
+        "result": "PASS",
+        "why": {
+          "passed": true,
+          "selected_candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+          "timestamp_epoch": 1783882590,
+          "t_minus_scheduled_seconds": 70410,
+          "t_minus_actual_bell_seconds": 59910,
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "inferred_shift_timestamp_epoch": 1783881690,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 158,
+                  "shift_timestamp_epoch": 1783880070,
+                  "before_mean": 87.15822784810126,
+                  "after_mean": 5.162790697674419,
+                  "sse": 348.90476891369735,
+                  "before_n": 158,
+                  "after_n": 43
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 185,
+                  "shift_timestamp_epoch": 1783881690,
+                  "before_mean": 0.9324324324324325,
+                  "after_mean": 0,
+                  "sse": 34.40540540540542,
+                  "before_n": 185,
+                  "after_n": 16
+                }
+              }
+            },
+            "B": null
+          },
+          "binding_status": "V52L_CAUSAL_PREFIX",
+          "binding_changed_by_V52e": false,
+          "binding_changed_by_V52l": true,
+          "causal_prefix_receipt_law": "EVERY_VALUE_FROM_RECEIPTS_AT_OR_BEFORE_CAUSAL_RECOGNITION",
+          "maximum_consumed_timestamp_epoch": 1783882590,
+          "right_edge_consumed": false,
+          "full_span_fit": false
+        }
+      },
+      "L2_GAME_VIEW": {
+        "result": "PASS",
+        "why": {
+          "event_id": "KXATPMATCH-26JUL13SANDAN",
+          "evaluation": {
+            "timestamp_epoch": 1783942499,
+            "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+          },
+          "joint_observation": {
+            "DAN": {
+              "value": {
+                "timestamp_epoch": 1783942499,
+                "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169",
+                "kind": "BOOK",
+                "bid_cents": 75,
+                "ask_cents": 76,
+                "last_traded_cents": 76,
+                "spread_cents": 1,
+                "dwell_seconds": null,
+                "reference_cents": 76,
+                "reference_source": "BOOK_LAST_TRADED"
+              },
+              "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+            },
+            "SAN": {
+              "value": {
+                "timestamp_epoch": 1783893637.26,
+                "receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec",
+                "kind": "PRINT",
+                "bid_cents": null,
+                "ask_cents": null,
+                "last_traded_cents": 26,
+                "spread_cents": null,
+                "dwell_seconds": null,
+                "reference_cents": 26,
+                "reference_source": "TRUE_TRADE"
+              },
+              "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec"
+            }
+          },
+          "belief_anchor_pair": {
+            "DAN": {
+              "value_cents": 69,
+              "producer_receipt": {
+                "timestamp_epoch": 1783882766,
+                "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-246",
+                "kind": "BOOK"
+              }
+            },
+            "SAN": {
+              "value_cents": 31,
+              "producer_receipt": {
+                "timestamp_epoch": 1783883787,
+                "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+                "kind": "BOOK"
+              }
+            }
+          },
+          "legs": {
+            "DAN": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1783942499,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169",
+                  "kind": "BOOK",
+                  "bid_cents": 75,
+                  "ask_cents": 76,
+                  "last_traded_cents": 76,
+                  "spread_cents": 1,
+                  "dwell_seconds": null,
+                  "reference_cents": 76,
+                  "reference_source": "BOOK_LAST_TRADED"
+                },
+                "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+              },
+              "belief_anchor": {
+                "value_cents": 69,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783882766,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-246",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 10,
+                "net_cents": 7,
+                "min_cents": 69,
+                "max_cents": 79,
+                "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+              },
+              "family": {
+                "status": "DECLARED",
+                "value": "ONE_STEP_UP",
+                "reason": "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY",
+                "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "CLIMBER",
+                "drift_cents": 7,
+                "drift_anchor_cents": 69,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1783882766,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-246",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 113,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 10,
+                  "reversals": 12
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+              },
+              "reach": {
+                "running_session_low_cents": 69,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783883789,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-250",
+                  "kind": "BOOK"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "FALLING",
+                "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+              },
+              "stance": {
+                "value": "LATE_FLOOR_SIDE",
+                "classification": "FALLING",
+                "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 79,
+                "pending_trough": {
+                  "timestamp_epoch": 1783934665.641,
+                  "receipt": "1c1c8aba-d926-45fb-16ff-d38fe17e990c",
+                  "trade_id": "1c1c8aba-d926-45fb-16ff-d38fe17e990c",
+                  "price_cents": 77,
+                  "size": 24,
+                  "own_joint_book": {
+                    "bid_cents": 77,
+                    "ask_cents": 78,
+                    "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-4129"
+                  },
+                  "sibling_joint_book": {
+                    "bid_cents": 22,
+                    "ask_cents": 23,
+                    "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-4380"
+                  },
+                  "machine_state": "RISING",
+                  "definition": "OPERATOR_DIVOT_STRENGTHENING_SIDE_JOINT_STATE_TRADE_BACKED"
+                },
+                "qualified_divots": [
+                  {
+                    "timestamp_epoch": 1783915529.963,
+                    "receipt": "bdcb3d18-340a-4077-13c1-b43e17824184",
+                    "trade_id": "bdcb3d18-340a-4077-13c1-b43e17824184",
+                    "price_cents": 77,
+                    "size": 172,
+                    "own_joint_book": {
+                      "bid_cents": 77,
+                      "ask_cents": 78,
+                      "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-1913"
+                    },
+                    "sibling_joint_book": {
+                      "bid_cents": 22,
+                      "ask_cents": 23,
+                      "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-2574"
+                    },
+                    "machine_state": "RISING",
+                    "definition": "OPERATOR_DIVOT_STRENGTHENING_SIDE_JOINT_STATE_TRADE_BACKED",
+                    "resume_timestamp_epoch": 1783915544.039,
+                    "resume_receipt": "8976d042-cd1d-4861-9005-6321bc63247c",
+                    "resume_price_cents": 78
+                  }
+                ],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            },
+            "SAN": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1783893637.26,
+                  "receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec",
+                  "kind": "PRINT",
+                  "bid_cents": null,
+                  "ask_cents": null,
+                  "last_traded_cents": 26,
+                  "spread_cents": null,
+                  "dwell_seconds": null,
+                  "reference_cents": 26,
+                  "reference_source": "TRUE_TRADE"
+                },
+                "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec"
+              },
+              "belief_anchor": {
+                "value_cents": 31,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783883787,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 5,
+                "net_cents": -5,
+                "min_cents": 26,
+                "max_cents": 31,
+                "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec"
+              },
+              "leg_state": {
+                "value": "STEPPING",
+                "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec"
+              },
+              "family": {
+                "status": "DECLARED",
+                "value": "ONE_STEP_DOWN",
+                "reason": "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY",
+                "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "FALLER",
+                "drift_cents": -5,
+                "drift_anchor_cents": 31,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1783883787,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 5,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 5,
+                  "reversals": 0
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec"
+              },
+              "reach": {
+                "running_session_low_cents": 26,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783893637.26,
+                  "receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec",
+                  "kind": "PRINT"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "FALLING",
+                "producer_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-440"
+              },
+              "stance": {
+                "value": "LATE_FLOOR_SIDE",
+                "classification": "FALLING",
+                "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 31,
+                "pending_trough": null,
+                "qualified_divots": [],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            }
+          },
+          "provenance": {
+            "shape_taxonomy_commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "shape_taxonomy_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "TRD5_commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "no_endpoint_labels_consumed": true,
+            "no_span_fraction_consumed": true,
+            "no_static_depth_target_consumed": true,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "post_onset_only": true
+          }
+        }
+      },
+      "L3_ROLE": {
+        "result": "PASS",
+        "why": {
+          "DAN": {
+            "value": "CLIMBER",
+            "drift_cents": 7,
+            "drift_anchor_cents": 69,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1783882766,
+              "receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-246",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 113,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 10,
+              "reversals": 12
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+          },
+          "SAN": {
+            "value": "FALLER",
+            "drift_cents": -5,
+            "drift_anchor_cents": 31,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1783883787,
+              "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 5,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 5,
+              "reversals": 0
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec"
+          }
+        }
+      },
+      "L4_POSITION": {
+        "result": "PASS",
+        "why": {
+          "DAN": {
+            "value": "SETTLED",
+            "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+          },
+          "SAN": {
+            "value": "STEPPING",
+            "producer_receipt": "54397209-1b46-7c96-e7ed-e72e6afa9cec"
+          }
+        }
+      },
+      "L5_PLAN": {
+        "result": "PASS",
+        "why": {
+          "licensed": true,
+          "reason": "L23_ONE_GAME_ONE_JOINT_LICENSE",
+          "stances": {
+            "DAN": {
+              "value": "LATE_FLOOR_SIDE",
+              "classification": "FALLING",
+              "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+            },
+            "SAN": {
+              "value": "LATE_FLOOR_SIDE",
+              "classification": "FALLING",
+              "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+            }
+          },
+          "both_states": {
+            "DAN": {
+              "value": "FALLING",
+              "producer_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+            },
+            "SAN": {
+              "value": "FALLING",
+              "producer_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-440"
+            }
+          },
+          "split_authority": "FROZEN_CLAUSE_5_AND_CLAUSE_6_INPUTS_BYTE_EQUAL",
+          "arming_law": {
+            "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+            "method_revision": 2,
+            "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+            "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+            "proxy_instrument_consumed": false,
+            "shape_offset_aim_consumed": false,
+            "latchcal_consumed": false
+          },
+          "evidence_receipt": "KXATPMATCH-26JUL13SANDAN-DAN.csv.gz#row-5169"
+        }
+      },
+      "L6_TARGET": {
+        "result": "PASS",
+        "why": {
+          "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+          "target_cents": 30,
+          "license": {
+            "target_cents": 30,
+            "own_diary_cents": null,
+            "pair_cap_cents": null,
+            "post_only_ask_bound_cents": 30,
+            "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+            "displayed_bid_consumed": false,
+            "machine_read_evidence": {
+              "evaluation_timestamp_epoch": 1783883787,
+              "evaluation_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+              "directional_evidence_timestamp_epoch": 1783883787,
+              "directional_evidence_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+              "directional_evidence_kind": "BOOK",
+              "combined_state": "SETTLED",
+              "quote_path_state": "SETTLED",
+              "pressure_state": "SETTLED",
+              "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+              "disagreement": false,
+              "post_onset_observation_bounds": {
+                "min_cents": 30,
+                "max_cents": 31,
+                "first": {
+                  "timestamp_epoch": 1783883787,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    30,
+                    31
+                  ]
+                },
+                "last": {
+                  "timestamp_epoch": 1783883787,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    30,
+                    31
+                  ]
+                }
+              },
+              "current_book": {
+                "bid": 30,
+                "ask": 31,
+                "last_traded": 31,
+                "spread": 1,
+                "ask_dwell_seconds": 0,
+                "top_ask_size": 197,
+                "bid_depth_5": 1245,
+                "ask_depth_5": 1016
+              },
+              "receipt_local_inputs": {
+                "pulse_floor_cents": null,
+                "persistent_join_level_cents": 30,
+                "causal_own_reach_low_cents": 31,
+                "active_evidence_floor_cents": null,
+                "recent_true_trade_low_cents": null,
+                "prior_true_trade_low_cents": 31
+              },
+              "post_onset_read": {
+                "sufficient": true,
+                "onset_timestamp_epoch": 1783882290,
+                "evaluation_timestamp_epoch": 1783883787,
+                "evaluation_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                "first_evidence": {
+                  "timestamp_epoch": 1783883787,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+                  "kind": "BOOK",
+                  "causal_rank": 1
+                },
+                "last_evidence": {
+                  "timestamp_epoch": 1783883787,
+                  "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                  "kind": "BOOK",
+                  "causal_rank": 2
+                },
+                "last_directional_evidence": null,
+                "span_seconds": 0,
+                "consulted": {
+                  "evidence_receipts": 2,
+                  "book_receipts": 2,
+                  "print_receipts": 0,
+                  "comparable_book_transitions": 1,
+                  "comparable_print_transitions": 0,
+                  "cross_source_comparisons": 0
+                },
+                "weighted_scores_cents": {
+                  "rising": 0,
+                  "falling": 0
+                },
+                "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                "fixed_horizon_seconds": null,
+                "replacement_tuning_constant": null
+              }
+            },
+            "machine_read": {
+              "authorized": true,
+              "target_cents": 30,
+              "proposed_target_cents": 30,
+              "incumbent_authority": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+              "supported_authority": true,
+              "inside_post_onset_observation_bounds": true,
+              "evidence_is_post_onset": true,
+              "receipt_bound": true,
+              "evidence": {
+                "evaluation_timestamp_epoch": 1783883787,
+                "evaluation_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                "directional_evidence_timestamp_epoch": 1783883787,
+                "directional_evidence_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                "directional_evidence_kind": "BOOK",
+                "combined_state": "SETTLED",
+                "quote_path_state": "SETTLED",
+                "pressure_state": "SETTLED",
+                "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+                "disagreement": false,
+                "post_onset_observation_bounds": {
+                  "min_cents": 30,
+                  "max_cents": 31,
+                  "first": {
+                    "timestamp_epoch": 1783883787,
+                    "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      30,
+                      31
+                    ]
+                  },
+                  "last": {
+                    "timestamp_epoch": 1783883787,
+                    "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      30,
+                      31
+                    ]
+                  }
+                },
+                "current_book": {
+                  "bid": 30,
+                  "ask": 31,
+                  "last_traded": 31,
+                  "spread": 1,
+                  "ask_dwell_seconds": 0,
+                  "top_ask_size": 197,
+                  "bid_depth_5": 1245,
+                  "ask_depth_5": 1016
+                },
+                "receipt_local_inputs": {
+                  "pulse_floor_cents": null,
+                  "persistent_join_level_cents": 30,
+                  "causal_own_reach_low_cents": 31,
+                  "active_evidence_floor_cents": null,
+                  "recent_true_trade_low_cents": null,
+                  "prior_true_trade_low_cents": 31
+                },
+                "post_onset_read": {
+                  "sufficient": true,
+                  "onset_timestamp_epoch": 1783882290,
+                  "evaluation_timestamp_epoch": 1783883787,
+                  "evaluation_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                  "first_evidence": {
+                    "timestamp_epoch": 1783883787,
+                    "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-240",
+                    "kind": "BOOK",
+                    "causal_rank": 1
+                  },
+                  "last_evidence": {
+                    "timestamp_epoch": 1783883787,
+                    "receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                    "kind": "BOOK",
+                    "causal_rank": 2
+                  },
+                  "last_directional_evidence": null,
+                  "span_seconds": 0,
+                  "consulted": {
+                    "evidence_receipts": 2,
+                    "book_receipts": 2,
+                    "print_receipts": 0,
+                    "comparable_book_transitions": 1,
+                    "comparable_print_transitions": 0,
+                    "cross_source_comparisons": 0
+                  },
+                  "weighted_scores_cents": {
+                    "rising": 0,
+                    "falling": 0
+                  },
+                  "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                  "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                  "fixed_horizon_seconds": null,
+                  "replacement_tuning_constant": null
+                }
+              },
+              "palantir": {
+                "node": "N4",
+                "consulted_at_receipt": "KXATPMATCH-26JUL13SANDAN-SAN.csv.gz#row-241",
+                "consulted_at_timestamp_epoch": 1783883787,
+                "decision_time_cell_source": "CURRENT_QUALIFYING_BOOK_ASK_NOT_EX_POST_CLOSE",
+                "grid": {
+                  "cell_cents": 31,
+                  "n": 6,
+                  "edge_p25": 1,
+                  "edge_p50": 2,
+                  "edge_p75": 2,
+                  "edge_ge5_pct": 0,
+                  "t_deep_p50": -432,
+                  "dip_first_pct": 100
+                },
+                "zone": {
+                  "category": {
+                    "n": 147,
+                    "right": 107,
+                    "share": 0.728
+                  },
+                  "starting_price_split": {
+                    "n": 231,
+                    "right": 145,
+                    "share": 0.628
+                  }
+                },
+                "leak_ordering": {
+                  "counts": {
+                    "WALKED_AWAY_FROM_LOW": 11,
+                    "CAP_BOUND": 27,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 25
+                  },
+                  "cents": {
+                    "WALKED_AWAY_FROM_LOW": 12,
+                    "CAP_BOUND": 48,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 59
+                  }
+                },
+                "role": "REFERENCE_BOUND_BESIDE_LIVE_EVIDENCE_NEVER_SOLE_AUTHORITY",
+                "provenance": [
+                  {
+                    "asset_id": "P1",
+                    "status": "VALIDATED",
+                    "source_sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P2",
+                    "status": "VALIDATED",
+                    "source_sha256": "005d5407954b86790d121ce54731417163ce5c6b9f5802b4b7b3b0965e9a3f70",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P6",
+                    "status": "VALID-NARROW",
+                    "source_sha256": "b738db027fe68bb10f6c5542bde959e47c07cada42e6a55532ec94317e379067",
+                    "source_sha256s": null
+                  }
+                ]
+              },
+              "palantir_rescue": false,
+              "frozen_authority_preserved": true
+            },
+            "palantir_prior_informed": false,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "N9_role": "ADVISORY_ONLY_NOT_TARGET_AUTHORITY"
+          }
+        }
+      },
+      "L7_CREDIT": {
+        "result": "FLAG",
+        "why": {
+          "KXATPMATCH-26JUL13SANDAN|DAN": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null
+          },
+          "KXATPMATCH-26JUL13SANDAN|SAN": {
+            "credited": true,
+            "entry_cents": 26,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null
+          }
+        }
+      },
+      "L8_OUTCOME": {
+        "result": "FLAG",
+        "candidate": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        },
+        "comparator": {
+          "completed": true,
+          "combined_entry_cents": 99,
+          "under_par": true
+        }
+      }
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL16MERDRO",
+      "category": "ATP_MAIN",
+      "L1_ADMISSION": {
+        "result": "PASS",
+        "why": {
+          "passed": true,
+          "selected_candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+          "timestamp_epoch": 1784150014,
+          "t_minus_scheduled_seconds": 71186,
+          "t_minus_actual_bell_seconds": 60686,
+          "candidates": {
+            "A": null,
+            "B": {
+              "candidate": "B_SUSTAINED_TRADE_CADENCE_ARRIVAL",
+              "inferred_shift_timestamp_epoch": 1784150014,
+              "components": {
+                "trade_cadence": {
+                  "field": "trades_60min",
+                  "index": 21,
+                  "shift_timestamp_epoch": 1784150014,
+                  "before_mean": 0,
+                  "after_mean": 1,
+                  "sse": 0,
+                  "before_n": 21,
+                  "after_n": 1
+                }
+              }
+            }
+          },
+          "binding_status": "V52L_CAUSAL_PREFIX",
+          "binding_changed_by_V52e": false,
+          "binding_changed_by_V52l": true,
+          "causal_prefix_receipt_law": "EVERY_VALUE_FROM_RECEIPTS_AT_OR_BEFORE_CAUSAL_RECOGNITION",
+          "maximum_consumed_timestamp_epoch": 1784150014,
+          "right_edge_consumed": false,
+          "full_span_fit": false
+        }
+      },
+      "L2_GAME_VIEW": {
+        "result": "PASS",
+        "why": {
+          "event_id": "KXATPMATCH-26JUL16MERDRO",
+          "evaluation": {
+            "timestamp_epoch": 1784156528,
+            "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+          },
+          "joint_observation": {
+            "DRO": {
+              "value": {
+                "timestamp_epoch": 1784150892.09,
+                "receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a",
+                "kind": "PRINT",
+                "bid_cents": null,
+                "ask_cents": null,
+                "last_traded_cents": 6,
+                "spread_cents": null,
+                "dwell_seconds": null,
+                "reference_cents": 6,
+                "reference_source": "TRUE_TRADE"
+              },
+              "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a"
+            },
+            "MER": {
+              "value": {
+                "timestamp_epoch": 1784156528,
+                "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023",
+                "kind": "BOOK",
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_traded_cents": 57,
+                "spread_cents": 1,
+                "dwell_seconds": null,
+                "reference_cents": 57,
+                "reference_source": "BOOK_LAST_TRADED"
+              },
+              "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+            }
+          },
+          "belief_anchor_pair": {
+            "DRO": {
+              "value_cents": 94,
+              "producer_receipt": {
+                "timestamp_epoch": 1784150645,
+                "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-9",
+                "kind": "BOOK"
+              }
+            },
+            "MER": {
+              "value_cents": 93,
+              "producer_receipt": {
+                "timestamp_epoch": 1784150065,
+                "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+                "kind": "BOOK"
+              }
+            }
+          },
+          "legs": {
+            "DRO": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1784150892.09,
+                  "receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a",
+                  "kind": "PRINT",
+                  "bid_cents": null,
+                  "ask_cents": null,
+                  "last_traded_cents": 6,
+                  "spread_cents": null,
+                  "dwell_seconds": null,
+                  "reference_cents": 6,
+                  "reference_source": "TRUE_TRADE"
+                },
+                "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a"
+              },
+              "belief_anchor": {
+                "value_cents": 94,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784150645,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-9",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 88,
+                "net_cents": -88,
+                "min_cents": 6,
+                "max_cents": 94,
+                "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a"
+              },
+              "family": {
+                "status": "PENDING",
+                "value": null,
+                "reason": "ENDPOINT_DEPENDENT_FAMILIES_NOT_LIVE_CALLABLE",
+                "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "UNRIPE",
+                "drift_cents": -88,
+                "drift_anchor_cents": 94,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1784150645,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-9",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 3,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 88,
+                  "reversals": 2
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a"
+              },
+              "reach": {
+                "running_session_low_cents": 6,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784150892.09,
+                  "receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a",
+                  "kind": "PRINT"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "FALLING",
+                "producer_receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-86"
+              },
+              "stance": {
+                "value": "LATE_FLOOR_SIDE",
+                "classification": "FALLING",
+                "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 94,
+                "pending_trough": null,
+                "qualified_divots": [],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            },
+            "MER": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1784156528,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023",
+                  "kind": "BOOK",
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_traded_cents": 57,
+                  "spread_cents": 1,
+                  "dwell_seconds": null,
+                  "reference_cents": 57,
+                  "reference_source": "BOOK_LAST_TRADED"
+                },
+                "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+              },
+              "belief_anchor": {
+                "value_cents": 93,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784150065,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 88,
+                "net_cents": -36,
+                "min_cents": 6,
+                "max_cents": 94,
+                "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+              },
+              "family": {
+                "status": "DECLARED",
+                "value": "ONE_STEP_DOWN",
+                "reason": "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY",
+                "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "FALLER",
+                "drift_cents": -36,
+                "drift_anchor_cents": 93,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1784150065,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 25,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 88,
+                  "reversals": 11
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+              },
+              "reach": {
+                "running_session_low_cents": 6,
+                "producer_receipt": {
+                  "timestamp_epoch": 1784150225.79,
+                  "receipt": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+                  "kind": "PRINT"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "FALLING",
+                "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+              },
+              "stance": {
+                "value": "LATE_FLOOR_SIDE",
+                "classification": "FALLING",
+                "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 94,
+                "pending_trough": null,
+                "qualified_divots": [
+                  {
+                    "timestamp_epoch": 1784150225.79,
+                    "receipt": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+                    "trade_id": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+                    "price_cents": 6,
+                    "size": 26.56,
+                    "own_joint_book": {
+                      "bid_cents": 6,
+                      "ask_cents": 94,
+                      "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-9"
+                    },
+                    "sibling_joint_book": {
+                      "bid_cents": 6,
+                      "ask_cents": 93,
+                      "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-6"
+                    },
+                    "machine_state": "RISING",
+                    "definition": "OPERATOR_DIVOT_STRENGTHENING_SIDE_JOINT_STATE_TRADE_BACKED",
+                    "resume_timestamp_epoch": 1784150609.2,
+                    "resume_receipt": "bb7399c0-3291-697e-46a4-5533bd1dbf57",
+                    "resume_price_cents": 94
+                  }
+                ],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            }
+          },
+          "provenance": {
+            "shape_taxonomy_commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "shape_taxonomy_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "TRD5_commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "no_endpoint_labels_consumed": true,
+            "no_span_fraction_consumed": true,
+            "no_static_depth_target_consumed": true,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "post_onset_only": true
+          }
+        }
+      },
+      "L3_ROLE": {
+        "result": "PASS",
+        "why": {
+          "DRO": {
+            "value": "UNRIPE",
+            "drift_cents": -88,
+            "drift_anchor_cents": 94,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1784150645,
+              "receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-9",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 3,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 88,
+              "reversals": 2
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a"
+          },
+          "MER": {
+            "value": "FALLER",
+            "drift_cents": -36,
+            "drift_anchor_cents": 93,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1784150065,
+              "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 25,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 88,
+              "reversals": 11
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+          }
+        }
+      },
+      "L4_POSITION": {
+        "result": "PASS",
+        "why": {
+          "DRO": {
+            "value": "SETTLED",
+            "producer_receipt": "9ce4c803-dcc7-45e4-8a5b-36ec014a7f5a"
+          },
+          "MER": {
+            "value": "SETTLED",
+            "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+          }
+        }
+      },
+      "L5_PLAN": {
+        "result": "PASS",
+        "why": {
+          "licensed": true,
+          "reason": "L23_ONE_GAME_ONE_JOINT_LICENSE",
+          "stances": {
+            "DRO": {
+              "value": "LATE_FLOOR_SIDE",
+              "classification": "FALLING",
+              "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+            },
+            "MER": {
+              "value": "LATE_FLOOR_SIDE",
+              "classification": "FALLING",
+              "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+            }
+          },
+          "both_states": {
+            "DRO": {
+              "value": "FALLING",
+              "producer_receipt": "KXATPMATCH-26JUL16MERDRO-DRO.csv.gz#row-86"
+            },
+            "MER": {
+              "value": "FALLING",
+              "producer_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+            }
+          },
+          "split_authority": "FROZEN_CLAUSE_5_AND_CLAUSE_6_INPUTS_BYTE_EQUAL",
+          "arming_law": {
+            "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+            "method_revision": 2,
+            "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+            "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+            "proxy_instrument_consumed": false,
+            "shape_offset_aim_consumed": false,
+            "latchcal_consumed": false
+          },
+          "evidence_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-1023"
+        }
+      },
+      "L6_TARGET": {
+        "result": "PASS",
+        "why": {
+          "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+          "target_cents": 6,
+          "license": {
+            "target_cents": 6,
+            "own_diary_cents": 6,
+            "pair_cap_cents": null,
+            "post_only_ask_bound_cents": 93,
+            "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+            "displayed_bid_consumed": false,
+            "machine_read_evidence": {
+              "evaluation_timestamp_epoch": 1784150235,
+              "evaluation_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+              "directional_evidence_timestamp_epoch": 1784150225.79,
+              "directional_evidence_receipt": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+              "directional_evidence_kind": "POST_ONSET_PRINT_DOWN",
+              "combined_state": "FALLING",
+              "quote_path_state": "FALLING",
+              "pressure_state": "SETTLED",
+              "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+              "disagreement": false,
+              "post_onset_observation_bounds": {
+                "min_cents": 6,
+                "max_cents": 94,
+                "first": {
+                  "timestamp_epoch": 1784150065,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    6,
+                    93
+                  ]
+                },
+                "last": {
+                  "timestamp_epoch": 1784150235,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    6,
+                    94
+                  ]
+                }
+              },
+              "current_book": {
+                "bid": 6,
+                "ask": 94,
+                "last_traded": 94,
+                "spread": 88,
+                "ask_dwell_seconds": 59,
+                "top_ask_size": 197,
+                "bid_depth_5": 2182,
+                "ask_depth_5": 2373
+              },
+              "receipt_local_inputs": {
+                "pulse_floor_cents": null,
+                "persistent_join_level_cents": 6,
+                "causal_own_reach_low_cents": 6,
+                "active_evidence_floor_cents": null,
+                "recent_true_trade_low_cents": 6,
+                "prior_true_trade_low_cents": 6
+              },
+              "post_onset_read": {
+                "sufficient": true,
+                "onset_timestamp_epoch": 1784150014,
+                "evaluation_timestamp_epoch": 1784150235,
+                "evaluation_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                "first_evidence": {
+                  "timestamp_epoch": 1784150065,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+                  "kind": "BOOK",
+                  "causal_rank": 1
+                },
+                "last_evidence": {
+                  "timestamp_epoch": 1784150235,
+                  "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                  "kind": "BOOK",
+                  "causal_rank": 9
+                },
+                "last_directional_evidence": {
+                  "timestamp_epoch": 1784150225.79,
+                  "receipt": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+                  "kind": "POST_ONSET_PRINT_DOWN",
+                  "direction": "FALLING",
+                  "magnitude_cents": 88,
+                  "causal_rank": 8,
+                  "rank_weighted_cents": 704
+                },
+                "span_seconds": 170,
+                "consulted": {
+                  "evidence_receipts": 9,
+                  "book_receipts": 5,
+                  "print_receipts": 4,
+                  "comparable_book_transitions": 4,
+                  "comparable_print_transitions": 3,
+                  "cross_source_comparisons": 1
+                },
+                "weighted_scores_cents": {
+                  "rising": 12,
+                  "falling": 707
+                },
+                "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                "fixed_horizon_seconds": null,
+                "replacement_tuning_constant": null
+              }
+            },
+            "machine_read": {
+              "authorized": true,
+              "target_cents": 6,
+              "proposed_target_cents": 6,
+              "incumbent_authority": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+              "supported_authority": true,
+              "inside_post_onset_observation_bounds": true,
+              "evidence_is_post_onset": true,
+              "receipt_bound": true,
+              "evidence": {
+                "evaluation_timestamp_epoch": 1784150235,
+                "evaluation_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                "directional_evidence_timestamp_epoch": 1784150225.79,
+                "directional_evidence_receipt": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+                "directional_evidence_kind": "POST_ONSET_PRINT_DOWN",
+                "combined_state": "FALLING",
+                "quote_path_state": "FALLING",
+                "pressure_state": "SETTLED",
+                "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+                "disagreement": false,
+                "post_onset_observation_bounds": {
+                  "min_cents": 6,
+                  "max_cents": 94,
+                  "first": {
+                    "timestamp_epoch": 1784150065,
+                    "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      6,
+                      93
+                    ]
+                  },
+                  "last": {
+                    "timestamp_epoch": 1784150235,
+                    "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      6,
+                      94
+                    ]
+                  }
+                },
+                "current_book": {
+                  "bid": 6,
+                  "ask": 94,
+                  "last_traded": 94,
+                  "spread": 88,
+                  "ask_dwell_seconds": 59,
+                  "top_ask_size": 197,
+                  "bid_depth_5": 2182,
+                  "ask_depth_5": 2373
+                },
+                "receipt_local_inputs": {
+                  "pulse_floor_cents": null,
+                  "persistent_join_level_cents": 6,
+                  "causal_own_reach_low_cents": 6,
+                  "active_evidence_floor_cents": null,
+                  "recent_true_trade_low_cents": 6,
+                  "prior_true_trade_low_cents": 6
+                },
+                "post_onset_read": {
+                  "sufficient": true,
+                  "onset_timestamp_epoch": 1784150014,
+                  "evaluation_timestamp_epoch": 1784150235,
+                  "evaluation_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                  "first_evidence": {
+                    "timestamp_epoch": 1784150065,
+                    "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-6",
+                    "kind": "BOOK",
+                    "causal_rank": 1
+                  },
+                  "last_evidence": {
+                    "timestamp_epoch": 1784150235,
+                    "receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                    "kind": "BOOK",
+                    "causal_rank": 9
+                  },
+                  "last_directional_evidence": {
+                    "timestamp_epoch": 1784150225.79,
+                    "receipt": "c6b0dd11-f7a3-5aad-4d5f-4aab58733c31",
+                    "kind": "POST_ONSET_PRINT_DOWN",
+                    "direction": "FALLING",
+                    "magnitude_cents": 88,
+                    "causal_rank": 8,
+                    "rank_weighted_cents": 704
+                  },
+                  "span_seconds": 170,
+                  "consulted": {
+                    "evidence_receipts": 9,
+                    "book_receipts": 5,
+                    "print_receipts": 4,
+                    "comparable_book_transitions": 4,
+                    "comparable_print_transitions": 3,
+                    "cross_source_comparisons": 1
+                  },
+                  "weighted_scores_cents": {
+                    "rising": 12,
+                    "falling": 707
+                  },
+                  "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                  "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                  "fixed_horizon_seconds": null,
+                  "replacement_tuning_constant": null
+                }
+              },
+              "palantir": {
+                "node": "N4",
+                "consulted_at_receipt": "KXATPMATCH-26JUL16MERDRO-MER.csv.gz#row-10",
+                "consulted_at_timestamp_epoch": 1784150235,
+                "decision_time_cell_source": "CURRENT_QUALIFYING_BOOK_ASK_NOT_EX_POST_CLOSE",
+                "grid": {
+                  "cell_cents": 94,
+                  "n": 1,
+                  "edge_p25": 1,
+                  "edge_p50": 1,
+                  "edge_p75": 1,
+                  "edge_ge5_pct": 0,
+                  "t_deep_p50": -233,
+                  "dip_first_pct": 100
+                },
+                "zone": {
+                  "category": {
+                    "n": 147,
+                    "right": 107,
+                    "share": 0.728
+                  },
+                  "starting_price_split": {
+                    "n": 506,
+                    "right": 334,
+                    "share": 0.66
+                  }
+                },
+                "leak_ordering": {
+                  "counts": {
+                    "WALKED_AWAY_FROM_LOW": 11,
+                    "CAP_BOUND": 27,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 25
+                  },
+                  "cents": {
+                    "WALKED_AWAY_FROM_LOW": 12,
+                    "CAP_BOUND": 48,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 59
+                  }
+                },
+                "role": "REFERENCE_BOUND_BESIDE_LIVE_EVIDENCE_NEVER_SOLE_AUTHORITY",
+                "provenance": [
+                  {
+                    "asset_id": "P1",
+                    "status": "VALIDATED",
+                    "source_sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P2",
+                    "status": "VALIDATED",
+                    "source_sha256": "005d5407954b86790d121ce54731417163ce5c6b9f5802b4b7b3b0965e9a3f70",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P6",
+                    "status": "VALID-NARROW",
+                    "source_sha256": "b738db027fe68bb10f6c5542bde959e47c07cada42e6a55532ec94317e379067",
+                    "source_sha256s": null
+                  }
+                ]
+              },
+              "palantir_rescue": false,
+              "frozen_authority_preserved": true
+            },
+            "palantir_prior_informed": false,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "N9_role": "ADVISORY_ONLY_NOT_TARGET_AUTHORITY"
+          }
+        }
+      },
+      "L7_CREDIT": {
+        "result": "PASS",
+        "why": {
+          "KXATPMATCH-26JUL16MERDRO|DRO": {
+            "credited": true,
+            "entry_cents": 6,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null
+          },
+          "KXATPMATCH-26JUL16MERDRO|MER": {
+            "credited": true,
+            "entry_cents": 57,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null
+          }
+        }
+      },
+      "L8_OUTCOME": {
+        "result": "PASS",
+        "candidate": {
+          "completed": true,
+          "combined_entry_cents": 63,
+          "under_par": true
+        },
+        "comparator": {
+          "completed": true,
+          "combined_entry_cents": 12,
+          "under_par": true
+        }
+      }
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "category": "WTA_MAIN",
+      "L1_ADMISSION": {
+        "result": "PASS",
+        "why": {
+          "passed": true,
+          "selected_candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+          "timestamp_epoch": 1783939853,
+          "t_minus_scheduled_seconds": 86947,
+          "t_minus_actual_bell_seconds": null,
+          "candidates": {
+            "A": {
+              "candidate": "A_SPREAD_COLLAPSE_PLUS_CROSS_LEG_MIDSUM_SETTLE",
+              "inferred_shift_timestamp_epoch": 1783939853,
+              "components": {
+                "spread": {
+                  "field": "spread",
+                  "index": 55,
+                  "shift_timestamp_epoch": 1783939853,
+                  "before_mean": 85,
+                  "after_mean": 84,
+                  "sse": 0,
+                  "before_n": 55,
+                  "after_n": 1
+                },
+                "midsum": {
+                  "field": "midsum_abs_dev",
+                  "index": 55,
+                  "shift_timestamp_epoch": 1783939853,
+                  "before_mean": 1,
+                  "after_mean": 0,
+                  "sse": 0,
+                  "before_n": 55,
+                  "after_n": 1
+                }
+              }
+            },
+            "B": null
+          },
+          "binding_status": "V52L_CAUSAL_PREFIX",
+          "binding_changed_by_V52e": false,
+          "binding_changed_by_V52l": true,
+          "causal_prefix_receipt_law": "EVERY_VALUE_FROM_RECEIPTS_AT_OR_BEFORE_CAUSAL_RECOGNITION",
+          "maximum_consumed_timestamp_epoch": 1783939853,
+          "right_edge_consumed": false,
+          "full_span_fit": false
+        }
+      },
+      "L2_GAME_VIEW": {
+        "result": "PASS",
+        "why": {
+          "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+          "evaluation": {
+            "timestamp_epoch": 1783963883,
+            "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+          },
+          "joint_observation": {
+            "JEA": {
+              "value": {
+                "timestamp_epoch": 1783963883,
+                "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389",
+                "kind": "BOOK",
+                "bid_cents": 19,
+                "ask_cents": 80,
+                "last_traded_cents": 64,
+                "spread_cents": 61,
+                "dwell_seconds": null,
+                "reference_cents": 64,
+                "reference_source": "BOOK_LAST_TRADED"
+              },
+              "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+            },
+            "PUT": {
+              "value": {
+                "timestamp_epoch": 1783941897.283,
+                "receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3",
+                "kind": "PRINT",
+                "bid_cents": null,
+                "ask_cents": null,
+                "last_traded_cents": 9,
+                "spread_cents": null,
+                "dwell_seconds": null,
+                "reference_cents": 9,
+                "reference_source": "TRUE_TRADE"
+              },
+              "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3"
+            }
+          },
+          "belief_anchor_pair": {
+            "JEA": {
+              "value_cents": 50,
+              "producer_receipt": {
+                "timestamp_epoch": 1783940406,
+                "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+                "kind": "BOOK"
+              }
+            },
+            "PUT": {
+              "value_cents": 50,
+              "producer_receipt": {
+                "timestamp_epoch": 1783940406,
+                "receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-14",
+                "kind": "BOOK"
+              }
+            }
+          },
+          "legs": {
+            "JEA": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1783963883,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389",
+                  "kind": "BOOK",
+                  "bid_cents": 19,
+                  "ask_cents": 80,
+                  "last_traded_cents": 64,
+                  "spread_cents": 61,
+                  "dwell_seconds": null,
+                  "reference_cents": 64,
+                  "reference_source": "BOOK_LAST_TRADED"
+                },
+                "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+              },
+              "belief_anchor": {
+                "value_cents": 50,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 55,
+                "net_cents": 14,
+                "min_cents": 17,
+                "max_cents": 72,
+                "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+              },
+              "family": {
+                "status": "PENDING",
+                "value": null,
+                "reason": "ENDPOINT_DEPENDENT_FAMILIES_NOT_LIVE_CALLABLE",
+                "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "UNRIPE",
+                "drift_cents": 14,
+                "drift_anchor_cents": 50,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 4,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 55,
+                  "reversals": 19
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+              },
+              "reach": {
+                "running_session_low_cents": 22,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783949503,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-702",
+                  "kind": "BOOK"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "RISING",
+                "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+              },
+              "stance": {
+                "value": "EARLY_FLOOR_SIDE",
+                "classification": "RISING",
+                "arming_law": {
+                  "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                  "method_revision": 2,
+                  "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                  "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                  "proxy_instrument_consumed": false,
+                  "shape_offset_aim_consumed": false,
+                  "latchcal_consumed": false
+                },
+                "armed": false,
+                "qualified_divots": 0,
+                "armed_receipt": null
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 64,
+                "pending_trough": null,
+                "qualified_divots": [],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            },
+            "PUT": {
+              "current_observation": {
+                "value": {
+                  "timestamp_epoch": 1783941897.283,
+                  "receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3",
+                  "kind": "PRINT",
+                  "bid_cents": null,
+                  "ask_cents": null,
+                  "last_traded_cents": 9,
+                  "spread_cents": null,
+                  "dwell_seconds": null,
+                  "reference_cents": 9,
+                  "reference_source": "TRUE_TRADE"
+                },
+                "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3"
+              },
+              "belief_anchor": {
+                "value_cents": 50,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-14",
+                  "kind": "BOOK"
+                }
+              },
+              "travel": {
+                "value_cents": 41,
+                "net_cents": -41,
+                "min_cents": 9,
+                "max_cents": 50,
+                "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3"
+              },
+              "leg_state": {
+                "value": "SETTLED",
+                "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3"
+              },
+              "family": {
+                "status": "PENDING",
+                "value": null,
+                "reason": "ENDPOINT_DEPENDENT_FAMILIES_NOT_LIVE_CALLABLE",
+                "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3",
+                "provenance": {
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false,
+                  "thresholds": {
+                    "one_step_dominance_ratio": 0.6,
+                    "grind_min_reversals": 4,
+                    "grind_travel_to_abs_net_ratio": 2,
+                    "round_trip_travel_cents": 10,
+                    "round_trip_abs_net_ceiling_cents": 5
+                  }
+                }
+              },
+              "role": {
+                "value": "UNRIPE",
+                "drift_cents": -41,
+                "drift_anchor_cents": 50,
+                "drift_anchor_receipt": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-14",
+                  "kind": "BOOK"
+                },
+                "threshold_provenance": {
+                  "value": 2,
+                  "status": "GLOBAL_CONSTANT",
+                  "authority": "PROVISIONAL_DESCRIPTIVE",
+                  "source_receipt": null,
+                  "plan_authority": false
+                },
+                "TRD5_print_count": 1,
+                "TRD5_gate": 5,
+                "TRV6": {
+                  "travel_cents": 41,
+                  "reversals": 2
+                },
+                "WTA_CHALL_role_disabled": false,
+                "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3"
+              },
+              "reach": {
+                "running_session_low_cents": 9,
+                "producer_receipt": {
+                  "timestamp_epoch": 1783941897.283,
+                  "receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3",
+                  "kind": "PRINT"
+                },
+                "authority": "RECORDER_DUAL_BOOK_TRUE_TRADE_SESSION_LOW_ONLY"
+              },
+              "machine_state": {
+                "value": "FALLING",
+                "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-32"
+              },
+              "stance": {
+                "value": "LATE_FLOOR_SIDE",
+                "classification": "FALLING",
+                "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+              },
+              "riser_arm": {
+                "prior_trade_high_cents": 9,
+                "pending_trough": null,
+                "qualified_divots": [],
+                "armed": false,
+                "armed_receipt": null,
+                "armed_timestamp_epoch": null
+              }
+            }
+          },
+          "provenance": {
+            "shape_taxonomy_commit": "e269779b0ec025d55f67d576e3cfb0cb575d5890",
+            "shape_taxonomy_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/SHAPE_TAXONOMY_BUILD1.json",
+            "TRD5_commit": "71de534a3f9e21faf569cd487d9aae735a084e7a",
+            "no_endpoint_labels_consumed": true,
+            "no_span_fraction_consumed": true,
+            "no_static_depth_target_consumed": true,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "post_onset_only": true
+          }
+        }
+      },
+      "L3_ROLE": {
+        "result": "PASS",
+        "why": {
+          "JEA": {
+            "value": "UNRIPE",
+            "drift_cents": 14,
+            "drift_anchor_cents": 50,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1783940406,
+              "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 4,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 55,
+              "reversals": 19
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+          },
+          "PUT": {
+            "value": "UNRIPE",
+            "drift_cents": -41,
+            "drift_anchor_cents": 50,
+            "drift_anchor_receipt": {
+              "timestamp_epoch": 1783940406,
+              "receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-14",
+              "kind": "BOOK"
+            },
+            "threshold_provenance": {
+              "value": 2,
+              "status": "GLOBAL_CONSTANT",
+              "authority": "PROVISIONAL_DESCRIPTIVE",
+              "source_receipt": null,
+              "plan_authority": false
+            },
+            "TRD5_print_count": 1,
+            "TRD5_gate": 5,
+            "TRV6": {
+              "travel_cents": 41,
+              "reversals": 2
+            },
+            "WTA_CHALL_role_disabled": false,
+            "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3"
+          }
+        }
+      },
+      "L4_POSITION": {
+        "result": "PASS",
+        "why": {
+          "JEA": {
+            "value": "SETTLED",
+            "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+          },
+          "PUT": {
+            "value": "SETTLED",
+            "producer_receipt": "3ef11de1-2bbe-570d-9ce4-6d27eb36cba3"
+          }
+        }
+      },
+      "L5_PLAN": {
+        "result": "PASS",
+        "why": {
+          "licensed": true,
+          "reason": "L23_ONE_GAME_ONE_JOINT_LICENSE",
+          "stances": {
+            "JEA": {
+              "value": "EARLY_FLOOR_SIDE",
+              "classification": "RISING",
+              "arming_law": {
+                "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+                "method_revision": 2,
+                "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+                "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+                "proxy_instrument_consumed": false,
+                "shape_offset_aim_consumed": false,
+                "latchcal_consumed": false
+              },
+              "armed": false,
+              "qualified_divots": 0,
+              "armed_receipt": null
+            },
+            "PUT": {
+              "value": "LATE_FLOOR_SIDE",
+              "classification": "FALLING",
+              "authority": "FROZEN_LINEAGE_TRACKING_CLAUSE"
+            }
+          },
+          "both_states": {
+            "JEA": {
+              "value": "RISING",
+              "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+            },
+            "PUT": {
+              "value": "FALLING",
+              "producer_receipt": "KXWTAMATCH-26JUL14PUTJEA-PUT.csv.gz#row-32"
+            }
+          },
+          "split_authority": "FROZEN_CLAUSE_5_AND_CLAUSE_6_INPUTS_BYTE_EQUAL",
+          "arming_law": {
+            "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+            "method_revision": 2,
+            "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+            "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+            "proxy_instrument_consumed": false,
+            "shape_offset_aim_consumed": false,
+            "latchcal_consumed": false
+          },
+          "evidence_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-1389"
+        }
+      },
+      "L6_TARGET": {
+        "result": "PASS",
+        "why": {
+          "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+          "target_cents": 8,
+          "license": {
+            "target_cents": 8,
+            "own_diary_cents": null,
+            "pair_cap_cents": null,
+            "post_only_ask_bound_cents": 91,
+            "authority": "V52B_EVIDENCE_BACKED_MACHINE_READ_LEVEL",
+            "displayed_bid_consumed": false,
+            "machine_read_evidence": {
+              "evaluation_timestamp_epoch": 1783940406,
+              "evaluation_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+              "directional_evidence_timestamp_epoch": 1783940406,
+              "directional_evidence_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+              "directional_evidence_kind": "BOOK",
+              "combined_state": "SETTLED",
+              "quote_path_state": "SETTLED",
+              "pressure_state": "SETTLED",
+              "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+              "disagreement": false,
+              "post_onset_observation_bounds": {
+                "min_cents": 8,
+                "max_cents": 92,
+                "first": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    8,
+                    92
+                  ]
+                },
+                "last": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                  "kind": "BOOK",
+                  "prices_cents": [
+                    8,
+                    92
+                  ]
+                }
+              },
+              "current_book": {
+                "bid": 8,
+                "ask": 92,
+                "last_traded": 0,
+                "spread": 84,
+                "ask_dwell_seconds": 560,
+                "top_ask_size": 10,
+                "bid_depth_5": 992,
+                "ask_depth_5": 1137
+              },
+              "receipt_local_inputs": {
+                "pulse_floor_cents": null,
+                "persistent_join_level_cents": 8,
+                "causal_own_reach_low_cents": null,
+                "active_evidence_floor_cents": null,
+                "recent_true_trade_low_cents": null,
+                "prior_true_trade_low_cents": null
+              },
+              "post_onset_read": {
+                "sufficient": true,
+                "onset_timestamp_epoch": 1783939853,
+                "evaluation_timestamp_epoch": 1783940406,
+                "evaluation_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                "first_evidence": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+                  "kind": "BOOK",
+                  "causal_rank": 1
+                },
+                "last_evidence": {
+                  "timestamp_epoch": 1783940406,
+                  "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                  "kind": "BOOK",
+                  "causal_rank": 2
+                },
+                "last_directional_evidence": null,
+                "span_seconds": 0,
+                "consulted": {
+                  "evidence_receipts": 2,
+                  "book_receipts": 2,
+                  "print_receipts": 0,
+                  "comparable_book_transitions": 1,
+                  "comparable_print_transitions": 0,
+                  "cross_source_comparisons": 0
+                },
+                "weighted_scores_cents": {
+                  "rising": 0,
+                  "falling": 0
+                },
+                "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                "fixed_horizon_seconds": null,
+                "replacement_tuning_constant": null
+              }
+            },
+            "machine_read": {
+              "authorized": true,
+              "target_cents": 8,
+              "proposed_target_cents": 8,
+              "incumbent_authority": "V43_C3_TRACKING_REST_BEST_BID_ONE_CENT_LESS_GREEDY",
+              "supported_authority": true,
+              "inside_post_onset_observation_bounds": true,
+              "evidence_is_post_onset": true,
+              "receipt_bound": true,
+              "evidence": {
+                "evaluation_timestamp_epoch": 1783940406,
+                "evaluation_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                "directional_evidence_timestamp_epoch": 1783940406,
+                "directional_evidence_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                "directional_evidence_kind": "BOOK",
+                "combined_state": "SETTLED",
+                "quote_path_state": "SETTLED",
+                "pressure_state": "SETTLED",
+                "direction_authority": "FULL_POST_ONSET_HISTORY_PRIMARY",
+                "disagreement": false,
+                "post_onset_observation_bounds": {
+                  "min_cents": 8,
+                  "max_cents": 92,
+                  "first": {
+                    "timestamp_epoch": 1783940406,
+                    "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      8,
+                      92
+                    ]
+                  },
+                  "last": {
+                    "timestamp_epoch": 1783940406,
+                    "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                    "kind": "BOOK",
+                    "prices_cents": [
+                      8,
+                      92
+                    ]
+                  }
+                },
+                "current_book": {
+                  "bid": 8,
+                  "ask": 92,
+                  "last_traded": 0,
+                  "spread": 84,
+                  "ask_dwell_seconds": 560,
+                  "top_ask_size": 10,
+                  "bid_depth_5": 992,
+                  "ask_depth_5": 1137
+                },
+                "receipt_local_inputs": {
+                  "pulse_floor_cents": null,
+                  "persistent_join_level_cents": 8,
+                  "causal_own_reach_low_cents": null,
+                  "active_evidence_floor_cents": null,
+                  "recent_true_trade_low_cents": null,
+                  "prior_true_trade_low_cents": null
+                },
+                "post_onset_read": {
+                  "sufficient": true,
+                  "onset_timestamp_epoch": 1783939853,
+                  "evaluation_timestamp_epoch": 1783940406,
+                  "evaluation_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                  "first_evidence": {
+                    "timestamp_epoch": 1783940406,
+                    "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-14",
+                    "kind": "BOOK",
+                    "causal_rank": 1
+                  },
+                  "last_evidence": {
+                    "timestamp_epoch": 1783940406,
+                    "receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                    "kind": "BOOK",
+                    "causal_rank": 2
+                  },
+                  "last_directional_evidence": null,
+                  "span_seconds": 0,
+                  "consulted": {
+                    "evidence_receipts": 2,
+                    "book_receipts": 2,
+                    "print_receipts": 0,
+                    "comparable_book_transitions": 1,
+                    "comparable_print_transitions": 0,
+                    "cross_source_comparisons": 0
+                  },
+                  "weighted_scores_cents": {
+                    "rising": 0,
+                    "falling": 0
+                  },
+                  "weighting_law": "CAUSAL_RECEIPT_RANK_1_THROUGH_N; ALL_POST_ONSET_EVIDENCE_RETAINS_POSITIVE_WEIGHT; NO_TIME_CUTOFF",
+                  "insufficiency_law": "READ_ABSENT_ONLY_UNTIL_A_CAUSAL_TRANSITION_OR_PRINT_TO_BOOK_COMPARISON_EXISTS",
+                  "fixed_horizon_seconds": null,
+                  "replacement_tuning_constant": null
+                }
+              },
+              "palantir": {
+                "node": "N4",
+                "consulted_at_receipt": "KXWTAMATCH-26JUL14PUTJEA-JEA.csv.gz#row-15",
+                "consulted_at_timestamp_epoch": 1783940406,
+                "decision_time_cell_source": "CURRENT_QUALIFYING_BOOK_ASK_NOT_EX_POST_CLOSE",
+                "grid": {
+                  "cell_cents": 92,
+                  "n": 3,
+                  "edge_p25": 1,
+                  "edge_p50": 2,
+                  "edge_p75": 3,
+                  "edge_ge5_pct": 0,
+                  "t_deep_p50": -268,
+                  "dip_first_pct": 100
+                },
+                "zone": {
+                  "category": {
+                    "n": 152,
+                    "right": 112,
+                    "share": 0.737
+                  },
+                  "starting_price_split": {
+                    "n": 32,
+                    "right": 24,
+                    "share": 0.75
+                  }
+                },
+                "leak_ordering": {
+                  "counts": {
+                    "WALKED_AWAY_FROM_LOW": 11,
+                    "CAP_BOUND": 27,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 25
+                  },
+                  "cents": {
+                    "WALKED_AWAY_FROM_LOW": 12,
+                    "CAP_BOUND": 48,
+                    "STOOD_TOO_HIGH_FROM_JOIN": 59
+                  }
+                },
+                "role": "REFERENCE_BOUND_BESIDE_LIVE_EVIDENCE_NEVER_SOLE_AUTHORITY",
+                "provenance": [
+                  {
+                    "asset_id": "P1",
+                    "status": "VALIDATED",
+                    "source_sha256": "3674e3361704463a71a9f6c139b2b2b2cc82fbc6f93a2f2ba07c675642db244a",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P2",
+                    "status": "VALIDATED",
+                    "source_sha256": "005d5407954b86790d121ce54731417163ce5c6b9f5802b4b7b3b0965e9a3f70",
+                    "source_sha256s": null
+                  },
+                  {
+                    "asset_id": "P6",
+                    "status": "VALID-NARROW",
+                    "source_sha256": "b738db027fe68bb10f6c5542bde959e47c07cada42e6a55532ec94317e379067",
+                    "source_sha256s": null
+                  }
+                ]
+              },
+              "palantir_rescue": false,
+              "frozen_authority_preserved": true
+            },
+            "palantir_prior_informed": false,
+            "v53_04_arming_law": {
+              "id": "T1_SECOND_TRUE_DIVOT_VISIT",
+              "method_revision": 2,
+              "source_commit": "fe4c95de8c08a45081ef31e5fd24bb8da354a0cf",
+              "source_path": ".claude/window1_v53_04_riser_frontier_rebase_20260820/RISER_TRIGGER_FRONTIER_REBASED.json",
+              "proxy_instrument_consumed": false,
+              "shape_offset_aim_consumed": false,
+              "latchcal_consumed": false
+            },
+            "N9_role": "ADVISORY_ONLY_NOT_TARGET_AUTHORITY"
+          }
+        }
+      },
+      "L7_CREDIT": {
+        "result": "FLAG",
+        "why": {
+          "KXWTAMATCH-26JUL14PUTJEA|JEA": {
+            "credited": false,
+            "entry_cents": null,
+            "fill_class": null,
+            "fill_receipt": null
+          },
+          "KXWTAMATCH-26JUL14PUTJEA|PUT": {
+            "credited": true,
+            "entry_cents": 9,
+            "fill_class": "MARKET_TRADE_TRUTH_AT_OR_BELOW_STANDING_REST",
+            "fill_receipt": null
+          }
+        }
+      },
+      "L8_OUTCOME": {
+        "result": "FLAG",
+        "candidate": {
+          "completed": false,
+          "combined_entry_cents": null,
+          "under_par": false
+        },
+        "comparator": {
+          "completed": true,
+          "combined_entry_cents": 73,
+          "under_par": true
+        }
+      }
+    }
+  ]
+}

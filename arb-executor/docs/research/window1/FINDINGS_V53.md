@@ -10,6 +10,7 @@ F-V53-007 | GH001: GitHub rejects >100 MB blobs; exam artifacts cap at 50 MB com
 F-V53-008 | 13-family shape taxonomy is endpoint-dependent, not live-callable; V53 runs a causal-prefix restatement, descriptive-only (does not feed the plan) | organ @5d6e7e7a | NEW
 F-V53-009 | ROLE_DRIFT_CENTS=2 + restatement thresholds are hand-authored without receipts or flags; receipts/flags required | organ @5d6e7e7a | NEW
 Ledger note | F-V53-005..009 renumbered from collision; content unchanged | this dispatch
-F-V53-009 STATUS | provenance block landed PROVISIONAL_DESCRIPTIVE @2241f8b1; role constant judgment assigned to the Stage-1 #2 exam | this dispatch | PENDING_STAGE1_2
+F-V53-009 STATUS | provenance block landed PROVISIONAL_DESCRIPTIVE @2241f8b1; Stage-1 #2 did not validate the role constant: the candidate failed all three outcome bars while every build assertion passed | V53-02 scorecard SHA-256 6dddb6b4423e5d7c4761d39a5ba657a83b667941774ad42c03d6609c87a79366 | REMAINS_PROVISIONAL_DESCRIPTIVE
 F-V53-010 | Cursor Origin (beta 2026-08-17) evaluated for GH001: sync keeps GitHub as push target; native hosting unverified size limits, no proven unauthenticated raw-by-SHA read path; watch-item, not adopted | Fable web receipts 2026-08-19 | NEW
 F-V53-011 | F-IDs allocate strictly next-free in ledger order; collisions renumbered on discovery | this dispatch | NEW
+F-V53-012 | V53-02's lift-only bounds passed every monotonicity, license, causal-input, and conservation assertion, but tied V52l at 16 completions, failed identity preservation, and reduced average locked delta from 8.8125c to 3.5625c | STAGE1_SCORECARD.json SHA-256 6dddb6b4423e5d7c4761d39a5ba657a83b667941774ad42c03d6609c87a79366 | REJECTED_STOP_NO_804

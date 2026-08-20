@@ -1,0 +1,13 @@
+{
+  "iteration": "V53_02",
+  "pass": false,
+  "disposition": "STAGE1_FAILED_STOP_NO_804",
+  "acceptance_bar": {
+    "candidate_completes_strictly_more": false,
+    "every_lineage_complete_held_by_identity": false,
+    "candidate_average_locked_delta_at_least_lineage": false,
+    "zero_build_assertion_violations": true,
+    "pass": false
+  },
+  "full_804_run": false
+}

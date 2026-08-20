@@ -204,6 +204,9 @@ function annotate(inputs, plan, lineage, decision, reason) {
 function decide(inputs) {
   const clauses = normalizedClauses(inputs.clauses), lineage = frozen.decide({ ...inputs, clauses });
   if (!clauses.v53_riser_arming_law) return lineage;
+  // A0 is the incumbent control. Its proxy receipt is measured, but it is not
+  // permitted to become a new veto over the byte-frozen V52l decision path.
+  if (armingLaw().id === "A0_CONTROL_PROXY_SECOND_VISIT") return annotate(inputs, inputs.v53Plan, lineage, lineage, "V53_04B_A0_PROXY_SECOND_VISIT_OBSERVED_FROZEN_V52L_CONTROL_BYTE_EQUAL");
   const plan = inputs.v53Plan;
   const ownStance = plan?.stances?.[inputs.legId];
   if (!ownStance || ownStance.value === "CLASSIFICATION_ABSENT") return annotate(inputs, plan, lineage, lineage, "V53_04_CLASSIFICATION_ABSENT_SILENCE_TO_LINEAGE");

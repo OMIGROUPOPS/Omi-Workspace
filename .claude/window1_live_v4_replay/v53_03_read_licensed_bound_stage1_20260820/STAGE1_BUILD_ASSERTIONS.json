@@ -1,0 +1,43 @@
+{
+  "pass": true,
+  "assertions": {
+    "no_pre_onset_inputs": [],
+    "no_span_fraction_inputs": [],
+    "no_static_depth_targets": [],
+    "complete_license_on_every_bid": [],
+    "N9_advisory_only": [],
+    "WTA_CHALL_role_disabled": [],
+    "post_onset_view_only": [],
+    "read_bound_receipt_present": [],
+    "non_settled_or_unripe_target_byte_equal": [],
+    "lift_only_on_settled_ripe": [],
+    "never_below_lineage": [],
+    "conservation_inputs_byte_equal": [],
+    "applied_bound_license_complete": [],
+    "lineage_target_present_for_every_licensed_target": [],
+    "joint_target_at_or_below_99_per_receipt": [],
+    "budget_owner_overlay_deleted": []
+  },
+  "inherited_flow_assertions": {
+    "zero_posts_pre_onset": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_posts_on_no_tape": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_levels_from_displayed_bids": {
+      "violations": [],
+      "pass": true
+    },
+    "every_post_has_four_license_fields": {
+      "violations": [],
+      "pass": true
+    },
+    "scavenger_off": {
+      "violations": [],
+      "pass": true
+    }
+  }
+}

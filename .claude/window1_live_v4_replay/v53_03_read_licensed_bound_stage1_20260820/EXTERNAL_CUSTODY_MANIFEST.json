@@ -1,0 +1,23 @@
+{
+  "label": "V53_03_STAGE1_EXTERNAL_CUSTODY_MANIFEST",
+  "transport_law": "L22_ARTIFACT_TRANSPORT_CAP",
+  "committed_file_cap_bytes": 52428800,
+  "artifacts": [
+    {
+      "path": ".claude/window1_live_v4_replay/v53_03_read_licensed_bound_stage1_20260820/FULL_DECISION_TRACE_30.jsonl.gz",
+      "sha256": "2ad6379d155692aabb02db1003531037311a107fbc5c8ea63bd57b18283bf41a",
+      "bytes": 162806213,
+      "row_count": 297874,
+      "custody_location": "C:/Users/omigr/OMI-Window1-private/replay-live-v4/stage1-store/v53_03_read_licensed_bound_stage1_20260820/FULL_DECISION_TRACE_30.jsonl.gz",
+      "custody_copy_hash_equal": true
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v53_03_read_licensed_bound_stage1_20260820/V52L_COMPARATOR_TRACE_30.jsonl.gz",
+      "sha256": "bf692765d31ca9e1907d16737b2bd3e1dd4f0884cba89534c23f4046cfae36f9",
+      "bytes": 105840985,
+      "row_count": 297874,
+      "custody_location": "C:/Users/omigr/OMI-Window1-private/replay-live-v4/stage1-store/v53_03_read_licensed_bound_stage1_20260820/V52L_COMPARATOR_TRACE_30.jsonl.gz",
+      "custody_copy_hash_equal": true
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "scope": "V53_03_STAGE1_FRESH_30_ONLY",
+  "full_804_run": false,
+  "comparator": {
+    "games": 30,
+    "completed_pairs": 18,
+    "under_par_pairs": 18,
+    "locked_cents": 168,
+    "average_locked_delta_cents": 9.333333333333334,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+      "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+      "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+      "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "KXATPMATCH-26JUL12BUDPEL",
+      "KXATPMATCH-26JUL13SANDAN",
+      "KXATPMATCH-26JUL16MERDRO",
+      "KXATPMATCH-26JUL18GAUTSE",
+      "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+      "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+      "KXWTAMATCH-26JUL12MICKUL",
+      "KXWTAMATCH-26JUL13KUDSAK",
+      "KXWTAMATCH-26JUL14PUTJEA",
+      "KXWTAMATCH-26JUL19PODSAI"
+    ]
+  },
+  "candidate": {
+    "games": 30,
+    "completed_pairs": 18,
+    "under_par_pairs": 18,
+    "locked_cents": 168,
+    "average_locked_delta_cents": 9.333333333333334,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "KXATPCHALLENGERMATCH-26JUL12SANSCH",
+      "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "KXATPCHALLENGERMATCH-26JUL14PERCRA",
+      "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+      "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "KXATPCHALLENGERMATCH-26JUL20GADGUI",
+      "KXATPCHALLENGERMATCH-26JUL20MONNES",
+      "KXATPMATCH-26JUL12BUDPEL",
+      "KXATPMATCH-26JUL13SANDAN",
+      "KXATPMATCH-26JUL16MERDRO",
+      "KXATPMATCH-26JUL18GAUTSE",
+      "KXWTACHALLENGERMATCH-26JUL15VANFAL",
+      "KXWTACHALLENGERMATCH-26JUL17YANTRE",
+      "KXWTAMATCH-26JUL12MICKUL",
+      "KXWTAMATCH-26JUL13KUDSAK",
+      "KXWTAMATCH-26JUL14PUTJEA",
+      "KXWTAMATCH-26JUL19PODSAI"
+    ]
+  },
+  "acceptance_bar": {
+    "candidate_completes_strictly_more": false,
+    "every_lineage_complete_held_by_identity": true,
+    "candidate_average_locked_delta_at_least_lineage": true,
+    "zero_build_assertion_violations": true,
+    "pass": false
+  },
+  "disposition": "STAGE1_FAILED_STOP_NO_804"
+}

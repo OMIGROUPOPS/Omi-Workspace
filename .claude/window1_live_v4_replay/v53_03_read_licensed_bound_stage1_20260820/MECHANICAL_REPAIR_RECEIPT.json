@@ -1,0 +1,32 @@
+{
+  "label": "V53_03_STAGE1_MECHANICAL_REPAIR_RECEIPT",
+  "policy_behavior_edits": false,
+  "population_changed": false,
+  "pre_registration_changed": false,
+  "failures_before_score": [
+    {
+      "failure": "V8_ARGUMENT_SPREAD_MAXIMUM_CALL_STACK",
+      "site": "arb-executor/analysis/window1_v53_understanding_organ.js:legView",
+      "score_rows_emitted": false,
+      "repair": "VALUE_EQUIVALENT_ITERATIVE_MIN_MAX_AND_MAX_STEP_REDUCTION",
+      "repair_commit": "9cf3a74d9f8806e41f20354e7be489ac1b3609b7",
+      "before_blob": "bf0a098cf74f3acf1a9bc58588e335cb92a21a10",
+      "after_blob": "8fca2295d7831fc1e70401520dc3cc5441d2694d",
+      "dense_regression_receipts": 150000
+    },
+    {
+      "failure": "NODE_DEFAULT_4GB_HEAP_EXHAUSTED_DURING_FULL_TRACE_RETENTION",
+      "score_rows_emitted": false,
+      "repair": "PROCESS_HEAP_CEILING_16GB_ONLY",
+      "code_changed": false,
+      "policy_changed": false
+    }
+  ],
+  "final_builds": {
+    "clean_builds": 2,
+    "byte_identical": true,
+    "compared_files": 11,
+    "mismatches": []
+  },
+  "v53_03_policy_blob": "853dd84b0ca3cc0a10a9bec4003cac3f25cfb468"
+}

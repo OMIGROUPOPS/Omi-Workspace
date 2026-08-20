@@ -6,3 +6,6 @@
 - **F-V53-004 — VERIFIED:** Two clean builds produced byte-identical artifacts. Receipt SHA-256: `b5d5be5e7cb9a20d48ae2090183c4ee47600bb93b5859af0dcf9a91c7cd361c6` (`DETERMINISM_RECEIPT.json`). Status: `VERIFIED_TWO_BUILD_DETERMINISM`.
 F-V53-003 | Push gate blocked the read path: seat-reported SHAs unfetchable off-desktop until authorization landed; verdicts sequenced relay → authorize → push → fetch | V53-01 relay + Fable 404 probes 2026-08-19 | NEW (historical under L21)
 F-V53-004 | Per-commit push gate retired by operator ruling; standing push under L21 with live-engine carve-out | this dispatch | SUPERSEDES the boot-§1 per-commit protocol
+F-V53-005 | GH001: GitHub rejects >100 MB blobs; exam artifacts cap at 50 MB committed, oversize to external custody with sha256+bytes+rows manifest | this relay | NEW
+F-V53-006 | 13-family shape taxonomy is endpoint-dependent, not live-callable; V53 runs a causal-prefix restatement, descriptive-only (does not feed the plan) | organ @5d6e7e7a | NEW
+F-V53-007 | ROLE_DRIFT_CENTS=2 + restatement thresholds are hand-authored without receipts or flags; receipts/flags required | organ @5d6e7e7a | NEW

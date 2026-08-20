@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "organ_commit": "5d6e7e7ab5637c0256fc4f0ce05ece6480e9017a",
+  "behavioral_effect": "NONE_NAMING_AND_PROVENANCE_ONLY",
+  "constants": {
+    "ROLE_DRIFT_CENTS": {
+      "value": 2,
+      "status": "GLOBAL_CONSTANT",
+      "authority": "PROVISIONAL_DESCRIPTIVE",
+      "filed_source_receipt": null,
+      "plan_authority": false
+    },
+    "FAMILY_RESTATEMENT_THRESHOLDS": {
+      "values": {
+        "one_step_dominance_ratio": 0.60,
+        "grind_min_reversals": 4,
+        "grind_travel_to_abs_net_ratio": 2,
+        "round_trip_travel_cents": 10,
+        "round_trip_abs_net_ceiling_cents": 5
+      },
+      "status": "GLOBAL_CONSTANT",
+      "authority": "PROVISIONAL_DESCRIPTIVE",
+      "filed_source_receipt": null,
+      "plan_authority": false,
+      "taxonomy_relation": "CAUSAL_PREFIX_RESTATEMENT_ONLY_ENDPOINT_TAXONOMY_NOT_LIVE_CALLABLE"
+    }
+  }
+}

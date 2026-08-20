@@ -8,7 +8,30 @@ const frozen = require("./window1_v52h_remove_pair_lows_precondition.js");
 
 const PAR_CENTS = 100;
 const TAPE_TICK_CENTS = 1;
-const ROLE_DRIFT_CENTS = 2;
+const V53_CONSTANT_PROVENANCE = Object.freeze({
+  ROLE_DRIFT_CENTS: Object.freeze({
+    value: 2,
+    status: "GLOBAL_CONSTANT",
+    authority: "PROVISIONAL_DESCRIPTIVE",
+    source_receipt: null,
+    plan_authority: false,
+  }),
+  FAMILY_RESTATEMENT: Object.freeze({
+    status: "GLOBAL_CONSTANT",
+    authority: "PROVISIONAL_DESCRIPTIVE",
+    source_receipt: null,
+    plan_authority: false,
+    thresholds: Object.freeze({
+      one_step_dominance_ratio: 0.60,
+      grind_min_reversals: 4,
+      grind_travel_to_abs_net_ratio: 2,
+      round_trip_travel_cents: 10,
+      round_trip_abs_net_ceiling_cents: 5,
+    }),
+  }),
+});
+const ROLE_DRIFT_CENTS = V53_CONSTANT_PROVENANCE.ROLE_DRIFT_CENTS.value;
+const FAMILY_RESTATEMENT_THRESHOLDS = V53_CONSTANT_PROVENANCE.FAMILY_RESTATEMENT.thresholds;
 const TRD5_PRINT_COUNT = 5;
 
 function lawfulCent(value) { return Number.isInteger(value) && value >= 1 && value <= 99; }
@@ -92,7 +115,7 @@ function legView(state, context) {
   const legState = nonzeroStep && state.last_step_receipt?.receipt === current?.receipt
     ? "STEPPING"
     : state.last_step_receipt && current?.receipt !== state.last_step_receipt.receipt ? "SETTLED" : "STILL";
-  let family = { status: "PENDING", value: null, reason: "ENDPOINT_DEPENDENT_FAMILIES_NOT_LIVE_CALLABLE", producer_receipt: current?.receipt ?? null };
+  let family = { status: "PENDING", value: null, reason: "ENDPOINT_DEPENDENT_FAMILIES_NOT_LIVE_CALLABLE", producer_receipt: current?.receipt ?? null, provenance: V53_CONSTANT_PROVENANCE.FAMILY_RESTATEMENT };
   if (state.prints.length >= TRD5_PRINT_COUNT && Number.isInteger(net) && Number.isInteger(travel)) {
     const maxStep = Math.max(0, ...state.observations.slice(1).map((row, i) => {
       const previous = state.observations[i].reference_cents;
@@ -100,12 +123,12 @@ function legView(state, context) {
     }));
     const absNet = Math.abs(net);
     let value;
-    if (travel >= 10 && absNet < 5 && state.reversals > 0) value = "ROUND_TRIP";
-    else if (absNet > 0 && maxStep / absNet >= 0.60) value = net < 0 ? "ONE_STEP_DOWN" : "ONE_STEP_UP";
-    else if (state.reversals >= 4 && travel >= 2 * absNet) value = net < 0 ? "GRIND_WOBBLE_DOWN" : "GRIND_WOBBLE_UP";
+    if (travel >= FAMILY_RESTATEMENT_THRESHOLDS.round_trip_travel_cents && absNet < FAMILY_RESTATEMENT_THRESHOLDS.round_trip_abs_net_ceiling_cents && state.reversals > 0) value = "ROUND_TRIP";
+    else if (absNet > 0 && maxStep / absNet >= FAMILY_RESTATEMENT_THRESHOLDS.one_step_dominance_ratio) value = net < 0 ? "ONE_STEP_DOWN" : "ONE_STEP_UP";
+    else if (state.reversals >= FAMILY_RESTATEMENT_THRESHOLDS.grind_min_reversals && travel >= FAMILY_RESTATEMENT_THRESHOLDS.grind_travel_to_abs_net_ratio * absNet) value = net < 0 ? "GRIND_WOBBLE_DOWN" : "GRIND_WOBBLE_UP";
     else if (net <= -ROLE_DRIFT_CENTS) value = "DRIFT_DOWN";
     else if (net >= ROLE_DRIFT_CENTS) value = "DRIFT_UP";
-    if (value) family = { status: "DECLARED", value, reason: "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY", producer_receipt: current?.receipt ?? null };
+    if (value) family = { status: "DECLARED", value, reason: "LIVE_RESTATEMENT_FROM_CAUSAL_PREFIX_ONLY", producer_receipt: current?.receipt ?? null, provenance: V53_CONSTANT_PROVENANCE.FAMILY_RESTATEMENT };
   }
   let role = "UNRIPE";
   if (!String(context.category).startsWith("WTA_CHALL") && state.prints.length >= TRD5_PRINT_COUNT && Number.isInteger(net)) {
@@ -123,6 +146,7 @@ function legView(state, context) {
       drift_cents: net,
       drift_anchor_cents: state.anchor_cents,
       drift_anchor_receipt: state.anchor_receipt,
+      threshold_provenance: V53_CONSTANT_PROVENANCE.ROLE_DRIFT_CENTS,
       TRD5_print_count: state.prints.length,
       TRD5_gate: TRD5_PRINT_COUNT,
       TRV6: { travel_cents: travel, reversals: state.reversals },
@@ -279,7 +303,9 @@ module.exports = {
   ...frozen,
   PAR_CENTS,
   TAPE_TICK_CENTS,
+  V53_CONSTANT_PROVENANCE,
   ROLE_DRIFT_CENTS,
+  FAMILY_RESTATEMENT_THRESHOLDS,
   TRD5_PRINT_COUNT,
   emptyLegState,
   observePostOnset,

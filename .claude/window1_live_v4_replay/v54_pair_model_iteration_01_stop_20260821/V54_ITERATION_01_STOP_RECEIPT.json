@@ -1,0 +1,42 @@
+{
+  "schema": "window1.v54.iteration_stop_receipt.v1",
+  "recorded_at": "2026-08-21T14:36:43.6188871-04:00",
+  "operator_order": "V54 ITERATION 01 STOP",
+  "authority": {
+    "law_index_read": "4240c159",
+    "laws": ["L18", "L20", "L22"],
+    "cc_check_set_reading": "4240c159 section f"
+  },
+  "stop_state": {
+    "replay_processes_running_after_stop": 0,
+    "second_determinism_replay_interrupted": true,
+    "receipts_retained_in_place": true,
+    "policy_edits_after_stop": 0,
+    "further_builds_authorized": false,
+    "seat_state": "IDLE_PENDING_ITERATION_02"
+  },
+  "banked_finding": "F-V53-041",
+  "check_set": {
+    "status": "COMMITTED_AS_IS_NOT_EXTENDED",
+    "commit": "4c13023464b5f028eac893281933d5b7e65ef8a8",
+    "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_check_set_12_build1_20260821/CHECK_SET_12.md"
+  },
+  "retained_receipt_inventory": [
+    {"directory": "v54_pair_model_iteration_01_804_authoritative_build1_20260821", "files": 802, "bytes": 164665281},
+    {"directory": "v54_pair_model_iteration_01_804_build1_20260821", "files": 112, "bytes": 185082003},
+    {"directory": "v54_pair_model_iteration_01_804_cached_build1_20260821", "files": 255, "bytes": 71777716},
+    {"directory": "v54_pair_model_iteration_01_804_fast_build1_20260821", "files": 109, "bytes": 62290275},
+    {"directory": "v54_pair_model_iteration_01_804_final_build1_20260821", "files": 802, "bytes": 164665281},
+    {"directory": "v54_pair_model_iteration_01_804_scored_build1_20260821", "files": 12, "bytes": 50514282, "status": "LOCAL_PRE_STOP_UNRATIFIED_PACKAGE_RETAINED"},
+    {"directory": "v54_pair_model_iteration_01_804_scored_build2_20260821", "files": 737, "bytes": 151963600, "status": "INTERRUPTED_AT_OPERATOR_STOP"},
+    {"directory": "v54_pair_model_iteration_01_check_set_12_build1_20260821", "files": 7, "bytes": 59881430},
+    {"directory": "v54_pair_model_iteration_01_check_set_12_build2_20260821", "files": 7, "bytes": 59881430},
+    {"directory": "v54_pair_model_iteration_01_compact_state_pins_20260821", "files": 14, "bytes": 18994902},
+    {"directory": "v54_pair_model_iteration_01_mechanical_cache_pins_20260821", "files": 14, "bytes": 18994902},
+    {"directory": "v54_pair_model_iteration_01_mechanical_replay_repairs_20260821", "files": 1, "bytes": 4019},
+    {"directory": "v54_pair_model_iteration_01_pins_build1_20260821", "files": 14, "bytes": 18994902},
+    {"directory": "v54_pair_model_iteration_01_pins_build2_20260821", "files": 14, "bytes": 18994902}
+  ],
+  "disposition": "BANKED_STOP_NO_MORE_BUILD_NO_804",
+  "note": "A local scored package emitted before the stop remains retained but is unrated and superseded by the operator stop; no aggregate is adopted from it."
+}

@@ -1,0 +1,121 @@
+{
+ "label": "TRUE_BELLS_WALK5",
+ "date": "2026-08-21",
+ "license": {
+  "law_index_sha": "dcac4032",
+  "laws": [
+   "L0",
+   "L8",
+   "L11",
+   "L18",
+   "L20",
+   "L22"
+  ]
+ },
+ "method": "true prints (fit-local/prints.jsonl) bucketed 5 min; in-play onset = first bucket with >=3 prints on BOTH legs and >=4c range on either; earliest mirrored burst also reported; Kalshi lifecycle close_time from kalshi_lifecycle_1608.json; observed_starts.db has no row for any of the four",
+ "games": {
+  "26JUL12GIUBAR": {
+   "truth_bell": 1783876740,
+   "truth_source": "TAPE_INFERENCE +-30min",
+   "sustained_onset_bucket": 1783875540,
+   "earliest_mirrored_burst": 1783874940,
+   "kalshi_close_time": "2026-07-12T19:00:18Z",
+   "ruling": "bell inside the stated +-30 min: sustained mirrored repricing from 1783875540 (16:59Z); earliest mirrored burst 1783874940 (16:49Z: BAR 19-27, GIU 79-84). TRUE BELL = 1783874940..1783875540 band",
+   "fills": {
+    "GIU": {
+     "entry": 69,
+     "ts": 1783841972.759,
+     "grade": "PRE_BELL_VALID"
+    },
+    "BAR": {
+     "entry": 21,
+     "ts": 1783875779.114,
+     "grade": "POST_BELL under the band (fill 14 min after 1783874940; the 21c is the in-play dip BAR 16-27); PRE_BELL only under the truth-table 1783876740"
+    }
+   },
+   "game_grade": {
+    "truth_table_bell": "COMPLETE 90c delta 10",
+    "true_bell_band": "PARTIAL (GIU only) - BAR fill post-bell"
+   },
+   "closes_at_true_bell": {
+    "BAR": "last print <= 1783874940 = 34 (16:44Z bucket); truth 31 at 1783876666 is inside the in-play burst",
+    "GIU": "last print <= 1783874940 = 69; truth 73 inside burst"
+   }
+  },
+  "26JUL14URSPAL": {
+   "truth_bell": 1784045100,
+   "truth_source": "TAPE_INFERENCE +-30min",
+   "sustained_onset_bucket": 1784042100,
+   "earliest_mirrored_burst": 1784042247,
+   "kalshi_close_time": "2026-07-14T17:20:03Z",
+   "ruling": "TRUE BELL = 1784042247 (15:17:27Z first mirrored prints PAL 33 / URS 67); truth-table bell is 47.5 min late (confirms F-VS-023)",
+   "fills": {
+    "URS": {
+     "entry": 57,
+     "ts": 1784032697.6,
+     "grade": "PRE_BELL_VALID"
+    },
+    "PAL": {
+     "entry": 40,
+     "ts": 1784041997.986,
+     "grade": "PRE_BELL_VALID (249 s before true bell)"
+    }
+   },
+   "game_grade": {
+    "truth_table_bell": "COMPLETE 97c delta 3",
+    "true_bell": "COMPLETE 97c delta 3 (unchanged)"
+   },
+   "closes_at_true_bell": {
+    "PAL": "41 (print 1784042108) = truth 41",
+    "URS": "61 (1784041639) = truth 61"
+   }
+  },
+  "26JUL18DANPRA": {
+   "truth_bell": 1784373060,
+   "truth_source": "TAPE_INFERENCE +-30min",
+   "sustained_onset_bucket": 1784373060,
+   "earliest_mirrored_burst": 1784373060,
+   "kalshi_close_time": "2026-07-18T12:40:05Z",
+   "ruling": "TRUE BELL = 1784373060 (11:11Z) - tape inference exact to the bucket",
+   "fills": {},
+   "game_grade": {
+    "truth_table_bell": "NEITHER",
+    "true_bell": "NEITHER (unchanged)"
+   },
+   "closes_at_true_bell": {
+    "DAN": "61 = truth",
+    "PRA": "41 = truth"
+   }
+  },
+  "26JUL13CRIJEA": {
+   "truth_bell": null,
+   "truth_source": "UNKNOWN",
+   "sustained_onset_bucket": null,
+   "earliest_mirrored_burst": null,
+   "kalshi_close_time": "2026-07-13T13:39:58Z",
+   "kalshi_result": "scalar (both legs) - fair-price settlement, no ball played",
+   "ruling": "NO BELL EXISTS: Kalshi settled both legs scalar (walkover class, 3f4b0046 rule); prints end 09:40Z Jul 13; there is no in-play tape. UNKNOWN_BELL exclusion stands (F-VS-024) and is now explained",
+   "fills": {
+    "CRI": {
+     "entry": 64,
+     "ts": 1783934365.551,
+     "grade": "NON_GRADEABLE (no bell; scalar settlement)"
+    }
+   },
+   "game_grade": {
+    "truth_table_bell": "UNKNOWN_BELL_NON_GRADEABLE",
+    "true_bell": "EXCLUDED - walkover"
+   }
+  }
+ },
+ "deltas_restated": {
+  "game_ruler": {
+   "truth_table_bells": "3 completes / 19c over 4 gradeable (GIUBAR 10, URSPAL 3, LAJSVA 6)",
+   "true_bells": "2 completes / 9c over 4 gradeable (URSPAL 3, LAJSVA 6); GIUBAR PARTIAL"
+  },
+  "leg_ruler": {
+   "truth_table_bells": "26c over 6 legs",
+   "true_bells": "GIU +4, PAL +1, URS +4, SVA +7, LAJ 0 = 16c over 5 valid legs; BAR fill post-bell (0)"
+  }
+ }
+}

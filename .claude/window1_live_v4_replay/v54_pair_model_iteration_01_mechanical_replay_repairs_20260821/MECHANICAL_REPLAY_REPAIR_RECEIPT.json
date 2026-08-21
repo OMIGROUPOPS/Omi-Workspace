@@ -17,6 +17,12 @@
       "defect": "the V54 external-custody lane serialized non-licensing observation receipts",
       "repair": "archive every PLACE_REST/REPRICE_REST bid-license receipt and its hash chain; omit observation-only receipts from the V54 license archive",
       "decision_value_equivalence": "trace-selection only; policy invocation and market-event ledger unchanged"
+    },
+    {
+      "defect": "the inherited frozen V52 wrapper returned guard=null but omitted V45's guard_authority_terminated receipt bit on BOHBOU",
+      "repair": "extend the existing receipt-only inherited guard-stamp repair from V52s to V54",
+      "decision_value_equivalence": "the repair changes only receipt metadata after asserting guard=null; action, target, predicates, and order state remain unchanged",
+      "first_bound_identity": "KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOU"
     }
   ],
   "policy_byte_identity": {

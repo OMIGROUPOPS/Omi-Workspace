@@ -831,7 +831,7 @@ function releaseV45GuardAtSiblingCredit(withheldLeg, creditedLeg, row, actions, 
   // layers can preserve guard=null while dropping V45's receipt bit.  Restore
   // the bit only; action, target, predicates, and order state remain unchanged.
   if (decision.guard_authority_terminated !== true) {
-    ensure(base.v52s_enabled, `V45 guard termination receipt missing ${withheldLeg.leg_identity}`);
+    ensure(base.v52s_enabled || isV54, `V45 guard termination receipt missing ${withheldLeg.leg_identity}`);
     decision = { ...decision, guard_authority: "TERMINATED_AT_SIBLING_CREDIT", guard_authority_terminated: true, receipt_only_inherited_guard_stamp_repair: true };
   }
   withheldLeg.deep_gap_withhold_active = false;

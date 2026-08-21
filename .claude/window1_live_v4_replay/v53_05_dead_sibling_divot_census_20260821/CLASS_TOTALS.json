@@ -1,0 +1,163 @@
+{
+  "summary": {
+    "dead_sibling_run_instances": 33,
+    "class_totals": {
+      "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+      "ZERO_TRUE_DIVOTS": 23,
+      "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 10
+    },
+    "by_category": {
+      "ATP_CHALL": {
+        "total": 14,
+        "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+        "ZERO_TRUE_DIVOTS": 12,
+        "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+      },
+      "ATP_MAIN": {
+        "total": 6,
+        "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+        "ZERO_TRUE_DIVOTS": 2,
+        "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 4
+      },
+      "WTA_CHALL": {
+        "total": 8,
+        "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+        "ZERO_TRUE_DIVOTS": 6,
+        "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+      },
+      "WTA_MAIN": {
+        "total": 5,
+        "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+        "ZERO_TRUE_DIVOTS": 3,
+        "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+      }
+    },
+    "strict_majority": "ZERO_TRUE_DIVOTS",
+    "strict_majority_count": 23
+  },
+  "by_iteration": {
+    "V53_02": {
+      "dead_sibling_run_instances": 14,
+      "class_totals": {
+        "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+        "ZERO_TRUE_DIVOTS": 6,
+        "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 8
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "total": 6,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 4,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+        },
+        "ATP_MAIN": {
+          "total": 3,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 1,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+        },
+        "WTA_CHALL": {
+          "total": 2,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 0,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+        },
+        "WTA_MAIN": {
+          "total": 3,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 1,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+        }
+      },
+      "strict_majority": "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE",
+      "strict_majority_count": 8
+    },
+    "V53_03": {
+      "dead_sibling_run_instances": 12,
+      "class_totals": {
+        "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+        "ZERO_TRUE_DIVOTS": 12,
+        "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "total": 5,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 5,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+        },
+        "ATP_MAIN": {
+          "total": 1,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 1,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+        },
+        "WTA_CHALL": {
+          "total": 5,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 5,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+        },
+        "WTA_MAIN": {
+          "total": 1,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 1,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+        }
+      },
+      "strict_majority": "ZERO_TRUE_DIVOTS",
+      "strict_majority_count": 12
+    },
+    "V53_04B": {
+      "dead_sibling_run_instances": 7,
+      "class_totals": {
+        "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+        "ZERO_TRUE_DIVOTS": 5,
+        "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+      },
+      "by_category": {
+        "ATP_CHALL": {
+          "total": 3,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 3,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+        },
+        "ATP_MAIN": {
+          "total": 2,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 0,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 2
+        },
+        "WTA_CHALL": {
+          "total": 1,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 1,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+        },
+        "WTA_MAIN": {
+          "total": 1,
+          "DIVOTS_EXISTED_REST_ELSEWHERE": 0,
+          "ZERO_TRUE_DIVOTS": 1,
+          "DIVOTS_EXISTED_SLIDE_WOULD_NOT_TRADE": 0
+        }
+      },
+      "strict_majority": "ZERO_TRUE_DIVOTS",
+      "strict_majority_count": 5
+    }
+  },
+  "conservation": {
+    "run_instances": 33,
+    "unique_dead_sibling_identities": 31,
+    "classified_once": 33,
+    "class_sum": 33,
+    "non_single_uncompleted_exclusions": 0,
+    "V53_04B_dead_sibling_count": 7,
+    "V53_04B_expected_seven_confirmed": true
+  },
+  "conditional_build_gate": {
+    "required_class": "DIVOTS_EXISTED_REST_ELSEWHERE",
+    "required_relation": "STRICT_MAJORITY_OF_DEAD_SIBLING_RUN_INSTANCES",
+    "pass": false,
+    "disposition": "STOP_AFTER_T1_BANK_CLASS_TOTALS_NO_BUILD_NO_PINS_NO_FRESH25_NO_804"
+  }
+}

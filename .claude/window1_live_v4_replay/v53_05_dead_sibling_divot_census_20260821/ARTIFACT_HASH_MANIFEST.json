@@ -1,0 +1,32 @@
+{
+  "files": {
+    "CLASS_TOTALS.json": {
+      "sha256": "4da5d22759f25ac638e2f37863d5fecfbf0da5b77aa7e872e269cfae8662f2ab",
+      "bytes": 4824
+    },
+    "DEAD_SIBLING_DIVOT_CENSUS.json": {
+      "sha256": "17c64c9ed7bb870db2cc418846af3b60119a1979e306c12a1757286f6f503191",
+      "bytes": 240232
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "8106fd48f34d399e44c5de365932d86ad7e41071623eb97ffc64d1844fff37d8",
+      "bytes": 93
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "222a0467a3e9c0b192aa55f187fd17e75f504a18aef1b9406c6e6891270a4ba5",
+      "bytes": 242
+    },
+    "OFFERED_LADDER_V53_04B.json": {
+      "sha256": "0d54538e9bf5ecebc7d8926f53b1eed6d382da203d3875821936a190595a37e5",
+      "bytes": 793
+    },
+    "REPORT.md": {
+      "sha256": "39a37832169f5c17e31d9522931339482e1fd87880af982ec6a419205246965f",
+      "bytes": 988
+    },
+    "SOURCE_HASH_MANIFEST.json": {
+      "sha256": "c0d5be4c15c43ef04caea53bc6dc51a250e7a721de3e9c7f640b2ff2b1a48630",
+      "bytes": 25039
+    }
+  }
+}

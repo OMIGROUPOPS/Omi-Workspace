@@ -3580,6 +3580,14 @@ async function main() {
     const frozenBaselineBytes = gitShow(v52sExamAdapter.PARENT_COMMIT, frozenBaselinePath);
     const frozenBaselineEvents = readRowsBytes(frozenBaselineBytes);
     ensure(frozenBaselineEvents.length === 804, `V54 frozen champion ledger conservation changed ${frozenBaselineEvents.length}`);
+    // The frozen V52l ledger intentionally stores per-leg terminal facts only.
+    // Restore its event-level score fields mechanically before applying score().
+    for (const event of frozenBaselineEvents) {
+      const legs = Object.values(event.legs);
+      event.completed_pair = legs.every((leg) => leg.credited);
+      event.combined_entry_cents = event.completed_pair ? legs.reduce((sum, leg) => sum + leg.entry_cents, 0) : null;
+      event.pair_under_par = event.completed_pair && event.combined_entry_cents < 100;
+    }
     machineRuns.set("V52L_FROZEN_BASELINE", { spec: { name: "V52L_FROZEN_BASELINE", role: "HASH_BOUND_PARENT_LEDGER_NO_DUPLICATE_REPLAY" }, marketEvents: frozenBaselineEvents, strictEvents: [], actions: [], joinQualifications: [], source: { commit: v52sExamAdapter.PARENT_COMMIT, path: frozenBaselinePath, sha256: shaBytes(frozenBaselineBytes), bytes: frozenBaselineBytes.length } });
   }
   if (isV52sExam) {

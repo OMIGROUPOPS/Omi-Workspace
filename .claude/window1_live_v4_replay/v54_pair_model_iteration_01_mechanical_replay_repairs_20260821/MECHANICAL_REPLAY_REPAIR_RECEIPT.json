@@ -23,6 +23,15 @@
       "repair": "extend the existing receipt-only inherited guard-stamp repair from V52s to V54",
       "decision_value_equivalence": "the repair changes only receipt metadata after asserting guard=null; action, target, predicates, and order state remain unchanged",
       "first_bound_identity": "KXATPCHALLENGERMATCH-26JUL19BOHBOU|BOU"
+    },
+    {
+      "defect": "the frozen V52l market-event ledger stores per-leg terminal facts but omits derived event-level completed_pair, combined_entry_cents, and pair_under_par fields; the V54 score floor therefore read 0 instead of the hash-bound 311",
+      "repair": "derive the three event-level score fields from the frozen per-leg credited and entry_cents facts immediately after loading the immutable ledger",
+      "decision_value_equivalence": "baseline score binding only; the V54 candidate replay and all policy inputs, actions, targets, and fills are untouched",
+      "expected_recovered_binding": {
+        "completed_pairs": 311,
+        "locked_cents": 714
+      }
     }
   ],
   "policy_byte_identity": {

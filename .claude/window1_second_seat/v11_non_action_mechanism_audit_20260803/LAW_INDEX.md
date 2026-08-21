@@ -18,3 +18,4 @@ L15 Fraction-of-span gates NOT-LIVE-REALIZABLE in the tail; live clock = min(sch
 L16 Anchor = spread-settle mid at formation end; series floored at formation end (620fe4c1, a059264d parity 139,430/139,430)
 L17 BASELINE: V52l lineage — 311 completes / 714¢ / 46% games / 23% cents of 680/3,123¢ (96597c98); supersedes 214/350
 L18 DISPATCH LICENSE (this fold): every dispatch to any seat must open with the LAW_INDEX SHA it was read at and the law IDs consulted; SEATS REFUSE dispatches lacking this block — enforcement is the receiver's, not memory's
+L19a TUNE ENVIRONMENT: the fixed 804 development set is fully visible and lawful for tuning; the quarantined sealed set is the only fresh exam and is taken once at graduation on the operator's word; fresh-30 draws are retired; pins remain the per-iteration tripwire (operator ruling 2026-08-21; supersedes L19 fresh-30 staging)

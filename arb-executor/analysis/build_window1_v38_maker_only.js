@@ -1369,6 +1369,27 @@ function score(events) {
   return { D: events.length, legs: legs.length, acted_legs: legs.filter((leg) => leg.first_action_timestamp_epoch !== null).length, credited_legs: legs.filter((leg) => leg.credited).length, completed_pairs: completed.length, under_par_pairs: under.length, locked_cents_per_contract: under.reduce((sum, event) => sum + 100 - event.combined_entry_cents, 0), locked_cents_five_lot: under.reduce((sum, event) => sum + (100 - event.combined_entry_cents) * 5, 0), maker_fill_classes: countBy(legs.filter((leg) => leg.credited), (leg) => leg.fill_class), frontier, conservation: { D: events.length, legs: legs.length, pass: events.length === 804 && legs.length === 1608 } };
 }
 
+function gradeV54Events(events, groundTruth) {
+  const rows = events.map((event) => {
+    const window = groundTruth.byEvent.get(event.event_id);
+    ensure(window, `V54 ground-truth row absent ${event.event_id}`);
+    if (!window.scoring_eligible) return { event_id: event.event_id, category: event.category, state: "UNKNOWN_BELL_NON_GRADEABLE", combined_entry_cents: null, valid_credited_legs: [] };
+    const validCreditedLegs = Object.entries(event.legs).filter(([legId, leg]) => {
+      ensure(window.legs[legId], `V54 ground-truth leg absent ${event.event_id}|${legId}`);
+      return leg.credited && Number.isFinite(leg.fill_timestamp_epoch) && leg.fill_timestamp_epoch >= window.span_start_epoch && leg.fill_timestamp_epoch <= window.span_end_epoch;
+    }).map(([, leg]) => leg);
+    const combined = validCreditedLegs.length === 2 ? validCreditedLegs.reduce((sum, leg) => sum + leg.entry_cents, 0) : null;
+    const state = validCreditedLegs.length === 2 ? (combined < 100 ? "COMPLETE_AT_DELTA" : "COMPLETE_AT_LOSS") : validCreditedLegs.length === 1 ? "PARTIAL_FOR_REASON" : "NEITHER_FOR_REASON";
+    return { event_id: event.event_id, category: event.category, state, combined_entry_cents: combined, valid_credited_legs: validCreditedLegs };
+  });
+  const eligible = rows.filter((row) => row.state !== "UNKNOWN_BELL_NON_GRADEABLE");
+  const completed = eligible.filter((row) => ["COMPLETE_AT_DELTA", "COMPLETE_AT_LOSS"].includes(row.state));
+  const under = eligible.filter((row) => row.state === "COMPLETE_AT_DELTA");
+  const frontier = {};
+  for (const [name, predicate] of Object.entries({ LE_93: (x) => x <= 93, LE_95: (x) => x <= 95, LE_97: (x) => x <= 97, LT_100: (x) => x < 100, ANY_PRICE: () => true })) frontier[name] = completed.filter((row) => predicate(row.combined_entry_cents)).length;
+  return { rows, score: { D: rows.length, scoring_D: eligible.length, unknown_bell: rows.length - eligible.length, credited_legs: eligible.reduce((sum, row) => sum + row.valid_credited_legs.length, 0), completed_pairs: completed.length, under_par_pairs: under.length, completed_at_loss: completed.length - under.length, locked_cents_per_contract: under.reduce((sum, row) => sum + 100 - row.combined_entry_cents, 0), locked_cents_five_lot: under.reduce((sum, row) => sum + (100 - row.combined_entry_cents) * 5, 0), frontier } };
+}
+
 function selectV54DecisionStories(baseByEvent, pins, count = 30) {
   const pinIds = new Set(pins.map((row) => row.event_id));
   const selected = [...pinIds];
@@ -3704,13 +3725,15 @@ async function main() {
   }
   if (isV54Full) {
     const baselineRun = machineRuns.get("V52L_FROZEN_BASELINE"), candidateRun = machineRuns.get("V54_PAIR_MODEL");
-    const baseline = score(baselineRun.marketEvents), candidate = score(candidateRun.marketEvents);
+    const baselineGrade = gradeV54Events(baselineRun.marketEvents, groundTruthWindowBinding), candidateGrade = gradeV54Events(candidateRun.marketEvents, groundTruthWindowBinding);
+    const baseline = baselineGrade.score, candidate = candidateGrade.score;
     ensure(baseline.D === 804 && candidate.D === 804, `V54 fixed-population conservation changed ${baseline.D}/${candidate.D}`);
     ensure(baseline.completed_pairs === 311, `V54 champion floor binding changed ${baseline.completed_pairs}`);
+    ensure(baseline.locked_cents_per_contract === 714, `V54 champion locked-cents binding changed ${baseline.locked_cents_per_contract}`);
     const assertionPass = Object.values(v54AssertionFailures).every((rows) => rows.length === 0);
     ensure(assertionPass, `V54 build assertions failed ${JSON.stringify(v54AssertionFailures)}`);
-    const baselineIds = new Set(baselineRun.marketEvents.filter((event) => event.completed_pair).map((event) => event.event_id));
-    const candidateIds = new Set(candidateRun.marketEvents.filter((event) => event.completed_pair).map((event) => event.event_id));
+    const baselineIds = new Set(baselineGrade.rows.filter((row) => row.state === "COMPLETE_AT_DELTA").map((row) => row.event_id));
+    const candidateIds = new Set(candidateGrade.rows.filter((row) => row.state === "COMPLETE_AT_DELTA").map((row) => row.event_id));
     const retained = [...baselineIds].filter((id) => candidateIds.has(id)).sort(), lost = [...baselineIds].filter((id) => !candidateIds.has(id)).sort(), gained = [...candidateIds].filter((id) => !baselineIds.has(id)).sort();
     const pinIds = new Set(activeReadCohort.standing_pins.map((row) => row.event_id));
     const pinBaselineEvents = baselineRun.marketEvents.filter((event) => pinIds.has(event.event_id));
@@ -3725,15 +3748,15 @@ async function main() {
       pass: pinCandidate.completed_pairs >= pinBaseline.completed_pairs && pinCandidate.locked_cents_per_contract >= pinBaseline.locked_cents_per_contract && pinIdentityLost.length === 0,
     };
     ensure(pinsTripwire.pass, `V54 pins tripwire failed during 804 replay ${JSON.stringify(pinsTripwire)}`);
-    const averageDelta = (events) => {
-      const completed = events.filter((event) => event.completed_pair);
-      const values = completed.map((event) => 100 - event.combined_entry_cents);
+    const averageDelta = (rows) => {
+      const completed = rows.filter((row) => row.state === "COMPLETE_AT_DELTA");
+      const values = completed.map((row) => 100 - row.combined_entry_cents);
       return values.length ? values.reduce((sum, value) => sum + value, 0) / values.length : null;
     };
     const categories = [...new Set(candidateRun.marketEvents.map((event) => event.category))].sort();
     const categoryRows = categories.map((category) => {
-      const baseRows = baselineRun.marketEvents.filter((event) => event.category === category), candidateRows = candidateRun.marketEvents.filter((event) => event.category === category);
-      const b = score(baseRows), c = score(candidateRows);
+      const baseRows = baselineGrade.rows.filter((event) => event.category === category), candidateRows = candidateGrade.rows.filter((event) => event.category === category);
+      const b = gradeV54Events(baselineRun.marketEvents.filter((event) => event.category === category), groundTruthWindowBinding).score, c = gradeV54Events(candidateRun.marketEvents.filter((event) => event.category === category), groundTruthWindowBinding).score;
       return { category, games: candidateRows.length, champion_completed_pairs: b.completed_pairs, candidate_completed_pairs: c.completed_pairs, champion_locked_cents: b.locked_cents_per_contract, candidate_locked_cents: c.locked_cents_per_contract, champion_average_game_delta_vs_100_cents: averageDelta(baseRows), candidate_average_game_delta_vs_100_cents: averageDelta(candidateRows) };
     });
     const tuneGate = {
@@ -3790,8 +3813,8 @@ async function main() {
       label: "V54_PAIR_MODEL_ITERATION_01_FIXED_804",
       law: "L19a",
       population: { games: 804, truth_table_offered_denominator: 680, offered_percentage_embargoed: true, denominator_source_commit: "d449889e" },
-      champion: { completes_over_804: { numerator: baseline.completed_pairs, denominator: 804 }, completes_over_truth_table_offered_680: { numerator: baseline.completed_pairs, denominator: 680, percentage: null }, under_par_pairs: baseline.under_par_pairs, locked_cents: baseline.locked_cents_per_contract, average_game_delta_vs_100_cents: averageDelta(baselineRun.marketEvents) },
-      candidate: { completes_over_804: { numerator: candidate.completed_pairs, denominator: 804 }, completes_over_truth_table_offered_680: { numerator: candidate.completed_pairs, denominator: 680, percentage: null }, under_par_pairs: candidate.under_par_pairs, locked_cents: candidate.locked_cents_per_contract, average_game_delta_vs_100_cents: averageDelta(candidateRun.marketEvents) },
+      champion: { completes_over_804: { numerator: baseline.completed_pairs, denominator: 804 }, completes_over_truth_table_offered_680: { numerator: baseline.completed_pairs, denominator: 680, percentage: null }, under_par_pairs: baseline.under_par_pairs, completed_at_loss: baseline.completed_at_loss, locked_cents: baseline.locked_cents_per_contract, average_game_delta_vs_100_cents: averageDelta(baselineGrade.rows) },
+      candidate: { completes_over_804: { numerator: candidate.completed_pairs, denominator: 804 }, completes_over_truth_table_offered_680: { numerator: candidate.completed_pairs, denominator: 680, percentage: null }, under_par_pairs: candidate.under_par_pairs, completed_at_loss: candidate.completed_at_loss, locked_cents: candidate.locked_cents_per_contract, average_game_delta_vs_100_cents: averageDelta(candidateGrade.rows) },
       identity_vs_champion: { retained_count: retained.length, lost_count: lost.length, gained_count: gained.length, retained_event_ids: retained, lost_event_ids: lost, gained_event_ids: gained },
       per_category: categoryRows,
       pins_tripwire: pinsTripwire,
@@ -3808,7 +3831,7 @@ async function main() {
     await writeGzipRowsFile(path.join(output, "MARKET_EVENT_LEDGER_804.jsonl.gz"), candidateRun.marketEvents.map(compactEvent), 9);
     write("SOURCE_HASH_MANIFEST.json", canonical({ policy: { path: "arb-executor/analysis/window1_v54_pair_model.js", sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v54_pair_model.js")) }, replay_shell: { path: "arb-executor/analysis/build_window1_v38_maker_only.js", sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v38_maker_only.js")) }, ground_truth: groundTruthWindowBinding.binding, baseline: { policy: "V52L_FROZEN_CHAMPION", expected_completed_pairs: 311, expected_locked_cents: 714 }, full_trace: custodyManifest }));
     write("FORBIDDEN_ACCESS_RECEIPT.json", canonical({ sealed: false, holdout: false, live: false, network_runtime: false, orders: false, positions: false, deployment: false, tuning_population: "FIXED_DEV_804_ONLY", truth_table_offered_percentages_reported: false }));
-    write("REPORT.md", `# V54 Pair Model — iteration 01\n\nPins passed ${pinCandidate.completed_pairs}/${pinBaseline.completed_pairs} completes and ${pinCandidate.locked_cents_per_contract}/${pinBaseline.locked_cents_per_contract}c. On fixed D=804, champion completed ${baseline.completed_pairs} and V54 completed ${candidate.completed_pairs}; the hard floor ${tuneGate.candidate_at_or_above_champion_floor ? "held" : "failed"}. Raw truth-table offered display: ${candidate.completed_pairs}/680; percentages are embargoed under F-V53-039. Average completed-game delta was ${averageDelta(candidateRun.marketEvents)}c versus champion ${averageDelta(baselineRun.marketEvents)}c. Identity: ${retained.length} retained, ${lost.length} lost, ${gained.length} gained. All ${v54PairModelStats.decision_receipts} bid-license receipt computations are count- and hash-bound into ${custodyManifest.total_rows} lossless license-state spans in external custody; 30 deterministic decision stories are included for CC. No sealed, live, order, position, deployment, or network-runtime path was accessed.\n`);
+    write("REPORT.md", `# V54 Pair Model — iteration 01\n\nPins passed ${pinCandidate.completed_pairs}/${pinBaseline.completed_pairs} completes and ${pinCandidate.locked_cents_per_contract}/${pinBaseline.locked_cents_per_contract}c. On the W1-ground-truth-bound fixed D=804 ruler, champion completed ${baseline.completed_pairs} and V54 completed ${candidate.completed_pairs}; the hard floor ${tuneGate.candidate_at_or_above_champion_floor ? "held" : "failed"}. Raw truth-table offered display: ${candidate.completed_pairs}/680; percentages are embargoed under F-V53-039. Average completed-game delta was ${averageDelta(candidateGrade.rows)}c versus champion ${averageDelta(baselineGrade.rows)}c. Identity: ${retained.length} retained, ${lost.length} lost, ${gained.length} gained. All ${v54PairModelStats.decision_receipts} bid-license receipt computations are count- and hash-bound into ${custodyManifest.total_rows} lossless license-state spans in external custody; 30 deterministic decision stories are included for CC. No sealed, live, order, position, deployment, or network-runtime path was accessed.\n`);
     const committed = fs.readdirSync(output).sort();
     for (const name of committed) ensure(fs.statSync(path.join(output, name)).size <= 50 * 1024 * 1024, `L22 committed-file cap exceeded ${name}`);
     let determinism;

@@ -1212,7 +1212,8 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
         leg.judgment_first_block ||= { ...clockFields(row.ts, base), receipt: row.receipt, failure, birth_license: decision.birth_license };
       }
       const wouldPost = before === null || ["PLACE_REST", "REPRICE_REST"].includes(incumbent?.action) || ["PLACE_REST", "REPRICE_REST"].includes(incumbent?.unguarded_decision?.action);
-      if ((base.v52_flow_trace || base.v54_compact_trace) && (isV52ReadAuthority || wouldPost)) {
+      const traceThisDecision = (base.v52_flow_trace && (isV52ReadAuthority || wouldPost)) || (base.v54_compact_trace && wouldPost);
+      if (traceThisDecision) {
         const traceRow = {
           event_id: base.event_id,
           leg_identity: leg.leg_identity,
@@ -1347,7 +1348,7 @@ function simulate(base, tapes, prints, mode, clauses = {}) {
     leg.final_state = leg.credited ? "CREDITED" : leg.active_order ? "RESTING_UNFILLED" : "NEVER_PLACED_OR_CANCELLED";
     leg.persistent_join_book_last_trade_receipts = leg.persistent_join_level === null ? 0 : (leg.book_last_trade_hits_by_level.get(leg.persistent_join_level) || 0);
     leg.persistent_join_certified_seller_aggressed_prints = leg.persistent_join_level === null ? 0 : (leg.seller_hits_by_level.get(leg.persistent_join_level) || 0);
-    delete leg.active_order; delete leg.prior_book; delete leg.directional; delete leg.pulse_visits; delete leg.recent_trade_rows; delete leg.exact_bid_first_receipt; delete leg.first_action; delete leg.seller_hits_by_level; delete leg.book_last_trade_hits_by_level; delete leg.downward_evidence_rows; delete leg.last_placement_inputs; delete leg.deep_gap_withhold_active; delete leg.post_onset_read_state; delete leg.pair_budget_record; delete leg.v52s_joint_budget_receipt_summary;
+    delete leg.active_order; delete leg.prior_book; delete leg.directional; delete leg.pulse_visits; delete leg.recent_trade_rows; delete leg.exact_bid_first_receipt; delete leg.first_action; delete leg.seller_hits_by_level; delete leg.book_last_trade_hits_by_level; delete leg.downward_evidence_rows; delete leg.last_placement_inputs; delete leg.deep_gap_withhold_active; delete leg.post_onset_read_state; delete leg.pair_budget_record; delete leg.v52s_joint_budget_receipt_summary; delete leg.v53_state;
   }
   if (event.v52s_joint_budget_receipt_summary) {
     const summary = event.v52s_joint_budget_receipt_summary;
@@ -3750,7 +3751,7 @@ async function main() {
     const custodyManifest = {
       law: "L8_L22_EXTERNAL_CUSTODY",
       committed_file_cap_bytes: 50 * 1024 * 1024,
-      format: "GZIP_JSONL_LOSSLESS_LICENSE_STATE_SPANS_ONE_EVENT_PER_CHUNK; EVERY_RECEIPT_COUNTED_AND_HASH_CHAINED",
+      format: "GZIP_JSONL_LOSSLESS_BID_LICENSE_STATE_SPANS_ONE_EVENT_PER_CHUNK; EVERY_POST_OR_REPRICE_LICENSE_RECEIPT_COUNTED_AND_HASH_CHAINED",
       total_chunks: custodyRows.length,
       total_events: custodyRows.reduce((sum, row) => sum + row.event_count, 0),
       total_rows: custodyRows.reduce((sum, row) => sum + row.license_span_rows, 0),
@@ -3799,7 +3800,7 @@ async function main() {
     await writeGzipRowsFile(path.join(output, "MARKET_EVENT_LEDGER_804.jsonl.gz"), candidateRun.marketEvents.map(compactEvent), 9);
     write("SOURCE_HASH_MANIFEST.json", canonical({ policy: { path: "arb-executor/analysis/window1_v54_pair_model.js", sha256: fileHash(path.join(repo, "arb-executor/analysis/window1_v54_pair_model.js")) }, replay_shell: { path: "arb-executor/analysis/build_window1_v38_maker_only.js", sha256: fileHash(path.join(repo, "arb-executor/analysis/build_window1_v38_maker_only.js")) }, ground_truth: groundTruthWindowBinding.binding, baseline: { policy: "V52L_FROZEN_CHAMPION", expected_completed_pairs: 311, expected_locked_cents: 714 }, full_trace: custodyManifest }));
     write("FORBIDDEN_ACCESS_RECEIPT.json", canonical({ sealed: false, holdout: false, live: false, network_runtime: false, orders: false, positions: false, deployment: false, tuning_population: "FIXED_DEV_804_ONLY", truth_table_offered_percentages_reported: false }));
-    write("REPORT.md", `# V54 Pair Model — iteration 01\n\nPins passed ${pinCandidate.completed_pairs}/${pinBaseline.completed_pairs} completes and ${pinCandidate.locked_cents_per_contract}/${pinBaseline.locked_cents_per_contract}c. On fixed D=804, champion completed ${baseline.completed_pairs} and V54 completed ${candidate.completed_pairs}; the hard floor ${tuneGate.candidate_at_or_above_champion_floor ? "held" : "failed"}. Raw truth-table offered display: ${candidate.completed_pairs}/680; percentages are embargoed under F-V53-039. Average completed-game delta was ${averageDelta(candidateRun.marketEvents)}c versus champion ${averageDelta(baselineRun.marketEvents)}c. Identity: ${retained.length} retained, ${lost.length} lost, ${gained.length} gained. All ${v54PairModelStats.decision_receipts} receipt computations are count- and hash-bound into ${custodyManifest.total_rows} lossless license-state spans in external custody; 30 deterministic decision stories are included for CC. No sealed, live, order, position, deployment, or network-runtime path was accessed.\n`);
+    write("REPORT.md", `# V54 Pair Model — iteration 01\n\nPins passed ${pinCandidate.completed_pairs}/${pinBaseline.completed_pairs} completes and ${pinCandidate.locked_cents_per_contract}/${pinBaseline.locked_cents_per_contract}c. On fixed D=804, champion completed ${baseline.completed_pairs} and V54 completed ${candidate.completed_pairs}; the hard floor ${tuneGate.candidate_at_or_above_champion_floor ? "held" : "failed"}. Raw truth-table offered display: ${candidate.completed_pairs}/680; percentages are embargoed under F-V53-039. Average completed-game delta was ${averageDelta(candidateRun.marketEvents)}c versus champion ${averageDelta(baselineRun.marketEvents)}c. Identity: ${retained.length} retained, ${lost.length} lost, ${gained.length} gained. All ${v54PairModelStats.decision_receipts} bid-license receipt computations are count- and hash-bound into ${custodyManifest.total_rows} lossless license-state spans in external custody; 30 deterministic decision stories are included for CC. No sealed, live, order, position, deployment, or network-runtime path was accessed.\n`);
     const committed = fs.readdirSync(output).sort();
     for (const name of committed) ensure(fs.statSync(path.join(output, name)).size <= 50 * 1024 * 1024, `L22 committed-file cap exceeded ${name}`);
     let determinism;

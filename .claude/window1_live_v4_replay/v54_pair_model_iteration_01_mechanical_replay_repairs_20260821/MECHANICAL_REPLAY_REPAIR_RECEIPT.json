@@ -1,0 +1,49 @@
+{
+  "label": "V54_ITERATION_01_MECHANICAL_REPLAY_REPAIRS",
+  "policy_behavior_edits": false,
+  "repairs": [
+    {
+      "defect": "V53 legView rescanned the complete causal prefix for min, max, and adjacent max-step at every receipt",
+      "repair": "maintain the same three integer reductions incrementally in emptyLegState/observePostOnset",
+      "decision_value_equivalence": "same prefix min, prefix max, and adjacent-receipt max absolute step",
+      "test": "arb-executor/tests/test_window1_v54_pair_model.js"
+    },
+    {
+      "defect": "completed event ledgers retained the full V53 observation state after scoring inputs were finalized",
+      "repair": "delete v53_state during the existing post-simulation result compaction",
+      "decision_value_equivalence": "post-simulation only; no later policy evaluation can read the removed object"
+    },
+    {
+      "defect": "the V54 external-custody lane serialized non-licensing observation receipts",
+      "repair": "archive every PLACE_REST/REPRICE_REST bid-license receipt and its hash chain; omit observation-only receipts from the V54 license archive",
+      "decision_value_equivalence": "trace-selection only; policy invocation and market-event ledger unchanged"
+    }
+  ],
+  "policy_byte_identity": {
+    "path": "arb-executor/analysis/window1_v54_pair_model.js",
+    "before_commit": "4c13023464b5f028eac893281933d5b7e65ef8a8",
+    "before_sha256": "0e1e78add912128dbde58dac1883ad93bd3bd303289781b0aa4105e623faab21",
+    "after_sha256": "0e1e78add912128dbde58dac1883ad93bd3bd303289781b0aa4105e623faab21",
+    "byte_identical": true
+  },
+  "pin_equivalence": {
+    "reference_package": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_pins_build1_20260821",
+    "compared_artifacts": 12,
+    "byte_identical": true,
+    "mismatches": [],
+    "champion_completed_pairs": 4,
+    "candidate_completed_pairs": 4,
+    "champion_locked_cents": 117,
+    "candidate_locked_cents": 117
+  },
+  "scope": {
+    "dev_fixed_804": true,
+    "sealed": false,
+    "holdout": false,
+    "live": false,
+    "network_runtime": false,
+    "orders": false,
+    "positions": false,
+    "deployment": false
+  }
+}

@@ -2,6 +2,7 @@
 
 const assert = require("assert");
 const policy = require("../analysis/window1_v54_pair_model.js");
+const v53 = require("../analysis/window1_v53_understanding_organ.js");
 
 const makeState = (onset, prices) => {
   const state = policy.emptyLegState(onset);
@@ -73,5 +74,28 @@ assert.match(undecidedLicense.sentence, /frozen champion owns both levels/);
 const impossible = { tag: "DECIDED", strengthening_leg_id: "A", fading_leg_id: "A" };
 const malformed = policy.jointLicense({ legId: "A", siblingCredited: false, book: { receipt: "book-eval" } }, { ...plan, polarity: impossible }, lineage, decision);
 assert.equal(malformed.complete, false);
+
+// The dense-replay cache is value-equivalent to the original prefix scans.
+const cached = policy.emptyLegState(200);
+[
+  { ts: 200, receipt: "b0", kind: "BOOK", bid: 40, ask: 44, last_trade: null },
+  { ts: 201, receipt: "b1", kind: "BOOK", bid: 41, ask: 45, last_trade: null },
+  { ts: 202, receipt: "p0", kind: "PRINT", price: 47 },
+  { ts: 203, receipt: "b2", kind: "BOOK", bid: null, ask: null, last_trade: null },
+  { ts: 204, receipt: "p1", kind: "PRINT", price: 39 },
+].forEach((row) => policy.observePostOnset(cached, row));
+const cachedRefs = cached.observations.map((row) => row.reference_cents).filter(Number.isInteger);
+let slowAdjacentMaxStep = 0;
+cached.observations.slice(1).forEach((row, index) => {
+  const prior = cached.observations[index].reference_cents;
+  if (Number.isInteger(row.reference_cents) && Number.isInteger(prior)) slowAdjacentMaxStep = Math.max(slowAdjacentMaxStep, Math.abs(row.reference_cents - prior));
+});
+assert.equal(cached.running_reference_min_cents, Math.min(...cachedRefs));
+assert.equal(cached.running_reference_max_cents, Math.max(...cachedRefs));
+assert.equal(cached.adjacent_reference_max_step_cents, slowAdjacentMaxStep);
+const cachedView = v53.legView(cached, { category: "ATP_MAIN" });
+assert.equal(cachedView.travel.min_cents, Math.min(...cachedRefs));
+assert.equal(cachedView.travel.max_cents, Math.max(...cachedRefs));
+assert.equal(cachedView.travel.value_cents, Math.max(...cachedRefs) - Math.min(...cachedRefs));
 
 console.log("window1_v54_pair_model: PASS");

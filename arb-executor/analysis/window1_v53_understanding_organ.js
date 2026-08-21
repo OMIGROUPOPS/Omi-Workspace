@@ -48,6 +48,9 @@ function emptyLegState(onsetTimestampEpoch) {
     anchor_receipt: null,
     prior_reference_cents: null,
     prior_reference_receipt: null,
+    running_reference_min_cents: null,
+    running_reference_max_cents: null,
+    adjacent_reference_max_step_cents: 0,
     last_step_cents: null,
     last_step_receipt: null,
     reversals: 0,
@@ -66,6 +69,7 @@ function observePostOnset(state, row) {
   if (!state || !Number.isFinite(state.onset_timestamp_epoch) || row.ts < state.onset_timestamp_epoch) return state;
   const ref = referencePrice(row);
   const executable = row.kind === "PRINT" ? row.price : row.ask;
+  const previousObservation = state.observations.at(-1) ?? null;
   const observation = {
     timestamp_epoch: row.ts,
     receipt: row.receipt,
@@ -79,6 +83,11 @@ function observePostOnset(state, row) {
     reference_source: ref?.source ?? null,
   };
   state.observations.push(observation);
+  if (ref) {
+    state.running_reference_min_cents = state.running_reference_min_cents === null ? ref.value : Math.min(state.running_reference_min_cents, ref.value);
+    state.running_reference_max_cents = state.running_reference_max_cents === null ? ref.value : Math.max(state.running_reference_max_cents, ref.value);
+    if (Number.isInteger(previousObservation?.reference_cents)) state.adjacent_reference_max_step_cents = Math.max(state.adjacent_reference_max_step_cents, Math.abs(ref.value - previousObservation.reference_cents));
+  }
   if (row.kind === "PRINT" && lawfulCent(row.price)) state.prints.push({ price_cents: row.price, ...receiptOf(row) });
   if (lawfulCent(executable) && (state.running_session_low_cents === null || executable < state.running_session_low_cents)) {
     state.running_session_low_cents = executable;
@@ -105,15 +114,7 @@ function observePostOnset(state, row) {
 
 function legView(state, context) {
   const current = state.observations[state.observations.length - 1] ?? null;
-  const refs = state.observations.map((row) => row.reference_cents).filter(Number.isInteger);
-  // Dense tapes can contain more arguments than V8 permits a spread call to
-  // materialize.  The loop is byte-for-byte equivalent in value while keeping
-  // the receipt walk bounded-memory.
-  let min = null, max = null;
-  for (const value of refs) {
-    min = min === null || value < min ? value : min;
-    max = max === null || value > max ? value : max;
-  }
+  const min = state.running_reference_min_cents, max = state.running_reference_max_cents;
   const currentRef = current?.reference_cents ?? null;
   const net = Number.isInteger(currentRef) && Number.isInteger(state.anchor_cents) ? currentRef - state.anchor_cents : null;
   const travel = Number.isInteger(min) && Number.isInteger(max) ? max - min : null;
@@ -123,11 +124,7 @@ function legView(state, context) {
     : state.last_step_receipt && current?.receipt !== state.last_step_receipt.receipt ? "SETTLED" : "STILL";
   let family = { status: "PENDING", value: null, reason: "ENDPOINT_DEPENDENT_FAMILIES_NOT_LIVE_CALLABLE", producer_receipt: current?.receipt ?? null, provenance: V53_CONSTANT_PROVENANCE.FAMILY_RESTATEMENT };
   if (state.prints.length >= TRD5_PRINT_COUNT && Number.isInteger(net) && Number.isInteger(travel)) {
-    let maxStep = 0;
-    state.observations.slice(1).forEach((row, i) => {
-      const previous = state.observations[i].reference_cents;
-      if (Number.isInteger(row.reference_cents) && Number.isInteger(previous)) maxStep = Math.max(maxStep, Math.abs(row.reference_cents - previous));
-    });
+    const maxStep = state.adjacent_reference_max_step_cents;
     const absNet = Math.abs(net);
     let value;
     if (travel >= FAMILY_RESTATEMENT_THRESHOLDS.round_trip_travel_cents && absNet < FAMILY_RESTATEMENT_THRESHOLDS.round_trip_abs_net_ceiling_cents && state.reversals > 0) value = "ROUND_TRIP";

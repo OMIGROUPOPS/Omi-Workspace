@@ -1,0 +1,10 @@
+{
+  "clean_builds": 2,
+  "compared_files": 14,
+  "byte_identical": true,
+  "mismatches": [],
+  "first_build_output": ".claude/window1_live_v4_replay/v53_04b_engine_selected_stage1_20260820",
+  "second_build_output": "C:/tmp/v53_04b_engine_selected_stage1_build2",
+  "execution_only_heap_bytes_mb": 12288,
+  "policy_or_receipt_input_changes_between_builds": false
+}

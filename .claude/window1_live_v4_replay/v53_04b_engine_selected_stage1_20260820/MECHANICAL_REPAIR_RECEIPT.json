@@ -1,0 +1,21 @@
+{
+  "label": "V53_04B_STAGE1_EXECUTION_MEMORY_REPAIR",
+  "policy_or_behavior_change": false,
+  "input_change": false,
+  "first_attempt": {
+    "node_heap": "DEFAULT_APPROX_4096_MB",
+    "result": "MECHANICAL_FAILURE_PRE_EMISSION",
+    "failure": "FATAL_ERROR_INEFFECTIVE_MARK_COMPACTS_NEAR_HEAP_LIMIT",
+    "score_rows_written": 0,
+    "artifacts_written": 0,
+    "output_directory_verified_empty": true
+  },
+  "repair": {
+    "kind": "EXECUTION_CONFIGURATION_ONLY",
+    "node_flag": "--max-old-space-size=12288",
+    "source_or_policy_files_modified": 0,
+    "pre_registration_modified": false
+  },
+  "successful_clean_builds": 2,
+  "successful_build_outputs_byte_identical": true
+}

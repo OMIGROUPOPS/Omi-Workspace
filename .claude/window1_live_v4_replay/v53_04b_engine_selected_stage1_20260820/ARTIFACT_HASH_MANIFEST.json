@@ -1,0 +1,66 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "81ad8c84030b4a145aa63a4db045f183b4dc8867cef14e7062f6d757d3e51d37",
+      "bytes": 365
+    },
+    "EXTERNAL_CUSTODY_MANIFEST.json": {
+      "sha256": "7fa3a9d59649af9090222cb0ccec38172a652691538734a18cb3fefdbc610168",
+      "bytes": 1116
+    },
+    "F24_SCOREBOARD.json": {
+      "sha256": "b4fc83f99350309fff64cddc77f066616b67afe2de4c83477aec4dc98ee3a8aa",
+      "bytes": 48418
+    },
+    "FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz": {
+      "sha256": "fa069ca37a9adf6e2dcacf64d1b539813f1df73390a856302dae8779261afe65",
+      "bytes": 37226650
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "3fb679f58f5ee6abb0fcf47041c3d2a394b421ac7fb3d153d98db61a1da06f02",
+      "bytes": 172
+    },
+    "FULL_DECISION_TRACE_30.jsonl.gz": {
+      "sha256": "3b7d824006cd8d274781863e60d795eb5202cb2a36bfd50096829245dc81fca6",
+      "bytes": 1303801847,
+      "external_custody": true
+    },
+    "MARKET_EVENT_LEDGER_30.jsonl.gz": {
+      "sha256": "72f6044bc1ae6ae1a7f07f1f887aff59d892f803b3624032206f21e953a47cc5",
+      "bytes": 2384
+    },
+    "MECHANICAL_REPAIR_RECEIPT.json": {
+      "sha256": "0c43da389c4d102262df16dc3eec36e2721b6f541c45a129c541fb0e4ef2610f",
+      "bytes": 684
+    },
+    "PER_GAME_L1_L8.json": {
+      "sha256": "18f9d430ecaf38d2183330c52774b53392602fde2ef45e13ea15719978987dad",
+      "bytes": 1130904
+    },
+    "PRE_REGISTRATION.json": {
+      "sha256": "0b6738da896deec71e13bbca9c0a7ea17a0749496077a71adc7c14a013e99873",
+      "bytes": 29025
+    },
+    "REPORT.md": {
+      "sha256": "4cab0e72c528b7f7afab2fc05989a7f516dd18963de804b8c873fb0a01f296d0",
+      "bytes": 321
+    },
+    "STAGE1_BUILD_ASSERTIONS.json": {
+      "sha256": "80ac32a9b8022d8a58f2ed8d419ab0c943e65a916d6dd938d5458ff80c2d1a71",
+      "bytes": 1172
+    },
+    "STAGE1_DISPOSITION_RECEIPT.json": {
+      "sha256": "cd69a4838d76b1dec77160222ec2c8448891a237429cddb3de92b97be2d08c20",
+      "bytes": 368
+    },
+    "STAGE1_SCORECARD.json": {
+      "sha256": "b12475843857c307d9ecb003c11f88399b8ede70b4b4afb534613d3c944e76af",
+      "bytes": 3300
+    },
+    "V52L_COMPARATOR_TRACE_30.jsonl.gz": {
+      "sha256": "65037d70896384c6eeb209f96eca9eba7b2f1039c648d3769c0290dee905f54c",
+      "bytes": 70407587,
+      "external_custody": true
+    }
+  }
+}

@@ -273,7 +273,7 @@ async function main() {
     const packagePath = path.join(repo, spec.package), manifest = readJson(path.join(packagePath, "EXTERNAL_CUSTODY_MANIFEST.json"));
     const artifact = manifest.artifacts.find((row) => row.path.endsWith(`/${spec.traceName}`));
     ensure(artifact, `missing custody trace declaration ${spec.iteration} ${spec.traceName}`);
-    const found = deadSiblingRows(packagePath, spec.iteration);
+    const found = deadSiblingRows(spec.package, spec.iteration);
     allDead.push(...found.dead.map((row) => ({ ...row, trace_spec: spec })));
     allExclusions.push(...found.exclusions);
     packageInputs.push({ iteration: spec.iteration, package: spec.package, trace_role: spec.traceRole, trace: artifact, dead_siblings: found.dead.length, non_single_uncompleted_exclusions: found.exclusions.length });

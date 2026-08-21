@@ -19445,3 +19445,20 @@ Vocabulary rulings (operator, 2026-08-21; F-VS-030): **"corpus" names the PATTER
 Not assigned by any ruling (flagged, not decided here): live recorder output after Aug 6 other than the capture-only holdout; droplet B (unreachable); the Vercel/Supabase `cached_odds`, `line_snapshots`, `odds_snapshots` tables (app stratum).
 
 **Register additions (newest first; F-VS-030):** CORPUS = PATTERN LIBRARY ONLY · DEV-CORPUS LABEL DEPRECATED (804 = TUNE-TEST SAMPLE) · FUNCTIONABILITY POKE LAW (every CONNECTED claim is independently poked by CC against the real store/tape; a failed poke is filed same-day) · STORY COUNTER-GRADE LAW (every assumption's RESOURCES-CONSULTED line audited against the census — skipped available resource without a RESOURCE-GAP stamp is filed; cited neighbors must exist and resemble the game at the cited stage; sentence == action on every changed decision; thresholds/booleans in derivation = black-white violation; placements without shown derivation = hardcode violation) · BELL SWEEP STANDS (the bell re-resolution sweep is an open standing order; dictionary refreshes at each pass close).
+
+
+---
+
+## m. TRUE BELLS + REPAIR VERIFICATION + REPRODUCTION-AUDIT STATUS (appended 2026-08-21; license LAW_INDEX @ `dcac4032`, sha c7c72715…; L0 L8 L11 L18 L20 L22)
+
+| game | truth-table bell | true bell (tape) | fills re-graded | game ruler | leg ruler |
+|---|---|---|---|---|---|
+| GIUBAR | 1783876740 (inferred) | band 1783874940..1783875540 (earliest mirrored burst 16:49Z) | GIU 69 pre-bell; **BAR 21 post-bell under the band** (the in-play dip) | COMPLETE 90¢ Δ10 → **PARTIAL** (provisional, band ruling pending) | +4 (GIU) only |
+| URSPAL | 1784045100 (inferred, 47.5 min late) | 1784042247 | both pre-bell | COMPLETE 97¢ Δ3 (unchanged) | +1 / +4 |
+| LAJSVA | 1784078400 (machine) | machine | both pre-bell | COMPLETE 94¢ Δ6 | +7 / 0 |
+| DANPRA | 1784373060 (inferred) | 1784373060 (exact) | none | NEITHER | — |
+| CRIJEA | UNKNOWN | **none — scalar settlement (walkover), no ball played** | CRI 64 non-gradeable | EXCLUDED | — |
+
+Totals: truth bells 3 completes / 19¢ over 4 gradeable; true bells 2 / 9¢ over 4. Leg ruler 26¢/6 legs → 16¢/5 legs. Receipt: `TRUE_BELLS_WALK5.json` (F-VS-031).
+
+Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 110/0 sentence contradictions, one clock on 133,626 rows); custody not satisfied — repaired trace outside OMI-Window1-private, manifest names the old trace (F-VS-032). Ledger collision with Codex's F-VS-029/030 and its §l on dcac4032 — CC identities hold, merge item (F-VS-033). Rider items 2–4 (GAME_EXPLAINED reproduction, capture-vs-ceiling, surprise ledgers): inputs not landed; FOUR_STORIES counter-grade and the 39 CONNECTED pokes queued next (F-VS-034).

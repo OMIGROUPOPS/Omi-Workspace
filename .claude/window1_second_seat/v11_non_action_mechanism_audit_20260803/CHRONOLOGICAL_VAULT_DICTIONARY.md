@@ -18822,6 +18822,10 @@ Standing line: any operator ruling absent from this register is filed here same-
 
 | ruling | date | filing receipt |
 |---|---|---|
+| CORPUS = PATTERN LIBRARY ONLY; 804 = TUNE-TEST SAMPLE (dev-corpus label deprecated) | 2026-08-21 | F-VS-030 · §l |
+| FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
+| STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
+| BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
 | UNKNOWN-BELL EXCLUSION — 20 games out of numerator and denominator; count printed on every scoreboard | 2026-08-21 | F-VS-024 |
 | F24 CLOSES NOT LAWFUL — truth-table closes are the only W1 closes | 2026-08-21 | F-VS-023 · F-V53-046 |
 | ONE CLOCK — hours-from-discovery; T-8h retired as a gate | 2026-08-21 | FILED NOW — F-VS-028 (census F-VS-017) |
@@ -19404,3 +19408,40 @@ LEAD_SEAT_INVENTORY_20260821 (10,090 keyword-matched files, all dirs) vs Appendi
 2026-05-04 2026-07-01 e7e1ddc6 tmp/v3_analysis/summary.txt
 2026-07-16 2026-07-16 155a1d6b tools/daysheet_local/daysheet_bundle.js
 ```
+
+
+---
+
+## l. DATA UNIVERSE — every store, its era, its ruled purpose (appended 2026-08-21; license LAW_INDEX @ `3cd59162`, sha 41784e6a…; L8 L11 L18 L20 L22)
+
+Vocabulary rulings (operator, 2026-08-21; F-VS-030): **"corpus" names the PATTERN LIBRARY alone.** The fixed 804 (Jul 12–20) is the **TUNE-TEST SAMPLE**, never "the dev corpus" — that label is deprecated everywhere; July document titles that carry "corpus" are retained as titles only and do not re-license the word. Purposes: PATTERN LIBRARY (knowledge the machine may consult; priors inform, never gate) · TUNE-TEST SAMPLE (the fixed 804, fully visible, lawful for tuning, L19a) · SEALED EXAM (quarantined; taken once at graduation on the operator's word) · LIVE CAPTURE (ongoing recorder output; not yet assigned) · RETIRED (no longer a lawful source). Sizes are local `du` readings on 2026-08-21 (stat, not git).
+
+| store | location (custody) | era / span | contents | ruled purpose |
+|---|---|---|---|---|
+| Dual-book tick store | `OMI-Window1-private/fit-local/ticks/*.csv.gz` (1,608 files, 933 MB) | Jul 11–21 2026 | per-ticker recorder book + trade rows; **sole standing-state source (L8, db470ec8)** | TUNE-TEST SAMPLE substrate |
+| True-print tape | `fit-local/prints.jsonl` (1.7 GB) | Jul 11–21 2026 | 4,836,462 true prints, exchange-verified by trade_id (db470ec8, 3f4b0046) | TUNE-TEST SAMPLE substrate; crediting truth (L0) |
+| W1 ground-truth table | repo `W1_GROUND_TRUTH_TABLE.{csv,json}` @ c0056976 + `W1_GROUND_TRUTH_SOURCES/` | 804 games Jul 12–20 | per game/leg: recorder open, formation end, span, floors, closes, bells (192 machine / 571 tape / 20 upper-bound / 20 UNKNOWN / 1 no-match) | TUNE-TEST SAMPLE truth — **sole window source (L11)**; 20 UNKNOWN-bell games excluded both sides (F-VS-024) |
+| Depth capture (July) | `fit-local/depth_recorder/` (383 MB) + `ws-depth-source/ws_depth` (5.1 GB) | Jul 2026 | recorder depth frames | TUNE-TEST SAMPLE substrate (depth); L8: depth is recorder-only |
+| Macro projection DB | `fit-local/macro_projection.db` (1.3 MB) + `MACRO_PROJECTION_RECEIPT.json` | built Jul–Aug 2026 | N2/N4/N5 macro tables consulted by the palantír wiring (b09aa22b) | PATTERN LIBRARY |
+| Machine palantír store | repo `MACHINE_PALANTIR.md` + N9 registry (9929e918, n9_clean_store) | Aug 12 2026 | general-knowledge assets, dossiers | PATTERN LIBRARY (priors inform, never gate — L10) |
+| Shape taxonomy + per-shape floor-depth tables | repo `SHAPE_TAXONOMY_BUILD1.csv` (e269779b), `PER_SHAPE_FLOOR_DEPTH_TABLES.md` (8ab4f2d9) | built Aug 14 2026 on the 804 | 13 families, floor-timing law, 52 depth rows | PATTERN LIBRARY (HIRED-CANDIDATE; endpoint-dependent, not live-callable as a plan input — F-V53-008) |
+| Recognition / ripeness tables | repo `RECOGNITION_OPERATING_POINT.json` (41c1f724), `GATE_POLICY_EVAL_LIVE_COORDS` (71de534a) | Aug 17–18 2026 | per-leg call/accuracy vs clock; gate frontier | PATTERN LIBRARY (measurement only) |
+| Schedule catalog | `OMI-Window1-private/joined/events.jsonl` (332 KB) | Jul 2026 | TE/ESPN per-match schedule join | TUNE-TEST SAMPLE substrate (scheduled-start anchor) |
+| Observed-starts DB (live) | `replay-live-v4/observed_starts.db` (1.9 GB dir) ; in-repo snapshot `.claude/window1_live_v4_replay/vps_inputs_20260729/db/observed_starts.db` (flagged duplicate custody) | live; snapshot Jul 29 2026 | te_match_id · players · kalshi suffix · first_inplay_at | TUNE-TEST SAMPLE substrate (bell source for machine-receipt bells) |
+| Calibration v1 | `calibration-v1/` (1.5 GB: ws_public_trade_reconcile.sqlite, api_fills/orders/lifecycle private jsonl, events.jsonl) | Jul 2026 | trade reconcile + private order lifecycle | RETIRED as a ruler (pre-gate era); private fills retained as audit receipts |
+| Guarded cache v3 / OS-family cache | `fit-local/guarded-cache-v3/` (191 MB), `os-family-cache/` (32 MB) | Jul 21–29 2026 | pre-gate lane caches | RETIRED |
+| fit-run-r2, stage1, start-recovery-* | `fit-local/fit-run-r2/` (539 MB), `stage1/` (160 MB), `start-recovery-{round2,v2}/` | Jul 2026 | round-2 fit outputs, V53 stage-1 inputs, start recovery | RETIRED (rounds) / TUNE-TEST SAMPLE substrate (stage1 inputs) |
+| Sealed holdout exam 20260807 | `holdout-exam-20260807/` (535 MB: tapes 342 csv.gz, prints, sealed-tapes.tar) | Jul 26 → Aug 6 2026 (post-July-26 seal, 2db2f84f; sealed-171 exam 3beebcbb) | 171 sealed games' tapes + prints | **SEALED EXAM** — the L19a quarantined set; taken once at graduation on the operator's word |
+| Capture-only holdout (live) | droplet A `data/durable/holdout_seal/` (HOLDOUT_CAPTURE_REGISTRY.jsonl, POLICY.json; activation 2026-08-06T23:31:32Z) + `data/durable/ws_depth_recorder/` → DO Spaces `omi-tick-archive/ws_depth` | Aug 6 2026 → ongoing | registry of captured games, depth archive | SEALED EXAM (capture-only; no seat reads it) |
+| Nightly reconciliation seal | `/srv/omi-research/window1-nightly-938dca47/` (IMMUTABLE_EVENT_LEDGER, GUARDED_BOUNDARY_LEDGER, PRINTS_804) + droplet `data/durable/window1_reconciliation/` | Aug 5 2026 → nightly | 804-event ledger re-checked nightly, sample 20 | TUNE-TEST SAMPLE integrity receipts (RECONCILIATION_SEAL_804, 938dca47) |
+| Kalshi exchange trade history (API) | exchange | all | public trades by trade_id; **no historical depth** | exchange truth (L0, L8) |
+| Odds API feed | droplet A `tennis_odds.py` (+ Vercel `/api/odds/*`) | Jul 23 2026 → ongoing | bookmaker odds per match | **STANDING OS SUPPLEMENT** (F-VS-028); not a lane |
+| Game tape packs | repo `game_tape_packs/` (GUEGOM, DELXIL, BALHUA, KUMTUR, MORNEP, PANYOR, ARSMAR) | Aug 12–14 2026 | raw series only | TUNE-TEST SAMPLE exemplars (no analysis) |
+| 612 post-onset offer census | repo `POST_ONSET_OFFER_CENSUS.json` (22441e05) | Aug 12 2026 | coverage-limited offer census | RETIRED as denominator (F-VS-001) |
+| F24 independent close audit | repo `INDEPENDENT_CLOSE_AUDIT_1608.csv` (a30f5ccd) | Aug 9 2026 | 1,608 "audited" closes | RETIRED — NOT-LAWFUL-CLOSE (F-VS-023) |
+| THE_603_MAP / _PREMATCH | repo (06f472ff / e302e1ea) | Aug 5 2026 | model-free ceilings, two bases | RETIRED-by-era (contradiction #7 retained) |
+| Reflex-era caches and round packages (R2/R3/R4, t1/t2, range-attack) | repo `.claude/window1_round*`, `window1_t*`, `window1_range_attack*` | Jul 21–29 2026 | pre-gate lane outputs | RETIRED |
+
+Not assigned by any ruling (flagged, not decided here): live recorder output after Aug 6 other than the capture-only holdout; droplet B (unreachable); the Vercel/Supabase `cached_odds`, `line_snapshots`, `odds_snapshots` tables (app stratum).
+
+**Register additions (newest first; F-VS-030):** CORPUS = PATTERN LIBRARY ONLY · DEV-CORPUS LABEL DEPRECATED (804 = TUNE-TEST SAMPLE) · FUNCTIONABILITY POKE LAW (every CONNECTED claim is independently poked by CC against the real store/tape; a failed poke is filed same-day) · STORY COUNTER-GRADE LAW (every assumption's RESOURCES-CONSULTED line audited against the census — skipped available resource without a RESOURCE-GAP stamp is filed; cited neighbors must exist and resemble the game at the cited stage; sentence == action on every changed decision; thresholds/booleans in derivation = black-white violation; placements without shown derivation = hardcode violation) · BELL SWEEP STANDS (the bell re-resolution sweep is an open standing order; dictionary refreshes at each pass close).

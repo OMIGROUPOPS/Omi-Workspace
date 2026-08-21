@@ -7,7 +7,7 @@ Steps-Behind Law: assume the OS is always a few steps behind the market's finess
 ## Receipt bindings
 
 - **R-LAW:** `.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAW_INDEX.md` @ commit `dcac4032`, SHA-256 `c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6`.
-- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `fae4b97437d9cfac75f7b84a9b677ba288c8b4e58f5e475eed45ea9a63812020`.
+- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `5492ff6d66add7ef96c7c1dae3a7d96f6f48db0f0bb3ec00591e54e2767cba07`.
 - **R-RESULT:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES_RECEIPT.json`, SHA-256 `22381e774e538ed5bc4fe05f7fd50c64efc06d5f61c6f65eb65cde2851049f0d`.
 - **R-CORPUS:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/CORPUS_INDEX.jsonl.gz`, SHA-256 `210951fa9c1bd8d255e6501f7507144311b297b811bd992dd04a1ab46ff37ba1`; row numbers are decompressed JSONL rows.
 - **R-RANGE:** external custody `C:\Users\omigr\OMI-Workspace\.corpus-cache-v6\range_spectrum_v1.jsonl`, SHA-256 `1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884`, 130935927 bytes; row/tick refs below.

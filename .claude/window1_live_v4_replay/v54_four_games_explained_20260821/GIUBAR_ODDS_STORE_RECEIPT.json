@@ -1,0 +1,70 @@
+{
+  "label": "GIUBAR_BOOKMAKER_ODDS_STORE_RECEIPT",
+  "license": {
+    "law_index_commit": "dcac4032",
+    "law_index_sha256": "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6",
+    "laws": ["L8", "L18", "L20", "L22"]
+  },
+  "queried_at": "2026-08-21T19:03:59.6548096-04:00",
+  "query_mode": "READ_ONLY_RECEIPT_ONLY",
+  "event": {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+    "event_date": "2026-07-12",
+    "player1": "Massimo Giunta",
+    "player2": "Alberto Barroso Campos",
+    "identity_receipt": "Kalshi GET /trade-api/v2/events/KXATPCHALLENGERMATCH-26JUL12GIUBAR returned HTTP 200"
+  },
+  "bookmaker_odds_store": {
+    "wired_source": "/root/tennis_small_tables_backup_20260708.db",
+    "sha256": "ea3a3187dfb0bf7c7e59b090133278b91d75ad9fab68f4d25c73de69791274ad",
+    "bytes": 16617472,
+    "table": "bookmaker_odds",
+    "capture_origin": "EDGE_ERA_ARCHIVE",
+    "capture_origin_receipts": [
+      "arb-executor/te_live.py:147 creates bookmaker_odds",
+      "arb-executor/te_live.py:451 inserts bookmaker_odds",
+      "arb-executor/tennis_odds.py:68 creates collector table edge_scores",
+      "arb-executor/tennis_odds.py:386 inserts collector table edge_scores"
+    ],
+    "total_rows": 120453,
+    "store_first_row_timestamp": "2026-04-02 21:35:09",
+    "store_last_row_timestamp": "2026-07-08 23:13:41",
+    "populated_kalshi_ticker_rows": 0,
+    "giubar_match_predicate": "player pair case-insensitive: Massimo Giunta / Alberto Barroso Campos, either order",
+    "giubar_row_count": 0,
+    "giubar_first_row_timestamp": null,
+    "giubar_last_row_timestamp": null
+  },
+  "corroboration": {
+    "current_legacy_bookmaker_odds": {
+      "source": "/root/Omi-Workspace/arb-executor/tennis.db",
+      "total_rows": 166031,
+      "span": "2026-04-02 21:35:09..2026-08-19 17:58:42",
+      "giubar_row_count": 0,
+      "giubar_first_row_timestamp": null
+    },
+    "current_collector_edge_scores": {
+      "source": "/root/Omi-Workspace/arb-executor/tennis.db",
+      "table": "edge_scores",
+      "total_rows": 1873,
+      "span": "2026-04-20 04:01:56..2026-08-21 19:00:21",
+      "giubar_row_count": 0,
+      "giubar_first_row_timestamp": null
+    }
+  },
+  "answer": {
+    "source": "/root/tennis_small_tables_backup_20260708.db::bookmaker_odds",
+    "row_count": 0,
+    "capture_origin": "EDGE_ERA_ARCHIVE_NOT_COLLECTOR",
+    "first_row_timestamp": null,
+    "consultation_claim": "FABRICATED_CITATION",
+    "story_correction": "BOOKMAKER_ODDS_STORE is struck from every GIUBAR resources-consulted claim and replaced by RESOURCE-GAP."
+  },
+  "scope": {
+    "passes": 0,
+    "reruns": 0,
+    "full_804_runs": 0,
+    "sealed_reads": 0,
+    "live_mutations": 0
+  }
+}

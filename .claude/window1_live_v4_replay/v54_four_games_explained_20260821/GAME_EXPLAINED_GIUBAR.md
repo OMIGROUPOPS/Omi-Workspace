@@ -4,10 +4,13 @@ License: LAW_INDEX read at `dcac4032`, SHA-256 `c7c7271501076fefdad0d65044bde5a4
 
 Steps-Behind Law: assume the OS is always a few steps behind the market's finesse. This explanation states what was missed, what surprised, and what remains unexplained.
 
+**ODDS CITATION CORRECTION — STRUCK.** Every quoted pass-1 sentence below is retained verbatim as evidence, but its `BOOKMAKER_ODDS_STORE` consultation clause is false. The wired Edge-era archive has zero Massimo Giunta / Alberto Barroso Campos rows and no GIUBAR first-row timestamp. Those clauses are `FABRICATED-CITATION · RESOURCE-GAP`, not consultations.
+
 ## Receipt bindings
 
 - **R-LAW:** `.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAW_INDEX.md` @ commit `dcac4032`, SHA-256 `c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6`.
-- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `fae4b97437d9cfac75f7b84a9b677ba288c8b4e58f5e475eed45ea9a63812020`.
+- **R-ODDS:** `.claude/window1_live_v4_replay/v54_four_games_explained_20260821/GIUBAR_ODDS_STORE_RECEIPT.json`; wired source `/root/tennis_small_tables_backup_20260708.db::bookmaker_odds`, SHA-256 `ea3a3187dfb0bf7c7e59b090133278b91d75ad9fab68f4d25c73de69791274ad`, 120453 total rows, 0 GIUBAR rows, first GIUBAR timestamp `NONE`, Edge-era archive rather than the `edge_scores` collector.
+- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `5492ff6d66add7ef96c7c1dae3a7d96f6f48db0f0bb3ec00591e54e2767cba07`.
 - **R-RESULT:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES_RECEIPT.json`, SHA-256 `22381e774e538ed5bc4fe05f7fd50c64efc06d5f61c6f65eb65cde2851049f0d`.
 - **R-CORPUS:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/CORPUS_INDEX.jsonl.gz`, SHA-256 `210951fa9c1bd8d255e6501f7507144311b297b811bd992dd04a1ab46ff37ba1`; row numbers are decompressed JSONL rows.
 - **R-RANGE:** external custody `C:\Users\omigr\OMI-Workspace\.corpus-cache-v6\range_spectrum_v1.jsonl`, SHA-256 `1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884`, 130935927 bytes; row/tick refs below.

@@ -1,7 +1,7 @@
 {
   "label": "V54_WALK5_EVIDENCE_L22_V6",
   "files": {
-    "EXTERNAL_CUSTODY_MANIFEST.json": { "sha256": "72d464b8f9e325901bebc86072d38f92bbe8b7fcee8cd6c5b71702f6eadd3e48", "bytes": 606 },
+    "EXTERNAL_CUSTODY_MANIFEST.json": { "sha256": "4ef64cf20477a38ea67ebb2bd7c34a772e36e79d51347fe27d5c757f77c0ea36", "bytes": 1115 },
     "F24_SCOREBOARD.json": { "sha256": "cf7bc9202069d5b81d35ded4549ce28fd0628e8d1d8f79b89f1385b5f9e53112", "bytes": 9530 },
     "MARKET_EVENT_LEDGER_5.jsonl.gz": { "sha256": "c0cee9dc242af4534ae16e09e03fdb1351c763c97961baf64959ffec87670589", "bytes": 718 },
     "PER_GAME_L1_L8.json": { "sha256": "d0902515c6312407706a8b23312b97b34c713f0c71faa979159c4c987dca3c55", "bytes": 147904 },

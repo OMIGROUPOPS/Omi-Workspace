@@ -1,14 +1,25 @@
 {
-  "label": "V54_WALK5_L22_EXTERNAL_CUSTODY",
+  "label": "V54_WALK5_REPAIRED_L22_EXTERNAL_CUSTODY",
   "law": "L22",
   "artifact": "FULL_DECISION_TRACE_5.jsonl.gz",
-  "path": "C:\\Users\\omigr\\OMI-Workspace\\.claude\\window1_live_v4_replay\\v54_walk5_live_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
-  "sha256": "085fbf04dbc16f8c76691a0823a5370061afc9d738b5eefda9eab92fef4ccbc4",
-  "bytes": 55209610,
-  "rows": 133626,
+  "active_trace": {
+    "path": "C:\\Users\\omigr\\OMI-Window1-private\\v54_walk5_repair_v6_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+    "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+    "bytes": 102934439,
+    "rows": 133626,
+    "status": "REPAIRED_ACTIVE"
+  },
+  "superseded_trace": {
+    "path": "C:\\Users\\omigr\\OMI-Workspace\\.claude\\window1_live_v4_replay\\v54_walk5_live_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+    "sha256": "085fbf04dbc16f8c76691a0823a5370061afc9d738b5eefda9eab92fef4ccbc4",
+    "bytes": 55209610,
+    "rows": 133626,
+    "status": "SUPERSEDED_OLD_TRACE"
+  },
+  "private_manifest_path": "C:\\Users\\omigr\\OMI-Window1-private\\v54_walk5_repair_v6_20260821\\CUSTODY_MANIFEST.json",
   "reason_not_committed": "L22 forbids committed files above 50 MB.",
   "equivalent_alias": "FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz",
-  "source_commit": "8efff0a4",
+  "repair_source_commit": "dcac4032",
   "full_804_run": false,
   "sealed_read": false,
   "live_mutation": false

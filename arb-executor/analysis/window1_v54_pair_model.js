@@ -36,6 +36,7 @@ const PROVENANCE = Object.freeze({
 });
 
 function lawfulCent(value) { return Number.isInteger(value) && value >= 1 && value <= 99; }
+function l16FormationCent(value) { return Number.isFinite(value) && value >= 1 && value <= 99 ? Math.floor(value) : null; }
 function direction(value) {
   if (value === "CLIMBER" || value === "RISING") return "STRENGTHENING";
   if (value === "FALLER" || value === "FALLING") return "FADING";
@@ -66,11 +67,12 @@ function buildGameView(states, context) {
     const anchor = context.formation_anchors?.[id] ?? null;
     const current = baseLeg.current_observation?.value ?? null;
     const currentReference = current?.reference_cents ?? null;
-    const drift = lawfulCent(anchor?.value_cents) && lawfulCent(currentReference) ? currentReference - anchor.value_cents : null;
+    const anchorCents = l16FormationCent(anchor?.value_cents);
+    const drift = lawfulCent(anchorCents) && lawfulCent(currentReference) ? currentReference - anchorCents : null;
     const prints = states[id].prints.length;
     let role = "UNRIPE";
     let roleReason = "TRD5_OR_L16_ANCHOR_NOT_YET_AVAILABLE";
-    if (!String(context.category).startsWith("WTA_CHALL") && lawfulCent(anchor?.value_cents) && Number.isFinite(anchor?.formation_end_epoch) && context.row.ts >= anchor.formation_end_epoch && prints >= TRD5_PRINT_COUNT && Number.isInteger(drift)) {
+    if (!String(context.category).startsWith("WTA_CHALL") && lawfulCent(anchorCents) && Number.isFinite(anchor?.formation_end_epoch) && context.row.ts >= anchor.formation_end_epoch && prints >= TRD5_PRINT_COUNT && Number.isInteger(drift)) {
       if (drift >= ROLE_DRIFT_CENTS) { role = "CLIMBER"; roleReason = "TRD5_DRIFT_AT_OR_ABOVE_POSITIVE_ROLE_THRESHOLD"; }
       else if (drift <= -ROLE_DRIFT_CENTS) { role = "FALLER"; roleReason = "TRD5_DRIFT_AT_OR_BELOW_NEGATIVE_ROLE_THRESHOLD"; }
       else roleReason = "TRD5_DRIFT_INSIDE_ROLE_DEADBAND";
@@ -79,7 +81,9 @@ function buildGameView(states, context) {
       identity: id,
       current_observation: baseLeg.current_observation,
       l16_formation_anchor: {
-        value_cents: lawfulCent(anchor?.value_cents) ? anchor.value_cents : null,
+        value_cents: anchorCents,
+        raw_value_cents: Number.isFinite(anchor?.value_cents) ? anchor.value_cents : null,
+        integerization: Number.isFinite(anchor?.value_cents) ? "L16_SERIES_FLOORED_AT_FORMATION_END" : null,
         formation_end_epoch: Number.isFinite(anchor?.formation_end_epoch) ? anchor.formation_end_epoch : null,
         source_receipt: anchor?.source_receipt ?? null,
         provenance: PROVENANCE.formation_anchor,
@@ -201,12 +205,20 @@ function plannedSplit(inputs, plan, target) {
   };
 }
 
-function sentence(inputs, plan, target, adjustments, split) {
+function actionStatement(inputs, decision) {
+  const target = lawfulCent(decision?.target_cents) ? decision.target_cents : null;
+  const activeBefore = lawfulCent(inputs?.activeTarget) ? inputs.activeTarget : null;
+  return `ACTION=${decision?.action ?? "MISSING"}; TARGET_CENTS=${target ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${activeBefore ?? "NONE"}.`;
+}
+
+function sentence(inputs, plan, decision, adjustments, split) {
   const p = plan.polarity;
+  const target = lawfulCent(decision?.target_cents) ? decision.target_cents : null;
+  const action = actionStatement(inputs, decision);
   if (p.tag === "UNDECIDED") {
-    return `At receipt ${plan.evaluation_receipt}, pair polarity is UNDECIDED because ${p.reason}. Both expressions therefore remain in LATE windows and the frozen champion owns both levels. ${inputs.legId} evaluates ${target ?? "no lawful"} cents while ${split.sibling_kind.toLowerCase()} ${split.sibling_leg_id ?? "the sibling"} carries ${split.sibling_cents ?? "no"} cents; the joint budget is ${PAR_BUDGET_CENTS} cents. ${adjustments.join(" ") || "No pair-model price adjustment was made."}`;
+    return `At receipt ${plan.evaluation_receipt}, pair polarity is UNDECIDED because ${p.reason}. Both expressions therefore remain in LATE windows and the frozen champion owns both levels. ${inputs.legId} evaluates ${target ?? "no lawful"} cents while ${split.sibling_kind.toLowerCase()} ${split.sibling_leg_id ?? "the sibling"} carries ${split.sibling_cents ?? "no"} cents; the joint budget is ${PAR_BUDGET_CENTS} cents. ${adjustments.join(" ") || "The pair model made no level adjustment."} ${action}`;
   }
-  return `At receipt ${plan.evaluation_receipt}, ${p.strengthening_leg_id} is STRENGTHENING and has the EARLY cheap window; ${p.fading_leg_id} is FADING and has the LATE tracked-floor window because ${p.reason}. ${p.strengthening_leg_id} stands from its own L16 formation anchor while ${p.fading_leg_id} remains on the byte-frozen tracking engine. This receipt evaluates ${inputs.legId} at ${target ?? "no lawful"} cents and reserves or fixes ${split.sibling_cents ?? "no"} cents for ${split.sibling_leg_id}; together they use ${split.sum_cents ?? "an unresolved"} of ${PAR_BUDGET_CENTS} cents. ${adjustments.join(" ") || "No pair-model price adjustment was made."}`;
+  return `At receipt ${plan.evaluation_receipt}, ${p.strengthening_leg_id} is STRENGTHENING and has the EARLY cheap window; ${p.fading_leg_id} is FADING and has the LATE tracked-floor window because ${p.reason}. ${p.strengthening_leg_id} stands from its own L16 formation anchor while ${p.fading_leg_id} remains on the byte-frozen tracking engine. This receipt evaluates ${inputs.legId} at ${target ?? "no lawful"} cents and reserves or fixes ${split.sibling_cents ?? "no"} cents for ${split.sibling_leg_id}; together they use ${split.sum_cents ?? "an unresolved"} of ${PAR_BUDGET_CENTS} cents. ${adjustments.join(" ") || "The pair model made no level adjustment."} ${action}`;
 }
 
 function jointLicense(inputs, plan, lineage, decision, adjustments = []) {
@@ -214,11 +226,14 @@ function jointLicense(inputs, plan, lineage, decision, adjustments = []) {
   const polarityInvariant = plan?.polarity?.tag === "UNDECIDED"
     ? plan.polarity.strengthening_leg_id === null && plan.polarity.fading_leg_id === null
     : plan?.polarity?.tag === "DECIDED" && plan.polarity.strengthening_leg_id !== plan.polarity.fading_leg_id;
-  const text = plan ? sentence(inputs, plan, decision.target_cents, adjustments, split) : null;
+  const expectedActionStatement = actionStatement(inputs, decision);
+  const text = plan ? sentence(inputs, plan, decision, adjustments, split) : null;
+  const sentenceActionEqual = typeof text === "string" && text.includes(expectedActionStatement);
+  if (plan && !sentenceActionEqual) throw new Error(`SENTENCE_ACTION_MISMATCH ${plan.evaluation_receipt ?? "NO_RECEIPT"}`);
   return {
     law: "L23_PAIR_UNIT_PROOF",
     model: "V54_PAIR_MODEL",
-    complete: Boolean(plan && polarityInvariant && Object.keys(plan.windows ?? {}).length === 2 && split.sum_cents !== null && split.sum_cents <= PAR_BUDGET_CENTS && typeof text === "string" && text.trim().length > 0),
+    complete: Boolean(plan && polarityInvariant && Object.keys(plan.windows ?? {}).length === 2 && split.sum_cents !== null && split.sum_cents <= PAR_BUDGET_CENTS && typeof text === "string" && text.trim().length > 0 && sentenceActionEqual),
     polarity: plan?.polarity ?? null,
     windows: plan?.windows ?? null,
     both_levels: {
@@ -228,6 +243,8 @@ function jointLicense(inputs, plan, lineage, decision, adjustments = []) {
     },
     budget_split: split,
     sentence: text,
+    action: { action: decision.action, target_cents: lawfulCent(decision.target_cents) ? decision.target_cents : null, active_target_before_cents: lawfulCent(inputs.activeTarget) ? inputs.activeTarget : null },
+    sentence_action_assertion: { hard_assert: true, expected_statement: expectedActionStatement, equal: sentenceActionEqual },
     sentence_machine_written_at_decision_time: true,
     evaluation_receipt: plan?.evaluation_receipt ?? inputs.book?.receipt ?? null,
     lineage_action: lineage.action,
@@ -240,6 +257,7 @@ function jointLicense(inputs, plan, lineage, decision, adjustments = []) {
 function annotate(inputs, plan, lineage, decision, reason, adjustments = []) {
   const joint = jointLicense(inputs, plan, lineage, decision, adjustments);
   const license = decision.birth_license ?? lineage.birth_license ?? inputs.birthLicense ?? null;
+  const pairModelApplied = decision.action !== lineage.action || decision.target_cents !== lineage.target_cents;
   return {
     ...decision,
     reason,
@@ -250,11 +268,11 @@ function annotate(inputs, plan, lineage, decision, reason, adjustments = []) {
       joint_license: joint,
       pair_entry_conservation: decision.pair_entry_conservation ?? license.pair_entry_conservation ?? null,
       joint_target_conservation: decision.joint_target_conservation ?? license.joint_target_conservation ?? null,
-      level: { ...(license.level ?? {}), N9_role: "ADVISORY_ONLY_NOT_TARGET_AUTHORITY", v54_pair_model: { applied: reason.startsWith("V54_STRENGTHENING"), adjustments, provenance: PROVENANCE } },
+      level: { ...(license.level ?? {}), N9_role: "ADVISORY_ONLY_NOT_TARGET_AUTHORITY", v54_pair_model: { applied: pairModelApplied, adjustments, provenance: PROVENANCE } },
     } : license,
     lineage_decision: { action: lineage.action, target_cents: lineage.target_cents, reason: lineage.reason },
     lineage_target_cents: lawfulCent(lineage.target_cents) ? lineage.target_cents : null,
-    v54_pair_model: { enabled: true, polarity: plan?.polarity ?? null, window: plan?.windows?.[inputs.legId] ?? null, applied: reason.startsWith("V54_STRENGTHENING"), reason },
+    v54_pair_model: { enabled: true, polarity: plan?.polarity ?? null, window: plan?.windows?.[inputs.legId] ?? null, applied: pairModelApplied, reason },
     conservation_input_identity: { lineage_inputs: conservationInputs(inputs), candidate_inputs: conservationInputs(inputs), byte_equal: true },
     joint_license: joint,
   };
@@ -265,6 +283,15 @@ function decide(inputs) {
   const lineage = frozen.decide({ ...inputs, clauses });
   if (!clauses.v54_pair_model) return lineage;
   const plan = inputs.v53Plan;
+  const ownFormationEnd = inputs.v53GameView?.legs?.[inputs.legId]?.l16_formation_anchor?.formation_end_epoch ?? null;
+  const evaluationTimestamp = inputs.v53GameView?.evaluation?.timestamp_epoch ?? null;
+  if (Number.isFinite(ownFormationEnd) && Number.isFinite(evaluationTimestamp) && evaluationTimestamp < ownFormationEnd) {
+    const active = lawfulCent(inputs.activeTarget) ? inputs.activeTarget : null;
+    const decision = active === null
+      ? { ...lineage, action: "HOLD_REST", target_cents: null }
+      : { ...lineage, action: "CANCEL_REST", target_cents: null };
+    return annotate(inputs, plan, lineage, decision, "V54_FORMATION_NOT_SETTLED_NO_POST", [`Formation ends at ${ownFormationEnd}; this receipt at ${evaluationTimestamp} cannot place or retain a target.`]);
+  }
   if (!plan || plan.polarity.tag === "UNDECIDED") return annotate(inputs, plan, lineage, lineage, "V54_UNDECIDED_CHAMPION_BYTE_EQUAL");
   if (inputs.legId === plan.polarity.fading_leg_id) return annotate(inputs, plan, lineage, lineage, "V54_FADING_TRACKING_ENGINE_BYTE_EQUAL");
   if (inputs.legId !== plan.polarity.strengthening_leg_id) throw new Error(`V54 pair polarity omitted evaluated leg ${inputs.legId}`);
@@ -328,6 +355,7 @@ module.exports = {
   normalizedClauses,
   conservationInputs,
   jointLicense,
+  actionStatement,
   decide,
   decideReceipt,
 };

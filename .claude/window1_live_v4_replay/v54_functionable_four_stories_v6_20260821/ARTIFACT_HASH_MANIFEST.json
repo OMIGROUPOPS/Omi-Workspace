@@ -1,0 +1,83 @@
+{
+  "label": "V54_FUNCTIONABLE_FOUR_STORIES_V6",
+  "files": {
+    "ARCHIVE_PREFIX_CENSUS.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\ARCHIVE_PREFIX_CENSUS.json",
+      "sha256": "ca73ccde0f4a639632477501326b54db5d236ad67ec42ea5bc9f7268ac4048d0",
+      "bytes": 2851,
+      "rows": null
+    },
+    "ASSUMPTION_GAPS.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\ASSUMPTION_GAPS.md",
+      "sha256": "765c345c82656f52720ed19313e64cf262b861110ca5c7928b1da4b3e12d1359",
+      "bytes": 1283,
+      "rows": null
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\CC_URSPAL_LATE_BELL.md",
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "rows": null
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\CORPUS_CENSUS.json",
+      "sha256": "f45d01940af78284601faeb3fbbaf0df9dab837bedeb54cd39ba2d41d5d0f7d5",
+      "bytes": 9973,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\CORPUS_INDEX.jsonl.gz",
+      "sha256": "210951fa9c1bd8d255e6501f7507144311b297b811bd992dd04a1ab46ff37ba1",
+      "bytes": 848328,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "rows": null
+    },
+    "FOUR_STORIES.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FOUR_STORIES.md",
+      "sha256": "fae4b97437d9cfac75f7b84a9b677ba288c8b4e58f5e475eed45ea9a63812020",
+      "bytes": 509679,
+      "rows": null
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FOUR_STORIES_RECEIPT.json",
+      "sha256": "22381e774e538ed5bc4fe05f7fd50c64efc06d5f61c6f65eb65cde2851049f0d",
+      "bytes": 8413,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FUNCTIONALITY_RECEIPT.json",
+      "sha256": "933e477207ae585642a0db1fc382841a1e032df8ae227da7d132a1b22ba472fc",
+      "bytes": 19571,
+      "rows": null
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\SMOKE_CRIJEA.md",
+      "sha256": "3b3a516b231512dc1a07eabef1bd074793806a8cdaec4a3cd1398c068d2448cd",
+      "bytes": 163014,
+      "rows": null
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\SMOKE_CRIJEA_RECEIPT.json",
+      "sha256": "4433e683e300fa1b3bc048237ef259077994cd4b705b4cb2620f5125deabda15",
+      "bytes": 1968,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\SOURCE_RECEIPTS.json",
+      "sha256": "d6d0bb82402b35753b6c1376e978c383c0866b79b0616a722e48fa976f959c1e",
+      "bytes": 25235,
+      "rows": null
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927,
+      "rows": null
+    }
+  }
+}

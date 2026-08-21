@@ -270,7 +270,7 @@ function accumulateExamTraceStats(row) {
 function makeLosslessTraceNormalizer() {
   const sequenceByLeg = new Map();
   const fields = [
-    "event_id", "leg_identity", "category", "price_region", "sequence", "timestamp_epoch", "t_minus_scheduled_seconds", "t_minus_actual_bell_seconds", "t_minus_pre_match_boundary_seconds", "receipt",
+    "event_id", "leg_identity", "category", "price_region", "sequence", "timestamp_epoch", "hours_from_discovery", "t_minus_scheduled_seconds", "t_minus_actual_bell_seconds", "t_minus_pre_match_boundary_seconds", "receipt",
     "bid", "ask", "last_traded", "spread", "ask_dwell_seconds", "top_ask_size", "bid_depth_5", "ask_depth_5",
     "onset_passed", "onset_candidate", "onset_timestamp_epoch",
     "read_passed", "read_state", "quote_path_state", "pressure_state", "read_evidence_class", "read_span_seconds", "read_evidence_receipts", "read_book_receipts", "read_print_receipts", "read_comparable_book_transitions", "read_comparable_print_transitions", "read_rising_score", "read_falling_score", "last_directional_evidence_kind", "last_directional_evidence_receipt", "last_directional_evidence_magnitude_cents",
@@ -284,7 +284,7 @@ function makeLosslessTraceNormalizer() {
       const sequence = (sequenceByLeg.get(row.leg_identity) ?? 0) + 1; sequenceByLeg.set(row.leg_identity, sequence);
       const e = row.read?.full_post_onset_evidence, a = row.coherence?.disagreement_adjudication, p = row.palantir, grid = p?.N4?.grid;
       const values = [
-        row.event_id, row.leg_identity, row.category, row.price_region, sequence, row.timestamp_epoch, row.t_minus_scheduled_seconds, row.t_minus_actual_bell_seconds, row.t_minus_pre_match_boundary_seconds, row.receipt,
+        row.event_id, row.leg_identity, row.category, row.price_region, sequence, row.timestamp_epoch, row.hours_from_discovery, row.t_minus_scheduled_seconds, row.t_minus_actual_bell_seconds, row.t_minus_pre_match_boundary_seconds, row.receipt,
         row.observation?.bid, row.observation?.ask, row.observation?.last_traded, row.observation?.spread, row.observation?.ask_dwell_seconds, row.observation?.top_ask_size, row.observation?.bid_depth_5, row.observation?.ask_depth_5,
         row.onset?.passed, row.onset?.selected_candidate, row.onset?.timestamp_epoch,
         row.read?.passed, row.read?.state, row.read?.quote_path_state, row.read?.pressure_state, row.read?.evidence, e?.span_seconds, e?.consulted?.evidence_receipts, e?.consulted?.book_receipts, e?.consulted?.print_receipts, e?.consulted?.comparable_book_transitions, e?.consulted?.comparable_print_transitions, e?.weighted_scores_cents?.rising, e?.weighted_scores_cents?.falling, e?.last_directional_evidence?.kind, e?.last_directional_evidence?.receipt, e?.last_directional_evidence?.magnitude_cents,
@@ -309,6 +309,7 @@ function compactV54TraceRow(row) {
     category: row.category,
     price_region: row.price_region,
     timestamp_epoch: row.timestamp_epoch,
+    hours_from_discovery: row.hours_from_discovery,
     t_minus_scheduled_seconds: row.t_minus_scheduled_seconds,
     t_minus_actual_bell_seconds: row.t_minus_actual_bell_seconds,
     t_minus_pre_match_boundary_seconds: row.t_minus_pre_match_boundary_seconds,
@@ -362,7 +363,7 @@ function v54LicenseSpans(traceRows) {
         read: compact.read ? { passed: compact.read.passed, state: compact.read.state, quote_path_state: compact.read.quote_path_state, pressure_state: compact.read.pressure_state } : null,
         pair_model: compact.pair_model ? { enabled: compact.pair_model.enabled, polarity: compactPolarity, window: compact.pair_model.window, applied: compact.pair_model.applied, reason: compact.pair_model.reason } : null,
         plan: compact.plan ? { model: compact.plan.model, polarity: compactPolarity, windows: compact.plan.windows, l16_anchor_targets_cents: compact.plan.l16_anchor_targets_cents, undecided_fallback: compact.plan.undecided_fallback, fading_path: compact.plan.fading_path, strengthening_path: compact.plan.strengthening_path } : null,
-        joint_license: compact.joint_license ? { law: compact.joint_license.law, model: compact.joint_license.model, complete: compact.joint_license.complete, polarity: compactPolarity, windows: compact.joint_license.windows, both_levels: compact.joint_license.both_levels, budget_split: compact.joint_license.budget_split, adjustments: compact.joint_license.adjustments, sentence_template: compact.joint_license.sentence?.replace(/At receipt [^,]+,/, "At receipt {RECEIPT},") ?? null } : null,
+        joint_license: compact.joint_license ? { law: compact.joint_license.law, model: compact.joint_license.model, complete: compact.joint_license.complete, polarity: compactPolarity, windows: compact.joint_license.windows, both_levels: compact.joint_license.both_levels, budget_split: compact.joint_license.budget_split, adjustments: compact.joint_license.adjustments, action: compact.joint_license.action, sentence_action_assertion: compact.joint_license.sentence_action_assertion, sentence_template: compact.joint_license.sentence?.replace(/At receipt [^,]+,/, "At receipt {RECEIPT},") ?? null } : null,
         conservation_input_identity: compact.conservation_input_identity,
         pair_entry_conservation: compact.pair_entry_conservation,
         joint_target_conservation: compact.joint_target_conservation,
@@ -388,10 +389,12 @@ function v54LicenseSpans(traceRows) {
           semantic,
           representative_sentence: compact.joint_license?.sentence ?? null,
           first_timestamp_epoch: compact.timestamp_epoch,
+          first_hours_from_discovery: compact.hours_from_discovery,
           first_t_minus_scheduled_seconds: compact.t_minus_scheduled_seconds,
           first_t_minus_actual_bell_seconds: compact.t_minus_actual_bell_seconds,
           first_receipt: compact.receipt,
           last_timestamp_epoch: compact.timestamp_epoch,
+          last_hours_from_discovery: compact.hours_from_discovery,
           last_t_minus_scheduled_seconds: compact.t_minus_scheduled_seconds,
           last_t_minus_actual_bell_seconds: compact.t_minus_actual_bell_seconds,
           last_receipt: compact.receipt,
@@ -401,6 +404,7 @@ function v54LicenseSpans(traceRows) {
       }
       current.receipt_count += 1;
       current.last_timestamp_epoch = compact.timestamp_epoch;
+      current.last_hours_from_discovery = compact.hours_from_discovery;
       current.last_t_minus_scheduled_seconds = compact.t_minus_scheduled_seconds;
       current.last_t_minus_actual_bell_seconds = compact.t_minus_actual_bell_seconds;
       current.last_receipt = compact.receipt;
@@ -559,6 +563,7 @@ function countBy(rows, fn) {
 function clockFields(ts, base) {
   return {
     timestamp_epoch: ts,
+    hours_from_discovery: Number.isFinite(base.discovery_epoch ?? base.left) ? (ts - (base.discovery_epoch ?? base.left)) / 3600 : null,
     t_minus_scheduled_seconds: Number.isFinite(base.scheduled) ? base.scheduled - ts : null,
     t_minus_actual_bell_seconds: Number.isFinite(base.actual_bell) ? base.actual_bell - ts : null,
     t_minus_pre_match_boundary_seconds: base.right - ts,
@@ -1427,14 +1432,16 @@ function auditV54Receipts(traceRows, postActions) {
     no_same_label_pair_representable: traceRows.filter((row) => row.v54_pair_model?.polarity?.tag === "DECIDED" && row.v54_pair_model.polarity.strengthening_leg_id === row.v54_pair_model.polarity.fading_leg_id).map((row) => `${row.leg_identity}@${row.receipt}`),
     joint_license_complete_coherent_and_readable_on_every_bid: postActions.filter((row) => {
       const license = row.birth_license?.joint_license, split = license?.budget_split;
-      return !(license?.law === "L23_PAIR_UNIT_PROOF" && license.complete === true && typeof license.sentence === "string" && license.sentence.trim().length > 0 && split && Number.isInteger(split.sum_cents) && split.sum_cents <= 99);
+      return !(license?.law === "L23_PAIR_UNIT_PROOF" && license.complete === true && typeof license.sentence === "string" && license.sentence.trim().length > 0 && license.sentence_action_assertion?.equal === true && split && Number.isInteger(split.sum_cents) && split.sum_cents <= 99);
     }).map((row) => `${row.leg_identity}@${row.receipt}`),
-    fading_path_byte_equal_to_lineage: traceRows.filter((row) => row.v54_pair_model?.window === "LATE" && row.v54_pair_model?.polarity?.tag === "DECIDED" && row.leg_identity.endsWith(`|${row.v54_pair_model.polarity.fading_leg_id}`) && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
-    undecided_path_byte_equal_to_lineage: traceRows.filter((row) => row.v54_pair_model?.polarity?.tag === "UNDECIDED" && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
+    sentence_action_equal_on_every_written_license: traceRows.filter((row) => typeof row.joint_license?.sentence === "string" && row.joint_license.sentence_action_assertion?.equal !== true).map((row) => `${row.leg_identity}@${row.receipt}`),
+    fading_path_byte_equal_to_lineage: traceRows.filter((row) => row.v54_pair_model?.reason !== "V54_FORMATION_NOT_SETTLED_NO_POST" && row.v54_pair_model?.window === "LATE" && row.v54_pair_model?.polarity?.tag === "DECIDED" && row.leg_identity.endsWith(`|${row.v54_pair_model.polarity.fading_leg_id}`) && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
+    undecided_path_byte_equal_to_lineage: traceRows.filter((row) => row.v54_pair_model?.reason !== "V54_FORMATION_NOT_SETTLED_NO_POST" && row.v54_pair_model?.polarity?.tag === "UNDECIDED" && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
+    preformation_gate_only_nulls_lineage: traceRows.filter((row) => row.v54_pair_model?.reason === "V54_FORMATION_NOT_SETTLED_NO_POST" && (!['HOLD_REST', 'CANCEL_REST'].includes(row.final_action) || row.final_target_cents !== null)).map((row) => `${row.leg_identity}@${row.receipt}`),
     conservation_inputs_byte_equal: traceRows.filter((row) => row.conservation_input_identity?.byte_equal !== true).map((row) => `${row.leg_identity}@${row.receipt}`),
     no_pre_formation_anchor_consumption: postActions.filter((row) => {
       const own = row.birth_license?.game_view?.legs?.[row.leg_identity.split("|").at(-1)];
-      return row.birth_license?.level?.v54_pair_model?.applied === true && Number.isFinite(own?.l16_formation_anchor?.formation_end_epoch) && row.timestamp_epoch < own.l16_formation_anchor.formation_end_epoch;
+      return Number.isFinite(own?.l16_formation_anchor?.formation_end_epoch) && row.timestamp_epoch < own.l16_formation_anchor.formation_end_epoch;
     }).map((row) => `${row.leg_identity}@${row.receipt}`),
     l16_anchor_provenance_on_strengthening_bids: postActions.filter((row) => row.birth_license?.level?.v54_pair_model?.applied === true && row.birth_license?.game_view?.provenance?.formation_anchor?.law !== "L16").map((row) => `${row.leg_identity}@${row.receipt}`),
     joint_target_at_or_below_99_per_receipt: traceRows.filter((row) => Number.isInteger(row.final_target_cents) && Number.isInteger(row.joint_target_conservation?.counterpart_cents) && row.final_target_cents + row.joint_target_conservation.counterpart_cents > 99).map((row) => `${row.leg_identity}@${row.receipt}:${row.final_target_cents}+${row.joint_target_conservation.counterpart_cents}`),
@@ -2955,7 +2962,7 @@ async function main() {
   for (const span of spans) {
     const scheduled = Number.isFinite(span.formation_clock?.t_minus_scheduled_seconds) ? span.w1_left_epoch + span.formation_clock.t_minus_scheduled_seconds : null;
     const actualBell = Number.isFinite(span.formation_clock?.t_minus_actual_bell_seconds) ? span.w1_left_epoch + span.formation_clock.t_minus_actual_bell_seconds : null;
-    const base = { event_id: span.event_id, category: span.category, starting_price_split: span.starting_price_split, bell_confidence: span.precision_class, edge_source_field: span.edge_source_field, left: span.w1_left_epoch, right: span.w1_right_epoch, scheduled, actual_bell: actualBell, v52_flow_trace: isV52FullExam || (isV52 && Boolean(v52ShortEvent(span.event_id))), legs: {} };
+    const base = { event_id: span.event_id, category: span.category, starting_price_split: span.starting_price_split, bell_confidence: span.precision_class, edge_source_field: span.edge_source_field, discovery_epoch: span.w1_left_epoch, left: span.w1_left_epoch, right: span.w1_right_epoch, scheduled, actual_bell: actualBell, v52_flow_trace: isV52FullExam || (isV52 && Boolean(v52ShortEvent(span.event_id))), legs: {} };
     for (const leg of span.per_leg) {
       const prior = traceByLeg.get(leg.leg_identity), reach = reachByLeg.get(leg.leg_identity);
       ensure(prior && reach, `missing leg binding ${leg.leg_identity}`);
@@ -3025,7 +3032,8 @@ async function main() {
     ...((isV52q || isV52r) ? [{ iteration: "V52P", commit: V52P_COMMIT, path: ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52P_COMMIT, ".claude/window1_live_v4_replay/v52p_ripeness_gated_role_binding_20260817/COHORT_SELECTION_RECEIPT.json") }] : []),
     ...(isV52r ? [{ iteration: "V52Q", commit: V52Q_COMMIT, path: ".claude/window1_live_v4_replay/v52q_anchor_correction_20260818/COHORT_SELECTION_RECEIPT.json", bytes: gitShow(V52Q_COMMIT, ".claude/window1_live_v4_replay/v52q_anchor_correction_20260818/COHORT_SELECTION_RECEIPT.json") }] : []),
   ] : null;
-  const v53PreRegistrationPath = path.join(repo, isV54
+  const v54PinsSource = isV54 && stage === "pins5" ? arg("--pins-source", null) : null;
+  const v53PreRegistrationPath = v54PinsSource ? path.resolve(v54PinsSource) : path.join(repo, isV54
     ? ".claude/window1_v53_04_preregistration_20260820/PRE_REGISTRATION.json"
     : isV5304
     ? (stage === "pins5" ? ".claude/window1_v53_03_preregistration_20260820/PRE_REGISTRATION.json" : ".claude/window1_v53_04_preregistration_20260820/PRE_REGISTRATION.json")
@@ -3143,14 +3151,16 @@ async function main() {
       no_same_label_pair_representable: candidateFlow.trace.filter((row) => row.v54_pair_model?.polarity?.tag === "DECIDED" && row.v54_pair_model.polarity.strengthening_leg_id === row.v54_pair_model.polarity.fading_leg_id).map((row) => `${row.leg_identity}@${row.receipt}`),
       joint_license_complete_coherent_and_readable_on_every_bid: postActions.filter((row) => {
         const license = row.birth_license?.joint_license, split = license?.budget_split;
-        return !(license?.law === "L23_PAIR_UNIT_PROOF" && license.complete === true && typeof license.sentence === "string" && license.sentence.trim().length > 0 && split && Number.isInteger(split.sum_cents) && split.sum_cents <= 99);
+        return !(license?.law === "L23_PAIR_UNIT_PROOF" && license.complete === true && typeof license.sentence === "string" && license.sentence.trim().length > 0 && license.sentence_action_assertion?.equal === true && split && Number.isInteger(split.sum_cents) && split.sum_cents <= 99);
       }).map((row) => `${row.leg_identity}@${row.receipt}`),
-      fading_path_byte_equal_to_lineage: candidateFlow.trace.filter((row) => row.v54_pair_model?.window === "LATE" && row.v54_pair_model?.polarity?.tag === "DECIDED" && row.leg_identity.endsWith(`|${row.v54_pair_model.polarity.fading_leg_id}`) && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
-      undecided_path_byte_equal_to_lineage: candidateFlow.trace.filter((row) => row.v54_pair_model?.polarity?.tag === "UNDECIDED" && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
+      sentence_action_equal_on_every_written_license: candidateFlow.trace.filter((row) => typeof row.joint_license?.sentence === "string" && row.joint_license.sentence_action_assertion?.equal !== true).map((row) => `${row.leg_identity}@${row.receipt}`),
+      fading_path_byte_equal_to_lineage: candidateFlow.trace.filter((row) => row.v54_pair_model?.reason !== "V54_FORMATION_NOT_SETTLED_NO_POST" && row.v54_pair_model?.window === "LATE" && row.v54_pair_model?.polarity?.tag === "DECIDED" && row.leg_identity.endsWith(`|${row.v54_pair_model.polarity.fading_leg_id}`) && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
+      undecided_path_byte_equal_to_lineage: candidateFlow.trace.filter((row) => row.v54_pair_model?.reason !== "V54_FORMATION_NOT_SETTLED_NO_POST" && row.v54_pair_model?.polarity?.tag === "UNDECIDED" && (row.final_action !== row.lineage_decision?.action || row.final_target_cents !== row.lineage_target_cents)).map((row) => `${row.leg_identity}@${row.receipt}`),
+      preformation_gate_only_nulls_lineage: candidateFlow.trace.filter((row) => row.v54_pair_model?.reason === "V54_FORMATION_NOT_SETTLED_NO_POST" && (!["HOLD_REST", "CANCEL_REST"].includes(row.final_action) || row.final_target_cents !== null)).map((row) => `${row.leg_identity}@${row.receipt}`),
       conservation_inputs_byte_equal: candidateFlow.trace.filter((row) => row.conservation_input_identity?.byte_equal !== true).map((row) => `${row.leg_identity}@${row.receipt}`),
       no_pre_formation_anchor_consumption: postActions.filter((row) => {
         const own = row.birth_license?.game_view?.legs?.[row.leg_identity.split("|").at(-1)];
-        return row.birth_license?.level?.v54_pair_model?.applied === true && Number.isFinite(own?.l16_formation_anchor?.formation_end_epoch) && row.timestamp_epoch < own.l16_formation_anchor.formation_end_epoch;
+        return Number.isFinite(own?.l16_formation_anchor?.formation_end_epoch) && row.timestamp_epoch < own.l16_formation_anchor.formation_end_epoch;
       }).map((row) => `${row.leg_identity}@${row.receipt}`),
       l16_anchor_provenance_on_strengthening_bids: postActions.filter((row) => row.birth_license?.level?.v54_pair_model?.applied === true && row.birth_license?.game_view?.provenance?.formation_anchor?.law !== "L16").map((row) => `${row.leg_identity}@${row.receipt}`),
       joint_target_at_or_below_99_per_receipt: candidateFlow.trace.filter((row) => Number.isInteger(row.final_target_cents) && Number.isInteger(row.joint_target_conservation?.counterpart_cents) && row.final_target_cents + row.joint_target_conservation.counterpart_cents > 99).map((row) => `${row.leg_identity}@${row.receipt}:${row.final_target_cents}+${row.joint_target_conservation.counterpart_cents}`),

@@ -1,0 +1,34 @@
+{
+  "scope": "V54_01_PINS_SMOKE_5_ONLY",
+  "full_804_run": false,
+  "comparator": {
+    "games": 5,
+    "completed_pairs": 3,
+    "under_par_pairs": 3,
+    "locked_cents": 19,
+    "average_locked_delta_cents": 6.333333333333333,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL"
+    ]
+  },
+  "candidate": {
+    "games": 5,
+    "completed_pairs": 3,
+    "under_par_pairs": 3,
+    "locked_cents": 19,
+    "average_locked_delta_cents": 6.333333333333333,
+    "completed_event_ids": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL"
+    ]
+  },
+  "pins_smoke_gate": {
+    "candidate_locked_cents_at_least_lineage": true,
+    "zero_build_assertion_violations": true,
+    "pass": true
+  },
+  "disposition": "PINS_SMOKE_PASS_PREREGISTRATION_PERMITTED"
+}

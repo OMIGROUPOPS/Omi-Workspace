@@ -1,0 +1,45 @@
+{
+  "pass": true,
+  "assertions": {
+    "no_pre_onset_inputs": [],
+    "no_span_fraction_inputs": [],
+    "no_static_depth_targets": [],
+    "complete_license_on_every_bid": [],
+    "N9_advisory_only": [],
+    "WTA_CHALL_role_disabled": [],
+    "post_onset_view_only": [],
+    "pair_polarity_type_invariant": [],
+    "no_same_label_pair_representable": [],
+    "joint_license_complete_coherent_and_readable_on_every_bid": [],
+    "sentence_action_equal_on_every_written_license": [],
+    "fading_path_byte_equal_to_lineage": [],
+    "undecided_path_byte_equal_to_lineage": [],
+    "preformation_gate_only_nulls_lineage": [],
+    "conservation_inputs_byte_equal": [],
+    "no_pre_formation_anchor_consumption": [],
+    "l16_anchor_provenance_on_strengthening_bids": [],
+    "joint_target_at_or_below_99_per_receipt": []
+  },
+  "inherited_flow_assertions": {
+    "zero_posts_pre_onset": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_posts_on_no_tape": {
+      "violations": [],
+      "pass": true
+    },
+    "zero_levels_from_displayed_bids": {
+      "violations": [],
+      "pass": true
+    },
+    "every_post_has_four_license_fields": {
+      "violations": [],
+      "pass": true
+    },
+    "scavenger_off": {
+      "violations": [],
+      "pass": true
+    }
+  }
+}

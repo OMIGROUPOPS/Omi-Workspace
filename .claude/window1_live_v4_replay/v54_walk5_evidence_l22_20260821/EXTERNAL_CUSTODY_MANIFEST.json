@@ -1,0 +1,15 @@
+{
+  "label": "V54_WALK5_L22_EXTERNAL_CUSTODY",
+  "law": "L22",
+  "artifact": "FULL_DECISION_TRACE_5.jsonl.gz",
+  "path": "C:\\Users\\omigr\\OMI-Workspace\\.claude\\window1_live_v4_replay\\v54_walk5_live_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+  "sha256": "085fbf04dbc16f8c76691a0823a5370061afc9d738b5eefda9eab92fef4ccbc4",
+  "bytes": 55209610,
+  "rows": 133626,
+  "reason_not_committed": "L22 forbids committed files above 50 MB.",
+  "equivalent_alias": "FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz",
+  "source_commit": "8efff0a4",
+  "full_804_run": false,
+  "sealed_read": false,
+  "live_mutation": false
+}

@@ -1,0 +1,70 @@
+"use strict";
+
+const assert = require("assert");
+const os = require("../analysis/window1_v54_functionable_os.js");
+
+const meta = {
+  event_id: "TEST-EVENT",
+  event_date: "26JUL01",
+  category: "ATP_MAIN",
+  discovery_epoch: 100,
+  bell_epoch: 1000,
+  bell_source: "TEST",
+  leg_ids: ["AAA", "BBB"],
+  anchors_cents: { AAA: 40, BBB: 60 },
+  formation_end_epochs: { AAA: 200, BBB: 200 },
+};
+const state = os.createTapeState(meta);
+const books = [
+  [110, "AAA", 39, 41, 40, 100, 120], [110, "BBB", 59, 61, 60, 120, 100],
+  [150, "AAA", 38, 40, 39, 110, 130], [150, "BBB", 60, 62, 61, 130, 110],
+  [210, "AAA", 37, 39, 38, 120, 140], [210, "BBB", 61, 63, 62, 140, 120],
+];
+for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(state, leg, { timestamp_epoch: ts, receipt: `${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });
+os.observe(state, "AAA", { timestamp_epoch: 211, receipt: "print-a", kind: "PRINT", price_cents: 38, size: 5 });
+os.observe(state, "BBB", { timestamp_epoch: 211, receipt: "print-b", kind: "PRINT", price_cents: 62, size: 7 });
+
+const reads = os.readAll(state);
+assert.equal(Object.keys(reads).length, 16);
+for (const name of os.READER_NAMES) {
+  assert.equal(reads[name].status, "CONNECTED");
+  assert.equal(reads[name].reader, name);
+  assert.ok(Array.isArray(reads[name].receipts));
+}
+assert.equal(reads.anchor_settle.value.formation_progress.AAA, 1);
+assert.equal(reads.opening_split.value.sum_cents, 100);
+assert.equal(reads.drift.value.AAA.drift_cents, -2);
+assert.equal(reads.drift.value.BBB.drift_cents, 2);
+state.positions.AAA.credited = true;
+state.positions.AAA.entry_cents = 19;
+assert.equal(reads.half_pair_state.value.legs.AAA.credited, false, "reader receipt must remain a point-in-time snapshot");
+
+const vector = os.vectorFromReads(state, reads);
+const corpus = [
+  { event_id: "TEST-EVENT", event_date: "26JUL01", category: "ATP_MAIN", quality: "SELF", vector, legs: [], source_receipts: [] },
+  { event_id: "NEIGHBOR-1", event_date: "26JUN01", category: "ATP_MAIN", quality: "RANGE", vector: { ...vector, leg0_drift_cents: -3, leg1_drift_cents: 3 }, legs: [{ leg_id: "N1A", anchor_cents: 40, low_cents: 35 }, { leg_id: "N1B", anchor_cents: 60, low_cents: 55 }], source_receipts: ["R1"] },
+  { event_id: "NEIGHBOR-2", event_date: "26MAY01", category: "ATP_CHALL", quality: "HIST", vector: { ...vector, category: "ATP_CHALL", leg0_drift_cents: -10 }, legs: [{ leg_id: "N2A", anchor_cents: 40, low_cents: 30 }, { leg_id: "N2B", anchor_cents: 60, low_cents: 50 }], source_receipts: ["R2"] },
+];
+const neighborhood = os.retrieveNeighborhood(corpus, vector, "TEST-EVENT", 2);
+assert.equal(neighborhood.length, 2);
+assert.ok(neighborhood.every((row) => row.event_id !== "TEST-EVENT"));
+assert.equal(neighborhood[0].event_id, "NEIGHBOR-1");
+assert.ok(neighborhood[0].score > neighborhood[1].score);
+
+const resources = os.EXPECTED_RESOURCE_IDS.map((id) => ({ id, status: "CONNECTED", receipt: `${id}-receipt` }));
+const derivation = os.deriveAction({ state, reads, neighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38 }, resources });
+assert.equal(derivation.sentence_action_assertion.equal, true);
+assert.match(derivation.sentence, /ACTION=/);
+assert.equal(derivation.pair_conservation.at_or_below_99, true);
+assert.equal(derivation.resources_consulted.length, os.EXPECTED_RESOURCE_IDS.length);
+
+const beforeFormation = os.createTapeState(meta);
+os.observe(beforeFormation, "AAA", { timestamp_epoch: 150, receipt: "pre-a", kind: "BOOK", bid_cents: 39, ask_cents: 41, last_trade_cents: 40 });
+os.observe(beforeFormation, "BBB", { timestamp_epoch: 150, receipt: "pre-b", kind: "BOOK", bid_cents: 59, ask_cents: 61, last_trade_cents: 60 });
+const beforeReads = os.readAll(beforeFormation), beforeVector = os.vectorFromReads(beforeFormation, beforeReads), beforeNeighbors = os.retrieveNeighborhood(corpus, beforeVector, "TEST-EVENT", 2);
+const blocked = os.deriveAction({ state: beforeFormation, reads: beforeReads, neighborhood: beforeNeighbors, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38 }, resources });
+assert.equal(blocked.action.action, "HOLD_REST");
+assert.equal(blocked.action.target_cents, null);
+assert.match(blocked.sentence, /ACTION=HOLD_REST; TARGET_CENTS=NONE/);
+
+console.log("window1_v54_functionable_os: PASS");

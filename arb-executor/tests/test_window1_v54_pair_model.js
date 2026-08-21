@@ -65,15 +65,32 @@ assert.match(license.sentence, /A is STRENGTHENING/);
 assert.match(license.sentence, /B is FADING/);
 assert.match(license.sentence, /EARLY/);
 assert.match(license.sentence, /LATE/);
+assert.match(license.sentence, /ACTION=PLACE_REST; TARGET_CENTS=50; ACTIVE_TARGET_BEFORE_CENTS=NONE\./);
+assert.equal(license.sentence_action_assertion.hard_assert, true);
+assert.equal(license.sentence_action_assertion.equal, true);
+
+const repriceLicense = policy.jointLicense({ legId: "A", activeTarget: 42, siblingCredited: false, siblingStandingTarget: null, book: { receipt: "book-eval" } }, plan, lineage, { action: "REPRICE_REST", target_cents: 50, reason: "V54" });
+assert.match(repriceLicense.sentence, /ACTION=REPRICE_REST; TARGET_CENTS=50; ACTIVE_TARGET_BEFORE_CENTS=42\./);
+assert.equal(repriceLicense.sentence_action_assertion.equal, true);
 
 const undecidedLicense = policy.jointLicense({ legId: "A", siblingCredited: false, siblingStandingTarget: null, book: { receipt: "book-eval" } }, conflictPlan, lineage, lineage);
 assert.equal(undecidedLicense.complete, true);
 assert.equal(undecidedLicense.polarity.tag, "UNDECIDED");
 assert.match(undecidedLicense.sentence, /frozen champion owns both levels/);
+assert.equal(undecidedLicense.sentence_action_assertion.equal, true);
 
 const impossible = { tag: "DECIDED", strengthening_leg_id: "A", fading_leg_id: "A" };
 const malformed = policy.jointLicense({ legId: "A", siblingCredited: false, book: { receipt: "book-eval" } }, { ...plan, polarity: impossible }, lineage, decision);
 assert.equal(malformed.complete, false);
+
+const fractionalAnchorContext = {
+  ...context,
+  formation_anchors: { ...context.formation_anchors, A: { value_cents: 50.5, formation_end_epoch: 100, source_receipt: "l16-A-half" } },
+};
+const fractionalAnchorView = policy.buildGameView(states, fractionalAnchorContext);
+assert.equal(fractionalAnchorView.legs.A.l16_formation_anchor.raw_value_cents, 50.5);
+assert.equal(fractionalAnchorView.legs.A.l16_formation_anchor.value_cents, 50);
+assert.equal(fractionalAnchorView.legs.A.l16_formation_anchor.integerization, "L16_SERIES_FLOORED_AT_FORMATION_END");
 
 // The dense-replay cache is value-equivalent to the original prefix scans.
 const cached = policy.emptyLegState(200);

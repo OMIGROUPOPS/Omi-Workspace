@@ -1,0 +1,38 @@
+{
+  "label": "V54_WALK5_REPAIR_POPULATION_V6",
+  "scope": "REPAIR REGRESSION ONLY; SAME FOUR STORIES PLUS CRIJEA SMOKE; NO 804",
+  "population": {
+    "standing_pins": [
+      {
+        "code": "26JUL12GIUBAR",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "category": "ATP_CHALL",
+        "role": "WALK5_REPAIR"
+      },
+      {
+        "code": "26JUL14URSPAL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "category": "ATP_CHALL",
+        "role": "WALK5_REPAIR"
+      },
+      {
+        "code": "26JUL14LAJSVA",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "category": "ATP_CHALL",
+        "role": "WALK5_REPAIR"
+      },
+      {
+        "code": "26JUL18DANPRA",
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "category": "ATP_MAIN",
+        "role": "WALK5_REPAIR"
+      },
+      {
+        "code": "26JUL13CRIJEA",
+        "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+        "category": "WTA_MAIN",
+        "role": "INTEGRATION_SMOKE_ONLY"
+      }
+    ]
+  }
+}

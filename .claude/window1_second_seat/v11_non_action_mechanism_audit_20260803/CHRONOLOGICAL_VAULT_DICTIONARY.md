@@ -18822,6 +18822,10 @@ Standing line: any operator ruling absent from this register is filed here same-
 
 | ruling | date | filing receipt |
 |---|---|---|
+| THE STORY LAW — story is the verdict; every assumption names every resource consulted; unconsulted available resource is stamped RESOURCE-GAP | 2026-08-21 | F-V53-051 |
+| THE CORPUS LAW — full January-present recorded library, every store, sealed excluded, leave-self-out; 804 is tune-test only with operator word | 2026-08-21 | F-V53-050 |
+| THE PATTERN LAW — variables are simultaneous/interdependent; narrowing continuous pattern owns every bid's when and why | 2026-08-21 | F-V53-049 |
+| THE FUNCTIONABILITY LAW — no story run until every component is connected and proven; degraded/disconnected is never silently skipped | 2026-08-21 | F-V53-048 |
 | UNKNOWN-BELL EXCLUSION — 20 games out of numerator and denominator; count printed on every scoreboard | 2026-08-21 | F-VS-024 |
 | F24 CLOSES NOT LAWFUL — truth-table closes are the only W1 closes | 2026-08-21 | F-VS-023 · F-V53-046 |
 | ONE CLOCK — hours-from-discovery; T-8h retired as a gate | 2026-08-21 | FILED NOW — F-VS-028 (census F-VS-017) |
@@ -18858,6 +18862,8 @@ Standing line: any operator ruling absent from this register is filed here same-
 - V54 on URSPAL: 110 applied receipts in one 21-minute window repriced PAL to its 38¢ formation anchor 2.2 h after the 40¢ floor had printed; nothing traded; champion rests resumed and filled; outcome identical (F-VS-025).
 - Close conflict: tape supports the truth table on all four legs; F24 lineage stamped NOT-LAWFUL-CLOSE; sweep 711/1,608 legs conflict across 470 games (F-VS-023, CLOSE_CONFLICT_SWEEP_1608.json).
 - Unknown-bell rule filed (F-VS-024). Nothing graded on F24 closes is senior.
+- REPAIRED: the six L22 evidence/custody files now land; URSPAL 110/110 sentences match actions; GIUBAR/DANPRA pre-formation leaks are zero; all 133,626 receipts use hours-from-discovery (F-V53-052, F-VS-029).
+- CC: URSPAL's tape-inferred bell remains at least 48 minutes late pending a stronger official timestamp (F-VS-030).
 
 ## k. COVERAGE PROOF (git-dated; 2026-08-21)
 
@@ -18868,9 +18874,18 @@ Standing line: any operator ruling absent from this register is filed here same-
 | 2026-05 | 235 | 0 | 0 |
 | 2026-06 | 95 | 3 | 0 |
 | 2026-07 | 2,117 | 811 | 0 (pre-L20) |
-| 2026-08 to date | 6,477 | 395 | F-V53-001..047 (47) + F-VS-001..028 (28) = 75 |
+| 2026-08 to date | 6,477 | 395 | F-V53-001..057 (57) + F-VS-001..030 (30) = 87 |
 
-F-V53 by date: 001–011 on 2026-08-19; 012–028 on 2026-08-20; 029–047 on 2026-08-20/21. F-VS 001–028 all 2026-08-21.
+F-V53 by date: 001–011 on 2026-08-19; 012–028 on 2026-08-20; 029–057 on 2026-08-20/21. F-VS 001–030 all 2026-08-21.
+
+## l. FUNCTIONABLE OS + FOUR STORIES v6 (2026-08-21)
+
+- Corpus: 12,509-game union. Named store counts and quality are hash-bound in `CORPUS_CENSUS.json`; binding `bf7d3a3f0eecf0dbc297d9e174ed949dc5aa1dedfd5e95030c3bae45ec27c640` (F-V53-053).
+- Functionability: 39/39 CONNECTED, zero degraded/disconnected; sixteen readers plus declared continuous similarity, named leave-self-out retrieval, derivation, and hard sentence/action emitter (F-V53-054).
+- CRIJEA: integration smoke only; 16/16 readers, 52 derivations, named neighbors, sentence/action and conservation pass, no grade (F-V53-054).
+- Four stories pass 1: GIUBAR Δ22 and URSPAL Δ23 complete; LAJSVA did not complete at 47/36 and broke the safety floor; DANPRA did not complete at 51/33. Self-stop fired; no adjustment or second pass (F-V53-055).
+- DANPRA exhibit: the 59/40 all-day look-alike neighborhood produced continuous low ratios 0.863019/0.788299; pair derivation stood 51/33 and did not chase (F-V53-057).
+- Scope: no full-804 run, sealed read, live mutation, order, position, deployment, or adjustment.
 
 ## Appendix B — inventory reconciliation (appended 2026-08-21, license 59b9d1ff)
 

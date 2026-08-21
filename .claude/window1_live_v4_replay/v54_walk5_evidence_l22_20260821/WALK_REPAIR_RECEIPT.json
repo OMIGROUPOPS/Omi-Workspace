@@ -1,0 +1,84 @@
+{
+  "label": "V54_WALK5_REPAIR_V6",
+  "pass": true,
+  "population": [
+    "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+    "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+    "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+    "KXATPMATCH-26JUL18DANPRA",
+    "KXWTAMATCH-26JUL13CRIJEA"
+  ],
+  "scope": {
+    "games": 5,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "sentence_action": {
+    "old_urspal_applied_receipts": 110,
+    "old_contradictory_sentences": 110,
+    "reemitted_receipts": 110,
+    "remaining_contradictory_sentences": 0,
+    "hard_assert_failures": []
+  },
+  "preformation": {
+    "old_leaks": [
+      {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "leaking_receipts": 72,
+        "maximum_seconds_early": 207,
+        "birth_posts": [
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|BAR",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-132",
+            "target_cents": 24,
+            "seconds_early": 207
+          },
+          {
+            "leg_identity": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+            "receipt": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.csv.gz#row-33",
+            "target_cents": 59,
+            "seconds_early": 207
+          }
+        ]
+      },
+      {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "leaking_receipts": 438,
+        "maximum_seconds_early": 4254,
+        "birth_posts": [
+          {
+            "leg_identity": "KXATPMATCH-26JUL18DANPRA|PRA",
+            "receipt": "KXATPMATCH-26JUL18DANPRA-PRA.csv.gz#row-29",
+            "target_cents": 9,
+            "seconds_early": 4254
+          }
+        ]
+      }
+    ],
+    "repaired_leaks": [],
+    "formation_gate_rows": 15653
+  },
+  "one_clock": {
+    "law": "HOURS_FROM_DISCOVERY",
+    "rows": 133626,
+    "missing": 0,
+    "minimum": 0,
+    "maximum": 26.531944444444445
+  },
+  "external_custody": {
+    "old_trace": {
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.claude\\window1_live_v4_replay\\v54_walk5_live_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "085fbf04dbc16f8c76691a0823a5370061afc9d738b5eefda9eab92fef4ccbc4",
+      "bytes": 55209610,
+      "rows": 133626
+    },
+    "repaired_trace": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_walk5_repair_v6_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439,
+      "rows": 133626,
+      "reason_not_committed": "L22 forbids committed files above 50 MB."
+    }
+  }
+}

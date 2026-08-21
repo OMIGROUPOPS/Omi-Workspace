@@ -1,0 +1,38 @@
+{
+  "label": "V54_PINS_SMOKE_POPULATION",
+  "fresh_cohort_drawn": false,
+  "source_path": ".claude/window1_v53_04_preregistration_20260820/PRE_REGISTRATION.json",
+  "source_label": "V53_04_STAGE1_PRE_REGISTRATION",
+  "standing_pins": [
+    {
+      "code": "26JUL12GIUBAR",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "category": "ATP_CHALL",
+      "role": "WALK5_SHA256_RANK_DRAW"
+    },
+    {
+      "code": "26JUL13CRIJEA",
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "category": "WTA_MAIN",
+      "role": "WALK5_SHA256_RANK_DRAW"
+    },
+    {
+      "code": "26JUL14URSPAL",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "category": "ATP_CHALL",
+      "role": "WALK5_SHA256_RANK_DRAW"
+    },
+    {
+      "code": "26JUL14LAJSVA",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "category": "ATP_CHALL",
+      "role": "WALK5_SHA256_RANK_DRAW"
+    },
+    {
+      "code": "26JUL18DANPRA",
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "category": "ATP_MAIN",
+      "role": "WALK5_SHA256_RANK_DRAW"
+    }
+  ]
+}

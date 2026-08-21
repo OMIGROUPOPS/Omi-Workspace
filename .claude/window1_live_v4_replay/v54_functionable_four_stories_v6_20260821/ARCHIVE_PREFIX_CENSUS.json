@@ -1,0 +1,81 @@
+{
+  "label": "DO_SPACES_PREFIX_CENSUS_PRESEALED_V6",
+  "filter": "TICKS/TRADES CONTRACT NAMES 26JAN THROUGH 26JUL; WS RECORDER FILENAMES 202601 THROUGH 202607; NO AUGUST-DATED DATA",
+  "inventory_mode": "READ_ONLY_PREFIX_LSJSON",
+  "roots": {
+    "ticks": {
+      "objects": 31767,
+      "bytes": 9375338339,
+      "games": 5776,
+      "categories_by_game": {
+        "ATP_CHALL": 2931,
+        "ATP_MAIN": 1029,
+        "WTA_CHALL": 768,
+        "WTA_MAIN": 1048
+      },
+      "min_modtime": "2026-06-10T16:45:31.213146643-04:00",
+      "max_modtime": "2026-07-28T08:40:46.673992407-04:00",
+      "smoke_receipt": "md5:5651155ab9c71d2eb2ba76e222d6e168@ticks/KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV.csv.gz"
+    },
+    "trades": {
+      "objects": 30813,
+      "bytes": 214580025,
+      "games": 5756,
+      "categories_by_game": {
+        "ATP_CHALL": 2920,
+        "ATP_MAIN": 1026,
+        "WTA_CHALL": 766,
+        "WTA_MAIN": 1044
+      },
+      "min_modtime": "2026-06-10T16:47:22.417398511-04:00",
+      "max_modtime": "2026-07-30T01:11:35.546293518-04:00",
+      "smoke_receipt": "md5:ad64f5d41b57c3f811006b4fbfeb1c0f@trades/KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV.csv.gz"
+    },
+    "ws_depth": {
+      "objects": 1050,
+      "bytes": 50595041911,
+      "games": 804,
+      "games_note": "The raw hourly files are multi-game and carry no event ID in the object path; 804 is the frozen source-ledger required-event mapping, not an object-path distinct count.",
+      "categories_by_game": {
+        "ATP_CHALL": 369,
+        "ATP_MAIN": 147,
+        "WTA_CHALL": 136,
+        "WTA_MAIN": 152
+      },
+      "min_modtime": "2026-06-23T02:00:00.008151396-04:00",
+      "max_modtime": "2026-08-06T19:54:40.833819780-04:00",
+      "content_span": "RECORDER FILENAMES 2026-06-23 THROUGH 2026-07-31",
+      "smoke_receipt": "md5:48a5503e3cbec40e56ed90651723b250@ws_depth/ws_20260712_00.jsonl.gz"
+    }
+  },
+  "supplemental": {
+    "subsecond": {
+      "games": 8477,
+      "rows": 25574898,
+      "span": "2026-05-14T00:00:00.626871Z..2026-07-28T12:40:45Z",
+      "categories": {
+        "ATP_CHALL": 2668,
+        "ATP_MAIN": 995,
+        "WTA_CHALL": 591,
+        "WTA_MAIN": 1017,
+        "OTHER": 3206
+      },
+      "receipt": "READ_ONLY_SQL:COUNT_DISTINCT_EVENT+COUNT+MIN_MAX_TS+GROUPED_CATEGORY"
+    },
+    "bookmaker_odds": {
+      "games": 837,
+      "rows": 120453,
+      "span": "2026-04-02 21:35:09..2026-07-08 23:13:41",
+      "categories": {
+        "UNKNOWN": 837
+      },
+      "distinct_te_match_id": 837,
+      "distinct_kalshi_ticker": 0,
+      "category_gap": "The durable odds backup has provider match IDs but no populated Kalshi ticker/category mapping.",
+      "receipt": "READ_ONLY_SQL:COUNT_DISTINCT_TE_MATCH_ID+COUNT+MIN_MAX_SCRAPED_AT"
+    }
+  },
+  "sealed_read": false,
+  "live_mutation": false,
+  "full_804_run": false
+}

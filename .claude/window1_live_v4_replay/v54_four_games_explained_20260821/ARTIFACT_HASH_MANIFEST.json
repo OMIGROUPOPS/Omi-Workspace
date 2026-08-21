@@ -1,0 +1,52 @@
+{
+  "label": "V54_FOUR_GAMES_EXPLAINED_HUMILITY_LEDGER",
+  "files": {
+    "EXPLANATION_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\EXPLANATION_RECEIPT.json",
+      "sha256": "08696b412d4643088c25fa8414449df57bc3f49e9167cf34c65ab860eeedd05d",
+      "bytes": 11287
+    },
+    "GAME_EXPLAINED_DANPRA.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_DANPRA.md",
+      "sha256": "1aa42cf774819497aa1d2e180849b977b48e27b650a4f01210a35e82f8d5ff75",
+      "bytes": 96958
+    },
+    "GAME_EXPLAINED_GIUBAR.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_GIUBAR.md",
+      "sha256": "972320ea679c7f7cdb70a3613806329f149dfc26b36b86f3c03e48a042178fcf",
+      "bytes": 91098
+    },
+    "GAME_EXPLAINED_LAJSVA.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_LAJSVA.md",
+      "sha256": "27c24e21c99f06524e7b967eedb88b46da1d57b31e6d83d8197491b1eff5bf13",
+      "bytes": 92553
+    },
+    "GAME_EXPLAINED_URSPAL.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_URSPAL.md",
+      "sha256": "517640f05473d2a8cb79f2bcc08e9e3c3a2d23ac275700fa0d9c1d715ff67f53",
+      "bytes": 94584
+    },
+    "HUMILITY_LEDGER.md": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\HUMILITY_LEDGER.md",
+      "sha256": "5543b51c84a87a9d8a2a09abfe9a99278089f9959cf3791b4748e5b36b2e55bf",
+      "bytes": 2478
+    }
+  },
+  "scope": {
+    "explanation_only": true,
+    "source_pass": 1,
+    "new_passes": 0,
+    "reruns": 0,
+    "tuning": false,
+    "full_804_run": false,
+    "fixed_804_read": false,
+    "sealed_read": false,
+    "live_mutation": false,
+    "targets": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "KXATPMATCH-26JUL18DANPRA"
+    ]
+  }
+}

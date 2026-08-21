@@ -1,0 +1,315 @@
+{
+  "label": "V54_FOUR_GAMES_EXPLAINED_HUMILITY_LEDGER",
+  "license": {
+    "law_index_commit": "dcac4032",
+    "law_index_sha256": "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6",
+    "laws": [
+      "L0",
+      "L8",
+      "L11",
+      "L18",
+      "L20",
+      "L22"
+    ]
+  },
+  "scope": {
+    "explanation_only": true,
+    "source_pass": 1,
+    "new_passes": 0,
+    "reruns": 0,
+    "tuning": false,
+    "full_804_run": false,
+    "fixed_804_read": false,
+    "sealed_read": false,
+    "live_mutation": false,
+    "targets": [
+      "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "KXATPMATCH-26JUL18DANPRA"
+    ]
+  },
+  "inputs": {
+    "pass1_story": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FOUR_STORIES.md",
+      "sha256": "fae4b97437d9cfac75f7b84a9b677ba288c8b4e58f5e475eed45ea9a63812020",
+      "bytes": 509679
+    },
+    "pass1_result": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FOUR_STORIES_RECEIPT.json",
+      "sha256": "22381e774e538ed5bc4fe05f7fd50c64efc06d5f61c6f65eb65cde2851049f0d",
+      "bytes": 8413
+    },
+    "corpus_index": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\CORPUS_INDEX.jsonl.gz",
+      "sha256": "210951fa9c1bd8d255e6501f7507144311b297b811bd992dd04a1ab46ff37ba1",
+      "bytes": 848328
+    },
+    "filtered_prints": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927
+    },
+    "range_custody": {
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\range_spectrum_v1.jsonl",
+      "sha256": "1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884",
+      "bytes": 130935927
+    },
+    "historical_custody": {
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\historical_events_materialized.csv",
+      "sha256": "46741cded0ccb0a24302da4bc7b77f1bb3b82707a8cceaa272a902bae683339a",
+      "bytes": 1041339
+    },
+    "truth_table": {
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "sha256": "f7bc71d8e615859db272d841e125bc4836a685d82bb2d6769762c9bc19e56729"
+    }
+  },
+  "games": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "short_id": "GIUBAR",
+      "pass1_turning_points": 19,
+      "explained_turning_points": [
+        1,
+        3,
+        6,
+        10,
+        11,
+        14,
+        19
+      ],
+      "story_words": 259,
+      "capture_vs_ceiling": {
+        "status": "PROVISIONAL_UNTIL_CC_RULES_BELL",
+        "bell_epoch": 1783876740,
+        "bell_source": "TAPE_INFERENCE",
+        "legs": [
+          {
+            "leg_id": "BAR",
+            "formation_epoch": 1783831858,
+            "minimum_cents": 16,
+            "minimum_epoch": 1783875275.261,
+            "minimum_iso": "2026-07-12T16:54:35.261Z",
+            "filtered_print_row": 37,
+            "print_receipt": "d491a073-04d2-66e9-2fc1-d805c6d5528d",
+            "captured_cents": 19,
+            "capture_gap_cents": 3,
+            "final_rest_cents": null,
+            "final_rest_shortfall_cents": null
+          },
+          {
+            "leg_id": "GIU",
+            "formation_epoch": 1783831858,
+            "minimum_cents": 49,
+            "minimum_epoch": 1783876335.036,
+            "minimum_iso": "2026-07-12T17:12:15.036Z",
+            "filtered_print_row": 63,
+            "print_receipt": "32f3190d-6328-42bd-986c-a06460cddb2e",
+            "captured_cents": 59,
+            "capture_gap_cents": 10,
+            "final_rest_cents": null,
+            "final_rest_shortfall_cents": null
+          }
+        ],
+        "pair_ceiling_sum_cents": 65,
+        "pair_ceiling_discount_cents": 35,
+        "captured_sum_cents": 78,
+        "captured_discount_cents": 22
+      },
+      "surprises": 8,
+      "hindsight_beaten_decisions": 34,
+      "post_credit_sentence_actions": 15,
+      "unexplained": [
+        "No receipt names the exogenous cause of the late BAR/GIU collapse; the stores contain market data, not player-status news.",
+        "The bell is TAPE_INFERENCE, not a CC-ratified official time, so the ceiling remains provisional.",
+        "The derivation receipt does not explain why a credited leg still receives a PLACE_REST sentence while the executor silently suppresses it."
+      ],
+      "file": "GAME_EXPLAINED_GIUBAR.md"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "short_id": "URSPAL",
+      "pass1_turning_points": 23,
+      "explained_turning_points": [
+        1,
+        2,
+        6,
+        9,
+        10,
+        12,
+        23
+      ],
+      "story_words": 219,
+      "capture_vs_ceiling": {
+        "status": "PROVISIONAL_UNTIL_CC_RULES_BELL",
+        "bell_epoch": 1784045100,
+        "bell_source": "TAPE_INFERENCE",
+        "legs": [
+          {
+            "leg_id": "PAL",
+            "formation_epoch": 1784001495,
+            "minimum_cents": 30,
+            "minimum_epoch": 1784042339.263,
+            "minimum_iso": "2026-07-14T15:18:59.263Z",
+            "filtered_print_row": 4335,
+            "print_receipt": "cd48d559-68f1-5b3d-a8e4-d3c3fc43401e",
+            "captured_cents": 31,
+            "capture_gap_cents": 1,
+            "final_rest_cents": null,
+            "final_rest_shortfall_cents": null
+          },
+          {
+            "leg_id": "URS",
+            "formation_epoch": 1784001495,
+            "minimum_cents": 28,
+            "minimum_epoch": 1784044917.146,
+            "minimum_iso": "2026-07-14T16:01:57.146Z",
+            "filtered_print_row": 4399,
+            "print_receipt": "4b3658d8-7e56-5420-a06d-fa28d6aa5af9",
+            "captured_cents": 46,
+            "capture_gap_cents": 18,
+            "final_rest_cents": null,
+            "final_rest_shortfall_cents": null
+          }
+        ],
+        "pair_ceiling_sum_cents": 58,
+        "pair_ceiling_discount_cents": 42,
+        "captured_sum_cents": 77,
+        "captured_discount_cents": 23
+      },
+      "surprises": 28,
+      "hindsight_beaten_decisions": 44,
+      "post_credit_sentence_actions": 26,
+      "unexplained": [
+        "The cause of URS falling from the sixties to 28 is absent from every connected market store.",
+        "CC identified a likely late bell but did not replace L11's truth-table epoch; the lawful analysis window remains disputed but unchanged.",
+        "Post-credit action sentences describe rests that the credited guard does not execute."
+      ],
+      "file": "GAME_EXPLAINED_URSPAL.md"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "short_id": "LAJSVA",
+      "pass1_turning_points": 20,
+      "explained_turning_points": [
+        1,
+        3,
+        5,
+        9,
+        16,
+        18,
+        20
+      ],
+      "story_words": 242,
+      "capture_vs_ceiling": {
+        "status": "PROVISIONAL_UNTIL_CC_RULES_BELL",
+        "bell_epoch": 1784078400,
+        "bell_source": "MACHINE_RECEIPT",
+        "legs": [
+          {
+            "leg_id": "LAJ",
+            "formation_epoch": 1784007603,
+            "minimum_cents": 51,
+            "minimum_epoch": 1784060123.219,
+            "minimum_iso": "2026-07-14T20:15:23.219Z",
+            "filtered_print_row": 5267,
+            "print_receipt": "7fb0df36-2082-795a-5cb6-f311235289d1",
+            "captured_cents": null,
+            "capture_gap_cents": null,
+            "final_rest_cents": 47,
+            "final_rest_shortfall_cents": 4
+          },
+          {
+            "leg_id": "SVA",
+            "formation_epoch": 1784007603,
+            "minimum_cents": 41,
+            "minimum_epoch": 1784020201.83,
+            "minimum_iso": "2026-07-14T09:10:01.830Z",
+            "filtered_print_row": 4271,
+            "print_receipt": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+            "captured_cents": null,
+            "capture_gap_cents": null,
+            "final_rest_cents": 36,
+            "final_rest_shortfall_cents": 5
+          }
+        ],
+        "pair_ceiling_sum_cents": 92,
+        "pair_ceiling_discount_cents": 8,
+        "captured_sum_cents": null,
+        "captured_discount_cents": null
+      },
+      "surprises": 13,
+      "hindsight_beaten_decisions": 31,
+      "post_credit_sentence_actions": 0,
+      "unexplained": [
+        "The receipts do not explain why both legs remained shallower than the neighborhood's weighted eventual lows.",
+        "Pass 1 has no same-elapsed-stage survival table, so a corpus remedy cannot be claimed without a forbidden new analysis pass.",
+        "The two per-side minima occurred at different times; the 92-cent ceiling is a standing-rest opportunity, not a simultaneous displayed pair."
+      ],
+      "file": "GAME_EXPLAINED_LAJSVA.md"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "short_id": "DANPRA",
+      "pass1_turning_points": 19,
+      "explained_turning_points": [
+        1,
+        4,
+        6,
+        11,
+        12,
+        15,
+        18,
+        19
+      ],
+      "story_words": 222,
+      "capture_vs_ceiling": {
+        "status": "PROVISIONAL_UNTIL_CC_RULES_BELL",
+        "bell_epoch": 1784373060,
+        "bell_source": "TAPE_INFERENCE",
+        "legs": [
+          {
+            "leg_id": "DAN",
+            "formation_epoch": 1784332553,
+            "minimum_cents": 59,
+            "minimum_epoch": 1784339306.774,
+            "minimum_iso": "2026-07-18T01:48:26.774Z",
+            "filtered_print_row": 39161,
+            "print_receipt": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+            "captured_cents": null,
+            "capture_gap_cents": null,
+            "final_rest_cents": 51,
+            "final_rest_shortfall_cents": 8
+          },
+          {
+            "leg_id": "PRA",
+            "formation_epoch": 1784332553,
+            "minimum_cents": 41,
+            "minimum_epoch": 1784342553.971,
+            "minimum_iso": "2026-07-18T02:42:33.971Z",
+            "filtered_print_row": 39165,
+            "print_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+            "captured_cents": null,
+            "capture_gap_cents": null,
+            "final_rest_cents": 33,
+            "final_rest_shortfall_cents": 8
+          }
+        ],
+        "pair_ceiling_sum_cents": 100,
+        "pair_ceiling_discount_cents": 0,
+        "captured_sum_cents": null,
+        "captured_discount_cents": null
+      },
+      "surprises": 17,
+      "hindsight_beaten_decisions": 14,
+      "post_credit_sentence_actions": 0,
+      "unexplained": [
+        "No connected resource explains why the 59/40 shape survived while the named May/June games dipped.",
+        "The neighborhood uses full historical path summaries; it has no participant-state or match-context causal variable.",
+        "The bell is TAPE_INFERENCE and awaits CC ratification."
+      ],
+      "file": "GAME_EXPLAINED_DANPRA.md"
+    }
+  ]
+}

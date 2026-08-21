@@ -18822,6 +18822,7 @@ Standing line: any operator ruling absent from this register is filed here same-
 
 | ruling | date | filing receipt |
 |---|---|---|
+| THE STEPS-BEHIND LAW — assume the OS trails market finesse; every game states misses, surprises, unexplained residue, and capture-vs-ceiling | 2026-08-21 | F-V53-058 |
 | THE STORY LAW — story is the verdict; every assumption names every resource consulted; unconsulted available resource is stamped RESOURCE-GAP | 2026-08-21 | F-V53-051 |
 | THE CORPUS LAW — full January-present recorded library, every store, sealed excluded, leave-self-out; 804 is tune-test only with operator word | 2026-08-21 | F-V53-050 |
 | THE PATTERN LAW — variables are simultaneous/interdependent; narrowing continuous pattern owns every bid's when and why | 2026-08-21 | F-V53-049 |
@@ -18874,9 +18875,9 @@ Standing line: any operator ruling absent from this register is filed here same-
 | 2026-05 | 235 | 0 | 0 |
 | 2026-06 | 95 | 3 | 0 |
 | 2026-07 | 2,117 | 811 | 0 (pre-L20) |
-| 2026-08 to date | 6,477 | 395 | F-V53-001..057 (57) + F-VS-001..030 (30) = 87 |
+| 2026-08 to date | 6,477 | 395 | F-V53-001..062 (62) + F-VS-001..030 (30) = 92 |
 
-F-V53 by date: 001–011 on 2026-08-19; 012–028 on 2026-08-20; 029–057 on 2026-08-20/21. F-VS 001–030 all 2026-08-21.
+F-V53 by date: 001–011 on 2026-08-19; 012–028 on 2026-08-20; 029–062 on 2026-08-20/21. F-VS 001–030 all 2026-08-21.
 
 ## l. FUNCTIONABLE OS + FOUR STORIES v6 (2026-08-21)
 
@@ -18886,6 +18887,15 @@ F-V53 by date: 001–011 on 2026-08-19; 012–028 on 2026-08-20; 029–057 on 20
 - Four stories pass 1: GIUBAR Δ22 and URSPAL Δ23 complete; LAJSVA did not complete at 47/36 and broke the safety floor; DANPRA did not complete at 51/33. Self-stop fired; no adjustment or second pass (F-V53-055).
 - DANPRA exhibit: the 59/40 all-day look-alike neighborhood produced continuous low ratios 0.863019/0.788299; pair derivation stood 51/33 and did not chase (F-V53-057).
 - Scope: no full-804 run, sealed read, live mutation, order, position, deployment, or adjustment.
+
+## m. FOUR GAMES EXPLAINED + HUMILITY LEDGER (2026-08-21)
+
+- Steps-Behind Law filed at F-V53-058: every explanation prints what was missed, what surprised, what remains unexplained, and capture versus ceiling.
+- Provisional lawful per-side ceilings: GIUBAR 65¢ versus 78¢ captured; URSPAL 58¢ versus 77¢ captured; LAJSVA 92¢ versus no capture; DANPRA 100¢ versus no capture (F-V53-059).
+- Pass 1 printed 41 post-credit action sentences that the separate credited-position guard suppressed; SENTENCE==ACTION did not prove executed-action semantics (F-V53-060).
+- LAJSVA: no reweighting of its final seven neighbors can license both 51 and 41; a same-stage corpus-table remedy is UNPROVED without a new pass (F-V53-061).
+- DANPRA: the named May/June rows contained dip-and-recovery paths, but DANPRA never supplied the dip and offered no pair discount (F-V53-062).
+- Scope: receipt/custody explanation only; zero new passes, reruns, tuning, fixed-804 reads, sealed reads, or live mutation.
 
 ## Appendix B — inventory reconciliation (appended 2026-08-21, license 59b9d1ff)
 

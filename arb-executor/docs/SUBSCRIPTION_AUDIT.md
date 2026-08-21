@@ -22,7 +22,7 @@ License: LAW_INDEX @ d449889e · L18 · L20 · L22. Seat: CC (verification). Sec
 - Consumer 1: droplet A `arb-executor/tennis_odds.py` (screen `tennis_odds`, running 29d, respawned by cron `deploy/respawn_tennis_odds.sh` */5). Polls /sports + /odds every ~2 min; log shows quota counter moving today (`API remaining: 4,289,833` @ 10:54). **Key is HARDCODED at tennis_odds.py:23** (last commit 41d0729e), not read from env.
 - Consumer 2: Vercel cron `/api/odds/sync` (*/15, CRON_SECRET-guarded) + `/api/odds/scores` (public GET; returned live scores → ODDS_API_KEY IS set on Vercel) + `/api/debug/sync`. Machine: Vercel.
 - Also present (NOT running): `backend/config.py` + `backend/data_sources/odds_api.py` (Python backend, intended for Railway/Docker) — no backend process on droplet A or desktop.
-- Env var name ODDS_API_KEY in: backend/.env (droplet A, desktop + 22 codex worktrees), /opt/omi-edge/backend/.env (droplet A, stale Jan-2026 build, no node process).
+- Env var name ODDS_API_KEY in: backend/.env (droplet A, desktop + 22 codex worktrees), /opt/omi-edge/backend/.env (droplet A; directory mtime 2026-01-28 by stat, not a git date; no node process).
 
 ### Supabase (project ref hlefsuxeojbqvdeyzjkz) — CONSUMED (Vercel only)
 - Consumer: Next.js app on Vercel — 61 files in app/ lib/ components/ (auth login/signup, clients, portal, odds/sync writes tables cached_odds / line_snapshots / odds_snapshots). lib/supabaseClient.ts, lib/supabaseAuth.ts.
@@ -55,7 +55,7 @@ License: LAW_INDEX @ d449889e · L18 · L20 · L22. Seat: CC (verification). Sec
 - H1: `backend/.env` is TRACKED in git since 01dcc8b8 (2026-07-01); repo OMIGROUPOPS/Omi-Workspace is PUBLIC per Vercel deploy meta → NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_SUPABASE_URL, ODDS_API_KEY are public. Rotate ODDS_API_KEY; anon key is public-by-design but RLS must be on.
 - H2: Odds API key literal at arb-executor/tennis_odds.py:23 (tracked, public repo). Rotate + move to env.
 - H3: OMI_API_KEY default literal at arb-executor/arb_executor_ws.py:283 and arb-executor-v2/arb_executor_ws.py:277 (tracked). Rotate if that token still guards anything.
-- H4: /opt/omi-edge (Jan-2026 build) and /root/Omi-Workspace/backend/.env (Feb-2026) are stale key copies on droplet A; nothing runs them.
+- H4: /opt/omi-edge (mtime 2026-01-28 by stat) and /root/Omi-Workspace/backend/.env (mtime 2026-02-10 by stat) are stale key copies on droplet A; nothing runs them.
 - H5: Droplet B 159.65.234.55 unreachable — cannot rule out a second Odds-API/Kalshi consumer there.
 
 ## Verdict table

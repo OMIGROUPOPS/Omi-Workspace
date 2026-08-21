@@ -2,7 +2,7 @@
 
 **Dispatch license (L18): LAW_INDEX read at `d449889e`; laws consulted: L18 · L20 · L21 · L22.** Seat: CC (verification). Date: 2026-08-21.
 
-**Standing on landing:** this file SUPERSEDES `CORE_KNOWLEDGE.md` + `VAULT_MAP.md` @ `46f4feea` as the senior record. Base fact repaired: that pair is stamped 2026-08-03 in content (committed 2026-08-19) and ends at the V52 era; the V53 lane, V54, the census, the honest ruler, ~40 findings and five laws existed only as fragments until this file.
+**Standing on landing:** this file SUPERSEDES `CORE_KNOWLEDGE.md` + `VAULT_MAP.md` @ `46f4feea` as the senior record. Base fact repaired: that pair lives in the directory stem 20260803, was first committed 2026-08-19 (24f7154f; updated 46f4feea the same day; git dates, F-VS-027) and ends at the V52 era; the V53 lane, V54, the census, the honest ruler, ~40 findings and five laws existed only as fragments until this file.
 
 **Conservation:** inventory = every path first-committed under `.claude/**`, `arb-executor/docs/**`, `arb-executor/analysis/**`, `truth/**` across all 234 refs (`git log --all --diff-filter=A`): **11,497 files**, of which **1,218 documents (.md)**. Section c lists every document; Appendix A lists every file. Nothing merged away.
 
@@ -50,7 +50,7 @@ Seats reading LAW_INDEX from any branch other than the V54 branch read L0–L23 
 
 ## b. Senior-knowledge base and dated addendum
 
-**Base:** `CORE_KNOWLEDGE.md` @ `46f4feea` (V52-era content; committed 2026-08-19; its §① market, §② OS organs, §③ laws L0–L18, §④ numbers, §⑤ graveyard, §⑥ eight open questions, v2 code/data fold-in). Every claim there stands unless a line below supersedes it. Its ten contradictions are carried in section d.
+**Base:** `CORE_KNOWLEDGE.md` @ `46f4feea` (V52-era content; git-committed 2026-08-19; its §① market, §② OS organs, §③ laws L0–L18, §④ numbers, §⑤ graveyard, §⑥ eight open questions, v2 code/data fold-in). Every claim there stands unless a line below supersedes it. Its ten contradictions are carried in section d.
 
 **Addendum — every ruling since the base, dated, newest last:**
 
@@ -18812,3 +18812,595 @@ Format: `date sha path` — first commit across all branches. Data files travel 
 **Defunct list (retired by the record; not to be restated as live):** V53-01 history-as-address · V53-02 history-as-bound/budget · V53-03 read-licensed clamp · V53-04 frontier-selected riser arming · V53-04b arming-gate family · V53-05 reactive slide · L19 fresh-30 staging (superseded by L19a) · the 612-census as a denominator · old-ruler exam-era absolute figures · pins 4/117¢ as absolute cents · the reflex lanes (Jul 21–29) · the theta/hourly-median table · the A/B onset binary and the word "bell" as an exam name · V52i/j/k/m/n/o/p · uniform lane-wide shifts · slack-at-the-receipt · span-fraction gates live · proxy detector called "divot" · frontier-space selection · seat-invented thresholds · per-commit push gate.
 
 **Pre-gate tape census, one line (F-VS-017):** tape before the T-8h gate exists in 789/802 games; the riser early window is entirely before the gate in 703/802; 223/298 riser floors print before the gate. In those games a WINDOWS red is a gate problem on recorded tape. The 13 no-pre-gate-tape games are the recording cases. Bells before the gate: 10 (5 ATP_MAIN, 5 WTA_MAIN).
+
+
+---
+
+## i. TRANSCRIPT-RULINGS REGISTER — newest first (appended 2026-08-21; license LAW_INDEX @ `59b9d1ff`)
+
+Standing line: any operator ruling absent from this register is filed here same-day on relay. "FILED NOW" = first filing is this commit (F-VS-028) — previously transcript-only.
+
+| ruling | date | filing receipt |
+|---|---|---|
+| UNKNOWN-BELL EXCLUSION — 20 games out of numerator and denominator; count printed on every scoreboard | 2026-08-21 | F-VS-024 |
+| F24 CLOSES NOT LAWFUL — truth-table closes are the only W1 closes | 2026-08-21 | F-VS-023 · F-V53-046 |
+| ONE CLOCK — hours-from-discovery; T-8h retired as a gate | 2026-08-21 | FILED NOW — F-VS-028 (census F-VS-017) |
+| TIMESTAMP-RECEIPT RULE — no temporal claim without a fetched receipt | 2026-08-21 | FILED NOW — F-VS-027 |
+| KILL-SWITCH-FIRST — off-switch ships before on-switch on any live-engine change | 2026-08-21 | FILED NOW — F-VS-028 |
+| OPERATOR-LANGUAGE LAW — plain operator words; no metaphors, no process narration, no cash verbs | 2026-08-21 | FILED NOW — F-VS-028 |
+| ODDS AS STANDING OS SUPPLEMENT | 2026-08-21 | FILED NOW — F-VS-028 |
+| GATES-INSIDE — gates in engine receipts, never in frontier space | 2026-08-21 | FILED NOW — F-VS-028 (F-V53-030 for the frontier half) |
+| NO-804-WITHOUT-OPERATOR-WORD | 2026-08-21 | F-VS-016 · F-V53-042 |
+| SMALL-FIRST / FIVE-GAMES-FIRST — check set read before any aggregate | 2026-08-21 | F-V53-040 |
+| SENIOR-RECORD REFRESH — dictionary is senior; refresh at era close or every 10 findings | 2026-08-21 | F-VS-013 |
+| L19a FIXED SAMPLE — fixed 804 lawful for tuning; sealed set the one exam; fresh-30 retired | 2026-08-21 | LAW_INDEX L19a @ c37e88ec, merged 59b9d1ff |
+| ONE DENOMINATOR — valid completes ÷ truth-table offered, 680 basis | 2026-08-21 | F-VS-002 · OFFER_DENOMINATOR.md @ ce2e8b7c |
+| HONEST RULER — truth-table-bound, formation-lawful, no post-bell credit; MERDRO reversed | 2026-08-21 | F-VS-003..006 |
+| SENTENCE LAW — one joint-license sentence per V54 decision receipt | 2026-08-21 | FILED NOW — F-VS-028 (V54 rulings @ c37e88ec) |
+| CONTROL-WINNER STOP | 2026-08-21 | F-V53-033 |
+| TWO RULERS + DISCOUNT LANGUAGE — game delta vs 100¢, leg delta vs own W1 close; all figures discounts | 2026-08-20 | F-V53-024 |
+| DIVOT DEFINITION — joint-state-certified dip; detector is a proxy instrument | 2026-08-20 | F-V53-028 |
+| SELF-CONTAINMENT — every dispatch carries its full payload | 2026-08-20 | F-V53-027 |
+| L23 PAIR-UNIT PROOF | 2026-08-20 | LAW_INDEX L23 · F-V53-021 |
+| INVENTED THRESHOLDS BANNED | 2026-08-20 | F-V53-032 |
+| NEXT-FREE NUMBERING | 2026-08-19 | F-V53-011 |
+| L20 FINDINGS BANKING | 2026-08-19 | LAW_INDEX L20 |
+| L21 STANDING PUSH | 2026-08-19 | LAW_INDEX L21 · F-V53-006 |
+| L22 ARTIFACT TRANSPORT CAP | 2026-08-19 | LAW_INDEX L22 · F-V53-007 |
+| L18 DISPATCH LICENSE | fold 8 (LAW_INDEX @ ae731326, 2026-08-19) | LAW_INDEX L18 |
+
+## j. WALK @8efff0a4 — verification record (2026-08-21)
+
+- Receipts: the six receipt files every LIVE stamp cites are not committed on any branch; no custody manifest — LIVE stamps unverifiable until the package lands (F-VS-019).
+- Harness: conception = recorder open 5/5; credits after the bell 0/5; targets before formation in GIUBAR (2 rests, 207 s early) and DANPRA (1 rest, 4,254 s early); clock = T-scheduled/T-bell seconds, T-bell null in 4/5, not hours-from-discovery (F-VS-020).
+- NEED re-grade: BAR integer-anchor NEED = present-but-did-not-fire (31.5 exists); opposite-ripe-roles NEED = truly absent as a joint condition; CRIJEA bell = truly absent (F-VS-021).
+- Figures on both rulers: game ruler 3 completes / 19¢ over 4 gradeable (CRIJEA excluded); leg ruler 26¢ over 6 credited legs; the summary's "PINS_SMOKE" label is the five-game draw, not the pins (F-VS-022).
+- V54 on URSPAL: 110 applied receipts in one 21-minute window repriced PAL to its 38¢ formation anchor 2.2 h after the 40¢ floor had printed; nothing traded; champion rests resumed and filled; outcome identical (F-VS-025).
+- Close conflict: tape supports the truth table on all four legs; F24 lineage stamped NOT-LAWFUL-CLOSE; sweep 711/1,608 legs conflict across 470 games (F-VS-023, CLOSE_CONFLICT_SWEEP_1608.json).
+- Unknown-bell rule filed (F-VS-024). Nothing graded on F24 closes is senior.
+
+## k. COVERAGE PROOF (git-dated; 2026-08-21)
+
+| month | files inventoried (LEAD_SEAT_INVENTORY, first commit) | documents in the dictionary table (first commit) | findings filed |
+|---|---:|---:|---:|
+| 2025-12 → 2026-03 | 35 | 0 | 0 |
+| 2026-04 | 1,047 | 9 | 0 |
+| 2026-05 | 235 | 0 | 0 |
+| 2026-06 | 95 | 3 | 0 |
+| 2026-07 | 2,117 | 811 | 0 (pre-L20) |
+| 2026-08 to date | 6,477 | 395 | F-V53-001..047 (47) + F-VS-001..028 (28) = 75 |
+
+F-V53 by date: 001–011 on 2026-08-19; 012–028 on 2026-08-20; 029–047 on 2026-08-20/21. F-VS 001–028 all 2026-08-21.
+
+## Appendix B — inventory reconciliation (appended 2026-08-21, license 59b9d1ff)
+
+LEAD_SEAT_INVENTORY_20260821 (10,090 keyword-matched files, all dirs) vs Appendix A (11,497 files, four dirs): **526 paths in the inventory not in Appendix A** (listed below with git first/last commit dates); **2,017 paths in Appendix A not in the inventory** (no keyword match by path or content; they remain in Appendix A).
+
+```
+2026-08-21 2026-08-21 75e02d98 .claude/window1_live_v4_replay/v54_pair_model_iteration_01_mechanical_replay_repairs_20260821/MECHANICAL_REPLAY_REPAIR_RECEIPT.json
+2026-08-21 2026-08-21 4240c159 .claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/CHRONOLOGICAL_VAULT_DICTIONARY.md
+2026-08-05 2026-08-14 e10d7d18 CANON.md
+2026-03-08 2026-07-01 341e80de ESPNData/cc_prompt_espn_scraper.md
+2026-03-08 2026-07-01 341e80de ESPNData/pendulum_phase2_context.md
+2026-03-12 2026-07-01 46830c94 analysis/mar11/92c_every_game_analysis.txt
+2026-03-12 2026-07-01 46830c94 analysis/mar11/memphis_autopsy.txt
+2025-12-15 2026-07-01 42cbd0c8 app/(app)/automations/[id]/edit/page.tsx
+2025-12-15 2025-12-19 42cbd0c8 app/(app)/clients/[id]/edit/page.tsx
+2025-12-19 2026-07-01 9fa580fc app/(app)/clients/[id]/page.tsx
+2025-12-15 2026-07-01 42cbd0c8 app/(app)/projects/[id]/edit/page.tsx
+2025-12-15 2026-07-01 42cbd0c8 app/(app)/tasks/[id]/edit/page.tsx
+2025-12-22 2026-07-01 d4d58d14 app/(client)/portal/profile/page.tsx
+2026-02-28 2026-07-01 881b6910 arb-executor-v2/.env.example
+2026-02-28 2026-07-01 881b6910 arb-executor-v2/FULL_AUDIT_BRIEF.md
+2026-02-28 2026-07-01 881b6910 arb-executor-v2/arb_executor_v7.py
+2026-02-28 2026-07-01 881b6910 arb-executor-v2/arb_executor_ws.py
+2026-02-28 2026-07-01 881b6910 arb-executor-v2/cash_ledger.py
+2026-02-28 2026-07-01 881b6910 arb-executor-v2/executor_core.py
+2026-02-28 2026-07-01 881b6910 arb-executor-v2/orderbook_db.py
+2026-07-01 2026-07-01 d9f001ae arb-executor/OMQS_ADVERSE_SELECTION_STRANDED.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_CANCEL_TIMING_JUN26PLUS.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_COMPLETION_FUNNEL_JUN24-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_DEPLOY_PNL_JUN24-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_FILLTIME_VS_GUN_BYDEPLOY.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_HELD_IF_NOT_CANCELLED_JUN26PLUS.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_LIVE_DUMP_2026-06-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_LIVE_FORENSIC_SHINIS.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_MEASUREMENTS_2026-06-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_MEASUREMENTS_TASKAB_2026-06-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_MIDPOINT_FAVORITES_JUN24PLUS.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_STEP2_PEAKREVERSE_2026-06-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_STEP3_REFINEMENT_2026-06-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_THREEPRICE_FAVORITES_JUN26PLUS.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_WEEKVALIDATION_2026-06-30.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_WINDOW_MAP_3WAY_JUN26PLUS.md
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/OMQS_WINDOW_MAP_JUN26PLUS.md
+2026-05-29 2026-07-01 f1a3cd9b arb-executor/V3_EXIT_FLOOR_HANDOFF.md
+2026-07-06 2026-07-06 7f065e96 arb-executor/audit/w1_grading.py
+2026-02-26 2026-07-01 5e68754e arb-executor/cash_ledger.py
+2026-05-14 2026-07-01 ecd75c85 arb-executor/data/analysis/analysis_library_sec23_dump.json
+2026-05-15 2026-07-01 220da271 arb-executor/data/analysis/recomputation_ladder.json
+2026-05-14 2026-07-01 01818df1 arb-executor/data/analysis/stable_window_diagnostic_v2.json
+2026-05-14 2026-07-01 2547f6a6 arb-executor/data/analysis/unit_of_analysis_audit.json
+2026-06-11 2026-07-01 2d43c322 arb-executor/data/durable/depth_chain/depth_chain_g2_v1_summary.txt
+2026-05-06 2026-07-01 be9400cc arb-executor/data/durable/diagnostics_session_8/cat_01_within_band.txt
+2026-05-06 2026-07-01 be9400cc arb-executor/data/durable/diagnostics_session_8/cat_03_formation_contam.sha256
+2026-05-06 2026-07-01 be9400cc arb-executor/data/durable/diagnostics_session_8/cat_03_formation_contam.txt
+2026-05-06 2026-07-01 be9400cc arb-executor/data/durable/diagnostics_session_8/cat_06_trajectory_width.txt
+2026-05-06 2026-07-01 631e6530 arb-executor/data/durable/diagnostics_session_8/cat_08_formation_gate.sha256
+2026-05-06 2026-07-01 be9400cc arb-executor/data/durable/diagnostics_session_8/cat_08_formation_gate.txt
+2026-05-06 2026-07-01 be9400cc arb-executor/data/durable/diagnostics_session_8/summary.txt
+2026-06-11 2026-07-01 a9aab49e arb-executor/data/durable/entry_completion/engagement_replay_v1_summary.txt
+2026-05-30 2026-07-01 4b0ee369 arb-executor/data/durable/exit_atlas_v1/atp_chall_corrected_surface_v3.json
+2026-05-29 2026-07-01 483902e1 arb-executor/data/durable/exit_atlas_v1/atp_chall_ground_truth_v3.html
+2026-05-30 2026-07-01 4b0ee369 arb-executor/data/durable/exit_atlas_v1/atp_main_corrected_surface_v3.json
+2026-05-28 2026-07-01 afeda281 arb-executor/data/durable/exit_atlas_v1/atp_main_ground_truth.html
+2026-05-29 2026-07-01 ee2a2165 arb-executor/data/durable/exit_atlas_v1/atp_main_ground_truth_v2.html
+2026-05-29 2026-07-01 fdc29473 arb-executor/data/durable/exit_atlas_v1/atp_main_ground_truth_v3.html
+2026-05-30 2026-07-01 4b0ee369 arb-executor/data/durable/exit_atlas_v1/atp_main_pyramid_v3.html
+2026-05-28 2026-07-01 726f1206 arb-executor/data/durable/exit_atlas_v1/meta.json
+2026-05-28 2026-07-01 726f1206 arb-executor/data/durable/exit_atlas_v1/validation_report.md
+2026-05-30 2026-07-01 4b0ee369 arb-executor/data/durable/exit_atlas_v1/wta_chall_corrected_surface_v3.json
+2026-05-29 2026-07-01 483902e1 arb-executor/data/durable/exit_atlas_v1/wta_chall_ground_truth_v3.html
+2026-05-30 2026-07-01 4b0ee369 arb-executor/data/durable/exit_atlas_v1/wta_main_corrected_surface_v3.json
+2026-05-29 2026-07-01 483902e1 arb-executor/data/durable/exit_atlas_v1/wta_main_ground_truth_v3.html
+2026-06-12 2026-07-01 1ecf0bc4 arb-executor/data/durable/exit_surface_gated_optima/LOCKED_DOWN.md
+2026-05-10 2026-07-01 73de3a68 arb-executor/data/durable/forensic_replay_v1/NOTE.md
+2026-05-10 2026-07-01 73de3a68 arb-executor/data/durable/forensic_replay_v1/phase3/cell_drift_per_minute.parquet
+2026-05-10 2026-07-01 73de3a68 arb-executor/data/durable/forensic_replay_v1/phase3/run_summary.json
+2026-05-11 2026-07-01 6948000e arb-executor/data/durable/layer_b_v2/phase2/build_log.txt
+2026-05-11 2026-07-01 6948000e arb-executor/data/durable/layer_b_v2/phase2/run_summary_phase2.json
+2026-05-11 2026-07-01 f4e96783 arb-executor/data/durable/layer_b_v2/phase3/_progress_summary.jsonl
+2026-05-11 2026-07-01 f4e96783 arb-executor/data/durable/layer_b_v2/phase3/build_log.txt
+2026-05-11 2026-07-01 f4e96783 arb-executor/data/durable/layer_b_v2/phase3/run_summary_phase3.json
+2026-05-10 2026-07-01 c0b5e7c2 arb-executor/data/durable/layer_b_v2/probe/build_log.txt
+2026-05-10 2026-07-01 c0b5e7c2 arb-executor/data/durable/layer_b_v2/probe/run_summary_phase1.json
+2026-05-27 2026-05-27 ec7cdae4 arb-executor/data/durable/paired_primitive_v1/atp_main/halt_log.md
+2026-05-27 2026-07-01 a18b5be6 arb-executor/data/durable/paired_primitive_v1/atp_main/primitive.parquet
+2026-05-27 2026-07-01 ec7cdae4 arb-executor/data/durable/paired_primitive_v1/atp_main/run_summary.json
+2026-05-23 2026-07-01 a0bc5e6a arb-executor/data/durable/per_minute_universe/fv_overlap_join_v1_run_summary.json
+2026-05-23 2026-07-01 1e00818f arb-executor/data/durable/per_minute_universe/path_b_v1_run_summary.json
+2026-05-23 2026-07-01 a61830cf arb-executor/data/durable/per_minute_universe/path_b_v2_run_summary.json
+2026-05-23 2026-07-01 648b8db8 arb-executor/data/durable/per_minute_universe/path_b_v3_run_summary.json
+2026-05-23 2026-07-01 c90985be arb-executor/data/durable/per_minute_universe/path_b_v4_run_summary.json
+2026-05-23 2026-07-01 22f3221f arb-executor/data/durable/per_minute_universe/path_c_phase1_run_summary.json
+2026-05-24 2026-07-01 701ccc89 arb-executor/data/durable/per_minute_universe/path_c_phase2_run_summary.json
+2026-05-24 2026-07-01 701ccc89 arb-executor/data/durable/per_minute_universe/path_c_phase3_corrected_run_summary.json
+2026-05-22 2026-07-01 30a47b6a arb-executor/data/durable/per_minute_universe/premarket_tape_v1_run_summary.json
+2026-05-12 2026-07-01 f529588a arb-executor/data/durable/per_minute_universe/probe/build_log_phase1.txt
+2026-05-12 2026-07-01 2d326ef1 arb-executor/data/durable/per_minute_universe/probe/build_log_phase2.txt
+2026-05-12 2026-07-01 f529588a arb-executor/data/durable/per_minute_universe/probe/run_summary_phase1.json
+2026-05-23 2026-07-01 2ca88900 arb-executor/data/durable/per_minute_universe/scope_a_v1_run_summary.json
+2026-05-20 2026-07-01 ec1f5935 arb-executor/data/durable/spike_volatility_map/ATP_CHALL_LOCKED_DOWN.md
+2026-05-19 2026-07-01 481de7fb arb-executor/data/durable/spike_volatility_map/ATP_MAIN_LOCKED_DOWN.md
+2026-05-20 2026-07-01 d99c6e98 arb-executor/data/durable/spike_volatility_map/PAIRING_DIAGNOSTIC.md
+2026-06-12 2026-07-01 1ecf0bc4 arb-executor/data/durable/spike_volatility_map/SUPERSEDED.md
+2026-05-20 2026-07-01 d038cb3a arb-executor/data/durable/spike_volatility_map/WTA_CHALL_LOCKED_DOWN.md
+2026-05-20 2026-07-01 75603f41 arb-executor/data/durable/spike_volatility_map/WTA_MAIN_LOCKED_DOWN.md
+2026-05-28 2026-07-01 7d87b33f arb-executor/data/durable/spike_volatility_map/atp_main_exit_map.json
+2026-05-28 2026-07-01 83ef84ce arb-executor/data/durable/spike_volatility_map/bounce_spectrum_pooled_v1.json
+2026-05-23 2026-07-01 7d98e74f arb-executor/data/scripts/archive_book_prices_v1.py
+2026-05-19 2026-07-01 8e8f46ec arb-executor/data/scripts/build_exit_optimized_bounce_v1.py
+2026-05-07 2026-07-01 4567699d arb-executor/data/scripts/build_forensic_replay_v1.py
+2026-05-23 2026-07-01 a0bc5e6a arb-executor/data/scripts/build_fv_overlap_join_v1.py
+2026-05-04 2026-07-01 88890120 arb-executor/data/scripts/build_layer_a_v1.py
+2026-05-05 2026-07-01 739bfdd5 arb-executor/data/scripts/build_layer_b_v1.py
+2026-05-10 2026-07-01 c0b5e7c2 arb-executor/data/scripts/build_layer_b_v2.py
+2026-05-15 2026-07-01 4f309a18 arb-executor/data/scripts/build_n_profile_v1.py
+2026-05-27 2026-07-01 ec7cdae4 arb-executor/data/scripts/build_paired_primitive_v1.py
+2026-05-23 2026-07-01 1e00818f arb-executor/data/scripts/build_path_b_fill_mechanics_v1.py
+2026-05-23 2026-07-01 a61830cf arb-executor/data/scripts/build_path_b_v2.py
+2026-05-23 2026-07-01 648b8db8 arb-executor/data/scripts/build_path_b_v3.py
+2026-05-23 2026-07-01 c90985be arb-executor/data/scripts/build_path_b_v4.py
+2026-05-23 2026-07-01 22f3221f arb-executor/data/scripts/build_path_c_phase1.py
+2026-05-24 2026-07-01 701ccc89 arb-executor/data/scripts/build_path_c_phase2.py
+2026-05-24 2026-07-01 701ccc89 arb-executor/data/scripts/build_path_c_phase3_corrected.py
+2026-05-12 2026-07-01 f529588a arb-executor/data/scripts/build_per_minute_universe.py
+2026-05-23 2026-07-01 2ca88900 arb-executor/data/scripts/build_premarket_scope_a_v1.py
+2026-05-22 2026-07-01 30a47b6a arb-executor/data/scripts/build_premarket_tape_v1.py
+2026-05-15 2026-07-01 6d284bbe arb-executor/data/scripts/build_rung1_strategy_evaluation.py
+2026-05-05 2026-07-01 8174ec0e arb-executor/data/scripts/cell_key_helpers.py
+2026-05-06 2026-07-01 be9400cc arb-executor/data/scripts/diagnostics_session_8/cat_02_fee_table.py
+2026-05-06 2026-07-01 be9400cc arb-executor/data/scripts/diagnostics_session_8/cat_05_alpha_discovery.py
+2026-05-06 2026-07-01 be9400cc arb-executor/data/scripts/diagnostics_session_8/cat_07_oi_reconstruction.py
+2026-05-06 2026-07-01 be9400cc arb-executor/data/scripts/diagnostics_session_8/cat_09_distortion_events.py
+2026-05-06 2026-07-01 be9400cc arb-executor/data/scripts/diagnostics_session_8/master_driver.sh
+2026-05-12 2026-07-01 f529588a arb-executor/data/scripts/plot_per_minute_universe_phase1.py
+2026-05-11 2026-07-01 a722193b arb-executor/data/scripts/preflight_layer_b_v2.py
+2026-07-06 2026-07-06 144adf63 arb-executor/data/shape_corpus/aim_v2_candidate_BAR.json
+2026-07-07 2026-07-07 aa0b516d arb-executor/data/shape_corpus/aim_v2_candidate_BAR.json.vpslocal
+2026-07-06 2026-07-06 144adf63 arb-executor/data/shape_corpus/aim_v2_candidate_LATCHCAL.json
+2026-07-07 2026-07-07 aa0b516d arb-executor/data/shape_corpus/aim_v2_candidate_LATCHCAL.json.vpslocal
+2026-07-06 2026-07-06 144adf63 arb-executor/data/shape_corpus/aim_v2_derivation_meta.json
+2026-07-07 2026-07-07 aa0b516d arb-executor/data/shape_corpus/aim_v2_derivation_meta.json.vpslocal
+2026-07-06 2026-07-06 c8c91b33 arb-executor/data/shape_corpus/aim_v2_operational_LATCHCAL.json
+2026-07-07 2026-07-07 aa0b516d arb-executor/data/shape_corpus/aim_v2_operational_LATCHCAL.json.vpslocal
+2026-07-06 2026-08-07 f853daf8 arb-executor/data/shape_corpus/coverage.json
+2026-07-24 2026-07-24 eed8e75a arb-executor/data/shape_corpus/derived_20260724.json
+2026-07-24 2026-07-24 eed8e75a arb-executor/data/shape_corpus/derived_latest.json
+2026-07-06 2026-07-31 f853daf8 arb-executor/data/shape_corpus/manifest.json
+2026-07-06 2026-07-06 f853daf8 arb-executor/data/shape_corpus/samples_20260706.jsonl
+2026-07-07 2026-07-07 aa0b516d arb-executor/data/shape_corpus/samples_20260707.jsonl
+2026-07-08 2026-07-08 00eed1dc arb-executor/data/shape_corpus/samples_20260708.jsonl
+2026-07-09 2026-07-09 47d3bf74 arb-executor/data/shape_corpus/samples_20260709.jsonl
+2026-07-10 2026-07-10 ac43d71f arb-executor/data/shape_corpus/samples_20260710.jsonl
+2026-07-11 2026-07-11 5a0d92a1 arb-executor/data/shape_corpus/samples_20260711.jsonl
+2026-07-12 2026-07-12 782919e4 arb-executor/data/shape_corpus/samples_20260712.jsonl
+2026-07-13 2026-07-13 0d15c9c4 arb-executor/data/shape_corpus/samples_20260713.jsonl
+2026-07-14 2026-07-14 41858ade arb-executor/data/shape_corpus/samples_20260714.jsonl
+2026-07-15 2026-07-15 db9ded13 arb-executor/data/shape_corpus/samples_20260715.jsonl
+2026-07-16 2026-07-16 506f4717 arb-executor/data/shape_corpus/samples_20260716.jsonl
+2026-07-17 2026-07-17 e0aa5b11 arb-executor/data/shape_corpus/samples_20260717.jsonl
+2026-07-18 2026-07-18 1c025d5e arb-executor/data/shape_corpus/samples_20260718.jsonl
+2026-07-19 2026-07-19 68279743 arb-executor/data/shape_corpus/samples_20260719.jsonl
+2026-07-20 2026-07-20 12e4fda6 arb-executor/data/shape_corpus/samples_20260720.jsonl
+2026-07-21 2026-07-21 4820f27c arb-executor/data/shape_corpus/samples_20260721.jsonl
+2026-07-22 2026-07-22 38d36e60 arb-executor/data/shape_corpus/samples_20260722.jsonl
+2026-07-23 2026-07-23 696c06a6 arb-executor/data/shape_corpus/samples_20260723.jsonl
+2026-07-24 2026-07-24 eed8e75a arb-executor/data/shape_corpus/samples_20260724.jsonl
+2026-07-25 2026-07-25 c42b4c94 arb-executor/data/shape_corpus/samples_20260725.jsonl
+2026-07-26 2026-07-26 34358a76 arb-executor/data/shape_corpus/samples_20260726.jsonl
+2026-07-27 2026-07-27 5d0c0a53 arb-executor/data/shape_corpus/samples_20260727.jsonl
+2026-07-28 2026-07-28 05591883 arb-executor/data/shape_corpus/samples_20260728.jsonl
+2026-07-29 2026-07-29 dac5f1a7 arb-executor/data/shape_corpus/samples_20260729.jsonl
+2026-07-30 2026-07-30 63e7f4d6 arb-executor/data/shape_corpus/samples_20260730.jsonl
+2026-07-31 2026-07-31 226cd5e7 arb-executor/data/shape_corpus/samples_20260731.jsonl
+2026-08-01 2026-08-01 61ef0af4 arb-executor/data/shape_corpus/samples_20260801.jsonl
+2026-08-02 2026-08-02 e9186214 arb-executor/data/shape_corpus/samples_20260802.jsonl
+2026-08-03 2026-08-03 a2ce1de6 arb-executor/data/shape_corpus/samples_20260803.jsonl
+2026-08-04 2026-08-04 8229f8bb arb-executor/data/shape_corpus/samples_20260804.jsonl
+2026-08-05 2026-08-05 f12e4663 arb-executor/data/shape_corpus/samples_20260805.jsonl
+2026-08-06 2026-08-06 2eb664f0 arb-executor/data/shape_corpus/samples_20260806.jsonl
+2026-08-07 2026-08-07 53225931 arb-executor/data/shape_corpus/samples_20260807.jsonl
+2026-07-07 2026-07-07 e156a071 arb-executor/deploy/book_snapshot.py
+2026-07-04 2026-07-16 e422055c arb-executor/deploy/deploy_gate.sh
+2026-07-06 2026-07-06 cefd987f arb-executor/deploy/install_shape_accum_cron.sh
+2026-07-28 2026-07-28 1dd5787c arb-executor/deploy/integrated_live_safety_remote_census_v1.py
+2026-07-04 2026-07-11 e422055c arb-executor/deploy/lint_gate.py
+2026-07-04 2026-07-04 e422055c arb-executor/deploy/smoke_replay.py
+2026-04-21 2026-07-01 1b67a29b arb-executor/intelligence.py
+2026-03-02 2026-07-01 233ae410 arb-executor/investigate_ala_ufc.py
+2026-04-29 2026-07-01 7241109d arb-executor/live_v3_paper_REVIEW.py
+2026-05-25 2026-08-07 f7ad6061 arb-executor/live_v4.py
+2026-03-02 2026-07-01 5565c4f1 arb-executor/monte_carlo_sim.py
+2026-02-13 2026-07-01 d084130c arb-executor/orderbook_db.py
+2026-07-09 2026-07-09 1a187f77 arb-executor/oslayer/holdgate.py
+2026-03-01 2026-07-01 cfbf6703 arb-executor/patches/apply_all_fixes.py
+2026-03-01 2026-07-01 cfbf6703 arb-executor/patches/fix_reliability.py
+2026-02-08 2026-07-01 cdc56358 arb-executor/pregame_mapper.py
+2026-07-29 2026-07-29 72512cd2 arb-executor/state/drift_surfaces_v1.json
+2026-07-29 2026-07-29 72512cd2 arb-executor/state/pair_policies_sealed_v1.json
+2026-03-12 2026-07-01 4f0e8327 arb-executor/tennis_stb.py
+2026-04-15 2026-07-01 7765a5d8 arb-executor/tennis_v5.py
+2026-07-27 2026-07-27 d256c491 arb-executor/tests/casuka_live_safety_offline_smoke.py
+2026-07-28 2026-07-28 765083b9 arb-executor/tests/fixtures/P0_V4_PERFORMANCE_BASELINE.json
+2026-06-05 2026-07-01 d05d0e6e arb-executor/tests/test_bbo_settlement_gate.py
+2026-08-06 2026-08-06 322a170e arb-executor/tests/test_boot_gate_stage_a_audit.py
+2026-08-07 2026-08-07 dd3f024b arb-executor/tests/test_boot_gate_stage_c_cutover_prep.js
+2026-07-28 2026-07-28 135f3efa arb-executor/tests/test_casuka_deployment_control_v2.py
+2026-07-27 2026-07-28 94be4113 arb-executor/tests/test_casuka_live_safety_repair.py
+2026-06-12 2026-07-01 bc86a3bf arb-executor/tests/test_copilot_manual.py
+2026-06-19 2026-07-01 192d2eb3 arb-executor/tests/test_e113.py
+2026-06-12 2026-07-01 70fe7970 arb-executor/tests/test_engagement_band_ungate.py
+2026-06-12 2026-07-01 be6b0a9b arb-executor/tests/test_fix6_late_runway.py
+2026-07-31 2026-07-31 ca0c3683 arb-executor/tests/test_hurbig_big_elimination_tick_walk_v1.js
+2026-07-28 2026-07-28 1dd5787c arb-executor/tests/test_integrated_live_safety_deployment_control.py
+2026-07-28 2026-07-28 1dd5787c arb-executor/tests/test_integrated_p0v4_casuka.py
+2026-06-12 2026-07-01 6f56a97f arb-executor/tests/test_intended_clamp.py
+2026-06-12 2026-07-01 36121612 arb-executor/tests/test_intended_join_race.py
+2026-06-11 2026-07-01 25b05416 arb-executor/tests/test_join_bid_exemption.py
+2026-07-20 2026-07-22 289fd8d9 arb-executor/tests/test_lane_a_live_safety.py
+2026-07-03 2026-07-17 ba08243e arb-executor/tests/test_latch_walkcap.py
+2026-06-12 2026-07-01 3eb83d6f arb-executor/tests/test_live_detect_floor.py
+2026-06-12 2026-07-01 240942eb arb-executor/tests/test_manual_first.py
+2026-07-01 2026-07-01 01dcc8b8 arb-executor/tests/test_monotonic_cut.py
+2026-07-31 2026-07-31 8ed68354 arb-executor/tests/test_nikvrb_ask_dwell_replay.js
+2026-07-31 2026-07-31 b1eb9f74 arb-executor/tests/test_nikvrb_decision_tree_reference.js
+2026-07-31 2026-07-31 5e7b15cb arb-executor/tests/test_nikvrb_live_book_breathing_replay.js
+2026-07-31 2026-07-31 240c92fa arb-executor/tests/test_nikvrb_sibling_shape_cold_replay.js
+2026-06-26 2026-07-01 4d7980d2 arb-executor/tests/test_pair_governor.py
+2026-06-12 2026-07-01 891c8303 arb-executor/tests/test_partial_booking.py
+2026-06-15 2026-07-01 39df43d7 arb-executor/tests/test_reach_repost_cap.py
+2026-06-12 2026-07-01 82a665a6 arb-executor/tests/test_ride_live.py
+2026-06-15 2026-07-01 04995706 arb-executor/tests/test_ride_live_off.py
+2026-06-13 2026-07-01 16a1b1f2 arb-executor/tests/test_ride_live_race.py
+2026-07-05 2026-07-05 4d7b065c arb-executor/tests/test_riser_revision.py
+2026-06-04 2026-07-01 e4fd9f7f arb-executor/tests/test_run7_locked_book.py
+2026-08-07 2026-08-07 0afb425d arb-executor/tests/test_stage_c_v36_evidence_pack.py
+2026-08-07 2026-08-07 896de410 arb-executor/tests/test_stage_c_v36_shadow.py
+2026-06-29 2026-07-17 1660b361 arb-executor/tests/test_sustained_flow.py
+2026-06-01 2026-07-01 ea2803f6 arb-executor/tests/test_t58_premarket_entry.py
+2026-06-03 2026-07-01 104feeaa arb-executor/tests/test_t60_run7_fallback.py
+2026-08-07 2026-08-07 c3961e2c arb-executor/tests/test_v36_faller_side_mirror_anatomy.js
+2026-08-07 2026-08-07 b581cbb5 arb-executor/tests/test_v36_gap_to_union_reach.py
+2026-06-26 2026-07-01 fa324d47 arb-executor/tests/test_vol_gate.py
+2026-08-01 2026-08-01 e68e2447 arb-executor/tests/test_window1_aggressor_ceiling_census_v1.js
+2026-07-26 2026-07-26 9220eba2 arb-executor/tests/test_window1_asynchronous_opportunity_policy_census.py
+2026-07-27 2026-07-27 e60f6af4 arb-executor/tests/test_window1_asynchronous_opportunity_policy_census_v2.py
+2026-07-21 2026-07-22 6de11c53 arb-executor/tests/test_window1_benchmark.py
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_boundary_validation.py
+2026-08-03 2026-08-03 7724ac5b arb-executor/tests/test_window1_coherent_shape_refit_v12.js
+2026-08-02 2026-08-02 f1225add arb-executor/tests/test_window1_consensus_lag_repair_v10.js
+2026-07-23 2026-07-23 74535382 arb-executor/tests/test_window1_corrected_replay.py
+2026-07-27 2026-07-27 7fe299e5 arb-executor/tests/test_window1_decision_layer_attribution.py
+2026-08-04 2026-08-04 9bf8349f arb-executor/tests/test_window1_drift_landing_overlay_v26.js
+2026-08-01 2026-08-01 0ec17744 arb-executor/tests/test_window1_dynamic_renarrow_population_v7.js
+2026-08-02 2026-08-02 974ad00f arb-executor/tests/test_window1_dynamic_renarrow_population_v9.js
+2026-08-01 2026-08-01 e68e2447 arb-executor/tests/test_window1_entry_honesty_dependency_v1.js
+2026-07-29 2026-07-29 72512cd2 arb-executor/tests/test_window1_evaluator_boundary.py
+2026-07-23 2026-07-23 34ba125e arb-executor/tests/test_window1_execution_calibration.py
+2026-07-23 2026-07-23 34ba125e arb-executor/tests/test_window1_execution_kernel.py
+2026-08-01 2026-08-01 95a2d78c arb-executor/tests/test_window1_expected_close_binding_v1.js
+2026-08-01 2026-08-01 e68e2447 arb-executor/tests/test_window1_fee_aware_take_census_v1.js
+2026-07-23 2026-07-23 38d82a8a arb-executor/tests/test_window1_finalize_corrected_replay.py
+2026-07-23 2026-07-23 81ab3d87 arb-executor/tests/test_window1_finalize_source_coverage.py
+2026-08-01 2026-08-01 e68e2447 arb-executor/tests/test_window1_first_leg_commitment_diagnostic_v1.js
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_fit_benchmark.py
+2026-07-31 2026-07-31 35f3e788 arb-executor/tests/test_window1_five_exact_full_stack_capacity.js
+2026-08-01 2026-08-01 240294d2 arb-executor/tests/test_window1_five_exact_honest_gate_v1.js
+2026-08-01 2026-08-01 f7b80864 arb-executor/tests/test_window1_five_exact_stable_signer_v4.js
+2026-08-04 2026-08-04 c0a1d460 arb-executor/tests/test_window1_fix_a_maker_floor_score_v21.js
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_freeze_fit.py
+2026-08-07 2026-08-07 a746d175 arb-executor/tests/test_window1_fresh_holdout_exam_adapter.js
+2026-08-06 2026-08-06 4f4d5464 arb-executor/tests/test_window1_fresh_holdout_exam_adapter_gate.js
+2026-08-06 2026-08-06 2db2f84f arb-executor/tests/test_window1_fresh_holdout_seal_exam.js
+2026-08-14 2026-08-14 4e5f4049 arb-executor/tests/test_window1_ground_truth_grading_binding.js
+2026-08-03 2026-08-03 8fba0afe arb-executor/tests/test_window1_holdout_gate_lag_diagnostic.js
+2026-08-03 2026-08-03 e41310b0 arb-executor/tests/test_window1_holdout_null_action_correction.js
+2026-08-01 2026-08-01 e68e2447 arb-executor/tests/test_window1_honest_fill_model_v1.js
+2026-07-31 2026-07-31 2afb843d arb-executor/tests/test_window1_hur_quiet_faller_walk.js
+2026-07-23 2026-07-23 d882e340 arb-executor/tests/test_window1_identity_bridge.py
+2026-07-31 2026-07-31 c368d31e arb-executor/tests/test_window1_initial_aim_constant_audit.js
+2026-08-04 2026-08-04 d15af26d arb-executor/tests/test_window1_intentional_pair_brain_v22_phase0.js
+2026-08-03 2026-08-03 b1a57ec1 arb-executor/tests/test_window1_interim_elimination_v13.js
+2026-08-03 2026-08-03 e08d080d arb-executor/tests/test_window1_interim_micro_repair_v14.js
+2026-08-04 2026-08-04 189eaa20 arb-executor/tests/test_window1_isolated_repair_predicates_v20.js
+2026-08-04 2026-08-04 189eaa20 arb-executor/tests/test_window1_isolated_repair_v20_package.js
+2026-08-04 2026-08-04 23736317 arb-executor/tests/test_window1_landing_estimator_accuracy_census.js
+2026-08-04 2026-08-04 23736317 arb-executor/tests/test_window1_landing_estimator_overlay_v25.js
+2026-08-04 2026-08-04 02ecf1d5 arb-executor/tests/test_window1_landing_estimator_v24.js
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_lifecycle_validator.py
+2026-07-31 2026-07-31 c6689701 arb-executor/tests/test_window1_live_book_initial_aim_replay.js
+2026-08-03 2026-08-03 792d73cc arb-executor/tests/test_window1_live_book_ordinal_root_repair_v15.js
+2026-08-12 2026-08-12 f730fad1 arb-executor/tests/test_window1_machine_anchored_floor.js
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_milestone_export.py
+2026-08-04 2026-08-04 e59aa4cc arb-executor/tests/test_window1_naked_leg_disposition_v23.js
+2026-07-22 2026-07-22 95a02afd arb-executor/tests/test_window1_normalizer_repair.py
+2026-07-31 2026-07-31 b9577450 arb-executor/tests/test_window1_organ_scorecard.js
+2026-07-24 2026-07-24 a673ac2d arb-executor/tests/test_window1_os_family_search.py
+2026-07-23 2026-07-23 f5adf5f5 arb-executor/tests/test_window1_os_family_tuning_runner.py
+2026-08-04 2026-08-04 8b508215 arb-executor/tests/test_window1_pair_cap_v23.js
+2026-08-04 2026-08-04 e59aa4cc arb-executor/tests/test_window1_pair_cap_v23_simultaneous_patch.js
+2026-08-03 2026-08-03 445fd989 arb-executor/tests/test_window1_pair_couple_elimination_v19.js
+2026-08-03 2026-08-03 445fd989 arb-executor/tests/test_window1_pair_couple_v19_package.js
+2026-08-03 2026-08-03 3b5d8064 arb-executor/tests/test_window1_pair_coupling_diagnostic_v16.js
+2026-08-03 2026-08-03 7a08b291 arb-executor/tests/test_window1_pair_interim_elimination_v18.js
+2026-08-03 2026-08-03 7a08b291 arb-executor/tests/test_window1_pair_interim_v18_package.js
+2026-08-02 2026-08-02 823a739d arb-executor/tests/test_window1_persistence_floor_repair_v11.js
+2026-07-21 2026-07-23 e0bb8650 arb-executor/tests/test_window1_policy_runner.py
+2026-07-23 2026-07-23 eb859cd0 arb-executor/tests/test_window1_private_lifecycle.py
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_public_coverage_merge.py
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_public_tape_export.py
+2026-08-01 2026-08-01 eb630330 arb-executor/tests/test_window1_quote_shape_descent_package_v5.js
+2026-08-02 2026-08-02 f1225add arb-executor/tests/test_window1_quote_shape_descent_verdict_v10.js
+2026-08-01 2026-08-01 eb630330 arb-executor/tests/test_window1_quote_shape_descent_verdict_v5.js
+2026-08-01 2026-08-01 ffe3997c arb-executor/tests/test_window1_quote_shape_dynamic_renarrow_v6.js
+2026-07-31 2026-07-31 86ea53c3 arb-executor/tests/test_window1_quote_shape_elimination_two_game.js
+2026-08-03 2026-08-03 792d73cc arb-executor/tests/test_window1_quote_shape_live_book_persistence_v15.js
+2026-08-01 2026-08-01 ccab4902 arb-executor/tests/test_window1_quote_shape_maker_insufficient_diagnosis_v1.js
+2026-08-01 2026-08-01 ac7eee5a arb-executor/tests/test_window1_quote_shape_maker_role_addendum_v2.js
+2026-08-01 2026-08-01 e68e2447 arb-executor/tests/test_window1_quote_shape_pair_wiring_v3.js
+2026-08-02 2026-08-02 823a739d arb-executor/tests/test_window1_quote_shape_persistence_floor_v11.js
+2026-07-31 2026-07-31 8abe2b7b arb-executor/tests/test_window1_quote_shape_stable_ask_v2.js
+2026-08-01 2026-08-01 f7b80864 arb-executor/tests/test_window1_quote_shape_stable_signer_v4.js
+2026-07-31 2026-07-31 d1ac9497 arb-executor/tests/test_window1_quote_touch_fill.py
+2026-07-25 2026-07-25 66b50db3 arb-executor/tests/test_window1_range_attack_prerun.py
+2026-07-26 2026-07-26 f774d906 arb-executor/tests/test_window1_range_attack_scoring_package_v1.py
+2026-07-26 2026-07-26 e7e7b907 arb-executor/tests/test_window1_range_attack_scoring_package_v2.py
+2026-07-26 2026-07-26 85134634 arb-executor/tests/test_window1_range_attack_strict_ask_v2.py
+2026-07-23 2026-07-23 f5adf5f5 arb-executor/tests/test_window1_real_start_recovery_v3.py
+2026-07-22 2026-07-23 95a02afd arb-executor/tests/test_window1_recovery_manifest.py
+2026-07-23 2026-07-23 f5adf5f5 arb-executor/tests/test_window1_replay_receipt_correction.py
+2026-07-24 2026-07-24 6eecbd1d arb-executor/tests/test_window1_round1_audit_correction.py
+2026-07-24 2026-07-25 4b243bab arb-executor/tests/test_window1_round2_grid_runner.py
+2026-07-24 2026-07-24 6eecbd1d arb-executor/tests/test_window1_round2_instrument.py
+2026-07-24 2026-07-24 0a7fd1c6 arb-executor/tests/test_window1_round2_scorer.py
+2026-07-25 2026-07-25 47bfbd43 arb-executor/tests/test_window1_round2_stdout_safe.py
+2026-07-25 2026-07-25 6daab089 arb-executor/tests/test_window1_round3_grid_runner.py
+2026-07-25 2026-07-25 14e0e846 arb-executor/tests/test_window1_round3_instrument.py
+2026-07-25 2026-07-25 6daab089 arb-executor/tests/test_window1_round3_stdout_safe.py
+2026-07-25 2026-07-25 4f653446 arb-executor/tests/test_window1_round4_diagnostics.py
+2026-07-25 2026-07-25 4f653446 arb-executor/tests/test_window1_round4_instrument.py
+2026-07-25 2026-07-25 84959172 arb-executor/tests/test_window1_round4_macromicro.py
+2026-07-25 2026-07-25 781b6d6f arb-executor/tests/test_window1_round4_v2.py
+2026-08-07 2026-08-07 a746d175 arb-executor/tests/test_window1_sealed_print_repull.py
+2026-07-31 2026-07-31 77be1254 arb-executor/tests/test_window1_seat_boundary.py
+2026-08-03 2026-08-03 882d57f3 arb-executor/tests/test_window1_second_leg_x_package_v17.js
+2026-08-03 2026-08-03 882d57f3 arb-executor/tests/test_window1_second_leg_x_pricer_v17.js
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_source_coverage.py
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_spaces_manifest.py
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_sqlite_snapshot.py
+2026-08-06 2026-08-06 7fb4c9ae arb-executor/tests/test_window1_stage_b_recorder_seal.py
+2026-07-24 2026-07-24 a673ac2d arb-executor/tests/test_window1_start_guard.py
+2026-07-23 2026-07-23 f5adf5f5 arb-executor/tests/test_window1_start_lane_finalize.py
+2026-07-23 2026-07-23 0cf2f7bd arb-executor/tests/test_window1_start_ledger.py
+2026-07-24 2026-07-24 b79f20f2 arb-executor/tests/test_window1_start_truth_round2.py
+2026-08-07 2026-08-07 9924f85a arb-executor/tests/test_window1_streaming_gzip_jsonl.js
+2026-07-27 2026-07-27 88b0eae8 arb-executor/tests/test_window1_t1_post_first_leg_prerun.py
+2026-07-27 2026-07-27 bbf6f632 arb-executor/tests/test_window1_t1_scoring_package_v1.py
+2026-07-27 2026-07-27 87ac9382 arb-executor/tests/test_window1_t2_causal_divot_prerun.py
+2026-07-28 2026-07-28 38004166 arb-executor/tests/test_window1_t2_scoring_package_v1.py
+2026-07-28 2026-07-28 b73679ed arb-executor/tests/test_window1_t2_scoring_package_v2.py
+2026-07-28 2026-07-28 a7582791 arb-executor/tests/test_window1_t2_scoring_package_v3.py
+2026-07-29 2026-07-29 9cc8f1cc arb-executor/tests/test_window1_t2_scoring_package_v4.py
+2026-07-29 2026-07-29 2c5a730a arb-executor/tests/test_window1_t2_scoring_package_v5.py
+2026-07-23 2026-07-23 39968b50 arb-executor/tests/test_window1_tier_reconcile.py
+2026-08-02 2026-08-02 452eb335 arb-executor/tests/test_window1_trade_floor_correction_v8.js
+2026-08-11 2026-08-11 ef24779a arb-executor/tests/test_window1_trades_truth_admission_harmonization.js
+2026-08-03 2026-08-03 e123a875 arb-executor/tests/test_window1_v11_v12_v13_holdout_runner_v1.js
+2026-08-03 2026-08-03 e08d080d arb-executor/tests/test_window1_v14_holdout_honesty.js
+2026-08-04 2026-08-04 0a5a3a9f arb-executor/tests/test_window1_v23_isolated_rearm_policies_v27.js
+2026-08-04 2026-08-04 0a5a3a9f arb-executor/tests/test_window1_v23_isolated_rearms_v27_package.js
+2026-08-04 2026-08-04 3339f30d arb-executor/tests/test_window1_v28_anchor_cap_stack_package.js
+2026-08-04 2026-08-04 3339f30d arb-executor/tests/test_window1_v28_anchor_cap_stack_policy.js
+2026-08-04 2026-08-04 46345b4e arb-executor/tests/test_window1_v29_mirror_armed_leg2_package.js
+2026-08-04 2026-08-04 46345b4e arb-executor/tests/test_window1_v29_mirror_armed_leg2_policy.js
+2026-08-04 2026-08-04 c8b6a102 arb-executor/tests/test_window1_v29r2_mirror_armed_uncaptured_side_package.js
+2026-08-04 2026-08-04 c8b6a102 arb-executor/tests/test_window1_v29r2_mirror_armed_uncaptured_side_policy.js
+2026-08-05 2026-08-05 49f65015 arb-executor/tests/test_window1_v29r3_standing_floor_release_package.js
+2026-08-05 2026-08-07 49f65015 arb-executor/tests/test_window1_v29r3_standing_floor_release_policy.js
+2026-08-04 2026-08-04 07541b48 arb-executor/tests/test_window1_v29r_mirror_armed_second_side_package.js
+2026-08-04 2026-08-04 07541b48 arb-executor/tests/test_window1_v29r_mirror_armed_second_side_policy.js
+2026-08-05 2026-08-05 5db33ffd arb-executor/tests/test_window1_v31_dip_pressure_governor.js
+2026-08-05 2026-08-05 5db33ffd arb-executor/tests/test_window1_v31_dip_pressure_governor_package.js
+2026-08-05 2026-08-05 e9331c9d arb-executor/tests/test_window1_v32_no_chase_state_machine.js
+2026-08-05 2026-08-05 e9331c9d arb-executor/tests/test_window1_v32_no_chase_state_machine_package.js
+2026-08-05 2026-08-05 e0fb6a31 arb-executor/tests/test_window1_v34_dual_side_residency_machine.js
+2026-08-05 2026-08-05 e0fb6a31 arb-executor/tests/test_window1_v34_dual_side_residency_package.js
+2026-08-05 2026-08-05 4450de97 arb-executor/tests/test_window1_v34_full_life_preflight.js
+2026-08-05 2026-08-05 78cac3c4 arb-executor/tests/test_window1_v34_prebell_close_regrade.js
+2026-08-05 2026-08-05 b430bcff arb-executor/tests/test_window1_v34_trading_phase_package.js
+2026-08-05 2026-08-05 e56d79a2 arb-executor/tests/test_window1_v34_w1_causal_measurement.js
+2026-08-06 2026-08-06 3f073c44 arb-executor/tests/test_window1_v351_directional_evidence_aging.js
+2026-08-06 2026-08-06 3f073c44 arb-executor/tests/test_window1_v351_directional_evidence_aging_package.js
+2026-08-06 2026-08-06 0799fba8 arb-executor/tests/test_window1_v35_living_rest_evidence_gate.js
+2026-08-06 2026-08-06 0799fba8 arb-executor/tests/test_window1_v35_living_rest_evidence_gate_package.js
+2026-08-06 2026-08-06 bfde0d8d arb-executor/tests/test_window1_v36_state_directional_rest_mature_floor.js
+2026-08-06 2026-08-06 bfde0d8d arb-executor/tests/test_window1_v36_state_directional_rest_mature_floor_package.js
+2026-08-06 2026-08-06 ceaed0b2 arb-executor/tests/test_window1_v37_floor_arithmetic_take_bound.js
+2026-08-06 2026-08-06 ceaed0b2 arb-executor/tests/test_window1_v37_floor_arithmetic_take_bound_package.js
+2026-08-07 2026-08-07 2c54d724 arb-executor/tests/test_window1_v38_maker_only.js
+2026-08-07 2026-08-07 2c54d724 arb-executor/tests/test_window1_v38_maker_only_package.js
+2026-08-07 2026-08-07 ff5880d1 arb-executor/tests/test_window1_v39_corrected_placement_stack.js
+2026-08-07 2026-08-07 ff5880d1 arb-executor/tests/test_window1_v39_corrected_placement_stack_package.js
+2026-08-08 2026-08-08 af3ef0e8 arb-executor/tests/test_window1_v40_incumbent_direction_placement_stack.js
+2026-08-08 2026-08-08 af3ef0e8 arb-executor/tests/test_window1_v40_incumbent_direction_placement_stack_package.js
+2026-08-08 2026-08-08 20a8be31 arb-executor/tests/test_window1_v41_maker_machine.js
+2026-08-08 2026-08-08 20a8be31 arb-executor/tests/test_window1_v41_maker_machine_package.js
+2026-08-09 2026-08-09 01a58334 arb-executor/tests/test_window1_v42_deep_gap_feasibility_guard.js
+2026-08-09 2026-08-09 01a58334 arb-executor/tests/test_window1_v42_deep_gap_feasibility_guard_package.js
+2026-08-09 2026-08-09 01a58334 arb-executor/tests/test_window1_v43_composed_machine.js
+2026-08-09 2026-08-09 01a58334 arb-executor/tests/test_window1_v43_composed_machine_package.js
+2026-08-09 2026-08-09 480b1ee1 arb-executor/tests/test_window1_v44_guard_swap.js
+2026-08-09 2026-08-09 480b1ee1 arb-executor/tests/test_window1_v44_guard_swap_package.js
+2026-08-09 2026-08-09 3bda0a54 arb-executor/tests/test_window1_v45_guard_release_sibling_credit.js
+2026-08-09 2026-08-09 3bda0a54 arb-executor/tests/test_window1_v45_guard_release_sibling_credit_package.js
+2026-08-10 2026-08-10 1b1b6a65 arb-executor/tests/test_window1_v46_pair_gated_gap_credit.js
+2026-08-10 2026-08-10 1b1b6a65 arb-executor/tests/test_window1_v46_pair_gated_gap_credit_package.js
+2026-08-10 2026-08-10 fb74c8b8 arb-executor/tests/test_window1_v47_same_tick_arm.js
+2026-08-10 2026-08-10 fb74c8b8 arb-executor/tests/test_window1_v47_same_tick_arm_package.js
+2026-08-10 2026-08-10 e073c606 arb-executor/tests/test_window1_v48_trades_as_truth.js
+2026-08-10 2026-08-10 e073c606 arb-executor/tests/test_window1_v48_trades_as_truth_package.js
+2026-08-10 2026-08-10 1c8700fa arb-executor/tests/test_window1_v49_evidenced_level_standing.js
+2026-08-10 2026-08-10 1c8700fa arb-executor/tests/test_window1_v49_evidenced_level_standing_package.js
+2026-08-11 2026-08-11 47b51fd2 arb-executor/tests/test_window1_v49b_faithful_stand_at_p.js
+2026-08-11 2026-08-11 a60adeb3 arb-executor/tests/test_window1_v50_first_fill_price_discipline.js
+2026-08-11 2026-08-11 a60adeb3 arb-executor/tests/test_window1_v50_first_fill_price_discipline_package.js
+2026-08-11 2026-08-11 8e4191f4 arb-executor/tests/test_window1_v50r_one_directional_price_discipline.js
+2026-08-11 2026-08-11 8e4191f4 arb-executor/tests/test_window1_v50r_one_directional_price_discipline_package.js
+2026-08-12 2026-08-12 69754968 arb-executor/tests/test_window1_v51_continuity_of_standing.js
+2026-08-12 2026-08-12 69754968 arb-executor/tests/test_window1_v51_continuity_of_standing_package.js
+2026-08-12 2026-08-12 e20fbe6c arb-executor/tests/test_window1_v52_judgment_gate.js
+2026-08-12 2026-08-12 e20fbe6c arb-executor/tests/test_window1_v52_judgment_gate_package.js
+2026-08-12 2026-08-12 98d07986 arb-executor/tests/test_window1_v52b_read_level_authority.js
+2026-08-12 2026-08-12 98d07986 arb-executor/tests/test_window1_v52b_read_level_authority_package.js
+2026-08-12 2026-08-12 08ce27c0 arb-executor/tests/test_window1_v52c_full_post_onset_read.js
+2026-08-12 2026-08-12 08ce27c0 arb-executor/tests/test_window1_v52c_full_post_onset_read_package.js
+2026-08-12 2026-08-12 893ee4c6 arb-executor/tests/test_window1_v52d_disagreement_referee.js
+2026-08-12 2026-08-12 893ee4c6 arb-executor/tests/test_window1_v52d_disagreement_referee_package.js
+2026-08-13 2026-08-13 d9f83b30 arb-executor/tests/test_window1_v52e_disposition_block.js
+2026-08-13 2026-08-13 4716657a arb-executor/tests/test_window1_v52e_four_state_score_from_traces.js
+2026-08-12 2026-08-12 b09aa22b arb-executor/tests/test_window1_v52e_palantir_wiring.js
+2026-08-12 2026-08-12 b09aa22b arb-executor/tests/test_window1_v52e_palantir_wiring_package.js
+2026-08-13 2026-08-13 11f0fe0e arb-executor/tests/test_window1_v52e_trace_span_provenance_audit.js
+2026-08-13 2026-08-13 c235363e arb-executor/tests/test_window1_v52f_pair_entry_conservation.js
+2026-08-13 2026-08-13 c235363e arb-executor/tests/test_window1_v52f_pair_entry_conservation_package.js
+2026-08-13 2026-08-13 ab841995 arb-executor/tests/test_window1_v52g_joint_target_conservation.js
+2026-08-13 2026-08-13 ab841995 arb-executor/tests/test_window1_v52g_joint_target_conservation_package.js
+2026-08-13 2026-08-13 ab841995 arb-executor/tests/test_window1_v52g_provenance_repairs.js
+2026-08-13 2026-08-13 7a123d87 arb-executor/tests/test_window1_v52g_reconciliation_2094.js
+2026-08-13 2026-08-13 b43d7cde arb-executor/tests/test_window1_v52h_remove_pair_lows_precondition.js
+2026-08-13 2026-08-13 b43d7cde arb-executor/tests/test_window1_v52h_remove_pair_lows_precondition_package.js
+2026-08-13 2026-08-13 fc3d64d3 arb-executor/tests/test_window1_v52i_depth_informed_level_selection.js
+2026-08-13 2026-08-13 fc3d64d3 arb-executor/tests/test_window1_v52i_depth_informed_level_selection_package.js
+2026-08-14 2026-08-14 a7e4c111 arb-executor/tests/test_window1_v52j_role_conditioned_level_selection.js
+2026-08-14 2026-08-14 a7e4c111 arb-executor/tests/test_window1_v52j_role_conditioned_level_selection_package.js
+2026-08-14 2026-08-14 58b63e36 arb-executor/tests/test_window1_v52k_library_backed_evidence.js
+2026-08-14 2026-08-14 58b63e36 arb-executor/tests/test_window1_v52k_library_backed_evidence_package.js
+2026-08-14 2026-08-14 6678fd0c arb-executor/tests/test_window1_v52l_causal_stability_onset.js
+2026-08-14 2026-08-14 6678fd0c arb-executor/tests/test_window1_v52l_causal_stability_onset_package.js
+2026-08-17 2026-08-17 da4fd13b arb-executor/tests/test_window1_v52m_macro_recognition.js
+2026-08-17 2026-08-17 da4fd13b arb-executor/tests/test_window1_v52m_macro_recognition_package.js
+2026-08-17 2026-08-17 74a702c8 arb-executor/tests/test_window1_v52n_recognition_confidence_gates.js
+2026-08-17 2026-08-17 74a702c8 arb-executor/tests/test_window1_v52n_recognition_confidence_gates_package.js
+2026-08-17 2026-08-17 fe9387b2 arb-executor/tests/test_window1_v52o_benchmarked_role_instrument.js
+2026-08-17 2026-08-17 fe9387b2 arb-executor/tests/test_window1_v52o_benchmarked_role_instrument_package.js
+2026-08-17 2026-08-17 020b775c arb-executor/tests/test_window1_v52p_ripeness_gated_role_binding.js
+2026-08-17 2026-08-17 020b775c arb-executor/tests/test_window1_v52p_ripeness_gated_role_binding_package.js
+2026-08-18 2026-08-18 a059264d arb-executor/tests/test_window1_v52q_anchor_correction.js
+2026-08-18 2026-08-18 a059264d arb-executor/tests/test_window1_v52q_anchor_correction_package.js
+2026-08-18 2026-08-18 e79c1fee arb-executor/tests/test_window1_v52r_assembled_policy.js
+2026-08-18 2026-08-18 e79c1fee arb-executor/tests/test_window1_v52r_assembled_policy_package.js
+2026-08-18 2026-08-18 96597c98 arb-executor/tests/test_window1_v52r_exam_adapter.js
+2026-08-19 2026-08-19 16895d3f arb-executor/tests/test_window1_v52s_joint_budget_yield_priority.js
+2026-08-21 2026-08-21 bb40827c arb-executor/tests/test_window1_v53_dead_sibling_divot_census.js
+2026-08-20 2026-08-20 8cb04765 arb-executor/tests/test_window1_v53_read_licensed_bound.js
+2026-08-20 2026-08-20 f0adb55b arb-executor/tests/test_window1_v53_riser_arming_law.js
+2026-08-20 2026-08-20 98b49f28 arb-executor/tests/test_window1_v53_understanding_bounds.js
+2026-08-19 2026-08-19 5d6e7e7a arb-executor/tests/test_window1_v53_understanding_organ.js
+2026-08-21 2026-08-21 4c130234 arb-executor/tests/test_window1_v54_pair_model.js
+2026-07-23 2026-07-23 20a0e2d4 arb-executor/tests/test_window1_verify_spaces_materialization.py
+2026-08-01 2026-08-01 ebd95a3a arb-executor/tests/test_window1_vrb_big_maker_touch_chain_v1.js
+2026-08-01 2026-08-01 4d5cd0f4 arb-executor/tests/test_window1_vrb_print_book_clock_correction_v1.js
+2026-07-23 2026-07-23 a3a537f7 arb-executor/tests/test_window1_ws_depth_parallel.py
+2026-07-23 2026-07-23 34ba125e arb-executor/tests/test_window1_ws_trade_reconcile.py
+2026-07-16 2026-07-20 43178423 arb-executor/tools/daysheet_panel.py
+2026-07-15 2026-07-20 59cc32b3 arb-executor/tools/fund_tracker.py
+2026-07-16 2026-07-16 e398a368 arb-executor/tools/milestone_shadow.py
+2026-07-30 2026-07-30 2afc3081 arb-executor/ws_depth_recorder.py
+2026-01-01 2026-07-01 00c090f8 backend/api/server.py
+2026-02-18 2026-07-01 66ed23ff backend/perf_cache.py
+2026-01-01 2026-07-01 00c090f8 backend/pillars/shocks.py
+2026-02-26 2026-07-01 081beadb beta-welcome-email.md
+2025-12-22 2026-07-01 d4d58d14 components/edge/GameDetailClient.tsx
+2025-12-22 2026-07-01 d4d58d14 components/edge/LineMovementChart.tsx
+2026-03-02 2026-07-01 a802eb69 components/terminal/Orderbook.tsx
+2026-07-16 2026-07-16 261467e0 components/trading/arb/panels/daysheet/PairsSection.tsx
+2026-02-26 2026-07-01 081beadb espn_teams.json
+2025-12-20 2026-07-01 97fb6164 lib/edge/engine/decision-gate.ts
+2026-02-12 2026-07-01 118659b2 supabase/migrations/011_prediction_grades_book_odds.sql
+2026-05-04 2026-07-01 d0462c84 tmp/apply_bug2.py
+2026-05-04 2026-07-01 f36691c2 tmp/atp_main_paired_analysis.txt
+2026-05-04 2026-07-01 e067c185 tmp/bug4_brief.md
+2026-05-04 2026-07-01 e067c185 tmp/bug4_probe.md
+2026-05-04 2026-07-01 d0462c84 tmp/channel_decomp.py
+2026-04-28 2026-07-01 605c6994 tmp/corrected_analysis/corrected_monte_carlo.csv
+2026-04-28 2026-07-01 33cbbb37 tmp/greeks_decomposition.py
+2026-04-28 2026-07-01 7d8ac850 tmp/harmonized_analysis/task12_monte_carlo_runs.csv
+2026-04-28 2026-07-01 7d8ac850 tmp/harmonized_analysis/task2_paired_economics.csv
+2026-04-28 2026-07-01 7d8ac850 tmp/harmonized_analysis/task6_live_vs_sweep.csv
+2026-05-04 2026-07-01 e067c185 tmp/live_v3_paper.py
+2026-05-04 2026-07-01 e067c185 tmp/live_v3_patched.py
+2026-05-04 2026-07-01 ce0cd19e tmp/ncaamb_loss_audit.py
+2026-05-04 2026-07-01 ce0cd19e tmp/optimal_spike_gates.py
+2026-05-04 2026-07-01 e067c185 tmp/paper_mode_impl.py
+2026-05-04 2026-07-01 e067c185 tmp/paper_mode_spec.md
+2026-05-04 2026-07-01 ce0cd19e tmp/patch_premarket_fix.py
+2026-04-28 2026-07-01 33cbbb37 tmp/per_cell_verification/greeks_per_match.csv
+2026-04-28 2026-07-01 605c6994 tmp/per_cell_verification/task5_inverse_pairs.csv
+2026-05-04 2026-07-01 d088cf3b tmp/per_cell_verification_tmp_apr28/greeks_per_match.csv
+2026-05-04 2026-07-01 d088cf3b tmp/per_cell_verification_tmp_apr28/task5_inverse_pairs.csv
+2026-05-04 2026-07-01 e067c185 tmp/raw_live_v3.py
+2026-04-28 2026-07-01 605c6994 tmp/scalp_constrained_optimize.py
+2026-05-04 2026-07-01 e067c185 tmp/spec_review_dump.txt
+2026-05-04 2026-07-01 ce0cd19e tmp/spike_gate_scenarios.py
+2026-05-04 2026-07-01 ce0cd19e tmp/sport_bounce_analysis.py
+2026-05-04 2026-07-01 d0462c84 tmp/test_bug2.py
+2026-05-04 2026-07-01 ce0cd19e tmp/trade_autopsy.py
+2026-04-28 2026-07-01 7d8ac850 tmp/ultimate_cell_economics.py
+2026-05-04 2026-07-01 e7e1ddc6 tmp/v3_analysis/cells/WTA_MAIN_underdog_35-39.csv
+2026-05-04 2026-07-01 e7e1ddc6 tmp/v3_analysis/paired_match_analysis.csv
+2026-05-04 2026-07-01 e7e1ddc6 tmp/v3_analysis/paired_v3optimal.csv
+2026-05-04 2026-07-01 e7e1ddc6 tmp/v3_analysis/paired_v3optimal_summary.md
+2026-05-04 2026-07-01 e7e1ddc6 tmp/v3_analysis/summary.txt
+2026-07-16 2026-07-16 155a1d6b tools/daysheet_local/daysheet_bundle.js
+```

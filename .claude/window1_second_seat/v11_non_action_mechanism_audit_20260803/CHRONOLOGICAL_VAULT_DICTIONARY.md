@@ -19462,3 +19462,10 @@ Not assigned by any ruling (flagged, not decided here): live recorder output aft
 Totals: truth bells 3 completes / 19¢ over 4 gradeable; true bells 2 / 9¢ over 4. Leg ruler 26¢/6 legs → 16¢/5 legs. Receipt: `TRUE_BELLS_WALK5.json` (F-VS-031).
 
 Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 110/0 sentence contradictions, one clock on 133,626 rows); custody not satisfied — repaired trace outside OMI-Window1-private, manifest names the old trace (F-VS-032). Ledger collision with Codex's F-VS-029/030 and its §l on dcac4032 — CC identities hold, merge item (F-VS-033). Rider items 2–4 (GAME_EXPLAINED reproduction, capture-vs-ceiling, surprise ledgers): inputs not landed; FOUR_STORIES counter-grade and the 39 CONNECTED pokes queued next (F-VS-034).
+
+
+## n. CITATIONS FIRST — DANPRA neighbors (appended 2026-08-21; license LAW_INDEX @ `9083e055`, sha c7c72715…; L8 L11 L18 L20)
+
+- Five named neighbors exist at the cited CORPUS_INDEX and range_spectrum rows; 30/30 cited tick triples reproduce byte-exact; TP18 arithmetic reproduces to 1e-7; blend formula recovered (F-VS-035). Grain limit: cited store is the sampled range path, not the May/June raw tapes (DO Spaces, not local).
+- Zero RESOURCE-GAP = fabrication: 1 distinct resources line across 81 points; BOOKMAKER_ODDS_STORE had zero rows for all four games (store ends 2026-07-08) — struck for GIUBAR only; 44 clauses remain in URSPAL/LAJSVA/DANPRA (F-VS-036).
+- Queued as ordered: GIUBAR bell-band ruling (F-VS-031), the 39 CONNECTED pokes, remaining turning-point reproductions, capture-vs-ceiling, surprise-ledger scans.

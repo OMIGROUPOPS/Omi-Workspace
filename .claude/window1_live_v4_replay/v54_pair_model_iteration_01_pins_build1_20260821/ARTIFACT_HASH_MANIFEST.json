@@ -1,0 +1,56 @@
+{
+  "files": {
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "0bb441a952ffac8ff5ecac0d6e68a38f730bc57766a150f4445f3a5538ebd4bb",
+      "bytes": 94
+    },
+    "F24_SCOREBOARD.json": {
+      "sha256": "42f439d3d0a31f2c19e0c55b3185303300cbb4f72cc36ae18c76ce883434195b",
+      "bytes": 9548
+    },
+    "FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz": {
+      "sha256": "5e89b788eb0a5aa38a374269ef7df4f539b697d54d60e1a66a2297f50575c7e7",
+      "bytes": 7076024
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "3fb679f58f5ee6abb0fcf47041c3d2a394b421ac7fb3d153d98db61a1da06f02",
+      "bytes": 172
+    },
+    "FULL_DECISION_TRACE_5.jsonl.gz": {
+      "sha256": "5e89b788eb0a5aa38a374269ef7df4f539b697d54d60e1a66a2297f50575c7e7",
+      "bytes": 7076024
+    },
+    "MARKET_EVENT_LEDGER_5.jsonl.gz": {
+      "sha256": "299861a06dbe5f309a2fd8b031fa0d412e080c06df8df809032d0afbf14982b6",
+      "bytes": 758
+    },
+    "PER_GAME_L1_L8.json": {
+      "sha256": "ba5a64e480c6da049267b33b8a97ca0747c8920854e1b913d3a8a5e5459b677b",
+      "bytes": 147263
+    },
+    "PINS_POPULATION_RECEIPT.json": {
+      "sha256": "60d483d536562aac541c7194280083ce2da4223aa67aa37ac2c36ab839c19de9",
+      "bytes": 1118
+    },
+    "PINS_SMOKE_DISPOSITION_RECEIPT.json": {
+      "sha256": "dd74cce14349503ce1cf18c7d9eedc026057cd793681bf0b0e224a589e81274a",
+      "bytes": 301
+    },
+    "PINS_SMOKE_RECEIPT.json": {
+      "sha256": "d4e1189a5faf955985036ca29ab305bfacb8fdcf943a4a8c8a58bf3b53e681f1",
+      "bytes": 945
+    },
+    "REPORT.md": {
+      "sha256": "e9842857c50025e23840470a3a18dc17a3036b8471a229e0d6972a456c2567c6",
+      "bytes": 308
+    },
+    "STAGE1_BUILD_ASSERTIONS.json": {
+      "sha256": "e6ac0d13cb4c133844377da15feebd0b6d4dff74a64fea6e32c37ba74c374fdd",
+      "bytes": 1175
+    },
+    "V52L_COMPARATOR_TRACE_5.jsonl.gz": {
+      "sha256": "4f48aea83c87a7edd58a28d486980bf38cc28c1057e60117272d7cb5fe01920e",
+      "bytes": 4679231
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "files": {
+    "CHAMPION_CHECK_SET_TRACE_12.jsonl.gz": {
+      "sha256": "bf8de57355a930b65cd7771f4b112998bce2912bdcf1f7e375653058a80a7ea0",
+      "bytes": 22013340
+    },
+    "CHECK_SET_12.md": {
+      "sha256": "2a364fa8a42ac7937f28f5151b676ea539b143bcd23e331a81a99d9f01e10841",
+      "bytes": 4338339
+    },
+    "CHECK_SET_BINDING.json": {
+      "sha256": "ef3e1b2429b3d49b7dcea49ad5e8a4afe32e101cbd18a6c84a913ca45319e3f4",
+      "bytes": 2352
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "sha256": "1db8fb47e10eab02d67e51ecd904b3815144baec252de0e28409aa1d130fad62",
+      "bytes": 93
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "sha256": "a7857eea452355196b2a94eb17b476ae50ea22137a206de8febd8e12fb36443e",
+      "bytes": 200
+    },
+    "V54_CHECK_SET_TRACE_12.jsonl.gz": {
+      "sha256": "b18f3b4f90b261f5181d239ad4e0041715ac0902478b84c4a9003e843a0cae8a",
+      "bytes": 33526195
+    }
+  }
+}

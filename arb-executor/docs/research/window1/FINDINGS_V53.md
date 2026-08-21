@@ -42,3 +42,4 @@ Ledger note | Dispatch-proposed F-V53-036..038 renumbered to F-V53-037..039 beca
 F-V53-037 | V53-04 joint licenses stamped both legs EARLY_FLOOR_SIDE/RISING with null split; completeness assert checked presence, not coherence | ARSMAR L5 @077b8c80 | NEW
 F-V53-038 | Reactive capture closed: 33 dead siblings = 0 rest-elsewhere, 23 zero true divots, 10 slide-would-not-trade; missing-side discounts pay only already-standing rests | census @d449889e | NEW
 F-V53-039 | Offer-denominator incoherence: #4 scoreboard prints 4 offered vs 23 completed; offered percentages embargoed from all reports until CC publishes the one honest definition | LADDER @d449889e | NEW
+F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW

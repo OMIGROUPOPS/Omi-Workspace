@@ -1,0 +1,84 @@
+{
+  "law": "F-V53-040_SMALL_FIRST_ITERATION_LAW",
+  "index_commit": "c37e88ec40aea28d7785a364afe11a64643baec0",
+  "expected_games": 12,
+  "observed_games": 12,
+  "dead_sibling_games": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19ARSMAR",
+      "code": "26JUL19ARSMAR",
+      "category": "ATP_CHALL",
+      "role": "V53_04_EXAM_DEAD_SIBLING"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14TANHAV",
+      "code": "26JUL14TANHAV",
+      "category": "WTA_CHALL",
+      "role": "V53_04_EXAM_DEAD_SIBLING"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MARCOL",
+      "code": "26JUL19MARCOL",
+      "category": "ATP_CHALL",
+      "role": "V53_04_EXAM_DEAD_SIBLING"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL12DIEMON",
+      "code": "26JUL12DIEMON",
+      "category": "ATP_MAIN",
+      "role": "V53_04_EXAM_DEAD_SIBLING"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18ROCBUE",
+      "code": "26JUL18ROCBUE",
+      "category": "ATP_MAIN",
+      "role": "V53_04_EXAM_DEAD_SIBLING"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL18ITOKNU",
+      "code": "26JUL18ITOKNU",
+      "category": "WTA_MAIN",
+      "role": "V53_04_EXAM_DEAD_SIBLING"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15RODINC",
+      "code": "26JUL15RODINC",
+      "category": "ATP_CHALL",
+      "role": "V53_04_EXAM_DEAD_SIBLING"
+    }
+  ],
+  "champion_complete_controls": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12KUMTUR",
+      "code": "26JUL12KUMTUR",
+      "category": "ATP_CHALL",
+      "role": "V53_04_CHAMPION_COMPLETE_CONTROL"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "code": "26JUL12POLKUH",
+      "category": "ATP_CHALL",
+      "role": "V53_04_CHAMPION_COMPLETE_CONTROL"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL13SANDAN",
+      "code": "26JUL13SANDAN",
+      "category": "ATP_MAIN",
+      "role": "V53_04_CHAMPION_COMPLETE_CONTROL"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14FERZAN",
+      "code": "26JUL14FERZAN",
+      "category": "WTA_CHALL",
+      "role": "V53_04_CHAMPION_COMPLETE_CONTROL"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL14PUTJEA",
+      "code": "26JUL14PUTJEA",
+      "category": "WTA_MAIN",
+      "role": "V53_04_CHAMPION_COMPLETE_CONTROL"
+    }
+  ],
+  "aggregate_804_read_or_reported_before_receipt": false,
+  "pass": true
+}

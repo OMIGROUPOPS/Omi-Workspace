@@ -1,0 +1,12 @@
+{
+  "iteration": "V54_01",
+  "pass": true,
+  "disposition": "PINS_SMOKE_PASS_PREREGISTRATION_PERMITTED",
+  "pins_smoke_gate": {
+    "candidate_locked_cents_at_least_lineage": true,
+    "zero_build_assertion_violations": true,
+    "pass": true
+  },
+  "fresh_25_drawn": false,
+  "full_804_run": false
+}

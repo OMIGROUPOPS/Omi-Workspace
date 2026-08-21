@@ -18775,3 +18775,40 @@ Format: `date sha path` — first commit across all branches. Data files travel 
 ```
 
 *End of dictionary. Conservation: documents in section c = 1,218 + undated 7; files in Appendix A = 11,497.*
+
+---
+
+## h. GAP LEDGER — appended 2026-08-21 (license LAW_INDEX @ `59b9d1ff`, sha256 41784e6a…; L8 L11 L18 L20 L22)
+
+**Standing rule (F-VS-016):** no full-804 run for any mechanism without the operator's explicit written word. Pins and the twelve-game check set are the only runs a seat starts on its own. L19a is now on this branch (merged @ `59b9d1ff`).
+
+**Known-missing items, from the filed record** (the operator's count is sixteen; the filed record yields the items below — reconcile against the chat-stratum list; none dropped here):
+
+| # | missing item | filed where | status 2026-08-21 |
+|---|---|---|---|
+| 1 | Per-game understanding organ — never built | dictionary §f.1 | OPEN — V54 is the first build; inert on the twelve (F-VS-014) |
+| 2 | Role instrument resolving on both expressions (V54 polarity UNDECIDED 8,583/8,585) | F-VS-014 | OPEN |
+| 3 | Recorder heartbeat channel | CORE_KNOWLEDGE v2; synthesis §6 | OPEN — does not exist anywhere |
+| 4 | Dedicated document for the replay-and-receipt builder (build_window1_v38_maker_only.js) | VAULT_MAP v2 flag | OPEN |
+| 5 | Pre-gate tape census (July item A) | July open items | CLOSED this commit — PRE_GATE_TAPE_CENSUS.json, F-VS-017 |
+| 6 | Odds API collector's engine consumer (July item B) | F-VS-015 | OPEN |
+| 7 | The 20 UNKNOWN-bell games — recoverable or not | base §⑥-3 | OPEN |
+| 8 | The 8-game grading-edge mismatch (776 vs 784) | base §⑥-8 | OPEN |
+| 9 | ROMGAL residue — certify or discard | d.8a-1 | OPEN — operator word |
+| 10 | Scavenger-mode ruling | d.8a-2 | OPEN — operator word |
+| 11 | V52s disposition | d.8a-3 | OPEN — operator word |
+| 12 | Key rotation after public-repo exposure | F-VS-015 | OPEN — operator-waived |
+| 13 | Droplet B (159.65.234.55) audit | F-VS-015 | OPEN — unreachable |
+| 14 | ROLE_DRIFT_CENTS=2 and restatement thresholds without receipts | F-V53-009 | OPEN — PROVISIONAL_DESCRIPTIVE |
+| 15 | Nine asleep legs unadjudicated (74¢) | sleeper receipts @ ab841995 | OPEN — Codex item |
+| 16 | Live premium — unmeasured | base §⑥-5 | OPEN |
+| 17 | Live-clock coverage cost (12–31 pts) — earlier bell feed unbuilt | base §⑥-6 | OPEN |
+| 18 | WTA_CHALL — no working answer (never ripens before the bell) | base §⑥-7 | OPEN |
+| 19 | Fair-price settlement generality (n=1) | base §⑥-4 | OPEN |
+| 20 | Conditional repair of the 1¢ standing gap | base §⑥-2 | OPEN — design |
+| 21 | Codex WALK_<game>.md ×5 — not landed; counter-verification pending | F-VS-018 | OPEN |
+| 22 | L19a on the analysis-seat LAW_INDEX | dictionary §a | CLOSED @ 59b9d1ff |
+
+**Defunct list (retired by the record; not to be restated as live):** V53-01 history-as-address · V53-02 history-as-bound/budget · V53-03 read-licensed clamp · V53-04 frontier-selected riser arming · V53-04b arming-gate family · V53-05 reactive slide · L19 fresh-30 staging (superseded by L19a) · the 612-census as a denominator · old-ruler exam-era absolute figures · pins 4/117¢ as absolute cents · the reflex lanes (Jul 21–29) · the theta/hourly-median table · the A/B onset binary and the word "bell" as an exam name · V52i/j/k/m/n/o/p · uniform lane-wide shifts · slack-at-the-receipt · span-fraction gates live · proxy detector called "divot" · frontier-space selection · seat-invented thresholds · per-commit push gate.
+
+**Pre-gate tape census, one line (F-VS-017):** tape before the T-8h gate exists in 789/802 games; the riser early window is entirely before the gate in 703/802; 223/298 riser floors print before the gate. In those games a WINDOWS red is a gate problem on recorded tape. The 13 no-pre-gate-tape games are the recording cases. Bells before the gate: 10 (5 ATP_MAIN, 5 WTA_MAIN).

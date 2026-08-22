@@ -91,16 +91,18 @@ const SIMILARITY_DECLARATION = Object.freeze({
   undisclosed_weights: false,
 });
 const CONDITIONAL_DIP_DECLARATION = Object.freeze({
-  question: "What is the best available graded evidence rung that can lawfully derive this leg's depth at this receipt?",
+  question: "What continuous fitness-weighted blend of every available evidence basis lawfully derives this leg's depth at this receipt?",
   distribution: "weighted q25/q50/q75 of integer-cent remaining dip; each member contributes its remaining dip only while its bell-bounded floor lies ahead of this leg's current window fraction, and contributes zero once that corresponding floor time has passed",
-  signing_statistic: "Rung 1 uses the time-conditioned q50; rung 2 uses the continuously graded raw q50 with own-window evidence; rung 3 uses the fresh own-book bid named by anchor/book/low evidence; rung 4 preserves the reflex target. Exact pair conservation may deepen any licensed target.",
+  signing_statistic: "The time-conditioned-neighbor q50, continuously graded-neighbor q50, own-tape presence depth, and reflex-tracking depth are combined by normalized receipt-level fitness weights. The weighted depth is quantized to the nearest integer cent. Exact pair conservation may deepen any licensed target.",
   member_law: "Nearest usable members are never rejected by a binary dip/no-dip gate; similarity, coverage, and continuous evidence-distance jointly grade every member.",
-  depth_inputs: ["CONDITIONED_REMAINING_DIP_DISTRIBUTION", "OWN_BELL_BOUNDED_WINDOW_POSITION", "OPEN_OR_HALF_PAIR_STATE"],
-  authority_order: ["RUNG_1_TIME_BEARING_GRADED_NEIGHBORS", "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW", "RUNG_3_OWN_TAPE", "RUNG_4_REFLEX_BYTE_EQUAL"],
-  provenance: "OPERATOR_ORDERED_EVIDENCE_LADDER: absence degrades to the next named rung; no placement constant, threshold, silent output, or unnamed default appears; q50 is the distribution's central order statistic and pair pressure is exact 99-cent conservation arithmetic",
+  depth_inputs: ["TIME_BEARING_GRADED_NEIGHBORS", "GRADED_NEIGHBORS", "OWN_TAPE_PRESENCE", "REFLEX_TRACKING", "OWN_BELL_BOUNDED_WINDOW_POSITION", "OPEN_OR_HALF_PAIR_STATE"],
+  basis_names: ["TIME_BEARING_NEIGHBORS", "GRADED_NEIGHBORS", "OWN_TAPE_PRESENCE", "REFLEX_TRACKING"],
+  authority_order: ["FITNESS_WEIGHTED_BLEND"],
+  fitness_law: "No category precedence and no fitted/tuned constant. Timing fitness is the share of continuously graded neighbor mass with a lawful floor time. Neighbor fitness is the evidence-match share of available similarity/coverage mass. Own-tape fitness is its continuous evidence share multiplied by formation progress and formation adjacency. Reflex fitness is lineage availability multiplied by formation adjacency. Available fitnesses normalize to one.",
+  provenance: "OPERATOR_ORDERED_FITNESS_WEIGHTED_BASES: every available basis contributes continuously; absence contributes zero and the remaining bases renormalize. No placement constant, threshold, category priority, silent output, or unnamed default appears; q50 is the inherited central order statistic and pair pressure is exact 99-cent conservation arithmetic",
   blanket_anchor_ratio: "DELETED",
   absolute_floor_target_path: "DELETED",
-  lineage_depth_fallback: "REPLACED_BY_EXPLICIT_RUNG_4_REFLEX_BYTE_EQUAL",
+  lineage_depth_fallback: "REFLEX_TRACKING_IS_ONE_GRADED_BASIS_AND_NEVER_A_FALLBACK",
 });
 
 function sha256(value) {
@@ -460,11 +462,22 @@ function conditionalNeighborLeg(neighborhood, orientedIndex, ownEvidence) {
   const timeConditionedRows = rows.filter((row) => Number.isFinite(row.time_conditioned_remaining_dip_cents)).map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.time_conditioned_remaining_dip_cents }));
   const absoluteFloorRows = rows.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.low_cents }));
   const denominator = sum(rows.map((row) => row.weight));
+  const availableSimilarityCoverageMass = sum(rows.map((row) => row.similarity_grade * row.coverage_grade));
+  const timedWeightMass = sum(timeConditionedRows.map((row) => row.weight));
+  const timingSignalStrength = denominator > 0 ? clipped(timedWeightMass / denominator) : 0;
+  const evidenceMatchFitness = availableSimilarityCoverageMass > 0 ? clipped(denominator / availableSimilarityCoverageMass) : 0;
   const q25 = weightedQuantile(distributionRows, 0.25), q50 = weightedQuantile(distributionRows, 0.50), q75 = weightedQuantile(distributionRows, 0.75);
   const timedQ25 = weightedQuantile(timeConditionedRows, 0.25), timedQ50 = weightedQuantile(timeConditionedRows, 0.50), timedQ75 = weightedQuantile(timeConditionedRows, 0.75);
   const floorQ25 = weightedQuantile(absoluteFloorRows, 0.25), floorQ50 = weightedQuantile(absoluteFloorRows, 0.50), floorQ75 = weightedQuantile(absoluteFloorRows, 0.75);
   return {
     rows, excluded, denominator,
+    fitness_components: {
+      available_similarity_coverage_mass: availableSimilarityCoverageMass,
+      continuously_graded_neighbor_mass: denominator,
+      time_bearing_neighbor_mass: timedWeightMass,
+      timing_signal_strength: timingSignalStrength,
+      evidence_match_fitness: evidenceMatchFitness,
+    },
     own_evidence: { basis: ownBasis, anchor_cents: ownAnchor, observed_low_cents: ownLow, observed_dip_cents: ownObservedDip, dip_state: ownDipState, true_trade_count: ownEvidence.true_trade_count, formation_end_epoch: ownEvidence.formation_end_epoch, window_end_epoch: ownEvidence.window_end_epoch, elapsed_window_seconds: ownEvidence.elapsed_window_seconds, remaining_window_seconds: ownEvidence.remaining_window_seconds, window_fraction: ownEvidence.window_fraction, window_source: ownEvidence.window_source },
     conditional_remaining_dip_distribution_cents: { q25, q50, q75 },
     time_conditioned_remaining_dip_distribution_cents: { q25: timedQ25, q50: timedQ50, q75: timedQ75 },
@@ -544,67 +557,84 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   });
   const depthDistribution = timedNeighborLeg.time_conditioned_remaining_dip_distribution_cents;
   const rawDepthDistribution = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
-  const rung1Available = Number.isFinite(depthDistribution.q50) && timedNeighborLeg.time_conditioned_members > 0 && Number.isFinite(windowFraction);
-  const rung2Available = !rung1Available && Number.isFinite(rawDepthDistribution.q50) && timedNeighborLeg.rows.length > 0 && Number.isFinite(windowFraction) && Number.isFinite(timedNeighborLeg.own_evidence.observed_low_cents);
-  const rung3Available = !rung1Available && !rung2Available && liveBid && liveAsk && Number.isFinite(anchor) && Number.isFinite(timedNeighborLeg.own_evidence.observed_low_cents);
-  const evidenceRung = rung1Available
-    ? "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS"
-    : rung2Available
-      ? "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW"
-      : rung3Available
-        ? "RUNG_3_OWN_TAPE"
-        : "RUNG_4_REFLEX_BYTE_EQUAL";
-  const rungDistributionDepth = rung1Available
-    ? Math.round(depthDistribution.q50)
-    : rung2Available
-      ? Math.round(rawDepthDistribution.q50)
-      : rung3Available
-        ? 0
-        : null;
+  const evidenceMass = reads.ripeness.value[legId].continuous_evidence_mass ?? 0;
+  const fitness = timedNeighborLeg.fitness_components;
+  const timeBearingAvailable = Number.isFinite(depthDistribution.q50) && timedNeighborLeg.time_conditioned_members > 0 && Number.isFinite(windowFraction);
+  const gradedNeighborAvailable = Number.isFinite(rawDepthDistribution.q50) && timedNeighborLeg.rows.length > 0 && Number.isFinite(timedNeighborLeg.own_evidence.observed_low_cents);
+  const ownTapeAvailable = Boolean(liveBid && liveAsk && Number.isFinite(anchor) && Number.isFinite(timedNeighborLeg.own_evidence.observed_low_cents) && book?.receipt);
+  const reflexAvailable = Boolean(liveBid && Number.isInteger(lineageTarget) && lineage?.receipt);
+  const formationAdjacency = Number.isFinite(windowFraction) ? clipped(1 - windowFraction) : clipped(formationProgress ?? 0);
+  const evidenceFitnessMass = evidenceMass + timedNeighborLeg.denominator;
+  const ownEvidenceShare = evidenceFitnessMass > 0 ? clipped(evidenceMass / evidenceFitnessMass) : 0;
+  const basisRows = [
+    {
+      basis: "TIME_BEARING_NEIGHBORS",
+      available: timeBearingAvailable,
+      depth_cents: timeBearingAvailable ? depthDistribution.q50 : null,
+      raw_fitness: timeBearingAvailable ? fitness.timing_signal_strength * fitness.evidence_match_fitness * neighborhoodMass : 0,
+      fitness_reason: `timed_mass_share=${fitness.timing_signal_strength}; evidence_match_share=${fitness.evidence_match_fitness}; neighborhood_applicability=${neighborhoodMass}`,
+      license_receipts: neighborReceipts.map((row) => row.receipt_id),
+    },
+    {
+      basis: "GRADED_NEIGHBORS",
+      available: gradedNeighborAvailable,
+      depth_cents: gradedNeighborAvailable ? rawDepthDistribution.q50 : null,
+      raw_fitness: gradedNeighborAvailable ? fitness.evidence_match_fitness * neighborhoodMass : 0,
+      fitness_reason: `evidence_match_share=${fitness.evidence_match_fitness}; neighborhood_applicability=${neighborhoodMass}`,
+      license_receipts: neighborReceipts.map((row) => row.receipt_id),
+    },
+    {
+      basis: "OWN_TAPE_PRESENCE",
+      available: ownTapeAvailable,
+      depth_cents: ownTapeAvailable ? 0 : null,
+      raw_fitness: ownTapeAvailable ? ownEvidenceShare * clipped(formationProgress ?? 0) * formationAdjacency : 0,
+      fitness_reason: `own_evidence_share=${ownEvidenceShare}; formation_progress=${clipped(formationProgress ?? 0)}; formation_adjacency=${formationAdjacency}`,
+      license_receipts: [book?.receipt].filter(Boolean),
+    },
+    {
+      basis: "REFLEX_TRACKING",
+      available: reflexAvailable,
+      depth_cents: reflexAvailable ? Math.max(0, liveBid - lineageTarget) : null,
+      raw_fitness: reflexAvailable ? clipped(formationProgress ?? 0) * formationAdjacency : 0,
+      fitness_reason: `lineage_available=${reflexAvailable}; formation_progress=${clipped(formationProgress ?? 0)}; formation_adjacency=${formationAdjacency}`,
+      license_receipts: [lineage?.receipt].filter(Boolean),
+    },
+  ];
+  const blendFitnessMass = sum(basisRows.map((row) => row.raw_fitness));
+  for (const row of basisRows) row.normalized_weight = blendFitnessMass > 0 ? row.raw_fitness / blendFitnessMass : 0;
+  const weightedDepthCents = blendFitnessMass > 0 ? sum(basisRows.map((row) => row.normalized_weight * (row.depth_cents ?? 0))) : null;
+  const blendDistributionDepth = Number.isFinite(weightedDepthCents) ? Math.round(weightedDepthCents) : null;
+  const evidenceRung = "FITNESS_WEIGHTED_BLEND";
   const siblingCommitment = sibling.credited ? cent(sibling.entry_cents) : null;
   const pairCap = siblingCommitment ? PAR_BUDGET_CENTS - siblingCommitment : PAR_BUDGET_CENTS - 1;
   const pairRequiredDepth = liveBid && siblingCommitment ? Math.max(0, liveBid - pairCap) : 0;
-  const chosenDepth = Number.isFinite(rungDistributionDepth) && liveBid ? Math.max(rungDistributionDepth, pairRequiredDepth) : null;
-  const proposedTarget = evidenceRung === "RUNG_4_REFLEX_BYTE_EQUAL"
-    ? lineageTarget
-    : liveBid && Number.isFinite(chosenDepth) ? Math.max(1, liveBid - chosenDepth) : null;
+  const chosenDepth = Number.isFinite(blendDistributionDepth) && liveBid ? Math.max(blendDistributionDepth, pairRequiredDepth) : null;
+  const proposedTarget = liveBid && Number.isFinite(chosenDepth) ? Math.max(1, liveBid - chosenDepth) : null;
   const targetBasis = evidenceRung;
   const targetAuthority = targetBasis;
   const lawfulUnallocatedTarget = cent(proposedTarget) ? Math.max(1, Math.min(proposedTarget, postOnlyCap)) : null;
   const boundedTradeLow = cent(ownLowRead.true_trade_low_cents);
   const belowBoundedTradeLow = Boolean(boundedTradeLow && cent(lawfulUnallocatedTarget) && lawfulUnallocatedTarget < boundedTradeLow);
-  const rungLicensesDepth = evidenceRung === "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS"
-    ? Boolean(Number.isFinite(depthDistribution.q50) && timedNeighborLeg.time_conditioned_members > 0 && Number.isFinite(windowFraction))
-    : evidenceRung === "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW"
-      ? Boolean(Number.isFinite(rawDepthDistribution.q50) && timedNeighborLeg.rows.length > 0 && Number.isFinite(windowFraction))
-      : evidenceRung === "RUNG_3_OWN_TAPE"
-        ? Boolean(book?.receipt && liveBid && liveAsk)
-        : Boolean(lineage?.receipt);
+  const blendLicensesDepth = Boolean(liveBid && blendFitnessMass > 0 && basisRows.some((row) => row.normalized_weight > 0 && row.license_receipts.length));
+  const blendLicenseReceipts = [...new Set(basisRows.filter((row) => row.normalized_weight > 0).flatMap((row) => row.license_receipts))];
   const jointDepthLicense = !belowBoundedTradeLow
     ? { required: false, lawful: true, basis: "NOT_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] }
-    : rungLicensesDepth
-      ? { required: true, lawful: true, basis: evidenceRung, receipts: [book?.receipt, ...neighborReceipts.map((row) => row.receipt_id), ...(lineage?.receipt ? [lineage.receipt] : [])].filter(Boolean) }
-      : { required: true, lawful: false, basis: "EVIDENCE_LADDER_RESOURCE_GAP_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] };
+    : blendLicensesDepth
+      ? { required: true, lawful: true, basis: evidenceRung, receipts: blendLicenseReceipts }
+      : { required: true, lawful: false, basis: "FITNESS_BLEND_RESOURCE_GAP_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] };
   const evidenceLawfulTarget = jointDepthLicense.lawful ? lawfulUnallocatedTarget : null;
   const derivedTarget = cent(evidenceLawfulTarget) ? Math.max(1, Math.min(evidenceLawfulTarget, pairCap)) : null;
   const touchRelation = liveBid && liveAsk && cent(evidenceLawfulTarget)
     ? evidenceLawfulTarget === liveBid ? "AT_BEST_BID" : evidenceLawfulTarget > liveBid ? `INSIDE_SPREAD_${evidenceLawfulTarget - liveBid}C_ABOVE_BID` : `BELOW_BEST_BID_${liveBid - evidenceLawfulTarget}C`
     : "NO_FORMED_TWO_SIDED_BOOK";
-  const evidenceMass = reads.ripeness.value[legId].continuous_evidence_mass ?? 0;
   const touchDistance = liveBid && cent(evidenceLawfulTarget) ? Math.abs(evidenceLawfulTarget - liveBid) : 99;
-  const rungEvidenceGrade = evidenceRung === "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS"
-    ? timedNeighborLeg.denominator
-    : evidenceRung === "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW"
-      ? timedNeighborLeg.denominator + evidenceMass
-      : evidenceRung === "RUNG_3_OWN_TAPE"
-        ? evidenceMass
-        : Number.isInteger(lineageTarget) ? 1 : 0;
-  const allocationPriorityGrade = rungEvidenceGrade / (1 + touchDistance);
+  const blendEvidenceGrade = blendFitnessMass;
+  const allocationPriorityGrade = blendEvidenceGrade / (1 + touchDistance);
   const active = cent(position.standing_target_cents);
   let action;
   if (!Number.isFinite(formationProgress) || formationProgress < 1) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "FORMATION_NOT_COMPLETE" };
-  else if (!cent(derivedTarget)) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "RUNG_4_REFLEX_BYTE_EQUAL_HAS_NO_LAWFUL_TARGET" };
-  else action = { action: active === null ? "PLACE_REST" : active === derivedTarget ? "HOLD_REST" : "REPRICE_REST", target_cents: derivedTarget, reason: `EVIDENCE_LADDER_${evidenceRung}` };
+  else if (!cent(derivedTarget)) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "FITNESS_WEIGHTED_BLEND_HAS_NO_LAWFUL_TARGET" };
+  else action = { action: active === null ? "PLACE_REST" : active === derivedTarget ? "HOLD_REST" : "REPRICE_REST", target_cents: derivedTarget, reason: evidenceRung };
   const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${cent(action.target_cents) ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
   const namedNeighborhood = neighborhood.length
     ? neighborhood.map((row) => `${row.event_id}@${row.score.toFixed(6)}[${row.citation_receipt_id}]`).join(", ")
@@ -614,11 +644,12 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     ? ` The sibling ${siblingId} is credited at ${sibling.entry_cents} from trade receipt ${sibling.fill_receipt ?? "RESOURCE-GAP"}; that half-pair transition re-posed query ${fillHandoffReceipt.context.reposed_query_fingerprint_sha256} and re-derived this open side [${fillHandoffReceipt.receipt_id}].`
     : "";
   const conditional = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
-  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${timedNeighborLeg.own_evidence.basis} bounded evidence low is ${timedNeighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents and time-conditioned remaining-dip q25/q50/q75 ${depthDistribution.q25 ?? "UNKNOWN"}/${depthDistribution.q50 ?? "UNKNOWN"}/${depthDistribution.q75 ?? "UNKNOWN"} cents from ${timedNeighborLeg.time_conditioned_members} members. EVIDENCE_RUNG=${evidenceRung}; TARGET_BASIS=${targetBasis}; RUNG_EVIDENCE_GRADE=${rungEvidenceGrade}; LIVE_TOUCH_BID=${liveBid ?? "UNKNOWN"}; CHOSEN_DEPTH_CENTS=${chosenDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; rung 3 reprices from fresh own-book evidence and rung 4 is the explicitly named reflex floor; no silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold is consumed.`;
+  const basisWeightStatement = basisRows.map((row) => `${row.basis}:${row.normalized_weight.toFixed(9)}@depth=${Number.isFinite(row.depth_cents) ? row.depth_cents : "NA"}[${row.fitness_reason}]`).join(";");
+  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${timedNeighborLeg.own_evidence.basis} bounded evidence low is ${timedNeighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents and time-conditioned remaining-dip q25/q50/q75 ${depthDistribution.q25 ?? "UNKNOWN"}/${depthDistribution.q50 ?? "UNKNOWN"}/${depthDistribution.q75 ?? "UNKNOWN"} cents from ${timedNeighborLeg.time_conditioned_members} members. FITNESS_WEIGHTS=${basisWeightStatement}; TARGET_BASIS=${targetBasis}; BLEND_FITNESS_MASS=${blendEvidenceGrade}; WEIGHTED_DEPTH_CENTS=${Number.isFinite(weightedDepthCents) ? weightedDepthCents.toFixed(9) : "UNKNOWN"}; LIVE_TOUCH_BID=${liveBid ?? "UNKNOWN"}; CHOSEN_DEPTH_CENTS=${chosenDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold.`;
   const windowStatement = ` OWN_WINDOW=formation ${formationEnd ?? "UNKNOWN"} to ${windowEnd ?? "UNKNOWN"} [${windowSource}], elapsed ${elapsedWindowSeconds ?? "UNKNOWN"}s, remaining ${remainingWindowSeconds ?? "UNKNOWN"}s, continuous fraction ${Number.isFinite(windowFraction) ? windowFraction.toFixed(9) : "UNKNOWN"}; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt.`;
   const pairStateStatement = ` PAIR_STATE=${siblingCommitment ? "HALF_PAIR" : "OPEN"}; CREDITED_SIBLING=${siblingCommitment ? `${siblingId}@${siblingCommitment}` : "NONE"}; PAIR_REQUIRED_DEPTH_CENTS=${pairRequiredDepth}; PAIR_CAP_CENTS=${pairCap}.`;
   const presenceStatement = ` TOUCH_RELATION=${touchRelation}; LIVE_BID_ASK=${liveBid ?? "UNKNOWN"}/${liveAsk ?? "UNKNOWN"}; JOINT_DEPTH_LICENSE=${jointDepthLicense.basis}; DEPTH_LICENSE_RECEIPTS=${jointDepthLicense.receipts.join(",") || "NONE"}.`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Lineage target ${lineageStatement} is consumed only when the explicitly named rung 4 is best available; post-only cap is ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Reflex lineage target ${lineageStatement} contributes only by its normalized receipt-level fitness when available; post-only cap is ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
   for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
   if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
@@ -633,7 +664,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     neighborhood,
     resources_consulted: [...new Set(neighborhood.filter((row) => row.quality === "FOUNDATION_MINUTE_BELL_BOUNDED").flatMap((row) => ["FOUNDATION_PER_MINUTE_UNIVERSE", ...(row.legs?.some((leg) => leg.spike_atlas) ? ["SPIKE_ATLAS"] : [])]))],
     citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, rung_availability: { time_bearing_graded_neighbors: rung1Available, graded_neighbors_plus_own_window: rung2Available, own_tape: rung3Available, reflex_byte_equal: true }, rung_evidence_grade: rungEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, distribution_depth_cents: rungDistributionDepth, chosen_depth_cents: chosenDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: evidenceRung === "RUNG_4_REFLEX_BYTE_EQUAL", sibling_commitment_cents: siblingCommitment, pair_state: siblingCommitment ? "HALF_PAIR" : "OPEN", pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
+    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, basis_availability: { time_bearing_neighbors: timeBearingAvailable, graded_neighbors: gradedNeighborAvailable, own_tape_presence: ownTapeAvailable, reflex_tracking: reflexAvailable }, basis_weights: basisRows, blend_fitness_mass: blendFitnessMass, blend_evidence_grade: blendEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, weighted_depth_cents: weightedDepthCents, distribution_depth_cents: blendDistributionDepth, chosen_depth_cents: chosenDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: false, sibling_commitment_cents: siblingCommitment, pair_state: siblingCommitment ? "HALF_PAIR" : "OPEN", pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },

@@ -1,0 +1,2220 @@
+{
+  "label": "EARLY_RISER_LEVEL_SOURCE_AND_REPAIR",
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "leg_id": "SVA",
+  "question": "Where did the pre-fill 33-36c levels during the later 41c floor era come from?",
+  "verdict": "The old 36c era came from subtractive retrieval plus an uncredited sibling plan treated as commitment. Iteration 4 conditions the fresh book with absolute neighbor floors and continuously reallocates only fresh per-receipt plans.",
+  "before_artifact": {
+    "path": "C:\\tmp\\omi-v54-repair-pair-20260822\\.claude\\window1_live_v4_replay\\v54_repair_pair_clean_diet_fill_handoff_20260822\\REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "sha256": "536c792270146687521bf6ceb295d289e446ad6791419f4d2717a1797aa3aeae",
+    "bytes": 296805,
+    "rows": 76
+  },
+  "before": [
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007323",
+      "timestamp_epoch": 1784007323,
+      "book": {
+        "bid_cents": 5,
+        "ask_cents": 86,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1"
+      },
+      "target_cents": null,
+      "anchor_cents": 41,
+      "blanket_low_ratio": null,
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "source_class": "NULL_SERVED_NO_TARGET",
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": []
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007401",
+      "timestamp_epoch": 1784007401,
+      "book": {
+        "bid_cents": 5,
+        "ask_cents": 84,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-18"
+      },
+      "target_cents": null,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 1,
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO",
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXITFWMATCH-26JUL15TEPJOV",
+          "weight": 0.4086752156348033,
+          "low_ratio": 1,
+          "low_cents": 44,
+          "anchor_cents": 44
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007603",
+      "timestamp_epoch": 1784007603,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 86,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-57"
+      },
+      "target_cents": 36,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.8897563431177986,
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO",
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXITFMATCH-26JUL16DARJON",
+          "weight": 0.4594916069661823,
+          "low_ratio": 1,
+          "low_cents": 46,
+          "anchor_cents": 46
+        },
+        {
+          "event_id": "KXITFMATCH-26JUL15FONHRA",
+          "weight": 0.45790196132547073,
+          "low_ratio": 1,
+          "low_cents": 54,
+          "anchor_cents": 54
+        },
+        {
+          "event_id": "KXITFWMATCH-26JUL15TEPJOV",
+          "weight": 0.45508774262491397,
+          "low_ratio": 1,
+          "low_cents": 44,
+          "anchor_cents": 44
+        },
+        {
+          "event_id": "KXITFMATCH-26JUL15JEFROB",
+          "weight": 0.4350788386053194,
+          "low_ratio": 1,
+          "low_cents": 39,
+          "anchor_cents": 39
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+          "weight": 0.42003741444661674,
+          "low_ratio": 0.7906976744186046,
+          "low_cents": 34,
+          "anchor_cents": 43
+        },
+        {
+          "event_id": "KXITFMATCH-26JUL15BROVUJ",
+          "weight": 0.4135878144430765,
+          "low_ratio": 0.7142857142857143,
+          "low_cents": 35,
+          "anchor_cents": 49
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12POLVIN",
+          "weight": 0.409213871227207,
+          "low_ratio": 0.6818181818181818,
+          "low_cents": 30,
+          "anchor_cents": 44
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007604",
+      "timestamp_epoch": 1784007604,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 46,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-61"
+      },
+      "target_cents": 40,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9754729508248761,
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": 54,
+      "pair_cap_cents": 45,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.7915781983497575,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26MAY10ROCSAF",
+          "weight": 0.7890145374374609,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+          "weight": 0.7831104447033328,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15SCHHOU",
+          "weight": 0.7822442975172795,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26MAY15COPBLA",
+          "weight": 0.7803875460482296,
+          "low_ratio": 0.9512195121951219,
+          "low_cents": 39,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+          "weight": 0.7763277939778579,
+          "low_ratio": 1,
+          "low_cents": 40,
+          "anchor_cents": 40
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+          "weight": 0.7759397942821382,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784016081.367",
+      "timestamp_epoch": 1784016081.367,
+      "book": {
+        "bid_cents": 37,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-192"
+      },
+      "target_cents": 38,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9317583554483255,
+      "lineage_target_cents": 37,
+      "sibling_uncredited_standing_commitment_cents": 57,
+      "pair_cap_cents": 42,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+          "weight": 0.8462132335514053,
+          "low_ratio": 0.9523809523809523,
+          "low_cents": 40,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+          "weight": 0.8421844892631125,
+          "low_ratio": 0.8780487804878049,
+          "low_cents": 36,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26MAY15COPBLA",
+          "weight": 0.8419884558998322,
+          "low_ratio": 0.9512195121951219,
+          "low_cents": 39,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+          "weight": 0.8410562036426983,
+          "low_ratio": 0.9302325581395349,
+          "low_cents": 40,
+          "anchor_cents": 43
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+          "weight": 0.8386660635184633,
+          "low_ratio": 0.9545454545454546,
+          "low_cents": 42,
+          "anchor_cents": 44
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+          "weight": 0.8385523801198699,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+          "weight": 0.8354570976728186,
+          "low_ratio": 0.9534883720930233,
+          "low_cents": 41,
+          "anchor_cents": 43
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784018016",
+      "timestamp_epoch": 1784018016,
+      "book": {
+        "bid_cents": 37,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-208"
+      },
+      "target_cents": 38,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9317583554483252,
+      "lineage_target_cents": 37,
+      "sibling_uncredited_standing_commitment_cents": 58,
+      "pair_cap_cents": 41,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16VISNIJ",
+          "weight": 0.8547627962880242,
+          "low_ratio": 0.9523809523809523,
+          "low_cents": 40,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+          "weight": 0.8506933483086557,
+          "low_ratio": 0.8780487804878049,
+          "low_cents": 36,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26MAY15COPBLA",
+          "weight": 0.8504953343576567,
+          "low_ratio": 0.9512195121951219,
+          "low_cents": 39,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17PERSAN",
+          "weight": 0.849553663258034,
+          "low_ratio": 0.9302325581395349,
+          "low_cents": 40,
+          "anchor_cents": 43
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12CHAJON",
+          "weight": 0.8471393747842682,
+          "low_ratio": 0.9545454545454546,
+          "low_cents": 42,
+          "anchor_cents": 44
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL17SMIYUN",
+          "weight": 0.8470245428059671,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14FORGOR",
+          "weight": 0.8438979877311438,
+          "low_ratio": 0.9534883720930233,
+          "low_cents": 41,
+          "anchor_cents": 43
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020201.83",
+      "timestamp_epoch": 1784020201.83,
+      "book": {
+        "bid_cents": 40,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-300"
+      },
+      "target_cents": 40,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9795291996162319,
+      "lineage_target_cents": 40,
+      "sibling_uncredited_standing_commitment_cents": 58,
+      "pair_cap_cents": 41,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "weight": 0.8444865621623772,
+          "low_ratio": 0.9047619047619048,
+          "low_cents": 38,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14MATMOR",
+          "weight": 0.8427835434138546,
+          "low_ratio": 0.9767441860465116,
+          "low_cents": 42,
+          "anchor_cents": 43
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+          "weight": 0.8403504810287006,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+          "weight": 0.8397319718612519,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+          "weight": 0.8396744594489896,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+          "weight": 0.8395399442494866,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14VILRIB",
+          "weight": 0.836944317977411,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784028911",
+      "timestamp_epoch": 1784028911,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1466"
+      },
+      "target_cents": 40,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9691382080894241,
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": 57,
+      "pair_cap_cents": 42,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+          "weight": 0.8374798995576134,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+          "weight": 0.8311637817191946,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+          "weight": 0.8265702302393318,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+          "weight": 0.8257557028410354,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+          "weight": 0.8255429523499364,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "weight": 0.8230687608859821,
+          "low_ratio": 0.9047619047619048,
+          "low_cents": 38,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.8223112604453184,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784036624.369",
+      "timestamp_epoch": 1784036624.369,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2134"
+      },
+      "target_cents": 41,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.988858904110629,
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": 53,
+      "pair_cap_cents": 46,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.8744633207415662,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+          "weight": 0.8662213071557386,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+          "weight": 0.8380878459560279,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+          "weight": 0.8358299649485128,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+          "weight": 0.8347980620514311,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26APR25FELKEN",
+          "weight": 0.8345661001298602,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL08PIRDZU",
+          "weight": 0.834371788667113,
+          "low_ratio": 1.0476190476190477,
+          "low_cents": 44,
+          "anchor_cents": 42
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784036629",
+      "timestamp_epoch": 1784036629,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2135"
+      },
+      "target_cents": 40,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9691343357911347,
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": 53,
+      "pair_cap_cents": 46,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+          "weight": 0.828437733508311,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+          "weight": 0.8224636059970619,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+          "weight": 0.8174335368584021,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+          "weight": 0.8166451039829006,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+          "weight": 0.8155792597480935,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "weight": 0.8141310233955565,
+          "low_ratio": 0.9047619047619048,
+          "low_cents": 38,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.8136511130119148,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784036642",
+      "timestamp_epoch": 1784036642,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2136"
+      },
+      "target_cents": 40,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9691342186351285,
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": 53,
+      "pair_cap_cents": 46,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14CASSCH",
+          "weight": 0.8284326109544492,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DROPIR",
+          "weight": 0.8224585203835624,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12FUEROS",
+          "weight": 0.8174284823477833,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+          "weight": 0.81664005434747,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15YIBYUN",
+          "weight": 0.8155742167031939,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ARNROM",
+          "weight": 0.8141259893056676,
+          "low_ratio": 0.9047619047619048,
+          "low_cents": 38,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.8136561441654401,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784039243",
+      "timestamp_epoch": 1784039243,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2434"
+      },
+      "target_cents": 41,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9889302917678201,
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": 53,
+      "pair_cap_cents": 46,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.8696768323738644,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+          "weight": 0.8612016429151501,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL08PIRDZU",
+          "weight": 0.8371470643473293,
+          "low_ratio": 1.0476190476190477,
+          "low_cents": 44,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+          "weight": 0.8332312122573823,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+          "weight": 0.8328332283706235,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26APR25FELKEN",
+          "weight": 0.8314370509079905,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16CAMBOO",
+          "weight": 0.8299604923154112,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784039714",
+      "timestamp_epoch": 1784039714,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 46,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2476"
+      },
+      "target_cents": 40,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.982502367673732,
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": 55,
+      "pair_cap_cents": 44,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26APR25FELKEN",
+          "weight": 0.8741933216666293,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+          "weight": 0.8657717248310524,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL08PIRDZU",
+          "weight": 0.8648874460583675,
+          "low_ratio": 1.0476190476190477,
+          "low_cents": 44,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+          "weight": 0.8640908483272243,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.8590767714398794,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL16MRVRON",
+          "weight": 0.8566084934343546,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+          "weight": 0.8557302356999781,
+          "low_ratio": 0.9512195121951219,
+          "low_cents": 39,
+          "anchor_cents": 41
+        }
+      ]
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784050516",
+      "timestamp_epoch": 1784050516,
+      "book": {
+        "bid_cents": 46,
+        "ask_cents": 47,
+        "last_trade_cents": 47,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3017"
+      },
+      "target_cents": 40,
+      "anchor_cents": 41,
+      "blanket_low_ratio": 0.9823421724117615,
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": 54,
+      "pair_cap_cents": 45,
+      "source_class": "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE",
+      "pair_residue_present": true,
+      "pair_residue_bound_target": false,
+      "neighbor_rows": [
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26APR25FELKEN",
+          "weight": 0.8650477583740275,
+          "low_ratio": 0.975609756097561,
+          "low_cents": 40,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL15SHIBOU",
+          "weight": 0.8609969666916908,
+          "low_ratio": 1,
+          "low_cents": 42,
+          "anchor_cents": 42
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12DEGEE",
+          "weight": 0.854439163972383,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+          "weight": 0.8513232541698912,
+          "low_ratio": 0.9024390243902439,
+          "low_cents": 37,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14BICMIY",
+          "weight": 0.8449148311877361,
+          "low_ratio": 0.9512195121951219,
+          "low_cents": 39,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL13VUKBRO",
+          "weight": 0.8430269243136563,
+          "low_ratio": 1,
+          "low_cents": 41,
+          "anchor_cents": 41
+        },
+        {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL08PIRDZU",
+          "weight": 0.8420496101563053,
+          "low_ratio": 1.0476190476190477,
+          "low_cents": 44,
+          "anchor_cents": 42
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007323",
+      "timestamp_epoch": 1784007323,
+      "book": {
+        "bid_cents": 5,
+        "ask_cents": 86,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1"
+      },
+      "target_cents": 1,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 45,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 0,
+        "remaining_window_seconds": 71077,
+        "window_fraction": 0,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 8,
+        "q50": 23,
+        "q75": 37
+      },
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.000000 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-e4f7a93fc293b1af7a4a5f1b820a9c7886cecc45f7c8fc2e8a27a36d2dd1fb52]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07ANDWAN@0.681167[CR-84a4e477c9ecba6fb679db944678f706c756ecd9028006a2b896e10ca64a43e4], KXATPCHALLENGERMATCH-26FEB03ALBVAN@0.680334[CR-7d4e4e9a6f09cec7c164ab5b08e1fb0ea53ec98ca110c09a511535a2d5f44ae6], KXWTAMATCH-25AUG28CIRMUC@0.661359[CR-f13640023dd636de75d38cd8cb7f2e0365c4899cdd4a7c4c207bd5c7ee8cdd24], KXATPCHALLENGERMATCH-26MAR29AVECOS@0.632199[CR-49fb62385e13fc1d1e1eaba1065a35db1143ae517c0d4a6557eafb37f62677c9], KXATPMATCH-25AUG27KHAMAJ@0.620181[CR-f3552dcf6e5e29b3a33fcf004aff92e3d053cdfa9a7be43598b666b282c7c5ef], KXATPCHALLENGERMATCH-26APR05BONYEV@0.608624[CR-9bfc2a23d45700bf36d18e87d077a9168ae498d7471096b9f6f86d6aa22f6bd2], KXATPCHALLENGERMATCH-26APR07BASDRA@0.597788[CR-5ad1a904a3cd2f29b1e4d0a302cfb21785a7d42e77c536d3ab09f674bf269519]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 45, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 8/23/37 cents and time-conditioned remaining-dip q25/q50/q75 8/23/37 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.500000000@depth=23[timed_mass_share=1; evidence_match_share=1; neighborhood_applicability=0.6051544028672875];GRADED_NEIGHBORS:0.500000000@depth=23[evidence_match_share=1; neighborhood_applicability=0.6051544028672875];OWN_TAPE_PRESENCE:0.000000000@depth=0[own_evidence_share=0.10557252272407443; formation_progress=0; formation_adjacency=1];REFLEX_TRACKING:0.000000000@depth=NA[lineage_available=false; formation_progress=0; formation_adjacency=1]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.210308805734575; WEIGHTED_DEPTH_CENTS=23.000000000; LIVE_TOUCH_BID=5; CHOSEN_DEPTH_CENTS=23; PRE_ALLOCATION_DEPTH_TARGET_CENTS=1; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 0s, remaining 71077s, continuous fraction 0.000000000; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_4C; LIVE_BID_ASK=5/86; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target RESOURCE-GAP[CR-4393cee4c6d33592a54c1d5c36faaeb83c0cdf9a822020e7aa9dcbbdc25b864d] contributes only by its normalized receipt-level fitness when available; post-only cap is 85. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.016137451,SVA:0.242061761; FROM_CENTS=LAJ:1,SVA:1; TO_CENTS=LAJ:1,SVA:1; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=4; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=PLACE_REST; TARGET_CENTS=1; ACTIVE_TARGET_BEFORE_CENTS=NONE."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007333",
+      "timestamp_epoch": 1784007333,
+      "book": {
+        "bid_cents": 5,
+        "ask_cents": 86,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2"
+      },
+      "target_cents": 1,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 45,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 0,
+        "remaining_window_seconds": 71067,
+        "window_fraction": 0,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 8,
+        "q50": 23,
+        "q75": 37
+      },
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.002778 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-12984d06c050e29c9948ddab4f6acb82ddc842b8462142c110ee909433c4d8c6]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07ANDWAN@0.681170[CR-58044e077e9a93447d0dafd213ad0d3efefd9d7523a81081133a5a4554d35ff3], KXATPCHALLENGERMATCH-26FEB03ALBVAN@0.680337[CR-44fed62f52bbd5845b17f099b4f0aa85b2668a786086d22b086c11f05c3f7353], KXWTAMATCH-25AUG28CIRMUC@0.661362[CR-6ddf47e6f96a5ff8ac1373b9c28887cc079bf9c8358ef47c7f61468fc971d309], KXATPCHALLENGERMATCH-26MAR29AVECOS@0.632202[CR-d33171058478634c8a50eb99610fc598eab7a6197cd99c156cf0121e39f7403e], KXATPMATCH-25AUG27KHAMAJ@0.620184[CR-0623b46835d3629a80942449bfe0f8890dff61efb13de0f5a071e4fe62fc0548], KXATPCHALLENGERMATCH-26APR05BONYEV@0.608627[CR-d5732947f6ed2d3d484949936162cc997cb4e3ff9d5f13e96a7a55a9c7613765], KXATPCHALLENGERMATCH-26APR07BASDRA@0.597791[CR-f792f486c627a9d42ef7dd62fb829dec5e7fff9ccaa247b9998be73216bd93af]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 45, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 8/23/37 cents and time-conditioned remaining-dip q25/q50/q75 8/23/37 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.497790519@depth=23[timed_mass_share=1; evidence_match_share=1; neighborhood_applicability=0.605157448136639];GRADED_NEIGHBORS:0.497790519@depth=23[evidence_match_share=1; neighborhood_applicability=0.605157448136639];OWN_TAPE_PRESENCE:0.004418962@depth=0[own_evidence_share=0.1504180980251242; formation_progress=0.03571428571428571; formation_adjacency=1];REFLEX_TRACKING:0.000000000@depth=NA[lineage_available=false; formation_progress=0.03571428571428571; formation_adjacency=1]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.2156869712027467; WEIGHTED_DEPTH_CENTS=22.898363866; LIVE_TOUCH_BID=5; CHOSEN_DEPTH_CENTS=23; PRE_ALLOCATION_DEPTH_TARGET_CENTS=1; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 0s, remaining 71067s, continuous fraction 0.000000000; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_4C; LIVE_BID_ASK=5/86; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target RESOURCE-GAP[CR-55d95741f11d094d0bfc6739267ba8c5bf89d627ce5751b3cace5c1e5261e62b] contributes only by its normalized receipt-level fitness when available; post-only cap is 85. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.021326516,SVA:0.243137394; FROM_CENTS=LAJ:1,SVA:1; TO_CENTS=LAJ:1,SVA:1; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=4; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=1; ACTIVE_TARGET_BEFORE_CENTS=1."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007334",
+      "timestamp_epoch": 1784007334,
+      "book": {
+        "bid_cents": 5,
+        "ask_cents": 86,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-4"
+      },
+      "target_cents": 1,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 45,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 0,
+        "remaining_window_seconds": 71066,
+        "window_fraction": 0,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 8,
+        "q50": 23,
+        "q75": 37
+      },
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.003056 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-00dedaf6f9eb8fbb0dfd538f567734bc927dfd386ff68da3ccbce56a5eb4b151]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB03ALBVAN@0.683632[CR-ccff76c9135f93f5c09a3440af2cabdc25b09c538901396593c1e19e3dc453d5], KXATPCHALLENGERMATCH-26FEB07ANDWAN@0.677888[CR-d6bd7104629ec12daf0d245b0747d445bbefee681a9c82e90e59bfdada74d16c], KXWTAMATCH-25AUG28CIRMUC@0.658175[CR-88f1dc9455f234cfb6189d650f257646652e7de6f55d857db387388770373bcb], KXATPCHALLENGERMATCH-26MAR29AVECOS@0.635264[CR-c0ef5583ec00649154b9d1bd9db26984945627e1599c144f2568876ff4d890a0], KXATPMATCH-25AUG27KHAMAJ@0.623188[CR-ac823e449ad81a9f84e92719ee5965b5b8c04c15563354d38ac7cd0faf562876], KXATPCHALLENGERMATCH-26APR05BONYEV@0.611575[CR-9fe5661b83b82c3d15fa153bb54a3027f4b188e0bdd50914a5ae3d388f0970b6], KXATPCHALLENGERMATCH-26APR07BASDRA@0.600686[CR-6a961905423c87eb945aefb867b565b240480bd8cc8288ff86142eaa1165391d]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 45, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 8/23/37 cents and time-conditioned remaining-dip q25/q50/q75 8/23/37 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.497246689@depth=23[timed_mass_share=1; evidence_match_share=1; neighborhood_applicability=0.6063367756846315];GRADED_NEIGHBORS:0.497246689@depth=23[evidence_match_share=1; neighborhood_applicability=0.6063367756846315];OWN_TAPE_PRESENCE:0.005506622@depth=0[own_evidence_share=0.1709198882867375; formation_progress=0.039285714285714285; formation_adjacency=1];REFLEX_TRACKING:0.000000000@depth=NA[lineage_available=false; formation_progress=0.039285714285714285; formation_adjacency=1]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.219388261266242; WEIGHTED_DEPTH_CENTS=22.873347700; LIVE_TOUCH_BID=5; CHOSEN_DEPTH_CENTS=23; PRE_ALLOCATION_DEPTH_TARGET_CENTS=1; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 0s, remaining 71066s, continuous fraction 0.000000000; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_4C; LIVE_BID_ASK=5/86; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target RESOURCE-GAP[CR-ed3a1f8dc537a9017ebacdd5f17868f5eca6aa13c32fab18bd3ae54e3e1fed99] contributes only by its normalized receipt-level fitness when available; post-only cap is 85. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.022076089,SVA:0.243877652; FROM_CENTS=LAJ:1,SVA:1; TO_CENTS=LAJ:1,SVA:1; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=4; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=1; ACTIVE_TARGET_BEFORE_CENTS=1."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007335",
+      "timestamp_epoch": 1784007335,
+      "book": {
+        "bid_cents": 5,
+        "ask_cents": 85,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-8"
+      },
+      "target_cents": 1,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 44,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 0,
+        "remaining_window_seconds": 71065,
+        "window_fraction": 0,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 8,
+        "q50": 23,
+        "q75": 37
+      },
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.003333 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-770c809b228ec2777d2197512d7479f2dd09d5610bbcc1cf02ef1918bdcb8ba0]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB03ALBVAN@0.676272[CR-34f5b71452262e3d72f278d88945870bd94f4213e128f4625986611bf2a3697c], KXATPCHALLENGERMATCH-26FEB07ANDWAN@0.664142[CR-66f131181de677fdcf090dcf9703242e00cd05a79c85d38da1918dc7dee00eff], KXWTAMATCH-25AUG28CIRMUC@0.653926[CR-b712748c64534f2510f2d4aec6987eff12c300df4876d749e031490edbfc1568], KXATPCHALLENGERMATCH-26MAR29AVECOS@0.634525[CR-2ab95bf00e2a14e9d89b4e1514ad7f9e5fa4db93da8a5e6a1e9cebed6daf234f], KXATPMATCH-25AUG27KHAMAJ@0.622463[CR-523c2854adda5426ca7b53480672c22cf85d6ee6519a449d2fc9462e556c634a], KXATPCHALLENGERMATCH-26APR07BASDRA@0.611399[CR-5fb02de5f260be36c68e85369a0fcd9c9df52d08a2de5a7a73f71912e47e1d88], KXATPCHALLENGERMATCH-26APR05BONYEV@0.610864[CR-d33445a1178555b34ec8174b4e8e81f01dc9f348589dcca1acfabbabe635c617]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 44, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 8/23/37 cents and time-conditioned remaining-dip q25/q50/q75 8/23/37 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.496881025@depth=23[timed_mass_share=1; evidence_match_share=1; neighborhood_applicability=0.6040662316064136];GRADED_NEIGHBORS:0.496881025@depth=23[evidence_match_share=1; neighborhood_applicability=0.6040662316064136];OWN_TAPE_PRESENCE:0.006237951@depth=0[own_evidence_share=0.17695012358953754; formation_progress=0.04285714285714286; formation_adjacency=1];REFLEX_TRACKING:0.000000000@depth=NA[lineage_available=false; formation_progress=0.04285714285714286; formation_adjacency=1]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.215716039938093; WEIGHTED_DEPTH_CENTS=22.856527134; LIVE_TOUCH_BID=5; CHOSEN_DEPTH_CENTS=23; PRE_ALLOCATION_DEPTH_TARGET_CENTS=1; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 0s, remaining 71065s, continuous fraction 0.000000000; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_4C; LIVE_BID_ASK=5/85; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target RESOURCE-GAP[CR-fa20017ed5a238bf8667629d605c50c3ed07e92fc47a39e62ef856c3d7ea8682] contributes only by its normalized receipt-level fitness when available; post-only cap is 84. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.021684767,SVA:0.243143208; FROM_CENTS=LAJ:1,SVA:1; TO_CENTS=LAJ:1,SVA:1; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=4; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=1; ACTIVE_TARGET_BEFORE_CENTS=1."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007401",
+      "timestamp_epoch": 1784007401,
+      "book": {
+        "bid_cents": 5,
+        "ask_cents": 84,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-18"
+      },
+      "target_cents": 1,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 44,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 0,
+        "remaining_window_seconds": 70999,
+        "window_fraction": 0,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 8,
+        "q50": 23,
+        "q75": 37
+      },
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.021667 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-9814e629b7203f43b7b9e32594df6c9b6851d80da061a869c508674ff3e9ed47]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB03ALBVAN@0.675002[CR-2127d4040521a06e5a27994b42ae7a076d9d5216f47d5b1f2771863d711c4941], KXATPCHALLENGERMATCH-26FEB07ANDWAN@0.643956[CR-f945394ed298b849ac67df173a93535d239c256690e2053727d1a127b717a677], KXATPCHALLENGERMATCH-26MAR29AVECOS@0.639482[CR-fc5d89b9affb4f7b626b8862004bbc5960e492b32a28d893760b7b9d94735146], KXWTAMATCH-25AUG28CIRMUC@0.637121[CR-7c7e811c102e0f037efdac05c9e5851a4ca718e1de0f39a36306e9eeb9f435d1], KXATPCHALLENGERMATCH-26APR07BASDRA@0.627895[CR-d929a9020ed28b881f38a4f073b17a9860b5641406ca8e681fedda0ba8a9d913], KXATPMATCH-25AUG27KHAMAJ@0.621294[CR-8537b45125c1f2d08b63c34957be7df4cb4f1e9ec6528659c7fc882f3c1938b1], KXATPCHALLENGERMATCH-26APR05BONYEV@0.615636[CR-7203f7e73db9bed8d03b2946ee7e7cc35e42ccc02bf365bdc5b75c547d3c9928]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 44, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 8/23/37 cents and time-conditioned remaining-dip q25/q50/q75 8/23/37 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.479493898@depth=23[timed_mass_share=1; evidence_match_share=1; neighborhood_applicability=0.6022830491400734];GRADED_NEIGHBORS:0.479493898@depth=23[evidence_match_share=1; neighborhood_applicability=0.6022830491400734];OWN_TAPE_PRESENCE:0.041012203@depth=0[own_evidence_share=0.1849243439319798; formation_progress=0.2785714285714286; formation_adjacency=1];REFLEX_TRACKING:0.000000000@depth=NA[lineage_available=false; formation_progress=0.2785714285714286; formation_adjacency=1]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.2560807369469125; WEIGHTED_DEPTH_CENTS=22.056719322; LIVE_TOUCH_BID=5; CHOSEN_DEPTH_CENTS=22; PRE_ALLOCATION_DEPTH_TARGET_CENTS=1; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 0s, remaining 70999s, continuous fraction 0.000000000; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_4C; LIVE_BID_ASK=5/84; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target RESOURCE-GAP[CR-51cf68919d909e0adfdb4628e4c446095801525bd548c7cdd2ee36765a5606e6] contributes only by its normalized receipt-level fitness when available; post-only cap is 83. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.058697266,SVA:0.251216147; FROM_CENTS=LAJ:1,SVA:1; TO_CENTS=LAJ:1,SVA:1; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=4; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=1; ACTIVE_TARGET_BEFORE_CENTS=1."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007603",
+      "timestamp_epoch": 1784007603,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 86,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-57"
+      },
+      "target_cents": 1,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 0,
+        "remaining_window_seconds": 70797,
+        "window_fraction": 0,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 63,
+        "q50": 65,
+        "q75": 66
+      },
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.077778 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-725cdead090cd8629727c8f9b26688f250c387fcd4c3e85f018fa4f0543a752d]. The named neighborhood is KXATPCHALLENGERMATCH-26JAN27BRASVA@0.663289[CR-fc4ba064186a3773d3749deba02c2af9e336997b6740b99de2469ee19684b8d1], KXATPCHALLENGERMATCH-26JAN27MENKES@0.661808[CR-1fd7d04278e4cbcede7e6d51d0e8546551ce9f42fbe6076bafc35f2b7d2d6ba5], KXATPCHALLENGERMATCH-26FEB15KUMGEO@0.655306[CR-fa2acc66365e4c377498364a763a484f7ca80a43fb359fa2aff321dfbb8cb679], KXATPCHALLENGERMATCH-26FEB02BLAWIN@0.652897[CR-e0ee11c22e8a762509af36dee88177a1ad0e23a03ba9560e3c2de8cc15110c38], KXATPCHALLENGERMATCH-26APR07ARTMAG@0.652503[CR-f3cf3d5884807d680f5c96e98938e146ae9342626e6610ea1e5617f62552edc5], KXATPCHALLENGERMATCH-26FEB15BIANEF@0.652227[CR-5a90f6714f4f929820e22a2ac16f46c6c6c9fbe45d3948d8f2f20ef897f384d1], KXATPCHALLENGERMATCH-26MAR10MANSOT@0.650948[CR-c5e36ee0617637d5398e719ce7d5883df32d28b2f4f2ac0f24829c17239a2379]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 63/65/66 cents and time-conditioned remaining-dip q25/q50/q75 63/65/66 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.418470034@depth=65[timed_mass_share=1; evidence_match_share=0.8623433224982343; neighborhood_applicability=0.6196469019366371];GRADED_NEIGHBORS:0.418470034@depth=65[evidence_match_share=0.8623433224982343; neighborhood_applicability=0.6196469019366371];OWN_TAPE_PRESENCE:0.163059931@depth=0[own_evidence_share=0.20821277725481657; formation_progress=1; formation_adjacency=1];REFLEX_TRACKING:0.000000000@depth=NA[lineage_available=false; formation_progress=1; formation_adjacency=1]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.276909513638371; WEIGHTED_DEPTH_CENTS=54.401104482; LIVE_TOUCH_BID=36; CHOSEN_DEPTH_CENTS=54; PRE_ALLOCATION_DEPTH_TARGET_CENTS=1; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 0s, remaining 70797s, continuous fraction 0.000000000; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_35C; LIVE_BID_ASK=36/86; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target RESOURCE-GAP[CR-888ffa64d6d8f59a65039e0e6067e3e9f4aaf1ec7fb00ead6be4137337178225] contributes only by its normalized receipt-level fitness when available; post-only cap is 85. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.213341862,SVA:0.035469709; FROM_CENTS=LAJ:51,SVA:1; TO_CENTS=LAJ:51,SVA:1; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=35; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=1; ACTIVE_TARGET_BEFORE_CENTS=1."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007604",
+      "timestamp_epoch": 1784007604,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 46,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-61"
+      },
+      "target_cents": 24,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 39,
+        "observed_dip_cents": 2,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 1,
+        "remaining_window_seconds": 70796,
+        "window_fraction": 0.00001412489229769623,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 14,
+        "q50": 20,
+        "q75": 34
+      },
+      "lineage_target_cents": null,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.078056 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-1ca1ca243e42f0f1c48ea754a5a7f1ca94fb835864f004755386ab3c26fbe54e]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR24OSOSAL@0.862053[CR-5aa3933e61f479f664c51398f1bd4b65374a7ff8f3603b5d396557a09faf6a23], KXATPCHALLENGERMATCH-26APR07BLAGOM@0.841780[CR-9b3f0cd499b594e13aa1d0f0c06b797c35afed97a771d972ed1ddffe7898948f], KXATPCHALLENGERMATCH-26JAN18MORRIB@0.840529[CR-2de26e86c05bcbc27c0939201bb3fd10352fa4f3afb50a878cae58d2e5b4810b], KXATPCHALLENGERMATCH-26APR07FELKIN@0.836782[CR-3c3be0bb927f0d0b1f3dabd2b15701f9c5a8fa11829805d29375ae247ec71952], KXATPCHALLENGERMATCH-26JAN18MARTRO@0.834788[CR-62a34e080c53ef15483749f7dc90c600dcb92f34db1e1ff3e9ba2a889d2f7a6f], KXATPCHALLENGERMATCH-26JAN28DELTOR@0.829712[CR-66ca95a9e26531c2f367b258f9e9cc1f668db687d1528e40a5cef6927d59cacc], KXATPCHALLENGERMATCH-26JAN15BROCHI@0.826088[CR-fa520a668a13821271a5e9f7d94fbf63586c1d87ba2eb7270cd8b68a78f952d3]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 39, so its observed state is DIP_OBSERVED with 2 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 14/20/34 cents and time-conditioned remaining-dip q25/q50/q75 14/20/34 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.301704584@depth=20[timed_mass_share=1; evidence_match_share=0.3333333333333332; neighborhood_applicability=0.7928560218603649];GRADED_NEIGHBORS:0.301704584@depth=20[evidence_match_share=0.3333333333333332; neighborhood_applicability=0.7928560218603649];OWN_TAPE_PRESENCE:0.396590832@depth=0[own_evidence_share=0.34740812386040454; formation_progress=1; formation_adjacency=0.9999858751077023];REFLEX_TRACKING:0.000000000@depth=NA[lineage_available=false; formation_progress=1; formation_adjacency=0.9999858751077023]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=0.8759738979983147; WEIGHTED_DEPTH_CENTS=12.068183366; LIVE_TOUCH_BID=36; CHOSEN_DEPTH_CENTS=12; PRE_ALLOCATION_DEPTH_TARGET_CENTS=24; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 1s, remaining 70796s, continuous fraction 0.000014125; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_12C; LIVE_BID_ASK=36/46; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target RESOURCE-GAP[CR-a1cbf0291ae598b92b4cc1c2706385fd5227b3184bae7c4748ac1b99a1fee9ed] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.167686952,SVA:0.067382608; FROM_CENTS=LAJ:50,SVA:24; TO_CENTS=LAJ:50,SVA:24; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=12; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=24; ACTIVE_TARGET_BEFORE_CENTS=1."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007640",
+      "timestamp_epoch": 1784007640,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 43,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-72"
+      },
+      "target_cents": 29,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 39,
+        "observed_dip_cents": 2,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 37,
+        "remaining_window_seconds": 70760,
+        "window_fraction": 0.0005226210150147605,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 6,
+        "q50": 27,
+        "q75": 34
+      },
+      "lineage_target_cents": 36,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.088056 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-566b79b167e66cf371d251f081c5edfc6eb5c6d63f40805b1f74ecd16b01e9fe]. The named neighborhood is KXATPCHALLENGERMATCH-26APR06PERKOZ@0.786942[CR-24aafaca116a5c56a7763104794807299de0d4c2ceb6203d97e7c508c0450006], KXATPCHALLENGERMATCH-26APR20BARGAL@0.786306[CR-88b4e95f745ae94b7fa718bd3808d09355a82c026c390b4534740d8f26c285dc], KXATPCHALLENGERMATCH-26JAN18MORRIB@0.782546[CR-e8efd8a29496bf55ff4adf51d1f6d581719a00f4d46e96fa7c53257cbb4fb9bb], KXATPCHALLENGERMATCH-26MAR24OSOSAL@0.780032[CR-d005c003b63ce096ac473f96aa09959ef4584c77f2d8cac7f0a67c0c5a16e80d], KXATPCHALLENGERMATCH-26MAR22PAUMOL@0.778176[CR-63eca1634a689da9d0a79d301a110bec925ab377acf8058628efc2eb65ccb997], KXATPCHALLENGERMATCH-26MAR17DELDAN@0.774122[CR-037ce0faa1763848d2886ac367a00ac3081c1601e8be81b94345fe0766813d93], KXATPCHALLENGERMATCH-26JAN30GAKFER@0.771053[CR-512c05c141d5a89ccab9732e72f8396bbee7e64e8eaba098a40ec242b4ee9a5c]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 39, so its observed state is DIP_OBSERVED with 2 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 6/27/34 cents and time-conditioned remaining-dip q25/q50/q75 6/27/34 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.130491625@depth=27[timed_mass_share=1; evidence_match_share=0.3276422024819802; neighborhood_applicability=0.7371490746643766];GRADED_NEIGHBORS:0.130491625@depth=27[evidence_match_share=0.3276422024819802; neighborhood_applicability=0.7371490746643766];OWN_TAPE_PRESENCE:0.199008434@depth=0[own_evidence_share=0.36852846244093557; formation_progress=1; formation_adjacency=0.9994773789849852];REFLEX_TRACKING:0.540008316@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.9994773789849852]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.8508555334679984; WEIGHTED_DEPTH_CENTS=7.046547755; LIVE_TOUCH_BID=36; CHOSEN_DEPTH_CENTS=7; PRE_ALLOCATION_DEPTH_TARGET_CENTS=29; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 37s, remaining 70760s, continuous fraction 0.000522621; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_7C; LIVE_BID_ASK=36/43; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 36[CR-a653800570e6eb06eaeb7e8ea86ab331ba7414e75ffc4927a10841f47500917b] contributes only by its normalized receipt-level fitness when available; post-only cap is 42. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.614279472,SVA:0.231356942; FROM_CENTS=LAJ:53,SVA:29; TO_CENTS=LAJ:53,SVA:29; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=7; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=29; ACTIVE_TARGET_BEFORE_CENTS=24."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007670",
+      "timestamp_epoch": 1784007670,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-81"
+      },
+      "target_cents": 34,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 67,
+        "remaining_window_seconds": 70730,
+        "window_fraction": 0.0009463677839456474,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 6,
+        "q50": 6,
+        "q75": 17
+      },
+      "lineage_target_cents": 36,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.096389 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-2be09afeabb33f53ce27dcacce086657e9f2cf9a5c3ec7afaaa16bd6e0d56335]. The named neighborhood is KXATPCHALLENGERMATCH-26APR06PERKOZ@0.780423[CR-95778dc265576162aea8ed968c37a0ff36eb2654c6b9e512d0abed3c781929b9], KXATPCHALLENGERMATCH-26APR20BARGAL@0.776035[CR-85d028248364277a0ecc287691dde7994f56d87285370959ab1c4890c8ece87d], KXATPCHALLENGERMATCH-26MAR17DELDAN@0.764010[CR-ce028ef1c96e2b0d8ae572df4d63cc575fff5b943cfed609d497c24538776e92], KXATPCHALLENGERMATCH-26JAN18MORRIB@0.757542[CR-acca07aabedb54bdf94fe19c68dac822f410c6b2b89417dbe90bce5e85697e80], KXATPCHALLENGERMATCH-26JAN19BERDOD@0.757316[CR-759c691353b52c1e7296387007f733515c7e8c899c415d1b554b37a30342c2a0], KXATPCHALLENGERMATCH-26JAN19CHUPEN@0.757062[CR-652ed41c90b6cec09355b2058c7095f97cd9b87f9c270be4603a83aca03f2ca6], KXATPCHALLENGERMATCH-26FEB28HERGAS@0.755238[CR-e8f84940b9ecae4e1248933ac017ad2d1ebb5ec51276a0177ff7518c690b3130]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 6/6/17 cents and time-conditioned remaining-dip q25/q50/q75 6/6/17 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.138597396@depth=6[timed_mass_share=1; evidence_match_share=0.3588382371944814; neighborhood_applicability=0.7220863871030485];GRADED_NEIGHBORS:0.138597396@depth=6[evidence_match_share=0.3588382371944814; neighborhood_applicability=0.7220863871030485];OWN_TAPE_PRESENCE:0.188418065@depth=0[own_evidence_share=0.3525871967654732; formation_progress=1; formation_adjacency=0.9990536322160544];REFLEX_TRACKING:0.534387143@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.9990536322160544]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.8695315643178567; WEIGHTED_DEPTH_CENTS=1.663168750; LIVE_TOUCH_BID=36; CHOSEN_DEPTH_CENTS=2; PRE_ALLOCATION_DEPTH_TARGET_CENTS=34; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 67s, remaining 70730s, continuous fraction 0.000946368; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_2C; LIVE_BID_ASK=36/41; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 36[CR-8565e16743489a9ae1ea1c98324bf6cd2545b5c1c0d180e260558c3262680452] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.844039134,SVA:0.623177188; FROM_CENTS=LAJ:55,SVA:34; TO_CENTS=LAJ:55,SVA:34; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=2; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=34; ACTIVE_TARGET_BEFORE_CENTS=29."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784007763",
+      "timestamp_epoch": 1784007763,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 40,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-84"
+      },
+      "target_cents": 34,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 160,
+        "remaining_window_seconds": 70637,
+        "window_fraction": 0.0022599827676313966,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 6,
+        "q50": 6,
+        "q75": 17
+      },
+      "lineage_target_cents": 36,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 0.122222 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-5e957120cc2ffa95b3294c89a36539c1e7f332ccd59e3ec711270a41098b2133]. The named neighborhood is KXATPCHALLENGERMATCH-26APR06PERKOZ@0.784239[CR-2a3db5f656042f3792f974f4f53c92e421cf3d46494e56dd67b611a82a84e83f], KXATPCHALLENGERMATCH-26APR20BARGAL@0.779829[CR-e14ae49da3dfd37fe99aded113ba43b29a311185b4cf81bce766df106e539f0d], KXATPCHALLENGERMATCH-26JAN19BERDOD@0.761019[CR-88c79b577b2b6bdca4d4e8a8f3c2f15d87b87dbf14a059a830119b9ccbd8bbdc], KXATPCHALLENGERMATCH-26JAN19CHUPEN@0.760764[CR-af4802db0cabb020470d61292fe90e4f2bd2c2914cf18b90628cd4cf6865e9e9], KXATPCHALLENGERMATCH-26MAR17DELDAN@0.760363[CR-0de5080302ce46708adad0ba2b7145ad5c8ecdda1a6a4658a2cb2e7b4796179e], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.754738[CR-4ad6abc9707b93a3ace7fe549686f04b82031eb1d9c5e788ec831d1812996cb4], KXATPCHALLENGERMATCH-26JAN18MORRIB@0.753927[CR-c26814caab0126f41ae8ddd60163ab61bb95f0006bbc7132215cea6074f766c1]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 6/6/17 cents and time-conditioned remaining-dip q25/q50/q75 6/6/17 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.130905165@depth=6[timed_mass_share=1; evidence_match_share=0.33482813074187096; neighborhood_applicability=0.7230657632391289];GRADED_NEIGHBORS:0.130905165@depth=6[evidence_match_share=0.33482813074187096; neighborhood_applicability=0.7230657632391289];OWN_TAPE_PRESENCE:0.198710801@depth=0[own_evidence_share=0.3683384334231582; formation_progress=1; formation_adjacency=0.9977400172323686];REFLEX_TRACKING:0.539478868@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.9977400172323686]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.8494515279609378; WEIGHTED_DEPTH_CENTS=1.570861983; LIVE_TOUCH_BID=36; CHOSEN_DEPTH_CENTS=2; PRE_ALLOCATION_DEPTH_TARGET_CENTS=34; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 160s, remaining 70637s, continuous fraction 0.002259983; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_2C; LIVE_BID_ASK=36/40; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 36[CR-bb7d0204bfffb73aad8bf4107a920ba8e4b716e239dcaabddf7ce4e14c4a6f89] contributes only by its normalized receipt-level fitness when available; post-only cap is 39. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.786377966,SVA:0.616483843; FROM_CENTS=LAJ:55,SVA:34; TO_CENTS=LAJ:55,SVA:34; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=2; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=34; ACTIVE_TARGET_BEFORE_CENTS=34."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784011052",
+      "timestamp_epoch": 1784011052,
+      "book": {
+        "bid_cents": 36,
+        "ask_cents": 40,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-121"
+      },
+      "target_cents": 33,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 3449,
+        "remaining_window_seconds": 67348,
+        "window_fraction": 0.0487167535347543,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 3,
+        "q50": 17,
+        "q75": 27
+      },
+      "lineage_target_cents": 37,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 1.035833 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-5141cc227e1c291f22b30b584bdf71b84c013ad2c901faf61f5d1f0bb8f8695f]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.834790[CR-b2b43843eb1cfdc6b6da0adf5f633cb144addb58d16b697fd385b04aeed788f9], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.830431[CR-1f34c80e0ade33550298913e1c46b1a9a101e17d128698cca4e64e9d7e977ad4], KXATPCHALLENGERMATCH-26APR06PERKOZ@0.827311[CR-30484f58f4997b77210abbdc8105305444ec06432e14d9cc95d5d0e61001acd6], KXATPCHALLENGERMATCH-26JAN13SHIMIC@0.824330[CR-eccb54ad07084812bb22d34df5971025d2bceef6bb2c6bcc1024ca1066f43900], KXATPCHALLENGERMATCH-26JAN13CUILAN@0.823484[CR-a3a6f7075e7f23d787a7ad6d9f2699f52c67f4330d4c20d63037f73b0b5ec6e4], KXATPCHALLENGERMATCH-26JAN27GENCRA@0.822590[CR-73953fbc0e695dc9eb5b6c75d2daee9a63b9d31fee10c21e35425b57df61ffe7], KXATPCHALLENGERMATCH-26APR13ZINFAU@0.821895[CR-68fba1b7854f3b36d1e00ba36dd788e76f233f3effe6ed2971710a8f462efd83]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 3/17/27 cents and time-conditioned remaining-dip q25/q50/q75 3/17/27 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.088068476@depth=17[timed_mass_share=1; evidence_match_share=0.1932370478432222; neighborhood_applicability=0.7811219480463417];GRADED_NEIGHBORS:0.088068476@depth=17[evidence_match_share=0.1932370478432222; neighborhood_applicability=0.7811219480463417];OWN_TAPE_PRESENCE:0.268827121@depth=0[own_evidence_share=0.4843418382279617; formation_progress=1; formation_adjacency=0.9512832464652456];REFLEX_TRACKING:0.555035927@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.9512832464652456]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.7139129212257296; WEIGHTED_DEPTH_CENTS=2.994328189; LIVE_TOUCH_BID=36; CHOSEN_DEPTH_CENTS=3; PRE_ALLOCATION_DEPTH_TARGET_CENTS=33; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 3449s, remaining 67348s, continuous fraction 0.048716754; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_3C; LIVE_BID_ASK=36/40; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 37[CR-bfd4e0040f78e66f11015b2cc731ae826965a8a1724800e745521e61d78938b6] contributes only by its normalized receipt-level fitness when available; post-only cap is 39. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.709179066,SVA:0.428478230; FROM_CENTS=LAJ:60,SVA:33; TO_CENTS=LAJ:60,SVA:33; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=3; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=33; ACTIVE_TARGET_BEFORE_CENTS=34."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784013560",
+      "timestamp_epoch": 1784013560,
+      "book": {
+        "bid_cents": 37,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-181"
+      },
+      "target_cents": 35,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 5957,
+        "remaining_window_seconds": 64840,
+        "window_fraction": 0.08414198341737644,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 6,
+        "q50": 6,
+        "q75": 11
+      },
+      "lineage_target_cents": 37,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 1.732500 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-9d275f2a5f35d8368f1a3357c2c0585d09c25b1b87b27c2ab1f793e92fa2aed5]. The named neighborhood is KXATPCHALLENGERMATCH-26APR06PERKOZ@0.826457[CR-ff0be64fbe0a812564f0d40937ec3a59930bc78c848663c9700158ca145e2f5e], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.826309[CR-950b52f3f64295dd1e9a9676bc32904a4f11ad0d6d72e88f80475ef402edbc4e], KXATPCHALLENGERMATCH-26APR03FATSAC@0.822118[CR-d49b8c73acacde71e9be6f5bf19f69ea912e6c76732669f701264b8620070f26], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.821995[CR-95b26e72e68ba1a657f99d412ab1d630c08a168b291aea5155cc80499bdc2c77], KXATPCHALLENGERMATCH-26APR21SWETUN@0.818461[CR-b22d2a632f7303409220c4a017d637cf76d00b5f86570cb4b0cec51fe48057df], KXATPCHALLENGERMATCH-26APR20BARGAL@0.813515[CR-3a210b20b7e0502e7f1c5385a14fc55f74a75f5223aa6bb0485ec00ed7d46b80], KXATPCHALLENGERMATCH-26FEB25IVADHA@0.811704[CR-a6e655f168b7af33f44a274b194aa089648d2e445cc6a9fc198f1f9afd130616]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 6/6/11 cents and time-conditioned remaining-dip q25/q50/q75 6/6/11 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.134422771@depth=6[timed_mass_share=1; evidence_match_share=0.2996655628119331; neighborhood_applicability=0.7751439678318032];GRADED_NEIGHBORS:0.134422771@depth=6[evidence_match_share=0.2996655628119331; neighborhood_applicability=0.7751439678318032];OWN_TAPE_PRESENCE:0.201147239@depth=0[own_evidence_share=0.3795179229331273; formation_progress=1; formation_adjacency=0.9158580165826236];REFLEX_TRACKING:0.530007219@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.9158580165826236]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.7280104554988989; WEIGHTED_DEPTH_CENTS=1.613073249; LIVE_TOUCH_BID=37; CHOSEN_DEPTH_CENTS=2; PRE_ALLOCATION_DEPTH_TARGET_CENTS=35; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 5957s, remaining 64840s, continuous fraction 0.084141983; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_2C; LIVE_BID_ASK=37/41; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 37[CR-b9a1fc5a96edb8774f1fe0fd7adc646c25e94d5eff6a261f163460de54b9a02c] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.652190001,SVA:0.576003485; FROM_CENTS=LAJ:59,SVA:35; TO_CENTS=LAJ:59,SVA:35; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=2; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=35; ACTIVE_TARGET_BEFORE_CENTS=33."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784016081.367",
+      "timestamp_epoch": 1784016081.367,
+      "book": {
+        "bid_cents": 37,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-192"
+      },
+      "target_cents": 32,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 8478.367000102997,
+        "remaining_window_seconds": 62318.632999897,
+        "window_fraction": 0.11975602073679671,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 9,
+        "q50": 27,
+        "q75": 34
+      },
+      "lineage_target_cents": 37,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 2.432880 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-4460cbc2cd9b640f8025cf6efd8fea5fb35c16edc5f48a95c7772099dcd054bc]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.830134[CR-8cedd9e8106423a1d94928ec194b3b1b8bfaa430302e98af897b463739851a31], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.826299[CR-f49a5344041922029db74ab1e46d9b50c1d8a029e8b9d9b8a6bff9d06c7246f4], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.824302[CR-a00974b08545264bd4826d6ca8d3f953cc65ea8d0f499fcd4e7c66e4f4217b59], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.821854[CR-c9dca399c895c419870898c615f77dc2bfb689fdf35ec9626984e3596c448fd8], KXATPCHALLENGERMATCH-26APR06PERKOZ@0.816115[CR-d03af159595066a302f230ecb4019c6a325e909a72fa264882f78005dabad14d], KXATPCHALLENGERMATCH-26APR19HENJOR@0.814257[CR-c1d844c120d15c4442109f2bdf938b10241143d95720376c237b16aebd478fa8], KXATPCHALLENGERMATCH-26APR03FATSAC@0.810509[CR-303fd596f79b28a5295c55c30f0355a6f2fac24be216b5a069ff5de57c722d42]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 9/27/34 cents and time-conditioned remaining-dip q25/q50/q75 9/27/34 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.098546917@depth=27[timed_mass_share=1; evidence_match_share=0.20505234850879156; neighborhood_applicability=0.7755368967142695];GRADED_NEIGHBORS:0.098546917@depth=27[evidence_match_share=0.20505234850879156; neighborhood_applicability=0.7755368967142695];OWN_TAPE_PRESENCE:0.257426089@depth=0[own_evidence_share=0.4719257406271186; formation_progress=1; formation_adjacency=0.8802439792632033];REFLEX_TRACKING:0.545480077@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8802439792632033]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.6137050951625147; WEIGHTED_DEPTH_CENTS=5.321533516; LIVE_TOUCH_BID=37; CHOSEN_DEPTH_CENTS=5; PRE_ALLOCATION_DEPTH_TARGET_CENTS=32; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 8478.367000102997s, remaining 62318.632999897s, continuous fraction 0.119756021; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_5C; LIVE_BID_ASK=37/41; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 37[CR-9c99548efaa82b6e398df2c020219548cb32f2a08ba22060739f53f4c56e7d03] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.151237737,SVA:0.268950849; FROM_CENTS=LAJ:49,SVA:32; TO_CENTS=LAJ:49,SVA:32; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=5; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=32; ACTIVE_TARGET_BEFORE_CENTS=35."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784017359",
+      "timestamp_epoch": 1784017359,
+      "book": {
+        "bid_cents": 37,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-205"
+      },
+      "target_cents": 32,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 9756,
+        "remaining_window_seconds": 61041,
+        "window_fraction": 0.13780244925632443,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 9,
+        "q50": 27,
+        "q75": 34
+      },
+      "lineage_target_cents": 37,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 2.787778 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-50168a364871a670e66250831639dbf05c2b5c3c8f9f29d8c344f17f64256e05]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR16BRASAN@0.832840[CR-0437290dc6112cc480b2465d157817eedd98c1ccaf82a093c52f3bfbfcfa1dc0], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.829601[CR-79f670ea3e3a666f6d89634c8d29d771e6bf52b2838619d32cb6c806be631fda], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.825768[CR-b3676ee7e26db9a279ed78e894aa10f84f63a8ee3ed97610d2a2d6de435dfb14], KXATPCHALLENGERMATCH-26APR03FATSAC@0.817852[CR-06d855debc7eee0b5300172aca658c76b9f12f38193aea5549d1e152442f68e6], KXATPCHALLENGERMATCH-26APR19HENJOR@0.814780[CR-5c4a3bb32e175987fc4b6e8785213e3b84a3df65e95cd756eb5133fae5d128d3], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.813428[CR-507c87840f43ce7934067ffd0bbbdbd75d8a48f93077a67c925ff2c094633490], KXATPCHALLENGERMATCH-26APR06PERKOZ@0.808787[CR-edb0d84eb7d310d5f824351997918410dff4d4d14289adb27535a8edbeebef8d]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 9/27/34 cents and time-conditioned remaining-dip q25/q50/q75 9/27/34 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.100144417@depth=27[timed_mass_share=1; evidence_match_share=0.2049634174144689; neighborhood_applicability=0.7754811673352294];GRADED_NEIGHBORS:0.100144417@depth=27[evidence_match_share=0.2049634174144689; neighborhood_applicability=0.7754811673352294];OWN_TAPE_PRESENCE:0.256478450@depth=0[own_evidence_share=0.47213365854456774; formation_progress=1; formation_adjacency=0.8621975507436755];REFLEX_TRACKING:0.543232716@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8621975507436755]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.5871605751596332; WEIGHTED_DEPTH_CENTS=5.407798508; LIVE_TOUCH_BID=37; CHOSEN_DEPTH_CENTS=5; PRE_ALLOCATION_DEPTH_TARGET_CENTS=32; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 9756s, remaining 61041s, continuous fraction 0.137802449; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_5C; LIVE_BID_ASK=37/41; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 37[CR-49e6e44ad45d5ca556998720d6023e274d56b7b02e8af3a231d5ace185d3e6f1] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.148949531,SVA:0.264526763; FROM_CENTS=LAJ:50,SVA:32; TO_CENTS=LAJ:50,SVA:32; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=5; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=32; ACTIVE_TARGET_BEFORE_CENTS=32."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784018016",
+      "timestamp_epoch": 1784018016,
+      "book": {
+        "bid_cents": 37,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-208"
+      },
+      "target_cents": 32,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 10413,
+        "remaining_window_seconds": 60384,
+        "window_fraction": 0.14708250349591084,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 9,
+        "q50": 27,
+        "q75": 34
+      },
+      "lineage_target_cents": 37,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 2.970278 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-9e12f6ceaa396473333bd705c0f543fbf6abe365166d7b46fc3b1e61979c0196]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833116[CR-14a6221e73f1eca3d4d007a05e33106be50728f924b01e70781d753b99cc1376], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.829326[CR-8da371cdf2f8d0381d7caee00ac3994d217abe1879fa33695eddc6667cbd9d11], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.825495[CR-0610f6f30f4bd74cf578f53319040bf88d5267e2ff708f0482cc889ba7ede00d], KXATPCHALLENGERMATCH-26APR03FATSAC@0.817581[CR-2635abb5cbae5b56728cfc5f46bef56976074ad30161a9a38938eaa1bed38c18], KXATPCHALLENGERMATCH-26APR19HENJOR@0.815050[CR-96f20a87fd4df185aeaeccc74b9549a5f46f6d96e52c724306fb0f51ee2bfaf9], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.813159[CR-d5b2aca02e4eb241db6bcff73345374dae001b8d58c3d18dceb43e501ceda0e9], KXATPCHALLENGERMATCH-26APR06PERKOZ@0.808604[CR-fa2dc32b66457b4fd3d1683665c639ac4cde01042ce277712e3ac3311c23d60c]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 9/27/34 cents and time-conditioned remaining-dip q25/q50/q75 9/27/34 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.101005284@depth=27[timed_mass_share=1; evidence_match_share=0.20497262570520436; neighborhood_applicability=0.7753833600705083];GRADED_NEIGHBORS:0.101005284@depth=27[evidence_match_share=0.20497262570520436; neighborhood_applicability=0.7753833600705083];OWN_TAPE_PRESENCE:0.255940143@depth=0[own_evidence_share=0.4721713473872831; formation_progress=1; formation_adjacency=0.8529174965040891];REFLEX_TRACKING:0.542049288@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8529174965040891]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.573505426522165; WEIGHTED_DEPTH_CENTS=5.454285362; LIVE_TOUCH_BID=37; CHOSEN_DEPTH_CENTS=5; PRE_ALLOCATION_DEPTH_TARGET_CENTS=32; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 10413s, remaining 60384s, continuous fraction 0.147082503; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_5C; LIVE_BID_ASK=37/41; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 37[CR-7a266e149e8d2742bc6e3c8eb3a8a6553e17bf47a26ceb05f3e597c8f3f24c8c] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.147773371,SVA:0.262250904; FROM_CENTS=LAJ:50,SVA:32; TO_CENTS=LAJ:50,SVA:32; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=5; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=32; ACTIVE_TARGET_BEFORE_CENTS=32."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020167",
+      "timestamp_epoch": 1784020167,
+      "book": {
+        "bid_cents": 38,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-248"
+      },
+      "target_cents": 32,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 12564,
+        "remaining_window_seconds": 58233,
+        "window_fraction": 0.17746514682825543,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 9,
+        "q50": 27,
+        "q75": 34
+      },
+      "lineage_target_cents": 40,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 3.567778 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-c77426605d4b454eb594f99ccdb3be41f96eb0e047c317f8fec24dd8c4dc418f]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR16BRASAN@0.833159[CR-38e1fe00e2bc38d62cb218c0672940ebeff78d7c7838e8c8362c527c0d4ebcc8], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.828429[CR-42cd65c0e26488736e5710c24efab59ab637ea4aa88a51ab350b5e7e421b437f], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.824602[CR-aa0ca6454fdc2caf3936fbd495702c7b0f954c6f7fa248761ca67be25a139bfc], KXATPCHALLENGERMATCH-26APR03FATSAC@0.816697[CR-814b483c518234aa76c38a82a60564d82f624fd00954c4bdc847137a913dd5ea], KXATPCHALLENGERMATCH-26APR19HENJOR@0.815932[CR-de04ecc13c329c877e844ecff702184a7226f675141b9a5d8b5c34abcaf200be], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.812280[CR-dd94f69d0921ac2ac975ab19fb1c03bce605f957b36481e6cd54a8ffafd8da4c], KXATPCHALLENGERMATCH-26APR06PERKOZ@0.807730[CR-d250911c7a3983e7a24e18bdd3b2ff23b4e64c0cb29c08e45769689bfaa10bfa]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 9/27/34 cents and time-conditioned remaining-dip q25/q50/q75 9/27/34 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.103898152@depth=27[timed_mass_share=1; evidence_match_share=0.20499388035231347; neighborhood_applicability=0.7749103052210126];GRADED_NEIGHBORS:0.103898152@depth=27[evidence_match_share=0.20499388035231347; neighborhood_applicability=0.7749103052210126];OWN_TAPE_PRESENCE:0.254219153@depth=0[own_evidence_share=0.4725398833321244; formation_progress=1; formation_adjacency=0.8225348531717446];REFLEX_TRACKING:0.537984543@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8225348531717446]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.528919117510629; WEIGHTED_DEPTH_CENTS=5.610500191; LIVE_TOUCH_BID=38; CHOSEN_DEPTH_CENTS=6; PRE_ALLOCATION_DEPTH_TARGET_CENTS=32; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 12564s, remaining 58233s, continuous fraction 0.177465147; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_6C; LIVE_BID_ASK=38/41; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 40[CR-a4a22a8c169d0e84cec0c01dcab10de305133d5080a5dd0c57458c2dd4af317a] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.143925648,SVA:0.218417017; FROM_CENTS=LAJ:49,SVA:32; TO_CENTS=LAJ:49,SVA:32; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=6; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=32; ACTIVE_TARGET_BEFORE_CENTS=32."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020196",
+      "timestamp_epoch": 1784020196,
+      "book": {
+        "bid_cents": 40,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-287"
+      },
+      "target_cents": 39,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "BOOK_PATH",
+        "anchor_cents": 41,
+        "observed_low_cents": 38,
+        "observed_dip_cents": 3,
+        "dip_state": "DIP_OBSERVED",
+        "true_trade_count": 0,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 12593,
+        "remaining_window_seconds": 58204,
+        "window_fraction": 0.17787476870488864,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 4,
+        "q75": 11
+      },
+      "lineage_target_cents": 40,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 3.575833 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-07c19792fee42fa7ab415930c7256e28ad112fa1ae26b1b43a8c637b0ba6b703]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR16BRASAN@0.813656[CR-174118b0c09b28c6f1bf310cf05cc90d43b4537e79d76f494fbb9ab0713f411b], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.801258[CR-9e4457cc37defac2ce7414057b7fc6c3e72527f7e18852f202e61e8e7cc529f3], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.797556[CR-a5e8bad45f74d7e2d088b85cb0a7ca08d007cdd8ebb00e9692bd27ea4dcb3ac1], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.797360[CR-c05356cf440fccee35838be05d014d6a04b58b3a3c26a7498b6c28d57dbf1272], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.790413[CR-1ba0b7da50b080df05d0d9e87fb8313e8e7362f4302f081c9fb907cb7d029f7f], KXATPCHALLENGERMATCH-26APR03FATSAC@0.789911[CR-9953d0a9e084fe1b2209a54186038fe8071c8ebde1bb67266791f4110d4728bd], KXATPCHALLENGERMATCH-26MAR09DALPEN@0.789649[CR-32959f4856b9d11df7bcaf0e0101c5a79a7da75c8ff5e503e21ecfa1c8d4431d]. SVA has anchor 41; its own BOOK_PATH bounded evidence low is 38, so its observed state is DIP_OBSERVED with 3 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/4/11 cents and time-conditioned remaining-dip q25/q50/q75 0/4/11 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.117647225@depth=4[timed_mass_share=1; evidence_match_share=0.24155554530538867; neighborhood_applicability=0.7534374260977944];GRADED_NEIGHBORS:0.117647225@depth=4[evidence_match_share=0.24155554530538867; neighborhood_applicability=0.7534374260977944];OWN_TAPE_PRESENCE:0.233264051@depth=0[own_evidence_share=0.4389270531532087; formation_progress=1; formation_adjacency=0.8221252312951114];REFLEX_TRACKING:0.531441499@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8221252312951114]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.546972213019457; WEIGHTED_DEPTH_CENTS=0.941177802; LIVE_TOUCH_BID=40; CHOSEN_DEPTH_CENTS=1; PRE_ALLOCATION_DEPTH_TARGET_CENTS=39; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 12593s, remaining 58204s, continuous fraction 0.177874769; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_1C; LIVE_BID_ASK=40/41; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 40[CR-56e6adf3045361c03b96e62be00edad4e8e6be4a198aa0aeffd196587a0a47ac] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.110666349,SVA:0.773486107; FROM_CENTS=LAJ:43,SVA:39; TO_CENTS=LAJ:43,SVA:39; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=1; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=39; ACTIVE_TARGET_BEFORE_CENTS=32."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020201.83",
+      "timestamp_epoch": 1784020201.83,
+      "book": {
+        "bid_cents": 40,
+        "ask_cents": 41,
+        "last_trade_cents": null,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-300"
+      },
+      "target_cents": 32,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 1,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 12598.829999923706,
+        "remaining_window_seconds": 58198.170000076294,
+        "window_fraction": 0.17795711682590656,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 35,
+        "q75": 35
+      },
+      "lineage_target_cents": 40,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 3.577453 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-1e3429e5558a489a5fb2b545377d8ebac97537b26d804dfdd3c7094ab3502040]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR26BARVAR@0.792319[CR-b27c1fbd4444a0ad4b1313cdb6ccf5904628797be5b789fe4aaf309e5a6c9789], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.787167[CR-698fc9dddcce23a883fcebacab97d856df1b0e2001d7a93367dd4307c3083405], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.786053[CR-82ad3baf2877bf333d8dfa628b025b9d952bc436412c1551033b3dd1e822e60c], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.783363[CR-062ac0a52fbebaf319af64b6e269129c3cbea4eaac29661fde02a020f51bdd80], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.778044[CR-32287d7b13299833373a328f5fb07eda1aebdf0a841d8f0a5c31a1361bf171f5], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.772760[CR-492fbe5109a399d1384f334c44e4256a2bfe86c97882fbae4b48675f1d9a7940], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.768599[CR-ccc4c8096d5ed13431af4653550dadc8ddc51d75c31ad6abe358204fd66d6048]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/35/35 cents and time-conditioned remaining-dip q25/q50/q75 0/35/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.107203532@depth=35[timed_mass_share=1; evidence_match_share=0.22246523473840182; neighborhood_applicability=0.7383817206088248];GRADED_NEIGHBORS:0.107203532@depth=35[evidence_match_share=0.22246523473840182; neighborhood_applicability=0.7383817206088248];OWN_TAPE_PRESENCE:0.249104362@depth=0[own_evidence_share=0.46432370253614397; formation_progress=1; formation_adjacency=0.8220428831740935];REFLEX_TRACKING:0.536488575@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8220428831740935]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.5322654039365498; WEIGHTED_DEPTH_CENTS=7.504247219; LIVE_TOUCH_BID=40; CHOSEN_DEPTH_CENTS=8; PRE_ALLOCATION_DEPTH_TARGET_CENTS=32; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 12598.829999923706s, remaining 58198.170000076294s, continuous fraction 0.177957117; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_8C; LIVE_BID_ASK=40/41; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-b27c1fbd4444a0ad4b1313cdb6ccf5904628797be5b789fe4aaf309e5a6c9789,CR-698fc9dddcce23a883fcebacab97d856df1b0e2001d7a93367dd4307c3083405,CR-82ad3baf2877bf333d8dfa628b025b9d952bc436412c1551033b3dd1e822e60c,CR-062ac0a52fbebaf319af64b6e269129c3cbea4eaac29661fde02a020f51bdd80,CR-32287d7b13299833373a328f5fb07eda1aebdf0a841d8f0a5c31a1361bf171f5,CR-492fbe5109a399d1384f334c44e4256a2bfe86c97882fbae4b48675f1d9a7940,CR-ccc4c8096d5ed13431af4653550dadc8ddc51d75c31ad6abe358204fd66d6048,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-300,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-301. Reflex lineage target 40[CR-a1c5bb3176e91f6a8f01acf3bc672454a3fb595f5422afb02170f7a09928a5a7] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.105432781,SVA:0.170251712; FROM_CENTS=LAJ:42,SVA:32; TO_CENTS=LAJ:42,SVA:32; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=8; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=32; ACTIVE_TARGET_BEFORE_CENTS=39."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020205",
+      "timestamp_epoch": 1784020205,
+      "book": {
+        "bid_cents": 40,
+        "ask_cents": 41,
+        "last_trade_cents": 41,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-323"
+      },
+      "target_cents": 37,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 1,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 12602,
+        "remaining_window_seconds": 58195,
+        "window_fraction": 0.17800189273556788,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 11,
+        "q50": 11,
+        "q75": 35
+      },
+      "lineage_target_cents": 40,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 3.578333 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-853ee1fbd718b9f24cb415c7c37464cd964ba2971126effb47281acb799bdfa6]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR26BARVAR@0.796154[CR-c8afa3f49fd597aabcdf38c8ba79515f4b61cd21c35f27f66569861a1de3458f], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.790977[CR-3df30bb7bcca582c054649be13190df021f6205665fa23efcfec0cb0e5fa1f1b], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.789858[CR-394eff50e6a96449d84dd29cb10056b9c8b9fb3970375bd3078dfe103c53bd08], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.787155[CR-4e268c9524cc4c5dae7c9982ad9aed6d58cf0b2f35d19ac436c276aa86e4eb85], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.781811[CR-87e93ba5bd837eac1dde99bcefa8c97afee10a12f46241fb8d1b882bbb7ad75d], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.772320[CR-3fd552799518f858cf48eaa189643be2627545de718ad3fa55e86d626c868785], KXATPCHALLENGERMATCH-26APR03FATSAC@0.770818[CR-6f61baf44a290b1a5cafa5f02917e0b6aa511ad55a3ef8a7c7901df077588b1a]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 11/11/35 cents and time-conditioned remaining-dip q25/q50/q75 11/11/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.146257428@depth=11[timed_mass_share=1; evidence_match_share=0.3159685969084093; neighborhood_applicability=0.741188853703843];GRADED_NEIGHBORS:0.146257428@depth=11[evidence_match_share=0.3159685969084093; neighborhood_applicability=0.741188853703843];OWN_TAPE_PRESENCE:0.194132328@depth=0[own_evidence_share=0.3781655066562381; formation_progress=1; formation_adjacency=0.8219981072644321];REFLEX_TRACKING:0.513352816@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8219981072644321]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.6012342422664658; WEIGHTED_DEPTH_CENTS=3.217663419; LIVE_TOUCH_BID=40; CHOSEN_DEPTH_CENTS=3; PRE_ALLOCATION_DEPTH_TARGET_CENTS=37; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 12602s, remaining 58195s, continuous fraction 0.178001893; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_3C; LIVE_BID_ASK=40/41; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-c8afa3f49fd597aabcdf38c8ba79515f4b61cd21c35f27f66569861a1de3458f,CR-3df30bb7bcca582c054649be13190df021f6205665fa23efcfec0cb0e5fa1f1b,CR-394eff50e6a96449d84dd29cb10056b9c8b9fb3970375bd3078dfe103c53bd08,CR-4e268c9524cc4c5dae7c9982ad9aed6d58cf0b2f35d19ac436c276aa86e4eb85,CR-87e93ba5bd837eac1dde99bcefa8c97afee10a12f46241fb8d1b882bbb7ad75d,CR-3fd552799518f858cf48eaa189643be2627545de718ad3fa55e86d626c868785,CR-6f61baf44a290b1a5cafa5f02917e0b6aa511ad55a3ef8a7c7901df077588b1a,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-323,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-328. Reflex lineage target 40[CR-e75ce6757eb8effc29eaf0358895c562760630ba7fcf0bb0ec3a61e772e504a7] contributes only by its normalized receipt-level fitness when available; post-only cap is 40. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.137556114,SVA:0.400308561; FROM_CENTS=LAJ:45,SVA:37; TO_CENTS=LAJ:45,SVA:37; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=3; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=37; ACTIVE_TARGET_BEFORE_CENTS=32."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020210",
+      "timestamp_epoch": 1784020210,
+      "book": {
+        "bid_cents": 41,
+        "ask_cents": 42,
+        "last_trade_cents": 41,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-356"
+      },
+      "target_cents": 34,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 3,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 12607,
+        "remaining_window_seconds": 58190,
+        "window_fraction": 0.17807251719705638,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 35,
+        "q75": 35
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 3.579722 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-73ea536f905dbd1505929f806effdb501f0212edd59b2b39f7234c52d59a2df3]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR26BARVAR@0.790645[CR-465c3c43cee3e9b6b78b70070fc797a103af95c3ea5a9c1bf5650448a67c5100], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.787000[CR-6c4dabcd49e828a3c2c0c9575491168eaa6212abe9f6a4507125281b1bba43b2], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.785504[CR-f591a3fab9b43314a2b25bf589eb84e2d9b33ac187bbaa4f145686d6d40f623e], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.785015[CR-35d94fa224b6261f9ee9619f67f36b34175814c3b568b354042bf299fc63d98f], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.776400[CR-44de93249edd257be27216f0bd4b1ee48710766a72a8e5df888af79c606857e3], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.774390[CR-ea35c6d765fecf5bf7739d09fea2d966206d748c03e3d6a1d35a3470e790c5b0], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.770220[CR-3ce737204ebd0c57f2d2a50cabef78007334466c7caf8dc69ccb9f4a924b6256]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/35/35 cents and time-conditioned remaining-dip q25/q50/q75 0/35/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.107118281@depth=35[timed_mass_share=1; evidence_match_share=0.22222803188342344; neighborhood_applicability=0.7384990996306469];GRADED_NEIGHBORS:0.107118281@depth=35[evidence_match_share=0.22222803188342344; neighborhood_applicability=0.7384990996306469];OWN_TAPE_PRESENCE:0.249289922@depth=0[own_evidence_share=0.46468262685382794; formation_progress=1; formation_adjacency=0.8219274828029436];REFLEX_TRACKING:0.536473516@depth=0[lineage_available=true; formation_progress=1; formation_adjacency=0.8219274828029436]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.5320933075123677; WEIGHTED_DEPTH_CENTS=7.498279671; LIVE_TOUCH_BID=41; CHOSEN_DEPTH_CENTS=7; PRE_ALLOCATION_DEPTH_TARGET_CENTS=34; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 12607s, remaining 58190s, continuous fraction 0.178072517; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_7C; LIVE_BID_ASK=41/42; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-465c3c43cee3e9b6b78b70070fc797a103af95c3ea5a9c1bf5650448a67c5100,CR-6c4dabcd49e828a3c2c0c9575491168eaa6212abe9f6a4507125281b1bba43b2,CR-f591a3fab9b43314a2b25bf589eb84e2d9b33ac187bbaa4f145686d6d40f623e,CR-35d94fa224b6261f9ee9619f67f36b34175814c3b568b354042bf299fc63d98f,CR-44de93249edd257be27216f0bd4b1ee48710766a72a8e5df888af79c606857e3,CR-ea35c6d765fecf5bf7739d09fea2d966206d748c03e3d6a1d35a3470e790c5b0,CR-3ce737204ebd0c57f2d2a50cabef78007334466c7caf8dc69ccb9f4a924b6256,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-356. Reflex lineage target 41[CR-299c337de96280238fe69216a447af69436d198a5ab512108c1476f6434c2e2e] contributes only by its normalized receipt-level fitness when available; post-only cap is 41. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.105441296,SVA:0.191511663; FROM_CENTS=LAJ:40,SVA:34; TO_CENTS=LAJ:40,SVA:34; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=7; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=34; ACTIVE_TARGET_BEFORE_CENTS=37."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020239",
+      "timestamp_epoch": 1784020239,
+      "book": {
+        "bid_cents": 44,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-547"
+      },
+      "target_cents": 35,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 12636,
+        "remaining_window_seconds": 58161,
+        "window_fraction": 0.17848213907368957,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 35,
+        "q75": 35
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 3.587778 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-494838c1a4e97284acd86a1c2fdeda29417240633a505bd023936de17570ac13]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.766759[CR-0d0f0986899b3650c4b2bbf25785a2863cd9943d05892f4d32f1cf57350c29b2], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.766420[CR-cafe49142ab77f64e078d7d08ccef8a7d319ca3c3e6e3b75690401983069231a], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.763640[CR-5676384bc88db52b25c3b43901086900a1304294059c03f02473b54a25b191e4], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.758675[CR-6ab6c799ee7bb7311942fc9b3d996ed410cfebb60ae381c5062ffbfea2ba6831], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.751976[CR-69fa52eb15e05df6b31a8604e73c0feaeba440d8ce85bd1e969c933a40064ec2], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.749882[CR-ba01e0328029434998657e39891a4dc02edfa455ede034e88ab66173d60037cd], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.748777[CR-41b6ec4006b44663e24a69435831e2c3070c76768a387858440a8649c2da8cb5]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/35/35 cents and time-conditioned remaining-dip q25/q50/q75 0/35/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.103864216@depth=35[timed_mass_share=1; evidence_match_share=0.22146399109369722; neighborhood_applicability=0.7164830742248472];GRADED_NEIGHBORS:0.103864216@depth=35[evidence_match_share=0.22146399109369722; neighborhood_applicability=0.7164830742248472];OWN_TAPE_PRESENCE:0.254529641@depth=0[own_evidence_share=0.4733304732007798; formation_progress=1; formation_adjacency=0.8215178609263104];REFLEX_TRACKING:0.537741927@depth=3[lineage_available=true; formation_progress=1; formation_adjacency=0.8215178609263104]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.5277177011192862; WEIGHTED_DEPTH_CENTS=8.883720896; LIVE_TOUCH_BID=44; CHOSEN_DEPTH_CENTS=9; PRE_ALLOCATION_DEPTH_TARGET_CENTS=35; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 12636s, remaining 58161s, continuous fraction 0.178482139; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_9C; LIVE_BID_ASK=44/46; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-0d0f0986899b3650c4b2bbf25785a2863cd9943d05892f4d32f1cf57350c29b2,CR-cafe49142ab77f64e078d7d08ccef8a7d319ca3c3e6e3b75690401983069231a,CR-5676384bc88db52b25c3b43901086900a1304294059c03f02473b54a25b191e4,CR-6ab6c799ee7bb7311942fc9b3d996ed410cfebb60ae381c5062ffbfea2ba6831,CR-69fa52eb15e05df6b31a8604e73c0feaeba440d8ce85bd1e969c933a40064ec2,CR-ba01e0328029434998657e39891a4dc02edfa455ede034e88ab66173d60037cd,CR-41b6ec4006b44663e24a69435831e2c3070c76768a387858440a8649c2da8cb5,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-547,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-356. Reflex lineage target 41[CR-a5349ce76ed29c0d79b8360d4db22cb1b9144270b16234045b4f5a2847e81367] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.110910178,SVA:0.152771770; FROM_CENTS=LAJ:40,SVA:35; TO_CENTS=LAJ:40,SVA:35; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=9; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=35; ACTIVE_TARGET_BEFORE_CENTS=34."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784020300",
+      "timestamp_epoch": 1784020300,
+      "book": {
+        "bid_cents": 44,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-626"
+      },
+      "target_cents": 35,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 12697,
+        "remaining_window_seconds": 58100,
+        "window_fraction": 0.17934375750384904,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 35,
+        "q75": 35
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 3.604722 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-d1603c8432ac445a2c506397d9801107a9bd086cd1f360e9bb0bb89182697510]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.766735[CR-25fc40ce813104cb7540dc369d198a672004144a2d23273b2fcd7d8f3eb8376f], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.766397[CR-019990cae56931881b50dde69b80ec56deabf4e97c5c1819ebb274ae58f53947], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.763617[CR-232a80a22ebc39a421902e47161396ff72c928d4c5df139926bf4fc112d22b10], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.758651[CR-258d33239e996bcf5878fb29a1e62610aa7fb44d75d00c0e28333e6412bc268a], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.751953[CR-b2bd2a2e1a7941e67ca3a640a90b721008bc6a39b5bece19f76f040eda1c1a3a], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.749859[CR-0a5d8bc39ea2a8f9097e0f0bc862965d77d126c37d95b3932cb81483c2b94898], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.748754[CR-ced9ed9cfcf9f67b9272f86fed0964c11a2602d470d9ffab4d86326cffe204c1]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/35/35 cents and time-conditioned remaining-dip q25/q50/q75 0/35/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.103944968@depth=35[timed_mass_share=1; evidence_match_share=0.22146399109369727; neighborhood_applicability=0.7164610810702915];GRADED_NEIGHBORS:0.103944968@depth=35[evidence_match_share=0.22146399109369727; neighborhood_applicability=0.7164610810702915];OWN_TAPE_PRESENCE:0.254497982@depth=0[own_evidence_share=0.4733859047580526; formation_progress=1; formation_adjacency=0.820656242496151];REFLEX_TRACKING:0.537612082@depth=3[lineage_available=true; formation_progress=1; formation_adjacency=0.820656242496151]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.5264840012997987; WEIGHTED_DEPTH_CENTS=8.888983998; LIVE_TOUCH_BID=44; CHOSEN_DEPTH_CENTS=9; PRE_ALLOCATION_DEPTH_TARGET_CENTS=35; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 12697s, remaining 58100s, continuous fraction 0.179343758; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_9C; LIVE_BID_ASK=44/46; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-25fc40ce813104cb7540dc369d198a672004144a2d23273b2fcd7d8f3eb8376f,CR-019990cae56931881b50dde69b80ec56deabf4e97c5c1819ebb274ae58f53947,CR-232a80a22ebc39a421902e47161396ff72c928d4c5df139926bf4fc112d22b10,CR-258d33239e996bcf5878fb29a1e62610aa7fb44d75d00c0e28333e6412bc268a,CR-b2bd2a2e1a7941e67ca3a640a90b721008bc6a39b5bece19f76f040eda1c1a3a,CR-0a5d8bc39ea2a8f9097e0f0bc862965d77d126c37d95b3932cb81483c2b94898,CR-ced9ed9cfcf9f67b9272f86fed0964c11a2602d470d9ffab4d86326cffe204c1,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-626,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-356. Reflex lineage target 41[CR-ff8acfda45ec4882e77f179c2e79c6a7656a0a00da60093f8ae58f5a7d803278] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.110842084,SVA:0.152648400; FROM_CENTS=LAJ:39,SVA:35; TO_CENTS=LAJ:39,SVA:35; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=9; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=35; ACTIVE_TARGET_BEFORE_CENTS=35."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784024857",
+      "timestamp_epoch": 1784024857,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1021"
+      },
+      "target_cents": 35,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 17254,
+        "remaining_window_seconds": 53543,
+        "window_fraction": 0.24371089170445076,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 35,
+        "q75": 35
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 4.870556 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-79c0f407b86e3c48e2784cb79e9683d6a4195b3f108b646508d897849c3b4f05]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.761292[CR-4c7e9a4672939a4d4027c578456d1022ddf17def131bb7435499187357585fd6], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.760956[CR-224a0b6ca01d3bd2049d53ea861db7ad6cf730af77a99cb832bf84c3ecb56a99], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.758196[CR-e29c65a2a8173fc534f3fc5e32fbda4d6fc1f9516611121a694d9b4f1f70a990], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.753266[CR-df86c318f9ebf38523bf6c8f09d4e5e81fbd583cef3049dd0f0dae7dc72b5f8e], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.750656[CR-b90588ceefdc42ced60a48ca7d0a8365595dcc2e9e3666c11a0c0944c715a114], KXATPCHALLENGERMATCH-26MAR26RONROD@0.747431[CR-1b7cc4e0448b1df93fe003509d2b6663fea44d7f3e304b1888e35b1a302fd745], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.746615[CR-7e24984634832c91e88bce140abf187bb5fbc3d58d3bc6429d53ab1abdb659d6]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/35/35 cents and time-conditioned remaining-dip q25/q50/q75 0/35/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.114440700@depth=35[timed_mass_share=1; evidence_match_share=0.23065645282160321; neighborhood_applicability=0.7127405467883706];GRADED_NEIGHBORS:0.114440700@depth=35[evidence_match_share=0.23065645282160321; neighborhood_applicability=0.7127405467883706];OWN_TAPE_PRESENCE:0.244651453@depth=0[own_evidence_share=0.46470412170825753; formation_progress=1; formation_adjacency=0.7562891082955492];REFLEX_TRACKING:0.526467147@depth=4[lineage_available=true; formation_progress=1; formation_adjacency=0.7562891082955492]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.4365361867322246; WEIGHTED_DEPTH_CENTS=10.116717566; LIVE_TOUCH_BID=45; CHOSEN_DEPTH_CENTS=10; PRE_ALLOCATION_DEPTH_TARGET_CENTS=35; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 17254s, remaining 53543s, continuous fraction 0.243710892; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_10C; LIVE_BID_ASK=45/46; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-4c7e9a4672939a4d4027c578456d1022ddf17def131bb7435499187357585fd6,CR-224a0b6ca01d3bd2049d53ea861db7ad6cf730af77a99cb832bf84c3ecb56a99,CR-e29c65a2a8173fc534f3fc5e32fbda4d6fc1f9516611121a694d9b4f1f70a990,CR-df86c318f9ebf38523bf6c8f09d4e5e81fbd583cef3049dd0f0dae7dc72b5f8e,CR-b90588ceefdc42ced60a48ca7d0a8365595dcc2e9e3666c11a0c0944c715a114,CR-1b7cc4e0448b1df93fe003509d2b6663fea44d7f3e304b1888e35b1a302fd745,CR-7e24984634832c91e88bce140abf187bb5fbc3d58d3bc6429d53ab1abdb659d6,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1021,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-356. Reflex lineage target 41[CR-0235898cfdf0a94a68910fb3d9a9ab0966c2a1f13abf224c47c8b0898d00328c] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.222364169,SVA:0.130594199; FROM_CENTS=LAJ:47,SVA:35; TO_CENTS=LAJ:47,SVA:35; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=10; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=35; ACTIVE_TARGET_BEFORE_CENTS=35."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784028911",
+      "timestamp_epoch": 1784028911,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1466"
+      },
+      "target_cents": 34,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 21308,
+        "remaining_window_seconds": 49489,
+        "window_fraction": 0.30097320507931125,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 35,
+        "q75": 35
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 5.996667 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-67adcde8c612f8298043f7546fc991a195f7220b26a8b652437fc252c6bcc3a1]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.756079[CR-94b696af4739b9fbeaad39a64b401004f59826e65f48373ae61309bac7ef0a3d], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.755745[CR-7f82071a66543a7c1d3c6777f7444baff3cead639c4b49c122109c2346b213a6], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.753004[CR-0a89dd3acf77461808b818d221e34bc6583a601815307dcd67969f2d6a5e5ead], KXATPCHALLENGERMATCH-26MAR26RONROD@0.749520[CR-732851be176685b00cfaf73ea3a286a1f9139a443f8b26c96e4a36ccea4f9bcf], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.748108[CR-877b342e8b8e29255b105b6750411ff78eb186d05520db991add472d473632d8], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.745516[CR-190a1a72af728c482a14eb5fc2fa0d4abc6c0de5fdcd547c2d5330c1858afac6], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.741502[CR-ae1cfec7a5fd25ab778771fff4503de63b4c4ac4f57af2ddcd17b4fd5a650795]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/35/35 cents and time-conditioned remaining-dip q25/q50/q75 0/35/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.120852247@depth=35[timed_mass_share=1; evidence_match_share=0.23046459742887077; neighborhood_applicability=0.708833248824269];GRADED_NEIGHBORS:0.120852247@depth=35[evidence_match_share=0.23046459742887077; neighborhood_applicability=0.708833248824269];OWN_TAPE_PRESENCE:0.241164887@depth=0[own_evidence_share=0.466351979418474; formation_progress=1; formation_adjacency=0.6990267949206888];REFLEX_TRACKING:0.517130618@depth=4[lineage_available=true; formation_progress=1; formation_adjacency=0.6990267949206888]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.351741263067471; WEIGHTED_DEPTH_CENTS=10.528179780; LIVE_TOUCH_BID=45; CHOSEN_DEPTH_CENTS=11; PRE_ALLOCATION_DEPTH_TARGET_CENTS=34; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 21308s, remaining 49489s, continuous fraction 0.300973205; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_11C; LIVE_BID_ASK=45/46; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-94b696af4739b9fbeaad39a64b401004f59826e65f48373ae61309bac7ef0a3d,CR-7f82071a66543a7c1d3c6777f7444baff3cead639c4b49c122109c2346b213a6,CR-0a89dd3acf77461808b818d221e34bc6583a601815307dcd67969f2d6a5e5ead,CR-732851be176685b00cfaf73ea3a286a1f9139a443f8b26c96e4a36ccea4f9bcf,CR-877b342e8b8e29255b105b6750411ff78eb186d05520db991add472d473632d8,CR-190a1a72af728c482a14eb5fc2fa0d4abc6c0de5fdcd547c2d5330c1858afac6,CR-ae1cfec7a5fd25ab778771fff4503de63b4c4ac4f57af2ddcd17b4fd5a650795,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-1466,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-356. Reflex lineage target 41[CR-2cca038845c9e7517e6a82d365c430fc7767ff4e9e287c218ca163f828635657] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.211003023,SVA:0.112645105; FROM_CENTS=LAJ:47,SVA:34; TO_CENTS=LAJ:47,SVA:34; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=11; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=34; ACTIVE_TARGET_BEFORE_CENTS=35."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784036624.369",
+      "timestamp_epoch": 1784036624.369,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2134"
+      },
+      "target_cents": 42,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 29021.36899995804,
+        "remaining_window_seconds": 41775.63100004196,
+        "window_fraction": 0.40992371145610745,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 3,
+        "q50": 3,
+        "q75": 11
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 8.139269 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-cbb3577daa3a04863110f4f1de47272fa4ab7f2c97fa54e4eec757f5702c08bb]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR30WISZAH@0.810167[CR-05b18226a0897a178d6443d3e0ff9dfa5b8fdc7a4cf6624a6a95d7ce1d135462], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.799153[CR-665e4ded7be93144865b10f08bf8d13be13dc06d054f11f5652958a97569d084], KXATPCHALLENGERMATCH-26APR06PERKOZ@0.784097[CR-7d994c621451d50bdafbf5693e4e3479a49f3c10e956149fc8e5dd7e1ed3b876], KXATPCHALLENGERMATCH-26APR03FATSAC@0.780279[CR-7aef56aae3fff155826967dc6f4491e8954e4b21e6222268e899e28f2a871ffa], KXATPCHALLENGERMATCH-26MAR05PAVNAP@0.778346[CR-3317fd51f0521fa09797cebb8e4964f6b8f3198cf85c5ed1157d371cc4d01f82], KXATPCHALLENGERMATCH-26JAN30SHIHIJ@0.777021[CR-7ad692de3591fc16f448291827d53ce6cb27bc81f0e9b416976f897ffdbd43f0], KXATPCHALLENGERMATCH-26APR14BOLTUN@0.776906[CR-00021e23577ebafe6481deeede33b66f55c5235de7bcc76dc1d394b86495d39c]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 3/3/11 cents and time-conditioned remaining-dip q25/q50/q75 3/3/11 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.281134623@depth=3[timed_mass_share=1; evidence_match_share=0.6289859373071338; neighborhood_applicability=0.7434674309744188];GRADED_NEIGHBORS:0.281134623@depth=3[evidence_match_share=0.6289859373071338; neighborhood_applicability=0.7434674309744188];OWN_TAPE_PRESENCE:0.082983033@depth=0[own_evidence_share=0.2339212568676312; formation_progress=1; formation_adjacency=0.5900762885438926];REFLEX_TRACKING:0.354747721@depth=4[lineage_available=true; formation_progress=1; formation_adjacency=0.5900762885438926]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.6633687934654102; WEIGHTED_DEPTH_CENTS=3.105798623; LIVE_TOUCH_BID=45; CHOSEN_DEPTH_CENTS=3; PRE_ALLOCATION_DEPTH_TARGET_CENTS=42; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 29021.36899995804s, remaining 41775.63100004196s, continuous fraction 0.409923711; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_3C; LIVE_BID_ASK=45/46; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 41[CR-753c7a418ee5181d111af75e3594b06d6f3d9150e4d85b9d58459f70eda9e298] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.168017740,SVA:0.415842198; FROM_CENTS=LAJ:53,SVA:42; TO_CENTS=LAJ:53,SVA:42; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=3; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=42; ACTIVE_TARGET_BEFORE_CENTS=34."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784036629",
+      "timestamp_epoch": 1784036629,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2135"
+      },
+      "target_cents": 43,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 29026,
+        "remaining_window_seconds": 41771,
+        "window_fraction": 0.4099891238329308,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 0,
+        "q75": 9
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 8.140556 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-395cea9216b5400335cca6fc3024e8a7d5cfeb353c39a10104d080462020ba20]. The named neighborhood is KXATPCHALLENGERMATCH-26APR04NEUGIL@0.749492[CR-86891afaf41f4c8ea80ba81e3590a9594b6dcaf6586fe034757d961c7cb43e77], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.746941[CR-692bb01874bde693caf259b8421272665b3c08f7dd81cd1f780654c1cb9db63f], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.743102[CR-ce43525140089f111ef7e84710ad07ff15a809c0944d918d515ae7342699b9d0], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.742231[CR-f41aed3a1c1d1f74f748809c35e5ed57dbbaff8cfabba8a8fa1e06558fc6b2a8], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.741817[CR-20d40a418153ee8e9b93f87595c40ccbd447708a00062151ceaa242eaa4eb5eb], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.739212[CR-c3db71028b3ad81f283aa333a28ac6ec3948e90fd3444845b33c838d60aa97cc], KXATPCHALLENGERMATCH-26FEB25SIMGRA@0.736057[CR-52f3f3cd8d1e8db7176bd621c4f751bd37accd4ad2a4c4fee04149fe90bfc335]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/0/9 cents and time-conditioned remaining-dip q25/q50/q75 0/0/0 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.116831957@depth=0[timed_mass_share=1; evidence_match_share=0.19375824896133706; neighborhood_applicability=0.7019978862868002];GRADED_NEIGHBORS:0.116831957@depth=0[evidence_match_share=0.19375824896133706; neighborhood_applicability=0.7019978862868002];OWN_TAPE_PRESENCE:0.259548858@depth=0[own_evidence_share=0.5121456174557442; formation_progress=1; formation_adjacency=0.5900108761670693];REFLEX_TRACKING:0.506787229@depth=4[lineage_available=true; formation_progress=1; formation_adjacency=0.5900108761670693]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.164218123090238; WEIGHTED_DEPTH_CENTS=2.027148915; LIVE_TOUCH_BID=45; CHOSEN_DEPTH_CENTS=2; PRE_ALLOCATION_DEPTH_TARGET_CENTS=43; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 29026s, remaining 41771s, continuous fraction 0.409989124; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_2C; LIVE_BID_ASK=45/46; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 41[CR-56331540ed53d27e5ee6ea86c4d53deafc1f6e31c627c9e517fa6da55993482f] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.156086232,SVA:0.388072708; FROM_CENTS=LAJ:53,SVA:43; TO_CENTS=LAJ:53,SVA:43; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=2; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=43; ACTIVE_TARGET_BEFORE_CENTS=42."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784036642",
+      "timestamp_epoch": 1784036642,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2136"
+      },
+      "target_cents": 43,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 29039,
+        "remaining_window_seconds": 41758,
+        "window_fraction": 0.4101727474328008,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 0,
+        "q75": 9
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 8.144167 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-4f936726b12d71c94bf9a0e9dea7a4aa87e56af90a7e62dc5cddeae467401b2d]. The named neighborhood is KXATPCHALLENGERMATCH-26APR04NEUGIL@0.749487[CR-c37bd8156e65b36daf222f9f42d6bfb85979f188bd3cce227efef8206c5dacf4], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.746936[CR-96ce646e49612553772c92af93cc64276d2afbb3dbfe95df281e35673d405969], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.743097[CR-28c2780e657c76a67e6ad6b5f0b5fd6d19ae06cccd850b3f73d23a6fd3199258], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.742226[CR-123fe70b82a20994b93bdb094a33be12b02901f39004a547a41a351195c80533], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.741813[CR-7b6fb7b6a9a7252c13c66b7430ff29cee6b1abddddcd99e412f252e2e11af204], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.739208[CR-61f1efdf047905b94d2efbcac804d5bdba5bf32da05c8aa8fff609c0bf4f7316], KXATPCHALLENGERMATCH-26FEB25SIMGRA@0.736053[CR-55366bc306ff0fb39ddd3390205ef6e97a3c37d593c5f922b687152dccc87dac]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/0/9 cents and time-conditioned remaining-dip q25/q50/q75 0/0/0 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.116859129@depth=0[timed_mass_share=1; evidence_match_share=0.19375824896133706; neighborhood_applicability=0.7019932939243448];GRADED_NEIGHBORS:0.116859129@depth=0[evidence_match_share=0.19375824896133706; neighborhood_applicability=0.7019932939243448];OWN_TAPE_PRESENCE:0.259531091@depth=0[own_evidence_share=0.5121475234761952; formation_progress=1; formation_adjacency=0.5898272525671993];REFLEX_TRACKING:0.506750651@depth=4[lineage_available=true; formation_progress=1; formation_adjacency=0.5898272525671993]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.1639398020750231; WEIGHTED_DEPTH_CENTS=2.027002604; LIVE_TOUCH_BID=45; CHOSEN_DEPTH_CENTS=2; PRE_ALLOCATION_DEPTH_TARGET_CENTS=43; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 29039s, remaining 41758s, continuous fraction 0.410172747; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_2C; LIVE_BID_ASK=45/46; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 41[CR-5d6d04428f7910f1fb0cda0c3b2bfe1aab09245febeefb6dc4b3df857ec26017] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.155804800,SVA:0.387979934; FROM_CENTS=LAJ:53,SVA:43; TO_CENTS=LAJ:53,SVA:43; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=2; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=HOLD_REST; TARGET_CENTS=43; ACTIVE_TARGET_BEFORE_CENTS=43."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784039243",
+      "timestamp_epoch": 1784039243,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 43,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2434"
+      },
+      "target_cents": 38,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 7,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 31640,
+        "remaining_window_seconds": 39157,
+        "window_fraction": 0.4469115922991087,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 3,
+        "q50": 11,
+        "q75": 27
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 8.866667 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-b70072165328d879049a8db0011d92607f6bc3f0c706b1c09c8ebdd298ab059c]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR30WISZAH@0.813018[CR-92b0503fa960cf7e7d77d6a915a722e496d0e51bace6a1c66030916613b19198], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.801966[CR-728ae776f8374cba6dac2687e3f3261a6dda28b0c052c108d1cc5e76a222daf2], KXATPCHALLENGERMATCH-26APR06PERKOZ@0.786857[CR-7549c1bfa4035990d40a5733bad8ddcca014383eedbf2eba40e6cd8ca8709169], KXATPCHALLENGERMATCH-26APR03FATSAC@0.783025[CR-11cb9a5defd5670de6b1e3bf936a25bf206df482e91eafc0735fc9e29e3e83f8], KXATPCHALLENGERMATCH-26MAR05PAVNAP@0.781086[CR-b2af65217d4f2e1c6092219688f0bbd00b2b5321f9e040d5cbbb1af0d4f26f53], KXATPCHALLENGERMATCH-26JAN30SHIHIJ@0.779755[CR-a7c4783b6651986ba50fc9ca5b3e11c099bc0369283ed1f994b1942ee012a230], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.779369[CR-9d48b49eed486e6dd98e587e2105de9292f923ad9c85dc65bee3707fd2b6fa71]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 3/11/27 cents and time-conditioned remaining-dip q25/q50/q75 3/11/27 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.254415239@depth=11[timed_mass_share=1; evidence_match_share=0.4916195642169939; neighborhood_applicability=0.7460473169107711];GRADED_NEIGHBORS:0.254415239@depth=11[evidence_match_share=0.4916195642169939; neighborhood_applicability=0.7460473169107711];OWN_TAPE_PRESENCE:0.107513389@depth=0[own_evidence_share=0.2802337282757496; formation_progress=1; formation_adjacency=0.5530884077008913];REFLEX_TRACKING:0.383656134@depth=4[lineage_available=true; formation_progress=1; formation_adjacency=0.5530884077008913]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.4416253479068715; WEIGHTED_DEPTH_CENTS=7.131759785; LIVE_TOUCH_BID=45; CHOSEN_DEPTH_CENTS=7; PRE_ALLOCATION_DEPTH_TARGET_CENTS=38; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 31640s, remaining 39157s, continuous fraction 0.446911592; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_7C; LIVE_BID_ASK=45/46; JOINT_DEPTH_LICENSE=FITNESS_WEIGHTED_BLEND; DEPTH_LICENSE_RECEIPTS=CR-92b0503fa960cf7e7d77d6a915a722e496d0e51bace6a1c66030916613b19198,CR-728ae776f8374cba6dac2687e3f3261a6dda28b0c052c108d1cc5e76a222daf2,CR-7549c1bfa4035990d40a5733bad8ddcca014383eedbf2eba40e6cd8ca8709169,CR-11cb9a5defd5670de6b1e3bf936a25bf206df482e91eafc0735fc9e29e3e83f8,CR-b2af65217d4f2e1c6092219688f0bbd00b2b5321f9e040d5cbbb1af0d4f26f53,CR-a7c4783b6651986ba50fc9ca5b3e11c099bc0369283ed1f994b1942ee012a230,CR-9d48b49eed486e6dd98e587e2105de9292f923ad9c85dc65bee3707fd2b6fa71,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2434,KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-356. Reflex lineage target 41[CR-4a6872495ff02dbaeb91a1cc132cefb1740c646724c406c13baa222494494af0] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:1.104214502,SVA:0.180203168; FROM_CENTS=LAJ:54,SVA:38; TO_CENTS=LAJ:54,SVA:38; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=7; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=38; ACTIVE_TARGET_BEFORE_CENTS=43."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784039714",
+      "timestamp_epoch": 1784039714,
+      "book": {
+        "bid_cents": 45,
+        "ask_cents": 46,
+        "last_trade_cents": 46,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-2476"
+      },
+      "target_cents": 41,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 8,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 32111,
+        "remaining_window_seconds": 38686,
+        "window_fraction": 0.4535644165713236,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 2,
+        "q50": 9,
+        "q75": 35
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 8.997500 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-d8119b11c57f5f7c7dea7dba9a225f9d09912ff2affc089ffcb27cb42770e40c]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.810786[CR-ef869f2fd726453fe95cf785d9d902b1d516297be4b6ee547ebe226a49700486], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.806619[CR-98a8df8a32648f1d877787448944989d3bb45d27949a023836384072afc94337], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.791342[CR-2a74e3c805b13b1a6b07fe6df2769a38ef0d2092600d88fe1b93748748abdd92], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.790277[CR-6cc4a1243458ea6eb56ba92d43a62c8abc467a6ba82e9247bba317aa8f9765d2], KXATPCHALLENGERMATCH-26JAN30SHIHIJ@0.788339[CR-da923846535b87e5c6b2fd8eff6f04e71c0cad29d663c244f6e9070100c6e77b], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.787941[CR-350323f40c5ee8994081ebc4c88dcf19b53a37410b95369856bc5ac5c2021327], KXATPCHALLENGERMATCH-26APR19SUNTUL@0.786129[CR-a91a4199c67ff5f775c73fae592709feb2b35304cf8faf75953bf06fbb571389]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 2/9/35 cents and time-conditioned remaining-dip q25/q50/q75 0/0/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.234085692@depth=0[timed_mass_share=1; evidence_match_share=0.42008042267538337; neighborhood_applicability=0.7509567157506496];GRADED_NEIGHBORS:0.234085692@depth=9[evidence_match_share=0.42008042267538337; neighborhood_applicability=0.7509567157506496];OWN_TAPE_PRESENCE:0.126351363@depth=0[own_evidence_share=0.31161147050373306; formation_progress=1; formation_adjacency=0.5464355834286764];REFLEX_TRACKING:0.405477252@depth=4[lineage_available=true; formation_progress=1; formation_adjacency=0.5464355834286764]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.3476356082433527; WEIGHTED_DEPTH_CENTS=3.728680241; LIVE_TOUCH_BID=45; CHOSEN_DEPTH_CENTS=4; PRE_ALLOCATION_DEPTH_TARGET_CENTS=41; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 32111s, remaining 38686s, continuous fraction 0.453564417; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_4C; LIVE_BID_ASK=45/46; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 41[CR-4914424939192518c3032142502497ddb545680e00176bf1dbd8ad7fb84f2023] contributes only by its normalized receipt-level fitness when available; post-only cap is 45. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.275526138,SVA:0.269527122; FROM_CENTS=LAJ:51,SVA:41; TO_CENTS=LAJ:51,SVA:41; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=4; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=41; ACTIVE_TARGET_BEFORE_CENTS=38."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784050516",
+      "timestamp_epoch": 1784050516,
+      "book": {
+        "bid_cents": 46,
+        "ask_cents": 47,
+        "last_trade_cents": 47,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3017"
+      },
+      "target_cents": 42,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 17,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 42913,
+        "remaining_window_seconds": 27884,
+        "window_fraction": 0.6061415031710383,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 9,
+        "q75": 35
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 11.998056 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-9e82212f0dee35c6f5ca135a0c64de23a772451be14b08dc67e7882476c02de2]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.785050[CR-5f98e3b872ac6e9bdb76c46d4d2cdb8ea9328d77b4fb2836eaaa282078d6ace9], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.781015[CR-7c656885054edae01d1e2b9374f75cfac8f60d0b06bb107b37e23e7577491ab8], KXATPCHALLENGERMATCH-26FEB25SIMGRA@0.773611[CR-57dd9f88f963b55e781d08a67be133208903522c3a499a88ae4a5ebb0fd6bdc8], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.768311[CR-4d30ef3c2fe41a3a309315a9a171bf1565fdd2dec6b822c0a22264f1ff1b1aa0], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.766223[CR-aeeaefd9f30521d1f366aef974743f191dd35b70198ec6d9165532ff4fb657bb], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.765540[CR-cf862939270d41daa8f6d36d6de45cf85034a664467781abd46eb6cd4c6b3698], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.765192[CR-2985ff73e75e337138b6bd9814ae491ea740ed79b7fe65c0434ccda6fbab0129]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/9/35 cents and time-conditioned remaining-dip q25/q50/q75 0/0/35 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.233736198@depth=0[timed_mass_share=1; evidence_match_share=0.3257558229794196; neighborhood_applicability=0.7298257307320988];GRADED_NEIGHBORS:0.233736198@depth=9[evidence_match_share=0.3257558229794196; neighborhood_applicability=0.7298257307320988];OWN_TAPE_PRESENCE:0.145310228@depth=0[own_evidence_share=0.37526783908907874; formation_progress=1; formation_adjacency=0.3938584968289617];REFLEX_TRACKING:0.387217375@depth=5[lineage_available=true; formation_progress=1; formation_adjacency=0.3938584968289617]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=1.017150886933221; WEIGHTED_DEPTH_CENTS=4.039712663; LIVE_TOUCH_BID=46; CHOSEN_DEPTH_CENTS=4; PRE_ALLOCATION_DEPTH_TARGET_CENTS=42; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 42913s, remaining 27884s, continuous fraction 0.606141503; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_4C; LIVE_BID_ASK=46/47; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 41[CR-f352b40ca6b5ef5f5ec596ef98384fd9b7b3384a5ff9e65397c7a11a82d83591] contributes only by its normalized receipt-level fitness when available; post-only cap is 46. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.304774130,SVA:0.203430177; FROM_CENTS=LAJ:52,SVA:42; TO_CENTS=LAJ:52,SVA:42; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=4; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=42; ACTIVE_TARGET_BEFORE_CENTS=41."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784052714",
+      "timestamp_epoch": 1784052714,
+      "book": {
+        "bid_cents": 46,
+        "ask_cents": 48,
+        "last_trade_cents": 46,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-3213"
+      },
+      "target_cents": 41,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 20,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 45111,
+        "remaining_window_seconds": 25686,
+        "window_fraction": 0.6371880164413747,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 6,
+        "q75": 6
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 12.608611 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-94a45eaf93e227d2d8a20bda9248ed1de54d6ae07e48e26b25294266915d156f]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.814559[CR-281544182357d29bad30b49c3bc14ab5f55a0029ce3d805822a0be428b76fd10], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.810373[CR-99431037b99a88397907d4846e87c7cb5405b7e77d2b39efc71906ca1314699e], KXATPCHALLENGERMATCH-26JAN30SHIHIJ@0.793424[CR-81162984bf9912f964ba39e90d21ff8f70021b290608a33246cd529d8fb3e3a5], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.791608[CR-9d20d80a41244a2bd95365a57b29ac31bb66028ad2f1126b9d8a1f7ca820b6ae], KXATPCHALLENGERMATCH-26APR16ZINKRU@0.784566[CR-b642ea5ce74006f96f70a6c10e03db24da488fc40f5e9f5110a0a306ebed15c8], KXATPCHALLENGERMATCH-26MAY01CECBRA@0.783631[CR-618da33f9d39ce4c07facbdacfb15a4012f6889a8a5154cc0288bff7ee2cfb5d], KXATPCHALLENGERMATCH-26FEB26BLAGAD@0.781835[CR-6d6d36398ed88986832edbd381535d194bf6d5073ce18d42f992737771f0208d]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/6/6 cents and time-conditioned remaining-dip q25/q50/q75 0/6/6 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.213878606@depth=6[timed_mass_share=1; evidence_match_share=0.25738041012441515; neighborhood_applicability=0.7507626585237349];GRADED_NEIGHBORS:0.213878606@depth=6[evidence_match_share=0.25738041012441515; neighborhood_applicability=0.7507626585237349];OWN_TAPE_PRESENCE:0.170663952@depth=0[own_evidence_share=0.42498243523967616; formation_progress=1; formation_adjacency=0.3628119835586253];REFLEX_TRACKING:0.401578836@depth=5[lineage_available=true; formation_progress=1; formation_adjacency=0.3628119835586253]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=0.9034639057793775; WEIGHTED_DEPTH_CENTS=4.574437454; LIVE_TOUCH_BID=46; CHOSEN_DEPTH_CENTS=5; PRE_ALLOCATION_DEPTH_TARGET_CENTS=41; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 45111s, remaining 25686s, continuous fraction 0.637188016; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_5C; LIVE_BID_ASK=46/48; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 41[CR-16d8bf2a798963d511ae9e0aa360c36b68df3daa431bfce4910ab3660de81b74] contributes only by its normalized receipt-level fitness when available; post-only cap is 47. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.272499008,SVA:0.150577318; FROM_CENTS=LAJ:51,SVA:41; TO_CENTS=LAJ:51,SVA:41; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=5; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=41; ACTIVE_TARGET_BEFORE_CENTS=42."
+    },
+    {
+      "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|TURN|1784059613",
+      "timestamp_epoch": 1784059613,
+      "book": {
+        "bid_cents": 48,
+        "ask_cents": 49,
+        "last_trade_cents": 49,
+        "receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7978"
+      },
+      "target_cents": 45,
+      "target_authority": "FITNESS_WEIGHTED_BLEND",
+      "own_evidence": {
+        "basis": "TRUE_TRADE",
+        "anchor_cents": 41,
+        "observed_low_cents": 41,
+        "observed_dip_cents": 0,
+        "dip_state": "NO_DIP_OBSERVED",
+        "true_trade_count": 42,
+        "formation_end_epoch": 1784007603,
+        "window_end_epoch": 1784078400,
+        "elapsed_window_seconds": 52010,
+        "remaining_window_seconds": 18787,
+        "window_fraction": 0.734635648403181,
+        "window_source": "L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT"
+      },
+      "conditional_distribution_cents": {
+        "q25": 0,
+        "q50": 0,
+        "q75": 9
+      },
+      "lineage_target_cents": 41,
+      "sibling_uncredited_standing_commitment_cents": null,
+      "pair_cap_cents": 98,
+      "pair_residue_present": false,
+      "pair_residue_bound_target": false,
+      "resources_consulted": [
+        "FOUNDATION_PER_MINUTE_UNIVERSE",
+        "SPIKE_ATLAS"
+      ],
+      "sentence": "At 14.525000 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-de6ac4c09344655cae0cc587f4747010d27c15dd240d9d59b5a6263993450ac3]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.767370[CR-f73fb8539ddd91a274a123edcfa46822f377abbbc13335b55d2daeb73a933f57], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.765291[CR-5f510a1ffb6eeae39656d479be4c0b540e8fdf3611e85adaed789af3ad7dd16b], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.762531[CR-c91d17fb012902c6b6024b268a0acadd86d1ac487c7f652191dea8a9272036d5], KXATPCHALLENGERMATCH-26FEB25SIMGRA@0.756189[CR-8bdce800e4717b67c500df012bcafa32582d0ea980b15418cd62a24aefe5bb07], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.756086[CR-5e9c470c86d94a8f535ee0d5af85a8ad48d5904040347b669bfacb091a9480f0], KXATPCHALLENGERMATCH-26MAR26BARVAR@0.752855[CR-b8036689af2b97531d4f4bda5eea9507ea674fefb953235d27685478967606c1], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.748967[CR-82979c5eb5f7817ed46ea96aae90232a74a042a02517013a157a5b117e618187]. SVA has anchor 41; its own TRUE_TRADE bounded evidence low is 41, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 0/0/9 cents and time-conditioned remaining-dip q25/q50/q75 0/0/0 cents from 7 members. FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:0.204488260@depth=0[timed_mass_share=1; evidence_match_share=0.1931043624035283; neighborhood_applicability=0.7169098189249218];GRADED_NEIGHBORS:0.204488260@depth=0[evidence_match_share=0.1931043624035283; neighborhood_applicability=0.7169098189249218];OWN_TAPE_PRESENCE:0.199052111@depth=0[own_evidence_share=0.5078230880882756; formation_progress=1; formation_adjacency=0.26536435159681904];REFLEX_TRACKING:0.391971369@depth=7[lineage_available=true; formation_progress=1; formation_adjacency=0.26536435159681904]; TARGET_BASIS=FITNESS_WEIGHTED_BLEND; BLEND_FITNESS_MASS=0.6769993230619105; WEIGHTED_DEPTH_CENTS=2.743799584; LIVE_TOUCH_BID=48; CHOSEN_DEPTH_CENTS=3; PRE_ALLOCATION_DEPTH_TARGET_CENTS=45; all available bases contribute continuously after receipt-level normalization, with no category precedence, silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold. OWN_WINDOW=formation 1784007603 to 1784078400 [L11_VERIFIED_REPLAY_WINDOW:MACHINE_RECEIPT], elapsed 52010s, remaining 18787s, continuous fraction 0.734635648; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt. PAIR_STATE=OPEN; CREDITED_SIBLING=NONE; PAIR_REQUIRED_DEPTH_CENTS=0; PAIR_CAP_CENTS=98. TOUCH_RELATION=BELOW_BEST_BID_3C; LIVE_BID_ASK=48/49; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Reflex lineage target 41[CR-04a1861a26d20770f63039535b7ca875232ff2c7bccdf6fe1b245778100d7d70] contributes only by its normalized receipt-level fitness when available; post-only cap is 48. ALLOCATION=COMPOSED-PICTURE-NO-REALLOCATION; PRIORITY_GRADES=LAJ:0.636047853,SVA:0.169249831; FROM_CENTS=LAJ:51,SVA:45; TO_CENTS=LAJ:51,SVA:45; EXCESS_CENTS=0; FINAL_DEPTH_BELOW_TOUCH_CENTS=3; REASON=fresh per-receipt composed targets already fit the 99-cent conservation budget. ACTION=REPRICE_REST; TARGET_CENTS=45; ACTIVE_TARGET_BEFORE_CENTS=41."
+    }
+  ],
+  "repair": "Binary same-state exclusion remains deleted; neighbors carry continuous match grades. Own evidence and absolute neighbor-floor distributions compose without subtraction. Conservation remains frozen while both uncredited plans are derived and allocated fresh at each receipt.",
+  "no_placement_constant_added": true,
+  "windows_on_own_clocks": true
+}

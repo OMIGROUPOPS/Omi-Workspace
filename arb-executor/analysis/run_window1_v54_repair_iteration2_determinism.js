@@ -25,7 +25,7 @@ for (let pass = 1; pass <= 2; pass += 1) {
 const namesEqual = JSON.stringify(Object.keys(runs[0].files)) === JSON.stringify(Object.keys(runs[1].files));
 const differences = [...new Set([...Object.keys(runs[0].files), ...Object.keys(runs[1].files)])].filter((name) => JSON.stringify(runs[0].files[name]) !== JSON.stringify(runs[1].files[name]));
 const receipt = {
-  label: "V54_REPAIR_ITERATION6_EVIDENCE_LADDER_DETERMINISM_X2",
+  label: "V54_REPAIR_ITERATION7_FITNESS_WEIGHTED_BASES_DETERMINISM_X2",
   two_clean_builds: true,
   same_output_path_each_pass: true,
   names_equal: namesEqual,

@@ -60,24 +60,31 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
-assert.equal(derivation.derivation.target_basis, "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS");
-assert.equal(derivation.derivation.evidence_rung, "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS");
+assert.equal(derivation.derivation.target_basis, "FITNESS_WEIGHTED_BLEND");
+assert.equal(derivation.derivation.evidence_rung, "FITNESS_WEIGHTED_BLEND");
+assert.equal(derivation.derivation.basis_weights.length, 4);
+assert.ok(Math.abs(derivation.derivation.basis_weights.reduce((total, row) => total + row.normalized_weight, 0) - 1) < 1e-12);
+assert.ok(derivation.derivation.basis_weights.filter((row) => row.available).every((row) => row.normalized_weight > 0));
 assert.equal(derivation.derivation.stale_prior_path_used, false);
 assert.match(derivation.sentence, /TOUCH_RELATION=/);
 assert.match(derivation.sentence, /time-conditioned remaining-dip/);
 assert.match(derivation.sentence, /CHOSEN_DEPTH_CENTS=/);
 assert.match(derivation.sentence, /OWN_WINDOW=/);
 assert.match(derivation.sentence, /PAIR_STATE=/);
-assert.match(derivation.sentence, /EVIDENCE_RUNG=RUNG_1_TIME_BEARING_GRADED_NEIGHBORS/);
+assert.match(derivation.sentence, /FITNESS_WEIGHTS=TIME_BEARING_NEIGHBORS:/);
 
 const untimedNeighborhood = neighborhood.map((row) => ({ ...row, legs: row.legs.map((leg) => ({ ...leg, floor_fraction: null })) }));
-const rung2 = os.deriveAction({ state, reads, neighborhood: untimedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r2" }, resources });
-assert.equal(rung2.derivation.evidence_rung, "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW");
+const untimedBlend = os.deriveAction({ state, reads, neighborhood: untimedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r2" }, resources });
+assert.equal(untimedBlend.derivation.evidence_rung, "FITNESS_WEIGHTED_BLEND");
+assert.equal(untimedBlend.derivation.basis_weights.find((row) => row.basis === "TIME_BEARING_NEIGHBORS").normalized_weight, 0);
+assert.ok(untimedBlend.derivation.basis_weights.find((row) => row.basis === "GRADED_NEIGHBORS").normalized_weight > 0);
 
-const rung3 = os.deriveAction({ state, reads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r3" }, resources });
-assert.equal(rung3.derivation.evidence_rung, "RUNG_3_OWN_TAPE");
-assert.equal(rung3.derivation.distribution_depth_cents, 0);
-assert.equal(rung3.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
+const ownReflexBlend = os.deriveAction({ state, reads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r3" }, resources });
+assert.equal(ownReflexBlend.derivation.evidence_rung, "FITNESS_WEIGHTED_BLEND");
+assert.equal(ownReflexBlend.derivation.basis_weights.find((row) => row.basis === "TIME_BEARING_NEIGHBORS").normalized_weight, 0);
+assert.equal(ownReflexBlend.derivation.basis_weights.find((row) => row.basis === "GRADED_NEIGHBORS").normalized_weight, 0);
+assert.ok(ownReflexBlend.derivation.basis_weights.find((row) => row.basis === "OWN_TAPE_PRESENCE").normalized_weight > 0);
+assert.equal(ownReflexBlend.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
 
 const splitState = os.createTapeState(meta);
 splitState.positions.AAA.standing_target_cents = 60;
@@ -120,9 +127,10 @@ assert.match(blocked.sentence, /ACTION=HOLD_REST; TARGET_CENTS=NONE/);
 
 const noTape = os.createTapeState(meta);
 const noTapeReads = os.readAll(noTape);
-const rung4 = os.deriveAction({ state: noTape, reads: noTapeReads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r4" }, resources });
-assert.equal(rung4.derivation.evidence_rung, "RUNG_4_REFLEX_BYTE_EQUAL");
-assert.equal(rung4.derivation.proposed_target_cents, 38);
+const noEvidenceBlend = os.deriveAction({ state: noTape, reads: noTapeReads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r4" }, resources });
+assert.equal(noEvidenceBlend.derivation.evidence_rung, "FITNESS_WEIGHTED_BLEND");
+assert.equal(noEvidenceBlend.derivation.proposed_target_cents, null);
+assert.equal(noEvidenceBlend.action.action, "HOLD_REST");
 
 const handoff = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(handoff, leg, { timestamp_epoch: ts, receipt: `handoff-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

@@ -1,0 +1,480 @@
+{
+  "label": "V54_REPAIR_ITERATION7_ALL_BELL_BOUNDED_LIBRARY_FLOOR_TIME_BINDING",
+  "method": "BEST_AVAILABLE_BELL_BOUNDED_MEMBER_FLOOR_FRACTION",
+  "before_truth_table_only": {
+    "events": 496,
+    "legs": 984,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 235,
+        "legs": 464
+      },
+      "ATP_MAIN": {
+        "events": 94,
+        "legs": 187
+      },
+      "WTA_CHALL": {
+        "events": 91,
+        "legs": 181
+      },
+      "WTA_MAIN": {
+        "events": 76,
+        "legs": 152
+      }
+    }
+  },
+  "exact_truth_bindings": {
+    "events": 496,
+    "legs": 984,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 235,
+        "legs": 464
+      },
+      "ATP_MAIN": {
+        "events": 94,
+        "legs": 187
+      },
+      "WTA_CHALL": {
+        "events": 91,
+        "legs": 181
+      },
+      "WTA_MAIN": {
+        "events": 76,
+        "legs": 152
+      }
+    }
+  },
+  "after_all_bell_bounded_library_paths": {
+    "events": 9686,
+    "legs": 19336,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 3792,
+        "legs": 7583
+      },
+      "ATP_MAIN": {
+        "events": 2596,
+        "legs": 5192
+      },
+      "ITF_M": {
+        "events": 87,
+        "legs": 156
+      },
+      "ITF_W": {
+        "events": 87,
+        "legs": 158
+      },
+      "WTA_CHALL": {
+        "events": 680,
+        "legs": 1359
+      },
+      "WTA_MAIN": {
+        "events": 2444,
+        "legs": 4888
+      }
+    }
+  },
+  "eligible_bell_bounded_library_paths": {
+    "events": 9680,
+    "legs": 19323,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 3791,
+        "legs": 7580
+      },
+      "ATP_MAIN": {
+        "events": 2592,
+        "legs": 5184
+      },
+      "ITF_M": {
+        "events": 87,
+        "legs": 156
+      },
+      "ITF_W": {
+        "events": 87,
+        "legs": 158
+      },
+      "WTA_CHALL": {
+        "events": 680,
+        "legs": 1359
+      },
+      "WTA_MAIN": {
+        "events": 2443,
+        "legs": 4886
+      }
+    }
+  },
+  "every_eligible_game_bound": true,
+  "every_eligible_leg_bound": true,
+  "missing_eligible_leg_keys": [],
+  "bounded_legs_without_lawful_low": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GURDAL",
+      "leg_id": "DAL",
+      "category": "ATP_CHALL"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14CUIFAN",
+      "leg_id": "FAN",
+      "category": "ATP_CHALL"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+      "leg_id": "DRA",
+      "category": "ATP_CHALL"
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14DRATRO",
+      "leg_id": "TRO",
+      "category": "ATP_CHALL"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DELRIB",
+      "leg_id": "DEL",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DELRIB",
+      "leg_id": "RIB",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "leg_id": "DOM",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "leg_id": "SKA",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18HEIFEL",
+      "leg_id": "FEL",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18HEIFEL",
+      "leg_id": "HEI",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18KOPHER",
+      "leg_id": "HER",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18KOPHER",
+      "leg_id": "KOP",
+      "category": "ATP_MAIN"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL14KOAYAZ",
+      "leg_id": "KOA",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15BOCSEK",
+      "leg_id": "BOC",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15CARSEI",
+      "leg_id": "CAR",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15CHACHA2",
+      "leg_id": "CHA",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15CHACHA2",
+      "leg_id": "CHA2",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15COLLOP",
+      "leg_id": "COL",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15COLLOP",
+      "leg_id": "LOP",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15DHOPLE",
+      "leg_id": "DHO",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15FABGRE",
+      "leg_id": "GRE",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15KHOUJV",
+      "leg_id": "UJV",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15KRUALA",
+      "leg_id": "ALA",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15LIEBEC",
+      "leg_id": "LIE",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15LONMIL",
+      "leg_id": "LON",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15LONMIL",
+      "leg_id": "MIL",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MAKMAB",
+      "leg_id": "MAK",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MANKAR",
+      "leg_id": "KAR",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MANKAR",
+      "leg_id": "MAN",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MARSIC",
+      "leg_id": "SIC",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MENKIM",
+      "leg_id": "MEN",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MILOLI",
+      "leg_id": "MIL",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MILOLI",
+      "leg_id": "OLI",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MIRMUR",
+      "leg_id": "MIR",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15MIRMUR",
+      "leg_id": "MUR",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15PALVAN",
+      "leg_id": "VAN",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15POPMIC",
+      "leg_id": "MIC",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15RODAGU",
+      "leg_id": "AGU",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL15RODAGU",
+      "leg_id": "ROD",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL16KAMNGU",
+      "leg_id": "NGU",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL16PLUWAG",
+      "leg_id": "WAG",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL16USMMAS",
+      "leg_id": "MAS",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL16USMMAS",
+      "leg_id": "USM",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL17OMABER",
+      "leg_id": "OMA",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL17SAHMOS",
+      "leg_id": "MOS",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFMATCH-26JUL17STAORL",
+      "leg_id": "STA",
+      "category": "ITF_M"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15APPSPI",
+      "leg_id": "SPI",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15BARMAR",
+      "leg_id": "BAR",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15BRODAE",
+      "leg_id": "DAE",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15DANGHI",
+      "leg_id": "DAN",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15DANGHI",
+      "leg_id": "GHI",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15HORBRU",
+      "leg_id": "BRU",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15KONMIR",
+      "leg_id": "MIR",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15KUMCHA",
+      "leg_id": "KUM",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15MASLAB",
+      "leg_id": "LAB",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15MATRIV",
+      "leg_id": "MAT",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15MATRIV",
+      "leg_id": "RIV",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15NOETEI",
+      "leg_id": "TEI",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15SAINAI",
+      "leg_id": "SAI",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15SERKRE",
+      "leg_id": "KRE",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15TRAKAR",
+      "leg_id": "KAR",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL15VOGNUU",
+      "leg_id": "VOG",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL16DEKDES",
+      "leg_id": "DES",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL16MIKYAN",
+      "leg_id": "YAN",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL16PASSTR",
+      "leg_id": "PAS",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXITFWMATCH-26JUL16RICKOK",
+      "leg_id": "KOK",
+      "category": "ITF_W"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "leg_id": "BAL",
+      "category": "WTA_CHALL"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "leg_id": "HUA",
+      "category": "WTA_CHALL"
+    },
+    {
+      "event_id": "KXWTACHALLENGERMATCH-26JUL14HENKRA",
+      "leg_id": "HEN",
+      "category": "WTA_CHALL"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+      "leg_id": "GAR",
+      "category": "WTA_MAIN"
+    },
+    {
+      "event_id": "KXWTAMATCH-26JUL13PRIGAR",
+      "leg_id": "PRI",
+      "category": "WTA_MAIN"
+    }
+  ],
+  "comparator_repair": "Eligible-path inclusion is checked by event|leg identity. Timed paths outside the low-bearing eligible set are retained as timing coverage but cannot make the eligible comparator false.",
+  "timing_grains": [
+    "TICK",
+    "MINUTE",
+    "RANGE_POLL"
+  ],
+  "layer_license": [
+    "MACRO",
+    "MICRO"
+  ],
+  "truth_commit": "c0056976",
+  "truth_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+}

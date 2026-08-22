@@ -1,0 +1,61 @@
+{
+  "label": "FOUNDATION_STRICT_PRE_BELL_TRADE_MINUTES",
+  "native_window_law": {
+    "excluded_method": "unknown",
+    "method_field": "match_start_method",
+    "minute_bucket_boundary": "minute_ts < match_start_ts",
+    "right_edge": "match_start_ts",
+    "rows_at_or_after_right_edge_excluded": true
+  },
+  "served_high_basis": "MAX_PRICE_HIGH_ON_TRADE_BEARING_MINUTES_STRICTLY_BEFORE_BELL",
+  "served_close_basis": "LAST_PRICE_CLOSE_ON_TRADE_BEARING_MINUTE_STRICTLY_BEFORE_BELL",
+  "herhar_expected": {
+    "event_id": "KXATPMATCH-26MAR29HERHAR",
+    "leg_id": "HAR",
+    "old_leaking_low_cents": 49,
+    "repaired_pre_bell_low_cents": 50
+  },
+  "herhar_actual": {
+    "anchor_cents": 57,
+    "bell_epoch": 1774779360,
+    "close_basis": "LAST_PRICE_CLOSE_ON_TRADE_BEARING_MINUTE_STRICTLY_BEFORE_BELL",
+    "close_cents": 50,
+    "floor_epoch": 1774779300,
+    "floor_fraction": 0.998719590268886,
+    "floor_timing_basis": "FIRST_MINUTE_AT_FINAL_TRUE_TRADE_LOW",
+    "floor_timing_grain": "MINUTE",
+    "floor_timing_receipt": "KXATPMATCH-26MAR29HERHAR-HAR@minute_ts=1774779300",
+    "formation_end_epoch": 1774732500,
+    "formation_phase_source": "premarket_phase=stable",
+    "high_basis": "MAX_PRICE_HIGH_ON_TRADE_BEARING_MINUTES_STRICTLY_BEFORE_BELL",
+    "high_cents": 59,
+    "leg_id": "HAR",
+    "low_basis": "TRUE_TRADE",
+    "low_cents": 50,
+    "observed_ask_low_cents": 89,
+    "observed_low_cents": 89,
+    "observed_trade_low_cents": null,
+    "qualifying_minute_ask_low_cents": 48,
+    "reference_cents_at_formation": 57,
+    "source_row_ref": "KXATPMATCH-26MAR29HERHAR-HAR@1774732500",
+    "spike_atlas": {
+      "anchor_cents": 53,
+      "drop_reason": null,
+      "grain": "EVENT_LEG_DESCRIPTIVE",
+      "licensed_layers": [
+        "MACRO",
+        "MICRO"
+      ],
+      "micro_micro_licensed": false,
+      "row_ref": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/atp_main_spike_perN.parquet#row-4062",
+      "size_qualified_max_cents": null,
+      "source_id": "SPIKE_ATLAS_ATP_MAIN",
+      "spike_cents": 46,
+      "time_to_max_seconds": null
+    },
+    "ticker": "KXATPMATCH-26MAR29HERHAR-HAR",
+    "trades_through_formation": 0,
+    "true_trade_low_cents": 50,
+    "volume_through_formation": 0
+  }
+}

@@ -1,0 +1,423 @@
+{
+ "label": "SURPRISE_LEDGERS_REBUILT_CORRECTED_BELLS",
+ "date": "2026-08-21",
+ "games": {
+  "GIUBAR": {
+   "bell": 1783874300,
+   "bell_status": "RULED W1TT-C-001",
+   "lawful_prebell": {
+    "BAR": {
+     "min": 27,
+     "min_at": 1783841801.304766,
+     "close": 32,
+     "n": 8
+    },
+    "GIU": {
+     "min": 66,
+     "min_at": 1783869375.227061,
+     "close": 66,
+     "n": 14
+    }
+   },
+   "stage_legs": 14,
+   "classes": {
+    "INSIDE_ENVELOPE": 6,
+    "NO_LATER_PREBELL_PRINT": 8
+   },
+   "rows": [
+    {
+     "stage": 1,
+     "hours": 0.0,
+     "leg": "BAR",
+     "anchor": 31,
+     "envelope": [
+      21.46,
+      31.0
+     ],
+     "lawful_later_min_prebell": 27,
+     "later_prebell_prints": 8,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 1,
+     "hours": 0.0,
+     "leg": "GIU",
+     "anchor": 67,
+     "envelope": [
+      42.54,
+      67.0
+     ],
+     "lawful_later_min_prebell": 66,
+     "later_prebell_prints": 14,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 3,
+     "hours": 0.143889,
+     "leg": "BAR",
+     "anchor": 31,
+     "envelope": [
+      11.85,
+      31.0
+     ],
+     "lawful_later_min_prebell": 27,
+     "later_prebell_prints": 8,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 3,
+     "hours": 0.143889,
+     "leg": "GIU",
+     "anchor": 67,
+     "envelope": [
+      63.06,
+      67.0
+     ],
+     "lawful_later_min_prebell": 66,
+     "later_prebell_prints": 14,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 6,
+     "hours": 2.97,
+     "leg": "BAR",
+     "anchor": 31,
+     "envelope": [
+      16.0,
+      31.0
+     ],
+     "lawful_later_min_prebell": 28,
+     "later_prebell_prints": 5,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 6,
+     "hours": 2.97,
+     "leg": "GIU",
+     "anchor": 67,
+     "envelope": [
+      49.0,
+      67.0
+     ],
+     "lawful_later_min_prebell": 66,
+     "later_prebell_prints": 7,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 10,
+     "hours": 12.192778,
+     "leg": "BAR",
+     "anchor": 31,
+     "envelope": [
+      11.85,
+      29.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 10,
+     "hours": 12.192778,
+     "leg": "GIU",
+     "anchor": 67,
+     "envelope": [
+      40.2,
+      67.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 11,
+     "hours": 12.198236,
+     "leg": "BAR",
+     "anchor": 31,
+     "envelope": [
+      7.75,
+      19.38
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 11,
+     "hours": 12.198236,
+     "leg": "GIU",
+     "anchor": 67,
+     "envelope": [
+      51.24,
+      64.09
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 14,
+     "hours": 12.479156,
+     "leg": "BAR",
+     "anchor": 31,
+     "envelope": [
+      12.0,
+      31.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 14,
+     "hours": 12.479156,
+     "leg": "GIU",
+     "anchor": 67,
+     "envelope": [
+      32.0,
+      61.09
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 19,
+     "hours": 12.611111,
+     "leg": "BAR",
+     "anchor": 31,
+     "envelope": [
+      10.89,
+      26.3
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 19,
+     "hours": 12.611111,
+     "leg": "GIU",
+     "anchor": 67,
+     "envelope": [
+      35.53,
+      64.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    }
+   ],
+   "verdict": "NO lawful DEEPER departure exists"
+  },
+  "URSPAL": {
+   "bell": 1784042247,
+   "bell_status": "CANDIDATE F-VS-031 \u2014 NOT SENIOR (operator word not received)",
+   "lawful_prebell": {
+    "PAL": {
+     "min": 39,
+     "min_at": 1784042066.596112,
+     "close": 41,
+     "n": 20
+    },
+    "URS": {
+     "min": 57,
+     "min_at": 1784032697.600949,
+     "close": 61,
+     "n": 21
+    }
+   },
+   "stage_legs": 12,
+   "classes": {
+    "SHALLOWER_THAN_ALL_NEIGHBORS": 2,
+    "INSIDE_ENVELOPE": 2,
+    "NO_LATER_PREBELL_PRINT": 8
+   },
+   "rows": [
+    {
+     "stage": 1,
+     "hours": 0.0,
+     "leg": "PAL",
+     "anchor": 38,
+     "envelope": [
+      21.0,
+      38.0
+     ],
+     "lawful_later_min_prebell": 39,
+     "later_prebell_prints": 20,
+     "class": "SHALLOWER_THAN_ALL_NEIGHBORS",
+     "departure_cents": 1.0
+    },
+    {
+     "stage": 1,
+     "hours": 0.0,
+     "leg": "URS",
+     "anchor": 62,
+     "envelope": [
+      39.37,
+      62.0
+     ],
+     "lawful_later_min_prebell": 57,
+     "later_prebell_prints": 21,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 6,
+     "hours": 6.167399,
+     "leg": "PAL",
+     "anchor": 38,
+     "envelope": [
+      20.46,
+      38.0
+     ],
+     "lawful_later_min_prebell": 39,
+     "later_prebell_prints": 20,
+     "class": "SHALLOWER_THAN_ALL_NEIGHBORS",
+     "departure_cents": 1.0
+    },
+    {
+     "stage": 6,
+     "hours": 6.167399,
+     "leg": "URS",
+     "anchor": 62,
+     "envelope": [
+      34.44,
+      61.03
+     ],
+     "lawful_later_min_prebell": 57,
+     "later_prebell_prints": 18,
+     "class": "INSIDE_ENVELOPE",
+     "departure_cents": 0
+    },
+    {
+     "stage": 9,
+     "hours": 12.024469,
+     "leg": "PAL",
+     "anchor": 38,
+     "envelope": [
+      20.46,
+      38.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 9,
+     "hours": 12.024469,
+     "leg": "URS",
+     "anchor": 62,
+     "envelope": [
+      34.44,
+      56.92
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 10,
+     "hours": 12.039239,
+     "leg": "PAL",
+     "anchor": 38,
+     "envelope": [
+      21.0,
+      34.92
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 10,
+     "hours": 12.039239,
+     "leg": "URS",
+     "anchor": 62,
+     "envelope": [
+      26.0,
+      61.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 12,
+     "hours": 12.669913,
+     "leg": "PAL",
+     "anchor": 38,
+     "envelope": [
+      20.46,
+      38.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 12,
+     "hours": 12.669913,
+     "leg": "URS",
+     "anchor": 62,
+     "envelope": [
+      34.44,
+      56.92
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 23,
+     "hours": 12.816944,
+     "leg": "PAL",
+     "anchor": 38,
+     "envelope": [
+      16.89,
+      38.0
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    },
+    {
+     "stage": 23,
+     "hours": 12.816944,
+     "leg": "URS",
+     "anchor": 62,
+     "envelope": [
+      20.33,
+      30.51
+     ],
+     "lawful_later_min_prebell": null,
+     "later_prebell_prints": 0,
+     "class": "NO_LATER_PREBELL_PRINT",
+     "departure_cents": 0
+    }
+   ],
+   "verdict": "NO lawful DEEPER departure exists"
+  }
+ }
+}

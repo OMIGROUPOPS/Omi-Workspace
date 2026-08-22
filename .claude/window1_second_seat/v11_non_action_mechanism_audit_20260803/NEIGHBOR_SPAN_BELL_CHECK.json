@@ -1,0 +1,493 @@
+{
+ "label": "NEIGHBOR_SPAN_BELL_CHECK",
+ "date": "2026-08-21",
+ "library": "range_spectrum_v1.jsonl",
+ "rows_total": 6252,
+ "edge_src_census_sample": {
+  "onset_snapshot_est": 651,
+  "sched_only_no_evidence": 216,
+  "official_actual": 25,
+  "onset_ticks_est": 14
+ },
+ "low_frac_sample": {
+  "n": 1770,
+  "share_ge_0_9": 0.494,
+  "share_ge_0_95": 0.408,
+  "median": 0.89
+ },
+ "bell_bounded_fields": "none \u2014 right_edge is edge_src onset_snapshot_est (an estimate of onset, not a verified bell); low/low_frac/close are computed over the full path to that estimate; no bell, span_end or pre-bell flag exists per row",
+ "neighbors": [
+  {
+   "game": "LAJSVA",
+   "neighbor": "KXATPCHALLENGERMATCH-26APR25FELKEN",
+   "rs_row": 80,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1777139100.0,
+   "right_edge": 1777144286.0,
+   "inplay_signature_tick": 103,
+   "inplay_signature_epoch": 1777141831,
+   "legs": {
+    "KEN": {
+     "anchor": 41,
+     "library_low": 34,
+     "low_frac": 0.97,
+     "low_tmin_min": 15.1,
+     "prebell_low_by_signature": 40,
+     "inflation_cents": 6,
+     "library_ratio": 0.8293,
+     "prebell_ratio": 0.9756
+    },
+    "FEL": {
+     "anchor": 60,
+     "library_low": 34,
+     "low_frac": 0.94,
+     "low_tmin_min": 35.9,
+     "prebell_low_by_signature": 53,
+     "inflation_cents": 19,
+     "library_ratio": 0.5667,
+     "prebell_ratio": 0.8833
+    }
+   }
+  },
+  {
+   "game": "LAJSVA",
+   "neighbor": "KXATPCHALLENGERMATCH-26JUL08PIRDZU",
+   "rs_row": 678,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1783534200.0,
+   "right_edge": 1783536310.0,
+   "inplay_signature_tick": 37,
+   "inplay_signature_epoch": 1783535069,
+   "legs": {
+    "PIR": {
+     "anchor": 59,
+     "library_low": 38,
+     "low_frac": 0.96,
+     "low_tmin_min": 20.7,
+     "prebell_low_by_signature": 54,
+     "inflation_cents": 16,
+     "library_ratio": 0.6441,
+     "prebell_ratio": 0.9153
+    },
+    "DZU": {
+     "anchor": 42,
+     "library_low": 44,
+     "low_frac": 0.43,
+     "low_tmin_min": 296.0,
+     "prebell_low_by_signature": 44,
+     "inflation_cents": 0,
+     "library_ratio": 1.0476,
+     "prebell_ratio": 1.0476
+    }
+   }
+  },
+  {
+   "game": "LAJSVA",
+   "neighbor": "KXATPCHALLENGERMATCH-26JUN01MIDKOL",
+   "rs_row": 1042,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1780321800.0,
+   "right_edge": 1780324259.0,
+   "inplay_signature_tick": 97,
+   "inplay_signature_epoch": 1780322437,
+   "legs": {
+    "MID": {
+     "anchor": 40,
+     "library_low": 33,
+     "low_frac": 0.96,
+     "low_tmin_min": 20.1,
+     "prebell_low_by_signature": 36,
+     "inflation_cents": 3,
+     "library_ratio": 0.825,
+     "prebell_ratio": 0.9
+    },
+    "KOL": {
+     "anchor": 61,
+     "library_low": 49,
+     "low_frac": 0.94,
+     "low_tmin_min": 30.4,
+     "prebell_low_by_signature": 61,
+     "inflation_cents": 12,
+     "library_ratio": 0.8033,
+     "prebell_ratio": 1.0
+    }
+   }
+  },
+  {
+   "game": "LAJSVA",
+   "neighbor": "KXATPCHALLENGERMATCH-26JUN18HEICHO",
+   "rs_row": 1735,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1781791500.0,
+   "right_edge": 1781793519.0,
+   "inplay_signature_tick": 92,
+   "inplay_signature_epoch": 1781792880,
+   "legs": {
+    "HEI": {
+     "anchor": 61,
+     "library_low": 56,
+     "low_frac": 1.0,
+     "low_tmin_min": 0.0,
+     "prebell_low_by_signature": 61,
+     "inflation_cents": 5,
+     "library_ratio": 0.918,
+     "prebell_ratio": 1.0
+    },
+    "CHO": {
+     "anchor": 40,
+     "library_low": 26,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.7,
+     "prebell_low_by_signature": 36,
+     "inflation_cents": 10,
+     "library_ratio": 0.65,
+     "prebell_ratio": 0.9
+    }
+   }
+  },
+  {
+   "game": "LAJSVA",
+   "neighbor": "KXATPCHALLENGERMATCH-26JUN29GLIMAY",
+   "rs_row": 1984,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1782774600.0,
+   "right_edge": 1782776177.0,
+   "inplay_signature_tick": 61,
+   "inplay_signature_epoch": 1782775573,
+   "legs": {
+    "MAY": {
+     "anchor": 41,
+     "library_low": 37,
+     "low_frac": 0.85,
+     "low_tmin_min": 75.6,
+     "prebell_low_by_signature": 37,
+     "inflation_cents": 0,
+     "library_ratio": 0.9024,
+     "prebell_ratio": 0.9024
+    },
+    "GLI": {
+     "anchor": 59,
+     "library_low": 52,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.1,
+     "prebell_low_by_signature": 57,
+     "inflation_cents": 5,
+     "library_ratio": 0.8814,
+     "prebell_ratio": 0.9661
+    }
+   }
+  },
+  {
+   "game": "LAJSVA",
+   "neighbor": "KXATPCHALLENGERMATCH-26MAY10ROCSAF",
+   "rs_row": 2328,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1778511600.0,
+   "right_edge": 1778514317.0,
+   "inplay_signature_tick": 89,
+   "inplay_signature_epoch": 1778512163,
+   "legs": {
+    "SAF": {
+     "anchor": 59,
+     "library_low": 41,
+     "low_frac": 0.99,
+     "low_tmin_min": 5.2,
+     "prebell_low_by_signature": 57,
+     "inflation_cents": 16,
+     "library_ratio": 0.6949,
+     "prebell_ratio": 0.9661
+    },
+    "ROC": {
+     "anchor": 42,
+     "library_low": 41,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.4,
+     "prebell_low_by_signature": 42,
+     "inflation_cents": 1,
+     "library_ratio": 0.9762,
+     "prebell_ratio": 1.0
+    }
+   }
+  },
+  {
+   "game": "LAJSVA",
+   "neighbor": "KXATPCHALLENGERMATCH-26MAY15COPBLA",
+   "rs_row": 2566,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1778839200.0,
+   "right_edge": 1778840552.0,
+   "inplay_signature_tick": 97,
+   "inplay_signature_epoch": 1778839949,
+   "legs": {
+    "COP": {
+     "anchor": 60,
+     "library_low": 55,
+     "low_frac": 1.0,
+     "low_tmin_min": 0.0,
+     "prebell_low_by_signature": 58,
+     "inflation_cents": 3,
+     "library_ratio": 0.9167,
+     "prebell_ratio": 0.9667
+    },
+    "BLA": {
+     "anchor": 41,
+     "library_low": 33,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.1,
+     "prebell_low_by_signature": 39,
+     "inflation_cents": 6,
+     "library_ratio": 0.8049,
+     "prebell_ratio": 0.9512
+    }
+   }
+  },
+  {
+   "game": "DANPRA",
+   "neighbor": "KXATPMATCH-26JUN17TIEAUG",
+   "rs_row": 3452,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1781703600.0,
+   "right_edge": 1781707330.0,
+   "inplay_signature_tick": 83,
+   "inplay_signature_epoch": 1781705174,
+   "legs": {
+    "TIE": {
+     "anchor": 43,
+     "library_low": 30,
+     "low_frac": 0.97,
+     "low_tmin_min": 15.8,
+     "prebell_low_by_signature": 41,
+     "inflation_cents": 11,
+     "library_ratio": 0.6977,
+     "prebell_ratio": 0.9535
+    },
+    "AUG": {
+     "anchor": 59,
+     "library_low": 55,
+     "low_frac": 0.76,
+     "low_tmin_min": 129.8,
+     "prebell_low_by_signature": 55,
+     "inflation_cents": 0,
+     "library_ratio": 0.9322,
+     "prebell_ratio": 0.9322
+    }
+   }
+  },
+  {
+   "game": "DANPRA",
+   "neighbor": "KXATPMATCH-26JUN22BROHOL",
+   "rs_row": 3499,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1782136800.0,
+   "right_edge": 1782139943.0,
+   "inplay_signature_tick": 105,
+   "inplay_signature_epoch": 1782139943,
+   "legs": {
+    "HOL": {
+     "anchor": 56,
+     "library_low": 42,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.6,
+     "prebell_low_by_signature": 42,
+     "inflation_cents": 0,
+     "library_ratio": 0.75,
+     "prebell_ratio": 0.75
+    },
+    "BRO": {
+     "anchor": 44,
+     "library_low": 44,
+     "low_frac": 0.0,
+     "low_tmin_min": 530.1,
+     "prebell_low_by_signature": 44,
+     "inflation_cents": 0,
+     "library_ratio": 1.0,
+     "prebell_ratio": 1.0
+    }
+   }
+  },
+  {
+   "game": "DANPRA",
+   "neighbor": "KXATPMATCH-26JUN29RINTAR",
+   "rs_row": 3682,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1782738600.0,
+   "right_edge": 1782741710.0,
+   "inplay_signature_tick": null,
+   "inplay_signature_epoch": null,
+   "legs": {
+    "TAR": {
+     "anchor": 43,
+     "library_low": 38,
+     "low_frac": 0.97,
+     "low_tmin_min": 16.2,
+     "prebell_low_by_signature": 38,
+     "inflation_cents": 0,
+     "library_ratio": 0.8837,
+     "prebell_ratio": 0.8837
+    },
+    "RIN": {
+     "anchor": 59,
+     "library_low": 58,
+     "low_frac": 0.49,
+     "low_tmin_min": 273.1,
+     "prebell_low_by_signature": 58,
+     "inflation_cents": 0,
+     "library_ratio": 0.9831,
+     "prebell_ratio": 0.9831
+    }
+   }
+  },
+  {
+   "game": "DANPRA",
+   "neighbor": "KXATPMATCH-26MAY05DELDEJ",
+   "rs_row": 3735,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1777980300.0,
+   "right_edge": 1777981258.0,
+   "inplay_signature_tick": 97,
+   "inplay_signature_epoch": 1777980956,
+   "legs": {
+    "DEL": {
+     "anchor": 44,
+     "library_low": 38,
+     "low_frac": 0.99,
+     "low_tmin_min": 5.0,
+     "prebell_low_by_signature": 41,
+     "inflation_cents": 3,
+     "library_ratio": 0.8636,
+     "prebell_ratio": 0.9318
+    },
+    "DEJ": {
+     "anchor": 57,
+     "library_low": 53,
+     "low_frac": 0.97,
+     "low_tmin_min": 15.1,
+     "prebell_low_by_signature": 53,
+     "inflation_cents": 0,
+     "library_ratio": 0.9298,
+     "prebell_ratio": 0.9298
+    }
+   }
+  },
+  {
+   "game": "DANPRA",
+   "neighbor": "KXATPMATCH-26MAY05KYPDRO",
+   "rs_row": 3739,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1777977000.0,
+   "right_edge": 1777981258.0,
+   "inplay_signature_tick": 107,
+   "inplay_signature_epoch": 1777980655,
+   "legs": {
+    "KYP": {
+     "anchor": 38,
+     "library_low": 26,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.1,
+     "prebell_low_by_signature": 36,
+     "inflation_cents": 10,
+     "library_ratio": 0.6842,
+     "prebell_ratio": 0.9474
+    },
+    "DRO": {
+     "anchor": 62,
+     "library_low": 55,
+     "low_frac": 0.94,
+     "low_tmin_min": 35.1,
+     "prebell_low_by_signature": 55,
+     "inflation_cents": 0,
+     "library_ratio": 0.8871,
+     "prebell_ratio": 0.8871
+    }
+   }
+  },
+  {
+   "game": "DANPRA",
+   "neighbor": "KXATPMATCH-26MAY06ARNMUN",
+   "rs_row": 3744,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1778074500.0,
+   "right_edge": 1778080426.0,
+   "inplay_signature_tick": 99,
+   "inplay_signature_epoch": 1778075884,
+   "legs": {
+    "MUN": {
+     "anchor": 44,
+     "library_low": 26,
+     "low_frac": 0.94,
+     "low_tmin_min": 35.4,
+     "prebell_low_by_signature": 41,
+     "inflation_cents": 15,
+     "library_ratio": 0.5909,
+     "prebell_ratio": 0.9318
+    },
+    "ARN": {
+     "anchor": 58,
+     "library_low": 46,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.1,
+     "prebell_low_by_signature": 57,
+     "inflation_cents": 11,
+     "library_ratio": 0.7931,
+     "prebell_ratio": 0.9828
+    }
+   }
+  },
+  {
+   "game": "DANPRA",
+   "neighbor": "KXATPMATCH-26MAY18SMIGUI",
+   "rs_row": 3945,
+   "edge_src": "onset_snapshot_est",
+   "sched": 1779183000.0,
+   "right_edge": 1779185556.0,
+   "inplay_signature_tick": 96,
+   "inplay_signature_epoch": 1779183748,
+   "legs": {
+    "SMI": {
+     "anchor": 61,
+     "library_low": 47,
+     "low_frac": 0.98,
+     "low_tmin_min": 10.0,
+     "prebell_low_by_signature": 56,
+     "inflation_cents": 9,
+     "library_ratio": 0.7705,
+     "prebell_ratio": 0.918
+    },
+    "GUI": {
+     "anchor": 40,
+     "library_low": 32,
+     "low_frac": 0.97,
+     "low_tmin_min": 15.1,
+     "prebell_low_by_signature": 38,
+     "inflation_cents": 6,
+     "library_ratio": 0.8,
+     "prebell_ratio": 0.95
+    }
+   }
+  }
+ ],
+ "danpra_recomputation_measurement_only": {
+  "weights": "TP18 scores (F-VS-035)",
+  "blend": "m=0.8389 with lineage 59/40",
+  "result": {
+   "DAN": {
+    "library_ratio": 0.863023,
+    "prebell_ratio": 0.91181,
+    "raw_library": 50,
+    "raw_prebell": 53,
+    "blend_library": 51,
+    "blend_prebell": 54,
+    "lawful_min_actual": 59
+   },
+   "PRA": {
+    "library_ratio": 0.788291,
+    "prebell_ratio": 0.94269,
+    "raw_library": 32,
+    "raw_prebell": 39,
+    "blend_library": 33,
+    "blend_prebell": 39,
+    "lawful_min_actual": 41
+   }
+  }
+ }
+}

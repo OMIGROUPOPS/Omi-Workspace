@@ -19492,3 +19492,12 @@ Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 11
 - Capture vs ceiling under corrected bells: GIUBAR lawful ceiling 93¢ (Δ7), v6 fills post-bell → NEITHER (ruled, W1TT-C-001); URSPAL lawful ceiling 96¢ (Δ4) under the candidate bell, v6 fills post-bell → NEITHER — **W1TT-C-002 ruling on URSPAL's bell required**; LAJSVA 92¢, DANPRA 100¢ reproduce (F-VS-044).
 - Surprise ledgers: 0 omitted departures on their stated basis; GIUBAR 8/8 and URSPAL 28/28 rows cite in-play prints under corrected bells — rebuild required (F-VS-045).
 - Receipt: `REPRODUCTION_AUDIT_d521f9dd.json`. Queue declared in §o is now closed; open items: URSPAL bell ruling, 6 remote pokes, full-804 trace disposition (F-VS-041).
+
+
+## r. AUDIT CLOSURE PASS (appended 2026-08-21; license LAW_INDEX @ `17202441`, sha 41784e6a…; L8 L11 L18 L20 L22)
+
+- URSPAL bell: operator word field arrived unfilled — no W1TT-C-002; URSPAL ceilings NOT-SENIOR; champion 40/57 the only valid figure (F-VS-046).
+- Surprise ledgers rebuilt on corrected bells: no lawful DEEPER departure in GIUBAR or URSPAL; URSPAL's PAL shallower than every neighbor (F-VS-047).
+- Six remote pokes confirmed against the stores; 39/39 verified (F-VS-048).
+- F-VS-041: custody of the authoritative trace verified (receipt 8f8a1b77 @d521f9dd) — but six more undisclosed untracked full-804 build dirs (686 MB) remain in the Codex worktree; PARTIAL, operator word required (F-VS-049).
+- Over-reach root candidate: the pattern library's reach is unbounded by any bell — lows are onset dips (12/14 named neighbors low_frac ≥0.94; 49% of sampled library legs in the last 10% of span); bell-bounding lifts DANPRA targets 51/33 → 54/39 against lawful minima 59/41 (F-VS-050, `NEIGHBOR_SPAN_BELL_CHECK.json`). Measurement only.

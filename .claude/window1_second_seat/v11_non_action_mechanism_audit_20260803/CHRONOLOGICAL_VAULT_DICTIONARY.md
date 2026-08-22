@@ -18826,6 +18826,7 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| URSPAL BELL ADOPTED 1784042247 ±60 s — truth-table correction W1TT-C-002 | 2026-08-21 | F-VS-051 · W1_GROUND_TRUTH_CORRECTIONS.md |
 | GIUBAR BELL ADOPTED 1783874300 ±60 s — truth-table correction W1TT-C-001; corrections file binds every reader | 2026-08-21 | F-VS-042 · W1_GROUND_TRUTH_CORRECTIONS.md |
 | UNKNOWN-BELL EXCLUSION — 20 games out of numerator and denominator; count printed on every scoreboard | 2026-08-21 | F-VS-024 |
 | F24 CLOSES NOT LAWFUL — truth-table closes are the only W1 closes | 2026-08-21 | F-VS-023 · F-V53-046 |
@@ -19501,3 +19502,5 @@ Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 11
 - Six remote pokes confirmed against the stores; 39/39 verified (F-VS-048).
 - F-VS-041: custody of the authoritative trace verified (receipt 8f8a1b77 @d521f9dd) — but six more undisclosed untracked full-804 build dirs (686 MB) remain in the Codex worktree; PARTIAL, operator word required (F-VS-049).
 - Over-reach root candidate: the pattern library's reach is unbounded by any bell — lows are onset dips (12/14 named neighbors low_frac ≥0.94; 49% of sampled library legs in the last 10% of span); bell-bounding lifts DANPRA targets 51/33 → 54/39 against lawful minima 59/41 (F-VS-050, `NEIGHBOR_SPAN_BELL_CHECK.json`). Measurement only.
+
+W1TT-C-002 URSPAL (2026-08-21): bell 1784042247; PAL 39/41 fill 40 valid; URS 57/61 fill 57 valid; COMPLETE 97¢ Δ3 unchanged; four-game ledger final 2 completes / 9¢ over 4 gradeable, 9¢ over 5 valid legs (F-VS-051).

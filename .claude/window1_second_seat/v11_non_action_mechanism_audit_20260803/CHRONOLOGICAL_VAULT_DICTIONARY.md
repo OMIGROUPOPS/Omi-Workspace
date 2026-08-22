@@ -19484,3 +19484,11 @@ Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 11
 ## p. TRUTH-TABLE CORRECTIONS (appended 2026-08-21)
 
 `W1_GROUND_TRUTH_CORRECTIONS.{md,jsonl}` is append-only and binds every reader of the table @ c0056976 (L11). W1TT-C-001 GIUBAR: bell 1783874300; BAR 27/32, fill post-bell; GIU 66/66, fill 69 valid; PARTIAL_FOR_REASON (F-VS-042).
+
+
+## q. REPRODUCTION AUDIT ON HEAD @d521f9dd (appended 2026-08-21; license LAW_INDEX @ `d521f9dd`, sha c7c72715…; L8 L11 L18 L20 L22)
+
+- All 29 turning points reproduce from raw tape: book rows 36/36, drift 58/58, neighbor tick triples 1,083/1,092 (9 formatting), arithmetic 46/46 (F-VS-043).
+- Capture vs ceiling under corrected bells: GIUBAR lawful ceiling 93¢ (Δ7), v6 fills post-bell → NEITHER (ruled, W1TT-C-001); URSPAL lawful ceiling 96¢ (Δ4) under the candidate bell, v6 fills post-bell → NEITHER — **W1TT-C-002 ruling on URSPAL's bell required**; LAJSVA 92¢, DANPRA 100¢ reproduce (F-VS-044).
+- Surprise ledgers: 0 omitted departures on their stated basis; GIUBAR 8/8 and URSPAL 28/28 rows cite in-play prints under corrected bells — rebuild required (F-VS-045).
+- Receipt: `REPRODUCTION_AUDIT_d521f9dd.json`. Queue declared in §o is now closed; open items: URSPAL bell ruling, 6 remote pokes, full-804 trace disposition (F-VS-041).

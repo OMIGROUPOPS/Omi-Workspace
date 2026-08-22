@@ -1,0 +1,1576 @@
+{
+ "label": "REPRODUCTION_AUDIT_HEAD_d521f9dd",
+ "date": "2026-08-21",
+ "games": {
+  "GIUBAR": {
+   "turning_points": [
+    "1 \u2014 0.000000 hours from discovery (2026-",
+    "3 \u2014 0.143889 hours from discovery (2026-",
+    "6 \u2014 2.970000 hours from discovery (2026-",
+    "10 \u2014 12.192778 hours from discovery (202",
+    "11 \u2014 12.198236 hours from discovery (202",
+    "14 \u2014 12.479156 hours from discovery (202",
+    "19 \u2014 12.611111 hours from discovery (202"
+   ],
+   "neighbor_triples": {
+    "checked": 282,
+    "exact": 282,
+    "mismatch": []
+   },
+   "arith": {
+    "checked": 12,
+    "ok": 12,
+    "bad": []
+   },
+   "book_rows": {
+    "checked": 10,
+    "ok": 10,
+    "bad": []
+   },
+   "drift": {
+    "checked": 14,
+    "ok": 14,
+    "bad": []
+   },
+   "capture_vs_ceiling": {
+    "truth_table": {
+     "bell": 1783876740,
+     "note": "c0056976",
+     "sides": {
+      "BAR": {
+       "deepest_lawful_print": 16,
+       "at": 1783875275.261621,
+       "trade_id": "d491a073-04d2-66e9-2fc1-d805c6d5528d",
+       "prints_in_span": 34
+      },
+      "GIU": {
+       "deepest_lawful_print": 49,
+       "at": 1783876335.03662,
+       "trade_id": "32f3190d-6328-42bd-986c-a06460cddb2e",
+       "prints_in_span": 31
+      }
+     },
+     "pair_ceiling": 65,
+     "discount": 35
+    },
+    "corrected": {
+     "bell": 1783874300,
+     "note": "W1TT-C-001 ruled",
+     "sides": {
+      "BAR": {
+       "deepest_lawful_print": 27,
+       "at": 1783841801.304766,
+       "trade_id": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+       "prints_in_span": 8
+      },
+      "GIU": {
+       "deepest_lawful_print": 66,
+       "at": 1783869375.227061,
+       "trade_id": "924208a2-c681-7126-04df-93a053cd515b",
+       "prints_in_span": 14
+      }
+     },
+     "pair_ceiling": 93,
+     "discount": 7
+    },
+    "claimed": {
+     "sides": {
+      "BAR": 16,
+      "GIU": 49
+     },
+     "pair": [
+      "65",
+      "35",
+      "78",
+      "22"
+     ],
+     "v6_fills": [
+      [
+       "BAR",
+       19,
+       1783875234.432,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "BAR",
+       19,
+       1783875234.432,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "GIU",
+       59,
+       1783876264.96,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "BAR",
+       19,
+       1783875234.432,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "GIU",
+       59,
+       1783876264.96,
+       "POST_BELL_under_corrected"
+      ]
+     ]
+    }
+   },
+   "surprise": {
+    "listed": 8,
+    "rows": [
+     {
+      "stage": 1,
+      "leg": "BAR",
+      "env": [
+       21.46,
+       31.0
+      ],
+      "realized_claimed": 16,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 16,
+      "lawful_min_corrected_bell": 27,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 3,
+      "leg": "GIU",
+      "env": [
+       63.06,
+       67.0
+      ],
+      "realized_claimed": 49,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 49,
+      "lawful_min_corrected_bell": 66,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 4,
+      "leg": "GIU",
+      "env": [
+       63.06,
+       67.0
+      ],
+      "realized_claimed": 49,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 49,
+      "lawful_min_corrected_bell": 66,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 5,
+      "leg": "GIU",
+      "env": [
+       59.23,
+       67.0
+      ],
+      "realized_claimed": 49,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 49,
+      "lawful_min_corrected_bell": 66,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 8,
+      "leg": "GIU",
+      "env": [
+       59.23,
+       67.0
+      ],
+      "realized_claimed": 49,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 49,
+      "lawful_min_corrected_bell": 66,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 11,
+      "leg": "GIU",
+      "env": [
+       51.24,
+       64.09
+      ],
+      "realized_claimed": 49,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 49,
+      "lawful_min_corrected_bell": 66,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 12,
+      "leg": "GIU",
+      "env": [
+       49.74,
+       64.09
+      ],
+      "realized_claimed": 49,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 49,
+      "lawful_min_corrected_bell": 66,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 16,
+      "leg": "BAR",
+      "env": [
+       6.2,
+       23.77
+      ],
+      "realized_claimed": 31,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 16,
+      "lawful_min_corrected_bell": 27,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     }
+    ],
+    "independent_deeper_scan": {
+     "stages_checked": 14,
+     "listed_deeper": 7,
+     "omitted_deeper": []
+    }
+   }
+  },
+  "URSPAL": {
+   "turning_points": [
+    "1 \u2014 0.000000 hours from discovery (2026-",
+    "2 \u2014 0.704444 hours from discovery (2026-",
+    "6 \u2014 6.167399 hours from discovery (2026-",
+    "9 \u2014 12.024469 hours from discovery (2026",
+    "10 \u2014 12.039239 hours from discovery (202",
+    "12 \u2014 12.669913 hours from discovery (202",
+    "23 \u2014 12.816944 hours from discovery (202"
+   ],
+   "neighbor_triples": {
+    "checked": 240,
+    "exact": 237,
+    "mismatch": [
+     {
+      "tp": "10 \u2014 12.0392",
+      "neighbor": "KXATPCHALLENGERMATCH-26MAY09LAJKWON",
+      "leg": "WON",
+      "tick": 1,
+      "claimed": [
+       1778281493.0,
+       61.0,
+       63.0,
+       63.0
+      ],
+      "store": null
+     },
+     {
+      "tp": "10 \u2014 12.0392",
+      "neighbor": "KXATPCHALLENGERMATCH-26MAY09LAJKWON",
+      "leg": "WON",
+      "tick": 1,
+      "claimed": [
+       1778281493.0,
+       61.0,
+       63.0,
+       63.0
+      ],
+      "store": null
+     },
+     {
+      "tp": "10 \u2014 12.0392",
+      "neighbor": "KXATPCHALLENGERMATCH-26MAY09LAJKWON",
+      "leg": "WON",
+      "tick": 102,
+      "claimed": [
+       1778311938.0,
+       71.0,
+       72.0,
+       72.0
+      ],
+      "store": null
+     }
+    ]
+   },
+   "arith": {
+    "checked": 12,
+    "ok": 12,
+    "bad": []
+   },
+   "book_rows": {
+    "checked": 9,
+    "ok": 9,
+    "bad": []
+   },
+   "drift": {
+    "checked": 14,
+    "ok": 14,
+    "bad": []
+   },
+   "capture_vs_ceiling": {
+    "truth_table": {
+     "bell": 1784045100,
+     "note": "c0056976",
+     "sides": {
+      "PAL": {
+       "deepest_lawful_print": 30,
+       "at": 1784042339.263777,
+       "trade_id": "cd48d559-68f1-5b3d-a8e4-d3c3fc43401e",
+       "prints_in_span": 49
+      },
+      "URS": {
+       "deepest_lawful_print": 28,
+       "at": 1784044917.146915,
+       "trade_id": "4b3658d8-7e56-5420-a06d-fa28d6aa5af9",
+       "prints_in_span": 62
+      }
+     },
+     "pair_ceiling": 58,
+     "discount": 42
+    },
+    "corrected": {
+     "bell": 1784042247,
+     "note": "F-VS-031 candidate (not ruled)",
+     "sides": {
+      "PAL": {
+       "deepest_lawful_print": 39,
+       "at": 1784042066.596112,
+       "trade_id": "11b32855-2577-5868-896c-0afb9e64bb69",
+       "prints_in_span": 20
+      },
+      "URS": {
+       "deepest_lawful_print": 57,
+       "at": 1784032697.600949,
+       "trade_id": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+       "prints_in_span": 21
+      }
+     },
+     "pair_ceiling": 96,
+     "discount": 4
+    },
+    "claimed": {
+     "sides": {
+      "PAL": 30,
+      "URS": 28
+     },
+     "pair": [
+      "58",
+      "42",
+      "77",
+      "23"
+     ],
+     "v6_fills": [
+      [
+       "PAL",
+       31,
+       1784042300.26,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "PAL",
+       31,
+       1784042300.26,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "URS",
+       46,
+       1784044570.687,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "PAL",
+       31,
+       1784042300.26,
+       "POST_BELL_under_corrected"
+      ],
+      [
+       "URS",
+       46,
+       1784044570.687,
+       "POST_BELL_under_corrected"
+      ]
+     ]
+    }
+   },
+   "surprise": {
+    "listed": 28,
+    "rows": [
+     {
+      "stage": 1,
+      "leg": "URS",
+      "env": [
+       39.37,
+       62.0
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 2,
+      "leg": "PAL",
+      "env": [
+       0.66,
+       0.78
+      ],
+      "realized_claimed": 30,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 2,
+      "leg": "URS",
+      "env": [
+       56.89,
+       62.0
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 3,
+      "leg": "URS",
+      "env": [
+       31.49,
+       56.45
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 4,
+      "leg": "URS",
+      "env": [
+       31.49,
+       56.45
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 5,
+      "leg": "URS",
+      "env": [
+       31.49,
+       61.02
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 6,
+      "leg": "URS",
+      "env": [
+       34.44,
+       61.03
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 7,
+      "leg": "URS",
+      "env": [
+       49.21,
+       59.0
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 8,
+      "leg": "URS",
+      "env": [
+       47.47,
+       60.06
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 9,
+      "leg": "URS",
+      "env": [
+       34.44,
+       56.92
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 11,
+      "leg": "PAL",
+      "env": [
+       15.83,
+       38.0
+      ],
+      "realized_claimed": 51,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 11,
+      "leg": "URS",
+      "env": [
+       30.03,
+       56.19
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 12,
+      "leg": "PAL",
+      "env": [
+       20.46,
+       38.0
+      ],
+      "realized_claimed": 63,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 12,
+      "leg": "URS",
+      "env": [
+       34.44,
+       56.92
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 13,
+      "leg": "PAL",
+      "env": [
+       5.91,
+       36.0
+      ],
+      "realized_claimed": 63,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 13,
+      "leg": "URS",
+      "env": [
+       30.51,
+       57.0
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 14,
+      "leg": "PAL",
+      "env": [
+       20.46,
+       38.0
+      ],
+      "realized_claimed": 63,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 14,
+      "leg": "URS",
+      "env": [
+       33.07,
+       61.02
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 15,
+      "leg": "PAL",
+      "env": [
+       16.15,
+       36.0
+      ],
+      "realized_claimed": 63,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 15,
+      "leg": "URS",
+      "env": [
+       30.51,
+       57.0
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 16,
+      "leg": "PAL",
+      "env": [
+       16.15,
+       32.3
+      ],
+      "realized_claimed": 63,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 16,
+      "leg": "URS",
+      "env": [
+       30.51,
+       61.07
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 17,
+      "leg": "PAL",
+      "env": [
+       25.33,
+       38.0
+      ],
+      "realized_claimed": 63,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 17,
+      "leg": "URS",
+      "env": [
+       32.48,
+       51.0
+      ],
+      "realized_claimed": 28,
+      "kind": "DEEPER_THAN_ALL_NEIGHBORS",
+      "lawful_min_truth_bell": 28,
+      "lawful_min_corrected_bell": 57,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 18,
+      "leg": "PAL",
+      "env": [
+       20.54,
+       38.0
+      ],
+      "realized_claimed": 68,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 19,
+      "leg": "PAL",
+      "env": [
+       25.33,
+       38.0
+      ],
+      "realized_claimed": 68,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 20,
+      "leg": "PAL",
+      "env": [
+       25.33,
+       38.0
+      ],
+      "realized_claimed": 68,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 21,
+      "leg": "PAL",
+      "env": [
+       24.36,
+       38.0
+      ],
+      "realized_claimed": 70,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 30,
+      "lawful_min_corrected_bell": 39,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     }
+    ],
+    "independent_deeper_scan": {
+     "stages_checked": 12,
+     "listed_deeper": 16,
+     "omitted_deeper": []
+    }
+   }
+  },
+  "LAJSVA": {
+   "turning_points": [
+    "1 \u2014 0.000000 hours from discovery (2026-",
+    "3 \u2014 0.077778 hours from discovery (2026-",
+    "5 \u2014 2.432880 hours from discovery (2026-",
+    "9 \u2014 8.139269 hours from discovery (2026-",
+    "16 \u2014 14.996111 hours from discovery (202",
+    "18 \u2014 19.732778 hours from discovery (202",
+    "20 \u2014 19.732851 hours from discovery (202"
+   ],
+   "neighbor_triples": {
+    "checked": 258,
+    "exact": 258,
+    "mismatch": []
+   },
+   "arith": {
+    "checked": 12,
+    "ok": 12,
+    "bad": []
+   },
+   "book_rows": {
+    "checked": 8,
+    "ok": 8,
+    "bad": []
+   },
+   "drift": {
+    "checked": 14,
+    "ok": 14,
+    "bad": []
+   },
+   "capture_vs_ceiling": {
+    "truth_table": {
+     "bell": 1784078400,
+     "note": "c0056976",
+     "sides": {
+      "LAJ": {
+       "deepest_lawful_print": 51,
+       "at": 1784060123.219071,
+       "trade_id": "7fb0df36-2082-795a-5cb6-f311235289d1",
+       "prints_in_span": 285
+      },
+      "SVA": {
+       "deepest_lawful_print": 41,
+       "at": 1784020201.83001,
+       "trade_id": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+       "prints_in_span": 258
+      }
+     },
+     "pair_ceiling": 92,
+     "discount": 8
+    },
+    "corrected": {
+     "bell": 1784078400,
+     "note": "machine receipt",
+     "sides": {
+      "LAJ": {
+       "deepest_lawful_print": 51,
+       "at": 1784060123.219071,
+       "trade_id": "7fb0df36-2082-795a-5cb6-f311235289d1",
+       "prints_in_span": 285
+      },
+      "SVA": {
+       "deepest_lawful_print": 41,
+       "at": 1784020201.83001,
+       "trade_id": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+       "prints_in_span": 258
+      }
+     },
+     "pair_ceiling": 92,
+     "discount": 8
+    },
+    "claimed": {
+     "sides": {
+      "LAJ": 51,
+      "SVA": 41
+     },
+     "pair": null,
+     "v6_fills": []
+    }
+   },
+   "surprise": {
+    "listed": 13,
+    "rows": [
+     {
+      "stage": 4,
+      "leg": "SVA",
+      "env": [
+       22.08,
+       40.02
+      ],
+      "realized_claimed": 41,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 5,
+      "leg": "SVA",
+      "env": [
+       15.26,
+       39.05
+      ],
+      "realized_claimed": 41,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 6,
+      "leg": "SVA",
+      "env": [
+       15.26,
+       39.05
+      ],
+      "realized_claimed": 41,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 8,
+      "leg": "SVA",
+      "env": [
+       22.45,
+       41.0
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 9,
+      "leg": "SVA",
+      "env": [
+       30.75,
+       41.0
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 10,
+      "leg": "SVA",
+      "env": [
+       22.45,
+       41.0
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 11,
+      "leg": "SVA",
+      "env": [
+       22.45,
+       41.0
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 12,
+      "leg": "SVA",
+      "env": [
+       26.65,
+       41.0
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 13,
+      "leg": "SVA",
+      "env": [
+       22.08,
+       40.02
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 14,
+      "leg": "SVA",
+      "env": [
+       23.69,
+       40.07
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 15,
+      "leg": "SVA",
+      "env": [
+       22.08,
+       40.02
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 16,
+      "leg": "SVA",
+      "env": [
+       26.65,
+       42.95
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 17,
+      "leg": "SVA",
+      "env": [
+       23.69,
+       42.95
+      ],
+      "realized_claimed": 45,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 41,
+      "lawful_min_corrected_bell": 41,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     }
+    ],
+    "independent_deeper_scan": {
+     "stages_checked": 14,
+     "listed_deeper": 0,
+     "omitted_deeper": []
+    }
+   }
+  },
+  "DANPRA": {
+   "turning_points": [
+    "1 \u2014 0.000000 hours from discovery (2026-",
+    "4 \u2014 2.633333 hours from discovery (2026-",
+    "6 \u2014 3.102778 hours from discovery (2026-",
+    "11 \u2014 4.321944 hours from discovery (2026",
+    "12 \u2014 5.546949 hours from discovery (2026",
+    "15 \u2014 8.999167 hours from discovery (2026",
+    "18 \u2014 15.572778 hours from discovery (202",
+    "19 \u2014 15.573889 hours from discovery (202"
+   ],
+   "neighbor_triples": {
+    "checked": 312,
+    "exact": 306,
+    "mismatch": [
+     {
+      "tp": "4 \u2014 2.633333",
+      "neighbor": "KXITFWMATCH-26JUL15TEPJOV",
+      "leg": "TEP",
+      "tick": 109,
+      "claimed": [
+       1784091299.0,
+       40.0,
+       44.0
+      ],
+      "store": [
+       1784091299,
+       40,
+       44,
+       null
+      ]
+     },
+     {
+      "tp": "4 \u2014 2.633333",
+      "neighbor": "KXITFWMATCH-26JUL15TEPJOV",
+      "leg": "TEP",
+      "tick": 109,
+      "claimed": [
+       1784091299.0,
+       40.0,
+       44.0
+      ],
+      "store": [
+       1784091299,
+       40,
+       44,
+       null
+      ]
+     },
+     {
+      "tp": "4 \u2014 2.633333",
+      "neighbor": "KXITFWMATCH-26JUL15TEPJOV",
+      "leg": "JOV",
+      "tick": 129,
+      "claimed": [
+       1784093072.0,
+       56.0,
+       61.0
+      ],
+      "store": [
+       1784093072,
+       56,
+       61,
+       null
+      ]
+     },
+     {
+      "tp": "4 \u2014 2.633333",
+      "neighbor": "KXITFWMATCH-26JUL15TEPJOV",
+      "leg": "JOV",
+      "tick": 129,
+      "claimed": [
+       1784093072.0,
+       56.0,
+       61.0
+      ],
+      "store": [
+       1784093072,
+       56,
+       61,
+       null
+      ]
+     },
+     {
+      "tp": "11 \u2014 4.32194",
+      "neighbor": "KXITFMATCH-26JUL16DARJON",
+      "leg": "JON",
+      "tick": 95,
+      "claimed": [
+       1784166500.0,
+       41.0,
+       46.0
+      ],
+      "store": [
+       1784166500,
+       41,
+       46,
+       null
+      ]
+     },
+     {
+      "tp": "11 \u2014 4.32194",
+      "neighbor": "KXITFMATCH-26JUL16DARJON",
+      "leg": "JON",
+      "tick": 95,
+      "claimed": [
+       1784166500.0,
+       41.0,
+       46.0
+      ],
+      "store": [
+       1784166500,
+       41,
+       46,
+       null
+      ]
+     }
+    ]
+   },
+   "arith": {
+    "checked": 10,
+    "ok": 10,
+    "bad": []
+   },
+   "book_rows": {
+    "checked": 9,
+    "ok": 9,
+    "bad": []
+   },
+   "drift": {
+    "checked": 16,
+    "ok": 16,
+    "bad": []
+   },
+   "capture_vs_ceiling": {
+    "truth_table": {
+     "bell": 1784373060,
+     "note": "c0056976",
+     "sides": {
+      "DAN": {
+       "deepest_lawful_print": 59,
+       "at": 1784339306.77471,
+       "trade_id": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+       "prints_in_span": 37
+      },
+      "PRA": {
+       "deepest_lawful_print": 41,
+       "at": 1784342553.97127,
+       "trade_id": "54075ae0-14e4-6484-d298-207ef219837f",
+       "prints_in_span": 20
+      }
+     },
+     "pair_ceiling": 100,
+     "discount": 0
+    },
+    "corrected": {
+     "bell": 1784373060,
+     "note": "tape inference exact (F-VS-031)",
+     "sides": {
+      "DAN": {
+       "deepest_lawful_print": 59,
+       "at": 1784339306.77471,
+       "trade_id": "868ebd99-045b-41ce-52f3-d6ed304390d2",
+       "prints_in_span": 37
+      },
+      "PRA": {
+       "deepest_lawful_print": 41,
+       "at": 1784342553.97127,
+       "trade_id": "54075ae0-14e4-6484-d298-207ef219837f",
+       "prints_in_span": 20
+      }
+     },
+     "pair_ceiling": 100,
+     "discount": 0
+    },
+    "claimed": {
+     "sides": {
+      "DAN": 59,
+      "PRA": 41
+     },
+     "pair": null,
+     "v6_fills": []
+    }
+   },
+   "surprise": {
+    "listed": 17,
+    "rows": [
+     {
+      "stage": 1,
+      "leg": "DAN",
+      "env": [
+       36.83,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 2,
+      "leg": "DAN",
+      "env": [
+       36.83,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 3,
+      "leg": "DAN",
+      "env": [
+       36.83,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 4,
+      "leg": "DAN",
+      "env": [
+       36.83,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 5,
+      "leg": "DAN",
+      "env": [
+       36.83,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 6,
+      "leg": "DAN",
+      "env": [
+       36.83,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 7,
+      "leg": "DAN",
+      "env": [
+       36.83,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 8,
+      "leg": "DAN",
+      "env": [
+       42.53,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 9,
+      "leg": "DAN",
+      "env": [
+       42.18,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 10,
+      "leg": "DAN",
+      "env": [
+       42.65,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 11,
+      "leg": "DAN",
+      "env": [
+       42.65,
+       57.08
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 12,
+      "leg": "DAN",
+      "env": [
+       43.5,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 13,
+      "leg": "DAN",
+      "env": [
+       43.5,
+       58.0
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 14,
+      "leg": "DAN",
+      "env": [
+       43.5,
+       57.02
+      ],
+      "realized_claimed": 59,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": true,
+      "realized_matches_corrected_min": true,
+      "inplay_if_corrected": false
+     },
+     {
+      "stage": 15,
+      "leg": "DAN",
+      "env": [
+       43.5,
+       58.0
+      ],
+      "realized_claimed": 60,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 16,
+      "leg": "DAN",
+      "env": [
+       43.5,
+       58.0
+      ],
+      "realized_claimed": 60,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     },
+     {
+      "stage": 17,
+      "leg": "DAN",
+      "env": [
+       43.5,
+       58.0
+      ],
+      "realized_claimed": 60,
+      "kind": "SHALLOWER_THAN_ALL_NEIGHBORS_AT_BELL",
+      "lawful_min_truth_bell": 59,
+      "lawful_min_corrected_bell": 59,
+      "realized_matches_truth_bell_min": false,
+      "realized_matches_corrected_min": false,
+      "inplay_if_corrected": true
+     }
+    ],
+    "independent_deeper_scan": {
+     "stages_checked": 16,
+     "listed_deeper": 0,
+     "omitted_deeper": []
+    }
+   }
+  }
+ }
+}

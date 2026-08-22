@@ -1,0 +1,620 @@
+{
+  "label": "V54_SIX_DIR_PROVENANCE_AND_TIMESTAMP_VERDICT",
+  "license": {
+    "law_index_read_at": "53db48ac",
+    "law_index_sha256": "41784e6ab62d6341c2a02f8be616e596eb48930b84a71acae8f500368d44c934",
+    "cited_laws": [
+      "L8",
+      "L18",
+      "L20",
+      "L22"
+    ],
+    "index_gap": [
+      "L20",
+      "L22"
+    ]
+  },
+  "scope": {
+    "receipt_only": true,
+    "passes": 0,
+    "reruns": 0,
+    "full_804_runs_started": 0,
+    "disposition_performed": false
+  },
+  "anchors": {
+    "iteration_01_stop_receipt": {
+      "timestamp": "2026-08-21T14:36:43.6188871-04:00",
+      "source": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_stop_20260821/V54_ITERATION_01_STOP_RECEIPT.json",
+      "state": "replay_processes_running_after_stop=0; second_determinism_replay_interrupted=true",
+      "sha256": "15c9eac06f0d92964a6786f568bc1cab5ed56ba91b6bba53246ccf0905339901",
+      "bytes": 2734
+    },
+    "iteration_01_stop_commit": {
+      "commit": "94ee8a3cbb6f0175ea959f05a2668ae38ae2308a",
+      "timestamp": "2026-08-21T14:38:22-04:00"
+    },
+    "no_804_f_vs_016_author_time": {
+      "commit": "fae2459466f4949b90e36d28ff5c0dc3fa60602b",
+      "timestamp": "2026-08-21T15:00:20-04:00"
+    },
+    "no_804_f_v53_042_commit": {
+      "commit": "8efff0a4c3d9841d64cf5c1e070290f23d59430d",
+      "timestamp": "2026-08-21T15:17:02-04:00"
+    },
+    "no_804_f_vs_016_commit_time": {
+      "commit": "fae2459466f4949b90e36d28ff5c0dc3fa60602b",
+      "timestamp": "2026-08-21T16:29:03-04:00"
+    }
+  },
+  "creating_order": {
+    "name": "V54_THE_PAIR_MODEL / V54 CHECK-SET",
+    "receipt": "F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW"
+  },
+  "directories": [
+    {
+      "id": "build1",
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_build1_20260821",
+      "files": 112,
+      "bytes": 185082003,
+      "exact_filesystem_interval": {
+        "start_birthtime_ns_since_epoch": "1787324517027184100",
+        "start_utc": "2026-08-21T15:01:57.027Z",
+        "start_local": "2026-08-21, 11:01:57 GMT-4",
+        "stop_mtime_ns_since_epoch": "1787337250653911200",
+        "stop_utc": "2026-08-21T18:34:10.653Z",
+        "stop_local": "2026-08-21, 14:34:10 GMT-4"
+      },
+      "temporal_verdict": {
+        "milliseconds_before_stop_receipt": 152965,
+        "milliseconds_before_stop_commit_landed": 251347,
+        "milliseconds_before_f_vs_016_author_time": 1569347,
+        "milliseconds_before_f_v53_042_commit": 2571347,
+        "file_write_after_stop_receipt": false,
+        "file_write_after_stop_commit_landed": false,
+        "file_write_after_no_804_rule_filing": false,
+        "execution_after_stop_landed": false,
+        "execution_after_stop_evidence": "latest output mtime predates stop receipt and stop commit; stop receipt records zero replay processes running after stop",
+        "verdict_post_stop": "CLEAR_BY_TIMESTAMP",
+        "verdict_post_no_804_filing": "CLEAR_BY_TIMESTAMP"
+      },
+      "creator": {
+        "script": "arb-executor/analysis/build_window1_v38_maker_only.js",
+        "head_at_start": "4c13023464b5f028eac893281933d5b7e65ef8a8",
+        "script_sha256_at_head": "4bf8931470329cd60b8f5a15e89d4c1dc020a75b644bd2436e9b69cd90d78832",
+        "script_bytes_at_head": 949842,
+        "binding": "HEAD interval only; exact launch bytes absent",
+        "exact_shell_command_receipt": "ABSENT",
+        "minimum_reconstructed_invocation": "node arb-executor/analysis/build_window1_v38_maker_only.js --variant v54 --stage tune804 --output .claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_build1_20260821",
+        "order": "V54_THE_PAIR_MODEL / V54 CHECK-SET order 2026-08-21",
+        "order_receipt": "F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW"
+      },
+      "content": {
+        "class": "SEMANTIC_DECISION_LICENSE_TRACE_CHUNKS_WITH_FINAL_ACTIONS",
+        "trace_chunk_files": 112,
+        "canonical_scored_trace_byte_matches": 1,
+        "canonical_scored_trace_rows": 802,
+        "sample": {
+          "file": "V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_001.jsonl.gz",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "top_level_keys": [
+            "category",
+            "event_id",
+            "first_receipt",
+            "first_t_minus_actual_bell_seconds",
+            "first_t_minus_scheduled_seconds",
+            "first_timestamp_epoch",
+            "last_receipt",
+            "last_t_minus_actual_bell_seconds",
+            "last_t_minus_scheduled_seconds",
+            "last_timestamp_epoch",
+            "leg_identity",
+            "price_region",
+            "receipt_count",
+            "receipt_digest_chain_sha256",
+            "representative_sentence",
+            "semantic",
+            "semantic_sha256"
+          ],
+          "semantic_keys": [
+            "blocked_clause",
+            "category",
+            "conservation_input_identity",
+            "event_id",
+            "final_action",
+            "final_target_cents",
+            "gate_verdict",
+            "joint_license",
+            "joint_target_conservation",
+            "leg_identity",
+            "lineage_decision",
+            "lineage_target_cents",
+            "onset_passed",
+            "order_before_cents",
+            "pair_entry_conservation",
+            "pair_model",
+            "plan",
+            "price_region",
+            "read",
+            "reason"
+          ],
+          "decision_fields_present": true
+        }
+      },
+      "execution": {
+        "occurred": true,
+        "full_804_completed": false,
+        "grading_emitted": false,
+        "scope_verdict": "CONVICT_F_V53_040_CONDITIONAL_FULL_804_STARTED_WITHOUT_RECORDED_SANE_READING",
+        "scope_evidence": "the execution output begins after the check-set commit and the creating order requires a sane twelve-game reading before any full-804 aggregate; no such authorizing receipt is attached"
+      },
+      "file_manifest_content_identity_sha256": "766ea0bfd3438a98be1612d23419d8f14b08d7b6d4aebc10f707cde48d419cfe"
+    },
+    {
+      "id": "cached",
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_cached_build1_20260821",
+      "files": 255,
+      "bytes": 71777716,
+      "exact_filesystem_interval": {
+        "start_birthtime_ns_since_epoch": "1787325095189396800",
+        "start_utc": "2026-08-21T15:11:35.189Z",
+        "start_local": "2026-08-21, 11:11:35 GMT-4",
+        "stop_mtime_ns_since_epoch": "1787326470800091200",
+        "stop_utc": "2026-08-21T15:34:30.800Z",
+        "stop_local": "2026-08-21, 11:34:30 GMT-4"
+      },
+      "temporal_verdict": {
+        "milliseconds_before_stop_receipt": 10932818,
+        "milliseconds_before_stop_commit_landed": 11031200,
+        "milliseconds_before_f_vs_016_author_time": 12349200,
+        "milliseconds_before_f_v53_042_commit": 13351200,
+        "file_write_after_stop_receipt": false,
+        "file_write_after_stop_commit_landed": false,
+        "file_write_after_no_804_rule_filing": false,
+        "execution_after_stop_landed": false,
+        "execution_after_stop_evidence": "latest output mtime predates stop receipt and stop commit; stop receipt records zero replay processes running after stop",
+        "verdict_post_stop": "CLEAR_BY_TIMESTAMP",
+        "verdict_post_no_804_filing": "CLEAR_BY_TIMESTAMP"
+      },
+      "creator": {
+        "script": "arb-executor/analysis/build_window1_v38_maker_only.js",
+        "head_at_start": "4c13023464b5f028eac893281933d5b7e65ef8a8",
+        "script_sha256_at_head": "4bf8931470329cd60b8f5a15e89d4c1dc020a75b644bd2436e9b69cd90d78832",
+        "script_bytes_at_head": 949842,
+        "binding": "HEAD interval only; exact launch bytes absent",
+        "exact_shell_command_receipt": "ABSENT",
+        "minimum_reconstructed_invocation": "node arb-executor/analysis/build_window1_v38_maker_only.js --variant v54 --stage tune804 --output .claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_cached_build1_20260821",
+        "order": "V54_THE_PAIR_MODEL / V54 CHECK-SET order 2026-08-21",
+        "order_receipt": "F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW"
+      },
+      "content": {
+        "class": "SEMANTIC_DECISION_LICENSE_TRACE_CHUNKS_WITH_FINAL_ACTIONS",
+        "trace_chunk_files": 255,
+        "canonical_scored_trace_byte_matches": 255,
+        "canonical_scored_trace_rows": 802,
+        "sample": {
+          "file": "V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_001.jsonl.gz",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "top_level_keys": [
+            "category",
+            "event_id",
+            "first_receipt",
+            "first_t_minus_actual_bell_seconds",
+            "first_t_minus_scheduled_seconds",
+            "first_timestamp_epoch",
+            "last_receipt",
+            "last_t_minus_actual_bell_seconds",
+            "last_t_minus_scheduled_seconds",
+            "last_timestamp_epoch",
+            "leg_identity",
+            "price_region",
+            "receipt_count",
+            "receipt_digest_chain_sha256",
+            "representative_sentence",
+            "semantic",
+            "semantic_sha256"
+          ],
+          "semantic_keys": [
+            "blocked_clause",
+            "category",
+            "conservation_input_identity",
+            "event_id",
+            "final_action",
+            "final_target_cents",
+            "gate_verdict",
+            "joint_license",
+            "joint_target_conservation",
+            "leg_identity",
+            "lineage_decision",
+            "lineage_target_cents",
+            "onset_passed",
+            "order_before_cents",
+            "pair_entry_conservation",
+            "pair_model",
+            "plan",
+            "price_region",
+            "read",
+            "reason"
+          ],
+          "decision_fields_present": true
+        }
+      },
+      "execution": {
+        "occurred": true,
+        "full_804_completed": false,
+        "grading_emitted": false,
+        "scope_verdict": "CONVICT_F_V53_040_CONDITIONAL_FULL_804_STARTED_WITHOUT_RECORDED_SANE_READING",
+        "scope_evidence": "the execution output begins after the check-set commit and the creating order requires a sane twelve-game reading before any full-804 aggregate; no such authorizing receipt is attached"
+      },
+      "file_manifest_content_identity_sha256": "06f9affcf991896bb8cfebf4b2a9032cd4b9f2f28660a86c34c25c5b35c25b57"
+    },
+    {
+      "id": "fast",
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_fast_build1_20260821",
+      "files": 109,
+      "bytes": 62290275,
+      "exact_filesystem_interval": {
+        "start_birthtime_ns_since_epoch": "1787324942627992700",
+        "start_utc": "2026-08-21T15:09:02.627Z",
+        "start_local": "2026-08-21, 11:09:02 GMT-4",
+        "stop_mtime_ns_since_epoch": "1787337247835407200",
+        "stop_utc": "2026-08-21T18:34:07.835Z",
+        "stop_local": "2026-08-21, 14:34:07 GMT-4"
+      },
+      "temporal_verdict": {
+        "milliseconds_before_stop_receipt": 155783,
+        "milliseconds_before_stop_commit_landed": 254165,
+        "milliseconds_before_f_vs_016_author_time": 1572165,
+        "milliseconds_before_f_v53_042_commit": 2574165,
+        "file_write_after_stop_receipt": false,
+        "file_write_after_stop_commit_landed": false,
+        "file_write_after_no_804_rule_filing": false,
+        "execution_after_stop_landed": false,
+        "execution_after_stop_evidence": "latest output mtime predates stop receipt and stop commit; stop receipt records zero replay processes running after stop",
+        "verdict_post_stop": "CLEAR_BY_TIMESTAMP",
+        "verdict_post_no_804_filing": "CLEAR_BY_TIMESTAMP"
+      },
+      "creator": {
+        "script": "arb-executor/analysis/build_window1_v38_maker_only.js",
+        "head_at_start": "4c13023464b5f028eac893281933d5b7e65ef8a8",
+        "script_sha256_at_head": "4bf8931470329cd60b8f5a15e89d4c1dc020a75b644bd2436e9b69cd90d78832",
+        "script_bytes_at_head": 949842,
+        "binding": "HEAD interval only; exact launch bytes absent",
+        "exact_shell_command_receipt": "ABSENT",
+        "minimum_reconstructed_invocation": "node arb-executor/analysis/build_window1_v38_maker_only.js --variant v54 --stage tune804 --output .claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_fast_build1_20260821",
+        "order": "V54_THE_PAIR_MODEL / V54 CHECK-SET order 2026-08-21",
+        "order_receipt": "F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW"
+      },
+      "content": {
+        "class": "SEMANTIC_DECISION_LICENSE_TRACE_CHUNKS_WITH_FINAL_ACTIONS",
+        "trace_chunk_files": 109,
+        "canonical_scored_trace_byte_matches": 109,
+        "canonical_scored_trace_rows": 802,
+        "sample": {
+          "file": "V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_001.jsonl.gz",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "top_level_keys": [
+            "category",
+            "event_id",
+            "first_receipt",
+            "first_t_minus_actual_bell_seconds",
+            "first_t_minus_scheduled_seconds",
+            "first_timestamp_epoch",
+            "last_receipt",
+            "last_t_minus_actual_bell_seconds",
+            "last_t_minus_scheduled_seconds",
+            "last_timestamp_epoch",
+            "leg_identity",
+            "price_region",
+            "receipt_count",
+            "receipt_digest_chain_sha256",
+            "representative_sentence",
+            "semantic",
+            "semantic_sha256"
+          ],
+          "semantic_keys": [
+            "blocked_clause",
+            "category",
+            "conservation_input_identity",
+            "event_id",
+            "final_action",
+            "final_target_cents",
+            "gate_verdict",
+            "joint_license",
+            "joint_target_conservation",
+            "leg_identity",
+            "lineage_decision",
+            "lineage_target_cents",
+            "onset_passed",
+            "order_before_cents",
+            "pair_entry_conservation",
+            "pair_model",
+            "plan",
+            "price_region",
+            "read",
+            "reason"
+          ],
+          "decision_fields_present": true
+        }
+      },
+      "execution": {
+        "occurred": true,
+        "full_804_completed": false,
+        "grading_emitted": false,
+        "scope_verdict": "CONVICT_F_V53_040_CONDITIONAL_FULL_804_STARTED_WITHOUT_RECORDED_SANE_READING",
+        "scope_evidence": "the execution output begins after the check-set commit and the creating order requires a sane twelve-game reading before any full-804 aggregate; no such authorizing receipt is attached"
+      },
+      "file_manifest_content_identity_sha256": "6c15398dbe958dbe1d55b1fd0991855d63f1cdd1920272d79b64760b4abe8a04"
+    },
+    {
+      "id": "final",
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_final_build1_20260821",
+      "files": 802,
+      "bytes": 164665281,
+      "exact_filesystem_interval": {
+        "start_birthtime_ns_since_epoch": "1787329464388709600",
+        "start_utc": "2026-08-21T16:24:24.388Z",
+        "start_local": "2026-08-21, 12:24:24 GMT-4",
+        "stop_mtime_ns_since_epoch": "1787331905183739700",
+        "stop_utc": "2026-08-21T17:05:05.183Z",
+        "stop_local": "2026-08-21, 13:05:05 GMT-4"
+      },
+      "temporal_verdict": {
+        "milliseconds_before_stop_receipt": 5498435,
+        "milliseconds_before_stop_commit_landed": 5596817,
+        "milliseconds_before_f_vs_016_author_time": 6914817,
+        "milliseconds_before_f_v53_042_commit": 7916817,
+        "file_write_after_stop_receipt": false,
+        "file_write_after_stop_commit_landed": false,
+        "file_write_after_no_804_rule_filing": false,
+        "execution_after_stop_landed": false,
+        "execution_after_stop_evidence": "latest output mtime predates stop receipt and stop commit; stop receipt records zero replay processes running after stop",
+        "verdict_post_stop": "CLEAR_BY_TIMESTAMP",
+        "verdict_post_no_804_filing": "CLEAR_BY_TIMESTAMP"
+      },
+      "creator": {
+        "script": "arb-executor/analysis/build_window1_v38_maker_only.js",
+        "head_at_start": "0a2affce429b106222c42bb5e22193bd0e5d86fe",
+        "script_sha256_at_head": "e1d08188181c750b2e8f50dafa8a8a9445c3a31690ed1f2896fd9ba4a1323da5",
+        "script_bytes_at_head": 950510,
+        "binding": "HEAD interval plus byte comparison to scored trace manifest",
+        "exact_shell_command_receipt": "ABSENT",
+        "minimum_reconstructed_invocation": "node arb-executor/analysis/build_window1_v38_maker_only.js --variant v54 --stage tune804 --output .claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_final_build1_20260821",
+        "order": "V54_THE_PAIR_MODEL / V54 CHECK-SET order 2026-08-21",
+        "order_receipt": "F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW"
+      },
+      "content": {
+        "class": "SEMANTIC_DECISION_LICENSE_TRACE_CHUNKS_WITH_FINAL_ACTIONS",
+        "trace_chunk_files": 802,
+        "canonical_scored_trace_byte_matches": 802,
+        "canonical_scored_trace_rows": 802,
+        "sample": {
+          "file": "V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_001.jsonl.gz",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "top_level_keys": [
+            "category",
+            "event_id",
+            "first_receipt",
+            "first_t_minus_actual_bell_seconds",
+            "first_t_minus_scheduled_seconds",
+            "first_timestamp_epoch",
+            "last_receipt",
+            "last_t_minus_actual_bell_seconds",
+            "last_t_minus_scheduled_seconds",
+            "last_timestamp_epoch",
+            "leg_identity",
+            "price_region",
+            "receipt_count",
+            "receipt_digest_chain_sha256",
+            "representative_sentence",
+            "semantic",
+            "semantic_sha256"
+          ],
+          "semantic_keys": [
+            "blocked_clause",
+            "category",
+            "conservation_input_identity",
+            "event_id",
+            "final_action",
+            "final_target_cents",
+            "gate_verdict",
+            "joint_license",
+            "joint_target_conservation",
+            "leg_identity",
+            "lineage_decision",
+            "lineage_target_cents",
+            "onset_passed",
+            "order_before_cents",
+            "pair_entry_conservation",
+            "pair_model",
+            "plan",
+            "price_region",
+            "read",
+            "reason"
+          ],
+          "decision_fields_present": true
+        }
+      },
+      "execution": {
+        "occurred": true,
+        "full_804_completed": true,
+        "grading_emitted": false,
+        "scope_verdict": "CONVICT_F_V53_040_CONDITIONAL_FULL_804_STARTED_WITHOUT_RECORDED_SANE_READING",
+        "scope_evidence": "the execution output begins after the check-set commit and the creating order requires a sane twelve-game reading before any full-804 aggregate; no such authorizing receipt is attached"
+      },
+      "file_manifest_content_identity_sha256": "acd2f3f3d177865d46b4b7199585a244ccaa74f119ec116cac483ca8eeaee8ac"
+    },
+    {
+      "id": "scored_build1",
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build1_20260821",
+      "files": 12,
+      "bytes": 50514282,
+      "exact_filesystem_interval": {
+        "start_birthtime_ns_since_epoch": "1787334904086102300",
+        "start_utc": "2026-08-21T17:55:04.086Z",
+        "start_local": "2026-08-21, 13:55:04 GMT-4",
+        "stop_mtime_ns_since_epoch": "1787334907951502600",
+        "stop_utc": "2026-08-21T17:55:07.951Z",
+        "stop_local": "2026-08-21, 13:55:07 GMT-4"
+      },
+      "temporal_verdict": {
+        "milliseconds_before_stop_receipt": 2495667,
+        "milliseconds_before_stop_commit_landed": 2594049,
+        "milliseconds_before_f_vs_016_author_time": 3912049,
+        "milliseconds_before_f_v53_042_commit": 4914049,
+        "file_write_after_stop_receipt": false,
+        "file_write_after_stop_commit_landed": false,
+        "file_write_after_no_804_rule_filing": false,
+        "execution_after_stop_landed": false,
+        "execution_after_stop_evidence": "latest output mtime predates stop receipt and stop commit; stop receipt records zero replay processes running after stop",
+        "verdict_post_stop": "CLEAR_BY_TIMESTAMP",
+        "verdict_post_no_804_filing": "CLEAR_BY_TIMESTAMP"
+      },
+      "creator": {
+        "script": "arb-executor/analysis/build_window1_v38_maker_only.js",
+        "head_at_start": "e8221ff10a37c648ec83ae3982acd6a24d44fd16",
+        "script_sha256_at_head": "0e186b5f775bff08b47cd4768cb4f6cc15e512f3867cdeb7c08a2b45c0f0423e",
+        "script_bytes_at_head": 953446,
+        "binding": "SOURCE_HASH_MANIFEST exact replay_shell SHA-256",
+        "exact_shell_command_receipt": "ABSENT",
+        "minimum_reconstructed_invocation": "node arb-executor/analysis/build_window1_v38_maker_only.js --variant v54 --stage tune804 --output .claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build1_20260821",
+        "order": "V54_THE_PAIR_MODEL / V54 CHECK-SET order 2026-08-21",
+        "order_receipt": "F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW"
+      },
+      "content": {
+        "class": "FULL_804_SCORED_RESULT_PACKAGE_WITH_SCORECARD_AND_EXTERNAL_TRACE_MANIFEST",
+        "trace_chunk_files": 0,
+        "canonical_scored_trace_byte_matches": 0,
+        "canonical_scored_trace_rows": 802,
+        "sample": null
+      },
+      "execution": {
+        "occurred": true,
+        "full_804_completed": true,
+        "grading_emitted": true,
+        "scope_verdict": "CONVICT_F_V53_040_CONDITIONAL_FULL_804_STARTED_WITHOUT_RECORDED_SANE_READING",
+        "scope_evidence": "the execution output begins after the check-set commit and the creating order requires a sane twelve-game reading before any full-804 aggregate; no such authorizing receipt is attached"
+      },
+      "file_manifest_content_identity_sha256": "eaf321ebd248012f56f84c1213c9e5c4295ef5b8fd5f83277d0a493a9a0d9ebe"
+    },
+    {
+      "id": "scored_build2",
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build2_20260821",
+      "files": 737,
+      "bytes": 151963600,
+      "exact_filesystem_interval": {
+        "start_birthtime_ns_since_epoch": "1787334956123958200",
+        "start_utc": "2026-08-21T17:55:56.123Z",
+        "start_local": "2026-08-21, 13:55:56 GMT-4",
+        "stop_mtime_ns_since_epoch": "1787337231313359000",
+        "stop_utc": "2026-08-21T18:33:51.313Z",
+        "stop_local": "2026-08-21, 14:33:51 GMT-4"
+      },
+      "temporal_verdict": {
+        "milliseconds_before_stop_receipt": 172305,
+        "milliseconds_before_stop_commit_landed": 270687,
+        "milliseconds_before_f_vs_016_author_time": 1588687,
+        "milliseconds_before_f_v53_042_commit": 2590687,
+        "file_write_after_stop_receipt": false,
+        "file_write_after_stop_commit_landed": false,
+        "file_write_after_no_804_rule_filing": false,
+        "execution_after_stop_landed": false,
+        "execution_after_stop_evidence": "latest output mtime predates stop receipt and stop commit; stop receipt records zero replay processes running after stop",
+        "verdict_post_stop": "CLEAR_BY_TIMESTAMP",
+        "verdict_post_no_804_filing": "CLEAR_BY_TIMESTAMP"
+      },
+      "creator": {
+        "script": "arb-executor/analysis/build_window1_v38_maker_only.js",
+        "head_at_start": "e8221ff10a37c648ec83ae3982acd6a24d44fd16",
+        "script_sha256_at_head": "0e186b5f775bff08b47cd4768cb4f6cc15e512f3867cdeb7c08a2b45c0f0423e",
+        "script_bytes_at_head": 953446,
+        "binding": "stop receipt second determinism replay plus byte comparison to scored trace manifest",
+        "exact_shell_command_receipt": "ABSENT",
+        "minimum_reconstructed_invocation": "node arb-executor/analysis/build_window1_v38_maker_only.js --variant v54 --stage tune804 --output .claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build2_20260821",
+        "order": "V54_THE_PAIR_MODEL / V54 CHECK-SET order 2026-08-21",
+        "order_receipt": "F-V53-040 | Small-first iteration law: the 12-game check set is emitted and read before any full-804 aggregate; full-804 proceeds only after the twelve read sane | V54 CHECK-SET order 2026-08-21 | NEW"
+      },
+      "content": {
+        "class": "SEMANTIC_DECISION_LICENSE_TRACE_CHUNKS_WITH_FINAL_ACTIONS",
+        "trace_chunk_files": 737,
+        "canonical_scored_trace_byte_matches": 737,
+        "canonical_scored_trace_rows": 802,
+        "sample": {
+          "file": "V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_001.jsonl.gz",
+          "event_id": "KXATPCHALLENGERMATCH-26JUL12ALVVAN",
+          "top_level_keys": [
+            "category",
+            "event_id",
+            "first_receipt",
+            "first_t_minus_actual_bell_seconds",
+            "first_t_minus_scheduled_seconds",
+            "first_timestamp_epoch",
+            "last_receipt",
+            "last_t_minus_actual_bell_seconds",
+            "last_t_minus_scheduled_seconds",
+            "last_timestamp_epoch",
+            "leg_identity",
+            "price_region",
+            "receipt_count",
+            "receipt_digest_chain_sha256",
+            "representative_sentence",
+            "semantic",
+            "semantic_sha256"
+          ],
+          "semantic_keys": [
+            "blocked_clause",
+            "category",
+            "conservation_input_identity",
+            "event_id",
+            "final_action",
+            "final_target_cents",
+            "gate_verdict",
+            "joint_license",
+            "joint_target_conservation",
+            "leg_identity",
+            "lineage_decision",
+            "lineage_target_cents",
+            "onset_passed",
+            "order_before_cents",
+            "pair_entry_conservation",
+            "pair_model",
+            "plan",
+            "price_region",
+            "read",
+            "reason"
+          ],
+          "decision_fields_present": true
+        }
+      },
+      "execution": {
+        "occurred": true,
+        "full_804_completed": false,
+        "grading_emitted": false,
+        "scope_verdict": "CONVICT_F_V53_040_CONDITIONAL_FULL_804_STARTED_WITHOUT_RECORDED_SANE_READING",
+        "scope_evidence": "the execution output begins after the check-set commit and the creating order requires a sane twelve-game reading before any full-804 aggregate; no such authorizing receipt is attached"
+      },
+      "file_manifest_content_identity_sha256": "84f63f381509ae94780367571a0907a6a7423b5d77a18a561347ee3efb102f6c"
+    }
+  ],
+  "aggregate": {
+    "directories": 6,
+    "files": 2027,
+    "bytes": 686293157,
+    "any_execution_occurred": true,
+    "any_execution_after_stop_landed": false,
+    "any_write_after_stop_landed": false,
+    "any_write_after_no_804_rule_filing": false,
+    "post_stop_verdict": "ALL_SIX_CLEAR_BY_TIMESTAMP",
+    "original_scope_verdict": "ALL_SIX_CONVICT_F_V53_040"
+  },
+  "pre_disposition_manifest": {
+    "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/SIX_DIR_PRE_DISPOSITION_MANIFEST.json",
+    "sha256": "6cacf55e36658cd228b2355175254c33e1a97d63687ebf275418333933dfc845",
+    "bytes": 659090,
+    "combined_content_identity_sha256": "68540e705bc39b23eecc1774e5f5dd8723769afc2953f58bae3e2e7afe31bdbd"
+  },
+  "disclosure": {
+    "f_v53_072_omitted_all_six": true,
+    "stop_receipt_already_enumerated_all_six_before_f_v53_072": true,
+    "verdict": "DISCLOSURE_FAILURE"
+  }
+}

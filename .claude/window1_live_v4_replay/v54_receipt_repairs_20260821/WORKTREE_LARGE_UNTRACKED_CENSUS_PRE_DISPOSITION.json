@@ -1,0 +1,234 @@
+{
+  "label": "WORKTREE_CENSUS_LAW_UNTRACKED_OVER_10_MIB",
+  "phase": "PRE_DISPOSITION",
+  "threshold": {
+    "operator_text": ">10 MB",
+    "implemented_bytes_strictly_greater_than": 10485760
+  },
+  "law": "Every close-out enumerates ALL untracked artifacts >10 MB in the worktree; an undisclosed pile discovered later is a violation of the close-out that omitted it.",
+  "license": {
+    "law_index_read_at": "53db48ac",
+    "law_index_sha256": "41784e6ab62d6341c2a02f8be616e596eb48930b84a71acae8f500368d44c934",
+    "cited_laws": [
+      "L8",
+      "L18",
+      "L20",
+      "L22"
+    ],
+    "index_gap": [
+      "L20",
+      "L22"
+    ]
+  },
+  "scope": {
+    "receipt_only": true,
+    "passes": 0,
+    "reruns": 0,
+    "full_804_runs_started": 0
+  },
+  "untracked_artifacts_over_threshold": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_build1_20260821",
+      "kind": "DIRECTORY",
+      "files": 112,
+      "bytes": 185082003,
+      "content_identity_sha256": "918ab2dd75cee5e46fe3c807b6e8346c0321244b6810f78c46dbf973a264d15e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_cached_build1_20260821",
+      "kind": "DIRECTORY",
+      "files": 255,
+      "bytes": 71777716,
+      "content_identity_sha256": "634a18e87a1c822eb31a0a79e55fb1c6efe1754b66155a1a7bf5dbb5262cd6f3"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_fast_build1_20260821",
+      "kind": "DIRECTORY",
+      "files": 109,
+      "bytes": 62290275,
+      "content_identity_sha256": "7547bc49ffa2d7ffd1b5c745f5e7777a6f0e0312ce3786d05d0cbf79b7c1f40a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_final_build1_20260821",
+      "kind": "DIRECTORY",
+      "files": 802,
+      "bytes": 164665281,
+      "content_identity_sha256": "0ef07cc789ec78bed9560bc7bdfe957a7c2ade575624b32c1aa764d40b252dc7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build1_20260821",
+      "kind": "DIRECTORY",
+      "files": 12,
+      "bytes": 50514282,
+      "content_identity_sha256": "905d4b1eb7d2db89035ec6e72e8d03b8348d1476e4030d1c23c709fc84604d3d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build2_20260821",
+      "kind": "DIRECTORY",
+      "files": 737,
+      "bytes": 151963600,
+      "content_identity_sha256": "442204e83229cf0ded547719f6156ae2ad84cd39a96ba26d7df191bc4b362cef"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_check_set_12_build2_20260821",
+      "kind": "DIRECTORY",
+      "files": 7,
+      "bytes": 59881430,
+      "content_identity_sha256": "ef5da2155e165c7851c2dbc3891dd66fc8c870148ea20ca161cb33779d7be84b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_compact_state_pins_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 18994902,
+      "content_identity_sha256": "4879fd998245950fb45ff83cd2bd3e25421b2491303753dacecb3a3b7fdd16c7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_mechanical_cache_pins_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 18994902,
+      "content_identity_sha256": "ae18d6a50a06f1320571c5acdba7eb619947aa64e8333caef3ea529216b93306"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_pins_build2_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 18994902,
+      "content_identity_sha256": "0fa2e5577968ac2be41e6f8143d666b1e891d442f5c42f94127701765b31490a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 241445643,
+      "content_identity_sha256": "cf0230e0563bac59e583ab97d1cfd9ec0d313e8eea879a2805b24547ccd4ad03"
+    }
+  ],
+  "untracked_regular_files_over_threshold": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_007.jsonl.gz",
+      "sha256": "356de7ff41b623c39dff6841424900e64b7fc335f3bebadd9a4975329b061c56",
+      "bytes": 24473114
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_009.jsonl.gz",
+      "sha256": "290522e25e6f58f8ce0b164d8c23db5a8bd13c329fdca82bb68db2cacdeafd7f",
+      "bytes": 14566709
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_010.jsonl.gz",
+      "sha256": "9be20b71eb29cdb8594541a38306ce8eb56a9abfb9062b93469691ed0ed7b83b",
+      "bytes": 30665415
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_015.jsonl.gz",
+      "sha256": "f5ff24da00348820723144f4dc86b38ee9e7a518b5442e561f88f88f32decec6",
+      "bytes": 40322680
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_cached_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_007.jsonl.gz",
+      "sha256": "e2f888fa3529c9729febe7b98457eb766544714749e894e925c1f5acfc65bfc5",
+      "bytes": 13481524
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_cached_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_010.jsonl.gz",
+      "sha256": "4e7946edfcebf67e0b34b4f1d9b2a55824c597b53ab1fae61696d93db0b1511c",
+      "bytes": 14647530
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_cached_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_015.jsonl.gz",
+      "sha256": "19001da8f7844c0faac1958afcd377a7063fcb47f644455254fdb4468faaa659",
+      "bytes": 20024912
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_fast_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_007.jsonl.gz",
+      "sha256": "e2f888fa3529c9729febe7b98457eb766544714749e894e925c1f5acfc65bfc5",
+      "bytes": 13481524
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_fast_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_010.jsonl.gz",
+      "sha256": "4e7946edfcebf67e0b34b4f1d9b2a55824c597b53ab1fae61696d93db0b1511c",
+      "bytes": 14647530
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_fast_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_015.jsonl.gz",
+      "sha256": "19001da8f7844c0faac1958afcd377a7063fcb47f644455254fdb4468faaa659",
+      "bytes": 20024912
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_final_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_007.jsonl.gz",
+      "sha256": "e2f888fa3529c9729febe7b98457eb766544714749e894e925c1f5acfc65bfc5",
+      "bytes": 13481524
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_final_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_010.jsonl.gz",
+      "sha256": "4e7946edfcebf67e0b34b4f1d9b2a55824c597b53ab1fae61696d93db0b1511c",
+      "bytes": 14647530
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_final_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_015.jsonl.gz",
+      "sha256": "19001da8f7844c0faac1958afcd377a7063fcb47f644455254fdb4468faaa659",
+      "bytes": 20024912
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_final_build1_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_544.jsonl.gz",
+      "sha256": "db4817ec9792b20f6424a6d71685c15761ea189bfda944715e32193fdce7a911",
+      "bytes": 25528458
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build1_20260821/PAIR_MODEL_LICENSE_SUMMARY.json",
+      "sha256": "84e5fb7be3d141be6a87b8a9a978f3be8b8c803c9cfc84c67159081e1f682ad1",
+      "bytes": 48391586
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build2_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_007.jsonl.gz",
+      "sha256": "e2f888fa3529c9729febe7b98457eb766544714749e894e925c1f5acfc65bfc5",
+      "bytes": 13481524
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build2_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_010.jsonl.gz",
+      "sha256": "4e7946edfcebf67e0b34b4f1d9b2a55824c597b53ab1fae61696d93db0b1511c",
+      "bytes": 14647530
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build2_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_015.jsonl.gz",
+      "sha256": "19001da8f7844c0faac1958afcd377a7063fcb47f644455254fdb4468faaa659",
+      "bytes": 20024912
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_804_scored_build2_20260821/V54_FULL_PAIR_LICENSE_TRACE_804_CHUNK_544.jsonl.gz",
+      "sha256": "db4817ec9792b20f6424a6d71685c15761ea189bfda944715e32193fdce7a911",
+      "bytes": 25528458
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_check_set_12_build2_20260821/CHAMPION_CHECK_SET_TRACE_12.jsonl.gz",
+      "sha256": "bf8de57355a930b65cd7771f4b112998bce2912bdcf1f7e375653058a80a7ea0",
+      "bytes": 22013340
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_check_set_12_build2_20260821/V54_CHECK_SET_TRACE_12.jsonl.gz",
+      "sha256": "b18f3b4f90b261f5181d239ad4e0041715ac0902478b84c4a9003e843a0cae8a",
+      "bytes": 33526195
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/V52L_COMPARATOR_TRACE_5.jsonl.gz",
+      "sha256": "8ef5a0bd52ece94b46bc08d9b7cfb0ab47c1ed2489a52f34b416d1e2033109e0",
+      "bytes": 35410629
+    }
+  ],
+  "counts": {
+    "artifacts": 11,
+    "regular_files": 24
+  }
+}

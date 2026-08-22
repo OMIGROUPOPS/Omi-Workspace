@@ -1,0 +1,97 @@
+{
+  "label": "WORKTREE_CENSUS_LAW_UNTRACKED_OVER_10_MIB",
+  "phase": "CLOSEOUT",
+  "threshold": {
+    "operator_text": ">10 MB",
+    "implemented_bytes_strictly_greater_than": 10485760
+  },
+  "law": "Every close-out enumerates ALL untracked artifacts >10 MB in the worktree; an undisclosed pile discovered later is a violation of the close-out that omitted it.",
+  "license": {
+    "law_index_read_at": "53db48ac",
+    "law_index_sha256": "41784e6ab62d6341c2a02f8be616e596eb48930b84a71acae8f500368d44c934",
+    "cited_laws": [
+      "L8",
+      "L18",
+      "L20",
+      "L22"
+    ],
+    "index_gap": [
+      "L20",
+      "L22"
+    ]
+  },
+  "scope": {
+    "receipt_only": true,
+    "passes": 0,
+    "reruns": 0,
+    "full_804_runs_started": 0
+  },
+  "untracked_artifacts_over_threshold": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_check_set_12_build2_20260821",
+      "kind": "DIRECTORY",
+      "files": 7,
+      "bytes": 59881430,
+      "content_identity_sha256": "ef5da2155e165c7851c2dbc3891dd66fc8c870148ea20ca161cb33779d7be84b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_compact_state_pins_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 18994902,
+      "content_identity_sha256": "4879fd998245950fb45ff83cd2bd3e25421b2491303753dacecb3a3b7fdd16c7"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_mechanical_cache_pins_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 18994902,
+      "content_identity_sha256": "ae18d6a50a06f1320571c5acdba7eb619947aa64e8333caef3ea529216b93306"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_pins_build2_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 18994902,
+      "content_identity_sha256": "0fa2e5577968ac2be41e6f8143d666b1e891d442f5c42f94127701765b31490a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821",
+      "kind": "DIRECTORY",
+      "files": 14,
+      "bytes": 241445643,
+      "content_identity_sha256": "cf0230e0563bac59e583ab97d1cfd9ec0d313e8eea879a2805b24547ccd4ad03"
+    }
+  ],
+  "untracked_regular_files_over_threshold": [
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_check_set_12_build2_20260821/CHAMPION_CHECK_SET_TRACE_12.jsonl.gz",
+      "sha256": "bf8de57355a930b65cd7771f4b112998bce2912bdcf1f7e375653058a80a7ea0",
+      "bytes": 22013340
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_pair_model_iteration_01_check_set_12_build2_20260821/V54_CHECK_SET_TRACE_12.jsonl.gz",
+      "sha256": "b18f3b4f90b261f5181d239ad4e0041715ac0902478b84c4a9003e843a0cae8a",
+      "bytes": 33526195
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/FIVE_EXEMPLAR_DECISION_TRACES.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "5e3f809e2762167dca917d9ad7f0166390b7a9a11f2e707830a40a71ec60b67d",
+      "bytes": 102934439
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/v54_walk5_repair_v6_20260821/V52L_COMPARATOR_TRACE_5.jsonl.gz",
+      "sha256": "8ef5a0bd52ece94b46bc08d9b7cfb0ab47c1ed2489a52f34b416d1e2033109e0",
+      "bytes": 35410629
+    }
+  ],
+  "counts": {
+    "artifacts": 5,
+    "regular_files": 5
+  }
+}

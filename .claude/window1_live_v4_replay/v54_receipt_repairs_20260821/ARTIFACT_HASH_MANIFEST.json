@@ -20,6 +20,31 @@
       "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/TRACE_CUSTODY_RECEIPT.json",
       "sha256": "8f8a1b77ecb4e51f0f6b8587f51084a74a99411495720e01dbf1590d0ba77bdf",
       "bytes": 2260
+    },
+    "SIX_DIR_PROVENANCE_RECEIPT.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/SIX_DIR_PROVENANCE_RECEIPT.json",
+      "sha256": "588a99f0a0f2ef7fb122e466008f49e67b3e26cf0b4bc4979ae70a167585abd5",
+      "bytes": 28508
+    },
+    "SIX_DIR_PRE_DISPOSITION_MANIFEST.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/SIX_DIR_PRE_DISPOSITION_MANIFEST.json",
+      "sha256": "6cacf55e36658cd228b2355175254c33e1a97d63687ebf275418333933dfc845",
+      "bytes": 659090
+    },
+    "WORKTREE_LARGE_UNTRACKED_CENSUS_PRE_DISPOSITION.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/WORKTREE_LARGE_UNTRACKED_CENSUS_PRE_DISPOSITION.json",
+      "sha256": "b0e0ac8f64e81552e3f3a3317902fb4d262c095aeed80be689cae9e22d8fc701",
+      "bytes": 10434
+    },
+    "SIX_DIR_CUSTODY_RECEIPT.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/SIX_DIR_CUSTODY_RECEIPT.json",
+      "sha256": "d7e66e8a7ff7525b97a13fa12bac9cf677b084b211de2f26cf9441a5941552f0",
+      "bytes": 2767
+    },
+    "WORKTREE_LARGE_UNTRACKED_CENSUS_CLOSEOUT.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/WORKTREE_LARGE_UNTRACKED_CENSUS_CLOSEOUT.json",
+      "sha256": "29a297609d9523190909b5c23c149819efe862b8c049981381295fd2c196358b",
+      "bytes": 3537
     }
   }
 }

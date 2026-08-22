@@ -19542,3 +19542,11 @@ Package `.claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/` @45ddd12
 ## w. THE FOUNDATION + LAYER FIT (appended 2026-08-22; license 15955e44)
 
 The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 2025-06-18 → 2026-05-01, native bell fields, grain MINUTE. Corpus law amended — left wall = Foundation era, grain per store (F-VS-059). Layer-fit ruling — MACRO / MICRO / never MICRO-MICRO; citations carry grain + layer (F-VS-060).
+
+
+## x. V2 REPAIR COUNTER-GRADE + ONE-CENT FORENSICS (appended 2026-08-22; license 7d08addd)
+
+- Package @7d08addd verified: pins equal; four fill receipts resolve to tape prints; handoff wired (20 post-fill derivations with reposed fingerprints); library 698 bounded / 11,811 unbounded-null. Candidate self-stopped; **F-VS-056 → REPAIRED-IN-CANDIDATE, NOT ACCEPTED**; v1 baseline stands (F-VS-061).
+- The one cent (F-VS-062): weighted neighbor low ratio ≈0.98 aims the riser's rest ~2% under its anchor (PAL 38 vs floor 39; SVA 40 vs floor 41); served low = TRADED min last over the 5-min path; edge exclusive; rounding honest.
+- GIUBAR candidate: **COMPLETE 93¢ Δ7 at the full lawful ceiling** (BAR 27 → GIU 66 via handoff) — first receipted pair-coherent cascade completing at ceiling (F-VS-063).
+- Sequencing inverted on both failed games: fader credited first, riser derived late; the tape's riser floor came first (F-VS-064). Four-game table in `V2_COUNTER_GRADE.json`: candidate 1/7¢ vs baseline 2/9¢.

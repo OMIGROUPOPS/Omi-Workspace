@@ -1,0 +1,208 @@
+{
+ "label": "V2_COUNTER_GRADE",
+ "package": "7d08addd",
+ "license": {
+  "law_index_sha": "7d08addd",
+  "laws": [
+   "L8",
+   "L11",
+   "L18",
+   "L20",
+   "L22"
+  ]
+ },
+ "gate": {
+  "pins_equal_expected": true,
+  "self_stop": true,
+  "stop_reason": "URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD",
+  "zero_measured_law_violations": true,
+  "note": "now a measured scan (F-VS-040 literal removed per F-V53-068)"
+ },
+ "fill_events_resolved": [
+  {
+   "leg": "GIUBAR|BAR",
+   "entry": 27,
+   "ts": 1783841801.305,
+   "trade_id": "2898debe-683f-4cd1-7a5e-572e1b7ac028",
+   "taker_book_side": "bid"
+  },
+  {
+   "leg": "GIUBAR|GIU",
+   "entry": 66,
+   "ts": 1783869375.227,
+   "trade_id": "924208a2-c681-7126-04df-93a053cd515b",
+   "taker_book_side": "bid"
+  },
+  {
+   "leg": "URSPAL|URS",
+   "entry": 57,
+   "ts": 1784032697.601,
+   "trade_id": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+   "taker_book_side": "ask"
+  },
+  {
+   "leg": "LAJSVA|LAJ",
+   "entry": 54,
+   "ts": 1784050973.063,
+   "trade_id": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+   "taker_book_side": "bid"
+  }
+ ],
+ "post_fill_derivations": 20,
+ "library": {
+  "paths": 12509,
+  "bounded": 698,
+  "unbounded_null_served": 11811
+ },
+ "one_cent": {
+  "PAL": {
+   "neighbors": [
+    [
+     "YOUDLI",
+     37,
+     39
+    ],
+    [
+     "DELDAL",
+     39,
+     39
+    ],
+    [
+     "CRIBAS",
+     36,
+     37
+    ],
+    [
+     "BARREI",
+     37,
+     39
+    ],
+    [
+     "MARARS",
+     37,
+     37
+    ],
+    [
+     "CHOGAS",
+     39,
+     40
+    ],
+    [
+     "SANSCH",
+     37,
+     37
+    ]
+   ],
+   "sum_w": 5.829681,
+   "ratio": 0.977871,
+   "anchor": 38,
+   "raw": 37.159,
+   "round": 37,
+   "lineage": 40,
+   "mass": 0.8328,
+   "blend": 37.5,
+   "derived": 38,
+   "caps": {
+    "pair": 42,
+    "post_only": 41
+   },
+   "lawful_floor": 39
+  },
+  "SVA": {
+   "neighbors": [
+    [
+     "FELKEN",
+     40,
+     41
+    ],
+    [
+     "DEGEE",
+     41,
+     41
+    ],
+    [
+     "SHIBOU",
+     42,
+     42
+    ],
+    [
+     "PIRDZU",
+     44,
+     42
+    ],
+    [
+     "MRVRON",
+     42,
+     42
+    ],
+    [
+     "BICMIY",
+     39,
+     41
+    ],
+    [
+     "GLIMAY",
+     37,
+     41
+    ]
+   ],
+   "sum_w": 5.806257,
+   "ratio": 0.982565,
+   "anchor": 41,
+   "raw": 40.285,
+   "round": 40,
+   "lineage": 41,
+   "mass": 0.8295,
+   "blend": 40.17,
+   "derived": 40,
+   "caps": {
+    "pair": 45,
+    "post_only": 48
+   },
+   "lawful_floor": 41
+  },
+  "served_low": "TRADED low = min last-trade over the 5-min poll path",
+  "edge": "EXCLUSIVE (inclusive:false)",
+  "mechanism": "anchor-relative dip ratio ~0.98 aims the riser's rest ~2% under its anchor; both risers' lawful floors sit at or above anchor; rounding honest"
+ },
+ "four_game_table": [
+  {
+   "game": "GIUBAR",
+   "bell": "1783874300 (W1TT-C-001)",
+   "candidate": "COMPLETE 93c d7 (BAR 27 @1783841801, GIU 66 @1783869375)",
+   "leg_ruler": "BAR 32-27=+5; GIU 66-66=0",
+   "baseline": "PARTIAL (GIU 69 only)"
+  },
+  {
+   "game": "URSPAL",
+   "bell": "1784042247 (W1TT-C-002)",
+   "candidate": "PARTIAL (URS 57 credited; PAL rest 38 vs floor 39)",
+   "leg_ruler": "URS 61-57=+4",
+   "baseline": "COMPLETE 97c d3"
+  },
+  {
+   "game": "LAJSVA",
+   "bell": "1784078400 (machine)",
+   "candidate": "PARTIAL (LAJ 54 credited; SVA rest 40 vs floor 41)",
+   "leg_ruler": "LAJ 53-54=-1",
+   "baseline": "COMPLETE 94c d6"
+  },
+  {
+   "game": "DANPRA",
+   "bell": "1784373060",
+   "candidate": "NEITHER (DAN rest 57 vs floor 59; PRA rest 40 vs floor 41)",
+   "leg_ruler": "-",
+   "baseline": "NEITHER"
+  }
+ ],
+ "totals": {
+  "candidate_game_ruler": "1 complete / 7c over 4",
+  "baseline_game_ruler": "2 completes / 9c over 4",
+  "candidate_leg_ruler": "8c over 4 credited legs",
+  "baseline_leg_ruler": "9c over 5 credited legs"
+ },
+ "sequencing": {
+  "LAJSVA": "fader LAJ 54 first (12.12h) -> riser SVA derived 40 late vs floor 41; tape riser floor SVA 41 at 3.58h while candidate rested 33-36",
+  "URSPAL": "fader URS 57 first (8.70h) -> riser PAL derived 38 vs floor 39"
+ }
+}

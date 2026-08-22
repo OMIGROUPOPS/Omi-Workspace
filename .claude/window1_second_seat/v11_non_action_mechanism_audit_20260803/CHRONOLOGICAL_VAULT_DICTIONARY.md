@@ -18826,6 +18826,9 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| LAYER-FIT RULING — non-subsecond stores inform MACRO, may inform MICRO, never MICRO-MICRO; every citation carries grain + layer | 2026-08-22 | F-VS-060 |
+| CORPUS LAW AMENDED — library left wall = the Foundation era (2025-06-18), grain declared per store; sealed exclusion + leave-self-out unchanged | 2026-08-22 | F-VS-059 (amends F-V53-050) |
+| THE FOUNDATION catalogued as PATTERN LIBRARY store, grain MINUTE | 2026-08-22 | F-VS-058 · §l |
 | THE TRADE-REPORT LAW — per-game trade report in operator language from welded receipts only; decision and outcome graded separately; six standard sections | 2026-08-21 | F-VS-055 |
 | CONVICTION IS PAIR-COHERENT — a conviction fill is a belief about both legs; sibling plan derives from it on first credit (SVA 41 ⟹ LAJ fader ⟹ late floor 51) | 2026-08-21 | F-VS-053 |
 | THE CASE-STUDY LAW — LAJSVA is the official case study; PAIR RENDER + ENGAGEMENT DIAGRAM as-occurred and after every accepted repair | 2026-08-21 | F-VS-052 |
@@ -19419,7 +19422,7 @@ LEAD_SEAT_INVENTORY_20260821 (10,090 keyword-matched files, all dirs) vs Appendi
 
 ## l. DATA UNIVERSE — every store, its era, its ruled purpose (appended 2026-08-21; license LAW_INDEX @ `3cd59162`, sha 41784e6a…; L8 L11 L18 L20 L22)
 
-Vocabulary rulings (operator, 2026-08-21; F-VS-030): **"corpus" names the PATTERN LIBRARY alone.** The fixed 804 (Jul 12–20) is the **TUNE-TEST SAMPLE**, never "the dev corpus" — that label is deprecated everywhere; July document titles that carry "corpus" are retained as titles only and do not re-license the word. Purposes: PATTERN LIBRARY (knowledge the machine may consult; priors inform, never gate) · TUNE-TEST SAMPLE (the fixed 804, fully visible, lawful for tuning, L19a) · SEALED EXAM (quarantined; taken once at graduation on the operator's word) · LIVE CAPTURE (ongoing recorder output; not yet assigned) · RETIRED (no longer a lawful source). Sizes are local `du` readings on 2026-08-21 (stat, not git).
+Vocabulary rulings (operator, 2026-08-21; F-VS-030): **"corpus" names the PATTERN LIBRARY alone.** Corpus law amended 2026-08-22 (F-VS-059): the library's left wall is the Foundation era (2025-06-18), grain declared per store. Layer-fit (F-VS-060): non-subsecond stores → MACRO (may inform MICRO), never MICRO-MICRO; every citation carries grain + layer. The fixed 804 (Jul 12–20) is the **TUNE-TEST SAMPLE**, never "the dev corpus" — that label is deprecated everywhere; July document titles that carry "corpus" are retained as titles only and do not re-license the word. Purposes: PATTERN LIBRARY (knowledge the machine may consult; priors inform, never gate) · TUNE-TEST SAMPLE (the fixed 804, fully visible, lawful for tuning, L19a) · SEALED EXAM (quarantined; taken once at graduation on the operator's word) · LIVE CAPTURE (ongoing recorder output; not yet assigned) · RETIRED (no longer a lawful source). Sizes are local `du` readings on 2026-08-21 (stat, not git).
 
 | store | location (custody) | era / span | contents | ruled purpose |
 |---|---|---|---|---|
@@ -19442,6 +19445,9 @@ Vocabulary rulings (operator, 2026-08-21; F-VS-030): **"corpus" names the PATTER
 | Kalshi exchange trade history (API) | exchange | all | public trades by trade_id; **no historical depth** | exchange truth (L0, L8) |
 | Odds API feed | droplet A `tennis_odds.py` (+ Vercel `/api/odds/*`) | Jul 23 2026 → ongoing | bookmaker odds per match | **STANDING OS SUPPLEMENT** (F-VS-028); not a lane |
 | Game tape packs | repo `game_tape_packs/` (GUEGOM, DELXIL, BALHUA, KUMTUR, MORNEP, PANYOR, ARSMAR) | Aug 12–14 2026 | raw series only | TUNE-TEST SAMPLE exemplars (no analysis) |
+| **THE FOUNDATION ("OG Druids Foundation")** — per_minute_features.parquet | droplet A `arb-executor/data/durable/per_minute_universe/` (406.6 MB, mtime 2026-06-10, sha 9fde4b5d…); repo holds run summaries + `probe/per_minute_universe_phase1.parquet` + `path_b_v4_tick_replay_historical_perN.parquet` | **2025-06-18 → 2026-05-01** (minute_ts 1750253580..1777672320) | 9,330,878 rows × 88 cols; 19,207 tickers (≈9,600 games); ATP_MAIN 3.50M / WTA_MAIN 3.03M / ATP_CHALL 2.44M / WTA_CHALL 0.36M rows; per-minute bid/ask/price OHLC, volume, taker flow, OI, regime, forward extremes, pair columns; **native bell fields: match_start_ts, match_start_method (both_sides_price_discovery 8.18M · expected_expiration_fallback 0.54M · both_sides_trade_density 0.32M · unknown 0.30M), time_to_match_start_min (−3,391..4,872)** | **PATTERN LIBRARY · grain MINUTE · layer MACRO (may inform MICRO; never MICRO-MICRO)** (F-VS-058/060) |
+| Foundation — spike_volatility_map | droplet A `data/durable/spike_volatility_map/` (91 files, 3.2 MB); repo 40 files (adaptive exit bands, cell maps, descriptive, drift envelopes per category; LOCKED_DOWN docs 2026-05-19..21; SUPERSEDED.md 2026-06-12) | built May–Jun 2026 on the Foundation | per-category exit/volatility surfaces | PATTERN LIBRARY · grain MINUTE · MACRO |
+| Foundation — twoperiod surfaces | repo `arb-executor/analysis/exit_charts/foundation_twoperiod_open_{ATP_CHALL,ATP_MAIN,WTA_MAIN}.csv` + `build_twoperiod_foundation.py` (01dcc8b8, 2026-07-01) | Foundation era | 273 rows: two-period mean/std/N by cents | PATTERN LIBRARY · grain MINUTE · MACRO |
 | 612 post-onset offer census | repo `POST_ONSET_OFFER_CENSUS.json` (22441e05) | Aug 12 2026 | coverage-limited offer census | RETIRED as denominator (F-VS-001) |
 | F24 independent close audit | repo `INDEPENDENT_CLOSE_AUDIT_1608.csv` (a30f5ccd) | Aug 9 2026 | 1,608 "audited" closes | RETIRED — NOT-LAWFUL-CLOSE (F-VS-023) |
 | THE_603_MAP / _PREMATCH | repo (06f472ff / e302e1ea) | Aug 5 2026 | model-free ceilings, two bases | RETIRED-by-era (contradiction #7 retained) |
@@ -19531,3 +19537,8 @@ Sections, in order: 1 WHAT I BELIEVED AT OPEN · 2 WHAT I DECIDED PER SIDE AND W
 ## v. CASE STUDY v1 — CERTIFIED BASELINE (appended 2026-08-22; license 45ddd12b)
 
 Package `.claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/` @45ddd12b: Panel A exact vs the raw tape (1,876/1,876); Panel B 20 stages / 16 lanes with the break rendered; Panel C two trade reports, 126/126 lines receipted and resolved. **Break filed F-VS-056 (GAP-LAJSVA-FILL-HANDOFF)** — the reflex fill never enters the pattern engine; bound to F-VS-053 beside F-VS-050. Certified as CASE STUDY v1 as-occurred baseline (F-VS-057); the builder regenerates after each accepted repair.
+
+
+## w. THE FOUNDATION + LAYER FIT (appended 2026-08-22; license 15955e44)
+
+The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 2025-06-18 → 2026-05-01, native bell fields, grain MINUTE. Corpus law amended — left wall = Foundation era, grain per store (F-VS-059). Layer-fit ruling — MACRO / MICRO / never MICRO-MICRO; citations carry grain + layer (F-VS-060).

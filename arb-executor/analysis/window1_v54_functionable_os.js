@@ -45,6 +45,8 @@ const EXPECTED_RESOURCE_IDS = Object.freeze([
   "TRUTH_TABLE_C0056976",
   "HONEST_PAIR_FLOOR_TIMING",
   "HONEST_DIVOT_ARRIVAL",
+  "FOUNDATION_PER_MINUTE_UNIVERSE",
+  "SPIKE_ATLAS",
 ]);
 
 const SIMILARITY_DECLARATION = Object.freeze({
@@ -88,6 +90,13 @@ const SIMILARITY_DECLARATION = Object.freeze({
   declared: true,
   undisclosed_weights: false,
 });
+const CONDITIONAL_DIP_DECLARATION = Object.freeze({
+  question: "Given this leg's own bounded dip/no-dip evidence now, how much additional dip did same-state bounded legs subsequently exhibit?",
+  distribution: "weighted q25/q50/q75 of integer-cent remaining dip",
+  signing_statistic: "q50 weighted median",
+  provenance: "PROVISIONAL_DESCRIPTIVE: operator ordered a per-leg-conditioned graded quantity; q50 is the central member of the reported distribution, not a fitted placement constant",
+  blanket_anchor_ratio: "DELETED",
+});
 
 function sha256(value) {
   return crypto.createHash("sha256").update(Buffer.isBuffer(value) ? value : Buffer.from(String(value))).digest("hex");
@@ -108,6 +117,7 @@ function createTapeState(meta) {
     formation_end_epoch: finite(meta.formation_end_epochs?.[legId]),
     rows: [], books: [], prints: [], references: [], steps: [], divots: [],
     current_book: null, current_reference_cents: null, running_low_cents: null,
+    running_true_trade_low_cents: null, running_true_trade_high_cents: null,
     running_high_cents: null, volume_contracts: 0, last_change_epoch: null,
   }]));
   return {
@@ -153,6 +163,10 @@ function observe(state, legId, row) {
   } else if (row.kind === "PRINT") {
     leg.prints.push(row);
     leg.volume_contracts += Number.isFinite(row.size) ? row.size : 0;
+    if (cent(row.price_cents)) {
+      leg.running_true_trade_low_cents = leg.running_true_trade_low_cents === null ? row.price_cents : Math.min(leg.running_true_trade_low_cents, row.price_cents);
+      leg.running_true_trade_high_cents = leg.running_true_trade_high_cents === null ? row.price_cents : Math.max(leg.running_true_trade_high_cents, row.price_cents);
+    }
   }
   if (Number.isInteger(reference)) {
     const prior = leg.current_reference_cents;
@@ -236,7 +250,7 @@ function readAll(state) {
     steps_stillness: stamp(state, "steps_stillness", Object.fromEntries(ids.map((id, i) => [id, { step_count: legs[i].steps.length, last_step_cents: last(legs[i].steps)?.cents ?? null, still_seconds: dwellSeconds[i] }])), receipts),
     shape_survival: stamp(state, "shape_survival", Object.fromEntries(ids.map((id, i) => [id, { directional_step_share: shapeSurvival[i], observed_steps: legs[i].steps.length }])), receipts),
     ripeness: stamp(state, "ripeness", Object.fromEntries(ids.map((id, i) => [id, { continuous_evidence_mass: ripeness[i], observations: legs[i].rows.length, prints: legs[i].prints.length }])), receipts),
-    lows_travel: stamp(state, "lows_travel", Object.fromEntries(ids.map((id, i) => [id, { low_cents: legs[i].running_low_cents, high_cents: legs[i].running_high_cents, travel_cents: travels[i] }])), receipts),
+    lows_travel: stamp(state, "lows_travel", Object.fromEntries(ids.map((id, i) => [id, { low_cents: legs[i].running_low_cents, high_cents: legs[i].running_high_cents, travel_cents: travels[i], true_trade_low_cents: legs[i].running_true_trade_low_cents, true_trade_high_cents: legs[i].running_true_trade_high_cents, true_trade_count: legs[i].prints.length }])), receipts),
     joint_state_spread_dwell: stamp(state, "joint_state_spread_dwell", { mid_sum_cents: Number.isInteger(currents[0]) && Number.isInteger(currents[1]) ? currents[0] + currents[1] : null, spread_sum_cents: Number.isFinite(spreads[0]) && Number.isFinite(spreads[1]) ? spreads[0] + spreads[1] : null, dwell_seconds: Object.fromEntries(ids.map((id, i) => [id, dwellSeconds[i]])) }, receipts),
     divots: stamp(state, "divots", Object.fromEntries(ids.map((id, i) => [id, { count: legs[i].divots.length, mean_depth_cents: divotDepths[i], latest: last(legs[i].divots) }])), receipts),
     depth_size: stamp(state, "depth_size", Object.fromEntries(ids.map((id, i) => [id, { bid_depth_5: finite(books[i]?.bid_depth_5), ask_depth_5: finite(books[i]?.ask_depth_5), bid_share: depthRatios[i], top_bid_size: finite(books[i]?.bid_1_sz), top_ask_size: finite(books[i]?.ask_1_sz) }])), receipts, ids.filter((id, i) => !books[i]).map((id) => `BOOK_MISSING:${id}`)),
@@ -377,6 +391,9 @@ function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY
       coverage: entry.match.coverage,
       normalized_distance: entry.match.normalized_distance,
       quality: entry.row.quality,
+      grain: entry.row.grain ?? null,
+      licensed_layers: entry.row.licensed_layers ?? null,
+      micro_micro_licensed: entry.row.micro_micro_licensed ?? null,
       legs: entry.row.legs,
       source_receipts: entry.row.source_receipts,
       citation_receipt: citationReceipt,
@@ -393,16 +410,53 @@ function assertResources(resources) {
   return EXPECTED_RESOURCE_IDS.map((id) => byId.get(id));
 }
 
-function weightedNeighborLeg(neighborhood, orientedIndex) {
-  const rows = [];
+function weightedQuantile(rows, quantile) {
+  const ordered = rows.filter((row) => Number.isFinite(row.value) && row.weight > 0).sort((a, b) => a.value - b.value || a.event_id.localeCompare(b.event_id));
+  const total = sum(ordered.map((row) => row.weight));
+  if (!(total > 0)) return null;
+  const threshold = total * quantile;
+  let accumulated = 0;
+  for (const row of ordered) {
+    accumulated += row.weight;
+    if (accumulated >= threshold) return row.value;
+  }
+  return ordered.at(-1).value;
+}
+
+function conditionalNeighborLeg(neighborhood, orientedIndex, ownEvidence) {
+  const ownAnchor = ownEvidence.anchor_cents;
+  const ownLow = ownEvidence.true_trade_low_cents ?? ownEvidence.book_path_low_cents;
+  const ownBasis = Number.isFinite(ownEvidence.true_trade_low_cents) ? "TRUE_TRADE" : Number.isFinite(ownEvidence.book_path_low_cents) ? "BOOK_PATH" : "NO_OWN_LOW";
+  const ownObservedDip = Number.isFinite(ownAnchor) && Number.isFinite(ownLow) ? Math.max(0, ownAnchor - ownLow) : null;
+  const ownDipState = Number.isFinite(ownObservedDip) ? (ownObservedDip > 0 ? "DIP_OBSERVED" : "NO_DIP_OBSERVED") : "INSUFFICIENT_OWN_EVIDENCE";
+  const rows = [], excluded = [];
   for (const neighbor of neighborhood) {
     const leg = neighbor.legs?.[orientedIndex];
-    if (!leg || !Number.isFinite(leg.anchor_cents) || !Number.isFinite(leg.low_cents) || leg.anchor_cents <= 0) continue;
-    const weight = neighbor.score * neighbor.coverage;
-    rows.push({ event_id: neighbor.event_id, weight, low_ratio: leg.low_cents / leg.anchor_cents, low_cents: leg.low_cents, anchor_cents: leg.anchor_cents });
+    if (!leg || !Number.isFinite(leg.anchor_cents) || !Number.isFinite(leg.observed_low_cents) || !Number.isFinite(leg.low_cents)) {
+      excluded.push({ event_id: neighbor.event_id, reason: "NO_INTERIM_BOUNDED_LOW" });
+      continue;
+    }
+    const observedDip = Math.max(0, leg.anchor_cents - leg.observed_low_cents);
+    const dipState = observedDip > 0 ? "DIP_OBSERVED" : "NO_DIP_OBSERVED";
+    if (dipState !== ownDipState) {
+      excluded.push({ event_id: neighbor.event_id, reason: `DIP_STATE_MISMATCH:${dipState}` });
+      continue;
+    }
+    const evidenceDistance = Math.abs(observedDip - ownObservedDip);
+    const weight = neighbor.score * neighbor.coverage / (1 + evidenceDistance);
+    const remainingDip = Math.max(0, leg.observed_low_cents - leg.low_cents);
+    rows.push({ event_id: neighbor.event_id, quality: neighbor.quality, weight, observed_dip_cents: observedDip, remaining_dip_cents: remainingDip, observed_low_cents: leg.observed_low_cents, low_cents: leg.low_cents, low_basis: leg.low_basis ?? null, source_grain: neighbor.grain ?? leg.source_grain ?? null, licensed_layers: neighbor.licensed_layers ?? leg.licensed_layers ?? null });
   }
+  const distributionRows = rows.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.remaining_dip_cents }));
   const denominator = sum(rows.map((row) => row.weight));
-  return { rows, denominator, weighted_low_ratio: denominator > 0 ? sum(rows.map((row) => row.weight * row.low_ratio)) / denominator : null };
+  const q25 = weightedQuantile(distributionRows, 0.25), q50 = weightedQuantile(distributionRows, 0.50), q75 = weightedQuantile(distributionRows, 0.75);
+  return {
+    rows, excluded, denominator,
+    own_evidence: { basis: ownBasis, anchor_cents: ownAnchor, observed_low_cents: ownLow, observed_dip_cents: ownObservedDip, dip_state: ownDipState, true_trade_count: ownEvidence.true_trade_count },
+    conditional_remaining_dip_distribution_cents: { q25, q50, q75 },
+    derived_floor_cents: Number.isFinite(ownLow) && Number.isFinite(q50) ? ownLow - q50 : null,
+    legacy_blanket_low_ratio_used: false,
+  };
 }
 
 function deriveAction({ state, reads, neighborhood, legId, lineage, resources }) {
@@ -420,8 +474,14 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const vector = vectorFromReads(state, reads);
   const orientedIndex = vector.oriented_leg_ids.indexOf(legId);
   if (orientedIndex < 0) throw new Error(`DERIVATION_LEG_NOT_ORIENTED ${legId}`);
-  const neighborLeg = weightedNeighborLeg(neighborhood, orientedIndex);
   const anchor = reads.anchor_settle.value.anchors_cents[legId];
+  const ownLowRead = reads.lows_travel.value[legId];
+  const neighborLeg = conditionalNeighborLeg(neighborhood, orientedIndex, {
+    anchor_cents: anchor,
+    true_trade_low_cents: ownLowRead.true_trade_low_cents,
+    book_path_low_cents: ownLowRead.low_cents,
+    true_trade_count: ownLowRead.true_trade_count,
+  });
   const book = reads.books.value[legId];
   const position = reads.half_pair_state.value.legs[legId];
   const siblingId = state.leg_ids.find((id) => id !== legId);
@@ -444,11 +504,11 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   if (fillHandoffReceipt) assertCaptureReceipt(fillHandoffReceipt, state.receipt, `FILL_HANDOFF:${state.event_id}|${legId}`);
   if (fillHandoffReceipt) citationReceipts[fillHandoffReceipt.receipt_id] = fillHandoffReceipt;
   const formationProgress = reads.anchor_settle.value.formation_progress[legId];
-  let derivedTarget = Number.isFinite(neighborLeg.weighted_low_ratio) && Number.isInteger(anchor) ? Math.round(anchor * neighborLeg.weighted_low_ratio) : null;
+  let derivedTarget = Number.isFinite(neighborLeg.derived_floor_cents) ? Math.round(neighborLeg.derived_floor_cents) : null;
   const lineageTarget = cent(lineage?.target_cents);
   const neighborhoodMass = mean(neighborhood.map((row) => row.score * row.coverage)) ?? 0;
-  if (cent(derivedTarget) && lineageTarget) derivedTarget = Math.round(neighborhoodMass * derivedTarget + (1 - neighborhoodMass) * lineageTarget);
-  else if (!cent(derivedTarget)) derivedTarget = lineageTarget;
+  const targetAuthority = cent(derivedTarget) ? "PER_LEG_CONDITIONAL_DIP_DISTRIBUTION" : lineageTarget ? "LINEAGE_RESOURCE_GAP_FALLBACK" : "RESOURCE_GAP";
+  if (!cent(derivedTarget)) derivedTarget = lineageTarget;
   const siblingCommitment = cent(sibling.entry_cents) ?? cent(sibling.standing_target_cents);
   const pairCap = siblingCommitment ? PAR_BUDGET_CENTS - siblingCommitment : PAR_BUDGET_CENTS - 1;
   const postOnlyCap = cent(book?.ask_cents) ? book.ask_cents - 1 : 99;
@@ -466,7 +526,9 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   const fillHandoffStatement = fillHandoffReceipt
     ? ` The sibling ${siblingId} is credited at ${sibling.entry_cents} from trade receipt ${sibling.fill_receipt ?? "RESOURCE-GAP"}; that half-pair transition re-posed query ${fillHandoffReceipt.context.reposed_query_fingerprint_sha256} and re-derived this open side [${fillHandoffReceipt.receipt_id}].`
     : "";
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${legId} has anchor ${anchor ?? "UNKNOWN"}, neighborhood low ratio ${neighborLeg.weighted_low_ratio ?? "UNKNOWN"}, lineage target ${lineageStatement}, pair cap ${pairCap}, and post-only cap ${postOnlyCap}.${fillHandoffStatement} ${actionStatement}`;
+  const conditional = neighborLeg.conditional_remaining_dip_distribution_cents;
+  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${neighborLeg.own_evidence.basis} evidence low is ${neighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${neighborLeg.own_evidence.dip_state} with ${neighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The same-state, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents; target authority is ${targetAuthority}, and no blanket low ratio is consumed.`;
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement} Lineage target ${lineageStatement}, pair cap ${pairCap}, and post-only cap ${postOnlyCap}.${fillHandoffStatement} ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
   for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
   if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
@@ -479,9 +541,9 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     receipt: state.receipt,
     vector,
     neighborhood,
-    resources_consulted: [],
+    resources_consulted: [...new Set(neighborhood.filter((row) => row.quality === "FOUNDATION_MINUTE_BELL_BOUNDED").flatMap((row) => ["FOUNDATION_PER_MINUTE_UNIVERSE", ...(row.legs?.some((leg) => leg.spike_atlas) ? ["SPIKE_ATLAS"] : [])]))],
     citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: neighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, lineage_target_cents: lineageTarget, sibling_commitment_cents: siblingCommitment, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
+    derivation: { oriented_index: orientedIndex, neighbor_leg: neighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, lineage_target_cents: lineageTarget, sibling_commitment_cents: siblingCommitment, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },
@@ -495,6 +557,7 @@ module.exports = {
   READER_NAMES,
   EXPECTED_RESOURCE_IDS,
   SIMILARITY_DECLARATION,
+  CONDITIONAL_DIP_DECLARATION,
   sha256,
   createTapeState,
   observe,
@@ -504,6 +567,7 @@ module.exports = {
   similarity,
   retrieveNeighborhood,
   assertResources,
+  conditionalNeighborLeg,
   captureReceipt,
   assertCaptureReceipt,
   deriveAction,

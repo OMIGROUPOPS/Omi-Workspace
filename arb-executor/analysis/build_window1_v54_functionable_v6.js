@@ -23,6 +23,7 @@ const TARGETS = Object.freeze({
 });
 const ALL_TARGETS = [...TARGETS.smoke, ...TARGETS.stories];
 const SAFETY_FLOORS = Object.freeze({
+  KXATPCHALLENGERMATCH_26JUL12GIUBAR: 7,
   KXATPCHALLENGERMATCH_26JUL14URSPAL: 3,
   KXATPCHALLENGERMATCH_26JUL14LAJSVA: 6,
 });
@@ -33,7 +34,7 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_FUNCTIONABLE_FOUR_STORIES_V6";
+const OUTPUT_LABEL = "V54_REPAIR_ITERATION2_FOUNDATION_CONDITIONAL_DIP_EARLY_RISER";
 
 function arg(name, fallback = null) {
   const index = process.argv.indexOf(`--${name}`);
@@ -102,7 +103,7 @@ function loadBellAuthorities(repo, rangePath) {
   });
 }
 
-async function loadCorpus(cacheDir, repo) {
+async function loadCorpus(cacheDir, repo, foundationIndexPath, foundationReceiptPath) {
   const registryPath = path.join(cacheDir, "corpus_events_v2.jsonl");
   const historicalPath = path.join(cacheDir, "historical_events_materialized.csv");
   const rangePath = path.join(cacheDir, "range_spectrum_v1.jsonl");
@@ -148,8 +149,44 @@ async function loadCorpus(cacheDir, repo) {
     bounded.source_receipts = [...(existing.source_receipts ?? []), ...(bounded.source_receipts ?? [])];
     byEvent.set(eventId, { ...existing, ...bounded });
   });
+  const beforeFoundation = [...byEvent.values()];
+  const beforeCoverage = {
+    union_games: beforeFoundation.length,
+    bounded_games: beforeFoundation.filter((row) => row.span?.status === "BOUNDED").length,
+    unbounded_games: beforeFoundation.filter((row) => row.span?.status === "UNBOUNDED").length,
+    not_bounded_games: beforeFoundation.filter((row) => row.span?.status !== "BOUNDED").length,
+  };
+  const foundationReceipt = JSON.parse(fs.readFileSync(foundationReceiptPath, "utf8"));
+  let foundationRows = 0, foundationReplaced = 0, foundationAdded = 0;
+  await streamJsonl(foundationIndexPath, (row) => {
+    foundationRows += 1;
+    if (byEvent.has(row.event_id)) foundationReplaced += 1; else foundationAdded += 1;
+    const prior = byEvent.get(row.event_id);
+    row.source_receipts = [...(prior?.source_receipts ?? []), ...(row.source_receipts ?? [])];
+    byEvent.set(row.event_id, row);
+  });
+  ensure(foundationRows === foundationReceipt.output.rows, `FOUNDATION_ROW_CONSERVATION ${foundationRows} != ${foundationReceipt.output.rows}`);
   const rows = [...byEvent.values()].sort((a, b) => a.event_id.localeCompare(b.event_id));
-  return { rows, bell_bound_receipt: bellLibrary.buildReceipt(rows, authorities), counts: { registry_rows: registryRows, historical_rows: historicalLines.length, range_rows: rangeRows, union_games: rows.length, by_quality: rows.reduce((acc, row) => (acc[row.quality] = (acc[row.quality] || 0) + 1, acc), {}), registry_categories: registryCategories, historical_categories: historicalCategories, range_categories: rangeCategories, registry_eras: registryEras }, sources: { registry: receipt(registryPath, registryRows), historical: receipt(historicalPath, historicalLines.length), range: receipt(rangePath, rangeRows), actual_bells: authorities.bindings.actual_bell_sha256, named_neighbor_bells: authorities.bindings.named_neighbor_sha256 } };
+  const afterCoverage = {
+    union_games: rows.length,
+    bounded_games: rows.filter((row) => row.span?.status === "BOUNDED").length,
+    unbounded_games: rows.filter((row) => row.span?.status === "UNBOUNDED").length,
+    not_bounded_games: rows.filter((row) => row.span?.status !== "BOUNDED").length,
+  };
+  const foundation = {
+    index: receipt(foundationIndexPath, foundationRows),
+    materializer_receipt: receipt(foundationReceiptPath, null),
+    source: foundationReceipt.source,
+    spike_atlas: foundationReceipt.spike_atlas,
+    layer_license: foundationReceipt.layer_license,
+    native_window_law: foundationReceipt.native_window_law,
+    rows: foundationRows,
+    replaced_games: foundationReplaced,
+    added_games: foundationAdded,
+    coverage_before: beforeCoverage,
+    coverage_after: afterCoverage,
+  };
+  return { rows, foundation, bell_bound_receipt: bellLibrary.buildReceipt(rows, authorities), counts: { registry_rows: registryRows, historical_rows: historicalLines.length, range_rows: rangeRows, foundation_rows: foundationRows, union_games: rows.length, by_quality: rows.reduce((acc, row) => (acc[row.quality] = (acc[row.quality] || 0) + 1, acc), {}), registry_categories: registryCategories, historical_categories: historicalCategories, range_categories: rangeCategories, foundation_categories: foundationReceipt.output.by_category, registry_eras: registryEras }, sources: { registry: receipt(registryPath, registryRows), historical: receipt(historicalPath, historicalLines.length), range: receipt(rangePath, rangeRows), foundation, actual_bells: authorities.bindings.actual_bell_sha256, named_neighbor_bells: authorities.bindings.named_neighbor_sha256 } };
 }
 
 function remoteProbe() {
@@ -356,7 +393,14 @@ function resourcesFrom(census, remote, repo, privateRoot) {
     repoAsset("TRUTH_TABLE_C0056976", "c0056976", GROUND_TRUTH_PATH),
     repoAsset("HONEST_PAIR_FLOOR_TIMING", "336f42bf", ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/PAIR_POSITION_FLOOR_TIMING_CENSUS.json"),
     repoAsset("HONEST_DIVOT_ARRIVAL", "f40ac8ea", ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/DIVOT_ARRIVAL_AUDIT.json"),
+    { id: "FOUNDATION_PER_MINUTE_UNIVERSE", status: "CONNECTED", receipt: corpusReceipt(census, "foundation_minute_universe"), smoke: census.stores.find((row) => row.id === "foundation_minute_universe") },
+    { id: "SPIKE_ATLAS", status: "CONNECTED", receipt: corpusReceipt(census, "spike_atlas"), smoke: census.stores.find((row) => row.id === "spike_atlas") },
   ];
+}
+
+function corpusReceipt(census, id) {
+  const store = census.stores.find((row) => row.id === id);
+  return store?.sha256 ?? store?.receipt_sha256 ?? store?.binding_sha256 ?? null;
 }
 
 function buildCensus(corpus, remote, privateRoot) {
@@ -403,6 +447,8 @@ function buildCensus(corpus, remote, privateRoot) {
     { id: "external_custody", status: "CONNECTED", purpose: "RAW_NON_GIT_EVIDENCE", quality: "TARGET FILES HASHED; SEALED DIRECTORY EXCLUDED", games: tickEvents.size, span: "2026-07-11..2026-07-21", categories: tickCategories, path: path.join(privateRoot, "fit-local") },
     { id: "bookmaker_odds", status: "CONNECTED", purpose: "STANDING_OS_SUPPLEMENT", quality: "READ_ONLY_DURABLE_BACKUP", games: remote.odds_backup.tables.bookmaker_odds?.games ?? null, rows: remote.odds_backup.tables.bookmaker_odds?.rows ?? null, span: remote.odds_backup.tables.bookmaker_odds?.span ?? null, categories: remote.odds_backup.tables.bookmaker_odds?.categories ?? {}, path: remote.odds_backup.path, schema_receipt_sha256: shaBytes(canonical(remote.odds_backup.tables.bookmaker_odds)) },
     { id: "macro_projection", status: "CONNECTED", purpose: "PATTERN_LIBRARY", quality: "N2_N4_N5_MACRO_TABLES", games: macroReceipt.event_ledger?.D ?? null, games_with_book_rows: macroReceipt.projection?.events_with_rows ?? null, rows: macroReceipt.projection?.book_price_rows ?? null, span: `${macroReceipt.projection?.first_polled_at ?? "UNKNOWN"}..${macroReceipt.projection?.last_polled_at ?? "UNKNOWN"}`, categories: macroReceipt.projection?.rows_by_category ?? {}, category_basis: "BOOK_PRICE_ROWS", path: macroPath, sha256: fileHash(macroPath), bytes: fs.statSync(macroPath).size, receipt_sha256: fileHash(macroReceiptPath) },
+    { id: "foundation_minute_universe", status: "CONNECTED", purpose: "FIRST_CLASS_PATTERN_LIBRARY", quality: "NATIVE_BELL_BOUNDED; UNKNOWN_MATCH_START_METHOD_EXCLUDED", games: corpus.foundation.rows, rows: corpus.foundation.source.rows, span: "2025-06-18..2026-05-01", categories: corpus.counts.foundation_categories, grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], micro_micro_licensed: false, path: corpus.foundation.source.path, sha256: corpus.foundation.source.sha256, bytes: corpus.foundation.source.bytes, compact_index: corpus.foundation.index, coverage_before: corpus.foundation.coverage_before, coverage_after: corpus.foundation.coverage_after },
+    { id: "spike_atlas", status: "CONNECTED", purpose: "FOUNDATION_PATTERN_SUPPLEMENT", quality: "DESCRIPTIVE_ONLY; SUPERSEDED_EXIT_MAP_NOT_CONSUMED", games: corpus.foundation.spike_atlas.reduce((total, row) => total + row.rows, 0), rows: corpus.foundation.spike_atlas.reduce((total, row) => total + row.rows, 0), categories: Object.fromEntries(corpus.foundation.spike_atlas.map((row) => [row.category, row.rows])), grain: "EVENT_LEG_DESCRIPTIVE", licensed_layers: ["MACRO", "MICRO"], micro_micro_licensed: false, sha256: shaBytes(canonical(corpus.foundation.spike_atlas)), files: corpus.foundation.spike_atlas },
   ];
   const body = { label: "CORPUS_CENSUS_V54_V6", law: "F-V53-050", sealed_excluded: true, live_mutation: false, full_804_run: false, population: { union_games: corpus.counts.union_games, by_quality: corpus.counts.by_quality }, stores, remote_smoke: { spaces_filter: remote.spaces.filter, spaces_sample: remote.spaces.sample_receipt, subsecond_read_only: true, odds_read_only: true } };
   return { ...body, binding_sha256: shaBytes(canonical(body)) };
@@ -424,7 +470,7 @@ function readersPlain(reads) {
   return os.READER_NAMES.map((name) => `${name}=${JSON.stringify(reads[name].value)}`).join(" · ");
 }
 function neighborsPlain(neighborhood) {
-  return neighborhood.map((row) => `${row.event_id}[${row.citation_receipt_id}] (${row.event_date}; score ${row.score.toFixed(4)}; ${row.legs.map((leg) => `${leg.leg_id} ${leg.anchor_cents ?? "?"}->low ${leg.low_cents ?? "?"}->close ${leg.close_cents ?? "?"}`).join(", ")})`).join("; ");
+  return neighborhood.map((row) => `${row.event_id}[${row.citation_receipt_id}] (${row.event_date}; score ${row.score.toFixed(4)}; quality ${row.quality}; grain ${row.grain ?? "UNKNOWN"}; layers ${(row.licensed_layers ?? []).join("/") || "UNKNOWN"}; ${row.legs.map((leg) => `${leg.leg_id} ${leg.anchor_cents ?? "?"}->observed ${leg.observed_low_cents ?? "?"}->low ${leg.low_cents ?? "?"}->close ${leg.close_cents ?? "?"}`).join(", ")})`).join("; ");
 }
 function citationsPlain(derivation) {
   return Object.values(derivation.citation_receipts).map((row) => `${row.receipt_id}=${JSON.stringify(row)}`).join("; ");
@@ -517,20 +563,20 @@ function storySection(result, old, meta) {
   const closes = meta.leg_ids.map((id) => `${id}=${meta.truth_closes_cents[id] ?? "UNKNOWN"}`).join(", ");
   const danpra = meta.event_id === "KXATPMATCH-26JUL18DANPRA" ? (() => {
     const finalStage = result.stage_reads.at(-1), books = finalStage.reads.books.value;
-    const conclusions = finalStage.derivations.map((row) => `${row.leg_id}: weighted look-alike low ratio ${row.derivation.neighbor_leg.weighted_low_ratio?.toFixed(6) ?? "UNKNOWN"}, ${row.action.action}${Number.isInteger(row.action.target_cents) ? ` at ${row.action.target_cents}¢` : ""}`).join("; ");
+    const conclusions = finalStage.derivations.map((row) => `${row.leg_id}: conditional remaining-dip q50 ${row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents.q50 ?? "UNKNOWN"}¢ from own ${row.derivation.neighbor_leg.own_evidence.basis} evidence, ${row.action.action}${Number.isInteger(row.action.target_cents) ? ` at ${row.action.target_cents}¢` : ""}`).join("; ");
     return `\n\n### DANPRA 59/40 all-day exhibit\n\nAt the bell the tape still showed DAN ${books.DAN?.bid_cents ?? "?"}/${books.DAN?.ask_cents ?? "?"} and PRA ${books.PRA?.bid_cents ?? "?"}/${books.PRA?.ask_cents ?? "?"}, the operator's 59/40 all-day shape. Its final named look-alikes were ${neighborsPlain(finalStage.neighborhood)}. Across those games, the high-side anchors near 56–62¢ usually dipped into 42–58¢ before closing 57–65¢, while the low-side anchors near 38–44¢ dipped into 26–44¢ before closing 38–45¢. The declared similarity and pair arithmetic concluded ${conclusions}. The OS did not chase the displayed 59/40 pair; it stood 51/33 at the bell, and neither rest filled. CITATION-RECEIPTS: ${finalStage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
   })() : "";
   return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| ruler | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| Old V54 | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| Functionable v6 | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| Truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
 }
 
 async function main() {
-  const repo = required("repo"), cacheDir = required("cache"), privateRoot = required("private"), walkRoot = required("walk"), output = required("output");
+  const repo = required("repo"), cacheDir = required("cache"), privateRoot = required("private"), walkRoot = required("walk"), output = required("output"), foundationIndexPath = required("foundation-index"), foundationReceiptPath = required("foundation-receipt");
   const subsetSpec = arg("subset-games") ? subsetGuard.parseExactNamedSubset(arg("subset-games"), arg("expected-game-count")) : null;
   const requestedEventIds = subsetSpec ? [...subsetSpec.event_ids] : ALL_TARGETS;
   ensure(!(subsetSpec && arg("finalize-existing") === "true"), "NAMED_SUBSET_GUARD finalize-existing is a different lane");
   ensure(!output.toLowerCase().includes("holdout") && !output.toLowerCase().includes("sealed"), "sealed output forbidden");
   fs.mkdirSync(output, { recursive: true });
-  const corpus = await loadCorpus(cacheDir, repo);
+  const corpus = await loadCorpus(cacheDir, repo, foundationIndexPath, foundationReceiptPath);
   const remoteReceiptPath = arg("remote-receipt");
   const remote = remoteReceiptPath ? JSON.parse(fs.readFileSync(path.resolve(remoteReceiptPath), "utf8")).remote : remoteProbe();
   const archivePrefixCensusPath = arg("archive-prefix-census");
@@ -543,6 +589,10 @@ async function main() {
   }
   const census = buildCensus(corpus, remote, privateRoot);
   writeJson(path.join(output, "CORPUS_CENSUS.json"), census);
+  fs.copyFileSync(foundationIndexPath, path.join(output, "FOUNDATION_LIBRARY.jsonl.gz"));
+  fs.copyFileSync(foundationReceiptPath, path.join(output, "FOUNDATION_LIBRARY_RECEIPT.json"));
+  writeJson(path.join(output, "EXTERNAL_CUSTODY_MANIFEST.json"), { label: "V54_REPAIR_ITERATION2_EXTERNAL_CUSTODY", files: [{ logical_path: "FOUNDATION_PER_MINUTE_UNIVERSE", custody_location: corpus.foundation.source.external_custody_location, sha256: corpus.foundation.source.sha256, bytes: corpus.foundation.source.bytes, rows: corpus.foundation.source.rows, committed: false, compact_derivative: { path: "FOUNDATION_LIBRARY.jsonl.gz", sha256: corpus.foundation.index.sha256, bytes: corpus.foundation.index.bytes, rows: corpus.foundation.index.rows } }], all_committed_artifacts_under_50_mb: true });
+  writeJson(path.join(output, "FOUNDATION_COVERAGE_BEFORE_AFTER.json"), { label: "FOUNDATION_BOUNDED_SPAN_COVERAGE", target_from_f_vs_061: { bounded_games: 698, unbounded_games: 11811 }, measured: { before: corpus.foundation.coverage_before, after: corpus.foundation.coverage_after }, native_unknown_method_excluded: true, grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], micro_micro_licensed: false });
   writeJson(path.join(output, "LIBRARY_BELL_BOUND_RECEIPT.json"), corpus.bell_bound_receipt);
   const corpusIndex = Buffer.from(corpus.rows.map((row) => JSON.stringify(row)).join("\n") + "\n");
   fs.writeFileSync(path.join(output, "CORPUS_INDEX.jsonl.gz"), zlib.gzipSync(corpusIndex, { level: 9 }));
@@ -618,7 +668,7 @@ async function main() {
     };
     writeJson(path.join(output, "NAMED_SUBSET_EXECUTION_RECEIPT.json"), subsetReceipt);
     writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { named_subset_exact_n: requestedEventIds, total_games_executed: execution.total_games_executed, other_games_executed: execution.other_games_executed } });
-    writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
+    writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, foundation: corpus.foundation, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
     const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
     writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: subsetReceipt.label, files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(output, name)), path: name }])) });
     process.stdout.write(canonical({ output, named_subset: execution, all_readers_derived: games.every((game) => game.reader_receipt.all_readers_fired), full_804_run: false, sealed: false, live: false }));
@@ -648,21 +698,79 @@ async function main() {
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   fs.writeFileSync(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), zlib.gzipSync(Buffer.from(storyTraces.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
+  const decisionStages = storyTraces.filter((row) => row.kind === "DECISION_STAGE");
+  const allDerivations = decisionStages.flatMap((row) => row.derivations.map((derivation) => ({ event_id: row.event_id, trigger: row.trigger, stage_receipt: row.receipt, stage_reads: row.reads, ...derivation })));
+  writeJson(path.join(output, "CONDITIONAL_DIP_RECEIPT.json"), {
+    label: "PER_LEG_CONDITIONAL_DIP_GRADED_QUANTITY",
+    declaration: os.CONDITIONAL_DIP_DECLARATION,
+    method: "Exact dip/no-dip state match; continuous evidence-distance reweight; q25/q50/q75 of remaining dip; q50 derives the level; lineage is resource-gap fallback only.",
+    blanket_ratio_used: false,
+    derivations: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, own_evidence: row.derivation.neighbor_leg.own_evidence, distribution_cents: row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents, members: row.derivation.neighbor_leg.rows, excluded: row.derivation.neighbor_leg.excluded, target_authority: row.derivation.target_authority, target_cents: row.derivation.derived_target_cents, sentence: row.sentence })),
+    every_sentence_states_conditioning: allDerivations.every((row) => row.sentence.includes("observed state") && row.sentence.includes("remaining-dip q25/q50/q75")),
+  });
+  const beforeTracePath = path.join(repo, ".claude", "window1_live_v4_replay", "v54_repair_pair_clean_diet_fill_handoff_20260822", "REPAIR_FOUR_GAME_TRACE.jsonl.gz");
+  const beforeTrace = zlib.gunzipSync(fs.readFileSync(beforeTracePath)).toString("utf8").trim().split(/\r?\n/).filter(Boolean).map(JSON.parse);
+  const beforeSva = beforeTrace.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA" && row.kind === "DECISION_STAGE" && row.reads?.half_pair_state?.value?.credited_count === 0).flatMap((row) => row.derivations.filter((derivation) => derivation.leg_id === "SVA").map((derivation) => ({
+    receipt: row.receipt,
+    timestamp_epoch: row.timestamp_epoch,
+    book: row.reads.books.value.SVA,
+    target_cents: derivation.action.target_cents,
+    anchor_cents: derivation.derivation.anchor_cents,
+    blanket_low_ratio: derivation.derivation.neighbor_leg.weighted_low_ratio,
+    lineage_target_cents: derivation.derivation.lineage_target_cents,
+    sibling_uncredited_standing_commitment_cents: derivation.derivation.sibling_commitment_cents,
+    pair_cap_cents: derivation.derivation.pair_cap_cents,
+    source_class: Number.isFinite(derivation.derivation.neighbor_leg.weighted_low_ratio) ? (Number.isInteger(derivation.derivation.lineage_target_cents) ? "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO_BLENDED_WITH_LINEAGE" : "BOUNDED_NEIGHBOR_BLANKET_DIP_RATIO") : Number.isInteger(derivation.derivation.lineage_target_cents) ? "NULL_SERVED_LINEAGE_FALLBACK" : "NULL_SERVED_NO_TARGET",
+    pair_residue_present: Number.isInteger(derivation.derivation.sibling_commitment_cents),
+    pair_residue_bound_target: Number.isInteger(derivation.action.target_cents) && derivation.action.target_cents === derivation.derivation.pair_cap_cents,
+    neighbor_rows: derivation.derivation.neighbor_leg.rows,
+  })));
+  const afterSva = allDerivations.filter((row) => row.event_id === "KXATPCHALLENGERMATCH-26JUL14LAJSVA" && row.leg_id === "SVA" && row.stage_reads?.half_pair_state?.value?.credited_count === 0).map((row) => ({
+    receipt: row.receipt,
+    timestamp_epoch: row.timestamp_epoch,
+    book: row.stage_reads.books.value.SVA,
+    target_cents: row.action.target_cents,
+    target_authority: row.derivation.target_authority,
+    own_evidence: row.derivation.neighbor_leg.own_evidence,
+    conditional_distribution_cents: row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents,
+    lineage_target_cents: row.derivation.lineage_target_cents,
+    sibling_uncredited_standing_commitment_cents: row.derivation.sibling_commitment_cents,
+    pair_cap_cents: row.derivation.pair_cap_cents,
+    pair_residue_present: Number.isInteger(row.derivation.sibling_commitment_cents),
+    pair_residue_bound_target: Number.isInteger(row.action.target_cents) && row.action.target_cents === row.derivation.pair_cap_cents,
+    resources_consulted: row.resources_consulted,
+    sentence: row.sentence,
+  }));
+  writeJson(path.join(output, "LAJSVA_EARLY_RISER_FORENSICS.json"), {
+    label: "EARLY_RISER_LEVEL_SOURCE_AND_REPAIR",
+    event_id: "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+    leg_id: "SVA",
+    question: "Where did the pre-fill 33-36c levels during the later 41c floor era come from?",
+    verdict: "The initial 36c level was a bounded-neighbor blanket dip ratio, not a null-served fallback. Later targets also carried an uncredited sibling standing commitment through the frozen pair-conservation arithmetic; rows identify whether that residue actually bound the target.",
+    before_artifact: receipt(beforeTracePath, beforeTrace.length),
+    before: beforeSva,
+    after: afterSva,
+    repair: "The blanket ratio and lineage blend are deleted. A bell-bounded Foundation neighborhood is conditioned on this leg's own dip/no-dip evidence; the q50 remaining-dip quantity owns the target, with lineage only when the conditional distribution is unavailable. Pair conservation remains frozen.",
+    no_placement_constant_added: true,
+    windows_on_own_clocks: afterSva.every((row) => row.own_evidence && row.receipt),
+  });
   const fillEvents = storyTraces.filter((row) => row.kind === "FILL_EVENT").map((row) => row.fill_event_receipt);
-  const fillHandoffs = storyTraces.filter((row) => row.kind === "DECISION_STAGE").flatMap((row) => row.derivations).filter((row) => row.derivation.fill_handoff_receipt_id).map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, trade_receipt: row.citation_receipts[row.derivation.fill_handoff_receipt_id]?.context?.original_fill_receipt, handoff_receipt_id: row.derivation.fill_handoff_receipt_id, query_fingerprint_sha256: row.derivation.reposed_query_fingerprint_sha256, sentence: row.sentence }));
+  const fillHandoffs = decisionStages.flatMap((row) => row.derivations).filter((row) => row.derivation.fill_handoff_receipt_id).map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, trade_receipt: row.citation_receipts[row.derivation.fill_handoff_receipt_id]?.context?.original_fill_receipt, handoff_receipt_id: row.derivation.fill_handoff_receipt_id, query_fingerprint_sha256: row.derivation.reposed_query_fingerprint_sha256, sentence: row.sentence }));
   writeJson(path.join(output, "FILL_HANDOFF_RECEIPT.json"), { label: "FILL_HANDOFF_RECEIPT", fill_events: fillEvents, post_fill_derivations: fillHandoffs, every_post_fill_sentence_cites_fill_receipt: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id)) });
   const lawViolations = [];
   for (const row of corpus.rows.filter((candidate) => candidate.span?.status === "UNBOUNDED")) {
     for (const leg of row.legs ?? []) if ([leg.low_cents, leg.high_cents, leg.close_cents, leg.net_cents].some(Number.isFinite)) lawViolations.push(`UNBOUNDED_PATH_VALUE_SERVED:${row.event_id}|${leg.leg_id}`);
   }
   if (!fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt) && row.sentence.includes(row.handoff_receipt_id))) lawViolations.push("POST_FILL_SENTENCE_WITHOUT_FILL_RECEIPT");
-  if (storyTraces.filter((row) => row.kind === "DECISION_STAGE").flatMap((row) => row.derivations).some((row) => !row.pair_conservation.at_or_below_99)) lawViolations.push("PAIR_CONSERVATION_BREACH");
+  if (decisionStages.flatMap((row) => row.derivations).some((row) => !row.pair_conservation.at_or_below_99)) lawViolations.push("PAIR_CONSERVATION_BREACH");
+  if (allDerivations.some((row) => row.derivation.neighbor_leg.legacy_blanket_low_ratio_used !== false)) lawViolations.push("BLANKET_DIP_RATIO_SURVIVED");
+  if (allDerivations.some((row) => row.resources_consulted.includes("FOUNDATION_PER_MINUTE_UNIVERSE") && !row.sentence.includes("MINUTE-grain MACRO/MICRO"))) lawViolations.push("FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING");
   const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.old.completed, delta_vs_100_cents: row.old.delta_vs_100_cents }));
-  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "CLEAN_DIET_FILL_HANDOFF_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), candidate_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.functionable_v6.completed, delta_vs_100_cents: row.functionable_v6.delta_vs_100_cents, legs: row.functionable_v6.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, zero_measured_law_violations: lawViolations.length === 0, self_stop: floorBreaks.length > 0, stop_reason: floorBreaks.length ? "URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "FOUNDATION_CONDITIONAL_DIP_EARLY_RISER_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_candidate_floors: SAFETY_FLOORS, candidate_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.functionable_v6.completed, delta_vs_100_cents: row.functionable_v6.delta_vs_100_cents, legs: row.functionable_v6.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, zero_measured_law_violations: lawViolations.length === 0, sentences_cite_conditioning_and_fills: allDerivations.every((row) => row.sentence.includes("observed state")) && fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   writeText(path.join(output, "ASSUMPTION_GAPS.md"), `# Assumption gaps\n\n- January–March has event-grain historical aggregates but no local intramatch tape. Measurement needed: public historical trades plus timestamped book reconstruction at the same grain as the July recorder.\n- The subsecond store mixes public tape and synthetic book transitions and lacks exchange trade identity on every row. Measurement needed: source-specific identity completeness by named event.\n- The DO archive is connected and the pre-sealed object reader is smoked, but its July object catalog is not a January-present database. Measurement needed: event-level archive coverage joined to corpus_events_v2.\n- The odds backup is connected, but its overlap with each target game is not complete. Measurement needed: immutable per-event bookmaker snapshots with source clock and player mapping.\n- CRIJEA has no verified bell. Measurement needed: an independent official in-play timestamp; until then it grades nothing.\n`);
   writeText(path.join(output, "CC_URSPAL_LATE_BELL.md"), `# CC filing — URSPAL late bell\n\nEvent: KXATPCHALLENGERMATCH-26JUL14URSPAL.\n\nThe L11 truth-table right edge is 1784045100. Tape prints moved PAL 41→30 and URS 61→77 within four minutes after that edge. The tape-inferred bell is at least 48 minutes late for this game. The close remains the truth-table close unless and until CC's standing bell sweep produces a stronger official timestamp.\n\nSource: F-VS-023 @ 3cd59162; W1_GROUND_TRUTH_TABLE.json @ c0056976.\n`);
   writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { smoke: TARGETS.smoke, stories: TARGETS.stories } });
-  writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
+  writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, foundation: corpus.foundation, library_bell_bound: corpus.bell_bound_receipt, ground_truth: groundTruth.receipt, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
   const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
   writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: OUTPUT_LABEL, files: Object.fromEntries(files.map((name) => [name, { ...receipt(path.join(output, name)), path: name }])) });
   process.stdout.write(canonical({ output, functionable: functionality.all_connected, smoke: "PASS_NO_GRADING", stories: storyResults, floor_breaks: floorBreaks, full_804_run: false, sealed: false, live: false }));

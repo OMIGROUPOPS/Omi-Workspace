@@ -1,0 +1,20 @@
+{
+  "label": "V54_REPAIR_ITERATION2_EXTERNAL_CUSTODY",
+  "files": [
+    {
+      "logical_path": "FOUNDATION_PER_MINUTE_UNIVERSE",
+      "custody_location": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "rows": 9330878,
+      "committed": false,
+      "compact_derivative": {
+        "path": "FOUNDATION_LIBRARY.jsonl.gz",
+        "sha256": "8825d0844f0c69a7d743c6886c9c61175ac2faca6f8eea22f81245a6cc6c9f69",
+        "bytes": 1707678,
+        "rows": 9000
+      }
+    }
+  ],
+  "all_committed_artifacts_under_50_mb": true
+}

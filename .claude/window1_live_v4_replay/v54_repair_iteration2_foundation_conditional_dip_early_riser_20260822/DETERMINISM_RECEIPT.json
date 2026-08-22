@@ -1,0 +1,210 @@
+{
+  "label": "V54_REPAIR_ITERATION2_DETERMINISM_X2",
+  "two_clean_builds": true,
+  "same_output_path_each_pass": true,
+  "names_equal": true,
+  "byte_identical": true,
+  "differences": [],
+  "policy_files": [
+    "arb-executor/analysis/window1_v54_functionable_os.js",
+    "arb-executor/analysis/build_window1_v54_functionable_v6.js"
+  ],
+  "passes": [
+    {
+      "pass": 1,
+      "stdout_sha256": "19427f0b753e5afc07faf81802c1f986950ee01919fbb28d7d09d2cd4014d0d2",
+      "files": {
+        "ARTIFACT_HASH_MANIFEST.json": {
+          "sha256": "358fe233857d715fecf9efb5ff07fb7f5a2b80aa29b1ee885a1cbdbf51102ed4",
+          "bytes": 4725
+        },
+        "ASSUMPTION_GAPS.md": {
+          "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+          "bytes": 943
+        },
+        "CC_URSPAL_LATE_BELL.md": {
+          "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+          "bytes": 464
+        },
+        "CONDITIONAL_DIP_RECEIPT.json": {
+          "sha256": "a71dedfa6a1d42684808e11ee809e2403d96a9d8ae4e52b2408b95f9cf1836cf",
+          "bytes": 391330
+        },
+        "CORPUS_CENSUS.json": {
+          "sha256": "0bdfc51ba77c5feaae2ec452c1cb692bd0b81d5ee6c715a9f1be8e6b8e60ee2d",
+          "bytes": 14088
+        },
+        "CORPUS_INDEX.jsonl.gz": {
+          "sha256": "8d97f1ab272073f98f2aff3ca36293f250564ef559b8edf285422665e540cfc1",
+          "bytes": 2229728
+        },
+        "EXTERNAL_CUSTODY_MANIFEST.json": {
+          "sha256": "ad0336ecbee9c75ab46899811e8ef1e8363609a30d0a24c2d467956eb389b474",
+          "bytes": 689
+        },
+        "FILL_HANDOFF_RECEIPT.json": {
+          "sha256": "5bdfa677fe6193c89c23d39024c1afdd1dbc1868bae54e19f617262fa6ae2965",
+          "bytes": 61731
+        },
+        "FORBIDDEN_ACCESS_RECEIPT.json": {
+          "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+          "bytes": 465
+        },
+        "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+          "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+          "bytes": 593
+        },
+        "FOUNDATION_LIBRARY.jsonl.gz": {
+          "sha256": "8825d0844f0c69a7d743c6886c9c61175ac2faca6f8eea22f81245a6cc6c9f69",
+          "bytes": 1707678
+        },
+        "FOUNDATION_LIBRARY_RECEIPT.json": {
+          "sha256": "7bd6dc368e5cb611db01e73b5fb8111ec5dff366386908902703e76ef73472e9",
+          "bytes": 3171
+        },
+        "FOUR_STORIES.md": {
+          "sha256": "41d543d2b0c13660bdb167765fe99adfadf596082ebd29fc3176916ce5ebcc0e",
+          "bytes": 1486484
+        },
+        "FOUR_STORIES_RECEIPT.json": {
+          "sha256": "3b8da78f5cbf6d0f7c90d7b1f02ead43c90b3dd8b8742b5a092c53893890ddc8",
+          "bytes": 20449
+        },
+        "FUNCTIONALITY_RECEIPT.json": {
+          "sha256": "6498c3e638c6fa1e40d9553a09ca8be63392cda183a4679fed4e903ee6bb38b8",
+          "bytes": 24213
+        },
+        "LAJSVA_EARLY_RISER_FORENSICS.json": {
+          "sha256": "4ff20479fcef6736136f23afb1ead76ba66fe66c75a3412d3c208752cdb7a29d",
+          "bytes": 64470
+        },
+        "LIBRARY_BELL_BOUND_RECEIPT.json": {
+          "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+          "bytes": 15882
+        },
+        "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+          "sha256": "52736a9188f379ce27b7a65d4a81170bbe8c37a5c8c7c049d594b4d6faf63d3e",
+          "bytes": 436592
+        },
+        "REPAIR_GATE_RECEIPT.json": {
+          "sha256": "9561ff5729151dc52717e8b04a1d33cef171c42945b11dd6a3bbe7af440d94d9",
+          "bytes": 4668
+        },
+        "SMOKE_CRIJEA.md": {
+          "sha256": "1c1068ec49e71e02b7a10ac5d0893b310dfb4edf6d75be703f45707bc2ac403b",
+          "bytes": 670839
+        },
+        "SMOKE_CRIJEA_RECEIPT.json": {
+          "sha256": "c710a6249f565c01eaab09b30ab4ab4211f5fe2d0c0392014154fe9b79145d69",
+          "bytes": 271303
+        },
+        "SOURCE_RECEIPTS.json": {
+          "sha256": "b40ac7f9712abae32950d18fffef92d8cc21cac31ff643be20c769561097f5ac",
+          "bytes": 54616
+        },
+        "TARGET_PRINTS_5.jsonl.gz": {
+          "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+          "bytes": 1224927
+        }
+      }
+    },
+    {
+      "pass": 2,
+      "stdout_sha256": "19427f0b753e5afc07faf81802c1f986950ee01919fbb28d7d09d2cd4014d0d2",
+      "files": {
+        "ARTIFACT_HASH_MANIFEST.json": {
+          "sha256": "358fe233857d715fecf9efb5ff07fb7f5a2b80aa29b1ee885a1cbdbf51102ed4",
+          "bytes": 4725
+        },
+        "ASSUMPTION_GAPS.md": {
+          "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+          "bytes": 943
+        },
+        "CC_URSPAL_LATE_BELL.md": {
+          "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+          "bytes": 464
+        },
+        "CONDITIONAL_DIP_RECEIPT.json": {
+          "sha256": "a71dedfa6a1d42684808e11ee809e2403d96a9d8ae4e52b2408b95f9cf1836cf",
+          "bytes": 391330
+        },
+        "CORPUS_CENSUS.json": {
+          "sha256": "0bdfc51ba77c5feaae2ec452c1cb692bd0b81d5ee6c715a9f1be8e6b8e60ee2d",
+          "bytes": 14088
+        },
+        "CORPUS_INDEX.jsonl.gz": {
+          "sha256": "8d97f1ab272073f98f2aff3ca36293f250564ef559b8edf285422665e540cfc1",
+          "bytes": 2229728
+        },
+        "EXTERNAL_CUSTODY_MANIFEST.json": {
+          "sha256": "ad0336ecbee9c75ab46899811e8ef1e8363609a30d0a24c2d467956eb389b474",
+          "bytes": 689
+        },
+        "FILL_HANDOFF_RECEIPT.json": {
+          "sha256": "5bdfa677fe6193c89c23d39024c1afdd1dbc1868bae54e19f617262fa6ae2965",
+          "bytes": 61731
+        },
+        "FORBIDDEN_ACCESS_RECEIPT.json": {
+          "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+          "bytes": 465
+        },
+        "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+          "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+          "bytes": 593
+        },
+        "FOUNDATION_LIBRARY.jsonl.gz": {
+          "sha256": "8825d0844f0c69a7d743c6886c9c61175ac2faca6f8eea22f81245a6cc6c9f69",
+          "bytes": 1707678
+        },
+        "FOUNDATION_LIBRARY_RECEIPT.json": {
+          "sha256": "7bd6dc368e5cb611db01e73b5fb8111ec5dff366386908902703e76ef73472e9",
+          "bytes": 3171
+        },
+        "FOUR_STORIES.md": {
+          "sha256": "41d543d2b0c13660bdb167765fe99adfadf596082ebd29fc3176916ce5ebcc0e",
+          "bytes": 1486484
+        },
+        "FOUR_STORIES_RECEIPT.json": {
+          "sha256": "3b8da78f5cbf6d0f7c90d7b1f02ead43c90b3dd8b8742b5a092c53893890ddc8",
+          "bytes": 20449
+        },
+        "FUNCTIONALITY_RECEIPT.json": {
+          "sha256": "6498c3e638c6fa1e40d9553a09ca8be63392cda183a4679fed4e903ee6bb38b8",
+          "bytes": 24213
+        },
+        "LAJSVA_EARLY_RISER_FORENSICS.json": {
+          "sha256": "4ff20479fcef6736136f23afb1ead76ba66fe66c75a3412d3c208752cdb7a29d",
+          "bytes": 64470
+        },
+        "LIBRARY_BELL_BOUND_RECEIPT.json": {
+          "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+          "bytes": 15882
+        },
+        "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+          "sha256": "52736a9188f379ce27b7a65d4a81170bbe8c37a5c8c7c049d594b4d6faf63d3e",
+          "bytes": 436592
+        },
+        "REPAIR_GATE_RECEIPT.json": {
+          "sha256": "9561ff5729151dc52717e8b04a1d33cef171c42945b11dd6a3bbe7af440d94d9",
+          "bytes": 4668
+        },
+        "SMOKE_CRIJEA.md": {
+          "sha256": "1c1068ec49e71e02b7a10ac5d0893b310dfb4edf6d75be703f45707bc2ac403b",
+          "bytes": 670839
+        },
+        "SMOKE_CRIJEA_RECEIPT.json": {
+          "sha256": "c710a6249f565c01eaab09b30ab4ab4211f5fe2d0c0392014154fe9b79145d69",
+          "bytes": 271303
+        },
+        "SOURCE_RECEIPTS.json": {
+          "sha256": "b40ac7f9712abae32950d18fffef92d8cc21cac31ff643be20c769561097f5ac",
+          "bytes": 54616
+        },
+        "TARGET_PRINTS_5.jsonl.gz": {
+          "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+          "bytes": 1224927
+        }
+      }
+    }
+  ]
+}

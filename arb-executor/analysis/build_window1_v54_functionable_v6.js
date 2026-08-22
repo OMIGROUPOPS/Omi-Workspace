@@ -34,7 +34,7 @@ const ANALYSIS_ROOT = ".claude/window1_second_seat/v11_non_action_mechanism_audi
 const ACTUAL_BELL_PATH = `${ANALYSIS_ROOT}/ACTUAL_BELL_TABLE_804.json`;
 const NAMED_NEIGHBOR_PATH = `${ANALYSIS_ROOT}/NEIGHBOR_SPAN_BELL_CHECK.json`;
 const GROUND_TRUTH_CORRECTIONS_PATH = `${ANALYSIS_ROOT}/W1_GROUND_TRUTH_CORRECTIONS.jsonl`;
-const OUTPUT_LABEL = "V54_REPAIR_ITERATION3_SPLIT_GRADED_RETRIEVAL";
+const OUTPUT_LABEL = "V54_REPAIR_ITERATION4_COMPOSITION_PRESENCE";
 
 function arg(name, fallback = null) {
   const index = process.argv.indexOf(`--${name}`);
@@ -579,7 +579,7 @@ function storySection(result, old, meta) {
     const conclusions = finalStage.derivations.map((row) => `${row.leg_id}: conditional remaining-dip q50 ${row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents.q50 ?? "UNKNOWN"}¢ from own ${row.derivation.neighbor_leg.own_evidence.basis} evidence, ${row.action.action}${Number.isInteger(row.action.target_cents) ? ` at ${row.action.target_cents}¢` : ""}`).join("; ");
     return `\n\n### DANPRA 59/40 all-day exhibit\n\nAt the bell the tape still showed DAN ${books.DAN?.bid_cents ?? "?"}/${books.DAN?.ask_cents ?? "?"} and PRA ${books.PRA?.bid_cents ?? "?"}/${books.PRA?.ask_cents ?? "?"}, the operator's 59/40 all-day shape. Its final named look-alikes were ${neighborsPlain(finalStage.neighborhood)}. Across those games, the high-side anchors near 56–62¢ usually dipped into 42–58¢ before closing 57–65¢, while the low-side anchors near 38–44¢ dipped into 26–44¢ before closing 38–45¢. The declared similarity and pair arithmetic concluded ${conclusions}. The OS did not chase the displayed 59/40 pair; it stood 51/33 at the bell, and neither rest filled. CITATION-RECEIPTS: ${finalStage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
   })() : "";
-  return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| ruler | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| Old V54 | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| Repair iteration 3 | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| Truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
+  return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| ruler | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| Old V54 | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| Repair iteration 4 | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| Truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
 }
 
 async function main() {
@@ -604,7 +604,7 @@ async function main() {
   writeJson(path.join(output, "CORPUS_CENSUS.json"), census);
   fs.copyFileSync(foundationIndexPath, path.join(output, "FOUNDATION_LIBRARY.jsonl.gz"));
   fs.copyFileSync(foundationReceiptPath, path.join(output, "FOUNDATION_LIBRARY_RECEIPT.json"));
-  writeJson(path.join(output, "EXTERNAL_CUSTODY_MANIFEST.json"), { label: "V54_REPAIR_ITERATION3_EXTERNAL_CUSTODY", files: [{ logical_path: "FOUNDATION_PER_MINUTE_UNIVERSE", custody_location: corpus.foundation.source.external_custody_location, sha256: corpus.foundation.source.sha256, bytes: corpus.foundation.source.bytes, rows: corpus.foundation.source.rows, committed: false, compact_derivative: { path: "FOUNDATION_LIBRARY.jsonl.gz", sha256: corpus.foundation.index.sha256, bytes: corpus.foundation.index.bytes, rows: corpus.foundation.index.rows } }], all_committed_artifacts_under_50_mb: true });
+  writeJson(path.join(output, "EXTERNAL_CUSTODY_MANIFEST.json"), { label: "V54_REPAIR_ITERATION4_EXTERNAL_CUSTODY", files: [{ logical_path: "FOUNDATION_PER_MINUTE_UNIVERSE", custody_location: corpus.foundation.source.external_custody_location, sha256: corpus.foundation.source.sha256, bytes: corpus.foundation.source.bytes, rows: corpus.foundation.source.rows, committed: false, compact_derivative: { path: "FOUNDATION_LIBRARY.jsonl.gz", sha256: corpus.foundation.index.sha256, bytes: corpus.foundation.index.bytes, rows: corpus.foundation.index.rows } }], all_committed_artifacts_under_50_mb: true });
   writeJson(path.join(output, "FOUNDATION_COVERAGE_BEFORE_AFTER.json"), { label: "FOUNDATION_BOUNDED_SPAN_COVERAGE", target_from_f_vs_061: { bounded_games: 698, unbounded_games: 11811 }, measured: { before: corpus.foundation.coverage_before, after: corpus.foundation.coverage_after }, native_unknown_method_excluded: true, grain: "MINUTE", licensed_layers: ["MACRO", "MICRO"], micro_micro_licensed: false });
   writeJson(path.join(output, "LIBRARY_BELL_BOUND_RECEIPT.json"), corpus.bell_bound_receipt);
   const corpusIndex = Buffer.from(corpus.rows.map((row) => JSON.stringify(row)).join("\n") + "\n");
@@ -707,28 +707,46 @@ async function main() {
     storyTraces.push(...result.stage_reads.map((stage) => ({ event_id: eventId, kind: "DECISION_STAGE", ...stage })), ...result.fill_events.map((fill) => ({ event_id: eventId, kind: "FILL_EVENT", fill_event_receipt: fill })));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.functionable_v6.completed || row.functionable_v6.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four stories — repair iteration 3\n\nLicense: LAW_INDEX @ f18f8c67, sha256 41784e6a… · L0 L6 L8 L10 L11 L16 L17 L18 L20 L21 L22 L23.\n\nThe story is the verdict. Every level names NEIGHBORS-GRADED, OWN-EVIDENCE, or LINEAGE-LAST-RESORT. Every live-window split states which uncredited standing plan yielded. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four stories — repair iteration 4\n\nLicense: LAW_INDEX @ 521a1613, sha256 41784e6a… · all standing laws.\n\nThe story is the verdict. Every level composes fresh own evidence with the graded absolute-floor distribution without subtraction; every sentence states allocation and relation to the live touch. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, adjustments_filed: [], self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   fs.writeFileSync(path.join(output, "REPAIR_FOUR_GAME_TRACE.jsonl.gz"), zlib.gzipSync(Buffer.from(storyTraces.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
   const decisionStages = storyTraces.filter((row) => row.kind === "DECISION_STAGE");
   const allDerivations = decisionStages.flatMap((row) => row.derivations.map((derivation) => ({ event_id: row.event_id, trigger: row.trigger, stage_receipt: row.receipt, stage_reads: row.reads, ...derivation })));
   writeJson(path.join(output, "CONDITIONAL_DIP_RECEIPT.json"), {
-    label: "CONTINUOUSLY_GRADED_RETRIEVAL",
+    label: "COMPOSED_OWN_EVIDENCE_AND_GRADED_NEIGHBORS",
     declaration: os.CONDITIONAL_DIP_DECLARATION,
-    method: "All nearest usable members survive. Similarity, coverage, and continuous evidence-distance grade each member; q25/q50/q75 describe remaining dip; q50 is consulted first, own tape evidence second, lineage last.",
+    method: "All nearest usable members survive. Their weighted absolute-low distribution conditions the fresh live two-sided book. Remaining dip is emitted as telemetry and is never subtracted from own evidence.",
     binary_same_state_gate_used: false,
     blanket_ratio_used: false,
-    derivations: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, own_evidence: row.derivation.neighbor_leg.own_evidence, distribution_cents: row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents, members: row.derivation.neighbor_leg.rows, excluded: row.derivation.neighbor_leg.excluded, target_authority: row.derivation.target_authority, target_cents: row.derivation.derived_target_cents, sentence: row.sentence })),
-    every_sentence_states_conditioning: allDerivations.every((row) => row.sentence.includes("observed state") && row.sentence.includes("remaining-dip q25/q50/q75")),
-    every_sentence_names_basis: allDerivations.every((row) => ["TARGET_BASIS=NEIGHBORS-GRADED", "TARGET_BASIS=OWN-EVIDENCE", "TARGET_BASIS=LINEAGE-LAST-RESORT"].some((token) => row.sentence.includes(token))),
+    subtractive_remaining_dip_used: false,
+    derivations: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, own_evidence: row.derivation.neighbor_leg.own_evidence, absolute_floor_distribution_cents: row.derivation.neighbor_leg.conditional_absolute_floor_distribution_cents, remaining_dip_telemetry_cents: row.derivation.neighbor_leg.conditional_remaining_dip_distribution_cents, members: row.derivation.neighbor_leg.rows, excluded: row.derivation.neighbor_leg.excluded, target_authority: row.derivation.target_authority, target_cents: row.derivation.derived_target_cents, touch_relation: row.derivation.touch_relation, joint_depth_license: row.derivation.joint_depth_license, sentence: row.sentence })),
+    every_sentence_states_conditioning: allDerivations.every((row) => row.sentence.includes("absolute-floor q25/q50/q75") && row.sentence.includes("is telemetry and is never subtracted")),
+    every_sentence_names_basis: allDerivations.every((row) => ["TARGET_BASIS=COMPOSED-OWN+NEIGHBORS", "TARGET_BASIS=OWN-EVIDENCE", "TARGET_BASIS=LINEAGE-LAST-RESORT"].some((token) => row.sentence.includes(token))),
   });
   writeJson(path.join(output, "SPLIT_ALLOCATION_RECEIPT.json"), {
-    label: "PER_RECEIPT_LIVE_WINDOW_SPLIT",
-    law: "An uncredited standing rest is a revisable plan. At a sole live evidenced window the live side receives its uncapped lawful level and the sibling plan yields; a credited fill remains commitment. Still or jointly-live pictures retain incumbent allocation.",
-    derivations: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, live_evidenced_window: row.derivation.live_evidenced_window, lawful_unallocated_target_cents: row.derivation.lawful_unallocated_target_cents, allocation: row.derivation.allocation, final_target_cents: row.action.target_cents, sentence: row.sentence })),
+    label: "PER_RECEIPT_GRADED_CONTINUOUS_SPLIT",
+    law: "Both uncredited standing rests are revisable plans. Fresh per-receipt composed targets are allocated continuously by current evidence grades whenever their sum exceeds 99; a credited fill remains commitment.",
+    hard_ask_equals_target_plus_one_gate_used: false,
+    stale_prior_path_used: false,
+    derivations: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, timestamp_epoch: row.timestamp_epoch, receipt: row.receipt, lawful_unallocated_target_cents: row.derivation.lawful_unallocated_target_cents, allocation_priority_grade: row.derivation.allocation_priority_grade, allocation: row.derivation.allocation, final_target_cents: row.action.target_cents, sentence: row.sentence })),
     every_sentence_states_allocation: allDerivations.every((row) => row.sentence.includes("ALLOCATION=")),
     every_split_preserves_pair_budget: allDerivations.every((row) => row.pair_conservation.at_or_below_99),
+    reallocations: allDerivations.filter((row) => row.derivation.allocation?.mode === "GRADED-CONTINUOUS-SPLIT"),
+    every_reallocation_shows_from_not_equal_to: allDerivations.filter((row) => row.derivation.allocation?.mode === "GRADED-CONTINUOUS-SPLIT").every((row) => row.derivation.allocation.from_cents !== row.derivation.allocation.to_cents),
+  });
+  writeJson(path.join(output, "COMPOSITION_PRESENCE_RECEIPT.json"), {
+    label: "COMPOSITION_AND_PRESENCE_LAW",
+    composition: "Own evidence and weighted neighbor absolute-floor distributions condition one another; remaining dip is never subtracted.",
+    presence: "A formed fresh book supplies the reach relation. The composed level is bounded into [best bid, best ask-1]; any depth below the prior bounded traded low carries an explicit joint-evidence license.",
+    no_placement_constant_added: true,
+    stale_prior_path_removed: true,
+    rows: allDerivations.map((row) => ({ event_id: row.event_id, leg_id: row.leg_id, receipt: row.receipt, live_bid_cents: row.derivation.live_bid_cents, live_ask_cents: row.derivation.live_ask_cents, own_bounded_traded_low_cents: row.derivation.neighbor_leg.own_evidence.basis === "TRUE_TRADE" ? row.derivation.neighbor_leg.own_evidence.observed_low_cents : null, neighbor_floor_distribution_cents: row.derivation.neighbor_leg.conditional_absolute_floor_distribution_cents, target_cents: row.action.target_cents, touch_relation: row.derivation.touch_relation, joint_depth_license: row.derivation.joint_depth_license, target_basis: row.derivation.target_basis, sentence: row.sentence })),
+    every_target_states_touch_relation: allDerivations.every((row) => row.sentence.includes("TOUCH_RELATION=")),
+    every_below_trade_low_target_has_joint_license: allDerivations.every((row) => {
+      const own = row.derivation.neighbor_leg.own_evidence;
+      return own.basis !== "TRUE_TRADE" || !Number.isInteger(row.action.target_cents) || row.action.target_cents >= own.observed_low_cents || row.derivation.joint_depth_license?.lawful === true;
+    }),
   });
   writeJson(path.join(output, "FOUNDATION_SERVING_FIX_RECEIPT.json"), {
     label: "FOUNDATION_STRICT_PRE_BELL_TRADE_MINUTES",
@@ -776,11 +794,11 @@ async function main() {
     event_id: "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
     leg_id: "SVA",
     question: "Where did the pre-fill 33-36c levels during the later 41c floor era come from?",
-    verdict: "The old 36c era came from retrieval plus an uncredited sibling plan treated as commitment. Iteration 3 continuously grades every usable neighbor and separately records the live-window allocation that lets the sibling plan yield.",
+    verdict: "The old 36c era came from subtractive retrieval plus an uncredited sibling plan treated as commitment. Iteration 4 conditions the fresh book with absolute neighbor floors and continuously reallocates only fresh per-receipt plans.",
     before_artifact: receipt(beforeTracePath, beforeTrace.length),
     before: beforeSva,
     after: afterSva,
-    repair: "Binary same-state exclusion is deleted; neighbors carry continuous match grades. Target basis is graded neighbors, then own evidence, then lineage last. Conservation remains frozen while the uncredited split is derived jointly at each receipt.",
+    repair: "Binary same-state exclusion remains deleted; neighbors carry continuous match grades. Own evidence and absolute neighbor-floor distributions compose without subtraction. Conservation remains frozen while both uncredited plans are derived and allocated fresh at each receipt.",
     no_placement_constant_added: true,
     windows_on_own_clocks: afterSva.every((row) => row.own_evidence && row.receipt),
   });
@@ -795,11 +813,19 @@ async function main() {
   if (decisionStages.flatMap((row) => row.derivations).some((row) => !row.pair_conservation.at_or_below_99)) lawViolations.push("PAIR_CONSERVATION_BREACH");
   if (allDerivations.some((row) => row.derivation.neighbor_leg.legacy_blanket_low_ratio_used !== false)) lawViolations.push("BLANKET_DIP_RATIO_SURVIVED");
   if (allDerivations.some((row) => row.derivation.neighbor_leg.binary_state_gate_used !== false)) lawViolations.push("BINARY_SAME_STATE_GATE_SURVIVED");
-  if (allDerivations.some((row) => !["NEIGHBORS-GRADED", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"].includes(row.derivation.target_basis))) lawViolations.push("UNNAMED_TARGET_BASIS");
+  if (allDerivations.some((row) => row.derivation.neighbor_leg.subtractive_remaining_dip_used !== false)) lawViolations.push("SUBTRACTIVE_REMAINING_DIP_SURVIVED");
+  if (allDerivations.some((row) => row.derivation.stale_prior_path_used !== false || row.derivation.allocation?.stale_prior_consumed === true)) lawViolations.push("STALE_PRIOR_PATH_SURVIVED");
+  if (allDerivations.some((row) => !["COMPOSED-OWN+NEIGHBORS", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"].includes(row.derivation.target_basis))) lawViolations.push("UNNAMED_TARGET_BASIS");
   if (allDerivations.some((row) => !row.sentence.includes("ALLOCATION="))) lawViolations.push("ALLOCATION_REASON_MISSING_FROM_SENTENCE");
+  if (allDerivations.some((row) => !row.sentence.includes("TOUCH_RELATION="))) lawViolations.push("TOUCH_RELATION_MISSING_FROM_SENTENCE");
+  if (allDerivations.some((row) => {
+    const own = row.derivation.neighbor_leg.own_evidence;
+    return own.basis === "TRUE_TRADE" && Number.isInteger(row.action.target_cents) && row.action.target_cents < own.observed_low_cents && row.derivation.joint_depth_license?.lawful !== true;
+  })) lawViolations.push("UNLICENSED_REST_BELOW_OWN_BOUNDED_TRADED_LOW");
+  if (allDerivations.some((row) => row.derivation.allocation?.mode === "GRADED-CONTINUOUS-SPLIT" && row.derivation.allocation.from_cents === row.derivation.allocation.to_cents)) lawViolations.push("INERT_SPLIT_FROM_EQUALS_TO");
   if (allDerivations.some((row) => row.resources_consulted.includes("FOUNDATION_PER_MINUTE_UNIVERSE") && !row.sentence.includes("MINUTE-grain MACRO/MICRO"))) lawViolations.push("FOUNDATION_CITATION_GRAIN_OR_LAYER_MISSING");
   const baselinePins = storyResults.filter((row) => ["KXATPCHALLENGERMATCH-26JUL14URSPAL", "KXATPCHALLENGERMATCH-26JUL14LAJSVA"].includes(row.event_id)).map((row) => ({ event_id: row.event_id, completed: row.old.completed, delta_vs_100_cents: row.old.delta_vs_100_cents }));
-  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "SPLIT_GRADED_RETRIEVAL_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_candidate_floors: SAFETY_FLOORS, candidate_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.functionable_v6.completed, delta_vs_100_cents: row.functionable_v6.delta_vs_100_cents, legs: row.functionable_v6.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, zero_measured_law_violations: lawViolations.length === 0, sentences_carry_allocation_and_basis: allDerivations.every((row) => row.sentence.includes("ALLOCATION=") && row.sentence.includes("TARGET_BASIS=")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
+  writeJson(path.join(output, "REPAIR_GATE_RECEIPT.json"), { label: "COMPOSITION_PRESENCE_GATE", honest_baseline_pins: baselinePins, pins_equal_expected: baselinePins.every((row) => row.completed && row.delta_vs_100_cents === (row.event_id.includes("URSPAL") ? 3 : 6)), required_candidate_floors: SAFETY_FLOORS, candidate_safety_floor_breaks: floorBreaks.map((row) => ({ event_id: row.event_id, completed: row.functionable_v6.completed, delta_vs_100_cents: row.functionable_v6.delta_vs_100_cents, legs: row.functionable_v6.legs })), safety_floor_pass: floorBreaks.length === 0, law_violations: lawViolations, zero_measured_law_violations: lawViolations.length === 0, sentences_carry_basis_allocation_touch_relation: allDerivations.every((row) => row.sentence.includes("ALLOCATION=") && row.sentence.includes("TARGET_BASIS=") && row.sentence.includes("TOUCH_RELATION=")), sentences_cite_fills: fillHandoffs.every((row) => row.trade_receipt && row.sentence.includes(row.trade_receipt)), self_stop: floorBreaks.length > 0 || lawViolations.length > 0, stop_reason: floorBreaks.length ? "GIUBAR_OR_URSPAL_OR_LAJSVA_REQUIRED_COMPLETE_NOT_HELD" : lawViolations.length ? "LAW_VIOLATION" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   writeText(path.join(output, "ASSUMPTION_GAPS.md"), `# Assumption gaps\n\n- January–March has event-grain historical aggregates but no local intramatch tape. Measurement needed: public historical trades plus timestamped book reconstruction at the same grain as the July recorder.\n- The subsecond store mixes public tape and synthetic book transitions and lacks exchange trade identity on every row. Measurement needed: source-specific identity completeness by named event.\n- The DO archive is connected and the pre-sealed object reader is smoked, but its July object catalog is not a January-present database. Measurement needed: event-level archive coverage joined to corpus_events_v2.\n- The odds backup is connected, but its overlap with each target game is not complete. Measurement needed: immutable per-event bookmaker snapshots with source clock and player mapping.\n- CRIJEA has no verified bell. Measurement needed: an independent official in-play timestamp; until then it grades nothing.\n`);
   writeText(path.join(output, "CC_URSPAL_LATE_BELL.md"), `# CC filing — URSPAL late bell\n\nEvent: KXATPCHALLENGERMATCH-26JUL14URSPAL.\n\nThe L11 truth-table right edge is 1784045100. Tape prints moved PAL 41→30 and URS 61→77 within four minutes after that edge. The tape-inferred bell is at least 48 minutes late for this game. The close remains the truth-table close unless and until CC's standing bell sweep produces a stronger official timestamp.\n\nSource: F-VS-023 @ 3cd59162; W1_GROUND_TRUTH_TABLE.json @ c0056976.\n`);
   writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { smoke: TARGETS.smoke, stories: TARGETS.stories } });

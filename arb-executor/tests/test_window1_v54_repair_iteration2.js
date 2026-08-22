@@ -25,9 +25,11 @@ assert.equal(noDip.own_evidence.dip_state, "NO_DIP_OBSERVED");
 assert.equal(noDip.rows.length, 4);
 assert.equal(noDip.excluded.length, 0);
 assert.equal(noDip.conditional_remaining_dip_distribution_cents.q50, 0);
+assert.equal(noDip.conditional_absolute_floor_distribution_cents.q50, 41);
 assert.equal(noDip.derived_floor_cents, 41);
 assert.equal(noDip.binary_state_gate_used, false);
 assert.equal(noDip.legacy_blanket_low_ratio_used, false);
+assert.equal(noDip.subtractive_remaining_dip_used, false);
 
 const dipped = os.conditionalNeighborLeg([
   neighbor("A", 39, 37),
@@ -37,6 +39,7 @@ const dipped = os.conditionalNeighborLeg([
 assert.equal(dipped.own_evidence.basis, "TRUE_TRADE");
 assert.equal(dipped.rows.length, 3);
 assert.equal(dipped.conditional_remaining_dip_distribution_cents.q50, 1);
+assert.equal(dipped.conditional_absolute_floor_distribution_cents.q50, 38);
 assert.equal(dipped.derived_floor_cents, 38);
 assert(dipped.rows.every((row) => Number.isFinite(row.evidence_match_grade)));
 

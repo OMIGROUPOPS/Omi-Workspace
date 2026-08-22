@@ -91,13 +91,14 @@ const SIMILARITY_DECLARATION = Object.freeze({
   undisclosed_weights: false,
 });
 const CONDITIONAL_DIP_DECLARATION = Object.freeze({
-  question: "Given this leg's own bounded evidence now, how much additional dip did the continuously graded nearest usable legs subsequently exhibit?",
-  distribution: "weighted q25/q50/q75 of integer-cent remaining dip",
-  signing_statistic: "q50 weighted median",
+  question: "Given this leg's own bounded evidence and live touch now, where do the continuously graded nearest usable legs place the lawful absolute floor distribution?",
+  distribution: "weighted q25/q50/q75 of integer-cent absolute lows; remaining dip is telemetry and is never subtracted from this leg's evidence",
+  signing_statistic: "absolute-low q50 conditions the live two-sided book; it never replaces or subtracts from own evidence",
   member_law: "Nearest usable members are never rejected by a binary dip/no-dip gate; similarity, coverage, and continuous evidence-distance jointly grade every member.",
-  authority_order: ["NEIGHBORS-GRADED", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"],
-  provenance: "PROVISIONAL_DESCRIPTIVE: operator ordered graded retrieval conditioned on this leg's own tape; q50 is the central member of the reported distribution, not a fitted placement constant",
+  authority_order: ["COMPOSED-OWN+NEIGHBORS", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"],
+  provenance: "PROVISIONAL_DESCRIPTIVE: operator ordered own evidence and graded neighbors to condition one another; the q50 absolute low is a distributional input bounded by the fresh live touch, not a placement constant",
   blanket_anchor_ratio: "DELETED",
+  subtractive_remaining_dip_path: "DELETED",
 });
 
 function sha256(value) {
@@ -449,15 +450,20 @@ function conditionalNeighborLeg(neighborhood, orientedIndex, ownEvidence) {
     rows.push({ event_id: neighbor.event_id, quality: neighbor.quality, similarity_grade: neighbor.score, coverage_grade: neighbor.coverage, evidence_match_grade: evidenceMatchGrade, evidence_distance_cents: evidenceDistance, weight, observed_dip_cents: observedDip, dip_state: observedDip > 0 ? "DIP_OBSERVED" : "NO_DIP_OBSERVED", remaining_dip_cents: remainingDip, observed_low_cents: leg.observed_low_cents, low_cents: leg.low_cents, low_basis: leg.low_basis ?? null, source_grain: neighbor.grain ?? leg.source_grain ?? null, licensed_layers: neighbor.licensed_layers ?? leg.licensed_layers ?? null });
   }
   const distributionRows = rows.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.remaining_dip_cents }));
+  const absoluteFloorRows = rows.map((row) => ({ event_id: row.event_id, weight: row.weight, value: row.low_cents }));
   const denominator = sum(rows.map((row) => row.weight));
   const q25 = weightedQuantile(distributionRows, 0.25), q50 = weightedQuantile(distributionRows, 0.50), q75 = weightedQuantile(distributionRows, 0.75);
+  const floorQ25 = weightedQuantile(absoluteFloorRows, 0.25), floorQ50 = weightedQuantile(absoluteFloorRows, 0.50), floorQ75 = weightedQuantile(absoluteFloorRows, 0.75);
   return {
     rows, excluded, denominator,
     own_evidence: { basis: ownBasis, anchor_cents: ownAnchor, observed_low_cents: ownLow, observed_dip_cents: ownObservedDip, dip_state: ownDipState, true_trade_count: ownEvidence.true_trade_count },
     conditional_remaining_dip_distribution_cents: { q25, q50, q75 },
-    derived_floor_cents: Number.isFinite(ownLow) && Number.isFinite(q50) ? ownLow - q50 : null,
+    conditional_absolute_floor_distribution_cents: { q25: floorQ25, q50: floorQ50, q75: floorQ75 },
+    conditioned_floor_cents: floorQ50,
+    derived_floor_cents: floorQ50,
     binary_state_gate_used: false,
     legacy_blanket_low_ratio_used: false,
+    subtractive_remaining_dip_used: false,
   };
 }
 
@@ -506,23 +512,48 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   if (fillHandoffReceipt) assertCaptureReceipt(fillHandoffReceipt, state.receipt, `FILL_HANDOFF:${state.event_id}|${legId}`);
   if (fillHandoffReceipt) citationReceipts[fillHandoffReceipt.receipt_id] = fillHandoffReceipt;
   const formationProgress = reads.anchor_settle.value.formation_progress[legId];
-  const gradedTarget = Number.isFinite(neighborLeg.derived_floor_cents) ? Math.round(neighborLeg.derived_floor_cents) : null;
+  const gradedTarget = Number.isFinite(neighborLeg.conditioned_floor_cents) ? Math.round(neighborLeg.conditioned_floor_cents) : null;
   const lineageTarget = cent(lineage?.target_cents);
   const neighborhoodMass = mean(neighborhood.map((row) => row.score * row.coverage)) ?? 0;
-  const ownEvidenceTarget = cent(ownLowRead.true_trade_low_cents) ?? cent(anchor) ?? (cent(book?.ask_cents) ? book.ask_cents - 1 : cent(book?.bid_cents));
-  const targetBasis = cent(gradedTarget) ? "NEIGHBORS-GRADED" : cent(ownEvidenceTarget) ? "OWN-EVIDENCE" : "LINEAGE-LAST-RESORT";
+  const liveBid = cent(book?.bid_cents), liveAsk = cent(book?.ask_cents);
+  const postOnlyCap = liveAsk ? liveAsk - 1 : 99;
+  let ownEvidenceTarget = null;
+  let ownEvidenceReceipt = null;
+  if (liveBid) { ownEvidenceTarget = liveBid; ownEvidenceReceipt = book.receipt; }
+  else if (cent(ownLowRead.true_trade_low_cents)) { ownEvidenceTarget = ownLowRead.true_trade_low_cents; ownEvidenceReceipt = state.legs[legId].prints.find((row) => row.price_cents === ownLowRead.true_trade_low_cents)?.receipt ?? null; }
+  else if (cent(ownLowRead.low_cents)) { ownEvidenceTarget = ownLowRead.low_cents; ownEvidenceReceipt = last(state.legs[legId].rows)?.receipt ?? null; }
+  else if (cent(anchor)) { ownEvidenceTarget = anchor; ownEvidenceReceipt = reads.anchor_settle.receipts.find(Boolean) ?? null; }
+  else if (liveAsk) { ownEvidenceTarget = liveAsk - 1; ownEvidenceReceipt = book.receipt; }
+  const composedTarget = cent(gradedTarget) && liveBid
+    ? Math.max(liveBid, Math.min(gradedTarget, postOnlyCap))
+    : cent(ownEvidenceTarget);
+  const targetBasis = cent(gradedTarget) && liveBid ? "COMPOSED-OWN+NEIGHBORS" : cent(ownEvidenceTarget) ? "OWN-EVIDENCE" : "LINEAGE-LAST-RESORT";
   const targetAuthority = targetBasis;
-  const proposedTarget = cent(gradedTarget) ?? cent(ownEvidenceTarget) ?? lineageTarget;
-  const siblingCommitment = cent(sibling.entry_cents) ?? cent(sibling.standing_target_cents);
+  const proposedTarget = cent(composedTarget) ?? lineageTarget;
+  const siblingCommitment = sibling.credited ? cent(sibling.entry_cents) : null;
   const pairCap = siblingCommitment ? PAR_BUDGET_CENTS - siblingCommitment : PAR_BUDGET_CENTS - 1;
-  const postOnlyCap = cent(book?.ask_cents) ? book.ask_cents - 1 : 99;
   const lawfulUnallocatedTarget = cent(proposedTarget) ? Math.max(1, Math.min(proposedTarget, postOnlyCap)) : null;
-  const derivedTarget = cent(lawfulUnallocatedTarget) ? Math.max(1, Math.min(lawfulUnallocatedTarget, pairCap)) : null;
-  const liveEvidencedWindow = Number.isFinite(formationProgress)
-    && formationProgress >= 1
-    && cent(lawfulUnallocatedTarget)
-    && cent(book?.ask_cents)
-    && book.ask_cents === lawfulUnallocatedTarget + 1;
+  const boundedTradeLow = cent(ownLowRead.true_trade_low_cents);
+  const belowBoundedTradeLow = Boolean(boundedTradeLow && cent(lawfulUnallocatedTarget) && lawfulUnallocatedTarget < boundedTradeLow);
+  const twoSidedBookLicensesDepth = Boolean(belowBoundedTradeLow && liveBid && liveAsk && liveAsk <= boundedTradeLow);
+  const neighborAndTouchLicenseDepth = Boolean(belowBoundedTradeLow && cent(gradedTarget) && liveBid && gradedTarget <= lawfulUnallocatedTarget && liveBid <= lawfulUnallocatedTarget);
+  const jointDepthLicense = !belowBoundedTradeLow
+    ? { required: false, lawful: true, basis: "NOT_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] }
+    : twoSidedBookLicensesDepth
+      ? { required: true, lawful: true, basis: "FRESH_TWO_SIDED_BOOK_BELOW_PRIOR_TRADED_LOW", receipts: [book.receipt] }
+      : neighborAndTouchLicenseDepth
+        ? { required: true, lawful: true, basis: "FRESH_BID_PLUS_GRADED_NEIGHBOR_FLOOR", receipts: [book.receipt, ...neighborReceipts.map((row) => row.receipt_id)] }
+        : { required: true, lawful: false, basis: "NO_JOINT_EVIDENCE_LICENSE_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] };
+  const evidenceLawfulTarget = !jointDepthLicense.lawful && boundedTradeLow
+    ? Math.max(1, Math.min(boundedTradeLow, postOnlyCap))
+    : lawfulUnallocatedTarget;
+  const derivedTarget = cent(evidenceLawfulTarget) ? Math.max(1, Math.min(evidenceLawfulTarget, pairCap)) : null;
+  const touchRelation = liveBid && liveAsk && cent(evidenceLawfulTarget)
+    ? evidenceLawfulTarget === liveBid ? "AT_BEST_BID" : evidenceLawfulTarget > liveBid ? `INSIDE_SPREAD_${evidenceLawfulTarget - liveBid}C_ABOVE_BID` : `BELOW_BEST_BID_${liveBid - evidenceLawfulTarget}C`
+    : "NO_FORMED_TWO_SIDED_BOOK";
+  const evidenceMass = reads.ripeness.value[legId].continuous_evidence_mass ?? 0;
+  const touchDistance = liveBid && cent(evidenceLawfulTarget) ? Math.abs(evidenceLawfulTarget - liveBid) : 99;
+  const allocationPriorityGrade = (neighborLeg.denominator + evidenceMass) / (1 + touchDistance);
   const active = cent(position.standing_target_cents);
   let action;
   if (!Number.isFinite(formationProgress) || formationProgress < 1) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "FORMATION_NOT_COMPLETE" };
@@ -537,8 +568,10 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     ? ` The sibling ${siblingId} is credited at ${sibling.entry_cents} from trade receipt ${sibling.fill_receipt ?? "RESOURCE-GAP"}; that half-pair transition re-posed query ${fillHandoffReceipt.context.reposed_query_fingerprint_sha256} and re-derived this open side [${fillHandoffReceipt.receipt_id}].`
     : "";
   const conditional = neighborLeg.conditional_remaining_dip_distribution_cents;
-  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${neighborLeg.own_evidence.basis} evidence low is ${neighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${neighborLeg.own_evidence.dip_state} with ${neighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents; TARGET_BASIS=${targetBasis}; own-evidence target is ${ownEvidenceTarget ?? "UNKNOWN"}; no blanket ratio or binary same-state gate is consumed.`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement} Lineage target ${lineageStatement}, uncapped lawful target ${lawfulUnallocatedTarget ?? "UNKNOWN"}, incumbent pair cap ${pairCap}, and post-only cap ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
+  const absoluteFloor = neighborLeg.conditional_absolute_floor_distribution_cents;
+  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${neighborLeg.own_evidence.basis} evidence low is ${neighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${neighborLeg.own_evidence.dip_state} with ${neighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 ${absoluteFloor.q25 ?? "UNKNOWN"}/${absoluteFloor.q50 ?? "UNKNOWN"}/${absoluteFloor.q75 ?? "UNKNOWN"} cents; remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} is telemetry and is never subtracted. TARGET_BASIS=${targetBasis}; fresh own-evidence target is ${ownEvidenceTarget ?? "UNKNOWN"} from ${ownEvidenceReceipt ?? "RESOURCE-GAP"}; no blanket ratio, binary same-state gate, or stale-prior path is consumed.`;
+  const presenceStatement = ` TOUCH_RELATION=${touchRelation}; LIVE_BID_ASK=${liveBid ?? "UNKNOWN"}/${liveAsk ?? "UNKNOWN"}; JOINT_DEPTH_LICENSE=${jointDepthLicense.basis}; DEPTH_LICENSE_RECEIPTS=${jointDepthLicense.receipts.join(",") || "NONE"}.`;
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${presenceStatement} Lineage target ${lineageStatement}, uncapped lawful target ${evidenceLawfulTarget ?? "UNKNOWN"}, incumbent pair cap ${pairCap}, and post-only cap ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
   for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
   if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
@@ -553,7 +586,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     neighborhood,
     resources_consulted: [...new Set(neighborhood.filter((row) => row.quality === "FOUNDATION_MINUTE_BELL_BOUNDED").flatMap((row) => ["FOUNDATION_PER_MINUTE_UNIVERSE", ...(row.legs?.some((leg) => leg.spike_atlas) ? ["SPIKE_ATLAS"] : [])]))],
     citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: neighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, graded_target_cents: cent(gradedTarget), own_evidence_target_cents: cent(ownEvidenceTarget), proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(lawfulUnallocatedTarget), live_evidenced_window: Boolean(liveEvidencedWindow), live_window_receipt: liveEvidencedWindow ? book.receipt : null, lineage_target_cents: lineageTarget, sibling_commitment_cents: siblingCommitment, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
+    derivation: { oriented_index: orientedIndex, neighbor_leg: neighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, graded_target_cents: cent(gradedTarget), own_evidence_target_cents: cent(ownEvidenceTarget), own_evidence_receipt: ownEvidenceReceipt, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, sibling_commitment_cents: siblingCommitment, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },
@@ -566,7 +599,7 @@ function rewriteAllocatedAction(row, action, allocation, reads) {
   const priorStatement = row.sentence_action_assertion.expected_statement;
   const active = cent(reads.half_pair_state.value.legs[row.leg_id].standing_target_cents);
   const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${cent(action.target_cents) ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
-  const allocationStatement = `ALLOCATION=${allocation.mode}; LIVE_SIDE=${allocation.live_leg_id ?? "NONE"}; LIVE_LEVEL_CENTS=${allocation.live_level_cents ?? "NONE"}; SIBLING_YIELD_FROM_CENTS=${allocation.sibling_yield_from_cents ?? "NONE"}; SIBLING_YIELD_TO_CENTS=${allocation.sibling_yield_to_cents ?? "NONE"}; REASON=${allocation.reason}.`;
+  const allocationStatement = `ALLOCATION=${allocation.mode}; PRIORITY_GRADES=${allocation.priority_grades ?? "NONE"}; FROM_CENTS=${allocation.from_cents ?? "NONE"}; TO_CENTS=${allocation.to_cents ?? "NONE"}; EXCESS_CENTS=${allocation.excess_cents ?? 0}; REASON=${allocation.reason}.`;
   row.sentence = row.sentence.replace("ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION.", allocationStatement).replace(priorStatement, actionStatement);
   row.action = action;
   row.derivation.derived_target_cents = cent(action.target_cents);
@@ -579,37 +612,51 @@ function allocatePairActions({ state, reads, derivations }) {
   const rows = new Map(derivations.map((row) => [row.leg_id, row]));
   const openRows = derivations.filter((row) => !reads.half_pair_state.value.legs[row.leg_id].credited);
   const creditedRows = state.leg_ids.filter((id) => reads.half_pair_state.value.legs[id].credited);
-  const liveRows = openRows.filter((row) => row.derivation.live_evidenced_window && cent(row.derivation.lawful_unallocated_target_cents));
   const allocated = new Map();
 
-  if (creditedRows.length === 0 && openRows.length === 2 && liveRows.length === 1) {
-    const live = liveRows[0];
-    const sibling = openRows.find((row) => row.leg_id !== live.leg_id);
-    const liveTarget = live.derivation.lawful_unallocated_target_cents;
-    const siblingPrior = cent(reads.half_pair_state.value.legs[sibling.leg_id].standing_target_cents);
-    const siblingPlan = siblingPrior ?? cent(sibling.derivation.derived_target_cents) ?? cent(sibling.derivation.lawful_unallocated_target_cents);
-    const siblingTarget = cent(siblingPlan) ? Math.min(siblingPlan, PAR_BUDGET_CENTS - liveTarget) : null;
+  if (creditedRows.length === 0 && openRows.length === 2 && openRows.every((row) => cent(row.derivation.lawful_unallocated_target_cents))) {
+    const [left, right] = openRows;
+    const leftFrom = left.derivation.lawful_unallocated_target_cents;
+    const rightFrom = right.derivation.lawful_unallocated_target_cents;
+    const excess = Math.max(0, leftFrom + rightFrom - PAR_BUDGET_CENTS);
+    const leftGrade = Number.isFinite(left.derivation.allocation_priority_grade) ? left.derivation.allocation_priority_grade : 0;
+    const rightGrade = Number.isFinite(right.derivation.allocation_priority_grade) ? right.derivation.allocation_priority_grade : 0;
+    const gradeMass = leftGrade + rightGrade;
+    const leftReduction = excess === 0 ? 0 : gradeMass > 0 ? Math.round(excess * rightGrade / gradeMass) : Math.floor(excess / 2);
+    const rightReduction = excess - leftReduction;
+    let leftTo = Math.max(1, leftFrom - leftReduction);
+    let rightTo = Math.max(1, rightFrom - rightReduction);
+    if (leftTo + rightTo > PAR_BUDGET_CENTS) {
+      const residual = leftTo + rightTo - PAR_BUDGET_CENTS;
+      if (leftGrade >= rightGrade) rightTo = Math.max(1, rightTo - residual);
+      else leftTo = Math.max(1, leftTo - residual);
+    }
+    const changed = leftFrom !== leftTo || rightFrom !== rightTo;
     const common = {
-      mode: "LIVE-WINDOW-SPLIT",
-      live_leg_id: live.leg_id,
-      live_level_cents: liveTarget,
-      sibling_yield_from_cents: siblingPlan,
-      sibling_yield_to_cents: siblingTarget,
-      reason: `${live.leg_id} has the sole live evidenced window at this receipt; the uncredited ${sibling.leg_id} rest is a revisable plan and yields before market interaction`,
+      mode: changed ? "GRADED-CONTINUOUS-SPLIT" : "COMPOSED-PICTURE-NO-REALLOCATION",
+      priority_grades: `${left.leg_id}:${leftGrade.toFixed(9)},${right.leg_id}:${rightGrade.toFixed(9)}`,
+      from_cents: `${left.leg_id}:${leftFrom},${right.leg_id}:${rightFrom}`,
+      to_cents: `${left.leg_id}:${leftTo},${right.leg_id}:${rightTo}`,
+      excess_cents: excess,
+      stale_prior_consumed: false,
+      reason: changed
+        ? `fresh per-receipt composition exceeded 99; each revisable standing plan yielded continuously in inverse proportion to its current evidence grade before market interaction`
+        : "fresh per-receipt composed targets already fit the 99-cent conservation budget",
     };
-    allocated.set(live.leg_id, { target: liveTarget, allocation: common });
-    allocated.set(sibling.leg_id, { target: siblingTarget, allocation: common });
+    allocated.set(left.leg_id, { target: leftTo, allocation: common });
+    allocated.set(right.leg_id, { target: rightTo, allocation: common });
   } else {
     for (const row of openRows) {
       allocated.set(row.leg_id, {
         target: cent(row.action.target_cents),
         allocation: {
           mode: "CURRENT-BEHAVIOR-BYTE-EQUAL",
-          live_leg_id: liveRows.length === 1 ? liveRows[0].leg_id : null,
-          live_level_cents: liveRows.length === 1 ? liveRows[0].derivation.lawful_unallocated_target_cents : null,
-          sibling_yield_from_cents: null,
-          sibling_yield_to_cents: null,
-          reason: creditedRows.length ? "a credited fill is a commitment, so frozen pair-cap arithmetic applies" : liveRows.length === 0 ? "no unique live evidenced window exists" : "both sides are live, so the picture is UNDECIDED",
+          priority_grades: null,
+          from_cents: null,
+          to_cents: null,
+          excess_cents: 0,
+          stale_prior_consumed: false,
+          reason: creditedRows.length ? "a credited fill is a commitment, so frozen pair-cap arithmetic applies" : "one or both fresh per-receipt composed targets are unavailable",
         },
       });
     }
@@ -621,7 +668,7 @@ function allocatePairActions({ state, reads, derivations }) {
     const active = cent(reads.half_pair_state.value.legs[row.leg_id].standing_target_cents);
     let action;
     if (!target) action = { action: active ? "HOLD_REST" : "HOLD_REST", target_cents: active, reason: "JOINT_DERIVATION_HAS_NO_LAWFUL_TARGET" };
-    else action = { action: active === null ? "PLACE_REST" : active === target ? "HOLD_REST" : "REPRICE_REST", target_cents: target, reason: entry.allocation.mode === "LIVE-WINDOW-SPLIT" ? "DERIVED_LIVE_WINDOW_SPLIT" : row.action.reason };
+    else action = { action: active === null ? "PLACE_REST" : active === target ? "HOLD_REST" : "REPRICE_REST", target_cents: target, reason: entry.allocation.mode === "GRADED-CONTINUOUS-SPLIT" ? "DERIVED_GRADED_CONTINUOUS_SPLIT" : row.action.reason };
     rewriteAllocatedAction(row, action, entry.allocation, reads);
   }
 
@@ -629,7 +676,7 @@ function allocatePairActions({ state, reads, derivations }) {
     const siblingId = state.leg_ids.find((id) => id !== row.leg_id);
     const siblingRow = rows.get(siblingId);
     const siblingPosition = reads.half_pair_state.value.legs[siblingId];
-    const siblingPlan = cent(siblingPosition.entry_cents) ?? cent(siblingRow?.action?.target_cents) ?? cent(siblingPosition.standing_target_cents);
+    const siblingPlan = siblingPosition.credited ? cent(siblingPosition.entry_cents) : cent(siblingRow?.action?.target_cents);
     const target = cent(row.action.target_cents);
     row.pair_conservation = {
       sibling_leg_id: siblingId,

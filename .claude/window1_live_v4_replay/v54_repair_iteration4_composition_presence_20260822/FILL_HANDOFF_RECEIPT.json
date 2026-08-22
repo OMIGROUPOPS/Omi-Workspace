@@ -1,0 +1,275 @@
+{
+  "label": "FILL_HANDOFF_RECEIPT",
+  "fill_events": [
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR|GIU",
+      "captured_at_receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+      "row_refs": [
+        "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "leg_id": "GIU",
+        "entry_cents": 69,
+        "fill_timestamp_epoch": 1783865397.812,
+        "prior_standing_target_cents": 69,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-d26e6cf16ab870eff935fecba851543fff91991b2e98507591caad0e3f085a2a"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|URS",
+      "captured_at_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "row_refs": [
+        "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "leg_id": "URS",
+        "entry_cents": 57,
+        "fill_timestamp_epoch": 1784032697.6,
+        "prior_standing_target_cents": 58,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-4ed51c3a17acbe7fa9dee2fe857493197a95a4a8d4628dd874681042e14f19c0"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL|PAL",
+      "captured_at_receipt": "b24bd093-10ae-7fff-b81e-bcc4b7686a44",
+      "row_refs": [
+        "b24bd093-10ae-7fff-b81e-bcc4b7686a44"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "leg_id": "PAL",
+        "entry_cents": 40,
+        "fill_timestamp_epoch": 1784041997.986,
+        "prior_standing_target_cents": 40,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-589c5c1ff7099d66c2a59768e0c96f7f15e880d922a1ebf1bf163292c069379a"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+      "captured_at_receipt": "db95a67b-d0c6-4121-e667-a38b31fe770d",
+      "row_refs": [
+        "db95a67b-d0c6-4121-e667-a38b31fe770d"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "leg_id": "SVA",
+        "entry_cents": 45,
+        "fill_timestamp_epoch": 1784042394.35,
+        "prior_standing_target_cents": 45,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-1f2020932a6c7c4012e6606e7fffce1af0f1fd0633705a6a5755fb309b40956c"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+      "captured_at_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+      "row_refs": [
+        "16abd619-09aa-7b19-502f-1c8dda90dac9"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "leg_id": "LAJ",
+        "entry_cents": 54,
+        "fill_timestamp_epoch": 1784050973.062,
+        "prior_standing_target_cents": 54,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-f74b8e78653995d9f37d1c169cc799b9844a375688d5a5fbedc909156e59c945"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPMATCH-26JUL18DANPRA|PRA",
+      "captured_at_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+      "row_refs": [
+        "54075ae0-14e4-6484-d298-207ef219837f"
+      ],
+      "context": {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "leg_id": "PRA",
+        "entry_cents": 41,
+        "fill_timestamp_epoch": 1784342553.971,
+        "prior_standing_target_cents": 41,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-a3149b51a53b135adbed73299f507074a8822c21c6e1ed3276602a9640874217"
+    }
+  ],
+  "post_fill_derivations": [
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783865397.812,
+      "trade_receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+      "handoff_receipt_id": "CR-bfabdf1202b3fde6f1a2ec48b7afbac5e8e3abfd174bf47b2d803e7bb6be2410",
+      "query_fingerprint_sha256": "776b959734dc09a6626fd2daddd4bc8dbd4e5109f4b4419d38015359c09016e8",
+      "sentence": "At 9.460503 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL12GIUBAR [CR-c41ac30bd33e72a5a835f81df062224682b7ac73df8108847f1e9dd2f06bf5e6]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR10WONLAN@0.784654[CR-9ca6d05e1627293a6418c1ed91d97238892ffc08eef12d2dcf7c2895d53fc343], KXATPCHALLENGERMATCH-26MAR01BITGUL@0.778940[CR-3ee51331723f61939d6d1ee63915b36929da720f77ef80c0d1c1e048b2a1b48a], KXATPCHALLENGERMATCH-26MAR01SCHPIR@0.777992[CR-5052eb7db7caf6fc6ba4be9a8a1a296bd1e3be2cf9fd34c6493b2da9a409f405], KXATPCHALLENGERMATCH-26FEB28GILBUT@0.777981[CR-8562924f8252ab9e2d6f66b3766d717ac429b847b5751ba98f4efa0ae1bad4b2], KXATPCHALLENGERMATCH-26FEB21KOUVAN@0.770986[CR-f369ff9f11d5643bb4fe3933b258e34c6dba8011d53c0e4a034ef0c60b112734], KXATPCHALLENGERMATCH-26JAN28DOSHIJ@0.767810[CR-cf001ab9ed63bec82136c73f4fd127326aea6fb2ae55506dae7ad96ad36e8184], KXATPCHALLENGERMATCH-26MAR26FICSCH@0.766800[CR-b1668dc479b1a8afcd96b52e914766937a8902abd6c5676d1d92c33fdfe98983]. BAR has anchor 31; its own TRUE_TRADE evidence low is 27, so its observed state is DIP_OBSERVED with 4 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 25/25/27 cents; remaining-dip q25/q50/q75 1/1/4 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 31 from KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-1948; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=31/33; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 30[CR-3435dfbedbd76061d55d567bd3dba665535e8cf1e9f02c1ab7fd08892c670bbe], uncapped lawful target 31, incumbent pair cap 30, and post-only cap 32. The sibling GIU is credited at 69 from trade receipt 37ebe8ad-2b4a-4de2-e15e-0cd21eb84016; that half-pair transition re-posed query 776b959734dc09a6626fd2daddd4bc8dbd4e5109f4b4419d38015359c09016e8 and re-derived this open side [CR-bfabdf1202b3fde6f1a2ec48b7afbac5e8e3abfd174bf47b2d803e7bb6be2410]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=30; ACTIVE_TARGET_BEFORE_CENTS=30."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783866958,
+      "trade_receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+      "handoff_receipt_id": "CR-6e05f1d7abe5e4a159ee3ef6600cc560dfaaaf472a4f48a7fe2a59b289084690",
+      "query_fingerprint_sha256": "fc8a673286e6c46a1d4615778c4d56ee4b6950ddb68835f7b8b7eb0b49e7a500",
+      "sentence": "At 9.893889 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL12GIUBAR [CR-74dc0a4e2e92555400f9dcc119f63b17854ae781cffd290da40ad4e159200e7a]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR10WONLAN@0.780260[CR-c3082304e52ba8f74c9cd69aa9cf516a88c526bdc9a610e020a6b94385da3106], KXATPCHALLENGERMATCH-26MAR01BITGUL@0.774577[CR-8e168eccc47b3ea22cf2c07ccad4e3c98aa07850b1376a6c44ff7b1f52108f77], KXATPCHALLENGERMATCH-26MAR01SCHPIR@0.773635[CR-854afc2e900ebc596ce43c7673cd499dae0c4e7fc3db69d54afa16423fd6de39], KXATPCHALLENGERMATCH-26FEB28GILBUT@0.773624[CR-513398c62b122ca315e007f52a671a82ef07fd17257bf10686c0ee31ec1c3ade], KXATPCHALLENGERMATCH-26FEB21KOUVAN@0.766669[CR-f5c18a58470371d0386aa20bb2fb0078425ab3018b3cf297d78f2889047d3409], KXATPCHALLENGERMATCH-26JAN28DOSHIJ@0.763510[CR-f79dc106e4fbaf7163e3c08201f9f2f8942671377db64118d672628649c963b0], KXATPCHALLENGERMATCH-26MAR26FICSCH@0.762506[CR-6e53624bb697bbc09d3b5015e6cf105e9fba468618d68db72a6dd562aedda0b5]. BAR has anchor 31; its own TRUE_TRADE evidence low is 27, so its observed state is DIP_OBSERVED with 4 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 25/25/27 cents; remaining-dip q25/q50/q75 1/1/4 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 32 from KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2059; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=32/33; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 30[CR-6602b08e260bbd1ba6d20608c90c48626af6568c293d10da853b0e79c3b2228c], uncapped lawful target 32, incumbent pair cap 30, and post-only cap 32. The sibling GIU is credited at 69 from trade receipt 37ebe8ad-2b4a-4de2-e15e-0cd21eb84016; that half-pair transition re-posed query fc8a673286e6c46a1d4615778c4d56ee4b6950ddb68835f7b8b7eb0b49e7a500 and re-derived this open side [CR-6e05f1d7abe5e4a159ee3ef6600cc560dfaaaf472a4f48a7fe2a59b289084690]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=30; ACTIVE_TARGET_BEFORE_CENTS=30."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783867224,
+      "trade_receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+      "handoff_receipt_id": "CR-c58f77199a1bc8772d8c1258590793d091a7adee1d0349c02044a531c33f4d60",
+      "query_fingerprint_sha256": "e4065896db26a1c91f1e30666b3c9c1074c94b38eff868b035e05b301aa613c0",
+      "sentence": "At 9.967778 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL12GIUBAR [CR-1eec9adb77f46befea8ccaab2b6624869273bea7dfeefe8669db2ea05f30c108]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR10WONLAN@0.783933[CR-feadb939e65afb1e6f7e26e897c9d0621da1cbd7107c5cc8d4ac0f826879674b], KXATPCHALLENGERMATCH-26MAR01BITGUL@0.778224[CR-3f8944d3059aa40f9de6766f8f44f1e5c05916225ba22af013987abbd0b2f193], KXATPCHALLENGERMATCH-26MAR01SCHPIR@0.777277[CR-9bfbf60a19be8cf35e9385d3b152e6f34492703fb77de28dbcb88b9b97633988], KXATPCHALLENGERMATCH-26FEB28GILBUT@0.777267[CR-2ff2fa137e2d8ab7a56d01d75f9d741d7e7f33768d837098e7cb7a74577fc4bd], KXATPCHALLENGERMATCH-26FEB21KOUVAN@0.770278[CR-9caeed1b6d8d54339f602d0f8c96cbc5f92504960a1dd7b4649908b06e7c9948], KXATPCHALLENGERMATCH-26JAN28DOSHIJ@0.767105[CR-69011c72508a89e003a7543d59c6ff432e41bac8771e713f1492b8072b8f34c8], KXATPCHALLENGERMATCH-26MAR26FICSCH@0.766096[CR-765a0f77df5b2c10197f247769f1619fa5c1a6ad9331235915a6e98a5deecf87]. BAR has anchor 31; its own TRUE_TRADE evidence low is 27, so its observed state is DIP_OBSERVED with 4 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 25/25/27 cents; remaining-dip q25/q50/q75 1/1/4 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 32 from KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2106; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=32/33; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 30[CR-4032500ca2139a093ed1fb222c6e56f9bbdf6c83b17d1f29d89c4a67f7b4b1c9], uncapped lawful target 32, incumbent pair cap 30, and post-only cap 32. The sibling GIU is credited at 69 from trade receipt 37ebe8ad-2b4a-4de2-e15e-0cd21eb84016; that half-pair transition re-posed query e4065896db26a1c91f1e30666b3c9c1074c94b38eff868b035e05b301aa613c0 and re-derived this open side [CR-c58f77199a1bc8772d8c1258590793d091a7adee1d0349c02044a531c33f4d60]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=30; ACTIVE_TARGET_BEFORE_CENTS=30."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783867786,
+      "trade_receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+      "handoff_receipt_id": "CR-3975f5af3a11ebbbc34ce99a85d91515e72826e95b9eb2f207892c6f768e7bdd",
+      "query_fingerprint_sha256": "7cc1af3b2273efd957ec0d507ae714242c669ccc3e2e3eb1e245788c31a95e52",
+      "sentence": "At 10.123889 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL12GIUBAR [CR-165b5bc1c23f848b8807f427a8b07e89672df88adc30976787fa2b2f8a5ac0ca]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR10WONLAN@0.811537[CR-08e09d26f8c451bb8f4c7762f29bb49bbb51a54c2d0e44c3713891059d5bc4d6], KXATPCHALLENGERMATCH-26MAR01BITGUL@0.804460[CR-d1b16a96d3b5edbc28bc36e5aa748a0ccbb70482cee978400460c5cfc55a455b], KXATPCHALLENGERMATCH-26FEB28GILBUT@0.803471[CR-813ee4901b78e32cc01103149eace156eae64c5201bca442733e37e1c3757643], KXATPCHALLENGERMATCH-26FEB21KOUVAN@0.796246[CR-ecdd1c61949f7d5db23d716d7fed0c7f36257bf3bfef824401907e9dd06eb715], KXATPCHALLENGERMATCH-26APR19SHEVAN@0.796207[CR-6d79a2b93c570fe2092eab13fd67bfe9b9277e5da31af695de0fdab7fa5ea5d1], KXATPCHALLENGERMATCH-26JAN28DOSHIJ@0.792966[CR-390f5e9e801e860533a57938322d82c8ecdc43db00a48c3743a76123c849668e], KXATPCHALLENGERMATCH-26FEB27SCHSTR@0.792324[CR-ff617ac6ca2ad188a4012a582619176a3dea938a1e07ddd8862d636aff33b60a]. BAR has anchor 31; its own TRUE_TRADE evidence low is 27, so its observed state is DIP_OBSERVED with 4 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 10/27/27 cents; remaining-dip q25/q50/q75 4/4/6 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 32 from KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2161; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=32/34; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 30[CR-77c0c080fbc4a164c138b189d3d82ae8524ffcff9ea51e997061d263c1030531], uncapped lawful target 32, incumbent pair cap 30, and post-only cap 33. The sibling GIU is credited at 69 from trade receipt 37ebe8ad-2b4a-4de2-e15e-0cd21eb84016; that half-pair transition re-posed query 7cc1af3b2273efd957ec0d507ae714242c669ccc3e2e3eb1e245788c31a95e52 and re-derived this open side [CR-3975f5af3a11ebbbc34ce99a85d91515e72826e95b9eb2f207892c6f768e7bdd]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=30; ACTIVE_TARGET_BEFORE_CENTS=30."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783874240,
+      "trade_receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+      "handoff_receipt_id": "CR-6453d01023460e86da9697417ce7ef9e0cec74e4e6c5f9ded6557c364b74eba3",
+      "query_fingerprint_sha256": "5e06758c627502fd90324d1c46eff2013f37b661bf2fb5653e444eead261a447",
+      "sentence": "At 11.916667 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL12GIUBAR [CR-1bf64a93e87c2a937f4c3391acf600eef1a77d430239886c55834ac56507d018]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR10WONLAN@0.842111[CR-c0d576404b381c369bc8fedfe92a8cfa2497fbe82e2052bdaab1a3cf582cff51], KXATPCHALLENGERMATCH-26MAR01BITGUL@0.834767[CR-e60c2a0ed2436693c412b3f15ae3ebc55a3d425a2b855c079bc4bf052c0f25d9], KXATPCHALLENGERMATCH-26APR19SHEVAN@0.833822[CR-78934d9fccc581262959f7aac5c2a22c0e45fe54170c960b798c266ba3a1c641], KXATPCHALLENGERMATCH-26FEB27SCHSTR@0.822173[CR-9b277c62c0ac658576bfa249025ba64576e74231cda8975e140a84b623975521], KXATPCHALLENGERMATCH-26MAR22SAMHUA@0.819252[CR-d5964e6b16300fc8a05d9747f68df0ef3b42144ced8bb3c19a73a45f710090d7], KXATPCHALLENGERMATCH-26FEB28GILBUT@0.817784[CR-abb8c0a6da863cab171e4b21d5a803b5e7c9b675c991d87f803e8ff6fe0e571d], KXATPCHALLENGERMATCH-26APR20CHIWON@0.816145[CR-45eb39fbdc29e302fb62014070293a0e60b4f1e14f4e9ecd21b75404256a64c3]. BAR has anchor 31; its own TRUE_TRADE evidence low is 27, so its observed state is DIP_OBSERVED with 4 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 10/29/30 cents; remaining-dip q25/q50/q75 0/0/5 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 30 from KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2767; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=30/34; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 30[CR-90e676212b24eaeaaf9c03a87fa31c4889310f94a0e08b2e3dddaaa4a0edf1c9], uncapped lawful target 30, incumbent pair cap 30, and post-only cap 33. The sibling GIU is credited at 69 from trade receipt 37ebe8ad-2b4a-4de2-e15e-0cd21eb84016; that half-pair transition re-posed query 5e06758c627502fd90324d1c46eff2013f37b661bf2fb5653e444eead261a447 and re-derived this open side [CR-6453d01023460e86da9697417ce7ef9e0cec74e4e6c5f9ded6557c364b74eba3]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=30; ACTIVE_TARGET_BEFORE_CENTS=30."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "leg_id": "BAR",
+      "timestamp_epoch": 1783874300,
+      "trade_receipt": "37ebe8ad-2b4a-4de2-e15e-0cd21eb84016",
+      "handoff_receipt_id": "CR-034a93b18b45ab4df6d5f7c4945012b286659076cb795d8515efbeb5eaea92ae",
+      "query_fingerprint_sha256": "030f1e3124ccac4abc454b688675fbfc3b511408522d9e3f73ca054b3397476c",
+      "sentence": "At 11.933333 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL12GIUBAR [CR-19a234db484274b24d46b6dbf054fe8de02b7665336ec072deae7303f237b026]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR10WONLAN@0.842085[CR-05d442e5a35eb553513f5735961441dfc3e1da5b32b43e3df98256ca3ed859a9], KXATPCHALLENGERMATCH-26MAR01BITGUL@0.834742[CR-93acd71a86c49b5823c73fa8c227087cecc37903587ce37088a1f7b0784266f6], KXATPCHALLENGERMATCH-26APR19SHEVAN@0.833797[CR-ca60393a4f3e32b4d9b0467959ba9a0c7a38f521ed18f49a0236aa22e541cffc], KXATPCHALLENGERMATCH-26FEB27SCHSTR@0.822148[CR-ab8734f8c6e8fbe6deddaa639b22a03fee2ef8b27a5ff495ce5788db583198c5], KXATPCHALLENGERMATCH-26MAR22SAMHUA@0.819227[CR-846ee47759a2304694f094bf00f69d1e4adb7c8fdbc40434f96ac25ccdac666b], KXATPCHALLENGERMATCH-26FEB28GILBUT@0.817759[CR-0d57c9f5fe9ec64880b7125f1d7f82dbe5b8c3a59c08dab91ef2e27e752d2be3], KXATPCHALLENGERMATCH-26APR20CHIWON@0.816121[CR-4279edd318154aba6a8c4835820c71edc4addfd57b2fdd117aa410724ef7b66c]. BAR has anchor 31; its own TRUE_TRADE evidence low is 27, so its observed state is DIP_OBSERVED with 4 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 10/29/30 cents; remaining-dip q25/q50/q75 0/0/5 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 30 from KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.csv.gz#row-2813; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=30/34; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 30[CR-ea2866cfde415c07e92d68cf58893e767cfb63b83dcf4c9d801e41fd827eb1ca], uncapped lawful target 30, incumbent pair cap 30, and post-only cap 33. The sibling GIU is credited at 69 from trade receipt 37ebe8ad-2b4a-4de2-e15e-0cd21eb84016; that half-pair transition re-posed query 030f1e3124ccac4abc454b688675fbfc3b511408522d9e3f73ca054b3397476c and re-derived this open side [CR-034a93b18b45ab4df6d5f7c4945012b286659076cb795d8515efbeb5eaea92ae]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=30; ACTIVE_TARGET_BEFORE_CENTS=30."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784032697.6,
+      "trade_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "handoff_receipt_id": "CR-bc91028b28dbaeef5bcc695e87cc5992493cf7673860664e1fdc11154b2eb874",
+      "query_fingerprint_sha256": "9f7ae7098f81a33612472a579228d8fcc2f5442ca2cb88cac54b99ef4a88fef2",
+      "sentence": "At 9.371833 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14URSPAL [CR-8c49c2fc15a0ee9a06d35d0696a8e162754b0b9e9bd6dc6cf2694b49f84f76f4]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.817414[CR-47975b3a242a5a1982a78d1f5605c203a7055884eba970a175bbfa6534d837c7], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.800646[CR-bee1ff3b26701fbfdfe590cd4e313cd5432a5d4a06fad0413742f69fab8c4c32], KXATPCHALLENGERMATCH-26MAR23WISVAN@0.793555[CR-e10cce28c6a912bdc76b3703757f0bd3bda7ad3a4d1e7681128a7d659f0e4018], KXATPCHALLENGERMATCH-26FEB27BLAGAS@0.787161[CR-20f104db75832847486c5be1de5c96f156022c6f1aecc6341ae934ee28b09dca], KXATPCHALLENGERMATCH-26APR23ANDMAY@0.783391[CR-a1edfaf6647128a379d6ca4accae337e185471d4f7fe613696f067d6b8a27ba3], KXATPCHALLENGERMATCH-26JAN30SHIHIJ@0.781040[CR-133f1ce53df0084fe63be9b3afdef18f7b6c522da2d4e9aa6797a0e027ee4178], KXATPCHALLENGERMATCH-26APR25SVRVAS@0.779575[CR-6e10942e1d01f459fb0fb200c5976ff4e0fd23763ce21bc1dbced1a802659ad2]. PAL has anchor 38; its own TRUE_TRADE evidence low is 40, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 24/24/27 cents; remaining-dip q25/q50/q75 18/18/61 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 40 from KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-31866; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=40/44; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 40[CR-73b8be4ade8aa66f8619ada275c7715b1f668cf53ee6976fb23fbdc3a5e56042], uncapped lawful target 40, incumbent pair cap 42, and post-only cap 43. The sibling URS is credited at 57 from trade receipt a4575e0c-c6da-6920-3f04-1b0eeb2e6d91; that half-pair transition re-posed query 9f7ae7098f81a33612472a579228d8fcc2f5442ca2cb88cac54b99ef4a88fef2 and re-derived this open side [CR-bc91028b28dbaeef5bcc695e87cc5992493cf7673860664e1fdc11154b2eb874]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=40; ACTIVE_TARGET_BEFORE_CENTS=40."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784038360.853,
+      "trade_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "handoff_receipt_id": "CR-132549e8b273c65dd50a01c43186b503de83d50c09f65459212b89946c389f0f",
+      "query_fingerprint_sha256": "899962cc9aa2cdfbafad3dbfb7cf637a85f71a8ff7ffd48f3bfc2d11eb95fb29",
+      "sentence": "At 10.944959 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14URSPAL [CR-ef695e21a81bcdfd60cab54ce456de1d06fb1be5260222e22dca6d3c2074f0f4]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.774658[CR-b3d31a85bcd732d0b9bd03fcaad6bdd217fca113caee1d941594a3a12621bd0b], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.739277[CR-bc25315c33e0d022ee16bfbea4158c7c674872085886d6988f71bf5ea3d74011], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.730708[CR-6af45b0aeb8c9e8190b6618e2382d94812fdafcf1440bb3f5a7c7fb52ebc7e3a], KXATPCHALLENGERMATCH-26MAR26RONROD@0.728195[CR-0e75ca6804e0a41d1ceeb18e19050ef7cc1473da67bf3c119be29547f1f8fcf2], KXATPCHALLENGERMATCH-26APR28BRASAM@0.728184[CR-ecdc18ba294a68bb6807b0713d95117b945372d809479b4611ab169ee5997fa7], KXATPCHALLENGERMATCH-26MAR23WISVAN@0.724237[CR-93f4c1fc9ab58393bc1f3c61af3059ccb352e81019b2ea1d0e93ac7826d20290], KXATPCHALLENGERMATCH-26APR11IVASWE@0.723572[CR-d7c8163b0521a921e8e4f5190f5c66314b2ffd32e3b56c6cfe9b8ea52791030b]. PAL has anchor 38; its own TRUE_TRADE evidence low is 40, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 19/24/27 cents; remaining-dip q25/q50/q75 18/18/28 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 40 from KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-36160; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=40/43; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 40[CR-554d094ac15fc717c67da078af1b5fbbbd37b16f8a7db52d8cf4d12ead3c4af9], uncapped lawful target 40, incumbent pair cap 42, and post-only cap 42. The sibling URS is credited at 57 from trade receipt a4575e0c-c6da-6920-3f04-1b0eeb2e6d91; that half-pair transition re-posed query 899962cc9aa2cdfbafad3dbfb7cf637a85f71a8ff7ffd48f3bfc2d11eb95fb29 and re-derived this open side [CR-132549e8b273c65dd50a01c43186b503de83d50c09f65459212b89946c389f0f]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=40; ACTIVE_TARGET_BEFORE_CENTS=40."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "leg_id": "PAL",
+      "timestamp_epoch": 1784041639.585,
+      "trade_receipt": "a4575e0c-c6da-6920-3f04-1b0eeb2e6d91",
+      "handoff_receipt_id": "CR-2a2baa88fd832e9d25a1b4d8211b3a89b173e0a2197aadfad53b33fff7fe5c25",
+      "query_fingerprint_sha256": "266075ea26136bc0816d6bca97329c0f076dbd722d5ade0ce859d6d013bd4ce7",
+      "sentence": "At 11.855718 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14URSPAL [CR-3e3a3cd4745d7612677a503f069efc7c32898cd64d33e70b885c709a21b22de5]. The named neighborhood is KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.808960[CR-92500cec7dde09dd84894fc9a439f8f80ef40d8b68f4a9d5be0da6529686a12e], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.774283[CR-61866e7f978b59499a4f2de3079b7b225ad950b71f7b53c500d12148b872aa86], KXATPCHALLENGERMATCH-26MAR26RONROD@0.760439[CR-d3ad2bf8fa652d901a2f66a6a3d452f4ac6a15b32a64b493ed17bae1a9313160], KXATPCHALLENGERMATCH-26MAR23WISVAN@0.756306[CR-cec3e45488ec617178f22fcabe4dd178511fd6aaf441b04c17a823c95bb82419], KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.755726[CR-18cc34d1b583f89ebfc4bdcda69f80d94aefa3907ec67053b6876bc5545a7c95], KXATPCHALLENGERMATCH-26MAR25ANDSCH@0.751463[CR-84f51119d6308eb95bf3fbb5d6b80f0a3752b560de539d437b18baf977ea63c6], KXATPCHALLENGERMATCH-26APR23ANDMAY@0.746619[CR-947c43eb3a9d949c9d61baf3af0314165140897e22d23339601c145754bf6d27]. PAL has anchor 38; its own TRUE_TRADE evidence low is 40, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 24/27/27 cents; remaining-dip q25/q50/q75 18/18/61 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 40 from KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.csv.gz#row-36472; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=40/42; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 40[CR-2ba077a8f40ac2b8753527c796ae5d93f5a14fce39e300c5b8b299f2d1430840], uncapped lawful target 40, incumbent pair cap 42, and post-only cap 41. The sibling URS is credited at 57 from trade receipt a4575e0c-c6da-6920-3f04-1b0eeb2e6d91; that half-pair transition re-posed query 266075ea26136bc0816d6bca97329c0f076dbd722d5ade0ce859d6d013bd4ce7 and re-derived this open side [CR-2a2baa88fd832e9d25a1b4d8211b3a89b173e0a2197aadfad53b33fff7fe5c25]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=40; ACTIVE_TARGET_BEFORE_CENTS=40."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784042394.35,
+      "trade_receipt": "db95a67b-d0c6-4121-e667-a38b31fe770d",
+      "handoff_receipt_id": "CR-b1c0855459d1de6f9d957d7dab26eac54a9e0cd37c09d609cf8d3545e47cd0c7",
+      "query_fingerprint_sha256": "74283d1b58618b41a4a38715c81f0e6c050001c5de5c88dbbce7e16ef50ca0f8",
+      "sentence": "At 9.742042 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-f0bac60150ceaf09ff82f70e5b2789d466eded4921678ac341b8f0852dfb4c55]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.822895[CR-1f161cac2016ee0d1942b656f0143290cc9d0c196b0212ac0285124df6277574], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.818666[CR-40a912f5088a7432ba3f380d32352c4d29765559179d6706aaabc74c1c1f5013], KXATPCHALLENGERMATCH-26JAN30SHIHIJ@0.801290[CR-b25f4bca394be22ffb72754fed4f45ea06f94c13b2cf0fef3fc4e811d95a81bf], KXATPCHALLENGERMATCH-26FEB27DHAAJD@0.799708[CR-fc7397d4338dc755c313c1096273cc29f8c79c3012c96aeb02ed6e9b5942c6aa], KXATPCHALLENGERMATCH-26APR16ZINKRU@0.792595[CR-5350e19f67313b3ae907a7d056c4f7516a7a93c5b2453f52edc29a0f80fdf115], KXATPCHALLENGERMATCH-26MAY01CECBRA@0.791649[CR-536e6d546d169b0c2e22c1acb9a41551624cd592df339b8f970006b66715241f], KXATPCHALLENGERMATCH-26FEB26BLAGAD@0.789836[CR-ddbc80ca8ba80e5ca1b616853dce914633c679cc19e4317c64f92f4e1e799448]. LAJ has anchor 59; its own TRUE_TRADE evidence low is 54, so its observed state is DIP_OBSERVED with 5 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 52/54/57 cents; remaining-dip q25/q50/q75 0/5/38 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 54 from KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3865; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=54/55; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 54[CR-2343b5ceabdff5e36af65144a35041122e16a5fc7f199ace483378776054ec39], uncapped lawful target 54, incumbent pair cap 54, and post-only cap 54. The sibling SVA is credited at 45 from trade receipt db95a67b-d0c6-4121-e667-a38b31fe770d; that half-pair transition re-posed query 74283d1b58618b41a4a38715c81f0e6c050001c5de5c88dbbce7e16ef50ca0f8 and re-derived this open side [CR-b1c0855459d1de6f9d957d7dab26eac54a9e0cd37c09d609cf8d3545e47cd0c7]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=54; ACTIVE_TARGET_BEFORE_CENTS=54."
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "leg_id": "LAJ",
+      "timestamp_epoch": 1784050516,
+      "trade_receipt": "db95a67b-d0c6-4121-e667-a38b31fe770d",
+      "handoff_receipt_id": "CR-34713ab627ea33766a21d3905be7e83bf3da04af8010c89e91a03adf245cdcef",
+      "query_fingerprint_sha256": "bdf984123d4f751b2a1699258698e23dd88ef8fe8910f6741fc733f023d96b18",
+      "sentence": "At 11.998056 hours from discovery, all sixteen readers fired for KXATPCHALLENGERMATCH-26JUL14LAJSVA [CR-9e82212f0dee35c6f5ca135a0c64de23a772451be14b08dc67e7882476c02de2]. The named neighborhood is KXATPCHALLENGERMATCH-26FEB07SMISMI2@0.785050[CR-1c445927f1f2e7814063ed693928852c5f381ffd9464825e7acc56b4403da687], KXATPCHALLENGERMATCH-26MAR30WISZAH@0.781015[CR-2fc33b9d4c9d6004151a312593fe9ef558ae31b2242ccf54dce5d500888c356f], KXATPCHALLENGERMATCH-26FEB25SIMGRA@0.773611[CR-75c86879c314e1aa361a6cdb5926dafe312f1c486102ea56bc69f9ead62b44d2], KXATPCHALLENGERMATCH-26APR04NEUGIL@0.768311[CR-4a19df48cfa1b4c9b4a722a535a710d2020b8e9c306ccc91b8c0cb707dfe102e], KXATPCHALLENGERMATCH-26MAR10ANDECH@0.766223[CR-8f356856886f295d5f6f87f9424dd392f361de08e27bf35b9a39dde2989fabf4], KXATPCHALLENGERMATCH-26MAR01LOKZAH@0.765540[CR-d1b020af48dc004dd151ac70cf6f4399e6290cb8f1884a1ba050aa2ecc5a44b6], KXATPCHALLENGERMATCH-26MAR16BRASAN@0.765192[CR-deebed74f65b28b186f165672b88f1752bfe7bab3fb462c3918758dadbf3ba5c]. LAJ has anchor 59; its own TRUE_TRADE evidence low is 54, so its observed state is DIP_OBSERVED with 5 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 44/55/59 cents; remaining-dip q25/q50/q75 0/10/10 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 54 from KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-4458; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=54/55; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 54[CR-0c23296d444ba87f4314d8001d123a6a6337a0f78abd38caff9572acaad2f395], uncapped lawful target 54, incumbent pair cap 54, and post-only cap 54. The sibling SVA is credited at 45 from trade receipt db95a67b-d0c6-4121-e667-a38b31fe770d; that half-pair transition re-posed query bdf984123d4f751b2a1699258698e23dd88ef8fe8910f6741fc733f023d96b18 and re-derived this open side [CR-34713ab627ea33766a21d3905be7e83bf3da04af8010c89e91a03adf245cdcef]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=54; ACTIVE_TARGET_BEFORE_CENTS=54."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784342553.971,
+      "trade_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+      "handoff_receipt_id": "CR-8b44daf4a88163e4d2cd4dec43de0b1a7d73ea23e72e325c5f487270f807d7d3",
+      "query_fingerprint_sha256": "5cebd4f37d2810426b91758d6d286e7ffe70d0a431a295aed21930e6c2162bfc",
+      "sentence": "At 7.099992 hours from discovery, all sixteen readers fired for KXATPMATCH-26JUL18DANPRA [CR-3de8561e3edeab940e59dac2e245a2f3054e741e726ee3d672d3510f2f624855]. The named neighborhood is KXATPMATCH-25OCT15GIRDAV@0.818219[CR-f4bb18d3a5ecdd716c485ae82a97a446d71c6103b705027cf157ecb4a2a0c699], KXATPMATCH-26APR04CHOMUL@0.811745[CR-a92a87a939dfeff4a8451d793388abaf349882bd4189288fda78ec0dcbfcfe70], KXATPMATCH-26MAR21MICNOR@0.799543[CR-c1511429de90667f46adce3ec4540c8d5bc3b062e4a197021bec0c0a84067bbc], KXATPMATCH-26MAR04ATMDIM@0.797845[CR-488176157d53426b78cda3674d12e373b1e09889ca6c35bcab8d19bb61cf830d], KXATPMATCH-26JAN09KYPNAV@0.793541[CR-5c00b4408ea6b5fa5383cecf9b85c7228da9639fb054c13871098650f574c72b], KXATPMATCH-25OCT25MUSZVE@0.787997[CR-a2ee3ac8f15bea79c32962db2ec383071530692ae79fc3165353db998b592b01], KXATPMATCH-25OCT01MUNFUC@0.787774[CR-82525887cc98d1836031f5c5a70b2905e522670d31ba85437f4dc3efa9406d5d]. DAN has anchor 58; its own TRUE_TRADE evidence low is 59, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 50/52/56 cents; remaining-dip q25/q50/q75 2/7/30 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 60 from KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1967; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=BELOW_BEST_BID_2C; LIVE_BID_ASK=60/59; JOINT_DEPTH_LICENSE=FRESH_TWO_SIDED_BOOK_BELOW_PRIOR_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-1967. Lineage target 58[CR-904199d1c4eec4e2ce8cc882625fc347facb7f30c960281eac9021c89fc69828], uncapped lawful target 58, incumbent pair cap 58, and post-only cap 58. The sibling PRA is credited at 41 from trade receipt 54075ae0-14e4-6484-d298-207ef219837f; that half-pair transition re-posed query 5cebd4f37d2810426b91758d6d286e7ffe70d0a431a295aed21930e6c2162bfc and re-derived this open side [CR-8b44daf4a88163e4d2cd4dec43de0b1a7d73ea23e72e325c5f487270f807d7d3]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=58."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784349391,
+      "trade_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+      "handoff_receipt_id": "CR-77ab07fcacc3340f7fc99f19fd886c5a9622dccb0c009ec85bb3696a8032aa9f",
+      "query_fingerprint_sha256": "22cd0a9eea7b179f93de44e8381940ed87f14500d71bd1297bab9283b4eba26d",
+      "sentence": "At 8.999167 hours from discovery, all sixteen readers fired for KXATPMATCH-26JUL18DANPRA [CR-930bc09fd0b80ccb5a62792cb16e59932f7bf980b0681cc24e06d623f82894e6]. The named neighborhood is KXATPMATCH-25OCT15GIRDAV@0.809592[CR-f6583950e2786455f25cafc5a42b040f86c8d64e45a49b1746921f0797a34326], KXATPMATCH-26APR04CHOMUL@0.794556[CR-bf566603a45d7a87cd79597e0ed3db771230f900bfa339d86832330a49109cea], KXATPMATCH-26MAR21MICNOR@0.782613[CR-0420ec1ea7dc44bd13ab1b8df2240fb4678024cb2d9e378022d4589141c0a061], KXATPMATCH-26MAR04ATMDIM@0.781916[CR-2b6cf225535ef6dad827d9b878fe1a3f956bed22518a37ec910ef8f48bd87815], KXATPMATCH-26MAR12DRAMED@0.781445[CR-f098e1faa43b17803dec27b270174a82785c041cba7858868235b9da2403a4ee], KXATPMATCH-26MAR22QUILEH@0.780781[CR-0cb31bbb4e3bf362d806e558f0c7b90fbdad61f56bbe4c9514b75589f42c26e2], KXATPMATCH-25OCT01MUNFUC@0.779199[CR-3c8e1297a0606be6d34b8175f03cc8ae66569109963ced6b3ede9d16d2630691]. DAN has anchor 58; its own TRUE_TRADE evidence low is 59, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 48/52/55 cents; remaining-dip q25/q50/q75 2/7/12 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 58 from KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9797; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=58/60; JOINT_DEPTH_LICENSE=FRESH_BID_PLUS_GRADED_NEIGHBOR_FLOOR; DEPTH_LICENSE_RECEIPTS=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-9797,CR-f6583950e2786455f25cafc5a42b040f86c8d64e45a49b1746921f0797a34326,CR-bf566603a45d7a87cd79597e0ed3db771230f900bfa339d86832330a49109cea,CR-0420ec1ea7dc44bd13ab1b8df2240fb4678024cb2d9e378022d4589141c0a061,CR-2b6cf225535ef6dad827d9b878fe1a3f956bed22518a37ec910ef8f48bd87815,CR-f098e1faa43b17803dec27b270174a82785c041cba7858868235b9da2403a4ee,CR-0cb31bbb4e3bf362d806e558f0c7b90fbdad61f56bbe4c9514b75589f42c26e2,CR-3c8e1297a0606be6d34b8175f03cc8ae66569109963ced6b3ede9d16d2630691. Lineage target 58[CR-e5c6bfc488c26e4e9d99723b957f03897bda26ef24191614bfbe26cbaa9f6e3f], uncapped lawful target 58, incumbent pair cap 58, and post-only cap 59. The sibling PRA is credited at 41 from trade receipt 54075ae0-14e4-6484-d298-207ef219837f; that half-pair transition re-posed query 22cd0a9eea7b179f93de44e8381940ed87f14500d71bd1297bab9283b4eba26d and re-derived this open side [CR-77ab07fcacc3340f7fc99f19fd886c5a9622dccb0c009ec85bb3696a8032aa9f]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=58."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784360023,
+      "trade_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+      "handoff_receipt_id": "CR-99063425385b261383c529a17a24f9392aaaaa0e6bc6048dcd67a54985897d7c",
+      "query_fingerprint_sha256": "b58e8f0b3cb2723dac4c8f0012272e8fc3a689d9e49b72e5f03a73d968806118",
+      "sentence": "At 11.952500 hours from discovery, all sixteen readers fired for KXATPMATCH-26JUL18DANPRA [CR-663ccb3f4a308a2a94096eac5af60b8a45bdefdbf617305673cc90f0bd36c5a4]. The named neighborhood is KXATPMATCH-25OCT15GIRDAV@0.803398[CR-a4761c9459498682dbdb60d2a6f2d3f89c3ce3cea03796394deaa5765668a010], KXATPMATCH-26APR04CHOMUL@0.788125[CR-5cd447608f44b793491f602e4bd2ebced6832b123dadef7d65c3f3f2ee42a679], KXATPMATCH-26MAR12DRAMED@0.779437[CR-b8befac0059e84afba56ab9d798c0cbfe745a9b465080c842fc3ea5b83642a84], KXATPMATCH-26MAR21MICNOR@0.776278[CR-51e97441408d16e372f8a4db8f7b4827d809213a23b3cd1151fa3e327f56f5d4], KXATPMATCH-26MAR04ATMDIM@0.775586[CR-f52a37fd2febbc18b6c3c898057f6cc92cfd02e6633a32d5720aa3bd64d5a3a7], KXATPMATCH-26MAR22QUILEH@0.774461[CR-ea986821094b19b86f048a4c3c53625c79a8529de803ecf0a1407dda2acfbb7f], KXATPMATCH-26FEB14FRICIL@0.773956[CR-31baf67e770013d1b46d59035d5ac343a543ae27b52a985e54c892ba4e708916]. DAN has anchor 58; its own TRUE_TRADE evidence low is 59, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 48/50/56 cents; remaining-dip q25/q50/q75 2/12/30 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 58 from KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10543; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=58/60; JOINT_DEPTH_LICENSE=FRESH_BID_PLUS_GRADED_NEIGHBOR_FLOOR; DEPTH_LICENSE_RECEIPTS=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-10543,CR-a4761c9459498682dbdb60d2a6f2d3f89c3ce3cea03796394deaa5765668a010,CR-5cd447608f44b793491f602e4bd2ebced6832b123dadef7d65c3f3f2ee42a679,CR-b8befac0059e84afba56ab9d798c0cbfe745a9b465080c842fc3ea5b83642a84,CR-51e97441408d16e372f8a4db8f7b4827d809213a23b3cd1151fa3e327f56f5d4,CR-f52a37fd2febbc18b6c3c898057f6cc92cfd02e6633a32d5720aa3bd64d5a3a7,CR-ea986821094b19b86f048a4c3c53625c79a8529de803ecf0a1407dda2acfbb7f,CR-31baf67e770013d1b46d59035d5ac343a543ae27b52a985e54c892ba4e708916. Lineage target 58[CR-75080ee6a99c9aff5375c2d05cafe8d6eb6467ea209960ea9fe371794f86bf48], uncapped lawful target 58, incumbent pair cap 58, and post-only cap 59. The sibling PRA is credited at 41 from trade receipt 54075ae0-14e4-6484-d298-207ef219837f; that half-pair transition re-posed query b58e8f0b3cb2723dac4c8f0012272e8fc3a689d9e49b72e5f03a73d968806118 and re-derived this open side [CR-99063425385b261383c529a17a24f9392aaaaa0e6bc6048dcd67a54985897d7c]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=58."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784370685,
+      "trade_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+      "handoff_receipt_id": "CR-37956ce49724e40f512620e5bb8645a004813a845f7e118d86d8c2354d50f99a",
+      "query_fingerprint_sha256": "5930429a9b42dd1051a55659f32c703b2d742b2d6cac6e785e9161a149aaebc2",
+      "sentence": "At 14.914167 hours from discovery, all sixteen readers fired for KXATPMATCH-26JUL18DANPRA [CR-355e7795e844ccf2c05863cb71f281b5845c6dac5ff7fcec9cfbff6ad993fbd9]. The named neighborhood is KXATPMATCH-25OCT15GIRDAV@0.792387[CR-1f64f29522071c8411a0759d7e403df0b2a63f6cb2046c3f1acaee4ffd670b76], KXATPMATCH-26APR04CHOMUL@0.777323[CR-49725dcae13d47ecc546b4aa39db8aa571418e09302b2388f996b5dbb7713818], KXATPMATCH-26MAR12DRAMED@0.774315[CR-21ece027fac5d304cd96265b5d4ffdf3d8fa0eff8fa0e636a945f244eb44ed59], KXATPMATCH-26APR18JODFIL@0.769931[CR-1ab1c8241bcad3d7a7fd279c6d4f437fffc80ca34738bce69c247feb4e9db9b4], KXATPMATCH-25OCT01MUNFUC@0.769700[CR-6523e5ab66e26fd69ae4a2da022bf97cd57bd1c87d5abcd3fb3fe7e13748030f], KXATPMATCH-26APR17SHAMOL@0.769139[CR-9899532b3b4ce383c29ee59f325b13bb55cff4cb00fff8534e61dbcba488c802], KXATPMATCH-25OCT15COLCOM@0.767716[CR-cfa927aefcbcb332f4cc9dd9bb6e6f31664a1dd3e07b2dfeb6113da4fd675d47]. DAN has anchor 58; its own TRUE_TRADE evidence low is 59, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 50/52/52 cents; remaining-dip q25/q50/q75 0/7/30 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 59 from KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11027; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=59/60; JOINT_DEPTH_LICENSE=NOT_BELOW_OWN_BOUNDED_TRADED_LOW; DEPTH_LICENSE_RECEIPTS=NONE. Lineage target 59[CR-d9287a6c6cc5edc7dcc04f305c61da944ebbe7573ae565b79167c465027d7929], uncapped lawful target 59, incumbent pair cap 58, and post-only cap 59. The sibling PRA is credited at 41 from trade receipt 54075ae0-14e4-6484-d298-207ef219837f; that half-pair transition re-posed query 5930429a9b42dd1051a55659f32c703b2d742b2d6cac6e785e9161a149aaebc2 and re-derived this open side [CR-37956ce49724e40f512620e5bb8645a004813a845f7e118d86d8c2354d50f99a]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=58."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784373056,
+      "trade_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+      "handoff_receipt_id": "CR-fe4c0ad3aacb8f3992703c13057d00ed18ea674fcc80c27de6ebb833199a70df",
+      "query_fingerprint_sha256": "6841a2087e616b5ee0b697bdbd207766d95a2a485cd217c1708fcfa82ca47426",
+      "sentence": "At 15.572778 hours from discovery, all sixteen readers fired for KXATPMATCH-26JUL18DANPRA [CR-7d77c2e628e725f0b25cd6d105d0e2854a85b855bddb1f937fdc9d4cbea232b7]. The named neighborhood is KXATPMATCH-26FEB20FILMEN@0.777565[CR-ed069e3276cc9635ba490c3cd9b74ece0ea21a2ec6be3c4f758ad2ac9ba02a85], KXATPMATCH-25OCT15GIRDAV@0.759360[CR-92a0b746ea4e74163719956376a94a3772549263cd8ee3b92cc3d5c5ac053b9a], KXATPMATCH-26APR04CHOMUL@0.744924[CR-690d60d9f3945e857eef487f817e0ba872eaca84fad8115f429d302cfd64b995], KXATPMATCH-25JUL06JARNOR@0.742675[CR-31bd3c0007192167516e8a788dc89a95c3c106b6c8c548f1a5e7907d490c0890], KXATPMATCH-26MAR18WALBAE@0.741690[CR-0d0f160581341a9d8ba6d4e5cc976fa60109d11d28d879b28645b8e4a1139e1b], KXATPMATCH-26MAR21MICNOR@0.740850[CR-bcf8467692e8a6b622e518dd7fa266428b5772bdf56a092fdb123e4ec8309471], KXATPMATCH-26MAR18HALDRA@0.739695[CR-8b3a01187ec7a92c8f2299a7adf8ad9b69bf5c0741707e5b41f5b16b7820fb82]. DAN has anchor 58; its own TRUE_TRADE evidence low is 59, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 50/50/57 cents; remaining-dip q25/q50/q75 5/5/30 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 58 from KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11561; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=58/61; JOINT_DEPTH_LICENSE=FRESH_BID_PLUS_GRADED_NEIGHBOR_FLOOR; DEPTH_LICENSE_RECEIPTS=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11561,CR-ed069e3276cc9635ba490c3cd9b74ece0ea21a2ec6be3c4f758ad2ac9ba02a85,CR-92a0b746ea4e74163719956376a94a3772549263cd8ee3b92cc3d5c5ac053b9a,CR-690d60d9f3945e857eef487f817e0ba872eaca84fad8115f429d302cfd64b995,CR-31bd3c0007192167516e8a788dc89a95c3c106b6c8c548f1a5e7907d490c0890,CR-0d0f160581341a9d8ba6d4e5cc976fa60109d11d28d879b28645b8e4a1139e1b,CR-bcf8467692e8a6b622e518dd7fa266428b5772bdf56a092fdb123e4ec8309471,CR-8b3a01187ec7a92c8f2299a7adf8ad9b69bf5c0741707e5b41f5b16b7820fb82. Lineage target 59[CR-5e0cb8164995c0fea35d480d88f2356f1dca1501234857ac820e0d68b0501807], uncapped lawful target 58, incumbent pair cap 58, and post-only cap 60. The sibling PRA is credited at 41 from trade receipt 54075ae0-14e4-6484-d298-207ef219837f; that half-pair transition re-posed query 6841a2087e616b5ee0b697bdbd207766d95a2a485cd217c1708fcfa82ca47426 and re-derived this open side [CR-fe4c0ad3aacb8f3992703c13057d00ed18ea674fcc80c27de6ebb833199a70df]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=58."
+    },
+    {
+      "event_id": "KXATPMATCH-26JUL18DANPRA",
+      "leg_id": "DAN",
+      "timestamp_epoch": 1784373060,
+      "trade_receipt": "54075ae0-14e4-6484-d298-207ef219837f",
+      "handoff_receipt_id": "CR-bc2994e57e539a5e4e23c3e2cdf0d1fd7b204d012d68a16e956fa22df1fd2c79",
+      "query_fingerprint_sha256": "9565f5fe5335b75806a268a08798aafeb2971221bf2cee45cbd364daaa50c8c8",
+      "sentence": "At 15.573889 hours from discovery, all sixteen readers fired for KXATPMATCH-26JUL18DANPRA [CR-fe8b6a7cf81738b2ab1154baffe4434c0dc24b699e9e51bc331c70a363dc0717]. The named neighborhood is KXATPMATCH-26FEB20FILMEN@0.777564[CR-3494cdf4a4f0edff6e239c097b8deaea8a16ce786a36361e83e59a4056d283f1], KXATPMATCH-25OCT15GIRDAV@0.759359[CR-1abba9e218b3fdf3974eb6bb462d904c2da0cb6c1db847936ea6d5bb41f8a759], KXATPMATCH-26APR04CHOMUL@0.744922[CR-84e823184faf8de33ba379d6f93e2f77f97aee448e30747a5882483cbabfa0a5], KXATPMATCH-25JUL06JARNOR@0.742673[CR-b9c0306a37169310e43c4b0cc2f49ba353f608f77c29fde89075e6ee18ff5dc0], KXATPMATCH-26MAR18WALBAE@0.741689[CR-22f217091d0fafee8a0b7dd2c439656475d54bfeafa7285ecfbff1b5f57ac906], KXATPMATCH-26MAR21MICNOR@0.740849[CR-0fac85a2f167308bce96925e9db5fefea9fbcd2d8cbee1174ccadbbb10b6f8f3], KXATPMATCH-26MAR18HALDRA@0.739693[CR-37e8f0e0b6b1f77d4439639beded30762c931e9d67b5fce52e6d64c7821428ee]. DAN has anchor 58; its own TRUE_TRADE evidence low is 59, so its observed state is NO_DIP_OBSERVED with 0 cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply absolute-floor q25/q50/q75 50/50/57 cents; remaining-dip q25/q50/q75 5/5/30 is telemetry and is never subtracted. TARGET_BASIS=COMPOSED-OWN+NEIGHBORS; fresh own-evidence target is 58 from KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11561; no blanket ratio, binary same-state gate, or stale-prior path is consumed. TOUCH_RELATION=AT_BEST_BID; LIVE_BID_ASK=58/61; JOINT_DEPTH_LICENSE=FRESH_BID_PLUS_GRADED_NEIGHBOR_FLOOR; DEPTH_LICENSE_RECEIPTS=KXATPMATCH-26JUL18DANPRA-DAN.csv.gz#row-11561,CR-3494cdf4a4f0edff6e239c097b8deaea8a16ce786a36361e83e59a4056d283f1,CR-1abba9e218b3fdf3974eb6bb462d904c2da0cb6c1db847936ea6d5bb41f8a759,CR-84e823184faf8de33ba379d6f93e2f77f97aee448e30747a5882483cbabfa0a5,CR-b9c0306a37169310e43c4b0cc2f49ba353f608f77c29fde89075e6ee18ff5dc0,CR-22f217091d0fafee8a0b7dd2c439656475d54bfeafa7285ecfbff1b5f57ac906,CR-0fac85a2f167308bce96925e9db5fefea9fbcd2d8cbee1174ccadbbb10b6f8f3,CR-37e8f0e0b6b1f77d4439639beded30762c931e9d67b5fce52e6d64c7821428ee. Lineage target 59[CR-4895f9166b763e61cecf3d57d61a1310f75c1e84fe72cffd833d4ea33b87956e], uncapped lawful target 58, incumbent pair cap 58, and post-only cap 60. The sibling PRA is credited at 41 from trade receipt 54075ae0-14e4-6484-d298-207ef219837f; that half-pair transition re-posed query 9565f5fe5335b75806a268a08798aafeb2971221bf2cee45cbd364daaa50c8c8 and re-derived this open side [CR-bc2994e57e539a5e4e23c3e2cdf0d1fd7b204d012d68a16e956fa22df1fd2c79]. ALLOCATION=CURRENT-BEHAVIOR-BYTE-EQUAL; PRIORITY_GRADES=NONE; FROM_CENTS=NONE; TO_CENTS=NONE; EXCESS_CENTS=0; REASON=a credited fill is a commitment, so frozen pair-cap arithmetic applies. ACTION=HOLD_REST; TARGET_CENTS=58; ACTIVE_TARGET_BEFORE_CENTS=58."
+    }
+  ],
+  "every_post_fill_sentence_cites_fill_receipt": true
+}

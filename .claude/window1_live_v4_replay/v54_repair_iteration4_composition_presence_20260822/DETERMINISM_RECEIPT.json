@@ -1,0 +1,234 @@
+{
+  "label": "V54_REPAIR_ITERATION4_DETERMINISM_X2",
+  "two_clean_builds": true,
+  "same_output_path_each_pass": true,
+  "names_equal": true,
+  "byte_identical": true,
+  "differences": [],
+  "policy_files": [
+    "arb-executor/analysis/window1_v54_functionable_os.js",
+    "arb-executor/analysis/build_window1_v54_functionable_v6.js"
+  ],
+  "passes": [
+    {
+      "pass": 1,
+      "stdout_sha256": "a1af1c1c6a29fd4fe21b2f8d3eeec971cae3d5e55c4a4c92606b7a9144a0c439",
+      "files": {
+        "ARTIFACT_HASH_MANIFEST.json": {
+          "sha256": "9ce33d706773d0ba926833af41c59d549b0b85f1441a8f7edf238755224aa2a5",
+          "bytes": 5387
+        },
+        "ASSUMPTION_GAPS.md": {
+          "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+          "bytes": 943
+        },
+        "CC_URSPAL_LATE_BELL.md": {
+          "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+          "bytes": 464
+        },
+        "COMPOSITION_PRESENCE_RECEIPT.json": {
+          "sha256": "307c4e4f0975dff6ce6b80a737ce1297b08ff378dc9c5d5f1d7e438a6fbc57db",
+          "bytes": 932647
+        },
+        "CONDITIONAL_DIP_RECEIPT.json": {
+          "sha256": "644bc795c0cab22ce807f00f2778ccef49f5f372da49b13919e9d8d3d9cd25d3",
+          "bytes": 2604590
+        },
+        "CORPUS_CENSUS.json": {
+          "sha256": "410eefadca3b437e3eb292ff3afb804c01aed4020da4a1420e3785625ca86e33",
+          "bytes": 14157
+        },
+        "CORPUS_INDEX.jsonl.gz": {
+          "sha256": "4f0f0dc06e4f05bfc8fb8a35e662d4d08ac64b26815719ebb323af7166a41cef",
+          "bytes": 2263307
+        },
+        "EXTERNAL_CUSTODY_MANIFEST.json": {
+          "sha256": "08f2e177fab3df3b6c40325bdbbc90c129f61043381b21573584259fe8edb7ad",
+          "bytes": 689
+        },
+        "FILL_HANDOFF_RECEIPT.json": {
+          "sha256": "c1f7adf8989ff6b6a3c4b23a4c90f892872394055921dd03b4aef738bc87d7b6",
+          "bytes": 53102
+        },
+        "FORBIDDEN_ACCESS_RECEIPT.json": {
+          "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+          "bytes": 465
+        },
+        "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+          "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+          "bytes": 593
+        },
+        "FOUNDATION_LIBRARY.jsonl.gz": {
+          "sha256": "4932e63dab5fbad6100644db8ac0ee04925894971b61da484980705f8e34199e",
+          "bytes": 1743754
+        },
+        "FOUNDATION_LIBRARY_RECEIPT.json": {
+          "sha256": "f18aeb451fb305d2482a92112f573ac428022958b4fab724c0c04b160b9d1300",
+          "bytes": 3143
+        },
+        "FOUNDATION_SERVING_FIX_RECEIPT.json": {
+          "sha256": "a8b917cfd7d816fc1b1a7bb0c1253e66b4fbd6380f2601fc228c5ba08f2d55e5",
+          "bytes": 2021
+        },
+        "FOUR_STORIES.md": {
+          "sha256": "7ddb185f9cc37dd1f81a9a69cabff4eb37119c761bb12e1f92fc500f9b54cf1c",
+          "bytes": 4674137
+        },
+        "FOUR_STORIES_RECEIPT.json": {
+          "sha256": "c3d5145ea518b18abefea1c18bf2dc32352ebb12e7e3222e7dca2e2ae52d0a7f",
+          "bytes": 20430
+        },
+        "FUNCTIONALITY_RECEIPT.json": {
+          "sha256": "2fdac5c3199c7523da18609b7467155fd206daa780e164b6ac917a85f3bc91ff",
+          "bytes": 24282
+        },
+        "LAJSVA_EARLY_RISER_FORENSICS.json": {
+          "sha256": "cfd197d29496cebf011849dccf6b33a200a69278c762b4aef6ab3a9a9b57e510",
+          "bytes": 121138
+        },
+        "LIBRARY_BELL_BOUND_RECEIPT.json": {
+          "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+          "bytes": 15882
+        },
+        "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+          "sha256": "7311d7cc6f0cb35d1667831d88382b636c0e0fd0e481bb6592d47c6bbfa7f911",
+          "bytes": 2016340
+        },
+        "REPAIR_GATE_RECEIPT.json": {
+          "sha256": "6197793e17f8423942ccbaa56a708ab23a0a171b1abea540128ec2dd856d2664",
+          "bytes": 4690
+        },
+        "SMOKE_CRIJEA.md": {
+          "sha256": "545fc7e2f5f5ff379b5f0237f1e92e3fd86fff9e82eeab59a7362129997b6550",
+          "bytes": 2052839
+        },
+        "SMOKE_CRIJEA_RECEIPT.json": {
+          "sha256": "017d3540207388c720247e801690b52f75d3c1d9cb283d1458af1b4081f53197",
+          "bytes": 795536
+        },
+        "SOURCE_RECEIPTS.json": {
+          "sha256": "24d4d1d021ebd8dd895be8feb860ba7c231f510eadeead06cc7fd1f32daa77f5",
+          "bytes": 55099
+        },
+        "SPLIT_ALLOCATION_RECEIPT.json": {
+          "sha256": "096d006ac0fd83da7db6dd0b5ee1aaece6093a736a13709cc865ca7c795c601d",
+          "bytes": 2015061
+        },
+        "TARGET_PRINTS_5.jsonl.gz": {
+          "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+          "bytes": 1224927
+        }
+      }
+    },
+    {
+      "pass": 2,
+      "stdout_sha256": "a1af1c1c6a29fd4fe21b2f8d3eeec971cae3d5e55c4a4c92606b7a9144a0c439",
+      "files": {
+        "ARTIFACT_HASH_MANIFEST.json": {
+          "sha256": "9ce33d706773d0ba926833af41c59d549b0b85f1441a8f7edf238755224aa2a5",
+          "bytes": 5387
+        },
+        "ASSUMPTION_GAPS.md": {
+          "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+          "bytes": 943
+        },
+        "CC_URSPAL_LATE_BELL.md": {
+          "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+          "bytes": 464
+        },
+        "COMPOSITION_PRESENCE_RECEIPT.json": {
+          "sha256": "307c4e4f0975dff6ce6b80a737ce1297b08ff378dc9c5d5f1d7e438a6fbc57db",
+          "bytes": 932647
+        },
+        "CONDITIONAL_DIP_RECEIPT.json": {
+          "sha256": "644bc795c0cab22ce807f00f2778ccef49f5f372da49b13919e9d8d3d9cd25d3",
+          "bytes": 2604590
+        },
+        "CORPUS_CENSUS.json": {
+          "sha256": "410eefadca3b437e3eb292ff3afb804c01aed4020da4a1420e3785625ca86e33",
+          "bytes": 14157
+        },
+        "CORPUS_INDEX.jsonl.gz": {
+          "sha256": "4f0f0dc06e4f05bfc8fb8a35e662d4d08ac64b26815719ebb323af7166a41cef",
+          "bytes": 2263307
+        },
+        "EXTERNAL_CUSTODY_MANIFEST.json": {
+          "sha256": "08f2e177fab3df3b6c40325bdbbc90c129f61043381b21573584259fe8edb7ad",
+          "bytes": 689
+        },
+        "FILL_HANDOFF_RECEIPT.json": {
+          "sha256": "c1f7adf8989ff6b6a3c4b23a4c90f892872394055921dd03b4aef738bc87d7b6",
+          "bytes": 53102
+        },
+        "FORBIDDEN_ACCESS_RECEIPT.json": {
+          "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+          "bytes": 465
+        },
+        "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+          "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+          "bytes": 593
+        },
+        "FOUNDATION_LIBRARY.jsonl.gz": {
+          "sha256": "4932e63dab5fbad6100644db8ac0ee04925894971b61da484980705f8e34199e",
+          "bytes": 1743754
+        },
+        "FOUNDATION_LIBRARY_RECEIPT.json": {
+          "sha256": "f18aeb451fb305d2482a92112f573ac428022958b4fab724c0c04b160b9d1300",
+          "bytes": 3143
+        },
+        "FOUNDATION_SERVING_FIX_RECEIPT.json": {
+          "sha256": "a8b917cfd7d816fc1b1a7bb0c1253e66b4fbd6380f2601fc228c5ba08f2d55e5",
+          "bytes": 2021
+        },
+        "FOUR_STORIES.md": {
+          "sha256": "7ddb185f9cc37dd1f81a9a69cabff4eb37119c761bb12e1f92fc500f9b54cf1c",
+          "bytes": 4674137
+        },
+        "FOUR_STORIES_RECEIPT.json": {
+          "sha256": "c3d5145ea518b18abefea1c18bf2dc32352ebb12e7e3222e7dca2e2ae52d0a7f",
+          "bytes": 20430
+        },
+        "FUNCTIONALITY_RECEIPT.json": {
+          "sha256": "2fdac5c3199c7523da18609b7467155fd206daa780e164b6ac917a85f3bc91ff",
+          "bytes": 24282
+        },
+        "LAJSVA_EARLY_RISER_FORENSICS.json": {
+          "sha256": "cfd197d29496cebf011849dccf6b33a200a69278c762b4aef6ab3a9a9b57e510",
+          "bytes": 121138
+        },
+        "LIBRARY_BELL_BOUND_RECEIPT.json": {
+          "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+          "bytes": 15882
+        },
+        "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+          "sha256": "7311d7cc6f0cb35d1667831d88382b636c0e0fd0e481bb6592d47c6bbfa7f911",
+          "bytes": 2016340
+        },
+        "REPAIR_GATE_RECEIPT.json": {
+          "sha256": "6197793e17f8423942ccbaa56a708ab23a0a171b1abea540128ec2dd856d2664",
+          "bytes": 4690
+        },
+        "SMOKE_CRIJEA.md": {
+          "sha256": "545fc7e2f5f5ff379b5f0237f1e92e3fd86fff9e82eeab59a7362129997b6550",
+          "bytes": 2052839
+        },
+        "SMOKE_CRIJEA_RECEIPT.json": {
+          "sha256": "017d3540207388c720247e801690b52f75d3c1d9cb283d1458af1b4081f53197",
+          "bytes": 795536
+        },
+        "SOURCE_RECEIPTS.json": {
+          "sha256": "24d4d1d021ebd8dd895be8feb860ba7c231f510eadeead06cc7fd1f32daa77f5",
+          "bytes": 55099
+        },
+        "SPLIT_ALLOCATION_RECEIPT.json": {
+          "sha256": "096d006ac0fd83da7db6dd0b5ee1aaece6093a736a13709cc865ca7c795c601d",
+          "bytes": 2015061
+        },
+        "TARGET_PRINTS_5.jsonl.gz": {
+          "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+          "bytes": 1224927
+        }
+      }
+    }
+  ]
+}

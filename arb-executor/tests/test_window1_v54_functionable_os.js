@@ -60,29 +60,34 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
-assert.ok(["NEIGHBORS-GRADED", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"].includes(derivation.derivation.target_basis));
+assert.ok(["COMPOSED-OWN+NEIGHBORS", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"].includes(derivation.derivation.target_basis));
+assert.equal(derivation.derivation.stale_prior_path_used, false);
+assert.match(derivation.sentence, /TOUCH_RELATION=/);
+assert.match(derivation.sentence, /remaining-dip .* is telemetry and is never subtracted/);
 
 const splitState = os.createTapeState(meta);
 splitState.positions.AAA.standing_target_cents = 60;
 splitState.positions.BBB.standing_target_cents = 36;
 const splitReads = { half_pair_state: { value: { legs: { AAA: { ...splitState.positions.AAA }, BBB: { ...splitState.positions.BBB } } } } };
-function splitRow(legId, target, live) {
+function splitRow(legId, target, grade) {
   const actionStatement = `ACTION=HOLD_REST; TARGET_CENTS=${target}; ACTIVE_TARGET_BEFORE_CENTS=${target}.`;
   return {
     leg_id: legId,
     action: { action: "HOLD_REST", target_cents: target, reason: "INCUMBENT" },
-    derivation: { lawful_unallocated_target_cents: target, live_evidenced_window: live, derived_target_cents: target },
+    derivation: { lawful_unallocated_target_cents: target, derived_target_cents: target, allocation_priority_grade: grade },
     sentence: `ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`,
     sentence_action_assertion: { expected_statement: actionStatement, equal: true },
     pair_conservation: { at_or_below_99: true },
   };
 }
-const splitRows = [splitRow("AAA", 60, false), splitRow("BBB", 41, true)];
+const splitRows = [splitRow("AAA", 60, 1), splitRow("BBB", 41, 3)];
 os.allocatePairActions({ state: splitState, reads: splitReads, derivations: splitRows });
-assert.equal(splitRows[1].action.target_cents, 41, "sole live evidenced side owns its lawful level");
-assert.equal(splitRows[0].action.target_cents, 58, "uncredited sibling plan yields the exact required budget");
+assert.equal(splitRows[0].action.target_cents, 58, "lower-grade plan yields the larger continuous share");
+assert.equal(splitRows[1].action.target_cents, 41, "higher-grade plan retains its fresh target");
 assert(splitRows.every((row) => row.pair_conservation.at_or_below_99));
-assert(splitRows.every((row) => row.sentence.includes("ALLOCATION=LIVE-WINDOW-SPLIT")));
+assert(splitRows.every((row) => row.sentence.includes("ALLOCATION=GRADED-CONTINUOUS-SPLIT")));
+assert(splitRows.every((row) => row.derivation.allocation.stale_prior_consumed === false));
+assert(splitRows.every((row) => row.derivation.allocation.from_cents !== row.derivation.allocation.to_cents));
 
 const uncitedCorpus = [{ ...corpus[1], source_receipts: ["BARE_SOURCE_LABEL"] }];
 assert.throws(

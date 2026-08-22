@@ -1,0 +1,204 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V5_COMPOSITION_PRESENCE",
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "scope": {
+    "four_games_only": true,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "sources": {
+    "raw": "ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md@sha256:802c590b8b748b9620d4e42362394e6a9976fc2f161275286bda192c18faa869",
+    "trace": ".claude/window1_live_v4_replay/v54_repair_iteration4_composition_presence_20260822/REPAIR_FOUR_GAME_TRACE.jsonl.gz@sha256:7311d7cc6f0cb35d1667831d88382b636c0e0fd0e481bb6592d47c6bbfa7f911",
+    "gate": ".claude/window1_live_v4_replay/v54_repair_iteration4_composition_presence_20260822/REPAIR_GATE_RECEIPT.json@sha256:6197793e17f8423942ccbaa56a708ab23a0a171b1abea540128ec2dd856d2664",
+    "conditional": ".claude/window1_live_v4_replay/v54_repair_iteration4_composition_presence_20260822/CONDITIONAL_DIP_RECEIPT.json@sha256:644bc795c0cab22ce807f00f2778ccef49f5f372da49b13919e9d8d3d9cd25d3",
+    "foundation": ".claude/window1_live_v4_replay/v54_repair_iteration4_composition_presence_20260822/FOUNDATION_LIBRARY_RECEIPT.json@sha256:f18aeb451fb305d2482a92112f573ac428022958b4fab724c0c04b160b9d1300"
+  },
+  "panel_a": {
+    "full_span_rows": 1876,
+    "action_rows": 60
+  },
+  "panel_b": {
+    "fill_events": [
+      {
+        "schema": "CITATION_RECEIPT_V1",
+        "kind": "QUERY_RECEIPT",
+        "citation_type": "FILL_EVENT",
+        "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+        "captured_at_receipt": "db95a67b-d0c6-4121-e667-a38b31fe770d",
+        "row_refs": [
+          "db95a67b-d0c6-4121-e667-a38b31fe770d"
+        ],
+        "context": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "leg_id": "SVA",
+          "entry_cents": 45,
+          "fill_timestamp_epoch": 1784042394.35,
+          "prior_standing_target_cents": 45,
+          "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+        },
+        "receipt_id": "CR-1f2020932a6c7c4012e6606e7fffce1af0f1fd0633705a6a5755fb309b40956c"
+      },
+      {
+        "schema": "CITATION_RECEIPT_V1",
+        "kind": "QUERY_RECEIPT",
+        "citation_type": "FILL_EVENT",
+        "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+        "captured_at_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+        "row_refs": [
+          "16abd619-09aa-7b19-502f-1c8dda90dac9"
+        ],
+        "context": {
+          "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+          "leg_id": "LAJ",
+          "entry_cents": 54,
+          "fill_timestamp_epoch": 1784050973.062,
+          "prior_standing_target_cents": 54,
+          "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+        },
+        "receipt_id": "CR-f74b8e78653995d9f37d1c169cc799b9844a375688d5a5fbedc909156e59c945"
+      }
+    ],
+    "cascade_shown_as_receipts": true
+  },
+  "panel_c": {
+    "trade_reports": 2
+  },
+  "outputs": [
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v5_20260822/PANEL_A_PAIR_RENDER.html",
+      "bytes": 304705,
+      "sha256": "c1a72bee6d2c976e53a5559964fb7f6f382d65fb799d0ec57a7a82a5a53207cf"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v5_20260822/PANEL_B_ENGAGEMENT.html",
+      "bytes": 10675,
+      "sha256": "69d21c971d48f0f0acf3b2d47f9e5b18a4284320b4ed9496d5b98e491a4c3bd2"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v5_20260822/PANEL_C_TRADE_REPORTS.html",
+      "bytes": 11439,
+      "sha256": "25b6896f441071467b13d81cb28261f1084080242b7339162da939593e8a2982"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v5_20260822/TRADE_REPORT_BASELINE.md",
+      "bytes": 257,
+      "sha256": "3a940d72233d612a9a3f4147dc2cdd3f59e6c19cecb0efce85e2f701bfad009d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v5_20260822/TRADE_REPORT_REPAIR.md",
+      "bytes": 9983,
+      "sha256": "5bc8049a67726e35a73e2aa36c3226ec00e5dab1208a3dd938f2214d09bf6dad"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v5_20260822/V1_V2_V3_V4_V5_SIDE_BY_SIDE.md",
+      "bytes": 936,
+      "sha256": "3aea418209a30a1f13666f3e830c9b847f47a7f118ce03cf28c2b214a48cca22"
+    }
+  ],
+  "v1_v2_v3_v4_v5": {
+    "v1": "COMPLETE_94_DELTA_6_BROKEN_REASONING",
+    "v2": "PARTIAL",
+    "v3": "PARTIAL",
+    "v4": {
+      "completed": false,
+      "pair_cents": null,
+      "delta_cents": null,
+      "positions": {
+        "LAJ": {
+          "credited": true,
+          "entry_cents": 53,
+          "standing_target_cents": null,
+          "fill_receipt": "9bf97090-1bdf-515f-a444-1bc67c9a2ffc",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+            "captured_at_receipt": "9bf97090-1bdf-515f-a444-1bc67c9a2ffc",
+            "row_refs": [
+              "9bf97090-1bdf-515f-a444-1bc67c9a2ffc"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+              "leg_id": "LAJ",
+              "entry_cents": 53,
+              "fill_timestamp_epoch": 1784059613.617,
+              "prior_standing_target_cents": 53,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-d0326a172bfd9f6b745b3a1697769867c760401da64cfb4d6b9a4e87adeadb76"
+          },
+          "fill_timestamp_epoch": 1784059613.617
+        },
+        "SVA": {
+          "credited": false,
+          "entry_cents": null,
+          "standing_target_cents": 32,
+          "fill_receipt": null,
+          "fill_event_receipt": null,
+          "fill_timestamp_epoch": null
+        }
+      }
+    },
+    "v5": {
+      "completed": true,
+      "pair_cents": 99,
+      "delta_cents": 1,
+      "positions": {
+        "LAJ": {
+          "credited": true,
+          "entry_cents": 54,
+          "standing_target_cents": null,
+          "fill_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+            "captured_at_receipt": "16abd619-09aa-7b19-502f-1c8dda90dac9",
+            "row_refs": [
+              "16abd619-09aa-7b19-502f-1c8dda90dac9"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+              "leg_id": "LAJ",
+              "entry_cents": 54,
+              "fill_timestamp_epoch": 1784050973.062,
+              "prior_standing_target_cents": 54,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-f74b8e78653995d9f37d1c169cc799b9844a375688d5a5fbedc909156e59c945"
+          },
+          "fill_timestamp_epoch": 1784050973.062
+        },
+        "SVA": {
+          "credited": true,
+          "entry_cents": 45,
+          "standing_target_cents": null,
+          "fill_receipt": "db95a67b-d0c6-4121-e667-a38b31fe770d",
+          "fill_event_receipt": {
+            "schema": "CITATION_RECEIPT_V1",
+            "kind": "QUERY_RECEIPT",
+            "citation_type": "FILL_EVENT",
+            "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+            "captured_at_receipt": "db95a67b-d0c6-4121-e667-a38b31fe770d",
+            "row_refs": [
+              "db95a67b-d0c6-4121-e667-a38b31fe770d"
+            ],
+            "context": {
+              "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+              "leg_id": "SVA",
+              "entry_cents": 45,
+              "fill_timestamp_epoch": 1784042394.35,
+              "prior_standing_target_cents": 45,
+              "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+            },
+            "receipt_id": "CR-1f2020932a6c7c4012e6606e7fffce1af0f1fd0633705a6a5755fb309b40956c"
+          },
+          "fill_timestamp_epoch": 1784042394.35
+        }
+      }
+    }
+  }
+}

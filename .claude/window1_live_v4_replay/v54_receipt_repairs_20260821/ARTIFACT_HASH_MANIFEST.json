@@ -10,6 +10,16 @@
       "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/V54_TRACE_PROVENANCE_RECEIPT.json",
       "sha256": "71b11d12977506f7934544a20c37d9d1b7caeb9606cb366d5ba3934f4b7685af",
       "bytes": 430923
+    },
+    "LAST_LITERAL_REPAIR_RECEIPT.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/LAST_LITERAL_REPAIR_RECEIPT.json",
+      "sha256": "c86a0ff93cbfb79b8b56c32292e7b15b66f3cf7f9f31a5a80e491a5913b5aa22",
+      "bytes": 2368
+    },
+    "TRACE_CUSTODY_RECEIPT.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/TRACE_CUSTODY_RECEIPT.json",
+      "sha256": "8f8a1b77ecb4e51f0f6b8587f51084a74a99411495720e01dbf1590d0ba77bdf",
+      "bytes": 2260
     }
   }
 }

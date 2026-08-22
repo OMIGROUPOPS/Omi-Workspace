@@ -7,6 +7,9 @@ const readline = require("readline");
 const crypto = require("crypto");
 const { execFileSync } = require("child_process");
 const os = require("./window1_v54_functionable_os.js");
+const subsetGuard = require("./window1_named_subset_guard.js");
+
+let activeExecutionGuard = null;
 
 const TARGETS = Object.freeze({
   smoke: ["KXWTAMATCH-26JUL13CRIJEA"],
@@ -237,10 +240,11 @@ async function loadTargetPrints(privateRoot, metas) {
   return { byEvent, source: { path: source, bytes: fs.statSync(source).size, scanned_rows: sourceRows, sha256: fileHash(source) } };
 }
 
-async function loadLineage(walkRoot) {
+async function loadLineage(walkRoot, eventIds = ALL_TARGETS) {
+  const selected = new Set(eventIds);
   const file = path.join(walkRoot, "FULL_DECISION_TRACE_5.jsonl.gz"), byEvent = new Map();
   const rows = await streamJsonl(file, (row) => {
-    if (!ALL_TARGETS.includes(row.event_id)) return;
+    if (!selected.has(row.event_id)) return;
     if (!byEvent.has(row.event_id)) byEvent.set(row.event_id, new Map());
     const legId = row.leg_identity.split("|").at(-1), byLeg = byEvent.get(row.event_id);
     if (!byLeg.has(legId)) byLeg.set(legId, []);
@@ -375,6 +379,7 @@ function citationsPlain(derivation) {
 }
 
 function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false }) {
+  if (activeExecutionGuard) activeExecutionGuard.record(meta.event_id);
   const state = os.createTapeState(meta), epochs = turningEpochs(meta, rows), derivations = [], stageReads = [];
   rows.sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || (a.kind === "BOOK" ? -1 : 1) || String(a.receipt).localeCompare(String(b.receipt)));
   let cursor = 0;
@@ -407,6 +412,20 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
   return { state, epochs, stage_reads: stageReads, derivations, execution: { gradeable: Number.isFinite(meta.bell_epoch), completed: credited.length === 2, combined_entry_cents: combined, delta_vs_100_cents: Number.isInteger(combined) ? 100 - combined : null, legs: state.positions } };
 }
 
+function readerExecutionReceipt(result) {
+  const readers = os.READER_NAMES.map((name) => {
+    const stages = result.stage_reads.filter((stage) => stage.reads[name]).map((stage) => ({
+      timestamp_epoch: stage.timestamp_epoch,
+      status: stage.reads[name].status,
+      reader: stage.reads[name].reader,
+      source_receipts: stage.reads[name].receipts,
+    }));
+    return { reader: name, stages_fired: stages.length, all_stages_connected: stages.length > 0 && stages.every((stage) => stage.status === "CONNECTED" && stage.reader === name), receipt_sha256: shaBytes(canonical(stages)) };
+  });
+  const fired = readers.filter((row) => row.stages_fired > 0 && row.all_stages_connected);
+  return { all_readers_fired: fired.length === os.READER_NAMES.length, reader_count: fired.length, expected_reader_count: os.READER_NAMES.length, readers };
+}
+
 function oldOutcome(perGame, eventId, meta) {
   const row = perGame.rows.find((item) => item.event_id === eventId), credits = row.L7_CREDIT.why;
   return { completed: row.L8_OUTCOME.candidate.completed, combined_entry_cents: row.L8_OUTCOME.candidate.combined_entry_cents, delta_vs_100_cents: row.L8_OUTCOME.candidate.completed ? 100 - row.L8_OUTCOME.candidate.combined_entry_cents : null, gradeable: Number.isFinite(meta.bell_epoch), legs: credits };
@@ -434,6 +453,9 @@ function storySection(result, old, meta) {
 
 async function main() {
   const repo = required("repo"), cacheDir = required("cache"), privateRoot = required("private"), walkRoot = required("walk"), output = required("output");
+  const subsetSpec = arg("subset-games") ? subsetGuard.parseExactNamedSubset(arg("subset-games"), arg("expected-game-count")) : null;
+  const requestedEventIds = subsetSpec ? [...subsetSpec.event_ids] : ALL_TARGETS;
+  ensure(!(subsetSpec && arg("finalize-existing") === "true"), "NAMED_SUBSET_GUARD finalize-existing is a different lane");
   ensure(!output.toLowerCase().includes("holdout") && !output.toLowerCase().includes("sealed"), "sealed output forbidden");
   fs.mkdirSync(output, { recursive: true });
   const corpus = await loadCorpus(cacheDir);
@@ -484,17 +506,61 @@ async function main() {
     return;
   }
 
-  const truthRows = loadGroundTruth(repo), metas = ALL_TARGETS.map((eventId) => targetMeta(truthRows.find((row) => row.event_id === eventId)));
-  const printLoad = await loadTargetPrints(privateRoot, metas), lineage = await loadLineage(walkRoot);
+  const truthRows = loadGroundTruth(repo);
+  const metas = requestedEventIds.map((eventId) => {
+    const truth = truthRows.find((row) => row.event_id === eventId);
+    ensure(truth, `NAMED_SUBSET_GUARD named game absent from truth table ${eventId}`);
+    return targetMeta(truth);
+  });
+  const printLoad = await loadTargetPrints(privateRoot, metas), lineage = await loadLineage(walkRoot, requestedEventIds);
   const targetPrintRows = [...printLoad.byEvent.values()].flat().sort((a, b) => a.timestamp_epoch - b.timestamp_epoch || String(a.receipt).localeCompare(String(b.receipt)));
+
+  if (subsetSpec) {
+    const subsetReceiptName = `TARGET_PRINTS_${subsetSpec.expected_games}.jsonl.gz`;
+    fs.writeFileSync(path.join(output, subsetReceiptName), zlib.gzipSync(Buffer.from(targetPrintRows.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
+    const executionGuard = subsetGuard.createExecutionGuard(subsetSpec), games = [];
+    activeExecutionGuard = executionGuard;
+    let execution;
+    try {
+      for (const meta of metas) {
+        const horizon = Math.max(...Object.values(meta.formation_end_epochs)) + 6 * 3600;
+        const rows = [...loadTicks(privateRoot, meta), ...printLoad.byEvent.get(meta.event_id)].filter((row) => row.timestamp_epoch <= horizon);
+        const result = replayEvent({ meta, rows, corpus: corpus.rows, resources, lineage, smokeOnly: true });
+        const readerReceipt = readerExecutionReceipt(result);
+        ensure(readerReceipt.all_readers_fired, `named subset reader gap ${meta.event_id}`);
+        games.push({ event_id: meta.event_id, role: meta.event_id === TARGETS.smoke[0] ? "CRIJEA_INTEGRATION_SMOKE" : "NAMED_PIN_SMOKE", grading_performed: false, tape_rows_consumed: rows.length, turning_points: result.stage_reads.length, derivations: result.derivations.length, reader_receipt: readerReceipt, sentence_action_equal: result.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: result.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: result.derivations.every((row) => row.pair_conservation.at_or_below_99) });
+      }
+      execution = executionGuard.finalize();
+    } finally {
+      activeExecutionGuard = null;
+    }
+    const subsetReceipt = {
+      label: "V54_EXACT_N_NAMED_SUBSET_EXECUTION_SMOKE",
+      license: { law_index_read_at: "686e8c8d", law_index_sha256: "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6", laws: ["L8", "L18", "L20", "L22"] },
+      scope: { repair_class_proof: true, passes: 0, reruns: 0, full_804_run: false, grading_performed: false, sealed_read: false, live_mutation: false },
+      execution,
+      games,
+      structural_proof: { parser: "window1_named_subset_guard.parseExactNamedSubset", replay_entry_guard: "activeExecutionGuard records inside replayEvent before state creation", unrequested_game_behavior: "FAIL_LOUD", duplicate_game_behavior: "FAIL_LOUD", incomplete_count_behavior: "FAIL_LOUD", corpus_neighbors_are_consultations_not_game_executions: true },
+      sources: { target_prints: { ...printLoad.source, filtered_event_ids: requestedEventIds, filtered_rows: targetPrintRows.length }, lineage: lineage.receipt },
+    };
+    writeJson(path.join(output, "NAMED_SUBSET_EXECUTION_RECEIPT.json"), subsetReceipt);
+    writeJson(path.join(output, "FORBIDDEN_ACCESS_RECEIPT.json"), { full_804_run: false, tune_test_population_run: false, sealed_read: false, holdout_read: false, live_mutation: false, orders: false, positions: false, deployment: false, scope: { named_subset_exact_n: requestedEventIds, total_games_executed: execution.total_games_executed, other_games_executed: execution.other_games_executed } });
+    writeJson(path.join(output, "SOURCE_RECEIPTS.json"), { corpus_sources: corpus.sources, remote, target_prints: printLoad.source, lineage: lineage.receipt, resources });
+    const files = fs.readdirSync(output).filter((name) => name !== "ARTIFACT_HASH_MANIFEST.json").sort();
+    writeJson(path.join(output, "ARTIFACT_HASH_MANIFEST.json"), { label: subsetReceipt.label, files: Object.fromEntries(files.map((name) => [name, receipt(path.join(output, name))])) });
+    process.stdout.write(canonical({ output, named_subset: execution, all_readers_derived: games.every((game) => game.reader_receipt.all_readers_fired), full_804_run: false, sealed: false, live: false }));
+    return;
+  }
+
   fs.writeFileSync(path.join(output, "TARGET_PRINTS_5.jsonl.gz"), zlib.gzipSync(Buffer.from(targetPrintRows.map((row) => JSON.stringify(row)).join("\n") + "\n"), { level: 9 }));
 
   const smokeMeta = metas.find((meta) => meta.event_id === TARGETS.smoke[0]);
   const smokeRows = [...loadTicks(privateRoot, smokeMeta), ...printLoad.byEvent.get(smokeMeta.event_id)].filter((row) => row.timestamp_epoch <= Math.max(...Object.values(smokeMeta.formation_end_epochs)) + 6 * 3600);
   const smoke = replayEvent({ meta: smokeMeta, rows: smokeRows, corpus: corpus.rows, resources, lineage, smokeOnly: true });
-  ensure(new Set(smoke.stage_reads.flatMap((stage) => Object.keys(stage.reads))).size === 16, "CRIJEA did not fire all readers");
+  const smokeReaderReceipt = readerExecutionReceipt(smoke);
+  ensure(smokeReaderReceipt.all_readers_fired, "CRIJEA did not fire all readers");
   writeText(path.join(output, "SMOKE_CRIJEA.md"), smokeMarkdown(smoke));
-  writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: true, reader_count: 16, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
+  writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: smokeReaderReceipt.all_readers_fired, reader_count: smokeReaderReceipt.reader_count, expected_reader_count: smokeReaderReceipt.expected_reader_count, reader_receipts: smokeReaderReceipt.readers, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
 
   const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [];
   for (const eventId of TARGETS.stories) {

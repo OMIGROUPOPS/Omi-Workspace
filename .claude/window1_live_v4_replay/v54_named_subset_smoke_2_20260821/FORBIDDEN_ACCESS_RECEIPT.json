@@ -1,0 +1,18 @@
+{
+  "full_804_run": false,
+  "tune_test_population_run": false,
+  "sealed_read": false,
+  "holdout_read": false,
+  "live_mutation": false,
+  "orders": false,
+  "positions": false,
+  "deployment": false,
+  "scope": {
+    "named_subset_exact_n": [
+      "KXWTAMATCH-26JUL13CRIJEA",
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH"
+    ],
+    "total_games_executed": 2,
+    "other_games_executed": 0
+  }
+}

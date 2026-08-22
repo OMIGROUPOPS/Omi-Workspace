@@ -1,0 +1,47 @@
+{
+  "label": "V54_EXACT_N_NAMED_SUBSET_EXECUTION_SMOKE",
+  "files": {
+    "CORPUS_CENSUS.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_named_subset_smoke_2_20260821\\CORPUS_CENSUS.json",
+      "sha256": "f45d01940af78284601faeb3fbbaf0df9dab837bedeb54cd39ba2d41d5d0f7d5",
+      "bytes": 9973,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_named_subset_smoke_2_20260821\\CORPUS_INDEX.jsonl.gz",
+      "sha256": "4609fde600ec8de8f6b9823bd5ee23eca47d3cc9cdd1d156f1130d524f44ba28",
+      "bytes": 963331,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_named_subset_smoke_2_20260821\\FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "7990e3f938c03a832a22bdb0b0d9bfa9999f1582bf071280936d21d10be12e09",
+      "bytes": 397,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_named_subset_smoke_2_20260821\\FUNCTIONALITY_RECEIPT.json",
+      "sha256": "80022f37f6256dfe6015c2aba77a58b8c0f01769fef022b5b686363114761bc5",
+      "bytes": 19605,
+      "rows": null
+    },
+    "NAMED_SUBSET_EXECUTION_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_named_subset_smoke_2_20260821\\NAMED_SUBSET_EXECUTION_RECEIPT.json",
+      "sha256": "dd53ffca7da4e6082b2c30a7e22d4aa23c626296db5208a9eeb299b5cbbdc1ac",
+      "bytes": 10513,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_named_subset_smoke_2_20260821\\SOURCE_RECEIPTS.json",
+      "sha256": "3ef28907208fccf4a551fa043df650c0d8fb4bb27ce8f2bd447c257b1930be85",
+      "bytes": 24975,
+      "rows": null
+    },
+    "TARGET_PRINTS_2.jsonl.gz": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_named_subset_smoke_2_20260821\\TARGET_PRINTS_2.jsonl.gz",
+      "sha256": "1c7717d88eefa6408619a4fdb264edd0d2fd5cedbaffa4314349b844601a792a",
+      "bytes": 215943,
+      "rows": null
+    }
+  }
+}

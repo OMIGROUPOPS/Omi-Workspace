@@ -1,0 +1,57 @@
+{
+  "label": "V54_802_FILE_TRACE_OPERATOR_CUSTODY_DISPOSITION",
+  "license": {
+    "law_index_read_at": "686e8c8d",
+    "law_index_sha256": "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6",
+    "laws": [
+      "L8",
+      "L18",
+      "L20",
+      "L22"
+    ]
+  },
+  "operator_word": "CUSTODY",
+  "disposition": "MOVED_TO_OMI_WINDOW1_PRIVATE",
+  "source": {
+    "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_pair_model_iteration_01_804_authoritative_build1_20260821",
+    "absent_after_move": true
+  },
+  "custody": {
+    "path": "C:\\Users\\omigr\\OMI-Window1-private\\v54_pair_model_iteration_01_804_authoritative_build1_20260821",
+    "trace_entries": 802,
+    "trace_bytes": 164665281,
+    "trace_content_identity_sha256": "acd2f3f3d177865d46b4b7199585a244ccaa74f119ec116cac483ca8eeaee8ac",
+    "pre_move_file_manifest_sha256": "21118303cac27afe8ec1cea044428dc4c84899fdf4f5db65eadb8e906e16c4b7",
+    "all_802_file_sha256_and_byte_receipts_match_pre_move_provenance": true
+  },
+  "private_manifests": {
+    "trace_file_manifest": {
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\v54_pair_model_iteration_01_804_authoritative_build1_20260821\\TRACE_FILE_MANIFEST.json",
+      "sha256": "db5934ad2da5ffdeb5d6edcbd600ff78b07834c2afc858835fb1ff1f8fb7de9c",
+      "bytes": 149922
+    },
+    "custody_manifest": {
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\v54_pair_model_iteration_01_804_authoritative_build1_20260821\\CUSTODY_MANIFEST.json",
+      "sha256": "4414f6ec1d6c414b1efdb6506dae2ee21676029c770cfeb3651da48cc40aad7b",
+      "bytes": 1555
+    },
+    "committed": false,
+    "custody_status": "PRIVATE_L22_CUSTODY"
+  },
+  "pre_move_provenance": {
+    "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/V54_TRACE_PROVENANCE_RECEIPT.json",
+    "sha256": "71b11d12977506f7934544a20c37d9d1b7caeb9606cb366d5ba3934f4b7685af"
+  },
+  "finalizer": {
+    "path": "arb-executor/analysis/custody_window1_v54_trace.js",
+    "sha256": "4c8e4abc6317ea1a97b648026c0152fbc743813abd8cf7f1a2c6cbce2f6a81a6",
+    "bytes": 5201
+  },
+  "execution": {
+    "game_passes": 0,
+    "reruns": 0,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  }
+}

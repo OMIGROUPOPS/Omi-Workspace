@@ -257,15 +257,16 @@ function complianceCensus() {
       for (const key of siblingKeys) if (new RegExp(`\\b${key}\\s*:\\s*(?:true|false)\\b`).test(line)) locations.push({ path: file, line: index + 1, key, literal: line.match(new RegExp(`\\b${key}\\s*:\\s*(true|false)\\b`))[1] });
     });
   }
-  ensure(locations.length === 4, `sibling hardcoded verdict census changed: ${locations.length}`);
+  ensure(locations.length === 3, `graveyard hardcoded verdict census changed: ${locations.length}`);
   return {
     definition: "Tracked production JavaScript output keys whose names assert construction/reader verification or compliance and whose value is a boolean literal; preregistered acceptance criteria, tests, and domain-state passed flags are excluded.",
     target_literals_removed: [
       { path: "arb-executor/analysis/build_window1_v54_functionable_v6.js", former_line: 469, key: "zero_law_violations", path_kind: "finalize_existing" },
       { path: "arb-executor/analysis/build_window1_v54_functionable_v6.js", former_line: 506, key: "zero_law_violations", path_kind: "fresh_receipt" },
+      { path: "arb-executor/analysis/build_window1_v54_functionable_v6.js", former_line: 497, key: "all_readers_fired", path_kind: "integration_smoke" },
     ],
-    sibling_hardcoded_compliance_or_verdict_literals: { count: locations.length, locations },
-    total_sites_swept: locations.length + 2,
+    graveyard_hardcoded_compliance_or_verdict_literals: { count: locations.length, locations, disposition: "CATALOGED_UNTOUCHED" },
+    total_sites_swept: locations.length + 3,
   };
 }
 
@@ -308,7 +309,7 @@ writeJson(path.join(repairRoot, "ARTIFACT_HASH_MANIFEST.json"), {
 
 process.stdout.write(canonical({
   receipt_repair: "COMPLETE",
-  hardcoded_sibling_count: repairReceipt.f_vs_040.census.sibling_hardcoded_compliance_or_verdict_literals.count,
+  graveyard_literal_count: repairReceipt.f_vs_040.census.graveyard_hardcoded_compliance_or_verdict_literals.count,
   trace_regular_files: 802,
   trace_committed: false,
   decision_pass_executed: true,

@@ -1,0 +1,295 @@
+{
+  "label": "V54_EXACT_N_NAMED_SUBSET_EXECUTION_SMOKE",
+  "license": {
+    "law_index_read_at": "686e8c8d",
+    "law_index_sha256": "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6",
+    "laws": [
+      "L8",
+      "L18",
+      "L20",
+      "L22"
+    ]
+  },
+  "scope": {
+    "repair_class_proof": true,
+    "passes": 0,
+    "reruns": 0,
+    "full_804_run": false,
+    "grading_performed": false,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "execution": {
+    "mode": "EXACT_N_NAMED_GAMES",
+    "expected_games": 2,
+    "named_event_ids": [
+      "KXWTAMATCH-26JUL13CRIJEA",
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH"
+    ],
+    "executed_event_ids": [
+      "KXWTAMATCH-26JUL13CRIJEA",
+      "KXATPCHALLENGERMATCH-26JUL12POLKUH"
+    ],
+    "total_games_executed": 2,
+    "other_games_executed": 0,
+    "missing_named_games": [],
+    "exact_identity_and_count": true
+  },
+  "games": [
+    {
+      "event_id": "KXWTAMATCH-26JUL13CRIJEA",
+      "role": "CRIJEA_INTEGRATION_SMOKE",
+      "grading_performed": false,
+      "tape_rows_consumed": 15704,
+      "turning_points": 26,
+      "derivations": 52,
+      "reader_receipt": {
+        "all_readers_fired": true,
+        "reader_count": 16,
+        "expected_reader_count": 16,
+        "readers": [
+          {
+            "reader": "anchor_settle",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "9adefe30dded25d14fcf5e9bd04445a82abbbc74b1e97448fa0afb8d689ca177"
+          },
+          {
+            "reader": "opening_split",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "86f7ce9f1989d1cd19d2e7ef3647e93f28a6e81c6c246d902275e1b823d0032a"
+          },
+          {
+            "reader": "drift",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "681fb9cfa0ca31256829dd0804e99252fab893e44d85c77f2d0034d3c3ec7ee6"
+          },
+          {
+            "reader": "steps_stillness",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "a5456845fd2599136055e78f5760976b67a0bbc7830c8d6f65f4ad1604c04542"
+          },
+          {
+            "reader": "shape_survival",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "c2e1069e7fcd09950121b408981bce0d11536ecf9420808b6f2b26ca63fb5176"
+          },
+          {
+            "reader": "ripeness",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "b123b9854fb4a96d33c80697705c67ddeaf3e3d02318309ff362b0c80d17f40e"
+          },
+          {
+            "reader": "lows_travel",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "d11df03a07626bfba16ead49ce7a12c3967ee7c52a41825daeea99415765a7c8"
+          },
+          {
+            "reader": "joint_state_spread_dwell",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "a6a5d33a9e743a376186fd217b787c8df857c76ef1140bcf42b8cff940e05944"
+          },
+          {
+            "reader": "divots",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "6ad15d2047a5804308989bd8b4724b1689f2d1e2fc82a09be07b82b81b406dab"
+          },
+          {
+            "reader": "depth_size",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "b9516eaece73b64694e7905023543af32985912d97a2f73a99ae4bd7e7b9dbdc"
+          },
+          {
+            "reader": "volume",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "83641b1652ddac0159b38bb57b50db3adc120991c29f2a22b5cf8252a7a5f6b3"
+          },
+          {
+            "reader": "sibling_state",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "204f634e257a8de7e9bb0ce857580c535e2bbfbcd8000e22bcb76a9cb811e4e7"
+          },
+          {
+            "reader": "category",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "fee21c61a4c82af2fa226ecec94d5effdab02fe74c91607b2f63740330a45834"
+          },
+          {
+            "reader": "time_in_window",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "d7c002a146bb3a46f151fafdbde24055db82c6eb75f126a3496015748db19b80"
+          },
+          {
+            "reader": "books",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "704c2ed7ee5530659c0c5165b6a5ba0e39737391019e122057b126ebecf14cee"
+          },
+          {
+            "reader": "half_pair_state",
+            "stages_fired": 26,
+            "all_stages_connected": true,
+            "receipt_sha256": "ba8f6dc95459794f95633d863d327e5b35033255ab1305b29bb75baeb8d5caf8"
+          }
+        ]
+      },
+      "sentence_action_equal": true,
+      "citation_receipt_equal": true,
+      "conservation": true
+    },
+    {
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12POLKUH",
+      "role": "NAMED_PIN_SMOKE",
+      "grading_performed": false,
+      "tape_rows_consumed": 1567,
+      "turning_points": 15,
+      "derivations": 30,
+      "reader_receipt": {
+        "all_readers_fired": true,
+        "reader_count": 16,
+        "expected_reader_count": 16,
+        "readers": [
+          {
+            "reader": "anchor_settle",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "5fb7b9b6ccd22289f874c0713ab3ca9977421ecfce5b5eb60558678d94c6b9d9"
+          },
+          {
+            "reader": "opening_split",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "a2bb33c50f7c1df457911dbc3bdf3e3c73310f56cf46ff3af15e3b0cad383c48"
+          },
+          {
+            "reader": "drift",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "8e8a5cb87541585cc9c91ab0a51a1486030940ec0bac3ce66269b9fbd5ebb332"
+          },
+          {
+            "reader": "steps_stillness",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "894896f7ceecb6a56da166c75bdc9a8a76950940f3044c1e289de5d8cd977606"
+          },
+          {
+            "reader": "shape_survival",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "8fd2b187bc410fc8fc422d66f2628d870db8b32f1ac67d4dde610302adb46441"
+          },
+          {
+            "reader": "ripeness",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "b82a2d28a734563aa533f723f7cdfe5cee812a358e621a7917efd2c2dc22d309"
+          },
+          {
+            "reader": "lows_travel",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "ae7e8f726d889e3e8c8cee8708a475f22988ad902dff2216da0f4ffe8b0b1b95"
+          },
+          {
+            "reader": "joint_state_spread_dwell",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "ed13dd5f914b60e34f9f25881a8939620982b6a7f0874702a7e4719ded79d131"
+          },
+          {
+            "reader": "divots",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "27ef29c6451a0cc15279a2fd31ebf166cbfc5b5857c895f2bcaf65e0af7eeabe"
+          },
+          {
+            "reader": "depth_size",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "474abad1f2499475eee8f076e65c166c05a63b33deaffe3d0d5fa7e532c853ba"
+          },
+          {
+            "reader": "volume",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "42ed37230cbca65603e7a68c4e70b25f5e7e0d08951dc8a47b0c8c9589726d65"
+          },
+          {
+            "reader": "sibling_state",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "1be30228927d8a3c8f52092db320644b36d6f3493a2cba791e6916ad9cdab428"
+          },
+          {
+            "reader": "category",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "68d8500e609e527466be3d6adcd619a845e53072dd4423a28c0c7a129492ae37"
+          },
+          {
+            "reader": "time_in_window",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "6d277158276a8642fafb974ad257a4ffc70d9294f7948e9c4b402ff568b39da4"
+          },
+          {
+            "reader": "books",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "d02d514a600d3d2920d67e08fce9dfbcc3adee5fb95ec90680b7fd5941509518"
+          },
+          {
+            "reader": "half_pair_state",
+            "stages_fired": 15,
+            "all_stages_connected": true,
+            "receipt_sha256": "0d77055e11d0c5c081c303e1c193d1bc5412e16b6f1be1445d3d094fa082c77f"
+          }
+        ]
+      },
+      "sentence_action_equal": true,
+      "citation_receipt_equal": true,
+      "conservation": true
+    }
+  ],
+  "structural_proof": {
+    "parser": "window1_named_subset_guard.parseExactNamedSubset",
+    "replay_entry_guard": "activeExecutionGuard records inside replayEvent before state creation",
+    "unrequested_game_behavior": "FAIL_LOUD",
+    "duplicate_game_behavior": "FAIL_LOUD",
+    "incomplete_count_behavior": "FAIL_LOUD",
+    "corpus_neighbors_are_consultations_not_game_executions": true
+  },
+  "sources": {
+    "target_prints": {
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+      "bytes": 1766090446,
+      "scanned_rows": 4836462,
+      "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55",
+      "filtered_event_ids": [
+        "KXWTAMATCH-26JUL13CRIJEA",
+        "KXATPCHALLENGERMATCH-26JUL12POLKUH"
+      ],
+      "filtered_rows": 7054
+    },
+    "lineage": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_pair_model_iteration_01_pins_build1_20260821\\FULL_DECISION_TRACE_5.jsonl.gz",
+      "sha256": "5e89b788eb0a5aa38a374269ef7df4f539b697d54d60e1a66a2297f50575c7e7",
+      "bytes": 7076024,
+      "rows": 13143
+    }
+  }
+}

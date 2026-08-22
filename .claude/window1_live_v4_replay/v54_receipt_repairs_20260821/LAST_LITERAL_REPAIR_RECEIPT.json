@@ -1,0 +1,63 @@
+{
+  "label": "V54_LAST_COMPLIANCE_LITERAL_REPAIR",
+  "license": {
+    "law_index_read_at": "686e8c8d",
+    "law_index_sha256": "c7c7271501076fefdad0d65044bde5a410ccc718f8f7f5a40d488caf81b3dee6",
+    "laws": [
+      "L8",
+      "L18",
+      "L20",
+      "L22"
+    ]
+  },
+  "scope": {
+    "repair_class_only": true,
+    "passes": 0,
+    "reruns": 0,
+    "full_804_run": false
+  },
+  "target": {
+    "path": "arb-executor/analysis/build_window1_v54_functionable_v6.js",
+    "source_sha256": "457d226831208969b1b2b3b5dbfe3451f4210717d6bbb1782044842186517ac3",
+    "bytes": 59939,
+    "former_location": "v6:497",
+    "field": "all_readers_fired",
+    "former_value": "boolean literal true",
+    "result": "DERIVED_FROM_ACTUAL_PER_READER_RECEIPTS",
+    "derivation": "For every name in READER_NAMES, collect each executed stage's reader name, status, and source receipts; hash that collection; count only readers with at least one stage whose name matches and whose status is CONNECTED at every stage; all_readers_fired is the equality of that count and READER_NAMES.length."
+  },
+  "execution_proof": {
+    "path": ".claude/window1_live_v4_replay/v54_named_subset_smoke_2_20260821/NAMED_SUBSET_EXECUTION_RECEIPT.json",
+    "sha256": "dd53ffca7da4e6082b2c30a7e22d4aa23c626296db5208a9eeb299b5cbbdc1ac",
+    "games": 2,
+    "per_game_reader_count": 16,
+    "per_reader_receipt_hashes_present": true
+  },
+  "graveyard_literals": {
+    "count": 3,
+    "disposition": "CATALOGED_UNTOUCHED",
+    "locations": [
+      {
+        "path": "arb-executor/analysis/analyze_window1_v53_stage1_failure.js",
+        "line": 45,
+        "key": "construction_assertions_passed",
+        "literal": true,
+        "source_sha256": "97c40b380134d85616b44dbff8d4876d17af27a10ee13108d79ceab54b3ccdd9"
+      },
+      {
+        "path": "arb-executor/analysis/build_window1_intentional_pair_brain_v22_phase0.js",
+        "line": 186,
+        "key": "frozen_reference_row_verified",
+        "literal": true,
+        "source_sha256": "bb8bdf45541efa460be4533266345b5b07f85800d312cd29818597987340b398"
+      },
+      {
+        "path": "arb-executor/analysis/build_window1_v31_dip_pressure_governor.js",
+        "line": 394,
+        "key": "commit_object_verified",
+        "literal": true,
+        "source_sha256": "d886b61c934a84f02c48e2acb54438d46e19364386b3f4ad7c5af500e8a3022e"
+      }
+    ]
+  }
+}

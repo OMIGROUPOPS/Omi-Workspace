@@ -148,6 +148,19 @@ def summarize_leg(ticker, rows, spike_atlas):
     observed_low = observed_trade_low if observed_trade_low is not None else observed_ask_low
     final_low = final_trade_low if final_trade_low is not None else final_ask_low
     low_basis = "TRUE_TRADE" if final_trade_low is not None else "QUALIFYING_MINUTE_ASK"
+    floor_rows = (
+        [row for row in trade_rows if cents(row.get("price_low")) == final_trade_low]
+        if low_basis == "TRUE_TRADE"
+        else [row for row in rows if cents(row.get("yes_ask_close")) == final_ask_low]
+    )
+    floor_epoch = min((epoch(row.get("minute_ts")) for row in floor_rows if epoch(row.get("minute_ts")) is not None), default=None)
+    bell_epoch = epoch(formation.get("match_start_ts"))
+    floor_duration = bell_epoch - formation_epoch if bell_epoch is not None and formation_epoch is not None else None
+    floor_fraction = (
+        max(0.0, min(1.0, (floor_epoch - formation_epoch) / floor_duration))
+        if floor_epoch is not None and floor_duration is not None and floor_duration > 0
+        else None
+    )
     source_ref = f"{ticker}@{int(formation_epoch)}" if formation_epoch is not None else ticker
     leg = {
         "leg_id": ticker.split("-")[-1],
@@ -161,12 +174,17 @@ def summarize_leg(ticker, rows, spike_atlas):
         "true_trade_low_cents": final_trade_low,
         "qualifying_minute_ask_low_cents": final_ask_low,
         "low_basis": low_basis,
+        "floor_epoch": floor_epoch,
+        "floor_fraction": floor_fraction,
+        "floor_timing_grain": "MINUTE",
+        "floor_timing_basis": f"FIRST_MINUTE_AT_FINAL_{low_basis}_LOW",
+        "floor_timing_receipt": f"{ticker}@minute_ts={int(floor_epoch)}" if floor_epoch is not None else None,
         "high_cents": max((cents(row.get("price_high")) for row in trade_rows if cents(row.get("price_high")) is not None), default=None),
         "close_cents": cents(trade_rows[-1].get("price_close")) if trade_rows else None,
         "high_basis": "MAX_PRICE_HIGH_ON_TRADE_BEARING_MINUTES_STRICTLY_BEFORE_BELL",
         "close_basis": "LAST_PRICE_CLOSE_ON_TRADE_BEARING_MINUTE_STRICTLY_BEFORE_BELL",
         "formation_end_epoch": formation_epoch,
-        "bell_epoch": epoch(formation.get("match_start_ts")),
+        "bell_epoch": bell_epoch,
         "formation_phase_source": "premarket_phase=stable" if formation.get("premarket_phase") == "stable" else "FIRST_LAWFUL_MINUTE_NO_NATIVE_STABLE_ROW",
         "volume_through_formation": sum(finite(row.get("volume_in_minute")) or 0 for row in through_formation),
         "trades_through_formation": sum(int(finite(row.get("trade_count_in_minute")) or 0) for row in through_formation),
@@ -281,6 +299,8 @@ def main():
     source_rows = 0
     skipped = Counter()
     by_category = Counter()
+    timing_events_by_category = Counter()
+    timing_legs_by_category = Counter()
     current_event = None
     current_rows = []
     previous_event = None
@@ -297,6 +317,10 @@ def main():
                 handle.write(json.dumps(summary, sort_keys=True, separators=(",", ":"), default=json_default) + "\n")
                 rows_written += 1
                 by_category[summary["category"]] += 1
+                timed_legs = sum(1 for leg in summary["legs"] if leg.get("floor_epoch") is not None and leg.get("floor_fraction") is not None)
+                if timed_legs:
+                    timing_events_by_category[summary["category"]] += 1
+                    timing_legs_by_category[summary["category"]] += timed_legs
             current_rows = []
 
         for row_group in range(parquet.num_row_groups):
@@ -319,7 +343,7 @@ def main():
         flush()
 
     receipt = {
-        "label": "V54_REPAIR_ITERATION3_FOUNDATION_LIBRARY",
+        "label": "V54_REPAIR_ITERATION6_FOUNDATION_FLOOR_TIME_ENRICHMENT",
         "source": {
             "path": str(source),
             "external_custody_location": args.custody_location,
@@ -346,6 +370,15 @@ def main():
             "bytes": output.stat().st_size,
             "rows": rows_written,
             "by_category": dict(sorted(by_category.items())),
+        },
+        "floor_time_enrichment": {
+            "method": "FIRST_MINUTE_AT_FINAL_LOW_INSIDE_NATIVE_BELL_BOUND",
+            "grain": "MINUTE",
+            "licensed_layers": ["MACRO", "MICRO"],
+            "events_with_timing_by_category": dict(sorted(timing_events_by_category.items())),
+            "legs_with_timing_by_category": dict(sorted(timing_legs_by_category.items())),
+            "events_with_timing": sum(timing_events_by_category.values()),
+            "legs_with_timing": sum(timing_legs_by_category.values()),
         },
         "exclusions": dict(sorted(skipped.items())),
     }

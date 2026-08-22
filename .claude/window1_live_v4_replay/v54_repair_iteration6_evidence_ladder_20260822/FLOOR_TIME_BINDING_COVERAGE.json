@@ -1,0 +1,121 @@
+{
+  "label": "V54_REPAIR_ITERATION6_ALL_BELL_BOUNDED_LIBRARY_FLOOR_TIME_BINDING",
+  "method": "BEST_AVAILABLE_BELL_BOUNDED_MEMBER_FLOOR_FRACTION",
+  "before_truth_table_only": {
+    "events": 496,
+    "legs": 984,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 235,
+        "legs": 464
+      },
+      "ATP_MAIN": {
+        "events": 94,
+        "legs": 187
+      },
+      "WTA_CHALL": {
+        "events": 91,
+        "legs": 181
+      },
+      "WTA_MAIN": {
+        "events": 76,
+        "legs": 152
+      }
+    }
+  },
+  "exact_truth_bindings": {
+    "events": 496,
+    "legs": 984,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 235,
+        "legs": 464
+      },
+      "ATP_MAIN": {
+        "events": 94,
+        "legs": 187
+      },
+      "WTA_CHALL": {
+        "events": 91,
+        "legs": 181
+      },
+      "WTA_MAIN": {
+        "events": 76,
+        "legs": 152
+      }
+    }
+  },
+  "after_all_bell_bounded_library_paths": {
+    "events": 9686,
+    "legs": 19336,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 3792,
+        "legs": 7583
+      },
+      "ATP_MAIN": {
+        "events": 2596,
+        "legs": 5192
+      },
+      "ITF_M": {
+        "events": 87,
+        "legs": 156
+      },
+      "ITF_W": {
+        "events": 87,
+        "legs": 158
+      },
+      "WTA_CHALL": {
+        "events": 680,
+        "legs": 1359
+      },
+      "WTA_MAIN": {
+        "events": 2444,
+        "legs": 4888
+      }
+    }
+  },
+  "eligible_bell_bounded_library_paths": {
+    "events": 9680,
+    "legs": 19323,
+    "by_category": {
+      "ATP_CHALL": {
+        "events": 3791,
+        "legs": 7580
+      },
+      "ATP_MAIN": {
+        "events": 2592,
+        "legs": 5184
+      },
+      "ITF_M": {
+        "events": 87,
+        "legs": 156
+      },
+      "ITF_W": {
+        "events": 87,
+        "legs": 158
+      },
+      "WTA_CHALL": {
+        "events": 680,
+        "legs": 1359
+      },
+      "WTA_MAIN": {
+        "events": 2443,
+        "legs": 4886
+      }
+    }
+  },
+  "every_eligible_game_bound": false,
+  "every_eligible_leg_bound": false,
+  "timing_grains": [
+    "TICK",
+    "MINUTE",
+    "RANGE_POLL"
+  ],
+  "layer_license": [
+    "MACRO",
+    "MICRO"
+  ],
+  "truth_commit": "c0056976",
+  "truth_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json"
+}

@@ -60,13 +60,24 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
-assert.equal(derivation.derivation.target_basis, "DERIVED-DEPTH");
+assert.equal(derivation.derivation.target_basis, "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS");
+assert.equal(derivation.derivation.evidence_rung, "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS");
 assert.equal(derivation.derivation.stale_prior_path_used, false);
 assert.match(derivation.sentence, /TOUCH_RELATION=/);
 assert.match(derivation.sentence, /time-conditioned remaining-dip/);
 assert.match(derivation.sentence, /CHOSEN_DEPTH_CENTS=/);
 assert.match(derivation.sentence, /OWN_WINDOW=/);
 assert.match(derivation.sentence, /PAIR_STATE=/);
+assert.match(derivation.sentence, /EVIDENCE_RUNG=RUNG_1_TIME_BEARING_GRADED_NEIGHBORS/);
+
+const untimedNeighborhood = neighborhood.map((row) => ({ ...row, legs: row.legs.map((leg) => ({ ...leg, floor_fraction: null })) }));
+const rung2 = os.deriveAction({ state, reads, neighborhood: untimedNeighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r2" }, resources });
+assert.equal(rung2.derivation.evidence_rung, "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW");
+
+const rung3 = os.deriveAction({ state, reads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r3" }, resources });
+assert.equal(rung3.derivation.evidence_rung, "RUNG_3_OWN_TAPE");
+assert.equal(rung3.derivation.distribution_depth_cents, 0);
+assert.equal(rung3.derivation.proposed_target_cents, reads.books.value.AAA.bid_cents);
 
 const splitState = os.createTapeState(meta);
 splitState.positions.AAA.standing_target_cents = 60;
@@ -106,6 +117,12 @@ const blocked = os.deriveAction({ state: beforeFormation, reads: beforeReads, ne
 assert.equal(blocked.action.action, "HOLD_REST");
 assert.equal(blocked.action.target_cents, null);
 assert.match(blocked.sentence, /ACTION=HOLD_REST; TARGET_CENTS=NONE/);
+
+const noTape = os.createTapeState(meta);
+const noTapeReads = os.readAll(noTape);
+const rung4 = os.deriveAction({ state: noTape, reads: noTapeReads, neighborhood: [], legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-r4" }, resources });
+assert.equal(rung4.derivation.evidence_rung, "RUNG_4_REFLEX_BYTE_EQUAL");
+assert.equal(rung4.derivation.proposed_target_cents, 38);
 
 const handoff = os.createTapeState(meta);
 for (const [ts, leg, bid, ask, last, bidDepth, askDepth] of books) os.observe(handoff, leg, { timestamp_epoch: ts, receipt: `handoff-${leg}-${ts}`, kind: "BOOK", bid_cents: bid, ask_cents: ask, last_trade_cents: last, bid_depth_5: bidDepth, ask_depth_5: askDepth, bid_1_sz: 10, ask_1_sz: 11 });

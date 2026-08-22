@@ -1,0 +1,409 @@
+{
+  "label": "CORPUS_CENSUS_V54_V6",
+  "law": "F-V53-050",
+  "sealed_excluded": true,
+  "live_mutation": false,
+  "full_804_run": false,
+  "population": {
+    "union_games": 15367,
+    "by_quality": {
+      "FOUNDATION_MINUTE_BELL_BOUNDED": 9000,
+      "HISTORICAL_EVENT_AGGREGATE_UNBOUNDED": 419,
+      "EVENT_REGISTRY_ONLY": 405,
+      "RANGE_SPECTRUM_PATH_UNBOUNDED": 4846,
+      "RANGE_SPECTRUM_PATH_BELL_BOUNDED": 697
+    }
+  },
+  "stores": [
+    {
+      "id": "historical_events",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY",
+      "quality": "EVENT_GRAIN_AGGREGATE; NO_INTRAMATCH_CLOCK",
+      "games": 5879,
+      "span": "2026-01-02..2026-04-10 (source table); durable materialization contains qualifying rows",
+      "categories": {
+        "ATP_CHALL": 2974,
+        "ATP_MAIN": 1252,
+        "WTA_CHALL": 453,
+        "WTA_MAIN": 1200
+      },
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\historical_events_materialized.csv",
+      "sha256": "46741cded0ccb0a24302da4bc7b77f1bb3b82707a8cceaa272a902bae683339a",
+      "bytes": 1041339,
+      "rows": 5879
+    },
+    {
+      "id": "corpus_events_v2",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY_REGISTRY",
+      "quality": "EVENT_AND_CLOCK_PROVENANCE",
+      "games": 12509,
+      "span": "2026-01-02..2026-07-18",
+      "categories": {
+        "ATP_CHALL": 6131,
+        "ATP_MAIN": 2441,
+        "ITF_M": 170,
+        "ITF_W": 144,
+        "WTA_CHALL": 1243,
+        "WTA_MAIN": 2380
+      },
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\corpus_events_v2.jsonl",
+      "sha256": "839f0552fd4edf8e0116d4ba8e8f2bf7808db82396bfd7a0a2b1eadd860a3ebf",
+      "bytes": 4221024,
+      "rows": 12509
+    },
+    {
+      "id": "range_spectrum_v1",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY",
+      "quality": "POLL_PATH_SHAPE; NOT_RECORDER_DEPTH",
+      "games": 6252,
+      "span": "2026-04-20..2026-07-18",
+      "categories": {
+        "ATP_CHALL": 3038,
+        "ATP_MAIN": 1097,
+        "WTA_CHALL": 721,
+        "WTA_MAIN": 1104,
+        "ITF_M": 154,
+        "ITF_W": 138
+      },
+      "path": "C:\\Users\\omigr\\OMI-Workspace\\.corpus-cache-v6\\range_spectrum_v1.jsonl",
+      "sha256": "1e9891acaaea23a73160aaa26b10b17c87270c1209d9a2a0a23a6a6c56434884",
+      "bytes": 130935927,
+      "rows": 6252
+    },
+    {
+      "id": "recorder_dual_book_ticks",
+      "status": "CONNECTED",
+      "purpose": "TUNE_TEST_SUBSTRATE_AND_TARGET_TAPE",
+      "quality": "TOP5_RECORDER_BOOK; L8 STANDING TRUTH",
+      "games": 804,
+      "files": 1608,
+      "span": "2026-07-11..2026-07-21",
+      "categories": {
+        "ATP_CHALL": 369,
+        "ATP_MAIN": 147,
+        "WTA_CHALL": 136,
+        "WTA_MAIN": 152
+      },
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\ticks",
+      "directory_manifest_sha256": "93f33570f0ddc7374fd361a955426b1dc86e9bb924d1a8d17733f10e765c4a61"
+    },
+    {
+      "id": "depth_recorder_top20",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY_AND_DEPTH_READER",
+      "quality": "CHANGE-DEDUPLICATED TOP20 SNAPSHOTS; NOT FULL CHAIN; NOT TRUE PRINTS",
+      "games": 681,
+      "games_both_legs": 681,
+      "tickers": 1362,
+      "files": 175,
+      "rows": 2836510,
+      "bytes": 400532818,
+      "span": "2026-07-13..2026-07-20",
+      "categories": {
+        "ATP_CHALL": 300,
+        "ATP_MAIN": 131,
+        "WTA_CHALL": 117,
+        "WTA_MAIN": 133
+      },
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\depth_recorder",
+      "smoke_receipt": "first-row-open:depth_20260713_01.jsonl.gz@sha256:0c56c2e1e302b8ba76e34fb7386a507fdccb01bae91407e94268bd547f59df57;ledger@sha256:02a07ff63d9ea7475f26704cfe01f8a514477b6af0069ab66cc336118f57fab2"
+    },
+    {
+      "id": "true_print_tape",
+      "status": "CONNECTED",
+      "purpose": "CREDITING_TRUTH",
+      "quality": "PUBLIC_EXCHANGE_TRADE_ID; POSITIVE SIZE",
+      "games": 804,
+      "rows": 4836462,
+      "span": "2026-07-11..2026-07-21",
+      "categories": {
+        "ATP_CHALL": 369,
+        "ATP_MAIN": 147,
+        "WTA_CHALL": 136,
+        "WTA_MAIN": 152
+      },
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+      "bytes": 1766090446
+    },
+    {
+      "id": "subsecond_store",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY_NAMED_EVENT_READER",
+      "quality": "MIXED SOURCE; SYNTHETIC ROWS RETAIN SOURCE LABEL",
+      "games": 8477,
+      "rows": 25574898,
+      "span": "2026-05-14T00:00:00.626871Z..2026-07-28T12:40:45Z",
+      "categories": {
+        "ATP_CHALL": 2668,
+        "ATP_MAIN": 995,
+        "WTA_CHALL": 591,
+        "WTA_MAIN": 1017,
+        "OTHER": 3206
+      },
+      "path": "/root/Omi-Workspace/arb-executor/state/subsecond_store.db",
+      "bytes": 6376095744,
+      "schema_receipt_sha256": "721fefbc4edaabd73f9101a55282e96d9ea8822469538ee179acfb8dd58736a0"
+    },
+    {
+      "id": "do_spaces_ticks",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY_ARCHIVE_PRESEALED_ONLY",
+      "quality": "OBJECT ARCHIVE",
+      "games": 5776,
+      "span": "2026-06-10T16:45:31.213146643-04:00..2026-07-28T08:40:46.673992407-04:00",
+      "categories": {
+        "ATP_CHALL": 2931,
+        "ATP_MAIN": 1029,
+        "WTA_CHALL": 768,
+        "WTA_MAIN": 1048
+      },
+      "objects": 31767,
+      "bytes": 9375338339,
+      "categories_by_game": {
+        "ATP_CHALL": 2931,
+        "ATP_MAIN": 1029,
+        "WTA_CHALL": 768,
+        "WTA_MAIN": 1048
+      },
+      "min_modtime": "2026-06-10T16:45:31.213146643-04:00",
+      "max_modtime": "2026-07-28T08:40:46.673992407-04:00",
+      "smoke_receipt": "md5:5651155ab9c71d2eb2ba76e222d6e168@ticks/KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV.csv.gz",
+      "path": "spaces:omi-tick-archive/ticks"
+    },
+    {
+      "id": "do_spaces_trades",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY_ARCHIVE_PRESEALED_ONLY",
+      "quality": "OBJECT ARCHIVE",
+      "games": 5756,
+      "span": "2026-06-10T16:47:22.417398511-04:00..2026-07-30T01:11:35.546293518-04:00",
+      "categories": {
+        "ATP_CHALL": 2920,
+        "ATP_MAIN": 1026,
+        "WTA_CHALL": 766,
+        "WTA_MAIN": 1044
+      },
+      "objects": 30813,
+      "bytes": 214580025,
+      "categories_by_game": {
+        "ATP_CHALL": 2920,
+        "ATP_MAIN": 1026,
+        "WTA_CHALL": 766,
+        "WTA_MAIN": 1044
+      },
+      "min_modtime": "2026-06-10T16:47:22.417398511-04:00",
+      "max_modtime": "2026-07-30T01:11:35.546293518-04:00",
+      "smoke_receipt": "md5:ad64f5d41b57c3f811006b4fbfeb1c0f@trades/KXATPCHALLENGERMATCH-26JUL12ALVVAN-ALV.csv.gz",
+      "path": "spaces:omi-tick-archive/trades"
+    },
+    {
+      "id": "do_spaces_ws_depth",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY_ARCHIVE_PRESEALED_ONLY",
+      "quality": "RAW WS DELTAS; ZERO FULL-DEPTH-USABLE TICKERS IN FROZEN CENSUS",
+      "games": 804,
+      "span": "2026-06-23T02:00:00.008151396-04:00..2026-08-06T19:54:40.833819780-04:00",
+      "categories": {
+        "ATP_CHALL": 369,
+        "ATP_MAIN": 147,
+        "WTA_CHALL": 136,
+        "WTA_MAIN": 152
+      },
+      "objects": 1050,
+      "bytes": 50595041911,
+      "games_note": "The raw hourly files are multi-game and carry no event ID in the object path; 804 is the frozen source-ledger required-event mapping, not an object-path distinct count.",
+      "categories_by_game": {
+        "ATP_CHALL": 369,
+        "ATP_MAIN": 147,
+        "WTA_CHALL": 136,
+        "WTA_MAIN": 152
+      },
+      "min_modtime": "2026-06-23T02:00:00.008151396-04:00",
+      "max_modtime": "2026-08-06T19:54:40.833819780-04:00",
+      "content_span": "RECORDER FILENAMES 2026-06-23 THROUGH 2026-07-31",
+      "smoke_receipt": "md5:48a5503e3cbec40e56ed90651723b250@ws_depth/ws_20260712_00.jsonl.gz",
+      "path": "spaces:omi-tick-archive/ws_depth"
+    },
+    {
+      "id": "external_custody",
+      "status": "CONNECTED",
+      "purpose": "RAW_NON_GIT_EVIDENCE",
+      "quality": "TARGET FILES HASHED; SEALED DIRECTORY EXCLUDED",
+      "games": 804,
+      "span": "2026-07-11..2026-07-21",
+      "categories": {
+        "ATP_CHALL": 369,
+        "ATP_MAIN": 147,
+        "WTA_CHALL": 136,
+        "WTA_MAIN": 152
+      },
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local"
+    },
+    {
+      "id": "bookmaker_odds",
+      "status": "CONNECTED",
+      "purpose": "STANDING_OS_SUPPLEMENT",
+      "quality": "READ_ONLY_DURABLE_BACKUP",
+      "games": 837,
+      "rows": 120453,
+      "span": "2026-04-02 21:35:09..2026-07-08 23:13:41",
+      "categories": {
+        "UNKNOWN": 837
+      },
+      "path": "/root/tennis_small_tables_backup_20260708.db",
+      "schema_receipt_sha256": "eade02d35c20c8544db240bb8392ab98473ec8800143a065cfe48b971afa37db"
+    },
+    {
+      "id": "macro_projection",
+      "status": "CONNECTED",
+      "purpose": "PATTERN_LIBRARY",
+      "quality": "N2_N4_N5_MACRO_TABLES",
+      "games": 804,
+      "games_with_book_rows": 128,
+      "rows": 5572,
+      "span": "2026-06-11 17:23:09..2026-07-20 18:18:41",
+      "categories": {
+        "ATP_CHALL": 0,
+        "ATP_MAIN": 0,
+        "WTA_CHALL": 5572,
+        "WTA_MAIN": 0
+      },
+      "category_basis": "BOOK_PRICE_ROWS",
+      "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\macro_projection.db",
+      "sha256": "7244e7f9f773cf4c2ba69209d8e979de2f126937ba9b9d0c26440c2ebaf04a74",
+      "bytes": 1314816,
+      "receipt_sha256": "b98eb05105d98b231285f003373efda032add2654f690baf7674ce13bc254427"
+    },
+    {
+      "id": "foundation_minute_universe",
+      "status": "CONNECTED",
+      "purpose": "FIRST_CLASS_PATTERN_LIBRARY",
+      "quality": "NATIVE_BELL_BOUNDED; UNKNOWN_MATCH_START_METHOD_EXCLUDED",
+      "games": 9000,
+      "rows": 9330878,
+      "span": "2025-06-18..2026-05-01",
+      "categories": {
+        "ATP_CHALL": 3550,
+        "ATP_MAIN": 2495,
+        "WTA_CHALL": 589,
+        "WTA_MAIN": 2366
+      },
+      "grain": "MINUTE",
+      "licensed_layers": [
+        "MACRO",
+        "MICRO"
+      ],
+      "micro_micro_licensed": false,
+      "path": "/root/Omi-Workspace/arb-executor/data/durable/per_minute_universe/per_minute_features.parquet",
+      "sha256": "9fde4b5d30e56d99efa0637fe042cb6ca4505274e85e42769b4cedc25e3e5ff4",
+      "bytes": 406637058,
+      "compact_index": {
+        "path": "C:\\tmp\\omi-v54-repair-pair-20260822\\.foundation-cache\\V54_IT6_FOUNDATION_LIBRARY.jsonl.gz",
+        "sha256": "c033cc389e9c322ab7f3d93e242ddc69b9e10c02fb5a99e6d78e93a3922f5367",
+        "bytes": 2159635,
+        "rows": 9000
+      },
+      "coverage_before": {
+        "union_games": 12509,
+        "bounded_games": 698,
+        "unbounded_games": 11355,
+        "not_bounded_games": 11811
+      },
+      "coverage_after": {
+        "union_games": 15367,
+        "bounded_games": 9697,
+        "unbounded_games": 5265,
+        "not_bounded_games": 5670
+      }
+    },
+    {
+      "id": "spike_atlas",
+      "status": "CONNECTED",
+      "purpose": "FOUNDATION_PATTERN_SUPPLEMENT",
+      "quality": "DESCRIPTIVE_ONLY; SUPERSEDED_EXIT_MAP_NOT_CONSUMED",
+      "games": 14033,
+      "rows": 14033,
+      "categories": {
+        "ATP_CHALL": 5326,
+        "ATP_MAIN": 4137,
+        "WTA_CHALL": 887,
+        "WTA_MAIN": 3683
+      },
+      "grain": "EVENT_LEG_DESCRIPTIVE",
+      "licensed_layers": [
+        "MACRO",
+        "MICRO"
+      ],
+      "micro_micro_licensed": false,
+      "sha256": "d52813c1c55ee42cd4e30320bfa52e4acb16010b3e96d45c2d15c499e850db81",
+      "files": [
+        {
+          "bytes": 438587,
+          "category": "ATP_CHALL",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/atp_chall_spike_perN.parquet",
+          "rows": 5326,
+          "sha256": "e28faed5c8d19e9c09ab99a54c724b03bf38bc9c983fdf1956111a86bffa68db"
+        },
+        {
+          "bytes": 343312,
+          "category": "ATP_MAIN",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/atp_main_spike_perN.parquet",
+          "rows": 4137,
+          "sha256": "621c86340b90653e384720b1f10c4617f9fbd64d5f177cbfab0d2153c9ea960f"
+        },
+        {
+          "bytes": 86196,
+          "category": "WTA_CHALL",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/wta_chall_spike_perN.parquet",
+          "rows": 887,
+          "sha256": "ba2e5ef2b9e3a7df681d9e62e259bb583bab6b008326228c215069efc495640f"
+        },
+        {
+          "bytes": 306241,
+          "category": "WTA_MAIN",
+          "grain": "EVENT_LEG_DESCRIPTIVE",
+          "licensed_layers": [
+            "MACRO",
+            "MICRO"
+          ],
+          "micro_micro_licensed": false,
+          "path": "/root/Omi-Workspace/arb-executor/data/durable/spike_volatility_map/wta_main_spike_perN.parquet",
+          "rows": 3683,
+          "sha256": "299b52df87841dff0a065aba264b7b4311c834f80bd8bfee9f90f38ccbca7f98"
+        }
+      ]
+    }
+  ],
+  "remote_smoke": {
+    "spaces_filter": "TICKS/TRADES CONTRACT NAMES 26JAN THROUGH 26JUL; WS RECORDER FILENAMES 202601 THROUGH 202607; NO AUGUST-DATED DATA",
+    "spaces_sample": {
+      "path": "ticks/KXATPCHALLENGERMATCH-26APR19ADESAN-ADE.csv.gz",
+      "head_bytes": 256,
+      "head_sha256": "dea68a8f678465b9419233f555b72e04daf1053ed98caac3dd4d7245e8990bb9"
+    },
+    "subsecond_read_only": true,
+    "odds_read_only": true
+  },
+  "binding_sha256": "d04f934c9bf8d4d9cfd54f4695497bf85e4468d623e91d9bd71a0764276428de"
+}

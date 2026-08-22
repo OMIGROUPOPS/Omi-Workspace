@@ -109,13 +109,29 @@ function rematerializeLeg(legId, leg, span) {
   const anchor = cent(leg?.anchor);
   const refs = referencesInside(leg, span);
   const prices = refs.map((row) => row.reference_cents);
+  const low = prices.length ? prices.reduce((value, price) => Math.min(value, price), Infinity) : null;
+  const floorEpoch = Number.isInteger(low)
+    ? refs.find((row) => row.reference_cents === low)?.timestamp_epoch ?? null
+    : null;
+  const firstEpoch = refs[0]?.timestamp_epoch ?? null;
+  const floorDuration = Number.isFinite(firstEpoch) && Number.isFinite(span.right_edge_epoch)
+    ? span.right_edge_epoch - firstEpoch
+    : null;
+  const floorFraction = Number.isFinite(floorEpoch) && Number.isFinite(floorDuration) && floorDuration > 0
+    ? Math.max(0, Math.min(1, (floorEpoch - firstEpoch) / floorDuration))
+    : null;
   const spreads = refs
     .filter((row) => Number.isInteger(row.bid_cents) && Number.isInteger(row.ask_cents))
     .map((row) => row.ask_cents - row.bid_cents);
   return {
     leg_id: legId,
     anchor_cents: anchor,
-    low_cents: prices.length ? prices.reduce((value, price) => Math.min(value, price), Infinity) : null,
+    low_cents: low,
+    floor_epoch: floorEpoch,
+    floor_fraction: floorFraction,
+    floor_timing_grain: "RANGE_POLL",
+    floor_timing_basis: "FIRST_LAWFUL_REFERENCE_POLL_AT_REMATERIALIZED_LOW",
+    floor_timing_receipt: Number.isFinite(floorEpoch) ? `${span.receipt}|${legId}@${floorEpoch}` : null,
     high_cents: prices.length ? prices.reduce((value, price) => Math.max(value, price), -Infinity) : null,
     close_cents: prices.length ? prices.at(-1) : null,
     net_cents: prices.length && Number.isInteger(anchor) ? prices.at(-1) - anchor : null,

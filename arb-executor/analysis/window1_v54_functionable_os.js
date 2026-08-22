@@ -91,16 +91,16 @@ const SIMILARITY_DECLARATION = Object.freeze({
   undisclosed_weights: false,
 });
 const CONDITIONAL_DIP_DECLARATION = Object.freeze({
-  question: "Given this leg's own bounded evidence, its position in its own lawful window, the current live touch, and the pair state, how far below the touch does the continuously graded remaining-dip distribution license a rest?",
+  question: "What is the best available graded evidence rung that can lawfully derive this leg's depth at this receipt?",
   distribution: "weighted q25/q50/q75 of integer-cent remaining dip; each member contributes its remaining dip only while its bell-bounded floor lies ahead of this leg's current window fraction, and contributes zero once that corresponding floor time has passed",
-  signing_statistic: "the time-conditioned remaining-dip q50 is the derived depth below the live best bid; credited-sibling conservation can only deepen that distance",
+  signing_statistic: "Rung 1 uses the time-conditioned q50; rung 2 uses the continuously graded raw q50 with own-window evidence; rung 3 uses the fresh own-book bid named by anchor/book/low evidence; rung 4 preserves the reflex target. Exact pair conservation may deepen any licensed target.",
   member_law: "Nearest usable members are never rejected by a binary dip/no-dip gate; similarity, coverage, and continuous evidence-distance jointly grade every member.",
   depth_inputs: ["CONDITIONED_REMAINING_DIP_DISTRIBUTION", "OWN_BELL_BOUNDED_WINDOW_POSITION", "OPEN_OR_HALF_PAIR_STATE"],
-  authority_order: ["DERIVED-DEPTH", "DEPTH-UNAVAILABLE-CANCEL"],
-  provenance: "OPERATOR_ORDERED_DERIVATION: no placement constant, threshold, or default appears in the depth path; q50 is the distribution's central order statistic, window position is continuous, and pair pressure is exact 99-cent conservation arithmetic",
+  authority_order: ["RUNG_1_TIME_BEARING_GRADED_NEIGHBORS", "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW", "RUNG_3_OWN_TAPE", "RUNG_4_REFLEX_BYTE_EQUAL"],
+  provenance: "OPERATOR_ORDERED_EVIDENCE_LADDER: absence degrades to the next named rung; no placement constant, threshold, silent output, or unnamed default appears; q50 is the distribution's central order statistic and pair pressure is exact 99-cent conservation arithmetic",
   blanket_anchor_ratio: "DELETED",
   absolute_floor_target_path: "DELETED",
-  lineage_depth_fallback: "DELETED",
+  lineage_depth_fallback: "REPLACED_BY_EXPLICIT_RUNG_4_REFLEX_BYTE_EQUAL",
 });
 
 function sha256(value) {
@@ -543,23 +543,48 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     window_source: windowSource,
   });
   const depthDistribution = timedNeighborLeg.time_conditioned_remaining_dip_distribution_cents;
-  const distributionDepth = Number.isFinite(depthDistribution.q50) ? Math.round(depthDistribution.q50) : null;
+  const rawDepthDistribution = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
+  const rung1Available = Number.isFinite(depthDistribution.q50) && timedNeighborLeg.time_conditioned_members > 0 && Number.isFinite(windowFraction);
+  const rung2Available = !rung1Available && Number.isFinite(rawDepthDistribution.q50) && timedNeighborLeg.rows.length > 0 && Number.isFinite(windowFraction) && Number.isFinite(timedNeighborLeg.own_evidence.observed_low_cents);
+  const rung3Available = !rung1Available && !rung2Available && liveBid && liveAsk && Number.isFinite(anchor) && Number.isFinite(timedNeighborLeg.own_evidence.observed_low_cents);
+  const evidenceRung = rung1Available
+    ? "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS"
+    : rung2Available
+      ? "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW"
+      : rung3Available
+        ? "RUNG_3_OWN_TAPE"
+        : "RUNG_4_REFLEX_BYTE_EQUAL";
+  const rungDistributionDepth = rung1Available
+    ? Math.round(depthDistribution.q50)
+    : rung2Available
+      ? Math.round(rawDepthDistribution.q50)
+      : rung3Available
+        ? 0
+        : null;
   const siblingCommitment = sibling.credited ? cent(sibling.entry_cents) : null;
   const pairCap = siblingCommitment ? PAR_BUDGET_CENTS - siblingCommitment : PAR_BUDGET_CENTS - 1;
   const pairRequiredDepth = liveBid && siblingCommitment ? Math.max(0, liveBid - pairCap) : 0;
-  const chosenDepth = Number.isFinite(distributionDepth) && liveBid ? Math.max(distributionDepth, pairRequiredDepth) : null;
-  const proposedTarget = liveBid && Number.isFinite(chosenDepth) ? Math.max(1, liveBid - chosenDepth) : null;
-  const targetBasis = cent(proposedTarget) ? "DERIVED-DEPTH" : "DEPTH-UNAVAILABLE-CANCEL";
+  const chosenDepth = Number.isFinite(rungDistributionDepth) && liveBid ? Math.max(rungDistributionDepth, pairRequiredDepth) : null;
+  const proposedTarget = evidenceRung === "RUNG_4_REFLEX_BYTE_EQUAL"
+    ? lineageTarget
+    : liveBid && Number.isFinite(chosenDepth) ? Math.max(1, liveBid - chosenDepth) : null;
+  const targetBasis = evidenceRung;
   const targetAuthority = targetBasis;
   const lawfulUnallocatedTarget = cent(proposedTarget) ? Math.max(1, Math.min(proposedTarget, postOnlyCap)) : null;
   const boundedTradeLow = cent(ownLowRead.true_trade_low_cents);
   const belowBoundedTradeLow = Boolean(boundedTradeLow && cent(lawfulUnallocatedTarget) && lawfulUnallocatedTarget < boundedTradeLow);
-  const derivedJointEvidenceLicensesDepth = Boolean(belowBoundedTradeLow && liveBid && liveAsk && Number.isFinite(depthDistribution.q50) && timedNeighborLeg.time_conditioned_members > 0 && Number.isFinite(windowFraction));
+  const rungLicensesDepth = evidenceRung === "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS"
+    ? Boolean(Number.isFinite(depthDistribution.q50) && timedNeighborLeg.time_conditioned_members > 0 && Number.isFinite(windowFraction))
+    : evidenceRung === "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW"
+      ? Boolean(Number.isFinite(rawDepthDistribution.q50) && timedNeighborLeg.rows.length > 0 && Number.isFinite(windowFraction))
+      : evidenceRung === "RUNG_3_OWN_TAPE"
+        ? Boolean(book?.receipt && liveBid && liveAsk)
+        : Boolean(lineage?.receipt);
   const jointDepthLicense = !belowBoundedTradeLow
     ? { required: false, lawful: true, basis: "NOT_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] }
-    : derivedJointEvidenceLicensesDepth
-      ? { required: true, lawful: true, basis: "CONDITIONED_DIP_PLUS_OWN_WINDOW_PLUS_PAIR_STATE", receipts: [book.receipt, ...neighborReceipts.map((row) => row.receipt_id)] }
-      : { required: true, lawful: false, basis: "DEPTH_DERIVATION_INCOMPLETE_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] };
+    : rungLicensesDepth
+      ? { required: true, lawful: true, basis: evidenceRung, receipts: [book?.receipt, ...neighborReceipts.map((row) => row.receipt_id), ...(lineage?.receipt ? [lineage.receipt] : [])].filter(Boolean) }
+      : { required: true, lawful: false, basis: "EVIDENCE_LADDER_RESOURCE_GAP_BELOW_OWN_BOUNDED_TRADED_LOW", receipts: [] };
   const evidenceLawfulTarget = jointDepthLicense.lawful ? lawfulUnallocatedTarget : null;
   const derivedTarget = cent(evidenceLawfulTarget) ? Math.max(1, Math.min(evidenceLawfulTarget, pairCap)) : null;
   const touchRelation = liveBid && liveAsk && cent(evidenceLawfulTarget)
@@ -567,12 +592,19 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     : "NO_FORMED_TWO_SIDED_BOOK";
   const evidenceMass = reads.ripeness.value[legId].continuous_evidence_mass ?? 0;
   const touchDistance = liveBid && cent(evidenceLawfulTarget) ? Math.abs(evidenceLawfulTarget - liveBid) : 99;
-  const allocationPriorityGrade = (timedNeighborLeg.denominator + evidenceMass) / (1 + touchDistance);
+  const rungEvidenceGrade = evidenceRung === "RUNG_1_TIME_BEARING_GRADED_NEIGHBORS"
+    ? timedNeighborLeg.denominator
+    : evidenceRung === "RUNG_2_GRADED_NEIGHBORS_PLUS_OWN_WINDOW"
+      ? timedNeighborLeg.denominator + evidenceMass
+      : evidenceRung === "RUNG_3_OWN_TAPE"
+        ? evidenceMass
+        : Number.isInteger(lineageTarget) ? 1 : 0;
+  const allocationPriorityGrade = rungEvidenceGrade / (1 + touchDistance);
   const active = cent(position.standing_target_cents);
   let action;
   if (!Number.isFinite(formationProgress) || formationProgress < 1) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "FORMATION_NOT_COMPLETE" };
-  else if (!cent(derivedTarget)) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "DEPTH_DERIVATION_UNAVAILABLE_NO_DEFAULT" };
-  else action = { action: active === null ? "PLACE_REST" : active === derivedTarget ? "HOLD_REST" : "REPRICE_REST", target_cents: derivedTarget, reason: "DERIVED_DEPTH_CONDITIONED_DIP_WINDOW_PAIR_STATE" };
+  else if (!cent(derivedTarget)) action = { action: active ? "CANCEL_REST" : "HOLD_REST", target_cents: null, reason: "RUNG_4_REFLEX_BYTE_EQUAL_HAS_NO_LAWFUL_TARGET" };
+  else action = { action: active === null ? "PLACE_REST" : active === derivedTarget ? "HOLD_REST" : "REPRICE_REST", target_cents: derivedTarget, reason: `EVIDENCE_LADDER_${evidenceRung}` };
   const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${cent(action.target_cents) ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
   const namedNeighborhood = neighborhood.length
     ? neighborhood.map((row) => `${row.event_id}@${row.score.toFixed(6)}[${row.citation_receipt_id}]`).join(", ")
@@ -582,11 +614,11 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     ? ` The sibling ${siblingId} is credited at ${sibling.entry_cents} from trade receipt ${sibling.fill_receipt ?? "RESOURCE-GAP"}; that half-pair transition re-posed query ${fillHandoffReceipt.context.reposed_query_fingerprint_sha256} and re-derived this open side [${fillHandoffReceipt.receipt_id}].`
     : "";
   const conditional = timedNeighborLeg.conditional_remaining_dip_distribution_cents;
-  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${timedNeighborLeg.own_evidence.basis} bounded evidence low is ${timedNeighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents and time-conditioned remaining-dip q25/q50/q75 ${depthDistribution.q25 ?? "UNKNOWN"}/${depthDistribution.q50 ?? "UNKNOWN"}/${depthDistribution.q75 ?? "UNKNOWN"} cents from ${timedNeighborLeg.time_conditioned_members} members. TARGET_BASIS=${targetBasis}; LIVE_TOUCH_BID=${liveBid ?? "UNKNOWN"}; CHOSEN_DEPTH_CENTS=${chosenDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; no absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, lineage depth fallback, placement constant, threshold, or default is consumed.`;
+  const conditionalStatement = `${legId} has anchor ${anchor ?? "UNKNOWN"}; its own ${timedNeighborLeg.own_evidence.basis} bounded evidence low is ${timedNeighborLeg.own_evidence.observed_low_cents ?? "UNKNOWN"}, so its observed state is ${timedNeighborLeg.own_evidence.dip_state} with ${timedNeighborLeg.own_evidence.observed_dip_cents ?? "UNKNOWN"} cents already dipped. The continuously graded, bell-bounded MINUTE/RANGE_POLL-grain MACRO/MICRO neighbors imply raw remaining-dip q25/q50/q75 ${conditional.q25 ?? "UNKNOWN"}/${conditional.q50 ?? "UNKNOWN"}/${conditional.q75 ?? "UNKNOWN"} cents and time-conditioned remaining-dip q25/q50/q75 ${depthDistribution.q25 ?? "UNKNOWN"}/${depthDistribution.q50 ?? "UNKNOWN"}/${depthDistribution.q75 ?? "UNKNOWN"} cents from ${timedNeighborLeg.time_conditioned_members} members. EVIDENCE_RUNG=${evidenceRung}; TARGET_BASIS=${targetBasis}; RUNG_EVIDENCE_GRADE=${rungEvidenceGrade}; LIVE_TOUCH_BID=${liveBid ?? "UNKNOWN"}; CHOSEN_DEPTH_CENTS=${chosenDepth ?? "UNKNOWN"}; PRE_ALLOCATION_DEPTH_TARGET_CENTS=${evidenceLawfulTarget ?? "UNKNOWN"}; rung 3 reprices from fresh own-book evidence and rung 4 is the explicitly named reflex floor; no silent output, unnamed default, absolute-floor target, blanket ratio, binary same-state gate, stale-prior path, placement constant, or threshold is consumed.`;
   const windowStatement = ` OWN_WINDOW=formation ${formationEnd ?? "UNKNOWN"} to ${windowEnd ?? "UNKNOWN"} [${windowSource}], elapsed ${elapsedWindowSeconds ?? "UNKNOWN"}s, remaining ${remainingWindowSeconds ?? "UNKNOWN"}s, continuous fraction ${Number.isFinite(windowFraction) ? windowFraction.toFixed(9) : "UNKNOWN"}; each neighbor's bell-bounded floor time decides whether its observed remaining dip still lies ahead at this receipt.`;
   const pairStateStatement = ` PAIR_STATE=${siblingCommitment ? "HALF_PAIR" : "OPEN"}; CREDITED_SIBLING=${siblingCommitment ? `${siblingId}@${siblingCommitment}` : "NONE"}; PAIR_REQUIRED_DEPTH_CENTS=${pairRequiredDepth}; PAIR_CAP_CENTS=${pairCap}.`;
   const presenceStatement = ` TOUCH_RELATION=${touchRelation}; LIVE_BID_ASK=${liveBid ?? "UNKNOWN"}/${liveAsk ?? "UNKNOWN"}; JOINT_DEPTH_LICENSE=${jointDepthLicense.basis}; DEPTH_LICENSE_RECEIPTS=${jointDepthLicense.receipts.join(",") || "NONE"}.`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Lineage target ${lineageStatement} is context only and never a depth fallback; post-only cap is ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${conditionalStatement}${windowStatement}${pairStateStatement}${presenceStatement} Lineage target ${lineageStatement} is consumed only when the explicitly named rung 4 is best available; post-only cap is ${postOnlyCap}.${fillHandoffStatement} ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
   for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
   if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
@@ -601,7 +633,7 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     neighborhood,
     resources_consulted: [...new Set(neighborhood.filter((row) => row.quality === "FOUNDATION_MINUTE_BELL_BOUNDED").flatMap((row) => ["FOUNDATION_PER_MINUTE_UNIVERSE", ...(row.legs?.some((leg) => leg.spike_atlas) ? ["SPIKE_ATLAS"] : [])]))],
     citation_receipts: citationReceipts,
-    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, depth_distribution_cents: depthDistribution, distribution_depth_cents: distributionDepth, chosen_depth_cents: chosenDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, sibling_commitment_cents: siblingCommitment, pair_state: siblingCommitment ? "HALF_PAIR" : "OPEN", pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
+    derivation: { oriented_index: orientedIndex, neighbor_leg: timedNeighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, target_authority: targetAuthority, target_basis: targetBasis, evidence_rung: evidenceRung, rung_availability: { time_bearing_graded_neighbors: rung1Available, graded_neighbors_plus_own_window: rung2Available, own_tape: rung3Available, reflex_byte_equal: true }, rung_evidence_grade: rungEvidenceGrade, depth_distribution_cents: depthDistribution, raw_depth_distribution_cents: rawDepthDistribution, distribution_depth_cents: rungDistributionDepth, chosen_depth_cents: chosenDepth, pair_required_depth_cents: pairRequiredDepth, window_timing: { source: windowSource, formation_end_epoch: formationEnd, window_end_epoch: windowEnd, elapsed_seconds: elapsedWindowSeconds, remaining_seconds: remainingWindowSeconds, fraction: windowFraction }, proposed_target_cents: cent(proposedTarget), lawful_unallocated_target_cents: cent(evidenceLawfulTarget), lineage_target_cents: lineageTarget, lineage_depth_fallback_used: false, reflex_rung_used: evidenceRung === "RUNG_4_REFLEX_BYTE_EQUAL", sibling_commitment_cents: siblingCommitment, pair_state: siblingCommitment ? "HALF_PAIR" : "OPEN", pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget), touch_relation: touchRelation, live_bid_cents: liveBid, live_ask_cents: liveAsk, joint_depth_license: jointDepthLicense, allocation_priority_grade: allocationPriorityGrade, stale_prior_path_used: false, fill_handoff_receipt_id: fillHandoffReceipt?.receipt_id ?? null, reposed_query_fingerprint_sha256: fillHandoffReceipt?.context?.reposed_query_fingerprint_sha256 ?? null },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },

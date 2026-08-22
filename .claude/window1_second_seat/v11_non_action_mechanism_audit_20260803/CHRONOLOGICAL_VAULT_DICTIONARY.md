@@ -18826,6 +18826,8 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| CONDITIONAL-EXPECTATION — no population ratio sets a level unconditioned; graded against this leg's own tape first; blanket ratio = violation | 2026-08-22 | F-VS-066 (binds F-VS-062) |
+| WINDOWS-ON-OWN-CLOCKS — each side's cheap window hunted while live, priced from its own evidence; sequencing is an outcome, never a decreed order | 2026-08-22 | F-VS-065 (binds F-VS-053/064) |
 | LAYER-FIT RULING — non-subsecond stores inform MACRO, may inform MICRO, never MICRO-MICRO; every citation carries grain + layer | 2026-08-22 | F-VS-060 |
 | CORPUS LAW AMENDED — library left wall = the Foundation era (2025-06-18), grain declared per store; sealed exclusion + leave-self-out unchanged | 2026-08-22 | F-VS-059 (amends F-V53-050) |
 | THE FOUNDATION catalogued as PATTERN LIBRARY store, grain MINUTE | 2026-08-22 | F-VS-058 · §l |
@@ -19550,3 +19552,9 @@ The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 
 - The one cent (F-VS-062): weighted neighbor low ratio ≈0.98 aims the riser's rest ~2% under its anchor (PAL 38 vs floor 39; SVA 40 vs floor 41); served low = TRADED min last over the 5-min path; edge exclusive; rounding honest.
 - GIUBAR candidate: **COMPLETE 93¢ Δ7 at the full lawful ceiling** (BAR 27 → GIU 66 via handoff) — first receipted pair-coherent cascade completing at ceiling (F-VS-063).
 - Sequencing inverted on both failed games: fader credited first, riser derived late; the tape's riser floor came first (F-VS-064). Four-game table in `V2_COUNTER_GRADE.json`: candidate 1/7¢ vs baseline 2/9¢.
+
+
+## y. WINDOWS-ON-OWN-CLOCKS + CONDITIONAL-EXPECTATION (appended 2026-08-22)
+
+- Each side's cheap window is hunted while live, priced from that side's own evidence and the picture; sequencing is an outcome of per-game derivation, never decreed (F-VS-065; supersedes riser-first phrasing in F-VS-064).
+- No served population ratio prices a rest unconditioned; every expectation is graded against this leg's own lows and dip-or-no-dip evidence first; a blanket ratio is the retired population-stat frame (F-VS-066; binds the one-cent mechanism F-VS-062).

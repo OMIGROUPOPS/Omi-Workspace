@@ -19526,3 +19526,8 @@ W1TT-C-002 URSPAL (2026-08-21): bell 1784042247; PAL 39/41 fill 40 valid; URS 57
 Per game, in operator language, from welded receipts only (sentence==action, citation==receipt; an unreceipted line is a violation). Decision graded on what was knowable at decision time; outcome graded separately; total floors are context, never the aim.
 
 Sections, in order: 1 WHAT I BELIEVED AT OPEN · 2 WHAT I DECIDED PER SIDE AND WHY (resources named) · 3 EACH ACTION AT EACH PRICE WITH ITS REASON AT THAT TIME · 4 WHAT HAPPENED · 5 MY GRADE OF MY OWN TRADE — GOOD / BAD / MIXED — WITH REASONING · 6 WHAT I'D FLAG FOR THE LIBRARY.
+
+
+## v. CASE STUDY v1 — CERTIFIED BASELINE (appended 2026-08-22; license 45ddd12b)
+
+Package `.claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/` @45ddd12b: Panel A exact vs the raw tape (1,876/1,876); Panel B 20 stages / 16 lanes with the break rendered; Panel C two trade reports, 126/126 lines receipted and resolved. **Break filed F-VS-056 (GAP-LAJSVA-FILL-HANDOFF)** — the reflex fill never enters the pattern engine; bound to F-VS-053 beside F-VS-050. Certified as CASE STUDY v1 as-occurred baseline (F-VS-057); the builder regenerates after each accepted repair.

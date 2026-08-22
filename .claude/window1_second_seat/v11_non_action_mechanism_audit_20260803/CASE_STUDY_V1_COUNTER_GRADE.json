@@ -1,0 +1,134 @@
+{
+ "label": "CASE_STUDY_V1_COUNTER_GRADE",
+ "package": "45ddd12b",
+ "tape": "ef6f3975",
+ "trade_reports": {
+  "TRADE_REPORT_REFLEX.md": {
+   "lines_audited": 69,
+   "lines_with_receipt": 69,
+   "receipts_resolved": 69,
+   "unresolved": [],
+   "unresolved_count": 0,
+   "factual_lines_without_receipt": [],
+   "no_receipt_count": 0
+  },
+  "TRADE_REPORT_PATTERN_ENGINE.md": {
+   "lines_audited": 58,
+   "lines_with_receipt": 57,
+   "receipts_resolved": 57,
+   "unresolved": [],
+   "unresolved_count": 0,
+   "factual_lines_without_receipt": [
+    [
+     15,
+     "| Stage | Hours | Reported named neighborhood | LAJ/SVA derivation | Receipt / gap |"
+    ]
+   ],
+   "no_receipt_count": 1
+  }
+ },
+ "panel_a": {
+  "D_parsed": true,
+  "keys": [
+   "event_id",
+   "discovery",
+   "formation",
+   "bell",
+   "rows",
+   "pairSum",
+   "stages",
+   "notable",
+   "receipts",
+   "counts"
+  ],
+  "len_rows": 1876,
+  "len_pairSum": 1249,
+  "len_stages": 20,
+  "len_notable": 5,
+  "annotation_checks": {
+   "rows": {
+    "n": 1876,
+    "matched_to_tape": 1876,
+    "unmatched": []
+   },
+   "pairSum": {
+    "n": 1249,
+    "matched_to_tape": 1249,
+    "unmatched": []
+   },
+   "stages": {
+    "n": 20,
+    "matched_to_tape": 20,
+    "unmatched": []
+   },
+   "notable": {
+    "n": 5,
+    "matched_to_tape": 5,
+    "unmatched": []
+   }
+  },
+  "exact_row_compare": {
+   "rows": 1876,
+   "mismatches": 50,
+   "examples": [
+    "(1, {'line': 10, 'epoch': 1784007323, 'delta': 0, 'leg': 'LAJ', 'bid': 5, 'ask': 86, 'last': None, 'kind': 'book', 'marker': '', 'source': 'ticks#row-1', 'receipt': 'ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md#L10'}, ['1784007323.000', '0.000', 'LA",
+    "(2, {'line': 11, 'epoch': 1784007323, 'delta': 0, 'leg': 'SVA', 'bid': 5, 'ask': 86, 'last': None, 'kind': 'book', 'marker': '', 'source': 'ticks#row-1', 'receipt': 'ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md#L11'}, ['1784007323.000', '0.000', 'SV",
+    "(3, {'line': 12, 'epoch': 1784007333, 'delta': 10, 'leg': 'LAJ', 'bid': 5, 'ask': 85, 'last': None, 'kind': 'book', 'marker': '', 'source': 'ticks#row-3', 'receipt': 'ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md#L12'}, ['1784007333.000', '10.000', '",
+    "(4, {'line': 13, 'epoch': 1784007334, 'delta': 11, 'leg': 'SVA', 'bid': 5, 'ask': 85, 'last': None, 'kind': 'book', 'marker': '', 'source': 'ticks#row-6', 'receipt': 'ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md#L13'}, ['1784007334.000', '11.000', '"
+   ],
+   "non_representation_mismatches": 0,
+   "note": "50 mismatches are tape last_trade '0' rendered as null (no trade yet) \u2014 representation, not value"
+  }
+ },
+ "panel_b": {
+  "four_stories_stages": 20,
+  "stage_hours": [
+   "0.000000",
+   "0.021667",
+   "0.077778",
+   "0.078056",
+   "2.432880",
+   "2.970278",
+   "3.577453",
+   "5.996667",
+   "8.139269",
+   "8.140556",
+   "8.144167",
+   "8.866667",
+   "8.997500",
+   "11.998056",
+   "12.608611",
+   "14.996111",
+   "17.994444",
+   "19.732778",
+   "19.732851",
+   "19.732851"
+  ],
+  "resource_gap_tokens_in_story": 20,
+  "sixteen_variable_pictures": 20,
+  "panel_b_mentions": {
+   "BROKEN_AFTER_FILL": 0,
+   "GAP-LAJSVA-FILL-HANDOFF": 1,
+   "stages_text": 57
+  },
+  "fill_epoch": 1784020209.484,
+  "fill_hours": 3.579578888879882,
+  "stages_after_fill": [
+   "5.996667",
+   "8.139269",
+   "8.140556"
+  ],
+  "half_pair_after_fill_in_story": 0,
+  "half_pair_zero_after_fill": null,
+  "reflex_fill_mentioned_in_story": true,
+  "credited_true_occurrences_in_story": 2,
+  "html_BROKEN_mentions": 0,
+  "html_handoff_gap_mentions": 1
+ },
+ "verdict": {
+  "panel_a": "EXACT 1,876/1,876 rows vs LAJSVA_RAW_TAPE @ef6f3975 (50 null-vs-0 representation); every reflex/v6/fill/floor/discovery/formation/bell marker present with tape line receipt",
+  "panel_b": "20 stages = FOUR_STORIES 20 stages; 16 lanes; 20 capture-time gaps = 20 RESOURCE-GAP stamps in the story; break GAP-LAJSVA-FILL-HANDOFF rendered; the story's only credited:true values sit in the execution appendix (reflex outcome), none in any stage's half_pair_state \u2014 the reflex fill never enters the pattern engine",
+  "panel_c": "TRADE_REPORT_REFLEX 69/69 lines receipted and resolved; TRADE_REPORT_PATTERN_ENGINE 57/57 receipted and resolved (1 table-header line, not factual); 0 unreceipted factual lines",
+  "certification": "CERTIFIED as CASE STUDY v1 AS-OCCURRED BASELINE (F-VS-052) with the break filed F-VS-056"
+ }
+}

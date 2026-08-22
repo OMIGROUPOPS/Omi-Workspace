@@ -19558,3 +19558,12 @@ The Foundation catalogued in §l (F-VS-058): 9.33M minute rows, 19,207 tickers, 
 
 - Each side's cheap window is hunted while live, priced from that side's own evidence and the picture; sequencing is an outcome of per-game derivation, never decreed (F-VS-065; supersedes riser-first phrasing in F-VS-064).
 - No served population ratio prices a rest unconditioned; every expectation is graded against this leg's own lows and dip-or-no-dip evidence first; a blanket ratio is the retired population-stat frame (F-VS-066; binds the one-cent mechanism F-VS-062).
+
+
+## z. ITERATION-2 COUNTER-GRADE + THREE FORENSICS (appended 2026-08-22; license 5be18d5f)
+
+- @5be18d5f verified: pins equal; determinism ×2 byte-identical; Foundation 698→9,697 bounded spot-checked on 8 legs (bells 8/8, lows 7/8 — HAR 49 vs 50 to be named); blanket ratio 0/110; v3 panels 6/6 shas. Candidate: GIUBAR 96 Δ4, URSPAL 97 Δ3, LAJSVA partial, DANPRA partial → 2/7¢ vs baseline 2/9¢ (F-VS-067).
+- SVA window: "right level, after the window" CONFIRMED — 41 from 5.997 h; at the 41 print (3.577 h) the target was the pair cap 39 from LAJ's uncredited 60; own book evidence (bid 38–40, anchor 41) existed from 2.4 h (F-VS-068).
+- GIU accept: conditioned distribution EMPTY at the accept; 69 = post-only cap; the 66 came 66 min later, pre-bell (F-VS-069).
+- Conservation residue: 8 of 75 targets bound by the uncredited sibling (SVA 2, PAL 1, DAN 5), SVA's at the floor-print receipt (F-VS-070).
+- Defect named: EMPTY-DISTRIBUTION FALLBACK — caps/lineage decide when the distribution has no members; took GIU, waited SVA (F-VS-071). Measurement only.

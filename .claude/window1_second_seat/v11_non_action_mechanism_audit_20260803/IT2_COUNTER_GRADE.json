@@ -1,0 +1,187 @@
+{
+ "label": "IT2_COUNTER_GRADE",
+ "package": "5be18d5f",
+ "license": {
+  "law_index_sha": "5be18d5f",
+  "laws": [
+   "L8",
+   "L11",
+   "L18",
+   "L20",
+   "L22"
+  ]
+ },
+ "gate": {
+  "pins_equal": true,
+  "self_stop": true,
+  "breaks": {
+   "GIUBAR": "96c d4 < 7",
+   "LAJSVA": "partial"
+  }
+ },
+ "four_game": {
+  "GIUBAR": "COMPLETE 96 d4 (BAR 27 +5, GIU 69 -3)",
+  "URSPAL": "COMPLETE 97 d3 (PAL 40 +1, URS 57 +4)",
+  "LAJSVA": "PARTIAL (LAJ 54 -1; SVA rest 41)",
+  "DANPRA": "PARTIAL (PRA 43 -2; DAN rest 56)",
+  "game_ruler": "2/7c over 4",
+  "leg_ruler": "4c over 6 legs",
+  "baseline": "2/9c; 9c over 5"
+ },
+ "foundation_spot_check": {
+  "legs": 8,
+  "bell_eq_match_start_ts": 8,
+  "low_eq_traded_min": 7,
+  "low_disagreement": [
+   {
+    "ticker": "KXATPMATCH-26MAR29HERHAR-HAR",
+    "library": 49,
+    "store_traded_min": 50
+   }
+  ],
+  "close_differs": 5,
+  "high_differs": 3,
+  "coverage": {
+   "before": [
+    698,
+    12509
+   ],
+   "after": [
+    9697,
+    15367
+   ],
+   "not_bounded_after": 5670
+  }
+ },
+ "conditioning": {
+  "derivations": 110,
+  "blanket_ratio_used_true": 0,
+  "every_sentence_states_conditioning": true,
+  "empty_distribution_stages": {
+   "SVA": "13/18",
+   "GIU": "9/10"
+  }
+ },
+ "determinism": {
+  "two_builds_byte_identical": true,
+  "files": 26
+ },
+ "case_study_v3": {
+  "outputs_sha_verified": "6/6"
+ },
+ "sva_trajectory": [
+  [
+   1784007604,
+   24,
+   "own book dip 2c, 1 member q50 15"
+  ],
+  [
+   1784016081.367,
+   37,
+   "0 members -> lineage 37"
+  ],
+  [
+   1784018016,
+   37,
+   "pair cap 40 (LAJ 59)"
+  ],
+  [
+   1784020201.83,
+   39,
+   "pair cap 39 (LAJ 60) AT the 41 floor print"
+  ],
+  [
+   1784028911,
+   41,
+   "pair cap 41 (LAJ 58)"
+  ],
+  [
+   "...bell",
+   41,
+   "held"
+  ]
+ ],
+ "giu_trajectory": [
+  [
+   1783831858,
+   49,
+   "book dip 18c, 1 member q 0"
+  ],
+  [
+   1783833752.027,
+   67,
+   "TRUE_TRADE basis, 0 members -> lineage 67"
+  ],
+  [
+   1783841801.304,
+   68,
+   "BAR credit; post-only cap 68; 0 members"
+  ],
+  [
+   1783842032,
+   69,
+   "post-only cap 69"
+  ],
+  [
+   1783865397.812,
+   "FILL 69",
+   "66 print at 1783869375 (66 min later, pre-bell)"
+  ]
+ ],
+ "conservation_residue": {
+  "SVA": [
+   [
+    1784020201.83,
+    39,
+    60
+   ],
+   [
+    1784028911,
+    41,
+    58
+   ]
+  ],
+  "PAL": [
+   [
+    1784028256,
+    41,
+    58
+   ]
+  ],
+  "DAN": [
+   [
+    1784349391,
+    56,
+    43
+   ],
+   [
+    1784360023,
+    56,
+    43
+   ],
+   [
+    1784370685,
+    56,
+    43
+   ],
+   [
+    1784373056,
+    56,
+    43
+   ],
+   [
+    1784373060,
+    56,
+    43
+   ]
+  ],
+  "LAJ": [],
+  "URS": [],
+  "BAR": [],
+  "GIU": [],
+  "PRA": [],
+  "total_bound": 8,
+  "of_targets": 75
+ },
+ "defect": "EMPTY-DISTRIBUTION FALLBACK: 0 same-state members -> lineage / pair cap / post-only cap decide the level (took GIU 69; waited SVA under 41)"
+}

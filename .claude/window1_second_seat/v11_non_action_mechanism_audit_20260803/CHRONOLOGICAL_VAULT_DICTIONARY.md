@@ -18826,6 +18826,7 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| GIUBAR BELL ADOPTED 1783874300 ±60 s — truth-table correction W1TT-C-001; corrections file binds every reader | 2026-08-21 | F-VS-042 · W1_GROUND_TRUTH_CORRECTIONS.md |
 | UNKNOWN-BELL EXCLUSION — 20 games out of numerator and denominator; count printed on every scoreboard | 2026-08-21 | F-VS-024 |
 | F24 CLOSES NOT LAWFUL — truth-table closes are the only W1 closes | 2026-08-21 | F-VS-023 · F-V53-046 |
 | ONE CLOCK — hours-from-discovery; T-8h retired as a gate | 2026-08-21 | FILED NOW — F-VS-028 (census F-VS-017) |
@@ -19478,3 +19479,8 @@ Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 11
 - 39 pokes on the post-weld build: 33 verified by this seat's scratch run (CRIJEA smoke 16/16 readers, 52 derivations, sentence==action, citation receipts live), 6 remote components UNVERIFIED post-weld (F-VS-039).
 - Hardcode: `zero_law_violations = true` literal in finalize path (F-VS-040). Unreported full-804 V54 license trace in Codex's worktree, 160 MB, 11:39 local — operator word required (F-VS-041).
 - Still queued on HEAD: remaining turning-point reproductions (GIUBAR/URSPAL/LAJSVA), capture-vs-ceiling vs tape, surprise-ledger independent scans.
+
+
+## p. TRUTH-TABLE CORRECTIONS (appended 2026-08-21)
+
+`W1_GROUND_TRUTH_CORRECTIONS.{md,jsonl}` is append-only and binds every reader of the table @ c0056976 (L11). W1TT-C-001 GIUBAR: bell 1783874300; BAR 27/32, fill post-bell; GIU 66/66, fill 69 valid; PARTIAL_FOR_REASON (F-VS-042).

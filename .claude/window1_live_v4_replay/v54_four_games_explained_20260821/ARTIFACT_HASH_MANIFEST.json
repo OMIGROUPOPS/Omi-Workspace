@@ -3,18 +3,18 @@
   "files": {
     "EXPLANATION_RECEIPT.json": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\EXPLANATION_RECEIPT.json",
-      "sha256": "7015e16847a335c2b5ed9c9a8f704dd0460fac0614d2ab2700c6c4b75881b530",
-      "bytes": 11840
+      "sha256": "59a0dfcf73439893b328d85d0a5a3fa10b838953f2063d32d6c42808733fb12c",
+      "bytes": 12033
     },
     "GAME_EXPLAINED_DANPRA.md": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_DANPRA.md",
-      "sha256": "4c4f0aa1946f3ac8675a0bba2ae17f6c8b2224e636f89f1d2b1960a1f5ae75d5",
-      "bytes": 96958
+      "sha256": "8af84645a61811303c26d5aa1ee66bf3bdaef3e09d4f64a741701b1e3c9e5841",
+      "bytes": 101435
     },
     "GAME_EXPLAINED_GIUBAR.md": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_GIUBAR.md",
-      "sha256": "001b680221c58414e8a3ab026e2a4294a30fcff81c471184c2ee7eaad20e4615",
-      "bytes": 91851
+      "sha256": "061eb60b9f04c13e5583b4cda2594ee85eed2f49e429ea1151608ef1bcc6841a",
+      "bytes": 94416
     },
     "GIUBAR_ODDS_STORE_RECEIPT.json": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GIUBAR_ODDS_STORE_RECEIPT.json",
@@ -23,18 +23,23 @@
     },
     "GAME_EXPLAINED_LAJSVA.md": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_LAJSVA.md",
-      "sha256": "8ae0e30ae8526114b598658318f911d695aa5c591d345f55758ad878c3bf9a85",
-      "bytes": 92553
+      "sha256": "79a3e07f1f6b9e1210b6b7475ff7de9332668ca4cd2f24f32bf4b0b883a2f061",
+      "bytes": 95201
     },
     "GAME_EXPLAINED_URSPAL.md": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\GAME_EXPLAINED_URSPAL.md",
-      "sha256": "6631c201c85b5734e1c3d4cc7f68627a1522d9b09734e66eb2e4f829383b170b",
-      "bytes": 94584
+      "sha256": "7e4bbfd81e2fcb9c38ba923a776d7e618612b0e7712a3a7afe23fdc9b900cc09",
+      "bytes": 97149
     },
     "HUMILITY_LEDGER.md": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\HUMILITY_LEDGER.md",
       "sha256": "5543b51c84a87a9d8a2a09abfe9a99278089f9959cf3791b4748e5b36b2e55bf",
       "bytes": 2478
+    },
+    "CITATION_WELD_RECEIPT.json": {
+      "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\CITATION_WELD_RECEIPT.json",
+      "sha256": "35ea896b3bd938b5e0a91136b9ec7c0b816c1c0970eb24d3de2cdf6053aff2c2",
+      "bytes": 440979
     }
   },
   "scope": {

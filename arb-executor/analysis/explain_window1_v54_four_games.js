@@ -396,10 +396,11 @@ function neighborhoodTable(stage, rangeByEvent, historicalByEvent) {
 function arithmeticBlock(stage) {
   return stage.derivations.map((row) => {
     const terms = row.neighbor_rows.map((item) => `${item.event_id}:(${fmt(item.score)}×${fmt(item.coverage)})×(${item.low}/${item.anchor})`).join(" + ");
+    const massTerms = row.neighbor_rows.map((item) => `${fmt(item.score)}×${fmt(item.coverage)}`).join(" + ");
     const formation = stage.reads.anchor_settle.formation_progress[row.leg_id];
     const calculation = formation < 1
       ? `Formation progress ${fmt(formation)} < 1 overrides the computed candidate; lawful action is ${row.action}@NONE.`
-      : `Σweighted-ratio / Σweight = (${terms}) / ${fmt(row.denominator)} = ${fmt(row.ratio, 12)}. Raw round(${row.anchor_cents}×${fmt(row.ratio, 12)})=${row.raw_target}; mass=${fmt(row.neighborhood_mass, 12)}; blend with lineage ${row.lineage_target_cents ?? "NONE"} gives ${row.blended_target}; min(pair cap ${row.pair_cap_cents}, post-only cap ${row.post_only_cap_cents}) gives ${row.capped_target}. Printed action ${row.action}@${row.target_cents ?? "NONE"}, active-before ${row.active_before_cents ?? "NONE"}.`;
+      : `Σweighted-ratio / Σweight = (${terms}) / ${fmt(row.denominator)} = ${fmt(row.ratio, 12)}. Raw round(${row.anchor_cents}×${fmt(row.ratio, 12)})=${row.raw_target}; m=mean(score×coverage)=(${massTerms})/${row.neighbor_rows.length}=${fmt(row.neighborhood_mass, 12)} using the named-neighbor R-CORPUS/R-RANGE/R-HIST rows immediately above; blend with lineage ${row.lineage_target_cents ?? "NONE"} from the quoted R-STORY sentence gives ${row.blended_target}; min(pair cap ${row.pair_cap_cents}, post-only cap ${row.post_only_cap_cents}) gives ${row.capped_target}. Printed action ${row.action}@${row.target_cents ?? "NONE"}, active-before ${row.active_before_cents ?? "NONE"}.`;
     return `**${row.leg_id}.** ${calculation}\n\n> ${row.sentence}`;
   }).join("\n\n");
 }
@@ -536,6 +537,8 @@ Steps-Behind Law: assume the OS is always a few steps behind the market's finess
 ## Receipt bindings
 
 ${bindings}
+
+NEIGHBOR-GRAIN: receipt-bearing comparisons below are either RANGE_SPECTRUM_PATH polling paths (R-CORPUS + R-RANGE, approximately 100 ticks per leg) or HISTORICAL_EVENT_AGGREGATE rows (R-CORPUS + R-HIST, no intramatch path). RESOURCE-GAP: no raw-tape order-book depth receipt exists at the matched-neighbor stage; range-path best-five summaries are not raw depth.
 
 ## 1. The story — hour 0 to bell (${wordCount(story)} words; two-page guard passed)
 

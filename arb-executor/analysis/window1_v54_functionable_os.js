@@ -270,21 +270,68 @@ function similarity(query, candidate, declaration = SIMILARITY_DECLARATION) {
   return { score, coverage, normalized_distance: normalizedDistance, contributions };
 }
 
-function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY_DECLARATION.neighbor_count) {
+function receiptId(receipt) {
+  return `CR-${sha256(JSON.stringify(receipt))}`;
+}
+
+function captureReceipt({ citationType, sourceId, capturedAtReceipt, rowRefs, status = "RECEIPT" }) {
+  const receipt = {
+    schema: "CITATION_RECEIPT_V1",
+    kind: status === "RESOURCE-GAP" ? "RESOURCE_GAP" : "QUERY_RECEIPT",
+    citation_type: citationType,
+    source_id: sourceId,
+    captured_at_receipt: capturedAtReceipt,
+    row_refs: [...new Set((rowRefs ?? []).filter((value) => typeof value === "string" && value.length > 0))].sort(),
+  };
+  receipt.receipt_id = receiptId(receipt);
+  return receipt;
+}
+
+function assertCaptureReceipt(receipt, capturedAtReceipt, citation) {
+  const valid = Boolean(
+    receipt
+    && typeof receipt === "object"
+    && receipt.schema === "CITATION_RECEIPT_V1"
+    && ["QUERY_RECEIPT", "RESOURCE_GAP"].includes(receipt.kind)
+    && receipt.captured_at_receipt === capturedAtReceipt
+    && typeof receipt.receipt_id === "string"
+    && receipt.receipt_id === receiptId(Object.fromEntries(Object.entries(receipt).filter(([key]) => key !== "receipt_id")))
+    && (receipt.kind === "RESOURCE_GAP" || (Array.isArray(receipt.row_refs) && receipt.row_refs.length > 0))
+  );
+  if (!valid) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION ${citation}|${capturedAtReceipt}`);
+  return receipt;
+}
+
+function retrieveNeighborhood(corpus, query, excludedEventId, count = SIMILARITY_DECLARATION.neighbor_count, capturedAtReceipt = null) {
+  if (!capturedAtReceipt) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBORHOOD_QUERY|MISSING_CAPTURE_CLOCK`);
   const rows = corpus.filter((row) => row.event_id !== excludedEventId).map((row) => ({ row, match: similarity(query, row.vector) }));
   rows.sort((a, b) => b.match.score - a.match.score || b.match.coverage - a.match.coverage || a.row.event_id.localeCompare(b.row.event_id));
-  return rows.slice(0, count).map((entry, index) => ({
-    grade: `N${index + 1}`,
-    event_id: entry.row.event_id,
-    event_date: entry.row.event_date,
-    category: entry.row.category,
-    score: entry.match.score,
-    coverage: entry.match.coverage,
-    normalized_distance: entry.match.normalized_distance,
-    quality: entry.row.quality,
-    legs: entry.row.legs,
-    source_receipts: entry.row.source_receipts,
-  }));
+  return rows.slice(0, count).map((entry, index) => {
+    const rowRefs = (entry.row.source_receipts ?? []).map((sourceReceipt) => sourceReceipt?.row_ref).filter(Boolean);
+    if (!rowRefs.length) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_ROW_RECEIPT_MISSING:${entry.row.event_id}|${capturedAtReceipt}`);
+    const citationReceipt = captureReceipt({
+      citationType: "NAMED_NEIGHBOR",
+      sourceId: entry.row.event_id,
+      capturedAtReceipt,
+      rowRefs,
+      status: "RECEIPT",
+    });
+    assertCaptureReceipt(citationReceipt, capturedAtReceipt, `NEIGHBOR:${entry.row.event_id}`);
+    return {
+      grade: `N${index + 1}`,
+      event_id: entry.row.event_id,
+      event_date: entry.row.event_date,
+      category: entry.row.category,
+      score: entry.match.score,
+      coverage: entry.match.coverage,
+      normalized_distance: entry.match.normalized_distance,
+      quality: entry.row.quality,
+      legs: entry.row.legs,
+      source_receipts: entry.row.source_receipts,
+      citation_receipt: citationReceipt,
+      citation_receipt_id: citationReceipt.receipt_id,
+    };
+  });
 }
 
 function assertResources(resources) {
@@ -307,7 +354,17 @@ function weightedNeighborLeg(neighborhood, orientedIndex) {
 }
 
 function deriveAction({ state, reads, neighborhood, legId, lineage, resources }) {
-  const consulted = assertResources(resources);
+  assertResources(resources);
+  const neighborReceipts = neighborhood.map((row) => assertCaptureReceipt(row.citation_receipt, state.receipt, `NEIGHBOR:${row.event_id}`));
+  const readerRowRefs = [...new Set(Object.values(reads).flatMap((read) => read.receipts ?? []).filter(Boolean))];
+  const readerReceipt = captureReceipt({ citationType: "SIXTEEN_READERS", sourceId: state.event_id, capturedAtReceipt: state.receipt, rowRefs: readerRowRefs, status: readerRowRefs.length ? "RECEIPT" : "RESOURCE-GAP" });
+  assertCaptureReceipt(readerReceipt, state.receipt, `READERS:${state.event_id}`);
+  const lineageRows = lineage?.receipt ? [String(lineage.receipt)] : [];
+  const lineageReceipt = captureReceipt({ citationType: "LINEAGE", sourceId: `${state.event_id}|${legId}`, capturedAtReceipt: state.receipt, rowRefs: lineageRows, status: lineageRows.length ? "RECEIPT" : "RESOURCE-GAP" });
+  assertCaptureReceipt(lineageReceipt, state.receipt, `LINEAGE:${state.event_id}|${legId}`);
+  const neighborhoodGapReceipt = neighborhood.length ? null : captureReceipt({ citationType: "NAMED_NEIGHBOR", sourceId: state.event_id, capturedAtReceipt: state.receipt, rowRefs: [], status: "RESOURCE-GAP" });
+  if (neighborhoodGapReceipt) assertCaptureReceipt(neighborhoodGapReceipt, state.receipt, `NEIGHBORHOOD_RESOURCE_GAP:${state.event_id}`);
+  const citationReceipts = Object.fromEntries([...neighborReceipts, readerReceipt, lineageReceipt, ...(neighborhoodGapReceipt ? [neighborhoodGapReceipt] : [])].map((receipt) => [receipt.receipt_id, receipt]));
   const vector = vectorFromReads(state, reads);
   const orientedIndex = vector.oriented_leg_ids.indexOf(legId);
   if (orientedIndex < 0) throw new Error(`DERIVATION_LEG_NOT_ORIENTED ${legId}`);
@@ -333,8 +390,14 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
   else if (!cent(derivedTarget)) action = { action: active ? "HOLD_REST" : "HOLD_REST", target_cents: active, reason: "NEIGHBORHOOD_TARGET_UNAVAILABLE" };
   else action = { action: active === null ? "PLACE_REST" : active === derivedTarget ? "HOLD_REST" : "REPRICE_REST", target_cents: derivedTarget, reason: "ASSEMBLED_PATTERN_NEIGHBORHOOD_PAIR_ARITHMETIC" };
   const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${cent(action.target_cents) ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
-  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id}. The named neighborhood is ${neighborhood.map((row) => `${row.event_id}@${row.score.toFixed(6)}`).join(", ") || "EMPTY"}. ${legId} has anchor ${anchor ?? "UNKNOWN"}, neighborhood low ratio ${neighborLeg.weighted_low_ratio ?? "UNKNOWN"}, lineage target ${lineageTarget ?? "NONE"}, pair cap ${pairCap}, and post-only cap ${postOnlyCap}. Resources consulted: ${consulted.map((row) => row.id).join(", ")}. ${actionStatement}`;
+  const namedNeighborhood = neighborhood.length
+    ? neighborhood.map((row) => `${row.event_id}@${row.score.toFixed(6)}[${row.citation_receipt_id}]`).join(", ")
+    : `RESOURCE-GAP[${neighborhoodGapReceipt.receipt_id}]`;
+  const lineageStatement = lineageTarget === null ? `RESOURCE-GAP[${lineageReceipt.receipt_id}]` : `${lineageTarget}[${lineageReceipt.receipt_id}]`;
+  const sentence = `At ${reads.time_in_window.value.hours_from_discovery.toFixed(6)} hours from discovery, all sixteen readers fired for ${state.event_id} [${readerReceipt.receipt_id}]. The named neighborhood is ${namedNeighborhood}. ${legId} has anchor ${anchor ?? "UNKNOWN"}, neighborhood low ratio ${neighborLeg.weighted_low_ratio ?? "UNKNOWN"}, lineage target ${lineageStatement}, pair cap ${pairCap}, and post-only cap ${postOnlyCap}. ${actionStatement}`;
   if (!sentence.includes(actionStatement)) throw new Error(`SENTENCE_ACTION_MISMATCH ${state.event_id}|${legId}|${state.receipt}`);
+  for (const row of neighborhood) if (!sentence.includes(`[${row.citation_receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_NOT_WELDED:${row.event_id}|${state.receipt}`);
+  if (!sentence.includes(`[${readerReceipt.receipt_id}]`) || !sentence.includes(`[${lineageReceipt.receipt_id}]`)) throw new Error(`CITATION_RECEIPT_BUILD_VIOLATION SENTENCE_RECEIPT_NOT_WELDED|${state.receipt}`);
   return {
     event_id: state.event_id,
     leg_id: legId,
@@ -343,11 +406,13 @@ function deriveAction({ state, reads, neighborhood, legId, lineage, resources })
     receipt: state.receipt,
     vector,
     neighborhood,
-    resources_consulted: consulted.map((row) => ({ id: row.id, receipt: row.receipt })),
+    resources_consulted: [],
+    citation_receipts: citationReceipts,
     derivation: { oriented_index: orientedIndex, neighbor_leg: neighborLeg, neighborhood_mass: neighborhoodMass, anchor_cents: anchor, lineage_target_cents: lineageTarget, sibling_commitment_cents: siblingCommitment, pair_cap_cents: pairCap, post_only_cap_cents: postOnlyCap, derived_target_cents: cent(derivedTarget) },
     action,
     sentence,
     sentence_action_assertion: { hard_assert: true, expected_statement: actionStatement, equal: true },
+    citation_receipt_assertion: { hard_assert: true, receipt_count: Object.keys(citationReceipts).length, equal: true },
     pair_conservation: { sibling_leg_id: siblingId, sibling_commitment_cents: siblingCommitment, evaluated_target_cents: cent(action.target_cents), sum_cents: cent(action.target_cents) && siblingCommitment ? action.target_cents + siblingCommitment : null, at_or_below_99: !(cent(action.target_cents) && siblingCommitment) || action.target_cents + siblingCommitment <= PAR_BUDGET_CENTS },
   };
 }
@@ -365,5 +430,7 @@ module.exports = {
   similarity,
   retrieveNeighborhood,
   assertResources,
+  captureReceipt,
+  assertCaptureReceipt,
   deriveAction,
 };

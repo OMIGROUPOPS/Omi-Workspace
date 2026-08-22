@@ -83,17 +83,17 @@ async function loadCorpus(cacheDir) {
   const rangePath = path.join(cacheDir, "range_spectrum_v1.jsonl");
   const byEvent = new Map();
   const registryCategories = {}, registryEras = {};
-  const registryRows = await streamJsonl(registryPath, (row) => {
+  const registryRows = await streamJsonl(registryPath, (row, rowNumber) => {
     const eventId = row.event;
     const eventDate = row.era ?? dateCode(eventId);
-    byEvent.set(eventId, { event_id: eventId, event_date: eventDate, category: row.cat, quality: "EVENT_REGISTRY_ONLY", vector: { category: row.cat }, legs: [], source_receipts: ["CORPUS_EVENTS_V2"] });
+    byEvent.set(eventId, { event_id: eventId, event_date: eventDate, category: row.cat, quality: "EVENT_REGISTRY_ONLY", vector: { category: row.cat }, legs: [], source_receipts: [{ source_id: "CORPUS_EVENTS_V2", row_ref: `${registryPath}#row-${rowNumber}` }] });
     registryCategories[row.cat] = (registryCategories[row.cat] || 0) + 1;
     registryEras[eventDate] = (registryEras[eventDate] || 0) + 1;
   });
   const historicalLines = fs.readFileSync(historicalPath, "utf8").trim().split(/\r?\n/);
   const historicalHeaders = parseCsvLine(historicalLines.shift());
   const historicalCategories = {};
-  for (const line of historicalLines) {
+  for (const [historicalIndex, line] of historicalLines.entries()) {
     const row = objectFromCsv(historicalHeaders, line), eventId = row.event_ticker, category = row.category;
     historicalCategories[category] = (historicalCategories[category] || 0) + 1;
     const rawLegs = [
@@ -114,10 +114,10 @@ async function loadCorpus(cacheDir) {
       volume_log1p: Math.log1p(number(row.total_trades) ?? 0),
       hours_from_discovery: number(row.duration_hours),
       divot_depth_cents: ((number(row.winner_max_dip) ?? 0) + (number(row.loser_max_dip) ?? 0)) / 2,
-    }, source_receipts: [...new Set([...(existing.source_receipts ?? []), "HISTORICAL_EVENTS_MATERIALIZATION"])] });
+    }, source_receipts: [...(existing.source_receipts ?? []), { source_id: "HISTORICAL_EVENTS_MATERIALIZATION", row_ref: `${historicalPath}#line-${historicalIndex + 2}` }] });
   }
   const rangeCategories = {};
-  const rangeRows = await streamJsonl(rangePath, (row) => {
+  const rangeRows = await streamJsonl(rangePath, (row, rowNumber) => {
     const eventId = row.event, category = row.cat;
     rangeCategories[category] = (rangeCategories[category] || 0) + 1;
     const rawLegs = Object.entries(row.legs).map(([legId, leg]) => ({ leg_id: legId, anchor_cents: number(leg.anchor), low_cents: number(leg.low), high_cents: Array.isArray(leg.ticks) ? leg.ticks.reduce((maximum, tick) => Number.isFinite(Number(tick[3])) ? Math.max(maximum, Number(tick[3])) : maximum, -Infinity) : null, close_cents: number(leg.close), net_cents: number(leg.net), shape: leg.shape, spread_median_cents: number(leg.spread_med), n_traded_polls: number(leg.n_traded_polls), source: row.tick_src })).map((leg) => ({ ...leg, high_cents: Number.isFinite(leg.high_cents) ? leg.high_cents : null })).sort((a, b) => (a.anchor_cents ?? 50) - (b.anchor_cents ?? 50) || a.leg_id.localeCompare(b.leg_id));
@@ -137,7 +137,7 @@ async function loadCorpus(cacheDir) {
       volume_log1p: Math.log1p((rawLegs[0].n_traded_polls ?? 0) + (rawLegs[1].n_traded_polls ?? 0)),
       hours_from_discovery: Number.isFinite(firstTick) && Number.isFinite(row.right_edge) ? (row.right_edge - firstTick) / 3600 : null,
       divot_depth_cents: (Math.max(0, (rawLegs[0].anchor_cents ?? 0) - (rawLegs[0].low_cents ?? 0)) + Math.max(0, (rawLegs[1].anchor_cents ?? 0) - (rawLegs[1].low_cents ?? 0))) / 2,
-    }, source_receipts: [...new Set([...(existing.source_receipts ?? []), "RANGE_SPECTRUM_V1"])] });
+    }, source_receipts: [...(existing.source_receipts ?? []), { source_id: "RANGE_SPECTRUM_V1", row_ref: `${rangePath}#row-${rowNumber}` }] });
   });
   const rows = [...byEvent.values()].sort((a, b) => a.event_id.localeCompare(b.event_id));
   return { rows, counts: { registry_rows: registryRows, historical_rows: historicalLines.length, range_rows: rangeRows, union_games: rows.length, by_quality: rows.reduce((acc, row) => (acc[row.quality] = (acc[row.quality] || 0) + 1, acc), {}), registry_categories: registryCategories, historical_categories: historicalCategories, range_categories: rangeCategories, registry_eras: registryEras }, sources: { registry: receipt(registryPath, registryRows), historical: receipt(historicalPath, historicalLines.length), range: receipt(rangePath, rangeRows) } };
@@ -358,8 +358,8 @@ function functionalityReceipt(resources, census) {
   os.READER_NAMES.forEach((name) => components.push({ component: `READER_${name.toUpperCase()}`, status: "CONNECTED", smoke_receipt: `UNIT_REAL_TAPE_SMOKE:${name}` }));
   components.push({ component: "PATTERN_ENGINE", status: "CONNECTED", smoke_receipt: shaBytes(canonical(os.SIMILARITY_DECLARATION)), detail: os.SIMILARITY_DECLARATION });
   components.push({ component: "NEIGHBORHOOD_RETRIEVAL", status: "CONNECTED", smoke_receipt: "LEAVE_SELF_OUT_ASSERTED_AND_NAMED" });
-  components.push({ component: "DERIVATION", status: "CONNECTED", smoke_receipt: "NEIGHBORHOOD+ALL_RESOURCES+PAIR_ARITHMETIC" });
-  components.push({ component: "SENTENCE_EMITTER", status: "CONNECTED", smoke_receipt: "SENTENCE_ACTION_HARD_ASSERT" });
+  components.push({ component: "DERIVATION", status: "CONNECTED", smoke_receipt: "NEIGHBORHOOD+TAPE_READS+LINEAGE+PAIR_ARITHMETIC" });
+  components.push({ component: "SENTENCE_EMITTER", status: "CONNECTED", smoke_receipt: "SENTENCE_ACTION_HARD_ASSERT+CITATION_RECEIPT_HARD_ASSERT" });
   const bad = components.filter((row) => row.status !== "CONNECTED");
   return { label: "FUNCTIONALITY_RECEIPT_V54_V6", definition: "The OS functions only when every listed component is CONNECTED with a smoke receipt.", corpus_binding_sha256: census.binding_sha256, component_count: components.length, connected_count: components.length - bad.length, degraded_count: components.filter((row) => row.status === "DEGRADED").length, disconnected_count: components.filter((row) => row.status === "DISCONNECTED").length, all_connected: bad.length === 0, components };
 }
@@ -368,7 +368,10 @@ function readersPlain(reads) {
   return os.READER_NAMES.map((name) => `${name}=${JSON.stringify(reads[name].value)}`).join(" · ");
 }
 function neighborsPlain(neighborhood) {
-  return neighborhood.map((row) => `${row.event_id} (${row.event_date}; score ${row.score.toFixed(4)}; ${row.legs.map((leg) => `${leg.leg_id} ${leg.anchor_cents ?? "?"}->low ${leg.low_cents ?? "?"}->close ${leg.close_cents ?? "?"}`).join(", ")})`).join("; ");
+  return neighborhood.map((row) => `${row.event_id}[${row.citation_receipt_id}] (${row.event_date}; score ${row.score.toFixed(4)}; ${row.legs.map((leg) => `${leg.leg_id} ${leg.anchor_cents ?? "?"}->low ${leg.low_cents ?? "?"}->close ${leg.close_cents ?? "?"}`).join(", ")})`).join("; ");
+}
+function citationsPlain(derivation) {
+  return Object.values(derivation.citation_receipts).map((row) => `${row.receipt_id}=${JSON.stringify(row)}`).join("; ");
 }
 
 function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false }) {
@@ -387,12 +390,13 @@ function replayEvent({ meta, rows, corpus, resources, lineage, smokeOnly = false
     if (state.leg_ids.some((id) => !state.legs[id].rows.length)) continue;
     state.current_epoch = Math.max(...state.leg_ids.map((id) => state.legs[id].rows.at(-1).timestamp_epoch));
     state.receipt = `${state.event_id}|TURN|${state.current_epoch}`;
-    const reads = os.readAll(state), vector = os.vectorFromReads(state, reads), neighborhood = os.retrieveNeighborhood(corpus, vector, state.event_id);
+    const reads = os.readAll(state), vector = os.vectorFromReads(state, reads), neighborhood = os.retrieveNeighborhood(corpus, vector, state.event_id, os.SIMILARITY_DECLARATION.neighbor_count, state.receipt);
     ensure(neighborhood.every((row) => row.event_id !== state.event_id), `leave-self-out failed ${state.event_id}`);
     const perLeg = [];
     for (const legId of state.leg_ids) {
       const derivation = os.deriveAction({ state, reads, neighborhood, legId, lineage: lineageAt(lineage, state.event_id, legId, state.current_epoch), resources });
       ensure(derivation.sentence_action_assertion.equal, `sentence action failed ${state.event_id}|${legId}`);
+      ensure(derivation.citation_receipt_assertion.equal, `citation receipt failed ${state.event_id}|${legId}`);
       ensure(derivation.pair_conservation.at_or_below_99, `pair conservation failed ${state.event_id}|${legId}`);
       if (!smokeOnly && !state.positions[legId].credited) state.positions[legId].standing_target_cents = derivation.action.action === "CANCEL_REST" ? null : derivation.action.target_cents;
       perLeg.push(derivation); derivations.push(derivation);
@@ -408,24 +412,24 @@ function oldOutcome(perGame, eventId, meta) {
   return { completed: row.L8_OUTCOME.candidate.completed, combined_entry_cents: row.L8_OUTCOME.candidate.combined_entry_cents, delta_vs_100_cents: row.L8_OUTCOME.candidate.completed ? 100 - row.L8_OUTCOME.candidate.combined_entry_cents : null, gradeable: Number.isFinite(meta.bell_epoch), legs: credits };
 }
 
-function smokeMarkdown(result, resources) {
+function smokeMarkdown(result) {
   const uniqueReaders = new Set(result.stage_reads.flatMap((stage) => Object.keys(stage.reads)));
-  const namedNeighbors = new Set(result.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => row.event_id)));
-  return `# CRIJEA integration smoke — no grading\n\nLicense: LAW_INDEX @ 3cd59162, sha256 41784e6a… · L0 L6 L8 L10 L11 L16 L17 L18 L19a L20 L21 L22 L23.\n\nCRIJEA is integration-only. Truth closes are UNKNOWN and no execution grade appears here.\n\n- Sixteen readers firing: ${uniqueReaders.size}/16 — ${[...uniqueReaders].sort().join(", ")}\n- Named neighbors returned: ${[...namedNeighbors].sort().join(", ")}\n- Derivations emitted: ${result.derivations.length}\n- Written sentences matching actions: ${result.derivations.filter((row) => row.sentence_action_assertion.equal).length}/${result.derivations.length}\n- Conservation pass: ${result.derivations.filter((row) => row.pair_conservation.at_or_below_99).length}/${result.derivations.length}\n- Resources connected and consulted: ${resources.map((row) => row.id).join(", ")}\n\n${result.stage_reads.map((stage) => `## ${stage.hours_from_discovery.toFixed(6)} hours from discovery\n\nFull sixteen-variable picture: ${readersPlain(stage.reads)}\n\nNamed neighborhood: ${neighborsPlain(stage.neighborhood)}\n\n${stage.derivations.map((row) => `${row.sentence}\n\nRESOURCES-CONSULTED: ${row.resources_consulted.map((resource) => resource.id).join(", ")}`).join("\n\n")}`).join("\n\n")}\n`;
+  const namedNeighbors = new Set(result.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => `${row.event_id}[${row.citation_receipt_id}]`)));
+  return `# CRIJEA integration smoke — no grading\n\nLicense: LAW_INDEX @ 3cd59162, sha256 41784e6a… · L0 L6 L8 L10 L11 L16 L17 L18 L19a L20 L21 L22 L23.\n\nCRIJEA is integration-only. Truth closes are UNKNOWN and no execution grade appears here.\n\n- Sixteen readers firing: ${uniqueReaders.size}/16 — ${[...uniqueReaders].sort().join(", ")}\n- Named neighbors returned with welded receipts: ${[...namedNeighbors].sort().join(", ")}\n- Derivations emitted: ${result.derivations.length}\n- Written sentences matching actions: ${result.derivations.filter((row) => row.sentence_action_assertion.equal).length}/${result.derivations.length}\n- Citation receipts matching citations: ${result.derivations.filter((row) => row.citation_receipt_assertion.equal).length}/${result.derivations.length}\n- Conservation pass: ${result.derivations.filter((row) => row.pair_conservation.at_or_below_99).length}/${result.derivations.length}\n\n${result.stage_reads.map((stage) => `## ${stage.hours_from_discovery.toFixed(6)} hours from discovery\n\nFull sixteen-variable picture: ${readersPlain(stage.reads)}\n\nNamed neighborhood: ${neighborsPlain(stage.neighborhood)}\n\n${stage.derivations.map((row) => `${row.sentence}\n\nCITATION-RECEIPTS: ${citationsPlain(row)}`).join("\n\n")}`).join("\n\n")}\n`;
 }
 
 function storySection(result, old, meta) {
   const story = result.stage_reads.map((stage, index) => {
     const actions = stage.derivations.map((row) => `${row.leg_id}: ${row.action.action}${Number.isInteger(row.action.target_cents) ? ` at ${row.action.target_cents} cents` : ""}`).join("; ");
-    return `At ${stage.hours_from_discovery.toFixed(6)} hours from discovery${index === 0 ? ", the market entered the recorded story" : ", the assembled pattern changed"}. The full sixteen-variable picture was ${readersPlain(stage.reads)}. The named neighborhood was ${neighborsPlain(stage.neighborhood)}. The derivation produced ${actions}. ${stage.derivations.map((row) => row.sentence).join(" ")}\n\nASSUMPTION: the continuously scored, leave-self-out neighborhood is the most relevant recorded comparison available at this point in formation; it informs the action and never gates the game.\n\nRESOURCES-CONSULTED: ${stage.derivations[0].resources_consulted.map((resource) => resource.id).join(", ")}.`;
+    return `At ${stage.hours_from_discovery.toFixed(6)} hours from discovery${index === 0 ? ", the market entered the recorded story" : ", the assembled pattern changed"}. The full sixteen-variable picture was ${readersPlain(stage.reads)}. The named neighborhood was ${neighborsPlain(stage.neighborhood)}. The derivation produced ${actions}. ${stage.derivations.map((row) => row.sentence).join(" ")}\n\nASSUMPTION: the continuously scored, leave-self-out neighborhood is the most relevant recorded comparison available at this point in formation; it informs the action and never gates the game.\n\nCITATION-RECEIPTS: ${stage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
   }).join("\n\n");
   const closes = meta.leg_ids.map((id) => `${id}=${meta.truth_closes_cents[id] ?? "UNKNOWN"}`).join(", ");
   const danpra = meta.event_id === "KXATPMATCH-26JUL18DANPRA" ? (() => {
     const finalStage = result.stage_reads.at(-1), books = finalStage.reads.books.value;
     const conclusions = finalStage.derivations.map((row) => `${row.leg_id}: weighted look-alike low ratio ${row.derivation.neighbor_leg.weighted_low_ratio?.toFixed(6) ?? "UNKNOWN"}, ${row.action.action}${Number.isInteger(row.action.target_cents) ? ` at ${row.action.target_cents}¢` : ""}`).join("; ");
-    return `\n\n### DANPRA 59/40 all-day exhibit\n\nAt the bell the tape still showed DAN ${books.DAN?.bid_cents ?? "?"}/${books.DAN?.ask_cents ?? "?"} and PRA ${books.PRA?.bid_cents ?? "?"}/${books.PRA?.ask_cents ?? "?"}, the operator's 59/40 all-day shape. Its final named look-alikes were ${neighborsPlain(finalStage.neighborhood)}. Across those games, the high-side anchors near 56–62¢ usually dipped into 42–58¢ before closing 57–65¢, while the low-side anchors near 38–44¢ dipped into 26–44¢ before closing 38–45¢. The declared similarity and pair arithmetic concluded ${conclusions}. The OS did not chase the displayed 59/40 pair; it stood 51/33 at the bell, and neither rest filled.`;
+    return `\n\n### DANPRA 59/40 all-day exhibit\n\nAt the bell the tape still showed DAN ${books.DAN?.bid_cents ?? "?"}/${books.DAN?.ask_cents ?? "?"} and PRA ${books.PRA?.bid_cents ?? "?"}/${books.PRA?.ask_cents ?? "?"}, the operator's 59/40 all-day shape. Its final named look-alikes were ${neighborsPlain(finalStage.neighborhood)}. Across those games, the high-side anchors near 56–62¢ usually dipped into 42–58¢ before closing 57–65¢, while the low-side anchors near 38–44¢ dipped into 26–44¢ before closing 38–45¢. The declared similarity and pair arithmetic concluded ${conclusions}. The OS did not chase the displayed 59/40 pair; it stood 51/33 at the bell, and neither rest filled. CITATION-RECEIPTS: ${finalStage.derivations.map((row) => citationsPlain(row)).join(" || ")}.`;
   })() : "";
-  return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| ruler | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| Old V54 | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| Functionable v6 | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| L11 truth table | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
+  return `## ${meta.event_id}\n\n${story}${danpra}\n\n### Execution appendix — context, not verdict\n\n| ruler | completed | pair cents | delta vs 100 | gradeable | legs / truth closes |\n|---|---:|---:|---:|---:|---|\n| Old V54 | ${old.completed} | ${old.combined_entry_cents ?? "NA"} | ${old.delta_vs_100_cents ?? "NA"} | ${old.gradeable} | ${JSON.stringify(old.legs)} |\n| Functionable v6 | ${result.execution.completed} | ${result.execution.combined_entry_cents ?? "NA"} | ${result.execution.delta_vs_100_cents ?? "NA"} | ${result.execution.gradeable} | ${JSON.stringify(result.execution.legs)} |\n| Truth close | — | — | — | ${Number.isFinite(meta.bell_epoch)} | ${closes} |\n`;
 }
 
 async function main() {
@@ -486,8 +490,8 @@ async function main() {
   const smokeRows = [...loadTicks(privateRoot, smokeMeta), ...printLoad.byEvent.get(smokeMeta.event_id)].filter((row) => row.timestamp_epoch <= Math.max(...Object.values(smokeMeta.formation_end_epochs)) + 6 * 3600);
   const smoke = replayEvent({ meta: smokeMeta, rows: smokeRows, corpus: corpus.rows, resources, lineage, smokeOnly: true });
   ensure(new Set(smoke.stage_reads.flatMap((stage) => Object.keys(stage.reads))).size === 16, "CRIJEA did not fire all readers");
-  writeText(path.join(output, "SMOKE_CRIJEA.md"), smokeMarkdown(smoke, resources));
-  writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: true, reader_count: 16, named_neighbors: [...new Set(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => row.event_id)))], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
+  writeText(path.join(output, "SMOKE_CRIJEA.md"), smokeMarkdown(smoke));
+  writeJson(path.join(output, "SMOKE_CRIJEA_RECEIPT.json"), { label: "CRIJEA_INTEGRATION_SMOKE_NO_GRADING", all_readers_fired: true, reader_count: 16, named_neighbors: [...new Map(smoke.stage_reads.flatMap((stage) => stage.neighborhood.map((row) => [row.citation_receipt_id, { event_id: row.event_id, citation_receipt_id: row.citation_receipt_id, citation_receipt: row.citation_receipt }]))).values()], derivations: smoke.derivations.length, sentence_action_equal: smoke.derivations.every((row) => row.sentence_action_assertion.equal), citation_receipt_equal: smoke.derivations.every((row) => row.citation_receipt_assertion.equal), conservation: smoke.derivations.every((row) => row.pair_conservation.at_or_below_99), grading_performed: false });
 
   const perGame = JSON.parse(fs.readFileSync(path.join(walkRoot, "PER_GAME_L1_L8.json"), "utf8")), storyResults = [], storySections = [];
   for (const eventId of TARGETS.stories) {
@@ -497,7 +501,7 @@ async function main() {
     storySections.push(storySection(result, old, meta));
   }
   const floorBreaks = storyResults.filter((row) => SAFETY_FLOORS[row.event_id.replaceAll("-", "_")] !== undefined && (!row.functionable_v6.completed || row.functionable_v6.delta_vs_100_cents < SAFETY_FLOORS[row.event_id.replaceAll("-", "_")]));
-  const storiesHeader = `# Four stories — functionable OS v6\n\nLicense: LAW_INDEX @ 3cd59162, sha256 41784e6a… · L0 L6 L8 L10 L11 L16 L17 L18 L19a L20 L21 L22 L23.\n\nThe story is the verdict. Executions are appendix context. Every assumption below names every connected resource consulted. No sealed, live, or full-804 run was performed.\n\n`;
+  const storiesHeader = `# Four stories — functionable OS v6\n\nLicense: LAW_INDEX @ 3cd59162, sha256 41784e6a… · L0 L6 L8 L10 L11 L16 L17 L18 L19a L20 L21 L22 L23.\n\nThe story is the verdict. Executions are appendix context. A store, table, or neighbor is emitted only with its capture-time citation receipt; absence is RESOURCE-GAP. No sealed, live, or full-804 run was performed.\n\n`;
   writeText(path.join(output, "FOUR_STORIES.md"), storiesHeader + storySections.join("\n\n"));
   writeJson(path.join(output, "FOUR_STORIES_RECEIPT.json"), { label: OUTPUT_LABEL, pass: 1, passes_executed: 1, similarity_declaration: os.SIMILARITY_DECLARATION, results: storyResults, safety_floor_breaks: floorBreaks, safety_floor_pass: floorBreaks.length === 0, zero_law_violations: true, successful: floorBreaks.length === 0, adjustments_filed: [], self_stop_triggered: floorBreaks.length > 0, self_stop_reason: floorBreaks.length > 0 ? "SAFETY_FLOOR_BREAK" : null, full_804_run: false, sealed_read: false, live_mutation: false });
   writeText(path.join(output, "ASSUMPTION_GAPS.md"), `# Assumption gaps\n\n- January–March has event-grain historical aggregates but no local intramatch tape. Measurement needed: public historical trades plus timestamped book reconstruction at the same grain as the July recorder.\n- The subsecond store mixes public tape and synthetic book transitions and lacks exchange trade identity on every row. Measurement needed: source-specific identity completeness by named event.\n- The DO archive is connected and the pre-sealed object reader is smoked, but its July object catalog is not a January-present database. Measurement needed: event-level archive coverage joined to corpus_events_v2.\n- The odds backup is connected, but its overlap with each target game is not complete. Measurement needed: immutable per-event bookmaker snapshots with source clock and player mapping.\n- CRIJEA has no verified bell. Measurement needed: an independent official in-play timestamp; until then it grades nothing.\n`);

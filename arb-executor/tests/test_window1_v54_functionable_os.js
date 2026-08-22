@@ -42,27 +42,36 @@ assert.equal(reads.half_pair_state.value.legs.AAA.credited, false, "reader recei
 const vector = os.vectorFromReads(state, reads);
 const corpus = [
   { event_id: "TEST-EVENT", event_date: "26JUL01", category: "ATP_MAIN", quality: "SELF", vector, legs: [], source_receipts: [] },
-  { event_id: "NEIGHBOR-1", event_date: "26JUN01", category: "ATP_MAIN", quality: "RANGE", vector: { ...vector, leg0_drift_cents: -3, leg1_drift_cents: 3 }, legs: [{ leg_id: "N1A", anchor_cents: 40, low_cents: 35 }, { leg_id: "N1B", anchor_cents: 60, low_cents: 55 }], source_receipts: ["R1"] },
-  { event_id: "NEIGHBOR-2", event_date: "26MAY01", category: "ATP_CHALL", quality: "HIST", vector: { ...vector, category: "ATP_CHALL", leg0_drift_cents: -10 }, legs: [{ leg_id: "N2A", anchor_cents: 40, low_cents: 30 }, { leg_id: "N2B", anchor_cents: 60, low_cents: 50 }], source_receipts: ["R2"] },
+  { event_id: "NEIGHBOR-1", event_date: "26JUN01", category: "ATP_MAIN", quality: "RANGE", vector: { ...vector, leg0_drift_cents: -3, leg1_drift_cents: 3 }, legs: [{ leg_id: "N1A", anchor_cents: 40, low_cents: 35 }, { leg_id: "N1B", anchor_cents: 60, low_cents: 55 }], source_receipts: [{ source_id: "RANGE", row_ref: "range.jsonl#row-1" }] },
+  { event_id: "NEIGHBOR-2", event_date: "26MAY01", category: "ATP_CHALL", quality: "HIST", vector: { ...vector, category: "ATP_CHALL", leg0_drift_cents: -10 }, legs: [{ leg_id: "N2A", anchor_cents: 40, low_cents: 30 }, { leg_id: "N2B", anchor_cents: 60, low_cents: 50 }], source_receipts: [{ source_id: "HIST", row_ref: "historical.csv#line-2" }] },
 ];
-const neighborhood = os.retrieveNeighborhood(corpus, vector, "TEST-EVENT", 2);
+const neighborhood = os.retrieveNeighborhood(corpus, vector, "TEST-EVENT", 2, state.receipt);
 assert.equal(neighborhood.length, 2);
 assert.ok(neighborhood.every((row) => row.event_id !== "TEST-EVENT"));
 assert.equal(neighborhood[0].event_id, "NEIGHBOR-1");
 assert.ok(neighborhood[0].score > neighborhood[1].score);
 
 const resources = os.EXPECTED_RESOURCE_IDS.map((id) => ({ id, status: "CONNECTED", receipt: `${id}-receipt` }));
-const derivation = os.deriveAction({ state, reads, neighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38 }, resources });
+const derivation = os.deriveAction({ state, reads, neighborhood, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-1" }, resources });
 assert.equal(derivation.sentence_action_assertion.equal, true);
+assert.equal(derivation.citation_receipt_assertion.equal, true);
 assert.match(derivation.sentence, /ACTION=/);
+assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
-assert.equal(derivation.resources_consulted.length, os.EXPECTED_RESOURCE_IDS.length);
+assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
+assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
+
+const uncitedCorpus = [{ ...corpus[1], source_receipts: ["BARE_SOURCE_LABEL"] }];
+assert.throws(
+  () => os.retrieveNeighborhood(uncitedCorpus, vector, "TEST-EVENT", 1, state.receipt),
+  /CITATION_RECEIPT_BUILD_VIOLATION NEIGHBOR_ROW_RECEIPT_MISSING/,
+);
 
 const beforeFormation = os.createTapeState(meta);
 os.observe(beforeFormation, "AAA", { timestamp_epoch: 150, receipt: "pre-a", kind: "BOOK", bid_cents: 39, ask_cents: 41, last_trade_cents: 40 });
 os.observe(beforeFormation, "BBB", { timestamp_epoch: 150, receipt: "pre-b", kind: "BOOK", bid_cents: 59, ask_cents: 61, last_trade_cents: 60 });
-const beforeReads = os.readAll(beforeFormation), beforeVector = os.vectorFromReads(beforeFormation, beforeReads), beforeNeighbors = os.retrieveNeighborhood(corpus, beforeVector, "TEST-EVENT", 2);
-const blocked = os.deriveAction({ state: beforeFormation, reads: beforeReads, neighborhood: beforeNeighbors, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38 }, resources });
+const beforeReads = os.readAll(beforeFormation), beforeVector = os.vectorFromReads(beforeFormation, beforeReads), beforeNeighbors = os.retrieveNeighborhood(corpus, beforeVector, "TEST-EVENT", 2, beforeFormation.receipt);
+const blocked = os.deriveAction({ state: beforeFormation, reads: beforeReads, neighborhood: beforeNeighbors, legId: "AAA", lineage: { action: "PLACE_REST", target_cents: 38, receipt: "lineage.jsonl#row-0" }, resources });
 assert.equal(blocked.action.action, "HOLD_REST");
 assert.equal(blocked.action.target_cents, null);
 assert.match(blocked.sentence, /ACTION=HOLD_REST; TARGET_CENTS=NONE/);

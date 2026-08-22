@@ -1,0 +1,204 @@
+{
+  "label": "V54_TWO_COSTUMES_AND_RECEIPT_REPAIR",
+  "license": {
+    "read_at": "a2c8d842",
+    "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAW_INDEX.md",
+    "sha256": "41784e6ab62d6341c2a02f8be616e596eb48930b84a71acae8f500368d44c934",
+    "laws": [
+      "L8",
+      "L18",
+      "L20",
+      "L22"
+    ]
+  },
+  "scope": {
+    "repair_class_only": true,
+    "passes": 0,
+    "reruns": 0,
+    "full_804_run": false,
+    "trace_read_only": true
+  },
+  "f_vs_040": {
+    "result": "HARDCODED_LAW_VERDICT_REMOVED_NOT_REPLACED",
+    "source": {
+      "path": "arb-executor/analysis/build_window1_v54_functionable_v6.js",
+      "sha256": "9e4f58db73f090f7086446e69fbf0f2d05a44cfb9c6e5b97151a1c91e6e0b372",
+      "bytes": 54357
+    },
+    "artifact": {
+      "path": ".claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES_RECEIPT.json",
+      "sha256": "20f99087d6c469e4d038a6edea122e75ce20edc9941a19140aca74ba25f458f7",
+      "bytes": 8359
+    },
+    "census": {
+      "definition": "Tracked production JavaScript output keys whose names assert construction/reader verification or compliance and whose value is a boolean literal; preregistered acceptance criteria, tests, and domain-state passed flags are excluded.",
+      "target_literals_removed": [
+        {
+          "path": "arb-executor/analysis/build_window1_v54_functionable_v6.js",
+          "former_line": 469,
+          "key": "zero_law_violations",
+          "path_kind": "finalize_existing"
+        },
+        {
+          "path": "arb-executor/analysis/build_window1_v54_functionable_v6.js",
+          "former_line": 506,
+          "key": "zero_law_violations",
+          "path_kind": "fresh_receipt"
+        }
+      ],
+      "sibling_hardcoded_compliance_or_verdict_literals": {
+        "count": 4,
+        "locations": [
+          {
+            "path": "arb-executor/analysis/analyze_window1_v53_stage1_failure.js",
+            "line": 45,
+            "key": "construction_assertions_passed",
+            "literal": "true"
+          },
+          {
+            "path": "arb-executor/analysis/build_window1_intentional_pair_brain_v22_phase0.js",
+            "line": 186,
+            "key": "frozen_reference_row_verified",
+            "literal": "true"
+          },
+          {
+            "path": "arb-executor/analysis/build_window1_v31_dip_pressure_governor.js",
+            "line": 394,
+            "key": "commit_object_verified",
+            "literal": "true"
+          },
+          {
+            "path": "arb-executor/analysis/build_window1_v54_functionable_v6.js",
+            "line": 497,
+            "key": "all_readers_fired",
+            "literal": "true"
+          }
+        ]
+      },
+      "total_sites_swept": 6
+    }
+  },
+  "f_vs_041": {
+    "result": "DECISION_PASS_SCOPE_LOCK_VIOLATION_FILED_TRACE_LEFT_UNTRACKED",
+    "receipt": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/V54_TRACE_PROVENANCE_RECEIPT.json",
+      "sha256": "71b11d12977506f7934544a20c37d9d1b7caeb9606cb366d5ba3934f4b7685af",
+      "bytes": 430923
+    }
+  },
+  "f_vs_038": {
+    "result": "STRIKE_LEDGER_REBOUND_TO_COMMITTED_BYTES",
+    "repair": {
+      "receipt": {
+        "path": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/CITATION_WELD_RECEIPT.json",
+        "sha256": "7c87ba9e77f8b422fdf8cb410709d52fc08d63609ed1e8d8be5963f5601d1dc0",
+        "bytes": 538965
+      },
+      "status": "REPAIRED_AGAINST_COMMITTED_BYTES",
+      "original_commit": "9083e055",
+      "welded_commit": "4c7a4b5a29adcaa18cd139c6172e39111c2dc73e",
+      "cause": "The repair classified lines after inserting neighbor-grain and blend-provenance rows, then stored those expanded-buffer line coordinates as original_line_number. The digests named the legacy text, but the coordinates did not address the pre-weld committed bytes; every explained-file lookup therefore drifted.",
+      "before": {
+        "all_matches": 167,
+        "all_occurrences": 272,
+        "explained_matches": 0,
+        "explained_occurrences": 105
+      },
+      "after": {
+        "all_matches": 272,
+        "all_occurrences": 272,
+        "explained_matches": 105,
+        "explained_occurrences": 105
+      },
+      "files": [
+        {
+          "file": ".claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md",
+          "occurrences": 167,
+          "committed_coordinate_matches_before": 167,
+          "committed_coordinate_matches_after": 167
+        },
+        {
+          "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_GIUBAR.md",
+          "occurrences": 26,
+          "committed_coordinate_matches_before": 0,
+          "committed_coordinate_matches_after": 26
+        },
+        {
+          "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_URSPAL.md",
+          "occurrences": 26,
+          "committed_coordinate_matches_before": 0,
+          "committed_coordinate_matches_after": 26
+        },
+        {
+          "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_LAJSVA.md",
+          "occurrences": 27,
+          "committed_coordinate_matches_before": 0,
+          "committed_coordinate_matches_after": 27
+        },
+        {
+          "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_DANPRA.md",
+          "occurrences": 26,
+          "committed_coordinate_matches_before": 0,
+          "committed_coordinate_matches_after": 26
+        }
+      ],
+      "byte_visibility": {
+        "prose_files": [
+          ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_GIUBAR.md",
+          ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_URSPAL.md",
+          ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_LAJSVA.md",
+          ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_DANPRA.md"
+        ],
+        "pre_nonempty_lines": 1474,
+        "unchanged_lines_still_byte_visible": 1470,
+        "non_byte_visible_markdown_lines": 4,
+        "five_binding_records_only": true,
+        "binding_rewrites": [
+          {
+            "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_GIUBAR.md",
+            "kind": "R_STORY_MARKDOWN_BINDING",
+            "before_line_sha256": "7fe251b814f895baa61e39d7cb516a3e345050024016372babde4ca79b5847a3",
+            "after_line_sha256": "1f76e0282eaf728360375eeec9ab97bf22442fe124a3f64284c2d38d60d5de38",
+            "only_story_sha_changed": true
+          },
+          {
+            "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_URSPAL.md",
+            "kind": "R_STORY_MARKDOWN_BINDING",
+            "before_line_sha256": "7fe251b814f895baa61e39d7cb516a3e345050024016372babde4ca79b5847a3",
+            "after_line_sha256": "1f76e0282eaf728360375eeec9ab97bf22442fe124a3f64284c2d38d60d5de38",
+            "only_story_sha_changed": true
+          },
+          {
+            "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_LAJSVA.md",
+            "kind": "R_STORY_MARKDOWN_BINDING",
+            "before_line_sha256": "7fe251b814f895baa61e39d7cb516a3e345050024016372babde4ca79b5847a3",
+            "after_line_sha256": "1f76e0282eaf728360375eeec9ab97bf22442fe124a3f64284c2d38d60d5de38",
+            "only_story_sha_changed": true
+          },
+          {
+            "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_DANPRA.md",
+            "kind": "R_STORY_MARKDOWN_BINDING",
+            "before_line_sha256": "7fe251b814f895baa61e39d7cb516a3e345050024016372babde4ca79b5847a3",
+            "after_line_sha256": "1f76e0282eaf728360375eeec9ab97bf22442fe124a3f64284c2d38d60d5de38",
+            "only_story_sha_changed": true
+          },
+          {
+            "file": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/EXPLANATION_RECEIPT.json",
+            "kind": "R_STORY_RECEIPT_BINDING",
+            "before": {
+              "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FOUR_STORIES.md",
+              "sha256": "5492ff6d66add7ef96c7c1dae3a7d96f6f48db0f0bb3ec00591e54e2767cba07",
+              "bytes": 510280
+            },
+            "after": {
+              "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FOUR_STORIES.md",
+              "sha256": "9e7dad007a17d075e8bacd5d1b32f9eeaebeeaa179f93866873d8173b06abfe6",
+              "bytes": 530216
+            },
+            "only_story_binding_changed": true
+          }
+        ]
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
   "files": {
     "EXPLANATION_RECEIPT.json": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\EXPLANATION_RECEIPT.json",
-      "sha256": "59a0dfcf73439893b328d85d0a5a3fa10b838953f2063d32d6c42808733fb12c",
+      "sha256": "df03aa5a9a0cbfac04ac48b6966584c8312cfc8bbbe08e6d6f5fff39773be0d9",
       "bytes": 12033
     },
     "GAME_EXPLAINED_DANPRA.md": {
@@ -38,8 +38,8 @@
     },
     "CITATION_WELD_RECEIPT.json": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_four_games_explained_20260821\\CITATION_WELD_RECEIPT.json",
-      "sha256": "35ea896b3bd938b5e0a91136b9ec7c0b816c1c0970eb24d3de2cdf6053aff2c2",
-      "bytes": 440979
+      "sha256": "7c87ba9e77f8b422fdf8cb410709d52fc08d63609ed1e8d8be5963f5601d1dc0",
+      "bytes": 538965
     }
   },
   "scope": {

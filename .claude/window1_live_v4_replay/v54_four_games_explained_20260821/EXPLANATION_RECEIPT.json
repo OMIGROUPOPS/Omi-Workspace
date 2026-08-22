@@ -37,8 +37,8 @@
     },
     "pass1_result": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\FOUR_STORIES_RECEIPT.json",
-      "sha256": "22381e774e538ed5bc4fe05f7fd50c64efc06d5f61c6f65eb65cde2851049f0d",
-      "bytes": 8413
+      "sha256": "20f99087d6c469e4d038a6edea122e75ce20edc9941a19140aca74ba25f458f7",
+      "bytes": 8359
     },
     "corpus_index": {
       "path": "C:\\tmp\\omi-v53-understanding-organ-20260819\\.claude\\window1_live_v4_replay\\v54_functionable_four_stories_v6_20260821\\CORPUS_INDEX.jsonl.gz",

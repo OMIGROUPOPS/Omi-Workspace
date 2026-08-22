@@ -1,0 +1,15 @@
+{
+  "label": "V54_TWO_COSTUMES_AND_RECEIPT_REPAIR",
+  "files": {
+    "TWO_COSTUMES_RECEIPT.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/TWO_COSTUMES_RECEIPT.json",
+      "sha256": "266d394216debad969680fbe97b768fecc3f769dd8d63a4a584d881d559836b4",
+      "bytes": 8910
+    },
+    "V54_TRACE_PROVENANCE_RECEIPT.json": {
+      "path": ".claude/window1_live_v4_replay/v54_receipt_repairs_20260821/V54_TRACE_PROVENANCE_RECEIPT.json",
+      "sha256": "71b11d12977506f7934544a20c37d9d1b7caeb9606cb366d5ba3934f4b7685af",
+      "bytes": 430923
+    }
+  }
+}

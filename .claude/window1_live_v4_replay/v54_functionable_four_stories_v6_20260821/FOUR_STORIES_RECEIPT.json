@@ -271,8 +271,6 @@
     }
   ],
   "safety_floor_pass": false,
-  "zero_law_violations": true,
-  "successful": false,
   "adjustments_filed": [],
   "self_stop_triggered": true,
   "self_stop_reason": "SAFETY_FLOOR_BREAK",

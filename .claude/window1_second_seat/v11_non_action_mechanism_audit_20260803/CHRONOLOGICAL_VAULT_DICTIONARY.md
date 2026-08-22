@@ -19469,3 +19469,12 @@ Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 11
 - Five named neighbors exist at the cited CORPUS_INDEX and range_spectrum rows; 30/30 cited tick triples reproduce byte-exact; TP18 arithmetic reproduces to 1e-7; blend formula recovered (F-VS-035). Grain limit: cited store is the sampled range path, not the May/June raw tapes (DO Spaces, not local).
 - Zero RESOURCE-GAP = fabrication: 1 distinct resources line across 81 points; BOOKMAKER_ODDS_STORE had zero rows for all four games (store ends 2026-07-08) — struck for GIUBAR only; 44 clauses remain in URSPAL/LAJSVA/DANPRA (F-VS-036).
 - Queued as ordered: GIUBAR bell-band ruling (F-VS-031), the 39 CONNECTED pokes, remaining turning-point reproductions, capture-vs-ceiling, surprise-ledger scans.
+
+
+## o. POST-WELD TARGETS @4c7a4b5a (appended 2026-08-21; license LAW_INDEX @ `4c7a4b5a`, sha c7c72715…; L8 L11 L18 L20)
+
+- GIUBAR bell band at minute grain: book-signature bell **1783874300 (16:38Z)**; BAR 21¢ fill 24 min later = POST_BELL; GIUBAR PARTIAL under any bell before 17:17Z; truth-table bell 40 min late. Operator rules (F-VS-037, `GIUBAR_BELL_BAND.json`).
+- Weld verified: 272 occurrences / 85 gaps reconcile; 303 odds literals retained under strikes (no deletions); 267/272 struck lines byte-visible (5 R-STORY binding lines rewritten); receipt line hashes 0/105 on explained files (receipt defect); m-provenance denominators and ratios reproduce (F-VS-038, `WELD_VERIFICATION_4c7a4b5a.json`).
+- 39 pokes on the post-weld build: 33 verified by this seat's scratch run (CRIJEA smoke 16/16 readers, 52 derivations, sentence==action, citation receipts live), 6 remote components UNVERIFIED post-weld (F-VS-039).
+- Hardcode: `zero_law_violations = true` literal in finalize path (F-VS-040). Unreported full-804 V54 license trace in Codex's worktree, 160 MB, 11:39 local — operator word required (F-VS-041).
+- Still queued on HEAD: remaining turning-point reproductions (GIUBAR/URSPAL/LAJSVA), capture-vs-ceiling vs tape, surprise-ledger independent scans.

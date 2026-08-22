@@ -1,0 +1,259 @@
+{
+ "files": {
+  ".claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md": {
+   "pre_sha_matches_receipt": true,
+   "post_sha_matches_receipt": true,
+   "occurrences": 167,
+   "struck_lines_byte_visible": 167,
+   "struck_lines_not_visible": 0,
+   "original_line_sha_mismatch": 0,
+   "gaps": 81,
+   "pre_odds_mentions": 244,
+   "post_odds_mentions": 244,
+   "pre_resources_lines": 81,
+   "post_STRUCK_tokens": 168,
+   "post_gap_tokens": 82,
+   "pre_nonempty_lines": 278,
+   "pre_lines_absent_from_post": 0,
+   "absent_samples": []
+  },
+  ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_GIUBAR.md": {
+   "pre_sha_matches_receipt": true,
+   "post_sha_matches_receipt": true,
+   "occurrences": 26,
+   "struck_lines_byte_visible": 25,
+   "struck_lines_not_visible": 1,
+   "original_line_sha_mismatch": 26,
+   "gaps": 1,
+   "pre_odds_mentions": 15,
+   "post_odds_mentions": 15,
+   "pre_resources_lines": 0,
+   "post_STRUCK_tokens": 27,
+   "post_gap_tokens": 4,
+   "pre_nonempty_lines": 351,
+   "pre_lines_absent_from_post": 1,
+   "absent_samples": [
+    "- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `5492"
+   ]
+  },
+  ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_URSPAL.md": {
+   "pre_sha_matches_receipt": true,
+   "post_sha_matches_receipt": true,
+   "occurrences": 26,
+   "struck_lines_byte_visible": 25,
+   "struck_lines_not_visible": 1,
+   "original_line_sha_mismatch": 26,
+   "gaps": 1,
+   "pre_odds_mentions": 14,
+   "post_odds_mentions": 14,
+   "pre_resources_lines": 0,
+   "post_STRUCK_tokens": 26,
+   "post_gap_tokens": 10,
+   "pre_nonempty_lines": 379,
+   "pre_lines_absent_from_post": 1,
+   "absent_samples": [
+    "- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `5492"
+   ]
+  },
+  ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_LAJSVA.md": {
+   "pre_sha_matches_receipt": true,
+   "post_sha_matches_receipt": true,
+   "occurrences": 27,
+   "struck_lines_byte_visible": 26,
+   "struck_lines_not_visible": 1,
+   "original_line_sha_mismatch": 27,
+   "gaps": 1,
+   "pre_odds_mentions": 14,
+   "post_odds_mentions": 14,
+   "pre_resources_lines": 0,
+   "post_STRUCK_tokens": 27,
+   "post_gap_tokens": 4,
+   "pre_nonempty_lines": 355,
+   "pre_lines_absent_from_post": 1,
+   "absent_samples": [
+    "- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `5492"
+   ]
+  },
+  ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_DANPRA.md": {
+   "pre_sha_matches_receipt": true,
+   "post_sha_matches_receipt": true,
+   "occurrences": 26,
+   "struck_lines_byte_visible": 24,
+   "struck_lines_not_visible": 2,
+   "original_line_sha_mismatch": 26,
+   "gaps": 1,
+   "pre_odds_mentions": 16,
+   "post_odds_mentions": 16,
+   "pre_resources_lines": 0,
+   "post_STRUCK_tokens": 26,
+   "post_gap_tokens": 5,
+   "pre_nonempty_lines": 389,
+   "pre_lines_absent_from_post": 1,
+   "absent_samples": [
+    "- **R-STORY:** `.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md`, SHA-256 `5492"
+   ]
+  }
+ },
+ "totals": {
+  "pre_weld_odds_mentions_5_files": 303,
+  "occurrences": 272,
+  "byte_visible": 267,
+  "not_visible": 5,
+  "gaps": 85,
+  "receipt_sweep": {
+   "files": 5,
+   "citation_bearing_claims": 484,
+   "already_receipt_bound_claims": 212,
+   "legacy_claims_struck": 272,
+   "resource_or_table_mentions_struck": 5723,
+   "neighbor_mentions_struck": 2438,
+   "post_sweep_unresolved_claims": 0,
+   "resource_gap_stamps": 85
+  },
+  "receipt_bar": {
+   "remaining_odds_clauses": {
+    "before": 44,
+    "unsupported_after": 0,
+    "status": "CLEARED"
+   },
+   "point_template": {
+    "points": 81,
+    "gap_stamps": 81,
+    "unresolved": 0,
+    "status": "CLEARED"
+   },
+   "blend_m_0_8389": {
+    "declarations": 5,
+    "undeclared_occurrences": 0,
+    "status": "CLEARED"
+   },
+   "neighbor_grain": {
+    "files_declared": 4,
+    "raw_tape_depth_gap_stamps": 4,
+    "status": "CLEARED"
+   }
+  }
+ },
+ "m_provenance": [
+  {
+   "game": "GIUBAR",
+   "derivation_lines": 12,
+   "checks": [
+    {
+     "terms": 7,
+     "sum_w": 5.59577,
+     "declared_den": 5.595769,
+     "den_ok": false,
+     "ratio": 0.522478309,
+     "declared_ratio": 0.52247828088,
+     "ratio_ok": true
+    },
+    {
+     "terms": 7,
+     "sum_w": 5.59577,
+     "declared_den": 5.595769,
+     "den_ok": false,
+     "ratio": 0.740434167,
+     "declared_ratio": 0.740434149177,
+     "ratio_ok": true
+    }
+   ],
+   "mass_mentions": [
+    "0.807677870008",
+    "0.807677870008",
+    "0.853293810280"
+   ],
+   "blend_formula_text": []
+  },
+  {
+   "game": "URSPAL",
+   "derivation_lines": 12,
+   "checks": [
+    {
+     "terms": 7,
+     "sum_w": 5.852704,
+     "declared_den": 5.852704,
+     "den_ok": true,
+     "ratio": 0.86039199,
+     "declared_ratio": 0.86039199539,
+     "ratio_ok": true
+    },
+    {
+     "terms": 7,
+     "sum_w": 5.852704,
+     "declared_den": 5.852704,
+     "den_ok": true,
+     "ratio": 0.408398139,
+     "declared_ratio": 0.408398139766,
+     "ratio_ok": true
+    }
+   ],
+   "mass_mentions": [
+    "0.408820059802",
+    "0.408820059802",
+    "0.854209134953"
+   ],
+   "blend_formula_text": []
+  },
+  {
+   "game": "LAJSVA",
+   "derivation_lines": 12,
+   "checks": [
+    {
+     "terms": 7,
+     "sum_w": 6.096964,
+     "declared_den": 6.096965,
+     "den_ok": false,
+     "ratio": 0.775196946,
+     "declared_ratio": 0.775196922168,
+     "ratio_ok": true
+    },
+    {
+     "terms": 7,
+     "sum_w": 6.096964,
+     "declared_den": 6.096965,
+     "den_ok": false,
+     "ratio": 0.861968924,
+     "declared_ratio": 0.861968945995,
+     "ratio_ok": true
+    }
+   ],
+   "mass_mentions": [
+    "0.552943353423",
+    "0.552943353423",
+    "0.872754337169"
+   ],
+   "blend_formula_text": []
+  },
+  {
+   "game": "DANPRA",
+   "derivation_lines": 10,
+   "checks": [
+    {
+     "terms": 7,
+     "sum_w": 5.872433,
+     "declared_den": 5.872434,
+     "den_ok": false,
+     "ratio": 0.863018964,
+     "declared_ratio": 0.863018957908,
+     "ratio_ok": true
+    },
+    {
+     "terms": 7,
+     "sum_w": 5.872433,
+     "declared_den": 5.872434,
+     "den_ok": false,
+     "ratio": 0.788298652,
+     "declared_ratio": 0.788298640137,
+     "ratio_ok": true
+    }
+   ],
+   "mass_mentions": [
+    "0.671610782751",
+    "0.671610782751",
+    "0.873785982586"
+   ],
+   "blend_formula_text": []
+  }
+ ]
+}

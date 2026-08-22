@@ -1,0 +1,311 @@
+{
+ "api": {
+  "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ": {
+   "count": 18691,
+   "ids": 18691
+  },
+  "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA": {
+   "count": 15290,
+   "ids": 15290
+  }
+ },
+ "tape_true_prints": 33981,
+ "in_span": 543,
+ "matched": 33981,
+ "unmatched": [],
+ "kiss_window": [
+  {
+   "t": 1784020153.0,
+   "leg": "SVA",
+   "bid": "38",
+   "ask": "41",
+   "last": "0",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-223"
+  },
+  {
+   "t": 1784020153.0,
+   "leg": "SVA",
+   "bid": "37",
+   "ask": "41",
+   "last": "0",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-230"
+  },
+  {
+   "t": 1784020153.0,
+   "leg": "SVA",
+   "bid": "37",
+   "ask": "40",
+   "last": "0",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-233"
+  },
+  {
+   "t": 1784020153,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "REFLEX REPRICE_REST@38 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-224 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+   "src": "FULL_DECISION_TRACE_5"
+  },
+  {
+   "t": 1784020153,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "REFLEX REPRICE_REST@37 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-231 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+   "src": "FULL_DECISION_TRACE_5"
+  },
+  {
+   "t": 1784020161.0,
+   "leg": "SVA",
+   "bid": "38",
+   "ask": "40",
+   "last": "0",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-238"
+  },
+  {
+   "t": 1784020161,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "REFLEX REPRICE_REST@38 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-239 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+   "src": "FULL_DECISION_TRACE_5"
+  },
+  {
+   "t": 1784020166.0,
+   "leg": "SVA",
+   "bid": "38",
+   "ask": "41",
+   "last": "0",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-247"
+  },
+  {
+   "t": 1784020167.0,
+   "leg": "SVA",
+   "bid": "40",
+   "ask": "41",
+   "last": "0",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-249"
+  },
+  {
+   "t": 1784020167,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "REFLEX REPRICE_REST@40 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-250 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+   "src": "FULL_DECISION_TRACE_5"
+  },
+  {
+   "t": 1784020201.83001,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "41",
+   "trade": "41c x 27.0 taker=yes trade_id=95992e7f-c30f-6ca9-7bac-082bc6399668",
+   "marker": "",
+   "src": "prints.jsonl"
+  },
+  {
+   "t": 1784020201.83001,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "FLOOR PRINT 41c (lawful pre-bell minimum)",
+   "src": "REPRODUCTION_AUDIT_d521f9dd"
+  },
+  {
+   "t": 1784020202.0,
+   "leg": "SVA",
+   "bid": "40",
+   "ask": "41",
+   "last": "41",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-302"
+  },
+  {
+   "t": 1784020209.0,
+   "leg": "SVA",
+   "bid": "40",
+   "ask": "42",
+   "last": "41",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-342"
+  },
+  {
+   "t": 1784020209.0,
+   "leg": "SVA",
+   "bid": "41",
+   "ask": "42",
+   "last": "41",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-344"
+  },
+  {
+   "t": 1784020209.0,
+   "leg": "SVA",
+   "bid": "40",
+   "ask": "42",
+   "last": "41",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-349"
+  },
+  {
+   "t": 1784020209.0,
+   "leg": "SVA",
+   "bid": "41",
+   "ask": "42",
+   "last": "41",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-351"
+  },
+  {
+   "t": 1784020209,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "REFLEX REPRICE_REST@41 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-345 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+   "src": "FULL_DECISION_TRACE_5"
+  },
+  {
+   "t": 1784020209,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "REFLEX REPRICE_REST@40 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-350 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+   "src": "FULL_DECISION_TRACE_5"
+  },
+  {
+   "t": 1784020209,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "REFLEX REPRICE_REST@41 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-352 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+   "src": "FULL_DECISION_TRACE_5"
+  },
+  {
+   "t": 1784020209.484,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "",
+   "trade": "",
+   "marker": "FILL (reflex/champion) 41c credited",
+   "src": "MARKET_EVENT_LEDGER_5"
+  },
+  {
+   "t": 1784020209.484174,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "41",
+   "trade": "41c x 6.0 taker=yes trade_id=d97f0682-a7e3-64f5-9751-dd8c5fcf09f4",
+   "marker": "",
+   "src": "prints.jsonl"
+  },
+  {
+   "t": 1784020209.484174,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "41",
+   "trade": "41c x 10.0 taker=yes trade_id=62c5acca-20b5-609e-9743-315bb552232f",
+   "marker": "",
+   "src": "prints.jsonl"
+  },
+  {
+   "t": 1784020214.878865,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "42",
+   "trade": "42c x 11.0 taker=yes trade_id=4f1edd6e-4e43-6394-4176-9cafeb1e897a",
+   "marker": "",
+   "src": "prints.jsonl"
+  },
+  {
+   "t": 1784020214.878865,
+   "leg": "SVA",
+   "bid": "",
+   "ask": "",
+   "last": "42",
+   "trade": "42c x 33.0 taker=yes trade_id=0e9f25d9-d3ad-6be1-6802-49be7a5c57a9",
+   "marker": "",
+   "src": "prints.jsonl"
+  },
+  {
+   "t": 1784020215.0,
+   "leg": "SVA",
+   "bid": "41",
+   "ask": "43",
+   "last": "41",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-366"
+  },
+  {
+   "t": 1784020215.0,
+   "leg": "SVA",
+   "bid": "42",
+   "ask": "43",
+   "last": "41",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-368"
+  },
+  {
+   "t": 1784020215.0,
+   "leg": "SVA",
+   "bid": "42",
+   "ask": "43",
+   "last": "42",
+   "trade": "",
+   "marker": "",
+   "src": "ticks#row-369"
+  }
+ ],
+ "last_sva_rest": {
+  "t": 1784020209,
+  "leg": "SVA",
+  "bid": "",
+  "ask": "",
+  "last": "",
+  "trade": "",
+  "marker": "REFLEX REPRICE_REST@41 receipt=KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-352 reason=V54_UNDECIDED_CHAMPION_BYTE_EQUAL",
+  "src": "FULL_DECISION_TRACE_5"
+ },
+ "rows": 1862,
+ "reflex_actions": 54,
+ "v6_actions": 7
+}

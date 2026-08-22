@@ -19513,3 +19513,8 @@ W1TT-C-002 URSPAL (2026-08-21): bell 1784042247; PAL 39/41 fill 40 valid; URS 57
 - **LAJSVA is the official case study** (F-VS-052). Deliverable: PAIR RENDER + ENGAGEMENT DIAGRAM, as-occurred now, re-produced after every accepted repair; before/after is the spine. Spec: forthcoming Codex order.
 - **Conviction is pair-coherent** (F-VS-053): first credit fixes the belief for both legs; the sibling's plan derives from that belief and its lawful envelope. Worked: SVA 41 ⟹ LAJ fader ⟹ lawful late floor 51; reflex 53 · contaminated conviction 36 · clean conviction 51.
 - As-occurred ground for the render: machine bell 1784078400; ceiling 51/41 = 92¢ (Δ8); champion 53/41 = 94¢ (Δ6); v6 47/36 unfilled (F-VS-044); library over-reach root candidate (F-VS-050).
+
+
+## t. LAJSVA RAW TAPE (appended 2026-08-21; license 35842b42)
+
+`LAJSVA_RAW_TAPE.md` — both legs in tandem, 1,876 rows, markers inline; Kalshi API reconciliation 33,981/33,981 matched, 0 unmatched; SVA kiss PASS at second grain, unprovable at sub-second (recorder 1-s clock; 16-lot ahead in queue) (F-VS-054). This is the as-occurred ground for the case-study render (F-VS-052).

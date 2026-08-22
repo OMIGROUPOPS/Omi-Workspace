@@ -18826,6 +18826,8 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| CONVICTION IS PAIR-COHERENT — a conviction fill is a belief about both legs; sibling plan derives from it on first credit (SVA 41 ⟹ LAJ fader ⟹ late floor 51) | 2026-08-21 | F-VS-053 |
+| THE CASE-STUDY LAW — LAJSVA is the official case study; PAIR RENDER + ENGAGEMENT DIAGRAM as-occurred and after every accepted repair | 2026-08-21 | F-VS-052 |
 | URSPAL BELL ADOPTED 1784042247 ±60 s — truth-table correction W1TT-C-002 | 2026-08-21 | F-VS-051 · W1_GROUND_TRUTH_CORRECTIONS.md |
 | GIUBAR BELL ADOPTED 1783874300 ±60 s — truth-table correction W1TT-C-001; corrections file binds every reader | 2026-08-21 | F-VS-042 · W1_GROUND_TRUTH_CORRECTIONS.md |
 | UNKNOWN-BELL EXCLUSION — 20 games out of numerator and denominator; count printed on every scoreboard | 2026-08-21 | F-VS-024 |
@@ -19504,3 +19506,10 @@ Repair @dcac4032: content verified on the repaired trace (formation gate 0 s, 11
 - Over-reach root candidate: the pattern library's reach is unbounded by any bell — lows are onset dips (12/14 named neighbors low_frac ≥0.94; 49% of sampled library legs in the last 10% of span); bell-bounding lifts DANPRA targets 51/33 → 54/39 against lawful minima 59/41 (F-VS-050, `NEIGHBOR_SPAN_BELL_CHECK.json`). Measurement only.
 
 W1TT-C-002 URSPAL (2026-08-21): bell 1784042247; PAL 39/41 fill 40 valid; URS 57/61 fill 57 valid; COMPLETE 97¢ Δ3 unchanged; four-game ledger final 2 completes / 9¢ over 4 gradeable, 9¢ over 5 valid legs (F-VS-051).
+
+
+## s. CASE-STUDY LAW + PAIR-COHERENT CONVICTION (appended 2026-08-21)
+
+- **LAJSVA is the official case study** (F-VS-052). Deliverable: PAIR RENDER + ENGAGEMENT DIAGRAM, as-occurred now, re-produced after every accepted repair; before/after is the spine. Spec: forthcoming Codex order.
+- **Conviction is pair-coherent** (F-VS-053): first credit fixes the belief for both legs; the sibling's plan derives from that belief and its lawful envelope. Worked: SVA 41 ⟹ LAJ fader ⟹ lawful late floor 51; reflex 53 · contaminated conviction 36 · clean conviction 51.
+- As-occurred ground for the render: machine bell 1784078400; ceiling 51/41 = 92¢ (Δ8); champion 53/41 = 94¢ (Δ6); v6 47/36 unfilled (F-VS-044); library over-reach root candidate (F-VS-050).

@@ -1,0 +1,442 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V1_AS_OCCURRED",
+  "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "generated_at_utc": "2026-08-22T04:34:59.998Z",
+  "source_head": "2131ef8ee2869a21393f563d02f2302777921e41",
+  "scope": {
+    "render_report_lane_only": true,
+    "passes": 0,
+    "reruns": 0,
+    "full_804_run": false,
+    "sealed_read": false,
+    "live_mutation": false
+  },
+  "license": {
+    "law_index_read_at": "afe38772",
+    "law_index_sha256": "41784e6ab62d6341c2a02f8be616e596eb48930b84a71acae8f500368d44c934",
+    "requested_laws": [
+      "L6",
+      "L8",
+      "L11",
+      "L18",
+      "L20",
+      "L22"
+    ],
+    "index_gap": [
+      "L20",
+      "L22"
+    ]
+  },
+  "input_bindings": [
+    {
+      "id": "LAW_INDEX",
+      "commit": "afe38772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAW_INDEX.md",
+      "bytes": 2565,
+      "sha256": "41784e6ab62d6341c2a02f8be616e596eb48930b84a71acae8f500368d44c934"
+    },
+    {
+      "id": "LAJSVA_RAW_TAPE",
+      "commit": "ef6f3975",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md",
+      "bytes": 176692,
+      "sha256": "802c590b8b748b9620d4e42362394e6a9976fc2f161275286bda192c18faa869"
+    },
+    {
+      "id": "LAJSVA_RAW_TAPE_RECONCILIATION",
+      "commit": "ef6f3975",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE_RECONCILIATION.json",
+      "bytes": 6601,
+      "sha256": "d9dfad4835abdbd5c06b3665e16fe02c1e4bfa82139c93d898ac83620273d413"
+    },
+    {
+      "id": "W1_GROUND_TRUTH_CORRECTIONS",
+      "commit": "afe38772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl",
+      "bytes": 5685,
+      "sha256": "9831fb65072d2fe3dbadfcd1afb0362fe70b871fe7dea4936d4e4ec9f897587f"
+    },
+    {
+      "id": "FOUR_STORIES",
+      "commit": "2131ef8ee2869a21393f563d02f2302777921e41",
+      "path": ".claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md",
+      "bytes": 530216,
+      "sha256": "9e7dad007a17d075e8bacd5d1b32f9eeaebeeaa179f93866873d8173b06abfe6"
+    },
+    {
+      "id": "FOUR_STORIES_RECEIPT",
+      "commit": "2131ef8ee2869a21393f563d02f2302777921e41",
+      "path": ".claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES_RECEIPT.json",
+      "bytes": 8359,
+      "sha256": "20f99087d6c469e4d038a6edea122e75ce20edc9941a19140aca74ba25f458f7"
+    },
+    {
+      "id": "FUNCTIONALITY_RECEIPT",
+      "commit": "2131ef8ee2869a21393f563d02f2302777921e41",
+      "path": ".claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FUNCTIONALITY_RECEIPT.json",
+      "bytes": 19571,
+      "sha256": "933e477207ae585642a0db1fc382841a1e032df8ae227da7d132a1b22ba472fc"
+    },
+    {
+      "id": "GAME_EXPLAINED_LAJSVA",
+      "commit": "2131ef8ee2869a21393f563d02f2302777921e41",
+      "path": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/GAME_EXPLAINED_LAJSVA.md",
+      "bytes": 95201,
+      "sha256": "79a3e07f1f6b9e1210b6b7475ff7de9332668ca4cd2f24f32bf4b0b883a2f061"
+    },
+    {
+      "id": "EXPLANATION_RECEIPT",
+      "commit": "2131ef8ee2869a21393f563d02f2302777921e41",
+      "path": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/EXPLANATION_RECEIPT.json",
+      "bytes": 12033,
+      "sha256": "df03aa5a9a0cbfac04ac48b6966584c8312cfc8bbbe08e6d6f5fff39773be0d9"
+    },
+    {
+      "id": "CITATION_WELD_RECEIPT",
+      "commit": "2131ef8ee2869a21393f563d02f2302777921e41",
+      "path": ".claude/window1_live_v4_replay/v54_four_games_explained_20260821/CITATION_WELD_RECEIPT.json",
+      "bytes": 538965,
+      "sha256": "7c87ba9e77f8b422fdf8cb410709d52fc08d63609ed1e8d8be5963f5601d1dc0"
+    }
+  ],
+  "findings": {
+    "F-VS-050": {
+      "commit": "afe38772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md",
+      "line": 52,
+      "label": "F-VS-050",
+      "id": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L52"
+    },
+    "F-VS-052": {
+      "commit": "afe38772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md",
+      "line": 54,
+      "label": "F-VS-052",
+      "id": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L54"
+    },
+    "F-VS-053": {
+      "commit": "afe38772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md",
+      "line": 55,
+      "label": "F-VS-053",
+      "id": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L55"
+    },
+    "F-VS-054": {
+      "commit": "afe38772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md",
+      "line": 56,
+      "label": "F-VS-054",
+      "id": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L56"
+    },
+    "F-VS-055": {
+      "commit": "afe38772",
+      "path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md",
+      "line": 57,
+      "label": "F-VS-055",
+      "id": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L57"
+    }
+  },
+  "corrections": {
+    "bound_ids": [
+      "W1TT-C-001",
+      "W1TT-C-002"
+    ],
+    "lajsva_rows": 0,
+    "disposition": "W1TT-C-001/002 BOUND; NEITHER TOUCHES LAJSVA"
+  },
+  "clock": {
+    "discovery_epoch": 1784007323,
+    "formation_end_epoch": 1784007603,
+    "true_bell_epoch": 1784078400,
+    "hours": 19.74361111111111
+  },
+  "arsmar_counts": {
+    "accepted_tape_rows": 1876,
+    "book_step_rows": 1250,
+    "true_print_rows": 543,
+    "print_flow_classification": {
+      "HIT": 169,
+      "LIFT": 374,
+      "unclassified": 0,
+      "method": "nearest contemporaneous BBO; equality at bid/ask controls"
+    },
+    "reflex_actions": 54,
+    "v6_pass1_action_markers": 21,
+    "fills": 2,
+    "floor_markers": 2,
+    "discovery_markers": 1,
+    "formation_end_markers": 2,
+    "bell_markers": 1,
+    "partition_sum": 1876,
+    "reconciliation_summary_conflict_preserved": {
+      "reconciliation_rows": 1862,
+      "reconciliation_v6_actions": 7,
+      "tape_rows": 1876,
+      "tape_v6_marker_rows": 21,
+      "disposition": "TAPE_PARTITION_CONTROLS_RENDER; CONFLICT_NOT_SILENTLY_REWRITTEN"
+    }
+  },
+  "panel_a": {
+    "both_legs": true,
+    "every_book_step": true,
+    "every_trade": true,
+    "every_trade_lift_hit_marked": true,
+    "reflex_actions": 54,
+    "v6_actions": 21,
+    "fills": 2,
+    "floor_prints": [
+      {
+        "key": "SVA_FLOOR",
+        "leg": "SVA",
+        "epoch": 1784020201.83,
+        "label": "SVA lawful floor 41¢",
+        "price": 41,
+        "trade_id": "95992e7f-c30f-6ca9-7bac-082bc6399668",
+        "flow": "LIFT",
+        "receipt": "ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md#L93",
+        "line": 93
+      },
+      {
+        "key": "LAJ_FLOOR",
+        "leg": "LAJ",
+        "epoch": 1784060123.219,
+        "label": "LAJ lawful floor 51¢",
+        "price": 51,
+        "trade_id": "7fb0df36-2082-795a-5cb6-f311235289d1",
+        "flow": "HIT",
+        "receipt": "ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md#L734",
+        "line": 734
+      }
+    ],
+    "pair_ceiling_cents": 92,
+    "recorder_gap_render": {
+      "status": "RESOURCE_GAP_EXCEPT_PROVED_RESOLUTION_INTERVAL",
+      "exact_interval": [
+        1784020209,
+        1784020210
+      ],
+      "receipt": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L56"
+    },
+    "picture": {
+      "polarity": "V54_UNDECIDED",
+      "neighborhood_band": "continuous min/max reported similarity score",
+      "derivation_levels": true,
+      "final_levels": {
+        "LAJ": 47,
+        "SVA": 36
+      },
+      "pair_coherence": "sibling_state.inverse_coherence"
+    }
+  },
+  "panel_b": {
+    "stages": 20,
+    "reader_lanes": [
+      "anchor_settle",
+      "opening_split",
+      "drift",
+      "steps_stillness",
+      "shape_survival",
+      "ripeness",
+      "lows_travel",
+      "joint_state_spread_dwell",
+      "divots",
+      "depth_size",
+      "volume",
+      "sibling_state",
+      "category",
+      "time_in_window",
+      "books",
+      "half_pair_state"
+    ],
+    "reader_engagement_marks": 320,
+    "retrieval_queries": 20,
+    "derivation_stages": 20,
+    "sentence_stages": 20,
+    "stage_point_provenance_gaps": [
+      {
+        "stage": 1,
+        "line": 287,
+        "id": "GAP-c080c4180f24552a",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 2,
+        "line": 293,
+        "id": "GAP-dc90e50546e77c83",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 3,
+        "line": 299,
+        "id": "GAP-7f535cb560ea2806",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 4,
+        "line": 305,
+        "id": "GAP-841442fe2c2bb6bd",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 5,
+        "line": 311,
+        "id": "GAP-2efb7ec9aab03fb7",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 6,
+        "line": 317,
+        "id": "GAP-1d06772f05808d39",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 7,
+        "line": 323,
+        "id": "GAP-d27e2e2c10a61fa4",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 8,
+        "line": 329,
+        "id": "GAP-09e6c2c57b74fbeb",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 9,
+        "line": 335,
+        "id": "GAP-e9350564afe3782f",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 10,
+        "line": 341,
+        "id": "GAP-09bb4aee21e2c4dd",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 11,
+        "line": 347,
+        "id": "GAP-0c08411f5da7dd40",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 12,
+        "line": 353,
+        "id": "GAP-3ccfb1bd6adb45c1",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 13,
+        "line": 359,
+        "id": "GAP-ea92de7695cb05ef",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 14,
+        "line": 365,
+        "id": "GAP-ddc703dc7dd8a49e",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 15,
+        "line": 371,
+        "id": "GAP-6d47693ded472bc8",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 16,
+        "line": 377,
+        "id": "GAP-57c3a496614cf605",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 17,
+        "line": 383,
+        "id": "GAP-186e0830843b7758",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 18,
+        "line": 389,
+        "id": "GAP-69a66424711032a7",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 19,
+        "line": 395,
+        "id": "GAP-6d2173ab1eb8f976",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      },
+      {
+        "stage": 20,
+        "line": 401,
+        "id": "GAP-7b55463309332e27",
+        "cause": "CAPTURE_TIME_POINT_PROVENANCE_ABSENT"
+      }
+    ],
+    "conservation": {
+      "rendered_lane": true,
+      "capture_time_per_stage_receipt": "RESOURCE_GAP",
+      "build_assert_source": "2131ef8ee2869a21393f563d02f2302777921e41:arb-executor/analysis/build_window1_v54_functionable_v6.js#L405"
+    },
+    "sva_fill_cascade": {
+      "status": "BROKEN_AFTER_FILL_IN_AS_OCCURRED_RECEIPTS",
+      "fill_receipt": "ef6f3975:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/LAJSVA_RAW_TAPE.md#L109",
+      "next_stage": {
+        "receipt": "2131ef8ee2869a21393f563d02f2302777921e41:.claude/window1_live_v4_replay/v54_functionable_four_stories_v6_20260821/FOUR_STORIES.md#L329",
+        "credited_count": 0,
+        "laj_action": "REPRICE_REST@48¢"
+      },
+      "gap_id": "GAP-LAJSVA-FILL-HANDOFF",
+      "required_behavior_receipt": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L55"
+    }
+  },
+  "panel_c": {
+    "reports": [
+      "REFLEX",
+      "PATTERN_ENGINE"
+    ],
+    "sections_per_report": 6,
+    "reflex_grade": {
+      "decision": "BAD",
+      "outcome": "GOOD_DELTA_6_SEPARATE"
+    },
+    "pattern_grade": {
+      "decision": "BAD",
+      "outcome": "BAD_NO_FILLS"
+    },
+    "contaminated_diet_receipt": "afe38772:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md#L52"
+  },
+  "regeneration_contract": {
+    "builder": "arb-executor/analysis/build_lajsva_case_study_v1.mjs",
+    "command": "node arb-executor/analysis/build_lajsva_case_study_v1.mjs",
+    "behavior": "deterministically regenerates the AS-OCCURRED package from committed inputs; after an accepted LAJSVA repair, run the same builder from the repair commit and file as the next case-study version so v1 remains the before spine"
+  },
+  "outputs": [
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/PANEL_A_PAIR_RENDER.html",
+      "bytes": 931559,
+      "sha256": "218a02330ff5158e00df5bd6a472ac702aff5b188b5b8818622aaa2d79e1841b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/PANEL_B_ENGAGEMENT.html",
+      "bytes": 158523,
+      "sha256": "68f460eea3f991f864955cae3b8276b11a768e14c06715de824e572743bca985"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/PANEL_C_TRADE_REPORTS.html",
+      "bytes": 28075,
+      "sha256": "4f4075c32e2a63832314fce5ba9f204f3ab8698ec03619958ce6e277a99d5062"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/TRADE_REPORT_REFLEX.md",
+      "bytes": 18424,
+      "sha256": "8458dba0960be46dfe1374a799171dcf97afb3396e256b2281ed8f824c5e36d1"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/TRADE_REPORT_PATTERN_ENGINE.md",
+      "bytes": 27931,
+      "sha256": "ee0a60e80bf8bac42631f51b0ec2cdb2ce1a38a51b19f8f72e26de4b4875f6ad"
+    }
+  ]
+}

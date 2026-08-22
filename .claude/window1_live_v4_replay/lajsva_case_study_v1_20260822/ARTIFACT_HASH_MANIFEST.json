@@ -1,0 +1,39 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V1_ARTIFACT_HASH_MANIFEST",
+  "root": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822",
+  "file_count": 6,
+  "all_under_50_mb": true,
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/PANEL_A_PAIR_RENDER.html",
+      "bytes": 931559,
+      "sha256": "218a02330ff5158e00df5bd6a472ac702aff5b188b5b8818622aaa2d79e1841b"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/PANEL_B_ENGAGEMENT.html",
+      "bytes": 158523,
+      "sha256": "68f460eea3f991f864955cae3b8276b11a768e14c06715de824e572743bca985"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/PANEL_C_TRADE_REPORTS.html",
+      "bytes": 28075,
+      "sha256": "4f4075c32e2a63832314fce5ba9f204f3ab8698ec03619958ce6e277a99d5062"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/TRADE_REPORT_REFLEX.md",
+      "bytes": 18424,
+      "sha256": "8458dba0960be46dfe1374a799171dcf97afb3396e256b2281ed8f824c5e36d1"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/TRADE_REPORT_PATTERN_ENGINE.md",
+      "bytes": 27931,
+      "sha256": "ee0a60e80bf8bac42631f51b0ec2cdb2ce1a38a51b19f8f72e26de4b4875f6ad"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v1_20260822/CASE_STUDY_RECEIPT.json",
+      "bytes": 14820,
+      "sha256": "c7c33c0dc75ad9ff901a9ccd340fa64a79efad1a3d22aa09ceaf9572263fd139"
+    }
+  ],
+  "note": "The manifest does not self-hash. No file is oversize; external custody is not required."
+}

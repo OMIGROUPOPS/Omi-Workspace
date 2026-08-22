@@ -26,7 +26,7 @@ SOURCE_COLUMNS = [
     "ticker", "event_ticker", "minute_ts", "category",
     "yes_bid_close", "yes_ask_close", "spread_close", "mid_close",
     "price_close", "price_high", "price_low", "volume_in_minute",
-    "trade_count_in_minute", "open_interest_ffill", "match_start_ts",
+    "trade_count_in_minute", "minute_has_trade", "open_interest_ffill", "match_start_ts",
     "match_start_method", "minutes_since_open", "premarket_phase", "regime",
     "partner_ticker", "partner_yes_bid_close", "partner_yes_ask_close",
     "paired_mid_sum", "pair_gap_abs", "bid_consumption_velocity",
@@ -132,8 +132,8 @@ def summarize_leg(ticker, rows, spike_atlas):
     formation = choose_formation_row(rows)
     formation_epoch = epoch(formation.get("minute_ts"))
     through_formation = [row for row in rows if (epoch(row.get("minute_ts")) or math.inf) <= formation_epoch]
-    trade_rows = [row for row in rows if (finite(row.get("trade_count_in_minute")) or 0) > 0]
-    observed_trade_rows = [row for row in through_formation if (finite(row.get("trade_count_in_minute")) or 0) > 0]
+    trade_rows = [row for row in rows if bool(row.get("minute_has_trade")) and (finite(row.get("trade_count_in_minute")) or 0) > 0]
+    observed_trade_rows = [row for row in through_formation if bool(row.get("minute_has_trade")) and (finite(row.get("trade_count_in_minute")) or 0) > 0]
     final_trade_low = min((cents(row.get("price_low")) for row in trade_rows if cents(row.get("price_low")) is not None), default=None)
     observed_trade_low = min((cents(row.get("price_low")) for row in observed_trade_rows if cents(row.get("price_low")) is not None), default=None)
     final_ask_low = min((cents(row.get("yes_ask_close")) for row in rows if cents(row.get("yes_ask_close")) is not None), default=None)
@@ -162,7 +162,9 @@ def summarize_leg(ticker, rows, spike_atlas):
         "qualifying_minute_ask_low_cents": final_ask_low,
         "low_basis": low_basis,
         "high_cents": max((cents(row.get("price_high")) for row in trade_rows if cents(row.get("price_high")) is not None), default=None),
-        "close_cents": cents(rows[-1].get("price_close")),
+        "close_cents": cents(trade_rows[-1].get("price_close")) if trade_rows else None,
+        "high_basis": "MAX_PRICE_HIGH_ON_TRADE_BEARING_MINUTES_STRICTLY_BEFORE_BELL",
+        "close_basis": "LAST_PRICE_CLOSE_ON_TRADE_BEARING_MINUTE_STRICTLY_BEFORE_BELL",
         "formation_end_epoch": formation_epoch,
         "bell_epoch": epoch(formation.get("match_start_ts")),
         "formation_phase_source": "premarket_phase=stable" if formation.get("premarket_phase") == "stable" else "FIRST_LAWFUL_MINUTE_NO_NATIVE_STABLE_ROW",
@@ -184,7 +186,9 @@ def summarize_event(event_id, rows, spike_atlas, source_path):
         if row.get("match_start_method") == "unknown" or bell is None:
             excluded_unknown += 1
             continue
-        if minute is None or minute > bell:
+        # A minute bucket stamped exactly at the bell contains [bell, bell+60)
+        # activity.  Serving it would leak post-bell trades into the library.
+        if minute is None or minute >= bell:
             excluded_after_bell += 1
             continue
         lawful.append(row)
@@ -315,7 +319,7 @@ def main():
         flush()
 
     receipt = {
-        "label": "V54_REPAIR_ITERATION2_FOUNDATION_LIBRARY",
+        "label": "V54_REPAIR_ITERATION3_FOUNDATION_LIBRARY",
         "source": {
             "path": str(source),
             "external_custody_location": args.custody_location,
@@ -328,7 +332,8 @@ def main():
             "right_edge": "match_start_ts",
             "method_field": "match_start_method",
             "excluded_method": "unknown",
-            "rows_after_right_edge_excluded": True,
+            "minute_bucket_boundary": "minute_ts < match_start_ts",
+            "rows_at_or_after_right_edge_excluded": True,
         },
         "layer_license": {
             "licensed": ["MACRO", "MICRO"],
@@ -345,7 +350,8 @@ def main():
         "exclusions": dict(sorted(skipped.items())),
     }
     receipt_path.parent.mkdir(parents=True, exist_ok=True)
-    receipt_path.write_text(json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    with receipt_path.open("w", encoding="utf-8", newline="\n") as receipt_handle:
+        receipt_handle.write(json.dumps(receipt, indent=2, sort_keys=True) + "\n")
     print(json.dumps(receipt, sort_keys=True))
 
 

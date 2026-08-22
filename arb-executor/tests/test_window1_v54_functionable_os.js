@@ -42,8 +42,8 @@ assert.equal(reads.half_pair_state.value.legs.AAA.credited, false, "reader recei
 const vector = os.vectorFromReads(state, reads);
 const corpus = [
   { event_id: "TEST-EVENT", event_date: "26JUL01", category: "ATP_MAIN", quality: "SELF", vector, legs: [], source_receipts: [] },
-  { event_id: "NEIGHBOR-1", event_date: "26JUN01", category: "ATP_MAIN", quality: "RANGE", vector: { ...vector, leg0_drift_cents: -3, leg1_drift_cents: 3 }, legs: [{ leg_id: "N1A", anchor_cents: 40, low_cents: 35 }, { leg_id: "N1B", anchor_cents: 60, low_cents: 55 }], source_receipts: [{ source_id: "RANGE", row_ref: "range.jsonl#row-1" }] },
-  { event_id: "NEIGHBOR-2", event_date: "26MAY01", category: "ATP_CHALL", quality: "HIST", vector: { ...vector, category: "ATP_CHALL", leg0_drift_cents: -10 }, legs: [{ leg_id: "N2A", anchor_cents: 40, low_cents: 30 }, { leg_id: "N2B", anchor_cents: 60, low_cents: 50 }], source_receipts: [{ source_id: "HIST", row_ref: "historical.csv#line-2" }] },
+  { event_id: "NEIGHBOR-1", event_date: "26JUN01", category: "ATP_MAIN", quality: "RANGE", vector: { ...vector, leg0_drift_cents: -3, leg1_drift_cents: 3 }, legs: [{ leg_id: "N1A", anchor_cents: 40, observed_low_cents: 38, low_cents: 35 }, { leg_id: "N1B", anchor_cents: 60, observed_low_cents: 58, low_cents: 55 }], source_receipts: [{ source_id: "RANGE", row_ref: "range.jsonl#row-1" }] },
+  { event_id: "NEIGHBOR-2", event_date: "26MAY01", category: "ATP_CHALL", quality: "HIST", vector: { ...vector, category: "ATP_CHALL", leg0_drift_cents: -10 }, legs: [{ leg_id: "N2A", anchor_cents: 40, observed_low_cents: 36, low_cents: 30 }, { leg_id: "N2B", anchor_cents: 60, observed_low_cents: 56, low_cents: 50 }], source_receipts: [{ source_id: "HIST", row_ref: "historical.csv#line-2" }] },
 ];
 const neighborhood = os.retrieveNeighborhood(corpus, vector, "TEST-EVENT", 2, state.receipt);
 assert.equal(neighborhood.length, 2);
@@ -60,6 +60,29 @@ assert.match(derivation.sentence, /CR-[0-9a-f]{64}/);
 assert.equal(derivation.pair_conservation.at_or_below_99, true);
 assert.equal(derivation.resources_consulted.length, 0, "connectivity must not be mislabeled as consultation");
 assert.ok(Object.values(derivation.citation_receipts).every((row) => row.captured_at_receipt === state.receipt));
+assert.ok(["NEIGHBORS-GRADED", "OWN-EVIDENCE", "LINEAGE-LAST-RESORT"].includes(derivation.derivation.target_basis));
+
+const splitState = os.createTapeState(meta);
+splitState.positions.AAA.standing_target_cents = 60;
+splitState.positions.BBB.standing_target_cents = 36;
+const splitReads = { half_pair_state: { value: { legs: { AAA: { ...splitState.positions.AAA }, BBB: { ...splitState.positions.BBB } } } } };
+function splitRow(legId, target, live) {
+  const actionStatement = `ACTION=HOLD_REST; TARGET_CENTS=${target}; ACTIVE_TARGET_BEFORE_CENTS=${target}.`;
+  return {
+    leg_id: legId,
+    action: { action: "HOLD_REST", target_cents: target, reason: "INCUMBENT" },
+    derivation: { lawful_unallocated_target_cents: target, live_evidenced_window: live, derived_target_cents: target },
+    sentence: `ALLOCATION=INCUMBENT-PENDING-JOINT-DERIVATION. ${actionStatement}`,
+    sentence_action_assertion: { expected_statement: actionStatement, equal: true },
+    pair_conservation: { at_or_below_99: true },
+  };
+}
+const splitRows = [splitRow("AAA", 60, false), splitRow("BBB", 41, true)];
+os.allocatePairActions({ state: splitState, reads: splitReads, derivations: splitRows });
+assert.equal(splitRows[1].action.target_cents, 41, "sole live evidenced side owns its lawful level");
+assert.equal(splitRows[0].action.target_cents, 58, "uncredited sibling plan yields the exact required budget");
+assert(splitRows.every((row) => row.pair_conservation.at_or_below_99));
+assert(splitRows.every((row) => row.sentence.includes("ALLOCATION=LIVE-WINDOW-SPLIT")));
 
 const uncitedCorpus = [{ ...corpus[1], source_receipts: ["BARE_SOURCE_LABEL"] }];
 assert.throws(

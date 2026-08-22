@@ -1,0 +1,46 @@
+{
+  "label": "LAJSVA_CASE_STUDY_V4_MANIFEST",
+  "files": [
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/CASE_STUDY_RECEIPT.json",
+      "bytes": 6516,
+      "sha256": "c63455042358a6475925539470a249f2f195e888a84009d06b5670269282e48a"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/PANEL_A_PAIR_RENDER.html",
+      "bytes": 305630,
+      "sha256": "2bb6f1edb53d782b2f3a70c9523ec17c43ccd2dc24e1dda1471b5cb8ac7e7143"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/PANEL_B_ENGAGEMENT.html",
+      "bytes": 10797,
+      "sha256": "2bfe85e50f5c0791ec3b3ed7b27f2ef206f642c3b40bfd980240ac6d3cc34b06"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/PANEL_C_TRADE_REPORTS.html",
+      "bytes": 12381,
+      "sha256": "d721a864ed03d91beeb832b30eeef98e17ca67deb338cc52230a1693541cde54"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/TRADE_REPORT_BASELINE.md",
+      "bytes": 257,
+      "sha256": "3a940d72233d612a9a3f4147dc2cdd3f59e6c19cecb0efce85e2f701bfad009d"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/TRADE_REPORT_REPAIR.md",
+      "bytes": 10925,
+      "sha256": "7a62564be66a682ac3381f3b456096d3b24428606b89d42c21db53cd96c98e1e"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/V1_V2_V3_V4_SIDE_BY_SIDE.md",
+      "bytes": 952,
+      "sha256": "f933ede53cf41e2da0a4908211f6ce2231d61052136739df32cfee66bb0dc962"
+    },
+    {
+      "path": ".claude/window1_live_v4_replay/lajsva_case_study_v4_20260822/DETERMINISM_RECEIPT.json",
+      "bytes": 298,
+      "sha256": "1a00ce69c88a45b8e474982b8a5a22b0b7536b9d17b45a866b903865510bba45"
+    }
+  ],
+  "all_under_50_mb": true
+}

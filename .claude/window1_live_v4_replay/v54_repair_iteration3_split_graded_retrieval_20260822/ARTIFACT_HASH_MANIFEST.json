@@ -1,0 +1,155 @@
+{
+  "label": "V54_REPAIR_ITERATION3_SPLIT_GRADED_RETRIEVAL",
+  "files": {
+    "ASSUMPTION_GAPS.md": {
+      "path": "ASSUMPTION_GAPS.md",
+      "sha256": "65666af91ec61351096e16c2a8b8cda2d712af77b8c45d5b397fc52ad71e61f4",
+      "bytes": 943,
+      "rows": null
+    },
+    "CC_URSPAL_LATE_BELL.md": {
+      "path": "CC_URSPAL_LATE_BELL.md",
+      "sha256": "3158ca6001ebe990291b09da610778f4e61f87721bd60e113d509a1adddca3f3",
+      "bytes": 464,
+      "rows": null
+    },
+    "CONDITIONAL_DIP_RECEIPT.json": {
+      "path": "CONDITIONAL_DIP_RECEIPT.json",
+      "sha256": "7fe2fc9272d3e2b2a1980d1a2a61dd209d5442ba1f9256f9b654cffb0e8a7810",
+      "bytes": 2505610,
+      "rows": null
+    },
+    "CORPUS_CENSUS.json": {
+      "path": "CORPUS_CENSUS.json",
+      "sha256": "796d8dd31aa53f30d25178f89296be9357863bf4c1c7af9baba716052fb07ad3",
+      "bytes": 14092,
+      "rows": null
+    },
+    "CORPUS_INDEX.jsonl.gz": {
+      "path": "CORPUS_INDEX.jsonl.gz",
+      "sha256": "4f0f0dc06e4f05bfc8fb8a35e662d4d08ac64b26815719ebb323af7166a41cef",
+      "bytes": 2263307,
+      "rows": null
+    },
+    "EXTERNAL_CUSTODY_MANIFEST.json": {
+      "path": "EXTERNAL_CUSTODY_MANIFEST.json",
+      "sha256": "cd89318db012d2dc309b5cd6441262567aaa1001ff69d8a78ca4b4950e4b962c",
+      "bytes": 689,
+      "rows": null
+    },
+    "FILL_HANDOFF_RECEIPT.json": {
+      "path": "FILL_HANDOFF_RECEIPT.json",
+      "sha256": "40bb94245a59af8b825b190dfd5fe84c5248b43c6d9d7daeb485dfd7142007ae",
+      "bytes": 31163,
+      "rows": null
+    },
+    "FORBIDDEN_ACCESS_RECEIPT.json": {
+      "path": "FORBIDDEN_ACCESS_RECEIPT.json",
+      "sha256": "018f2ebd8296f77835e417298360f2b99aa24873b171a4aec67fb4003b09b9c2",
+      "bytes": 465,
+      "rows": null
+    },
+    "FOUNDATION_COVERAGE_BEFORE_AFTER.json": {
+      "path": "FOUNDATION_COVERAGE_BEFORE_AFTER.json",
+      "sha256": "2aa80775c695620f5d376611cff5866923aa9bd88a1b9e7af42d28b2304665b2",
+      "bytes": 593,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY.jsonl.gz": {
+      "path": "FOUNDATION_LIBRARY.jsonl.gz",
+      "sha256": "4932e63dab5fbad6100644db8ac0ee04925894971b61da484980705f8e34199e",
+      "bytes": 1743754,
+      "rows": null
+    },
+    "FOUNDATION_LIBRARY_RECEIPT.json": {
+      "path": "FOUNDATION_LIBRARY_RECEIPT.json",
+      "sha256": "f18aeb451fb305d2482a92112f573ac428022958b4fab724c0c04b160b9d1300",
+      "bytes": 3143,
+      "rows": null
+    },
+    "FOUNDATION_SERVING_FIX_RECEIPT.json": {
+      "path": "FOUNDATION_SERVING_FIX_RECEIPT.json",
+      "sha256": "a8b917cfd7d816fc1b1a7bb0c1253e66b4fbd6380f2601fc228c5ba08f2d55e5",
+      "bytes": 2021,
+      "rows": null
+    },
+    "FOUR_STORIES.md": {
+      "path": "FOUR_STORIES.md",
+      "sha256": "6820caaf1406bbae4d874c657b1dda04e4e9f2d631a6d810ec5c828ca1dc1bf2",
+      "bytes": 4754436,
+      "rows": null
+    },
+    "FOUR_STORIES_RECEIPT.json": {
+      "path": "FOUR_STORIES_RECEIPT.json",
+      "sha256": "82907a9925cc5da6f1a2c4a0f12d3157d513669611d1d3d3c6abb511044e42b9",
+      "bytes": 17153,
+      "rows": null
+    },
+    "FUNCTIONALITY_RECEIPT.json": {
+      "path": "FUNCTIONALITY_RECEIPT.json",
+      "sha256": "511829d8ef67e6e265de0c6adda75ca0305f93ef7b2b941dcbeda0dd15265c07",
+      "bytes": 24217,
+      "rows": null
+    },
+    "LAJSVA_EARLY_RISER_FORENSICS.json": {
+      "path": "LAJSVA_EARLY_RISER_FORENSICS.json",
+      "sha256": "460bf2cd2c5af1702980496ffc5c0a3a420b245a4f4261cbb2b90d8018a04935",
+      "bytes": 118768,
+      "rows": null
+    },
+    "LIBRARY_BELL_BOUND_RECEIPT.json": {
+      "path": "LIBRARY_BELL_BOUND_RECEIPT.json",
+      "sha256": "5e86aa0ca6036da116cb6d51986550047164051011e323a6c693e9b0ee468099",
+      "bytes": 15882,
+      "rows": null
+    },
+    "REPAIR_FOUR_GAME_TRACE.jsonl.gz": {
+      "path": "REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+      "sha256": "129a050fb71e4439ee06d06a77a78a308780392926a0fe7dd919cf6db1b06335",
+      "bytes": 1975589,
+      "rows": null
+    },
+    "REPAIR_GATE_RECEIPT.json": {
+      "path": "REPAIR_GATE_RECEIPT.json",
+      "sha256": "bb56d734044c14eb517576fd2183d31667c26e1832185918f713c5545e89a591",
+      "bytes": 3627,
+      "rows": null
+    },
+    "SMOKE_CRIJEA.md": {
+      "path": "SMOKE_CRIJEA.md",
+      "sha256": "a9abe4e4ac668f27c1c2b74a388eae93e1c7818265180fbe7721cfc3ada3f0c3",
+      "bytes": 1998880,
+      "rows": null
+    },
+    "SMOKE_CRIJEA_RECEIPT.json": {
+      "path": "SMOKE_CRIJEA_RECEIPT.json",
+      "sha256": "017d3540207388c720247e801690b52f75d3c1d9cb283d1458af1b4081f53197",
+      "bytes": 795536,
+      "rows": null
+    },
+    "SOURCE_RECEIPTS.json": {
+      "path": "SOURCE_RECEIPTS.json",
+      "sha256": "6221c3b69028782274f5d2900ae779a1f9d412bc86c8534998bebf205454975b",
+      "bytes": 54774,
+      "rows": null
+    },
+    "SPLIT_ALLOCATION_RECEIPT.json": {
+      "path": "SPLIT_ALLOCATION_RECEIPT.json",
+      "sha256": "a0b9ea5dc9bac2bcd7a8537d55a6b1cdc526524659bc993ae32805b43b08522e",
+      "bytes": 823708,
+      "rows": null
+    },
+    "TARGET_PRINTS_5.jsonl.gz": {
+      "path": "TARGET_PRINTS_5.jsonl.gz",
+      "sha256": "575784544073ec3e9e84818ffae68203b6d616d51868f65f3cd09559b3af198e",
+      "bytes": 1224927,
+      "rows": null
+    },
+    "DETERMINISM_RECEIPT.json": {
+      "path": "DETERMINISM_RECEIPT.json",
+      "sha256": "822d247e2f3f50e1bc6966b88f9001c1c463622d77334ce95c11fe74ea81d56b",
+      "bytes": 8846,
+      "rows": null
+    }
+  }
+}

@@ -18826,6 +18826,7 @@ Standing line: any operator ruling absent from this register is filed here same-
 | FUNCTIONABILITY POKE LAW — every CONNECTED claim poked by CC on the real store; failed poke filed same-day | 2026-08-21 | F-VS-030 · §l |
 | STORY COUNTER-GRADE LAW — RESOURCE-GAP stamps, neighbor existence, sentence==action, black-white and hardcode violations | 2026-08-21 | F-VS-030 · §l |
 | BELL SWEEP STANDS — standing order; dictionary refresh at each pass close | 2026-08-21 | F-VS-030 · §l |
+| THE TRADE-REPORT LAW — per-game trade report in operator language from welded receipts only; decision and outcome graded separately; six standard sections | 2026-08-21 | F-VS-055 |
 | CONVICTION IS PAIR-COHERENT — a conviction fill is a belief about both legs; sibling plan derives from it on first credit (SVA 41 ⟹ LAJ fader ⟹ late floor 51) | 2026-08-21 | F-VS-053 |
 | THE CASE-STUDY LAW — LAJSVA is the official case study; PAIR RENDER + ENGAGEMENT DIAGRAM as-occurred and after every accepted repair | 2026-08-21 | F-VS-052 |
 | URSPAL BELL ADOPTED 1784042247 ±60 s — truth-table correction W1TT-C-002 | 2026-08-21 | F-VS-051 · W1_GROUND_TRUTH_CORRECTIONS.md |
@@ -19518,3 +19519,10 @@ W1TT-C-002 URSPAL (2026-08-21): bell 1784042247; PAL 39/41 fill 40 valid; URS 57
 ## t. LAJSVA RAW TAPE (appended 2026-08-21; license 35842b42)
 
 `LAJSVA_RAW_TAPE.md` — both legs in tandem, 1,876 rows, markers inline; Kalshi API reconciliation 33,981/33,981 matched, 0 unmatched; SVA kiss PASS at second grain, unprovable at sub-second (recorder 1-s clock; 16-lot ahead in queue) (F-VS-054). This is the as-occurred ground for the case-study render (F-VS-052).
+
+
+## u. THE TRADE-REPORT LAW (appended 2026-08-21; F-VS-055)
+
+Per game, in operator language, from welded receipts only (sentence==action, citation==receipt; an unreceipted line is a violation). Decision graded on what was knowable at decision time; outcome graded separately; total floors are context, never the aim.
+
+Sections, in order: 1 WHAT I BELIEVED AT OPEN · 2 WHAT I DECIDED PER SIDE AND WHY (resources named) · 3 EACH ACTION AT EACH PRICE WITH ITS REASON AT THAT TIME · 4 WHAT HAPPENED · 5 MY GRADE OF MY OWN TRADE — GOOD / BAD / MIXED — WITH REASONING · 6 WHAT I'D FLAG FOR THE LIBRARY.
